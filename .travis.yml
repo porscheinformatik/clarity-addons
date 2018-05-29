@@ -8,9 +8,10 @@ branches:
 
 before_script:
   - npm install -g @angular/cli
+  - cd latest
 
 script:
-  - ng build --prod
+  - npm deploy
 
 notifications:
   email:
