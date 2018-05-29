@@ -11,7 +11,7 @@ before_script:
   - cd latest
 
 script:
-  - npm deploy
+  - npm run deploy
 
 notifications:
   email:
