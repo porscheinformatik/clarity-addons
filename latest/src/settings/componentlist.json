@@ -1,0 +1,34 @@
+{
+    "status": {
+        "done": 20,
+        "started": 10,
+        "notStarted": 5,
+        "notDoing": -1
+    },
+    "list": [
+        {
+            "url": "generic-pager",
+            "text": "Generic Pager",
+            "type": "component",
+            "ux": 10,
+            "ui": 10,
+            "core": 10,
+            "ng": 10,
+            "dox": 5,
+            "comments": "",
+            "newLayout": true
+        },
+        {
+            "url": "search-result-list",
+            "text": "Search Result List",
+            "type": "component",
+            "ux": 10,
+            "ui": 10,
+            "core": 10,
+            "ng": 10,
+            "dox": 5,
+            "comments": "",
+            "newLayout": true
+        }
+    ]
+}
