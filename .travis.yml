@@ -3,7 +3,7 @@ node_js:
   - "8"
 
 script: 
-  - cd latest && npm install && npm run deploy
+  - cd latest && npm install && npm run deploy:ci
   - cd ../
 
 deploy:
@@ -11,7 +11,7 @@ deploy:
   verbose: true
   local_dir: deploy
   skip-cleanup: true
-  github-token: $GITHUB_OAUTH_TOKEN
+  github-token: $GITHUB_TOKEN
   keep-history: true
   committer-from-gh: true
   on:
