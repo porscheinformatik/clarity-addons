@@ -1,20 +1,18 @@
 language: node_js
 node_js:
-  - "8.9"
+  - "8"
 
-branches:
-  only:
-    - master
+script: 
+  - cd latest && npm install && npm run deploy
+  - cd ../
 
-before_script:
-  - npm install -g @angular/cli
-  - cd latest
-
-script:
-  - npm install
-  - npm run deploy
-
-notifications:
-  email:
-    on_failure: change
-    on_success: change
+deploy:
+  provider: pages
+  verbose: true
+  local_dir: deploy
+  skip-cleanup: true
+  github-token: $GITHUB_OAUTH_TOKEN
+  keep-history: true
+  committer-from-gh: true
+  on:
+    branch: website
