@@ -28,7 +28,7 @@ const argv = minimist(process.argv.slice(2), {
   default: {
     deploy: false,
     directory: '../../clarity',
-    base: '/'
+    base: '/clarity-addons/'
   }
 });
 
