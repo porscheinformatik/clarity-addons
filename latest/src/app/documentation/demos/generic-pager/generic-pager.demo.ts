@@ -15,7 +15,6 @@ import {ClarityDocComponent} from "../clarity-doc";
     }
 })
 export class GenericPagerDemo extends ClarityDocComponent {
-    expanded: boolean = true;
 
     constructor() {
         super("generic-pager");
