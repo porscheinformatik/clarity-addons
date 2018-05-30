@@ -1,0 +1,27 @@
+{
+    "name": "@porscheinformatik/clr-addons",
+    "version": "@VERSION",
+    "description": "Addon components for Clarity Angular",
+    "es2015": "esm2015/clr-addons.js",
+    "homepage": "https://porscheinformatik.github.io/clarity-addons/",
+    "main": "bundles/clr-addons.umd.js",
+    "module": "esm5/clr-addons.js",
+    "keywords": ["ng-add", "clarity", "clarity-addons", "angular", "components"],
+    "repository" : {
+        "type" : "git",
+        "url" : "git@github.com:porscheinformatik/clarity-addons.git"
+    },
+    "peerDependencies": {
+        "@angular/common": "^6.0.0",
+        "@angular/compiler": "^6.0.0",
+        "@angular/core": "^6.0.0",
+        "@angular/forms": "^6.0.0",
+        "@angular/platform-browser": "^6.0.0",
+        "@angular/platform-browser-dynamic": "^6.0.0"
+    },
+    "author": "porscheinformatik",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/porscheinformatik/clarity-addons/issues"
+    }
+}
