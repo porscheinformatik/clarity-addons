@@ -3,7 +3,7 @@
 
 # build
 /deploy
-/clarity
+/clarity-addons
 
 # IDEs and editors
 /.idea
