@@ -105,7 +105,7 @@ function generateRoutes() {
 }
 
 function generateSitemapNewsUrls() {
-    const baseUrl = 'https://vmware.github.io/clarity/news/';
+    const baseUrl = 'https://porscheinformatik.github.io/clarity-addons/news/';
     const sitemapPath = path.join(process.cwd(), "src", "sitemap.xml");
     const sitemapFile = fs.readFileSync(sitemapPath, {encoding: 'utf8'});
     const sitemap = converter.xml2js(sitemapFile, {compact: true});

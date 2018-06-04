@@ -1,6 +1,5 @@
 import {NgModule} from "@angular/core";
 
-import {SketchTemplateLinkDirective} from "./sketch-template-link.directive";
 import {HashListener} from "./hash-listener.directive";
 import {ScrollSpy} from "./scrollspy.directive";
 import {ClarityModule} from "@clr/angular";
@@ -13,13 +12,11 @@ import {CommonModule} from "@angular/common";
         ClarityModule
     ],
     declarations: [
-        SketchTemplateLinkDirective,
         HashListener,
         ScrollSpy,
         CodeSnippet
     ],
     exports: [
-        SketchTemplateLinkDirective,
         HashListener,
         ScrollSpy,
         CodeSnippet

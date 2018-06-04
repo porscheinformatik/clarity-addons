@@ -27,8 +27,8 @@ import { renderModuleFactory } from "@angular/platform-server";
 const argv = minimist(process.argv.slice(2), {
   default: {
     deploy: false,
-    directory: '../../clarity',
-    base: '/clarity-addons/'
+    directory: '../../clarity-addons',
+    base: '/clarity-addons'
   }
 });
 
@@ -60,7 +60,7 @@ const urls = sitemap.urlset.url
   })
   .map(item => {
     const url = parse(item.loc._text);
-    const route = url.pathname.replace("clarity/", "");
+    const route = url.pathname.replace("clarity-addons/", "");
     const fullPath = join(BROWSER_FOLDER, route);
 
     // Make sure the directory structure is there
