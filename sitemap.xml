@@ -1,22 +1,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
-        <loc>https://vmware.github.io/clarity/</loc>
+        <loc>https://porscheinformatik.github.io/clarity-addons/</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/community</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/18.07.03/get-started</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/18.07.03</loc>
+        <loc>https://porscheinformatik.github.io/clarity-addons/news/0.1.0</loc>
         <changefreq>daily</changefreq>
     </url>
 </urlset>
