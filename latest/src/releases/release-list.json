@@ -1,10 +1,9 @@
 {
-    "current": "18.07.03",
+    "current": "0.1.0",
     "all": {
-        "18.07.03": {
+        "0.1.0": {
             "date": "July 03, 2018",
-            "sketch": "0.11.6",
-            "commit": "43c9515e22ccdeb3da447ce44101c5de2a2577b5"
+            "commit": "d5dcedacf94ebeb48228f95461fe55517513941a"
         }
     }
 }
