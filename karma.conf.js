@@ -134,7 +134,7 @@ module.exports = function(karma) {
         port: 9090,
         runnerPort: 9191,
         colors: true,
-        logLevel: karma.LOG_DEBUG,
+        logLevel: karma.LOG_INFO,
         singleRun: process.env.TRAVIS ? true : false,
         concurrency: Infinity,
         captureTimeout: 120000,
@@ -145,8 +145,7 @@ module.exports = function(karma) {
                     "--headless",
                     "--disable-gpu",
                     "--remote-debugging-port=9222",
-                    "--no-sandbox",
-                    "--travis=" + process.env.TRAVIS
+                    "--no-sandbox"
                 ]
             }
         },
