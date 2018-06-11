@@ -1,4 +1,4 @@
-### Installing Clarity Angular
+### Installing Clarity Addons
 
 1. Install Clarity Addons package through npm:
     ```
