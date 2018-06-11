@@ -1,12 +1,12 @@
 {
     "name": "clr-addons",
-    "version": "18.07.03",
+    "version": "0.0.1",
     "private": true,
     "scripts": {
-        "build:ui:css": "node-sass --source-map=true --precision=6 --indentedSyntax=true ./src/main.scss ./dist/clr-addons/clr-addons.css; node-sass --source-map=true --precision=6 --indentedSyntax=true ./src/dark-theme.scss ./dist/clr-addons/clr-addons-dark.css",
-        "build:ui:prefix": "postcss ./dist/clr-addons/clr-addons.css -o ./dist/clr-addons/clr-addons.css; postcss ./dist/clr-addons/clr-addons-dark.css -o ./dist/clr-addons/clr-addons-dark.css",
+        "build:ui:css": "node-sass  --include-path=node_modules --source-map=true --precision=6 --indentedSyntax=true ./src/mvap-theme.scss ./dist/clr-addons/clr-addons-mvap.css; node-sass --include-path=node_modules --source-map=true --precision=6 --indentedSyntax=true ./src/vu3-theme.scss ./dist/clr-addons/clr-addons-vu3.css",
+        "build:ui:prefix": "postcss ./dist/clr-addons/clr-addons-mvap.css -o ./dist/clr-addons/clr-addons-mvap.css; postcss ./dist/clr-addons/clr-addons-vu3.css -o ./dist/clr-addons/clr-addons-vu3.css",
         "build:ui:src": "cpy --parents --cwd='src/' '**/*.scss' ../../dist/clr-addons/src/",
-        "build:ui:optimize": "csso ./dist/clr-addons/clr-addons.css ./dist/clr-addons/clr-addons.min.css --map file; csso ./dist/clr-addons/clr-addons-dark.css ./dist/clr-addons/clr-addons-dark.min.css --map file;",
+        "build:ui:optimize": "csso ./dist/clr-addons/clr-addons-mvap.css ./dist/clr-addons/clr-addons-mvap.min.css --map file; csso ./dist/clr-addons/clr-addons-vu3.css ./dist/clr-addons/clr-addons-vu3.min.css --map file;",
         "build:ui": "npm-run-all build:ui:css build:ui:prefix build:ui:src build:ui:optimize",
         "build:angular:package": "cpy ./npm/clr-addons/package.json ./npm/clr-addons/README.md ./src/; replace '@VERSION' $npm_package_version ./src/package.json",
         "build:angular:ngpackagr": "ng build clr-addons",
@@ -21,7 +21,7 @@
         "test:travis": "npm-run-all build:ui test:format test:lint test",
         "format:fix": "node_modules/.bin/clang-format -style=file -i --glob=src/**/*.ts",
         "lint:fix": "tslint -p . -c tslint.json --fix \"src/**/*.ts\" -e \"**/node_modules/**\"",
-        "publish:latest": "npm publish dist/clr-addons"
+        "publish:latest": "npm publish dist/clr-addons --access public"
     },
     "dependencies": {
         "@angular/common": "^6.0.0",
@@ -30,6 +30,7 @@
         "@angular/platform-browser": "^6.0.0",
         "@angular/platform-browser-dynamic": "^6.0.0",
         "@webcomponents/custom-elements": "^1.0.0",
+        "bootstrap": "4.0.0-alpha.5",
         "prismjs": "^1.6.0",
         "rxjs": "^6.1.0",
         "zone.js": "^0.8.26"

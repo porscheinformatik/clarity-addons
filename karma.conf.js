@@ -117,6 +117,12 @@ module.exports = function(karma) {
             useLegacyStyle: true,
             useCompactStyle: true
         },
+        scssPreprocessor: {
+            options: {
+                sourceMap: true,
+                includePaths: ['node_modules'],
+            },
+        },
         coverageIstanbulReporter: {
             dir: "./reports/coverage/",
             fixWebpackSourcePaths: true,
