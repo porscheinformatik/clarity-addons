@@ -2,6 +2,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {BrowserModule, Title} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
 import {ClarityModule} from "@clr/angular";
+import {ClrAddonsModule} from '@porscheinformatik/clr-addons';
 
 import {AppRoutingModule} from "./app-routing.module";
 import {AppComponent} from "./app.component";
@@ -20,6 +21,7 @@ import {DocumentationModule} from "./documentation/documentation.module";
         BrowserModule.withServerTransition({ appId: "clarity" }),
         BrowserAnimationsModule,
         ClarityModule,
+        ClrAddonsModule,
         DocumentationModule,
         AppRoutingModule
     ],
