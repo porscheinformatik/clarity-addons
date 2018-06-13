@@ -14,12 +14,12 @@
         "build": "npm-run-all clean build:ui build:angular",
         "ng": "ng",
         "clean": "del ./dist",
-        "test:format": "./scripts/clang-check.sh",
+        "test:format": "prettier --list-different ./**/*.{js,json,md,ts,scss}",
         "test:lint": "tslint -p . -c tslint.json \"src/**/*.ts\"",
         "test": "ng test clr-addons",
         "test:watch": "ng test clr-addons --watch",
         "test:travis": "npm-run-all build:ui test:format test:lint test",
-        "format:fix": "node_modules/.bin/clang-format -style=file -i --glob=src/**/*.ts",
+        "format:fix": "pretty-quick --staged",
         "lint:fix": "tslint -p . -c tslint.json --fix \"src/**/*.ts\" -e \"**/node_modules/**\"",
         "publish:latest": "npm publish dist/clr-addons --access public"
     },
@@ -29,7 +29,7 @@
         "@angular/core": "^6.0.0",
         "@angular/platform-browser": "^6.0.0",
         "@angular/platform-browser-dynamic": "^6.0.0",
-        "@clr/ui": "^0.12.0-rc.2",
+        "@clr/ui": "0.12.0-rc.2",
         "@webcomponents/custom-elements": "^1.0.0",
         "bootstrap": "4.0.0-alpha.5",
         "prismjs": "^1.6.0",
@@ -48,10 +48,10 @@
         "@types/jasminewd2": "~2.0.3",
         "@types/node": "~8.9.4",
         "autoprefixer": "^6.7.7",
-        "clang-format": "^1.2.3",
         "cpy-cli": "^1.0.1",
         "csso-cli": "^1.1.0",
         "del-cli": "^1.1.0",
+        "husky": "^1.0.0-rc.6",
         "jasmine-core": "~2.99.1",
         "jasmine-expect": "^3.8.3",
         "jasmine-spec-reporter": "~4.2.1",
@@ -75,9 +75,17 @@
         "node-sass": "^4.8.3",
         "npm-run-all": "^4.1.2",
         "postcss-cli": "^5.0.0",
+        "prettier": "1.12.1",
+        "pretty-quick": "^1.6.0",
         "replace": "^0.3.0",
         "tslint": "~5.9.1",
+        "tslint-config-prettier": "^1.12.0",
         "tslint-defocus": "^2.0.3",
         "typescript": "~2.7.2"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "npm run format:fix"
+        }
     }
 }
