@@ -1,0 +1,123 @@
+<clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
+    <article>
+
+        <h5 class="component-summary" id="view-edit-section-header">
+            The View-Edit Section (VES) is a basic component used to display and edit data.<br>
+            View-Edit Sections should semantically group information that belongs together, 
+                providing a meaningful information structure to the user.
+        </h5>
+
+        <div id="design-guidelines">
+            <h3>View-mode</h3>
+            <p>
+                In view-mode the section consists of label-value pairs to display data to user.
+                The user can switch the mode of the section clicking the pencil-icon when editing data is required.
+            </p>
+            
+            <h3>Edit-mode</h3>
+            <p>
+                In edit-mode the label-value pairs transform to label-input fields, a form, and can be edited.
+                The changes can be saved or cancelled, which will return the VES back to view-mode.
+            </p>
+
+            <h3>Multiple View-Edit Sections</h3>
+            <p>There can be multiple View-Edit sections placed in the content area, multiple sections can be edited 
+                at once, no automatic inactivation of other View-Edit Sections should occur.<br>
+                The user needs to actively end the edit-mode by saving or cancelling the changes.</p>
+        </div>
+
+        <div id="code-examples">
+            <h3 id="examples">Code &amp; Examples</h3>
+            <p>
+                To layout the view-mode of the component simply add an element with attribute <code class="clr-code">view-block</code>
+                and for the edit-mode of the component add an element with attribute <code class="clr-code">edit-block</code>.
+                Those blocks will get rendered into the body of the view-edit section in their corresponding modes.
+            </p>
+            <p>
+                Following interactions are available:
+            </p>
+            <ul>
+                <li>
+                    To define the title add a <code class="clr-code">[clrTitle]</code> input to the component.
+                </li>
+                <li>
+                    To react to submit clicks, bind to the event <code class="clr-code">(clrSectionSubmitted)</code>.
+                </li>
+                <li>
+                    To react to cancel clicks, bind to the event <code class="clr-code">(clrSectionEditCancelled)</code>.
+                </li>
+            </ul>
+
+            <div class="row">
+                <div class="col-xs-12 col-lg-6">
+                    <clr-view-edit-section [clrTitle]="sectionTitle" (clrSectionSubmitted)="sectionSubmitted()" (clrSectionEditCancelled)="sectionCancelled()">
+                        <div view-block>
+                            <div class="form-group">
+                                <label for="bp_id">Businesspartner-ID</label>
+                                <span class="text-truncate">{{bpid || "&nbsp;"}}</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="guid">GUID</label>
+                                <span class="text-truncate">{{guid || "&nbsp;"}}</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="nn">Lastname</label>
+                                <span class="text-truncate">{{nn || "&nbsp;"}}</span>
+                            </div>
+                        </div>
+                        <div edit-block>
+                            <div class="form-group">
+                                <label for="bp_id">Businesspartner-ID</label>
+                                <input id="bp_id" type="text" [(ngModel)]="editBpid" name="id">
+                            </div>
+                            <div class="form-group">
+                                <label for="guid">GUID</label>
+                                <input id="guid" type="text" [(ngModel)]="editGuid" name="guid">
+                            </div>
+                            <div class="form-group">
+                                <label for="nn">Lastname</label>
+                                <input id="nn" type="text" [(ngModel)]="editNn" name="nn">
+                            </div>
+                        </div>
+                    </clr-view-edit-section>
+                </div>
+                <div class="col-xs-12 col-lg-6">
+                    <clr-view-edit-section [clrTitle]="addSectionTitle" (clrSectionSubmitted)="addSectionSubmitted()" (clrSectionEditCancelled)="addSectionCancelled()">
+                        <div view-block>
+                            <div class="form-group">
+                                <label for="add_bp_id">Businesspartner-ID</label>
+                                <span class="text-truncate">{{addBpid || "&nbsp;"}}</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="add_nn">Lastname</label>
+                                <span class="text-truncate">{{addNn || "&nbsp;"}}</span>
+                            </div>
+                        </div>
+                        <div edit-block>
+                            <div class="form-group">
+                                <label for="add_bp_id">Businesspartner-ID</label>
+                                <input id="add_bp_id" type="text" [(ngModel)]="editAddBpid" name="addid">
+                            </div>
+                            <div class="form-group">
+                                <label for="add_nn">Lastname</label>
+                                <input id="add_nn" type="text" [(ngModel)]="editAddNn" name="addnn">
+                            </div>
+                        </div>
+                    </clr-view-edit-section>
+                </div>
+            </div>
+
+            <clr-code-snippet [clrCode]="htmlExample"></clr-code-snippet>
+
+            <h3>Tips</h3>
+            <ul>
+                <li>
+                    Use class <code class="clr-code">text-truncate</code> in view-block to prevent long texts from destroying your layout.
+                </li>
+                <li>
+                    Use pipe <code class="clr-code">|| "&amp;nbsp;"</code> in view-block so the span element always has a correct height.
+                </li>
+            </ul>
+        </div>
+    </article>
+</clr-doc-wrapper>
