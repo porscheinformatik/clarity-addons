@@ -52,17 +52,17 @@ const HTML_EXAMPLE = `
 export class ViewEditSectionDemo extends ClarityDocComponent{
     htmlExample = HTML_EXAMPLE;
 
-    bpid: string;
-    guid: string;
-    nn: string;
-    editBpid: string;
-    editGuid: string;
-    editNn: string;
+    first: string;
+    last: string;
+    email: string;
+    editFirst: string;
+    editLast: string;
+    editEmail: string;
 
-    addBpid: string;
-    addNn: string;
-    editAddBpid: string;
-    editAddNn: string;
+    hobby: string;
+    licence: string;
+    editHobby: string;
+    editLicence: string;
 
     sectionTitle: string = "Personal Data";
     addSectionTitle: string = "Additional Data";
@@ -72,24 +72,24 @@ export class ViewEditSectionDemo extends ClarityDocComponent{
     }
 
     sectionSubmitted() {
-        this.bpid = this.editBpid;
-        this.guid = this.editGuid;
-        this.nn = this.editNn;
+        this.first = this.editFirst;
+        this.last = this.editLast;
+        this.email = this.editEmail;
     }
 
     sectionCancelled() {
-        this.editBpid = this.bpid;
-        this.editGuid = this.guid;
-        this.editNn = this.nn;
+        this.editFirst = this.first;
+        this.editLast = this.last;
+        this.editEmail = this.email;
     }
 
     addSectionSubmitted() {
-        this.addBpid = this.editAddBpid;
-        this.addNn = this.editAddNn;
+        this.hobby = this.editHobby;
+        this.licence = this.editLicence;
     }
 
     addSectionCancelled() {
-        this.editAddBpid = this.addBpid;
-        this.editAddNn = this.addNn;
+        this.editHobby = this.hobby;
+        this.editLicence = this.licence;
     }
 }
