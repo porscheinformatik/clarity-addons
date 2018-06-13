@@ -11,7 +11,7 @@ import {ViewEditSectionDemo} from "./view-edit-section.demo"
 import {DocWrapperModule} from "../_doc-wrapper/doc-wrapper.module";
 import {RouterModule} from "@angular/router";
 import {UtilsModule} from "../../../utils/utils.module";
-import { FormsModule } from '@angular/forms';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
     imports: [
