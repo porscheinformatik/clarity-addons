@@ -5,4 +5,4 @@
  */
 
 // TODO
-export {normalize, Path} from "@angular-devkit/core";
+export { normalize, Path } from '@angular-devkit/core';
