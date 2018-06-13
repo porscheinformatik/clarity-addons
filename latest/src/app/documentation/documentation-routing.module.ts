@@ -42,6 +42,14 @@ const documentationRoutes: Routes = [
                     bodyClass: "page-search-result-list",
                     browserTitle: "Search Result List"
                 }
+            },
+            {
+                path: "view-edit-section",
+                loadChildren: "app/documentation/demos/view-edit-section/view-edit-section.demo.module#ViewEditSectionDemoModule",
+                data: {
+                    bodyClass: "view-edit-section",
+                    browserTitle: "View/Edit Section"
+                }
             }
         ]
     }

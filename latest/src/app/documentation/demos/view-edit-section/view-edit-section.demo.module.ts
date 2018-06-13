@@ -5,27 +5,29 @@
  */
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
-import {ClarityModule} from "@clr/angular";
+import {ClrAddonsModule} from "@porscheinformatik/clr-addons";
 
-import {SearchResultListDemo} from "./search-result-list.demo"
+import {ViewEditSectionDemo} from "./view-edit-section.demo"
 import {DocWrapperModule} from "../_doc-wrapper/doc-wrapper.module";
 import {RouterModule} from "@angular/router";
 import {UtilsModule} from "../../../utils/utils.module";
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [
         CommonModule,
-        ClarityModule,
         UtilsModule,
         DocWrapperModule,
-        RouterModule.forChild([{path: "", component: SearchResultListDemo}])
+        RouterModule.forChild([{path: "", component: ViewEditSectionDemo}]),
+        FormsModule,
+        ClrAddonsModule
     ],
     declarations: [
-        SearchResultListDemo
+        ViewEditSectionDemo
     ],
     exports: [
-        SearchResultListDemo
+        ViewEditSectionDemo
     ]
 })
-export class SearchResultListDemoModule {
+export class ViewEditSectionDemoModule {
 }

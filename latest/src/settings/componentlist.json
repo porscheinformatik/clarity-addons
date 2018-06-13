@@ -29,6 +29,18 @@
             "dox": 5,
             "comments": "",
             "newLayout": true
+        },
+        {
+            "url": "view-edit-section",
+            "text": "View/Edit Section",
+            "type": "component",
+            "ux": 20,
+            "ui": 20,
+            "core": 20,
+            "ng": 20,
+            "dox": 20,
+            "comments": "",
+            "newLayout": true
         }
     ]
 }
