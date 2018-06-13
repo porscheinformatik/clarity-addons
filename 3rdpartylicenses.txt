@@ -435,6 +435,10 @@ MIT
 MIT
 MIT
 
+@porscheinformatik/clr-addons@0.0.2
+MIT
+MIT
+
 @angular/animations@6.0.4
 MIT
 MIT
