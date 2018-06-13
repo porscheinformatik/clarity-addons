@@ -4,6 +4,9 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-export * from './clr-addons.module';
+import { NgModule } from '@angular/core';
 
-export * from './view-edit-section/index';
+import { ClrViewEditSectionModule } from './view-edit-section/view-edit-section.module';
+
+@NgModule({ exports: [ClrViewEditSectionModule] })
+export class ClrAddonsModule {}
