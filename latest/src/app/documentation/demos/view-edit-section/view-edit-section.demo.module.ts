@@ -5,6 +5,7 @@
  */
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
+import {ClarityModule} from "@clr/angular";
 import {ClrAddonsModule} from "@porscheinformatik/clr-addons";
 
 import {ViewEditSectionDemo} from "./view-edit-section.demo"
@@ -20,6 +21,7 @@ import {FormsModule} from '@angular/forms';
         DocWrapperModule,
         RouterModule.forChild([{path: "", component: ViewEditSectionDemo}]),
         FormsModule,
+        ClarityModule,
         ClrAddonsModule
     ],
     declarations: [
