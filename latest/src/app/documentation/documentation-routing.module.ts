@@ -31,7 +31,6 @@ const documentationRoutes: Routes = [
                 path: "generic-pager",
                 loadChildren: "app/documentation/demos/generic-pager/generic-pager.demo.module#GenericPagerDemoModule",
                 data: {
-                    bodyClass: "page-generic-pager",
                     browserTitle: "Generic Pager"
                 }
             },
@@ -39,7 +38,6 @@ const documentationRoutes: Routes = [
                 path: "search-result-list",
                 loadChildren: "app/documentation/demos/search-result-list/search-result-list.demo.module#SearchResultListDemoModule",
                 data: {
-                    bodyClass: "page-search-result-list",
                     browserTitle: "Search Result List"
                 }
             },
@@ -47,8 +45,14 @@ const documentationRoutes: Routes = [
                 path: "view-edit-section",
                 loadChildren: "app/documentation/demos/view-edit-section/view-edit-section.demo.module#ViewEditSectionDemoModule",
                 data: {
-                    bodyClass: "view-edit-section",
                     browserTitle: "View/Edit Section"
+                }
+            },
+            {
+                path: "basepage-layout",
+                loadChildren: "app/documentation/demos/basepage-layout/basepage-layout.demo.module#BasePageLayoutDemoModule",
+                data: {
+                    browserTitle: "Base Page Layout"
                 }
             }
         ]

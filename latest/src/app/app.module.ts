@@ -11,6 +11,8 @@ import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 
 import {DocumentationModule} from "./documentation/documentation.module";
 
+import {FullPageLayoutsRoutingModule} from "./documentation/demos/full-page-layouts/full-page-layouts-routing.module"
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -23,6 +25,7 @@ import {DocumentationModule} from "./documentation/documentation.module";
         ClarityModule,
         ClrAddonsModule,
         DocumentationModule,
+        FullPageLayoutsRoutingModule,
         AppRoutingModule
     ],
     providers: [

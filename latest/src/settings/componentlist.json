@@ -41,6 +41,18 @@
             "dox": 20,
             "comments": "",
             "newLayout": true
+        },
+        {
+            "url": "basepage-layout",
+            "text": "Base Page Layout",
+            "type": "pagelayouts",
+            "ux": -1,
+            "ui": -1,
+            "core": -1,
+            "ng": -1,
+            "dox": 20,
+            "comments": "",
+            "newLayout": true
         }
     ]
 }
