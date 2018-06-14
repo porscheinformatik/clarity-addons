@@ -52,6 +52,15 @@ const HTML_EXAMPLE = `
 export class ViewEditSectionDemo extends ClarityDocComponent{
     htmlExample = HTML_EXAMPLE;
 
+    birthdate: string = "06/14/2018";
+    gender: string;
+    status: string = "Active";
+    terms: boolean;
+    editBirthdate: string = this.birthdate;
+    editGender: string;
+    editStatus: number = 1;
+    editTerms: boolean;
+
     first: string;
     last: string;
     email: string;
@@ -64,11 +73,26 @@ export class ViewEditSectionDemo extends ClarityDocComponent{
     editHobby: string;
     editLicence: string;
 
+    compSectionTitle: string = "Different components";
     sectionTitle: string = "Personal Data";
     addSectionTitle: string = "Additional Data";
 
     constructor() {
         super("view-edit-section");
+    }
+
+    compSectionSubmitted() {
+        this.birthdate = this.editBirthdate;
+        this.gender = this.editGender;
+        this.status = this.editStatus === 1 ? "Active" : "Inactive";
+        this.terms = this.editTerms;
+    }
+    
+    compSectionCancelled() {
+        this.editBirthdate = this.birthdate;
+        this.editGender = this.gender;
+        this.editStatus = this.status === "Active" ? 1 : 2;
+        this.editTerms = this.terms;
     }
 
     sectionSubmitted() {
