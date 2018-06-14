@@ -11,30 +11,30 @@ const HTML_EXAMPLE = `
     <clr-view-edit-section [clrTitle]="sectionTitle" (clrSectionSubmitted)="sectionSubmitted()" (clrSectionEditCancelled)="sectionCancelled()">
         <div view-block>
             <div class="form-group">
-                <label for="bp_id">Businesspartner-ID</label>
-                <span class="text-truncate">{{bpid || "&nbsp;"}}</span>
+                <label for="first">First name</label>
+                <span class="text-truncate">{{first || "&nbsp;"}}</span>
             </div>
             <div class="form-group">
-                <label for="guid">GUID</label>
-                <span class="text-truncate">{{guid || "&nbsp;"}}</span>
+                <label for="last">Last name</label>
+                <span class="text-truncate">{{last || "&nbsp;"}}</span>
             </div>
             <div class="form-group">
-                <label for="nn">Lastname</label>
-                <span class="text-truncate">{{nn || "&nbsp;"}}</span>
+                <label for="email">E-mail</label>
+                <span class="text-truncate">{{email || "&nbsp;"}}</span>
             </div>
         </div>
         <div edit-block>
             <div class="form-group">
-                <label for="bp_id">Businesspartner-ID</label>
-                <input id="bp_id" type="text" [(ngModel)]="editBpid" name="id">
+                <label for="first">First name</label>
+                <input id="first" type="text" [(ngModel)]="editFirst" name="first">
             </div>
             <div class="form-group">
-                <label for="guid">GUID</label>
-                <input id="guid" type="text" [(ngModel)]="editGuid" name="guid">
+                <label for="last">Last name</label>
+                <input id="last" type="text" [(ngModel)]="editLast" name="last">
             </div>
             <div class="form-group">
-                <label for="nn">Lastname</label>
-                <input id="nn" type="text" [(ngModel)]="editNn" name="nn">
+                <label for="email">E-mail</label>
+                <input id="email" type="text" [(ngModel)]="editEmail" name="email">
             </div>
         </div>
     </clr-view-edit-section>
