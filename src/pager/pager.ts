@@ -13,11 +13,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
  */
 @Component({
   selector: 'clr-pager',
-  templateUrl: './pager.component.html',
-  styleUrls: ['./pager.component.scss'],
+  templateUrl: './pager.html',
+  styleUrls: ['./pager.scss'],
 })
 export class ClrPager {
-  @Output() pageChange: EventEmitter<any> = new EventEmitter(false);
+  @Output('clrPageChange') pageChange: EventEmitter<any> = new EventEmitter(false);
 
   /**
    * Page size, a value of 0 means no pagination
@@ -27,7 +27,7 @@ export class ClrPager {
     return this._pageSize;
   }
 
-  @Input()
+  @Input('clrPageSize')
   public set pageSize(size: number) {
     const oldSize = this._pageSize;
     if (size !== oldSize) {
@@ -53,7 +53,7 @@ export class ClrPager {
     return this._totalItems;
   }
 
-  @Input()
+  @Input('clrTotalItems')
   public set totalItems(total: number) {
     this._totalItems = total;
     // If we have less items than before, we might need to change the current page
@@ -77,7 +77,7 @@ export class ClrPager {
     return 1;
   }
 
-  @Input()
+  @Input('clrLast')
   public set last(page: number) {
     this._last = page;
   }
@@ -90,7 +90,7 @@ export class ClrPager {
     return this._page;
   }
 
-  @Input()
+  @Input('clrPage')
   public set page(page: number) {
     if (page !== this._page) {
       this._page = page;

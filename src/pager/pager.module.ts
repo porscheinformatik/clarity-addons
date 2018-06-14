@@ -9,7 +9,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ClarityModule } from '@clr/angular';
 
-import { ClrPager } from './pager.component';
+import { ClrPager } from './pager';
 
 @NgModule({
   imports: [CommonModule, ClarityModule, FormsModule],
