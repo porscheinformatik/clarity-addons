@@ -1,0 +1,23 @@
+<clr-header class="header-6">
+    <div class="branding">
+        <a routerLink="/" class="logo-and-title">
+            <span class="clr-icon clarity-logo"></span>
+            <span class="title">Project title</span>
+        </a>
+    </div>
+    <div class="divider"></div>
+    <div class="header-nav" [clr-nav-level]="1">
+        <a class="nav-link" routerLink="/full-page-layouts/basepage-layout"><span class="nav-text">Menu1</span></a>
+        <a class="nav-link" routerLink="/full-page-layouts/basepage-layout" routerLinkActive="active"><span class="nav-text">Menu2</span></a>
+        <a class="nav-link" routerLink="/full-page-layouts/basepage-layout"><span class="nav-text">Menu3</span></a>
+    </div>
+</clr-header>
+
+<div class="content-container">
+    <div class="content-area">
+        <div class="content-header">
+            <h2>Menu2 - Pagetitle</h2>
+        </div>
+        This is the page content
+    </div>
+</div>
