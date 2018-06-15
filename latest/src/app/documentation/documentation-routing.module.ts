@@ -54,6 +54,13 @@ const documentationRoutes: Routes = [
                 data: {
                     browserTitle: "Base Page Layout"
                 }
+            },
+            {
+                path: "sidebarpage-layout",
+                loadChildren: "app/documentation/demos/sidebarpage-layout/sidebarpage-layout.demo.module#SidebarPageLayoutDemoModule",
+                data: {
+                    browserTitle: "Sidebar Page Layout"
+                }
             }
         ]
     }

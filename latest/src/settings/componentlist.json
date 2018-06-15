@@ -53,6 +53,18 @@
             "dox": 20,
             "comments": "",
             "newLayout": true
+        },
+        {
+            "url": "sidebarpage-layout",
+            "text": "Sidebar Page Layout",
+            "type": "pagelayouts",
+            "ux": -1,
+            "ui": -1,
+            "core": -1,
+            "ng": -1,
+            "dox": 20,
+            "comments": "",
+            "newLayout": true
         }
     ]
 }
