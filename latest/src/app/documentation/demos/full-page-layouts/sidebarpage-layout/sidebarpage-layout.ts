@@ -6,13 +6,13 @@
 import {Component} from "@angular/core";
 
 @Component({
-    selector: "clr-basepage-layout-demo",
-    templateUrl: "./basepage-layout.demo.html",
+    selector: "clr-sidebarpage-layout-demo",
+    templateUrl: "./sidebarpage-layout.demo.html",
     styles: [
         ".content-header { border-bottom: 1px solid #CCC; padding-top:0.5rem; padding-left:1rem }",
         ".content-header > h2 { margin-top:0px }"]
 })
-export class BasepageLayoutDemo {
+export class SidebarpageLayoutDemo {
 
     constructor() {
     }
