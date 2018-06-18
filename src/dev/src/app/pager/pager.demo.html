@@ -1,0 +1,17 @@
+<!--
+  ~ Copyright (c) 2018 Porsche Informatik. All Rights Reserved.
+  ~ This software is released under MIT license.
+  ~ The full license information can be found in LICENSE in the root directory of this project.
+  -->
+
+<h2>Pager</h2>
+
+<div>
+  <ul>
+    <li *ngFor="let item of pagedItems">{{item}}</li>
+  </ul>
+</div>
+
+<clr-pager [clrPageSize]="pageSize"
+           [clrTotalItems]="allItems.length"
+           (clrPageChange)="onPageChanged($event)"></clr-pager>

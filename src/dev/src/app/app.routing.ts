@@ -7,13 +7,13 @@ import { ModuleWithProviders } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { LandingComponent } from './landing.component';
+import { PagerDemo } from './pager/pager.demo';
+import { ViewEditSectionDemo } from './view-edit-section/view-edit-section.demo';
 
 export const APP_ROUTES: Routes = [
   { path: '', component: LandingComponent },
-  {
-    path: 'view-edit-section',
-    loadChildren: 'src/app/view-edit-section/view-edit-section.demo.module#ViewEditSectionDemoModule',
-  },
+  { path: 'view-edit-section', component: ViewEditSectionDemo },
+  { path: 'pager', component: PagerDemo },
 ];
 
 export const ROUTING: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);
