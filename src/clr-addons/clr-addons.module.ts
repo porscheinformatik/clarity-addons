@@ -7,6 +7,9 @@
 import { NgModule } from '@angular/core';
 
 import { ClrViewEditSectionModule } from './view-edit-section/view-edit-section.module';
+import { ClrPagerModule } from './pager/pager.module';
 
-@NgModule({ exports: [ClrViewEditSectionModule] })
+@NgModule({
+  exports: [ClrViewEditSectionModule, ClrPagerModule],
+})
 export class ClrAddonsModule {}

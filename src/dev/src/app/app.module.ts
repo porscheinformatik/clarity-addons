@@ -15,10 +15,21 @@ import { AppComponent } from './app.component';
 import { ROUTING } from './app.routing';
 import { AppContentContainerComponent } from './content-container.component';
 import { LandingComponent } from './landing.component';
+import { PagerDemoModule } from './pager/pager.demo.module';
+import { ViewEditSectionDemoModule } from './view-edit-section/view-edit-section.demo.module';
 
 @NgModule({
   declarations: [AppComponent, LandingComponent, AppContentContainerComponent],
-  imports: [BrowserAnimationsModule, CommonModule, FormsModule, ClarityModule, ClrAddonsModule, ROUTING],
+  imports: [
+    BrowserAnimationsModule,
+    CommonModule,
+    FormsModule,
+    ClarityModule,
+    ClrAddonsModule,
+    ROUTING,
+    ViewEditSectionDemoModule,
+    PagerDemoModule,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
