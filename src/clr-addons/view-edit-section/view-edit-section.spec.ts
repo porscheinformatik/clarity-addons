@@ -116,5 +116,6 @@ describe('ViewEditSectionComponent', () => {
     expect(editFixture.nativeElement.querySelector('clr-icon').getAttribute('shape')).toMatch(
       editFixture.componentInstance.editIcon
     );
+    editFixture.destroy();
   });
 });
