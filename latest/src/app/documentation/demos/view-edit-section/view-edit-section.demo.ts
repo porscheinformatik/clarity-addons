@@ -53,6 +53,10 @@ const HTML_EXAMPLE_FULL_ICON = `
     </clr-view-edit-section>
 </div>
 `
+
+const HTML_EXAMPLE_FULL_ICON_ANGULAR = `
+compEditIcon: string = "cog";
+`
 @Component({
     selector: "clr-view-edit-section-demo",
     templateUrl: "./view-edit-section.demo.html",
@@ -64,6 +68,7 @@ const HTML_EXAMPLE_FULL_ICON = `
 export class ViewEditSectionDemo extends ClarityDocComponent{
     htmlExampleSideBySide = HTML_EXAMPLE_SIDE_BY_SIDE;
     htmlExampleFullIcon = HTML_EXAMPLE_FULL_ICON;
+    htmlExampleFullIconAngular = HTML_EXAMPLE_FULL_ICON_ANGULAR;
 
     birthdate: string = "06/14/2018";
     gender: string = "male";
