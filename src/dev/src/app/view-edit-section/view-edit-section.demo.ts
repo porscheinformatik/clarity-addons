@@ -36,6 +36,8 @@ export class ViewEditSectionDemo {
   sectionTitle: string = 'Personal Data';
   addSectionTitle: string = 'Additional Data';
 
+  compEditIcon: string = 'cog';
+
   compSectionSubmitted() {
     this.birthdate = this.editBirthdate;
     this.gender = this.editGender;

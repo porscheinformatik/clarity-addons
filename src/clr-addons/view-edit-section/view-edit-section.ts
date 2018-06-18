@@ -13,23 +13,24 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styles: [':host ::ng-deep form .view-edit-section .form-group > input { flex-grow: 1; }'],
 })
 export class ClrViewEditSection {
-  @Input('clrTitle') title: string;
-  @Input('clrEditMode') editMode: boolean = false;
+  @Input('clrTitle') _title: string;
+  @Input('clrEditMode') _editMode: boolean = false;
+  @Input('clrEditIcon') _editIcon: string = 'pencil';
 
-  @Output('clrSectionSubmitted') submitted = new EventEmitter(false);
-  @Output('clrSectionEditCancelled') cancelled = new EventEmitter(false);
+  @Output('clrSectionSubmitted') _submitted = new EventEmitter(false);
+  @Output('clrSectionEditCancelled') _cancelled = new EventEmitter(false);
 
   public onSubmit() {
-    this.submitted.emit();
-    this.editMode = false;
+    this._submitted.emit();
+    this._editMode = false;
   }
 
   public onCancel() {
-    this.cancelled.emit();
-    this.editMode = false;
+    this._cancelled.emit();
+    this._editMode = false;
   }
 
   public onEdit() {
-    this.editMode = true;
+    this._editMode = true;
   }
 }

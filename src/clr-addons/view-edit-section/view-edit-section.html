@@ -1,17 +1,17 @@
-<div class="card">
+<div class="card" (keyup.escape)="onCancel()">
     <div class="card-block">
         <form #form="ngForm" (ngSubmit)="onSubmit()">
             <div class="card-title">
-                {{title}}
-                <button type="button" (click)="onEdit()" class="btn btn-icon btn-link float-xs-right" *ngIf="!editMode">
-                    <clr-icon shape="pencil"></clr-icon>
+                {{_title}}
+                <button type="button" (click)="onEdit()" class="btn btn-icon btn-link float-xs-right ves-edit" *ngIf="!_editMode">
+                    <clr-icon [attr.shape]="_editIcon"></clr-icon>
                 </button>
             </div>
             <div class="card-text view-edit-section">
-                <ng-content select="[view-block]" *ngIf="!editMode"></ng-content>
-                <ng-content select="[edit-block]" *ngIf="editMode"></ng-content>
-                <button class="btn btn-primary" type="submit" [hidden]="!editMode">Save</button>
-                <button class="btn" (click)="onCancel()" type="button" [hidden]="!editMode">Cancel</button>
+                <ng-content select="[view-block]" *ngIf="!_editMode"></ng-content>
+                <ng-content select="[edit-block]" *ngIf="_editMode"></ng-content>
+                <button class="btn btn-primary ves-save" type="submit" *ngIf="_editMode">Save</button>
+                <button class="btn ves-cancel" (click)="onCancel()" type="button" *ngIf="_editMode">Cancel</button>
             </div>
         </form>
     </div>
