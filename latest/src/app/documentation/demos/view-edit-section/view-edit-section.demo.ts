@@ -8,7 +8,7 @@ import {ClarityDocComponent} from "../clarity-doc";
 
 const HTML_EXAMPLE = `
 <div class="col-xs-12 col-lg-6">
-    <clr-view-edit-section [clrTitle]="sectionTitle" (clrSectionSubmitted)="sectionSubmitted()" (clrSectionEditCancelled)="sectionCancelled()">
+    <clr-view-edit-section [clrTitle]="sectionTitle" [clrEditIcon]="sectionEditIcon" (clrSectionSubmitted)="sectionSubmitted()" (clrSectionEditCancelled)="sectionCancelled()">
         <div view-block>
             <div class="form-group">
                 <label for="first">First name</label>
@@ -76,6 +76,8 @@ export class ViewEditSectionDemo extends ClarityDocComponent{
     compSectionTitle: string = "Different components";
     sectionTitle: string = "Personal Data";
     addSectionTitle: string = "Additional Data";
+
+    sectionEditIcon: string = "cog";
 
     constructor() {
         super("view-edit-section");

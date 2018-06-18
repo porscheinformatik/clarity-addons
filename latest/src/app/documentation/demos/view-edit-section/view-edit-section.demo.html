@@ -41,6 +41,10 @@
                     To define the title add a <code class="clr-code">[clrTitle]</code> input to the component.
                 </li>
                 <li>
+                    To define the edit icon add a <code class="clr-code">[clrEditIcon]</code> input to the component.
+                    Every shape from clr-icon can be used.
+                </li>
+                <li>
                     To react to submit clicks, bind to the event <code class="clr-code">(clrSectionSubmitted)</code>.
                 </li>
                 <li>
@@ -108,7 +112,7 @@
 
             <div class="row">
                 <div class="col-xs-12 col-lg-6">
-                    <clr-view-edit-section [clrTitle]="sectionTitle" (clrSectionSubmitted)="sectionSubmitted()" (clrSectionEditCancelled)="sectionCancelled()">
+                    <clr-view-edit-section [clrTitle]="sectionTitle" [clrEditIcon]="sectionEditIcon" (clrSectionSubmitted)="sectionSubmitted()" (clrSectionEditCancelled)="sectionCancelled()">
                         <div view-block>
                             <div class="form-group">
                                 <label for="first">First name</label>
