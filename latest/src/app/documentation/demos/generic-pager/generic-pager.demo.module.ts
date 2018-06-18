@@ -3,14 +3,15 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import {NgModule} from "@angular/core";
-import {CommonModule} from "@angular/common";
-import {ClarityModule} from "@clr/angular";
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { ClarityModule } from "@clr/angular";
 
-import {GenericPagerDemo} from "./generic-pager.demo"
-import {DocWrapperModule} from "../_doc-wrapper/doc-wrapper.module";
-import {RouterModule} from "@angular/router";
-import {UtilsModule} from "../../../utils/utils.module";
+import { GenericPagerDemo } from "./generic-pager.demo";
+import { DocWrapperModule } from "../_doc-wrapper/doc-wrapper.module";
+import { RouterModule } from "@angular/router";
+import { UtilsModule } from "../../../utils/utils.module";
+import { ClrAddonsModule } from "@porscheinformatik/clr-addons";
 
 @NgModule({
     imports: [
@@ -18,7 +19,8 @@ import {UtilsModule} from "../../../utils/utils.module";
         ClarityModule,
         UtilsModule,
         DocWrapperModule,
-        RouterModule.forChild([{path: "", component: GenericPagerDemo}])
+        RouterModule.forChild([{ path: "", component: GenericPagerDemo }]),
+        ClrAddonsModule
     ],
     declarations: [
         GenericPagerDemo
