@@ -1,9 +1,3 @@
-@import '~@clr/ui/src/main.scss';
-
 .btn {
   min-width: 1.5rem;
-}
-
-:host-context(.clr-pager-sm) {
-  @extend .btn-sm;
 }
