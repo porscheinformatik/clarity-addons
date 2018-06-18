@@ -1,0 +1,28 @@
+<!--
+  ~ Copyright (c) 2018 Porsche Informatik. All Rights Reserved.
+  ~ This software is released under MIT license.
+  ~ The full license information can be found in LICENSE in the root directory of this project.
+  -->
+
+<h2>Paged Search Result List</h2>
+
+<clr-paged-search-result-list [clrItems]="pagedItems"
+                              [clrPage]="currentPage"
+                              [clrPageSize]="pageSize"
+                              [clrTotalItems]="allItems.length"
+                              (clrPageChange)="onPageChanged($event)">
+  <ng-template let-item="item">
+    <div class="col-xs-12">
+      <div class="card">
+        <div class="card-header">
+          {{item}}
+        </div>
+        <div class="card-block">
+          <div class="card-text">
+            This is an example card.
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</clr-paged-search-result-list>

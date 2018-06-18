@@ -6,12 +6,25 @@
 
 <h2>Pager</h2>
 
-<div>
-  <ul>
-    <li *ngFor="let item of pagedItems">{{item}}</li>
-  </ul>
+<div class="row" *ngFor="let item of pagedItems">
+  <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
+    <div class="card">
+      <div class="card-header">
+        {{item}}
+      </div>
+      <div class="card-block">
+        <div class="card-text">
+          This is an example card.
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<clr-pager [clrPageSize]="pageSize"
-           [clrTotalItems]="allItems.length"
-           (clrPageChange)="onPageChanged($event)"></clr-pager>
+<div class="row">
+  <div class="col-lg-6 clr-pager">
+    <clr-pager [clrPageSize]="pageSize"
+               [clrTotalItems]="allItems.length"
+               (clrPageChange)="onPageChanged($event)"></clr-pager>
+  </div>
+</div>

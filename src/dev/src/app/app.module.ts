@@ -17,6 +17,7 @@ import { AppContentContainerComponent } from './content-container.component';
 import { LandingComponent } from './landing.component';
 import { PagerDemoModule } from './pager/pager.demo.module';
 import { ViewEditSectionDemoModule } from './view-edit-section/view-edit-section.demo.module';
+import { PagedSearchResultListDemoModule } from './paged-search-result-list/paged-search-result-list.demo.module';
 
 @NgModule({
   declarations: [AppComponent, LandingComponent, AppContentContainerComponent],
@@ -29,6 +30,7 @@ import { ViewEditSectionDemoModule } from './view-edit-section/view-edit-section
     ROUTING,
     ViewEditSectionDemoModule,
     PagerDemoModule,
+    PagedSearchResultListDemoModule,
   ],
   bootstrap: [AppComponent],
 })
