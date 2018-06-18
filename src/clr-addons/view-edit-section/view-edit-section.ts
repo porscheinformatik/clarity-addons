@@ -15,6 +15,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class ClrViewEditSection {
   @Input('clrTitle') _title: string;
   @Input('clrEditMode') _editMode: boolean = false;
+  @Input('clrEditIcon') _editIcon: string = 'pencil';
 
   @Output('clrSectionSubmitted') _submitted = new EventEmitter(false);
   @Output('clrSectionEditCancelled') _cancelled = new EventEmitter(false);

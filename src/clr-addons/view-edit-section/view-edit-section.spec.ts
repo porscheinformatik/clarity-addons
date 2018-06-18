@@ -28,12 +28,22 @@ class TestComponent {
   title: string = 'TestTitle';
 }
 
+@Component({
+  template: `
+        <clr-view-edit-section [clrEditIcon]="editIcon">
+        </clr-view-edit-section>
+    `,
+})
+class EditIconComponent {
+  editIcon: string = 'cog';
+}
+
 describe('ViewEditSectionComponent', () => {
   let fixture: ComponentFixture<TestComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TestComponent],
+      declarations: [TestComponent, EditIconComponent],
       imports: [ClarityModule, ClrViewEditSectionModule],
     }).compileComponents();
   }));
@@ -99,4 +109,12 @@ describe('ViewEditSectionComponent', () => {
       expect(fixture.componentInstance.vesInstance._submitted.emit).toHaveBeenCalled();
     })
   );
+
+  it('has correct edit icon', () => {
+    const editFixture: ComponentFixture<EditIconComponent> = TestBed.createComponent(EditIconComponent);
+    editFixture.detectChanges();
+    expect(editFixture.nativeElement.querySelector('clr-icon').getAttribute('shape')).toMatch(
+      editFixture.componentInstance.editIcon
+    );
+  });
 });
