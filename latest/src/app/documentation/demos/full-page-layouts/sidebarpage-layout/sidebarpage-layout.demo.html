@@ -20,11 +20,9 @@
     <div class="content-area">
         This is the page content
     </div>
-    <nav class="sidenav" [clr-nav-level]="2">
-        <section class="sidenav-content">
-            <a class="nav-link" routerLink="/full-page-layouts/sidebarpage-layout" routerLinkActive="active"><span class="nav-text">Sidenav menu 1</span></a>
-            <a class="nav-link" routerLink="/full-page-layouts/sidebarpage-layout"><span class="nav-text">Sidenav menu 2</span></a>
-            <a class="nav-link" routerLink="/full-page-layouts/sidebarpage-layout"><span class="nav-text">Sidenav menu 3</span></a>
-        </section>
-    </nav>
+    <clr-vertical-nav class="sidenav" [clr-nav-level]="2" [clrVerticalNavCollapsible]="true">
+        <a class="nav-link" routerLink="/full-page-layouts/sidebarpage-layout" routerLinkActive="active"><span class="nav-text">Item 1</span></a>
+        <a class="nav-link" routerLink="/full-page-layouts/sidebarpage-layout"><span class="nav-text">Item 2</span></a>
+        <a class="nav-link" routerLink="/full-page-layouts/sidebarpage-layout"><span class="nav-text">Item 3</span></a>
+    </clr-vertical-nav>
 </div>
