@@ -1,14 +1,64 @@
 <clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
     <article>
-
-        <h5 class="component-summary" id="generic-pager-header">Insert Generic Pager component summary here</h5>
+        <h5 class="component-summary" id="generic-pager-header">The Generic Pager is a basic component that can be used
+            to show a simple pagination bar anywhere.</h5>
 
         <div id="design-guidelines">
-            <h3>Style</h3>
+            <h3>Usage</h3>
+            <p>
+                Use the Generic Pager component whenever you have to show data over multiple pages, e.g. a big list.
+                Do not use the Generic Pager component when you are showing your data in a clr-datagrid, instead use the
+                existing clr-dg-pagination component.
+            </p>
         </div>
 
         <div id="code-examples">
             <h3 id="examples">Code &amp; Examples</h3>
+            <p>
+                Following interactions are available:
+            </p>
+            <ul>
+                <li>
+                    To define the page size add a <code class="clr-code">[clrPageSize]</code> input to the component.
+                </li>
+                <li>
+                    To define the number of total items add a <code class="clr-code">[clrTotalItems]</code> input to the
+                    component.
+                </li>
+                <li>
+                    To react to page changes, bind to the event <code class="clr-code">(clrPageChange)</code>.
+                </li>
+                <li>
+                    Optionally you can set the current page by adding a <code class="clr-code">[clrPage]</code>
+                    input to the component.
+                </li>
+            </ul>
+
+            <div class="row" *ngFor="let item of pagedItems">
+                <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="card-header">
+                            {{item}}
+                        </div>
+                        <div class="card-block">
+                            <div class="card-text">
+                                This is an example card.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 margin-top-24">
+                    <clr-pager [clrPageSize]="pageSize"
+                               [clrTotalItems]="allItems.length"
+                               (clrPageChange)="onPageChanged($event)"></clr-pager>
+                </div>
+            </div>
+
+            <clr-code-snippet [clrCode]="htmlExample"></clr-code-snippet>
+
         </div>
     </article>
 </clr-doc-wrapper>
