@@ -6,9 +6,9 @@
 import {Component} from "@angular/core";
 import {ClarityDocComponent} from "../clarity-doc";
 
-const HTML_EXAMPLE = `
+const HTML_EXAMPLE_SIDE_BY_SIDE = `
 <div class="col-xs-12 col-lg-6">
-    <clr-view-edit-section [clrTitle]="sectionTitle" [clrEditIcon]="sectionEditIcon" (clrSectionSubmitted)="sectionSubmitted()" (clrSectionEditCancelled)="sectionCancelled()">
+    <clr-view-edit-section [clrTitle]="sectionTitle" (clrSectionSubmitted)="sectionSubmitted()" (clrSectionEditCancelled)="sectionCancelled()">
         <div view-block>
             <div class="form-group">
                 <label for="first">First name</label>
@@ -41,6 +41,18 @@ const HTML_EXAMPLE = `
 </div>
 `
 
+const HTML_EXAMPLE_FULL_ICON = `
+<div class="col-xs-12">
+    <clr-view-edit-section [clrTitle]="compSectionTitle" [clrEditIcon]="compEditIcon" (clrSectionSubmitted)="compSectionSubmitted()" (clrSectionEditCancelled)="compSectionCancelled()">
+        <div view-block>
+            ...
+        </div>
+        <div edit-block>
+            ...
+        </div>
+    </clr-view-edit-section>
+</div>
+`
 @Component({
     selector: "clr-view-edit-section-demo",
     templateUrl: "./view-edit-section.demo.html",
@@ -50,23 +62,24 @@ const HTML_EXAMPLE = `
     }
 })
 export class ViewEditSectionDemo extends ClarityDocComponent{
-    htmlExample = HTML_EXAMPLE;
+    htmlExampleSideBySide = HTML_EXAMPLE_SIDE_BY_SIDE;
+    htmlExampleFullIcon = HTML_EXAMPLE_FULL_ICON;
 
     birthdate: string = "06/14/2018";
-    gender: string;
+    gender: string = "male";
     status: string = "Active";
     terms: boolean;
     editBirthdate: string = this.birthdate;
-    editGender: string;
+    editGender: string = this.gender;
     editStatus: number = 1;
     editTerms: boolean;
 
-    first: string;
-    last: string;
-    email: string;
-    editFirst: string;
-    editLast: string;
-    editEmail: string;
+    first: string = "Max";
+    last: string = "Mustermann";
+    email: string = "m.mustermann@mail.com";
+    editFirst: string = this.first;
+    editLast: string = this.last;
+    editEmail: string = this.email;
 
     hobby: string;
     licence: string;
@@ -77,7 +90,7 @@ export class ViewEditSectionDemo extends ClarityDocComponent{
     sectionTitle: string = "Personal Data";
     addSectionTitle: string = "Additional Data";
 
-    sectionEditIcon: string = "cog";
+    compEditIcon: string = "cog";
 
     constructor() {
         super("view-edit-section");
@@ -95,6 +108,10 @@ export class ViewEditSectionDemo extends ClarityDocComponent{
         this.editGender = this.gender;
         this.editStatus = this.status === "Active" ? 1 : 2;
         this.editTerms = this.terms;
+    }
+
+    getTermsText() {
+        return this.terms ? "I agreed" : "I disagreed";
     }
 
     sectionSubmitted() {

@@ -52,67 +52,10 @@
                 </li>
             </ul>
 
-            <div class="row">
-                <div class="col-xs-12">
-                    <clr-view-edit-section [clrTitle]="compSectionTitle" (clrSectionSubmitted)="compSectionSubmitted()" (clrSectionEditCancelled)="compSectionCancelled()">
-                        <div view-block>
-                            <div class="form-group">
-                                <label for="birthdate">Date of birth</label>
-                                <span class="text-truncate">{{birthdate || "&nbsp;"}}</span>
-                            </div>
-                            <div class="form-group">
-                                <label for="gender">Gender</label>
-                                <span class="text-truncate">{{gender || "&nbsp;"}}</span>
-                            </div>
-                            <div class="form-group">
-                                <label for="status">Status</label>
-                                <span class="text-truncate">{{status || "&nbsp;"}}</span>
-                            </div>
-                            <div class="form-group">
-                                <label for="terms">Terms &amp; Conditions</label>
-                                <span class="text-truncate">{{terms || "false"}}</span>
-                            </div>
-                        </div>
-                        <div edit-block>
-                            <div class="form-group">
-                                <label for="birthdate">Date of birth</label>
-                                <input id="birthdate" type="date" [(ngModel)]="editBirthdate" name="birthdate" clrDate>
-                            </div>
-                            <div class="form-group">
-                                <label for="gender">Gender</label>
-                                <div class="select">
-                                    <select id="gender" [(ngModel)]="editGender" name="gender">
-                                        <option>male</option>
-                                        <option>female</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="status">Status</label>
-                                <div class="radio">
-                                    <input id="status_1" type="radio" [value]="1" [(ngModel)]="editStatus" name="status">
-                                    <label for="status_1">Active</label>
-                                </div>
-                                <div class="radio">
-                                    <input id="status_2" type="radio" [value]="2" [(ngModel)]="editStatus" name="status">
-                                    <label for="status_2">Inactive</label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="terms">Terms &amp; Conditions</label>
-                                <div class="checkbox">
-                                    <input type="checkbox" id="terms" [(ngModel)]="editTerms" name="terms">
-                                    <label for="terms">I agree to the terms and conditions</label>
-                                </div>
-                            </div>
-                        </div>
-                    </clr-view-edit-section>
-                </div>
-            </div>
-
+            <h4>Side by side example</h4>
             <div class="row">
                 <div class="col-xs-12 col-lg-6">
-                    <clr-view-edit-section [clrTitle]="sectionTitle" [clrEditIcon]="sectionEditIcon" (clrSectionSubmitted)="sectionSubmitted()" (clrSectionEditCancelled)="sectionCancelled()">
+                    <clr-view-edit-section [clrTitle]="sectionTitle" (clrSectionSubmitted)="sectionSubmitted()" (clrSectionEditCancelled)="sectionCancelled()">
                         <div view-block>
                             <div class="form-group">
                                 <label for="first">First name</label>
@@ -169,9 +112,70 @@
                 </div>
             </div>
 
-            <clr-code-snippet [clrCode]="htmlExample"></clr-code-snippet>
+            <clr-code-snippet [clrCode]="htmlExampleSideBySide"></clr-code-snippet>
 
-            <h3>Tips</h3>
+            <h4>Custom icon</h4>
+            <div class="row">
+                <div class="col-xs-12">
+                    <clr-view-edit-section [clrTitle]="compSectionTitle" [clrEditIcon]="compEditIcon" (clrSectionSubmitted)="compSectionSubmitted()" (clrSectionEditCancelled)="compSectionCancelled()">
+                        <div view-block>
+                            <div class="form-group">
+                                <label for="birthdate">Date of birth</label>
+                                <span class="text-truncate">{{birthdate || "&nbsp;"}}</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="gender">Gender</label>
+                                <span class="text-truncate">{{gender || "&nbsp;"}}</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="status">Status</label>
+                                <span class="text-truncate">{{status || "&nbsp;"}}</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="terms">Terms &amp; Conditions</label>
+                                <span class="text-truncate">{{getTermsText()}}</span>
+                            </div>
+                        </div>
+                        <div edit-block>
+                            <div class="form-group">
+                                <label for="birthdate">Date of birth</label>
+                                <input id="birthdate" type="date" [(ngModel)]="editBirthdate" name="birthdate" clrDate>
+                            </div>
+                            <div class="form-group">
+                                <label for="gender">Gender</label>
+                                <div class="select">
+                                    <select id="gender" [(ngModel)]="editGender" name="gender">
+                                        <option>male</option>
+                                        <option>female</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="status">Status</label>
+                                <div class="radio">
+                                    <input id="status_1" type="radio" [value]="1" [(ngModel)]="editStatus" name="status">
+                                    <label for="status_1">Active</label>
+                                </div>
+                                <div class="radio">
+                                    <input id="status_2" type="radio" [value]="2" [(ngModel)]="editStatus" name="status">
+                                    <label for="status_2">Inactive</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="terms">Terms &amp; Conditions</label>
+                                <div class="checkbox">
+                                    <input type="checkbox" id="terms" [(ngModel)]="editTerms" name="terms">
+                                    <label for="terms">I agree to the terms and conditions</label>
+                                </div>
+                            </div>
+                        </div>
+                    </clr-view-edit-section>
+                </div>
+            </div>
+
+            <clr-code-snippet [clrCode]="htmlExampleFullIcon"></clr-code-snippet>
+
+            <h4>Tips</h4>
             <ul>
                 <li>
                     Use class <code class="clr-code">text-truncate</code> in view-block to prevent long texts from destroying your layout.
