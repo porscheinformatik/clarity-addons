@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, HostListener } from '@angular/core';
 
 @Component({
   selector: 'clr-view-edit-section',
@@ -13,23 +13,23 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styles: [':host ::ng-deep form .view-edit-section .form-group > input { flex-grow: 1; }'],
 })
 export class ClrViewEditSection {
-  @Input('clrTitle') title: string;
-  @Input('clrEditMode') editMode: boolean = false;
+  @Input('clrTitle') _title: string;
+  @Input('clrEditMode') _editMode: boolean = false;
 
-  @Output('clrSectionSubmitted') submitted = new EventEmitter(false);
-  @Output('clrSectionEditCancelled') cancelled = new EventEmitter(false);
+  @Output('clrSectionSubmitted') _submitted = new EventEmitter(false);
+  @Output('clrSectionEditCancelled') _cancelled = new EventEmitter(false);
 
   public onSubmit() {
-    this.submitted.emit();
-    this.editMode = false;
+    this._submitted.emit();
+    this._editMode = false;
   }
 
   public onCancel() {
-    this.cancelled.emit();
-    this.editMode = false;
+    this._cancelled.emit();
+    this._editMode = false;
   }
 
   public onEdit() {
-    this.editMode = true;
+    this._editMode = true;
   }
 }
