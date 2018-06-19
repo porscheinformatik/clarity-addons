@@ -9,11 +9,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { LandingComponent } from './landing.component';
 import { PagerDemo } from './pager/pager.demo';
 import { ViewEditSectionDemo } from './view-edit-section/view-edit-section.demo';
+import { PagedSearchResultListDemo } from './paged-search-result-list/paged-search-result-list.demo';
 
 export const APP_ROUTES: Routes = [
   { path: '', component: LandingComponent },
   { path: 'view-edit-section', component: ViewEditSectionDemo },
   { path: 'pager', component: PagerDemo },
+  { path: 'paged-search-result-list', component: PagedSearchResultListDemo },
 ];
 
 export const ROUTING: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);
