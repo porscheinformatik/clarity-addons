@@ -9,15 +9,16 @@ import { FormsModule } from '@angular/forms';
 import { ClarityModule } from '@clr/angular';
 
 import { ClrPagedSearchResultList } from './paged-search-result-list';
+import { ClrPagerModule } from '../pager';
 
-describe('PagerComponent', () => {
+describe('PagedSearchResultListComponent', () => {
   let component: ClrPagedSearchResultList;
   let fixture: ComponentFixture<ClrPagedSearchResultList>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ClrPagedSearchResultList],
-      imports: [ClarityModule, FormsModule],
+      imports: [ClarityModule, FormsModule, ClrPagerModule],
     }).compileComponents();
   }));
 
