@@ -4,6 +4,7 @@
 # build
 /deploy
 /clarity-addons
+/dist
 
 # IDEs and editors
 /.idea
