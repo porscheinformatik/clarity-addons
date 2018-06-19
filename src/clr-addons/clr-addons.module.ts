@@ -6,9 +6,9 @@
 
 import { NgModule } from '@angular/core';
 
-import { ClrViewEditSectionModule } from './view-edit-section';
-import { ClrPagerModule } from './pager';
-import { ClrPagedSearchResultListModule } from './paged-search-result-list';
+import { ClrViewEditSectionModule } from './view-edit-section/view-edit-section.module';
+import { ClrPagerModule } from './pager/pager.module';
+import { ClrPagedSearchResultListModule } from './paged-search-result-list/paged-search-result-list.module';
 
 @NgModule({
   exports: [ClrViewEditSectionModule, ClrPagerModule, ClrPagedSearchResultListModule],
