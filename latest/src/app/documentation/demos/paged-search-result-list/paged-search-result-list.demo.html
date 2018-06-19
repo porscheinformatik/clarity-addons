@@ -1,0 +1,69 @@
+<clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
+    <article>
+
+        <h5 class="component-summary" id="search-result-list-header">The Paged Search Result List component is a basic
+            component used to display a list of generic data including a pager above and below the list.</h5>
+
+        <div id="design-guidelines">
+            <h3>Style</h3>
+            <p>You can style the list any way you want - this component allows you to use a custom template to show all
+                items of your list. The custom template can range from a single line representing text to one or more
+                completely new angular components.</p>
+        </div>
+
+        <div id="code-examples">
+            <h3 id="examples">Code &amp; Examples</h3>
+
+            To set a template for each item of your list simply add a <code class="clr-code">ng-template</code> inside
+            the <code class="clr-code">clr-paged-search-result-list</code>.
+            By defining <code class="clr-code">let-item="item"</code> on your <code class="clr-code">ng-template</code>
+            you can get the context of each individual item.
+            <p>
+                Following interactions are available:
+            </p>
+            <ul>
+                <li>
+                    To show items add a <code class="clr-code">[clrItems]</code> input to the component.
+                </li>
+                <li>
+                    To set the current page add a <code class="clr-code">[clrPage]</code> input to the component.
+                </li>
+                <li>
+                    To define the page size add a <code class="clr-code">[clrPageSize]</code> input to the component.
+                </li>
+                <li>
+                    To define the number of total items add a <code class="clr-code">[clrTotalItems]</code> input to the
+                    component.
+                </li>
+                <li>
+                    To react to page changes, bind to the event <code class="clr-code">(clrPageChange)</code>.
+                </li>
+            </ul>
+
+            <div class="margin-top-24">
+                <clr-paged-search-result-list [clrItems]="pagedItems"
+                                              [clrPage]="currentPage"
+                                              [clrPageSize]="pageSize"
+                                              [clrTotalItems]="allItems.length"
+                                              (clrPageChange)="onPageChanged($event)">
+                    <ng-template let-item="item">
+                        <div class="col-xs-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    {{item}}
+                                </div>
+                                <div class="card-block">
+                                    <div class="card-text">
+                                        This is an example card.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </clr-paged-search-result-list>
+            </div>
+
+            <clr-code-snippet [clrCode]="htmlExample"></clr-code-snippet>
+        </div>
+    </article>
+</clr-doc-wrapper>

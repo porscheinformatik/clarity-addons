@@ -1,9 +1,9 @@
-import {NgModule} from "@angular/core";
-import {RouterModule, Routes} from "@angular/router";
-import {environment} from "../../environments/environment";
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+import { environment } from "../../environments/environment";
 
-import {DocumentationComponent} from "./documentation.component";
-import {ComponentStatusComponent} from "./component-status/component-status.component";
+import { DocumentationComponent } from "./documentation.component";
+import { ComponentStatusComponent } from "./component-status/component-status.component";
 
 const documentationRoutes: Routes = [
     {
@@ -35,10 +35,10 @@ const documentationRoutes: Routes = [
                 }
             },
             {
-                path: "search-result-list",
-                loadChildren: "app/documentation/demos/search-result-list/search-result-list.demo.module#SearchResultListDemoModule",
+                path: "paged-search-result-list",
+                loadChildren: "app/documentation/demos/paged-search-result-list/paged-search-result-list.demo.module#PagedSearchResultListDemoModule",
                 data: {
-                    browserTitle: "Search Result List"
+                    browserTitle: "Paged Search Result List"
                 }
             },
             {
