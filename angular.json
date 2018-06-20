@@ -27,10 +27,19 @@
                 "glob": "**/*",
                 "input": "src/dev/src/assets",
                 "output": "/assets"
+              },
+              {
+                "glob": "clr-addons-mvap.css",
+                "input": "dist/clr-addons/",
+                "output": "/styles"
+              },
+              {
+                "glob": "clr-addons-vu3.css",
+                "input": "dist/clr-addons/",
+                "output": "/styles"
               }
             ],
             "styles": [
-              "node_modules/@clr/ui/clr-ui.min.css",
               "node_modules/@clr/icons/clr-icons.min.css",
               "node_modules/prismjs/themes/prism-solarizedlight.css"
             ],

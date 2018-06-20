@@ -1,9 +1,9 @@
 {
     "name": "clr-addons",
-    "version": "0.1.2",
+    "version": "0.1.4",
     "private": true,
     "scripts": {
-        "build:ui:css": "node-sass  --include-path=node_modules --source-map=true --precision=6 --indentedSyntax=true ./src/clr-addons/mvap-theme.scss ./dist/clr-addons/clr-addons-mvap.css && node-sass  --include-path=node_modules --source-map=true --precision=6 --indentedSyntax=true ./src/clr-addons/vu3-theme.scss ./dist/clr-addons/clr-addons-vu3.css",
+        "build:ui:css": "node-sass  --include-path=node_modules --source-map=true --precision=6 --indentedSyntax=true ./src/clr-addons/themes/mvap/mvap-theme.scss ./dist/clr-addons/clr-addons-mvap.css && node-sass --include-path=node_modules --source-map=true --precision=6 --indentedSyntax=true ./src/clr-addons/themes/vu3/vu3-theme.scss ./dist/clr-addons/clr-addons-vu3.css",
         "build:ui:prefix": "postcss ./dist/clr-addons/clr-addons-mvap.css -o ./dist/clr-addons/clr-addons-mvap.css && postcss ./dist/clr-addons/clr-addons-vu3.css -o ./dist/clr-addons/clr-addons-vu3.css",
         "build:ui:src": "cpy --parents --cwd=src/clr-addons **/*.scss ../../dist/clr-addons/src/",
         "build:ui:optimize": "csso ./dist/clr-addons/clr-addons-mvap.css ./dist/clr-addons/clr-addons-mvap.min.css --map file && csso ./dist/clr-addons/clr-addons-vu3.css ./dist/clr-addons/clr-addons-vu3.min.css --map file",
@@ -13,7 +13,8 @@
         "build:angular": "npm-run-all build:angular:package build:angular:ngpackagr",
         "build": "npm-run-all clean build:ui build:angular",
         "ng": "ng",
-        "start": "ng serve dev",
+        "start": "npm-run-all build:ui:css build:ui:prefix serve:dev",
+        "serve:dev": "ng serve dev",
         "clean": "shx rm -rf dist",
         "test:format": "prettier --list-different ./**/*.{js,json,md,ts,scss}",
         "test:lint": "tslint -p . -c tslint.json \"src/**/*.ts\"",
