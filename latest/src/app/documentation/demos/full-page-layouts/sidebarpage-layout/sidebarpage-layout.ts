@@ -10,7 +10,8 @@ import {Component} from "@angular/core";
     templateUrl: "./sidebarpage-layout.demo.html",
     styles: [
         ".content-header { border-bottom: 1px solid #CCC; padding-top:0.5rem; padding-left:1rem }",
-        ".content-header > h2 { margin-top:0px }"]
+        ".content-header > h2 { margin-top:0px }"],
+    host: {'class':'main-container'}  //only needed in demo as the demo component adds an additional element which destroys css selectors
 })
 export class SidebarpageLayoutDemo {
 
