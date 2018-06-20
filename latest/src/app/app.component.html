@@ -12,7 +12,7 @@
             <a class="nav-link" routerLink="/documentation" routerLinkActive="active"><span class="nav-text">Documentation</span></a>
             <a class="nav-link" routerLink="/news" routerLinkActive="active"><span class="nav-text">What's New</span></a>
         </div>
-        <!--<div class="header-actions">
+        <div class="header-actions">
             <clr-dropdown>
                 <button type="button" class="nav-icon dropdown-toggle" clrDropdownTrigger>
                     <clr-icon shape="cog"></clr-icon>
@@ -21,7 +21,7 @@
                     <button type="button" *ngFor="let theme of themes" (click)="setTheme(theme)" clrDropdownItem>{{theme.name}}</button>
                 </clr-dropdown-menu>
             </clr-dropdown>
-        </div>-->
+        </div>
     </clr-header>
 
     <router-outlet></router-outlet>
