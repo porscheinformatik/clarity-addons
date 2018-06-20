@@ -4,9 +4,5 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-export * from './clr-addons.module';
-
-export * from './view-edit-section/index';
-export * from './pager/index';
-export * from './paged-search-result-list/index';
-export * from './collapse-expand-section/index';
+export * from './collapse-expand-section';
+export * from './collapse-expand-section.module';

@@ -1,0 +1,15 @@
+<div>
+  <div class="ces-title">
+    <ng-content select="clr-ces-title"></ng-content>
+    <button type="button" (click)="onCollapseExpand()" class="btn btn-icon btn-link ces-collapse-btn">
+      <clr-icon shape="angle down" size="28" *ngIf="isCollapsed"></clr-icon>
+      <clr-icon shape="angle" size="28" *ngIf="!isCollapsed"></clr-icon>
+    </button>
+  </div>
+  <div class="ces-subtitle">
+    <ng-content select="clr-ces-subtitle"></ng-content>
+  </div>
+  <div class="ces-content">
+    <ng-content select="clr-ces-content" *ngIf="!isCollapsed"></ng-content>
+  </div>
+</div>
