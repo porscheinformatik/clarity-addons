@@ -24,10 +24,14 @@
                 "glob": "versions.json",
                 "input": "src/settings",
                 "output": "/"
+              },
+              {
+                "glob": "clr-addons-*.min.css",
+                "input": "node_modules/@porscheinformatik/clr-addons",
+                "output": "/styles"
               }
             ],
             "styles": [
-              "node_modules/@clr/ui/clr-ui.min.css",
               "node_modules/prismjs/themes/prism-solarizedlight.css",
               "node_modules/@clr/icons/clr-icons.min.css",
               "src/styles/main.scss"
