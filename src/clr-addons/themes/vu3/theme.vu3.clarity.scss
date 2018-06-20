@@ -3,7 +3,7 @@
 // The full license information can be found in LICENSE in the root directory of this project.
 
 // Global
-$clr-global-selection-color: rgba($turquoise, 0.15);
+$clr-global-selection-color: $turquoise-lightest;
 
 // Default button colors
 $clr-btn-default-color: $turquoise; // border-color, color, checked-background-color
@@ -50,14 +50,14 @@ $clr-calendar-active-focus-cell-background-color: $clr-global-selection-color;
 $clr-input-border-color: $turquoise;
 
 // Header
-$clr-header-textColor: #000;
-$clr-header-bgColor: #fff;
-$clr-header-2-bg-color: #fff;
-$clr-header-3-bg-color: #fff;
-$clr-header-4-bg-color: #fff;
-$clr-header-5-bg-color: #fff;
-$clr-header-6-bg-color: #fff;
-$clr-header-7-bg-color: #fff;
+$clr-header-textColor: $clr-black;
+$clr-header-bgColor: $clr-white;
+$clr-header-2-bg-color: $clr-white;
+$clr-header-3-bg-color: $clr-white;
+$clr-header-4-bg-color: $clr-white;
+$clr-header-5-bg-color: $clr-white;
+$clr-header-6-bg-color: $clr-white;
+$clr-header-7-bg-color: $clr-white;
 
 // Sidenav
 $clr-sidenav-link-hover-color: $clr-global-selection-color;
