@@ -15,7 +15,7 @@ const HTML_EXAMPLE_SIDE_BY_SIDE = `
                     <label for="first">First name</label>
                 </div>
                 <div class="col-lg-8">
-                    <span class="text-truncate">{{first || "&nbsp;"}}</span>
+                    <span class="form-control text-truncate">{{first || "&nbsp;"}}</span>
                 </div>
             </div>
             <div class="form-group row">
@@ -23,7 +23,7 @@ const HTML_EXAMPLE_SIDE_BY_SIDE = `
                     <label for="last">Last name</label>
                 </div>
                 <div class="col-lg-8">
-                    <span class="text-truncate">{{last || "&nbsp;"}}</span>
+                    <span class="form-control text-truncate">{{last || "&nbsp;"}}</span>
                 </div>
             </div>
             <div class="form-group row">
@@ -31,7 +31,7 @@ const HTML_EXAMPLE_SIDE_BY_SIDE = `
                     <label for="email">E-mail</label>
                 </div>
                 <div class="col-lg-8">
-                    <span class="text-truncate">{{email || "&nbsp;"}}</span>
+                    <span class="form-control text-truncate">{{email || "&nbsp;"}}</span>
                 </div>
             </div>
         </div>
@@ -41,7 +41,7 @@ const HTML_EXAMPLE_SIDE_BY_SIDE = `
                     <label for="first">First name</label>
                 </div>
                 <div class="col-lg-8">
-                    <input id="first" type="text" [(ngModel)]="editFirst" name="first">
+                    <input id="first" class="form-control" type="text" [(ngModel)]="editFirst" name="first">
                 </div>
             </div>
             <div class="form-group row">
@@ -49,7 +49,7 @@ const HTML_EXAMPLE_SIDE_BY_SIDE = `
                     <label for="last">Last name</label>
                 </div>
                 <div class="col-lg-8">
-                    <input id="last" type="text" [(ngModel)]="editLast" name="last">
+                    <input id="last" class="form-control" type="text" [(ngModel)]="editLast" name="last">
                 </div>
             </div>
             <div class="form-group row">
@@ -57,7 +57,7 @@ const HTML_EXAMPLE_SIDE_BY_SIDE = `
                     <label for="email">E-mail</label>
                 </div>
                 <div class="col-lg-8">
-                    <input id="email" type="text" [(ngModel)]="editEmail" name="email">
+                    <input id="email" class="form-control" type="text" [(ngModel)]="editEmail" name="email">
                 </div>
             </div>
         </div>
