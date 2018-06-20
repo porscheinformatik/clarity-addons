@@ -18,8 +18,8 @@ export class AppComponent implements OnInit {
     noHeader: boolean = false;
 
     themes = [
-        { name: 'MVAP', href: '/styles/clr-addons-mvap.min.css' }, 
-        { name: 'VU3', href: '/styles/clr-addons-vu3.min.css' }
+        { name: 'MVAP', href: 'styles/clr-addons-mvap.min.css' }, 
+        { name: 'VU3', href: 'styles/clr-addons-vu3.min.css' }
     ];
 
     constructor(private renderer: Renderer, private el: ElementRef, private router: Router, private titleService: Title, @Inject(DOCUMENT) private document: Document, @Inject(PLATFORM_ID) private platformId: Object) {
