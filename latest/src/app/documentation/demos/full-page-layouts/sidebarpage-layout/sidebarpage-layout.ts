@@ -9,8 +9,10 @@ import {Component} from "@angular/core";
     selector: "clr-sidebarpage-layout-demo",
     templateUrl: "./sidebarpage-layout.demo.html",
     styles: [
-        ".content-header { border-bottom: 1px solid #CCC; padding-top:0.5rem; padding-left:1rem }",
-        ".content-header > h2 { margin-top:0px }"]
+        ".content-header { border-bottom: 1px solid #CCC; padding-top:0.5rem; padding-left:1rem; display: flex }",
+        ".content-header > h2 { margin-top:0px }",
+        ".command-bar {display: flex; flex: 1 0 auto; justify-content: flex-end}"],
+    host: {'class':'main-container'}  //only needed in demo as the demo component adds an additional element which destroys css selectors
 })
 export class SidebarpageLayoutDemo {
 
