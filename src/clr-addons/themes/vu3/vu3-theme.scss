@@ -1,0 +1,16 @@
+@import './variables.color';
+
+// Writing default variables of clarity with custom values
+@import './variables.default';
+
+// Clarity Dependency SCSS
+@import '../../../../node_modules/@clr/ui/src/utils/dependencies.clarity'; // Includes light theme
+
+// Custom theme
+@import './theme.vu3.clarity.scss';
+
+// Clarity Component SCSS
+@import '../../../../node_modules/@clr/ui/src/utils/components.clarity';
+
+// Custom CSS overrides
+@import './css.overrides';

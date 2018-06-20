@@ -4,14 +4,28 @@
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
 
-<clr-main-container>
-    <clr-header>
-        <div class="branding">
-            <a href="#" class="nav-link">
-                <clr-icon shape="vm-bug"></clr-icon>
-                <span class="title">Project Clarity Addons</span>
-            </a>
-        </div>
-    </clr-header>
-    <my-app-content-container class="content-container"></my-app-content-container>
-</clr-main-container>
+  <clr-main-container>
+      <clr-header class="header-6">
+          <div class="branding">
+              <a href="#" class="nav-link">
+                  <span class="title">Clarity Addons</span>
+              </a>
+          </div>
+
+          <div class="header-nav" [clr-nav-level]="1">
+              <a class="nav-link" href="#"><span class="nav-text">Menu1</span></a>
+              <a class="nav-link active" href='#'><span class="nav-text">Menu2</span></a>
+          </div>
+          <div class="header-actions">
+              <clr-dropdown>
+                  <button type="button" class="nav-icon dropdown-toggle" clrDropdownTrigger>
+                      <clr-icon shape="cog"></clr-icon>
+                  </button>
+                  <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
+                      <button type="button" *ngFor="let theme of themes" (click)="setTheme(theme)" clrDropdownItem>{{theme.name}}</button>
+                  </clr-dropdown-menu>
+              </clr-dropdown>
+          </div>
+      </clr-header>
+      <my-app-content-container class="content-container"></my-app-content-container>
+  </clr-main-container>

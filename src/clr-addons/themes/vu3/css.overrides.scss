@@ -1,0 +1,142 @@
+$vu3-border-radius: 0.5rem;
+
+.header-hamburger-trigger,
+.header-overflow-trigger {
+  & > span,
+  & > span::before,
+  & > span::after {
+    background: $clr-black;
+  }
+}
+
+.open-hamburger-menu .header-hamburger-trigger,
+.open-overflow-menu .header-overflow-trigger {
+  & > span,
+  & > span::before,
+  & > span::after {
+    background: $clr-white;
+  }
+}
+
+.header .header-nav .nav-link.active {
+  background: $clr-global-selection-color;
+}
+
+header,
+.header {
+  .header-actions {
+    > .dropdown > .nav-icon {
+      color: $turquoise-darkest;
+    }
+    .nav-icon {
+      color: $turquoise-darkest;
+    }
+  }
+  .settings .nav-icon {
+    color: $turquoise-darkest;
+  }
+}
+
+.card {
+  border-radius: $vu3-border-radius;
+}
+
+.card-img {
+  &:first-child > img {
+    border-radius: $vu3-border-radius $vu3-border-radius 0 0;
+  }
+
+  &:last-child > img {
+    border-radius: 0 0 $vu3-border-radius $vu3-border-radius;
+  }
+}
+
+.card.card-img,
+.card > .card-img:first-child:last-child {
+  & > img {
+    border-radius: $vu3-border-radius;
+  }
+}
+
+.alerts {
+  &.alert-info {
+    background: $turquoise-darkest;
+  }
+}
+
+.card.clickable:hover {
+  box-shadow: 0 0.125rem 0 0 $turquoise;
+}
+
+.progress.top > progress {
+  width: calc(100% - 1rem);
+  margin-left: 0.5rem;
+}
+
+.progress-static.top {
+  width: calc(100% - 1rem);
+  margin-left: 0.5rem;
+}
+
+.datagrid .datagrid-column {
+  .datagrid-filter-toggle {
+    &:hover {
+      background-image: generateFilterIcon($turquoise);
+    }
+
+    &.datagrid-filter-open {
+      background-image: generateFilterIcon($turquoise);
+    }
+
+    &.datagrid-filtered {
+      background-image: generateFilterIcon($turquoise), generateCircleIcon($turquoise);
+    }
+  }
+
+  &.asc {
+    .datagrid-column-flex::after {
+      background-image: generateUpArrowIcon($turquoise);
+    }
+  }
+  &.desc {
+    .datagrid-column-flex::after {
+      background-image: generateDownArrowIcon($turquoise);
+    }
+  }
+}
+
+.pagination-list {
+  .pagination-current {
+    border-bottom: (2 * $clr-default-borderwidth) solid $turquoise;
+  }
+}
+
+.datagrid-foot .column-switch-wrapper {
+  &.active {
+    .column-toggle--action {
+      color: $turquoise;
+    }
+  }
+  .column-toggle--action {
+    &:hover {
+      color: $turquoise;
+    }
+  }
+}
+
+.label,
+a.label {
+  border: $clr-default-borderwidth solid $turquoise;
+}
+
+.badge {
+  background-color: $turquoise;
+}
+
+.spinner.spinner-inverse {
+  background: generateSpinnerIcon($clr-white, $clr-spinner-color);
+}
+
+clr-tooltip clr-icon {
+  color: $turquoise;
+}
