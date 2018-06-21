@@ -75,7 +75,7 @@ export class GenericPagerDemo extends ClarityDocComponent {
         "Lottie",
         "Genoveva",
     ];
-    pageSize: number = 5;
+    pageSize: number = 3;
     pagedItems: string[] = [];
 
     onPageChanged(page: any): void {

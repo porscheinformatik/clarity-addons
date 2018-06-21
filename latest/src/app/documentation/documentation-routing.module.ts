@@ -4,6 +4,7 @@ import { environment } from "../../environments/environment";
 
 import { DocumentationComponent } from "./documentation.component";
 import { ComponentStatusComponent } from "./component-status/component-status.component";
+import { InternationalizationComponent } from "./internationalization/internationalization.component";
 
 const documentationRoutes: Routes = [
     {
@@ -25,6 +26,13 @@ const documentationRoutes: Routes = [
                 data: {
                     bodyClass: "page-documentation",
                     browserTitle: "Documentation"
+                }
+            },
+            {
+                path: "internationalization",
+                component: InternationalizationComponent,
+                data: {
+                    browserTitle: "Internationalization"
                 }
             },
             {

@@ -73,7 +73,7 @@ export class PagedSearchResultListDemo extends ClarityDocComponent {
         'Lottie',
         'Genoveva',
     ];
-    pageSize: number = 5;
+    pageSize: number = 3;
     pagedItems: string[] = [];
     currentPage: number = 1;
 
