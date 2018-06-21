@@ -37,6 +37,11 @@
                 "glob": "clr-addons-vu3.css",
                 "input": "dist/clr-addons/",
                 "output": "/styles"
+              },
+              {
+                "glob": "clr-ui*.min.css",
+                "input": "node_modules/@clr/ui/",
+                "output": "/styles"
               }
             ],
             "styles": [

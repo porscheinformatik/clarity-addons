@@ -13,7 +13,12 @@ export class AppComponent {
   public routes: Route[] = APP_ROUTES;
   linkRef: HTMLLinkElement;
 
-  themes = [{ name: 'VU3', href: '/styles/clr-addons-vu3.css' }, { name: 'MVAP', href: '/styles/clr-addons-mvap.css' }];
+  themes = [
+    { name: 'Clarity (light)', href: 'styles/clr-ui.min.css' },
+    { name: 'Clarity (dark)', href: 'styles/clr-ui-dark.min.css' },
+    { name: 'VU3', href: 'styles/clr-addons-vu3.css' },
+    { name: 'MVAP', href: 'styles/clr-addons-mvap.css' },
+  ];
 
   constructor(@Inject(DOCUMENT) private document: Document, @Inject(PLATFORM_ID) private platformId: Object) {
     if (isPlatformBrowser(this.platformId)) {

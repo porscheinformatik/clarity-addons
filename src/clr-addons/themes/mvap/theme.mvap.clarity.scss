@@ -1,3 +1,126 @@
 // Copyright (c) 2018 Porsche Informatik. All Rights Reserved.
 // This software is released under MIT license.
 // The full license information can be found in LICENSE in the root directory of this project.
+
+// Global
+$clr-global-selection-color: $turquoise-lightest;
+
+// App Background
+$clr-global-app-background: $blue-sky-light;
+
+// Default button colors
+$clr-btn-default-color: $clr-white; // border-color, color, checked-background-color
+$clr-btn-default-bg-color: $clr-gray;
+$clr-btn-default-hover-bg-color: $clr-dark-gray; // hover-background-color
+$clr-btn-default-hover-color: $clr-white; // hover-color
+$clr-btn-default-box-shadow-color: $clr-dark-gray;
+
+// Default outline button
+$clr-btn-default-outline-color: $turquoise; // border-color, color, checked-background-color
+$clr-btn-default-outline-hover-bg-color: $turquoise-lightest; // hover-background-color
+$clr-btn-default-outline-hover-color: $turquoise-darkest; // hover-color
+$clr-btn-default-outline-box-shadow-color: $turquoise-darkest;
+
+// Primary button
+$clr-btn-primary-bg-color: $turquoise; // background-color, disabled-background-color
+$clr-btn-primary-border-color: $turquoise; // border-color
+$clr-btn-primary-hover-bg-color: $turquoise-darkest; // hover-background-color
+$clr-btn-primary-box-shadow-color: $turquoise;
+
+// Link button colors
+$clr-btn-link-color: $turquoise; // color
+$clr-btn-link-hover-color: $turquoise-darkest; // hover-color
+
+// Checkbox
+$clr-forms-checkbox-background-color: $turquoise; // checked-background-color
+$clr-forms-checkbox-checked-shadow: inset 0 0 0 0.25rem $clr-forms-checkbox-background-color;
+$clr-indeterminate-checkbox-border-color: $turquoise;
+
+// Radiobutton
+$clr-forms-radio-selected-shadow: $clr-forms-checkbox-checked-shadow; // selected-background-color
+
+// Select
+$clr-select-hover-background: $clr-global-selection-color;
+
+// Datepicker
+$clr-datepicker-trigger-color: $turquoise;
+$clr-datepicker-trigger-hover-color: $turquoise-darkest;
+$clr-calendar-btn-color: $turquoise;
+$clr-calendar-active-cell-background-color: $clr-global-selection-color;
+$clr-calendar-btn-hover-focus-color: $clr-global-selection-color;
+$clr-calendar-active-focus-cell-background-color: $clr-global-selection-color;
+
+// Input
+$clr-input-border-color: $turquoise;
+
+// Header
+$clr-header-textColor: $clr-black;
+$clr-header-bgColor: $turquoise;
+$clr-header-2-bg-color: $turquoise;
+$clr-header-3-bg-color: $turquoise;
+$clr-header-4-bg-color: $turquoise;
+$clr-header-5-bg-color: $turquoise;
+$clr-header-6-bg-color: $turquoise;
+$clr-header-7-bg-color: $turquoise;
+
+// Sidenav
+$clr-sidenav-link-hover-color: $clr-global-selection-color;
+
+// Subnav
+$clr-nav-active-box-shadow-color: 0 -3px 0 $turquoise inset;
+
+// Vertical Navigation
+$clr-vertical-nav-hover-bg-color: $clr-global-selection-color;
+
+// Links
+$clr-link-active-color: $turquoise;
+$clr-link-color: $turquoise;
+$clr-link-hover-color: $turquoise;
+$clr-link-visited-color: $turquoise-darkest;
+
+// Dropdown
+$clr-dropdown-bg-hover-color: $clr-global-selection-color;
+$clr-dropdown-bg-active-color: $clr-global-selection-color;
+$clr-dropdown-selection-color: $clr-global-selection-color;
+
+// Badge
+$clr-badge-info-bg-color: $turquoise;
+
+// Alerts
+$clr-alert-info-bg-color: $turquoise-lightest;
+$clr-alert-info-border-color: $turquoise;
+$clr-alert-info-icon-color: $turquoise;
+$clr-app-alert-info-bg-color: $turquoise;
+$clr-app-alert-info-border-color: $turquoise;
+
+// Progress bar
+$clr-progress-defaultBarColor: $turquoise;
+
+// Datagrid
+$clr-datagrid-row-hover: $clr-global-selection-color;
+$clr-datagrid-action-popover-hover-color: $clr-global-selection-color;
+
+// Spinner
+$clr-spinner-color: $turquoise;
+
+// Labels
+$clr-label-info-bg-color: $turquoise-lightest;
+$clr-label-info-font-color: $turquoise-darkest;
+$clr-label-info-border-color: $turquoise-darkest;
+
+// Signposts
+$clr-signpost-action-hover-color: $turquoise;
+
+// Stack View
+$clr-stack-view-stack-block-expanded-bg-color: $turquoise;
+$clr-stack-view-stack-block-expandable-hover: $clr-global-selection-color;
+
+// Tree View
+$clr-tree-link-hover-color: $clr-global-selection-color;
+$clr-tree-link-selection-color: $clr-global-selection-color;
+
+// Wizard
+$clr-wizard-stepnav-active-bgcolor: $clr-global-selection-color;
+
+// Card
+$clr-card-box-shadow: 0 0;
