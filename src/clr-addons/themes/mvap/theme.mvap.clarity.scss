@@ -13,13 +13,14 @@ $clr-btn-default-color: $clr-white; // border-color, color, checked-background-c
 $clr-btn-default-bg-color: $clr-gray;
 $clr-btn-default-hover-bg-color: $clr-dark-gray; // hover-background-color
 $clr-btn-default-hover-color: $clr-white; // hover-color
-$clr-btn-default-box-shadow-color: $clr-dark-gray;
+$clr-btn-default-box-shadow-color: $clr-gray;
 
 // Default outline button
-$clr-btn-default-outline-color: $turquoise; // border-color, color, checked-background-color
-$clr-btn-default-outline-hover-bg-color: $turquoise-lightest; // hover-background-color
-$clr-btn-default-outline-hover-color: $turquoise-darkest; // hover-color
-$clr-btn-default-outline-box-shadow-color: $turquoise-darkest;
+$clr-btn-default-outline-color: $clr-white; // border-color, color, checked-background-color
+$clr-btn-default-outline-bg-color: $clr-gray;
+$clr-btn-default-outline-hover-bg-color: $clr-dark-gray; // hover-background-color
+$clr-btn-default-outline-hover-color: $clr-white; // hover-color
+$clr-btn-default-outline-box-shadow-color: $clr-gray;
 
 // Primary button
 $clr-btn-primary-bg-color: $turquoise; // background-color, disabled-background-color
@@ -38,9 +39,6 @@ $clr-indeterminate-checkbox-border-color: $turquoise;
 
 // Radiobutton
 $clr-forms-radio-selected-shadow: $clr-forms-checkbox-checked-shadow; // selected-background-color
-
-// Select
-$clr-select-hover-background: $clr-global-selection-color;
 
 // Datepicker
 $clr-datepicker-trigger-color: $turquoise;
