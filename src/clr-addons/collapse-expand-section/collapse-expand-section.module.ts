@@ -10,23 +10,10 @@ import { FormsModule } from '@angular/forms';
 import { ClarityModule } from '@clr/angular';
 
 import { ClrCollapseExpandSection } from './collapse-expand-section';
-import { CollapseExpandSectionTitleDirective } from './directives/collapse-expand-section-title.directive';
-import { CollapseExpandSectionSubtitleDirective } from './directives/collapse-expand-section-subtitle.directive';
-import { CollapseExpandSectionContentDirective } from './directives/collapse-expand-section-content.directive';
 
 @NgModule({
   imports: [CommonModule, ClarityModule, FormsModule],
-  declarations: [
-    ClrCollapseExpandSection,
-    CollapseExpandSectionTitleDirective,
-    CollapseExpandSectionSubtitleDirective,
-    CollapseExpandSectionContentDirective,
-  ],
-  exports: [
-    ClrCollapseExpandSection,
-    CollapseExpandSectionTitleDirective,
-    CollapseExpandSectionSubtitleDirective,
-    CollapseExpandSectionContentDirective,
-  ],
+  declarations: [ClrCollapseExpandSection],
+  exports: [ClrCollapseExpandSection],
 })
 export class ClrCollapseExpandSectionModule {}
