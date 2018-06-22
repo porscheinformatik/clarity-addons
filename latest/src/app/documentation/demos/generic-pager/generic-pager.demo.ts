@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { ClarityDocComponent } from "../clarity-doc";
 
 const HTML_EXAMPLE = `
@@ -25,7 +25,7 @@ const HTML_EXAMPLE = `
 <div class="row">
     <div class="col-lg-6 margin-top-24">
         <clr-pager [clrPageSize]="pageSize"
-                   [clrTotalItems]="allItems.length"
+                   [clrTotalItems]="totalItems"
                    (clrPageChange)="onPageChanged($event)"></clr-pager>
     </div>
 </div>
@@ -40,49 +40,32 @@ const HTML_EXAMPLE = `
         "[class.dox-content-panel]": "true"
     }
 })
-export class GenericPagerDemo extends ClarityDocComponent {
+export class GenericPagerDemo extends ClarityDocComponent implements OnInit{
     htmlExample = HTML_EXAMPLE;
 
-    allItems: string[] = [
-        "Nelson",
-        "Graham",
-        "Olene",
-        "Dorian",
-        "Nidia",
-        "Keenan",
-        "Luna",
-        "Letisha",
-        "Lenny",
-        "Jeana",
-        "Alica",
-        "Sheridan",
-        "Georgia",
-        "Brad",
-        "Ellen",
-        "Brynn",
-        "Roslyn",
-        "Rhona",
-        "Marcella",
-        "Sibyl",
-        "Shenika",
-        "Desirae",
-        "Beverly",
-        "Johnson",
-        "Kaitlin",
-        "Lucius",
-        "Darla",
-        "Debby",
-        "Lottie",
-        "Genoveva",
-    ];
-    pageSize: number = 3;
+    allItems: string[] = [];
     pagedItems: string[] = [];
+    totalItems: number = 30;
+    pageSize: number = 3;
+    currentPage: number = 1;
 
-    onPageChanged(page: any): void {
+    onPageChanged(page: number): void {
         const startIndex = (page - 1) * this.pageSize;
         const endIndex = Math.min(startIndex + this.pageSize - 1, this.allItems.length - 1);
 
         setTimeout(() => (this.pagedItems = this.allItems.slice(startIndex, endIndex + 1)), 0);
+    }
+
+    createItems() {
+        this.allItems = [];
+        for (let i = 0; i < this.totalItems; i++) {
+            this.allItems[i] = Math.random().toString(36).slice(2);
+        }
+        this.onPageChanged(this.currentPage);
+    }
+
+    ngOnInit() {
+        this.createItems();
     }
 
     constructor() {
