@@ -2,14 +2,10 @@ h3 {
     margin-top: 1rem;
 }
 
-.table td:first-child {
-    text-align: left !important;
-}
-
-#table-date td{
+.table td {
     text-align: left;
 }
 
-#table-currency td, #table-number td {
+#table-currency td:not(:first-child), #table-number td:not(:first-child) {
     text-align: right;
 }

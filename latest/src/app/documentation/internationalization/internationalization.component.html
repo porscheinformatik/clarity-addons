@@ -17,279 +17,280 @@
 
     <h3>Date & Time</h3>
 
-    <div class="clrweb-DoxMedia is-do-block">
-        <div class="clrweb-DoxMedia-block">
-            <table id="table-date" class="table table-condensed table-component-list bump-down"
-                   style="max-width: 880px">
-                <thead>
-                <th>Date & Time</th>
-                <th>
-                    <div class="select">
-                        <select id="locale-1" [(ngModel)]="firstLocale">
-                            <option *ngFor="let locale of supportedLocales" [ngValue]="locale">{{ getLocaleId(locale) }}
-                            </option>
-                        </select>
-                    </div>
-                </th>
-                <th>
-                    <div class="select">
-                        <select id="locale-2" [(ngModel)]="secondLocale">
-                            <option *ngFor="let locale of supportedLocales" [ngValue]="locale">{{
-                                getLocaleId(locale)}}
-                            </option>
-                        </select>
-                    </div>
-                </th>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>
-                        <span>Short date</span>
-                    </td>
-                    <td>
-                        <span>{{ getShortDate(firstLocale) }}</span>
-                    </td>
-                    <td>
-                        <span>{{ getShortDate(secondLocale) }}</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span>Medium date</span>
-                    </td>
-                    <td>
-                        <span>{{ getMediumDate(firstLocale) }}</span>
-                    </td>
-                    <td>
-                        <span>{{ getMediumDate(secondLocale) }}</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span>Long date</span>
-                    </td>
-                    <td>
-                        <span>{{ getLongDate(firstLocale) }}</span>
-                    </td>
-                    <td>
-                        <span>{{ getLongDate(secondLocale) }}</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span>Full date</span>
-                    </td>
-                    <td>
-                        <span>{{ getFullDate(firstLocale) }}</span>
-                    </td>
-                    <td>
-                        <span>{{ getFullDate(secondLocale) }}</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span>Short time</span>
-                    </td>
-                    <td>
-                        <span>{{ getShortTime(firstLocale) }}</span>
-                    </td>
-                    <td>
-                        <span>{{ getShortTime(secondLocale) }}</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span>Medium time</span>
-                    </td>
-                    <td>
-                        <span>{{ getMediumTime(firstLocale) }}</span>
-                    </td>
-                    <td>
-                        <span>{{ getMediumTime(secondLocale) }}</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span>Long time</span>
-                    </td>
-                    <td>
-                        <span>{{ getLongTime(firstLocale) }}</span>
-                    </td>
-                    <td>
-                        <span>{{ getLongTime(secondLocale) }}</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span>Full time</span>
-                    </td>
-                    <td>
-                        <span>{{ getFullTime(firstLocale) }}</span>
-                    </td>
-                    <td>
-                        <span>{{ getFullTime(secondLocale) }}</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span>First day of week</span>
-                    </td>
-                    <td>
-                        <span>{{ getFirstDayOfWeek(firstLocale) }}</span>
-                    </td>
-                    <td>
-                        <span>{{ getFirstDayOfWeek(secondLocale) }}</span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Examples</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                <tr>
-                    <td>
-                        <span>Short date</span>
-                    </td>
-                    <td>
-                        <span>{{ dateTime | date:'shortDate':'':getLocaleId(firstLocale) }}</span>
-                    </td>
-                    <td>
-                        <span>{{ dateTime | date:'shortDate':'':getLocaleId(secondLocale) }}</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span>Medium date</span>
-                    </td>
-                    <td>
-                        <span><b>{{ dateTime | date:'mediumDate':'':getLocaleId(firstLocale) }}</b></span>
-                    </td>
-                    <td>
-                        <span><b>{{ dateTime | date:'mediumDate':'':getLocaleId(secondLocale) }}</b></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span>Long date</span>
-                    </td>
-                    <td>
-                        <span><b>{{ dateTime | date:'longDate':'':getLocaleId(firstLocale) }}</b></span>
-                    </td>
-                    <td>
-                        <span><b>{{ dateTime | date:'longDate':'':getLocaleId(secondLocale) }}</b></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span>Full date</span>
-                    </td>
-                    <td>
-                        <span><b>{{ dateTime | date:'fullDate':'':getLocaleId(firstLocale) }}</b></span>
-                    </td>
-                    <td>
-                        <span><b>{{ dateTime | date:'fullDate':'':getLocaleId(secondLocale) }}</b></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span>Short time</span>
-                    </td>
-                    <td>
-                        <span><b>{{ dateTime | date:'shortTime':'':getLocaleId(firstLocale) }}</b></span>
-                    </td>
-                    <td>
-                        <span><b>{{ dateTime | date:'shortTime':'':getLocaleId(secondLocale) }}</b></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span>Medium time</span>
-                    </td>
-                    <td>
-                        <span><b>{{ dateTime | date:'mediumTime':'':getLocaleId(firstLocale) }}</b></span>
-                    </td>
-                    <td>
-                        <span><b>{{ dateTime | date:'mediumTime':'':getLocaleId(secondLocale) }}</b></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span>Long time</span>
-                    </td>
-                    <td>
-                        <span>{{ dateTime | date:'longTime':'':getLocaleId(firstLocale) }}</span>
-                    </td>
-                    <td>
-                        <span>{{ dateTime | date:'longTime':'':getLocaleId(secondLocale) }}</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span>Full time</span>
-                    </td>
-                    <td>
-                        <span>{{ dateTime | date:'fullTime':'':getLocaleId(firstLocale) }}</span>
-                    </td>
-                    <td>
-                        <span>{{ dateTime | date:'fullTime':'':getLocaleId(secondLocale) }}</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span>Short datetime</span>
-                    </td>
-                    <td>
-                        <span><b>{{ dateTime | date:'short':'':getLocaleId(firstLocale) }}</b></span>
-                    </td>
-                    <td>
-                        <span><b>{{ dateTime | date:'short':'':getLocaleId(secondLocale) }}</b></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span>Medium datetime</span>
-                    </td>
-                    <td>
-                        <span>{{ dateTime | date:'medium':'':getLocaleId(firstLocale) }}</span>
-                    </td>
-                    <td>
-                        <span>{{ dateTime | date:'medium':'':getLocaleId(secondLocale) }}</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span>Long datetime</span>
-                    </td>
-                    <td>
-                        <span>{{ dateTime | date:'long':'':getLocaleId(firstLocale) }}</span>
-                    </td>
-                    <td>
-                        <span>{{ dateTime | date:'long':'':getLocaleId(secondLocale) }}</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span>Full datetime</span>
-                    </td>
-                    <td>
-                        <span>{{ dateTime | date:'full':'':getLocaleId(firstLocale) }}</span>
-                    </td>
-                    <td>
-                        <span>{{ dateTime | date:'full':'':getLocaleId(secondLocale) }}</span>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="clrweb-DoxMedia-text">
-            <h6 class="clrweb-DoxMedia-do-dont">Do</h6>
-            <p>Use consistent date formats, bold ones are recommended.</p>
+    <table id="table-date" class="table table-condensed table-component-list bump-down">
+        <thead>
+        <th>Date & Time</th>
+        <th>
+            <div class="select">
+                <select id="locale-1" [(ngModel)]="firstLocale">
+                    <option *ngFor="let locale of supportedLocales" [ngValue]="locale">{{ getLocaleId(locale) }}
+                    </option>
+                </select>
+            </div>
+        </th>
+        <th>
+            <div class="select">
+                <select id="locale-2" [(ngModel)]="secondLocale">
+                    <option *ngFor="let locale of supportedLocales" [ngValue]="locale">{{
+                        getLocaleId(locale)}}
+                    </option>
+                </select>
+            </div>
+        </th>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                <span>Short date</span>
+            </td>
+            <td>
+                <span>{{ getShortDate(firstLocale) }}</span>
+            </td>
+            <td>
+                <span>{{ getShortDate(secondLocale) }}</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>Medium date</span>
+            </td>
+            <td>
+                <span>{{ getMediumDate(firstLocale) }}</span>
+            </td>
+            <td>
+                <span>{{ getMediumDate(secondLocale) }}</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>Long date</span>
+            </td>
+            <td>
+                <span>{{ getLongDate(firstLocale) }}</span>
+            </td>
+            <td>
+                <span>{{ getLongDate(secondLocale) }}</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>Full date</span>
+            </td>
+            <td>
+                <span>{{ getFullDate(firstLocale) }}</span>
+            </td>
+            <td>
+                <span>{{ getFullDate(secondLocale) }}</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>Short time</span>
+            </td>
+            <td>
+                <span>{{ getShortTime(firstLocale) }}</span>
+            </td>
+            <td>
+                <span>{{ getShortTime(secondLocale) }}</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>Medium time</span>
+            </td>
+            <td>
+                <span>{{ getMediumTime(firstLocale) }}</span>
+            </td>
+            <td>
+                <span>{{ getMediumTime(secondLocale) }}</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>Long time</span>
+            </td>
+            <td>
+                <span>{{ getLongTime(firstLocale) }}</span>
+            </td>
+            <td>
+                <span>{{ getLongTime(secondLocale) }}</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>Full time</span>
+            </td>
+            <td>
+                <span>{{ getFullTime(firstLocale) }}</span>
+            </td>
+            <td>
+                <span>{{ getFullTime(secondLocale) }}</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>First day of week</span>
+            </td>
+            <td>
+                <span>{{ getFirstDayOfWeek(firstLocale) }}</span>
+            </td>
+            <td>
+                <span>{{ getFirstDayOfWeek(secondLocale) }}</span>
+            </td>
+        </tr>
+        <tr>
+            <th>Examples</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>
+                <span>Short date</span>
+            </td>
+            <td>
+                <span>{{ dateTime | date:'shortDate':'':getLocaleId(firstLocale) }}</span>
+            </td>
+            <td>
+                <span>{{ dateTime | date:'shortDate':'':getLocaleId(secondLocale) }}</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>Medium date</span>
+            </td>
+            <td>
+                <span><b>{{ dateTime | date:'mediumDate':'':getLocaleId(firstLocale) }}</b></span>
+            </td>
+            <td>
+                <span><b>{{ dateTime | date:'mediumDate':'':getLocaleId(secondLocale) }}</b></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>Long date</span>
+            </td>
+            <td>
+                <span><b>{{ dateTime | date:'longDate':'':getLocaleId(firstLocale) }}</b></span>
+            </td>
+            <td>
+                <span><b>{{ dateTime | date:'longDate':'':getLocaleId(secondLocale) }}</b></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>Full date</span>
+            </td>
+            <td>
+                <span><b>{{ dateTime | date:'fullDate':'':getLocaleId(firstLocale) }}</b></span>
+            </td>
+            <td>
+                <span><b>{{ dateTime | date:'fullDate':'':getLocaleId(secondLocale) }}</b></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>Short time</span>
+            </td>
+            <td>
+                <span><b>{{ dateTime | date:'shortTime':'':getLocaleId(firstLocale) }}</b></span>
+            </td>
+            <td>
+                <span><b>{{ dateTime | date:'shortTime':'':getLocaleId(secondLocale) }}</b></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>Medium time</span>
+            </td>
+            <td>
+                <span><b>{{ dateTime | date:'mediumTime':'':getLocaleId(firstLocale) }}</b></span>
+            </td>
+            <td>
+                <span><b>{{ dateTime | date:'mediumTime':'':getLocaleId(secondLocale) }}</b></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>Long time</span>
+            </td>
+            <td>
+                <span>{{ dateTime | date:'longTime':'':getLocaleId(firstLocale) }}</span>
+            </td>
+            <td>
+                <span>{{ dateTime | date:'longTime':'':getLocaleId(secondLocale) }}</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>Full time</span>
+            </td>
+            <td>
+                <span>{{ dateTime | date:'fullTime':'':getLocaleId(firstLocale) }}</span>
+            </td>
+            <td>
+                <span>{{ dateTime | date:'fullTime':'':getLocaleId(secondLocale) }}</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>Short datetime</span>
+            </td>
+            <td>
+                <span><b>{{ dateTime | date:'short':'':getLocaleId(firstLocale) }}</b></span>
+            </td>
+            <td>
+                <span><b>{{ dateTime | date:'short':'':getLocaleId(secondLocale) }}</b></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>Medium datetime</span>
+            </td>
+            <td>
+                <span>{{ dateTime | date:'medium':'':getLocaleId(firstLocale) }}</span>
+            </td>
+            <td>
+                <span>{{ dateTime | date:'medium':'':getLocaleId(secondLocale) }}</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>Long datetime</span>
+            </td>
+            <td>
+                <span>{{ dateTime | date:'long':'':getLocaleId(firstLocale) }}</span>
+            </td>
+            <td>
+                <span>{{ dateTime | date:'long':'':getLocaleId(secondLocale) }}</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>Full datetime</span>
+            </td>
+            <td>
+                <span>{{ dateTime | date:'full':'':getLocaleId(firstLocale) }}</span>
+            </td>
+            <td>
+                <span>{{ dateTime | date:'full':'':getLocaleId(secondLocale) }}</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="alert alert-info">
+        <div class="alert-items">
+            <div class="alert-item static">
+                <div class="alert-icon-wrapper">
+                    <clr-icon class="alert-icon" shape="info-circle"></clr-icon>
+                </div>
+                <span class="alert-text">Use consistent date formats, bold ones are recommended.</span>
+            </div>
         </div>
     </div>
 
     <h3>Number</h3>
 
-    <table id="table-number" class="table table-condensed table-component-list bump-down" style="max-width: 880px">
+    <table id="table-number" class="table table-condensed table-component-list bump-down">
         <thead>
         <th>Number</th>
         <th>
@@ -385,118 +386,119 @@
 
     <h3>Currency</h3>
 
-    <div class="clrweb-DoxMedia is-do-block">
-        <div class="clrweb-DoxMedia-block">
-            <table id="table-currency" class="table table-condensed table-component-list bump-down"
-                   style="max-width: 880px">
-                <thead>
-                <th>Currency</th>
-                <th>
-                    <div class="select">
-                        <select id="locale-5" [(ngModel)]="firstLocale">
-                            <option *ngFor="let locale of supportedLocales" [ngValue]="locale">{{ getLocaleId(locale) }}
-                            </option>
-                        </select>
-                    </div>
-                </th>
-                <th>
-                    <div class="select">
-                        <select id="locale-6" [(ngModel)]="secondLocale">
-                            <option *ngFor="let locale of supportedLocales" [ngValue]="locale">{{ getLocaleId(locale)}}
-                            </option>
-                        </select>
-                    </div>
-                </th>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>
-                        <span>Currency symbol</span>
-                    </td>
-                    <td>
-                        <span>{{ getCurrencySymbol(firstLocale) }}</span>
-                    </td>
-                    <td>
-                        <span>{{ getCurrencySymbol(secondLocale) }}</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span>Currency name</span>
-                    </td>
-                    <td>
-                        <span>{{ getCurrencyName(firstLocale) }}</span>
-                    </td>
-                    <td>
-                        <span>{{ getCurrencyName(secondLocale) }}</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span>Decimal symbol</span>
-                    </td>
-                    <td>
-                        <span>{{ getDecimalSymbol(firstLocale) }}</span>
-                    </td>
-                    <td>
-                        <span>{{ getDecimalSymbol(secondLocale) }}</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span>Digit grouping symbol</span>
-                    </td>
-                    <td>
-                        <span>{{ getDigitGroupingSymbol(firstLocale) }}</span>
-                    </td>
-                    <td>
-                        <span>{{ getDigitGroupingSymbol(secondLocale) }}</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span>No. of digits after decimal</span>
-                    </td>
-                    <td>
-                        <span>2</span>
-                    </td>
-                    <td>
-                        <span>2</span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Examples</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                <tr>
-                    <td>
-                        <span>Positive</span>
-                    </td>
-                    <td>
-                        <span>{{ posNumber | currency:getCurrencyCode(firstLocale):'symbol':'':getLocaleId(firstLocale) }}</span>
-                    </td>
-                    <td>
-                        <span>{{ posNumber | currency:getCurrencyCode(secondLocale):'symbol':'':getLocaleId(secondLocale) }}</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span>Negative</span>
-                    </td>
-                    <td>
-                        <span>{{ negNumber | currency:getCurrencyCode(firstLocale):'symbol':'':getLocaleId(firstLocale) }}</span>
-                    </td>
-                    <td>
-                        <span>{{ negNumber | currency:getCurrencyCode(secondLocale):'symbol':'':getLocaleId(secondLocale) }}</span>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="clrweb-DoxMedia-text">
-            <h6 class="clrweb-DoxMedia-do-dont">Do</h6>
-            <p>Right-align number and currency values in grids.</p>
+    <table id="table-currency" class="table table-condensed table-component-list bump-down left">
+        <thead>
+        <th>Currency</th>
+        <th>
+            <div class="select">
+                <select id="locale-5" [(ngModel)]="firstLocale">
+                    <option *ngFor="let locale of supportedLocales" [ngValue]="locale">{{ getLocaleId(locale) }}
+                    </option>
+                </select>
+            </div>
+        </th>
+        <th>
+            <div class="select">
+                <select id="locale-6" [(ngModel)]="secondLocale">
+                    <option *ngFor="let locale of supportedLocales" [ngValue]="locale">{{ getLocaleId(locale)}}
+                    </option>
+                </select>
+            </div>
+        </th>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                <span>Currency symbol</span>
+            </td>
+            <td>
+                <span>{{ getCurrencySymbol(firstLocale) }}</span>
+            </td>
+            <td>
+                <span>{{ getCurrencySymbol(secondLocale) }}</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>Currency name</span>
+            </td>
+            <td>
+                <span>{{ getCurrencyName(firstLocale) }}</span>
+            </td>
+            <td>
+                <span>{{ getCurrencyName(secondLocale) }}</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>Decimal symbol</span>
+            </td>
+            <td>
+                <span>{{ getDecimalSymbol(firstLocale) }}</span>
+            </td>
+            <td>
+                <span>{{ getDecimalSymbol(secondLocale) }}</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>Digit grouping symbol</span>
+            </td>
+            <td>
+                <span>{{ getDigitGroupingSymbol(firstLocale) }}</span>
+            </td>
+            <td>
+                <span>{{ getDigitGroupingSymbol(secondLocale) }}</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>No. of digits after decimal</span>
+            </td>
+            <td>
+                <span>2</span>
+            </td>
+            <td>
+                <span>2</span>
+            </td>
+        </tr>
+        <tr>
+            <th>Examples</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>
+                <span>Positive</span>
+            </td>
+            <td>
+                <span>{{ posNumber | currency:getCurrencyCode(firstLocale):'symbol':'':getLocaleId(firstLocale) }}</span>
+            </td>
+            <td>
+                <span>{{ posNumber | currency:getCurrencyCode(secondLocale):'symbol':'':getLocaleId(secondLocale) }}</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>Negative</span>
+            </td>
+            <td>
+                <span>{{ negNumber | currency:getCurrencyCode(firstLocale):'symbol':'':getLocaleId(firstLocale) }}</span>
+            </td>
+            <td>
+                <span>{{ negNumber | currency:getCurrencyCode(secondLocale):'symbol':'':getLocaleId(secondLocale) }}</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="alert alert-info">
+        <div class="alert-items">
+            <div class="alert-item static">
+                <div class="alert-icon-wrapper">
+                    <clr-icon class="alert-icon" shape="info-circle"></clr-icon>
+                </div>
+                <span class="alert-text">Right-align number and currency values in grids.</span>
+            </div>
         </div>
     </div>
 </section>
