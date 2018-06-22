@@ -17,7 +17,7 @@
 
     <h3>Date & Time</h3>
 
-    <table class="table table-condensed table-component-list bump-down" style="max-width: 880px">
+    <table id="table-date" class="table table-condensed table-component-list bump-down">
         <thead>
         <th>Date & Time</th>
         <th>
@@ -31,7 +31,9 @@
         <th>
             <div class="select">
                 <select id="locale-2" [(ngModel)]="secondLocale">
-                    <option *ngFor="let locale of supportedLocales" [ngValue]="locale">{{ getLocaleId(locale)}}</option>
+                    <option *ngFor="let locale of supportedLocales" [ngValue]="locale">{{
+                        getLocaleId(locale)}}
+                    </option>
                 </select>
             </div>
         </th>
@@ -234,10 +236,10 @@
                 <span>Short datetime</span>
             </td>
             <td>
-                <span>{{ dateTime | date:'short':'':getLocaleId(firstLocale) }}</span>
+                <span><b>{{ dateTime | date:'short':'':getLocaleId(firstLocale) }}</b></span>
             </td>
             <td>
-                <span>{{ dateTime | date:'short':'':getLocaleId(secondLocale) }}</span>
+                <span><b>{{ dateTime | date:'short':'':getLocaleId(secondLocale) }}</b></span>
             </td>
         </tr>
         <tr>
@@ -275,10 +277,20 @@
         </tr>
         </tbody>
     </table>
+    <div class="alert alert-info">
+        <div class="alert-items">
+            <div class="alert-item static">
+                <div class="alert-icon-wrapper">
+                    <clr-icon class="alert-icon" shape="info-circle"></clr-icon>
+                </div>
+                <span class="alert-text">Use consistent date formats, bold ones are recommended.</span>
+            </div>
+        </div>
+    </div>
 
     <h3>Number</h3>
 
-    <table class="table table-condensed table-component-list bump-down" style="max-width: 880px">
+    <table id="table-number" class="table table-condensed table-component-list bump-down">
         <thead>
         <th>Number</th>
         <th>
@@ -374,7 +386,7 @@
 
     <h3>Currency</h3>
 
-    <table class="table table-condensed table-component-list bump-down" style="max-width: 880px">
+    <table id="table-currency" class="table table-condensed table-component-list bump-down left">
         <thead>
         <th>Currency</th>
         <th>
@@ -388,7 +400,8 @@
         <th>
             <div class="select">
                 <select id="locale-6" [(ngModel)]="secondLocale">
-                    <option *ngFor="let locale of supportedLocales" [ngValue]="locale">{{ getLocaleId(locale)}}</option>
+                    <option *ngFor="let locale of supportedLocales" [ngValue]="locale">{{ getLocaleId(locale)}}
+                    </option>
                 </select>
             </div>
         </th>
@@ -478,4 +491,14 @@
         </tr>
         </tbody>
     </table>
+    <div class="alert alert-info">
+        <div class="alert-items">
+            <div class="alert-item static">
+                <div class="alert-icon-wrapper">
+                    <clr-icon class="alert-icon" shape="info-circle"></clr-icon>
+                </div>
+                <span class="alert-text">Right-align number and currency values in grids.</span>
+            </div>
+        </div>
+    </div>
 </section>
