@@ -1,0 +1,52 @@
+<clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
+    <article>
+        <h5 class="component-summary" id="generic-pager-header">The Collapse/Expand Section is a basic component that
+            can be used to switch between hiding & showing content anywhere on your page.</h5>
+
+        <div id="design-guidelines">
+            <h3>Usage</h3>
+            <p>
+                Use the Collapse/Expand Section whenever you want to show specific data only when a certain condition is
+                met, e.g. the user deciding to open the section. Useful for hiding detail information.
+            </p>
+        </div>
+
+        <div id="code-examples">
+            <h3 id="examples">Code &amp; Examples</h3>
+            <p>
+                Following interactions are available:
+            </p>
+            <ul>
+                <li>
+                    By setting the <code class="clr-code">[clrIsCollapsed]</code> input of the component, you can define
+                    if your section is collapsed or expanded when first opening the page.
+                    Default is <code class="clr-code">true</code>.
+                </li>
+                <li>
+                    <code class="clr-code">(clrCollapsed)</code> is fired every time the component collapses.
+                </li>
+                <li>
+                    <code class="clr-code">(clrExpanded)</code> is fired every time the component expands.
+                </li>
+            </ul>
+
+            <clr-collapse-expand-section [clrIsCollapsed]="isCollapsed"
+                                         (clrCollapsed)="onCollapsed()"
+                                         (clrExpanded)="onExpanded()">
+                <ng-container clr-ces-title>CES-Title</ng-container>
+                <ng-container clr-ces-subtitle>CES-Subtitle</ng-container>
+                <ng-container clr-ces-content>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+                    eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
+                    accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+                    Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+                    eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
+                    accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+                    Lorem ipsum dolor sit amet.
+                </ng-container>
+            </clr-collapse-expand-section>
+
+            <clr-code-snippet [clrCode]="htmlExample"></clr-code-snippet>
+
+        </div>
+    </article>
+</clr-doc-wrapper>
