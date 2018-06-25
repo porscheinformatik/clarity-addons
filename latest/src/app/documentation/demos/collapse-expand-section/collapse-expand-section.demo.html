@@ -28,13 +28,16 @@
                 <li>
                     <code class="clr-code">(clrExpanded)</code> is fired every time the component expands.
                 </li>
+                <li>
+                    You can optionally add a subtitle by adding any HTML with the attribute
+                    <code class="clr-code">clr-ces-subtitle</code>, similar to the title.
+                </li>
             </ul>
 
             <clr-collapse-expand-section [clrIsCollapsed]="isCollapsed"
                                          (clrCollapsed)="onCollapsed()"
                                          (clrExpanded)="onExpanded()">
-                <ng-container clr-ces-title>CES-Title</ng-container>
-                <ng-container clr-ces-subtitle>CES-Subtitle</ng-container>
+                <ng-container clr-ces-title>Title</ng-container>
                 <ng-container clr-ces-content>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
                     eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
                     accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est

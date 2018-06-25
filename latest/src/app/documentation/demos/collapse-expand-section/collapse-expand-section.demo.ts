@@ -10,8 +10,7 @@ const HTML_EXAMPLE = `
 <clr-collapse-expand-section [clrIsCollapsed]="isCollapsed"
                              (clrCollapsed)="onCollapsed()"
                              (clrExpanded)="onExpanded()">
-    <ng-container clr-ces-title>CES-Title</ng-container>
-    <ng-container clr-ces-subtitle>CES-Subtitle</ng-container>
+    <ng-container clr-ces-title>Title</ng-container>
     <ng-container clr-ces-content>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
         eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
         accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
