@@ -36,6 +36,13 @@ const documentationRoutes: Routes = [
                 }
             },
             {
+                path: "collapse-expand-section",
+                loadChildren: "app/documentation/demos/collapse-expand-section/collapse-expand-section.demo.module#CollapseExpandSectionDemoModule",
+                data: {
+                    browserTitle: "Collapse/Expand Section"
+                }
+            },
+            {
                 path: "generic-pager",
                 loadChildren: "app/documentation/demos/generic-pager/generic-pager.demo.module#GenericPagerDemoModule",
                 data: {

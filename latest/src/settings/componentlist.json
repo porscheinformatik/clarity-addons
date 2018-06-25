@@ -7,6 +7,18 @@
     },
     "list": [
         {
+            "url": "collapse-expand-section",
+            "text": "Collapse/Expand Section",
+            "type": "component",
+            "ux": 20,
+            "ui": 20,
+            "core": 20,
+            "ng": 20,
+            "dox": 20,
+            "comments": "",
+            "newLayout": true
+        },
+        {
             "url": "generic-pager",
             "text": "Generic Pager",
             "type": "component",
