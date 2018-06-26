@@ -7,12 +7,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClarityModule } from '@clr/angular';
 
 import { ClrCollapseExpandSection } from './collapse-expand-section';
 
 @NgModule({
-  imports: [CommonModule, ClarityModule, FormsModule],
+  imports: [CommonModule, ClarityModule, FormsModule, BrowserAnimationsModule],
   declarations: [ClrCollapseExpandSection],
   exports: [ClrCollapseExpandSection],
 })

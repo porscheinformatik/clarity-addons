@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { ClarityModule } from '@clr/angular';
 
 import { ClrCollapseExpandSection } from './collapse-expand-section';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('CollapseExpandSectionComponent', () => {
   let component: ClrCollapseExpandSection;
@@ -17,7 +18,7 @@ describe('CollapseExpandSectionComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ClrCollapseExpandSection],
-      imports: [ClarityModule, FormsModule],
+      imports: [ClarityModule, FormsModule, BrowserAnimationsModule],
     }).compileComponents();
   }));
 
