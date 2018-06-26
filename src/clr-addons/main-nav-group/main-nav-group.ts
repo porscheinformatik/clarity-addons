@@ -42,8 +42,8 @@ export class ClrMainNavGroup implements OnDestroy {
   private uncheckInputs(selector: string) {
     selector = 'clr-main-container:not(.open-hamburger-menu) ' + selector;
     const hiddenInputs: NodeListOf<HTMLInputElement> = document.querySelectorAll(selector);
+    // tslint:disable-next-line:prefer-for-of
     for (let i = 0; i < hiddenInputs.length; i++) {
-      // tslint:disable-line:prefer-for-of
       hiddenInputs[i].checked = false;
     }
   }
