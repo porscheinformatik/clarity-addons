@@ -9,15 +9,13 @@ import { RouterModule } from "@angular/router";
 import { ClarityModule } from "@clr/angular";
 
 import { BasepageLayoutDemo } from "./basepage-layout";
-import { DemoMenuModule } from "../demo-menu/demo-menu.module"
-import { ClrMainNavGroupModule } from "../main-nav-group/main-nav-group.module"
+import { DemoMenuModule } from "../demo-menu/demo-menu.module";
 
 @NgModule({
     imports: [
         CommonModule,
         ClarityModule,
         DemoMenuModule,
-        ClrMainNavGroupModule,
         RouterModule.forChild([{ path: "", component: BasepageLayoutDemo, outlet: "fullpage"}])
     ],
     declarations: [

@@ -7,8 +7,8 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { ClarityModule } from "@clr/angular";
+import { ClrAddonsModule } from "@porscheinformatik/clr-addons";
 
-import { ClrMainNavGroupModule } from "../main-nav-group/main-nav-group.module"
 import { DemoMenu } from "./demo-menu";
 
 @NgModule({
@@ -16,7 +16,7 @@ import { DemoMenu } from "./demo-menu";
         CommonModule,
         RouterModule,
         ClarityModule,
-        ClrMainNavGroupModule
+        ClrAddonsModule
     ],
     declarations: [
         DemoMenu
