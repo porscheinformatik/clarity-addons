@@ -39,6 +39,10 @@ export class ClrMainNavGroup implements OnDestroy {
     input.checked = !input.checked;
   }
 
+  isActive(): boolean {
+    return this.el.nativeElement.classList.contains('active') && !this.el.nativeElement.closest('.open-hamburger-menu');
+  }
+
   private uncheckInputs(selector: string) {
     selector = 'clr-main-container:not(.open-hamburger-menu) ' + selector;
     const hiddenInputs: NodeListOf<HTMLInputElement> = document.querySelectorAll(selector);

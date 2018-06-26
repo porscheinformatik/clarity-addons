@@ -1,6 +1,10 @@
 :host {
   display: flex;
   flex-direction: column;
+
+  &.active .collapsible .nav-text {
+    opacity: 1;
+  }
 }
 
 .collapsible > input[type='checkbox'] {
@@ -34,6 +38,8 @@
       transform: unset;
       top: 0;
       left: 0;
+      width: 0.416667rem;
+      height: 0.416667rem;
     }
   }
 
@@ -59,10 +65,12 @@
   }
 
   clr-icon {
-    top: 0.25rem;
-    right: 20px;
+    top: 0.4rem;
+    right: 1rem;
     left: unset;
     transform: rotate(-90deg);
+    width: 0.666667rem;
+    height: 0.666667rem;
   }
 
   input[type='checkbox']:checked {

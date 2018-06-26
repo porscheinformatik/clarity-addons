@@ -14,9 +14,9 @@
 
           <div class="header-nav" [clr-nav-level]="1">
               <a class="nav-link" href="#"><span class="nav-text">Menu1</span></a>
-              <a class="nav-link active" href='#'><span class="nav-text">Menu2</span></a>
-              <clr-main-nav-group clrTitle="Main Nav Group">
-                  <a class="nav-link dropdown-item" href="#" onClick="return false;">Submenu 3 1</a>
+              <a class="nav-link" href='#'><span class="nav-text">Menu2</span></a>
+              <clr-main-nav-group clrTitle="Main Nav Group" routerLinkActive="active">
+                  <a class="nav-link dropdown-item" routerLink="/view-edit-section">ViewEdit Section</a>
                   <a class="nav-link dropdown-item" href="#" onClick="return false;">Submenu 3 2</a>
                   <a class="nav-link dropdown-item" href="#" onClick="return false;">Submenu 3 3</a>
               </clr-main-nav-group>
