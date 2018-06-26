@@ -15,10 +15,10 @@ let instances = 0;
 export class ClrMainNavGroup implements OnDestroy {
   @Input('clrTitle') title: string;
 
+  prefix = 'mainNavGroup';
+  id: number;
   protected el: ElementRef;
   protected renderer: Renderer2;
-  private prefix = 'mainNavGroup';
-  private id: number;
   private hostClickListener: () => void;
   private documentClickListener: () => void;
 
