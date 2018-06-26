@@ -1,32 +1,23 @@
-<clr-header class="header-6">
-    <div class="branding">
-        <a routerLink="/" class="logo-and-title">
-            <span class="clr-icon clarity-logo"></span>
-            <span class="title">Project title</span>
-        </a>
-    </div>
-    <div class="divider"></div>
-    <div class="header-nav" [clr-nav-level]="1">
-        <a class="nav-link" routerLink="/full-page-layouts/sidebarpage-layout"><span class="nav-text">Menu1</span></a>
-        <a class="nav-link" routerLink="/full-page-layouts/sidebarpage-layout" routerLinkActive="active"><span class="nav-text">Menu2</span></a>
-        <a class="nav-link" routerLink="/full-page-layouts/sidebarpage-layout"><span class="nav-text">Menu3</span></a>
-    </div>
-</clr-header>
+<clr-main-container>
+    <clr-demo-menu></clr-demo-menu>
 
-<div class="content-header">
-    <h2>Menu2 - Pagetitle</h2>
-    <div class="command-bar">
-        <button class="btn btn-outline">Command1</button>
-        <button class="btn btn-outline">Command2</button>
-    </div>  
-</div>
-<div class="content-container">
-    <div class="content-area">
-        This is the page content
+    <div class="content-header">
+        <h2>Sidebar Page Layout</h2>
+        <clr-button-group class="command-bar" [clrMenuPosition]="'bottom-right'">
+            <clr-button>Command1</clr-button>
+            <clr-button>Command2</clr-button>
+            <clr-button [clrInMenu]="true">Command3</clr-button>
+            <clr-button [clrInMenu]="true">Command4</clr-button>
+        </clr-button-group> 
     </div>
-    <clr-vertical-nav class="sidenav" [clr-nav-level]="2" [clrVerticalNavCollapsible]="true">
-        <a class="nav-link" routerLink="/full-page-layouts/sidebarpage-layout" routerLinkActive="active"><span class="nav-text">Item 1</span></a>
-        <a class="nav-link" routerLink="/full-page-layouts/sidebarpage-layout"><span class="nav-text">Item 2</span></a>
-        <a class="nav-link" routerLink="/full-page-layouts/sidebarpage-layout"><span class="nav-text">Item 3</span></a>
-    </clr-vertical-nav>
-</div>
+    <div class="content-container">
+        <div class="content-area">
+            This is the page content
+        </div>
+        <clr-vertical-nav class="sidenav" [clr-nav-level]="2" [clrVerticalNavCollapsible]="true">
+            <a class="nav-link" routerLink="/full-page-layouts/sidebarpage-layout" routerLinkActive="active"><span class="nav-text">Item 1</span></a>
+            <a class="nav-link" routerLink="/full-page-layouts/sidebarpage-layout"><span class="nav-text">Item 2</span></a>
+            <a class="nav-link" routerLink="/full-page-layouts/sidebarpage-layout"><span class="nav-text">Item 3</span></a>
+        </clr-vertical-nav>
+    </div>
+</clr-main-container>

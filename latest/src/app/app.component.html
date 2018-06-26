@@ -1,5 +1,5 @@
-<clr-main-container>
-    <clr-header class="header-6" *ngIf="!noHeader">
+<clr-main-container *ngIf="!noHeader">
+    <clr-header class="header-6" >
         <div class="branding">
             <a routerLink="/" class="logo-and-title">
                 <span class="clr-icon clarity-logo"></span>
@@ -27,3 +27,6 @@
     <router-outlet></router-outlet>
 
 </clr-main-container>
+
+
+<router-outlet name="fullpage"></router-outlet>

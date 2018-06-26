@@ -1,0 +1,15 @@
+.content-header { 
+    border-bottom: 1px solid #CCC; 
+    padding-top: 0.5rem; 
+    padding-left: 1rem ;
+    display: flex;
+}
+
+.content-header > h2 { 
+    margin-top: 0px;
+}
+
+.command-bar {
+    flex: 1 0 auto; 
+    justify-content: flex-end;
+}

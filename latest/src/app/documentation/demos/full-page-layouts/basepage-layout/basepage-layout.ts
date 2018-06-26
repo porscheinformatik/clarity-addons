@@ -3,17 +3,34 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import {Component} from "@angular/core";
+import {Component, Input, OnInit} from "@angular/core";
+import { Router } from "@angular/router";
 
 @Component({
     selector: "clr-basepage-layout-demo",
     templateUrl: "./basepage-layout.demo.html",
-    styles: [
-        ".content-header { border-bottom: 1px solid #CCC; padding-top:0.5rem; padding-left:1rem }",
-        ".content-header > h2 { margin-top:0px }"]
+    styleUrls: ["./basepage-layout.scss"]
 })
-export class BasepageLayoutDemo {
+export class BasepageLayoutDemo implements OnInit {
+    withCommandBar = false;
 
-    constructor() {
+    constructor(private router: Router) {}
+
+    ngOnInit(): void {
+        this.withCommandBar = this.collectRouteData("withCommand")[0];
+    }
+
+    private collectRouteData(key: string) {
+        let route = this.router.routerState.snapshot.root;
+        let returnArray = [];
+
+        while (route) {
+            if (route.data && route.data[key]) {
+                returnArray.push(route.data[key]);
+            }
+            route = route.firstChild;
+        }
+
+        return returnArray;
     }
 }
