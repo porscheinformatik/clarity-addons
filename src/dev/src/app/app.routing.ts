@@ -11,6 +11,7 @@ import { PagerDemo } from './pager/pager.demo';
 import { ViewEditSectionDemo } from './view-edit-section/view-edit-section.demo';
 import { PagedSearchResultListDemo } from './paged-search-result-list/paged-search-result-list.demo';
 import { CollapseExpandSectionDemo } from './collapse-expand-section/collapse-expand-section.demo';
+import { ContentPanelDemo } from './content-panel/content-panel.demo';
 
 export const APP_ROUTES: Routes = [
   { path: '', component: LandingComponent },
@@ -18,6 +19,7 @@ export const APP_ROUTES: Routes = [
   { path: 'pager', component: PagerDemo },
   { path: 'paged-search-result-list', component: PagedSearchResultListDemo },
   { path: 'collapse-expand-section', component: CollapseExpandSectionDemo },
+  { path: 'content-panel', component: ContentPanelDemo },
 ];
 
 export const ROUTING: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);

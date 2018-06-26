@@ -1,0 +1,99 @@
+@include exports('content-panel.clr-addons') {
+  .content-panel-wrapper {
+    position: relative;
+    z-index: map-get($clr-layers, sidepanel);
+  }
+
+  @media screen and (min-width: map-get($grid-breakpoints, xl)) {
+    .content-panel-wrapper {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .content-panel-outside {
+      flex-basis: 100%;
+      order: 2;
+    }
+  }
+
+  .clr-content-panel {
+    // The content next to the panel always has order = 2
+    // Default position is right so set order = 3 because 3 > 2
+    order: 3;
+
+    &.left {
+      // If position is set to left set order = 1 because 1 < 2
+      order: 1;
+    }
+  }
+
+  .content-panel {
+    background-color: clr-getColor(lightest);
+    z-index: map-get($clr-layers, sidepanel);
+    padding: 1rem;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: calc(100% - 456px);
+    border-left: 5px solid $gray-light;
+    overflow: auto;
+
+    @media screen and (min-width: map-get($grid-breakpoints, md)) {
+      width: 456px;
+
+      &.content-panel-left {
+        left: 0;
+        border-right: 2px solid $gray-light;
+        border-left: none;
+      }
+    }
+
+    @media screen and (min-width: map-get($grid-breakpoints, xl)) {
+      position: relative;
+      height: 100%;
+    }
+
+    @media screen and (max-width: map-get($grid-breakpoints, md)) {
+      left: 0;
+      width: 100%;
+      border: none;
+    }
+  }
+
+  .content-panel-title {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .content-panel-backdrop {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: clr-getColor(darkest);
+    opacity: 0.85;
+    z-index: map-get($clr-layers, sidepanel-bg);
+
+    @media screen and (max-width: map-get($grid-breakpoints, md)) {
+      display: none;
+    }
+
+    @media screen and (min-width: map-get($grid-breakpoints, xl)) {
+      display: none;
+    }
+  }
+
+  .content-panel-close-btn {
+    line-height: 1rem;
+  }
+
+  .close .content-panel-close-icon {
+    fill: $clr-link-color;
+  }
+
+  .close .content-panel-close-icon:hover {
+    fill: $clr-link-hover-color;
+  }
+}
