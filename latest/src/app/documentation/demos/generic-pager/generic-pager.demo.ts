@@ -59,7 +59,7 @@ export class GenericPagerDemo extends ClarityDocComponent implements OnInit{
     createItems() {
         this.allItems = [];
         for (let i = 0; i < this.totalItems; i++) {
-            this.allItems[i] = Math.random().toString(36).slice(2);
+            this.allItems[i] = "Card " + (i + 1);
         }
         this.onPageChanged(this.currentPage);
     }
