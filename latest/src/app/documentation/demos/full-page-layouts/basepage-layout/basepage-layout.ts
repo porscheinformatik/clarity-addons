@@ -12,7 +12,7 @@ import { Router } from "@angular/router";
     styleUrls: ["./basepage-layout.scss"]
 })
 export class BasepageLayoutDemo implements OnInit {
-    @Input() withCommandBar = false;
+    withCommandBar = false;
 
     constructor(private router: Router) {}
 
