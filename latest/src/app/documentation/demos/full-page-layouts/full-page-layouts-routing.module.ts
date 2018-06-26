@@ -16,6 +16,14 @@ const fullPageLayoutsRoutes: Routes = [
                 }
             },
             {
+                path: `basepage-layout-command`,
+                loadChildren: "app/documentation/demos/full-page-layouts/basepage-layout/basepage-layout.demo.module#BasepageLayoutDemoModule",
+                data: {
+                    browserTitle: "Base Page Layout",
+                    withCommand: true
+                }
+            },
+            {
                 path: `sidebarpage-layout`,
                 loadChildren: "app/documentation/demos/full-page-layouts/sidebarpage-layout/sidebarpage-layout.demo.module#SidebarpageLayoutDemoModule",
                 data: {

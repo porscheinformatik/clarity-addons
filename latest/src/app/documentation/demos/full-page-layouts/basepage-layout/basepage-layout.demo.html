@@ -1,23 +1,19 @@
-<clr-header class="header-6">
-    <div class="branding">
-        <a routerLink="/" class="logo-and-title">
-            <span class="clr-icon clarity-logo"></span>
-            <span class="title">Project title</span>
-        </a>
-    </div>
-    <div class="divider"></div>
-    <div class="header-nav" [clr-nav-level]="1">
-        <a class="nav-link" routerLink="/full-page-layouts/basepage-layout"><span class="nav-text">Menu1</span></a>
-        <a class="nav-link" routerLink="/full-page-layouts/basepage-layout" routerLinkActive="active"><span class="nav-text">Menu2</span></a>
-        <a class="nav-link" routerLink="/full-page-layouts/basepage-layout"><span class="nav-text">Menu3</span></a>
-    </div>
-</clr-header>
+<clr-main-container>
+    <clr-demo-menu></clr-demo-menu>
 
-<div class="content-header">
-    <h2>Menu2 - Pagetitle</h2>
-</div>
-<div class="content-container">
-    <div class="content-area">
-        This is the page content
+    <div class="content-header">
+        <h2><span *ngIf="!withCommandBar">Base Page Layout</span> 
+            <span *ngIf="withCommandBar">Command bar</span></h2>
+        <clr-button-group class="command-bar" [clrMenuPosition]="'bottom-right'" *ngIf="withCommandBar">
+            <clr-button>Command1</clr-button>
+            <clr-button>Command2</clr-button>
+            <clr-button [clrInMenu]="true">Command3</clr-button>
+            <clr-button [clrInMenu]="true">Command4</clr-button>
+        </clr-button-group> 
     </div>
-</div>
+    <div class="content-container">
+        <div class="content-area">
+            This is the page content
+        </div>
+    </div>
+</clr-main-container>

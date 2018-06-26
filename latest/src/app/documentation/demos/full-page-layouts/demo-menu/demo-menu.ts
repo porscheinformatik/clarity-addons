@@ -6,12 +6,9 @@
 import {Component} from "@angular/core";
 
 @Component({
-    selector: "clr-sidebarpage-layout-demo",
-    templateUrl: "./sidebarpage-layout.demo.html",
-    styleUrls: ["./sidebarpage-layout.scss"]
+    selector: "clr-demo-menu",
+    templateUrl: "./demo-menu.html"
 })
-export class SidebarpageLayoutDemo {
+export class DemoMenu {
 
-    constructor() {
-    }
 }

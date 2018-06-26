@@ -8,24 +8,22 @@ import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { ClarityModule } from "@clr/angular";
 
-import { BasepageLayoutDemo } from "./basepage-layout";
-import { DemoMenuModule } from "../demo-menu/demo-menu.module"
 import { ClrMainNavGroupModule } from "../main-nav-group/main-nav-group.module"
+import { DemoMenu } from "./demo-menu";
 
 @NgModule({
     imports: [
         CommonModule,
+        RouterModule,
         ClarityModule,
-        DemoMenuModule,
-        ClrMainNavGroupModule,
-        RouterModule.forChild([{ path: "", component: BasepageLayoutDemo, outlet: "fullpage"}])
+        ClrMainNavGroupModule
     ],
     declarations: [
-        BasepageLayoutDemo
+        DemoMenu
     ],
     exports: [
-        BasepageLayoutDemo
+        DemoMenu
     ]
 })
-export class BasepageLayoutDemoModule {
+export class DemoMenuModule {
 }
