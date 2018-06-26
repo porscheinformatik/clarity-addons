@@ -10,8 +10,15 @@ import { ClrViewEditSectionModule } from './view-edit-section/view-edit-section.
 import { ClrPagerModule } from './pager/pager.module';
 import { ClrPagedSearchResultListModule } from './paged-search-result-list/paged-search-result-list.module';
 import { ClrCollapseExpandSectionModule } from './collapse-expand-section/collapse-expand-section.module';
+import { ClrMainNavGroupModule } from './main-nav-group/main-nav-group.module';
 
 @NgModule({
-  exports: [ClrViewEditSectionModule, ClrPagerModule, ClrPagedSearchResultListModule, ClrCollapseExpandSectionModule],
+  exports: [
+    ClrViewEditSectionModule,
+    ClrPagerModule,
+    ClrPagedSearchResultListModule,
+    ClrCollapseExpandSectionModule,
+    ClrMainNavGroupModule,
+  ],
 })
 export class ClrAddonsModule {}

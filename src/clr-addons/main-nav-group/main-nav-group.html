@@ -1,0 +1,8 @@
+
+<section class="nav-link collapsible" (click)="onClick($event)" [class.active]="isActive()">
+    <input id="{{prefix}}{{id}}" type="checkbox">
+    <label class="nav-text" for="{{prefix}}{{id}}">{{title}}<clr-icon shape="caret down"></clr-icon></label>
+    <div class="nav-list dropdown-menu" routerLinkActive="active">
+        <ng-content></ng-content>
+    </div>
+</section>
