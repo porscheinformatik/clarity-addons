@@ -3,17 +3,17 @@
 // The full license information can be found in LICENSE in the root directory of this project.
 
 // Global
-$clr-global-selection-color: $turquoise-lightest;
+$clr-global-selection-color: $turquoise-light;
 
 // Default button colors
 $clr-btn-default-color: $turquoise; // border-color, color, checked-background-color
-$clr-btn-default-hover-bg-color: $turquoise-lightest; // hover-background-color
+$clr-btn-default-hover-bg-color: $turquoise-light; // hover-background-color
 $clr-btn-default-hover-color: $turquoise-darkest; // hover-color
 $clr-btn-default-box-shadow-color: $turquoise-darkest;
 
 // Default outline button
 $clr-btn-default-outline-color: $turquoise; // border-color, color, checked-background-color
-$clr-btn-default-outline-hover-bg-color: $turquoise-lightest; // hover-background-color
+$clr-btn-default-outline-hover-bg-color: $turquoise-lighter; // hover-background-color
 $clr-btn-default-outline-hover-color: $turquoise-darkest; // hover-color
 $clr-btn-default-outline-box-shadow-color: $turquoise-darkest;
 
@@ -23,17 +23,63 @@ $clr-btn-primary-border-color: $turquoise; // border-color
 $clr-btn-primary-hover-bg-color: $turquoise-darkest; // hover-background-color
 $clr-btn-primary-box-shadow-color: $turquoise;
 
+// Success button
+$clr-btn-success-bg-color: $green;
+$clr-btn-success-hover-bg-color: $green-dark;
+$clr-btn-success-box-shadow-color: $green;
+$clr-btn-success-checked-bg-color: $clr-btn-success-hover-bg-color;
+
+// Success button outline
+$clr-btn-success-outline-color: $green;
+$clr-btn-success-outline-hover-bg-color: $green-lighter;
+$clr-btn-success-outline-border-color: $green;
+$clr-btn-success-outline-hover-color: $green-dark;
+$clr-btn-success-outline-box-shadow-color: $green-dark;
+
+// Danger button
+$clr-btn-danger-hover-bg-color: $red-dark;
+
+// Danger button outline
+$clr-btn-danger-outline-hover-bg-color: $red-lighter;
+
 // Link button colors
 $clr-btn-link-color: $turquoise; // color
 $clr-btn-link-hover-color: $turquoise-darkest; // hover-color
+
+// Alert
+$clr-alert-success-bg-color: $green-light;
+$clr-alert-success-border-color: $green-light-mid;
+$clr-alert-success-icon-color: $green-turquiose;
+
+$clr-alert-info-bg-color: $blue-light;
+$clr-alert-info-border-color: $blue-mid;
+$clr-alert-info-icon-color: $turquoise;
+
+$clr-alert-warning-border-color: $yellow-light;
+
+$clr-alert-danger-bg-color: $red-light;
+$clr-alert-danger-icon-color: $red-darker;
+
+$clr-app-alert-info-bg-color: $blue-dark;
+$clr-app-alert-warning-bg-color: $orange-dark;
+$clr-app-alert-danger-bg-color: $red-darker;
+
+// Badge
+$clr-badge-info-bg-color: $turquoise;
+$clr-badge-success-bg-color: $green;
+$clr-badge-warning-bg-color: $yellow-light;
+$clr-badge-danger-bg-color: $red-darker;
+$clr-badge-orange-bg-color: $orange-dark;
+$clr-badge-light-blue-bg-color: $blue-mid;
 
 // Checkbox
 $clr-forms-checkbox-background-color: $turquoise; // checked-background-color
 $clr-forms-checkbox-checked-shadow: inset 0 0 0 0.25rem $clr-forms-checkbox-background-color;
 $clr-indeterminate-checkbox-border-color: $turquoise;
 
-// Radiobutton
-$clr-forms-radio-selected-shadow: $clr-forms-checkbox-checked-shadow; // selected-background-color
+// Datagrid
+$clr-datagrid-row-hover: $clr-global-selection-color;
+$clr-datagrid-action-popover-hover-color: $clr-global-selection-color;
 
 // Datepicker
 $clr-datepicker-trigger-color: $turquoise;
@@ -42,6 +88,14 @@ $clr-calendar-btn-color: $turquoise;
 $clr-calendar-active-cell-background-color: $clr-global-selection-color;
 $clr-calendar-btn-hover-focus-color: $clr-global-selection-color;
 $clr-calendar-active-focus-cell-background-color: $clr-global-selection-color;
+
+// Dropdown
+$clr-dropdown-bg-hover-color: $clr-global-selection-color;
+$clr-dropdown-bg-active-color: $clr-global-selection-color;
+$clr-dropdown-selection-color: $clr-global-selection-color;
+
+// Forms
+$clr-forms-input-invalid-color: $red-darker;
 
 // Input
 $clr-input-border-color: $turquoise;
@@ -56,14 +110,17 @@ $clr-header-5-bg-color: $clr-white;
 $clr-header-6-bg-color: $clr-white;
 $clr-header-7-bg-color: $clr-white;
 
-// Sidenav
-$clr-sidenav-link-hover-color: $clr-global-selection-color;
+// Label
+$clr-label-success-bg-color: $green-light;
+$clr-label-success-font-color: $green-darkest;
+$clr-label-success-border-color: $green-light-mid;
 
-// Subnav
-$clr-nav-active-box-shadow-color: 0 -3px 0 $turquoise inset;
+$clr-label-warning-border-color: $yellow-light;
 
-// Vertical Navigation
-$clr-vertical-nav-hover-bg-color: $clr-global-selection-color;
+$clr-label-danger-bg-color: $red-light;
+
+$clr-label-orange-bg-color: $orange-dark;
+$clr-label-light-blue-bg-color: $blue-mid;
 
 // Links
 $clr-link-active-color: $turquoise;
@@ -71,42 +128,27 @@ $clr-link-color: $turquoise;
 $clr-link-hover-color: $turquoise;
 $clr-link-visited-color: $turquoise-darkest;
 
-// Dropdown
-$clr-dropdown-bg-hover-color: $clr-global-selection-color;
-$clr-dropdown-bg-active-color: $clr-global-selection-color;
-$clr-dropdown-selection-color: $clr-global-selection-color;
-
-// Badge
-$clr-badge-info-bg-color: $turquoise;
-
-// Alerts
-$clr-alert-info-bg-color: $turquoise-lightest;
-$clr-alert-info-border-color: $turquoise;
-$clr-alert-info-icon-color: $turquoise;
-$clr-app-alert-info-bg-color: $turquoise;
-$clr-app-alert-info-border-color: $turquoise;
-
 // Progress bar
 $clr-progress-defaultBarColor: $turquoise;
 
-// Datagrid
-$clr-datagrid-row-hover: $clr-global-selection-color;
-$clr-datagrid-action-popover-hover-color: $clr-global-selection-color;
+// Radiobutton
+$clr-forms-radio-selected-shadow: $clr-forms-checkbox-checked-shadow; // selected-background-color
 
-// Spinner
-$clr-spinner-color: $turquoise;
-
-// Labels
-$clr-label-info-bg-color: $turquoise-lightest;
-$clr-label-info-font-color: $turquoise-darkest;
-$clr-label-info-border-color: $turquoise-darkest;
+// Sidenav
+$clr-sidenav-link-hover-color: $clr-global-selection-color;
 
 // Signposts
 $clr-signpost-action-hover-color: $turquoise;
 
+// Spinner
+$clr-spinner-color: $turquoise;
+
 // Stack View
-$clr-stack-view-stack-block-expanded-bg-color: $turquoise;
+$clr-stack-view-stack-block-expanded-bg-color: $turquoise-light;
 $clr-stack-view-stack-block-expandable-hover: $clr-global-selection-color;
+
+// Subnav
+$clr-nav-active-box-shadow-color: 0 -3px 0 $turquoise inset;
 
 // Tree View
 $clr-tree-link-hover-color: $clr-global-selection-color;
