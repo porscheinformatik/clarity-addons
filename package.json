@@ -1,6 +1,6 @@
 {
     "name": "clr-addons",
-    "version": "0.1.12",
+    "version": "0.1.13",
     "private": true,
     "scripts": {
         "build:ui:css": "node-sass  --include-path=node_modules --source-map=true --precision=6 --indentedSyntax=true ./src/clr-addons/themes/mvap/mvap-theme.scss ./dist/clr-addons/clr-addons-mvap.css && node-sass --include-path=node_modules --source-map=true --precision=6 --indentedSyntax=true ./src/clr-addons/themes/vu3/vu3-theme.scss ./dist/clr-addons/clr-addons-vu3.css",

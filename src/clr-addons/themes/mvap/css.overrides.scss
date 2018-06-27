@@ -35,12 +35,6 @@ header,
   }
 }
 
-.alerts {
-  &.alert-info {
-    background: $turquoise-darkest;
-  }
-}
-
 .btn {
   border-color: $clr-gray;
 }
@@ -93,15 +87,6 @@ header,
       color: $turquoise;
     }
   }
-}
-
-.label,
-a.label {
-  border: $clr-default-borderwidth solid $turquoise;
-}
-
-.badge {
-  background-color: $turquoise;
 }
 
 .spinner.spinner-inverse {
