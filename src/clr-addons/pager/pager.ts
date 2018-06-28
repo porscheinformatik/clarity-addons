@@ -14,7 +14,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 @Component({
   selector: 'clr-pager',
   templateUrl: './pager.html',
-  host: { '[class.clr-pager]': 'true' },
+  host: { '[class.pager]': 'true' },
 })
 export class ClrPager {
   @Output('clrPageChange') pageChange: EventEmitter<any> = new EventEmitter(false);

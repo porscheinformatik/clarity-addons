@@ -1,9 +1,10 @@
 <div class="btn-group" *ngIf="last > 1">
-  <button class="btn pagination-previous" (click)="previous()">
+  <button class="btn pagination-previous" (click)="previous()" [class.btn-disabled]="page == 1">
     <clr-icon shape="angle left"></clr-icon>
   </button>
   <button *ngIf="page > 2" class="btn" (click)="page = 1">1</button>
-  <button *ngIf="page > 3" class="btn">...</button>
+  <button *ngIf="page > 3" class="btn btn-disabled">...</button>
+
 
   <ng-container *ngFor="let pageNum of middlePages">
     <button *ngIf="pageNum !== page; else activePage" class="btn" (click)="page = pageNum">{{pageNum}}</button>
@@ -12,9 +13,9 @@
     </ng-template>
   </ng-container>
 
-  <button *ngIf="page < last - 2" class="btn">...</button>
+  <button *ngIf="page < last - 2" class="btn btn-disabled">...</button>
   <button *ngIf="page < last - 1" class="btn" (click)="page = last">{{last}}</button>
-  <button class="btn pagination-next" (click)="next()">
+  <button class="btn pagination-next" (click)="next()" [class.btn-disabled]="page == last">
     <clr-icon shape="angle right"></clr-icon>
   </button>
 </div>
