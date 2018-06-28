@@ -89,6 +89,13 @@ module.exports = function(karma) {
         watched: false,
       },
 
+      // Clarity UI
+      {
+        pattern: './src/clr-addons/themes/clr-ui/clr-ui.scss',
+        included: true,
+        watched: true,
+      },
+
       // Entry point to all our spec files
       { pattern: './tests/tests.entry.ts', watched: false },
     ],
