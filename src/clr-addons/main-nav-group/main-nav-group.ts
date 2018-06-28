@@ -39,9 +39,11 @@ export class ClrMainNavGroup implements OnInit, OnDestroy {
   }
 
   onClick(event) {
-    // toggle hidden checkbox when clickng nav group div
-    const input = <HTMLInputElement>document.getElementById(this.prefix + this.id);
-    input.checked = !input.checked;
+    if (event.target.classList.contains('collapsible')) {
+      // toggle hidden checkbox when clickng nav group div
+      const input = <HTMLInputElement>document.getElementById(this.prefix + this.id);
+      input.checked = !input.checked;
+    }
   }
 
   isActive(): boolean {
