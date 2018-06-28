@@ -39,8 +39,13 @@
                 "output": "/styles"
               },
               {
-                "glob": "clr-ui*.min.css",
-                "input": "node_modules/@clr/ui/",
+                "glob": "clr-ui.css",
+                "input": "dist/clr-addons/",
+                "output": "/styles"
+              },
+              {
+                "glob": "clr-ui-dark.css",
+                "input": "dist/clr-addons/",
                 "output": "/styles"
               }
             ],

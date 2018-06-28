@@ -1,7 +1,9 @@
-.clr-pager {
-  margin: auto;
-}
+@include exports('paged-search-result-list.clr-addons') {
+  .clr-pager {
+    margin: auto;
+  }
 
-.clr-pager-bottom {
-  margin-top: 1rem;
+  .clr-pager-bottom {
+    margin-top: 1rem;
+  }
 }

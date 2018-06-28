@@ -1,3 +1,5 @@
-.btn {
-  min-width: 1.5rem;
+@include exports('pager.clr-addons') {
+  .clr-pager .btn {
+    min-width: 1.5rem;
+  }
 }

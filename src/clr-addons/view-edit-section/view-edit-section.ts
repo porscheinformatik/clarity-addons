@@ -9,8 +9,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 @Component({
   selector: 'clr-view-edit-section',
   templateUrl: './view-edit-section.html',
-  /* change standard input behaviour inside view-edit section to grow to the end of the card */
-  styles: [':host ::ng-deep form .view-edit-section .form-group > input { flex-grow: 1; }'],
 })
 export class ClrViewEditSection {
   @Input('clrTitle') _title: string;

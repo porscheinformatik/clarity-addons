@@ -1,94 +1,101 @@
-:host {
-  display: flex;
-  flex-direction: column;
-
-  &.active .collapsible .nav-text {
-    opacity: 1;
-  }
-}
-
-.collapsible > input[type='checkbox'] {
-  display: none;
-}
-
-::ng-deep header,
-::ng-deep .header {
-  .header-nav .nav-link {
-    &:first-of-type::before,
-    &:last-of-type::after {
-      display: none;
+@include exports('main-nav-group.clr-addons') {
+  header,
+  .header {
+    .header-nav .nav-link {
+      &:first-of-type::before,
+      &:last-of-type::after {
+        display: none;
+      }
     }
   }
-}
 
-::ng-deep .main-container:not(.open-hamburger-menu) .header-nav .collapsible {
-  opacity: 1;
-  cursor: pointer;
-
-  &:hover .nav-text {
+  .main-container:not(.open-hamburger-menu) .header-nav .collapsible {
     opacity: 1;
-  }
-
-  .nav-text {
-    opacity: 0.65;
     cursor: pointer;
 
-    & clr-icon {
-      position: relative;
-      transform: unset;
-      top: 0;
-      left: 0;
-      width: 0.416667rem;
-      height: 0.416667rem;
-    }
-  }
-
-  input[type='checkbox']:checked ~ .nav-list {
-    visibility: visible;
-    background-color: white;
-
-    .dropdown-item {
-      color: #565656;
+    &:hover .nav-text {
       opacity: 1;
     }
-  }
-}
-
-::ng-deep .main-container.open-hamburger-menu .header .header-nav .collapsible {
-  cursor: pointer;
-  &.nav-link:hover {
-    background-color: transparent;
 
     .nav-text {
+      opacity: 0.65;
       cursor: pointer;
-    }
-  }
 
-  clr-icon {
-    top: 0.4rem;
-    right: 1rem;
-    left: unset;
-    transform: rotate(-90deg);
-    width: 0.666667rem;
-    height: 0.666667rem;
-  }
-
-  input[type='checkbox']:checked {
-    ~ label clr-icon {
-      transform: unset;
+      & clr-icon {
+        position: relative;
+        transform: unset;
+        top: 0;
+        left: 0.2rem;
+        width: 0.416667rem;
+        height: 0.416667rem;
+      }
     }
-    ~ .nav-list {
+
+    input[type='checkbox']:checked ~ .nav-list {
       visibility: visible;
-      position: relative;
-      top: 0;
-      background: transparent;
-      border: 0;
-      box-shadow: 0 0;
-      padding: 0;
+      background-color: $clr-dropdown-bg-color;
 
       .dropdown-item {
-        padding: 0 2rem;
+        color: $clr-dropdown-item-text-color;
+        opacity: 1;
+
+        &.active {
+          background: $clr-dropdown-selection-color;
+          color: $clr-dropdown-active-text-color;
+        }
       }
+    }
+  }
+
+  .main-container.open-hamburger-menu .header .header-nav .collapsible {
+    cursor: pointer;
+    &.nav-link:hover {
+      background-color: transparent;
+
+      .nav-text {
+        cursor: pointer;
+      }
+    }
+
+    clr-icon {
+      top: 0.4rem;
+      right: 1rem;
+      left: unset;
+      transform: rotate(-90deg);
+      width: 0.666667rem;
+      height: 0.666667rem;
+    }
+
+    input[type='checkbox']:checked {
+      ~ label clr-icon {
+        transform: unset;
+      }
+      ~ .nav-list {
+        visibility: visible;
+        position: relative;
+        top: 0;
+        background: transparent;
+        border: 0;
+        box-shadow: 0 0;
+        padding: 0;
+
+        .dropdown-item {
+          padding: 0 2rem;
+        }
+      }
+    }
+  }
+
+  .main-nav-group {
+    display: flex;
+    flex-direction: column;
+
+    &.active .collapsible.active .nav-text {
+      opacity: 1;
+    }
+
+    .collapsible > input[type='checkbox'] {
+      display: none;
     }
   }
 }
