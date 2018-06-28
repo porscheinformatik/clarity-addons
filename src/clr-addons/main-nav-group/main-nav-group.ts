@@ -3,16 +3,16 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, Input, Injector, ElementRef, Renderer2, OnDestroy } from '@angular/core';
+import { Component, Input, Injector, ElementRef, Renderer2, OnDestroy, OnInit } from '@angular/core';
 
 let instances = 0;
 
 @Component({
   selector: 'clr-main-nav-group',
   templateUrl: './main-nav-group.html',
-  styleUrls: ['./main-nav-group.scss'],
+  host: { '[class.main-nav-group]': 'true' },
 })
-export class ClrMainNavGroup implements OnDestroy {
+export class ClrMainNavGroup implements OnInit, OnDestroy {
   @Input('clrTitle') title: string;
 
   prefix = 'mainNavGroup';
@@ -21,16 +21,21 @@ export class ClrMainNavGroup implements OnDestroy {
   protected renderer: Renderer2;
   private hostClickListener: () => void;
   private documentClickListener: () => void;
+  private windowResizeListener: () => void;
 
   constructor(injector: Injector) {
     this.el = injector.get(ElementRef);
     this.renderer = injector.get(Renderer2);
+  }
+
+  ngOnInit() {
     this.id = ++instances;
     this.attachOutsideClickListener();
+    this.attachResizeListener();
   }
 
   ngOnDestroy() {
-    this.detachOutsideClickListener();
+    this.detachListener();
   }
 
   onClick(event) {
@@ -40,11 +45,17 @@ export class ClrMainNavGroup implements OnDestroy {
   }
 
   isActive(): boolean {
+    /* is active outside hamburger menu */
     return this.el.nativeElement.classList.contains('active') && !this.el.nativeElement.closest('.open-hamburger-menu');
   }
 
-  private uncheckInputs(selector: string) {
-    selector = 'clr-main-container:not(.open-hamburger-menu) ' + selector;
+  isChecked(): boolean {
+    /* expand to currently active menu inside hamburger menu */
+    return this.el.nativeElement.classList.contains('active') && this.el.nativeElement.closest('.open-hamburger-menu');
+  }
+
+  private closeMenus(selector: string) {
+    selector = '.main-container:not(.open-hamburger-menu) ' + selector;
     const hiddenInputs: NodeListOf<HTMLInputElement> = document.querySelectorAll(selector);
     // tslint:disable-next-line:prefer-for-of
     for (let i = 0; i < hiddenInputs.length; i++) {
@@ -54,7 +65,8 @@ export class ClrMainNavGroup implements OnDestroy {
 
   private attachOutsideClickListener() {
     this.hostClickListener = this.renderer.listen(this.el.nativeElement, 'click', event => {
-      this.uncheckInputs('[id^=' + this.prefix + ']:not(#' + this.prefix + this.id + ')');
+      /* close other menus when opening this one */
+      this.closeMenus('[id^=' + this.prefix + ']:not(#' + this.prefix + this.id + ')');
       if (!event.target.classList.contains('dropdown-item')) {
         // stop click handler for grouping items, otherwise hamburger menu gets closed
         event.stopPropagation();
@@ -62,18 +74,35 @@ export class ClrMainNavGroup implements OnDestroy {
     });
 
     this.documentClickListener = this.renderer.listen('document', 'click', event => {
-      this.uncheckInputs('#' + this.prefix + this.id);
+      /* close menu when clicking anywhere in the document */
+      this.closeMenus('#' + this.prefix + this.id);
     });
   }
 
-  private detachOutsideClickListener() {
+  private attachResizeListener() {
+    this.windowResizeListener = this.renderer.listen('window', 'resize', event => {
+      /* when resizing window above 768, remove open-hamburger-menu when present */
+      if (!window.matchMedia('(max-width: 768px)').matches) {
+        const hamburgerMenu = <Element>this.el.nativeElement.closest('.open-hamburger-menu');
+        if (hamburgerMenu) {
+          hamburgerMenu.classList.remove('open-hamburger-menu');
+          this.closeMenus('[id^=' + this.prefix + ']');
+        }
+      }
+    });
+  }
+
+  private detachListener() {
     if (this.hostClickListener) {
       this.hostClickListener();
       delete this.hostClickListener;
     }
     if (this.documentClickListener) {
       this.documentClickListener();
-      this.documentClickListener = undefined;
+      delete this.documentClickListener;
+    }
+    if (this.windowResizeListener) {
+      delete this.windowResizeListener;
     }
   }
 }
