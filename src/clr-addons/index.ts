@@ -10,4 +10,5 @@ export * from './view-edit-section/index';
 export * from './pager/index';
 export * from './paged-search-result-list/index';
 export * from './collapse-expand-section/index';
+export * from './main-nav-group/index';
 export * from './breadcrumb/index';

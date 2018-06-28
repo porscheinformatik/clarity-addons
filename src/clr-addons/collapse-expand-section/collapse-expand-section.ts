@@ -10,7 +10,6 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 @Component({
   selector: 'clr-collapse-expand-section',
   templateUrl: './collapse-expand-section.html',
-  styleUrls: ['./collapse-expand-section.scss'],
   animations: [
     trigger('collapseExpandAnimation', [
       transition(':enter', [

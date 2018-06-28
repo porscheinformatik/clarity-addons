@@ -58,12 +58,6 @@ header,
   }
 }
 
-.alerts {
-  &.alert-info {
-    background: $turquoise-darkest;
-  }
-}
-
 .card.clickable:hover {
   box-shadow: 0 0.125rem 0 0 $turquoise;
 }
@@ -124,19 +118,19 @@ header,
   }
 }
 
-.label,
-a.label {
-  border: $clr-default-borderwidth solid $turquoise;
-}
-
-.badge {
-  background-color: $turquoise;
-}
-
 .spinner.spinner-inverse {
   background: generateSpinnerIcon($clr-white, $clr-spinner-color);
 }
 
 clr-tooltip clr-icon {
   color: $turquoise;
+}
+
+.alert-app-level.alert-success {
+  background: $green-light-mid;
+}
+
+.label.label-orange > .badge,
+a.label.label-orange > .badge {
+  color: $clr-badge-font-color;
 }

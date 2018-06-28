@@ -9,7 +9,6 @@ import { Component, ContentChild, EventEmitter, Input, Output, TemplateRef } fro
 @Component({
   selector: 'clr-paged-search-result-list',
   templateUrl: './paged-search-result-list.html',
-  styleUrls: ['./paged-search-result-list.scss'],
 })
 export class ClrPagedSearchResultList {
   /**
