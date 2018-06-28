@@ -1,0 +1,42 @@
+@import '../../../node_modules/@clr/ui/src/color/_variables.color.scss';
+
+$_imported: () !default;
+
+/// Module exports mixin
+/// This mixin makes sure a module is imported only once.
+/// @param {String} $name - Name of exported module
+@mixin exports($name) {
+  @if (index($_imported, $name) == null) {
+    $_imported: append($_imported, $name) !global;
+    @content;
+  }
+}
+
+@include exports('breadcrumb.clarity') {
+  .breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: -1rem;
+    list-style: none;
+    font-size: 13px;
+  }
+
+  .breadcrumb-item {
+    color: $gray-darkest;
+
+    + .breadcrumb-item {
+      padding-left: 0.5rem;
+
+      &::before {
+        content: '/';
+        color: $gray-dark-midtone;
+        display: inline-block;
+        padding-right: 0.5rem;
+      }
+    }
+
+    a {
+      color: $action-blues-light-midtone;
+    }
+  }
+}
