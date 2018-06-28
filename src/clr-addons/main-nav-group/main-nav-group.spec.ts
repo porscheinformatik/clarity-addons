@@ -8,7 +8,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ClarityModule } from '@clr/angular';
 import { Component } from '@angular/core';
 import { ClrMainNavGroupModule } from './main-nav-group.module';
-import { RouterModule } from '@angular/router';
 
 @Component({
   template: `
