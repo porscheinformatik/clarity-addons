@@ -11,7 +11,7 @@ import { ClrPagerModule } from './pager/pager.module';
 import { ClrPagedSearchResultListModule } from './paged-search-result-list/paged-search-result-list.module';
 import { ClrCollapseExpandSectionModule } from './collapse-expand-section/collapse-expand-section.module';
 import { ClrMainNavGroupModule } from './main-nav-group/main-nav-group.module';
-import { ClrContentPanelModule } from './content-panel';
+import { ClrContentPanelModule } from './content-panel/content-panel.module';
 
 @NgModule({
   exports: [
@@ -23,5 +23,4 @@ import { ClrContentPanelModule } from './content-panel';
     ClrContentPanelModule,
   ],
 })
-export class ClrAddonsModule {
-}
+export class ClrAddonsModule {}

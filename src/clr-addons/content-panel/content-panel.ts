@@ -23,8 +23,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
     ]),
   ],
   host: {
-    '[class.clr-content-panel]': 'true',
-    '[class.right]': 'direction === "right"',
+    '[class.content-panel]': 'true',
     '[class.left]': 'direction === "left"',
   },
 })

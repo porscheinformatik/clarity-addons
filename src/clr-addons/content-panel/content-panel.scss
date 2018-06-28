@@ -1,23 +1,24 @@
 @include exports('content-panel.clr-addons') {
-  .content-panel-wrapper {
+  $clr-content-panel-width: 456px;
+
+  .content-panel-outer-wrapper {
     position: relative;
-    z-index: map-get($clr-layers, sidepanel);
   }
 
   @media screen and (min-width: map-get($grid-breakpoints, xl)) {
-    .content-panel-wrapper {
+    .content-panel-outer-wrapper {
       display: flex;
       flex-direction: row;
     }
 
-    .content-panel-outside {
+    .content-panel-outer-content {
       flex-basis: 100%;
+      // The content next to the panel always has order = 2
       order: 2;
     }
   }
 
-  .clr-content-panel {
-    // The content next to the panel always has order = 2
+  .content-panel {
     // Default position is right so set order = 3 because 3 > 2
     order: 3;
 
@@ -27,24 +28,24 @@
     }
   }
 
-  .content-panel {
-    background-color: clr-getColor(lightest);
-    z-index: map-get($clr-layers, sidepanel);
+  .content-panel-content-wrapper {
+    background-color: $clr-global-app-background;
+    z-index: map-get($clr-layers, sidepanel) - 2;
     padding: 1rem;
     position: absolute;
     top: 0;
     bottom: 0;
     right: 0;
-    left: calc(100% - 456px);
-    border-left: 5px solid $gray-light;
+    left: calc(100% - var($clr-content-panel-width));
+    border-left: $clr-global-borderwidth solid $clr-dropdown-border-color;
     overflow: auto;
 
     @media screen and (min-width: map-get($grid-breakpoints, md)) {
-      width: 456px;
+      width: $clr-content-panel-width;
 
       &.content-panel-left {
         left: 0;
-        border-right: 2px solid $gray-light;
+        border-right: $clr-global-borderwidth solid $clr-dropdown-border-color;
         border-left: none;
       }
     }
@@ -74,7 +75,7 @@
     left: 0;
     background-color: clr-getColor(darkest);
     opacity: 0.85;
-    z-index: map-get($clr-layers, sidepanel-bg);
+    z-index: map-get($clr-layers, sidepanel-bg) - 2;
 
     @media screen and (max-width: map-get($grid-breakpoints, md)) {
       display: none;
@@ -93,7 +94,7 @@
     fill: $clr-link-color;
   }
 
-  .close .content-panel-close-icon:hover {
+  .close:hover .content-panel-close-icon {
     fill: $clr-link-hover-color;
   }
 }

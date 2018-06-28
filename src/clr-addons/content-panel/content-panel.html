@@ -1,5 +1,5 @@
 <ng-container *ngIf="_open">
-  <div [@slideIn]="direction" class="content-panel"
+  <div [@slideIn]="direction" class="content-panel-content-wrapper"
        [class.content-panel-left]="direction == 'left'">
     <h2 class="content-panel-title">
       <button type="button" class="close content-panel-close-btn" (click)="close()">
@@ -7,7 +7,7 @@
       </button>
       <ng-content select="[clr-content-panel-title]"></ng-content>
     </h2>
-    <div class="clr-content-panel-content">
+    <div class="content-panel-content">
       <ng-content select="[clr-content-panel-content]"></ng-content>
     </div>
   </div>
