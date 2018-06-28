@@ -32,7 +32,7 @@
               },
               {
                 "glob": "clr-ui*.min.css",
-                "input": "node_modules/@clr/ui/",
+                "input": "node_modules/@porscheinformatik/clr-addons",
                 "output": "/styles"
               }
             ],
