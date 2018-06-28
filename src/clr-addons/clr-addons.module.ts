@@ -13,6 +13,7 @@ import { ClrCollapseExpandSectionModule } from './collapse-expand-section/collap
 import { ClrMainNavGroupModule } from './main-nav-group/main-nav-group.module';
 import { ClrBreadcrumbModule } from './breadcrumb/breadcrumb.module';
 import { ClrContentPanelModule } from './content-panel/content-panel.module';
+import { ClrBreadcrumbModule } from './breadcrumb/breadcrumb.module';
 
 @NgModule({
   exports: [
@@ -23,6 +24,7 @@ import { ClrContentPanelModule } from './content-panel/content-panel.module';
     ClrBreadcrumbModule,
     ClrMainNavGroupModule,
     ClrContentPanelModule,
+    ClrBreadcrumbModule,
   ],
 })
 export class ClrAddonsModule {}
