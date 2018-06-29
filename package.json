@@ -20,7 +20,7 @@
         "test:lint": "tslint -p . -c tslint.json \"src/**/*.ts\"",
         "test": "ng test clr-addons",
         "test:watch": "ng test clr-addons --watch",
-        "test:travis": "npm-run-all build:ui test:lint test",
+        "test:travis": "npm-run-all build:ui test:format test:lint test build",
         "format:fix": "pretty-quick --staged",
         "lint:fix": "tslint -p . -c tslint.json --fix \"src/**/*.ts\" -e \"**/node_modules/**\"",
         "publish:latest": "npm publish dist/clr-addons --access public"
