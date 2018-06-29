@@ -1,16 +1,17 @@
 @include exports('content-panel.clr-addons') {
   $clr-content-panel-width: 456px;
 
-  .content-panel-outer-wrapper {
+  .content-panel-container {
     position: relative;
+    display: flex;
+    flex: 1 1 auto;
+  }
+
+  .content-panel-outer-content {
+    padding: 1rem;
   }
 
   @media screen and (min-width: map-get($grid-breakpoints, xl)) {
-    .content-panel-outer-wrapper {
-      display: flex;
-      flex-direction: row;
-    }
-
     .content-panel-outer-content {
       flex-basis: 100%;
       // The content next to the panel always has order = 2
@@ -65,6 +66,7 @@
   .content-panel-title {
     margin-top: 0;
     margin-bottom: 0.5rem;
+    line-height: 1.5rem;
   }
 
   .content-panel-backdrop {
