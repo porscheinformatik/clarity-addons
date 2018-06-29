@@ -1,0 +1,13 @@
+<ng-container *ngIf="_open">
+  <div [@slideIn]="direction" class="content-panel-content-wrapper"
+       [class.content-panel-left]="direction == 'left'">
+    <h2 class="content-panel-title">
+      <button type="button" class="close content-panel-close-btn" (click)="close()">
+        <clr-icon class="content-panel-close-icon" shape="close" size="48"></clr-icon>
+      </button>
+      <ng-content select="[clr-content-panel-title]"></ng-content>
+    </h2>
+    <ng-content select="[clr-content-panel-content]"></ng-content>
+  </div>
+  <div [@fade] class="content-panel-backdrop" (click)="close()"></div>
+</ng-container>
