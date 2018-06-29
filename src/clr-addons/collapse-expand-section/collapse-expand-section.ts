@@ -32,8 +32,8 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 export class ClrCollapseExpandSection implements OnInit {
   @Input('clrIsCollapsed') isCollapsed: boolean = true;
 
-  @Output('clrCollapsed') collapsed = new EventEmitter();
-  @Output('clrExpanded') expanded = new EventEmitter();
+  @Output('clrCollapsed') collapsed: EventEmitter<any> = new EventEmitter();
+  @Output('clrExpanded') expanded: EventEmitter<any> = new EventEmitter();
 
   ngOnInit() {}
 

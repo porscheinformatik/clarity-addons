@@ -19,6 +19,7 @@ import { PagerDemoModule } from './pager/pager.demo.module';
 import { ViewEditSectionDemoModule } from './view-edit-section/view-edit-section.demo.module';
 import { PagedSearchResultListDemoModule } from './paged-search-result-list/paged-search-result-list.demo.module';
 import { CollapseExpandSectionDemoModule } from './collapse-expand-section/collapse-expand-section.demo.module';
+import { ContentPanelDemoModule } from './content-panel/content-panel.demo.module';
 
 @NgModule({
   declarations: [AppComponent, LandingComponent, AppContentContainerComponent],
@@ -33,6 +34,7 @@ import { CollapseExpandSectionDemoModule } from './collapse-expand-section/colla
     PagerDemoModule,
     PagedSearchResultListDemoModule,
     CollapseExpandSectionDemoModule,
+    ContentPanelDemoModule,
   ],
   bootstrap: [AppComponent],
 })
