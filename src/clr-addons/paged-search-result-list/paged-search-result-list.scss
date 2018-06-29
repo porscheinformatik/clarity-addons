@@ -1,10 +1,10 @@
 @include exports('paged-search-result-list.clr-addons') {
-  .clr-pager-top,
-  .clr-pager-bottom {
+  .pager-top,
+  .pager-bottom {
     margin: auto;
   }
 
-  .clr-pager-bottom {
+  .pager-bottom {
     margin-top: 1rem;
   }
 }

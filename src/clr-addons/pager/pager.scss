@@ -1,5 +1,23 @@
 @include exports('pager.clr-addons') {
-  .clr-pager .btn {
+  .pager .btn {
     min-width: 1.5rem;
+  }
+
+  .pager .btn-disabled {
+    color: $clr-btn-default-disabled-color;
+    cursor: default;
+    background-color: transparent;
+  }
+
+  .pager .btn-disabled:hover {
+    background-color: transparent;
+  }
+
+  .pager .btn-disabled:focus {
+    outline: none;
+  }
+
+  .pager .btn-disabled:active {
+    box-shadow: none;
   }
 }
