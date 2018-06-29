@@ -7,7 +7,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'content-panel-container',
+  selector: 'clr-content-panel-container',
   template:
     '<div class="content-panel-outer-wrapper">' +
     '<div class="content-panel-outer-content">' +

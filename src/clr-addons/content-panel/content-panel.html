@@ -7,9 +7,7 @@
       </button>
       <ng-content select="[clr-content-panel-title]"></ng-content>
     </h2>
-    <div class="content-panel-content">
-      <ng-content select="[clr-content-panel-content]"></ng-content>
-    </div>
+    <ng-content select="[clr-content-panel-content]"></ng-content>
   </div>
   <div [@fade] class="content-panel-backdrop" (click)="close()"></div>
 </ng-container>
