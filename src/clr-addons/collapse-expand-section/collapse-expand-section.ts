@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
@@ -29,13 +29,11 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
     ]),
   ],
 })
-export class ClrCollapseExpandSection implements OnInit {
+export class ClrCollapseExpandSection {
   @Input('clrIsCollapsed') isCollapsed: boolean = true;
 
   @Output('clrCollapsed') collapsed: EventEmitter<any> = new EventEmitter();
   @Output('clrExpanded') expanded: EventEmitter<any> = new EventEmitter();
-
-  ngOnInit() {}
 
   onCollapseExpand() {
     if (this.isCollapsed) {
