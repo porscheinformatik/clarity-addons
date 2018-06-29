@@ -9,11 +9,12 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'clr-content-panel-container',
   template:
-    '<div class="content-panel-outer-wrapper">' +
     '<div class="content-panel-outer-content">' +
     '<ng-content select=":not(clr-content-panel)"></ng-content>' +
     '</div>' +
-    '<ng-content select="clr-content-panel"></ng-content>' +
-    '</div>',
+    '<ng-content select="clr-content-panel"></ng-content>',
+  host: {
+    '[class.content-panel-container]': 'true',
+  },
 })
 export class ClrContentPanelContainer {}
