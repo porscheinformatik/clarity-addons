@@ -11,9 +11,9 @@ import { ClrPagerModule } from './pager/pager.module';
 import { ClrPagedSearchResultListModule } from './paged-search-result-list/paged-search-result-list.module';
 import { ClrCollapseExpandSectionModule } from './collapse-expand-section/collapse-expand-section.module';
 import { ClrMainNavGroupModule } from './main-nav-group/main-nav-group.module';
-import { ClrBreadcrumbModule } from './breadcrumb/breadcrumb.module';
 import { ClrContentPanelModule } from './content-panel/content-panel.module';
 import { ClrBreadcrumbModule } from './breadcrumb/breadcrumb.module';
+import { ClrContentPanelModule } from './content-panel/content-panel.module';
 
 @NgModule({
   exports: [
@@ -24,7 +24,6 @@ import { ClrBreadcrumbModule } from './breadcrumb/breadcrumb.module';
     ClrBreadcrumbModule,
     ClrMainNavGroupModule,
     ClrContentPanelModule,
-    ClrBreadcrumbModule,
   ],
 })
 export class ClrAddonsModule {}
