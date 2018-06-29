@@ -4,21 +4,17 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BreadcrumbModel } from './breadcrumb-model.interface';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-breadcrumb',
+  selector: 'clr-breadcrumb',
   templateUrl: './breadcrumb.html',
-  styleUrls: ['./breadcrumb.scss'],
 })
-export class ClrBreadcrumb implements OnInit {
+export class ClrBreadcrumb {
   /**
    * The array of breadcrumb elements to be displayed.
    */
   @Input('clrBreadcrumbElements') breadcrumbElements: BreadcrumbModel[] = [];
-
-  constructor() {}
-
-  ngOnInit() {}
 }

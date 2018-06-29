@@ -7,13 +7,13 @@ import { Component } from '@angular/core';
 import { NavigationEnd, Route, Router } from '@angular/router';
 
 import { APP_ROUTES } from './app.routing';
-import { BreadcrumbModel } from '../../../clr-addons/breadcrumb/breadcrumb-model.interface';
+import { BreadcrumbModel } from '@porscheinformatik/clr-addons';
 
 @Component({
   selector: 'my-app-content-container',
   template: `
             <main class="content-area">
-              <app-breadcrumb *ngIf="breadcrumbElements.length" [clrBreadcrumbElements]="breadcrumbElements"></app-breadcrumb>
+              <clr-breadcrumb *ngIf="breadcrumbElements.length" [clrBreadcrumbElements]="breadcrumbElements"></clr-breadcrumb>
               <router-outlet></router-outlet>
             </main>
             <nav class="sidenav" [clr-nav-level]="2">
@@ -59,15 +59,17 @@ import { BreadcrumbModel } from '../../../clr-addons/breadcrumb/breadcrumb-model
 })
 export class AppContentContainerComponent {
   private static readonly ROOT_BREADCRUMB_ELEMENT = { label: 'Home', url: '/' };
+  private static readonly TEST_BREADCRUMB_ELEMENT = { label: 'breadcrumb', url: 'breadcrumb' };
 
   public routes: Route[] = APP_ROUTES;
-  public breadcrumbElements: BreadcrumbModel[] = [AppContentContainerComponent.ROOT_BREADCRUMB_ELEMENT];
+  public breadcrumbElements: BreadcrumbModel[] = [];
 
   constructor(private router: Router) {
     router.events.subscribe(val => {
       if (val instanceof NavigationEnd) {
         this.breadcrumbElements = [
           AppContentContainerComponent.ROOT_BREADCRUMB_ELEMENT,
+          AppContentContainerComponent.TEST_BREADCRUMB_ELEMENT,
           { label: val.urlAfterRedirects.substr(1) },
         ];
       }

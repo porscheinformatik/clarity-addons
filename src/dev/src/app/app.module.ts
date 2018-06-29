@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ClarityModule } from '@clr/angular';
-import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
+import { ClrAddonsModule, ClrBreadcrumbModule } from '@porscheinformatik/clr-addons';
 
 import { AppComponent } from './app.component';
 import { ROUTING } from './app.routing';
@@ -20,6 +20,7 @@ import { ViewEditSectionDemoModule } from './view-edit-section/view-edit-section
 import { PagedSearchResultListDemoModule } from './paged-search-result-list/paged-search-result-list.demo.module';
 import { CollapseExpandSectionDemoModule } from './collapse-expand-section/collapse-expand-section.demo.module';
 import { ContentPanelDemoModule } from './content-panel/content-panel.demo.module';
+import { BreadcrumbDemoModule } from './breadcrumb/breadcrumb.demo.module';
 
 @NgModule({
   declarations: [AppComponent, LandingComponent, AppContentContainerComponent],
@@ -29,12 +30,14 @@ import { ContentPanelDemoModule } from './content-panel/content-panel.demo.modul
     FormsModule,
     ClarityModule,
     ClrAddonsModule,
+    ClrBreadcrumbModule,
     ROUTING,
     ViewEditSectionDemoModule,
     PagerDemoModule,
     PagedSearchResultListDemoModule,
     CollapseExpandSectionDemoModule,
     ContentPanelDemoModule,
+    BreadcrumbDemoModule,
   ],
   bootstrap: [AppComponent],
 })
