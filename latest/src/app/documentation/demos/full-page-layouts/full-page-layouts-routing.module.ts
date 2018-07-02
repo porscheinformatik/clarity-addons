@@ -34,11 +34,38 @@ const fullPageLayoutsRoutes: Routes = [
             },
             {
                 path: `sidebarpage-layout`,
-                loadChildren: "app/documentation/demos/full-page-layouts/sidebarpage-layout/sidebarpage-layout.demo.module#SidebarpageLayoutDemoModule",
-                data: {
-                    browserTitle: "Sidebar Page Layout",
-                }
-            }            
+                children: [
+                    {
+                        path: "",
+                        redirectTo: "one",
+                        pathMatch: "full"
+                    },
+                    {
+                        path: `one`,
+                        loadChildren: "app/documentation/demos/full-page-layouts/sidebarpage-layout/sidebarpage-layout.demo.module#SidebarpageLayoutDemoModule",
+                        data: {
+                            browserTitle: "Sidebar Page Layout",
+                            id: 1
+                        }
+                    },
+                    {
+                        path: `two`,
+                        loadChildren: "app/documentation/demos/full-page-layouts/sidebarpage-layout/sidebarpage-layout.demo.module#SidebarpageLayoutDemoModule",
+                        data: {
+                            browserTitle: "Sidebar Page Layout",
+                            id: 2
+                        }
+                    },
+                    {
+                        path: `three`,
+                        loadChildren: "app/documentation/demos/full-page-layouts/sidebarpage-layout/sidebarpage-layout.demo.module#SidebarpageLayoutDemoModule",
+                        data: {
+                            browserTitle: "Sidebar Page Layout",
+                            id: 3
+                        }
+                    }
+                ]
+            }
         ]
     }
 ];
