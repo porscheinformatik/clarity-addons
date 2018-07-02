@@ -4,3 +4,19 @@
 @import './pager/pager';
 @import './view-edit-section/view-edit-section';
 @import './content-panel/content-panel';
+
+.content-header {
+  border-bottom: $clr-global-borderwidth solid $gray-darker;
+  padding-top: 0.5rem;
+  padding-left: 1rem;
+  display: flex;
+}
+
+.content-header > h2 {
+  margin-top: 0px;
+}
+
+.command-bar {
+  flex: 1 0 auto;
+  justify-content: flex-end;
+}
