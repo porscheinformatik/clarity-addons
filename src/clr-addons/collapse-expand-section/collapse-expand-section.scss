@@ -1,9 +1,13 @@
 @include exports('collapse-expand-section.clr-addons') {
-  .ces-title {
+  .ces-title h2 {
     margin-top: 0;
   }
 
-  .ces-subtitle {
+  .ces-subtitle h4 {
     margin-top: 0;
+  }
+
+  .ces-caret-btn {
+    line-height: 1rem;
   }
 }
