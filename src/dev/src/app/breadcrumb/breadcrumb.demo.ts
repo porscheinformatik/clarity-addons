@@ -6,7 +6,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'clr-content-panel-demo',
+  selector: 'clr-breadcrumb-demo',
   styleUrls: ['./breadcrumb.demo.scss'],
   template: `
     <h2>Breadcrumb</h2>

@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ClarityModule } from '@clr/angular';
-import { ClrAddonsModule, ClrBreadcrumbModule } from '@porscheinformatik/clr-addons';
+import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
 
 import { AppComponent } from './app.component';
 import { ROUTING } from './app.routing';
@@ -30,7 +30,6 @@ import { BreadcrumbDemoModule } from './breadcrumb/breadcrumb.demo.module';
     FormsModule,
     ClarityModule,
     ClrAddonsModule,
-    ClrBreadcrumbModule,
     ROUTING,
     ViewEditSectionDemoModule,
     PagerDemoModule,

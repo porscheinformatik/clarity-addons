@@ -7,3 +7,4 @@
 export * from './breadcrumb';
 export * from './breadcrumb.module';
 export * from './breadcrumb-model.interface';
+export * from './breadcrumb.service';

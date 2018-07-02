@@ -7,13 +7,13 @@ import { Component } from '@angular/core';
 import { NavigationEnd, Route, Router } from '@angular/router';
 
 import { APP_ROUTES } from './app.routing';
-import { BreadcrumbModel } from '@porscheinformatik/clr-addons';
+import { BreadcrumbService } from '@porscheinformatik/clr-addons';
 
 @Component({
   selector: 'my-app-content-container',
   template: `
             <main class="content-area">
-              <clr-breadcrumb *ngIf="breadcrumbElements.length" [clrBreadcrumbElements]="breadcrumbElements"></clr-breadcrumb>
+              <clr-breadcrumb></clr-breadcrumb>
               <router-outlet></router-outlet>
             </main>
             <nav class="sidenav" [clr-nav-level]="2">
@@ -62,16 +62,15 @@ export class AppContentContainerComponent {
   private static readonly TEST_BREADCRUMB_ELEMENT = { label: 'breadcrumb', url: 'breadcrumb' };
 
   public routes: Route[] = APP_ROUTES;
-  public breadcrumbElements: BreadcrumbModel[] = [];
 
-  constructor(private router: Router) {
+  constructor(private breadcrumbService: BreadcrumbService, private router: Router) {
     router.events.subscribe(val => {
       if (val instanceof NavigationEnd) {
-        this.breadcrumbElements = [
+        this.breadcrumbService.breadcrumbUpdate([
           AppContentContainerComponent.ROOT_BREADCRUMB_ELEMENT,
           AppContentContainerComponent.TEST_BREADCRUMB_ELEMENT,
           { label: val.urlAfterRedirects.substr(1) },
-        ];
+        ]);
       }
     });
   }
