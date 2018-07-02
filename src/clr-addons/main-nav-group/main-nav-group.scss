@@ -53,7 +53,6 @@
 
     .nav-text {
       cursor: pointer;
-      @include clr-getTypePropertiesForDomElement(sidenav_sectionHeader, (font-weight));
     }
 
     &.nav-link:hover {
