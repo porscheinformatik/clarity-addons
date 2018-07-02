@@ -7,7 +7,6 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
 import { ClrContentPanel } from "@porscheinformatik/clr-addons";
 
-
 @Component({
     selector: "clr-basepage-layout-demo",
     templateUrl: "./basepage-layout.demo.html",
