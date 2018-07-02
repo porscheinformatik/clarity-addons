@@ -1,3 +1,6 @@
+body {
+  color: $clr-app-font-color-primary;
+}
 .header-hamburger-trigger,
 .header-overflow-trigger {
   & > span,
@@ -24,14 +27,14 @@ header,
 .header {
   .header-actions {
     > .dropdown > .nav-icon {
-      color: $turquoise-darkest;
+      color: $blue-darkest;
     }
     .nav-icon {
-      color: $turquoise-darkest;
+      color: $blue-darkest;
     }
   }
   .settings .nav-icon {
-    color: $turquoise-darkest;
+    color: $blue-darkest;
   }
 }
 
@@ -72,7 +75,7 @@ header,
 
 .pagination-list {
   .pagination-current {
-    border-bottom: (2 * $clr-default-borderwidth) solid $turquoise;
+    border-bottom-color: $turquoise;
   }
 }
 
@@ -95,4 +98,22 @@ header,
 
 clr-tooltip clr-icon {
   color: $turquoise;
+}
+
+.alert-app-level.alert-success {
+  background: $green;
+}
+
+.alert {
+  &.alert-danger,
+  &.alert-success {
+    .alert-action,
+    button.dropdown-toggle:not(.btn) {
+      color: $clr-white;
+    }
+
+    .close clr-icon {
+      fill: $clr-white;
+    }
+  }
 }

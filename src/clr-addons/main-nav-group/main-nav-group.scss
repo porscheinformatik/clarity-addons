@@ -46,6 +46,10 @@
     }
   }
 
+  .main-container.open-hamburger-menu .header .header-nav.clr-nav-level-1 .nav-link .nav-text {
+    font-weight: $clr-typography-boldfont;
+  }
+
   .main-container.open-hamburger-menu .header .header-nav .collapsible {
     cursor: pointer;
     display: flex;

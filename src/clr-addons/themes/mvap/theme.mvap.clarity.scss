@@ -4,33 +4,96 @@
 
 // Global
 $clr-global-selection-color: $turquoise-lightest;
+$clr-app-font-color-primary: $black-light;
 
 // App Background
 $clr-global-app-background: $blue-sky-light;
 
 // Default button colors
 $clr-btn-default-color: $clr-white; // border-color, color, checked-background-color
-$clr-btn-default-bg-color: $clr-gray;
-$clr-btn-default-hover-bg-color: $clr-dark-gray; // hover-background-color
+$clr-btn-default-bg-color: $gray;
+$clr-btn-default-hover-bg-color: $gray-darker; // hover-background-color
 $clr-btn-default-hover-color: $clr-white; // hover-color
-$clr-btn-default-box-shadow-color: $clr-gray;
+$clr-btn-default-box-shadow-color: $gray;
+$clr-btn-default-disabled-color: $black-light; // disabled-color
+$clr-btn-default-checked-color: $gray;
 
 // Default outline button
 $clr-btn-default-outline-color: $clr-white; // border-color, color, checked-background-color
-$clr-btn-default-outline-bg-color: $clr-gray;
-$clr-btn-default-outline-hover-bg-color: $clr-dark-gray; // hover-background-color
+$clr-btn-default-outline-bg-color: $gray;
+$clr-btn-default-outline-hover-bg-color: $gray-darker; // hover-background-color
 $clr-btn-default-outline-hover-color: $clr-white; // hover-color
-$clr-btn-default-outline-box-shadow-color: $clr-gray;
+$clr-btn-default-outline-box-shadow-color: $gray;
+$clr-btn-default-outline-disabled-color: $black-light; // disabled-color
 
 // Primary button
 $clr-btn-primary-bg-color: $turquoise; // background-color, disabled-background-color
 $clr-btn-primary-border-color: $turquoise; // border-color
-$clr-btn-primary-hover-bg-color: $turquoise-darkest; // hover-background-color
+$clr-btn-primary-hover-bg-color: $blue-darkest; // hover-background-color
 $clr-btn-primary-box-shadow-color: $turquoise;
+$clr-btn-primary-disabled-color: $black-light; // disabled-color
+
+// Success button
+$clr-btn-success-bg-color: $green;
+$clr-btn-success-hover-bg-color: $green-darker;
+$clr-btn-success-box-shadow-color: $green;
+$clr-btn-success-checked-bg-color: $clr-btn-success-hover-bg-color;
+$clr-btn-success-disabled-color: $black-light; // disabled-color
+
+// Success button outline
+$clr-btn-success-outline-color: $green;
+$clr-btn-success-outline-hover-bg-color: $green-lightest;
+$clr-btn-success-outline-border-color: $green;
+$clr-btn-success-outline-hover-color: $green;
+$clr-btn-success-outline-box-shadow-color: $green-darker;
+$clr-btn-success-outline-disabled-color: $black-light; // disabled-color
+
+// Danger button
+$clr-btn-danger-bg-color: $red-darker;
+$clr-btn-danger-hover-bg-color: $red-darkest;
+$clr-btn-danger-box-shadow-color: $red-darker;
+$clr-btn-danger-disabled-color: $black-light; // disabled-color,
+
+// Danger button outline
+$clr-btn-danger-outline-color: $red-darker;
+$clr-btn-danger-outline-border-color: $red-darker;
+$clr-btn-danger-outline-hover-color: $red-darker;
+$clr-btn-danger-outline-hover-bg-color: $red-lighter;
+$clr-btn-danger-outline-box-shadow-color: $red-darker;
+$clr-btn-danger-outline-disabled-color: $black-light; // disabled-color
 
 // Link button colors
 $clr-btn-link-color: $turquoise; // color
-$clr-btn-link-hover-color: $turquoise-darkest; // hover-color
+$clr-btn-link-hover-color: $blue-darkest; // hover-color
+$clr-btn-link-disabled-color: $black-light; // disabled-color
+
+$clr-button-icon-disabled-color: $black-light;
+
+// Alert
+$clr-alert-success-font-color: $clr-white;
+$clr-alert-success-bg-color: $green;
+$clr-alert-success-border-color: $green;
+$clr-alert-success-icon-color: $clr-white;
+
+$clr-alert-info-bg-color: $blue-light;
+$clr-alert-info-border-color: $blue-darkest;
+$clr-alert-info-icon-color: $turquoise;
+
+$clr-alert-warning-border-color: $yellow-light;
+
+$clr-alert-danger-font-color: $clr-white;
+$clr-alert-danger-bg-color: $red-darker;
+$clr-alert-danger-icon-color: $clr-white;
+
+$clr-app-alert-success-bg-color: $green;
+$clr-app-alert-info-bg-color: $blue-darkest;
+$clr-app-alert-warning-icon-color: $black-lighter;
+$clr-app-alert-warning-font-color: $black-lighter;
+$clr-app-alert-warning-bg-color: $orange-dark;
+$clr-app-alert-danger-bg-color: $red-darker;
+
+// Badge
+$clr-badge-blue-bg-color: $blue-darkest;
 
 // Card
 $clr-card-box-shadow: 0 0;
@@ -42,6 +105,11 @@ $clr-indeterminate-checkbox-border-color: $turquoise;
 
 // Badge
 $clr-badge-info-bg-color: $turquoise;
+$clr-badge-success-bg-color: $green;
+$clr-badge-warning-bg-color: $yellow-light;
+$clr-badge-danger-bg-color: $red-darker;
+$clr-badge-orange-bg-color: $orange-dark;
+$clr-badge-light-blue-bg-color: $turquoise;
 
 // Datagrid
 $clr-datagrid-row-hover: $clr-global-selection-color;
@@ -49,7 +117,7 @@ $clr-datagrid-action-popover-hover-color: $clr-global-selection-color;
 
 // Datepicker
 $clr-datepicker-trigger-color: $turquoise;
-$clr-datepicker-trigger-hover-color: $turquoise-darkest;
+$clr-datepicker-trigger-hover-color: $blue-darkest;
 $clr-calendar-btn-color: $turquoise;
 $clr-calendar-active-cell-background-color: $clr-global-selection-color;
 $clr-calendar-btn-hover-focus-color: $clr-global-selection-color;
@@ -59,6 +127,9 @@ $clr-calendar-active-focus-cell-background-color: $clr-global-selection-color;
 $clr-dropdown-bg-hover-color: $clr-global-selection-color;
 $clr-dropdown-bg-active-color: $clr-global-selection-color;
 $clr-dropdown-selection-color: $clr-global-selection-color;
+
+// Forms
+$clr-form-text-color: $black-lighter;
 
 // Header
 $clr-header-textColor: $clr-black;
@@ -70,19 +141,48 @@ $clr-header-5-bg-color: $turquoise;
 $clr-header-6-bg-color: $turquoise;
 $clr-header-7-bg-color: $turquoise;
 
+// Headings
+$clr-h1-color: $black-lighter;
+$clr-h2-color: $black-lighter;
+$clr-h3-color: $black-lighter;
+$clr-h4-color: $black-lighter;
+$clr-h5-color: $black-light;
+$clr-h6-color: $gray-dark;
+
+$clr-p1-color: $black-light;
+$clr-p2-color: $gray-dark;
+$clr-p3-color: $black-light;
+$clr-p4-color: $black-light;
+$clr-p5-color: $black-light;
+$clr-p6-color: $black-light;
+$clr-p7-color: $black-light;
+$clr-p8-color: $black-light;
+
 // Input
 $clr-input-border-color: $turquoise;
 
 // Labels
-$clr-label-info-bg-color: $turquoise-lightest;
-$clr-label-info-font-color: $turquoise-darkest;
-$clr-label-info-border-color: $turquoise-darkest;
+$clr-label-success-bg-color: $green;
+$clr-label-success-font-color: $green-darkest;
+$clr-label-success-border-color: $green;
+
+$clr-label-info-bg-color: $blue-lightest;
+$clr-label-info-font-color: $turquoise;
+$clr-label-info-border-color: $turquoise;
+
+$clr-label-warning-border-color: $yellow-light;
+
+$clr-label-danger-bg-color: $red-light;
+
+$clr-label-blue-bg-color: $blue-darkest;
+$clr-label-orange-bg-color: $orange-dark;
+$clr-label-light-blue-bg-color: $turquoise;
 
 // Links
 $clr-link-active-color: $turquoise;
 $clr-link-color: $turquoise;
 $clr-link-hover-color: $turquoise;
-$clr-link-visited-color: $turquoise-darkest;
+$clr-link-visited-color: $blue-darkest;
 
 // Progress bar
 $clr-progress-defaultBarColor: $turquoise;
@@ -105,6 +205,9 @@ $clr-stack-view-stack-block-expandable-hover: $clr-global-selection-color;
 
 // Subnav
 $clr-nav-active-box-shadow-color: 0 -3px 0 $turquoise inset;
+
+// Table
+$clr-table-font-color: $black-light;
 
 // Tree View
 $clr-tree-link-hover-color: $clr-global-selection-color;

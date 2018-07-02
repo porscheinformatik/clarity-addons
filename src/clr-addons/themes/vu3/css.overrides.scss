@@ -64,12 +64,12 @@ header,
 
 .progress.top > progress {
   width: calc(100% - 1rem);
-  margin-left: 0.5rem;
+  margin-left: $vu3-border-radius;
 }
 
 .progress-static.top {
   width: calc(100% - 1rem);
-  margin-left: 0.5rem;
+  margin-left: $vu3-border-radius;
 }
 
 .datagrid .datagrid-column {
@@ -101,7 +101,7 @@ header,
 
 .pagination-list {
   .pagination-current {
-    border-bottom: (2 * $clr-default-borderwidth) solid $turquoise;
+    border-bottom-color: $turquoise;
   }
 }
 
