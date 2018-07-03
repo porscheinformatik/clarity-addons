@@ -64,7 +64,7 @@ export class AppContentContainerComponent {
   public routes: Route[] = APP_ROUTES;
 
   constructor(private breadcrumbService: ClrBreadcrumbService, private router: Router) {
-    router.events.subscribe(val => {
+    this.router.events.subscribe(val => {
       if (val instanceof NavigationEnd) {
         this.breadcrumbService.updateBreadcrumb([
           AppContentContainerComponent.ROOT_BREADCRUMB_ELEMENT,
