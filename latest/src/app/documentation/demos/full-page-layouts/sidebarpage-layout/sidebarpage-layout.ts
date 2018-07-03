@@ -8,8 +8,7 @@ import { Router } from "@angular/router";
 
 @Component({
     selector: "clr-sidebarpage-layout-demo",
-    templateUrl: "./sidebarpage-layout.demo.html",
-    styleUrls: ["./sidebarpage-layout.scss"]
+    templateUrl: "./sidebarpage-layout.demo.html"
 })
 export class SidebarpageLayoutDemo implements OnInit {
 
