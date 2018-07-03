@@ -77,6 +77,18 @@
             "dox": 20,
             "comments": "",
             "newLayout": true
+        },
+        {
+            "url": "content-panel-layout",
+            "text": "Content Panel Layout",
+            "type": "pagelayouts",
+            "ux": -1,
+            "ui": -1,
+            "core": -1,
+            "ng": -1,
+            "dox": 20,
+            "comments": "",
+            "newLayout": true
         }
     ]
 }

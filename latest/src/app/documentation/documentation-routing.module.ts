@@ -71,6 +71,13 @@ const documentationRoutes: Routes = [
                 }
             },
             {
+                path: "content-panel-layout",
+                loadChildren: "app/documentation/demos/content-panel-layout/content-panel-layout.demo.module#ContentPanelLayoutDemoModule",
+                data: {
+                    browserTitle: "Content Panel Layout"
+                }
+            },
+            {
                 path: "sidebarpage-layout",
                 loadChildren: "app/documentation/demos/sidebarpage-layout/sidebarpage-layout.demo.module#SidebarPageLayoutDemoModule",
                 data: {

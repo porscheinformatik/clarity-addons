@@ -2,18 +2,33 @@
     <clr-demo-menu></clr-demo-menu>
 
     <div class="content-header">
-        <h2><span *ngIf="!withCommandBar">Base Page Layout</span> 
-            <span *ngIf="withCommandBar">Command bar</span></h2>
+        <h2><span *ngIf="!withCommandBar && !withContentPanel">Base Page Layout</span>
+            <span *ngIf="withCommandBar && !withContentPanel">Command bar</span>
+            <span *ngIf="withCommandBar && withContentPanel">Content Panel</span></h2>
         <clr-button-group class="command-bar" [clrMenuPosition]="'bottom-right'" *ngIf="withCommandBar">
-            <clr-button>Command1</clr-button>
-            <clr-button>Command2</clr-button>
+            <clr-button *ngIf="!withContentPanel">Command1</clr-button>
+            <clr-button *ngIf="!withContentPanel">Command2</clr-button>
+            <clr-button *ngIf="withContentPanel" (click)="toggleLeftPanel()">Show/Hide Left</clr-button>
+            <clr-button *ngIf="withContentPanel" (click)="toggleRightPanel()">Show/Hide Right</clr-button>
             <clr-button [clrInMenu]="true">Command3</clr-button>
             <clr-button [clrInMenu]="true">Command4</clr-button>
-        </clr-button-group> 
+        </clr-button-group>
     </div>
-    <div class="content-container">
+    <div class="content-container" *ngIf="!withContentPanel">
         <div class="content-area">
             This is the page content
         </div>
     </div>
+    <clr-content-panel-container *ngIf="withContentPanel">
+        <h2>This is the page title</h2>
+        <span>This is the page content</span>
+        <clr-content-panel #leftContentPanel clrDirection="left">
+            <ng-container clr-content-panel-title>Left Content Panel</ng-container>
+            <ng-container clr-content-panel-content>Content</ng-container>
+        </clr-content-panel>
+        <clr-content-panel #rightContentPanel>
+            <ng-container clr-content-panel-title>Right Content Panel</ng-container>
+            <ng-container clr-content-panel-content>Content</ng-container>
+        </clr-content-panel>
+    </clr-content-panel-container>
 </clr-main-container>

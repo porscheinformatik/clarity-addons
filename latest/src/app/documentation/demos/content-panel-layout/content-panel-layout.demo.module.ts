@@ -5,27 +5,27 @@
  */
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { RouterModule } from "@angular/router";
 import { ClarityModule } from "@clr/angular";
 
-import { BasepageLayoutDemo } from "./basepage-layout";
-import { DemoMenuModule } from "../demo-menu/demo-menu.module";
-import { ClrAddonsModule } from "@porscheinformatik/clr-addons";
+import { ContentPanelLayoutDemo } from "./content-panel-layout.demo";
+import { DocWrapperModule } from "../_doc-wrapper/doc-wrapper.module";
+import { RouterModule } from "@angular/router";
+import { UtilsModule } from "../../../utils/utils.module";
 
 @NgModule({
     imports: [
         CommonModule,
         ClarityModule,
-        DemoMenuModule,
-        RouterModule.forChild([{ path: "", component: BasepageLayoutDemo, outlet: "fullpage"}]),
-        ClrAddonsModule
+        UtilsModule,
+        DocWrapperModule,
+        RouterModule.forChild([{ path: "", component: ContentPanelLayoutDemo }])
     ],
     declarations: [
-        BasepageLayoutDemo
+        ContentPanelLayoutDemo
     ],
     exports: [
-        BasepageLayoutDemo
+        ContentPanelLayoutDemo
     ]
 })
-export class BasepageLayoutDemoModule {
+export class ContentPanelLayoutDemoModule {
 }
