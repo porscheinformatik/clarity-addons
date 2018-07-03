@@ -33,7 +33,6 @@
 
     input[type='checkbox']:checked ~ .nav-list {
       visibility: visible;
-      background-color: $clr-dropdown-bg-color;
 
       .dropdown-item {
         color: $clr-dropdown-item-text-color;
@@ -47,14 +46,21 @@
     }
   }
 
+  .main-container.open-hamburger-menu .header .header-nav.clr-nav-level-1 .nav-link .nav-text {
+    font-weight: $clr-typography-boldfont;
+  }
+
   .main-container.open-hamburger-menu .header .header-nav .collapsible {
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+
+    .nav-text {
+      cursor: pointer;
+    }
+
     &.nav-link:hover {
       background-color: transparent;
-
-      .nav-text {
-        cursor: pointer;
-      }
     }
 
     clr-icon {
@@ -87,9 +93,6 @@
   }
 
   .main-nav-group {
-    display: flex;
-    flex-direction: column;
-
     &.active .collapsible.active .nav-text {
       opacity: 1;
     }

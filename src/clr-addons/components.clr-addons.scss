@@ -5,3 +5,19 @@
 @import './view-edit-section/view-edit-section';
 @import './content-panel/content-panel';
 @import './breadcrumb/breadcrumb';
+
+.content-header {
+  border-bottom: $clr-global-borderwidth solid $clr-light-midtone-gray;
+  padding: 0.5rem 1rem 0.25rem 1rem;
+  display: flex;
+  flex-shrink: 0;
+}
+
+.content-header > h2 {
+  margin-top: 0px;
+}
+
+.command-bar {
+  flex: 1 0 auto;
+  justify-content: flex-end;
+}
