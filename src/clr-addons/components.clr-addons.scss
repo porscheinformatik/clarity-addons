@@ -6,14 +6,14 @@
 @import './content-panel/content-panel';
 
 .content-header {
-  border-bottom: $clr-global-borderwidth solid $gray-darker;
-  padding-top: 0.5rem;
-  padding-left: 1rem;
+  border-bottom: $clr-global-borderwidth solid $clr-light-midtone-gray;
+  padding: 0.5rem 1rem 0.25rem 1rem;
   display: flex;
 }
 
 .content-header > h2 {
   margin-top: 0px;
+  flex-shrink: 0;
 }
 
 .command-bar {
