@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 import { NavigationEnd, Route, Router } from '@angular/router';
 
 import { APP_ROUTES } from './app.routing';
-import { BreadcrumbService } from '@porscheinformatik/clr-addons';
+import { ClrBreadcrumbService } from '@porscheinformatik/clr-addons';
 
 @Component({
   selector: 'my-app-content-container',
@@ -63,10 +63,10 @@ export class AppContentContainerComponent {
 
   public routes: Route[] = APP_ROUTES;
 
-  constructor(private breadcrumbService: BreadcrumbService, private router: Router) {
+  constructor(private breadcrumbService: ClrBreadcrumbService, private router: Router) {
     router.events.subscribe(val => {
       if (val instanceof NavigationEnd) {
-        this.breadcrumbService.breadcrumbUpdate([
+        this.breadcrumbService.updateBreadcrumb([
           AppContentContainerComponent.ROOT_BREADCRUMB_ELEMENT,
           AppContentContainerComponent.TEST_BREADCRUMB_ELEMENT,
           { label: val.urlAfterRedirects.substr(1) },

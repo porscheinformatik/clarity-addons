@@ -6,15 +6,15 @@
 
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { BreadcrumbModel } from './breadcrumb-model.interface';
+import { ClrBreadcrumbModel } from './breadcrumb-model.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class BreadcrumbService {
-  breadcrumbChange: Subject<BreadcrumbModel[]> = new Subject();
+export class ClrBreadcrumbService {
+  breadcrumbChange: Subject<ClrBreadcrumbModel[]> = new Subject();
 
-  breadcrumbUpdate(breadcrumbElements: BreadcrumbModel[]) {
+  updateBreadcrumb(breadcrumbElements: ClrBreadcrumbModel[]) {
     this.breadcrumbChange.next(breadcrumbElements);
   }
 }

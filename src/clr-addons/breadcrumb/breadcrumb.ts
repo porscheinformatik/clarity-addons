@@ -5,8 +5,8 @@
  */
 
 import { Component } from '@angular/core';
-import { BreadcrumbModel } from './breadcrumb-model.interface';
-import { BreadcrumbService } from './breadcrumb.service';
+import { ClrBreadcrumbModel } from './breadcrumb-model.interface';
+import { ClrBreadcrumbService } from './breadcrumb.service';
 
 @Component({
   selector: 'clr-breadcrumb',
@@ -16,9 +16,9 @@ export class ClrBreadcrumb {
   /**
    * The array of breadcrumb elements to be displayed.
    */
-  breadcrumbElements: BreadcrumbModel[] = [];
+  breadcrumbElements: ClrBreadcrumbModel[] = [];
 
-  constructor(private breadcrumbService: BreadcrumbService) {
+  constructor(private breadcrumbService: ClrBreadcrumbService) {
     this.breadcrumbService.breadcrumbChange.subscribe(r => {
       this.breadcrumbElements = r;
     });

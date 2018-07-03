@@ -9,12 +9,12 @@ import { NgModule } from '@angular/core';
 import { ClarityModule } from '@clr/angular';
 import { ClrBreadcrumb } from './breadcrumb';
 import { RouterModule } from '@angular/router';
-import { BreadcrumbService } from './breadcrumb.service';
+import { ClrBreadcrumbService } from './breadcrumb.service';
 
 @NgModule({
   imports: [CommonModule, ClarityModule, RouterModule],
   declarations: [ClrBreadcrumb],
   exports: [ClrBreadcrumb],
-  providers: [BreadcrumbService],
+  providers: [ClrBreadcrumbService],
 })
 export class ClrBreadcrumbModule {}
