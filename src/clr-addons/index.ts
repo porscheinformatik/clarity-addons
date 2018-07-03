@@ -12,3 +12,4 @@ export * from './paged-search-result-list/index';
 export * from './collapse-expand-section/index';
 export * from './main-nav-group/index';
 export * from './content-panel/index';
+export * from './breadcrumb/index';

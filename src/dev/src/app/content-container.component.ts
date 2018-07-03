@@ -4,15 +4,17 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component } from '@angular/core';
-import { Route } from '@angular/router';
+import { NavigationEnd, Route, Router } from '@angular/router';
 
 import { APP_ROUTES } from './app.routing';
+import { ClrBreadcrumbService } from '@porscheinformatik/clr-addons';
 
 @Component({
   selector: 'my-app-content-container',
   template: `
             <main class="content-area">
-                <router-outlet></router-outlet>
+              <clr-breadcrumb></clr-breadcrumb>
+              <router-outlet></router-outlet>
             </main>
             <nav class="sidenav" [clr-nav-level]="2">
                 <section class="sidenav-content">
@@ -56,5 +58,20 @@ import { APP_ROUTES } from './app.routing';
         `,
 })
 export class AppContentContainerComponent {
+  private static readonly ROOT_BREADCRUMB_ELEMENT = { label: 'Home', url: '/' };
+  private static readonly TEST_BREADCRUMB_ELEMENT = { label: 'breadcrumb', url: 'breadcrumb' };
+
   public routes: Route[] = APP_ROUTES;
+
+  constructor(private breadcrumbService: ClrBreadcrumbService, private router: Router) {
+    this.router.events.subscribe(val => {
+      if (val instanceof NavigationEnd) {
+        this.breadcrumbService.updateBreadcrumb([
+          AppContentContainerComponent.ROOT_BREADCRUMB_ELEMENT,
+          AppContentContainerComponent.TEST_BREADCRUMB_ELEMENT,
+          { label: val.urlAfterRedirects.substr(1) },
+        ]);
+      }
+    });
+  }
 }

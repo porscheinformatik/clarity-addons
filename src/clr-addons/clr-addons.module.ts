@@ -12,6 +12,7 @@ import { ClrPagedSearchResultListModule } from './paged-search-result-list/paged
 import { ClrCollapseExpandSectionModule } from './collapse-expand-section/collapse-expand-section.module';
 import { ClrMainNavGroupModule } from './main-nav-group/main-nav-group.module';
 import { ClrContentPanelModule } from './content-panel/content-panel.module';
+import { ClrBreadcrumbModule } from './breadcrumb/breadcrumb.module';
 
 @NgModule({
   exports: [
@@ -19,6 +20,7 @@ import { ClrContentPanelModule } from './content-panel/content-panel.module';
     ClrPagerModule,
     ClrPagedSearchResultListModule,
     ClrCollapseExpandSectionModule,
+    ClrBreadcrumbModule,
     ClrMainNavGroupModule,
     ClrContentPanelModule,
   ],
