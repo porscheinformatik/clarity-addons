@@ -9,8 +9,7 @@ import { ClrContentPanel } from "@porscheinformatik/clr-addons";
 
 @Component({
     selector: "clr-basepage-layout-demo",
-    templateUrl: "./basepage-layout.demo.html",
-    styleUrls: ["./basepage-layout.scss"]
+    templateUrl: "./basepage-layout.demo.html"
 })
 export class BasepageLayoutDemo implements OnInit {
     withCommandBar = false;
