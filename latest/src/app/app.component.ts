@@ -1,34 +1,37 @@
-import {Component, ElementRef, OnInit, Renderer,InjectionToken, Inject, PLATFORM_ID} from '@angular/core';
+import {Component, ElementRef, OnInit, Renderer, InjectionToken, Inject, PLATFORM_ID} from "@angular/core";
 import {Router, NavigationEnd} from "@angular/router";
-import {Title} from '@angular/platform-browser';
-import {DOCUMENT, isPlatformBrowser} from '@angular/common';
+import {Title} from "@angular/platform-browser";
+import {DOCUMENT, isPlatformBrowser} from "@angular/common";
 
 export const PLATFORM_TOKEN = new InjectionToken<string>("clarity");
 
 declare let ga: Function;
 
-const PRODUCT_TITLE = require('../settings/global.json').alt_title;
+const PRODUCT_TITLE = require("../settings/global.json").alt_title;
 
 @Component({
-    selector: 'root',
-    templateUrl: './app.component.html'
+    selector: "root",
+    templateUrl: "./app.component.html"
 })
 export class AppComponent implements OnInit {
     linkRef: HTMLLinkElement;
     noHeader: boolean = false;
 
     themes = [
-        { name: 'Clarity (light)', href: 'styles/clr-ui.min.css' },
-        { name: 'Clarity (dark)', href: 'styles/clr-ui-dark.min.css' },
-        { name: 'VU3', href: 'styles/clr-addons-vu3.min.css' },
-        { name: 'MVAP', href: 'styles/clr-addons-mvap.min.css' }];
+        { name: "Clarity (light)", href: "styles/clr-ui.min.css" },
+        { name: "Clarity (dark)", href: "styles/clr-ui-dark.min.css" },
+        { name: "VU3", href: "styles/clr-addons-vu3.min.css" },
+        { name: "MVAP", href: "styles/clr-addons-mvap.min.css" }];
 
-    constructor(private renderer: Renderer, private el: ElementRef, private router: Router, private titleService: Title, @Inject(DOCUMENT) private document: Document, @Inject(PLATFORM_ID) private platformId: Object) {
+    constructor(private renderer: Renderer, private el: ElementRef, private router: Router, private titleService: Title,
+        @Inject(DOCUMENT) private document: Document, @Inject(PLATFORM_ID) private platformId: Object) {
+
         if (isPlatformBrowser(this.platformId)) {
-            this.linkRef = this.document.createElement('link');
-            this.linkRef.rel = 'stylesheet';
+            this.linkRef = this.document.createElement("link");
+            this.linkRef.id = "theme";
+            this.linkRef.rel = "stylesheet";
             this.linkRef.href = this.themes[0].href;
-            this.document.querySelector('head').appendChild(this.linkRef);
+            this.document.querySelector("head").appendChild(this.linkRef);
         }
     }
 
@@ -43,9 +46,9 @@ export class AppComponent implements OnInit {
 
                 this.noHeader = this.collectRouteData("noHeader")[0];
 
-                // ga may not exist if we aren't on the actual site
+                // ga may not exist if we aren"t on the actual site
                 if (typeof ga !== "undefined") {
-                    ga('send', 'pageview', change.urlAfterRedirects);
+                    ga("send", "pageview", change.urlAfterRedirects);
                 }
             }
         });

@@ -1,0 +1,32 @@
+<clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
+    <article>
+
+        <h5 class="component-summary">
+            The main navigation group is used to define a collapsible menu in the main menu bar.
+            It also fits into the responsive behaviour of the standard main menu, which will move to the hamburger menu on small screens.
+        </h5>
+
+        <div id="code-examples">
+            <h3 id="examples">Code &amp; Examples</h3>
+            <p>
+                Following interactions are available:
+            </p>
+            <ul>
+                <li>
+                    To define the title of the group add a <code class="clr-code">[clrTitle]</code> input to the component.
+                </li>
+            </ul>
+            <p>
+                Its crucial to set <code class="clr-code">routerLinkActive="active"</code> on the component itself, to highlight the title as soon as a sublink is active.
+            </p>
+            <p>
+                On the links itself the classes <code class="clr-code">nav-link dropdown-item</code> have to be set for correct styling.
+                Furthermore <code class="clr-code">routerLinkActive="active"</code> should be set to highlight the links in the menu when they are active.
+            </p>
+            <p>
+                Examples can be found in all of the page layouts. Sample usage shown below:
+            </p>
+            <clr-code-snippet [clrCode]="htmlExample"></clr-code-snippet>
+        </div>
+    </article>
+</clr-doc-wrapper>
