@@ -83,6 +83,13 @@ const documentationRoutes: Routes = [
                 data: {
                     browserTitle: "Sidebar Page Layout"
                 }
+            },
+            {
+                path: "main-nav-group",
+                loadChildren: "app/documentation/demos/main-nav-group/main-nav-group.demo.module#MainNavGroupDemoModule",
+                data: {
+                    browserTitle: "Main Navigation Group"
+                }
             }
         ]
     }

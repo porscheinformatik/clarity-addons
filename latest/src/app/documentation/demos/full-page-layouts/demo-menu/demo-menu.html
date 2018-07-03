@@ -24,4 +24,14 @@
             <a class="nav-link dropdown-item" href="#" onClick="return false;">Submenu 2</a>
         </clr-main-nav-group>
     </div>
+    <div class="header-actions">
+        <clr-dropdown>
+            <button type="button" class="nav-icon dropdown-toggle" clrDropdownTrigger>
+                <clr-icon shape="cog"></clr-icon>
+            </button>
+            <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
+                <button type="button" *ngFor="let theme of themes" (click)="setTheme(theme)" clrDropdownItem>{{theme.name}}</button>
+            </clr-dropdown-menu>
+        </clr-dropdown>
+    </div>
 </clr-header>
