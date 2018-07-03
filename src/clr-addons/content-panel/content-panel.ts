@@ -28,11 +28,11 @@ import { animate, style, transition, trigger } from '@angular/animations';
   },
 })
 export class ClrContentPanel implements OnInit {
-  private _open: boolean = false;
-  @Input('clrContentPanelDirection') direction: string = 'right';
+  _open: boolean = false;
+  @Input('clrDirection') direction: string = 'right';
 
-  @Output('clrContentPanelOpened') opened: EventEmitter<any> = new EventEmitter();
-  @Output('clrContentPanelClosed') closed: EventEmitter<any> = new EventEmitter();
+  @Output('clrOpened') opened: EventEmitter<any> = new EventEmitter();
+  @Output('clrClosed') closed: EventEmitter<any> = new EventEmitter();
 
   ngOnInit() {}
 

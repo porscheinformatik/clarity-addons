@@ -3,17 +3,11 @@
 
   .content-panel-container {
     position: relative;
-    display: flex;
-    flex: 1 1 auto;
-  }
-
-  .content-panel-outer-content {
-    padding: 1rem;
+    overflow: hidden;
   }
 
   @media screen and (min-width: map-get($grid-breakpoints, xl)) {
     .content-panel-outer-content {
-      flex-basis: 100%;
       // The content next to the panel always has order = 2
       order: 2;
     }
