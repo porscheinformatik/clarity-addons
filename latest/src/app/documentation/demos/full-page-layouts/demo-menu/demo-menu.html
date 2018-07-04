@@ -7,22 +7,24 @@
     </div>
     <div class="divider"></div>
     <div class="header-nav" [clr-nav-level]="1">
-        <a class="nav-link" routerLink="/full-page-layouts/basepage-layout-command" routerLinkActive="active"><span class="nav-text">Command bar</span></a>
-        <clr-main-nav-group clrTitle="Layouts" routerLinkActive="active">
-            <a class="nav-link dropdown-item" routerLink="/full-page-layouts/basepage-layout" routerLinkActive="active">Base Page Layout</a>
-            <a class="nav-link dropdown-item" routerLink="/full-page-layouts/sidebarpage-layout" routerLinkActive="active">Sidebar Page Layout</a>
-            <a class="nav-link dropdown-item" routerLink="/full-page-layouts/content-panel" routerLinkActive="active">Content Panel Layout</a>
-        </clr-main-nav-group>
-        <clr-main-nav-group clrTitle="Menu 3">
-            <a class="nav-link dropdown-item" href="#" onClick="return false;">Submenu 1</a>
-            <a class="nav-link dropdown-item" href="#" onClick="return false;">Submenu 2</a>
-            <a class="nav-link dropdown-item" href="#" onClick="return false;">Submenu 3</a>
-            <a class="nav-link dropdown-item" href="#" onClick="return false;">Submenu 4</a>
-        </clr-main-nav-group>
-        <clr-main-nav-group clrTitle="Menu 4">
-            <a class="nav-link dropdown-item" href="#" onClick="return false;">Submenu 1</a>
-            <a class="nav-link dropdown-item" href="#" onClick="return false;">Submenu 2</a>
-        </clr-main-nav-group>
+        <div class="header-overflow">
+            <a class="nav-link" routerLink="/full-page-layouts/basepage-layout-command" routerLinkActive="active"><span class="nav-text">Command bar</span></a>
+            <clr-main-nav-group clrTitle="Layouts" routerLinkActive="active">
+                <a class="nav-link" routerLink="/full-page-layouts/basepage-layout" routerLinkActive="active">Base Page Layout</a>
+                <a class="nav-link" routerLink="/full-page-layouts/sidebarpage-layout" routerLinkActive="active">Sidebar Page Layout</a>
+                <a class="nav-link" routerLink="/full-page-layouts/content-panel" routerLinkActive="active">Content Panel Layout</a>
+            </clr-main-nav-group>
+            <clr-main-nav-group clrTitle="Menu 3" routerLinkActive="active">
+                <a class="nav-link" routerLink="/full-page-layouts/basepage-layout-sub1/one" routerLinkActive="active">Submenu 1</a>
+                <a class="nav-link" routerLink="/full-page-layouts/basepage-layout-sub1/two" routerLinkActive="active">Submenu 2</a>
+                <a class="nav-link" routerLink="/full-page-layouts/basepage-layout-sub1/three" routerLinkActive="active">Submenu 3</a>
+                <a class="nav-link" routerLink="/full-page-layouts/basepage-layout-sub1/four" routerLinkActive="active">Submenu 4</a>
+            </clr-main-nav-group>
+            <clr-main-nav-group clrTitle="Menu 4" routerLinkActive="active">
+                <a class="nav-link" routerLink="/full-page-layouts/basepage-layout-sub2/five" routerLinkActive="active">Submenu 5</a>
+                <a class="nav-link" routerLink="/full-page-layouts/basepage-layout-sub2/six" routerLinkActive="active">Submenu 6</a>
+            </clr-main-nav-group>
+        </div>
     </div>
     <div class="header-actions">
         <clr-dropdown>

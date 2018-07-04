@@ -16,7 +16,7 @@
     </div>
     <div class="content-container" *ngIf="!withContentPanel">
         <div class="content-area">
-            This is the page content
+            This is the page content<span *ngIf="id"> for submenu {{id}}</span>
         </div>
     </div>
     <clr-content-panel-container *ngIf="withContentPanel">

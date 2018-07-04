@@ -8,9 +8,9 @@ import { ClarityDocComponent } from "../clarity-doc";
 
 const HTML_EXAMPLE = `
 <clr-main-nav-group clrTitle="Layouts" routerLinkActive="active">
-    <a class="nav-link dropdown-item" routerLink="/full-page-layouts/basepage-layout" routerLinkActive="active">Base Page Layout</a>
-    <a class="nav-link dropdown-item" routerLink="/full-page-layouts/sidebarpage-layout" routerLinkActive="active">Sidebar Page Layout</a>
-    <a class="nav-link dropdown-item" routerLink="/full-page-layouts/content-panel" routerLinkActive="active">Content Panel Layout</a>
+    <a class="nav-link" routerLink="/full-page-layouts/basepage-layout" routerLinkActive="active">Base Page Layout</a>
+    <a class="nav-link" routerLink="/full-page-layouts/sidebarpage-layout" routerLinkActive="active">Sidebar Page Layout</a>
+    <a class="nav-link" routerLink="/full-page-layouts/content-panel" routerLinkActive="active">Content Panel Layout</a>
 </clr-main-nav-group>
 `
 
