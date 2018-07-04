@@ -14,6 +14,7 @@ import { ClrContentPanel } from "@porscheinformatik/clr-addons";
 export class BasepageLayoutDemo implements OnInit {
     withCommandBar = false;
     withContentPanel = false;
+    id: string;
 
     @ViewChild("leftContentPanel")
     leftContentPanel: ClrContentPanel;
@@ -27,6 +28,7 @@ export class BasepageLayoutDemo implements OnInit {
     ngOnInit(): void {
         this.withCommandBar = this.collectRouteData("withCommand")[0];
         this.withContentPanel = this.collectRouteData("withPanel")[0];
+        this.id = this.collectRouteData("id")[0];
     }
 
     private toggleLeftPanel() {
@@ -47,7 +49,6 @@ export class BasepageLayoutDemo implements OnInit {
             }
             route = route.firstChild;
         }
-
         return returnArray;
     }
 }
