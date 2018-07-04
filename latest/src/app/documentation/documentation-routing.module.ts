@@ -90,6 +90,13 @@ const documentationRoutes: Routes = [
                 data: {
                     browserTitle: "Main Navigation Group"
                 }
+            },
+            {
+                path: "breadcrumb",
+                loadChildren: "app/documentation/demos/breadcrumb/breadcrumb.demo.module#BreadcrumbDemoModule",
+                data: {
+                    browserTitle: "Breadcrumb"
+                }
             }
         ]
     }

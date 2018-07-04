@@ -1,0 +1,68 @@
+<clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
+    <article>
+
+        <h5 class="component-summary">
+            Breadcrumbs are used to show the hierarchical (not historical) path to the actually viewed page.
+            Don't use it as a browsing history.
+        </h5>
+
+        <div class="row">
+            <div class="col-md-12 col-lg-6">
+                <div class="clrweb-DoxMedia is-dont-block">
+                    <div class="clrweb-DoxMedia-block" style="height: 276px">
+                        <div class="clrweb-DoxMedia-img">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/">Page before last</a></li>
+                                <li class="breadcrumb-item"><a href="/">Last page</a></li>
+                                <li class="breadcrumb-item">Actual Page</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="clrweb-DoxMedia-text">
+                        <h6 class="clrweb-DoxMedia-do-dont">Don't</h6>
+                        <p>
+                            Don't use it as browsing history.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-lg-6">
+                <div class="clrweb-DoxMedia is-do-block">
+                    <div class="clrweb-DoxMedia-block" style="height: 276px">
+                        <div class="clrweb-DoxMedia-img">
+                            <clr-breadcrumb></clr-breadcrumb>
+                        </div>
+                    </div>
+                    <div class="clrweb-DoxMedia-text">
+                        <h6 class="clrweb-DoxMedia-do-dont">Do</h6>
+                        <p>
+                            Use it as hierarchical path to the actually viewed page.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="code-examples">
+            <h3 id="examples">Code &amp; Examples</h3>
+            <p>
+                To set the breadcrumbs, the service <code class="clr-code">ClrBreadcrumbService</code> 
+                in conjunction with <code class="clr-code">ClrBreadcrumbModel</code> has to be used.
+            </p>
+
+            <div class="clrweb-DoxMedia">
+                <div class="clrweb-DoxMedia-block">
+                    <div class="clrweb-DoxMedia-img breadcrumb-demo">
+                        <clr-breadcrumb></clr-breadcrumb>
+                    </div>
+                </div>
+            </div>
+            <clr-code-snippet [clrCode]="angularExample" [clrLanguage]="'typescript'"></clr-code-snippet>
+            <p>
+                To display the breadcrumbs simply place the angular component anywhere needed.
+            </p>
+            <clr-code-snippet [clrCode]="htmlExample"></clr-code-snippet>
+        </div>
+    </article>
+</clr-doc-wrapper>
