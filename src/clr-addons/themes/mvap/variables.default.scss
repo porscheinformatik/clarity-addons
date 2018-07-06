@@ -1,2 +1,87 @@
 // Old forms
 $clr-form-field-background-color: $turquoise;
+
+/** Head Fonts **/
+@font-face {
+  font-family: 'VW Head';
+  src: url('../fonts/VW_Head/VWHeadWeb-Bold.eot');
+  src: url('../fonts/VW_Head/VWHeadWeb-Bold.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/VW_Head/VWHeadWeb-Bold.woff') format('woff'),
+    url('../fonts/VW_Head/VWHeadWeb-Bold.ttf') format('truetype'),
+    url('../fonts/VW_Head/VWHeadWeb-Bold.svg#VWHeadWeb-Bold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'VW Head';
+  src: url('../fonts/VW_Head/VWHeadWeb-BoldItalic.eot');
+  src: url('../fonts/VW_Head/VWHeadWeb-BoldItalic.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/VW_Head/VWHeadWeb-BoldItalic.woff') format('woff'),
+    url('../fonts/VW_Head/VWHeadWeb-BoldItalic.ttf') format('truetype'),
+    url('../fonts/VW_Head/VWHeadWeb-BoldItalic.svg#VWHeadWeb-BoldItalic') format('svg');
+  font-weight: bold;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'VW Head';
+  src: url('../fonts/VW_Head/VWHeadWeb-Regular.eot');
+  src: url('../fonts/VW_Head/VWHeadWeb-Regular.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/VW_Head/VWHeadWeb-Regular.woff') format('woff'),
+    url('../fonts/VW_Head/VWHeadWeb-Regular.ttf') format('truetype'),
+    url('../fonts/VW_Head/VWHeadWeb-Regular.svg#VWHeadWeb-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'VW Head';
+  src: url('../fonts/VW_Head/VWHeadWeb-RegularItalic.eot');
+  src: url('../fonts/VW_Head/VWHeadWeb-RegularItalic.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/VW_Head/VWHeadWeb-RegularItalic.woff') format('woff'),
+    url('../fonts/VW_Head/VWHeadWeb-RegularItalic.ttf') format('truetype'),
+    url('../fonts/VW_Head/VWHeadWeb-RegularItalic.svg#VWHeadWeb-RegularItalic') format('svg');
+  font-weight: normal;
+  font-style: italic;
+}
+/** Text Fonts **/
+@font-face {
+  font-family: 'VW Text';
+  src: url('../fonts/VW_Text/VWTextWeb-Bold.eot');
+  src: url('../fonts/VW_Text/VWTextWeb-Bold.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/VW_Text/VWTextWeb-Bold.woff') format('woff'),
+    url('../fonts/VW_Text/VWTextWeb-Bold.ttf') format('truetype'),
+    url('../fonts/VW_Text/VWTextWeb-Bold.svg#VWTextWeb-Bold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'VW Text';
+  src: url('../fonts/VW_Text/VWTextWeb-BoldItalic.eot');
+  src: url('../fonts/VW_Text/VWTextWeb-BoldItalic.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/VW_Text/VWTextWeb-BoldItalic.woff') format('woff'),
+    url('../fonts/VW_Text/VWTextWeb-BoldItalic.ttf') format('truetype'),
+    url('../fonts/VW_Text/VWTextWeb-BoldItalic.svg#VWTextWeb-BoldItalic') format('svg');
+  font-weight: bold;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'VW Text';
+  src: url('../fonts/VW_Text/VWTextWeb-Regular.eot');
+  src: url('../fonts/VW_Text/VWTextWeb-Regular.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/VW_Text/VWTextWeb-Regular.woff') format('woff'),
+    url('../fonts/VW_Text/VWTextWeb-Regular.ttf') format('truetype'),
+    url('../fonts/VW_Text/VWTextWeb-Regular.svg#VWTextWeb-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'VW Text';
+  src: url('../fonts/VW_Text/VWTextWeb-RegularItalic.eot');
+  src: url('../fonts/VW_Text/VWTextWeb-RegularItalic.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/VW_Text/VWTextWeb-RegularItalic.woff') format('woff'),
+    url('../fonts/VW_Text/VWTextWeb-RegularItalic.ttf') format('truetype'),
+    url('../fonts/VW_Text/VWTextWeb-RegularItalic.svg#VWTextWeb-RegularItalic') format('svg');
+  font-weight: normal;
+  font-style: italic;
+}
+
+$clr-font: 'VW Text';
