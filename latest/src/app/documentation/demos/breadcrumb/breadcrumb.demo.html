@@ -2,8 +2,9 @@
     <article>
 
         <h5 class="component-summary">
-            Breadcrumbs are used to show the hierarchical (not historical) path to the actually viewed page.
-            Don't use it as a browsing history.
+            The use of breadcrumbs have been widely discussed in several ui/ux communities. Some users stick to them, others don't even recognize them.<br />
+            For complex business applications, providing a clear hierarchical structure (with parent-child relation between pages, or probably deeply nested) the use can be justified.<br />
+            Avoided should be solutions with historical breadcrumbs, as they are very seldom - may lead to cycles and basically duplicate the browser's back functionality.
         </h5>
 
         <div class="row">
@@ -47,7 +48,7 @@
         <div id="code-examples">
             <h3 id="examples">Code &amp; Examples</h3>
             <p>
-                To set the breadcrumbs, the service <code class="clr-code">ClrBreadcrumbService</code> 
+                To set the breadcrumbs, the service <code class="clr-code">ClrBreadcrumbService</code>
                 in conjunction with <code class="clr-code">ClrBreadcrumbModel</code> has to be used.
             </p>
 
