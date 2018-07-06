@@ -2,12 +2,46 @@
     <article>
 
         <h5 class="component-summary">
-            The use of breadcrumbs have been widely discussed in several ui/ux communities. Some users stick to them, others don't even recognize them.<br />
-            For complex business applications, providing a clear hierarchical structure (with parent-child relation between pages, or probably deeply nested) the use can be justified.<br />
-            Avoided should be solutions with historical breadcrumbs, as they are very seldom - may lead to cycles and basically duplicate the browser's back functionality.
+          Breadcrumbs are a type of secondary navigation scheme that reveals the user’s location in a site or web app.
         </h5>
 
+        <div id="design-guidelines">
+          <h2>Design Guidelines</h2>
+          <p>The use of breadcrumbs have been widely discussed in several ui/ux communities. Some users stick to them, others don't even recognize them.</p>
+          <p>For complex business applications, that provide a clear hierarchical structure (with parent-child relation between pages, which are probably deeply nested) the use can be justified.</p>
+          <p>Avoided should be solutions with historical breadcrumbs, since they are very seldom used, may lead to cycles inside the breadcrumb-trail and basically duplicate the browser's back functionality.</p>
+
+          <h3>Use when</h3>
+          <p>Your application provides a clear hierarchical structure. <br />
+             The site structure is deeply nested and the primary navigation scheme is not sufficient.</p>
+
+         <h3>Don't use when</h3>
+         <p>Your information architecture represent a network instead of a hierarchical tree of pages.<br />
+            In that case you can not clearly name the current page's parent, and the breadcrumb trail can not represent the path the user has been taken through the application.
+         </p>
+
+
+
+        </div>
+
         <div class="row">
+
+                      <div class="col-md-12 col-lg-6">
+                          <div class="clrweb-DoxMedia is-do-block">
+                              <div class="clrweb-DoxMedia-block">
+                                  <div class="clrweb-DoxMedia-img breadcrumb-demo">
+                                      <clr-breadcrumb></clr-breadcrumb>
+                                  </div>
+                              </div>
+                              <div class="clrweb-DoxMedia-text">
+                                  <h6 class="clrweb-DoxMedia-do-dont">Do</h6>
+                                  <p>
+                                      Use breadcrumbs as hierarchical path to the current displayed page.
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+
             <div class="col-md-12 col-lg-6">
                 <div class="clrweb-DoxMedia is-dont-block">
                     <div class="clrweb-DoxMedia-block">
@@ -15,34 +49,19 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/">Page before last</a></li>
                                 <li class="breadcrumb-item"><a href="/">Last page</a></li>
-                                <li class="breadcrumb-item">Actual Page</li>
+                                <li class="breadcrumb-item">Current Page</li>
                             </ol>
                         </div>
                     </div>
                     <div class="clrweb-DoxMedia-text">
                         <h6 class="clrweb-DoxMedia-do-dont">Don't</h6>
                         <p>
-                            Don't use it as browsing history.
+                            Don't use historical breadcrumbs as browsing history.
                         </p>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-12 col-lg-6">
-                <div class="clrweb-DoxMedia is-do-block">
-                    <div class="clrweb-DoxMedia-block">
-                        <div class="clrweb-DoxMedia-img breadcrumb-demo">
-                            <clr-breadcrumb></clr-breadcrumb>
-                        </div>
-                    </div>
-                    <div class="clrweb-DoxMedia-text">
-                        <h6 class="clrweb-DoxMedia-do-dont">Do</h6>
-                        <p>
-                            Use it as hierarchical path to the actually viewed page.
-                        </p>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <div id="code-examples">
