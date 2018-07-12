@@ -25,7 +25,7 @@
 
   .content-panel-content-wrapper {
     background-color: $clr-global-app-background;
-    z-index: map-get($clr-layers, sidepanel) - 2;
+    z-index: map-get($clr-layers, sidepanel) - 3;
     padding: 1rem;
     position: absolute;
     top: 0;
@@ -71,7 +71,7 @@
     left: 0;
     background-color: clr-getColor(darkest);
     opacity: 0.85;
-    z-index: map-get($clr-layers, sidepanel-bg) - 2;
+    z-index: map-get($clr-layers, sidepanel-bg) - 3;
 
     @media screen and (max-width: map-get($grid-breakpoints, md)) {
       display: none;
