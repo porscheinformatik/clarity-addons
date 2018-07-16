@@ -1,8 +1,8 @@
-@porscheinformatik/clr-addons@1.0.0
+@porscheinformatik/clr-addons@1.0.1
 MIT
 MIT
 
-@clr/icons@0.12.2
+@clr/icons@0.12.4
 MIT
 MIT
 
@@ -431,7 +431,7 @@ MIT
 MIT
 MIT
 
-@clr/angular@0.12.2
+@clr/angular@0.12.4
 MIT
 MIT
 
