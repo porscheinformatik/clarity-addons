@@ -34,15 +34,15 @@
                 </li>
             </ul>
 
-            <div class="row">
-                <div class="col-lg-6 margin-top-24">
+            <h3 id="demo">Demo</h3>
+
+            <div class="form">
+                <div class="form-group">
                     <label for="totalItems">Total Items:</label>
                     <input type="number" id="totalItems" [(ngModel)]="totalItems" min="0"
                            (ngModelChange)="createItems()"/>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6 margin-top-24">
+                <div class="form-group">
                     <label for="pageSize">Page Size:</label>
                     <input type="number" id="pageSize" [(ngModel)]="pageSize" min="0"/>
                 </div>
