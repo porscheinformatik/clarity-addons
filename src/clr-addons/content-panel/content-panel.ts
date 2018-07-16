@@ -12,10 +12,8 @@ import { animate, style, transition, trigger } from '@angular/animations';
   templateUrl: './content-panel.html',
   animations: [
     trigger('slideIn', [
-      transition('void => right', [style({ opacity: 0, transform: 'translate(50%, 0)' }), animate('0.2s ease-in-out')]),
-      transition('right => void', [animate('0.2s ease-in-out', style({ opacity: 0, transform: 'translate(50%, 0)' }))]),
-      transition('void => left', [style({ opacity: 0, transform: 'translate(-50%, 0)' }), animate('0.2s ease-in-out')]),
-      transition('left => void', [animate('0.2s ease-in-out', style({ opacity: 0, transform: 'translate(-50%, 0)' }))]),
+      transition(':enter', [style({ opacity: 0, width: 0 }), animate('0.2s', style({ opacity: 1, width: '*' }))]),
+      transition(':leave', [style({ opacity: 1, width: '*' }), animate('0.2s', style({ opacity: 0, width: 0 }))]),
     ]),
     trigger('fade', [
       transition(':enter', [style({ opacity: 0 }), animate('0.2s ease-in-out', style({ opacity: 0.85 }))]),

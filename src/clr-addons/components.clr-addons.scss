@@ -14,10 +14,14 @@
 }
 
 .content-header > h2 {
-  margin-top: 0px;
+  margin-top: 0;
 }
 
 .command-bar {
   flex: 1 0 auto;
   justify-content: flex-end;
+
+  .dropdown-menu {
+    z-index: map-get($clr-layers, sidepanel) - 2;
+  }
 }

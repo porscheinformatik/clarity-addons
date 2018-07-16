@@ -20,4 +20,10 @@
   .pager .btn-disabled:active {
     box-shadow: none;
   }
+
+  @media (hover: none) {
+    .pager .btn:hover {
+      background-color: inherit;
+    }
+  }
 }
