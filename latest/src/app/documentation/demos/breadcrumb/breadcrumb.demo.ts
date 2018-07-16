@@ -14,7 +14,7 @@ const HTML_EXAMPLE = `
 const ANGULAR_EXAMPLE = `
 const breadcrumb1: ClrBreadcrumbModel = { label: "Home", url: "/" }
 const breadcrumb2: ClrBreadcrumbModel = { label: "Parent", url: "/" }
-const breadcrumb3: ClrBreadcrumbModel = { label: "Actual Page" }
+const breadcrumb3: ClrBreadcrumbModel = { label: "Current Page" }
 this.breadcrumbService.updateBreadcrumb([
     breadcrumb1, breadcrumb2, breadcrumb3
 ]);
@@ -43,7 +43,7 @@ export class BreadcrumbDemo extends ClarityDocComponent implements OnInit {
     ngOnInit() {
         const breadcrumb1: ClrBreadcrumbModel = { label: "Home", url: "/" }
         const breadcrumb2: ClrBreadcrumbModel = { label: "Parent", url: "/" }
-        const breadcrumb3: ClrBreadcrumbModel = { label: "Actual Page" }
+        const breadcrumb3: ClrBreadcrumbModel = { label: "Current Page" }
         this.breadcrumbService.updateBreadcrumb([
             breadcrumb1, breadcrumb2, breadcrumb3
         ]);
