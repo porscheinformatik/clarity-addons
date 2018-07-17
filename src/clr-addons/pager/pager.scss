@@ -22,8 +22,13 @@
   }
 
   @media (hover: none) {
-    .pager .btn:hover {
-      background-color: inherit;
+    .pager .btn:not(.btn-primary):hover {
+      background-color: $clr-btn-default-bg-color;
+      color: $clr-btn-default-color;
+    }
+    .pager .btn.btn-primary:hover {
+      background-color: $clr-btn-primary-bg-color;
+      color: $clr-btn-primary-color;
     }
   }
 }
