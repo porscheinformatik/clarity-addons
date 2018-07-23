@@ -15,6 +15,14 @@ export class NotificationDemo {
   @ViewChild(ClrNotification) clrNotification: ClrNotification;
 
   notificationClick(): void {
-    this.clrNotification.toggle();
+    this.clrNotification.open();
+  }
+
+  onClose(): void {
+    console.log('notification closed');
+  }
+
+  showAlert(): void {
+    alert('Button was clicked');
   }
 }
