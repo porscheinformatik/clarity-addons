@@ -1,0 +1,5 @@
+@include exports('notification.clr-addons') {
+  .notification-text {
+    color: red;
+  }
+}
