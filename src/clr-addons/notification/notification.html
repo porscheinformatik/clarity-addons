@@ -1,4 +1,6 @@
 <ng-container *ngIf="_open">
-  <p class="notification-text">Some Notification Component</p>
+  <div class="notification-text">
+      <ng-content select="[clr-notification-message]"></ng-content>
+  </div>
 </ng-container>
 
