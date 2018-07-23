@@ -6,6 +6,8 @@
 
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { timer } from 'rxjs';
+import { interval } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'clr-notification',
@@ -18,6 +20,8 @@ import { timer } from 'rxjs';
 })
 export class ClrNotification implements OnInit {
   _open: boolean = false;
+  _progressStatus: number = 0;
+  _step: number = 5;
 
   @Input('clrTimeout') timeout: number = 2000;
   @Input('clrNotificationType') notificationType: string = 'info'; // "info", "warning", "success" and "danger"
@@ -37,7 +41,16 @@ export class ClrNotification implements OnInit {
       return;
     }
     this._open = true;
+    if (this.progressbar) {
+      interval((this.timeout - 100) / (100 / this._step))
+        .pipe(takeUntil(timer(this.timeout)))
+        .subscribe(() => this.updateProgressStatus());
+    }
     timer(this.timeout).subscribe(() => this.close());
+  }
+
+  public updateProgressStatus(): void {
+    this._progressStatus += this._step;
   }
 
   public close(): void {
@@ -45,6 +58,7 @@ export class ClrNotification implements OnInit {
       return;
     }
     this._open = false;
+    this._progressStatus = 0;
     this.closed.emit();
   }
 

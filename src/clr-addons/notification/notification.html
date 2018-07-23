@@ -1,12 +1,13 @@
 <ng-container *ngIf="_open">
-  <div class="notification-text">
-    <clr-alert [clrAlertType]=notificationType [clrAlertAppLevel]="true" [clrAlertClosable]=dismissable (clrAlertClosedChange)="close()">
-        <div class="alert-item">
-            <span class="alert-text">
-                <ng-content select="[clr-notification-message]"></ng-content>
-            </span>
-        </div>
-    </clr-alert>
+  <div class="progress-static top" *ngIf="progressbar">
+      <div class="progress-meter" [attr.data-value]="_progressStatus"></div>
   </div>
+  <clr-alert [clrAlertType]=notificationType [clrAlertAppLevel]="true" [clrAlertClosable]=dismissable (clrAlertClosedChange)="close()">
+      <div class="alert-item">
+          <span class="alert-text">
+              <ng-content select="[clr-notification-message]"></ng-content>
+          </span>
+      </div>
+  </clr-alert>
 </ng-container>
 
