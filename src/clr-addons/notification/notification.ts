@@ -50,6 +50,7 @@ export class ClrNotification implements OnInit {
   }
 
   public updateProgressStatus(): void {
+    console.log(this._progressStatus);
     this._progressStatus += this._step;
   }
 
