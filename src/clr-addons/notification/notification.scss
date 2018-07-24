@@ -2,4 +2,10 @@
   .notification-text {
     color: red;
   }
+  .notification {
+    position: fixed;
+    top: 40px;
+    left: calc(50% - 300px);
+    width: 600px;
+  }
 }

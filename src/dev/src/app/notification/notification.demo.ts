@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component, ViewChild } from '@angular/core';
-import { ClrNotification } from '@porscheinformatik/clr-addons';
+import { NotificationService } from './notification.service';
 
 @Component({
   selector: 'clr-notification-demo',
@@ -12,17 +12,9 @@ import { ClrNotification } from '@porscheinformatik/clr-addons';
   templateUrl: './notification.demo.html',
 })
 export class NotificationDemo {
-  @ViewChild(ClrNotification) clrNotification: ClrNotification;
+  constructor(private notificationService: NotificationService) {}
 
   notificationClick(): void {
-    this.clrNotification.open();
-  }
-
-  onClose(): void {
-    console.log('notification closed');
-  }
-
-  showAlert(): void {
-    alert('Button was clicked');
+    this.notificationService.openNotification();
   }
 }
