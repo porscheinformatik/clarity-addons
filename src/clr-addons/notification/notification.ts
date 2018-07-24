@@ -5,9 +5,10 @@
  */
 
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { timer } from 'rxjs';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { timer, Subscription } from 'rxjs';
 import { interval } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { takeWhile } from 'rxjs/operators';
 
 @Component({
   selector: 'clr-notification',
@@ -22,6 +23,7 @@ export class ClrNotification implements OnInit {
   _open: boolean = false;
   _progressStatus: number = 0;
   _step: number = 5;
+  _timer: Subscription;
 
   @Input('clrTimeout') timeout: number = 2000;
   @Input('clrNotificationType') notificationType: string = 'info'; // "info", "warning", "success" and "danger"
@@ -43,14 +45,13 @@ export class ClrNotification implements OnInit {
     this._open = true;
     if (this.progressbar) {
       interval((this.timeout - 100) / (100 / this._step))
-        .pipe(takeUntil(timer(this.timeout)))
+        .pipe(takeWhile(() => this._open === true))
         .subscribe(() => this.updateProgressStatus());
     }
-    timer(this.timeout).subscribe(() => this.close());
+    this._timer = timer(this.timeout).subscribe(() => this.close());
   }
 
   public updateProgressStatus(): void {
-    console.log(this._progressStatus);
     this._progressStatus += this._step;
   }
 
@@ -58,6 +59,7 @@ export class ClrNotification implements OnInit {
     if (!this._open) {
       return;
     }
+    this._timer.unsubscribe();
     this._open = false;
     this._progressStatus = 0;
     this.closed.emit();
