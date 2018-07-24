@@ -13,10 +13,17 @@ import { takeWhile } from 'rxjs/operators';
 @Component({
   selector: 'clr-notification',
   templateUrl: './notification.html',
-  animations: [],
+  animations: [
+    trigger('slideDown', [
+      transition(':enter', [
+        style({ transform: 'translateY(-1000%)' }),
+        animate('0.7s', style({ transform: 'translateY(0%)' })),
+      ]),
+    ]),
+    trigger('fade', [transition(':leave', [animate('0.5s ease-in-out', style({ opacity: 0 }))])]),
+  ],
   host: {
     '[class.notification]': 'true',
-    '[class.top]': 'direction === "top"',
   },
 })
 export class ClrNotification implements OnInit {
