@@ -41,6 +41,19 @@ header,
   border-radius: $vu3-border-radius;
 }
 
+.card.card-active {
+  border-left: $clr-card-active-border-width solid $clr-card-active-border-color;
+}
+
+.card.clickable:hover {
+  box-shadow: 0 0.125rem 0 0 $turquoise;
+  border-color: $turquoise;
+}
+
+.card.card-active.clickable:hover {
+  border-left: $clr-card-active-border-width solid $clr-card-active-border-color;
+}
+
 .card-img {
   &:first-child > img {
     border-radius: $vu3-border-radius $vu3-border-radius 0 0;
@@ -56,10 +69,6 @@ header,
   & > img {
     border-radius: $vu3-border-radius;
   }
-}
-
-.card.clickable:hover {
-  box-shadow: 0 0.125rem 0 0 $turquoise;
 }
 
 .progress.top > progress {
