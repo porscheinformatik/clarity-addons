@@ -5,20 +5,28 @@
  */
 
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { animate, style, transition, trigger } from '@angular/animations';
+import { animate, style, transition, trigger, state, animation } from '@angular/animations';
 import { timer, Subscription } from 'rxjs';
 import { interval } from 'rxjs';
 import { takeWhile } from 'rxjs/operators';
+
+const initState = { value: 'moveDown', params: { percents: 0 } };
 
 @Component({
   selector: 'clr-notification',
   templateUrl: './notification.html',
   animations: [
     trigger('slideDown', [
-      transition(':enter', [
-        style({ transform: 'translateY(-1000%)' }),
-        animate('0.7s', style({ transform: 'translateY(0%)' })),
-      ]),
+      transition(
+        ':enter',
+        [
+          style({ transform: 'translateY(-1000%)' }),
+          animate('0.7s', style({ transform: 'translateY({{percents}}%)' })),
+        ],
+        { params: { percents: '0' } }
+      ),
+      state('moveDown', style({ transform: 'translateY({{percents}}%)' }), { params: { percents: '0' } }),
+      transition('* => moveDown', animate('200ms ease-in')),
     ]),
     trigger('fade', [transition(':leave', [animate('0.5s ease-in-out', style({ opacity: 0 }))])]),
   ],
@@ -31,6 +39,8 @@ export class ClrNotification implements OnInit {
   _progressStatus: number = 0;
   _step: number = 5;
   _timer: Subscription;
+  state: any = initState;
+  translate = 0;
 
   @Input('clrTimeout') timeout: number = 2000;
   @Input('clrNotificationType') notificationType: string = 'info'; // "info", "warning", "success" and "danger"
@@ -66,10 +76,17 @@ export class ClrNotification implements OnInit {
     if (!this._open) {
       return;
     }
+    this.state = initState;
+    this.translate = 0;
     this._timer.unsubscribe();
     this._open = false;
     this._progressStatus = 0;
     this.closed.emit();
+  }
+
+  public moveDown(): void {
+    this.translate += 110;
+    this.state = { value: 'moveDown', params: { percents: this.translate } };
   }
 
   public toggle(): void {

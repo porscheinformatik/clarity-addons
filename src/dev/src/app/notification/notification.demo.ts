@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChildren, QueryList } from '@angular/core';
 import { ClrNotification, NotificationService } from '@porscheinformatik/clr-addons';
 @Component({
   selector: 'clr-notification-demo',
@@ -11,14 +11,14 @@ import { ClrNotification, NotificationService } from '@porscheinformatik/clr-add
   templateUrl: './notification.demo.html',
 })
 export class NotificationDemo {
-  @ViewChild(ClrNotification) clrNotification: ClrNotification;
+  @ViewChildren(ClrNotification) clrNotifications: QueryList<ClrNotification>;
 
   constructor(private notificationService: NotificationService) {}
 
-  ngOnInit() {
-    this.notificationService.change.subscribe(() => {
-      this.clrNotification.open();
-    });
+  ngOnInit() {}
+
+  ngAfterViewInit() {
+    this.notificationService.elements = this.clrNotifications.toArray();
   }
 
   onClose(): void {
@@ -29,7 +29,7 @@ export class NotificationDemo {
     alert('Button was clicked');
   }
 
-  notificationClick(): void {
-    this.notificationService.openNotification();
+  openNotify(index): void {
+    this.notificationService.openNotification(index);
   }
 }

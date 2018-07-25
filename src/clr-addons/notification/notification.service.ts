@@ -9,7 +9,19 @@ import { Injectable, Output, EventEmitter } from '@angular/core';
 export class NotificationService {
   @Output() change: EventEmitter<any> = new EventEmitter();
 
-  openNotification() {
-    this.change.emit();
+  elements = [];
+
+  openNotification(index) {
+    const notification = this.elements[index];
+    if (notification) {
+      if (!notification._open) {
+        notification.open();
+        this.elements.forEach((_notification, i) => {
+          if (_notification._open && index !== i) {
+            _notification.moveDown();
+          }
+        });
+      }
+    }
   }
 }

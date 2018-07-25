@@ -6,16 +6,59 @@
 
 <h2>Notification</h2>
 <div class="btn-group">
-    <button class="btn" (click)="notificationClick()">Show Notification</button>
+    <button class="btn" (click)="openNotify(0)">Show Info Notification</button>
+</div>
+<div class="btn-group">
+  <button class="btn" (click)="openNotify(1)">Show Warning Notification</button>
+</div>
+<div class="btn-group">
+  <button class="btn" (click)="openNotify(2)">Show Success Notification</button>
+</div>
+<div class="btn-group">
+  <button class="btn" (click)="openNotify(3)">Show Danger Notification</button>
 </div>
 <clr-notification
-  [clrTimeout]="4000"
+  [clrTimeout]="50000"
   [clrNotificationType]="'info'"
   [clrDismissable]="true"
   [clrProgressbar]="true"
   (clrClosed)="onClose()">
   <ng-container clr-notification-message>
-    Some Notification Component
+    Some Information
     <button class="btn btn-info-outline" (click)="showAlert()">Show Alert</button>
   </ng-container>
 </clr-notification>
+<clr-notification
+  [clrTimeout]="40000"
+  [clrNotificationType]="'warning'"
+  [clrDismissable]="true"
+  [clrProgressbar]="true"
+  (clrClosed)="onClose()">
+  <ng-container clr-notification-message>
+    Warning
+    <button class="btn btn-info-outline" (click)="showAlert()">Show Alert</button>
+  </ng-container>
+</clr-notification>
+<clr-notification
+  [clrTimeout]="30000"
+  [clrNotificationType]="'success'"
+  [clrDismissable]="true"
+  [clrProgressbar]="true"
+  (clrClosed)="onClose()">
+  <ng-container clr-notification-message>
+    Success
+    <button class="btn btn-info-outline" (click)="showAlert()">Show Alert</button>
+  </ng-container>
+</clr-notification>
+<clr-notification
+  [clrTimeout]="20000"
+  [clrNotificationType]="'danger'"
+  [clrDismissable]="true"
+  [clrProgressbar]="true"
+  (clrClosed)="onClose()">
+  <ng-container clr-notification-message>
+    Danger
+    <button class="btn btn-info-outline" (click)="showAlert()">Show Alert</button>
+  </ng-container>
+</clr-notification>
+
