@@ -5,14 +5,14 @@
   -->
   <clr-main-container>
       <clr-notification
-        [clrTimeout]="4000"
-        [clrNotificationType]="'info'"
+        [clrTimeout]="5000"
+        [clrNotificationType]="'warning'"
         [clrDismissable]="true"
         [clrProgressbar]="true"
         (clrClosed)="onClose()">
         <ng-container clr-notification-message>
-          Some Notification Component
-          <button class="btn btn-info-outline" (click)="showAlert()">Show Alert</button>
+          App-Level Toast
+          <!-- <button class="btn btn-info-outline" (click)="showAlert()">Show Alert</button> -->
         </ng-container>
       </clr-notification>
       <clr-header class="header-6">

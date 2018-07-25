@@ -29,8 +29,9 @@ import { takeWhile } from 'rxjs/operators';
 export class ClrNotification implements OnInit {
   _open: boolean = false;
   _progressStatus: number = 0;
-  _step: number = 5;
+  _step: number = 1;
   _timer: Subscription;
+  _progressType: string = 'info';
 
   @Input('clrTimeout') timeout: number = 2000;
   @Input('clrNotificationType') notificationType: string = 'info'; // "info", "warning", "success" and "danger"
@@ -39,7 +40,9 @@ export class ClrNotification implements OnInit {
 
   @Output('clrClosed') closed: EventEmitter<any> = new EventEmitter();
 
-  ngOnInit() {}
+  ngOnInit() {
+    this._progressType = this.notificationType === 'warning' ? 'danger' : this.notificationType;
+  }
 
   public isOpen(): boolean {
     return this._open;
