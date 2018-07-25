@@ -3,8 +3,19 @@
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
-  
+
 <h2>Notification</h2>
 <div class="btn-group">
     <button class="btn" (click)="notificationClick()">Show Notification</button>
 </div>
+<clr-notification
+  [clrTimeout]="4000"
+  [clrNotificationType]="'info'"
+  [clrDismissable]="true"
+  [clrProgressbar]="true"
+  (clrClosed)="onClose()">
+  <ng-container clr-notification-message>
+    Some Notification Component
+    <button class="btn btn-info-outline" (click)="showAlert()">Show Alert</button>
+  </ng-container>
+</clr-notification>

@@ -4,17 +4,6 @@
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
   <clr-main-container>
-      <clr-notification
-        [clrTimeout]="4000"
-        [clrNotificationType]="'info'"
-        [clrDismissable]="true"
-        [clrProgressbar]="true"
-        (clrClosed)="onClose()">
-        <ng-container clr-notification-message>
-          Some Notification Component
-          <button class="btn btn-info-outline" (click)="showAlert()">Show Alert</button>
-        </ng-container>
-      </clr-notification>
       <clr-header class="header-6">
           <div class="branding">
               <a href="#" class="nav-link">

@@ -7,11 +7,9 @@ import { Component, PLATFORM_ID, Inject, ViewChild } from '@angular/core';
 import { Route } from '@angular/router';
 import { APP_ROUTES } from './app.routing';
 import { isPlatformBrowser, DOCUMENT } from '@angular/common';
-import { ClrNotification, NotificationService } from '@porscheinformatik/clr-addons';
 
 @Component({ selector: 'app-root', templateUrl: './app.component.html' })
 export class AppComponent {
-  @ViewChild(ClrNotification) clrNotification: ClrNotification;
   public routes: Route[] = APP_ROUTES;
   linkRef: HTMLLinkElement;
 
@@ -22,31 +20,13 @@ export class AppComponent {
     { name: 'MVAP', href: 'assets/styles/clr-addons-mvap.css' },
   ];
 
-  constructor(
-    @Inject(DOCUMENT) private document: Document,
-    @Inject(PLATFORM_ID) private platformId: Object,
-    private notificationService: NotificationService
-  ) {
+  constructor(@Inject(DOCUMENT) private document: Document, @Inject(PLATFORM_ID) private platformId: Object) {
     if (isPlatformBrowser(this.platformId)) {
       this.linkRef = this.document.createElement('link');
       this.linkRef.rel = 'stylesheet';
       this.linkRef.href = this.themes[0].href;
       this.document.querySelector('head').appendChild(this.linkRef);
     }
-  }
-
-  ngOnInit() {
-    this.notificationService.change.subscribe(() => {
-      this.clrNotification.open();
-    });
-  }
-
-  onClose(): void {
-    console.log('notification closed');
-  }
-
-  showAlert(): void {
-    alert('Button was clicked');
   }
 
   setTheme(theme) {
