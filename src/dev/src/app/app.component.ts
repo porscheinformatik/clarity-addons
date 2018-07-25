@@ -7,8 +7,7 @@ import { Component, PLATFORM_ID, Inject, ViewChild } from '@angular/core';
 import { Route } from '@angular/router';
 import { APP_ROUTES } from './app.routing';
 import { isPlatformBrowser, DOCUMENT } from '@angular/common';
-import { ClrNotification } from '@porscheinformatik/clr-addons';
-import { NotificationService } from './notification/notification.service';
+import { ClrNotification, NotificationService } from '@porscheinformatik/clr-addons';
 
 @Component({ selector: 'app-root', templateUrl: './app.component.html' })
 export class AppComponent {

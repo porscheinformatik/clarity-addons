@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component, ViewChild } from '@angular/core';
-import { NotificationService } from './notification.service';
+import { NotificationService } from '@porscheinformatik/clr-addons';
 
 @Component({
   selector: 'clr-notification-demo',

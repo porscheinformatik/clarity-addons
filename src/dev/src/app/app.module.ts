@@ -22,7 +22,7 @@ import { CollapseExpandSectionDemoModule } from './collapse-expand-section/colla
 import { ContentPanelDemoModule } from './content-panel/content-panel.demo.module';
 import { BreadcrumbDemoModule } from './breadcrumb/breadcrumb.demo.module';
 import { NotificationDemoModule } from './notification/notification.demo.module';
-import { NotificationService } from './notification/notification.service';
+import { NotificationService } from '@porscheinformatik/clr-addons';
 
 @NgModule({
   declarations: [AppComponent, LandingComponent, AppContentContainerComponent],
