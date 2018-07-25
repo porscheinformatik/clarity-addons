@@ -1,11 +1,11 @@
 @include exports('notification.clr-addons') {
-  .notification-text {
-    color: red;
-  }
-  .notification {
+  .notification__wrapper {
     position: fixed;
-    top: 40px;
-    left: calc(50% - 300px);
-    width: 600px;
+    z-index: 1000;
+    top: 26px;
+    width: 500px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
   }
 }
