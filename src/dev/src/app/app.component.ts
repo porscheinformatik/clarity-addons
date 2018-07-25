@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, PLATFORM_ID, Inject, ViewChild } from '@angular/core';
+import { Component, PLATFORM_ID, Inject } from '@angular/core';
 import { Route } from '@angular/router';
 import { APP_ROUTES } from './app.routing';
 import { isPlatformBrowser, DOCUMENT } from '@angular/common';

@@ -5,7 +5,7 @@
  */
 
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { animate, style, transition, trigger, state, animation } from '@angular/animations';
+import { animate, style, transition, trigger, state } from '@angular/animations';
 import { timer, Subscription } from 'rxjs';
 import { interval } from 'rxjs';
 import { takeWhile } from 'rxjs/operators';
