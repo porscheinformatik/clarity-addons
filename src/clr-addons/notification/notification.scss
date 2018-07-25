@@ -1,11 +1,63 @@
 @include exports('notification.clr-addons') {
-  .notification__wrapper {
-    position: fixed;
-    z-index: 1000;
-    top: 26px;
-    width: 500px;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
+  .notification {
+    &__wrapper {
+      position: fixed;
+      z-index: 1000;
+      top: 36px;
+      width: 400px;
+      left: 90px;
+      right: 0;
+      border-radius: 4px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .progress,
+    .progress-static {
+      height: 0.5em;
+      position: absolute;
+      z-index: 1;
+    }
+    .alert-items {
+      padding: 0.333333rem calc(0.75rem - 1px);
+    }
+    .alert-app-level {
+      .alert-items {
+        padding-top: 0.76rem;
+        padding-bottom: 0.86rem;
+
+        .alert-item {
+          justify-content: left;
+        }
+      }
+      .alert-icon-wrapper {
+        margin-top: 0.17rem;
+        height: 1.2rem;
+      }
+      .close {
+        height: 3rem;
+        width: 2rem;
+
+        clr-icon {
+          margin-top: -0.268333rem;
+        }
+      }
+    }
+    .alert {
+      font-size: 0.59rem;
+
+      &-icon {
+        height: 1.4rem;
+        width: 1.4rem;
+      }
+
+      .close {
+        flex: 0 0 2.266667rem;
+
+        clr-icon {
+          height: calc(1.3rem - 1px);
+          width: calc(1.3rem - 1px);
+        }
+      }
+    }
   }
 }

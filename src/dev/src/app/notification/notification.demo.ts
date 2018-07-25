@@ -5,6 +5,7 @@
  */
 import { Component, ViewChildren, QueryList } from '@angular/core';
 import { ClrNotification, NotificationService } from '@porscheinformatik/clr-addons';
+
 @Component({
   selector: 'clr-notification-demo',
   styleUrls: ['./notification.demo.scss'],

@@ -1,6 +1,6 @@
 <ng-container *ngIf="_open">
   <div class="notification__wrapper" [@slideDown]="state" [@fade]>
-    <div class="progress-static top" *ngIf="progressbar">
+    <div class="progress-static top" [ngClass]="_progressType" *ngIf="progressbar">
         <div class="progress-meter" [attr.data-value]="_progressStatus"></div>
     </div>
     <clr-alert
