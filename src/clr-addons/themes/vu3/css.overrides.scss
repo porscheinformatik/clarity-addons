@@ -40,17 +40,9 @@ header,
 .card {
   border-radius: $vu3-border-radius;
 
-  &.card-active {
-    border-left-color: $turquoise;
-
-    &.clickable:hover {
-      border-left: 0.25rem solid $turquoise;
-    }
-  }
-
   &.clickable:hover {
-    box-shadow: 0 0.125rem 0 0 $turquoise;
-    border-color: $turquoise;
+    box-shadow: 0 0.125rem 0 0 $clr-card-active-border-color;
+    border-color: $clr-card-active-border-color;
   }
 }
 

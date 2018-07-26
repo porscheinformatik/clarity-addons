@@ -1,6 +1,7 @@
 body {
   color: $clr-app-font-color-primary;
 }
+
 .header-hamburger-trigger,
 .header-overflow-trigger {
   & > span,
@@ -43,17 +44,9 @@ header,
 }
 
 .card {
-  &.card-active {
-    border-left-color: $turquoise;
-
-    &.clickable:hover {
-      border-left: 0.25rem solid $turquoise;
-    }
-  }
-
   &.clickable:hover {
-    box-shadow: 0 0.125rem 0 0 $turquoise;
-    border-color: $turquoise;
+    box-shadow: 0 0.125rem 0 0 $clr-card-active-border-color;
+    border-color: $clr-card-active-border-color;
   }
 }
 
