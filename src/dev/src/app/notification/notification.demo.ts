@@ -30,7 +30,7 @@ export class NotificationDemo {
     alert('Button was clicked');
   }
 
-  openNotify(index): void {
-    this.notificationService.openNotification(index);
+  openNotify(id): void {
+    this.notificationService.openNotification(id);
   }
 }

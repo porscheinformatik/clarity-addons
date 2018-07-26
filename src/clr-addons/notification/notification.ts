@@ -43,6 +43,7 @@ export class ClrNotification implements OnInit {
   translate = 0;
   _progressType: string = 'info';
 
+  @Input('clrId') id: string = '';
   @Input('clrTimeout') timeout: number = 2000;
   @Input('clrNotificationType') notificationType: string = 'info'; // "info", "warning", "success" and "danger"
   @Input('clrDismissable') dismissable: boolean = false;
