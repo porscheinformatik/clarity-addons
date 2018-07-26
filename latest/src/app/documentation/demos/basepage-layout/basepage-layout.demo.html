@@ -1,16 +1,31 @@
 <clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
     <article>
 
-        <h5 class="component-summary" id="generic-pager-header">This is a base page layout</h5>
-
-        Live-Demo: <a class="nav-link" routerLink="/full-page-layouts/basepage-layout" routerLinkActive="active"><span class="nav-text">Base Page Layout</span></a>
+        <h5 class="component-summary" id="generic-pager-header">The Base Pagelayout provides the most fundamental navigation and content elements.</h5>
 
         <div id="design-guidelines">
-            <h3>Style</h3>
+            <h3>Design Guidelines</h3>
+            <p>All pages in an application should follow a common layout structure to ensure a consistent user experience across applications.</p>
+            <p>The Base Pagelayout consists of:</p>
+              <ul class="list">
+                <li>Main Navigation</li><!-- TODO link to Main Navigation Group -->
+                <li>Pagetitle</li>
+                <li>Content Area</li>
+              </ul>
+
+              <p>Futher components may complete the pagelayout as needed:</p>
+              <ul class="list">
+                <li>Command bar</li><!-- TODO add links -->
+                <li>Sidebar</li>
+                <li>Content-Panel</li>
+              </ul>
+
         </div>
 
         <div id="code-examples">
             <h3 id="examples">Code &amp; Examples</h3>
+            <p>Live-Demo: <a class="nav-link" routerLink="/full-page-layouts/basepage-layout" routerLinkActive="active"><span class="nav-text">Base Pagelayout</span></a></p>
         </div>
     </article>
+
 </clr-doc-wrapper>
