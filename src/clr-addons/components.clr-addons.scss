@@ -25,3 +25,14 @@
     z-index: map-get($clr-layers, sidepanel) - 2;
   }
 }
+
+// Add class card-active
+.card {
+  &.card-active {
+    border-left: 0.25rem solid rgba(0, 148, 210, 1);
+
+    &.clickable:hover {
+      border-left: 0.25rem solid rgba(0, 148, 210, 1);
+    }
+  }
+}

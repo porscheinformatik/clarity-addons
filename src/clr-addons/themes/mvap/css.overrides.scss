@@ -42,17 +42,19 @@ header,
   border-color: $clr-gray;
 }
 
-.card.card-active {
-  border-left: $clr-card-active-border-width solid $clr-card-active-border-color;
-}
+.card {
+  &.card-active {
+    border-left-color: $turquoise;
 
-.card.clickable:hover {
-  box-shadow: 0 0.125rem 0 0 $turquoise;
-  border-color: $turquoise;
-}
+    &.clickable:hover {
+      border-left: 0.25rem solid $turquoise;
+    }
+  }
 
-.card.card-active.clickable:hover {
-  border-left: $clr-card-active-border-width solid $clr-card-active-border-color;
+  &.clickable:hover {
+    box-shadow: 0 0.125rem 0 0 $turquoise;
+    border-color: $turquoise;
+  }
 }
 
 .datagrid .datagrid-column {
