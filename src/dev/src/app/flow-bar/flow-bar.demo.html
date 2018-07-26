@@ -1,0 +1,21 @@
+<!--
+  ~ Copyright (c) 2018 Porsche Informatik. All Rights Reserved.
+  ~ This software is released under MIT license.
+  ~ The full license information can be found in LICENSE in the root directory of this project.
+  -->
+
+<div class="clr-flex-fill">
+  <div class="clr-row">
+    <div class="clr-col">
+      <h2>Flow Bar Title</h2>
+    </div>
+  </div>
+  <div class="clr-row">
+    <clr-flow-bar [clrSteps]="flowBarSteps"
+                  [clrActiveStep]="myActiveStep"
+                  (clrActiveStepChanged)="activeStepChanged($event)"
+                  class="clr-col"></clr-flow-bar>
+  </div>
+  <button class="btn btn-primary" (click)="previous()" [disabled]="!clrFlowBar.isPreviousAvailable()">Previous</button>
+  <button class="btn btn-primary" (click)="next()" [disabled]="!clrFlowBar.isNextAvailable()">Next</button>
+</div>

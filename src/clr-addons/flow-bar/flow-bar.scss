@@ -1,0 +1,30 @@
+@include exports('flow-bar.clr-addons') {
+  clr-flow-bar {
+    .nav {
+      box-shadow: 0 -0.125rem 0 $clr-nav-box-shadow-color inset;
+
+      .nav-link {
+        border: none;
+        padding: 0;
+
+        &:hover,
+        &.active {
+          box-shadow: 0 -0.125rem 0 $clr-nav-active-box-shadow-color inset;
+          transition: box-shadow 0.2s ease-in;
+          background-color: transparent;
+          font-weight: 700;
+        }
+
+        &:focus {
+          outline: none;
+        }
+
+        &.btn {
+          margin-bottom: 0;
+          margin-right: 0.5rem;
+          color: inherit;
+        }
+      }
+    }
+  }
+}

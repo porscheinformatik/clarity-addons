@@ -13,6 +13,7 @@ import { PagedSearchResultListDemo } from './paged-search-result-list/paged-sear
 import { CollapseExpandSectionDemo } from './collapse-expand-section/collapse-expand-section.demo';
 import { ContentPanelDemo } from './content-panel/content-panel.demo';
 import { BreadcrumbDemo } from './breadcrumb/breadcrumb.demo';
+import { FlowBarDemo } from './flow-bar/flow-bar.demo';
 import { CardsDemo } from './cards/cards.demo';
 
 export const APP_ROUTES: Routes = [
@@ -23,6 +24,7 @@ export const APP_ROUTES: Routes = [
   { path: 'paged-search-result-list', component: PagedSearchResultListDemo },
   { path: 'collapse-expand-section', component: CollapseExpandSectionDemo },
   { path: 'content-panel', component: ContentPanelDemo },
+  { path: 'flow-bar', component: FlowBarDemo },
   { path: 'breadcrumb', component: BreadcrumbDemo },
 ];
 

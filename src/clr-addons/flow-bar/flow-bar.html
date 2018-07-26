@@ -1,0 +1,11 @@
+<ul class="nav">
+  <ng-container *ngFor="let step of _steps; let index = index; let last = last">
+    <button class="btn nav-link"
+            [disabled]="!step.enabled"
+            [class.active]="step === _activeStep"
+            (click)="setActiveStep(step)">
+      {{index + 1}}. {{step.title}}
+      <clr-icon shape="caret right" *ngIf="!last"></clr-icon>
+    </button>
+  </ng-container>
+</ul>
