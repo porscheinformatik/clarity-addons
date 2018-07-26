@@ -10,7 +10,7 @@ import { timer, Subscription } from 'rxjs';
 import { interval } from 'rxjs';
 import { takeWhile } from 'rxjs/operators';
 
-const initState = { value: 'moveDown', params: { percents: 0 } };
+const initState = { value: 'currentPositon', params: { percents: 0 } };
 
 @Component({
   selector: 'clr-notification',
@@ -38,7 +38,7 @@ export class ClrNotification implements OnInit {
   _progressStatus: number = 0;
   _step: number = 1;
   _timer: Subscription;
-  state: any = { value: 'currentPositon', params: { percents: 0 } };
+  state: any = initState;
   translate = 0;
   _progressType: string = 'info';
 
@@ -79,7 +79,7 @@ export class ClrNotification implements OnInit {
     if (!this._open) {
       return;
     }
-    this.state = { value: 'currentPositon', params: { percents: 0 } };
+    this.state = initState;
     this.translate = 0;
     this._timer.unsubscribe();
     this._open = false;
