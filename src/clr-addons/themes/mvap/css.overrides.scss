@@ -1,6 +1,7 @@
 body {
   color: $clr-app-font-color-primary;
 }
+
 .header-hamburger-trigger,
 .header-overflow-trigger {
   & > span,
@@ -42,8 +43,11 @@ header,
   border-color: $clr-gray;
 }
 
-.card.clickable:hover {
-  box-shadow: 0 0.125rem 0 0 $turquoise;
+.card {
+  &.clickable:hover {
+    box-shadow: 0 0.125rem 0 0 $clr-card-active-border-color;
+    border-color: $clr-card-active-border-color;
+  }
 }
 
 .datagrid .datagrid-column {

@@ -13,9 +13,11 @@ import { PagedSearchResultListDemo } from './paged-search-result-list/paged-sear
 import { CollapseExpandSectionDemo } from './collapse-expand-section/collapse-expand-section.demo';
 import { ContentPanelDemo } from './content-panel/content-panel.demo';
 import { BreadcrumbDemo } from './breadcrumb/breadcrumb.demo';
+import { CardsDemo } from './cards/cards.demo';
 
 export const APP_ROUTES: Routes = [
   { path: '', component: LandingComponent },
+  { path: 'cards', component: CardsDemo },
   { path: 'view-edit-section', component: ViewEditSectionDemo },
   { path: 'pager', component: PagerDemo },
   { path: 'paged-search-result-list', component: PagedSearchResultListDemo },

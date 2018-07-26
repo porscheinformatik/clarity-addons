@@ -6,6 +6,9 @@
 @import './content-panel/content-panel';
 @import './breadcrumb/breadcrumb';
 
+$clr-card-active-border-color: rgba(0, 148, 210, 1) !default;
+$clr-card-active-border-width: 0.25rem !default;
+
 .content-header {
   border-bottom: $clr-global-borderwidth solid $clr-light-midtone-gray;
   padding: 0.5rem 1rem 0.25rem 1rem;
@@ -23,5 +26,16 @@
 
   .dropdown-menu {
     z-index: map-get($clr-layers, sidepanel) - 2;
+  }
+}
+
+// Add class card-active
+.card {
+  &.card-active {
+    border-left: $clr-card-active-border-width solid $clr-card-active-border-color;
+
+    &.clickable:hover {
+      border-left: $clr-card-active-border-width solid $clr-card-active-border-color;
+    }
   }
 }

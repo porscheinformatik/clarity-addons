@@ -39,6 +39,11 @@ header,
 
 .card {
   border-radius: $vu3-border-radius;
+
+  &.clickable:hover {
+    box-shadow: 0 0.125rem 0 0 $clr-card-active-border-color;
+    border-color: $clr-card-active-border-color;
+  }
 }
 
 .card-img {
@@ -56,10 +61,6 @@ header,
   & > img {
     border-radius: $vu3-border-radius;
   }
-}
-
-.card.clickable:hover {
-  box-shadow: 0 0.125rem 0 0 $turquoise;
 }
 
 .progress.top > progress {
