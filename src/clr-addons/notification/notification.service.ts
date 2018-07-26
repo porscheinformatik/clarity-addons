@@ -15,12 +15,16 @@ export class NotificationService {
     const notification = this.elements.find(el => el.id === id);
     if (notification) {
       if (!notification._open) {
+        const openNotifications = this.elements.filter(el => el._open);
+        const hasEmptySpace = openNotifications.length && openNotifications.every(el => el.translate >= 110);
+        if (!hasEmptySpace) {
+          openNotifications.forEach(_notification => {
+            if (_notification._open) {
+              _notification.moveDown();
+            }
+          });
+        }
         notification.open();
-        this.elements.forEach((_notification, i) => {
-          if (_notification._open && id !== _notification.id) {
-            _notification.moveDown();
-          }
-        });
       }
     }
   }
