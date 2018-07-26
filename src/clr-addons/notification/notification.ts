@@ -17,16 +17,15 @@ const initState = { value: 'moveDown', params: { percents: 0 } };
   templateUrl: './notification.html',
   animations: [
     trigger('slideDown', [
-      transition(
-        ':enter',
-        [
-          style({ transform: 'translateY(-1000%)' }),
-          animate('0.7s', style({ transform: 'translateY({{percents}}%)' })),
-        ],
-        { params: { percents: '0' } }
-      ),
+      transition(':enter', [
+        style({ transform: 'translateY(-1000%)' }),
+        animate('0.7s', style({ transform: 'translateY(0%)' })),
+      ]),
+    ]),
+    trigger('down', [
+      state('currentPosition', style({ transform: 'translateY({{percents}}%)' }), { params: { percents: '0' } }),
       state('moveDown', style({ transform: 'translateY({{percents}}%)' }), { params: { percents: '0' } }),
-      transition('* => moveDown', animate('200ms ease-in')),
+      transition('* => moveDown', animate('0.3s ease-in')),
     ]),
     trigger('fade', [transition(':leave', [animate('0.5s ease-in-out', style({ opacity: 0 }))])]),
   ],
@@ -39,7 +38,7 @@ export class ClrNotification implements OnInit {
   _progressStatus: number = 0;
   _step: number = 1;
   _timer: Subscription;
-  state: any = initState;
+  state: any = { value: 'currentPositon', params: { percents: 0 } };
   translate = 0;
   _progressType: string = 'info';
 
@@ -80,7 +79,7 @@ export class ClrNotification implements OnInit {
     if (!this._open) {
       return;
     }
-    this.state = initState;
+    this.state = { value: 'currentPositon', params: { percents: 0 } };
     this.translate = 0;
     this._timer.unsubscribe();
     this._open = false;
