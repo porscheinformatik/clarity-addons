@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, ViewChildren, QueryList  } from "@angular/core";
+import { Component  } from "@angular/core";
 import { ClarityDocComponent } from "../clarity-doc";
 // import { ClrNotification, NotificationService } from '@porscheinformatik/clr-addons';
 
