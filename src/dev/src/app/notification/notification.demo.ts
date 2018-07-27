@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component, ViewChildren, QueryList } from '@angular/core';
-import { ClrNotification, NotificationService } from '@porscheinformatik/clr-addons';
+import { ClrNotification, ClrNotificationService } from '@porscheinformatik/clr-addons';
 
 @Component({
   selector: 'clr-notification-demo',
@@ -14,12 +14,12 @@ import { ClrNotification, NotificationService } from '@porscheinformatik/clr-add
 export class NotificationDemo {
   @ViewChildren(ClrNotification) clrNotifications: QueryList<ClrNotification>;
 
-  constructor(private notificationService: NotificationService) {}
+  constructor(private clrNotificationService: ClrNotificationService) {}
 
   ngOnInit() {}
 
   ngAfterViewInit() {
-    this.notificationService.setElements(this.clrNotifications.toArray());
+    this.clrNotificationService.setElements(this.clrNotifications.toArray());
   }
 
   onClose(): void {
@@ -31,6 +31,6 @@ export class NotificationDemo {
   }
 
   openNotify(id): void {
-    this.notificationService.openNotification(id);
+    this.clrNotificationService.openNotification(id);
   }
 }

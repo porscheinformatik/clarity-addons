@@ -6,7 +6,7 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 
 @Injectable()
-export class NotificationService {
+export class ClrNotificationService {
   @Output() change: EventEmitter<any> = new EventEmitter();
 
   elements = [];
