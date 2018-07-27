@@ -6,8 +6,14 @@
     overflow: hidden;
   }
 
+  .content-panel-outer-wrapper {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+  }
+
   @media screen and (min-width: map-get($grid-breakpoints, xl)) {
-    .content-panel-outer-content {
+    .content-panel-outer-wrapper {
       // The content next to the panel always has order = 2
       order: 2;
     }

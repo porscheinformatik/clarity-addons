@@ -7,10 +7,10 @@ import { Component } from '@angular/core';
 import { ClrFlowBarStep } from '../../../../clr-addons/flow-bar';
 
 @Component({
-  selector: 'clr-flow-bar-demo',
-  templateUrl: './flow-bar.demo.html',
+  selector: 'clr-flow-bar-content-panel-demo',
+  templateUrl: './flow-bar-content-panel.demo.html',
 })
-export class FlowBarDemo {
+export class FlowBarContentPanelDemo {
   myActiveStep: ClrFlowBarStep;
   flowBarSteps: ClrFlowBarStep[] = [
     { title: 'Fahrzeug', enabled: true },

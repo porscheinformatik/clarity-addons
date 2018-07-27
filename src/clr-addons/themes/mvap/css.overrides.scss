@@ -45,8 +45,8 @@ header,
 
 .card {
   &.clickable:hover {
-    box-shadow: 0 0.125rem 0 0 $clr-card-active-border-color;
-    border-color: $clr-card-active-border-color;
+    box-shadow: 0 0.125rem 0 0 $clr-card-active-box-shadow-color;
+    border-color: $clr-card-active-box-shadow-color;
   }
 }
 

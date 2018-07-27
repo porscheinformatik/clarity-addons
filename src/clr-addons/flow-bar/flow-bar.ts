@@ -6,7 +6,7 @@
 
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-export interface FlowBarStep {
+export interface ClrFlowBarStep {
   title: string;
   enabled: boolean;
 }
@@ -14,30 +14,44 @@ export interface FlowBarStep {
 @Component({
   selector: 'clr-flow-bar',
   templateUrl: './flow-bar.html',
+  host: {
+    '[class.flow-bar]': 'true',
+  },
 })
 export class ClrFlowBar implements OnInit {
-  @Input('clrSteps') _steps: FlowBarStep[] = [];
-  @Input('clrActiveStep') _activeStep: FlowBarStep;
+  private _activeStep: ClrFlowBarStep;
 
-  @Output('clrActiveStepChanged') _activeStepChanged: EventEmitter<FlowBarStep> = new EventEmitter(false);
+  @Input('clrSteps') _steps: ClrFlowBarStep[] = [];
+  @Output('clrActiveStepChange') _activeStepChange: EventEmitter<ClrFlowBarStep> = new EventEmitter(false);
+
+  @Input('clrActiveStep')
+  get activeStep() {
+    return this._activeStep;
+  }
+
+  set activeStep(step: ClrFlowBarStep) {
+    this._activeStep = step;
+    this._activeStepChange.emit(this._activeStep);
+  }
 
   ngOnInit() {
-    // If no active step is set as input, select the first one
-    // If the active step input is not enabled, select the first one
+    // If no active step is set as input or the active step is not enabled, select the first enabled step
     if (!this._activeStep || !this._activeStep.enabled) {
-      this._activeStep = this._steps[0];
+      this._activeStep = this._steps.find(step => {
+        return step.enabled;
+      });
     }
   }
 
   public previous(): void {
     if (this.isPreviousAvailable()) {
-      this.setActiveStep(this._steps[this.getCurrentIndex() - 1]);
+      this.activeStep = this._steps[this.getCurrentIndex() - 1];
     }
   }
 
   public next(): void {
     if (this.isNextAvailable()) {
-      this.setActiveStep(this._steps[this.getCurrentIndex() + 1]);
+      this.activeStep = this._steps[this.getCurrentIndex() + 1];
     }
   }
 
@@ -51,9 +65,8 @@ export class ClrFlowBar implements OnInit {
     return index < this._steps.length - 1 && this._steps[index + 1].enabled;
   }
 
-  private setActiveStep(step: FlowBarStep): void {
-    this._activeStep = step;
-    this._activeStepChanged.emit(this._activeStep);
+  public isLastStep(): boolean {
+    return this.getCurrentIndex() === this._steps.length - 1;
   }
 
   private getCurrentIndex(): number {

@@ -7,36 +7,58 @@
 @import './breadcrumb/breadcrumb';
 @import './flow-bar/flow-bar';
 
-$clr-card-active-border-color: rgba(0, 148, 210, 1) !default;
-$clr-card-active-border-width: 0.25rem !default;
+$clr-card-active-box-shadow-color: rgba(0, 148, 210, 1) !default;
 
 .content-header {
-  border-bottom: $clr-global-borderwidth solid $clr-light-midtone-gray;
-  padding: 0.5rem 1rem 0.25rem 1rem;
+  padding: 0.5rem 1rem 0 1rem;
   display: flex;
-  flex-shrink: 0;
-}
+  flex: 0 0 auto;
 
-.content-header > h2 {
-  margin-top: 0;
-}
+  h2 {
+    margin-top: 0;
+  }
 
-.command-bar {
-  flex: 1 0 auto;
-  justify-content: flex-end;
+  .command-bar {
+    display: flex;
+    flex: 1 0 auto;
+    justify-content: flex-end;
+    align-items: flex-start;
 
-  .dropdown-menu {
-    z-index: map-get($clr-layers, sidepanel) - 2;
+    .dropdown-menu {
+      z-index: map-get($clr-layers, sidepanel) - 2;
+    }
+  }
+
+  // Only show the border if no flow-bar is between content header + content container, otherwise border is displayed by flow-bar
+  + .content-container {
+    border-bottom: $clr-global-borderwidth solid $clr-light-midtone-gray;
   }
 }
 
-// Add class card-active
+.content-container {
+  // Define the sticky footer css when inside a content-container
+  .content-area-footer {
+    border-top: $clr-global-borderwidth solid $clr-light-midtone-gray;
+    display: flex;
+    flex: 0 0 auto;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0.25rem 1rem 0.5rem 1rem;
+    background-color: $clr-global-app-background;
+  }
+}
+
+// Add class card-active and make it not clickable even if clickable class is applied
 .card {
   &.card-active {
-    border-left: $clr-card-active-border-width solid $clr-card-active-border-color;
+    box-shadow: -0.1667rem 0 0 0 $clr-card-active-box-shadow-color;
 
     &.clickable:hover {
-      border-left: $clr-card-active-border-width solid $clr-card-active-border-color;
+      cursor: default;
+      transform: none;
+      transition: none;
+      border: $clr-card-border;
+      box-shadow: -0.1667rem 0 0 0 $clr-card-active-box-shadow-color;
     }
   }
 }
