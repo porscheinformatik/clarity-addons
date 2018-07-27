@@ -19,7 +19,7 @@ export interface ClrFlowBarStep {
   },
 })
 export class ClrFlowBar implements OnInit {
-  private _activeStep: ClrFlowBarStep;
+  _activeStep: ClrFlowBarStep;
 
   @Input('clrSteps') _steps: ClrFlowBarStep[] = [];
   @Output('clrActiveStepChange') _activeStepChange: EventEmitter<ClrFlowBarStep> = new EventEmitter(false);
