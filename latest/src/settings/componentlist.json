@@ -56,7 +56,7 @@
         },
         {
             "url": "basepage-layout",
-            "text": "Base Page Layout",
+            "text": "Base Pagelayout",
             "type": "pagelayouts",
             "ux": -1,
             "ui": -1,
@@ -68,7 +68,7 @@
         },
         {
             "url": "sidebarpage-layout",
-            "text": "Sidebar Page Layout",
+            "text": "Sidebar Pagelayout",
             "type": "pagelayouts",
             "ux": -1,
             "ui": -1,
@@ -80,8 +80,8 @@
         },
         {
             "url": "content-panel-layout",
-            "text": "Content Panel Layout",
-            "type": "pagelayouts",
+            "text": "Content Panel",
+            "type": "component",
             "ux": -1,
             "ui": -1,
             "core": -1,
@@ -92,7 +92,7 @@
         },
         {
             "url": "main-nav-group",
-            "text": "Main Navigation Group",
+            "text": "Main Navigation",
             "type": "pagelayouts",
             "ux": 20,
             "ui": 20,

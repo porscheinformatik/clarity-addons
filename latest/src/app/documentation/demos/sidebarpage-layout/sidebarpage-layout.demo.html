@@ -1,16 +1,33 @@
 <clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
-    <article>
 
-        <h5 class="component-summary" id="generic-pager-header">This is a sidebar page layout</h5>
+  <article>
 
-        Live-Demo: <a class="nav-link" routerLink="/full-page-layouts/sidebarpage-layout" routerLinkActive="active"><span class="nav-text">Sidebar Page Layout</span></a>
+    <h5 class="component-summary" id="generic-pager-header">The Sidebar Pagelayout enhances the Basepage Layout with a vertical navigation sidebar.</h5>
 
-        <div id="design-guidelines">
-            <h3>Style</h3>
-        </div>
+    <div id="design-guidelines">
+        <h3>Design Guidelines</h3>
+        <p>All pages in an application should follow a common layout structure to ensure a consistent user experience across applications.</p>
+        <p>The Sidebar Pagelayout consists of:</p>
+          <ul class="list">
+            <li>Main Navigation</li><!-- TODO link to Main Navigation Group -->
+            <li>Pagetitle</li>
+            <li>Content Area</li>
+            <li>Sidebar</li>
+          </ul>
 
-        <div id="code-examples">
-            <h3 id="examples">Code &amp; Examples</h3>
-        </div>
-    </article>
+          <h3>Use when</h3>
+          <p>Use the Sidebar Pagelayout when you have:</p>
+          <ul class="list">
+            <li>Lots of content on one page, that can be junked in logical seperated pages </li>
+            <li>If you need a summary or overview-page, this should be the first element in the sidebar </li>
+          </ul>
+
+    </div>
+
+    <div id="code-examples">
+        <h3 id="examples">Code &amp; Examples</h3>
+        <p>Live-Demo: <a class="nav-link" routerLink="/full-page-layouts/sidebarpage-layout" routerLinkActive="active"><span class="nav-text">Sidebar Page Layout</span></a></p>
+    </div>
+  </article>
+
 </clr-doc-wrapper>
