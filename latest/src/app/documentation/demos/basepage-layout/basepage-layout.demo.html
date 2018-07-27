@@ -5,26 +5,50 @@
 
         <div id="design-guidelines">
             <h3>Design Guidelines</h3>
-            <p>All pages in an application should follow a common layout structure to ensure a consistent user experience across applications.</p>
+            <p>All pages in an application should follow a common layout structure to ensure a consistent user experience across
+                applications.
+            </p>
             <p>The Base Pagelayout consists of:</p>
-              <ul class="list">
-                <li>Main Navigation</li><!-- TODO link to Main Navigation Group -->
+            <ul class="list">
+                <!-- TODO link to Main Navigation Group -->
+                <li>Main Navigation</li>
                 <li>Pagetitle</li>
                 <li>Content Area</li>
-              </ul>
+            </ul>
 
-              <p>Futher components may complete the pagelayout as needed:</p>
-              <ul class="list">
-                <li>Command bar</li><!-- TODO add links -->
+            <p>Further components may complete the pagelayout as needed:</p>
+            <ul class="list">
+                <!-- TODO add links -->
+                <li>Command bar</li>
                 <li>Sidebar</li>
                 <li>Content-Panel</li>
-              </ul>
+            </ul>
 
+            <h4>Command Bar</h4>
+            <ul class="list">
+                <li>The Command Bar comprises the most common users tasks.</li>
+                <li>The most important ones are shown, additional ones are accessible in an overflow-menu.</li>
+                <li>Other commands, either less common ones or where the proximity to an ui element is crucial, are provided
+                    within the content area.</li>
+            </ul>
         </div>
 
         <div id="code-examples">
             <h3 id="examples">Code &amp; Examples</h3>
-            <p>Live-Demo: <a class="nav-link" routerLink="/full-page-layouts/basepage-layout" routerLinkActive="active"><span class="nav-text">Base Pagelayout</span></a></p>
+
+            <h4>Demo</h4>
+            <div>
+                <clr-icon shape="display"></clr-icon>&nbsp;
+                <a class="nav-link" routerLink="/full-page-layouts/basepage-layout" routerLinkActive="active">
+                    <span class="nav-text">Base Pagelayout</span>
+                </a>
+            </div>
+            <div>
+                <clr-icon shape="display"></clr-icon>&nbsp;
+                <a class="nav-link" routerLink="/full-page-layouts/basepage-layout-command" routerLinkActive="active">
+                    <span class="nav-text">Command bar</span>
+                </a>
+            </div>
         </div>
     </article>
 
