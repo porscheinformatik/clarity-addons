@@ -164,6 +164,60 @@
             <div id="code-examples">
                 <h3 id="examples">Code &amp; Examples</h3>
                 <clr-code-snippet [clrCode]="codeExample"></clr-code-snippet>
+                <!-- <div class="btn-group">
+                    <button class="btn" (click)="openNotify('info')">Show Info Notification</button>
+                    <button class="btn" (click)="openNotify('warning')">Show Warning Notification</button>
+                    <button class="btn" (click)="openNotify('success')">Show Success Notification</button>
+                    <button class="btn" (click)="openNotify('danger')">Show Danger Notification</button>
+                </div>
+                <clr-notification
+                    [clrTimeout]="50000"
+                    [clrNotificationType]="'info'"
+                    [clrDismissable]="true"
+                    [clrProgressbar]="true"
+                    (clrClosed)="onClose()"
+                    [clrId]="'info'">
+                    <ng-container clr-notification-message>
+                        Some Information
+                        <button class="btn btn-info-outline" (click)="showAlert()">Show Alert</button>
+                    </ng-container>
+                </clr-notification>
+                <clr-notification
+                    [clrTimeout]="40000"
+                    [clrNotificationType]="'warning'"
+                    [clrDismissable]="true"
+                    [clrProgressbar]="true"
+                    (clrClosed)="onClose()"
+                    [clrId]="'warning'">
+                    <ng-container clr-notification-message>
+                        Warning
+                        <button class="btn btn-info-outline" (click)="showAlert()">Show Alert</button>
+                    </ng-container>
+                </clr-notification>
+                <clr-notification
+                    [clrTimeout]="30000"
+                    [clrNotificationType]="'success'"
+                    [clrDismissable]="true"
+                    [clrProgressbar]="true"
+                    (clrClosed)="onClose()"
+                    [clrId]="'success'">
+                    <ng-container clr-notification-message>
+                        Success
+                        <button class="btn btn-info-outline" (click)="showAlert()">Show Alert</button>
+                    </ng-container>
+                </clr-notification>
+                <clr-notification
+                    [clrTimeout]="20000"
+                    [clrNotificationType]="'danger'"
+                    [clrDismissable]="true"
+                    [clrProgressbar]="true"
+                    (clrClosed)="onClose()"
+                    [clrId]="'danger'">
+                    <ng-container clr-notification-message>
+                        Danger
+                        <button class="btn btn-info-outline" (click)="showAlert()">Show Alert</button>
+                    </ng-container>
+                </clr-notification> -->
             </div>
         </article>
     </clr-doc-wrapper>
