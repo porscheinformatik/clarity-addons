@@ -11,11 +11,11 @@
       width: 100%;
 
       .flow-bar-step {
-        box-shadow: 0 -0.125rem 0 $clr-nav-box-shadow-color inset;
+        box-shadow: 0 -0.1667rem 0 $clr-nav-box-shadow-color inset;
 
         &:hover,
         &.active {
-          box-shadow: 0 -0.125rem 0 $clr-nav-active-box-shadow-color inset;
+          box-shadow: 0 -0.1667rem 0 $clr-nav-active-box-shadow-color inset;
           transition: box-shadow 0.2s ease-in;
         }
 

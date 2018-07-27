@@ -22,7 +22,7 @@ $clr-card-active-box-shadow-color: rgba(0, 148, 210, 1) !default;
     display: flex;
     flex: 1 0 auto;
     justify-content: flex-end;
-    align-items: flex-start;
+    align-items: center;
 
     .dropdown-menu {
       z-index: map-get($clr-layers, sidepanel) - 2;
@@ -31,7 +31,7 @@ $clr-card-active-box-shadow-color: rgba(0, 148, 210, 1) !default;
 
   // Only show the border if no flow-bar is between content header + content container, otherwise border is displayed by flow-bar
   + .content-container {
-    border-bottom: $clr-global-borderwidth solid $clr-light-midtone-gray;
+    border-top: $clr-global-borderwidth solid $clr-light-midtone-gray;
   }
 }
 
@@ -43,7 +43,7 @@ $clr-card-active-box-shadow-color: rgba(0, 148, 210, 1) !default;
     flex: 0 0 auto;
     justify-content: flex-end;
     align-items: center;
-    padding: 0.25rem 1rem 0.5rem 1rem;
+    padding: 0.25rem 1rem;
     background-color: $clr-global-app-background;
   }
 }
