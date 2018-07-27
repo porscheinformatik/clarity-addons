@@ -28,8 +28,8 @@ export class ClrNotificationService {
   openNotification(id) {
     const notification = this.elements.find(el => el.id === id);
     if (notification) {
-      if (!notification._open) {
-        const openNotifications = this.elements.filter(el => el._open);
+      if (!notification.isOpen()) {
+        const openNotifications = this.elements.filter(el => el.isOpen());
         const hasEmptySpace = openNotifications.length && openNotifications.every(el => el.translate >= 110);
         if (!hasEmptySpace) {
           openNotifications.forEach(el => el.moveDown());

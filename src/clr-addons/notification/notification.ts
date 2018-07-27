@@ -36,13 +36,13 @@ const initState = { value: 'currentPositon', params: { percents: 0 } };
   },
 })
 export class ClrNotification implements OnInit {
-  _open: boolean = false;
-  _progressStatus: number = 0;
-  _step: number = 1;
-  _timer: Subscription;
-  state: any = initState;
-  translate = 0;
-  _progressType: string = 'info';
+  private _open: boolean = false;
+  private _progressStatus: number = 0;
+  private _step: number = 1;
+  private _timer: Subscription;
+  private _state: any = initState;
+  private _translate = 0;
+  private _progressType: string = 'info';
 
   @Input('clrId') id: string = '';
   @Input('clrTimeout') timeout: number = 2000;
@@ -58,7 +58,11 @@ export class ClrNotification implements OnInit {
 
   private setCurrentPosition() {
     // Change animation state to currentPosition after 300 ms
-    timer(300).subscribe(() => (this.state = { value: 'currentPosition', params: { percents: this.translate } }));
+    timer(300).subscribe(() => (this._state = { value: 'currentPosition', params: { percents: this._translate } }));
+  }
+
+  get translate() {
+    return this._translate;
   }
 
   public isOpen(): boolean {
@@ -70,8 +74,8 @@ export class ClrNotification implements OnInit {
       return;
     }
     this._open = true;
-    this.translate = 0;
-    this.state = initState;
+    this._translate = 0;
+    this._state = initState;
     if (this.progressbar) {
       interval((this.timeout - 100) / (100 / this._step))
         .pipe(takeWhile(() => this._open === true))
@@ -95,14 +99,14 @@ export class ClrNotification implements OnInit {
   }
 
   public moveDown(): void {
-    this.translate += 110;
-    this.state = { value: 'moveDown', params: { percents: this.translate } };
+    this._translate += 110;
+    this._state = { value: 'moveDown', params: { percents: this._translate } };
     this.setCurrentPosition();
   }
 
   public moveUp(): void {
-    this.translate -= 110;
-    this.state = { value: 'moveUp', params: { percents: this.translate } };
+    this._translate -= 110;
+    this._state = { value: 'moveUp', params: { percents: this._translate } };
     this.setCurrentPosition();
   }
 
