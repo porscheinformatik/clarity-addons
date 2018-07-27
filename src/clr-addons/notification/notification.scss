@@ -2,7 +2,7 @@
   .notification {
     &__wrapper {
       position: fixed;
-      z-index: 10000;
+      z-index: map-get($clr-layers, tooltips) + 1;
       top: 36px;
       width: 400px;
       left: 90px;
