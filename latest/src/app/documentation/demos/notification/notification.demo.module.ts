@@ -6,6 +6,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ClarityModule } from "@clr/angular";
+import { ClrAddonsModule } from "@porscheinformatik/clr-addons";
 
 import { NotificationDemo } from "./notification.demo";
 import { DocWrapperModule } from "../_doc-wrapper/doc-wrapper.module";
@@ -16,6 +17,7 @@ import { UtilsModule } from "../../../utils/utils.module";
     imports: [
         CommonModule,
         ClarityModule,
+        ClrAddonsModule,
         UtilsModule,
         DocWrapperModule,
         RouterModule.forChild([{ path: "", component: NotificationDemo }])
