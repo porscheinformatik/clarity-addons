@@ -36,13 +36,18 @@ const initState = { value: 'currentPositon', params: { percents: 0 } };
   },
 })
 export class ClrNotification implements OnInit {
-  private _open: boolean = false;
-  private _progressStatus: number = 0;
-  private _step: number = 1;
-  private _timer: Subscription;
-  private _state: any = initState;
+  progressStatus: number = 0;
+  progressType: string = 'info';
+
+  private opened: boolean = false;
+  private step: number = 1;
+  private timer: Subscription;
+  private state: any = initState;
+
   private _translate = 0;
-  private _progressType: string = 'info';
+  get translate() {
+    return this._translate;
+  }
 
   @Input('clrId') id: string = '';
   @Input('clrTimeout') timeout: number = 2000;
@@ -53,65 +58,61 @@ export class ClrNotification implements OnInit {
   @Output('clrClosed') closed: EventEmitter<any> = new EventEmitter();
 
   ngOnInit() {
-    this._progressType = this.notificationType === 'warning' ? 'danger' : this.notificationType;
+    this.progressType = this.notificationType === 'warning' ? 'danger' : this.notificationType;
   }
 
   private setCurrentPosition() {
     // Change animation state to currentPosition after 300 ms
-    timer(300).subscribe(() => (this._state = { value: 'currentPosition', params: { percents: this._translate } }));
-  }
-
-  get translate() {
-    return this._translate;
+    timer(300).subscribe(() => (this.state = { value: 'currentPosition', params: { percents: this._translate } }));
   }
 
   public isOpen(): boolean {
-    return this._open;
+    return this.opened;
   }
 
   public open(): void {
-    if (this._open) {
+    if (this.opened) {
       return;
     }
-    this._open = true;
+    this.opened = true;
     this._translate = 0;
-    this._state = initState;
+    this.state = initState;
     if (this.progressbar) {
-      interval((this.timeout - 100) / (100 / this._step))
-        .pipe(takeWhile(() => this._open === true))
+      interval((this.timeout - 100) / (100 / this.step))
+        .pipe(takeWhile(() => this.opened === true))
         .subscribe(() => this.updateProgressStatus());
     }
-    this._timer = timer(this.timeout).subscribe(() => this.close());
+    this.timer = timer(this.timeout).subscribe(() => this.close());
   }
 
   public updateProgressStatus(): void {
-    this._progressStatus += this._step;
+    this.progressStatus += this.step;
   }
 
   public close(): void {
-    if (!this._open) {
+    if (!this.opened) {
       return;
     }
-    this._timer.unsubscribe();
-    this._open = false;
-    this._progressStatus = 0;
+    this.timer.unsubscribe();
+    this.opened = false;
+    this.progressStatus = 0;
     this.closed.emit();
   }
 
   public moveDown(): void {
     this._translate += 110;
-    this._state = { value: 'moveDown', params: { percents: this._translate } };
+    this.state = { value: 'moveDown', params: { percents: this._translate } };
     this.setCurrentPosition();
   }
 
   public moveUp(): void {
     this._translate -= 110;
-    this._state = { value: 'moveUp', params: { percents: this._translate } };
+    this.state = { value: 'moveUp', params: { percents: this._translate } };
     this.setCurrentPosition();
   }
 
   public toggle(): void {
-    if (this._open) {
+    if (this.opened) {
       this.close();
     } else {
       this.open();
