@@ -19,7 +19,7 @@ export class NotificationDemo {
   ngOnInit() {}
 
   ngAfterViewInit() {
-    this.notificationService.elements = this.clrNotifications.toArray();
+    this.notificationService.setElements(this.clrNotifications.toArray());
   }
 
   onClose(): void {

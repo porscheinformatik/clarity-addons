@@ -24,8 +24,10 @@ const initState = { value: 'currentPositon', params: { percents: 0 } };
     ]),
     trigger('down', [
       state('currentPosition', style({ transform: 'translateY({{percents}}%)' }), { params: { percents: '0' } }),
+      state('moveUp', style({ transform: 'translateY({{percents}}%)' }), { params: { percents: '0' } }),
       state('moveDown', style({ transform: 'translateY({{percents}}%)' }), { params: { percents: '0' } }),
       transition('* => moveDown', animate('0.3s ease-in')),
+      transition('* => moveUp', animate('0.3s ease-in')),
     ]),
     trigger('fade', [transition(':leave', [animate('0.5s ease-in-out', style({ opacity: 0 }))])]),
   ],
@@ -54,6 +56,11 @@ export class ClrNotification implements OnInit {
     this._progressType = this.notificationType === 'warning' ? 'danger' : this.notificationType;
   }
 
+  private setCurrentPosition() {
+    // Change animation state to currentPosition after 300 ms
+    timer(300).subscribe(() => (this.state = { value: 'currentPosition', params: { percents: this.translate } }));
+  }
+
   public isOpen(): boolean {
     return this._open;
   }
@@ -63,6 +70,8 @@ export class ClrNotification implements OnInit {
       return;
     }
     this._open = true;
+    this.translate = 0;
+    this.state = initState;
     if (this.progressbar) {
       interval((this.timeout - 100) / (100 / this._step))
         .pipe(takeWhile(() => this._open === true))
@@ -79,8 +88,6 @@ export class ClrNotification implements OnInit {
     if (!this._open) {
       return;
     }
-    this.state = initState;
-    this.translate = 0;
     this._timer.unsubscribe();
     this._open = false;
     this._progressStatus = 0;
@@ -90,6 +97,13 @@ export class ClrNotification implements OnInit {
   public moveDown(): void {
     this.translate += 110;
     this.state = { value: 'moveDown', params: { percents: this.translate } };
+    this.setCurrentPosition();
+  }
+
+  public moveUp(): void {
+    this.translate -= 110;
+    this.state = { value: 'moveUp', params: { percents: this.translate } };
+    this.setCurrentPosition();
   }
 
   public toggle(): void {

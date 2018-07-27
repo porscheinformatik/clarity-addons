@@ -11,6 +11,22 @@ export class NotificationService {
 
   elements = [];
 
+  setElements(elements) {
+    this.elements = elements;
+    this.setEventListener();
+  }
+
+  setEventListener() {
+    this.elements.forEach(el => {
+      el.closed.subscribe(this.afterClose.bind(this, el));
+    });
+  }
+
+  afterClose(notification) {
+    const olderElems = this.elements.filter(el => el.translate > notification.translate);
+    olderElems.forEach(el => el.moveUp());
+  }
+
   openNotification(id) {
     const notification = this.elements.find(el => el.id === id);
     if (notification) {
@@ -18,11 +34,7 @@ export class NotificationService {
         const openNotifications = this.elements.filter(el => el._open);
         const hasEmptySpace = openNotifications.length && openNotifications.every(el => el.translate >= 110);
         if (!hasEmptySpace) {
-          openNotifications.forEach(_notification => {
-            if (_notification._open) {
-              _notification.moveDown();
-            }
-          });
+          openNotifications.forEach(el => el.moveDown());
         }
         notification.open();
       }
