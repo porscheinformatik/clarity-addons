@@ -21,6 +21,13 @@
       padding: 0.333333rem calc(0.75rem - 1px);
     }
     .alert-app-level {
+      font-size: 0.59rem;
+
+      &-icon {
+        height: 1.4rem;
+        width: 1.4rem;
+      }
+
       .alert-items {
         padding-top: 0.76rem;
         padding-bottom: 0.86rem;
@@ -34,26 +41,12 @@
         height: 1.2rem;
       }
       .close {
+        flex: 0 0 2.266667rem;
         height: 3rem;
         width: 2rem;
 
         clr-icon {
           margin-top: -0.268333rem;
-        }
-      }
-    }
-    .alert {
-      font-size: 0.59rem;
-
-      &-icon {
-        height: 1.4rem;
-        width: 1.4rem;
-      }
-
-      .close {
-        flex: 0 0 2.266667rem;
-
-        clr-icon {
           height: calc(1.3rem - 1px);
           width: calc(1.3rem - 1px);
         }
