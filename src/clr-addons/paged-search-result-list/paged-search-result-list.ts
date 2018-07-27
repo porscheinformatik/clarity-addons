@@ -39,6 +39,11 @@ export class ClrPagedSearchResultList {
   itemTemplate: TemplateRef<any>;
 
   /**
+   * The position of the pager
+   */
+  @Input('clrPagerPosition') clrPagerPosition: string = 'bottom';
+
+  /**
    * Triggered whenever a page change occurs.
    */
   @Output('clrPageChange') pageChange: EventEmitter<any> = new EventEmitter();
