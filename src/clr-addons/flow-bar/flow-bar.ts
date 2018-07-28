@@ -19,20 +19,9 @@ export interface ClrFlowBarStep {
   },
 })
 export class ClrFlowBar implements OnInit {
-  _activeStep: ClrFlowBarStep;
-
   @Input('clrSteps') _steps: ClrFlowBarStep[] = [];
+  @Input('clrActiveStep') _activeStep: ClrFlowBarStep;
   @Output('clrActiveStepChange') _activeStepChange: EventEmitter<ClrFlowBarStep> = new EventEmitter(false);
-
-  @Input('clrActiveStep')
-  get activeStep() {
-    return this._activeStep;
-  }
-
-  set activeStep(step: ClrFlowBarStep) {
-    this._activeStep = step;
-    this._activeStepChange.emit(this._activeStep);
-  }
 
   ngOnInit() {
     // If no active step is set as input or the active step is not enabled, select the first enabled step
@@ -43,15 +32,20 @@ export class ClrFlowBar implements OnInit {
     }
   }
 
+  public changeActiveStep(step: ClrFlowBarStep): void {
+    this._activeStep = step;
+    this._activeStepChange.emit(this._activeStep);
+  }
+
   public previous(): void {
     if (this.isPreviousAvailable()) {
-      this.activeStep = this._steps[this.getCurrentIndex() - 1];
+      this.changeActiveStep(this._steps[this.getCurrentIndex() - 1]);
     }
   }
 
   public next(): void {
     if (this.isNextAvailable()) {
-      this.activeStep = this._steps[this.getCurrentIndex() + 1];
+      this.changeActiveStep(this._steps[this.getCurrentIndex() + 1]);
     }
   }
 
