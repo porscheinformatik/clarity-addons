@@ -195,6 +195,7 @@
                 </form>
                 <div class="btn-group">
                     <button class="btn" (click)="openNotify('clr-notification')">Show Notification</button>
+                    <button class="btn" (click)="openNotify('clr-notif-danger')">Show Second Notification</button>
                 </div>
                 <clr-notification
                     [clrTimeout]="clrExampleTimeout"
@@ -206,6 +207,17 @@
                     <ng-container clr-notification-message>
                         Some Information
                         <button class="btn btn-info-outline" (click)="showAlert()">Show Alert</button>
+                    </ng-container>
+                </clr-notification>
+                <clr-notification
+                    [clrTimeout]="2000"
+                    [clrNotificationType]="'danger'"
+                    [clrDismissable]="true"
+                    [clrProgressbar]="true"
+                    (clrClosed)="onClose()"
+                    [clrId]="'clr-notif-danger'">
+                    <ng-container clr-notification-message>
+                        Danger
                     </ng-container>
                 </clr-notification>
                 <clr-modal [(clrModalOpen)]="basic">

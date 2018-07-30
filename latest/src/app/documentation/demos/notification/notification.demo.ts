@@ -58,7 +58,6 @@ export class NotificationDemo extends ClarityDocComponent {
     }
 
     showAlert(): void {
-        // alert('Button was clicked');
         this.basic = true;
     }
 
