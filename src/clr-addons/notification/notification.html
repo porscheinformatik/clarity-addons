@@ -1,4 +1,4 @@
-<ng-container *ngIf="opened">
+<ng-container *ngIf="isOpen()">
   <div class="notification__wrapper" [@slideDown] [@move]="state" [@fade]>
     <div class="progress-static top" [ngClass]="progressType" *ngIf="progressbar">
         <div class="progress-meter" [attr.data-value]="progressStatus"></div>
