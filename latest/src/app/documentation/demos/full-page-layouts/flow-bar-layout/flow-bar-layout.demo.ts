@@ -13,9 +13,9 @@ import { ClrFlowBarStep } from "@porscheinformatik/clr-addons";
 export class FlowBarLayoutDemo {
     activeStep: ClrFlowBarStep;
     flowBarSteps: ClrFlowBarStep[] = [
-        { title: 'Step', enabled: true },
-        { title: 'Step', enabled: true },
-        { title: 'Step', enabled: true },
-        { title: 'Step', enabled: true }
+        { title: "Step", enabled: true },
+        { title: "Step", enabled: true },
+        { title: "Step", enabled: true },
+        { title: "Step", enabled: true }
     ];
 }
