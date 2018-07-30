@@ -117,7 +117,7 @@
         {
             "url": "main-nav-group",
             "text": "Main Navigation",
-            "type": "pagelayouts",
+            "type": "component",
             "ux": 20,
             "ui": 20,
             "core": 20,
