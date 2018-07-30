@@ -43,7 +43,7 @@ export class NotificationDemo extends ClarityDocComponent {
         super("notification");
     }
     ngAfterViewInit() {
-        this.notificationService.setElements(this.clrNotifications.toArray());
+        this.notificationService.addElements(this.clrNotifications.toArray());
     }
 
     onClose(): void {
