@@ -45,6 +45,11 @@ $clr-card-active-box-shadow-color: rgba(0, 148, 210, 1) !default;
     align-items: center;
     padding: 0.25rem 1rem;
     background-color: $clr-global-app-background;
+
+    // For some reason clarity sets the margin to 0 for dropdown buttons - we want the default btn margin inside the footer
+    .dropdown .dropdown-toggle {
+      margin-right: 0.5rem;
+    }
   }
 }
 
