@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { NgModule } from "@angular/core";
+import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ClarityModule } from "@clr/angular";
 import { ClrAddonsModule } from "@porscheinformatik/clr-addons";
@@ -27,7 +27,8 @@ import { UtilsModule } from "../../../utils/utils.module";
     ],
     exports: [
         NotificationDemo
-    ]
+    ],
+    schemas: [NO_ERRORS_SCHEMA]
 })
 export class NotificationDemoModule {
 }
