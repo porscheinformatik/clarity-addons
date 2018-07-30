@@ -37,7 +37,6 @@ const initState = { value: 'currentPositon', params: { percents: 0 } };
 })
 export class ClrNotification implements OnInit {
   progressStatus: number = 0;
-  progressType: string = 'info';
 
   private opened: boolean = false;
   private step: number = 1;
@@ -57,9 +56,7 @@ export class ClrNotification implements OnInit {
 
   @Output('clrClosed') closed: EventEmitter<any> = new EventEmitter();
 
-  ngOnInit() {
-    this.progressType = this.notificationType === 'warning' ? 'danger' : this.notificationType;
-  }
+  ngOnInit() {}
 
   private setCurrentPosition() {
     // Change animation state to currentPosition after 300 ms
