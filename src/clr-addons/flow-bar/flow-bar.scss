@@ -31,8 +31,11 @@
           &:hover,
           &.active {
             background-color: transparent;
-            font-weight: 700;
             color: $clr-nav-link-active-color;
+          }
+
+          &.active {
+            font-weight: 700;
           }
 
           &:focus {
