@@ -4,20 +4,27 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Injectable } from '@angular/core';
+import { ClrNotification } from './notification';
 
 @Injectable()
 export class ClrNotificationService {
-  elements = [];
 
-  setElements(elements) {
+  private subscribeElement(el) {
+    el.closed.subscribe(this.afterClose.bind(this, el));
+  }
+
+  setElements(elements: ClrNotification[]) {
     this.elements = elements;
     this.setEventListener();
   }
 
+  addElements(elements: ClrNotification[]) {
+    elements.forEach(this.subscribeElement.bind(this));
+    this.elements = this.elements.concat(elements);
+  }
+
   setEventListener() {
-    this.elements.forEach(el => {
-      el.closed.subscribe(this.afterClose.bind(this, el));
-    });
+    this.elements.forEach(this.subscribeElement.bind(this));
   }
 
   afterClose(notification) {
