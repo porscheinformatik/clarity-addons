@@ -38,6 +38,11 @@ const CODE_EXAMPLE = `
 export class NotificationDemo extends ClarityDocComponent {
     @ViewChildren(ClrNotification) clrNotifications: QueryList<ClrNotification>;
     codeExample = CODE_EXAMPLE;
+    clrExampleTimeout = 2000;
+    clrExampleType = "info";
+    clrExampleDismissable = true;
+    clrExampleProgressbar = true;
+
 
     constructor(private notificationService: ClrNotificationService) {
         super("notification");

@@ -5,6 +5,7 @@
  */
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
 import { ClarityModule } from "@clr/angular";
 import { ClrAddonsModule } from "@porscheinformatik/clr-addons";
 
@@ -20,7 +21,8 @@ import { UtilsModule } from "../../../utils/utils.module";
         ClrAddonsModule,
         UtilsModule,
         DocWrapperModule,
-        RouterModule.forChild([{ path: "", component: NotificationDemo }])
+        RouterModule.forChild([{ path: "", component: NotificationDemo }]),
+        FormsModule
     ],
     declarations: [
         NotificationDemo
