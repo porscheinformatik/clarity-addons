@@ -7,6 +7,18 @@
     },
     "list": [
         {
+            "url": "cards",
+            "text": "Cards",
+            "type": "component",
+            "ux": 20,
+            "ui": 20,
+            "core": 20,
+            "ng": 20,
+            "dox": 20,
+            "comments": "",
+            "newLayout": true
+        },
+        {
             "url": "collapse-expand-section",
             "text": "Collapse/Expand Section",
             "type": "component",
@@ -82,6 +94,18 @@
             "url": "content-panel-layout",
             "text": "Content Panel",
             "type": "component",
+            "ux": -1,
+            "ui": -1,
+            "core": -1,
+            "ng": -1,
+            "dox": 20,
+            "comments": "",
+            "newLayout": true
+        },
+        {
+            "url": "flow-bar-layout",
+            "text": "Flow Bar Layout",
+            "type": "pagelayouts",
             "ux": -1,
             "ui": -1,
             "core": -1,
