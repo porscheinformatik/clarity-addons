@@ -8,6 +8,7 @@ import { ClrNotification } from './notification';
 
 @Injectable()
 export class ClrNotificationService {
+  private elements = [];
 
   private subscribeElement(el) {
     el.closed.subscribe(this.afterClose.bind(this, el));
