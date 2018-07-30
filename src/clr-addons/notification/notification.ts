@@ -22,7 +22,7 @@ const initState = { value: 'currentPositon', params: { percents: 0 } };
         animate('0.7s', style({ transform: 'translateY(0%)' })),
       ]),
     ]),
-    trigger('down', [
+    trigger('move', [
       state('currentPosition', style({ transform: 'translateY({{percents}}%)' }), { params: { percents: '0' } }),
       state('moveUp', style({ transform: 'translateY({{percents}}%)' }), { params: { percents: '0' } }),
       state('moveDown', style({ transform: 'translateY({{percents}}%)' }), { params: { percents: '0' } }),
