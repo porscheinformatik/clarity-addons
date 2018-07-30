@@ -167,7 +167,7 @@
                 <form class="clr-form">
                     <div class="form-group">
                         <label for="clr-timeout">Timeout</label>
-                        <input clrInput type="number" id="clr-timeout" name="clr-timeout" class="form-control" [(ngModel)]="clrExampleTimeout">
+                        <input clrInput type="number" id="clr-timeout" name="clr-timeout" [(ngModel)]="clrExampleTimeout">
                     </div>
                     <div class="form-group">
                         <label for="clr-type">Type</label>
@@ -182,7 +182,7 @@
                     </div>
                     <div class="form-group">
                         <div class="checkbox">
-                            <input type="checkbox" id="clr-dismissable" name="clr-dismissable" class="form-control" [(ngModel)]="clrExampleDismissable">
+                            <input type="checkbox" id="clr-dismissable" name="clr-dismissable" [(ngModel)]="clrExampleDismissable">
                             <label for="clr-dismissable">Dismissable</label>
                         </div>
                     </div>
@@ -208,6 +208,16 @@
                         <button class="btn btn-info-outline" (click)="showAlert()">Show Alert</button>
                     </ng-container>
                 </clr-notification>
+                <clr-modal [(clrModalOpen)]="basic">
+                    <h3 class="modal-title">I have a nice title</h3>
+                    <div class="modal-body">
+                        <p>But not much to say...</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline" (click)="basic = false">Cancel</button>
+                        <button type="button" class="btn btn-primary" (click)="basic = false">Ok</button>
+                    </div>
+                </clr-modal>
             </div>
         </article>
     </clr-doc-wrapper>

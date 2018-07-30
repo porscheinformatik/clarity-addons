@@ -33,7 +33,8 @@ const CODE_EXAMPLE = `
         "[class.content-area]": "true",
         "[class.dox-content-panel]": "true"
     },
-    providers: [ClrNotificationService]
+    providers: [ClrNotificationService],
+    styleUrls: ["./notification.demo.scss"],
 })
 export class NotificationDemo extends ClarityDocComponent {
     @ViewChildren(ClrNotification) clrNotifications: QueryList<ClrNotification>;
@@ -42,6 +43,7 @@ export class NotificationDemo extends ClarityDocComponent {
     clrExampleType = "info";
     clrExampleDismissable = true;
     clrExampleProgressbar = true;
+    basic = false;
 
 
     constructor(private notificationService: ClrNotificationService) {
@@ -56,7 +58,8 @@ export class NotificationDemo extends ClarityDocComponent {
     }
 
     showAlert(): void {
-        alert('Button was clicked');
+        // alert('Button was clicked');
+        this.basic = true;
     }
 
     openNotify(id): void {
