@@ -164,27 +164,33 @@
             <div id="code-examples">
                 <h3 id="examples">Code &amp; Examples</h3>
                 <clr-code-snippet [clrCode]="codeExample"></clr-code-snippet>
-                <form class="form">
+                <form class="clr-form">
                     <div class="form-group">
                         <label for="clr-timeout">Timeout</label>
-                        <input type="number" id="clr-timeout" name="clr-timeout" class="form-control" [(ngModel)]="clrExampleTimeout">
+                        <input clrInput type="number" id="clr-timeout" name="clr-timeout" class="form-control" [(ngModel)]="clrExampleTimeout">
                     </div>
                     <div class="form-group">
                         <label for="clr-type">Type</label>
-                        <select name="clr-type" id="clr-type" class="form-control" [(ngModel)]="clrExampleType">
-                            <option value="info">Info</option>
-                            <option value="warning">Warning</option>
-                            <option value="success">Success</option>
-                            <option value="danger">Danger</option>
-                        </select>
+                        <div class="select">
+                            <select id="clr-type" [(ngModel)]="clrExampleType" [ngModelOptions]="{standalone: true}">
+                                <option value="info">Info</option>
+                                <option value="warning">Warning</option>
+                                <option value="success">Success</option>
+                                <option value="danger">Danger</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="clr-dismissable">Dismissable</label>
-                        <input type="checkbox" id="clr-dismissable" name="clr-dismissable" class="form-control" [(ngModel)]="clrExampleDismissable">
+                        <div class="checkbox">
+                            <input type="checkbox" id="clr-dismissable" name="clr-dismissable" class="form-control" [(ngModel)]="clrExampleDismissable">
+                            <label for="clr-dismissable">Dismissable</label>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="clr-progressbar">Progressbar</label>
-                        <input type="checkbox" id="clr-progressbar" name="clr-progressbar" class="form-control" [(ngModel)]="clrExampleProgressbar">
+                        <div class="checkbox">
+                            <input type="checkbox" id="clr-progressbar" name="clr-progressbar" class="form-control" [(ngModel)]="clrExampleProgressbar">
+                            <label for="clr-progressbar">Progressbar</label>
+                        </div>
                     </div>
                 </form>
                 <div class="btn-group">
