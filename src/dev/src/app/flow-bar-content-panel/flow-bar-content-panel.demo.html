@@ -1,0 +1,71 @@
+<!--
+  ~ Copyright (c) 2018 Porsche Informatik. All Rights Reserved.
+  ~ This software is released under MIT license.
+  ~ The full license information can be found in LICENSE in the root directory of this project.
+  -->
+
+<div class="main-container" style="border: 1px solid black;">
+  <clr-header class="header-6">
+    <div class="branding">
+      <a href="#" class="nav-link">
+        <span class="title">Clarity Addons</span>
+      </a>
+    </div>
+    <div class="header-nav" [clr-nav-level]="1">
+      <div class="header-overflow">
+        <a class="nav-link" href="#"><span class="nav-text">Menu1</span></a>
+        <a class="nav-link" href='#'><span class="nav-text">Menu2</span></a>
+        <clr-main-nav-group clrTitle="Main Nav Group" routerLinkActive="active">
+          <a class="nav-link" routerLink="/view-edit-section" routerLinkActive="active">ViewEdit Section</a>
+          <a class="nav-link" href="#" onClick="return false;">Submenu 3 2</a>
+          <a class="nav-link" href="#" onClick="return false;">Submenu 3 3</a>
+        </clr-main-nav-group>
+      </div>
+    </div>
+    <div class="header-actions">
+      <clr-dropdown>
+        <button type="button" class="nav-icon dropdown-toggle" clrDropdownTrigger>
+          <clr-icon shape="cog"></clr-icon>
+        </button>
+        <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
+          <button type="button" *ngFor="let theme of themes" (click)="setTheme(theme)" clrDropdownItem>{{theme.name}}
+          </button>
+        </clr-dropdown-menu>
+      </clr-dropdown>
+    </div>
+  </clr-header>
+  <div class="content-header">
+    <h2>Flow Bar Title</h2>
+    <clr-button-group class="command-bar" [clrMenuPosition]="'bottom-right'">
+      <clr-button (click)="rightContentPanel.toggle()">Show/Hide Right</clr-button>
+      <clr-button [clrInMenu]="true">Command3</clr-button>
+    </clr-button-group>
+  </div>
+  <clr-flow-bar [clrSteps]="flowBarSteps" [clrActiveStep]="myActiveStep" (clrActiveStepChange)="activeStepChanged($event)" #clrFlowBar></clr-flow-bar>
+  <clr-content-panel-container>
+    <clr-content-panel-container-content>
+      <h2>Content Area</h2>
+      <p *ngFor="let i of [1, 2, 3, 4, 5, 6]">
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+        dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+        clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+        consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
+        diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+        takimata sanctus est Lorem ipsum dolor sit amet.
+      </p>
+    </clr-content-panel-container-content>
+    <clr-content-panel-container-footer>
+      <button class="btn btn-outline-primary" (click)="clrFlowBar.previous()" *ngIf="clrFlowBar.isPreviousAvailable()">
+        Previous
+      </button>
+      <button class="btn btn-primary" (click)="clrFlowBar.next()" [disabled]="!clrFlowBar.isNextAvailable()"
+              *ngIf="!clrFlowBar.isLastStep()">Next
+      </button>
+      <button class="btn btn-success" *ngIf="clrFlowBar.isLastStep()">Finish</button>
+    </clr-content-panel-container-footer>
+    <clr-content-panel #rightContentPanel>
+      <ng-container clr-content-panel-title>Right Content Panel</ng-container>
+      <ng-container clr-content-panel-content>Content</ng-container>
+    </clr-content-panel>
+  </clr-content-panel-container>
+</div>

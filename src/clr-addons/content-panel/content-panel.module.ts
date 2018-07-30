@@ -11,10 +11,17 @@ import { ClarityModule } from '@clr/angular';
 
 import { ClrContentPanel } from './content-panel';
 import { ClrContentPanelContainer } from './content-panel-container';
+import { ClrContentPanelContainerContent } from './content-panel-container-content';
+import { ClrContentPanelContainerFooter } from './content-panel-container-footer';
 
 @NgModule({
   imports: [CommonModule, ClarityModule, FormsModule],
-  declarations: [ClrContentPanel, ClrContentPanelContainer],
-  exports: [ClrContentPanel, ClrContentPanelContainer],
+  declarations: [
+    ClrContentPanel,
+    ClrContentPanelContainer,
+    ClrContentPanelContainerContent,
+    ClrContentPanelContainerFooter,
+  ],
+  exports: [ClrContentPanel, ClrContentPanelContainer, ClrContentPanelContainerContent, ClrContentPanelContainerFooter],
 })
 export class ClrContentPanelModule {}

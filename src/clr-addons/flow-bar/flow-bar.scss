@@ -1,0 +1,53 @@
+@include exports('flow-bar.clr-addons') {
+  .flow-bar {
+    display: flex;
+    flex: 0 0 auto;
+    border-bottom: $clr-global-borderwidth solid $clr-nav-box-shadow-color;
+
+    .flow-bar-wrapper {
+      display: flex;
+      height: 1.5rem;
+      align-items: center;
+      width: 100%;
+
+      .flow-bar-step {
+        box-shadow: 0 -0.1667rem 0 $clr-nav-box-shadow-color inset;
+
+        &:hover,
+        &.active {
+          box-shadow: 0 -0.1667rem 0 $clr-nav-active-box-shadow-color inset;
+          transition: box-shadow 0.2s ease-in;
+        }
+
+        .flow-bar-btn {
+          border: none;
+          padding: 0 1rem;
+          color: $clr-nav-link-color;
+          text-transform: none;
+          font-size: 0.6rem;
+          font-weight: 400;
+          letter-spacing: normal;
+
+          &:hover,
+          &.active {
+            background-color: transparent;
+            color: $clr-nav-link-active-color;
+          }
+
+          &.active {
+            font-weight: 700;
+          }
+
+          &:focus {
+            outline: none;
+          }
+
+          // This moves the box shadow the required distance down to line up with the border
+          &.btn {
+            margin: 0 0 $clr-default-borderwidth 0;
+          }
+        }
+      }
+    }
+  }
+}
