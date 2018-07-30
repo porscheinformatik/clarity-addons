@@ -29,6 +29,12 @@ export class ClrFlowBar implements OnInit {
       this._activeStep = this._steps.find(step => {
         return step.enabled;
       });
+      if (this._activeStep) {
+        // Do async update here to avoid ExpressionChangedAfterItHasBeenCheckedError
+        setTimeout(() => {
+          this._activeStepChange.emit(this._activeStep);
+        });
+      }
     }
   }
 

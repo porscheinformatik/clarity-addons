@@ -42,7 +42,7 @@
       <clr-button [clrInMenu]="true">Command3</clr-button>
     </clr-button-group>
   </div>
-  <clr-flow-bar [clrSteps]="flowBarSteps" [(clrActiveStep)]="myActiveStep" #clrFlowBar></clr-flow-bar>
+  <clr-flow-bar [clrSteps]="flowBarSteps" [clrActiveStep]="myActiveStep" (_clrActiveStepChange)="activeStepChanged($event)" #clrFlowBar></clr-flow-bar>
   <div class="content-container clr-flex-column">
     <div class="content-area">
       <h2>Content Area</h2>

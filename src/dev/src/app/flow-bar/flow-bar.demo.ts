@@ -18,4 +18,8 @@ export class FlowBarDemo {
     { title: 'Angebotsdetails', enabled: true },
     { title: 'Finanzierung', enabled: true },
   ];
+
+  activeStepChanged(step: ClrFlowBarStep): void {
+    this.myActiveStep = step;
+  }
 }

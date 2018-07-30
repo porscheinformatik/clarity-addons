@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component } from '@angular/core';
-import { ClrFlowBarStep } from '../../../../clr-addons/flow-bar';
+import { ClrFlowBarStep } from '@porscheinformatik/clr-addons';
 
 @Component({
   selector: 'clr-flow-bar-content-panel-demo',
@@ -18,4 +18,8 @@ export class FlowBarContentPanelDemo {
     { title: 'Angebotsdetails', enabled: true },
     { title: 'Finanzierung', enabled: true },
   ];
+
+  activeStepChanged(step: ClrFlowBarStep): void {
+    this.myActiveStep = step;
+  }
 }
