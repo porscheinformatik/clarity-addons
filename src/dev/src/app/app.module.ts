@@ -23,6 +23,9 @@ import { ContentPanelDemoModule } from './content-panel/content-panel.demo.modul
 import { BreadcrumbDemoModule } from './breadcrumb/breadcrumb.demo.module';
 import { NotificationDemoModule } from './notification/notification.demo.module';
 import { ClrNotificationService } from '@porscheinformatik/clr-addons';
+import { FlowBarDemoModule } from './flow-bar/flow-bar.demo.module';
+import { CardsDemoModule } from './cards/cards.demo.module';
+import { FlowBarContentPanelDemoModule } from './flow-bar-content-panel/flow-bar-content-panel.demo.module';
 
 @NgModule({
   declarations: [AppComponent, LandingComponent, AppContentContainerComponent],
@@ -40,6 +43,9 @@ import { ClrNotificationService } from '@porscheinformatik/clr-addons';
     ContentPanelDemoModule,
     BreadcrumbDemoModule,
     NotificationDemoModule,
+    FlowBarDemoModule,
+    FlowBarContentPanelDemoModule,
+    CardsDemoModule,
   ],
   bootstrap: [AppComponent],
   providers: [ClrNotificationService],

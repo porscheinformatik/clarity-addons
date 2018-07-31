@@ -14,6 +14,7 @@ import { ClrMainNavGroupModule } from './main-nav-group/main-nav-group.module';
 import { ClrContentPanelModule } from './content-panel/content-panel.module';
 import { ClrBreadcrumbModule } from './breadcrumb/breadcrumb.module';
 import { ClrNotificationModule } from './notification/notification.module';
+import { ClrFlowBarModule } from './flow-bar/flow-bar.module';
 
 @NgModule({
   exports: [
@@ -25,6 +26,7 @@ import { ClrNotificationModule } from './notification/notification.module';
     ClrMainNavGroupModule,
     ClrContentPanelModule,
     ClrNotificationModule,
+    ClrFlowBarModule,
   ],
 })
 export class ClrAddonsModule {}
