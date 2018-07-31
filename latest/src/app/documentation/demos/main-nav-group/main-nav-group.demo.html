@@ -1,13 +1,54 @@
 <clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
+
     <article>
 
-        <h5 class="component-summary">
-            The main navigation group is used to define a collapsible menu in the main menu bar.
-            It also fits into the responsive behaviour of the standard main menu, which will move to the hamburger menu on small screens.
-        </h5>
+        <h5 class="component-summary" id="generic-pager-header">The Main Navigation consists of a classic mainmenu bar with dropdown submenus.</h5>
+
+        <div id="design-guidelines">
+          <h3>Design Guidelines</h3>
+          <p>The Main Navigation is an additional <a href="https://vmware.github.io/clarity/documentation/navigation">Navigation</a> pattern,
+            it enhances Clarity's <a href="https://vmware.github.io/clarity/documentation/header">Header Nav</a> with dropdown submenus.
+          </p>
+          <h3>Behavior</h3>
+          <ul class="list">
+            <li>A Header Navigation item can either lead directly to a page, or contain a submenu dropdown that leads to a list of navigation links.</li>
+            <li>First and second navigation level are covered in the Main Navigation, responsive accessible in the hamburger-menu on the left side.</li>
+            <li>Clarity supports responsive navigation for two levels of navigation.</li>
+            <li>Main Navigation adds a third responsive navigation level (see Sidebar Pagelayout)</li><!-- TODO add link  to Sidebar Pagelayout-->
+          </ul>
+
+          <h3>Use when</h3>
+          <ul class="list">
+            <li>Your application is commonly used on desktop devices</li>
+            <li>You have a dense information hierarchy, and need more than two levels of navigation responsive accessible</li>
+          </ul>
+
+         <h3>Don't use when</h3>
+         <ul class="list">
+          <li>You are building a MobileFirst application with a fairly flat information hierarchy</li>
+          <ul class="list">
+            <li>Consider using <a href="https://vmware.github.io/clarity/documentation/header">Header Nav</a></li>
+            <li>Consider using Material Design for a MobileFirst approach: <a href="https://material.io/design/components/bottom-navigation.html">Bottom-navigation</a> or
+              <a href="https://material.io/design/components/navigation-drawer.html">navigation-drawer</a> should be preferred.</li>
+            </ul>
+          <li>Don't combine Main Navigation with Subnav Pattern.</li>
+        </ul>
+
+        </div>
+
+
 
         <div id="code-examples">
             <h3 id="examples">Code &amp; Examples</h3>
+
+            <h4>Demo</h4>
+            <div>
+                <clr-icon shape="display"></clr-icon>&nbsp;
+                <a class="nav-link" routerLink="/full-page-layouts/basepage-layout" routerLinkActive="active">
+                    <span class="nav-text">Main Navigation in Base Pagelayout</span>
+                </a>
+            </div>
+
             <p>
                 Following interactions are available:
             </p>
@@ -17,7 +58,7 @@
                 </li>
             </ul>
             <p>
-                Its crucial to set <code class="clr-code">routerLinkActive="active"</code> on the component itself, to highlight the title as soon as a sublink is active.
+                It is crucial to set <code class="clr-code">routerLinkActive="active"</code> on the component itself, to highlight the title as soon as a sublink is active.
             </p>
             <p>
                 On the links itself the class <code class="clr-code">nav-link</code> has to be set for correct styling.
