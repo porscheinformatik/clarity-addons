@@ -1,0 +1,19 @@
+<ng-container *ngIf="isOpen()">
+  <div class="notification__wrapper" [@slideDown] [@move]="state" [@fade]>
+    <div class="progress-static top" [ngClass]="notificationType" *ngIf="progressbar">
+        <div class="progress-meter" [attr.data-value]="progressStatus"></div>
+    </div>
+    <clr-alert
+      [clrAlertType]="notificationType"
+      [clrAlertAppLevel]="true"
+      [clrAlertClosable]="dismissable"
+      (clrAlertClosedChange)="close()">
+        <div class="alert-item">
+            <span class="alert-text">
+                <ng-content select="[clr-notification-message]"></ng-content>
+            </span>
+        </div>
+    </clr-alert>
+  </div>
+</ng-container>
+

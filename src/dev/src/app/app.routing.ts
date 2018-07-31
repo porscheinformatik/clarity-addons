@@ -13,6 +13,7 @@ import { PagedSearchResultListDemo } from './paged-search-result-list/paged-sear
 import { CollapseExpandSectionDemo } from './collapse-expand-section/collapse-expand-section.demo';
 import { ContentPanelDemo } from './content-panel/content-panel.demo';
 import { BreadcrumbDemo } from './breadcrumb/breadcrumb.demo';
+import { NotificationDemo } from './notification/notification.demo';
 import { FlowBarDemo } from './flow-bar/flow-bar.demo';
 import { CardsDemo } from './cards/cards.demo';
 import { FlowBarContentPanelDemo } from './flow-bar-content-panel/flow-bar-content-panel.demo';
@@ -28,6 +29,7 @@ export const APP_ROUTES: Routes = [
   { path: 'flow-bar', component: FlowBarDemo },
   { path: 'flow-bar-content-panel', component: FlowBarContentPanelDemo },
   { path: 'breadcrumb', component: BreadcrumbDemo },
+  { path: 'notification', component: NotificationDemo },
 ];
 
 export const ROUTING: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);

@@ -13,4 +13,5 @@ export * from './collapse-expand-section/index';
 export * from './main-nav-group/index';
 export * from './content-panel/index';
 export * from './breadcrumb/index';
+export * from './notification/index';
 export * from './flow-bar/index';

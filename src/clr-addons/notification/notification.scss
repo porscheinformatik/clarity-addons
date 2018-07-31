@@ -1,0 +1,56 @@
+@include exports('notification.clr-addons') {
+  .notification {
+    &__wrapper {
+      position: fixed;
+      z-index: map-get($clr-layers, tooltips) + 1;
+      top: 36px;
+      width: 400px;
+      left: 0;
+      right: 0;
+      border-radius: 4px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .progress,
+    .progress-static {
+      height: 0.5em;
+      position: absolute;
+      z-index: 1;
+    }
+    .alert-items {
+      padding: 0.333333rem calc(0.75rem - 1px);
+    }
+    .alert-app-level {
+      font-size: 0.59rem;
+
+      .alert-icon {
+        height: 1.4rem;
+        width: 1.4rem;
+      }
+
+      .alert-items {
+        padding-top: 0.86rem;
+        padding-bottom: 0.86rem;
+
+        .alert-item {
+          justify-content: left;
+        }
+      }
+      .alert-icon-wrapper {
+        margin-top: 0.05rem;
+        height: 1.2rem;
+      }
+      .close {
+        flex: 0 0 2.266667rem;
+        height: 3rem;
+        width: 2rem;
+
+        clr-icon {
+          margin: auto 0;
+          height: calc(1.3rem - 1px);
+          width: calc(1.3rem - 1px);
+        }
+      }
+    }
+  }
+}
