@@ -25,6 +25,8 @@
 
 # misc
 npm-debug.log
+yarn.lock
+src/yarn.lock
 
 # System Files
 .DS_Store

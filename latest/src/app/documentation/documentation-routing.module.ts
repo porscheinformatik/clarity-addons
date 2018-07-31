@@ -111,6 +111,13 @@ const documentationRoutes: Routes = [
                 data: {
                     browserTitle: "Breadcrumb"
                 }
+            },
+            {
+                path: "notification",
+                loadChildren: "app/documentation/demos/notification/notification.demo.module#NotificationDemoModule",
+                data: {
+                    browserTitle: "Notification"
+                }
             }
         ]
     }

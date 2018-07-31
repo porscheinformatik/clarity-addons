@@ -1,0 +1,236 @@
+<clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
+        <article>
+            <h5 class="component-summary" id="generic-pager-header">Notification is a component aimed to show user that particular action is done (for example, different success or error messages).</h5>
+    
+            <div id="design-guidelines">
+                <h3>Usage</h3>
+                <p>
+                    It’s aimed to notify user and show a message to him (error, warning, success, info). Notifications are important element for successful user workflow with application.
+                </p>
+                <h3>Notification Types</h3>
+                <p>
+                    There are four different sub-types of notifications: error, warning, info, and success.
+                </p>
+                <p>
+                    <b>Error</b>
+                    <br />
+                    Reserved for errors, malfunctions, as well as critical issues like license expiration.
+                </p>
+                <p>
+                    <b>Warning</b>
+                    <br />
+                    Reserved for warnings: a message that needs the user attention and aknowledgment but might not cause errors.
+                </p>
+                <p>
+                    <b>Info</b>
+                    <br />
+                    Provides info to users in context. Shouldn’t be overused to replace regular content.
+                </p>
+                <p>
+                    <b>Success</b>
+                    <br />
+                    Reserved to provide to a static persistent success message.
+                </p>
+                <h2>Angular Component</h2>
+                <h3>Summary of Options</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="left">Input</th>
+                            <th class="left hidden-xs-down">Values</th>
+                            <th class="hidden-xs-down">Default</th>
+                            <th class="left">Effect</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="left">
+                                <b>[clrTimeout]</b>
+                                <div class="hidden-sm-up">Type: Number</div>
+                                <div class="hidden-sm-up">Default: 2000</div>
+                            </td>
+                            <td class="left hidden-xs-down">Javascript Number</td>
+                            <td class="hidden-xs-down">2000</td>
+                            <td class="left">If false, the alert will not be closable by clicking on the top-right "x".</td>
+                        </tr>
+                        <tr>
+                            <td class="left">
+                                <b>[clrNotificationType]</b>
+                                <div class="hidden-sm-up">Type: String</div>
+                                <div class="hidden-sm-up">Default: "info"</div>
+                            </td>
+                            <td class="left hidden-xs-down">"info", "warning", "success", "danger"</td>
+                            <td class="hidden-xs-down">"info"</td>
+                            <td class="left">
+                                For different actions and messages, it’s needed to have different types of notification. There are 4 types.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="left">
+                                <b>[clrDismissable]</b>
+                                <div class="hidden-sm-up">Type: Boolean</div>
+                                <div class="hidden-sm-up">Default: false</div>
+                            </td>
+                            <td class="left hidden-xs-down">true, false</td>
+                            <td class="hidden-xs-down">false</td>
+                            <td class="left">
+                                It’s possible to allow user to close notification manually. If it’s set "true", there is a cross icon for closing it.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="left">
+                                <b>[clrProgressbar]</b>
+                                <div class="hidden-sm-up">Type: Boolean</div>
+                                <div class="hidden-sm-up">Default: false</div>
+                            </td>
+                            <td class="left hidden-xs-down">true, false</td>
+                            <td class="hidden-xs-down">false</td>
+                            <td class="left">
+                                    If showing progress bar is configured, user can see how much time particular notification will be on visible.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="left">
+                                <b>[clrId]</b>
+                                <div class="hidden-sm-up">Type: String</div>
+                                <div class="hidden-sm-up">Default: 'info'</div>
+                            </td>
+                            <td class="left hidden-xs-down">Javascript String</td>
+                            <td class="hidden-xs-down">'info'</td>
+                            <td class="left">
+                                    With this parameter you can set up the identificator for notificaton.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="left">
+                                <b>(clrClosed)</b>
+                                <div class="hidden-sm-up">Type: Function</div>
+                                <div class="hidden-sm-up">N/A</div>
+                            </td>
+                            <td class="left hidden-xs-down">Function</td>
+                            <td class="hidden-xs-down">N/A</td>
+                            <td class="left">
+                                It is fired every time the notification is closed.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3>API Reference</h3>
+                <p>You can use the @ViewChild() annotation to get a reference of your ClrNotification, which will allow you to call its methods:</p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="left">Method</th>
+                            <th class="left hidden-xs-down">Arguments</th>
+                            <th class="hidden-xs-down">Return Value</th>
+                            <th class="left">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="left">
+                                <b>open()</b>
+                                <div class="hidden-sm-up">Arguments: N/A</div>
+                                <div class="hidden-sm-up">Return Value: N/A</div>
+                            </td>
+                            <td class="left hidden-xs-down">N/A</td>
+                            <td class="hidden-xs-down">N/A</td>
+                            <td class="left">Manually opens the modal.</td>
+                        </tr>
+                        <tr>
+                            <td class="left">
+                                <b>close()</b>
+                                <div class="hidden-sm-up">Arguments: N/A</div>
+                                <div class="hidden-sm-up">Return Value: N/A</div>
+                            </td>
+                            <td class="left hidden-xs-down">N/A</td>
+                            <td class="hidden-xs-down">N/A</td>
+                            <td class="left">Manually closes the modal.</td>
+                        </tr>
+                        <tr>
+                            <td class="left">
+                                <b>isOpen()</b>
+                                <div class="hidden-sm-up">Arguments: N/A</div>
+                                <div class="hidden-sm-up">Return Value: Boolean</div>
+                            </td>
+                            <td class="left hidden-xs-down">N/A</td>
+                            <td class="hidden-xs-down">Boolean</td>
+                            <td class="left">Returns true if the content panel is open.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    
+            <div id="code-examples">
+                <h3 id="examples">Code &amp; Examples</h3>
+                <clr-code-snippet [clrCode]="codeExample"></clr-code-snippet>
+                <form class="clr-form">
+                    <div class="form-group">
+                        <label for="clr-timeout">Timeout</label>
+                        <input clrInput type="number" id="clr-timeout" name="clr-timeout" [(ngModel)]="clrExampleTimeout">
+                    </div>
+                    <div class="form-group">
+                        <label for="clr-type">Type</label>
+                        <div class="select">
+                            <select id="clr-type" [(ngModel)]="clrExampleType" [ngModelOptions]="{standalone: true}">
+                                <option value="info">Info</option>
+                                <option value="warning">Warning</option>
+                                <option value="success">Success</option>
+                                <option value="danger">Danger</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <input type="checkbox" id="clr-dismissable" name="clr-dismissable" [(ngModel)]="clrExampleDismissable">
+                            <label for="clr-dismissable">Dismissable</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <input type="checkbox" id="clr-progressbar" name="clr-progressbar" class="form-control" [(ngModel)]="clrExampleProgressbar">
+                            <label for="clr-progressbar">Progressbar</label>
+                        </div>
+                    </div>
+                </form>
+                <div class="btn-group">
+                    <button class="btn" (click)="openNotify('clr-notification')">Show Notification</button>
+                    <button class="btn" (click)="openNotify('clr-notif-danger')">Show Second Notification</button>
+                </div>
+                <clr-notification
+                    [clrTimeout]="clrExampleTimeout"
+                    [clrNotificationType]="clrExampleType"
+                    [clrDismissable]="clrExampleDismissable"
+                    [clrProgressbar]="clrExampleProgressbar"
+                    (clrClosed)="onClose()"
+                    [clrId]="'clr-notification'">
+                    <ng-container clr-notification-message>
+                        Some Information
+                        <button class="btn btn-info-outline" (click)="showAlert()">Show Alert</button>
+                    </ng-container>
+                </clr-notification>
+                <clr-notification
+                    [clrTimeout]="2000"
+                    [clrNotificationType]="'danger'"
+                    [clrDismissable]="true"
+                    [clrProgressbar]="true"
+                    (clrClosed)="onClose()"
+                    [clrId]="'clr-notif-danger'">
+                    <ng-container clr-notification-message>
+                        Danger
+                    </ng-container>
+                </clr-notification>
+                <clr-modal [(clrModalOpen)]="basic">
+                    <h3 class="modal-title">I have a nice title</h3>
+                    <div class="modal-body">
+                        <p>But not much to say...</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline" (click)="basic = false">Cancel</button>
+                        <button type="button" class="btn btn-primary" (click)="basic = false">Ok</button>
+                    </div>
+                </clr-modal>
+            </div>
+        </article>
+    </clr-doc-wrapper>
+    
