@@ -11,3 +11,29 @@
     </div>
   </ng-container>
 </div>
+<!--<div class="select flow-bar-select clr-flex-fill">-->
+  <!--<select [(ngModel)]="_activeStep">-->
+    <!--<option *ngFor="let step of _steps; let index = index; let last = last"-->
+            <!--[disabled]="!step.enabled"-->
+            <!--(click)="changeActiveStep(step)"-->
+            <!--[ngValue]="step">-->
+      <!--{{index + 1}}. {{step.title}}-->
+    <!--</option>-->
+  <!--</select>-->
+<!--</div>-->
+<clr-dropdown class="flow-bar-dropdown clr-flex-fill">
+  <button type="button" class="btn btn-outline-primary" clrDropdownTrigger>
+    {{_steps.indexOf(_activeStep) + 1}}. {{_activeStep.title}}
+    <clr-icon shape="caret down"></clr-icon>
+  </button>
+  <clr-dropdown-menu>
+    <ng-container *ngFor="let step of _steps; let index = index; let last = last">
+      <button clrDropdownItem type="button" class="btn"
+              [disabled]="!step.enabled"
+              [class.active]="step === _activeStep"
+              (click)="changeActiveStep(step)">
+        {{index + 1}}. {{step.title}}
+      </button>
+    </ng-container>
+  </clr-dropdown-menu>
+</clr-dropdown>

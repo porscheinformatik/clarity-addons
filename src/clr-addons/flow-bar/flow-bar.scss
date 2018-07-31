@@ -4,14 +4,47 @@
     flex: 0 0 auto;
     border-bottom: $clr-global-borderwidth solid $clr-nav-box-shadow-color;
 
+    .flow-bar-dropdown {
+      display: none;
+
+      @media screen and (max-width: map-get($grid-breakpoints, sm)) {
+        display: block;
+      }
+
+      .dropdown-toggle {
+        border: none;
+        width: 100%;
+        padding: 0 1rem;
+      }
+
+      .dropdown-toggle:focus {
+        outline: none;
+      }
+
+      .dropdown-toggle:active {
+        box-shadow: none;
+      }
+    }
+
     .flow-bar-wrapper {
       display: flex;
       height: 1.5rem;
       align-items: center;
       width: 100%;
 
+      @media screen and (max-width: map-get($grid-breakpoints, sm)) {
+        display: none;
+      }
+
       .flow-bar-step {
         box-shadow: 0 -0.1667rem 0 $clr-nav-box-shadow-color inset;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+
+        clr-icon[shape*='caret right'] {
+          flex: 0 0 auto;
+        }
 
         &:hover,
         &.active {
@@ -27,6 +60,7 @@
           font-size: 0.6rem;
           font-weight: 400;
           letter-spacing: normal;
+          min-width: 0;
 
           &:hover,
           &.active {
