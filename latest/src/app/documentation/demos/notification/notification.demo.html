@@ -15,21 +15,69 @@
                     <b>Error</b>
                     <br />
                     Reserved for errors, malfunctions, as well as critical issues like license expiration.
+                    <br />
+                    <button class="btn btn-danger-outline" (click)="openNotify('clr-example-danger')">Show Error Notification</button>
+                    <clr-notification
+                        [clrTimeout]="3000"
+                        [clrNotificationType]="'danger'"
+                        [clrDismissable]="false"
+                        [clrProgressbar]="false"
+                        [clrId]="'clr-example-danger'">
+                        <ng-container clr-notification-message>
+                            Danger
+                        </ng-container>
+                    </clr-notification>
                 </p>
                 <p>
                     <b>Warning</b>
                     <br />
                     Reserved for warnings: a message that needs the user attention and aknowledgment but might not cause errors.
+                    <br />
+                    <button class="btn btn-warning-outline" (click)="openNotify('clr-example-warning')">Show Warning Notification</button>
+                    <clr-notification
+                        [clrTimeout]="3000"
+                        [clrNotificationType]="'warning'"
+                        [clrDismissable]="false"
+                        [clrProgressbar]="false"
+                        [clrId]="'clr-example-warning'">
+                        <ng-container clr-notification-message>
+                            Warning
+                        </ng-container>
+                    </clr-notification>
                 </p>
                 <p>
                     <b>Info</b>
                     <br />
                     Provides info to users in context. Shouldn’t be overused to replace regular content.
+                    <br />
+                    <button class="btn btn-info-outline" (click)="openNotify('clr-example-info')">Show Info Notification</button>
+                    <clr-notification
+                        [clrTimeout]="3000"
+                        [clrNotificationType]="'info'"
+                        [clrDismissable]="false"
+                        [clrProgressbar]="false"
+                        [clrId]="'clr-example-info'">
+                        <ng-container clr-notification-message>
+                            Info
+                        </ng-container>
+                    </clr-notification>
                 </p>
                 <p>
                     <b>Success</b>
                     <br />
                     Reserved to provide to a static persistent success message.
+                    <br />
+                    <button class="btn btn-success-outline" (click)="openNotify('clr-example-success')">Show Success Notification</button>
+                    <clr-notification
+                        [clrTimeout]="3000"
+                        [clrNotificationType]="'success'"
+                        [clrDismissable]="false"
+                        [clrProgressbar]="false"
+                        [clrId]="'clr-example-success'">
+                        <ng-container clr-notification-message>
+                            Success
+                        </ng-container>
+                    </clr-notification>
                 </p>
                 <h2>Angular Component</h2>
                 <h3>Summary of Options</h3>
@@ -195,7 +243,6 @@
                 </form>
                 <div class="btn-group">
                     <button class="btn" (click)="openNotify('clr-notification')">Show Notification</button>
-                    <button class="btn" (click)="openNotify('clr-notif-danger')">Show Second Notification</button>
                 </div>
                 <clr-notification
                     [clrTimeout]="clrExampleTimeout"
@@ -207,17 +254,6 @@
                     <ng-container clr-notification-message>
                         Some Information
                         <button class="btn btn-info-outline" (click)="showAlert()">Show Alert</button>
-                    </ng-container>
-                </clr-notification>
-                <clr-notification
-                    [clrTimeout]="2000"
-                    [clrNotificationType]="'danger'"
-                    [clrDismissable]="true"
-                    [clrProgressbar]="true"
-                    (clrClosed)="onClose()"
-                    [clrId]="'clr-notif-danger'">
-                    <ng-container clr-notification-message>
-                        Danger
                     </ng-container>
                 </clr-notification>
                 <clr-modal [(clrModalOpen)]="basic">
