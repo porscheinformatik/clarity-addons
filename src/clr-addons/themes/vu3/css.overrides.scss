@@ -1,4 +1,5 @@
 $vu3-border-radius: 0.5rem;
+$vu3-card-border-radius: 0.25rem;
 
 .header-hamburger-trigger,
 .header-overflow-trigger {
@@ -38,28 +39,30 @@ header,
 }
 
 .card {
-  border-radius: $vu3-border-radius;
+  border-radius: $vu3-card-border-radius;
 
-  &.clickable:hover {
-    box-shadow: 0 0.125rem 0 0 $clr-card-active-box-shadow-color;
-    border-color: $clr-card-active-box-shadow-color;
+  &.clickable:hover::after,
+  &.card-active::after {
+    top: 0;
+    border-top-left-radius: $vu3-card-border-radius;
+    border-bottom-left-radius: $vu3-card-border-radius;
   }
 }
 
 .card-img {
   &:first-child > img {
-    border-radius: $vu3-border-radius $vu3-border-radius 0 0;
+    border-radius: $vu3-card-border-radius $vu3-card-border-radius 0 0;
   }
 
   &:last-child > img {
-    border-radius: 0 0 $vu3-border-radius $vu3-border-radius;
+    border-radius: 0 0 $vu3-card-border-radius $vu3-card-border-radius;
   }
 }
 
 .card.card-img,
 .card > .card-img:first-child:last-child {
   & > img {
-    border-radius: $vu3-border-radius;
+    border-radius: $vu3-card-border-radius;
   }
 }
 
