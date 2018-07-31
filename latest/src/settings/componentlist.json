@@ -7,6 +7,18 @@
     },
     "list": [
         {
+            "url": "cards",
+            "text": "Cards",
+            "type": "component",
+            "ux": 20,
+            "ui": 20,
+            "core": 20,
+            "ng": 20,
+            "dox": 20,
+            "comments": "",
+            "newLayout": true
+        },
+        {
             "url": "collapse-expand-section",
             "text": "Collapse/Expand Section",
             "type": "component",
@@ -56,7 +68,7 @@
         },
         {
             "url": "basepage-layout",
-            "text": "Base Page Layout",
+            "text": "Base Pagelayout",
             "type": "pagelayouts",
             "ux": -1,
             "ui": -1,
@@ -68,7 +80,7 @@
         },
         {
             "url": "sidebarpage-layout",
-            "text": "Sidebar Page Layout",
+            "text": "Sidebar Pagelayout",
             "type": "pagelayouts",
             "ux": -1,
             "ui": -1,
@@ -80,7 +92,19 @@
         },
         {
             "url": "content-panel-layout",
-            "text": "Content Panel Layout",
+            "text": "Content Panel",
+            "type": "component",
+            "ux": -1,
+            "ui": -1,
+            "core": -1,
+            "ng": -1,
+            "dox": 20,
+            "comments": "",
+            "newLayout": true
+        },
+        {
+            "url": "flow-bar-layout",
+            "text": "Flow Bar Layout",
             "type": "pagelayouts",
             "ux": -1,
             "ui": -1,
@@ -92,8 +116,8 @@
         },
         {
             "url": "main-nav-group",
-            "text": "Main Navigation Group",
-            "type": "pagelayouts",
+            "text": "Main Navigation",
+            "type": "component",
             "ux": 20,
             "ui": 20,
             "core": 20,

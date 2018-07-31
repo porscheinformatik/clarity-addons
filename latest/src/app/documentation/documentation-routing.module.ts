@@ -36,6 +36,13 @@ const documentationRoutes: Routes = [
                 }
             },
             {
+                path: "cards",
+                loadChildren: "app/documentation/demos/cards/cards.demo.module#CardsDemoModule",
+                data: {
+                    browserTitle: "Cards"
+                }
+            },
+            {
                 path: "collapse-expand-section",
                 loadChildren: "app/documentation/demos/collapse-expand-section/collapse-expand-section.demo.module#CollapseExpandSectionDemoModule",
                 data: {
@@ -67,28 +74,35 @@ const documentationRoutes: Routes = [
                 path: "basepage-layout",
                 loadChildren: "app/documentation/demos/basepage-layout/basepage-layout.demo.module#BasePageLayoutDemoModule",
                 data: {
-                    browserTitle: "Base Page Layout"
+                    browserTitle: "Base Pagelayout"
                 }
             },
             {
                 path: "content-panel-layout",
                 loadChildren: "app/documentation/demos/content-panel-layout/content-panel-layout.demo.module#ContentPanelLayoutDemoModule",
                 data: {
-                    browserTitle: "Content Panel Layout"
+                    browserTitle: "Content Panel"
+                }
+            },
+            {
+                path: "flow-bar-layout",
+                loadChildren: "app/documentation/demos/flow-bar-layout/flow-bar-layout.demo.module#FlowBarLayoutDemoModule",
+                data: {
+                    browserTitle: "Flow Bar Layout"
                 }
             },
             {
                 path: "sidebarpage-layout",
                 loadChildren: "app/documentation/demos/sidebarpage-layout/sidebarpage-layout.demo.module#SidebarPageLayoutDemoModule",
                 data: {
-                    browserTitle: "Sidebar Page Layout"
+                    browserTitle: "Sidebar Pagelayout"
                 }
             },
             {
                 path: "main-nav-group",
                 loadChildren: "app/documentation/demos/main-nav-group/main-nav-group.demo.module#MainNavGroupDemoModule",
                 data: {
-                    browserTitle: "Main Navigation Group"
+                    browserTitle: "Main Navigation"
                 }
             },
             {

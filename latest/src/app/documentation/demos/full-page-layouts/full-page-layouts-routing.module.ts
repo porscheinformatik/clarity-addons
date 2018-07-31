@@ -1,5 +1,5 @@
-import {NgModule} from "@angular/core";
-import {RouterModule, Routes} from "@angular/router";
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
 
 const fullPageLayoutsRoutes: Routes = [
     {
@@ -88,6 +88,13 @@ const fullPageLayoutsRoutes: Routes = [
                     browserTitle: "Content Panel Layout",
                     withCommand: true,
                     withPanel: true
+                }
+            },
+            {
+                path: `flow-bar`,
+                loadChildren: "app/documentation/demos/full-page-layouts/flow-bar-layout/flow-bar-layout.demo.module#FlowBarLayoutDemoModule",
+                data: {
+                    browserTitle: "Flow Bar Layout",
                 }
             },
             {
