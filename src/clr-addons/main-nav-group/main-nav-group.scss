@@ -47,6 +47,8 @@
           padding: $clr-rem-1px 1rem 0;
           height: 1.25rem;
           line-height: 1.25rem;
+          overflow: hidden;
+          text-overflow: ellipsis;
 
           &:hover {
             background-color: $clr-dropdown-bg-hover-color;
@@ -70,6 +72,7 @@
 
       .nav-link .nav-text {
         font-weight: $clr-typography-boldfont;
+        padding-right: 1.5rem;
       }
     }
 
@@ -88,7 +91,7 @@
 
       clr-icon {
         top: 0.4rem;
-        right: 1rem;
+        right: 0.5rem;
         left: unset;
         transform: rotate(-90deg);
         width: 0.666667rem;
@@ -113,7 +116,7 @@
           padding: 0;
 
           .nav-link {
-            padding: 0 2rem;
+            padding: 0 1.5rem 0 2rem;
             height: 1.5rem;
             line-height: 1.5rem;
           }

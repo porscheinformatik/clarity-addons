@@ -80,3 +80,13 @@ $clr-card-active-border-color: rgba(0, 148, 210, 1) !default;
     }
   }
 }
+
+.main-container.open-hamburger-menu .header .header-nav.clr-nav-level-1 {
+  .nav-link .nav-text,
+  .nav-list > .nav-link {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    display: block;
+  }
+}
