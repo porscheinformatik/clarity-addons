@@ -41,7 +41,7 @@ header,
 .card {
   border-radius: $vu3-card-border-radius;
 
-  &.clickable:hover::after,
+  &.selectable:hover::after,
   &.card-active::after {
     top: 0;
     border-top-left-radius: $vu3-card-border-radius;
