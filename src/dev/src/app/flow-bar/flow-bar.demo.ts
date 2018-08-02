@@ -11,15 +11,31 @@ import { ClrFlowBarStep } from '../../../../clr-addons/flow-bar';
   templateUrl: './flow-bar.demo.html',
 })
 export class FlowBarDemo {
-  myActiveStep: ClrFlowBarStep;
+  activeStep: ClrFlowBarStep;
   flowBarSteps: ClrFlowBarStep[] = [
-    { title: 'Fahrzeug', enabled: true },
-    { title: 'Zubehör', enabled: true },
-    { title: 'Angebotsdetails', enabled: true },
-    { title: 'Finanzierung', enabled: true },
+    {
+      title: 'Step',
+      enabled: true,
+      subSteps: [
+        { title: 'Sub Step 1/3', enabled: true },
+        { title: 'Sub Step 2/3', enabled: true },
+        { title: 'Sub Step 3/3', enabled: true },
+      ],
+    },
+    {
+      title: 'Step',
+      enabled: true,
+      subSteps: [{ title: 'Sub Step 1/2', enabled: true }, { title: 'Sub Step 2/2', enabled: true }],
+    },
+    { title: 'Step', enabled: true },
+    {
+      title: 'Step',
+      enabled: true,
+      subSteps: [{ title: 'Sub Step 1/2', enabled: true }, { title: 'Sub Step 2/2', enabled: true }],
+    },
   ];
 
   activeStepChanged(step: ClrFlowBarStep): void {
-    this.myActiveStep = step;
+    this.activeStep = step;
   }
 }

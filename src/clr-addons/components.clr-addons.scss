@@ -56,7 +56,7 @@ $clr-card-active-border-color: rgba(0, 148, 210, 1) !default;
 
 // Add class card-active and make it not clickable even if clickable class is applied
 .card {
-  &.clickable:hover::after,
+  &.selectable:hover::after,
   &.card-active::after {
     content: '';
     width: 0.1667rem;
@@ -69,13 +69,17 @@ $clr-card-active-border-color: rgba(0, 148, 210, 1) !default;
     border-bottom-left-radius: $clr-global-borderradius;
   }
 
-  &.clickable:hover {
+  &.selectable:hover {
     border: $clr-card-border;
     box-shadow: $clr-card-box-shadow;
+    cursor: pointer;
+    transform: translateY(-2px);
+    transition: border 0.2s ease, transform 0.2s ease;
 
     &.card-active:hover {
       cursor: default;
       transform: none;
+      transition: none;
     }
   }
 }
