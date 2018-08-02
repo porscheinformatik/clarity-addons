@@ -15,6 +15,7 @@
         border: none;
         width: 100%;
         padding: 0 1rem;
+        max-width: none;
       }
 
       .dropdown-toggle:focus {
@@ -31,6 +32,8 @@
       height: 1.5rem;
       align-items: center;
       width: 100%;
+      overflow-x: auto;
+      overflow-y: hidden;
 
       @media screen and (max-width: map-get($grid-breakpoints, sm)) {
         display: none;
@@ -41,6 +44,9 @@
         display: flex;
         align-items: center;
         overflow: hidden;
+        // Set a min width so every tab shows at least a little bit of its title
+        min-width: 5rem;
+        max-width: 10rem;
 
         clr-icon[shape*='caret right'] {
           flex: 0 0 auto;
