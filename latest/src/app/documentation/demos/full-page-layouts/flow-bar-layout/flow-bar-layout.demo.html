@@ -7,10 +7,14 @@
             <clr-button [clrInMenu]="true">Command1</clr-button>
         </clr-button-group>
     </div>
-    <clr-flow-bar #flowBar [clrSteps]="flowBarSteps" [(clrActiveStep)]="activeStep"></clr-flow-bar>
+    <clr-flow-bar #flowBar [clrSteps]="flowBarSteps" [clrActiveStep]="activeStep"
+                  (clrActiveStepChange)="setActiveStep($event)"></clr-flow-bar>
     <clr-content-panel-container>
         <clr-content-panel-container-content>
-            <h3>Content Area Title</h3>
+            <h3 *ngIf="!activeStep?.subSteps || activeStep?.subSteps.length === 0">{{activeStep?.title}} {{flowBarSteps.indexOf(activeStep) + 1}}</h3>
+            <h3 *ngIf="activeStep?.subSteps && activeStep?.subSteps.length > 0">
+                {{activeStep?.title}} {{flowBarSteps.indexOf(activeStep) + 1}} - {{activeSubStep?.title}}
+            </h3>
             <p *ngFor="let a of [1, 2, 3, 4, 5, 6, 7, 8]">
                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
                 labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et
@@ -35,21 +39,21 @@
                     Current Step Info
                 </div>
                 <div class="clr-col-auto">
-                    <button type="button" class="btn btn-link" (click)="flowBar.previous()"
-                            *ngIf="flowBar.isPreviousAvailable()">Previous
+                    <button type="button" class="btn btn-link" (click)="openPreviousStep()"
+                            *ngIf="isPreviousAvailable()">Previous
                     </button>
-                    <clr-dropdown *ngIf="activeStep !== flowBarSteps[3]">
+                    <clr-dropdown *ngIf="activeStep?.subSteps.length > 0">
                         <button type="button" class="btn btn-outline-primary" clrDropdownTrigger>
-                            Subflow Step 1/3
+                            {{activeSubStep?.title}}
                             <clr-icon shape="caret down"></clr-icon>
                         </button>
                         <clr-dropdown-menu clrPosition="top-left" *clrIfOpen>
-                            <button class="btn" clrDropdownItem>Subflow Step 1/3</button>
-                            <button class="btn" clrDropdownItem>Subflow Step 2/3</button>
-                            <button class="btn" clrDropdownItem>Subflow Step 3/3</button>
+                            <button class="btn" clrDropdownItem *ngFor="let subStep of activeStep.subSteps">
+                                {{subStep.title}}
+                            </button>
                         </clr-dropdown-menu>
                     </clr-dropdown>
-                    <button type="button" class="btn btn-primary" (click)="flowBar.next()"
+                    <button type="button" class="btn btn-primary" (click)="openNextStep()"
                             [disabled]="!flowBar.isNextAvailable()" *ngIf="!flowBar.isLastStep()">Next
                     </button>
                     <button type="button" class="btn btn-success" *ngIf="flowBar.isLastStep()">Finish</button>

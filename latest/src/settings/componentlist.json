@@ -115,6 +115,18 @@
             "newLayout": true
         },
         {
+            "url": "sticky-footer-layout",
+            "text": "Sticky Footer Layout",
+            "type": "pagelayouts",
+            "ux": -1,
+            "ui": -1,
+            "core": -1,
+            "ng": -1,
+            "dox": 20,
+            "comments": "",
+            "newLayout": true
+        },
+        {
             "url": "main-nav-group",
             "text": "Main Navigation",
             "type": "component",
