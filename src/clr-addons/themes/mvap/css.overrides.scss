@@ -43,6 +43,13 @@ header,
   border-color: $clr-gray;
 }
 
+.card {
+  &.clickable:hover {
+    box-shadow: 0 0.125rem 0 0 $clr-card-active-border-color;
+    border-color: $clr-card-active-border-color;
+  }
+}
+
 .datagrid .datagrid-column {
   .datagrid-filter-toggle {
     &:hover {
