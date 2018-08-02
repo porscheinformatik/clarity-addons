@@ -1,4 +1,4 @@
-@porscheinformatik/clr-addons@1.2.1
+@porscheinformatik/clr-addons@1.2.2
 MIT
 MIT
 
