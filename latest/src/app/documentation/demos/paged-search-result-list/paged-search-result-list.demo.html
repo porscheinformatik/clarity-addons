@@ -11,38 +11,100 @@
                 completely new angular components.</p>
         </div>
 
-        <div id="code-examples">
-            <h3 id="examples">Code &amp; Examples</h3>
+        <h3 id="usage">Usage</h3>
 
-            To set a template for each item of your list simply add a <code class="clr-code">ng-template</code> inside
+        <p>To set a template for each item of your list simply add a <code class="clr-code">ng-template</code> inside
             the <code class="clr-code">clr-paged-search-result-list</code>.
             By defining <code class="clr-code">let-item="item"</code> on your <code class="clr-code">ng-template</code>
-            you can get the context of each individual item.
-            <p>
-                Following interactions are available:
-            </p>
-            <ul>
-                <li>
-                    To show items add a <code class="clr-code">[clrItems]</code> input to the component.
-                </li>
-                <li>
-                    To set the current page add a <code class="clr-code">[clrPage]</code> input to the component.
-                </li>
-                <li>
-                    To define the page size add a <code class="clr-code">[clrPageSize]</code> input to the component.
-                </li>
-                <li>
-                    To define the number of total items add a <code class="clr-code">[clrTotalItems]</code> input to the
-                    component.
-                </li>
-                <li>
-                    To set the position of the pager add a <code class="clr-code">[clrPagerPosition]</code> input to the
-                    component. Default is <code class="clr-code">bottom</code>
-                </li>
-                <li>
-                    To react to page changes, bind to the event <code class="clr-code">(clrPageChange)</code>.
-                </li>
-            </ul>
+            you can get the context of each individual item.</p>
+
+        <h2>Angular Component</h2>
+        <h3>Summary of Options</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="left">Input/Output</th>
+                <th class="left hidden-xs-down">Values</th>
+                <th class="hidden-xs-down">Default</th>
+                <th class="left">Effect</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="left">
+                    <b>[clrItems]</b>
+                    <div class="hidden-sm-up">Type: Array</div>
+                    <div class="hidden-sm-up">Default: undefined</div>
+                </td>
+                <td class="left hidden-xs-down">Array</td>
+                <td class="hidden-xs-down">undefined</td>
+                <td class="left">Sets the items of the current page</td>
+            </tr>
+            <tr>
+                <td class="left">
+                    <b>[clrPage]</b>
+                    <div class="hidden-sm-up">Type: Number</div>
+                    <div class="hidden-sm-up">Default: undefined</div>
+                </td>
+                <td class="left hidden-xs-down">Number</td>
+                <td class="hidden-xs-down">undefined</td>
+                <td class="left">
+                    Sets the current page
+                </td>
+            </tr>
+            <tr>
+                <td class="left">
+                    <b>[clrPageSize]</b>
+                    <div class="hidden-sm-up">Type: Number</div>
+                    <div class="hidden-sm-up">Default: undefined</div>
+                </td>
+                <td class="left hidden-xs-down">Number</td>
+                <td class="hidden-xs-down">undefined</td>
+                <td class="left">
+                    Sets the page size
+                </td>
+            </tr>
+            <tr>
+                <td class="left">
+                    <b>[clrTotalItems]</b>
+                    <div class="hidden-sm-up">Type: Number</div>
+                    <div class="hidden-sm-up">Default: undefined</div>
+                </td>
+                <td class="left hidden-xs-down">Number</td>
+                <td class="hidden-xs-down">undefined</td>
+                <td class="left">
+                    Necessary to calculate the number of pages.
+                </td>
+            </tr>
+            <tr>
+                <td class="left">
+                    <b>[clrPagerPosition]</b>
+                    <div class="hidden-sm-up">Type: String</div>
+                    <div class="hidden-sm-up">Default: 'bottom'</div>
+                </td>
+                <td class="left hidden-xs-down">Javascript String</td>
+                <td class="hidden-xs-down">'bottom', 'top', 'both'</td>
+                <td class="left">
+                    Defines where to show the generic pager.
+                </td>
+            </tr>
+            <tr>
+                <td class="left">
+                    <b>(clrPageChange)</b>
+                    <div class="hidden-sm-up">Type: Function</div>
+                    <div class="hidden-sm-up">N/A</div>
+                </td>
+                <td class="left hidden-xs-down">Function</td>
+                <td class="hidden-xs-down">N/A</td>
+                <td class="left">
+                    Fired every time the page changes
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div id="code-examples">
+            <h3 id="examples">Code &amp; Examples</h3>
 
             <div class="margin-top-24">
                 <clr-paged-search-result-list [clrItems]="pagedItems"

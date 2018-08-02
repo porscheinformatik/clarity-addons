@@ -1,14 +1,16 @@
 <clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
     <article>
         <h5 class="component-summary" id="cards-header">The original card documentation can be found in the official
-            Clarity Documentation. This document only extends the clarity documentation by a single added class:
-            <code class="clr-code">card-active</code>.</h5>
+            Clarity Documentation. This document only extends the clarity documentation by two added class:
+            <code class="clr-code">card-active</code> and <code class="clr-code">selectable</code>.</h5>
 
         <div id="design-guidelines">
             <h3>Usage</h3>
             <p>
                 Use the <code class="clr-code">card-active</code> class when you have a list of cards and want to show
-                which card is currently selected.
+                which card is currently selected. Every selectable card should have the
+                class <code class="clr-code">selectable</code> instead of the
+                clarity-default <code class="clr-code">clickable</code> class.
             </p>
         </div>
 
@@ -17,22 +19,22 @@
 
             <div class="clr-row">
                 <div class="clr-col-4">
-                    <div class="card card-active clickable">
+                    <div class="card card-active selectable">
                         <div class="card-header">
                             I am an active card
                         </div>
                         <div class="card-block">
-                            This makes me not clickable
+                            This makes me not selectable
                         </div>
                     </div>
                 </div>
                 <div class="clr-col-4">
-                    <div class="card clickable">
+                    <div class="card selectable">
                         <div class="card-header">
                             I am a non active card
                         </div>
                         <div class="card-block">
-                            But I am clickable
+                            But I am selectable
                         </div>
                     </div>
                 </div>
@@ -42,7 +44,7 @@
                             I am a non active card
                         </div>
                         <div class="card-block">
-                            And I am also not clickable
+                            And I am also not selectable
                         </div>
                     </div>
                 </div>
@@ -54,7 +56,7 @@
 
             <div class="clr-row">
                 <div class="clr-col-4" *ngFor="let card of cards;let index = index;">
-                    <div class="card clickable" [class.card-active]="card.active" (click)="activateCard(index)">
+                    <div class="card selectable" [class.card-active]="card.active" (click)="activateCard(index)">
                         <div class="card-header">
                             {{card.title}}
                         </div>
