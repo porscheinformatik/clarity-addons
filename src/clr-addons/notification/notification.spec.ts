@@ -31,15 +31,4 @@ describe('CNotificationComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('should be opened', () => {
-    component.open();
-    expect(component.isOpen()).toBeTrue();
-  });
-
-  it('should be closed', () => {
-    component.open();
-    component.close();
-    expect(component.isOpen()).toBeFalse();
-  });
 });
