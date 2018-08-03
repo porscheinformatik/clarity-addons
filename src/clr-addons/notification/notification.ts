@@ -6,7 +6,7 @@
 
 import { Component, EventEmitter, Input, OnInit, Output, ElementRef, ViewChild } from '@angular/core';
 import { animate, style, transition, trigger, state } from '@angular/animations';
-import { timer } from 'rxjs';
+import { timer, Subscription } from 'rxjs';
 import { interval } from 'rxjs';
 import { ClrAlert } from '@clr/angular';
 
@@ -43,6 +43,7 @@ export class ClrNotification implements OnInit {
   private startTime: number;
   /* tslint:disable-next-line */
   private state: any;
+  private timer: Subscription;
 
   private _translate = 0;
   get translate() {
@@ -77,17 +78,16 @@ export class ClrNotification implements OnInit {
     if (this.progressbar) {
       interval(this.timeout / (this.timeout / this.step)).subscribe(() => this.updateProgressStatus());
     }
+    this.timer = timer(this.timeout).subscribe(() => this.close());
     this.startTime = new Date().getTime();
   }
 
   public updateProgressStatus(): void {
     this.progressStatus = new Date().getTime() - this.startTime;
-    if (this.progressStatus >= this.timeout) {
-      this.close();
-    }
   }
 
   public close(): void {
+    this.timer.unsubscribe();
     this.clrAlert._closed = false;
     this.state = { value: 'fadeOut', params: { absolute: this._translate } };
     timer(300).subscribe(() => this.closed.emit());
