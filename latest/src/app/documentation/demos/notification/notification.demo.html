@@ -16,68 +16,48 @@
                     <br />
                     Reserved for errors, malfunctions, as well as critical issues like license expiration.
                     <br />
-                    <button class="btn btn-danger-outline" (click)="openNotify('clr-example-danger')">Show Error Notification</button>
-                    <clr-notification
-                        [clrTimeout]="3000"
-                        [clrNotificationType]="'danger'"
-                        [clrDismissable]="false"
-                        [clrProgressbar]="false"
-                        [clrId]="'clr-example-danger'">
+                    <button class="btn btn-danger-outline" (click)="openNotify(exampleDanger, { timeout: 3000, notificationType: 'danger', dismissable: false, progressbar: false })">Show Error Notification</button>
+                    <ng-template #exampleDanger>
                         <ng-container clr-notification-message>
                             Danger
                         </ng-container>
-                    </clr-notification>
+                    </ng-template>
                 </p>
                 <p>
                     <b>Warning</b>
                     <br />
                     Reserved for warnings: a message that needs the user attention and aknowledgment but might not cause errors.
                     <br />
-                    <button class="btn btn-warning-outline" (click)="openNotify('clr-example-warning')">Show Warning Notification</button>
-                    <clr-notification
-                        [clrTimeout]="3000"
-                        [clrNotificationType]="'warning'"
-                        [clrDismissable]="false"
-                        [clrProgressbar]="false"
-                        [clrId]="'clr-example-warning'">
+                    <button class="btn btn-warning-outline" (click)="openNotify(exampleWarning, { timeout: 3000, notificationType: 'warning', dismissable: false, progressbar: false })">Show Warning Notification</button>
+                    <ng-template #exampleWarning>
                         <ng-container clr-notification-message>
                             Warning
                         </ng-container>
-                    </clr-notification>
+                    </ng-template>
                 </p>
                 <p>
                     <b>Info</b>
                     <br />
                     Provides info to users in context. Shouldn’t be overused to replace regular content.
                     <br />
-                    <button class="btn btn-info-outline" (click)="openNotify('clr-example-info')">Show Info Notification</button>
-                    <clr-notification
-                        [clrTimeout]="3000"
-                        [clrNotificationType]="'info'"
-                        [clrDismissable]="false"
-                        [clrProgressbar]="false"
-                        [clrId]="'clr-example-info'">
+                    <button class="btn btn-info-outline" (click)="openNotify(exampleInfo, { timeout: 3000, notificationType: 'info', dismissable: false, progressbar: false })">Show Info Notification</button>
+                    <ng-template #exampleInfo>
                         <ng-container clr-notification-message>
                             Info
                         </ng-container>
-                    </clr-notification>
+                    </ng-template>
                 </p>
                 <p>
                     <b>Success</b>
                     <br />
                     Reserved to provide to a static persistent success message.
                     <br />
-                    <button class="btn btn-success-outline" (click)="openNotify('clr-example-success')">Show Success Notification</button>
-                    <clr-notification
-                        [clrTimeout]="3000"
-                        [clrNotificationType]="'success'"
-                        [clrDismissable]="false"
-                        [clrProgressbar]="false"
-                        [clrId]="'clr-example-success'">
+                    <button class="btn btn-success-outline" (click)="openNotify(exampleSuccess, { timeout: 3000, notificationType: 'success', dismissable: false, progressbar: false })">Show Success Notification</button>
+                    <ng-template #exampleSuccess>
                         <ng-container clr-notification-message>
                             Success
                         </ng-container>
-                    </clr-notification>
+                    </ng-template>
                 </p>
                 <h2>Angular Component</h2>
                 <h3>Summary of Options</h3>
@@ -242,30 +222,14 @@
                     </div>
                 </form>
                 <div class="btn-group">
-                    <button class="btn" (click)="openNotify('clr-notification')">Show Notification</button>
+                    <button class="btn" (click)="openNotify(exampleSuccess, { timeout: clrExampleTimeout, notificationType: clrExampleType, dismissable: clrExampleDismissable, progressbar: clrExampleProgressbar })">Show Notification</button>
                 </div>
-                <clr-notification
-                    [clrTimeout]="clrExampleTimeout"
-                    [clrNotificationType]="clrExampleType"
-                    [clrDismissable]="clrExampleDismissable"
-                    [clrProgressbar]="clrExampleProgressbar"
-                    (clrClosed)="onClose()"
-                    [clrId]="'clr-notification'">
+                <ng-template>
                     <ng-container clr-notification-message>
                         Some Information
                         <button class="btn btn-info-outline" (click)="showAlert()">Show Alert</button>
                     </ng-container>
-                </clr-notification>
-                <clr-modal [(clrModalOpen)]="basic">
-                    <h3 class="modal-title">I have a nice title</h3>
-                    <div class="modal-body">
-                        <p>But not much to say...</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline" (click)="basic = false">Cancel</button>
-                        <button type="button" class="btn btn-primary" (click)="basic = false">Ok</button>
-                    </div>
-                </clr-modal>
+                </ng-template>
             </div>
         </article>
     </clr-doc-wrapper>

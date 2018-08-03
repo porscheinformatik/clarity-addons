@@ -5,11 +5,11 @@
  */
 import { Component, ViewChildren, QueryList } from "@angular/core";
 import { ClarityDocComponent } from "../clarity-doc";
-import { ClrNotification, ClrNotificationService } from '@porscheinformatik/clr-addons';
+import { ClrNotificationService } from "@porscheinformatik/clr-addons";
 
 const CODE_EXAMPLE = `
 <div class="btn-group">
-    <button class="btn" (click)="openNotify('myNotification')">Show Info Notification</button>
+    <button class="btn" (click)="openNotify(content)">Show Info Notification</button>
 </div>
 
 <clr-notification
@@ -37,7 +37,6 @@ const CODE_EXAMPLE = `
     styleUrls: ["./notification.demo.scss"],
 })
 export class NotificationDemo extends ClarityDocComponent {
-    @ViewChildren(ClrNotification) clrNotifications: QueryList<ClrNotification>;
     codeExample = CODE_EXAMPLE;
     clrExampleTimeout = 2000;
     clrExampleType = "info";
@@ -49,19 +48,16 @@ export class NotificationDemo extends ClarityDocComponent {
     constructor(private notificationService: ClrNotificationService) {
         super("notification");
     }
-    ngAfterViewInit() {
-        this.notificationService.addElements(this.clrNotifications.toArray());
-    }
 
     onClose(): void {
-        console.log('notification closed');
+        console.log("notification closed");
     }
 
     showAlert(): void {
         this.basic = true;
     }
 
-    openNotify(id): void {
-        this.notificationService.openNotification(id);
+    openNotify(content, options): void {
+        this.notificationService.openNotification(content, options);
     }
 }
