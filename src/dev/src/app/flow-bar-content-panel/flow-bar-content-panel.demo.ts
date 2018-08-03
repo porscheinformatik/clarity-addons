@@ -14,9 +14,10 @@ export class FlowBarContentPanelDemo {
   myActiveStep: ClrFlowBarStep;
   flowBarSteps: ClrFlowBarStep[] = [
     { title: 'Fahrzeug', enabled: true },
-    { title: 'Zubehör', enabled: true },
+    { title: 'Zubehör / Dienstleistungen', enabled: true },
     { title: 'Angebotsdetails', enabled: true },
     { title: 'Finanzierung', enabled: true },
+    { title: 'Bestellung', enabled: true },
   ];
 
   activeStepChanged(step: ClrFlowBarStep): void {
