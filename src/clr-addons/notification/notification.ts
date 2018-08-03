@@ -6,7 +6,7 @@
 
 import { Component, EventEmitter, Input, OnInit, Output, ElementRef, ViewChild } from '@angular/core';
 import { animate, style, transition, trigger, state } from '@angular/animations';
-import { timer, Subscription } from 'rxjs';
+import { timer } from 'rxjs';
 import { interval } from 'rxjs';
 import { ClrAlert } from '@clr/angular';
 
@@ -41,6 +41,7 @@ export class ClrNotification implements OnInit {
 
   private step: number = 100;
   private startTime: number;
+  /* tslint:disable-next-line */
   private state: any;
 
   private _translate = 0;

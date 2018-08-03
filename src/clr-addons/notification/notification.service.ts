@@ -15,7 +15,6 @@ import {
 import { DOCUMENT } from '@angular/common';
 import { ClrNotification } from './notification';
 import { ClrActiveNotification, ClrContentRef, ClrNotificationRef } from './notification-ref';
-import { timer } from 'rxjs';
 
 export interface ClrNotificationOptions {
   timeout?: number;
