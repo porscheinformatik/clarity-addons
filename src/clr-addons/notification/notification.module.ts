@@ -14,6 +14,6 @@ import { ClrNotification } from './notification';
 @NgModule({
   imports: [CommonModule, ClarityModule, FormsModule],
   declarations: [ClrNotification],
-  exports: [ClrNotification],
+  entryComponents: [ClrNotification],
 })
 export class ClrNotificationModule {}

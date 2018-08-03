@@ -3,47 +3,99 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Injectable } from '@angular/core';
+import {
+  Injectable,
+  ComponentFactoryResolver,
+  Injector,
+  TemplateRef,
+  ApplicationRef,
+  ComponentRef,
+  Inject,
+} from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { ClrNotification } from './notification';
+import { ClrActiveNotification, ClrContentRef, ClrNotificationRef } from './notification-ref';
+
+export interface ClrNotificationOptions {
+  timeout?: number;
+  notificationType?: string;
+  dismissable?: boolean;
+  progressbar?: boolean;
+}
 
 @Injectable()
 export class ClrNotificationService {
-  private elements = [];
+  private _notificationAttributes = ['timeout', 'notificationType', 'dismissable', 'progressbar'];
+  private elements = new Set<ClrNotification>();
 
-  private subscribeElement(el) {
-    el.closed.subscribe(this.afterClose.bind(this, el));
-  }
+  constructor(
+    private _injector: Injector,
+    private _applicationRef: ApplicationRef,
+    private _componentFactoryResolver: ComponentFactoryResolver,
+    @Inject(DOCUMENT) private _document
+  ) {}
 
-  setElements(elements: ClrNotification[]) {
-    this.elements = elements;
-    this.setEventListener();
-  }
+  afterClose(notification: ClrNotification) {
+    this.elements.delete(notification);
 
-  addElements(elements: ClrNotification[]) {
-    elements.forEach(this.subscribeElement.bind(this));
-    this.elements = this.elements.concat(elements);
-  }
-
-  setEventListener() {
-    this.elements.forEach(this.subscribeElement.bind(this));
-  }
-
-  afterClose(notification) {
-    const olderElems = this.elements.filter(el => el.translate > notification.translate);
-    olderElems.forEach(el => el.moveUp());
-  }
-
-  openNotification(id) {
-    const notification = this.elements.find(el => el.id === id);
-    if (notification) {
-      if (!notification.isOpen()) {
-        const openNotifications = this.elements.filter(el => el.isOpen());
-        const hasEmptySpace = openNotifications.length && openNotifications.every(el => el.translate >= 110);
-        if (!hasEmptySpace) {
-          openNotifications.forEach(el => el.moveDown());
-        }
-        notification.open();
+    this.elements.forEach(el => {
+      if (el.translate > notification.translate) {
+        el.moveUp(notification.height);
       }
+    });
+  }
+
+  openNotification(content: any, options: ClrNotificationOptions = {}): ClrNotificationRef {
+    const activeNotification = new ClrActiveNotification();
+    const contentRef = this._getContentRef(content, activeNotification);
+    const notificationCmptRef: ComponentRef<ClrNotification> = this._attachWindowComponent(
+      this._document.body,
+      contentRef
+    );
+    const notificationRef: ClrNotificationRef = new ClrNotificationRef(notificationCmptRef, contentRef);
+
+    this._applyWindowOptions(notificationCmptRef.instance, options);
+    notificationCmptRef.instance.closed.subscribe(this.afterClose.bind(this, notificationCmptRef.instance));
+
+    notificationCmptRef.instance.heightInited.then(() =>
+      this.elements.forEach(el => {
+        if (el !== notificationCmptRef.instance) {
+          el.moveDown(notificationCmptRef.instance.height);
+        }
+      })
+    );
+    this.elements.add(notificationCmptRef.instance);
+
+    return notificationRef;
+  }
+
+  private _getContentRef(content: any, context: ClrActiveNotification): ClrContentRef {
+    if (content instanceof TemplateRef) {
+      return this._createFromTemplateRef(content, context);
     }
+
+    return new ClrContentRef([]);
+  }
+
+  private _createFromTemplateRef(content: TemplateRef<any>, context: ClrActiveNotification): ClrContentRef {
+    const viewRef = content.createEmbeddedView(context);
+    this._applicationRef.attachView(viewRef);
+    return new ClrContentRef([viewRef.rootNodes], viewRef);
+  }
+
+  private _attachWindowComponent(containerEl: any, contentRef: ClrContentRef): ComponentRef<ClrNotification> {
+    const containerFactory = this._componentFactoryResolver.resolveComponentFactory(ClrNotification);
+    const containerCmptRef = containerFactory.create(this._injector, contentRef.nodes);
+    this._applicationRef.attachView(containerCmptRef.hostView);
+    containerEl.appendChild(containerCmptRef.location.nativeElement);
+    return containerCmptRef;
+  }
+
+  private _applyWindowOptions(notificationInstance: ClrNotification, options: Object): void {
+    this._notificationAttributes.forEach((optionName: string) => {
+      if (options[optionName]) {
+        notificationInstance[optionName] = options[optionName];
+      }
+    });
   }
 }
