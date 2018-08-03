@@ -3,8 +3,8 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, ViewChildren, QueryList } from '@angular/core';
-import { ClrNotification, ClrNotificationService } from '@porscheinformatik/clr-addons';
+import { Component } from '@angular/core';
+import { ClrNotificationService } from '@porscheinformatik/clr-addons';
 
 @Component({
   selector: 'clr-notification-demo',
@@ -12,15 +12,7 @@ import { ClrNotification, ClrNotificationService } from '@porscheinformatik/clr-
   templateUrl: './notification.demo.html',
 })
 export class NotificationDemo {
-  @ViewChildren(ClrNotification) clrNotifications: QueryList<ClrNotification>;
-
   constructor(private clrNotificationService: ClrNotificationService) {}
-
-  ngOnInit() {}
-
-  ngAfterViewInit() {
-    this.clrNotificationService.setElements(this.clrNotifications.toArray());
-  }
 
   onClose(): void {
     console.log('notification closed');
@@ -30,7 +22,27 @@ export class NotificationDemo {
     alert('Button was clicked');
   }
 
-  openNotify(id): void {
-    this.clrNotificationService.openNotification(id);
+  openInfo(content): void {
+    this.clrNotificationService
+      .openNotification(content, { timeout: 5000, notificationType: 'info', dismissable: true, progressbar: true })
+      .result.then(this.onClose);
+  }
+
+  openWarning(content): void {
+    this.clrNotificationService
+      .openNotification(content, { timeout: 40000, notificationType: 'warning', dismissable: true, progressbar: true })
+      .result.then(this.onClose);
+  }
+
+  openSuccess(content): void {
+    this.clrNotificationService
+      .openNotification(content, { timeout: 30000, notificationType: 'success', dismissable: true, progressbar: true })
+      .result.then(this.onClose);
+  }
+
+  openDanger(content): void {
+    this.clrNotificationService
+      .openNotification(content, { timeout: 20000, notificationType: 'danger', dismissable: true, progressbar: true })
+      .result.then(this.onClose);
   }
 }
