@@ -45,7 +45,7 @@ export class ClrNotificationRef {
   }
 
   /**
-   * Can be used to close a notification, passing an optional result.
+   * Can be used to close a notification
    */
   close(): void {
     if (this._notificationCmptRef) {
