@@ -43,6 +43,7 @@ export class ClrNotification implements OnInit {
   private startTime: number;
   state: any;
   private timer: Subscription;
+  private interval: Subscription;
 
   private _translate = 0;
   get translate() {
@@ -77,7 +78,9 @@ export class ClrNotification implements OnInit {
     if (this.timeout > 0) {
       if (this.progressbar) {
         this.startTime = new Date().getTime();
-        interval(this.timeout / (this.timeout / this.step)).subscribe(() => this.updateProgressStatus());
+        this.interval = interval(this.timeout / (this.timeout / this.step)).subscribe(() =>
+          this.updateProgressStatus()
+        );
       }
 
       this.timer = timer(this.timeout).subscribe(() => this.close());
@@ -89,7 +92,12 @@ export class ClrNotification implements OnInit {
   }
 
   public close(): void {
-    this.timer.unsubscribe();
+    if (this.interval) {
+      this.interval.unsubscribe();
+    }
+    if (this.timer) {
+      this.timer.unsubscribe();
+    }
     this.clrAlert._closed = false;
     this.state = { value: 'fadeOut', params: { absolute: this._translate } };
     timer(300).subscribe(() => this.closed.emit());
