@@ -41,8 +41,7 @@ export class ClrNotification implements OnInit {
 
   private step: number = 100;
   private startTime: number;
-  /* tslint:disable-next-line */
-  private state: any;
+  state: any;
   private timer: Subscription;
 
   private _translate = 0;
