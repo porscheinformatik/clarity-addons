@@ -36,6 +36,13 @@ const documentationRoutes: Routes = [
                 }
             },
             {
+                path: "cards",
+                loadChildren: "app/documentation/demos/cards/cards.demo.module#CardsDemoModule",
+                data: {
+                    browserTitle: "Cards"
+                }
+            },
+            {
                 path: "collapse-expand-section",
                 loadChildren: "app/documentation/demos/collapse-expand-section/collapse-expand-section.demo.module#CollapseExpandSectionDemoModule",
                 data: {
@@ -78,6 +85,20 @@ const documentationRoutes: Routes = [
                 }
             },
             {
+                path: "flow-bar-layout",
+                loadChildren: "app/documentation/demos/flow-bar-layout/flow-bar-layout.demo.module#FlowBarLayoutDemoModule",
+                data: {
+                    browserTitle: "Flow Bar Layout"
+                }
+            },
+            {
+                path: "sticky-footer-layout",
+                loadChildren: "app/documentation/demos/sticky-footer-layout/sticky-footer-layout.demo.module#StickyFooterLayoutDemoModule",
+                data: {
+                    browserTitle: "Sticky Footer Layout"
+                }
+            },
+            {
                 path: "sidebarpage-layout",
                 loadChildren: "app/documentation/demos/sidebarpage-layout/sidebarpage-layout.demo.module#SidebarPageLayoutDemoModule",
                 data: {
@@ -96,6 +117,13 @@ const documentationRoutes: Routes = [
                 loadChildren: "app/documentation/demos/breadcrumb/breadcrumb.demo.module#BreadcrumbDemoModule",
                 data: {
                     browserTitle: "Breadcrumb"
+                }
+            },
+            {
+                path: "notification",
+                loadChildren: "app/documentation/demos/notification/notification.demo.module#NotificationDemoModule",
+                data: {
+                    browserTitle: "Notification"
                 }
             }
         ]

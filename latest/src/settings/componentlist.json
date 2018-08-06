@@ -7,6 +7,18 @@
     },
     "list": [
         {
+            "url": "cards",
+            "text": "Cards",
+            "type": "component",
+            "ux": 20,
+            "ui": 20,
+            "core": 20,
+            "ng": 20,
+            "dox": 20,
+            "comments": "",
+            "newLayout": true
+        },
+        {
             "url": "collapse-expand-section",
             "text": "Collapse/Expand Section",
             "type": "component",
@@ -91,9 +103,33 @@
             "newLayout": true
         },
         {
+            "url": "flow-bar-layout",
+            "text": "Flow Bar Layout",
+            "type": "pagelayouts",
+            "ux": -1,
+            "ui": -1,
+            "core": -1,
+            "ng": -1,
+            "dox": 20,
+            "comments": "",
+            "newLayout": true
+        },
+        {
+            "url": "sticky-footer-layout",
+            "text": "Sticky Footer Layout",
+            "type": "pagelayouts",
+            "ux": -1,
+            "ui": -1,
+            "core": -1,
+            "ng": -1,
+            "dox": 20,
+            "comments": "",
+            "newLayout": true
+        },
+        {
             "url": "main-nav-group",
             "text": "Main Navigation",
-            "type": "pagelayouts",
+            "type": "component",
             "ux": 20,
             "ui": 20,
             "core": 20,
@@ -105,6 +141,18 @@
         {
             "url": "breadcrumb",
             "text": "Breadcrumb",
+            "type": "component",
+            "ux": 20,
+            "ui": 20,
+            "core": 20,
+            "ng": 20,
+            "dox": 20,
+            "comments": "",
+            "newLayout": true
+        },
+        {
+            "url": "notification",
+            "text": "Notification",
             "type": "component",
             "ux": 20,
             "ui": 20,

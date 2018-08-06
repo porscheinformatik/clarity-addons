@@ -1,0 +1,54 @@
+<clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
+    <article>
+        <h5 class="component-summary">The Flow Bar is a basic component that
+            can be used to highlight the current progress a user is making throughout multiple steps. The Flow Bar also
+            allows the user to navigate between steps, either by clicking on a specific step or selecting the
+            previous/next buttons.</h5>
+
+        <p>
+            <a routerLink="/full-page-layouts/flow-bar" routerLinkActive="active">
+                <span>Click here for a full example of the Base Page Layout with a Flow Bar (Code below)</span>
+            </a>
+        </p>
+
+        <div id="design-guidelines">
+            <h3>Usage</h3>
+            <p>
+                When implementing a flow bar on your page, you will want to insert a <code
+                    class="clr-code">clr-flow-bar</code> right below your content-header but above your
+                content-container.
+            </p>
+            <p>
+                Following inputs & outputs are available:
+            </p>
+            <ul>
+                <li>
+                    <code class="clr-code">[clrSteps]</code> - an array of <code class="clr-code">FlowBarStep</code>.
+                    You can extend/implement this interface to save even more information in your steps.
+                </li>
+                <li>
+                    <code class="clr-code">[(clrActiveStep)]</code> two way binding of the active step.
+                </li>
+            </ul>
+            <p>
+                You can use the <code class="clr-code">@ViewChild()</code> annotation to get a reference of your
+                <code class="clr-code">ClrFlowBar</code>, which will allow you to call its methods:
+            </p>
+            <ul>
+                <li><code class="clr-code">previous()</code> - open the previous step.</li>
+                <li><code class="clr-code">next()</code> - opens the next step.</li>
+                <li><code class="clr-code">isPreviousAvailable()</code> - returns true if the previous step can be
+                    opened.
+                </li>
+                <li><code class="clr-code">isNextAvailable()</code> - returns true if the next step can be opened.</li>
+                <li><code class="clr-code">isLastStep()</code> - returns true if the current step is the last.</li>
+            </ul>
+        </div>
+
+        <div id="code-examples">
+            <h3 id="examples">Code &amp; Examples</h3>
+
+            <clr-code-snippet [clrCode]="codeExample"></clr-code-snippet>
+        </div>
+    </article>
+</clr-doc-wrapper>

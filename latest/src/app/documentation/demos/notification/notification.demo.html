@@ -1,0 +1,177 @@
+<clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
+        <article>
+            <h5 class="component-summary" id="generic-pager-header">Notifications are shown to inform the user of a particular event or completed action.</h5>
+    
+            <div id="design-guidelines">
+                <h3>Notification Types</h3>
+                <p>
+                    There are four different sub-types of notifications: error, warning, info, and success.
+                </p>
+                <p>
+                    <b>Error</b>
+                    <br />
+                    Reserved for errors, malfunctions, as well as critical issues like license expiration.
+                    <br />
+                    <button class="btn btn-danger-outline" (click)="openNotify(exampleDanger, { timeout: 3000, notificationType: 'danger', dismissable: false, progressbar: false })">Show Error Notification</button>
+                    <ng-template #exampleDanger>
+                        <ng-container clr-notification-message>
+                            Danger
+                        </ng-container>
+                    </ng-template>
+                </p>
+                <p>
+                    <b>Warning</b>
+                    <br />
+                    Reserved for warnings: a message that needs the user attention and aknowledgment but might not cause errors.
+                    <br />
+                    <button class="btn btn-warning-outline" (click)="openNotify(exampleWarning, { timeout: 3000, notificationType: 'warning', dismissable: false, progressbar: false })">Show Warning Notification</button>
+                    <ng-template #exampleWarning>
+                        <ng-container clr-notification-message>
+                            Warning
+                        </ng-container>
+                    </ng-template>
+                </p>
+                <p>
+                    <b>Info</b>
+                    <br />
+                    Provides info to users in context. Shouldn’t be overused to replace regular content.
+                    <br />
+                    <button class="btn btn-info-outline" (click)="openNotify(exampleInfo, { timeout: 3000, notificationType: 'info', dismissable: false, progressbar: false })">Show Info Notification</button>
+                    <ng-template #exampleInfo>
+                        <ng-container clr-notification-message>
+                            Info
+                        </ng-container>
+                    </ng-template>
+                </p>
+                <p>
+                    <b>Success</b>
+                    <br />
+                    Reserved to provide to a static persistent success message.
+                    <br />
+                    <button class="btn btn-success-outline" (click)="openNotify(exampleSuccess, { timeout: 3000, notificationType: 'success', dismissable: false, progressbar: false })">Show Success Notification</button>
+                    <ng-template #exampleSuccess>
+                        <ng-container clr-notification-message>
+                            Success
+                        </ng-container>
+                    </ng-template>
+                </p>
+                <h2>Angular Component</h2>
+                <p>
+                    Notifications will be opened by a service, not by including the notification component in the markup.
+                    That way it's possible to use the same markup for multiple notification instances.
+                </p>
+                <p>
+                    The service will be called with two parameters. The first one defines the content of the notification as a template.
+                    The second parameter defines the options for the notification, described below.
+                </p>
+                <p>
+                    The service will return a <code>ClrNotificationRef</code> containing a promise <code>result</code> which will get resolved after the notification was closed.
+                </p>
+
+                <h3>Summary of Options</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="left">Input</th>
+                            <th class="left hidden-xs-down">Values</th>
+                            <th class="hidden-xs-down">Default</th>
+                            <th class="left">Effect</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="left">
+                                <b>timeout</b>
+                                <div class="hidden-sm-up">Type: Number</div>
+                                <div class="hidden-sm-up">Default: 2000</div>
+                            </td>
+                            <td class="left hidden-xs-down">Javascript Number</td>
+                            <td class="hidden-xs-down">2000</td>
+                            <td class="left">Time in ms when the notification will be closed automatically. 0 means it stays open until user closes it manually.</td>
+                        </tr>
+                        <tr>
+                            <td class="left">
+                                <b>notificationType</b>
+                                <div class="hidden-sm-up">Type: String</div>
+                                <div class="hidden-sm-up">Default: "info"</div>
+                            </td>
+                            <td class="left hidden-xs-down">"info", "warning", "success", "danger"</td>
+                            <td class="hidden-xs-down">"info"</td>
+                            <td class="left">
+                                Defines the type of notification.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="left">
+                                <b>dismissable</b>
+                                <div class="hidden-sm-up">Type: Boolean</div>
+                                <div class="hidden-sm-up">Default: false</div>
+                            </td>
+                            <td class="left hidden-xs-down">true, false</td>
+                            <td class="hidden-xs-down">false</td>
+                            <td class="left">
+                                Defines whether the notification is closable by the user manually.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="left">
+                                <b>progressbar</b>
+                                <div class="hidden-sm-up">Type: Boolean</div>
+                                <div class="hidden-sm-up">Default: false</div>
+                            </td>
+                            <td class="left hidden-xs-down">true, false</td>
+                            <td class="hidden-xs-down">false</td>
+                            <td class="left">
+                                Defines whether the progressbar (until notification closes automatically) will be shown.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    
+            <div id="code-examples">
+                <h3 id="examples">Code &amp; Examples</h3>
+                <clr-code-snippet [clrCode]="codeExample"></clr-code-snippet>
+                <clr-code-snippet [clrCode]="codeExampleTS" [clrLanguage]="'typescript'"></clr-code-snippet>
+                <form class="clr-form">
+                    <div class="form-group">
+                        <label for="clr-timeout">Timeout</label>
+                        <input clrInput type="number" id="clr-timeout" name="clr-timeout" [(ngModel)]="clrExampleTimeout">
+                    </div>
+                    <div class="form-group">
+                        <label for="clr-type">Type</label>
+                        <div class="select">
+                            <select id="clr-type" [(ngModel)]="clrExampleType" [ngModelOptions]="{standalone: true}">
+                                <option value="info">Info</option>
+                                <option value="warning">Warning</option>
+                                <option value="success">Success</option>
+                                <option value="danger">Danger</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <input type="checkbox" id="clr-dismissable" name="clr-dismissable" [(ngModel)]="clrExampleDismissable">
+                            <label for="clr-dismissable">Dismissable</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <input type="checkbox" id="clr-progressbar" name="clr-progressbar" class="form-control" [(ngModel)]="clrExampleProgressbar">
+                            <label for="clr-progressbar">Progressbar</label>
+                        </div>
+                    </div>
+                </form>
+                <div class="btn-group">
+                    <button class="btn" (click)="openNotify(exampleSuccess, { timeout: clrExampleTimeout, notificationType: clrExampleType, dismissable: clrExampleDismissable, progressbar: clrExampleProgressbar })">Show Notification</button>
+                </div>
+                <ng-template>
+                    <ng-container clr-notification-message>
+                        Some Information
+                        <button class="btn btn-info-outline" (click)="showAlert()">Show Alert</button>
+                    </ng-container>
+                </ng-template>
+            </div>
+        </article>
+    </clr-doc-wrapper>
+    

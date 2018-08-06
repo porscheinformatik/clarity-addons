@@ -1,4 +1,4 @@
-<clr-header class="header-6">
+<clr-header class="header-5">
     <div class="branding">
         <a routerLink="/" class="logo-and-title">
             <span class="clr-icon clarity-logo"></span>
@@ -10,9 +10,11 @@
         <div class="header-overflow">
             <a class="nav-link" routerLink="/full-page-layouts/basepage-layout-command" routerLinkActive="active"><span class="nav-text">Command bar</span></a>
             <clr-main-nav-group clrTitle="Layouts" routerLinkActive="active">
-                <a class="nav-link" routerLink="/full-page-layouts/basepage-layout" routerLinkActive="active">Base Page Layout</a>
-                <a class="nav-link" routerLink="/full-page-layouts/sidebarpage-layout" routerLinkActive="active">Sidebar Page Layout</a>
+                <a class="nav-link" routerLink="/full-page-layouts/basepage-layout" routerLinkActive="active">Base Pagelayout</a>
+                <a class="nav-link" routerLink="/full-page-layouts/sidebarpage-layout" routerLinkActive="active">Sidebar Pagelayout</a>
                 <a class="nav-link" routerLink="/full-page-layouts/content-panel" routerLinkActive="active">Content Panel Layout</a>
+                <a class="nav-link" routerLink="/full-page-layouts/flow-bar" routerLinkActive="active">Flow Bar Layout</a>
+                <a class="nav-link" routerLink="/full-page-layouts/sticky-footer" routerLinkActive="active">Sticky Footer Layout</a>
             </clr-main-nav-group>
             <clr-main-nav-group clrTitle="Menu 3" routerLinkActive="active">
                 <a class="nav-link" routerLink="/full-page-layouts/basepage-layout-sub1/one" routerLinkActive="active">Submenu 1</a>
@@ -33,6 +35,29 @@
             </button>
             <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
                 <button type="button" *ngFor="let theme of themes" (click)="setTheme(theme)" clrDropdownItem>{{theme.name}}</button>
+            </clr-dropdown-menu>
+        </clr-dropdown>
+
+
+        <clr-dropdown>
+            <button type="button" class="nav-icon dropdown-toggle" clrDropdownTrigger>
+                <clr-icon shape="applications" class="is-solid"></clr-icon><clr-icon shape="caret down"></clr-icon>
+            </button>
+            <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
+                <a onClick="return false;" href="#" clrDropdownItem>Application 1</a>
+                <a onClick="return false;" href="#" clrDropdownItem>Application 2</a>
+                <a onClick="return false;" href="#" clrDropdownItem>Application 3</a>
+            </clr-dropdown-menu>
+        </clr-dropdown>
+
+        <clr-dropdown>
+            <button type="button" class="nav-icon dropdown-toggle" clrDropdownTrigger>
+                <clr-icon shape="user"></clr-icon><clr-icon shape="caret down"></clr-icon>
+            </button>
+            <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
+                <a onClick="return false;" href="#" clrDropdownItem>Support</a>
+                <a onClick="return false;" href="#" clrDropdownItem>User Settings</a>
+                <a onClick="return false;" href="#" clrDropdownItem>Logout</a>
             </clr-dropdown-menu>
         </clr-dropdown>
     </div>
