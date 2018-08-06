@@ -12,7 +12,6 @@ import { ClarityModule } from '@clr/angular';
 
 import { ClrNotificationModule } from './notification.module';
 import { ClrNotificationService } from './notification.service';
-import { setTimeout } from 'timers';
 
 @Component({
   template: `
