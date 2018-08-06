@@ -35,16 +35,6 @@ export class ClrNotificationService {
     @Inject(DOCUMENT) private _document
   ) {}
 
-  afterClose(notification: ClrNotification) {
-    this.elements.delete(notification);
-
-    this.elements.forEach(el => {
-      if (el.translate > notification.translate) {
-        el.moveUp(notification.height);
-      }
-    });
-  }
-
   openNotification(content: any, options: ClrNotificationOptions = {}): ClrNotificationRef {
     const activeNotification = new ClrActiveNotification();
     const contentRef = this._getContentRef(content, activeNotification);
@@ -55,7 +45,7 @@ export class ClrNotificationService {
     const notificationRef: ClrNotificationRef = new ClrNotificationRef(notificationCmptRef, contentRef);
 
     this._applyWindowOptions(notificationCmptRef.instance, options);
-    notificationCmptRef.instance.closed.subscribe(this.afterClose.bind(this, notificationCmptRef.instance));
+    notificationCmptRef.instance.closed.subscribe(this._afterClose.bind(this, notificationCmptRef.instance));
 
     notificationCmptRef.instance.heightInited.then(() =>
       this.elements.forEach(el => {
@@ -67,6 +57,16 @@ export class ClrNotificationService {
     this.elements.add(notificationCmptRef.instance);
 
     return notificationRef;
+  }
+
+  private _afterClose(notification: ClrNotification) {
+    this.elements.delete(notification);
+
+    this.elements.forEach(el => {
+      if (el.translate > notification.translate) {
+        el.moveUp(notification.height);
+      }
+    });
   }
 
   private _getContentRef(content: any, context: ClrActiveNotification): ClrContentRef {
@@ -93,7 +93,7 @@ export class ClrNotificationService {
 
   private _applyWindowOptions(notificationInstance: ClrNotification, options: Object): void {
     this._notificationAttributes.forEach((optionName: string) => {
-      if (options[optionName]) {
+      if (options[optionName] !== undefined && options[optionName] != null) {
         notificationInstance[optionName] = options[optionName];
       }
     });

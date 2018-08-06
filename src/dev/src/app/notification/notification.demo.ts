@@ -24,7 +24,7 @@ export class NotificationDemo {
 
   openInfo(content): void {
     this.clrNotificationService
-      .openNotification(content, { timeout: 5000, notificationType: 'info', dismissable: true, progressbar: true })
+      .openNotification(content, { timeout: 0, notificationType: 'info', dismissable: true, progressbar: true })
       .result.then(this.onClose);
   }
 
