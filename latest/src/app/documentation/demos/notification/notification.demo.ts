@@ -5,26 +5,27 @@
  */
 import { Component, ViewChildren, QueryList } from "@angular/core";
 import { ClarityDocComponent } from "../clarity-doc";
-import { ClrNotification, ClrNotificationService } from '@porscheinformatik/clr-addons';
+import { ClrNotificationService } from "@porscheinformatik/clr-addons";
 
 const CODE_EXAMPLE = `
-<div class="btn-group">
-    <button class="btn" (click)="openNotify('myNotification')">Show Info Notification</button>
-</div>
-
-<clr-notification
-  [clrTimeout]="50000"
-  [clrNotificationType]="'info'"
-  [clrDismissable]="true"
-  [clrProgressbar]="true"
-  (clrClosed)="onClose()"
-  [clrId]="'myNotification'">
-  <ng-container clr-notification-message>
-    Some Information
-    <button class="btn btn-info-outline" (click)="showAlert()">Show Alert</button>
-  </ng-container>
-</clr-notification>
+<button class="btn btn-success-outline"(click)="openNotify(exampleSuccess, { timeout: 3000,
+    notificationType: 'success', dismissable: true, progressbar: true })">Show Success Notification</button>
+<ng-template #exampleSuccess>
+    <ng-container clr-notification-message>
+        Success
+    </ng-container>
+</ng-template>
 `;
+
+const CODE_EXAMPLE_TS = `
+onClose(): void {
+    console.log("notification closed");
+}
+
+openNotify(content, options): void {
+    this.notificationService.openNotification(content, options).result.then(this.onClose);
+}
+`
 
 @Component({
     selector: "clr-notification-demo-docu",
@@ -37,31 +38,23 @@ const CODE_EXAMPLE = `
     styleUrls: ["./notification.demo.scss"],
 })
 export class NotificationDemo extends ClarityDocComponent {
-    @ViewChildren(ClrNotification) clrNotifications: QueryList<ClrNotification>;
     codeExample = CODE_EXAMPLE;
+    codeExampleTS = CODE_EXAMPLE_TS;
     clrExampleTimeout = 2000;
     clrExampleType = "info";
     clrExampleDismissable = true;
     clrExampleProgressbar = true;
-    basic = false;
 
 
     constructor(private notificationService: ClrNotificationService) {
         super("notification");
     }
-    ngAfterViewInit() {
-        this.notificationService.addElements(this.clrNotifications.toArray());
-    }
 
     onClose(): void {
-        console.log('notification closed');
+        console.log("notification closed");
     }
 
-    showAlert(): void {
-        this.basic = true;
-    }
-
-    openNotify(id): void {
-        this.notificationService.openNotification(id);
+    openNotify(content, options): void {
+        this.notificationService.openNotification(content, options).result.then(this.onClose);
     }
 }
