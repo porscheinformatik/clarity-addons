@@ -74,11 +74,14 @@ export class ClrNotification implements OnInit {
       this._heightInited();
     });
 
-    if (this.progressbar) {
-      interval(this.timeout / (this.timeout / this.step)).subscribe(() => this.updateProgressStatus());
+    if (this.timeout > 0) {
+      if (this.progressbar) {
+        this.startTime = new Date().getTime();
+        interval(this.timeout / (this.timeout / this.step)).subscribe(() => this.updateProgressStatus());
+      }
+
+      this.timer = timer(this.timeout).subscribe(() => this.close());
     }
-    this.timer = timer(this.timeout).subscribe(() => this.close());
-    this.startTime = new Date().getTime();
   }
 
   public updateProgressStatus(): void {

@@ -93,7 +93,7 @@ export class ClrNotificationService {
 
   private _applyWindowOptions(notificationInstance: ClrNotification, options: Object): void {
     this._notificationAttributes.forEach((optionName: string) => {
-      if (options[optionName]) {
+      if (options[optionName] !== undefined && options[optionName] != null) {
         notificationInstance[optionName] = options[optionName];
       }
     });

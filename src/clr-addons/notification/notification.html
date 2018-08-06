@@ -1,5 +1,5 @@
 <div class="notification__wrapper" [@slideDown] [@move]="state" [@fade]="state">
-  <div class="progress top" [ngClass]="notificationType" *ngIf="progressbar">
+  <div class="progress top" [ngClass]="notificationType" *ngIf="progressbar && timeout > 0">
     <progress class="progress" [max]="timeout" [value]="progressStatus"></progress>
   </div>
   <clr-alert
