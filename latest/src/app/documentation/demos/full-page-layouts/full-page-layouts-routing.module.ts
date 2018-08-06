@@ -98,6 +98,13 @@ const fullPageLayoutsRoutes: Routes = [
                 }
             },
             {
+                path: `sticky-footer`,
+                loadChildren: "app/documentation/demos/full-page-layouts/sticky-footer-layout/sticky-footer-layout.demo.module#StickyFooterLayoutDemoModule",
+                data: {
+                    browserTitle: "Sticky Footer Layout",
+                }
+            },
+            {
                 path: `sidebarpage-layout`,
                 children: [
                     {

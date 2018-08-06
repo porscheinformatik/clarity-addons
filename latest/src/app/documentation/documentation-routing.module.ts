@@ -92,6 +92,13 @@ const documentationRoutes: Routes = [
                 }
             },
             {
+                path: "sticky-footer-layout",
+                loadChildren: "app/documentation/demos/sticky-footer-layout/sticky-footer-layout.demo.module#StickyFooterLayoutDemoModule",
+                data: {
+                    browserTitle: "Sticky Footer Layout"
+                }
+            },
+            {
                 path: "sidebarpage-layout",
                 loadChildren: "app/documentation/demos/sidebarpage-layout/sidebarpage-layout.demo.module#SidebarPageLayoutDemoModule",
                 data: {

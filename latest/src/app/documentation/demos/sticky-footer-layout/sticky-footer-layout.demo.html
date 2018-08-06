@@ -1,0 +1,28 @@
+<clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
+    <article>
+        <h5 class="component-summary">The Sticky footer represents a bar at the bottom of your page which is always
+            visible - scrollable content is hidden behind the sticky footer.</h5>
+
+        <p>
+            <a routerLink="/full-page-layouts/sticky-footer" routerLinkActive="active">
+                <span>Click here for a full example of the Base Page Layout with a Sticky Footer (Code below)</span>
+            </a>
+        </p>
+
+        <div id="design-guidelines">
+            <h3>Usage</h3>
+            <p>
+                When implementing a sticky footer on your page, you will want to insert a div with class <code
+                    class="clr-code">content-area-footer</code> right below your <code
+                    class="clr-code">content-area</code> div. This can be combined with a content panel layout, see the
+                code example of the flow bar layout for more information.
+            </p>
+        </div>
+
+        <div id="code-examples">
+            <h3 id="examples">Code &amp; Examples</h3>
+
+            <clr-code-snippet [clrCode]="codeExample"></clr-code-snippet>
+        </div>
+    </article>
+</clr-doc-wrapper>
