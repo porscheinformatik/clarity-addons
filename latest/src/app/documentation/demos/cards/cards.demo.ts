@@ -59,9 +59,9 @@ export class CardsDemo extends ClarityDocComponent {
     htmlExample = HTML_EXAMPLE;
 
     cards: Card[] = [
-        { title: 'Card 1', active: true },
-        { title: 'Card 2', active: false },
-        { title: 'Card 3', active: false }
+        { title: 'Selectable card', active: true },
+        { title: 'Selectable card', active: false },
+        { title: 'Selectable card', active: false }
     ];
 
     activateCard(index: number): void {

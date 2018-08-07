@@ -1,27 +1,17 @@
 <clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
     <article>
-        <h5 class="component-summary" id="cards-header">The original card documentation can be found in the official
-            Clarity Documentation. This document only extends the clarity documentation by two added class:
-            <code class="clr-code">card-active</code> and <code class="clr-code">selectable</code>.</h5>
+        <h5 class="component-summary" id="cards-header">The Addons extend the default Clarity cards by providing a selectable card. The selected stays visually highlighted. See the card component in the official Clarity Documentation for more details on cards.</h5>
 
         <div id="design-guidelines">
-            <h3>Usage</h3>
-            <p>
-                Use the <code class="clr-code">card-active</code> class when you have a list of cards and want to show
-                which card is currently selected. Every selectable card should have the
-                class <code class="clr-code">selectable</code> instead of the
-                clarity-default <code class="clr-code">clickable</code> class.
-            </p>
-        </div>
 
-        <div id="code-examples">
-            <h3 id="variants">Variants</h3>
-
+            <h3>Behavior</h3>
+            <p>Only one card at the time can have the selection indicator. Compare this behavior to a radio button. Note the different hover style in the example below.</p>
+            <h6>Default clickable card (Standard Clarity)</h6>
             <div class="clr-row">
                 <div class="clr-col-4">
-                    <div class="card card-active selectable">
+                    <div class="card clickable">
                         <div class="card-header">
-                            I am an active card
+                            Default card
                         </div>
                         <div class="card-block">
                             This makes me not selectable
@@ -29,19 +19,19 @@
                     </div>
                 </div>
                 <div class="clr-col-4">
-                    <div class="card selectable">
+                    <div class="card clickable">
                         <div class="card-header">
-                            I am a non active card
+                            Default card
                         </div>
                         <div class="card-block">
-                            But I am selectable
+                            This makes me not selectable
                         </div>
                     </div>
                 </div>
-                <div class="clr-col-4">
+                <div class="clr-col-4 clickable">
                     <div class="card">
                         <div class="card-header">
-                            I am a non active card
+                            Default card
                         </div>
                         <div class="card-block">
                             And I am also not selectable
@@ -50,10 +40,7 @@
                 </div>
             </div>
 
-            <clr-code-snippet [clrCode]="htmlExample"></clr-code-snippet>
-
-            <h3 id="demo">Demo</h3>
-
+            <h6>Selectable card (Clarity Addons)</h6>
             <div class="clr-row">
                 <div class="clr-col-4" *ngFor="let card of cards;let index = index;">
                     <div class="card selectable" [class.card-active]="card.active" (click)="activateCard(index)">
@@ -61,14 +48,34 @@
                             {{card.title}}
                         </div>
                         <div class="card-block" *ngIf="!card.active">
-                            Click to activate me
+                            Click to select me
                         </div>
                         <div class="card-block" *ngIf="card.active">
-                            I am an active card
+                            I am the selected card
                         </div>
                     </div>
                 </div>
             </div>
+            
+
+
+            <h3>Usage</h3>
+            <p>
+                Use the <code class="clr-code">card-active</code> class when you have a list of cards and want to show
+                which card is currently selected. Every selectable card should have the
+                class <code class="clr-code">selectable</code> instead of the
+                clarity-default <code class="clr-code">clickable</code> class. Note that multiple selection is not supported. If you depend on multi-selection, use a different element such as a checkbox.
+            </p>
+        </div>
+
+        <div id="code-examples">
+            <h3 id="variants">Card Variants</h3>
+            
+            
+
+            <clr-code-snippet [clrCode]="htmlExample"></clr-code-snippet>
+
+
         </div>
     </article>
 </clr-doc-wrapper>
