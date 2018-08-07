@@ -53,8 +53,7 @@
 
 // Add class card-active and make it not clickable even if clickable class is applied
 .card {
-  &.selectable:hover::after,
-  &.card-active::after {
+  @mixin card-active-after() {
     content: '';
     width: 0.1667rem;
     position: absolute;
@@ -66,17 +65,27 @@
     border-bottom-left-radius: $clr-global-borderradius;
   }
 
-  &.selectable:hover {
-    border: $clr-card-border;
-    box-shadow: $clr-card-box-shadow;
-    cursor: pointer;
-    transform: translateY(-2px);
-    transition: border 0.2s ease, transform 0.2s ease;
+  &.card-active::after {
+    @include card-active-after();
+  }
 
-    &.card-active:hover {
-      cursor: default;
-      transform: none;
-      transition: none;
+  @media (hover: hover) {
+    &.selectable:hover::after {
+      @include card-active-after();
+    }
+
+    &.selectable:hover {
+      border: $clr-card-border;
+      box-shadow: $clr-card-box-shadow;
+      cursor: pointer;
+      transform: translateY(-2px);
+      transition: border 0.2s ease, transform 0.2s ease;
+
+      &.card-active:hover {
+        cursor: default;
+        transform: none;
+        transition: none;
+      }
     }
   }
 }
