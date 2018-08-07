@@ -24,13 +24,13 @@ export class NotificationDemo {
 
   openInfo(content): void {
     this.clrNotificationService
-      .openNotification(content, { timeout: 0, notificationType: 'info', dismissable: true, progressbar: true })
+      .openNotification(content, { timeout: 10000, notificationType: 'info', dismissable: true, progressbar: true })
       .result.then(this.onClose);
   }
 
   openWarning(content): void {
     this.clrNotificationService
-      .openNotification(content, { timeout: 40000, notificationType: 'warning', dismissable: true, progressbar: true })
+      .openNotification(content, { timeout: 20000, notificationType: 'warning', dismissable: true, progressbar: true })
       .result.then(this.onClose);
   }
 
@@ -42,7 +42,7 @@ export class NotificationDemo {
 
   openDanger(content): void {
     this.clrNotificationService
-      .openNotification(content, { timeout: 20000, notificationType: 'danger', dismissable: true, progressbar: true })
+      .openNotification(content, { timeout: 40000, notificationType: 'danger', dismissable: true, progressbar: true })
       .result.then(this.onClose);
   }
 }

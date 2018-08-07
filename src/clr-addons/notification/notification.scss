@@ -1,4 +1,6 @@
 @include exports('notification.clr-addons') {
+  $clr-notification-progress-info-bar-color: $clr-progress-defaultBarColor !default;
+
   .notification {
     &__wrapper {
       position: fixed;
@@ -15,6 +17,12 @@
       height: 0.5em;
       position: absolute;
       z-index: 1;
+
+      &.info {
+        progress {
+          @include clr-progress-color($clr-notification-progress-info-bar-color);
+        }
+      }
     }
     .alert-items {
       padding: 0.333333rem calc(0.75rem - 1px);
