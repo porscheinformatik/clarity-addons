@@ -125,6 +125,13 @@ const documentationRoutes: Routes = [
                 data: {
                     browserTitle: "Notification"
                 }
+            },
+            {
+                path: "full-screen-dialog",
+                loadChildren: "app/documentation/demos/full-screen-dialog/full-screen-dialog.demo.module#FullScreenDialogDemoModule",
+                data: {
+                    browserTitle: "Full Screen Dialog"
+                }
             }
         ]
     }
