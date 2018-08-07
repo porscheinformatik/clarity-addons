@@ -24,25 +24,25 @@ export class NotificationDemo {
 
   openInfo(content): void {
     this.clrNotificationService
-      .openNotification(content, { timeout: 100000, notificationType: 'info', dismissable: true, progressbar: true })
+      .openNotification(content, { timeout: 10000, notificationType: 'info', dismissable: true, progressbar: true })
       .result.then(this.onClose);
   }
 
   openWarning(content): void {
     this.clrNotificationService
-      .openNotification(content, { timeout: 100000, notificationType: 'warning', dismissable: true, progressbar: true })
+      .openNotification(content, { timeout: 20000, notificationType: 'warning', dismissable: true, progressbar: true })
       .result.then(this.onClose);
   }
 
   openSuccess(content): void {
     this.clrNotificationService
-      .openNotification(content, { timeout: 100000, notificationType: 'success', dismissable: true, progressbar: true })
+      .openNotification(content, { timeout: 30000, notificationType: 'success', dismissable: true, progressbar: true })
       .result.then(this.onClose);
   }
 
   openDanger(content): void {
     this.clrNotificationService
-      .openNotification(content, { timeout: 100000, notificationType: 'danger', dismissable: true, progressbar: true })
+      .openNotification(content, { timeout: 40000, notificationType: 'danger', dismissable: true, progressbar: true })
       .result.then(this.onClose);
   }
 }
