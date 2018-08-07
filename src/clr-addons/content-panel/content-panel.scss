@@ -38,7 +38,7 @@
     bottom: 0;
     right: 0;
     left: calc(100% - var($clr-content-panel-width));
-    border-left: $clr-global-borderwidth solid $clr-dropdown-border-color;
+    border-left: $clr-global-borderwidth solid $clr-border-color;
     overflow: auto;
 
     @media screen and (min-width: map-get($grid-breakpoints, md)) {
@@ -46,7 +46,7 @@
 
       &.content-panel-left {
         left: 0;
-        border-right: $clr-global-borderwidth solid $clr-dropdown-border-color;
+        border-right: $clr-global-borderwidth solid $clr-border-color;
         border-left: none;
       }
     }
