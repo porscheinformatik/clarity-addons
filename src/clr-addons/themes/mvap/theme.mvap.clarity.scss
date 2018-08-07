@@ -3,8 +3,9 @@
 // The full license information can be found in LICENSE in the root directory of this project.
 
 // Global
-$clr-global-selection-color: $turquoise-lightest;
+$clr-global-selection-color: $turquoise-lighterer;
 $clr-app-font-color-primary: $black-light;
+$clr-border-color: $blue-mid-light;
 
 // App Background
 $clr-global-app-background: $blue-sky-light;
@@ -133,7 +134,7 @@ $clr-dropdown-selection-color: $clr-global-selection-color;
 $clr-form-text-color: $black-lighter;
 
 // Header
-$clr-header-textColor: $clr-black;
+$clr-header-textColor: $clr-white;
 $clr-header-bgColor: $turquoise;
 $clr-header-2-bg-color: $turquoise;
 $clr-header-3-bg-color: $turquoise;
@@ -193,6 +194,7 @@ $clr-forms-radio-selected-shadow: $clr-forms-checkbox-checked-shadow; // selecte
 
 // Sidenav
 $clr-sidenav-link-hover-color: $clr-global-selection-color;
+$clr-sidenav-border-color: $clr-border-color;
 
 // Signposts
 $clr-signpost-action-hover-color: $turquoise;
@@ -213,6 +215,9 @@ $clr-table-font-color: $black-light;
 // Tree View
 $clr-tree-link-hover-color: $clr-global-selection-color;
 $clr-tree-link-selection-color: $clr-global-selection-color;
+
+// Vertical Nav
+$clr-vertical-nav-bg-color: $turquoise-lightest;
 
 // Wizard
 $clr-wizard-stepnav-active-bgcolor: $clr-global-selection-color;

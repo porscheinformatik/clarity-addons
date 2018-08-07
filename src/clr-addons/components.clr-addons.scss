@@ -8,9 +8,6 @@
 @import './notification/notification';
 @import './flow-bar/flow-bar';
 
-$clr-card-default-border-color: rgba(215, 215, 215, 1) !default;
-$clr-card-active-border-color: rgba(0, 148, 210, 1) !default;
-
 .content-header {
   padding: 0.5rem 1rem 0 1rem;
   display: flex;
@@ -33,14 +30,14 @@ $clr-card-active-border-color: rgba(0, 148, 210, 1) !default;
 
   // Only show the border if no flow-bar is between content header + content container, otherwise border is displayed by flow-bar
   + .content-container {
-    border-top: $clr-global-borderwidth solid $clr-light-midtone-gray;
+    border-top: $clr-global-borderwidth solid $clr-border-color;
   }
 }
 
 .content-container {
   // Define the sticky footer css when inside a content-container
   .content-area-footer {
-    border-top: $clr-global-borderwidth solid $clr-light-midtone-gray;
+    border-top: $clr-global-borderwidth solid $clr-border-color;
     display: flex;
     flex: 0 0 auto;
     align-items: center;

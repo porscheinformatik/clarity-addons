@@ -21,24 +21,18 @@ body {
 }
 
 .header .header-nav .nav-link.active {
-  background: $clr-global-selection-color;
+  background: $turquoise-lighter;
 }
 
-header,
-.header {
-  .header-actions {
-    > .dropdown > .nav-icon {
-      color: $blue-darkest;
-    }
-    .nav-icon {
-      color: $blue-darkest;
-    }
+.clr-vertical-nav {
+  .nav-divider {
+    border-color: $clr-border-color;
   }
-  .settings .nav-icon {
-    color: $blue-darkest;
+
+  .nav-trigger + .nav-content {
+    border-top-color: $clr-border-color;
   }
 }
-
 .btn {
   border-color: $clr-gray;
 }
@@ -129,4 +123,12 @@ h4,
 h5,
 h6 {
   font-family: 'VW Head';
+}
+
+.checkbox.btn input[type='checkbox']:checked,
+.radio.btn input[type='radio']:checked {
+  + label {
+    background-color: $turquoise;
+    color: $clr-white;
+  }
 }
