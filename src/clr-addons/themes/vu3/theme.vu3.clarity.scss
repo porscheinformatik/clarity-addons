@@ -131,8 +131,14 @@ $clr-link-color: $turquoise;
 $clr-link-hover-color: $turquoise;
 $clr-link-visited-color: $turquoise-darkest;
 
+// Notification
+$clr-notification-progress-info-bar-color: $blue-darker;
+
 // Progress bar
 $clr-progress-defaultBarColor: $turquoise;
+$clr-progress-success-color: $green-mid;
+$clr-progress-danger-color: $red-darkest;
+$clr-progress-warning-color: $orange-darker;
 
 // Radiobutton
 $clr-forms-radio-selected-shadow: $clr-forms-checkbox-checked-shadow; // selected-background-color

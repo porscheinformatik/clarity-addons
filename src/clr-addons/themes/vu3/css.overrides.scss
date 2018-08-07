@@ -71,14 +71,9 @@ header,
   }
 }
 
-.progress.top > progress {
-  width: calc(100% - 1rem);
-  margin-left: $vu3-border-radius;
-}
-
 .progress-static.top {
-  width: calc(100% - 1rem);
-  margin-left: $vu3-border-radius;
+  border-top-left-radius: $vu3-border-radius;
+  border-top-right-radius: $vu3-border-radius;
 }
 
 .datagrid .datagrid-column {
