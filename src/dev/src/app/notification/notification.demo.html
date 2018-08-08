@@ -17,6 +17,9 @@
 <div class="btn-group">
   <button class="btn" (click)="openDanger(danger)">Show Danger Notification</button>
 </div>
+<div class="btn-group">
+  <button class="btn" (click)="openInfo('This is a string, not a template')">Show Info Notification from string</button>
+</div>
 
 <ng-template #info>
   <ng-container clr-notification-message>
