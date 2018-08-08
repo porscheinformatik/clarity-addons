@@ -13,6 +13,7 @@ import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
 
 import { AppComponent } from './app.component';
 import { ROUTING } from './app.routing';
+import { BackButtonDemoModule } from './back-button/back-button.demo.module';
 import { AppContentContainerComponent } from './content-container.component';
 import { LandingComponent } from './landing.component';
 import { PagerDemoModule } from './pager/pager.demo.module';
@@ -46,6 +47,7 @@ import { FlowBarContentPanelDemoModule } from './flow-bar-content-panel/flow-bar
     FlowBarDemoModule,
     FlowBarContentPanelDemoModule,
     CardsDemoModule,
+    BackButtonDemoModule,
   ],
   bootstrap: [AppComponent],
   providers: [ClrNotificationService],

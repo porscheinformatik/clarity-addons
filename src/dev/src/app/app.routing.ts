@@ -5,6 +5,7 @@
  */
 import { ModuleWithProviders } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BackButtonDemo } from './back-button/back-button.demo';
 
 import { LandingComponent } from './landing.component';
 import { PagerDemo } from './pager/pager.demo';
@@ -20,6 +21,7 @@ import { FlowBarContentPanelDemo } from './flow-bar-content-panel/flow-bar-conte
 
 export const APP_ROUTES: Routes = [
   { path: '', component: LandingComponent },
+  { path: 'back-button', component: BackButtonDemo },
   { path: 'cards', component: CardsDemo },
   { path: 'view-edit-section', component: ViewEditSectionDemo },
   { path: 'pager', component: PagerDemo },

@@ -7,9 +7,10 @@
 @import './breadcrumb/breadcrumb';
 @import './notification/notification';
 @import './flow-bar/flow-bar';
+@import './back-button/back-button';
 
 .content-header {
-  padding: 0.5rem 1rem 0 1rem;
+  padding: 0.5rem 0.5rem 0 0.5rem;
   display: flex;
   flex: 0 0 auto;
 
