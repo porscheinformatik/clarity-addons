@@ -105,13 +105,6 @@ const fullPageLayoutsRoutes: Routes = [
                 }
             },
             {
-                path: `full-screen-dialog`,
-                loadChildren: "app/documentation/demos/full-page-layouts/full-screen-dialog/full-screen-dialog.demo.module#FullScreenDialogDemoModule",
-                data: {
-                    browserTitle: "Full Screen Dialog Example",
-                }
-            },
-            {
                 path: `sidebarpage-layout`,
                 children: [
                     {

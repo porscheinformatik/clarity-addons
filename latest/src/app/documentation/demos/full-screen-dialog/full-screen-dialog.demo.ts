@@ -7,27 +7,12 @@ import { Component } from "@angular/core";
 import { ClarityDocComponent } from "../clarity-doc";
 
 const HTML_EXAMPLE = `
-<div class="row" *ngFor="let item of pagedItems">
-    <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
-        <div class="card">
-            <div class="card-header">
-                {{item}}
-            </div>
-            <div class="card-block">
-                <div class="card-text">
-                    This is an example card.
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- This is the router outlet for full screen dialogs -->
+<router-outlet name="overlay" (activate)="overlayActive = true" (deactivate)="overlayActive = false"></router-outlet>
 
-<div class="row">
-    <div class="col-lg-6 margin-top-24">
-        <clr-pager [clrPageSize]="pageSize"
-                   [clrTotalItems]="totalItems"
-                   (clrPageChange)="onPageChanged($event)"></clr-pager>
-    </div>
+<!-- This is the default router outlet for all of your default pages -->
+<div [hidden]="overlayActive">
+    <router-outlet></router-outlet>
 </div>
 `;
 
