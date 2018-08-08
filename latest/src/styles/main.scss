@@ -20,3 +20,8 @@ $clrweb-altGray: #f3f5f8;
 @import "labels";
 
 @import 'error-pages.scss';
+
+// Set the height to 100% instead of 100vh so the i-pad safari url & tab bar do not hide the sticky footer
+body, html, .main-container {
+  height: 100% !important;
+}
