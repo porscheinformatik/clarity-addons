@@ -72,6 +72,8 @@ export class ClrNotificationService {
   private _getContentRef(content: any, context: ClrActiveNotification): ClrContentRef {
     if (content instanceof TemplateRef) {
       return this._createFromTemplateRef(content, context);
+    } else if (typeof content === 'string') {
+      return this._createFromString(content);
     }
 
     return new ClrContentRef([]);
@@ -81,6 +83,11 @@ export class ClrNotificationService {
     const viewRef = content.createEmbeddedView(context);
     this._applicationRef.attachView(viewRef);
     return new ClrContentRef([viewRef.rootNodes], viewRef);
+  }
+
+  private _createFromString(content: string): ClrContentRef {
+    const component = this._document.createTextNode(`${content}`);
+    return new ClrContentRef([[component]]);
   }
 
   private _attachWindowComponent(containerEl: any, contentRef: ClrContentRef): ComponentRef<ClrNotification> {
