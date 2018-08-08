@@ -14,6 +14,7 @@ import { ClrContentPanel } from "@porscheinformatik/clr-addons";
 export class BasepageLayoutDemo implements OnInit {
     withCommandBar = false;
     withContentPanel = false;
+    withBackButton = false;
     id: string;
 
     @ViewChild("leftContentPanel")
@@ -28,6 +29,7 @@ export class BasepageLayoutDemo implements OnInit {
     ngOnInit(): void {
         this.withCommandBar = this.collectRouteData("withCommand")[0];
         this.withContentPanel = this.collectRouteData("withPanel")[0];
+        this.withBackButton = this.collectRouteData("withBackButton")[0];
         this.id = this.collectRouteData("id")[0];
     }
 
