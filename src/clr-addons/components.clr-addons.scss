@@ -8,6 +8,12 @@
 @import './notification/notification';
 @import './flow-bar/flow-bar';
 
+html,
+body,
+.main-container {
+  height: 100%;
+}
+
 .content-header {
   padding: 0.5rem 1rem 0 1rem;
   display: flex;
