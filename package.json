@@ -1,6 +1,6 @@
 {
     "name": "clr-addons",
-    "version": "1.2.8",
+    "version": "1.2.9",
     "private": true,
     "scripts": {
         "build:ui:css": "node-sass --include-path=node_modules --source-map=true --precision=6 --indentedSyntax=true ./src/clr-addons/themes/clr-ui/clr-ui.scss ./dist/clr-addons/styles/clr-ui.css && node-sass --include-path=node_modules --source-map=true --precision=6 --indentedSyntax=true ./src/clr-addons/themes/clr-ui-dark/clr-ui-dark.scss ./dist/clr-addons/styles/clr-ui-dark.css && node-sass --include-path=node_modules --source-map=true --precision=6 --indentedSyntax=true ./src/clr-addons/themes/mvap/mvap-theme.scss ./dist/clr-addons/styles/clr-addons-mvap.css && node-sass --include-path=node_modules --source-map=true --precision=6 --indentedSyntax=true ./src/clr-addons/themes/vu3/vu3-theme.scss ./dist/clr-addons/styles/clr-addons-vu3.css",
@@ -13,6 +13,7 @@
         "build:angular:ngpackagr": "ng build clr-addons",
         "build:angular": "npm-run-all build:angular:package build:angular:ngpackagr",
         "build": "npm-run-all clean build:ui build:angular",
+        "install": "npm install",
         "ng": "ng",
         "start": "npm-run-all build:ui:css build:ui:prefix serve:dev",
         "serve:dev": "ng serve dev",
@@ -24,7 +25,8 @@
         "test:travis": "npm-run-all build:ui test:format test:lint test build",
         "format:fix": "pretty-quick --staged",
         "lint:fix": "tslint -p . -c tslint.json --fix \"src/**/*.ts\" -e \"**/node_modules/**\"",
-        "publish": "npm publish dist/clr-addons --access public"
+        "publish": "npm-run-all install build publish:npm",
+        "publish:npm": "npm publish dist/clr-addons --access public"
     },
     "dependencies": {
         "@angular/animations": "^6.0.0",
