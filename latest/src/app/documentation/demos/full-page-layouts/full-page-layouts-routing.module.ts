@@ -82,14 +82,6 @@ const fullPageLayoutsRoutes: Routes = [
                 }
             },
             {
-                path: `basepage-layout-back-btn`,
-                loadChildren: "app/documentation/demos/full-page-layouts/basepage-layout/basepage-layout.demo.module#BasepageLayoutDemoModule",
-                data: {
-                    browserTitle: "Base Page Layout",
-                    withBackButton: true
-                }
-            },
-            {
                 path: `content-panel`,
                 loadChildren: "app/documentation/demos/full-page-layouts/basepage-layout/basepage-layout.demo.module#BasepageLayoutDemoModule",
                 data: {

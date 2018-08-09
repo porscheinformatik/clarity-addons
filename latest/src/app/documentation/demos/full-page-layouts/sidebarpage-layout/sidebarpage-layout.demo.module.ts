@@ -7,6 +7,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { ClarityModule } from "@clr/angular";
+import { ClrAddonsModule } from "@porscheinformatik/clr-addons";
 
 import { SidebarpageLayoutDemo } from "./sidebarpage-layout";
 import { DemoMenuModule } from "../demo-menu/demo-menu.module";
@@ -15,6 +16,7 @@ import { DemoMenuModule } from "../demo-menu/demo-menu.module";
     imports: [
         CommonModule,
         ClarityModule,
+        ClrAddonsModule,
         DemoMenuModule,
         RouterModule.forChild([{ path: "", component: SidebarpageLayoutDemo, outlet: "fullpage" }])
     ],
