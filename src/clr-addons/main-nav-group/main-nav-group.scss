@@ -10,7 +10,7 @@
   }
 
   .main-container:not(.open-hamburger-menu) .header-nav {
-    @media screen and (max-width: map-get($grid-breakpoints, md)) {
+    @media screen and (max-width: map-get($grid-breakpoints, lg)) {
       .header-overflow {
         display: none;
       }

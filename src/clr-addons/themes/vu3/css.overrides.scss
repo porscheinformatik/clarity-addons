@@ -36,8 +36,10 @@ header,
   .settings .nav-icon {
     color: $turquoise-darkest;
   }
+  .branding {
+    min-width: 4rem;
+  }
 }
-
 .card {
   border-radius: $vu3-card-border-radius;
 
