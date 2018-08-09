@@ -15,6 +15,7 @@ import { ClrContentPanelModule } from './content-panel/content-panel.module';
 import { ClrBreadcrumbModule } from './breadcrumb/breadcrumb.module';
 import { ClrNotificationModule } from './notification/notification.module';
 import { ClrFlowBarModule } from './flow-bar/flow-bar.module';
+import { ClrBackButtonModule } from './back-button/back-button.module';
 
 @NgModule({
   exports: [
@@ -27,6 +28,7 @@ import { ClrFlowBarModule } from './flow-bar/flow-bar.module';
     ClrContentPanelModule,
     ClrNotificationModule,
     ClrFlowBarModule,
+    ClrBackButtonModule,
   ],
 })
 export class ClrAddonsModule {}

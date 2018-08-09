@@ -12,8 +12,14 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   templateUrl: './collapse-expand-section.html',
   animations: [
     trigger('collapseExpandAnimation', [
-      transition(':enter', [style({ opacity: 0, height: 0 }), animate('300ms', style({ opacity: 1, height: '*' }))]),
-      transition(':leave', [style({ opacity: 1, height: '*' }), animate('300ms', style({ opacity: 0, height: 0 }))]),
+      transition(':enter', [
+        style({ opacity: 0, height: 0, overflow: 'hidden' }),
+        animate('300ms', style({ opacity: 1, height: '*' })),
+      ]),
+      transition(':leave', [
+        style({ opacity: 1, height: '*', overflow: 'hidden' }),
+        animate('300ms', style({ opacity: 0, height: 0 })),
+      ]),
     ]),
     trigger('rotateIcon', [
       state('true', style({ transform: 'rotate(0)' })),
