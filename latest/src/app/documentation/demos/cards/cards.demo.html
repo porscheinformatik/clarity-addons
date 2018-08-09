@@ -1,11 +1,12 @@
 <clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
     <article>
-        <h5 class="component-summary" id="cards-header">The Addons extend the default Clarity cards by providing a selectable card. The selected stays visually highlighted. See the card component in the official Clarity Documentation for more details on cards.</h5>
+        <h5 class="component-summary" id="cards-header">The Addons extend the default Clarity cards by providing a selectable card. The selected stays visually highlighted.</h5>
 
         <div id="design-guidelines">
 
             <h3>Behavior</h3>
             <p>Only one card at the time can have the selection indicator. Compare this behavior to a radio button. Note the different hover style in the example below.</p>
+
             <h6>Default clickable card (Standard Clarity)</h6>
             <div class="clr-row">
                 <div class="clr-col-4">
@@ -14,27 +15,7 @@
                             Default card
                         </div>
                         <div class="card-block">
-                            This makes me not selectable
-                        </div>
-                    </div>
-                </div>
-                <div class="clr-col-4">
-                    <div class="card clickable">
-                        <div class="card-header">
-                            Default card
-                        </div>
-                        <div class="card-block">
-                            This makes me not selectable
-                        </div>
-                    </div>
-                </div>
-                <div class="clr-col-4 clickable">
-                    <div class="card">
-                        <div class="card-header">
-                            Default card
-                        </div>
-                        <div class="card-block">
-                            And I am also not selectable
+                            See the official <a href="https://vmware.github.io/clarity/documentation">Clarity documentation</a> for details.
                         </div>
                     </div>
                 </div>
@@ -61,18 +42,12 @@
 
             <h3>Usage</h3>
             <p>
-                Use the <code class="clr-code">card-active</code> class when you have a list of cards and want to show
-                which card is currently selected. Every selectable card should have the
-                class <code class="clr-code">selectable</code> instead of the
-                clarity-default <code class="clr-code">clickable</code> class. Note that multiple selection is not supported. If you depend on multi-selection, use a different element such as a checkbox.
+                 On contrast to the default clickable-cards, the selectable card does not start an action, it is only marked as selected.  Note that multiple selection is not supported. If you depend on multi-selection, use a different element such as a checkbox. A selectable card should have the class <code class="clr-code">selectable</code> instead of the clarity-default <code class="clr-code">clickable</code> class. Use the <code class="clr-code">card-active</code> class to mark the currently selected one.
             </p>
         </div>
 
-        <div id="code-examples">
-            <h3 id="variants">Card Variants</h3>
+        <div id="examples">
             
-            
-
             <clr-code-snippet [clrCode]="htmlExample"></clr-code-snippet>
 
 
