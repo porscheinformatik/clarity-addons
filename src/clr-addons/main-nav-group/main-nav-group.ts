@@ -22,6 +22,7 @@ export class ClrMainNavGroup implements OnInit, OnDestroy {
   private hostClickListener: () => void;
   private documentClickListener: () => void;
   private windowResizeListener: () => void;
+  private ignore;
 
   constructor(injector: Injector) {
     this.el = injector.get(ElementRef);
@@ -70,21 +71,30 @@ export class ClrMainNavGroup implements OnInit, OnDestroy {
       /* close other menus when opening this one */
       this.closeMenus('[id^=' + this.prefix + ']:not(#' + this.prefix + this.id + ')');
       if (!event.target.classList.contains('dropdown-item')) {
-        // stop click handler for grouping items, otherwise hamburger menu gets closed
-        event.stopPropagation();
+        if (event.target.closest('.open-hamburger-menu')) {
+          // stop click handler for grouping items, otherwise hamburger menu gets closed
+          event.stopPropagation();
+        } else {
+          // ignore even on document level for grouping items, otherwise menu gets closed right after it was opened
+          this.ignore = event;
+        }
       }
     });
 
     this.documentClickListener = this.renderer.listen('document', 'click', event => {
       /* close menu when clicking anywhere in the document */
-      this.closeMenus('#' + this.prefix + this.id);
+      if (this.ignore === event) {
+        delete this.ignore;
+      } else {
+        this.closeMenus('#' + this.prefix + this.id);
+      }
     });
   }
 
   private attachResizeListener() {
     this.windowResizeListener = this.renderer.listen('window', 'resize', event => {
       /* when resizing window above 768, remove open-hamburger-menu when present */
-      if (!window.matchMedia('(max-width: 768px)').matches) {
+      if (!window.matchMedia('(max-width: 992px)').matches) {
         const hamburgerMenu = <Element>this.el.nativeElement.closest('.open-hamburger-menu');
         if (hamburgerMenu) {
           hamburgerMenu.classList.remove('open-hamburger-menu');
