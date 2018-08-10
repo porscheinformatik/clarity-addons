@@ -51,6 +51,7 @@ body,
     align-items: center;
     padding: 0.25rem 1rem;
     background-color: $clr-global-app-background;
+    min-height: 2rem;
 
     // For some reason clarity sets the margin to 0 for dropdown buttons - we want the default btn margin inside the footer
     .dropdown .dropdown-toggle {
