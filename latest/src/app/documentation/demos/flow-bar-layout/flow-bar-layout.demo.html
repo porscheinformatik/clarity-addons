@@ -1,20 +1,23 @@
 <clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
     <article>
-        <h5 class="component-summary">The Flow Bar is a basic component that
-            can be used to highlight the current progress a user is making throughout multiple steps. The Flow Bar also
-            allows the user to navigate between steps, either by clicking on a specific step or selecting the
-            previous/next buttons.</h5>
+        <h5 class="component-summary">The Flow Bar Layout extends the Base Page Layout by adding a wizard-like navigation control.</h5>
 
         <p>
-            <a routerLink="/full-page-layouts/flow-bar" routerLinkActive="active">
-                <span>Click here for a full example of the Base Page Layout with a Flow Bar (Code below)</span>
-            </a>
+            This layout that can be used to highlight the current progress a user is making throughout multiple steps. The Flow Bar
+            allows the user to navigate between steps, by either clicking on a specific step or selecting a
+            previous or next button.
         </p>
+
+        <p>The Flow Bar Layout requires the <code class="clr-code">ClrFlowBar</code> and can optionally also contain the Sticky Footer Layout.</p>
+
 
         <div id="design-guidelines">
             <h3>Usage</h3>
+            <p>Use this layout if you want to guide the user through a sequence of multiple steps. Each step requires the user to perform a complex task like filling out a form.
+              Don't use this layout if the users' steps are mutually exclusive; in this case use Tabs instead.
+            </p>
             <p>
-                When implementing a flow bar on your page, you will want to insert a <code
+                When implementing a flow bar on your page, you will need to insert a <code
                     class="clr-code">clr-flow-bar</code> right below your content-header but above your
                 content-container.
             </p>
@@ -47,7 +50,11 @@
 
         <div id="code-examples">
             <h3 id="examples">Code &amp; Examples</h3>
-
+            <h4>Demo</h4>
+            <a routerLink="/full-page-layouts/flow-bar" routerLinkActive="active">
+                <clr-icon shape="display"></clr-icon>&nbsp;
+                <span>Base Page Layout with a Flow Bar</span>
+            </a>
             <clr-code-snippet [clrCode]="codeExample"></clr-code-snippet>
         </div>
     </article>

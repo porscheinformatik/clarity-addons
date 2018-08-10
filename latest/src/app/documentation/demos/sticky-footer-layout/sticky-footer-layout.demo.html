@@ -3,14 +3,47 @@
         <h5 class="component-summary">The Sticky footer represents a bar at the bottom of your page which is always
             visible - scrollable content is hidden behind the sticky footer.</h5>
 
-        <p>
-            <a routerLink="/full-page-layouts/sticky-footer" routerLinkActive="active">
-                <span>Click here for a full example of the Base Page Layout with a Sticky Footer (Code below)</span>
-            </a>
-        </p>
+        <p>The Sticky footer can be used for e.g. providing guidance buttons for wizard (See also Flow Bar Layout).</p>
 
         <div id="design-guidelines">
             <h3>Usage</h3>
+            <p>Use this component when you want to display permanently visable elements on the bottom of a page.
+              It works particularly well in combination with the Flow Bar Layout to provide navigational controls.
+              When the Sticky Footer contains buttons for navigation keep in mind to place them on the right hand side to follow a logical Z Pattern.
+            </p>
+            <div class="clr-row">
+                <div class="clr-col-md-12 clr-col-lg-6">
+                    <div class="clrweb-DoxMedia is-do-block">
+                        <div class="clrweb-DoxMedia-block">
+                            <div class="clrweb-DoxMedia-img">
+                              <img src="assets/images/documentation/do.png" alt="do">
+                            </div>
+                        </div>
+                        <div class="clrweb-DoxMedia-text">
+                            <h6 class="clrweb-DoxMedia-do-dont">Do</h6>
+                            <p>
+                                Place buttons leading to next step on the right. Optional information about the user's actions are placed on the left side.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-6">
+                    <div class="clrweb-DoxMedia is-dont-block">
+                        <div class="clrweb-DoxMedia-block">
+                            <div class="clrweb-DoxMedia-img">
+                              <img src="assets/images/documentation/dont.png" alt="do">
+                            </div>
+                        </div>
+                        <div class="clrweb-DoxMedia-text">
+                            <h6 class="clrweb-DoxMedia-do-dont">Don't</h6>
+                            <p>
+                                Don't put navigational buttons on the left side.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <p>
                 When implementing a sticky footer on your page, you will want to insert a div with class <code
                     class="clr-code">content-area-footer</code> right below your <code
@@ -21,6 +54,11 @@
 
         <div id="code-examples">
             <h3 id="examples">Code &amp; Examples</h3>
+            <h4>Demo</h4>
+            <a routerLink="/full-page-layouts/sticky-footer" routerLinkActive="active">
+                <clr-icon shape="display"></clr-icon>&nbsp;
+                <span>Base Page Layout with a Sticky Footer</span>
+            </a>
 
             <clr-code-snippet [clrCode]="codeExample"></clr-code-snippet>
         </div>

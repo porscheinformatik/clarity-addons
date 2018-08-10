@@ -34,7 +34,7 @@ const CODE_EXAMPLE = `
             </p>
         </div>
         <div class="content-area-footer">
-            <h5>Sticky Footer</h5>
+            Sticky Footer
         </div>
     </div>
 </clr-main-container>
