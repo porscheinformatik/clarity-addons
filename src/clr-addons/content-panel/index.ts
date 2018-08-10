@@ -6,4 +6,6 @@
 
 export * from './content-panel';
 export * from './content-panel-container';
+export * from './content-panel-container-content';
+export * from './content-panel-container-footer';
 export * from './content-panel.module';

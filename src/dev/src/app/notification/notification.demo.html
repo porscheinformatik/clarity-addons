@@ -1,0 +1,47 @@
+<!--
+  ~ Copyright (c) 2018 Porsche Informatik. All Rights Reserved.
+  ~ This software is released under MIT license.
+  ~ The full license information can be found in LICENSE in the root directory of this project.
+  -->
+
+<h2>Notification</h2>
+<div class="btn-group">
+    <button class="btn" (click)="openInfo(info)">Show Info Notification</button>
+</div>
+<div class="btn-group">
+  <button class="btn" (click)="openWarning(warning)">Show Warning Notification</button>
+</div>
+<div class="btn-group">
+  <button class="btn" (click)="openSuccess(success)">Show Success Notification</button>
+</div>
+<div class="btn-group">
+  <button class="btn" (click)="openDanger(danger)">Show Danger Notification</button>
+</div>
+<div class="btn-group">
+  <button class="btn" (click)="openInfo('This is a string, not a template')">Show Info Notification from string</button>
+</div>
+
+<ng-template #info>
+  <ng-container clr-notification-message>
+    Some Information<br>very<br>very<br>very<br>long information
+    <button class="btn btn-info-outline" (click)="showAlert()">Show Alert</button>
+  </ng-container>
+</ng-template>
+<ng-template #warning>
+  <ng-container clr-notification-message>
+    Warning
+    <button class="btn btn-info-outline" (click)="showAlert()">Show Alert</button>
+  </ng-container>
+</ng-template>
+<ng-template #success>
+  <ng-container clr-notification-message>
+    Success
+    <button class="btn btn-info-outline" (click)="showAlert()">Show Alert</button>
+  </ng-container>
+</ng-template>
+<ng-template #danger>
+  <ng-container clr-notification-message>
+    Danger
+    <button class="btn btn-info-outline" (click)="showAlert()">Show Alert</button>
+  </ng-container>
+</ng-template>

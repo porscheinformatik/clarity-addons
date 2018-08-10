@@ -1,0 +1,93 @@
+@include exports('flow-bar.clr-addons') {
+  .flow-bar {
+    display: flex;
+    flex: 0 0 auto;
+    border-bottom: $clr-global-borderwidth solid $clr-border-color;
+
+    .flow-bar-dropdown {
+      display: none;
+
+      @media screen and (max-width: map-get($grid-breakpoints, sm)) {
+        display: block;
+      }
+
+      .dropdown-toggle {
+        border: none;
+        width: 100%;
+        padding: 0 1rem;
+        max-width: none;
+      }
+
+      .dropdown-toggle:focus {
+        outline: none;
+      }
+
+      .dropdown-toggle:active {
+        box-shadow: none;
+      }
+    }
+
+    .flow-bar-wrapper {
+      display: flex;
+      height: 1.5rem;
+      align-items: center;
+      width: 100%;
+      overflow-x: auto;
+      overflow-y: hidden;
+
+      @media screen and (max-width: map-get($grid-breakpoints, sm)) {
+        display: none;
+      }
+
+      .flow-bar-step {
+        box-shadow: 0 -0.1667rem 0 $clr-nav-box-shadow-color inset;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        // Set a min width so every step shows at least a little bit of its title
+        min-width: 5rem;
+        max-width: 10rem;
+
+        clr-icon[shape*='caret right'] {
+          flex: 0 0 auto;
+        }
+
+        &:hover,
+        &.active {
+          box-shadow: 0 -0.1667rem 0 $clr-nav-active-box-shadow-color inset;
+          transition: box-shadow 0.2s ease-in;
+        }
+
+        .flow-bar-btn {
+          border: none;
+          padding: 0 1rem;
+          color: $clr-nav-link-color;
+          text-transform: none;
+          font-size: 0.6rem;
+          font-weight: 400;
+          letter-spacing: normal;
+          min-width: 0;
+
+          &:hover,
+          &.active {
+            background-color: transparent;
+            color: $clr-nav-link-active-color;
+          }
+
+          &.active {
+            font-weight: 700;
+          }
+
+          &:focus {
+            outline: none;
+          }
+
+          // This moves the box shadow the required distance down to line up with the border
+          &.btn {
+            margin: 0 0 $clr-default-borderwidth 0;
+          }
+        }
+      }
+    }
+  }
+}

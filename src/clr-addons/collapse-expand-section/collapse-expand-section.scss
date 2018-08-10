@@ -9,5 +9,9 @@
 
   .ces-caret-btn {
     line-height: 1rem;
+
+    &:focus {
+      outline: none;
+    }
   }
 }

@@ -1,0 +1,28 @@
+<div class="flow-bar-wrapper">
+  <ng-container *ngFor="let step of _steps; let index = index; let last = last">
+    <div class="flow-bar-step" [class.active]="step === _activeStep">
+      <button class="btn btn-link flow-bar-btn"
+              [disabled]="!step.enabled"
+              [class.active]="step === _activeStep"
+              (click)="changeActiveStep(step)">
+        {{index + 1}}. {{step.title}}
+      </button>
+      <clr-icon shape="caret right" *ngIf="!last"></clr-icon>
+    </div>
+  </ng-container>
+</div>
+<clr-dropdown class="flow-bar-dropdown clr-flex-fill">
+  <button type="button" class="btn btn-outline-primary" clrDropdownTrigger>
+    {{_steps.indexOf(_activeStep) + 1}}. {{_activeStep.title}}
+    <clr-icon shape="caret down"></clr-icon>
+  </button>
+  <clr-dropdown-menu>
+    <ng-container *ngFor="let step of _steps; let index = index; let last = last">
+      <button clrDropdownItem type="button" class="btn"
+              [disabled]="!step.enabled"
+              (click)="changeActiveStep(step)">
+        {{index + 1}}. {{step.title}}
+      </button>
+    </ng-container>
+  </clr-dropdown-menu>
+</clr-dropdown>

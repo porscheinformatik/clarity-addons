@@ -13,6 +13,7 @@ import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
 
 import { AppComponent } from './app.component';
 import { ROUTING } from './app.routing';
+import { BackButtonDemoModule } from './back-button/back-button.demo.module';
 import { AppContentContainerComponent } from './content-container.component';
 import { LandingComponent } from './landing.component';
 import { PagerDemoModule } from './pager/pager.demo.module';
@@ -21,7 +22,11 @@ import { PagedSearchResultListDemoModule } from './paged-search-result-list/page
 import { CollapseExpandSectionDemoModule } from './collapse-expand-section/collapse-expand-section.demo.module';
 import { ContentPanelDemoModule } from './content-panel/content-panel.demo.module';
 import { BreadcrumbDemoModule } from './breadcrumb/breadcrumb.demo.module';
+import { NotificationDemoModule } from './notification/notification.demo.module';
+import { ClrNotificationService } from '@porscheinformatik/clr-addons';
+import { FlowBarDemoModule } from './flow-bar/flow-bar.demo.module';
 import { CardsDemoModule } from './cards/cards.demo.module';
+import { FlowBarContentPanelDemoModule } from './flow-bar-content-panel/flow-bar-content-panel.demo.module';
 
 @NgModule({
   declarations: [AppComponent, LandingComponent, AppContentContainerComponent],
@@ -38,8 +43,13 @@ import { CardsDemoModule } from './cards/cards.demo.module';
     CollapseExpandSectionDemoModule,
     ContentPanelDemoModule,
     BreadcrumbDemoModule,
+    NotificationDemoModule,
+    FlowBarDemoModule,
+    FlowBarContentPanelDemoModule,
     CardsDemoModule,
+    BackButtonDemoModule,
   ],
   bootstrap: [AppComponent],
+  providers: [ClrNotificationService],
 })
 export class AppModule {}

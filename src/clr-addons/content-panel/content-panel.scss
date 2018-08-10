@@ -6,8 +6,14 @@
     overflow: hidden;
   }
 
+  .content-panel-outer-wrapper {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+  }
+
   @media screen and (min-width: map-get($grid-breakpoints, xl)) {
-    .content-panel-outer-content {
+    .content-panel-outer-wrapper {
       // The content next to the panel always has order = 2
       order: 2;
     }
@@ -25,14 +31,14 @@
 
   .content-panel-content-wrapper {
     background-color: $clr-global-app-background;
-    z-index: map-get($clr-layers, sidepanel) - 3;
+    z-index: map-get($clr-layers, dropdown-menu) - 1;
     padding: 1rem;
     position: absolute;
     top: 0;
     bottom: 0;
     right: 0;
     left: calc(100% - var($clr-content-panel-width));
-    border-left: $clr-global-borderwidth solid $clr-dropdown-border-color;
+    border-left: $clr-global-borderwidth solid $clr-border-color;
     overflow: auto;
 
     @media screen and (min-width: map-get($grid-breakpoints, md)) {
@@ -40,7 +46,7 @@
 
       &.content-panel-left {
         left: 0;
-        border-right: $clr-global-borderwidth solid $clr-dropdown-border-color;
+        border-right: $clr-global-borderwidth solid $clr-border-color;
         border-left: none;
       }
     }
@@ -71,7 +77,7 @@
     left: 0;
     background-color: clr-getColor(darkest);
     opacity: 0.85;
-    z-index: map-get($clr-layers, sidepanel-bg) - 3;
+    z-index: map-get($clr-layers, dropdown-menu) - 2;
 
     @media screen and (max-width: map-get($grid-breakpoints, md)) {
       display: none;

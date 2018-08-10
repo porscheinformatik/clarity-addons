@@ -1,3 +1,4 @@
+@import './header.clr-addons';
 @import './collapse-expand-section/collapse-expand-section';
 @import './main-nav-group/main-nav-group';
 @import './paged-search-result-list/paged-search-result-list';
@@ -5,37 +6,104 @@
 @import './view-edit-section/view-edit-section';
 @import './content-panel/content-panel';
 @import './breadcrumb/breadcrumb';
+@import './notification/notification';
+@import './flow-bar/flow-bar';
+@import './back-button/back-button';
 
-$clr-card-active-border-color: rgba(0, 148, 210, 1) !default;
-$clr-card-active-border-width: 0.25rem !default;
+html,
+body,
+.main-container {
+  height: 100%;
+}
 
 .content-header {
-  border-bottom: $clr-global-borderwidth solid $clr-light-midtone-gray;
-  padding: 0.5rem 1rem 0.25rem 1rem;
+  padding: 0.5rem 0.5rem 0 0.5rem;
   display: flex;
-  flex-shrink: 0;
-}
+  flex: 0 0 auto;
 
-.content-header > h2 {
-  margin-top: 0;
-}
+  h2 {
+    margin-top: 0;
+  }
 
-.command-bar {
-  flex: 1 0 auto;
-  justify-content: flex-end;
+  .command-bar {
+    display: flex;
+    flex: 1 0 auto;
+    justify-content: flex-end;
+    align-items: center;
 
-  .dropdown-menu {
-    z-index: map-get($clr-layers, sidepanel) - 2;
+    .dropdown-menu {
+      z-index: map-get($clr-layers, sidepanel) - 2;
+    }
+  }
+
+  // Only show the border if no flow-bar is between content header + content container, otherwise border is displayed by flow-bar
+  + .content-container {
+    border-top: $clr-global-borderwidth solid $clr-border-color;
   }
 }
 
-// Add class card-active
-.card {
-  &.card-active {
-    border-left: $clr-card-active-border-width solid $clr-card-active-border-color;
+.content-container {
+  // Define the sticky footer css when inside a content-container
+  .content-area-footer {
+    border-top: $clr-global-borderwidth solid $clr-border-color;
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    padding: 0.25rem 1rem;
+    background-color: $clr-global-app-background;
 
-    &.clickable:hover {
-      border-left: $clr-card-active-border-width solid $clr-card-active-border-color;
+    // For some reason clarity sets the margin to 0 for dropdown buttons - we want the default btn margin inside the footer
+    .dropdown .dropdown-toggle {
+      margin-right: 0.5rem;
     }
+  }
+}
+
+// Add class card-active and make it not clickable even if clickable class is applied
+.card {
+  @mixin card-active-after() {
+    content: '';
+    width: 0.1667rem;
+    position: absolute;
+    background: $clr-card-active-border-color;
+    top: -1px;
+    left: -1px;
+    bottom: 0;
+    border-top-left-radius: $clr-global-borderradius;
+    border-bottom-left-radius: $clr-global-borderradius;
+  }
+
+  &.card-active::after {
+    @include card-active-after();
+  }
+
+  @media (hover: hover) {
+    &.selectable:hover::after {
+      @include card-active-after();
+    }
+
+    &.selectable:hover {
+      border: $clr-card-border;
+      box-shadow: $clr-card-box-shadow;
+      cursor: pointer;
+      transform: translateY(-2px);
+      transition: border 0.2s ease, transform 0.2s ease;
+
+      &.card-active:hover {
+        cursor: default;
+        transform: none;
+        transition: none;
+      }
+    }
+  }
+}
+
+.main-container.open-hamburger-menu .header .header-nav.clr-nav-level-1 {
+  .nav-link .nav-text,
+  .nav-list > .nav-link {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    display: block;
   }
 }

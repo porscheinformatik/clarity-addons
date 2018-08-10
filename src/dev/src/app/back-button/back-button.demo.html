@@ -1,0 +1,49 @@
+<!--
+  ~ Copyright (c) 2018 Porsche Informatik. All Rights Reserved.
+  ~ This software is released under MIT license.
+  ~ The full license information can be found in LICENSE in the root directory of this project.
+  -->
+<div class="main-container" style="border: 1px solid black;">
+  <clr-header class="header-6">
+    <div class="branding">
+      <a href="#" class="nav-link">
+        <span class="title">Clarity Addons</span>
+      </a>
+    </div>
+    <div class="header-nav" [clr-nav-level]="1">
+      <div class="header-overflow">
+        <a class="nav-link" href="#"><span class="nav-text">Menu1</span></a>
+        <a class="nav-link" href='#'><span class="nav-text">Menu2</span></a>
+        <clr-main-nav-group clrTitle="Main Nav Group" routerLinkActive="active">
+          <a class="nav-link" routerLink="/view-edit-section" routerLinkActive="active">ViewEdit Section</a>
+          <a class="nav-link" href="#" onClick="return false;">Submenu 3 2</a>
+          <a class="nav-link" href="#" onClick="return false;">Submenu 3 3</a>
+        </clr-main-nav-group>
+      </div>
+    </div>
+    <div class="header-actions">
+      <clr-dropdown>
+        <button type="button" class="nav-icon dropdown-toggle" clrDropdownTrigger>
+          <clr-icon shape="cog"></clr-icon>
+        </button>
+        <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
+          <button type="button" *ngFor="let theme of themes" (click)="setTheme(theme)" clrDropdownItem>{{theme.name}}
+          </button>
+        </clr-dropdown-menu>
+      </clr-dropdown>
+    </div>
+  </clr-header>
+  <div class="content-header">
+    <clr-back-button></clr-back-button>
+    <h2>Back Button Title</h2>
+    <clr-button-group class="command-bar" [clrMenuPosition]="'bottom-right'">
+      <clr-button>Command 1</clr-button>
+      <clr-button [clrInMenu]="true">Command2</clr-button>
+    </clr-button-group>
+  </div>
+  <div class="content-container">
+    <div class="content-area">
+      <h3>Content Area</h3>
+    </div>
+  </div>
+</div>
