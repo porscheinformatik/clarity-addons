@@ -61,11 +61,11 @@
                     That way it's possible to use the same markup for multiple notification instances.
                 </p>
                 <p>
-                    The service will be called with two parameters. The first one defines the content of the notification as a template.
+                    The service will be called with two parameters. The first one defines the content of the notification as a template or string.
                     The second parameter defines the options for the notification, described below.
                 </p>
                 <p>
-                    The service will return a <code>ClrNotificationRef</code> containing a promise <code>result</code> which will get resolved after the notification was closed.
+                    The service will return a <code class="clr-code">ClrNotificationRef</code> containing a promise <code class="clr-code">result</code> which will get resolved after the notification was closed.
                 </p>
 
                 <h3>Summary of Options</h3>
@@ -131,6 +131,15 @@
     
             <div id="code-examples">
                 <h3 id="examples">Code &amp; Examples</h3>
+                <h4>Notification from String</h4>
+                <p>For simple messages a string can be provided to the notification service.</p>
+                <clr-code-snippet [clrCode]="codeExampleString"></clr-code-snippet>
+                <clr-code-snippet [clrCode]="codeExampleStringTS" [clrLanguage]="'typescript'"></clr-code-snippet>
+                <div class="btn-group">
+                    <button class="btn" (click)="openString()">Show Notification from String</button>
+                </div>
+                <h4>Notification from ng-template</h4>
+                <p>For more complex notifications (including buttons etc.) an instance to a TemplateRef can be provided as content.</p>
                 <clr-code-snippet [clrCode]="codeExample"></clr-code-snippet>
                 <clr-code-snippet [clrCode]="codeExampleTS" [clrLanguage]="'typescript'"></clr-code-snippet>
                 <form class="clr-form">
@@ -163,12 +172,12 @@
                     </div>
                 </form>
                 <div class="btn-group">
-                    <button class="btn" (click)="openNotify(exampleSuccess, { timeout: clrExampleTimeout, notificationType: clrExampleType, dismissable: clrExampleDismissable, progressbar: clrExampleProgressbar })">Show Notification</button>
+                    <button class="btn" (click)="openNotify(example, { timeout: clrExampleTimeout, notificationType: clrExampleType, dismissable: clrExampleDismissable, progressbar: clrExampleProgressbar })">Show Notification</button>
                 </div>
-                <ng-template>
+                <ng-template #example>
                     <ng-container clr-notification-message>
-                        Some Information
-                        <button class="btn btn-info-outline" (click)="showAlert()">Show Alert</button>
+                        Complex notification
+                        <button class="btn" (click)="log()">Log console</button>
                     </ng-container>
                 </ng-template>
             </div>
