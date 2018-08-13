@@ -70,7 +70,7 @@ export class ClrMainNavGroup implements OnInit, OnDestroy {
     this.hostClickListener = this.renderer.listen(this.el.nativeElement, 'click', event => {
       /* close other menus when opening this one */
       this.closeMenus('[id^=' + this.prefix + ']:not(#' + this.prefix + this.id + ')');
-      if (!event.target.classList.contains('dropdown-item')) {
+      if (!event.target.classList.contains('nav-link') || event.target.classList.contains('collapsible')) {
         if (event.target.closest('.open-hamburger-menu')) {
           // stop click handler for grouping items, otherwise hamburger menu gets closed
           event.stopPropagation();
