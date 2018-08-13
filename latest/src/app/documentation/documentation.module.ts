@@ -10,7 +10,6 @@ import { DocumentationComponent } from "./documentation.component";
 import { DocumentationNavLinksComponent } from "./documentation-nav-links.component";
 import { ComponentStatusComponent } from "./component-status/component-status.component";
 import { StatusDotComponent } from "./component-status/status-dot.component";
-import { VersionSwitcherComponent } from "./version-switcher/version-switcher.component";
 import { InternationalizationComponent } from "./internationalization/internationalization.component";
 
 @NgModule({
@@ -28,7 +27,6 @@ import { InternationalizationComponent } from "./internationalization/internatio
         DocumentationNavLinksComponent,
         InternationalizationComponent,
         StatusDotComponent,
-        VersionSwitcherComponent,
     ],
     providers: [
         DatePipe,

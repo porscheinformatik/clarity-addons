@@ -6,10 +6,6 @@ import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 
 const appRoutes: Routes = [
     {
-        path: "news",
-        loadChildren: "app/news/news.module#NewsModule",
-    },
-    {
         path: "",
         component: HomeComponent,
         data: {
