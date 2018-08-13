@@ -21,6 +21,7 @@ import { ClrAlert } from '@clr/angular';
       ]),
     ]),
     trigger('move', [
+      state('currentPosition', style({ transform: 'translateY({{absolute}}px)' }), { params: { absolute: '0' } }),
       state('moveUp', style({ transform: 'translateY({{absolute}}px)' }), { params: { absolute: '0' } }),
       state('moveDown', style({ transform: 'translateY({{absolute}}px)' }), { params: { absolute: '0' } }),
       transition('* => moveDown', animate('0.3s')),
@@ -55,9 +56,9 @@ export class ClrNotification implements OnInit {
     return this._height + 10;
   }
 
-  private _heightInited: () => void;
-  heightInited = new Promise(resolve => {
-    this._heightInited = resolve;
+  private _heightInitalized: () => void;
+  heightInitalized = new Promise(resolve => {
+    this._heightInitalized = resolve;
   });
 
   @Input() timeout: number = 2000;
@@ -72,7 +73,7 @@ export class ClrNotification implements OnInit {
   ngOnInit() {
     timer(0).subscribe(() => {
       this._height = this.elementRef.nativeElement.children[0].offsetHeight;
-      this._heightInited();
+      this._heightInitalized();
     });
 
     if (this.timeout > 0) {
@@ -106,10 +107,16 @@ export class ClrNotification implements OnInit {
   public moveDown(translateValue: number): void {
     this._translate += translateValue;
     this.state = { value: 'moveDown', params: { absolute: this._translate } };
+    this.setCurrentPosition();
   }
 
   public moveUp(translateValue: number): void {
     this._translate -= translateValue;
     this.state = { value: 'moveUp', params: { absolute: this._translate } };
+    this.setCurrentPosition();
+  }
+
+  private setCurrentPosition() {
+    timer(300).subscribe(() => (this.state = { value: 'currentPosition', params: { absolute: this._translate } }));
   }
 }

@@ -47,7 +47,7 @@ export class ClrNotificationService {
     this._applyWindowOptions(notificationCmptRef.instance, options);
     notificationCmptRef.instance.closed.subscribe(this._afterClose.bind(this, notificationCmptRef.instance));
 
-    notificationCmptRef.instance.heightInited.then(() =>
+    notificationCmptRef.instance.heightInitalized.then(() =>
       this.elements.forEach(el => {
         if (el !== notificationCmptRef.instance) {
           el.moveDown(notificationCmptRef.instance.height);
