@@ -8,11 +8,13 @@ import { ClarityDocComponent } from "../clarity-doc";
 import { ClrNotificationService } from "@porscheinformatik/clr-addons";
 
 const CODE_EXAMPLE = `
-<button class="btn btn-success-outline"(click)="openNotify(exampleSuccess, { timeout: 3000,
-    notificationType: 'success', dismissable: true, progressbar: true })">Show Success Notification</button>
-<ng-template #exampleSuccess>
+
+<button class="btn" (click)="openNotify(example, { timeout: clrExampleTimeout, notificationType: clrExampleType,
+    dismissable: clrExampleDismissable, progressbar: clrExampleProgressbar })">Show Notification</button>
+<ng-template #example>
     <ng-container clr-notification-message>
-        Success
+        Some Information
+        <button class="btn btn-info-outline" (click)="showAlert()">Show Alert</button>
     </ng-container>
 </ng-template>
 `;
@@ -24,6 +26,16 @@ onClose(): void {
 
 openNotify(content, options): void {
     this.notificationService.openNotification(content, options).result.then(this.onClose);
+}
+`
+
+const CODE_EXAMPLE_STRING = `
+<button class="btn" (click)="openString()">Show Notification from String</button>
+`
+
+const CODE_EXAMPLE_STRING_TS = `
+openString(): void {
+    this.notificationService.openNotification("This is a string message", {progressbar: true, dismissable: true});
 }
 `
 
@@ -40,6 +52,8 @@ openNotify(content, options): void {
 export class NotificationDemo extends ClarityDocComponent {
     codeExample = CODE_EXAMPLE;
     codeExampleTS = CODE_EXAMPLE_TS;
+    codeExampleString = CODE_EXAMPLE_STRING;
+    codeExampleStringTS = CODE_EXAMPLE_STRING_TS;
     clrExampleTimeout = 2000;
     clrExampleType = "info";
     clrExampleDismissable = true;
@@ -56,5 +70,13 @@ export class NotificationDemo extends ClarityDocComponent {
 
     openNotify(content, options): void {
         this.notificationService.openNotification(content, options).result.then(this.onClose);
+    }
+
+    openString(): void {
+        this.notificationService.openNotification("This is a string message", {progressbar: true, dismissable: true});
+    }
+
+    log() {
+        console.log("log from notification");
     }
 }
