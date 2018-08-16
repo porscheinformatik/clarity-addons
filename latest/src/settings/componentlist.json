@@ -7,6 +7,30 @@
     },
     "list": [
         {
+            "url": "basepage-layout",
+            "text": "Base Pagelayout",
+            "type": "pagelayouts",
+            "ux": -1,
+            "ui": -1,
+            "core": -1,
+            "ng": -1,
+            "dox": 20,
+            "comments": "",
+            "newLayout": true
+        },
+        {
+            "url": "breadcrumb",
+            "text": "Breadcrumb",
+            "type": "component",
+            "ux": 20,
+            "ui": 20,
+            "core": 20,
+            "ng": 20,
+            "dox": 20,
+            "comments": "",
+            "newLayout": true
+        },
+        {
             "url": "cards",
             "text": "Cards",
             "type": "component",
@@ -26,66 +50,6 @@
             "ui": 20,
             "core": 20,
             "ng": 20,
-            "dox": 20,
-            "comments": "",
-            "newLayout": true
-        },
-        {
-            "url": "generic-pager",
-            "text": "Generic Pager",
-            "type": "component",
-            "ux": 20,
-            "ui": 20,
-            "core": 20,
-            "ng": 20,
-            "dox": 20,
-            "comments": "",
-            "newLayout": true
-        },
-        {
-            "url": "paged-search-result-list",
-            "text": "Paged Search Result List",
-            "type": "component",
-            "ux": 20,
-            "ui": 20,
-            "core": 20,
-            "ng": 20,
-            "dox": 20,
-            "comments": "",
-            "newLayout": true
-        },
-        {
-            "url": "view-edit-section",
-            "text": "View/Edit Section",
-            "type": "component",
-            "ux": 20,
-            "ui": 20,
-            "core": 20,
-            "ng": 20,
-            "dox": 20,
-            "comments": "",
-            "newLayout": true
-        },
-        {
-            "url": "basepage-layout",
-            "text": "Base Pagelayout",
-            "type": "pagelayouts",
-            "ux": -1,
-            "ui": -1,
-            "core": -1,
-            "ng": -1,
-            "dox": 20,
-            "comments": "",
-            "newLayout": true
-        },
-        {
-            "url": "sidebarpage-layout",
-            "text": "Sidebar Pagelayout",
-            "type": "pagelayouts",
-            "ux": -1,
-            "ui": -1,
-            "core": -1,
-            "ng": -1,
             "dox": 20,
             "comments": "",
             "newLayout": true
@@ -115,20 +79,8 @@
             "newLayout": true
         },
         {
-            "url": "sticky-footer-layout",
-            "text": "Sticky Footer Layout",
-            "type": "pagelayouts",
-            "ux": -1,
-            "ui": -1,
-            "core": -1,
-            "ng": -1,
-            "dox": 20,
-            "comments": "",
-            "newLayout": true
-        },
-        {
-            "url": "main-nav-group",
-            "text": "Main Navigation",
+            "url": "full-screen-dialog",
+            "text": "Full Screen Dialog",
             "type": "component",
             "ux": 20,
             "ui": 20,
@@ -139,8 +91,20 @@
             "newLayout": true
         },
         {
-            "url": "breadcrumb",
-            "text": "Breadcrumb",
+            "url": "generic-pager",
+            "text": "Generic Pager",
+            "type": "component",
+            "ux": 20,
+            "ui": 20,
+            "core": 20,
+            "ng": 20,
+            "dox": 20,
+            "comments": "",
+            "newLayout": true
+        },
+        {
+            "url": "main-nav-group",
+            "text": "Main Navigation",
             "type": "component",
             "ux": 20,
             "ui": 20,
@@ -163,8 +127,44 @@
             "newLayout": true
         },
         {
-            "url": "full-screen-dialog",
-            "text": "Full Screen Dialog",
+            "url": "paged-search-result-list",
+            "text": "Paged Search Result List",
+            "type": "component",
+            "ux": 20,
+            "ui": 20,
+            "core": 20,
+            "ng": 20,
+            "dox": 20,
+            "comments": "",
+            "newLayout": true
+        },
+        {
+            "url": "sidebarpage-layout",
+            "text": "Sidebar Pagelayout",
+            "type": "pagelayouts",
+            "ux": -1,
+            "ui": -1,
+            "core": -1,
+            "ng": -1,
+            "dox": 20,
+            "comments": "",
+            "newLayout": true
+        },
+        {
+            "url": "sticky-footer-layout",
+            "text": "Sticky Footer Layout",
+            "type": "pagelayouts",
+            "ux": -1,
+            "ui": -1,
+            "core": -1,
+            "ng": -1,
+            "dox": 20,
+            "comments": "",
+            "newLayout": true
+        },
+        {
+            "url": "view-edit-section",
+            "text": "View/Edit Section",
             "type": "component",
             "ux": 20,
             "ui": 20,
