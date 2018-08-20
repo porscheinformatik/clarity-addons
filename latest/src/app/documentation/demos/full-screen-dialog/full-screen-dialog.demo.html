@@ -1,18 +1,30 @@
 <clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
 
     <article>
-        <h5 class="component-summary" id="generic-pager-header">The Full Screen Dialog looks and feels like any other
-            page instead of a dialog. This means that every full screen dialog can have any page layout. From a
+        <h5 class="component-summary" id="generic-pager-header">The Full Screen Dialog is an alternative to the default modal dialog.</h5>
+        
+
+        <p>The Full Screen Dialog looks and feels like any other
+            page though it is conceptually a modal dialog. This means that a full screen dialog can have any page layout. From a
             technical point of view, full screen dialogs are shown in a router outlet above the current page. This
-            removes the loading time which usually exists when you navigate from page to page.</h5>
+            eliminates the loading time which usually occurs while navigating from page to page.</p>
 
         <div id="design-guidelines">
             <h3>Design Guidelines</h3>
 
+            <p>A Full Screen Dialog usually contains mutliple input elements and <strong>Save</strong> and <strong>Cancel</strong> options. 
+                Place these call to action buttons on the left side of the bottom of the page. 
+                Just like you would in a regular form. Optionally the dialog can also have a Back-button. 
+                Provide a confirmation prompt if the user has already entered data and Back was selected. 
+                Note that this prompt is not required for the Cancel-button, 
+                since the user deliberately choose Cancel to discard the input.</p>
+
             <h3>Use when</h3>
-            <p>Use the Full Screen Dialog when you want to:</p>
+            <p>Use the Full Screen Dialog if:</p>
             <ul class="list">
-                <li>show additional dialogs inside a dialog. You should not show a dialog inside a dialog.</li>
+                <li>You want to display a complex input form that requires <strong>Save</strong> and <strong>Cancel</strong> options</li>
+                <li>You need to show additional modal dialogs. In general you should not show another modal over a modal, but you can open a modal over a Full Screen Dialog.</li>
+                <li>The dialog's content would require too much scrolling in a modal dialog. Try to avoid scrolling in modal dialogs.</li>
             </ul>
 
         </div>
