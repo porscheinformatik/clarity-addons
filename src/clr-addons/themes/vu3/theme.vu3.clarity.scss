@@ -141,9 +141,7 @@ $clr-progress-danger-color: $red-darkest;
 $clr-progress-warning-color: $orange-darker;
 
 // Radiobutton
-$clr-forms-radio-selected-shadow: inset 0 0 0 0.2rem $clr-form-field-background-color;
-$clr-radio-checked-box-shadow: $clr-forms-radio-selected-shadow;
-$clr-radio-focused-box-shadow: $clr-forms-radio-selected-shadow;
+$clr-forms-radio-selected-shadow: $clr-forms-checkbox-checked-shadow; // selected-background-color
 
 // Sidenav
 $clr-sidenav-link-hover-color: $clr-global-selection-color;
