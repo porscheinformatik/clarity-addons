@@ -1,7 +1,6 @@
 $vu3-border-radius: 0.5rem;
 $vu3-card-border-radius: 0.25rem;
 $vu3-button-border-radius: 0.25rem;
-$vu3-control-label-font-weight: 500;
 
 .header-hamburger-trigger,
 .header-overflow-trigger {
@@ -145,8 +144,4 @@ clr-tooltip clr-icon {
 .label.label-orange > .badge,
 a.label.label-orange > .badge {
   color: $clr-badge-font-color;
-}
-
-.clr-control-label {
-  font-weight: $vu3-control-label-font-weight;
 }
