@@ -1,6 +1,6 @@
 <clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
     <article>
-        <h5 class="component-summary">The NumericField component is used to force the user to enter a numeric value. Invalid characters are ignored during input.</h5>
+        <h5 class="component-summary">The NumericField component is used to aid the user when entering a numeric value. Invalid characters are ignored during input.</h5>
         
         <div id="design-guidelines">
             <h2>Angular Component</h2>
@@ -15,6 +15,16 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <tr>
+                        <td class="left">
+                            <b>clrTextAlign</b>
+                            <div class="hidden-sm-up">Type: String</div>
+                            <div class="hidden-sm-up">Default: "left"</div>
+                        </td>
+                        <td class="left hidden-xs-down">left, right</td>
+                        <td class="hidden-xs-down">"left"</td>
+                        <td class="left">Defines the alignment of the text inside input field.</td>
+                    </tr>
                     <tr>
                         <td class="left">
                             <b>clrLabel</b>
@@ -70,7 +80,7 @@
         </div>
 
         <div id="examples">
-            <clr-numeric clrLabel="Amount" id="amount" clrDecimalSep="," clrGroupingSep="." clrDecimalPlaces="3" [(clrNumericValue)]="amount"></clr-numeric>
+            <clr-numeric clrLabel="Amount" [(clrNumericValue)]="amount"></clr-numeric>
             clrNumericValue: {{amount}}
             <clr-code-snippet [clrCode]="htmlExample"></clr-code-snippet>
         </div>

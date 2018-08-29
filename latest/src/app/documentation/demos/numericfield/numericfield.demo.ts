@@ -7,7 +7,7 @@ import { Component } from "@angular/core";
 import { ClarityDocComponent } from "../clarity-doc";
 
 const HTML_EXAMPLE = `
-<clr-numeric clrLabel="Amount" clrDecimalSep="," clrGroupingSep="." clrDecimalPlaces="3" [(clrNumericValue)]="amount"></clr-numeric>
+<clr-numeric clrLabel="Amount" [(clrNumericValue)]="amount"></clr-numeric>
 `;
 
 @Component({
