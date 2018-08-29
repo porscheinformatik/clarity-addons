@@ -15,12 +15,14 @@ const NUMBERS = new Set(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']);
 @Component({
   selector: 'clr-numeric',
   templateUrl: './numericfield.html',
+  styles: ['.numeric-align-right{ text-align: right; }'],
 })
 export class ClrNumericField implements OnInit {
   @ViewChild('input') inputEl;
 
   constructor(private renderer: Renderer2) {}
 
+  @Input('clrTextAlign') textAlign = 'left';
   @Input('clrDecimalPlaces') decimalPlaces = 2;
   @Input('clrDecimalSep') decimalSeparator = ',';
   @Input('clrGroupingSep') groupingSeparator = '.';
