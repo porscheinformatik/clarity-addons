@@ -132,6 +132,13 @@ const documentationRoutes: Routes = [
                 data: {
                     browserTitle: "Full Screen Dialog"
                 }
+            },
+            {
+                path: "numericfield",
+                loadChildren: "app/documentation/demos/numericfield/numericfield.demo.module#NumericFieldDemoModule",
+                data: {
+                    browserTitle: "Numeric Field"
+                }
             }
         ]
     }
