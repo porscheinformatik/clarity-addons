@@ -14,7 +14,7 @@ const NUMBERS = new Set(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']);
 
 @Component({
   selector: 'clr-numeric',
-  template: '<input #input clrInput [(ngModel)]="displayValue">',
+  templateUrl: './numericfield.html',
 })
 export class ClrNumericField implements OnInit {
   @ViewChild('input') inputEl;
@@ -24,6 +24,7 @@ export class ClrNumericField implements OnInit {
   @Input('clrDecimalPlaces') decimalPlaces = 2;
   @Input('clrDecimalSep') decimalSeparator = ',';
   @Input('clrGroupingSep') groupingSeparator = '.';
+  @Input('clrLabel') label = '';
   @Input('clrNumericValue') numericValue = '';
   @Output('clrNumericValueChange') numericValueChanged = new EventEmitter<number>();
 
