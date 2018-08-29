@@ -18,6 +18,7 @@ import { NotificationDemo } from './notification/notification.demo';
 import { FlowBarDemo } from './flow-bar/flow-bar.demo';
 import { CardsDemo } from './cards/cards.demo';
 import { FlowBarContentPanelDemo } from './flow-bar-content-panel/flow-bar-content-panel.demo';
+import { NumericFieldDemo } from './numericfield/numericfield.demo';
 
 export const APP_ROUTES: Routes = [
   { path: '', component: LandingComponent },
@@ -32,6 +33,7 @@ export const APP_ROUTES: Routes = [
   { path: 'flow-bar-content-panel', component: FlowBarContentPanelDemo },
   { path: 'breadcrumb', component: BreadcrumbDemo },
   { path: 'notification', component: NotificationDemo },
+  { path: 'numericfield', component: NumericFieldDemo },
 ];
 
 export const ROUTING: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);

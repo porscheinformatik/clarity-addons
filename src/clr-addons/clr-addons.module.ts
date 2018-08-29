@@ -16,6 +16,7 @@ import { ClrBreadcrumbModule } from './breadcrumb/breadcrumb.module';
 import { ClrNotificationModule } from './notification/notification.module';
 import { ClrFlowBarModule } from './flow-bar/flow-bar.module';
 import { ClrBackButtonModule } from './back-button/back-button.module';
+import { ClrNumericFieldModule } from './numericfield/numericfield.module';
 
 @NgModule({
   exports: [
@@ -29,6 +30,7 @@ import { ClrBackButtonModule } from './back-button/back-button.module';
     ClrNotificationModule,
     ClrFlowBarModule,
     ClrBackButtonModule,
+    ClrNumericFieldModule,
   ],
 })
 export class ClrAddonsModule {}
