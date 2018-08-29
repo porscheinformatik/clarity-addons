@@ -4,8 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { OnInit, Renderer2, ElementRef, Input, Component, ViewChild, EventEmitter, Output } from '@angular/core';
-import { NgControl } from '@angular/forms';
+import { OnInit, Renderer2, Input, Component, ViewChild, EventEmitter, Output } from '@angular/core';
 
 const NEGATIVE = '-';
 const BACK_KEYCODE = 8;
