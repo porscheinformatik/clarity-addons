@@ -16,3 +16,4 @@ export * from './breadcrumb/index';
 export * from './notification/index';
 export * from './flow-bar/index';
 export * from './back-button/index';
+export * from './numericfield/index';
