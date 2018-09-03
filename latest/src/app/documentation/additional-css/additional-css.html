@@ -1,0 +1,13 @@
+<section class="dox-content">
+    <h1>Additonal-CSS classes</h1>
+    <h2>Prevent "select-all" to render in datagrid</h2>
+    Use class <code class="clr-code">datagrid-no-select-all</code> to prevent rendering of the select-all checkbox in datagrid header.
+
+    <clr-code-snippet [clrCode]="noSelectAllExample"></clr-code-snippet>
+
+    <clr-datagrid class="datagrid-no-select-all" [(clrDgSelected)]="selected">
+        <clr-dg-column>Col1</clr-dg-column>
+        <clr-dg-row><clr-dg-cell>Test1</clr-dg-cell></clr-dg-row>
+        <clr-dg-row><clr-dg-cell>Test2</clr-dg-cell></clr-dg-row>
+    </clr-datagrid>
+</section>
