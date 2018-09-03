@@ -36,6 +36,7 @@ export class ClrNumericField implements OnInit {
 
   ngOnInit() {
     this.displayValue = this.numericValue || '';
+    this.inputEl.nativeElement.value = this.displayValue;
 
     /* needs to be parsed as number explicitly as it comes as string from user input */
     this.decimalPlaces = Number.parseInt(this.decimalPlaces.toString());
@@ -56,6 +57,7 @@ export class ClrNumericField implements OnInit {
     });
 
     this.renderer.listen(this.inputEl.nativeElement, 'keydown', event => {
+      const value = event.target.value;
       if (
         this.allowedKeys.has(event.key) ||
         (event.keyCode <= CONTROL_KEYCODES_UPPER_BORDER && event.keyCode > 0) ||
@@ -66,11 +68,11 @@ export class ClrNumericField implements OnInit {
         /* toggle negative sign */
         if (event.key === NEGATIVE) {
           let cursorPos = event.target.selectionStart;
-          if (this.displayValue.startsWith(NEGATIVE)) {
-            this.updateInput(this.displayValue.substring(1));
+          if (value.startsWith(NEGATIVE)) {
+            this.updateInput(value.substring(1));
             cursorPos -= 1;
           } else {
-            this.updateInput(NEGATIVE + this.displayValue);
+            this.updateInput(NEGATIVE + value);
             cursorPos += 1;
           }
           event.target.selectionStart = event.target.selectionEnd = cursorPos;
@@ -78,7 +80,7 @@ export class ClrNumericField implements OnInit {
         }
 
         /* no duplicate decimal separators */
-        const indexDecimalSep = this.displayValue.indexOf(this.decimalSeparator);
+        const indexDecimalSep = value.indexOf(this.decimalSeparator);
         if (event.key === this.decimalSeparator && indexDecimalSep > -1) {
           return false;
         }
@@ -88,7 +90,7 @@ export class ClrNumericField implements OnInit {
           NUMBERS.has(event.key) &&
           indexDecimalSep > -1 &&
           indexDecimalSep < event.target.selectionStart &&
-          this.displayValue.length > indexDecimalSep + this.decimalPlaces
+          value.length > indexDecimalSep + this.decimalPlaces
         ) {
           return false;
         }
@@ -99,12 +101,13 @@ export class ClrNumericField implements OnInit {
   }
 
   formatInput(element: any) {
+    const value = element.value;
     const cursorPos = element.selectionStart;
-    const length = this.displayValue.length;
+    const length = value.length;
 
-    this.updateInput(this.formatNumber(this.displayValue));
+    this.updateInput(this.formatNumber(value));
 
-    element.selectionStart = element.selectionEnd = cursorPos + this.displayValue.length - length;
+    element.selectionStart = element.selectionEnd = cursorPos + element.value.length - length;
   }
 
   formatNumber(value: string): string {
@@ -156,6 +159,7 @@ export class ClrNumericField implements OnInit {
   }
 
   updateInput(value: string) {
+    this.inputEl.nativeElement.value = value;
     this.displayValue = value;
     this.numericValueChanged.emit(parseFloat(this.strip(value).replace(',', '.')));
   }
