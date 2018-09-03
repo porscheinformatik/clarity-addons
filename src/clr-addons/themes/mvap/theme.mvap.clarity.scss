@@ -160,6 +160,14 @@ $clr-p6-color: $black-light;
 $clr-p7-color: $black-light;
 $clr-p8-color: $black-light;
 
+// Icons
+$clr-icon-color-success: $green;
+$clr-icon-color-danger: $red-darker;
+$clr-icon-color-warning: $yellow-light;
+$clr-icon-color-error: $red-darker;
+$clr-icon-color-info: $turquoise;
+$clr-icon-color-highlight: $turquoise;
+
 // Input
 $clr-input-border-color: $turquoise;
 
@@ -211,6 +219,13 @@ $clr-nav-active-box-shadow-color: $turquoise;
 
 // Table
 $clr-table-font-color: $black-light;
+
+// Text
+$clr-text-color-primary: $turquoise;
+$clr-text-color-success: $green;
+$clr-text-color-info: $turquoise;
+$clr-text-color-warning: $yellow-light;
+$clr-text-color-danger: $red-darker;
 
 // Tree View
 $clr-tree-link-hover-color: $clr-global-selection-color;

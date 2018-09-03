@@ -98,6 +98,30 @@ clr-tooltip clr-icon {
   color: $turquoise;
 }
 
+clr-icon {
+  &.is-green,
+  &.is-success {
+    fill: $clr-icon-color-success;
+  }
+  &.is-danger {
+    fill: $clr-icon-color-danger;
+  }
+  &.is-red,
+  &.is-error {
+    fill: $clr-icon-color-error;
+  }
+  &.is-warning {
+    fill: $clr-icon-color-warning;
+  }
+  &.is-blue,
+  &.is-info {
+    fill: $clr-icon-color-info;
+  }
+  &.is-highlight {
+    fill: $clr-icon-color-highlight;
+  }
+}
+
 .alert-app-level.alert-success {
   background: $green;
 }
@@ -131,4 +155,25 @@ h6 {
     background-color: $turquoise;
     color: $clr-white;
   }
+}
+
+// Bootstrap text color overrides
+.text-primary {
+  color: $clr-text-color-primary !important;
+}
+
+.text-success {
+  color: $clr-text-color-success !important;
+}
+
+.text-info {
+  color: $clr-text-color-info !important;
+}
+
+.text-warning {
+  color: $clr-text-color-warning !important;
+}
+
+.text-danger {
+  color: $clr-text-color-danger !important;
 }
