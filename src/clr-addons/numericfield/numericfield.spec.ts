@@ -41,7 +41,7 @@ describe('NumericComponent', () => {
 
   function addKey(key: string, keyCode: number) {
     inputEl.triggerEventHandler('keydown', { key: key, keyCode: keyCode, target: inputEl.nativeElement });
-    fixture.componentInstance.component.displayValue += key;
+    inputEl.nativeElement.value += key;
     inputEl.triggerEventHandler('keyup', { key: key, keyCode: keyCode, target: inputEl.nativeElement });
   }
 
