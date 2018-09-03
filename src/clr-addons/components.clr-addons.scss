@@ -108,3 +108,7 @@ body,
     display: block;
   }
 }
+
+.datagrid-no-select-all .datagrid-head .datagrid-select .checkbox {
+  display: none;
+}
