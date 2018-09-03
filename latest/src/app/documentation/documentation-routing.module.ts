@@ -36,6 +36,13 @@ const documentationRoutes: Routes = [
                 }
             },
             {
+                path: "additional-css",
+                loadChildren: "app/documentation/additional-css/additional-css.module#AdditionalCssModule",
+                data: {
+                    browserTitle: "Additional-CSS"
+                }
+            },
+            {
                 path: "cards",
                 loadChildren: "app/documentation/demos/cards/cards.demo.module#CardsDemoModule",
                 data: {
