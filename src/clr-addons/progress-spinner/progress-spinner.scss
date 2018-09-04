@@ -1,5 +1,6 @@
 .loading-overlay {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: $clr-white;
+  opacity: 0.8;
   position: absolute;
   top: 0;
   left: 0;
@@ -8,9 +9,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2;
+  z-index: 99999;
   display: flex;
-}
-
-.loading-spinner {
 }
