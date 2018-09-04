@@ -113,6 +113,14 @@ $clr-header-5-bg-color: $clr-white;
 $clr-header-6-bg-color: $clr-white;
 $clr-header-7-bg-color: $clr-white;
 
+// Icons
+$clr-icon-color-success: $green;
+$clr-icon-color-danger: $red-darker;
+$clr-icon-color-warning: $yellow-light;
+$clr-icon-color-error: $red-darker;
+$clr-icon-color-info: $turquoise;
+$clr-icon-color-highlight: $turquoise;
+
 // Label
 $clr-label-success-bg-color: $green-light;
 $clr-label-success-font-color: $green-darkest;
@@ -158,6 +166,13 @@ $clr-stack-view-stack-block-expandable-hover: $clr-global-selection-color;
 
 // Subnav
 $clr-nav-active-box-shadow-color: $turquoise;
+
+// Text
+$clr-text-color-primary: $turquoise;
+$clr-text-color-success: $green;
+$clr-text-color-info: $turquoise;
+$clr-text-color-warning: $yellow-light;
+$clr-text-color-danger: $red-darker;
 
 // Tree View
 $clr-tree-link-hover-color: $clr-global-selection-color;
