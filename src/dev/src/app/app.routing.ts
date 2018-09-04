@@ -14,6 +14,7 @@ import { CollapseExpandSectionDemo } from './collapse-expand-section/collapse-ex
 import { ContentPanelDemo } from './content-panel/content-panel.demo';
 import { BreadcrumbDemo } from './breadcrumb/breadcrumb.demo';
 import { CardsDemo } from './cards/cards.demo';
+import { ProgressSpinnerDemo } from './progress-spinner/progress-spinner.demo';
 
 export const APP_ROUTES: Routes = [
   { path: '', component: LandingComponent },
@@ -24,6 +25,7 @@ export const APP_ROUTES: Routes = [
   { path: 'collapse-expand-section', component: CollapseExpandSectionDemo },
   { path: 'content-panel', component: ContentPanelDemo },
   { path: 'breadcrumb', component: BreadcrumbDemo },
+  { path: 'progress-spinner', component: ProgressSpinnerDemo },
 ];
 
 export const ROUTING: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);
