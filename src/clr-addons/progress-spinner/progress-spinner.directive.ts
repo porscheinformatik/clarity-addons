@@ -3,12 +3,12 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Directive, ElementRef, Input, Renderer2, SimpleChanges } from '@angular/core';
+import { Directive, ElementRef, Input, OnChanges, OnInit, Renderer2, SimpleChanges } from '@angular/core';
 
 @Directive({
   selector: '[clrProgressSpinner]',
 })
-export class ClrProgressSpinnerDirective {
+export class ClrProgressSpinnerDirective implements OnInit, OnChanges {
   static readonly MINIMUM_VISIBLE_DURATION = 200;
   @Input() loadingState: boolean;
   @Input('clrSize') size: string = 'sm';
