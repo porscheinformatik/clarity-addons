@@ -33,7 +33,7 @@
                         </td>
                         <td class="left hidden-xs-down">sm, md, lg</td>
                         <td class="hidden-xs-down">"sm"</td>
-                        <td class="left">Defines size of progress spinner</td>
+                        <td class="left">Defines the size of progress spinner</td>
                     </tr>
                 </tbody>
             </table>
@@ -42,12 +42,41 @@
         <div id="examples">
             <div class="clr-row">
                 <div class="clr-col-4">
-                    <div class="card" clrProgressSpinner [loadingState]="loadingState"><div class="card-header">Loadable Card</div><div class="card-block">example for a loadable card</div></div>
+                    <div class="card" clrProgressSpinner [loadingState]="cardLoadingState"><div class="card-header">Loadable Card</div><div class="card-block">example for a loadable card</div></div>
                 </div>
             </div>
 
-            <button class="btn btn-primary" (click)="loadingState = !loadingState">Toggle Loading</button>
+            <button class="btn btn-primary" (click)="cardLoadingState = !cardLoadingState">Toggle Loading</button>
             <clr-code-snippet [clrCode]="htmlExample"></clr-code-snippet>
+            <div clrProgressSpinner [loadingState]="loadingState" [clrSize]="md" style="position: relative">
+                <h2>Some Title</h2>
+                <p>example div with some content</p>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th class="left">Example</th>
+                        <th class="left">Table</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="left">
+                            Example1
+                        </td>
+                        <td class="left">some value</td>
+                    </tr>
+                    <tr>
+                        <td class="left">
+                            Example2
+                        </td>
+                        <td class="left">another example</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button class="btn btn-primary" (click)="loadingState = !loadingState">Toggle Loading</button>
+
+            <clr-code-snippet [clrCode]="htmlExample2"></clr-code-snippet>
         </div>
     </article>
 </clr-doc-wrapper>
