@@ -1,6 +1,6 @@
 {
     "name": "clr-addons",
-    "version": "1.4.3",
+    "version": "1.4.4",
     "private": true,
     "scripts": {
         "build:ui:css": "node-sass --include-path=node_modules --source-map=true --precision=6 --indentedSyntax=true ./src/clr-addons/themes/clr-ui/clr-ui.scss ./dist/clr-addons/styles/clr-ui.css && node-sass --include-path=node_modules --source-map=true --precision=6 --indentedSyntax=true ./src/clr-addons/themes/clr-ui-dark/clr-ui-dark.scss ./dist/clr-addons/styles/clr-ui-dark.css && node-sass --include-path=node_modules --source-map=true --precision=6 --indentedSyntax=true ./src/clr-addons/themes/mvap/mvap-theme.scss ./dist/clr-addons/styles/clr-addons-mvap.css && node-sass --include-path=node_modules --source-map=true --precision=6 --indentedSyntax=true ./src/clr-addons/themes/vu3/vu3-theme.scss ./dist/clr-addons/styles/clr-addons-vu3.css",
