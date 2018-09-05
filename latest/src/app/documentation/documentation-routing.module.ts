@@ -141,6 +141,13 @@ const documentationRoutes: Routes = [
                 }
             },
             {
+                path: "progress-spinner",
+                loadChildren: "app/documentation/demos/progress-spinner/progress-spinner.demo.module#ProgressSpinnerDemoModule",
+                data: {
+                    browserTitle: "Progress Spinner"
+                }
+            },
+            {
                 path: "datagrid",
                 loadChildren: "app/documentation/demos/datagrid/datagrid.demo.module#DatagridDemoModule",
                 data: {

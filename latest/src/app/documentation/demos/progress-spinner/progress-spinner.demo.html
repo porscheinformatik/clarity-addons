@@ -1,0 +1,53 @@
+<clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
+    <article>
+        <h5 class="component-summary">The progress spinner can be applied to any element to indicate an ongoing operation </h5>
+        
+        <div id="design-guidelines">
+            <h2>Angular Component</h2>
+            <h3>Summary of Options</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="left">Input</th>
+                        <th class="left hidden-xs-down">Values</th>
+                        <th class="hidden-xs-down">Default</th>
+                        <th class="left">Effect</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="left">
+                            <b>loadingState</b>
+                            <div class="hidden-sm-up">Type: boolean</div>
+                            <div class="hidden-sm-up">Default: false</div>
+                        </td>
+                        <td class="left hidden-xs-down">true, false</td>
+                        <td class="hidden-xs-down">false</td>
+                        <td class="left">Controls if the spinner is shown</td>
+                    </tr>
+                    <tr>
+                        <td class="left">
+                            <b>clrSize</b>
+                            <div class="hidden-sm-up">Type: String</div>
+                            <div class="hidden-sm-up">Default: "sm"</div>
+                        </td>
+                        <td class="left hidden-xs-down">sm, md, lg</td>
+                        <td class="hidden-xs-down">"sm"</td>
+                        <td class="left">Defines size of progress spinner</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="examples">
+            <div class="clr-row">
+                <div class="clr-col-4">
+                    <div class="card" clrProgressSpinner [loadingState]="loadingState"><div class="card-header">Loadable Card</div><div class="card-block">example for a loadable card</div></div>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" (click)="loadingState = !loadingState">Toggle Loading</button>
+            <clr-code-snippet [clrCode]="htmlExample"></clr-code-snippet>
+        </div>
+    </article>
+</clr-doc-wrapper>
