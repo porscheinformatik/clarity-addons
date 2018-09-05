@@ -146,6 +146,13 @@ const documentationRoutes: Routes = [
                 data: {
                     browserTitle: "Numeric Field"
                 }
+            },
+            {
+                path: "progress-spinner",
+                loadChildren: "app/documentation/demos/progress-spinner/progress-spinner.demo.module#ProgressSpinnerDemoModule",
+                data: {
+                    browserTitle: "Progress Spinner"
+                }
             }
         ]
     }
