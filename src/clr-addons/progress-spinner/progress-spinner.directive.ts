@@ -10,7 +10,7 @@ import { Directive, ElementRef, Input, OnChanges, OnInit, Renderer2, SimpleChang
 })
 export class ClrProgressSpinnerDirective implements OnInit, OnChanges {
   static readonly MINIMUM_VISIBLE_DURATION = 200;
-  @Input() loadingState: boolean;
+  @Input() clrProgressSpinner: boolean;
   @Input('clrSize') size: string = 'sm';
 
   loadingSpinnerVisible: boolean = false;
@@ -32,7 +32,7 @@ export class ClrProgressSpinnerDirective implements OnInit, OnChanges {
   }
 
   reloadState(): void {
-    if (this.loadingState) {
+    if (this.clrProgressSpinner) {
       this.show();
     } else {
       this.hide();
