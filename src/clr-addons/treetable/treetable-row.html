@@ -1,0 +1,19 @@
+<!--
+  ~ Copyright (c) 2018 Porsche Informatik. All Rights Reserved.
+  ~ This software is released under MIT license.
+  ~ The full license information can be found in LICENSE in the root directory of this project.
+  -->
+
+<clr-dg-row [ngClass]="{'clr-row-clickable': clrClickable && hasExpandableRow}" class="clr-tt-node-content" (click)="onRowClick()">
+  <div class="datagrid-expandable-caret">
+    <button *ngIf="hasExpandableRow" type="button" class="datagrid-expandable-caret-button" (click)="onCaretClick()">
+      <clr-icon shape="caret"
+                [attr.dir]="expanded ? 'down' : 'right'"
+                class="datagrid-expandable-caret-icon"></clr-icon>
+    </button>
+  </div>
+
+  <ng-content select="clr-dg-cell"></ng-content>
+</clr-dg-row>
+
+<ng-content select="clr-tt-row" *ngIf="expanded"></ng-content>

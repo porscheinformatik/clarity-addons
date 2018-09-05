@@ -1,0 +1,97 @@
+$base-cell-indentation: 0.3rem;
+$base-caret-indentation: 0.1rem;
+$indentation-increment: 1rem;
+
+clr-dg-row.clr-row-clickable {
+  cursor: pointer;
+}
+
+clr-treetable {
+  .datagrid {
+    clr-dg-cell {
+      flex-basis: 10%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .datagrid-body {
+      clr-tt-row {
+        .clr-tt-node-content.datagrid-row {
+          border-top: 1px solid #ddd;
+        }
+
+        clr-dg-cell.datagrid-cell:first-of-type {
+          padding-left: $base-cell-indentation;
+        }
+        div.datagrid-expandable-caret {
+          left: $base-caret-indentation;
+        }
+
+        clr-tt-row {
+          clr-dg-cell.datagrid-cell:first-of-type {
+            padding-left: $base-cell-indentation + $indentation-increment;
+          }
+          div.datagrid-expandable-caret {
+            left: $indentation-increment;
+          }
+
+          clr-tt-row {
+            clr-dg-cell.datagrid-cell:first-of-type {
+              padding-left: $base-cell-indentation + 2 * $indentation-increment;
+            }
+            div.datagrid-expandable-caret {
+              left: 2 * $indentation-increment;
+            }
+
+            clr-tt-row {
+              clr-dg-cell.datagrid-cell:first-of-type {
+                padding-left: $base-cell-indentation + 3 * $indentation-increment;
+              }
+              div.datagrid-expandable-caret {
+                left: 3 * $indentation-increment;
+              }
+
+              clr-tt-row {
+                clr-dg-cell.datagrid-cell:first-of-type {
+                  padding-left: $base-cell-indentation + 4 * $indentation-increment;
+                }
+                div.datagrid-expandable-caret {
+                  left: 4 * $indentation-increment;
+                }
+
+                clr-tt-row {
+                  clr-dg-cell.datagrid-cell:first-of-type {
+                    padding-left: $base-cell-indentation + 5 * $indentation-increment;
+                  }
+                  div.datagrid-expandable-caret {
+                    left: 5 * $indentation-increment;
+                  }
+
+                  clr-tt-row {
+                    clr-dg-cell.datagrid-cell:first-of-type {
+                      padding-left: $base-cell-indentation + 6 * $indentation-increment;
+                    }
+                    div.datagrid-expandable-caret {
+                      left: 6 * $indentation-increment;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    div.datagrid-expandable-caret {
+      position: relative;
+      z-index: 999;
+      width: 25px;
+
+      .datagrid-expandable-caret-icon {
+        margin-top: 0;
+      }
+    }
+  }
+}
