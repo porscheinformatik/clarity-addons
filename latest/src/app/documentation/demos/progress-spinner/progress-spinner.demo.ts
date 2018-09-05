@@ -7,11 +7,11 @@ import { Component } from "@angular/core";
 import { ClarityDocComponent } from "../clarity-doc";
 
 const HTML_EXAMPLE = `
-<div class="card" clrProgressSpinner [loadingState]="loadingState">Loadable card</div>
+<div class="card" [clrProgressSpinner]="loadingState">Loadable card</div>
 `;
 
 const HTML_EXAMPLE2 = `
-<div clrProgressSpinner [loadingState]="loadingState" [clrSize]="md">some content</div>
+<div [clrProgressSpinner]="loadingState" clrSize="md">some content</div>
 `;
 
 @Component({
