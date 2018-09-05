@@ -42,13 +42,13 @@
         <div id="examples">
             <div class="clr-row">
                 <div class="clr-col-4">
-                    <div class="card" clrProgressSpinner [loadingState]="cardLoadingState"><div class="card-header">Loadable Card</div><div class="card-block">example for a loadable card</div></div>
+                    <div class="card" [clrProgressSpinner]="cardLoadingState"><div class="card-header">Loadable Card</div><div class="card-block">example for a loadable card</div></div>
                 </div>
             </div>
 
             <button class="btn btn-primary" (click)="cardLoadingState = !cardLoadingState">Toggle Loading</button>
             <clr-code-snippet [clrCode]="htmlExample"></clr-code-snippet>
-            <div clrProgressSpinner [loadingState]="loadingState" [clrSize]="md" style="position: relative">
+            <div [clrProgressSpinner]="loadingState" clrSize="md" style="position: relative">
                 <h2>Some Title</h2>
                 <p>example div with some content</p>
                 <table class="table">
