@@ -17,6 +17,7 @@ import { ClrNotificationModule } from './notification/notification.module';
 import { ClrFlowBarModule } from './flow-bar/flow-bar.module';
 import { ClrBackButtonModule } from './back-button/back-button.module';
 import { ClrNumericFieldModule } from './numericfield/numericfield.module';
+import { ClrProgressSpinnerModule } from './progress-spinner/progress-spinner.module';
 
 @NgModule({
   exports: [
@@ -31,6 +32,7 @@ import { ClrNumericFieldModule } from './numericfield/numericfield.module';
     ClrFlowBarModule,
     ClrBackButtonModule,
     ClrNumericFieldModule,
+    ClrProgressSpinnerModule,
   ],
 })
 export class ClrAddonsModule {}
