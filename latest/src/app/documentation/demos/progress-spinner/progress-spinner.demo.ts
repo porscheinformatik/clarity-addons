@@ -10,6 +10,10 @@ const HTML_EXAMPLE = `
 <div class="card" clrProgressSpinner [loadingState]="loadingState">Loadable card</div>
 `;
 
+const HTML_EXAMPLE2 = `
+<div clrProgressSpinner [loadingState]="loadingState" [clrSize]="md">some content</div>
+`;
+
 @Component({
     selector: "clr-progress-spinner-demo",
     templateUrl: "./progress-spinner.demo.html",
@@ -20,8 +24,10 @@ const HTML_EXAMPLE = `
 })
 export class ProgressSpinnerDemo extends ClarityDocComponent {
     htmlExample = HTML_EXAMPLE;
+    htmlExample2 = HTML_EXAMPLE2;
 
     loadingState: boolean;
+    cardLoadingState: boolean;
 
     constructor() {
         super("progress-spinner");
