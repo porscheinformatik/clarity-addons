@@ -95,6 +95,12 @@ $clr-app-alert-danger-bg-color: $red-darker;
 
 // Badge
 $clr-badge-blue-bg-color: $blue-darkest;
+$clr-badge-info-bg-color: $turquoise;
+$clr-badge-success-bg-color: $green;
+$clr-badge-warning-bg-color: $yellow-light;
+$clr-badge-danger-bg-color: $red-darker;
+$clr-badge-orange-bg-color: $orange-dark;
+$clr-badge-light-blue-bg-color: $turquoise;
 
 // Card
 $clr-card-box-shadow: 0 0;
@@ -104,14 +110,6 @@ $clr-card-active-border-color: $turquoise;
 $clr-forms-checkbox-background-color: $turquoise; // checked-background-color
 $clr-forms-checkbox-checked-shadow: inset 0 0 0 0.25rem $clr-forms-checkbox-background-color;
 $clr-indeterminate-checkbox-border-color: $turquoise;
-
-// Badge
-$clr-badge-info-bg-color: $turquoise;
-$clr-badge-success-bg-color: $green;
-$clr-badge-warning-bg-color: $yellow-light;
-$clr-badge-danger-bg-color: $red-darker;
-$clr-badge-orange-bg-color: $orange-dark;
-$clr-badge-light-blue-bg-color: $turquoise;
 
 // Datagrid
 $clr-datagrid-row-hover: $clr-global-selection-color;
@@ -172,12 +170,14 @@ $clr-icon-color-highlight: $turquoise;
 $clr-input-border-color: $turquoise;
 
 // Labels
+$clr-label-font-color: $clr-white;
+
 $clr-label-success-bg-color: $green;
 $clr-label-success-font-color: $green-darkest;
 $clr-label-success-border-color: $green;
 
-$clr-label-info-bg-color: $blue-lightest;
-$clr-label-info-font-color: $turquoise;
+$clr-label-info-bg-color: $turquoise;
+$clr-label-info-font-color: $clr-white;
 $clr-label-info-border-color: $turquoise;
 
 $clr-label-warning-border-color: $yellow-light;
@@ -213,6 +213,7 @@ $clr-spinner-color: $turquoise;
 // Stack View
 $clr-stack-view-stack-block-expanded-bg-color: $turquoise;
 $clr-stack-view-stack-block-expandable-hover: $clr-global-selection-color;
+$clr-stack-view-stack-block-caret-color: $clr-app-font-color-primary;
 
 // Subnav
 $clr-nav-active-box-shadow-color: $turquoise;
