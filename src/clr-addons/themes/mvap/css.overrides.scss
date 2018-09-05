@@ -47,8 +47,10 @@ body {
     margin-right: $clr-default-borderwidth;
   }
 
-  .btn.btn-disabled {
-    border-left: $clr-default-borderwidth solid $clr-btn-default-bg-color;
+  .btn.disabled {
+    border-left: $clr-default-borderwidth solid;
+    border-color: $clr-btn-default-bg-color;
+    opacity: 0.4;
   }
 }
 
