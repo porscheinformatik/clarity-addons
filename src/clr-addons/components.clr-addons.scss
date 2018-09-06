@@ -79,7 +79,7 @@ body,
     @include card-active-after();
   }
 
-  @media (hover: hover) {
+  @mixin card-handle-hover() {
     &.selectable:hover::after {
       @include card-active-after();
     }
@@ -97,6 +97,15 @@ body,
         transition: none;
       }
     }
+  }
+
+  // firefox needs this, because the hover in @media (hover: hover) is not supported
+  @-moz-document url-prefix() {
+    @include card-handle-hover();
+  }
+
+  @media (hover: hover) {
+    @include card-handle-hover();
   }
 }
 
