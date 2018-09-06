@@ -78,8 +78,7 @@ body,
     @include card-active-after();
   }
 
-  // firefox needs this, because the hover in @media (hover: hover) is not supported
-  @-moz-document url-prefix() {
+  @mixin card-handle-hover() {
     &.selectable:hover::after {
       @include card-active-after();
     }
@@ -99,24 +98,13 @@ body,
     }
   }
 
+  // firefox needs this, because the hover in @media (hover: hover) is not supported
+  @-moz-document url-prefix() {
+    @include card-handle-hover();
+  }
+
   @media (hover: hover) {
-    &.selectable:hover::after {
-      @include card-active-after();
-    }
-
-    &.selectable:hover {
-      border: $clr-card-border;
-      box-shadow: $clr-card-box-shadow;
-      cursor: pointer;
-      transform: translateY(-2px);
-      transition: border 0.2s ease, transform 0.2s ease;
-
-      &.card-active:hover {
-        cursor: default;
-        transform: none;
-        transition: none;
-      }
-    }
+    @include card-handle-hover();
   }
 }
 
