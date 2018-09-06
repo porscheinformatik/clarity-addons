@@ -115,27 +115,28 @@ clr-tooltip clr-icon {
   color: $turquoise;
 }
 
+// Use !important because the clr-icons.css is higher priority otherwise
 clr-icon {
   &.is-green,
   &.is-success {
-    fill: $clr-icon-color-success;
+    fill: $clr-icon-color-success !important;
   }
   &.is-danger {
-    fill: $clr-icon-color-danger;
+    fill: $clr-icon-color-danger !important;
   }
   &.is-red,
   &.is-error {
-    fill: $clr-icon-color-error;
+    fill: $clr-icon-color-error !important;
   }
   &.is-warning {
-    fill: $clr-icon-color-warning;
+    fill: $clr-icon-color-warning !important;
   }
   &.is-blue,
   &.is-info {
-    fill: $clr-icon-color-info;
+    fill: $clr-icon-color-info !important;
   }
   &.is-highlight {
-    fill: $clr-icon-color-highlight;
+    fill: $clr-icon-color-highlight !important;
   }
 }
 
