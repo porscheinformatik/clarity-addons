@@ -7,23 +7,25 @@ import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {ClarityModule} from "@clr/angular";
 
-import {AdditionalCss} from "./additional-css";
+import {DatagridDemo} from "./datagrid.demo";
+import { DocWrapperModule } from "../_doc-wrapper/doc-wrapper.module";
 import {RouterModule} from "@angular/router";
-import {UtilsModule} from "../../utils/utils.module";
+import {UtilsModule} from "../../../utils/utils.module";
 
 @NgModule({
     imports: [
         CommonModule,
         ClarityModule,
+        DocWrapperModule,
         UtilsModule,
-        RouterModule.forChild([{path: "", component: AdditionalCss}])
+        RouterModule.forChild([{path: "", component: DatagridDemo}])
     ],
     declarations: [
-        AdditionalCss
+        DatagridDemo
     ],
     exports: [
-        AdditionalCss
+        DatagridDemo
     ]
 })
-export class AdditionalCssModule {
+export class DatagridDemoModule {
 }

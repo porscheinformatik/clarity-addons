@@ -1,0 +1,27 @@
+<clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
+    <article>
+        <h5 class="component-summary">
+            Datagrids are for organizing large volumes of data that users can scan, compare and perform actions on.
+        </h5>
+        <p>
+            Please find the main documentation here: <a href="https://vmware.github.io/clarity/documentation/datagrid/">Clarity Datagrid</a>
+            <br>In the following only additional features are documented
+        </p>
+        <h3>Selection</h3>
+        <h4>Omit "select-all" in datagrid header</h4>
+        <p>
+            Use class <code class="clr-code">datagrid-no-select-all</code> to prevent rendering of the select-all checkbox in datagrid header.
+        </p>
+
+        <clr-datagrid class="datagrid-no-select-all" [(clrDgSelected)]="selected">
+            <clr-dg-column>Description</clr-dg-column>
+            <clr-dg-row clrDgItem="1"><clr-dg-cell>Item 1</clr-dg-cell></clr-dg-row>
+            <clr-dg-row clrDgItem="2"><clr-dg-cell>Item 2</clr-dg-cell></clr-dg-row>
+            <clr-dg-row clrDgItem="3"><clr-dg-cell>Item 3</clr-dg-cell></clr-dg-row>
+            <clr-dg-row clrDgItem="4"><clr-dg-cell>Item 4</clr-dg-cell></clr-dg-row>
+            <clr-dg-row clrDgItem="5"><clr-dg-cell>Item 5</clr-dg-cell></clr-dg-row>
+        </clr-datagrid>
+
+        <clr-code-snippet [clrCode]="noSelectAllExample"></clr-code-snippet>
+    </article>
+</clr-doc-wrapper>
