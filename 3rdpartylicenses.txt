@@ -431,7 +431,7 @@ MIT
 MIT
 MIT
 
-@porscheinformatik/clr-addons@1.4.2
+@porscheinformatik/clr-addons@1.5.0
 MIT
 MIT
 
