@@ -139,6 +139,13 @@ const documentationRoutes: Routes = [
                 data: {
                     browserTitle: "Numeric Field"
                 }
+            },
+            {
+                path: "treetable",
+                loadChildren: "app/documentation/demos/treetable/treetable.demo.module#TreetableDemoModule",
+                data: {
+                    browserTitle: "Treetable"
+                }
             }
         ]
     }
