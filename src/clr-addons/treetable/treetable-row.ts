@@ -5,7 +5,6 @@
  */
 
 import { AfterContentInit, Component, ContentChildren, Input, QueryList } from '@angular/core';
-import { ClrDatagridRow } from '@clr/angular';
 
 @Component({
   selector: 'clr-tt-row',
@@ -13,19 +12,24 @@ import { ClrDatagridRow } from '@clr/angular';
   styleUrls: ['./treetable-row.scss'],
 })
 export class ClrTreetableRow implements AfterContentInit {
-  expanded = false;
-  hasExpandableRow = false;
+  @Input() clrExpanded = false;
+  @Input() clrClickable = true;
 
-  @Input() clrClickable = false;
+  isExpandable = false;
 
   @ContentChildren(ClrTreetableRow) ttRows: QueryList<ClrTreetableRow>;
 
   ngAfterContentInit(): void {
-    this.hasExpandableRow = this.ttRows.length > 1;
+    this.initIsExpandable();
+    this.ttRows.changes.subscribe(() => this.initIsExpandable());
+  }
+
+  private initIsExpandable(): void {
+    this.isExpandable = this.ttRows.length > 1;
   }
 
   private toggleExpand() {
-    this.expanded = !this.expanded;
+    this.clrExpanded = !this.clrExpanded;
   }
 
   onRowClick() {

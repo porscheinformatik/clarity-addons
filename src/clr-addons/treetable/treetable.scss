@@ -16,5 +16,6 @@ clr-treetable clr-datagrid clr-dg-column.datagrid-column.text-right .datagrid-co
 }
 
 clr-treetable.clr-treetable-noscroll .datagrid {
-  width: initial;
+  max-width: initial;
+  width: 100%;
 }

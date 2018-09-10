@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { AfterContentInit, Component, ContentChildren, Input, QueryList } from '@angular/core';
+import { AfterContentInit, Component, ContentChildren, Input, OnChanges, QueryList } from '@angular/core';
 import { ClrTreetableRow } from './treetable-row';
 import { ClrDatagridCell, ClrDatagridColumn } from '@clr/angular';
 
@@ -13,7 +13,7 @@ import { ClrDatagridCell, ClrDatagridColumn } from '@clr/angular';
   styleUrls: ['./treetable.scss'],
   host: { '[class.empty]': 'empty' },
 })
-export class ClrTreetable implements AfterContentInit {
+export class ClrTreetable implements AfterContentInit, OnChanges {
   @Input() clrClickableRows = true;
   empty = true;
 
@@ -25,10 +25,16 @@ export class ClrTreetable implements AfterContentInit {
     this.initEmpty();
   }
 
+  ngOnChanges(): void {
+    this.initClickableRows();
+  }
+
   private initClickableRows(): void {
-    this.ttRows.forEach((ttRow, index) => {
-      ttRow.clrClickable = this.clrClickableRows;
-    });
+    if (this.ttRows) {
+      this.ttRows.forEach((ttRow, index) => {
+        ttRow.clrClickable = this.clrClickableRows;
+      });
+    }
   }
 
   private initEmpty(): void {
