@@ -67,6 +67,18 @@
             "newLayout": true
         },
         {
+            "url": "datagrid",
+            "text": "Datagrid",
+            "type": "component",
+            "ux": -1,
+            "ui": 20,
+            "core": -1,
+            "ng": -1,
+            "dox": 20,
+            "comments": "",
+            "newLayout": true
+        },
+        {
             "url": "flow-bar-layout",
             "text": "Flow Bar Layout",
             "type": "pagelayouts",
@@ -189,6 +201,18 @@
         {
             "url": "treetable",
             "text": "Treetable",
+            "type": "component",
+            "ux": 20,
+            "ui": 20,
+            "core": 20,
+            "ng": 20,
+            "dox": 20,
+            "comments": "",
+            "newLayout": true
+        },
+        {
+            "url": "progress-spinner",
+            "text": "Progress Spinner",
             "type": "component",
             "ux": 20,
             "ui": 20,
