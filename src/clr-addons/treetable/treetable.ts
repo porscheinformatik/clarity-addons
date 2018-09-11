@@ -5,7 +5,6 @@
  */
 import { AfterContentInit, Component, ContentChildren, Input, OnChanges, QueryList } from '@angular/core';
 import { ClrTreetableRow } from './treetable-row';
-import { ClrDatagridCell, ClrDatagridColumn } from '@clr/angular';
 
 @Component({
   selector: 'clr-treetable',
