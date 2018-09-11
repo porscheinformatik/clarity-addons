@@ -10,9 +10,6 @@ clr-treetable {
   .datagrid {
     clr-dg-cell {
       flex-basis: 10%;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
 
     .datagrid-body {
