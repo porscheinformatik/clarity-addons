@@ -1,0 +1,6 @@
+<h2>Progress Spinner</h2>
+<div class="card" [clrProgressSpinner]="loadingState">Loadable Card</div>
+<div class="card" [clrProgressSpinner]="loadingState" clrSize="md">Same State bigger Spinner</div>
+
+<button class="btn btn-primary" (click)="startLoading()">Start Loading</button>
+<button class="btn btn-outline" (click)="endLoading()">End Loading</button>

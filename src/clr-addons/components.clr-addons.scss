@@ -11,6 +11,7 @@
 @import './back-button/back-button';
 @import './treetable/treetable';
 @import './treetable/treetable-row';
+@import './progress-spinner/progress-spinner';
 
 html,
 body,
@@ -80,7 +81,7 @@ body,
     @include card-active-after();
   }
 
-  @media (hover: hover) {
+  @mixin card-handle-hover() {
     &.selectable:hover::after {
       @include card-active-after();
     }
@@ -99,6 +100,15 @@ body,
       }
     }
   }
+
+  // firefox needs this, because the hover in @media (hover: hover) is not supported
+  @-moz-document url-prefix() {
+    @include card-handle-hover();
+  }
+
+  @media (hover: hover) {
+    @include card-handle-hover();
+  }
 }
 
 .main-container.open-hamburger-menu .header .header-nav.clr-nav-level-1 {
@@ -109,4 +119,8 @@ body,
     white-space: nowrap;
     display: block;
   }
+}
+
+.datagrid-no-select-all .datagrid-head .datagrid-select .checkbox {
+  display: none;
 }

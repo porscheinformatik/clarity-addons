@@ -18,6 +18,7 @@ import { ClrFlowBarModule } from './flow-bar/flow-bar.module';
 import { ClrBackButtonModule } from './back-button/back-button.module';
 import { ClrNumericFieldModule } from './numericfield/numericfield.module';
 import { ClrTreetableModule } from './treetable/treetable.module';
+import { ClrProgressSpinnerModule } from './progress-spinner/progress-spinner.module';
 
 @NgModule({
   exports: [
@@ -33,6 +34,7 @@ import { ClrTreetableModule } from './treetable/treetable.module';
     ClrBackButtonModule,
     ClrNumericFieldModule,
     ClrTreetableModule,
+    ClrProgressSpinnerModule,
   ],
 })
 export class ClrAddonsModule {}

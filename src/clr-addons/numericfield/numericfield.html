@@ -1,4 +1,4 @@
 <clr-input-container>
   <label>{{label}}</label>
-  <input class="numeric-align-{{textAlign}}" #input clrInput [(ngModel)]="displayValue">
+  <input class="numeric-align-{{textAlign}}" #input clrInput (ngModel)="displayValue">
 </clr-input-container>

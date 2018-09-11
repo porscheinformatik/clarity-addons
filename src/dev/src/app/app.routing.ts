@@ -17,6 +17,7 @@ import { BreadcrumbDemo } from './breadcrumb/breadcrumb.demo';
 import { NotificationDemo } from './notification/notification.demo';
 import { FlowBarDemo } from './flow-bar/flow-bar.demo';
 import { CardsDemo } from './cards/cards.demo';
+import { ProgressSpinnerDemo } from './progress-spinner/progress-spinner.demo';
 import { FlowBarContentPanelDemo } from './flow-bar-content-panel/flow-bar-content-panel.demo';
 import { NumericFieldDemo } from './numericfield/numericfield.demo';
 import { TreetableDemo } from './treetable/treetable.demo';
@@ -33,6 +34,7 @@ export const APP_ROUTES: Routes = [
   { path: 'flow-bar', component: FlowBarDemo },
   { path: 'flow-bar-content-panel', component: FlowBarContentPanelDemo },
   { path: 'breadcrumb', component: BreadcrumbDemo },
+  { path: 'progress-spinner', component: ProgressSpinnerDemo },
   { path: 'notification', component: NotificationDemo },
   { path: 'numericfield', component: NumericFieldDemo },
   { path: 'treetable', component: TreetableDemo },

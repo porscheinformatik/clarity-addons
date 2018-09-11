@@ -26,6 +26,7 @@ import { NotificationDemoModule } from './notification/notification.demo.module'
 import { ClrNotificationService } from '@porscheinformatik/clr-addons';
 import { FlowBarDemoModule } from './flow-bar/flow-bar.demo.module';
 import { CardsDemoModule } from './cards/cards.demo.module';
+import { ProgressSpinnerDemoModule } from './progress-spinner/progress-spinner.demo.module';
 import { FlowBarContentPanelDemoModule } from './flow-bar-content-panel/flow-bar-content-panel.demo.module';
 import { NumericFieldDemoModule } from './numericfield/numericfield.demo.module';
 import { TreetableDemoModule } from './treetable/treetable.demo.module';
@@ -49,6 +50,7 @@ import { TreetableDemoModule } from './treetable/treetable.demo.module';
     FlowBarDemoModule,
     FlowBarContentPanelDemoModule,
     CardsDemoModule,
+    ProgressSpinnerDemoModule,
     BackButtonDemoModule,
     NumericFieldDemoModule,
     TreetableDemoModule,

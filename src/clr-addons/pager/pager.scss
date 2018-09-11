@@ -1,26 +1,22 @@
 @include exports('pager.clr-addons') {
-  .pager .btn {
-    min-width: 1.5rem;
-  }
+  .pager {
+    .btn {
+      min-width: 1.5rem;
+    }
 
-  .pager .btn-disabled {
-    color: $clr-btn-default-disabled-color;
-    cursor: default;
-    background-color: transparent;
-  }
+    .disabled {
+      border-color: $clr-btn-default-color;
+      opacity: 1;
 
-  .pager .btn-disabled:hover {
-    background-color: transparent;
-  }
+      &:focus {
+        outline: none;
+      }
 
-  .pager .btn-disabled:focus {
-    outline: none;
+      &:active {
+        box-shadow: none;
+      }
+    }
   }
-
-  .pager .btn-disabled:active {
-    box-shadow: none;
-  }
-
   @media (hover: none) {
     .pager .btn:not(.btn-primary):hover {
       background-color: $clr-btn-default-bg-color;
