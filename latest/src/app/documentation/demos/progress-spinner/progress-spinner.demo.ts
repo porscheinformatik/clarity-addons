@@ -7,11 +7,23 @@ import { Component } from "@angular/core";
 import { ClarityDocComponent } from "../clarity-doc";
 
 const HTML_EXAMPLE = `
-<div class="card" [clrProgressSpinner]="loadingState">Loadable card</div>
+<div class="clr-row">
+    <div class="clr-col-6">
+        <div class="card" [clrProgressSpinner]="cardLoadingState">
+            ...
+        </div>
+    </div>
+</div>
+<button class="btn btn-primary mt-1" (click)="cardLoadingState = !cardLoadingState">Toggle Loading</button>
 `;
 
 const HTML_EXAMPLE2 = `
-<div [clrProgressSpinner]="loadingState" clrSize="md">some content</div>
+<div [clrProgressSpinner]="loadingState" clrSize="md">
+    <h2>Content Title</h2>
+    <p>...</p>
+</div>
+
+<button class="btn btn-primary mt-1" (click)="loadingState = !loadingState">Toggle Loading</button>
 `;
 
 @Component({
