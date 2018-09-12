@@ -1,6 +1,7 @@
 @include exports('back-button.clr-addons') {
-  .back-button {
+  .btn.back-button {
     padding: 0;
+    margin-right: 0.5rem;
 
     &:focus {
       outline: none;
