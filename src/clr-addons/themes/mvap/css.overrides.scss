@@ -33,13 +33,9 @@ body {
     border-top-color: $clr-border-color;
   }
 }
-.btn {
-  border-color: $clr-btn-default-bg-color;
 
-  &.btn-outline,
-  &.btn-info-outline {
-    border-color: $clr-btn-default-bg-color;
-  }
+.btn {
+  border-width: 0;
 }
 
 .btn-group {
@@ -48,8 +44,6 @@ body {
   }
 
   .btn.disabled {
-    border-left: $clr-default-borderwidth solid;
-    border-color: $clr-btn-default-bg-color;
     opacity: 0.4;
   }
 }
@@ -140,15 +134,30 @@ clr-icon {
   }
 }
 
+$clickable-icon-selector: 'clr-icon:not(.is-green):not(.is-success):not(.is-danger):not(.is-red):not(.is-error):not(.is-warning):not(.is-blue):not(.is-info):not(.is-highlight)';
+
 .btn-link.btn-icon,
 .close {
   overflow: visible;
 
-  > clr-icon:not(.is-green):not(.is-success):not(.is-danger):not(.is-red):not(.is-error):not(.is-warning):not(.is-blue):not(.is-info):not(.is-highlight) {
-    background-color: $turquoise;
+  > #{$clickable-icon-selector} {
+    background-color: $clr-btn-primary-bg-color;
     fill: $clr-white;
     border-radius: 50px;
-    padding: 1px;
+
+    &:not(.ves-edit-icon) {
+      padding: 1px;
+    }
+    &.ves-edit-icon {
+      padding: 3px;
+    }
+  }
+}
+
+.btn-link.btn-icon:hover,
+.close:hover {
+  > #{$clickable-icon-selector} {
+    background-color: $clr-btn-primary-hover-bg-color;
   }
 }
 
@@ -233,6 +242,7 @@ h6 {
 }
 
 button:focus,
-.tooltip:focus > :first-child {
+.tooltip:focus > :first-child,
+.tooltip > :first-child:focus {
   outline: none;
 }

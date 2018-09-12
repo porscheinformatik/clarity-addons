@@ -194,6 +194,7 @@ a.label.label-orange > .badge {
 }
 
 button:focus,
-.tooltip:focus > :first-child {
+.tooltip:focus > :first-child,
+.tooltip > :first-child:focus {
   outline: none;
 }
