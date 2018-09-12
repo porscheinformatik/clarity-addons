@@ -1,0 +1,21 @@
+clr-treetable:not(.empty) clr-datagrid clr-dg-placeholder.datagrid-placeholder-container,
+clr-treetable clr-datagrid .datagrid-column-separator {
+  display: none;
+}
+
+clr-treetable clr-datagrid clr-dg-column.datagrid-column {
+  flex-basis: 0;
+}
+
+clr-treetable clr-datagrid clr-dg-column:first-of-type {
+  margin-left: 1.1rem;
+}
+
+clr-treetable clr-datagrid clr-dg-column.datagrid-column.text-right .datagrid-column-title {
+  text-align: right;
+}
+
+clr-treetable.clr-treetable-noscroll .datagrid {
+  max-width: initial;
+  width: 100%;
+}

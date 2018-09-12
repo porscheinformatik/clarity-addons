@@ -29,6 +29,7 @@ import { CardsDemoModule } from './cards/cards.demo.module';
 import { ProgressSpinnerDemoModule } from './progress-spinner/progress-spinner.demo.module';
 import { FlowBarContentPanelDemoModule } from './flow-bar-content-panel/flow-bar-content-panel.demo.module';
 import { NumericFieldDemoModule } from './numericfield/numericfield.demo.module';
+import { TreetableDemoModule } from './treetable/treetable.demo.module';
 
 @NgModule({
   declarations: [AppComponent, LandingComponent, AppContentContainerComponent],
@@ -52,6 +53,7 @@ import { NumericFieldDemoModule } from './numericfield/numericfield.demo.module'
     ProgressSpinnerDemoModule,
     BackButtonDemoModule,
     NumericFieldDemoModule,
+    TreetableDemoModule,
   ],
   bootstrap: [AppComponent],
   providers: [ClrNotificationService],
