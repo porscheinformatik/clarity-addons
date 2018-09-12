@@ -5,6 +5,7 @@ import {ScrollSpy} from "./scrollspy.directive";
 import {ClarityModule} from "@clr/angular";
 import {CodeSnippet} from "./code-snippet";
 import {CommonModule} from "@angular/common";
+import {CodeHighlight} from "./code-highlight";
 
 @NgModule({
     imports: [
@@ -14,7 +15,8 @@ import {CommonModule} from "@angular/common";
     declarations: [
         HashListener,
         ScrollSpy,
-        CodeSnippet
+        CodeSnippet,
+        CodeHighlight
     ],
     exports: [
         HashListener,
