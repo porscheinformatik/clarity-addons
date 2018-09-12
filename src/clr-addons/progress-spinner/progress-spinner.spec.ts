@@ -7,7 +7,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ClarityModule } from '@clr/angular';
 
-import { ClrProgressSpinnerDirective } from './progress-spinner.directive';
+import { ClrProgressSpinnerDirective } from './progress-spinner';
 import { Component } from '@angular/core';
 
 @Component({

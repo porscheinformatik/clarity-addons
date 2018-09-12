@@ -5,7 +5,7 @@
  */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ClrProgressSpinnerDirective } from './progress-spinner.directive';
+import { ClrProgressSpinnerDirective } from './progress-spinner';
 
 @NgModule({
   imports: [CommonModule],
