@@ -141,6 +141,13 @@ const documentationRoutes: Routes = [
                 }
             },
             {
+                path: "treetable",
+                loadChildren: "app/documentation/demos/treetable/treetable.demo.module#TreetableDemoModule",
+                data: {
+                    browserTitle: "Treetable"
+                }
+            },
+            {
                 path: "progress-spinner",
                 loadChildren: "app/documentation/demos/progress-spinner/progress-spinner.demo.module#ProgressSpinnerDemoModule",
                 data: {
