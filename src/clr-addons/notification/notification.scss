@@ -1,5 +1,16 @@
+@mixin progress-color($alertLevel, $color) {
+  &.#{$alertLevel} {
+    progress {
+      @include clr-progress-color($color);
+    }
+  }
+}
+
 @include exports('notification.clr-addons') {
   $clr-notification-progress-info-bar-color: $clr-progress-defaultBarColor !default;
+  $clr-notification-progress-success-bar-color: $clr-progress-success-color !default;
+  $clr-notification-progress-warning-bar-color: $clr-progress-warning-color !default;
+  $clr-notification-progress-danger-bar-color: $clr-progress-danger-color !default;
 
   .notification {
     &__wrapper {
@@ -18,11 +29,10 @@
       position: absolute;
       z-index: 1;
 
-      &.info {
-        progress {
-          @include clr-progress-color($clr-notification-progress-info-bar-color);
-        }
-      }
+      @include progress-color('info', $clr-notification-progress-info-bar-color);
+      @include progress-color('success', $clr-notification-progress-success-bar-color);
+      @include progress-color('warning', $clr-notification-progress-warning-bar-color);
+      @include progress-color('danger', $clr-notification-progress-danger-bar-color);
     }
     .alert-items {
       padding: 0.333333rem calc(0.75rem - 1px);
