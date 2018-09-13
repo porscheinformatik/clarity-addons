@@ -1,3 +1,17 @@
+@mixin alertIcons($alertLevel, $color) {
+  .alert.alert-#{$alertLevel} {
+    .btn-link.btn-icon,
+    .close {
+      clr-icon {
+        background-color: $clr-white !important;
+        fill: $color !important;
+        border-radius: 50px;
+        padding: 1px;
+      }
+    }
+  }
+}
+
 body {
   color: $clr-app-font-color-primary;
 }
@@ -136,20 +150,22 @@ clr-icon {
 
 $clickable-icon-selector: 'clr-icon:not(.is-green):not(.is-success):not(.is-danger):not(.is-red):not(.is-error):not(.is-warning):not(.is-blue):not(.is-info):not(.is-highlight)';
 
-.btn-link.btn-icon,
-.close {
-  overflow: visible;
+:not(.alert) {
+  > .btn-link.btn-icon,
+  > .close {
+    overflow: visible;
 
-  > #{$clickable-icon-selector} {
-    background-color: $clr-btn-primary-bg-color;
-    fill: $clr-white;
-    border-radius: 50px;
+    > #{$clickable-icon-selector} {
+      background-color: $clr-btn-primary-bg-color;
+      fill: $clr-white;
+      border-radius: 50px;
 
-    &:not(.ves-edit-icon) {
-      padding: 1px;
-    }
-    &.ves-edit-icon {
-      padding: 3px;
+      &:not(.ves-edit-icon) {
+        padding: 1px;
+      }
+      &.ves-edit-icon {
+        padding: 3px;
+      }
     }
   }
 }
@@ -160,6 +176,11 @@ $clickable-icon-selector: 'clr-icon:not(.is-green):not(.is-success):not(.is-dang
     background-color: $clr-btn-primary-hover-bg-color;
   }
 }
+
+@include alertIcons('info', $clr-app-alert-info-bg-color);
+@include alertIcons('success', $clr-app-alert-success-bg-color);
+@include alertIcons('warning', $clr-app-alert-warning-bg-color);
+@include alertIcons('danger', $clr-app-alert-danger-bg-color);
 
 .stack-view .stack-block-expandable > .stack-block-label::before {
   background-image: generateCaretIcon($clr-app-font-color-primary);

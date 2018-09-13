@@ -194,6 +194,12 @@ $clr-link-color: $turquoise;
 $clr-link-hover-color: $turquoise;
 $clr-link-visited-color: $blue-darkest;
 
+// Notifications
+$clr-notification-progress-info-bar-color: darken($clr-app-alert-info-bg-color, 10);
+$clr-notification-progress-success-bar-color: darken($clr-app-alert-success-bg-color, 10);
+$clr-notification-progress-warning-bar-color: darken($clr-app-alert-warning-bg-color, 10);
+$clr-notification-progress-danger-bar-color: darken($clr-app-alert-danger-bg-color, 10);
+
 // Progress bar
 $clr-progress-defaultBarColor: $turquoise;
 
