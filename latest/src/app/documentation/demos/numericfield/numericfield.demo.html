@@ -2,6 +2,14 @@
     <article>
         <h5 class="component-summary">The NumericField component is used to aid the user when entering a numeric value. Invalid characters are ignored during input.</h5>
         
+        <form clrForm clrLayout="horizontal">
+            <clr-numeric clrLabel="Numeric Field" [(clrNumericValue)]="amount"></clr-numeric>
+            <clr-input-container>
+                <label>clrNumericValue</label>
+                <input name="amount" disabled clrInput [ngModel]="amount">
+            </clr-input-container>
+        </form>
+
         <div id="design-guidelines">
             <h2>Angular Component</h2>
             <h3>Summary of Options</h3>
@@ -81,7 +89,6 @@
 
         <div id="examples">
             <clr-numeric clrLabel="Amount" [(clrNumericValue)]="amount"></clr-numeric>
-            clrNumericValue: {{amount}}
             <clr-code-snippet [clrCode]="htmlExample"></clr-code-snippet>
         </div>
     </article>
