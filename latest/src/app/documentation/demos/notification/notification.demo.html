@@ -12,7 +12,7 @@
                     <br />
                     Reserved for errors, malfunctions, as well as critical issues like license expiration.
                     <br />
-                    <button class="btn btn-danger-outline" (click)="openNotify(exampleDanger, { timeout: 3000, notificationType: 'danger', dismissable: false, progressbar: false })">Show Error Notification</button>
+                    <button class="btn btn-danger" (click)="openNotify(exampleDanger, { timeout: 3000, notificationType: 'danger', dismissable: false, progressbar: false })">Show Error Notification</button>
                     <ng-template #exampleDanger>
                         <ng-container clr-notification-message>
                             Danger
@@ -24,7 +24,7 @@
                     <br />
                     Reserved for warnings: a message that needs the user attention and aknowledgment but might not cause errors.
                     <br />
-                    <button class="btn btn-warning-outline" (click)="openNotify(exampleWarning, { timeout: 3000, notificationType: 'warning', dismissable: false, progressbar: false })">Show Warning Notification</button>
+                    <button class="btn btn-warning" (click)="openNotify(exampleWarning, { timeout: 3000, notificationType: 'warning', dismissable: false, progressbar: false })">Show Warning Notification</button>
                     <ng-template #exampleWarning>
                         <ng-container clr-notification-message>
                             Warning
@@ -36,7 +36,7 @@
                     <br />
                     Provides info to users in context. Shouldn’t be overused to replace regular content.
                     <br />
-                    <button class="btn btn-info-outline" (click)="openNotify(exampleInfo, { timeout: 3000, notificationType: 'info', dismissable: false, progressbar: false })">Show Info Notification</button>
+                    <button class="btn btn-info" (click)="openNotify(exampleInfo, { timeout: 3000, notificationType: 'info', dismissable: false, progressbar: false })">Show Info Notification</button>
                     <ng-template #exampleInfo>
                         <ng-container clr-notification-message>
                             Info
@@ -48,7 +48,7 @@
                     <br />
                     Reserved to provide to a static persistent success message.
                     <br />
-                    <button class="btn btn-success-outline" (click)="openNotify(exampleSuccess, { timeout: 3000, notificationType: 'success', dismissable: false, progressbar: false })">Show Success Notification</button>
+                    <button class="btn btn-success" (click)="openNotify(exampleSuccess, { timeout: 3000, notificationType: 'success', dismissable: false, progressbar: false })">Show Success Notification</button>
                     <ng-template #exampleSuccess>
                         <ng-container clr-notification-message>
                             Success
