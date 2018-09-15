@@ -30,6 +30,7 @@ body,
     display: flex;
     flex: 1 0 auto;
     justify-content: flex-end;
+    align-items: start;
 
     .dropdown-menu {
       z-index: map-get($clr-layers, sidepanel) - 2;
