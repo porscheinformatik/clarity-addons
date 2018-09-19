@@ -65,6 +65,11 @@ body,
 
 // Add class card-active and make it not clickable even if clickable class is applied
 .card {
+  .list-group-item.list-group-item-action:hover {
+    background-color: $clr-global-selection-color;
+    cursor: pointer;
+  }
+
   @mixin card-active-after() {
     content: '';
     width: 0.1667rem;
@@ -92,6 +97,7 @@ body,
       cursor: pointer;
       transform: translateY(-2px);
       transition: border 0.2s ease, transform 0.2s ease;
+      z-index: 1;
 
       &.card-active:hover {
         cursor: default;
@@ -123,4 +129,15 @@ body,
 
 .datagrid-no-select-all .datagrid-head .datagrid-select .checkbox {
   display: none;
+}
+
+// Enable highlighting of rows in a table by adding a new class 'highlight'
+.table {
+  tbody {
+    tr {
+      &.highlight {
+        background-color: $clr-global-selection-color;
+      }
+    }
+  }
 }
