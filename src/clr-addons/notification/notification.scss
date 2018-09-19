@@ -62,6 +62,11 @@
         height: 3rem;
         width: 2rem;
 
+        &:focus {
+          box-shadow: none;
+          outline: none;
+        }
+
         clr-icon {
           margin: auto 0;
           height: calc(1.3rem - 1px);
