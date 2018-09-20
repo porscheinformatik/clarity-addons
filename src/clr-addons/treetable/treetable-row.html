@@ -4,16 +4,18 @@
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
 
-<clr-dg-row [ngClass]="{'clr-row-clickable': clrClickable && isExpandable}" class="clr-tt-node-content" (click)="onRowClick()">
+<clr-dg-row [ngClass]="{'clr-row-clickable': clickable && expandable}" class="clr-tt-node-content" (click)="onRowClick()">
   <div class="datagrid-expandable-caret">
-    <button *ngIf="isExpandable" type="button" class="datagrid-expandable-caret-button" (click)="onCaretClick()">
+    <button *ngIf="isExpandable()" type="button" class="datagrid-expandable-caret-button" (click)="onCaretClick()">
       <clr-icon shape="caret"
-                [attr.dir]="clrExpanded ? 'down' : 'right'"
+                [attr.dir]="expanded ? 'down' : 'right'"
                 class="datagrid-expandable-caret-icon"></clr-icon>
     </button>
   </div>
 
   <ng-content select="clr-dg-cell"></ng-content>
 </clr-dg-row>
+<div *ngIf="expanded" [@collapseExpandAnimation]>
+  <ng-content select="clr-tt-row"></ng-content>
+</div>
 
-<ng-content select="clr-tt-row" *ngIf="clrExpanded"></ng-content>

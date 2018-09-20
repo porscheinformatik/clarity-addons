@@ -31,7 +31,7 @@ export class ClrTreetable implements AfterContentInit, OnChanges {
   private initClickableRows(): void {
     if (this.ttRows) {
       this.ttRows.forEach((ttRow, index) => {
-        ttRow.clrClickable = this.clrClickableRows;
+        ttRow.clickable = this.clrClickableRows;
       });
     }
   }

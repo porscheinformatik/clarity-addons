@@ -10,12 +10,13 @@ import { FormsModule } from '@angular/forms';
 import { ClrTreetableModule, ClrTreetableRow } from '@porscheinformatik/clr-addons';
 import { Component, ViewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   template: `
     <clr-treetable>
       <clr-datagrid>
-        <clr-tt-row>
+        <clr-tt-row [clrExpandable]="true">
           <clr-dg-cell></clr-dg-cell>
           
           <clr-tt-row>
@@ -54,7 +55,7 @@ describe('ClrTreetableRow', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [EmptyTestComponent, RowClickableTestComponent],
-      imports: [ClarityModule, FormsModule, ClrTreetableModule],
+      imports: [ClarityModule, FormsModule, ClrTreetableModule, BrowserAnimationsModule],
     }).compileComponents();
 
     rowClickableTestComponentFixture = TestBed.createComponent(RowClickableTestComponent);
@@ -70,20 +71,12 @@ describe('ClrTreetableRow', () => {
     expect(emptyTestComponent).toBeTruthy();
   });
 
-  it("should not be expandable if it doesn't have any child rows", () => {
-    expect(emptyTestComponent.ttRow.isExpandable).toBeFalsy();
-  });
-
-  it('should be expandable if it has any child rows', () => {
-    expect(rowClickableTestComponent.ttRow.isExpandable).toBeTruthy();
-  });
-
   it('should expand if clicked', () => {
-    expect(rowClickableTestComponent.ttRow.clrExpanded).toBeFalsy();
+    expect(rowClickableTestComponent.ttRow.expanded).toBeFalsy();
     rowClickableTestComponentFixture.debugElement
       .query(By.css('clr-dg-row:first-of-type'))
       .triggerEventHandler('click', {});
     rowClickableTestComponentFixture.detectChanges();
-    expect(rowClickableTestComponent.ttRow.clrExpanded).toBeTruthy();
+    expect(rowClickableTestComponent.ttRow.expanded).toBeTruthy();
   });
 });
