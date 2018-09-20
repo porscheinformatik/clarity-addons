@@ -16,7 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   template: `
     <clr-treetable>
       <clr-datagrid>
-        <clr-tt-row>
+        <clr-tt-row [clrExpandable]="true">
           <clr-dg-cell></clr-dg-cell>
           
           <clr-tt-row>
