@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, Optional, SkipSelf } from '@angular/core';
 import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
@@ -28,8 +28,17 @@ export class ClrTreetableRow {
   @Input('clrExpanded') expanded = false;
   @Input('clrClickable') clickable = true;
 
-  @Input('clrExpandable') expandable = false;
+  expandable = false;
 
+  constructor(
+    @SkipSelf()
+    @Optional()
+    private parent: ClrTreetableRow
+  ) {
+    if (this.parent) {
+      this.parent.addChild();
+    }
+  }
   private toggleExpand() {
     if (this.expandable) {
       this.expanded = !this.expanded;
@@ -50,5 +59,9 @@ export class ClrTreetableRow {
 
   isExpandable(): boolean {
     return this.expandable;
+  }
+
+  addChild() {
+    this.expandable = true;
   }
 }
