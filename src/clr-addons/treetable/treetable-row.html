@@ -15,7 +15,7 @@
 
   <ng-content select="clr-dg-cell"></ng-content>
 </clr-dg-row>
-<div *ngIf="expanded" [@collapseExpandAnimation]>
+<div [@collapseExpandAnimation]="expanded">
   <ng-content select="clr-tt-row"></ng-content>
 </div>
 

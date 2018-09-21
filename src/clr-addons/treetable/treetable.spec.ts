@@ -9,6 +9,7 @@ import { ClarityModule } from '@clr/angular';
 import { FormsModule } from '@angular/forms';
 import { ClrTreetable, ClrTreetableModule, ClrTreetableRow } from '@porscheinformatik/clr-addons';
 import { Component, ViewChild, ViewChildren } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   template: `
@@ -56,7 +57,7 @@ describe('ClrTreetable', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [EmptyTestComponent, RowClickableTestComponent],
-      imports: [ClarityModule, FormsModule, ClrTreetableModule],
+      imports: [ClarityModule, FormsModule, ClrTreetableModule, BrowserAnimationsModule],
     }).compileComponents();
 
     rowClickableTestComponentFixture = TestBed.createComponent(RowClickableTestComponent);

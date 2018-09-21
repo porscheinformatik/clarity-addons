@@ -5,7 +5,7 @@
  */
 
 import { Component, Input } from '@angular/core';
-import { animate, style, transition, trigger } from '@angular/animations';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'clr-tt-row',
@@ -13,11 +13,13 @@ import { animate, style, transition, trigger } from '@angular/animations';
   styleUrls: ['./treetable-row.scss'],
   animations: [
     trigger('collapseExpandAnimation', [
-      transition(':enter', [
+      state('false', style({ display: 'none' })),
+      state('true', style({ display: 'block' })),
+      transition('false => true', [
         style({ opacity: 0, height: 0, overflow: 'hidden' }),
         animate('300ms', style({ opacity: 1, height: '*' })),
       ]),
-      transition(':leave', [
+      transition('true => false', [
         style({ opacity: 1, height: '*', overflow: 'hidden' }),
         animate('300ms', style({ opacity: 0, height: 0 })),
       ]),
