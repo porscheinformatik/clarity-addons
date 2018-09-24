@@ -3,12 +3,12 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Directive, ElementRef, Input, OnChanges, OnInit, Renderer2, SimpleChanges } from '@angular/core';
+import { Directive, ElementRef, Input, OnChanges, OnDestroy, OnInit, Renderer2, SimpleChanges } from '@angular/core';
 
 @Directive({
   selector: '[clrProgressSpinner]',
 })
-export class ClrProgressSpinnerDirective implements OnInit, OnChanges {
+export class ClrProgressSpinnerDirective implements OnInit, OnChanges, OnDestroy {
   static readonly MINIMUM_VISIBLE_DURATION = 200;
   @Input('clrProgressSpinner') showSpinner: boolean;
   @Input('clrSize') size: string = 'sm';
@@ -73,5 +73,9 @@ export class ClrProgressSpinnerDirective implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.reloadState();
+  }
+
+  ngOnDestroy(): void {
+    clearTimeout(this.hideTimeout);
   }
 }
