@@ -160,6 +160,13 @@ const documentationRoutes: Routes = [
                 data: {
                     browserTitle: "Datagrid"
                 }
+            },
+            {
+                path: "forms",
+                loadChildren: "app/documentation/demos/forms/forms.demo.module#FormsDemoModule",
+                data: {
+                    browserTitle: "Forms"
+                }
             }
         ]
     }

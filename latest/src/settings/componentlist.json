@@ -91,6 +91,18 @@
             "newLayout": true
         },
         {
+            "url": "forms",
+            "text": "Forms",
+            "type": "component",
+            "ux": -1,
+            "ui": -1,
+            "core": -1,
+            "ng": -1,
+            "dox": 20,
+            "comments": "",
+            "newLayout": true
+        },
+        {
             "url": "full-screen-dialog",
             "text": "Full Screen Dialog",
             "type": "component",
