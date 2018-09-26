@@ -1,4 +1,4 @@
-@clr/icons@0.13.0
+@clr/icons@0.13.2
 MIT
 MIT
 
@@ -157,7 +157,7 @@ If the Work includes a "NOTICE" text file as part of its distribution, then any 
 
 END OF TERMS AND CONDITIONS
 
-@clr/angular@0.13.0
+@clr/angular@0.13.2
 MIT
 MIT
 
@@ -431,7 +431,7 @@ Apache License
 MIT
 MIT
 
-@porscheinformatik/clr-addons@1.5.3
+@porscheinformatik/clr-addons@1.5.9
 MIT
 MIT
 
