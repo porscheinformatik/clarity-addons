@@ -431,7 +431,7 @@ Apache License
 MIT
 MIT
 
-@porscheinformatik/clr-addons@1.5.9
+@porscheinformatik/clr-addons@2.0.0
 MIT
 MIT
 
