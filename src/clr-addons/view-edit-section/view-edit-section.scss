@@ -1,9 +1,17 @@
 @include exports('view-edit-section.clr-addons') {
-  /* change standard input behaviour inside view-edit section to grow to the end of the card */
-  form,
-  .form {
-    .view-edit-section .form-group > input {
-      flex-grow: 1;
+  .view-edit-section {
+    form,
+    .form {
+      padding: 0px;
+
+      input {
+        /* change standard input behaviour inside view-edit section to grow to the end of the card */
+        width: 100%;
+      }
+    }
+
+    .button-bar {
+      margin-top: 1rem;
     }
   }
 }
