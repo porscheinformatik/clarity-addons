@@ -1,18 +1,20 @@
 <div class="card" (keyup.escape)="onCancel()">
     <div class="card-block">
-        <form #form="ngForm" (ngSubmit)="onSubmit()">
-            <div class="card-title">
-                {{_title}}
-                <button type="button" (click)="onEdit()" class="btn btn-icon btn-link float-xs-right ves-edit" *ngIf="!_editMode">
-                    <clr-icon class="ves-edit-icon" [attr.shape]="_editIcon" size="24"></clr-icon>
-                </button>
-            </div>
-            <div class="card-text view-edit-section">
-                <ng-content select="[view-block]" *ngIf="!_editMode"></ng-content>
-                <ng-content select="[edit-block]" *ngIf="_editMode"></ng-content>
-                <button class="btn btn-primary ves-save" type="submit" *ngIf="_editMode">Save</button>
-                <button class="btn ves-cancel" (click)="onCancel()" type="button" *ngIf="_editMode">Cancel</button>
-            </div>
-        </form>
+      <div class="card-title">
+        {{_title}}
+        <button type="button" (click)="onEdit()" class="btn btn-icon btn-link float-xs-right ves-edit" *ngIf="!_editMode">
+          <clr-icon class="ves-edit-icon" [attr.shape]="_editIcon" size="24"></clr-icon>
+        </button>
+      </div>
+      <div class="card-text view-edit-section">
+        <ng-content select="[view-block]" *ngIf="!_editMode"></ng-content>
+        <ng-content select="[edit-block]" *ngIf="_editMode"></ng-content>
+        <ng-container *ngIf="_editMode">
+          <form clrForm (ngSubmit)="onSubmit()" class="button-bar">
+            <button class="btn btn-primary ves-save" type="submit">Save</button>
+            <button class="btn ves-cancel" (click)="onCancel()" type="button">Cancel</button>
+          </form>
+        </ng-container>
+      </div>
     </div>
 </div>

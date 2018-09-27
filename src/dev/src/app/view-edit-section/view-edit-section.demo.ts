@@ -11,11 +11,11 @@ import { Component } from '@angular/core';
   templateUrl: './view-edit-section.demo.html',
 })
 export class ViewEditSectionDemo {
-  birthdate: string = '06/14/2018';
+  birthdate: Date = new Date('06/14/2018');
   gender: string;
   status: string = 'Active';
   terms: boolean;
-  editBirthdate: string = this.birthdate;
+  editBirthdate: Date = this.birthdate;
   editGender: string;
   editStatus: number = 1;
   editTerms: boolean;
