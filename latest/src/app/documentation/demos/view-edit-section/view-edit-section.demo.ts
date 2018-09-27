@@ -10,56 +10,36 @@ const HTML_EXAMPLE_SIDE_BY_SIDE = `
 <div class="col-xs-12 col-lg-6">
     <clr-view-edit-section [clrTitle]="sectionTitle" (clrSectionSubmitted)="sectionSubmitted()" (clrSectionEditCancelled)="sectionCancelled()">
         <div view-block>
-            <div class="form-group row">
-                <div class="col-lg-4">
-                    <label for="first">First name</label>
-                </div>
-                <div class="col-lg-8">
-                    <span class="form-control text-truncate">{{first || "&nbsp;"}}</span>
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-lg-4">
-                    <label for="last">Last name</label>
-                </div>
-                <div class="col-lg-8">
-                    <span class="form-control text-truncate">{{last || "&nbsp;"}}</span>
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-lg-4">
-                    <label for="email">E-mail</label>
-                </div>
-                <div class="col-lg-8">
-                    <span class="form-control text-truncate">{{email || "&nbsp;"}}</span>
-                </div>
-            </div>
+            <form clrForm clrLayout="horizontal">
+              <div class="clr-form-control clr-row">
+                  <label class="clr-col-md-4 clr-control-label">First name</label>
+                  <span class="text-truncate clr-col-md-8">{{first || "&nbsp;"}}</span>
+              </div>
+              <div class="clr-form-control clr-row">
+                  <label class="clr-col-md-4 clr-control-label">Last name</label>
+                  <span class="text-truncate clr-col-md-8">{{last || "&nbsp;"}}</span>
+              </div>
+              <div class="clr-form-control clr-row">
+                  <label class="clr-col-md-4 clr-control-label">E-mail</label>
+                  <span class="text-truncate clr-col-md-8">{{email || "&nbsp;"}}</span>
+              </div>
+            </form>
         </div>
         <div edit-block>
-            <div class="form-group row">
-                <div class="col-lg-4">
-                    <label for="first">First name</label>
-                </div>
-                <div class="col-lg-8">
-                    <input id="first" class="form-control" type="text" [(ngModel)]="editFirst" name="first">
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-lg-4">
-                    <label for="last">Last name</label>
-                </div>
-                <div class="col-lg-8">
-                    <input id="last" class="form-control" type="text" [(ngModel)]="editLast" name="last">
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-lg-4">
-                    <label for="email">E-mail</label>
-                </div>
-                <div class="col-lg-8">
-                    <input id="email" class="form-control" type="text" [(ngModel)]="editEmail" name="email">
-                </div>
-            </div>
+            <form clrForm clrLayout="horizontal">
+              <clr-input-container>
+                  <label class="clr-col-md-4">First name</label>
+                  <input class="clr-col-md-8" clrInput type="text" [(ngModel)]="editFirst" name="first"/>
+              </clr-input-container>
+              <clr-input-container>
+                  <label class="clr-col-md-4">Last name</label>
+                  <input class="clr-col-md-8" clrInput type="text" [(ngModel)]="editLast" name="last"/>
+              </clr-input-container>
+              <clr-input-container>
+                  <label class="clr-col-md-4">E-mail</label>
+                  <input class="clr-col-md-8" clrInput type="text" [(ngModel)]="editEmail" name="email"/>
+              </clr-input-container>
+            </form>
         </div>
     </clr-view-edit-section>
 </div>
@@ -94,11 +74,11 @@ export class ViewEditSectionDemo extends ClarityDocComponent{
     htmlExampleFullIcon = HTML_EXAMPLE_FULL_ICON;
     htmlExampleFullIconAngular = HTML_EXAMPLE_FULL_ICON_ANGULAR;
 
-    birthdate: string = "06/14/2018";
+    birthdate: Date = new Date("06/14/2018");
     gender: string = "male";
     status: string = "Active";
     terms: boolean;
-    editBirthdate: string = this.birthdate;
+    editBirthdate: Date = this.birthdate;
     editGender: string = this.gender;
     editStatus: number = 1;
     editTerms: boolean;
@@ -131,7 +111,7 @@ export class ViewEditSectionDemo extends ClarityDocComponent{
         this.status = this.editStatus === 1 ? "Active" : "Inactive";
         this.terms = this.editTerms;
     }
-    
+
     compSectionCancelled() {
         this.editBirthdate = this.birthdate;
         this.editGender = this.gender;
