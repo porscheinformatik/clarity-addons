@@ -12,6 +12,7 @@
 
         <div id="code-examples">
             <h3 id="examples">Code &amp; Examples</h3>
+            <h4>Standard form</h4>
             <form clrForm clrLayout="horizontal">
                 <clr-input-container>
                     <label class="required">Input label</label>
@@ -72,6 +73,32 @@
                 </div>
             </form>
             <clr-code-snippet [clrCode]="codeExampleFullForm"></clr-code-snippet>
+
+            <h4>Read-only fields (horizontal)</h4>
+            <div class="clr-form-horizontal">
+                <div class="clr-form-control">
+                    <label class="clr-control-label">Firstname</label>
+                    <span>John</span>
+                </div>
+                <div class="clr-form-control">
+                    <label class="clr-control-label">Lastname</label>
+                    <span>Doe</span>
+                </div>
+            </div>
+            <clr-code-snippet [clrCode]="codeExampleROHorizontal"></clr-code-snippet>
+
+            <h4>Read-only fields (vertical)</h4>
+            <div>
+                <div class="clr-form-control">
+                    <label class="clr-control-label">Firstname</label>
+                    <span>John</span>
+                </div>
+                <div class="clr-form-control">
+                    <label class="clr-control-label">Lastname</label>
+                    <span>Doe</span>
+                </div>
+            </div>
+            <clr-code-snippet [clrCode]="codeExampleROVertical"></clr-code-snippet>
         </div>
     </article>
 </clr-doc-wrapper>
