@@ -67,6 +67,32 @@ const CODE_EXAMPLE_FULL_FORM = `
 </form>
 `;
 
+const CODE_EXAMPLE_RO_HORIZONTAL = `
+<div class="clr-form-horizontal">
+    <div class="clr-form-control">
+        <label class="clr-control-label">Firstname</label>
+        <span>John</span>
+    </div>
+    <div class="clr-form-control">
+        <label class="clr-control-label">Lastname</label>
+        <span>Doe</span>
+    </div>
+</div>
+`
+
+const CODE_EXAMPLE_RO_VERTICAL = `
+<div>
+    <div class="clr-form-control">
+        <label class="clr-control-label">Firstname</label>
+        <span>John</span>
+    </div>
+    <div class="clr-form-control">
+        <label class="clr-control-label">Lastname</label>
+        <span>Doe</span>
+    </div>
+</div>
+`
+
 @Component({
     selector: "clr-forms-demo",
     templateUrl: "./forms.demo.html",
@@ -77,6 +103,8 @@ const CODE_EXAMPLE_FULL_FORM = `
 })
 export class FormsDemo extends ClarityDocComponent {
     codeExampleFullForm = CODE_EXAMPLE_FULL_FORM;
+    codeExampleROHorizontal = CODE_EXAMPLE_RO_HORIZONTAL;
+    codeExampleROVertical = CODE_EXAMPLE_RO_VERTICAL;
     inputText: string;
     textareaText: string;
     passwordText: string;
