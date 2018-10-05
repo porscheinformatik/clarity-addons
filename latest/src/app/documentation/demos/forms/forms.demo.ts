@@ -68,30 +68,130 @@ const CODE_EXAMPLE_FULL_FORM = `
 `;
 
 const CODE_EXAMPLE_RO_HORIZONTAL = `
-<div class="clr-form-horizontal">
-    <div class="clr-form-control">
-        <label class="clr-control-label">Firstname</label>
-        <span>John</span>
+<div class="clr-form-compact">
+    <div class="clr-row">
+        <label class="clr-control-label clr-col-md-2">Firstname</label>
+        <span class="clr-col-md-10">John</span>
     </div>
-    <div class="clr-form-control">
-        <label class="clr-control-label">Lastname</label>
-        <span>Doe</span>
+    <div class="clr-row">
+        <label class="clr-control-label clr-col-md-2">Lastname</label>
+        <span class="clr-col-md-10">Doe</span>
     </div>
 </div>
-`
+`;
+
+const CODE_EXAMPLE_RO_HORIZONTAL2 = `
+<div class="clr-form-compact clr-row">
+    <div class="clr-row clr-col-md-6">
+        <label class="clr-control-label clr-col-md-3">Firstname</label>
+        <span class="clr-col-md-9">John</span>
+    </div>
+    <div class="clr-row clr-col-md-6">
+        <label class="clr-control-label clr-col-md-3">Lastname</label>
+        <span class="clr-col-md-9">Doe</span>
+    </div>
+    <div class="clr-row clr-col-md-6">
+        <label class="clr-control-label clr-col-md-3">Email</label>
+        <span class="clr-col-md-9">john.doe@mail.com</span>
+    </div>
+    <div class="clr-row clr-col-md-6">
+        <label class="clr-control-label clr-col-md-3">Phone</label>
+        <span class="clr-col-md-9">1234567890123</span>
+    </div>
+</div>
+`;
+
+const CODE_EXAMPLE_RO_HORIZONTAL3 = `
+<div class="clr-form-compact clr-row">
+    <div class="clr-row clr-col-md-4">
+        <label class="clr-control-label clr-col-md-5">Firstname</label>
+        <span class="clr-col-md-7">John</span>
+    </div>
+    <div class="clr-row clr-col-md-4">
+        <label class="clr-control-label clr-col-md-5">Lastname</label>
+        <span class="clr-col-md-7">Doe</span>
+    </div>
+    <div class="clr-row clr-col-md-4">
+        <label class="clr-control-label clr-col-md-5">Email</label>
+        <span class="clr-col-md-7">john.doe@mail.com</span>
+    </div>
+    <div class="clr-row clr-col-md-4">
+        <label class="clr-control-label clr-col-md-5">Phone</label>
+        <span class="clr-col-md-7">1234567890123</span>
+    </div>
+    <div class="clr-row clr-col-md-4">
+        <label class="clr-control-label clr-col-md-5">Street</label>
+        <span class="clr-col-md-7">Baker Street</span>
+    </div>
+    <div class="clr-row clr-col-md-4">
+        <label class="clr-control-label clr-col-md-5">City</label>
+        <span class="clr-col-md-7">London</span>
+    </div>
+</div>
+`;
 
 const CODE_EXAMPLE_RO_VERTICAL = `
-<div>
-    <div class="clr-form-control">
-        <label class="clr-control-label">Firstname</label>
-        <span>John</span>
+<div class="clr-row clr-form-compact">
+    <div class="clr-form-control clr-row clr-flex-md-column clr-col-md-12">
+        <label class="clr-control-label clr-col-md-12">Firstname</label>
+        <span class="clr-col-md-12">John</span>
     </div>
-    <div class="clr-form-control">
-        <label class="clr-control-label">Lastname</label>
-        <span>Doe</span>
+    <div class="clr-form-control clr-row clr-flex-md-column clr-col-md-12">
+        <label class="clr-control-label clr-col-md-12">Lastname</label>
+        <span class="clr-col-md-12">Doe</span>
     </div>
 </div>
-`
+`;
+
+const CODE_EXAMPLE_RO_VERTICAL2 = `
+<div class="clr-row clr-form-compact">
+    <div class="clr-form-control clr-row clr-flex-md-column clr-col-md-6">
+        <label class="clr-control-label clr-col-md-12">Firstname</label>
+        <span class="clr-col-md-12">John</span>
+    </div>
+    <div class="clr-form-control clr-row clr-flex-md-column clr-col-md-6">
+        <label class="clr-control-label clr-col-md-12">Lastname</label>
+        <span class="clr-col-md-12">Doe</span>
+    </div>
+    <div class="clr-form-control clr-row clr-flex-md-column clr-col-md-6">
+        <label class="clr-control-label clr-col-md-12">Email</label>
+        <span class="clr-col-md-12">john.doe@mail.com</span>
+    </div>
+    <div class="clr-form-control clr-row clr-flex-md-column clr-col-md-6">
+        <label class="clr-control-label clr-col-md-12">Phone</label>
+        <span class="clr-col-md-12">1234567890123</span>
+    </div>
+</div>
+`;
+
+const CODE_EXAMPLE_RO_VERTICAL3 = `
+<div class="clr-row clr-form-compact">
+    <div class="clr-form-control clr-row clr-flex-md-column clr-col-md-4">
+        <label class="clr-control-label clr-col-md-12">Firstname</label>
+        <span class="clr-col-md-12">John</span>
+    </div>
+    <div class="clr-form-control clr-row clr-flex-md-column clr-col-md-4">
+        <label class="clr-control-label clr-col-md-12">Lastname</label>
+        <span class="clr-col-md-12">Doe</span>
+    </div>
+    <div class="clr-form-control clr-row clr-flex-md-column clr-col-md-4">
+        <label class="clr-control-label clr-col-md-12">Email</label>
+        <span class="clr-col-md-12">john.doe@mail.com</span>
+    </div>
+    <div class="clr-form-control clr-row clr-flex-md-column clr-col-md-4">
+        <label class="clr-control-label clr-col-md-12">Phone</label>
+        <span class="clr-col-md-12">1234567890123</span>
+    </div>
+    <div class="clr-form-control clr-row clr-flex-md-column clr-col-md-4">
+        <label class="clr-control-label clr-col-md-12">Street</label>
+        <span class="clr-col-md-12">Baker Street</span>
+    </div>
+    <div class="clr-form-control clr-row clr-flex-md-column clr-col-md-4">
+        <label class="clr-control-label clr-col-md-12">City</label>
+        <span class="clr-col-md-12">London</span>
+    </div>
+</div>
+`;
 
 @Component({
     selector: "clr-forms-demo",
@@ -104,7 +204,11 @@ const CODE_EXAMPLE_RO_VERTICAL = `
 export class FormsDemo extends ClarityDocComponent {
     codeExampleFullForm = CODE_EXAMPLE_FULL_FORM;
     codeExampleROHorizontal = CODE_EXAMPLE_RO_HORIZONTAL;
+    codeExampleROHorizontal2 = CODE_EXAMPLE_RO_HORIZONTAL2;
+    codeExampleROHorizontal3 = CODE_EXAMPLE_RO_HORIZONTAL3;
     codeExampleROVertical = CODE_EXAMPLE_RO_VERTICAL;
+    codeExampleROVertical2 = CODE_EXAMPLE_RO_VERTICAL2;
+    codeExampleROVertical3 = CODE_EXAMPLE_RO_VERTICAL3;
     inputText: string;
     textareaText: string;
     passwordText: string;
