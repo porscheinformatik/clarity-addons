@@ -3,34 +3,33 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
-import {ClarityModule, ClrFormsNextModule} from "@clr/angular";
-import {ClrAddonsModule} from "@porscheinformatik/clr-addons";
-
-import {ViewEditSectionDemo} from "./view-edit-section.demo"
-import {DocWrapperModule} from "../_doc-wrapper/doc-wrapper.module";
 import {RouterModule} from "@angular/router";
+import {ClrAddonsModule} from "@porscheinformatik/clr-addons";
+import {ViewEditSectionDemo} from "../view-edit-section/view-edit-section.demo";
+import {ClarityModule} from "@clr/angular";
+import {NgModule} from "@angular/core";
 import {UtilsModule} from "../../../utils/utils.module";
-import {FormsModule} from '@angular/forms';
+import {FormsModule} from "@angular/forms";
+import {DocWrapperModule} from "../_doc-wrapper/doc-wrapper.module";
+import {TreetableDemo} from "./treetable.demo";
 
 @NgModule({
     imports: [
         CommonModule,
         UtilsModule,
         DocWrapperModule,
-        RouterModule.forChild([{path: "", component: ViewEditSectionDemo}]),
+        RouterModule.forChild([{path: "", component: TreetableDemo}]),
         FormsModule,
-        ClrFormsNextModule,
         ClarityModule,
         ClrAddonsModule
     ],
     declarations: [
-        ViewEditSectionDemo
+        TreetableDemo
     ],
     exports: [
-        ViewEditSectionDemo
+        TreetableDemo
     ]
 })
-export class ViewEditSectionDemoModule {
+export class TreetableDemoModule {
 }

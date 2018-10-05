@@ -132,6 +132,41 @@ const documentationRoutes: Routes = [
                 data: {
                     browserTitle: "Full Screen Dialog"
                 }
+            },
+            {
+                path: "numericfield",
+                loadChildren: "app/documentation/demos/numericfield/numericfield.demo.module#NumericFieldDemoModule",
+                data: {
+                    browserTitle: "Numeric Field"
+                }
+            },
+            {
+                path: "treetable",
+                loadChildren: "app/documentation/demos/treetable/treetable.demo.module#TreetableDemoModule",
+                data: {
+                    browserTitle: "Treetable"
+                }
+            },
+            {
+                path: "progress-spinner",
+                loadChildren: "app/documentation/demos/progress-spinner/progress-spinner.demo.module#ProgressSpinnerDemoModule",
+                data: {
+                    browserTitle: "Progress Spinner"
+                }
+            },
+            {
+                path: "datagrid",
+                loadChildren: "app/documentation/demos/datagrid/datagrid.demo.module#DatagridDemoModule",
+                data: {
+                    browserTitle: "Datagrid"
+                }
+            },
+            {
+                path: "forms",
+                loadChildren: "app/documentation/demos/forms/forms.demo.module#FormsDemoModule",
+                data: {
+                    browserTitle: "Forms"
+                }
             }
         ]
     }

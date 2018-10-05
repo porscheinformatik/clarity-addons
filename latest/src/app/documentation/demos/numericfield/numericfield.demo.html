@@ -1,0 +1,95 @@
+<clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
+    <article>
+        <h5 class="component-summary">The NumericField component is used to aid the user when entering a numeric value. Invalid characters are ignored during input.</h5>
+        
+        <form clrForm clrLayout="horizontal">
+            <clr-numeric clrLabel="Numeric Field" [(clrNumericValue)]="amount"></clr-numeric>
+            <clr-input-container>
+                <label>clrNumericValue</label>
+                <input name="amount" disabled clrInput [ngModel]="amount">
+            </clr-input-container>
+        </form>
+
+        <div id="design-guidelines">
+            <h2>Angular Component</h2>
+            <h3>Summary of Options</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="left">Input</th>
+                        <th class="left hidden-xs-down">Values</th>
+                        <th class="hidden-xs-down">Default</th>
+                        <th class="left">Effect</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="left">
+                            <b>clrTextAlign</b>
+                            <div class="hidden-sm-up">Type: String</div>
+                            <div class="hidden-sm-up">Default: "left"</div>
+                        </td>
+                        <td class="left hidden-xs-down">left, right</td>
+                        <td class="hidden-xs-down">"left"</td>
+                        <td class="left">Defines the alignment of the text inside input field.</td>
+                    </tr>
+                    <tr>
+                        <td class="left">
+                            <b>clrLabel</b>
+                            <div class="hidden-sm-up">Type: String</div>
+                            <div class="hidden-sm-up">Default: ""</div>
+                        </td>
+                        <td class="left hidden-xs-down">Javascript String</td>
+                        <td class="hidden-xs-down">""</td>
+                        <td class="left">Label to be shown for input field.</td>
+                    </tr>
+                    <tr>
+                        <td class="left">
+                            <b>clrDecimalSep</b>
+                            <div class="hidden-sm-up">Type: String</div>
+                            <div class="hidden-sm-up">Default: ","</div>
+                        </td>
+                        <td class="left hidden-xs-down">Javascript String</td>
+                        <td class="hidden-xs-down">","</td>
+                        <td class="left">Defines the decimal separator.</td>
+                    </tr>
+                    <tr>
+                        <td class="left">
+                            <b>clrGroupingSep</b>
+                            <div class="hidden-sm-up">Type: String</div>
+                            <div class="hidden-sm-up">Default: "."</div>
+                        </td>
+                        <td class="left hidden-xs-down">Javascript String</td>
+                        <td class="hidden-xs-down">"."</td>
+                        <td class="left">Defines the grouping separator.</td>
+                    </tr>
+                    <tr>
+                        <td class="left">
+                            <b>clrDecimalPlaces</b>
+                            <div class="hidden-sm-up">Type: Number</div>
+                            <div class="hidden-sm-up">Default: 2</div>
+                        </td>
+                        <td class="left hidden-xs-down">Javascript Number</td>
+                        <td class="hidden-xs-down">2</td>
+                        <td class="left">Defines the number of allowed decimal places.</td>
+                    </tr>
+                    <tr>
+                        <td class="left">
+                            <b>clrNumericValue</b>
+                            <div class="hidden-sm-up">Type: Number</div>
+                            <div class="hidden-sm-up">Default: ""</div>
+                        </td>
+                        <td class="left hidden-xs-down">Javascript Number</td>
+                        <td class="hidden-xs-down">""</td>
+                        <td class="left">Two-way bound parameter for the value of the input component.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="examples">
+            <clr-numeric clrLabel="Amount" [(clrNumericValue)]="amount"></clr-numeric>
+            <clr-code-snippet [clrCode]="htmlExample"></clr-code-snippet>
+        </div>
+    </article>
+</clr-doc-wrapper>
