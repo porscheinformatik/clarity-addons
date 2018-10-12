@@ -1,31 +1,55 @@
 <clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
     <article>
         <h5 class="component-summary">
-            The Treetable component is a wrapper around a datagrid which allows for nestable rows (styling is done for
-            up to 6 levels of nesting).
-            It is used to represent a graph structure of data in a table fashion.
+            Treetables are for organizing hierarchical data with multiple columns in a datagrid.
         </h5>
 
         <div id="design-guidelines">
-            <h3>Functionality</h3>
+            <h3>Use When</h3>
 
-            <p>
-                The Treetable retains similar functionality to the datagrid style-wise, but omits features like
-                lazy-loading, sorting, filtering, and so on.
+            <p>Use this component when you need to display a hierarchichal data structure with multiple columns per entry. Make sure all entries use the same columns.
+              E.g. the parent has a name and a description column, the child cannot have a name and a date column.
             </p>
 
-            <p>
-                Momentarily, the limit for nesting is 6 due to styling constraints.
+            <h3>Do not use</h3>
+            <p>Avoid using this component in any of the following cases:</p>
+            <ul class="list">
+              <li>You require using a pagination. The treetable does not support paging.</li>
+              <li>The entries in your datastructure do not have multiple values (columns). Consider using a <a href="https://vmware.github.io/clarity/documentation/tree-view">TreeView</a>.</li>
+              <li>Your elements need to be sorted. Since the data-rows are indented, a change of the order would cause confusion.</li>
+            </ul>
+
+            <h3>Behavior</h3>
+            <p>Each entry can have none, one or multiple descendants.
+              The first column of a descendant-row is indentend to visualize the hierarchy.
+              Parent rows are collapsed, i.e. all children rows are hidden initially.
+              To display the children the user can either click on the leading caret-icon or the whole parent row,
+              depending on the row-selection mode. See the official clarity documentation of the datagrid for details of the selection mode.
+              Avoid the rowselection-mode when the row contains individually clickable items.
             </p>
+
+            <h4>Sorting</h4>
+            The treetable cannot be sorted by the user. Display the entries in alphabetical order.
+            Consider collapsing either all or none of the parent nodes.
+
+            <h4>Optional: column headers</h4>
+            <p>A treetable can display column headers, but does not require them. </p>
+
+            <h3>Technical limitations</h3>
+
+            <p>The Treetable is technically related to the datagrid, but omits lazy-loading, sorting and filtering.
+              Note that up to 6 levels of nesting are supported.
+            </p>
+
         </div>
 
         <div id="examples">
             <h3>Code &amp; Examples</h3>
 
-            <h4>Treetable with whole clickable rows</h4>
+            <h4>Treetable with clickable rows</h4>
 
             <p>
-                This example contains rows which are clickable to expand.
+                Click on a row to display its children.
             </p>
 
             <clr-treetable>
@@ -304,12 +328,14 @@
             <clr-code-snippet [clrCode]="htmlExampleClickableCaret"></clr-code-snippet>
 
 
-            <h4>No horizontal scrolling</h4>
+            <h4>Optional: disable horizontal scrolling</h4>
 
             <p>
-                For examples with a small number of columns but with a lot of text in each column, you might want to
-                enable collapsing the content of the columns even further and prevent the horizontal scrollbar
-                from appearing. Beware that enabling this option might lead to styling issues on tables with a large
+                For tables with a small number of columns but with a lot of text, you might want to
+                prevent horizontal scrolling at all. Tables usually scroll horizontally on small screens.
+                Use the <strong>clr-treetable-noscroll</strong> class to deactivate this behavior.
+                A table with this class always displays all columns and cuts off overflowing text with (...) aka. ellipsis.
+                Beware that enabling this option might lead to styling issues on tables with a large
                 number of columns and/or deeper nesting.
             </p>
 
@@ -317,11 +343,6 @@
                 <clr-datagrid>
                     <clr-dg-column class="col-xs-9">Some column</clr-dg-column>
                     <clr-dg-column class="col-xs-3">Some other column</clr-dg-column>
-
-                    <clr-tt-row>
-                        <clr-dg-cell class="col-xs-9">Lorem ipsum dolor sit amet, consectetur adipisicing elit. At aut cumque ex libero, minus ...</clr-dg-cell>
-                        <clr-dg-cell class="col-xs-3">1</clr-dg-cell>
-                    </clr-tt-row>
 
                     <clr-tt-row clrExpandable="true">
                         <clr-dg-cell class="col-xs-9">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi delectus dignissimos, ducimus...</clr-dg-cell>
@@ -332,6 +353,12 @@
                             <clr-dg-cell class="col-xs-3">3</clr-dg-cell>
                         </clr-tt-row>
                     </clr-tt-row>
+
+                    <clr-tt-row>
+                        <clr-dg-cell class="col-xs-9">Lorem ipsum dolor sit amet, consectetur adipisicing elit. At aut cumque ex libero, minus ...</clr-dg-cell>
+                        <clr-dg-cell class="col-xs-3">1</clr-dg-cell>
+                    </clr-tt-row>
+
                 </clr-datagrid>
             </clr-treetable>
 
