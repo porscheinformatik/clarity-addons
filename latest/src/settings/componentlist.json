@@ -175,6 +175,18 @@
             "newLayout": true
         },
         {
+            "url": "progress-spinner",
+            "text": "Progress Spinner",
+            "type": "component",
+            "ux": 20,
+            "ui": 20,
+            "core": 20,
+            "ng": 20,
+            "dox": 20,
+            "comments": "",
+            "newLayout": true
+        },
+        {
             "url": "sidebarpage-layout",
             "text": "Sidebar Pagelayout",
             "type": "pagelayouts",
@@ -199,18 +211,6 @@
             "newLayout": true
         },
         {
-            "url": "view-edit-section",
-            "text": "View/Edit Section",
-            "type": "component",
-            "ux": 20,
-            "ui": 20,
-            "core": 20,
-            "ng": 20,
-            "dox": 20,
-            "comments": "",
-            "newLayout": true
-        },
-        {
             "url": "treetable",
             "text": "Treetable",
             "type": "component",
@@ -223,8 +223,8 @@
             "newLayout": true
         },
         {
-            "url": "progress-spinner",
-            "text": "Progress Spinner",
+            "url": "view-edit-section",
+            "text": "View/Edit Section",
             "type": "component",
             "ux": 20,
             "ui": 20,

@@ -86,7 +86,7 @@ export class AppComponent implements OnInit {
         this.setTitle(filteredTitles.join(this.browserTitleSeparator));
     }
 
-    private defaultBrowserTitle = "Clarity Design System";
+    private defaultBrowserTitle = "Clarity Addons";
     private browserTitleSeparator = " - ";
 
     private collectRouteData(key: string) {
