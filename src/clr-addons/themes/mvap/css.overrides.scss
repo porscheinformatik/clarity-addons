@@ -267,3 +267,46 @@ button:focus,
 .tooltip > :first-child:focus {
   outline: none;
 }
+
+// Webcalc color overrides
+button.fsag-button--primary {
+  background: $turquoise;
+  border-color: $turquoise;
+  text-transform: uppercase;
+  font-family: $clr-font;
+}
+
+div.fs--select-container-icon-arrow-0 {
+  color: $turquoise;
+}
+
+div.fs--radio :checked {
+  + .fs--radio-icon::before {
+    background: $turquoise;
+  }
+  + .fs--radio-icon + .fs--label-radio {
+    color: $turquoise;
+  }
+}
+
+p.fs--p {
+  color: $turquoise-lightest;
+}
+
+a.fs--icon--background-blue {
+  border-color: $turquoise;
+}
+
+svg.fs--icon-document {
+  color: $turquoise;
+}
+
+.fs--label,
+.fs--label-radio,
+.fsag-copy {
+  font-family: $clr-font !important;
+}
+
+h5.fsag-headline {
+  font-family: 'VW Head';
+}
