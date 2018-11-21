@@ -10,7 +10,6 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 @Component({
   selector: 'clr-tt-row',
   templateUrl: './treetable-row.html',
-  styleUrls: ['./treetable-row.scss'],
   animations: [
     trigger('collapseExpandAnimation', [
       state('false', style({ display: 'none' })),

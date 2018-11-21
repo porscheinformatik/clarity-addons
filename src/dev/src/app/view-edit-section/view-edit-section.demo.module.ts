@@ -8,7 +8,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { ClarityModule, ClrFormsNextModule } from '@clr/angular';
+import { ClarityModule, ClrFormsModule } from '@clr/angular';
 import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
 
 import { ViewEditSectionDemo } from './view-edit-section.demo';
@@ -19,7 +19,7 @@ import { ViewEditSectionDemo } from './view-edit-section.demo';
     ClarityModule,
     ClrAddonsModule,
     FormsModule,
-    ClrFormsNextModule,
+    ClrFormsModule,
     RouterModule.forChild([{ path: '', component: ViewEditSectionDemo }]),
   ],
   declarations: [ViewEditSectionDemo],

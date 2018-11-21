@@ -4,9 +4,9 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-export * from './treetable';
-export * from './treetable-row';
-export * from './treetable-column';
-export * from './treetable-cell';
-export * from './treetable-placeholder';
-export * from './treetable.module';
+export enum TreetableRenderStep {
+  ALIGN_COLUMNS,
+  CLEAR_WIDTHS, // Note this is listened to by both cells and columns
+  COMPUTE_COLUMN_WIDTHS,
+  UPDATE_ROW_WIDTH,
+}

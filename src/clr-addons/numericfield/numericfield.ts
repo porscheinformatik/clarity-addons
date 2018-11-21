@@ -39,7 +39,7 @@ export class ClrNumericField implements OnInit {
     this.inputEl.nativeElement.value = this.displayValue;
 
     /* needs to be parsed as number explicitly as it comes as string from user input */
-    this.decimalPlaces = Number.parseInt(this.decimalPlaces.toString());
+    this.decimalPlaces = Number.parseInt(this.decimalPlaces.toString(), 10);
     this.allowedKeys.add(NEGATIVE);
     this.allowedKeys.add(this.decimalSeparator);
 

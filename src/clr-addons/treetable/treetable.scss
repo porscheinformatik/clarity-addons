@@ -1,21 +1,235 @@
-clr-treetable:not(.empty) clr-datagrid clr-dg-placeholder.datagrid-placeholder-container,
-clr-treetable clr-datagrid .datagrid-column-separator {
-  display: none;
-}
+@include exports('treetable.clr-addons') {
+  @include basic-table(
+    '.treetable',
+    '.treetable-header',
+    '.treetable-body',
+    '.treetable-row',
+    '.treetable-column',
+    '.treetable-cell'
+  );
 
-clr-treetable clr-datagrid clr-dg-column.datagrid-column {
-  flex-basis: 0;
-}
+  $base-cell-indentation: 0.3rem;
+  $base-caret-indentation: 0.1rem;
+  $indentation-increment: 1rem;
 
-clr-treetable clr-datagrid clr-dg-column:first-of-type {
-  margin-left: 1.1rem;
-}
+  .treetable-host {
+    display: flex;
+    flex-flow: column nowrap;
+    position: relative;
 
-clr-treetable clr-datagrid clr-dg-column.datagrid-column.text-right .datagrid-column-title {
-  text-align: right;
-}
+    &.clr-treetable-noscroll .treetable {
+      max-width: initial;
+      width: 100%;
+    }
 
-clr-treetable.clr-treetable-noscroll .datagrid {
-  max-width: initial;
-  width: 100%;
+    .treetable-header,
+    .treetable-body,
+    .treetable-row,
+    .treetable-column,
+    .treetable-cell {
+      display: block;
+    }
+
+    .clr-row-clickable {
+      cursor: pointer;
+    }
+
+    .treetable {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      -ms-overflow-style: -ms-autohiding-scrollbar;
+      overflow: auto;
+      height: 100%;
+      margin-top: 0.5rem;
+
+      .treetable-grid {
+        display: flex;
+        flex-direction: column;
+        align-content: flex-start;
+        width: auto;
+        min-height: 3rem; // Includes header and space for a single (non existing) row
+        position: relative;
+
+        .treetable-column {
+          background-color: $clr-thead-bgcolor;
+          text-align: left;
+          min-width: 4rem;
+          flex: 1 1 0;
+          vertical-align: top;
+        }
+
+        .treetable-cell {
+          flex: 1 1 auto;
+          text-align: left;
+          min-width: 4rem;
+          border-color: $clr-table-border-color;
+        }
+      }
+
+      .treetable-expandable-caret {
+        padding: calc(0.125rem - #{$clr-default-borderwidth}) $horizontalPadding 0.125rem;
+        text-align: center;
+        position: relative;
+        z-index: 999;
+        width: 25px;
+
+        .treetable-expandable-caret-button {
+          @include clr-no-styles-button();
+          cursor: pointer;
+          height: 1.25rem;
+          width: 1.25rem;
+        }
+
+        .treetable-expandable-caret-icon {
+          color: $gray-dark;
+          svg {
+            transition: transform 0.2s ease-in-out;
+          }
+        }
+      }
+
+      .treetable-row-scrollable {
+        display: flex;
+        flex-flow: row nowrap;
+      }
+
+      .treetable-header {
+        position: sticky;
+        top: 0;
+        // bug(popover): prevents action-overflow from being on top (first row).
+        // Needed to keep select/radio and expand svgs underneath header on scrolling
+        z-index: map-get($clr-layers, datagrid-header);
+        min-height: 1.5rem;
+        width: auto;
+
+        .treetable-expandable-caret {
+          background-color: $clr-thead-bgcolor;
+          border-bottom: $clr-table-borderstyle;
+        }
+      }
+
+      .treetable-body {
+        width: auto;
+
+        .treetable-row:hover {
+          background-color: $clr-datagrid-row-hover;
+        }
+
+        .treetable-scrolling-cells {
+          display: flex;
+          flex: 1 1 auto;
+          flex-flow: row nowrap;
+
+          .treetable-cell {
+            flex-basis: 10%;
+          }
+        }
+
+        clr-tt-row {
+          .clr-tt-node-content.treetable-row {
+            border-top: $clr-table-borderstyle;
+          }
+
+          .treetable-cell:first-of-type {
+            padding-left: $base-cell-indentation;
+          }
+          .treetable-expandable-caret {
+            left: $base-caret-indentation;
+          }
+
+          clr-tt-row {
+            .treetable-cell:first-of-type {
+              padding-left: $base-cell-indentation + $indentation-increment;
+            }
+            .treetable-expandable-caret {
+              left: $indentation-increment;
+            }
+
+            clr-tt-row {
+              .treetable-cell:first-of-type {
+                padding-left: $base-cell-indentation + 2 * $indentation-increment;
+              }
+              .treetable-expandable-caret {
+                left: 2 * $indentation-increment;
+              }
+
+              clr-tt-row {
+                .treetable-cell:first-of-type {
+                  padding-left: $base-cell-indentation + 3 * $indentation-increment;
+                }
+                .treetable-expandable-caret {
+                  left: 3 * $indentation-increment;
+                }
+
+                clr-tt-row {
+                  .treetable-cell:first-of-type {
+                    padding-left: $base-cell-indentation + 4 * $indentation-increment;
+                  }
+                  .treetable-expandable-caret {
+                    left: 4 * $indentation-increment;
+                  }
+
+                  clr-tt-row {
+                    .treetable-cell:first-of-type {
+                      padding-left: $base-cell-indentation + 5 * $indentation-increment;
+                    }
+                    .treetable-expandable-caret {
+                      left: 5 * $indentation-increment;
+                    }
+
+                    clr-tt-row {
+                      .treetable-cell:first-of-type {
+                        padding-left: $base-cell-indentation + 6 * $indentation-increment;
+                      }
+                      .treetable-expandable-caret {
+                        left: 6 * $indentation-increment;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &:not(.empty) .treetable-placeholder-container {
+      display: none;
+    }
+
+    .treetable-placeholder-container {
+      flex: 1 1 auto;
+      display: flex;
+      justify-content: center;
+      border-top: $clr-default-borderwidth solid $clr-table-border-color;
+    }
+
+    .treetable-placeholder {
+      background: $clr-table-bgcolor;
+      width: 100%;
+
+      &.treetable-empty {
+        border-top: 0;
+        padding: 0.5rem;
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        justify-content: center;
+        justify-content: center;
+        font-size: clr-getTypePropertyValueForDomElement(datagrid_placeholder, font-size);
+        color: $clr-dark-midtone-gray;
+      }
+
+      .treetable-placeholder-image {
+        width: 2.5rem;
+        height: 2.5rem;
+        margin-bottom: 0.5rem;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        background-image: generateEmptyDatagridPlaceholder();
+      }
+    }
+  }
 }
