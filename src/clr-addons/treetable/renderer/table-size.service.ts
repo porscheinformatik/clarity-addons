@@ -46,14 +46,6 @@ export class TableSizeService implements OnDestroy {
     }
   }
 
-  // Used when resizing columns to show the column border being dragged.
-  getColumnDragHeight(): string {
-    if (!this.tableRef) {
-      return;
-    }
-    return `${this.tableRef.clientHeight}px`;
-  }
-
   private subscriptions: Subscription[] = [];
 
   ngOnDestroy() {
