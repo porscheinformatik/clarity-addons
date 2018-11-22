@@ -6,7 +6,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
-import { ClarityModule, ClrFormsNextModule } from "@clr/angular";
+import { ClarityModule, ClrFormsModule } from "@clr/angular";
 
 import { FormsDemo } from "./forms.demo";
 import { DocWrapperModule } from "../_doc-wrapper/doc-wrapper.module";
@@ -18,7 +18,7 @@ import { UtilsModule } from "../../../utils/utils.module";
         CommonModule,
         FormsModule,
         ClarityModule,
-        ClrFormsNextModule,
+        ClrFormsModule,
         UtilsModule,
         DocWrapperModule,
         RouterModule.forChild([{ path: "", component: FormsDemo }])

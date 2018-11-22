@@ -18,6 +18,7 @@ const CODE_EXAMPLE_FULL_FORM = `
     <clr-textarea-container>
         <label class="required">Textarea label</label>
         <textarea clrTextarea [(ngModel)]="textareaText" name="description" required></textarea>
+        <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
     </clr-textarea-container>
     <clr-password-container>
         <label>Password label</label>
@@ -28,7 +29,7 @@ const CODE_EXAMPLE_FULL_FORM = `
         <select clrSelect name="options" [(ngModel)]="selectOption">
             <option value="one">One</option>
             <option value="two">Two</option>
-            <option value="three">Three</option>
+            <option value="three">Threeasdfa sdasd fasdfasdasdf</option>
         </select>
     </clr-select-container>
     <clr-radio-container>
@@ -43,18 +44,18 @@ const CODE_EXAMPLE_FULL_FORM = `
         </clr-radio-wrapper>
         <clr-control-helper>Helper text</clr-control-helper>
         <clr-control-error>This field is required!</clr-control-error>
-    </clr-radio-container> 
-    <clr-date-container>
-        <label>Date2 label</label>
-        <input type="date" [clrDate]="date">
+    </clr-radio-container>
+    <clr-date-container class="clr-row">
+        <label>Date label</label>
+        <input type="text" [(ngModel)]="date" name="date" clrDate>
     </clr-date-container>
-    <div class="clr-form-control clr-row">
-        <label class="clr-control-label">Checkbox label</label>
-        <clr-checkbox-container class="clr-control-container clr-col-md-10">
-            <label>Option</label>
+    <clr-checkbox-container>
+        <label>Checkbox label</label>
+        <clr-checkbox-wrapper>
+            <label class="clr-col-12">Option</label>
             <input clrCheckbox type="checkbox" [(ngModel)]="checkboxValue" name="checkboxName" />
-        </clr-checkbox-container>
-    </div>
+        </clr-checkbox-wrapper>
+    </clr-checkbox-container>
     <div class="clr-form-control clr-row">
         <label class="clr-control-label">Toggle label</label>
         <div class="clr-control-container clr-col-md-10">
@@ -70,125 +71,125 @@ const CODE_EXAMPLE_FULL_FORM = `
 const CODE_EXAMPLE_RO_HORIZONTAL = `
 <div class="clr-form-compact">
     <div class="clr-row">
-        <label class="clr-control-label clr-col-md-2">Firstname</label>
-        <span class="clr-col-md-10">John</span>
+        <label class="clr-control-label clr-col-2">Firstname</label>
+        <span class="clr-col-10">John</span>
     </div>
     <div class="clr-row">
-        <label class="clr-control-label clr-col-md-2">Lastname</label>
-        <span class="clr-col-md-10">Doe</span>
+        <label class="clr-control-label clr-col-2">Lastname</label>
+        <span class="clr-col-10">Doe</span>
     </div>
 </div>
 `;
 
 const CODE_EXAMPLE_RO_HORIZONTAL2 = `
 <div class="clr-form-compact clr-row">
-    <div class="clr-row clr-col-md-6">
-        <label class="clr-control-label clr-col-md-3">Firstname</label>
-        <span class="clr-col-md-9">John</span>
+    <div class="clr-row clr-col-6">
+        <label class="clr-control-label clr-col-3">Firstname</label>
+        <span class="clr-col-9">John</span>
     </div>
-    <div class="clr-row clr-col-md-6">
-        <label class="clr-control-label clr-col-md-3">Lastname</label>
-        <span class="clr-col-md-9">Doe</span>
+    <div class="clr-row clr-col-6">
+        <label class="clr-control-label clr-col-3">Lastname</label>
+        <span class="clr-col-9">Doe</span>
     </div>
-    <div class="clr-row clr-col-md-6">
-        <label class="clr-control-label clr-col-md-3">Email</label>
-        <span class="clr-col-md-9">john.doe@mail.com</span>
+    <div class="clr-row clr-col-6">
+        <label class="clr-control-label clr-col-3">Email</label>
+        <span class="clr-col-9">john.doe@mail.com</span>
     </div>
-    <div class="clr-row clr-col-md-6">
-        <label class="clr-control-label clr-col-md-3">Phone</label>
-        <span class="clr-col-md-9">1234567890123</span>
+    <div class="clr-row clr-col-6">
+        <label class="clr-control-label clr-col-3">Phone</label>
+        <span class="clr-col-9">1234567890123</span>
     </div>
 </div>
 `;
 
 const CODE_EXAMPLE_RO_HORIZONTAL3 = `
 <div class="clr-form-compact clr-row">
-    <div class="clr-row clr-col-md-4">
-        <label class="clr-control-label clr-col-md-5">Firstname</label>
-        <span class="clr-col-md-7">John</span>
+    <div class="clr-row clr-col-4">
+        <label class="clr-control-label clr-col-5">Firstname</label>
+        <span class="clr-col-7">John</span>
     </div>
-    <div class="clr-row clr-col-md-4">
-        <label class="clr-control-label clr-col-md-5">Lastname</label>
-        <span class="clr-col-md-7">Doe</span>
+    <div class="clr-row clr-col-4">
+        <label class="clr-control-label clr-col-5">Lastname</label>
+        <span class="clr-col-7">Doe</span>
     </div>
-    <div class="clr-row clr-col-md-4">
-        <label class="clr-control-label clr-col-md-5">Email</label>
-        <span class="clr-col-md-7">john.doe@mail.com</span>
+    <div class="clr-row clr-col-4">
+        <label class="clr-control-label clr-col-5">Email</label>
+        <span class="clr-col-7">john.doe@mail.com</span>
     </div>
-    <div class="clr-row clr-col-md-4">
-        <label class="clr-control-label clr-col-md-5">Phone</label>
-        <span class="clr-col-md-7">1234567890123</span>
+    <div class="clr-row clr-col-4">
+        <label class="clr-control-label clr-col-5">Phone</label>
+        <span class="clr-col-7">1234567890123</span>
     </div>
-    <div class="clr-row clr-col-md-4">
-        <label class="clr-control-label clr-col-md-5">Street</label>
-        <span class="clr-col-md-7">Baker Street</span>
+    <div class="clr-row clr-col-4">
+        <label class="clr-control-label clr-col-5">Street</label>
+        <span class="clr-col-7">Baker Street</span>
     </div>
-    <div class="clr-row clr-col-md-4">
-        <label class="clr-control-label clr-col-md-5">City</label>
-        <span class="clr-col-md-7">London</span>
+    <div class="clr-row clr-col-4">
+        <label class="clr-control-label clr-col-5">City</label>
+        <span class="clr-col-7">London</span>
     </div>
 </div>
 `;
 
 const CODE_EXAMPLE_RO_VERTICAL = `
-<div class="clr-row clr-form-compact">
-    <div class="clr-form-control clr-row clr-flex-md-column clr-col-md-12">
-        <label class="clr-control-label clr-col-md-12">Firstname</label>
-        <span class="clr-col-md-12">John</span>
+<div class="clr-form-compact">
+    <div class="clr-form-control clr-flex-column">
+        <label class="clr-control-label">Firstname</label>
+        <span>John</span>
     </div>
-    <div class="clr-form-control clr-row clr-flex-md-column clr-col-md-12">
-        <label class="clr-control-label clr-col-md-12">Lastname</label>
-        <span class="clr-col-md-12">Doe</span>
+    <div class="clr-form-control clr-flex-column">
+        <label class="clr-control-label">Lastname</label>
+        <span>Doe</span>
     </div>
 </div>
 `;
 
 const CODE_EXAMPLE_RO_VERTICAL2 = `
-<div class="clr-row clr-form-compact">
-    <div class="clr-form-control clr-row clr-flex-md-column clr-col-md-6">
-        <label class="clr-control-label clr-col-md-12">Firstname</label>
-        <span class="clr-col-md-12">John</span>
+<div class="clr-form-compact clr-row">
+    <div class="clr-form-control clr-flex-column clr-col-6">
+        <label class="clr-control-label">Firstname</label>
+        <span>John</span>
     </div>
-    <div class="clr-form-control clr-row clr-flex-md-column clr-col-md-6">
-        <label class="clr-control-label clr-col-md-12">Lastname</label>
-        <span class="clr-col-md-12">Doe</span>
+    <div class="clr-form-control clr-flex-column clr-col-6">
+        <label class="clr-control-label">Lastname</label>
+        <span>Doe</span>
     </div>
-    <div class="clr-form-control clr-row clr-flex-md-column clr-col-md-6">
-        <label class="clr-control-label clr-col-md-12">Email</label>
-        <span class="clr-col-md-12">john.doe@mail.com</span>
+    <div class="clr-form-control clr-flex-column clr-col-6">
+        <label class="clr-control-label">Email</label>
+        <span>john.doe@mail.com</span>
     </div>
-    <div class="clr-form-control clr-row clr-flex-md-column clr-col-md-6">
-        <label class="clr-control-label clr-col-md-12">Phone</label>
-        <span class="clr-col-md-12">1234567890123</span>
+    <div class="clr-form-control clr-flex-column clr-col-6">
+        <label class="clr-control-label">Phone</label>
+        <span>1234567890123</span>
     </div>
 </div>
 `;
 
 const CODE_EXAMPLE_RO_VERTICAL3 = `
 <div class="clr-row clr-form-compact">
-    <div class="clr-form-control clr-row clr-flex-md-column clr-col-md-4">
-        <label class="clr-control-label clr-col-md-12">Firstname</label>
-        <span class="clr-col-md-12">John</span>
+    <div class="clr-form-control clr-flex-column clr-col-4">
+        <label class="clr-control-label">Firstname</label>
+        <span>John</span>
     </div>
-    <div class="clr-form-control clr-row clr-flex-md-column clr-col-md-4">
-        <label class="clr-control-label clr-col-md-12">Lastname</label>
-        <span class="clr-col-md-12">Doe</span>
+    <div class="clr-form-control clr-flex-column clr-col-4">
+        <label class="clr-control-label">Lastname</label>
+        <span>Doe</span>
     </div>
-    <div class="clr-form-control clr-row clr-flex-md-column clr-col-md-4">
-        <label class="clr-control-label clr-col-md-12">Email</label>
-        <span class="clr-col-md-12">john.doe@mail.com</span>
+    <div class="clr-form-control clr-flex-column clr-col-4">
+        <label class="clr-control-label">Email</label>
+        <span>john.doe@mail.com</span>
     </div>
-    <div class="clr-form-control clr-row clr-flex-md-column clr-col-md-4">
-        <label class="clr-control-label clr-col-md-12">Phone</label>
-        <span class="clr-col-md-12">1234567890123</span>
+    <div class="clr-form-control clr-flex-column clr-col-4">
+        <label class="clr-control-label">Phone</label>
+        <span>1234567890123</span>
     </div>
-    <div class="clr-form-control clr-row clr-flex-md-column clr-col-md-4">
-        <label class="clr-control-label clr-col-md-12">Street</label>
-        <span class="clr-col-md-12">Baker Street</span>
+    <div class="clr-form-control clr-flex-column clr-col-4">
+        <label class="clr-control-label">Street</label>
+        <span>Baker Street</span>
     </div>
-    <div class="clr-form-control clr-row clr-flex-md-column clr-col-md-4">
-        <label class="clr-control-label clr-col-md-12">City</label>
-        <span class="clr-col-md-12">London</span>
+    <div class="clr-form-control clr-flex-column clr-col-4">
+        <label class="clr-control-label">City</label>
+        <span>London</span>
     </div>
 </div>
 `;

@@ -74,11 +74,11 @@ export class ViewEditSectionDemo extends ClarityDocComponent{
     htmlExampleFullIcon = HTML_EXAMPLE_FULL_ICON;
     htmlExampleFullIconAngular = HTML_EXAMPLE_FULL_ICON_ANGULAR;
 
-    birthdate: Date = new Date("06/14/2018");
+    birthdate: string;
     gender: string = "male";
     status: string = "Active";
     terms: boolean;
-    editBirthdate: Date = this.birthdate;
+    editBirthdate: string = this.birthdate;
     editGender: string = this.gender;
     editStatus: number = 1;
     editTerms: boolean;
