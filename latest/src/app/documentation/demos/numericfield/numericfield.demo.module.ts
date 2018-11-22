@@ -6,7 +6,7 @@
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
-import { ClarityModule, ClrFormsNextModule } from "@clr/angular";
+import { ClarityModule, ClrFormsModule } from "@clr/angular";
 
 import { NumericFieldDemo } from "./numericfield.demo";
 import { DocWrapperModule } from "../_doc-wrapper/doc-wrapper.module";
@@ -19,7 +19,7 @@ import { ClrAddonsModule } from "@porscheinformatik/clr-addons";
         CommonModule,
         FormsModule,
         ClarityModule,
-        ClrFormsNextModule,
+        ClrFormsModule,
         UtilsModule,
         DocWrapperModule,
         RouterModule.forChild([{ path: "", component: NumericFieldDemo }]),

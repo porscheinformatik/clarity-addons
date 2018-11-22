@@ -8,62 +8,55 @@ import {Component} from "@angular/core";
 
 const HTML_EXAMPLE_CLICKABLE_ROWS = `
 <clr-treetable>
-    <clr-datagrid>
-        <clr-dg-column>Name</clr-dg-column>
-        <clr-dg-column>Role</clr-dg-column>
-        <clr-dg-column>Random Number</clr-dg-column>
-        <clr-dg-column>Random Date</clr-dg-column>
+    <clr-tt-column>Name</clr-tt-column>
+    <clr-tt-column>Role</clr-tt-column>
+    <clr-tt-column>Random Number</clr-tt-column>
+    <clr-tt-column>Random Date</clr-tt-column>
+
+    <clr-tt-row>
+        <clr-tt-cell>David Wallace</clr-tt-cell>
+        <clr-tt-cell>CFO</clr-tt-cell>
+        <clr-tt-cell>2</clr-tt-cell>
+        <clr-tt-cell>2nd of August</clr-tt-cell>
 
         <clr-tt-row>
-            <clr-dg-cell>David Wallace</clr-dg-cell>
-            <clr-dg-cell>CFO</clr-dg-cell>
-            <clr-dg-cell>2</clr-dg-cell>
-            <clr-dg-cell>2nd of August</clr-dg-cell>
+            <clr-tt-cell>Michael Scott</clr-tt-cell>
+            <clr-tt-cell>Regional Manager</clr-tt-cell>
+            <clr-tt-cell>19</clr-tt-cell>
+            <clr-tt-cell>3rd of April</clr-tt-cell>
 
             <clr-tt-row>
-                <clr-dg-cell>Michael Scott</clr-dg-cell>
-                <clr-dg-cell>Regional Manager</clr-dg-cell>
-                <clr-dg-cell>19</clr-dg-cell>
-                <clr-dg-cell>3rd of April</clr-dg-cell>
-
-                <clr-tt-row>
-                    <clr-dg-cell>Dwight K. Schrute</clr-dg-cell>
-                    <clr-dg-cell>Assistant to the Regional Manager</clr-dg-cell>
-                    <clr-dg-cell>290</clr-dg-cell>
-                    <clr-dg-cell>17th of May</clr-dg-cell>
-                </clr-tt-row>
-                ...
+                <clr-tt-cell>Dwight K. Schrute</clr-tt-cell>
+                <clr-tt-cell>Assistant to the Regional Manager</clr-tt-cell>
+                <clr-tt-cell>290</clr-tt-cell>
+                <clr-tt-cell>17th of May</clr-tt-cell>
             </clr-tt-row>
+            ...
         </clr-tt-row>
-    </clr-datagrid>
+    </clr-tt-row>
 </clr-treetable>`;
 
 const HTML_EXAMPLE_CLICKABLE_CARET = `
 <clr-treetable [clrClickableRows]="false">
-    <clr-datagrid>
-        <clr-dg-column>Name</clr-dg-column>
-        <clr-dg-column>Role</clr-dg-column>
-        <clr-dg-column>Actor</clr-dg-column>
+    <clr-tt-column>Name</clr-tt-column>
+    <clr-tt-column>Role</clr-tt-column>
+    <clr-tt-column>Actor</clr-tt-column>
 
-        <clr-tt-row [clrExpanded]="true">
-            <clr-dg-cell>David Wallace</clr-dg-cell>
-            <clr-dg-cell>CFO</clr-dg-cell>
-            <clr-dg-cell><a target="_blank" href="https://www.google.com">Some actor</a></clr-dg-cell>
-        </clr-tt-row>
-        ...
-    </clr-datagrid>
+    <clr-tt-row [clrExpanded]="true">
+        <clr-tt-cell>David Wallace</clr-tt-cell>
+        <clr-tt-cell>CFO</clr-tt-cell>
+        <clr-tt-cell><a target="_blank" href="https://www.google.com">Some actor</a></clr-tt-cell>
+    </clr-tt-row>
+    ...
 </clr-treetable>`;
 
 const HTML_EXAMPLE_NOSCROLL = `
 <clr-treetable class="clr-treetable-noscroll">
-    <clr-datagrid>
-        <clr-dg-column class="col-xs-9">Some column</clr-dg-column>
-        <clr-dg-column class="col-xs-3">Some other column</clr-dg-column>
-
-        <clr-tt-row>
-            ...
-        </clr-tt-row>
-    </clr-datagrid>
+    <clr-tt-column class="clr-col-9">Some column</clr-tt-column>
+    <clr-tt-column class="clr-col-3">Some other column</clr-tt-column>
+    <clr-tt-row clrExpandable="true">
+        ...
+    </clr-tt-row>
 </clr-treetable>`;
 
 @Component({

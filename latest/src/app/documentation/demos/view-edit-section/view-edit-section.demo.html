@@ -56,8 +56,8 @@
             </ul>
 
             <h4>Side by side example</h4>
-            <div class="row">
-                <div class="col-xs-12 col-lg-6">
+            <div class="clr-row">
+                <div class="clr-col-12 clr-col-lg-6">
                     <clr-view-edit-section [clrTitle]="sectionTitle" (clrSectionSubmitted)="sectionSubmitted()" (clrSectionEditCancelled)="sectionCancelled()">
                         <div view-block>
                             <form clrForm clrLayout="horizontal">
@@ -93,7 +93,7 @@
                         </div>
                     </clr-view-edit-section>
                 </div>
-                <div class="col-xs-12 col-lg-6">
+                <div class="crl-col-12 clr-col-lg-6">
                     <clr-view-edit-section [clrTitle]="addSectionTitle" (clrSectionSubmitted)="addSectionSubmitted()" (clrSectionEditCancelled)="addSectionCancelled()">
                         <div view-block>
                             <form clrForm clrLayout="horizontal">
@@ -126,8 +126,8 @@
             <clr-code-snippet [clrCode]="htmlExampleSideBySide"></clr-code-snippet>
 
             <h4>Custom icon</h4>
-            <div class="row">
-                <div class="col-xs-12">
+            <div class="clr-row">
+                <div class="clr-col-12">
                     <clr-view-edit-section [clrTitle]="compSectionTitle" [clrEditIcon]="compEditIcon" (clrSectionSubmitted)="compSectionSubmitted()"
                         (clrSectionEditCancelled)="compSectionCancelled()">
                         <div view-block>
@@ -152,9 +152,9 @@
                         </div>
                         <div edit-block>
                             <form clrForm clrLayout="horizontal">
-                              <clr-date-container>
+                              <clr-date-container class="clr-row">
                                 <label>Date of birth</label>
-                                <input type="date" [(clrDate)]="editBirthdate" name="birthdate" clrDate>
+                                <input type="text" [(ngModel)]="editBirthdate" name="birthdate" clrDate>
                               </clr-date-container>
                               <clr-select-container>
                                 <label>Gender</label>
@@ -174,13 +174,13 @@
                                   <label>Inactive</label>
                                 </clr-radio-wrapper>
                               </clr-radio-container>
-                              <div class="clr-form-control clr-row">
-                                  <label class="clr-control-label">Terms &amp; Conditions</label>
-                                  <clr-checkbox-container class="clr-control-container clr-col-md-10">
-                                      <label>I agree to the terms and conditions</label>
+                              <clr-checkbox-container>
+                                  <label>Terms &amp; Conditions</label>
+                                  <clr-checkbox-wrapper>
+                                      <label class="clr-col-12">I agree to the terms and conditions</label>
                                       <input clrCheckbox type="checkbox" [(ngModel)]="editTerms" name="terms" />
-                                  </clr-checkbox-container>
-                              </div>
+                                  </clr-checkbox-wrapper>
+                              </clr-checkbox-container>
                             </form>
                         </div>
                     </clr-view-edit-section>
