@@ -1,4 +1,4 @@
-<div class="card" (keyup.escape)="onCancel()">
+<div class="card view-edit-section" (keyup.escape)="onCancel()">
     <div class="card-block">
       <div class="card-title">
         {{_title}}
@@ -6,7 +6,7 @@
           <clr-icon class="ves-edit-icon" [attr.shape]="_editIcon" size="24"></clr-icon>
         </button>
       </div>
-      <div class="card-text view-edit-section">
+      <div class="card-text">
         <ng-content select="[view-block]" *ngIf="!_editMode"></ng-content>
         <ng-content select="[edit-block]" *ngIf="_editMode"></ng-content>
         <ng-container *ngIf="_editMode">
