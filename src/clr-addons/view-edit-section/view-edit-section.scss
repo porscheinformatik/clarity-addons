@@ -1,5 +1,9 @@
 @include exports('view-edit-section.clr-addons') {
   .view-edit-section {
+    .card-title .btn.ves-edit {
+      margin: 0px;
+    }
+
     form,
     .form {
       padding: 0px;
