@@ -8,128 +8,129 @@
 
 <div class="clr-example">
   <div class="main-container">
-    <div class="row">
-          <div class="col-xs-12">
-              <clr-view-edit-section [clrTitle]="compSectionTitle" [clrEditIcon]="compEditIcon" (clrSectionSubmitted)="compSectionSubmitted()" (clrSectionEditCancelled)="compSectionCancelled()">
+    <div class="clr-row">
+          <div class="clr-col-12">
+              <clr-view-edit-section [clrTitle]="compSectionTitle" [clrEditIcon]="compEditIcon" (clrSectionSubmitted)="compSectionSubmitted()"
+                  (clrSectionEditCancelled)="compSectionCancelled()">
                   <div view-block>
-                    <form clrForm clrLayout="horizontal">
-                      <div class="clr-form-control clr-row">
-                        <label class="clr-col-md-2 clr-control-label" for="birthdate">Date of birth</label>
-                        <span class="text-truncate clr-col-md-10">{{birthdate || "" | date}}</span>
-                      </div>
-                      <div class="clr-form-control clr-row">
-                        <label class="clr-col-md-2 clr-control-label" for="gender">Gender</label>
-                        <span class="text-truncate clr-col-md-10">{{gender || "&nbsp;"}}</span>
-                      </div>
-                      <div class="clr-form-control clr-row">
-                        <label class="clr-col-md-2 clr-control-label" for="status">Status</label>
-                        <span class="text-truncate clr-col-md-10">{{status || "&nbsp;"}}</span>
-                      </div>
-                      <div class="clr-form-control clr-row">
-                        <label class="clr-col-md-2 clr-control-label" for="terms">Terms &amp; Conditions</label>
-                        <span class="text-truncate clr-col-md-10">{{terms || "false"}}</span>
-                      </div>
-                    </form>
+                      <form clrForm clrLayout="horizontal">
+                        <div class="clr-form-control clr-row">
+                          <label class="clr-col-md-2 clr-control-label" for="birthdate">Date of birth</label>
+                          <span class="text-truncate clr-col-md-10">{{birthdate || "" | date}}</span>
+                        </div>
+                        <div class="clr-form-control clr-row">
+                          <label class="clr-col-md-2 clr-control-label" for="gender">Gender</label>
+                          <span class="text-truncate clr-col-md-10">{{gender || "&nbsp;"}}</span>
+                        </div>
+                        <div class="clr-form-control clr-row">
+                          <label class="clr-col-md-2 clr-control-label" for="status">Status</label>
+                          <span class="text-truncate clr-col-md-10">{{status || "&nbsp;"}}</span>
+                        </div>
+                        <div class="clr-form-control clr-row">
+                          <label class="clr-col-md-2 clr-control-label" for="terms">Terms &amp; Conditions</label>
+                          <span class="text-truncate clr-col-md-10">{{terms || "false"}}</span>
+                        </div>
+                      </form>
                   </div>
                   <div edit-block>
-                    <form clrForm clrLayout="horizontal">
-                      <clr-date-container>
-                        <label>Date of birth</label>
-                        <input type="date" [(clrDate)]="editBirthdate" name="birthdate" clrDate>
-                      </clr-date-container>
-                      <clr-select-container>
-                        <label>Gender</label>
-                        <select clrSelect [(ngModel)]="editGender" name="gender">
-                          <option>male</option>
-                          <option>female</option>
-                        </select>
-                      </clr-select-container>
-                      <clr-radio-container>
-                        <label>Status</label>
-                        <clr-radio-wrapper>
-                          <input clrRadio type="radio" value="1" [(ngModel)]="editStatus" name="status">
-                          <label>Active</label>
-                        </clr-radio-wrapper>
-                        <clr-radio-wrapper>
-                          <input clrRadio type="radio" value="2" [(ngModel)]="editStatus" name="status">
-                          <label>Inactive</label>
-                        </clr-radio-wrapper>
-                      </clr-radio-container>
-                      <div class="clr-form-control clr-row">
-                          <label class="clr-control-label">Terms &amp; Conditions</label>
-                          <clr-checkbox-container class="clr-control-container clr-col-md-10">
-                              <label>I agree to the terms and conditions</label>
-                              <input clrCheckbox type="checkbox" [(ngModel)]="editTerms" name="terms" />
-                          </clr-checkbox-container>
-                      </div>
-                    </form>
+                      <form clrForm clrLayout="horizontal">
+                        <clr-date-container class="clr-row">
+                          <label>Date of birth</label>
+                          <input type="text" [(ngModel)]="editBirthdate" name="birthdate" clrDate>
+                        </clr-date-container>
+                        <clr-select-container>
+                          <label>Gender</label>
+                          <select clrSelect [(ngModel)]="editGender" name="gender">
+                            <option>male</option>
+                            <option>female</option>
+                          </select>
+                        </clr-select-container>
+                        <clr-radio-container>
+                          <label>Status</label>
+                          <clr-radio-wrapper>
+                            <input clrRadio type="radio" value="1" [(ngModel)]="editStatus" name="status">
+                            <label>Active</label>
+                          </clr-radio-wrapper>
+                          <clr-radio-wrapper>
+                            <input clrRadio type="radio" value="2" [(ngModel)]="editStatus" name="status">
+                            <label>Inactive</label>
+                          </clr-radio-wrapper>
+                        </clr-radio-container>
+                        <clr-checkbox-container>
+                            <label>Terms &amp; Conditions</label>
+                            <clr-checkbox-wrapper>
+                                <label class="clr-col-12">I agree to the terms and conditions</label>
+                                <input clrCheckbox type="checkbox" [(ngModel)]="editTerms" name="terms" />
+                            </clr-checkbox-wrapper>
+                        </clr-checkbox-container>
+                      </form>
                   </div>
               </clr-view-edit-section>
           </div>
       </div>
 
-      <div class="row">
-          <div class="col-xs-12 col-lg-6">
+      <div class="clr-row">
+          <div class="clr-col-12 clr-col-lg-6">
               <clr-view-edit-section [clrTitle]="sectionTitle" (clrSectionSubmitted)="sectionSubmitted()" (clrSectionEditCancelled)="sectionCancelled()">
                   <div view-block>
-                    <form clrForm clrLayout="horizontal">
-                      <div class="clr-form-control clr-row">
-                          <label class="clr-col-md-2 clr-control-label">First name</label>
-                          <span class="text-truncate clr-col-md-10">{{first || "&nbsp;"}}</span>
-                      </div>
-                      <div class="clr-form-control clr-row">
-                          <label class="clr-col-md-2 clr-control-label">Last name</label>
-                          <span class="text-truncate clr-col-md-10">{{last || "&nbsp;"}}</span>
-                      </div>
-                      <div class="clr-form-control clr-row">
-                          <label class="clr-col-md-2 clr-control-label">E-mail</label>
-                          <span class="text-truncate clr-col-md-10">{{email || "&nbsp;"}}</span>
-                      </div>
-                    </form>
+                      <form clrForm clrLayout="horizontal">
+                        <div class="clr-form-control clr-row">
+                            <label class="clr-col-md-4 clr-control-label">First name</label>
+                            <span class="text-truncate clr-col-md-8">{{first || "&nbsp;"}}</span>
+                        </div>
+                        <div class="clr-form-control clr-row">
+                            <label class="clr-col-md-4 clr-control-label">Last name</label>
+                            <span class="text-truncate clr-col-md-8">{{last || "&nbsp;"}}</span>
+                        </div>
+                        <div class="clr-form-control clr-row">
+                            <label class="clr-col-md-4 clr-control-label">E-mail</label>
+                            <span class="text-truncate clr-col-md-8">{{email || "&nbsp;"}}</span>
+                        </div>
+                      </form>
                   </div>
                   <div edit-block>
-                    <form clrForm clrLayout="horizontal">
-                      <clr-input-container>
-                          <label>First name</label>
-                          <input clrInput type="text" [(ngModel)]="editFirst" name="first"/>
-                      </clr-input-container>
-                      <clr-input-container>
-                          <label>Last name</label>
-                          <input clrInput type="text" [(ngModel)]="editLast" name="last"/>
-                      </clr-input-container>
-                      <clr-input-container>
-                          <label>E-mail</label>
-                          <input clrInput type="text" [(ngModel)]="editEmail" name="email"/>
-                      </clr-input-container>
-                    </form>
+                      <form clrForm clrLayout="horizontal">
+                        <clr-input-container>
+                            <label class="clr-col-md-4">First name</label>
+                            <input class="clr-col-md-8" clrInput type="text" [(ngModel)]="editFirst" name="first"/>
+                        </clr-input-container>
+                        <clr-input-container>
+                            <label class="clr-col-md-4">Last name</label>
+                            <input class="clr-col-md-8" clrInput type="text" [(ngModel)]="editLast" name="last"/>
+                        </clr-input-container>
+                        <clr-input-container>
+                            <label class="clr-col-md-4">E-mail</label>
+                            <input class="clr-col-md-8" clrInput type="text" [(ngModel)]="editEmail" name="email"/>
+                        </clr-input-container>
+                      </form>
                   </div>
               </clr-view-edit-section>
           </div>
-          <div class="col-xs-12 col-lg-6">
+          <div class="clr-col-12 clr-col-lg-6">
               <clr-view-edit-section [clrTitle]="addSectionTitle" (clrSectionSubmitted)="addSectionSubmitted()" (clrSectionEditCancelled)="addSectionCancelled()">
                   <div view-block>
-                    <form clrForm clrLayout="horizontal">
-                      <div class="clr-form-control clr-row">
-                          <label class="clr-col-md-4 clr-control-label">Hobby</label>
-                          <span class="text-truncate clr-col-md-8">{{hobby || "&nbsp;"}}</span>
-                      </div>
-                      <div class="clr-form-control clr-row">
-                          <label class="clr-col-md-4 clr-control-label">Driving licence number</label>
-                          <span class="text-truncate clr-col-md-8">{{licence || "&nbsp;"}}</span>
-                      </div>
-                    </form>
+                      <form clrForm clrLayout="horizontal">
+                        <div class="clr-form-control clr-row">
+                            <label class="clr-col-md-4 clr-control-label">Hobby</label>
+                            <span class="text-truncate clr-col-md-8">{{hobby || "&nbsp;"}}</span>
+                        </div>
+                        <div class="clr-form-control clr-row">
+                            <label class="clr-col-md-4 clr-control-label">Driving licence number</label>
+                            <span class="text-truncate clr-col-md-8">{{licence || "&nbsp;"}}</span>
+                        </div>
+                      </form>
                   </div>
                   <div edit-block>
-                    <form clrForm clrLayout="horizontal">
-                      <clr-input-container>
-                          <label class="clr-col-md-4">Hobby</label>
-                          <input class="clr-col-md-8" clrInput type="text" [(ngModel)]="editHobby" name="hobby"/>
-                      </clr-input-container>
-                      <clr-input-container>
-                          <label class="clr-col-md-4">Driving licence number</label>
-                          <input class="clr-col-md-8" clrInput type="text" [(ngModel)]="editLicence" name="licence"/>
-                      </clr-input-container>
-                    </form>
+                      <form clrForm clrLayout="horizontal">
+                        <clr-input-container>
+                            <label class="clr-col-md-4">Hobby</label>
+                            <input class="clr-col-md-8" clrInput type="text" [(ngModel)]="editHobby" name="hobby"/>
+                        </clr-input-container>
+                        <clr-input-container>
+                            <label class="clr-col-md-4">Driving licence number</label>
+                            <input class="clr-col-md-8" clrInput type="text" [(ngModel)]="editLicence" name="licence"/>
+                        </clr-input-container>
+                      </form>
                   </div>
               </clr-view-edit-section>
           </div>

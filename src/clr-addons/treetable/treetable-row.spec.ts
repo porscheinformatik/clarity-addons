@@ -15,15 +15,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @Component({
   template: `
     <clr-treetable>
-      <clr-datagrid>
         <clr-tt-row [clrExpandable]="true">
-          <clr-dg-cell></clr-dg-cell>
-          
+          <clr-tt-cell></clr-tt-cell>
+
           <clr-tt-row>
-            <clr-dg-cell></clr-dg-cell>
+            <clr-tt-cell></clr-tt-cell>
           </clr-tt-row>
         </clr-tt-row>
-      </clr-datagrid>
     </clr-treetable>
   `,
 })
@@ -34,10 +32,8 @@ class RowClickableTestComponent {
 @Component({
   template: `
     <clr-treetable>
-      <clr-datagrid>
-        <clr-tt-row>
-        </clr-tt-row>
-      </clr-datagrid>
+      <clr-tt-row>
+      </clr-tt-row>
     </clr-treetable>
   `,
 })
@@ -73,9 +69,8 @@ describe('ClrTreetableRow', () => {
 
   it('should expand if clicked', () => {
     expect(rowClickableTestComponent.ttRow.expanded).toBeFalsy();
-    rowClickableTestComponentFixture.debugElement
-      .query(By.css('clr-dg-row:first-of-type'))
-      .triggerEventHandler('click', {});
+    const row = rowClickableTestComponentFixture.debugElement.query(By.css('.treetable-row:first-of-type'));
+    row.triggerEventHandler('click', {});
     rowClickableTestComponentFixture.detectChanges();
     expect(rowClickableTestComponent.ttRow.expanded).toBeTruthy();
   });

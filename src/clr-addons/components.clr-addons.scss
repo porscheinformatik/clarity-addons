@@ -10,7 +10,6 @@
 @import './flow-bar/flow-bar';
 @import './back-button/back-button';
 @import './treetable/treetable';
-@import './treetable/treetable-row';
 @import './progress-spinner/progress-spinner';
 
 html,
@@ -127,7 +126,7 @@ body,
   }
 }
 
-.datagrid-no-select-all .datagrid-head .datagrid-select .checkbox {
+.datagrid-no-select-all .datagrid-header .datagrid-select .clr-checkbox-wrapper {
   display: none;
 }
 

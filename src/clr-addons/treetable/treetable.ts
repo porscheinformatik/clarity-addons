@@ -5,12 +5,15 @@
  */
 import { AfterContentInit, Component, ContentChildren, Input, OnChanges, QueryList } from '@angular/core';
 import { ClrTreetableRow } from './treetable-row';
+import { ClrTreetableColumn } from './treetable-column';
+import { TreetableRenderOrganizer } from './renderer/render-organizer';
+import { TableSizeService } from './renderer/table-size.service';
 
 @Component({
   selector: 'clr-treetable',
   templateUrl: './treetable.html',
-  styleUrls: ['./treetable.scss'],
-  host: { '[class.empty]': 'empty' },
+  host: { '[class.empty]': 'empty', '[class.treetable-host]': 'true' },
+  providers: [TreetableRenderOrganizer, TableSizeService],
 })
 export class ClrTreetable implements AfterContentInit, OnChanges {
   @Input() clrClickableRows = true;
@@ -18,6 +21,9 @@ export class ClrTreetable implements AfterContentInit, OnChanges {
 
   @ContentChildren(ClrTreetableRow, { descendants: true })
   ttRows: QueryList<ClrTreetableRow>;
+
+  @ContentChildren(ClrTreetableColumn, { descendants: true })
+  ttColumns: QueryList<ClrTreetableRow>;
 
   ngAfterContentInit(): void {
     this.initClickableRows();

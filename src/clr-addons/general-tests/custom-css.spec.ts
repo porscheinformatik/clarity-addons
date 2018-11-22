@@ -39,8 +39,9 @@ describe('CustomCSS', () => {
 
   it('Datagrid select-all hidden', () => {
     expect(
-      getComputedStyle(fixture.debugElement.query(By.css('.datagrid-head .datagrid-select .checkbox')).nativeElement)
-        .display
+      getComputedStyle(
+        fixture.debugElement.query(By.css('.datagrid-header .datagrid-select .clr-checkbox-wrapper')).nativeElement
+      ).display
     ).toBe('none');
   });
 
@@ -48,8 +49,9 @@ describe('CustomCSS', () => {
     fixture.componentInstance.selectHidden = false;
     fixture.detectChanges();
     expect(
-      getComputedStyle(fixture.debugElement.query(By.css('.datagrid-head .datagrid-select .checkbox')).nativeElement)
-        .display
+      getComputedStyle(
+        fixture.debugElement.query(By.css('.datagrid-header .datagrid-select .clr-checkbox-wrapper')).nativeElement
+      ).display
     ).not.toBe('none');
   });
 });

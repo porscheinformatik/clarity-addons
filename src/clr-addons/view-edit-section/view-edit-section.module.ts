@@ -7,12 +7,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ClarityModule, ClrFormsNextModule } from '@clr/angular';
+import { ClarityModule, ClrFormsModule } from '@clr/angular';
 
 import { ClrViewEditSection } from './view-edit-section';
 
 @NgModule({
-  imports: [CommonModule, ClarityModule, FormsModule, ClrFormsNextModule],
+  imports: [CommonModule, ClarityModule, FormsModule, ClrFormsModule],
   declarations: [ClrViewEditSection],
   exports: [ClrViewEditSection],
 })
