@@ -102,35 +102,6 @@ const CODE_EXAMPLE_RO_HORIZONTAL2 = `
 </div>
 `;
 
-const CODE_EXAMPLE_RO_HORIZONTAL3 = `
-<div class="clr-form-compact clr-row">
-    <div class="clr-row clr-col-4">
-        <label class="clr-control-label clr-col-5">Firstname</label>
-        <span class="clr-col-7">John</span>
-    </div>
-    <div class="clr-row clr-col-4">
-        <label class="clr-control-label clr-col-5">Lastname</label>
-        <span class="clr-col-7">Doe</span>
-    </div>
-    <div class="clr-row clr-col-4">
-        <label class="clr-control-label clr-col-5">Email</label>
-        <span class="clr-col-7">john.doe@mail.com</span>
-    </div>
-    <div class="clr-row clr-col-4">
-        <label class="clr-control-label clr-col-5">Phone</label>
-        <span class="clr-col-7">1234567890123</span>
-    </div>
-    <div class="clr-row clr-col-4">
-        <label class="clr-control-label clr-col-5">Street</label>
-        <span class="clr-col-7">Baker Street</span>
-    </div>
-    <div class="clr-row clr-col-4">
-        <label class="clr-control-label clr-col-5">City</label>
-        <span class="clr-col-7">London</span>
-    </div>
-</div>
-`;
-
 const CODE_EXAMPLE_RO_VERTICAL = `
 <div class="clr-form-compact">
     <div class="clr-form-control clr-flex-column">
@@ -165,35 +136,6 @@ const CODE_EXAMPLE_RO_VERTICAL2 = `
 </div>
 `;
 
-const CODE_EXAMPLE_RO_VERTICAL3 = `
-<div class="clr-row clr-form-compact">
-    <div class="clr-form-control clr-flex-column clr-col-4">
-        <label class="clr-control-label">Firstname</label>
-        <span>John</span>
-    </div>
-    <div class="clr-form-control clr-flex-column clr-col-4">
-        <label class="clr-control-label">Lastname</label>
-        <span>Doe</span>
-    </div>
-    <div class="clr-form-control clr-flex-column clr-col-4">
-        <label class="clr-control-label">Email</label>
-        <span>john.doe@mail.com</span>
-    </div>
-    <div class="clr-form-control clr-flex-column clr-col-4">
-        <label class="clr-control-label">Phone</label>
-        <span>1234567890123</span>
-    </div>
-    <div class="clr-form-control clr-flex-column clr-col-4">
-        <label class="clr-control-label">Street</label>
-        <span>Baker Street</span>
-    </div>
-    <div class="clr-form-control clr-flex-column clr-col-4">
-        <label class="clr-control-label">City</label>
-        <span>London</span>
-    </div>
-</div>
-`;
-
 @Component({
     selector: "clr-forms-demo",
     templateUrl: "./forms.demo.html",
@@ -206,10 +148,8 @@ export class FormsDemo extends ClarityDocComponent {
     codeExampleFullForm = CODE_EXAMPLE_FULL_FORM;
     codeExampleROHorizontal = CODE_EXAMPLE_RO_HORIZONTAL;
     codeExampleROHorizontal2 = CODE_EXAMPLE_RO_HORIZONTAL2;
-    codeExampleROHorizontal3 = CODE_EXAMPLE_RO_HORIZONTAL3;
     codeExampleROVertical = CODE_EXAMPLE_RO_VERTICAL;
     codeExampleROVertical2 = CODE_EXAMPLE_RO_VERTICAL2;
-    codeExampleROVertical3 = CODE_EXAMPLE_RO_VERTICAL3;
     inputText: string;
     textareaText: string;
     passwordText: string;
