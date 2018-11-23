@@ -1,0 +1,36 @@
+<div class="content-area">
+    <section>
+        <h1>{{releaseNumber}} Changelog</h1>
+        <hr>
+
+        <div *ngIf="!releaseNumber">
+            Please choose a release from the left navigation menu
+        </div>
+
+        <div *ngIf="hasBreakingChange" class="alert alert-danger breaking-change-alert">
+            <div class="alert-items">
+                <div class="alert-item static">
+                    <div class="alert-icon-wrapper">
+                        <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                    </div>
+                    <span class="alert-text">This build introduces breaking change. Please read below.</span>
+                </div>
+            </div>
+        </div>
+
+        <router-outlet></router-outlet>
+    </section>
+</div>
+<nav class="sidenav" [clr-nav-level]="2">
+    <section class="sidenav-content">
+        <section class="nav-group collapsible">
+            <input id="tab0" type="checkbox">
+            <label for="tab0">v3 Changelogs</label>
+            <ul class="nav-list">
+                <li>
+                    <a class="nav-link" routerLink="3.0.0" routerLinkActive="active">3.0.0</a>
+                </li>
+            </ul>
+        </section>
+    </section>
+</nav>

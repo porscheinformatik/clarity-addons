@@ -13,6 +13,10 @@ const appRoutes: Routes = [
         }
     },
     {
+        path: "news",
+        loadChildren: "app/news/news.module#NewsModule",
+    },
+    {
         path: "**",
         component: PageNotFoundComponent,
         data: {
