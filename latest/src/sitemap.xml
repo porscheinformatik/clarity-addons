@@ -8,8 +8,4 @@
         <changefreq>daily</changefreq>
         <priority>0</priority>
     </url>
-    <url>
-        <loc>https://porscheinformatik.github.io/clarity-addons/news/0.1.0</loc>
-        <changefreq>daily</changefreq>
-    </url>
 </urlset>
