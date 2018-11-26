@@ -3,8 +3,4 @@
         <loc>https://porscheinformatik.github.io/clarity-addons/</loc>
         <changefreq>daily</changefreq>
     </url>
-    <url>
-        <loc>https://porscheinformatik.github.io/clarity-addons/news/0.1.0</loc>
-        <changefreq>daily</changefreq>
-    </url>
 </urlset>
