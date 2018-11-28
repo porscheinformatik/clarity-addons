@@ -4,6 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'clr-numericfield-demo',
@@ -11,4 +12,11 @@ import { Component } from '@angular/core';
 })
 export class NumericFieldDemo {
   input: number;
+
+  exampleForm = new FormGroup({
+    sample: new FormControl(this.input, {
+      validators: [Validators.min(0), Validators.max(100), Validators.required],
+      updateOn: 'blur',
+    }),
+  });
 }

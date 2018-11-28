@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { OnInit, Renderer2, Input, Component, ViewChild, EventEmitter, Output } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2 } from '@angular/core';
 
 const NEGATIVE = '-';
 const BACK_KEYCODE = 8;
@@ -12,29 +12,31 @@ const CONTROL_KEYCODES_UPPER_BORDER = 46;
 const OTHER_CONTROL_KEYS = new Set([224, 91, 93]);
 const NUMBERS = new Set(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']);
 
-@Component({
-  selector: 'clr-numeric',
-  templateUrl: './numericfield.html',
-  styles: ['.numeric-align-right{ text-align: right; }'],
+@Directive({
+  selector: '[clrNumeric]',
+  host: {
+    '[class.text-right]': 'textAlign === "right"',
+  },
 })
 export class ClrNumericField implements OnInit {
-  @ViewChild('input') inputEl;
-
-  constructor(private renderer: Renderer2) {}
-
   @Input('clrTextAlign') textAlign = 'left';
   @Input('clrDecimalPlaces') decimalPlaces = 2;
   @Input('clrDecimalSep') decimalSeparator = ',';
   @Input('clrGroupingSep') groupingSeparator = '.';
-  @Input('clrLabel') label = '';
   @Input('clrNumericValue') numericValue = '';
+  @Input('clrUnit') unit: string = null;
+  @Input('clrUnitPosition') unitPosition: string = 'right';
   @Output('clrNumericValueChange') numericValueChanged = new EventEmitter<number>();
 
   displayValue: string;
 
   private allowedKeys = new Set(NUMBERS);
 
+  constructor(private renderer: Renderer2, private inputEl: ElementRef) {}
+
   ngOnInit() {
+    this.injectUnitSymbol();
+
     this.displayValue = this.numericValue || '';
     this.inputEl.nativeElement.value = this.displayValue;
 
@@ -161,6 +163,45 @@ export class ClrNumericField implements OnInit {
   updateInput(value: string) {
     this.inputEl.nativeElement.value = value;
     this.displayValue = value;
-    this.numericValueChanged.emit(parseFloat(this.strip(value).replace(',', '.')));
+    const numValue: number = parseFloat(this.strip(value).replace(',', '.'));
+    if (!isNaN(numValue)) {
+      this.numericValueChanged.emit(numValue);
+    } else {
+      // emit undefined if value can not be parsed to a number
+      this.numericValueChanged.emit(undefined);
+    }
+  }
+
+  private injectUnitSymbol(): void {
+    if (!!this.unit) {
+      // Create the span with unit symbol and apply necessary styles
+      const unitSpan = this.renderer.createElement('span');
+      const unitSymbol = this.renderer.createText(this.unit);
+      this.renderer.appendChild(unitSpan, unitSymbol);
+      this.renderer.addClass(unitSpan, 'unit');
+
+      // Get the input wrapper and apply necessary styles
+      const inputWrapper = this.inputEl.nativeElement.parentNode;
+      this.renderer.addClass(inputWrapper, 'numeric-input-wrapper');
+
+      // Set the input width to the current width in css, so it won't extend when adding padding later on
+      const inputWidth = this.inputEl.nativeElement.offsetWidth;
+      this.renderer.setStyle(this.inputEl.nativeElement, 'width', inputWidth + 'px');
+      // Also set the input wrapper width to same width to support horizontal form layout
+      this.renderer.setStyle(inputWrapper, 'width', inputWidth + 'px');
+
+      // Add the span to the DOM
+      this.renderer.appendChild(inputWrapper, unitSpan);
+
+      // Add padding to the input element, depending on the width of the unit symbol + 6px
+      const paddingOnInput = unitSpan.offsetWidth + 6;
+      if (this.unitPosition === 'left') {
+        this.renderer.addClass(unitSpan, 'unit-left');
+        this.renderer.setStyle(this.inputEl.nativeElement, 'padding-left', paddingOnInput + 'px');
+      } else {
+        this.renderer.addClass(unitSpan, 'unit-right');
+        this.renderer.setStyle(this.inputEl.nativeElement, 'padding-right', paddingOnInput + 'px');
+      }
+    }
   }
 }

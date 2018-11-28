@@ -4,19 +4,23 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, ViewChild, DebugElement } from '@angular/core';
+import { Component, DebugElement, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClarityModule } from '@clr/angular';
+import { ClrNumericField } from './numericfield';
 
 import { ClrNumericFieldModule } from './numericfield.module';
-import { By } from '@angular/platform-browser';
-import { ClrNumericField } from './numericfield';
 
 @Component({
   template: `
-    <clr-numeric #component clrDecimalSep="," clrGroupingSep="." clrDecimalPlaces="3" [(clrNumericValue)]="input"></clr-numeric>
+    <clr-input-container>
+      <label>Amount</label>
+      <input clrInput clrNumeric type="text" clrDecimalSep="," clrGroupingSep="." clrDecimalPlaces="3"
+             [(clrNumericValue)]="input"/>
+    </clr-input-container>
   `,
 })
 class TestComponent {
