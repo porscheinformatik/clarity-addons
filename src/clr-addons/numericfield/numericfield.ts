@@ -193,8 +193,8 @@ export class ClrNumericField implements OnInit {
       // Add the span to the DOM
       this.renderer.appendChild(inputWrapper, unitSpan);
 
-      // Add padding to the input element, depending on the width of the unit symbol + 6px
-      const paddingOnInput = unitSpan.offsetWidth + 6;
+      // Add padding to the input element, depending on the width of the unit symbol + 12px
+      const paddingOnInput = unitSpan.offsetWidth + 12;
       if (this.unitPosition === 'left') {
         this.renderer.addClass(unitSpan, 'unit-left');
         this.renderer.setStyle(this.inputEl.nativeElement, 'padding-left', paddingOnInput + 'px');
