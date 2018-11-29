@@ -1,7 +1,7 @@
 <clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
     <article>
         <h5 class="component-summary">
-            Treetables are for organizing hierarchical data with multiple columns in a datagrid.
+            Treetables are for organizing hierarchical data with multiple columns.
         </h5>
 
         <div id="design-guidelines">
@@ -24,20 +24,16 @@
               The first column of a descendant-row is indentend to visualize the hierarchy.
               Parent rows are collapsed, i.e. all children rows are hidden initially.
               To display the children the user can either click on the leading caret-icon or the whole parent row,
-              depending on the row-selection mode. See the official clarity documentation of the datagrid for details of the selection mode.
-              Avoid the rowselection-mode when the row contains individually clickable items.
+              depending on the row-selection mode.
+              Avoid the row-selection mode when the row contains individually clickable items.
             </p>
 
             <h4>Sorting</h4>
             The treetable cannot be sorted by the user. Display the entries in alphabetical order.
             Consider collapsing either all or none of the parent nodes.
 
-            <h4>Optional: column headers</h4>
-            <p>A treetable can display column headers, but does not require them. </p>
-
             <h3>Technical limitations</h3>
-
-            <p>The Treetable is technically related to the datagrid, but omits lazy-loading, sorting and filtering.
+            <p>
               Note that up to 6 levels of nesting are supported.
             </p>
 

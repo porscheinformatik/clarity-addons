@@ -146,7 +146,7 @@
                               </div>
                               <div class="clr-form-control clr-row">
                                 <label class="clr-col-md-2 clr-control-label" for="terms">Terms &amp; Conditions</label>
-                                <span class="text-truncate clr-col-md-10">{{terms || "false"}}</span>
+                                <span class="text-truncate clr-col-md-10">{{getTermsText()}}</span>
                               </div>
                             </form>
                         </div>
@@ -166,11 +166,11 @@
                               <clr-radio-container>
                                 <label>Status</label>
                                 <clr-radio-wrapper>
-                                  <input clrRadio type="radio" value="1" [(ngModel)]="editStatus" name="status">
+                                  <input clrRadio type="radio" [value]="1" [(ngModel)]="editStatus" name="status">
                                   <label>Active</label>
                                 </clr-radio-wrapper>
                                 <clr-radio-wrapper>
-                                  <input clrRadio type="radio" value="2" [(ngModel)]="editStatus" name="status">
+                                  <input clrRadio type="radio" [value]="2" [(ngModel)]="editStatus" name="status">
                                   <label>Inactive</label>
                                 </clr-radio-wrapper>
                               </clr-radio-container>
