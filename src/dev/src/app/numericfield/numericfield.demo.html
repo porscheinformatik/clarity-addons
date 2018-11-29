@@ -7,9 +7,55 @@
 
 <div class="clr-example">
   <div class="main-container">
-    <form>
-      <clr-numeric clrLabel="Amount" clrTextAlign="right" [(clrNumericValue)]="input"></clr-numeric>
-      {{input}}
+
+    <h3>Vertical Form</h3>
+    <form clrForm [clrLayout]="'vertical'" [formGroup]="exampleForm">
+      <clr-input-container>
+        <label>Amount</label>
+        <input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'€'" [clrTextAlign]="'right'"
+               formControlName="sample"/>
+        <clr-control-error>Please enter a value between 0 and 100</clr-control-error>
+      </clr-input-container>
+      <clr-input-container>
+        <label>Speed</label>
+        <input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'km/h'"/>
+      </clr-input-container>
+
+      <clr-input-container>
+        <label>Amount</label>
+        <input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'€'" [clrUnitPosition]="'left'"
+               [clrTextAlign]="'right'"/>
+      </clr-input-container>
+      <clr-input-container>
+        <label>Speed</label>
+        <input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'km/h'"
+               [clrUnitPosition]="'left'"/>
+      </clr-input-container>
     </form>
+
+    <h3>Horizontal Form</h3>
+    <form clrForm [clrLayout]="'horizontal'">
+      <clr-input-container>
+        <label>Amount</label>
+        <input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'€'" [clrTextAlign]="'right'"/>
+      </clr-input-container>
+      <clr-input-container>
+        <label>Speed</label>
+        <input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'km/h'"/>
+      </clr-input-container>
+
+      <clr-input-container>
+        <label>Amount</label>
+        <input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'€'" [clrUnitPosition]="'left'"/>
+      </clr-input-container>
+      <clr-input-container>
+        <label>Speed</label>
+        <input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'km/h'"
+               [clrUnitPosition]="'left'"/>
+      </clr-input-container>
+    </form>
+
+    <h3>Value</h3>
+    <div>{{input}}</div>
   </div>
 </div>

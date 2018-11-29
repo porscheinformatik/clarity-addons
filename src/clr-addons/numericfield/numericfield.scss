@@ -1,0 +1,18 @@
+@include exports('numericfield.clr-addons') {
+  .numeric-input-wrapper {
+    position: relative;
+
+    .unit {
+      position: absolute;
+      font-size: 0.541667rem;
+    }
+
+    .unit-left {
+      left: 0.25rem;
+    }
+
+    .unit-right {
+      right: 0.25rem;
+    }
+  }
+}

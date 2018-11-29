@@ -5,7 +5,7 @@
  */
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { ClarityModule, ClrFormsModule } from '@clr/angular';
@@ -20,6 +20,7 @@ import { NumericFieldDemo } from './numericfield.demo';
     ClrFormsModule,
     ClrAddonsModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild([{ path: '', component: NumericFieldDemo }]),
   ],
   declarations: [NumericFieldDemo],
