@@ -3,21 +3,22 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { NgModule } from "@angular/core";
-import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
+import { NgModule } from "@angular/core";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { RouterModule } from "@angular/router";
 import { ClarityModule, ClrFormsModule } from "@clr/angular";
+import { ClrAddonsModule } from "@porscheinformatik/clr-addons";
+import { UtilsModule } from "../../../utils/utils.module";
+import { DocWrapperModule } from "../_doc-wrapper/doc-wrapper.module";
 
 import { NumericFieldDemo } from "./numericfield.demo";
-import { DocWrapperModule } from "../_doc-wrapper/doc-wrapper.module";
-import { RouterModule } from "@angular/router";
-import { UtilsModule } from "../../../utils/utils.module";
-import { ClrAddonsModule } from "@porscheinformatik/clr-addons";
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
+        ReactiveFormsModule,
         ClarityModule,
         ClrFormsModule,
         UtilsModule,
