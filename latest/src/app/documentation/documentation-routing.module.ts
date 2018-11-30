@@ -21,6 +21,10 @@ const documentationRoutes: Routes = [
         },
         children: [
             {
+                path: "get-started",
+                loadChildren: "app/documentation/get-started/get-started.module#GetStartedModule",
+            },
+            {
                 path: "",
                 component: ComponentStatusComponent,
                 data: {

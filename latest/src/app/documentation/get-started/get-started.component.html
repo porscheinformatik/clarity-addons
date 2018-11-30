@@ -1,0 +1,56 @@
+<section class="dox-content">
+    <h1 id="introduction">Clarity-Addons</h1>
+    <p>Project Clarity-Addons is an addon to <a href="https://vmware.github.io/clarity/">Clarity</a></p>
+    <p>It contains additional components and patterns which are not in scope of Clarity and also provides customized themes.
+    </p>
+    <h2 id="howToUse">How to Use Clarity-Addons</h2>
+    
+    <h4 id="installclarity">Step 0: Install Clarity</h4>
+    <p>Prerequisite ist an installed clarity package. See <a href="https://vmware.github.io/clarity/documentation/get-started">Clarity Get Started</a></p>
+    
+    <h4 id="installing">Step 1: Install Clarity-Addons package</h4>
+    <p><clr-code-snippet
+                    [clrCode]="'npm install @porscheinformatik/clr-addons --save'"
+                    [clrDisablePrism]="true"></clr-code-snippet>
+    </p>
+
+    <h5 id="styles">Step 2: Adding customized styles</h5>
+    <p>You can find all compiled styles in <code class="clr-code">node_modules/@porscheinformatik/clr-addons/styles/</code>.
+    These styles already contain the clarity styles, so if you imported them, you can remove the clarity styles now.
+    </p>
+    <p>If you are using the Angular CLI, you need to add the <code class="clr-code">.angular.json</code> file.</p>
+    <p>Find the <code class="clr-code">styles</code> arrays and add the following:
+        <clr-code-snippet
+                [clrCode]="nodeImports"
+                [clrDisablePrism]="true"></clr-code-snippet></p>
+    <p></p>
+    <p>If you are not using the CLI, you'll need to add the files listed above to your build tooling or you could also put them in the head of the index.html file like:
+    <clr-code-snippet
+                [clrCode]="htmlImports"
+                [clrDisablePrism]="true"></clr-code-snippet></p>
+    <p></p>
+
+    <h5 id="angular">Step 3: Add Clarity-Addons to Angular application</h5>
+    <p>Import the ClarityAddonsModule into your Angular application's module. Your application's main module might look like this:
+            <clr-code-snippet [clrCode]="ngModuleExample" [clrLanguage]="'typescript'"></clr-code-snippet>
+    </p>
+
+    <h4 id="run-your-app">Step 4: Run Your App</h4>
+    <clr-code-snippet
+            clrLanguage="bash"
+            [clrCode]="'npm start'"
+            [clrDisablePrism]="true"></clr-code-snippet>
+
+    <h4 id="update">Step 5: Update Clarity-Addons</h4>
+    <p>In order to keep up with Clarity-Addons, you can use ng update to automatically update Clarity-Addons to the latest version in your Angular project.</p>
+    <clr-code-snippet
+            clrLanguage="bash"
+            [clrCode]="'ng update @porscheinformatik/clr-addons'"
+            [clrDisablePrism]="true"></clr-code-snippet>
+
+    <h2 id="contribute_guidelines">Contributing to Clarity-Addons</h2>
+    <p>The Clarity-Addons team welcomes contributions from the community. Same rules apply as for Clarity Contributions.
+    </p>
+    <p>Internal Porscheinformatik Guidelines can be found here: <a href="https://confluence.porscheinformatik.com/confluence/display/PSACNG/Contribution+to+Clarity-Addons">Porscheinformatik Guidelines</a></p>
+    <div style="visibility: hidden; height: 80vh;">This is a spacer to force sidenav highlighting on scroll</div>
+</section>
