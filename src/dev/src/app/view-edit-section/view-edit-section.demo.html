@@ -48,11 +48,11 @@
                         <clr-radio-container>
                           <label>Status</label>
                           <clr-radio-wrapper>
-                            <input clrRadio type="radio" value="1" [(ngModel)]="editStatus" name="status">
+                            <input clrRadio type="radio" [value]="1" [(ngModel)]="editStatus" name="status">
                             <label>Active</label>
                           </clr-radio-wrapper>
                           <clr-radio-wrapper>
-                            <input clrRadio type="radio" value="2" [(ngModel)]="editStatus" name="status">
+                            <input clrRadio type="radio" [value]="2" [(ngModel)]="editStatus" name="status">
                             <label>Inactive</label>
                           </clr-radio-wrapper>
                         </clr-radio-container>
