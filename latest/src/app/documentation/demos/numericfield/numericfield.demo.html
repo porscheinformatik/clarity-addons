@@ -1,95 +1,139 @@
 <clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
     <article>
-        <h5 class="component-summary">The NumericField component is used to aid the user when entering a numeric value. Invalid characters are ignored during input.</h5>
-        
-        <form clrForm clrLayout="horizontal">
-            <clr-numeric clrLabel="Numeric Field" [(clrNumericValue)]="amount"></clr-numeric>
-            <clr-input-container>
-                <label>clrNumericValue</label>
-                <input name="amount" disabled clrInput [ngModel]="amount">
-            </clr-input-container>
-        </form>
+        <h5 class="component-summary">The NumericField directive is used to aid the user when entering a numeric value.
+            Invalid characters are ignored during input. Optionally the numeric field can also display a unit.</h5>
+
+        <p>
+            Because the numeric field is a directive, it can be applied on any <code class="clr-code">input</code>
+            element.
+            This makes the numeric field compatible with the existing <code class="clr-code">ClrInputContainer</code>
+            and forms including validation in general. See code examples below which include <code class="clr-code">clr-control-error</code>
+            and <code class="clr-code">clr-control-helper</code> elements.
+        </p>
 
         <div id="design-guidelines">
             <h2>Angular Component</h2>
             <h3>Summary of Options</h3>
             <table class="table">
                 <thead>
-                    <tr>
-                        <th class="left">Input</th>
-                        <th class="left hidden-xs-down">Values</th>
-                        <th class="hidden-xs-down">Default</th>
-                        <th class="left">Effect</th>
-                    </tr>
+                <tr>
+                    <th class="left">Input</th>
+                    <th class="left hidden-xs-down">Values</th>
+                    <th class="hidden-xs-down">Default</th>
+                    <th class="left">Effect</th>
+                </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="left">
-                            <b>clrTextAlign</b>
-                            <div class="hidden-sm-up">Type: String</div>
-                            <div class="hidden-sm-up">Default: "left"</div>
-                        </td>
-                        <td class="left hidden-xs-down">left, right</td>
-                        <td class="hidden-xs-down">"left"</td>
-                        <td class="left">Defines the alignment of the text inside input field.</td>
-                    </tr>
-                    <tr>
-                        <td class="left">
-                            <b>clrLabel</b>
-                            <div class="hidden-sm-up">Type: String</div>
-                            <div class="hidden-sm-up">Default: ""</div>
-                        </td>
-                        <td class="left hidden-xs-down">Javascript String</td>
-                        <td class="hidden-xs-down">""</td>
-                        <td class="left">Label to be shown for input field.</td>
-                    </tr>
-                    <tr>
-                        <td class="left">
-                            <b>clrDecimalSep</b>
-                            <div class="hidden-sm-up">Type: String</div>
-                            <div class="hidden-sm-up">Default: ","</div>
-                        </td>
-                        <td class="left hidden-xs-down">Javascript String</td>
-                        <td class="hidden-xs-down">","</td>
-                        <td class="left">Defines the decimal separator.</td>
-                    </tr>
-                    <tr>
-                        <td class="left">
-                            <b>clrGroupingSep</b>
-                            <div class="hidden-sm-up">Type: String</div>
-                            <div class="hidden-sm-up">Default: "."</div>
-                        </td>
-                        <td class="left hidden-xs-down">Javascript String</td>
-                        <td class="hidden-xs-down">"."</td>
-                        <td class="left">Defines the grouping separator.</td>
-                    </tr>
-                    <tr>
-                        <td class="left">
-                            <b>clrDecimalPlaces</b>
-                            <div class="hidden-sm-up">Type: Number</div>
-                            <div class="hidden-sm-up">Default: 2</div>
-                        </td>
-                        <td class="left hidden-xs-down">Javascript Number</td>
-                        <td class="hidden-xs-down">2</td>
-                        <td class="left">Defines the number of allowed decimal places.</td>
-                    </tr>
-                    <tr>
-                        <td class="left">
-                            <b>clrNumericValue</b>
-                            <div class="hidden-sm-up">Type: Number</div>
-                            <div class="hidden-sm-up">Default: ""</div>
-                        </td>
-                        <td class="left hidden-xs-down">Javascript Number</td>
-                        <td class="hidden-xs-down">""</td>
-                        <td class="left">Two-way bound parameter for the value of the input component.</td>
-                    </tr>
+                <tr>
+                    <td class="left">
+                        <b>[clrTextAlign]</b>
+                        <div class="hidden-sm-up">Type: String</div>
+                        <div class="hidden-sm-up">Default: "left"</div>
+                    </td>
+                    <td class="left hidden-xs-down">left, right</td>
+                    <td class="hidden-xs-down">"left"</td>
+                    <td class="left">Defines the alignment of the text inside input field.</td>
+                </tr>
+                <tr>
+                    <td class="left">
+                        <b>[clrDecimalSep]</b>
+                        <div class="hidden-sm-up">Type: String</div>
+                        <div class="hidden-sm-up">Default: ","</div>
+                    </td>
+                    <td class="left hidden-xs-down">Javascript String</td>
+                    <td class="hidden-xs-down">","</td>
+                    <td class="left">Defines the decimal separator.</td>
+                </tr>
+                <tr>
+                    <td class="left">
+                        <b>[clrGroupingSep]</b>
+                        <div class="hidden-sm-up">Type: String</div>
+                        <div class="hidden-sm-up">Default: "."</div>
+                    </td>
+                    <td class="left hidden-xs-down">Javascript String</td>
+                    <td class="hidden-xs-down">"."</td>
+                    <td class="left">Defines the grouping separator.</td>
+                </tr>
+                <tr>
+                    <td class="left">
+                        <b>[clrDecimalPlaces]</b>
+                        <div class="hidden-sm-up">Type: Number</div>
+                        <div class="hidden-sm-up">Default: 2</div>
+                    </td>
+                    <td class="left hidden-xs-down">Javascript Number</td>
+                    <td class="hidden-xs-down">2</td>
+                    <td class="left">Defines the number of allowed decimal places.</td>
+                </tr>
+                <tr>
+                    <td class="left">
+                        <b>[(clrNumericValue)]</b>
+                        <div class="hidden-sm-up">Type: Number</div>
+                        <div class="hidden-sm-up">Default: ""</div>
+                    </td>
+                    <td class="left hidden-xs-down">Javascript Number</td>
+                    <td class="hidden-xs-down">""</td>
+                    <td class="left">Two-way bound parameter for the value of the input component.</td>
+                </tr>
+                <tr>
+                    <td class="left">
+                        <b>[clrUnit]</b>
+                        <div class="hidden-sm-up">Type: string</div>
+                        <div class="hidden-sm-up">Default: ""</div>
+                    </td>
+                    <td class="left hidden-xs-down">Javascript String</td>
+                    <td class="hidden-xs-down">""</td>
+                    <td class="left">The unit to be displayed on top of the input field.</td>
+                </tr>
+                <tr>
+                    <td class="left">
+                        <b>[clrUnitPosition]</b>
+                        <div class="hidden-sm-up">Type: string</div>
+                        <div class="hidden-sm-up">Default: "right"</div>
+                    </td>
+                    <td class="left hidden-xs-down">Javascript String</td>
+                    <td class="hidden-xs-down">'left', 'right'</td>
+                    <td class="left">Determines whether the unit is shown on the right or left side of the value.</td>
+                </tr>
                 </tbody>
             </table>
         </div>
 
-        <div id="examples">
-            <clr-numeric clrLabel="Amount" [(clrNumericValue)]="amount"></clr-numeric>
+        <div id="code-examples">
+            <h3 id="examples">Code &amp; Examples</h3>
+            <h4>Vertical Form</h4>
+            <form clrForm clrLayout="vertical" [formGroup]="exampleForm">
+                <clr-input-container>
+                    <label>Price</label>
+                    <input clrInput clrNumeric type="text" [(clrNumericValue)]="price" [clrUnit]="'€'"
+                           [clrUnitPosition]="'left'" formControlName="price"/>
+                    <clr-control-error>Please enter a value between 1.000 and 10.000</clr-control-error>
+                </clr-input-container>
+                <clr-input-container>
+                    <label>Discount</label>
+                    <input clrInput clrNumeric type="text" [(clrNumericValue)]="discount" [clrUnit]="'%'"
+                           [clrTextAlign]="'right'" formControlName="discount"/>
+                    <clr-control-helper>The discount to be applied</clr-control-helper>
+                    <clr-control-error>Please enter a value between 0 and 100</clr-control-error>
+                </clr-input-container>
+            </form>
+            <h4>Horizontal Form</h4>
+            <form clrForm [formGroup]="exampleForm2">
+                <clr-input-container>
+                    <label>Price</label>
+                    <input clrInput clrNumeric type="text" [(clrNumericValue)]="price2" [clrUnit]="'€'"
+                           [clrTextAlign]="'right'" formControlName="price2"/>
+                    <clr-control-error>Please enter a value between 1.000 and 10.000</clr-control-error>
+                </clr-input-container>
+                <clr-input-container>
+                    <label>Discount</label>
+                    <input clrInput clrNumeric type="text" [(clrNumericValue)]="discount2" [clrUnit]="'%'"
+                           [clrTextAlign]="'right'" formControlName="discount2"/>
+                    <clr-control-helper>The discount to be applied</clr-control-helper>
+                    <clr-control-error>Please enter a value between 0 and 100</clr-control-error>
+                </clr-input-container>
+            </form>
             <clr-code-snippet [clrCode]="htmlExample"></clr-code-snippet>
+            <clr-code-snippet [clrCode]="tsExample"></clr-code-snippet>
         </div>
     </article>
 </clr-doc-wrapper>
