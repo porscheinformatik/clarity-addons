@@ -1,4 +1,4 @@
-<div class="row">
+<div class="clr-row">
   <clr-pager class="pager-top"
              *ngIf="clrPagerPosition === 'top' || clrPagerPosition === 'both'"
              [clrPage]="currentPage"
@@ -9,7 +9,7 @@
 <ng-container *ngFor="let item of items" [ngTemplateOutlet]="itemTemplate" [ngTemplateOutletContext]="{item: item}">
   <div *ngIf="!itemTemplate">Item template input is undefined!</div>
 </ng-container>
-<div class="row">
+<div class="clr-row">
   <clr-pager class="pager-bottom"
              *ngIf="clrPagerPosition === 'bottom' || clrPagerPosition === 'both'"
              [clrPage]="currentPage"
