@@ -64,6 +64,6 @@ export class TableSizeService implements OnDestroy {
       newWidth += item.clientWidth;
     });
     newWidth += caret.clientWidth;
-    this.renderer.setStyle(this.tableRef, 'width', newWidth - 1 + 'px');
+    this.renderer.setStyle(this.tableRef, 'width', newWidth + 'px');
   }
 }

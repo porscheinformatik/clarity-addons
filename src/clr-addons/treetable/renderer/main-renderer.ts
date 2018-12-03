@@ -73,6 +73,7 @@ export class TreetableMainRenderer<T = any> implements AfterViewInit, AfterViewC
     this.headers.forEach((header, index) => {
       this.organizer.widths[index] = header.computeWidth();
     });
+    this.organizer.widths[this.organizer.widths.length - 1] -= 2;
 
     this.headers.forEach((header, index) => header.setWidth(this.organizer.widths[index]));
   }

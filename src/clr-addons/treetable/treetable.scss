@@ -8,7 +8,7 @@
     '.treetable-cell'
   );
 
-  $base-cell-indentation: 0.3rem;
+  $base-cell-indentation: 0.5rem;
   $base-caret-indentation: 0.1rem;
   $indentation-increment: 1rem;
 
@@ -71,7 +71,8 @@
         text-align: center;
         position: relative;
         z-index: 999;
-        width: 25px;
+        flex: 0 0 25px;
+        overflow: hidden;
 
         .treetable-expandable-caret-button {
           @include clr-no-styles-button();
@@ -105,6 +106,12 @@
         .treetable-expandable-caret {
           background-color: $clr-thead-bgcolor;
           border-bottom: $clr-table-borderstyle;
+        }
+
+        &.hide-header {
+          visibility: hidden;
+          min-height: 0;
+          height: 0;
         }
       }
 

@@ -18,7 +18,7 @@ import { TableSizeService } from './renderer/table-size.service';
 export class ClrTreetable implements AfterContentInit, OnChanges {
   @Input() clrClickableRows = true;
   empty = true;
-
+  @Input('clrHideHeader') hideHeader = false;
   @ContentChildren(ClrTreetableRow, { descendants: true })
   ttRows: QueryList<ClrTreetableRow>;
 
