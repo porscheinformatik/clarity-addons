@@ -38,6 +38,7 @@ export const APP_ROUTES: Routes = [
   { path: 'notification', component: NotificationDemo },
   { path: 'numericfield', component: NumericFieldDemo },
   { path: 'treetable', component: TreetableDemo },
+  { path: 'combobox', loadChildren: 'src/app/combobox/combobox.demo.module#ComboboxDemoModule' },
 ];
 
 export const ROUTING: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);

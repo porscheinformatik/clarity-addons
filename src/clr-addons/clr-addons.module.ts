@@ -19,6 +19,7 @@ import { ClrBackButtonModule } from './back-button/back-button.module';
 import { ClrNumericFieldModule } from './numericfield/numericfield.module';
 import { ClrTreetableModule } from './treetable/treetable.module';
 import { ClrProgressSpinnerModule } from './progress-spinner/progress-spinner.module';
+import { ClrComboboxModule } from './combobox/combobox.module';
 
 @NgModule({
   exports: [
@@ -35,6 +36,7 @@ import { ClrProgressSpinnerModule } from './progress-spinner/progress-spinner.mo
     ClrNumericFieldModule,
     ClrTreetableModule,
     ClrProgressSpinnerModule,
+    ClrComboboxModule,
   ],
 })
 export class ClrAddonsModule {}

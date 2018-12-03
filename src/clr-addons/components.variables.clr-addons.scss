@@ -1,3 +1,5 @@
 $clr-border-color: $clr-light-midtone-gray !default;
 $clr-card-default-border-color: rgba(215, 215, 215, 1) !default;
 $clr-card-active-border-color: rgba(0, 148, 210, 1) !default;
+
+@import './combobox/variables.combobox';
