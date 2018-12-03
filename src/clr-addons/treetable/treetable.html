@@ -6,7 +6,7 @@
 
 <div class="treetable">
   <div class="treetable-grid" role="grid">
-    <div class="treetable-header" role="rowgroup">
+    <div class="treetable-header" role="rowgroup" [hidden]="hideHeader">
       <div class="treetable-row-scrollable" role="row">
         <div *ngIf="ttColumns.length > 0" class="treetable-expandable-caret"></div>
         <ng-content select="clr-tt-column"></ng-content>
