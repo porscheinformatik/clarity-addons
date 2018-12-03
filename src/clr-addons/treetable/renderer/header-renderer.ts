@@ -27,7 +27,7 @@ export class TreetableHeaderRenderer implements OnDestroy {
   private clearWidth() {
     // remove the width only if we set it.
     if (this.widthSet) {
-      this.renderer.setStyle(this.el.nativeElement, 'width', null);
+      this.renderer.setStyle(this.el.nativeElement, 'flex', null);
     }
   }
 
@@ -37,7 +37,7 @@ export class TreetableHeaderRenderer implements OnDestroy {
 
   public setWidth(width: number) {
     if (this.el.nativeElement.className.indexOf('clr-col') < 0) {
-      this.renderer.setStyle(this.el.nativeElement, 'width', width + 'px');
+      this.renderer.setStyle(this.el.nativeElement, 'flex', '0 0 ' + width + 'px');
       this.widthSet = true;
     }
   }
