@@ -1,3 +1,20 @@
+@mixin row-indentation($level) {
+  $base-cell-indentation: 0.5rem;
+  $base-caret-indentation: 0.1rem;
+  $indentation-increment: 1rem;
+
+  .treetable-cell:first-of-type {
+    padding-left: $base-cell-indentation + $level * $indentation-increment;
+  }
+  .treetable-expandable-caret {
+    @if ($level > 0) {
+      left: $level * $indentation-increment;
+    } @else {
+      left: $base-caret-indentation;
+    }
+  }
+}
+
 @include exports('treetable.clr-addons') {
   @include basic-table(
     '.treetable',
@@ -7,10 +24,6 @@
     '.treetable-column',
     '.treetable-cell'
   );
-
-  $base-cell-indentation: 0.5rem;
-  $base-caret-indentation: 0.1rem;
-  $indentation-increment: 1rem;
 
   .treetable-host {
     display: flex;
@@ -56,6 +69,10 @@
           min-width: 4rem;
           flex: 1 1 0;
           vertical-align: top;
+
+          &:last-of-type {
+            padding-right: 1rem;
+          }
         }
 
         .treetable-cell {
@@ -63,6 +80,10 @@
           text-align: left;
           min-width: 4rem;
           border-color: $clr-table-border-color;
+
+          &:last-of-type {
+            padding-right: 1rem;
+          }
         }
       }
 
@@ -137,60 +158,25 @@
             border-top: $clr-table-borderstyle;
           }
 
-          .treetable-cell:first-of-type {
-            padding-left: $base-cell-indentation;
-          }
-          .treetable-expandable-caret {
-            left: $base-caret-indentation;
-          }
+          @include row-indentation(0);
 
           .treetable-row-wrapper {
-            .treetable-cell:first-of-type {
-              padding-left: $base-cell-indentation + $indentation-increment;
-            }
-            .treetable-expandable-caret {
-              left: $indentation-increment;
-            }
+            @include row-indentation(1);
 
             .treetable-row-wrapper {
-              .treetable-cell:first-of-type {
-                padding-left: $base-cell-indentation + 2 * $indentation-increment;
-              }
-              .treetable-expandable-caret {
-                left: 2 * $indentation-increment;
-              }
+              @include row-indentation(2);
 
               .treetable-row-wrapper {
-                .treetable-cell:first-of-type {
-                  padding-left: $base-cell-indentation + 3 * $indentation-increment;
-                }
-                .treetable-expandable-caret {
-                  left: 3 * $indentation-increment;
-                }
+                @include row-indentation(3);
 
                 .treetable-row-wrapper {
-                  .treetable-cell:first-of-type {
-                    padding-left: $base-cell-indentation + 4 * $indentation-increment;
-                  }
-                  .treetable-expandable-caret {
-                    left: 4 * $indentation-increment;
-                  }
+                  @include row-indentation(4);
 
                   .treetable-row-wrapper {
-                    .treetable-cell:first-of-type {
-                      padding-left: $base-cell-indentation + 5 * $indentation-increment;
-                    }
-                    .treetable-expandable-caret {
-                      left: 5 * $indentation-increment;
-                    }
+                    @include row-indentation(5);
 
                     .treetable-row-wrapper {
-                      .treetable-cell:first-of-type {
-                        padding-left: $base-cell-indentation + 6 * $indentation-increment;
-                      }
-                      .treetable-expandable-caret {
-                        left: 6 * $indentation-increment;
-                      }
+                      @include row-indentation(6);
                     }
                   }
                 }
