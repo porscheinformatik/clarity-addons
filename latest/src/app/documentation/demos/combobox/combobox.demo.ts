@@ -5,6 +5,7 @@
  */
 import { Component } from "@angular/core";
 import { ClarityDocComponent } from "../clarity-doc";
+import { ClrOption } from "@porscheinformatik/clr-addons";
 
 const USER_NOT_ALLOWED = `
 <clr-combobox class="clr-col-12" (clrSelectedOption)="selectedOption = $event" (clrEnteredValue)="enteredValue = $event">
@@ -42,6 +43,11 @@ const USER_ALLOWED = `
 export class ComboboxDemo extends ClarityDocComponent {
     userNotAllowed = USER_NOT_ALLOWED;
     userAllowed = USER_ALLOWED;
+
+    selectedOption: ClrOption<string>;
+    selectedOptionUser: ClrOption<string>;
+    enteredValue: string;
+    enteredValueUser: string;
 
     constructor() {
         super("combobox");
