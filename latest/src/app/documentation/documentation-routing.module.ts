@@ -3,13 +3,12 @@ import { RouterModule, Routes } from "@angular/router";
 import { environment } from "../../environments/environment";
 
 import { DocumentationComponent } from "./documentation.component";
-import { ComponentStatusComponent } from "./component-status/component-status.component";
 import { InternationalizationComponent } from "./internationalization/internationalization.component";
 
 const documentationRoutes: Routes = [
     {
         path: "documentation",
-        redirectTo: `/documentation/${environment.version}`,
+        redirectTo: `/documentation/${environment.version}/get-started`,
         pathMatch: "full"
     },
     {
@@ -21,16 +20,13 @@ const documentationRoutes: Routes = [
         },
         children: [
             {
-                path: "get-started",
-                loadChildren: "app/documentation/get-started/get-started.module#GetStartedModule",
+                path: "",
+                redirectTo: "get-started",
+                pathMatch: "full"
             },
             {
-                path: "",
-                component: ComponentStatusComponent,
-                data: {
-                    bodyClass: "page-documentation",
-                    browserTitle: "Documentation"
-                }
+                path: "get-started",
+                loadChildren: "app/documentation/get-started/get-started.module#GetStartedModule",
             },
             {
                 path: "internationalization",

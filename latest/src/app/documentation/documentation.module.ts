@@ -8,8 +8,6 @@ import { UtilsModule } from "../utils/utils.module";
 import { DocumentationRoutingModule } from "./documentation-routing.module";
 import { DocumentationComponent } from "./documentation.component";
 import { DocumentationNavLinksComponent } from "./documentation-nav-links.component";
-import { ComponentStatusComponent } from "./component-status/component-status.component";
-import { StatusDotComponent } from "./component-status/status-dot.component";
 import { InternationalizationComponent } from "./internationalization/internationalization.component";
 
 @NgModule({
@@ -22,11 +20,9 @@ import { InternationalizationComponent } from "./internationalization/internatio
         DocumentationRoutingModule
     ],
     declarations: [
-        ComponentStatusComponent,
         DocumentationComponent,
         DocumentationNavLinksComponent,
-        InternationalizationComponent,
-        StatusDotComponent,
+        InternationalizationComponent
     ],
     providers: [
         DatePipe,
