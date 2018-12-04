@@ -1,0 +1,110 @@
+<clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
+    <article>
+        <h5 class="component-summary">The Combobox is used to select between multiple predefined options or entering an own value (optional).
+            Additionally users can search in the predefined options.
+        </h5>
+
+        <div id="design-guidelines">
+            <h3>Usage</h3>
+            <p>
+                Use the Combobox whenever you want to allow the user to search in a set of predefined options and select one.
+                The entered text will be searched anywhere in the options (start, middle, end) and highlighted.
+                The user may also navigate through the options with the keyboard (arrow keys to navigate and enter to select).
+            </p>
+            <p>
+                Optionally users may also enter their own values, which aren't available in the predefined options.
+            </p>
+
+            <h3>Summary of Options</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="left">Input/Output</th>
+                        <th class="left hidden-xs-down">Values</th>
+                        <th class="hidden-xs-down">Default</th>
+                        <th class="left">Effect</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="left">
+                            <b>[clrControlClasses]</b>
+                            <div class="hidden-sm-up">Type: String</div>
+                            <div class="hidden-sm-up">Default: undefined</div>
+                        </td>
+                        <td class="left hidden-xs-down">String</td>
+                        <td class="hidden-xs-down">undefined</td>
+                        <td class="left">CSS classes applied to the control</td>
+                    </tr>
+                    <tr>
+                        <td class="left">
+                            <b>[clrAllowUserEntry]</b>
+                            <div class="hidden-sm-up">Type: boolean</div>
+                            <div class="hidden-sm-up">Default: false</div>
+                        </td>
+                        <td class="left hidden-xs-down">true, false</td>
+                        <td class="hidden-xs-down">false</td>
+                        <td class="left">Defines whether user defined values (not predefined) are allowed</td>
+                    </tr>
+                    <tr>
+                        <td class="left">
+                            <b>(clrSelectedOption)</b>
+                            <div class="hidden-sm-up">Type: ClrOption</div>
+                            <div class="hidden-sm-up">Default: undefined</div>
+                        </td>
+                        <td class="left hidden-xs-down">ClrOption</td>
+                        <td class="hidden-xs-down">undefined</td>
+                        <td class="left">Event which returns the selected predefined option</td>
+                    </tr>
+                    <tr>
+                        <td class="left">
+                            <b>(clrEnteredValue)</b>
+                            <div class="hidden-sm-up">Type: String</div>
+                            <div class="hidden-sm-up">Default: undefined</div>
+                        </td>
+                        <td class="left hidden-xs-down">Javascript String</td>
+                        <td class="hidden-xs-down">undefined</td>
+                        <td class="left">Event which returns the user entered value (only emit when user entries are allowed)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="code-examples">
+            <h3 id="examples">Code &amp; Examples</h3>
+            <h4>Combobox with no user entries allowed</h4>
+            <form clrForm>
+                <clr-combobox class="clr-col-12" (clrSelectedOption)="selectedOption = $event" (clrEnteredValue)="enteredValue = $event" [clrAllowUserEntry]="false">
+                    <label>Force selection</label>
+                    <clr-options>
+                        <clr-option [clrValue]="'Option 1'">Option 1</clr-option>
+                        <clr-option [clrValue]="'Option 2'">Option 2</clr-option>
+                        <clr-option [clrValue]="'Option 3'">Option 3</clr-option>
+                        <div class="clr-no-results">No search results found</div>
+                    </clr-options>
+                    <clr-control-error>Select a value</clr-control-error>
+                </clr-combobox>
+                <br><br>Selected option: {{selectedOption?.value}}
+                <br>Manually entered value (will not be emitted): {{enteredValue}}
+                <clr-code-snippet [clrCode]="userNotAllowed"></clr-code-snippet>
+            </form>
+
+            <h4>Combobox with user entries allowed</h4>
+            <form clrForm>
+                <clr-combobox class="clr-col-12" (clrSelectedOption)="selectedOptionUser = $event" (clrEnteredValue)="enteredValueUser = $event" [clrAllowUserEntry]="true">
+                    <label>Allow user entry</label>
+                    <clr-options>
+                        <clr-option [clrValue]="'Option 1'">Option 1</clr-option>
+                        <clr-option [clrValue]="'Option 2'">Option 2</clr-option>
+                        <clr-option [clrValue]="'Option 3'">Option 3</clr-option>
+                        <div class="clr-no-results">No search results found</div>
+                    </clr-options>
+                </clr-combobox>
+                <br><br>Selected option: {{selectedOptionUser?.value}}
+                <br>Manually entered value: {{enteredValueUser}}
+                <clr-code-snippet [clrCode]="userAllowed"></clr-code-snippet>
+            </form>
+        </div>
+    </article>
+</clr-doc-wrapper>
+    

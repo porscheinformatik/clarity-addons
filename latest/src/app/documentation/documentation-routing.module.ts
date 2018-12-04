@@ -171,6 +171,13 @@ const documentationRoutes: Routes = [
                 data: {
                     browserTitle: "Forms"
                 }
+            },
+            {
+                path: "combobox",
+                loadChildren: "app/documentation/demos/combobox/combobox.demo.module#ComboboxDemoModule",
+                data: {
+                    browserTitle: "Combobox"
+                }
             }
         ]
     }

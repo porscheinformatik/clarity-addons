@@ -55,6 +55,18 @@
             "newLayout": true
         },
         {
+            "url": "combobox",
+            "text": "Combobox",
+            "type": "component",
+            "ux": 20,
+            "ui": 20,
+            "core": 20,
+            "ng": 20,
+            "dox": 20,
+            "comments": "",
+            "newLayout": true
+        },
+        {
             "url": "content-panel-layout",
             "text": "Content Panel",
             "type": "component",
