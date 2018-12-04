@@ -5,6 +5,12 @@
     display: inline-block;
   }
 
+  .clr-combobox-input-container {
+    //Delete when merging to clarity
+    display: flex;
+    align-items: flex-start;
+  }
+
   .clr-combobox-input {
     //Dimensions
     padding: 0 $clr-ng-select-trigger-right-padding 0 $clr-ng-select-trigger-left-padding;
