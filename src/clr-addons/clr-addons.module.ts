@@ -16,7 +16,7 @@ import { ClrBreadcrumbModule } from './breadcrumb/breadcrumb.module';
 import { ClrNotificationModule } from './notification/notification.module';
 import { ClrFlowBarModule } from './flow-bar/flow-bar.module';
 import { ClrBackButtonModule } from './back-button/back-button.module';
-import { ClrNumericFieldModule } from './numericfield/numericfield.module';
+import { ClrNumericFieldModule } from './numericfield/numeric-field.module';
 import { ClrTreetableModule } from './treetable/treetable.module';
 import { ClrProgressSpinnerModule } from './progress-spinner/progress-spinner.module';
 import { ClrComboboxModule } from './combobox/combobox.module';

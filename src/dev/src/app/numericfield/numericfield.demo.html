@@ -54,8 +54,25 @@
                [clrUnitPosition]="'left'"/>
       </clr-input-container>
     </form>
-
     <h3>Value</h3>
     <div>{{input}}</div>
+
+    <button type="button" class="btn btn-primary" (click)="modalOpen = true">
+      Open Modal
+    </button>
+    <clr-modal [(clrModalOpen)]="modalOpen">
+      <h3 class="modal-title">Vertical Form</h3>
+      <div class="modal-body">
+        <form clrForm [clrLayout]="'vertical'" [formGroup]="exampleForm">
+          <clr-input-container>
+            <label>Amount</label>
+            <input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'€'"
+                   [clrTextAlign]="'right'"
+                   formControlName="sample"/>
+            <clr-control-error>Please enter a value between 0 and 100</clr-control-error>
+          </clr-input-container>
+        </form>
+      </div>
+    </clr-modal>
   </div>
 </div>
