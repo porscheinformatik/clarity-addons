@@ -33,7 +33,7 @@ export class ClrNumericFieldValidators {
    *
    */
   static min(min: number, groupingSeparator: string, decimalSeparator: string): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
+    const validatorFn: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
       if (isEmptyInputValue(control.value) || isEmptyInputValue(min)) {
         return null; // don't validate empty values to allow optional controls
       }
@@ -42,6 +42,7 @@ export class ClrNumericFieldValidators {
       // minimum, per the HTML forms spec: https://www.w3.org/TR/html5/forms.html#attr-input-min
       return !isNaN(value) && value < min ? { min: { min: min, actual: value } } : null;
     };
+    return validatorFn;
   }
 
   /**
@@ -64,7 +65,7 @@ export class ClrNumericFieldValidators {
    *
    */
   static max(max: number, groupingSeparator: string, decimalSeparator: string): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
+    const validatorFn: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
       if (isEmptyInputValue(control.value) || isEmptyInputValue(max)) {
         return null; // don't validate empty values to allow optional controls
       }
@@ -73,6 +74,7 @@ export class ClrNumericFieldValidators {
       // minimum, per the HTML forms spec: https://www.w3.org/TR/html5/forms.html#attr-input-min
       return !isNaN(value) && value > max ? { max: { max: max, actual: value } } : null;
     };
+    return validatorFn;
   }
 
   private static parseInputString(value: string, groupingSeparator: string, decimalSeparator: string): number {
