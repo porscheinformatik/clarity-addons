@@ -6,3 +6,4 @@
 
 export * from './numeric-field';
 export * from './numeric-field.module';
+export * from './numeric-field-validators';

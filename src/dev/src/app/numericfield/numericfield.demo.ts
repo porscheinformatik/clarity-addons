@@ -5,7 +5,7 @@
  */
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ClrNumericFieldValidators } from '../../../../clr-addons/numericfield/numeric-field-validators';
+import { ClrNumericFieldValidators } from '@porscheinformatik/clr-addons';
 
 @Component({
   selector: 'clr-numericfield-demo',
