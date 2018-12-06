@@ -23,7 +23,7 @@ export class ClrNumericField implements OnInit, AfterViewChecked {
   @Input('clrDecimalPlaces') decimalPlaces = 2;
   @Input('clrDecimalSep') decimalSeparator = ',';
   @Input('clrGroupingSep') groupingSeparator = '.';
-  @Input('clrNumericValue') numericValue = '';
+  @Input('clrNumericValue') numericValue: number;
   @Input('clrUnit') unit: string = null;
   @Input('clrUnitPosition') unitPosition: string = 'right';
   @Output('clrNumericValueChange') numericValueChanged = new EventEmitter<number>();
@@ -36,13 +36,13 @@ export class ClrNumericField implements OnInit, AfterViewChecked {
   constructor(private renderer: Renderer2, private inputEl: ElementRef) {}
 
   ngOnInit() {
-    this.displayValue = this.numericValue || '';
-    this.inputEl.nativeElement.value = this.displayValue;
-
     /* needs to be parsed as number explicitly as it comes as string from user input */
     this.decimalPlaces = Number.parseInt(this.decimalPlaces.toString(), 10);
     this.allowedKeys.add(NEGATIVE);
     this.allowedKeys.add(this.decimalSeparator);
+
+    // Format the initial value
+    this.handleInitialInput();
 
     this.renderer.listen(this.inputEl.nativeElement, 'change', event => {
       this.formatInput(event.target);
@@ -105,6 +105,21 @@ export class ClrNumericField implements OnInit, AfterViewChecked {
     this.injectUnitSymbol();
   }
 
+  handleInitialInput() {
+    this.displayValue = !!this.numericValue ? this.numericValue.toString() : '';
+    this.inputEl.nativeElement.value = this.displayValue;
+    if (!!this.numericValue && this.numericValue % 1 !== 0) {
+      const formattedNumber: string = this.numericValue
+        .toString()
+        .replace(new RegExp('[.]', 'g'), this.decimalSeparator);
+      // Call in set timeout to avoid Expression has changed after it has been checked error.
+      // Sometimes the value changes because we cut off decimal places
+      setTimeout(() => {
+        this.updateInput(this.formatNumber(formattedNumber));
+      }, 1);
+    }
+  }
+
   formatInput(element: any) {
     const value = element.value;
     const cursorPos = element.selectionStart;
@@ -132,7 +147,6 @@ export class ClrNumericField implements OnInit, AfterViewChecked {
 
   strip(value: string): string {
     let result: string = '';
-
     let indexDecimalSep = -1;
     let j = -1;
     for (const char of value) {
@@ -166,7 +180,7 @@ export class ClrNumericField implements OnInit, AfterViewChecked {
   updateInput(value: string) {
     this.inputEl.nativeElement.value = value;
     this.displayValue = value;
-    const numValue: number = parseFloat(this.strip(value).replace(',', '.'));
+    const numValue: number = parseFloat(this.strip(value).replace(this.decimalSeparator, '.'));
     if (!isNaN(numValue)) {
       this.numericValueChanged.emit(numValue);
     } else {
