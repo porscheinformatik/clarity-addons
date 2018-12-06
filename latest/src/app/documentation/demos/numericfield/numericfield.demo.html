@@ -11,6 +11,11 @@
             <li>Decimal separator and grouping separator should be set according to locale.</li>
         </ul>
 
+        <h3>Use when</h3>
+        <ul class="list">
+            <li>One of the following inputs is required from the user:</li>
+        </ul>
+
         <form clrForm clrLayout="horizontal" [formGroup]="usageForm">
             <clr-input-container>
                 <label>Money Amount</label>
@@ -277,7 +282,8 @@
                 <clr-input-container>
                     <label>Percentage</label>
                     <input clrInput clrNumeric type="text" [(clrNumericValue)]="percentage3" clrUnit="%"
-                           clrUnitPosition="left" clrTextAlign="left" formControlName="percentage3" [clrDecimalPlaces]="0"/>
+                           clrUnitPosition="left" clrTextAlign="left" formControlName="percentage3"
+                           [clrDecimalPlaces]="0"/>
                     <clr-control-error>Please enter a value between 0 and 100</clr-control-error>
                 </clr-input-container>
             </form>
