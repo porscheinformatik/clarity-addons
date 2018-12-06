@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Directive, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2 } from '@angular/core';
+import { AfterViewChecked, Directive, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2 } from '@angular/core';
 
 const NEGATIVE = '-';
 const BACK_KEYCODE = 8;
@@ -18,8 +18,8 @@ const NUMBERS = new Set(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']);
     '[class.text-right]': 'textAlign === "right"',
   },
 })
-export class ClrNumericField implements OnInit {
-  @Input('clrTextAlign') textAlign = 'left';
+export class ClrNumericField implements OnInit, AfterViewChecked {
+  @Input('clrTextAlign') textAlign = 'right';
   @Input('clrDecimalPlaces') decimalPlaces = 2;
   @Input('clrDecimalSep') decimalSeparator = ',';
   @Input('clrGroupingSep') groupingSeparator = '.';
@@ -30,13 +30,12 @@ export class ClrNumericField implements OnInit {
 
   displayValue: string;
 
+  private unitSpan: HTMLSpanElement;
   private allowedKeys = new Set(NUMBERS);
 
   constructor(private renderer: Renderer2, private inputEl: ElementRef) {}
 
   ngOnInit() {
-    this.injectUnitSymbol();
-
     this.displayValue = this.numericValue || '';
     this.inputEl.nativeElement.value = this.displayValue;
 
@@ -100,6 +99,10 @@ export class ClrNumericField implements OnInit {
         return false;
       }
     });
+  }
+
+  ngAfterViewChecked() {
+    this.injectUnitSymbol();
   }
 
   formatInput(element: any) {
@@ -173,12 +176,13 @@ export class ClrNumericField implements OnInit {
   }
 
   private injectUnitSymbol(): void {
-    if (!!this.unit) {
+    // Need to inject the unit symbol until the input element width is set to its actual value, otherwise the icon wont show in the correct position
+    if (!!this.unit && (!this.unitSpan || this.inputEl.nativeElement.style.width === '0px')) {
       // Create the span with unit symbol and apply necessary styles
-      const unitSpan = this.renderer.createElement('span');
+      this.unitSpan = this.renderer.createElement('span');
       const unitSymbol = this.renderer.createText(this.unit);
-      this.renderer.appendChild(unitSpan, unitSymbol);
-      this.renderer.addClass(unitSpan, 'unit');
+      this.renderer.appendChild(this.unitSpan, unitSymbol);
+      this.renderer.addClass(this.unitSpan, 'unit');
 
       // Get the input wrapper and apply necessary styles
       const inputWrapper = this.inputEl.nativeElement.parentNode;
@@ -191,15 +195,15 @@ export class ClrNumericField implements OnInit {
       this.renderer.setStyle(inputWrapper, 'width', inputWidth + 'px');
 
       // Add the span to the DOM
-      this.renderer.appendChild(inputWrapper, unitSpan);
+      this.renderer.appendChild(inputWrapper, this.unitSpan);
 
       // Add padding to the input element, depending on the width of the unit symbol + 12px
-      const paddingOnInput = unitSpan.offsetWidth + 12;
+      const paddingOnInput = this.unitSpan.offsetWidth + 12;
       if (this.unitPosition === 'left') {
-        this.renderer.addClass(unitSpan, 'unit-left');
+        this.renderer.addClass(this.unitSpan, 'unit-left');
         this.renderer.setStyle(this.inputEl.nativeElement, 'padding-left', paddingOnInput + 'px');
       } else {
-        this.renderer.addClass(unitSpan, 'unit-right');
+        this.renderer.addClass(this.unitSpan, 'unit-right');
         this.renderer.setStyle(this.inputEl.nativeElement, 'padding-right', paddingOnInput + 'px');
       }
     }

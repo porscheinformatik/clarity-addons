@@ -10,9 +10,9 @@ import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClarityModule } from '@clr/angular';
-import { ClrNumericField } from './numericfield';
+import { ClrNumericField } from './numeric-field';
 
-import { ClrNumericFieldModule } from './numericfield.module';
+import { ClrNumericFieldModule } from './numeric-field.module';
 
 @Component({
   template: `

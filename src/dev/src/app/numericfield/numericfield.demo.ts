@@ -5,6 +5,7 @@
  */
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ClrNumericFieldValidators } from '@porscheinformatik/clr-addons';
 
 @Component({
   selector: 'clr-numericfield-demo',
@@ -12,10 +13,16 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class NumericFieldDemo {
   input: number;
+  amount: string;
+  modalOpen = false;
 
   exampleForm = new FormGroup({
-    sample: new FormControl(this.input, {
-      validators: [Validators.min(0), Validators.max(100), Validators.required],
+    sample: new FormControl(this.amount, {
+      validators: [
+        Validators.required,
+        ClrNumericFieldValidators.min(0, '.', ','),
+        ClrNumericFieldValidators.max(100, '.', ','),
+      ],
       updateOn: 'blur',
     }),
   });

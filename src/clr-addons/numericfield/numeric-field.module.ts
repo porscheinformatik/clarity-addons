@@ -9,7 +9,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ClarityModule, ClrFormsModule } from '@clr/angular';
 
-import { ClrNumericField } from './numericfield';
+import { ClrNumericField } from './numeric-field';
 
 @NgModule({
   imports: [CommonModule, ClarityModule, ClrFormsModule, FormsModule],

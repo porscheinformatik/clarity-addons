@@ -4,5 +4,6 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-export * from './numericfield';
-export * from './numericfield.module';
+export * from './numeric-field';
+export * from './numeric-field.module';
+export * from './numeric-field-validators';
