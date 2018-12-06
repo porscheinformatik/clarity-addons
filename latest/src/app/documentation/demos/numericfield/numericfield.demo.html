@@ -1,18 +1,157 @@
 <clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
     <article>
-        <h5 class="component-summary">The NumericField directive is used to aid the user when entering a numeric value.
-            Invalid characters are ignored during input. Optionally the numeric field can also display a unit.</h5>
+        <h5 class="component-summary">The Numeric Field is used to enter numeric values of a certain type.</h5>
 
-        <p>
-            Because the numeric field is a directive, it can be applied on any <code class="clr-code">input</code>
-            element.
-            This makes the numeric field compatible with the existing <code class="clr-code">ClrInputContainer</code>
-            and forms including validation in general. See code examples below which include <code class="clr-code">clr-control-error</code>
-            and <code class="clr-code">clr-control-helper</code> elements.
-        </p>
+        <h3 id="usage">Usage</h3>
 
-        <div id="design-guidelines">
-            <h2>Angular Component</h2>
+        <ul>
+            <li>Invalid characters are ignored during input.</li>
+            <li>Amount of decimal places and-, max- values should be defined according to the input type and usecase.
+            </li>
+            <li>Decimal separator and grouping separator should be set according to locale.</li>
+        </ul>
+
+        <h3>Use when</h3>
+        <ul class="list">
+            <li>One of the following inputs is required from the user:</li>
+        </ul>
+
+        <form clrForm clrLayout="horizontal" [formGroup]="usageForm">
+            <clr-input-container>
+                <label>Money Amount</label>
+                <input clrInput clrNumeric type="text" [(clrNumericValue)]="money" clrUnit="€" formControlName="money"/>
+                <clr-control-error>Please enter a value greater than 0</clr-control-error>
+            </clr-input-container>
+            <clr-input-container>
+                <label>Weight</label>
+                <input clrInput clrNumeric type="text" [(clrNumericValue)]="weight" clrUnit="kg"
+                       formControlName="weight"/>
+                <clr-control-error>Please enter a value greater than 0</clr-control-error>
+            </clr-input-container>
+            <clr-input-container>
+                <label>Emission</label>
+                <input clrInput clrNumeric type="text" [(clrNumericValue)]="emission" clrUnit="g/km"
+                       [clrDecimalPlaces]="0"
+                       formControlName="emission"/>
+                <clr-control-error>Please enter a value greater than 0</clr-control-error>
+            </clr-input-container>
+            <clr-input-container>
+                <label>Kilometer Reading</label>
+                <input clrInput clrNumeric type="text" [(clrNumericValue)]="kilometres" clrUnit="km"
+                       [clrDecimalPlaces]="0"
+                       formControlName="kilometres"/>
+                <clr-control-error>Please enter a value greater than 0</clr-control-error>
+            </clr-input-container>
+            <clr-input-container>
+                <label>Cubic Capacity</label>
+                <input clrInput clrNumeric type="text" [(clrNumericValue)]="cubic" clrUnit="cc" [clrDecimalPlaces]="0"
+                       formControlName="cubic"/>
+                <clr-control-error>Please enter a value greater than 0</clr-control-error>
+            </clr-input-container>
+            <clr-input-container>
+                <label>Millimeter</label>
+                <input clrInput clrNumeric type="text" [(clrNumericValue)]="millimetres" clrUnit="mm"
+                       [clrDecimalPlaces]="0"
+                       formControlName="millimetres"/>
+                <clr-control-error>Please enter a value greater than 0</clr-control-error>
+            </clr-input-container>
+            <clr-input-container>
+                <label>Kilowatt</label>
+                <input clrInput clrNumeric type="text" [(clrNumericValue)]="kilowatt" clrUnit="kW"
+                       [clrDecimalPlaces]="0"
+                       formControlName="kilowatt"/>
+                <clr-control-error>Please enter a value greater than 0</clr-control-error>
+            </clr-input-container>
+            <clr-input-container>
+                <label>Timeunit</label>
+                <input clrInput clrNumeric type="text" [(clrNumericValue)]="timeunit" clrUnit="TU"
+                       formControlName="timeunit"/>
+                <clr-control-error>Please enter a value greater than 0</clr-control-error>
+            </clr-input-container>
+            <clr-input-container>
+                <label>Horsepower</label>
+                <input clrInput clrNumeric type="text" [(clrNumericValue)]="horsepower" clrUnit="hp"
+                       [clrDecimalPlaces]="0"
+                       formControlName="horsepower"/>
+                <clr-control-error>Please enter a value greater than 0</clr-control-error>
+            </clr-input-container>
+            <clr-input-container>
+                <label>Percentage</label>
+                <input clrInput clrNumeric type="text" [(clrNumericValue)]="percentage" clrUnit="%"
+                       [clrDecimalPlaces]="0"
+                       formControlName="percentage"/>
+                <clr-control-error>Please enter a value between 0 and 100.</clr-control-error>
+            </clr-input-container>
+        </form>
+
+        <div class="clr-row mt-3">
+            <div class="clr-col-md-12 clr-col-lg-6">
+                <div class="clrweb-DoxMedia is-do-block">
+                    <div class="clrweb-DoxMedia-block">
+                        <form clrForm clrLayout="horizontal" [formGroup]="doForm">
+                            <clr-input-container>
+                                <label class="clr-col-4">Price (gross)</label>
+                                <input class="clr-col-8" clrInput clrNumeric type="text" [(clrNumericValue)]="doMoney1"
+                                       clrUnit="€" formControlName="doMoney1"/>
+                            </clr-input-container>
+                            <clr-input-container>
+                                <label class="clr-col-4">Price (net)</label>
+                                <input class="clr-col-8" clrInput clrNumeric type="text" [(clrNumericValue)]="doMoney2"
+                                       clrUnit="€" formControlName="doMoney2"/>
+                            </clr-input-container>
+                        </form>
+                    </div>
+                    <div class="clrweb-DoxMedia-text">
+                        <h6 class="clrweb-DoxMedia-do-dont">Do</h6>
+                        <p>
+                            Use the numeric Field consistently for the listed input types.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-6">
+                <div class="clrweb-DoxMedia is-dont-block">
+                    <div class="clrweb-DoxMedia-block">
+                        <form clrForm clrLayout="horizontal" [formGroup]="dontForm">
+                            <clr-input-container>
+                                <label class="clr-col-4">Price (gross)</label>
+                                <input class="clr-col-8" clrInput type="text" style="width: 173px;"
+                                       formControlName="dontMoney1"/>
+                            </clr-input-container>
+                            <clr-input-container>
+                                <label class="clr-col-4">Price (net)</label>
+                                <input class="clr-col-8" clrInput clrNumeric type="text"
+                                       [(clrNumericValue)]="dontMoney2"
+                                       clrUnit="€" formControlName="dontMoney2"/>
+                            </clr-input-container>
+                        </form>
+                    </div>
+                    <div class="clrweb-DoxMedia-text">
+                        <h6 class="clrweb-DoxMedia-do-dont">Don't</h6>
+                        <p>
+                            Don't use normal input and numeric fields inconsistently.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="code-examples">
+            <h3 id="examples">Code &amp; Examples</h3>
+
+            <p>
+                Because the numeric field is a directive, it can be applied on any <code class="clr-code">input</code>
+                element. This makes the numeric field compatible with the existing <code class="clr-code">ClrInputContainer</code>
+                and forms. See code examples below which include <code class="clr-code">clr-control-error</code>
+                and <code class="clr-code">clr-control-helper</code> elements.
+            </p>
+            <p>
+                The numeric field requires you to use custom validators, namely <code class="clr-code">ClrNumericFieldValidators</code>
+                to validate min and max values.
+            </p>
+
+            <h2>Angular Directive</h2>
             <h3>Summary of Options</h3>
             <table class="table">
                 <thead>
@@ -28,10 +167,10 @@
                     <td class="left">
                         <b>[clrTextAlign]</b>
                         <div class="hidden-sm-up">Type: String</div>
-                        <div class="hidden-sm-up">Default: "left"</div>
+                        <div class="hidden-sm-up">Default: "right"</div>
                     </td>
                     <td class="left hidden-xs-down">left, right</td>
-                    <td class="hidden-xs-down">"left"</td>
+                    <td class="hidden-xs-down">"right"</td>
                     <td class="left">Defines the alignment of the text inside input field.</td>
                 </tr>
                 <tr>
@@ -90,50 +229,65 @@
                         <div class="hidden-sm-up">Type: string</div>
                         <div class="hidden-sm-up">Default: "right"</div>
                     </td>
-                    <td class="left hidden-xs-down">Javascript String</td>
-                    <td class="hidden-xs-down">'left', 'right'</td>
-                    <td class="left">Determines whether the unit is shown on the right or left side of the value.</td>
+                    <td class="left hidden-xs-down">"left", "right"</td>
+                    <td class="hidden-xs-down">"right"</td>
+                    <td class="left">Determines whether the unit is shown on the right or left side of the value.
+                    </td>
                 </tr>
                 </tbody>
             </table>
-        </div>
-
-        <div id="code-examples">
-            <h3 id="examples">Code &amp; Examples</h3>
             <h4>Vertical Form</h4>
+            <p>In the following section you can find some examples with validation.</p>
             <form clrForm clrLayout="vertical" [formGroup]="exampleForm">
                 <clr-input-container>
-                    <label>Price</label>
-                    <input clrInput clrNumeric type="text" [(clrNumericValue)]="price" [clrUnit]="'€'"
-                           [clrUnitPosition]="'left'" formControlName="price"/>
-                    <clr-control-error>Please enter a value between 1.000 and 10.000</clr-control-error>
+                    <label>Money</label>
+                    <input clrInput clrNumeric type="text" [(clrNumericValue)]="money1" clrUnit="€"
+                           formControlName="money1"/>
+                    <clr-control-error>Please enter a value between 0 and 10.000</clr-control-error>
                 </clr-input-container>
                 <clr-input-container>
-                    <label>Discount</label>
-                    <input clrInput clrNumeric type="text" [(clrNumericValue)]="discount" [clrUnit]="'%'"
-                           [clrTextAlign]="'right'" formControlName="discount"/>
-                    <clr-control-helper>The discount to be applied</clr-control-helper>
+                    <label>Percentage</label>
+                    <input clrInput clrNumeric type="text" [(clrNumericValue)]="percentage1" clrUnit="%"
+                           formControlName="percentage1" [clrDecimalPlaces]="0"/>
                     <clr-control-error>Please enter a value between 0 and 100</clr-control-error>
                 </clr-input-container>
             </form>
             <h4>Horizontal Form</h4>
             <form clrForm [formGroup]="exampleForm2">
                 <clr-input-container>
-                    <label>Price</label>
-                    <input clrInput clrNumeric type="text" [(clrNumericValue)]="price2" [clrUnit]="'€'"
-                           [clrTextAlign]="'right'" formControlName="price2"/>
+                    <label>Money</label>
+                    <input clrInput clrNumeric type="text" [(clrNumericValue)]="money2" clrUnit="€"
+                           formControlName="money2"/>
                     <clr-control-error>Please enter a value between 1.000 and 10.000</clr-control-error>
                 </clr-input-container>
                 <clr-input-container>
-                    <label>Discount</label>
-                    <input clrInput clrNumeric type="text" [(clrNumericValue)]="discount2" [clrUnit]="'%'"
-                           [clrTextAlign]="'right'" formControlName="discount2"/>
-                    <clr-control-helper>The discount to be applied</clr-control-helper>
+                    <label>Percentage</label>
+                    <input clrInput clrNumeric type="text" [(clrNumericValue)]="percentage2" clrUnit="%"
+                           formControlName="percentage2" [clrDecimalPlaces]="0"/>
                     <clr-control-error>Please enter a value between 0 and 100</clr-control-error>
                 </clr-input-container>
             </form>
             <clr-code-snippet [clrCode]="htmlExample"></clr-code-snippet>
             <clr-code-snippet [clrCode]="tsExample"></clr-code-snippet>
+
+            <h4>Alignment</h4>
+            <p>For special usecases, if necessary the Unit and Value alignment can be defined independently.</p>
+            <form clrForm [formGroup]="exampleForm3">
+                <clr-input-container>
+                    <label>Money</label>
+                    <input clrInput clrNumeric type="text" [(clrNumericValue)]="money3" clrUnit="€"
+                           clrUnitPosition="left" formControlName="money3"/>
+                    <clr-control-error>Please enter a value between 1.000 and 10.000</clr-control-error>
+                </clr-input-container>
+                <clr-input-container>
+                    <label>Percentage</label>
+                    <input clrInput clrNumeric type="text" [(clrNumericValue)]="percentage3" clrUnit="%"
+                           clrUnitPosition="left" clrTextAlign="left" formControlName="percentage3"
+                           [clrDecimalPlaces]="0"/>
+                    <clr-control-error>Please enter a value between 0 and 100</clr-control-error>
+                </clr-input-container>
+            </form>
+            <clr-code-snippet [clrCode]="htmlExample2"></clr-code-snippet>
         </div>
     </article>
 </clr-doc-wrapper>
