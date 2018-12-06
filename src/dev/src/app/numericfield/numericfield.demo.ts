@@ -12,12 +12,11 @@ import { ClrNumericFieldValidators } from '@porscheinformatik/clr-addons';
   templateUrl: './numericfield.demo.html',
 })
 export class NumericFieldDemo {
-  input: number;
-  amount: string;
+  input: number = 10000.1234;
   modalOpen = false;
 
   exampleForm = new FormGroup({
-    sample: new FormControl(this.amount, {
+    sample: new FormControl('', {
       validators: [
         Validators.required,
         ClrNumericFieldValidators.min(0, '.', ','),

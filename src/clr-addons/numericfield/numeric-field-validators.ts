@@ -32,7 +32,7 @@ export class ClrNumericFieldValidators {
    * `min` property if the validation check fails, otherwise `null`.
    *
    */
-  static min(min: number, groupingSeparator: string, decimalSeparator: string): ValidatorFn {
+  static min(min: number, groupingSeparator: string = '.', decimalSeparator: string = ','): ValidatorFn {
     const validatorFn: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
       if (isEmptyInputValue(control.value) || isEmptyInputValue(min)) {
         return null; // don't validate empty values to allow optional controls
@@ -64,7 +64,7 @@ export class ClrNumericFieldValidators {
    * `max` property if the validation check fails, otherwise `null`.
    *
    */
-  static max(max: number, groupingSeparator: string, decimalSeparator: string): ValidatorFn {
+  static max(max: number, groupingSeparator: string = '.', decimalSeparator: string = ','): ValidatorFn {
     const validatorFn: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
       if (isEmptyInputValue(control.value) || isEmptyInputValue(max)) {
         return null; // don't validate empty values to allow optional controls
