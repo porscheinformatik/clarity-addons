@@ -1,5 +1,3 @@
-@import '../../../node_modules/@clr/ui/src/popover/dropdown/menu-mixins.clarity';
-
 @include exports('combobox.clarity-addons') {
   .clr-combobox {
     display: inline-block;
