@@ -23,10 +23,17 @@ export class ClrNumericField implements OnInit, AfterViewChecked {
   @Input('clrDecimalPlaces') decimalPlaces = 2;
   @Input('clrDecimalSep') decimalSeparator = ',';
   @Input('clrGroupingSep') groupingSeparator = '.';
-  @Input('clrNumericValue') numericValue: number;
   @Input('clrUnit') unit: string = null;
   @Input('clrUnitPosition') unitPosition: string = 'right';
   @Output('clrNumericValueChange') numericValueChanged = new EventEmitter<number>();
+
+  private _numericValue: number;
+
+  @Input('clrNumericValue')
+  set numericValue(value: number) {
+    this._numericValue = value;
+    this.handleInputChanged();
+  }
 
   displayValue: string;
 
@@ -40,9 +47,6 @@ export class ClrNumericField implements OnInit, AfterViewChecked {
     this.decimalPlaces = Number.parseInt(this.decimalPlaces.toString(), 10);
     this.allowedKeys.add(NEGATIVE);
     this.allowedKeys.add(this.decimalSeparator);
-
-    // Format the initial value
-    this.handleInitialInput();
 
     this.renderer.listen(this.inputEl.nativeElement, 'change', event => {
       this.formatInput(event.target);
@@ -105,11 +109,10 @@ export class ClrNumericField implements OnInit, AfterViewChecked {
     this.injectUnitSymbol();
   }
 
-  handleInitialInput() {
-    this.displayValue = !!this.numericValue ? this.numericValue.toString() : '';
-    this.inputEl.nativeElement.value = this.displayValue;
-    if (!!this.numericValue && this.numericValue % 1 !== 0) {
-      const formattedNumber: string = this.numericValue
+  handleInputChanged() {
+    this.inputEl.nativeElement.value = !!this._numericValue ? this._numericValue.toString() : '';
+    if (!!this._numericValue && this._numericValue % 1 !== 0) {
+      const formattedNumber: string = this._numericValue
         .toString()
         .replace(new RegExp('[.]', 'g'), this.decimalSeparator);
       // Call in set timeout to avoid Expression has changed after it has been checked error.
@@ -178,15 +181,10 @@ export class ClrNumericField implements OnInit, AfterViewChecked {
   }
 
   updateInput(value: string) {
-    this.inputEl.nativeElement.value = value;
     this.displayValue = value;
-    const numValue: number = parseFloat(this.strip(value).replace(this.decimalSeparator, '.'));
-    if (!isNaN(numValue)) {
-      this.numericValueChanged.emit(numValue);
-    } else {
-      // emit undefined if value can not be parsed to a number
-      this.numericValueChanged.emit(undefined);
-    }
+    this.inputEl.nativeElement.value = value;
+    this._numericValue = parseFloat(this.strip(value).replace(this.decimalSeparator, '.'));
+    this.numericValueChanged.emit(this._numericValue);
   }
 
   private injectUnitSymbol(): void {

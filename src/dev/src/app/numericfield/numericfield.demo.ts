@@ -16,7 +16,7 @@ export class NumericFieldDemo {
   modalOpen = false;
 
   exampleForm = new FormGroup({
-    sample: new FormControl('', {
+    sample: new FormControl(this.input, {
       validators: [
         Validators.required,
         ClrNumericFieldValidators.min(0, '.', ','),

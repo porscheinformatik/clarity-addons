@@ -5,6 +5,7 @@
  */
 
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { isString } from 'util';
 
 function isEmptyInputValue(value: any): boolean {
   // we don't check for string here so it also works with arrays
@@ -78,6 +79,9 @@ export class ClrNumericFieldValidators {
   }
 
   private static parseInputString(value: string, groupingSeparator: string, decimalSeparator: string): number {
+    if (!isString(value)) {
+      return parseFloat(value);
+    }
     const notGroupedNumber: string = value.replace(new RegExp('[' + groupingSeparator + ']', 'g'), '');
     const formattedNumber: string = notGroupedNumber.replace(new RegExp('[' + decimalSeparator + ']', 'g'), '.');
     return parseFloat(formattedNumber);
