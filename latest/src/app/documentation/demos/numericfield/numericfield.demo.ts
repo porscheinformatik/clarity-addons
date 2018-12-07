@@ -116,16 +116,11 @@ export class NumericFieldDemo extends ClarityDocComponent {
     });
 
     money3: number;
-    percentage3: number;
     exampleForm3 = new FormGroup({
         money3: new FormControl(this.money3, {
             validators: [ClrNumericFieldValidators.min(0, ".", ","), ClrNumericFieldValidators.max(10000, ".", ","), Validators.required],
             updateOn: "blur",
-        }),
-        percentage3: new FormControl(this.percentage3, {
-            validators: [ClrNumericFieldValidators.min(0, ".", ","), ClrNumericFieldValidators.max(100, ".", ","), Validators.required],
-            updateOn: "blur",
-        }),
+        })
     });
 
     doMoney1: number;
