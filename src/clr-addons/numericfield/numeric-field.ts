@@ -35,6 +35,8 @@ export class ClrNumericField implements OnInit, AfterViewChecked {
     this.handleInputChanged();
   }
 
+  displayValue: string;
+
   private unitSpan: HTMLSpanElement;
   private allowedKeys = new Set(NUMBERS);
 
@@ -179,6 +181,7 @@ export class ClrNumericField implements OnInit, AfterViewChecked {
   }
 
   updateInput(value: string) {
+    this.displayValue = value;
     this.inputEl.nativeElement.value = value;
     this._numericValue = parseFloat(this.strip(value).replace(this.decimalSeparator, '.'));
     this.numericValueChanged.emit(this._numericValue);
