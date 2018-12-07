@@ -146,10 +146,6 @@ export class NumericFieldDemo extends ClarityDocComponent {
     dontMoney2: number;
 
     dontForm = new FormGroup({
-        dontMoney1: new FormControl(this.dontMoney1, {
-            validators: [Validators.required],
-            updateOn: "blur",
-        }),
         dontMoney2: new FormControl(this.dontMoney2, {
             validators: [ClrNumericFieldValidators.min(0, ".", ","), Validators.required],
             updateOn: "blur",

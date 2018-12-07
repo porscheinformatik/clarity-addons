@@ -93,11 +93,13 @@
                                 <label class="clr-col-4">Price (gross)</label>
                                 <input class="clr-col-8" clrInput clrNumeric type="text" [(clrNumericValue)]="doMoney1"
                                        clrUnit="€" formControlName="doMoney1"/>
+                                <clr-control-error>Please enter a value greater than 0</clr-control-error>
                             </clr-input-container>
                             <clr-input-container>
                                 <label class="clr-col-4">Price (net)</label>
                                 <input class="clr-col-8" clrInput clrNumeric type="text" [(clrNumericValue)]="doMoney2"
                                        clrUnit="€" formControlName="doMoney2"/>
+                                <clr-control-error>Please enter a value greater than 0</clr-control-error>
                             </clr-input-container>
                         </form>
                     </div>
@@ -115,14 +117,14 @@
                         <form clrForm clrLayout="horizontal" [formGroup]="dontForm">
                             <clr-input-container>
                                 <label class="clr-col-4">Price (gross)</label>
-                                <input class="clr-col-8" clrInput type="text" style="width: 173px;"
-                                       formControlName="dontMoney1"/>
+                                <input class="clr-col-8" clrInput type="text" style="width: 173px;"/>
+                                <clr-control-error>Please enter a value greater than 0</clr-control-error>
                             </clr-input-container>
                             <clr-input-container>
                                 <label class="clr-col-4">Price (net)</label>
                                 <input class="clr-col-8" clrInput clrNumeric type="text"
-                                       [(clrNumericValue)]="dontMoney2"
-                                       clrUnit="€" formControlName="dontMoney2"/>
+                                       [(clrNumericValue)]="dontMoney2" clrUnit="€" formControlName="dontMoney2"/>
+                                <clr-control-error>Please enter a value greater than 0</clr-control-error>
                             </clr-input-container>
                         </form>
                     </div>

@@ -1,8 +1,9 @@
 <clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
     <article>
-        <h5 class="component-summary">This describes clarity forms in more detail. Official documentation: <a href="https://vmware.github.io/clarity/documentation/forms">Clarity Forms documentation</a></h5>
+        <h5 class="component-summary">This describes clarity forms in more detail. Official documentation: <a
+                href="https://vmware.github.io/clarity/documentation/forms">Clarity Forms documentation</a></h5>
         <p>Find below our recommendation how to use every input component.<br>
-        Please also check back frequently to get updates of the recommended way.</p>
+            Please also check back frequently to get updates of the recommended way.</p>
 
         <div id="design-guidelines">
             <h3>Usage</h3>
@@ -18,7 +19,8 @@
                     <input clrInput type="text" [(ngModel)]="inputText" name="inputName" required minlength="5"/>
                     <clr-control-helper>Helper text that shows while it is pristine and valid</clr-control-helper>
                     <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
-                    <clr-control-error *clrIfError="'minlength'">Error message about requiring 5 characters</clr-control-error>
+                    <clr-control-error *clrIfError="'minlength'">Error message about requiring 5 characters
+                    </clr-control-error>
                 </clr-input-container>
                 <clr-textarea-container>
                     <label class="required">Textarea label</label>
@@ -27,7 +29,8 @@
                 </clr-textarea-container>
                 <clr-password-container>
                     <label>Password label</label>
-                    <input clrPassword placeholder="Password please!" type="text" [(ngModel)]="passwordText" name="passwordName" />
+                    <input clrPassword placeholder="Password please!" type="text" [(ngModel)]="passwordText"
+                           name="passwordName"/>
                 </clr-password-container>
                 <clr-select-container>
                     <label class="required">Select label</label>
@@ -40,25 +43,29 @@
                 <clr-radio-container>
                     <label class="required">Radio label</label>
                     <clr-radio-wrapper>
-                        <input type="radio" clrRadio name="options" value="1" required [(ngModel)]="radioOption" />
+                        <input type="radio" clrRadio name="options" value="1" required [(ngModel)]="radioOption"/>
                         <label>Option 1</label>
                     </clr-radio-wrapper>
                     <clr-radio-wrapper>
-                        <input type="radio" clrRadio name="options" value="2" required [(ngModel)]="radioOption" />
+                        <input type="radio" clrRadio name="options" value="2" required [(ngModel)]="radioOption"/>
                         <label>Option 2</label>
                     </clr-radio-wrapper>
                     <clr-control-helper>Helper text</clr-control-helper>
                     <clr-control-error>This field is required!</clr-control-error>
-                </clr-radio-container> 
+                </clr-radio-container>
                 <clr-date-container class="clr-row">
                     <label>Date label</label>
                     <input type="text" [(ngModel)]="date" name="date" clrDate>
                 </clr-date-container>
+                <clr-input-container>
+                    <label>Money label</label>
+                    <input clrInput clrNumeric type="text" [(clrNumericValue)]="money" clrUnit="€"/>
+                </clr-input-container>
                 <clr-checkbox-container>
                     <label>Checkbox label</label>
                     <clr-checkbox-wrapper>
                         <label class="clr-col-12">Option</label>
-                        <input clrCheckbox type="checkbox" [(ngModel)]="checkboxValue" name="checkboxName" />
+                        <input clrCheckbox type="checkbox" [(ngModel)]="checkboxValue" name="checkboxName"/>
                     </clr-checkbox-wrapper>
                 </clr-checkbox-container>
                 <div class="clr-form-control clr-row">
