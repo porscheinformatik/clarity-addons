@@ -199,6 +199,18 @@
             "newLayout": true
         },
         {
+            "url": "readonly",
+            "text": "Readonly",
+            "type": "component",
+            "ux": 20,
+            "ui": 20,
+            "core": 20,
+            "ng": 20,
+            "dox": 20,
+            "comments": "",
+            "newLayout": true
+        },
+        {
             "url": "sidebarpage-layout",
             "text": "Sidebar Pagelayout",
             "type": "pagelayouts",
