@@ -21,6 +21,7 @@ import { ProgressSpinnerDemo } from './progress-spinner/progress-spinner.demo';
 import { FlowBarContentPanelDemo } from './flow-bar-content-panel/flow-bar-content-panel.demo';
 import { NumericFieldDemo } from './numericfield/numericfield.demo';
 import { TreetableDemo } from './treetable/treetable.demo';
+import { ReadonlyDemo } from './readonly/readonly.demo';
 
 export const APP_ROUTES: Routes = [
   { path: '', component: LandingComponent },
@@ -38,6 +39,7 @@ export const APP_ROUTES: Routes = [
   { path: 'notification', component: NotificationDemo },
   { path: 'numericfield', component: NumericFieldDemo },
   { path: 'treetable', component: TreetableDemo },
+  { path: 'readonly', component: ReadonlyDemo },
   { path: 'combobox', loadChildren: 'src/app/combobox/combobox.demo.module#ComboboxDemoModule' },
 ];
 

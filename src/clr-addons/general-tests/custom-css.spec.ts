@@ -23,35 +23,37 @@ class DataGridComponent {
 }
 
 describe('CustomCSS', () => {
-  let fixture: ComponentFixture<DataGridComponent>;
+  describe('Datagrid', () => {
+    let fixture: ComponentFixture<DataGridComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [DataGridComponent],
-      imports: [ClarityModule],
-    }).compileComponents();
-  }));
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        declarations: [DataGridComponent],
+        imports: [ClarityModule],
+      }).compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(DataGridComponent);
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+      fixture = TestBed.createComponent(DataGridComponent);
+      fixture.detectChanges();
+    });
 
-  it('Datagrid select-all hidden', () => {
-    expect(
-      getComputedStyle(
-        fixture.debugElement.query(By.css('.datagrid-header .datagrid-select .clr-checkbox-wrapper')).nativeElement
-      ).display
-    ).toBe('none');
-  });
+    it('Datagrid select-all hidden', () => {
+      expect(
+        getComputedStyle(
+          fixture.debugElement.query(By.css('.datagrid-header .datagrid-select .clr-checkbox-wrapper')).nativeElement
+        ).display
+      ).toBe('none');
+    });
 
-  it('Datagrid select-all shown', () => {
-    fixture.componentInstance.selectHidden = false;
-    fixture.detectChanges();
-    expect(
-      getComputedStyle(
-        fixture.debugElement.query(By.css('.datagrid-header .datagrid-select .clr-checkbox-wrapper')).nativeElement
-      ).display
-    ).not.toBe('none');
+    it('Datagrid select-all shown', () => {
+      fixture.componentInstance.selectHidden = false;
+      fixture.detectChanges();
+      expect(
+        getComputedStyle(
+          fixture.debugElement.query(By.css('.datagrid-header .datagrid-select .clr-checkbox-wrapper')).nativeElement
+        ).display
+      ).not.toBe('none');
+    });
   });
 });
