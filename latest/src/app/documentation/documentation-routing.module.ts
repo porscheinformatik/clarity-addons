@@ -174,6 +174,13 @@ const documentationRoutes: Routes = [
                 data: {
                     browserTitle: "Combobox"
                 }
+            },
+            {
+                path: "readonly",
+                loadChildren: "app/documentation/demos/readonly/readonly.demo.module#ReadonlyDemoModule",
+                data: {
+                    browserTitle: "Readonly"
+                }
             }
         ]
     }
