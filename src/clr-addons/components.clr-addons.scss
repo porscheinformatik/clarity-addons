@@ -150,3 +150,63 @@ form .required:after {
   color: $clr-red;
   margin-left: 0.25rem;
 }
+
+// Readonly checkboxes, radiobuttons
+clr-radio-container[readonly][show-only-selected='true'] .clr-radio-wrapper input:not(:checked),
+clr-checkbox-container[readonly][show-only-selected='true'] .clr-checkbox-wrapper input:not(:checked) {
+  display: none;
+  + label {
+    display: none;
+  }
+}
+
+clr-radio-container[readonly] .clr-radio-wrapper input[type='radio'],
+clr-checkbox-container[readonly] .clr-checkbox-wrapper input[type='checkbox'] {
+  + label {
+    pointer-events: none;
+  }
+
+  + label::before {
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    transform: rotate(45deg);
+    background: $clr-forms-radio-label-color;
+    top: 0.5rem;
+    left: 1px;
+    width: 0.6rem;
+    height: 1px;
+  }
+  + label::after {
+    border: 0;
+    border-radius: 0;
+    content: '';
+    display: inline-block;
+    transform: rotate(-45deg);
+    background: $clr-forms-radio-label-color;
+    position: absolute;
+    top: 0.5rem;
+    left: 1px;
+    width: 0.6rem;
+    height: 1px;
+  }
+
+  &:checked {
+    + label::before {
+      content: '';
+      background: none;
+      border-left: $clr-forms-checkbox-border-style;
+      border-bottom: $clr-forms-checkbox-border-style;
+      border-color: $clr-forms-checkbox-background-color;
+      position: absolute;
+      top: 0.3rem;
+      left: 0.1rem;
+      width: 0.5rem;
+      height: 0.3rem;
+      transform: rotate(-45deg);
+    }
+    + label::after {
+      content: none;
+    }
+  }
+}

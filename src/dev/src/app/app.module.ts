@@ -30,6 +30,7 @@ import { ProgressSpinnerDemoModule } from './progress-spinner/progress-spinner.d
 import { FlowBarContentPanelDemoModule } from './flow-bar-content-panel/flow-bar-content-panel.demo.module';
 import { NumericFieldDemoModule } from './numericfield/numericfield.demo.module';
 import { TreetableDemoModule } from './treetable/treetable.demo.module';
+import { ReadonlyDemoModule } from './readonly/readonly.demo.module';
 
 @NgModule({
   declarations: [AppComponent, LandingComponent, AppContentContainerComponent],
@@ -54,6 +55,7 @@ import { TreetableDemoModule } from './treetable/treetable.demo.module';
     BackButtonDemoModule,
     NumericFieldDemoModule,
     TreetableDemoModule,
+    ReadonlyDemoModule,
   ],
   bootstrap: [AppComponent],
   providers: [ClrNotificationService],
