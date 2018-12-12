@@ -89,6 +89,14 @@ const HTML_EXAMPLE_CUSTOM_ACTIONS = `
 </clr-view-edit-section>
 `;
 
+const HTML_EXAMPLE_NOT_EDITABLE = `
+<clr-view-edit-section clrTitle="Not Editable" [clrEditable]="false">
+    <div view-block>
+        ...
+    </div>
+</clr-view-edit-section>
+`;
+
 @Component({
     selector: "clr-view-edit-section-demo",
     templateUrl: "./view-edit-section.demo.html",
@@ -97,11 +105,12 @@ const HTML_EXAMPLE_CUSTOM_ACTIONS = `
         "[class.dox-content-panel]": "true"
     }
 })
-export class ViewEditSectionDemo extends ClarityDocComponent{
+export class ViewEditSectionDemo extends ClarityDocComponent {
     htmlExampleSideBySide = HTML_EXAMPLE_SIDE_BY_SIDE;
     htmlExampleFullIcon = HTML_EXAMPLE_FULL_ICON;
     htmlExampleFullIconAngular = HTML_EXAMPLE_FULL_ICON_ANGULAR;
     htmlExampleCustomActions = HTML_EXAMPLE_CUSTOM_ACTIONS;
+    htmlExampleNotEditable = HTML_EXAMPLE_NOT_EDITABLE;
 
     birthdate: string;
     gender: string = "male";
