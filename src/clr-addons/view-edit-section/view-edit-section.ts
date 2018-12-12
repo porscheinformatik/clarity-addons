@@ -21,8 +21,6 @@ export class ClrViewEditSection {
   @Output('clrSectionSubmitted') _submitted = new EventEmitter(false);
   @Output('clrSectionEditCancelled') _cancelled = new EventEmitter(false);
 
-  @ViewChild('#actionBlock') actionBlock;
-
   public onSubmit() {
     this._submitted.emit();
     this.setEditMode(false);
