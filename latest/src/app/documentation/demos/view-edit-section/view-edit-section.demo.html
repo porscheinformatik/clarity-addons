@@ -23,37 +23,102 @@
             <h3>Multiple View-Edit Sections</h3>
             <p>There can be multiple View-Edit sections placed in the content area, multiple sections can be edited at once,
                 no automatic inactivation of other View-Edit Sections should occur.
-                <br> The user needs to actively end the edit-mode by saving or cancelling the changes.</p>
-        </div>
+                <br> The user needs to actively end the edit-mode by saving or cancelling the changes.
+            </p>
 
-        <div id="code-examples">
-            <h3 id="examples">Code &amp; Examples</h3>
+            <h3>Summary of Options</h3>
             <p>
                 To layout the view-mode of the component simply add an element with attribute
                 <code class="clr-code">view-block</code> and for the edit-mode of the component add an element with attribute
                 <code class="clr-code">edit-block</code>. Those blocks will get rendered into the body of the view-edit section in their corresponding modes.
+                Additionally <code class="clr-code">action-block</code> can be used to define custom actions.
             </p>
-            <p>
-                Following interactions are available:
-            </p>
-            <ul>
-                <li>
-                    To define the title add a
-                    <code class="clr-code">[clrTitle]</code> input to the component.
-                </li>
-                <li>
-                    To define the edit icon add a
-                    <code class="clr-code">[clrEditIcon]</code> input to the component. Every shape from clr-icon can be used.
-                </li>
-                <li>
-                    To react to submit clicks, bind to the event
-                    <code class="clr-code">(clrSectionSubmitted)</code>.
-                </li>
-                <li>
-                    To react to cancel clicks, bind to the event
-                    <code class="clr-code">(clrSectionEditCancelled)</code>.
-                </li>
-            </ul>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th class="left">Property</th>
+                    <th class="left hidden-xs-down">Values</th>
+                    <th class="hidden-xs-down">Default</th>
+                    <th class="left">Effect</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="left">
+                        <b>[(editMode)]</b>
+                        <div class="hidden-sm-up">Type: boolean</div>
+                        <div class="hidden-sm-up">Default: false</div>
+                    </td>
+                    <td class="left hidden-xs-down">true, false</td>
+                    <td class="hidden-xs-down">false</td>
+                    <td class="left">Controls whether edit mode is active or not</td>
+                </tr>
+                <tr>
+                    <td class="left">
+                        <b>[clrTitle]</b>
+                        <div class="hidden-sm-up">Type: String</div>
+                        <div class="hidden-sm-up">Default: ""</div>
+                    </td>
+                    <td class="left hidden-xs-down">any string</td>
+                    <td class="hidden-xs-down">""</td>
+                    <td class="left">Defines the title of the View/Edit Section</td>
+                </tr>
+                <tr>
+                    <td class="left">
+                        <b>[clrSaveText]</b>
+                        <div class="hidden-sm-up">Type: String</div>
+                        <div class="hidden-sm-up">Default: "Save"</div>
+                    </td>
+                    <td class="left hidden-xs-down">any string</td>
+                    <td class="hidden-xs-down">"Save"</td>
+                    <td class="left">Defines the text of the submit button</td>
+                </tr>
+                <tr>
+                    <td class="left">
+                        <b>[clrCancelText]</b>
+                        <div class="hidden-sm-up">Type: String</div>
+                        <div class="hidden-sm-up">Default: "Cancel"</div>
+                    </td>
+                    <td class="left hidden-xs-down">any string</td>
+                    <td class="hidden-xs-down">"Cancel"</td>
+                    <td class="left">Defines the text of the cancel button</td>
+                </tr>
+                <tr>
+                    <td class="left">
+                        <b>[clrEditIcon]</b>
+                        <div class="hidden-sm-up">Type: String</div>
+                        <div class="hidden-sm-up">Default: "pencil"</div>
+                    </td>
+                    <td class="left hidden-xs-down">any shape of clr-icon</td>
+                    <td class="hidden-xs-down">"pencil"</td>
+                    <td class="left">Defines the edit icon. Every shape of clr-icon can be used</td>
+                </tr>
+                <tr>
+                    <td class="left">
+                        <b>(clrSectionSubmitted)</b>
+                        <div class="hidden-sm-up">Type: EventEmitter</div>
+                        <div class="hidden-sm-up"></div>
+                    </td>
+                    <td class="left hidden-xs-down"></td>
+                    <td class="hidden-xs-down"></td>
+                    <td class="left">Will be triggered by submit clicks</td>
+                </tr>
+                <tr>
+                    <td class="left">
+                        <b>(clrSectionEditCancelled)</b>
+                        <div class="hidden-sm-up">Type: EventEmitter</div>
+                        <div class="hidden-sm-up"></div>
+                    </td>
+                    <td class="left hidden-xs-down"></td>
+                    <td class="hidden-xs-down"></td>
+                    <td class="left">Will be triggered by cancel/escape clicks</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="code-examples">
+            <h3 id="examples">Code &amp; Examples</h3>
 
             <h4>Side by side example</h4>
             <div class="clr-row">
@@ -125,11 +190,13 @@
 
             <clr-code-snippet [clrCode]="htmlExampleSideBySide"></clr-code-snippet>
 
-            <h4>Custom icon</h4>
+            <h4>Custom icon and button texts</h4>
             <div class="clr-row">
                 <div class="clr-col-12">
-                    <clr-view-edit-section [clrTitle]="compSectionTitle" [clrEditIcon]="compEditIcon" (clrSectionSubmitted)="compSectionSubmitted()"
-                        (clrSectionEditCancelled)="compSectionCancelled()">
+                    <clr-view-edit-section [clrTitle]="compSectionTitle" [clrEditIcon]="compEditIcon"
+                        clrSaveText="Save it" clrCancelText="Cancel it"
+                        (clrSectionSubmitted)="compSectionSubmitted()" (clrSectionEditCancelled)="compSectionCancelled()">
+                        
                         <div view-block>
                             <form clrForm clrLayout="horizontal">
                               <div class="clr-form-control clr-row">
@@ -190,6 +257,92 @@
             <clr-code-snippet [clrCode]="htmlExampleFullIcon"></clr-code-snippet>
             <clr-code-snippet [clrCode]="htmlExampleFullIconAngular" [clrLanguage]="'typescript'"></clr-code-snippet>
 
+
+            <h4>Custom actions</h4>
+            When using custom actions you may use css class <code class="clr-code">ves-action</code> to remove the right margin/padding.<br>
+            Additionally you need to show/hide those actions on your own in view/edit mode if you want to. In this example, all actions are hidden in edit mode.
+            <div class="clr-row">
+                <div class="clr-col-12">
+                    <clr-view-edit-section [(clrEditMode)]="editMode" [clrTitle]="customActionsTitle" [clrEditIcon]="compEditIcon"
+                        (clrSectionSubmitted)="compSectionSubmitted()" (clrSectionEditCancelled)="compSectionCancelled()">
+                        
+                        <div action-block>
+                            <clr-dropdown *ngIf="!editMode">
+                              <button type="button" class="btn btn-icon btn-link ves-action dropdown-toggle" clrDropdownTrigger>
+                                <clr-icon shape="ellipsis-vertical"></clr-icon>
+                              </button>
+                              <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
+                                <button type="button" (click)="onEdit()" clrDropdownItem>
+                                  Edit
+                                </button>
+                                <button type="button" clrDropdownItem>
+                                  Duplicate
+                                </button>
+                                <button type="button" clrDropdownItem>
+                                  Delete
+                                </button>
+                              </clr-dropdown-menu>
+                            </clr-dropdown>
+                        </div>
+                        
+                        <div view-block>
+                            <form clrForm clrLayout="horizontal">
+                              <div class="clr-form-control clr-row">
+                                <label class="clr-col-md-2 clr-control-label" for="birthdate">Date of birth</label>
+                                <span class="text-truncate clr-col-md-10">{{birthdate || "" | date}}</span>
+                              </div>
+                              <div class="clr-form-control clr-row">
+                                <label class="clr-col-md-2 clr-control-label" for="gender">Gender</label>
+                                <span class="text-truncate clr-col-md-10">{{gender || "&nbsp;"}}</span>
+                              </div>
+                              <div class="clr-form-control clr-row">
+                                <label class="clr-col-md-2 clr-control-label" for="status">Status</label>
+                                <span class="text-truncate clr-col-md-10">{{status || "&nbsp;"}}</span>
+                              </div>
+                              <div class="clr-form-control clr-row">
+                                <label class="clr-col-md-2 clr-control-label" for="terms">Terms &amp; Conditions</label>
+                                <span class="text-truncate clr-col-md-10">{{getTermsText()}}</span>
+                              </div>
+                            </form>
+                        </div>
+                        <div edit-block>
+                            <form clrForm clrLayout="horizontal">
+                              <clr-date-container class="clr-row">
+                                <label>Date of birth</label>
+                                <input type="text" [(ngModel)]="editBirthdate" name="birthdate" clrDate>
+                              </clr-date-container>
+                              <clr-select-container>
+                                <label>Gender</label>
+                                <select clrSelect [(ngModel)]="editGender" name="gender">
+                                  <option>male</option>
+                                  <option>female</option>
+                                </select>
+                              </clr-select-container>
+                              <clr-radio-container>
+                                <label>Status</label>
+                                <clr-radio-wrapper>
+                                  <input clrRadio type="radio" [value]="1" [(ngModel)]="editStatus" name="status">
+                                  <label>Active</label>
+                                </clr-radio-wrapper>
+                                <clr-radio-wrapper>
+                                  <input clrRadio type="radio" [value]="2" [(ngModel)]="editStatus" name="status">
+                                  <label>Inactive</label>
+                                </clr-radio-wrapper>
+                              </clr-radio-container>
+                              <clr-checkbox-container>
+                                  <label>Terms &amp; Conditions</label>
+                                  <clr-checkbox-wrapper>
+                                      <label class="clr-col-12">I agree to the terms and conditions</label>
+                                      <input clrCheckbox type="checkbox" [(ngModel)]="editTerms" name="terms" />
+                                  </clr-checkbox-wrapper>
+                              </clr-checkbox-container>
+                            </form>
+                        </div>
+                    </clr-view-edit-section>
+                </div>
+            </div>
+
+            <clr-code-snippet [clrCode]="htmlExampleCustomActions"></clr-code-snippet>
             <h4>Tips</h4>
             <ul>
                 <li>
