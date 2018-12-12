@@ -53,12 +53,20 @@ class EditIconComponent {
   editIcon: string = 'cog';
 }
 
+@Component({
+  template: `
+        <clr-view-edit-section [clrEditable]="false">
+        </clr-view-edit-section>
+    `,
+})
+class NotEditableComponent {}
+
 describe('ViewEditSectionComponent', () => {
   let fixture: ComponentFixture<TestComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TestComponent, EditIconComponent, EditModeComponent],
+      declarations: [TestComponent, EditIconComponent, EditModeComponent, NotEditableComponent],
       imports: [ClarityModule, ClrViewEditSectionModule],
     }).compileComponents();
   }));
@@ -169,6 +177,14 @@ describe('ViewEditSectionComponent', () => {
     editFixture.detectChanges();
     expect(editFixture.nativeElement.querySelector('.ves-action')).toBeNull();
     expect(editFixture.nativeElement.querySelector('[action-block]').textContent).toMatch('Test');
+    editFixture.destroy();
+  });
+
+  it('is not editable', () => {
+    const editFixture: ComponentFixture<NotEditableComponent> = TestBed.createComponent(NotEditableComponent);
+    editFixture.detectChanges();
+    expect(editFixture.nativeElement.querySelector('.ves-action')).toBeNull();
+    expect(editFixture.nativeElement.querySelector('[action-block]')).toBeNull();
     editFixture.destroy();
   });
 });
