@@ -33,10 +33,12 @@ export class ViewEditSectionDemo {
   editLicence: string;
 
   compSectionTitle: string = 'Different components';
-  sectionTitle: string = 'Personal Data';
+  sectionTitle: string = 'Example with multiple actions';
   addSectionTitle: string = 'Additional Data';
 
   compEditIcon: string = 'cog';
+
+  editMode: boolean;
 
   compSectionSubmitted() {
     this.birthdate = this.editBirthdate;
@@ -72,5 +74,9 @@ export class ViewEditSectionDemo {
   addSectionCancelled() {
     this.editHobby = this.hobby;
     this.editLicence = this.licence;
+  }
+
+  onEdit() {
+    this.editMode = true;
   }
 }

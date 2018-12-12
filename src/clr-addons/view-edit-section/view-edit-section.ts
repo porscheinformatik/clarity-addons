@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'clr-view-edit-section',
@@ -12,23 +12,33 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class ClrViewEditSection {
   @Input('clrTitle') _title: string;
+  @Input('clrSaveText') _saveText: string = 'Save';
+  @Input('clrCancelText') _cancelText: string = 'Cancel';
   @Input('clrEditMode') _editMode: boolean = false;
   @Input('clrEditIcon') _editIcon: string = 'pencil';
 
+  @Output('clrEditModeChange') _editModeChanged = new EventEmitter(false);
   @Output('clrSectionSubmitted') _submitted = new EventEmitter(false);
   @Output('clrSectionEditCancelled') _cancelled = new EventEmitter(false);
 
+  @ViewChild('#actionBlock') actionBlock;
+
   public onSubmit() {
     this._submitted.emit();
-    this._editMode = false;
+    this.setEditMode(false);
   }
 
   public onCancel() {
     this._cancelled.emit();
-    this._editMode = false;
+    this.setEditMode(false);
   }
 
   public onEdit() {
-    this._editMode = true;
+    this.setEditMode(true);
+  }
+
+  private setEditMode(mode: boolean) {
+    this._editMode = mode;
+    this._editModeChanged.emit(this._editMode);
   }
 }

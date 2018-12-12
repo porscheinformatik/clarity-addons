@@ -85,7 +85,7 @@ describe('ViewEditSectionComponent', () => {
     fakeAsync(() => {
       checkMode(fixture, false);
 
-      fixture.nativeElement.querySelector('.ves-edit').click();
+      fixture.nativeElement.querySelector('.ves-action').click();
       checkMode(fixture, true);
 
       spyOn(fixture.componentInstance.vesInstance._cancelled, 'emit');
@@ -100,7 +100,7 @@ describe('ViewEditSectionComponent', () => {
     fakeAsync(() => {
       checkMode(fixture, false);
 
-      fixture.nativeElement.querySelector('.ves-edit').click();
+      fixture.nativeElement.querySelector('.ves-action').click();
       checkMode(fixture, true);
 
       spyOn(fixture.componentInstance.vesInstance._submitted, 'emit');
