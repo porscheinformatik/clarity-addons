@@ -7,7 +7,7 @@ import {Component} from "@angular/core";
 import {ClarityDocComponent} from "../clarity-doc";
 
 const HTML_EXAMPLE_SIDE_BY_SIDE = `
-<div class="col-xs-12 col-lg-6">
+<div class="clr-col-12 clr-col-lg-6">
     <clr-view-edit-section [clrTitle]="sectionTitle" (clrSectionSubmitted)="sectionSubmitted()" (clrSectionEditCancelled)="sectionCancelled()">
         <div view-block>
             <form clrForm clrLayout="horizontal">
@@ -43,11 +43,13 @@ const HTML_EXAMPLE_SIDE_BY_SIDE = `
         </div>
     </clr-view-edit-section>
 </div>
-`
+`;
 
 const HTML_EXAMPLE_FULL_ICON = `
-<div class="col-xs-12">
-    <clr-view-edit-section [clrTitle]="compSectionTitle" [clrEditIcon]="compEditIcon" (clrSectionSubmitted)="compSectionSubmitted()" (clrSectionEditCancelled)="compSectionCancelled()">
+<div class="clr-col-12">
+    <clr-view-edit-section [clrTitle]="compSectionTitle" [clrEditIcon]="compEditIcon"
+    clrSaveText="Save it" clrCancelText="Cancel it"
+    (clrSectionSubmitted)="compSectionSubmitted()" (clrSectionEditCancelled)="compSectionCancelled()">
         <div view-block>
             ...
         </div>
@@ -56,11 +58,41 @@ const HTML_EXAMPLE_FULL_ICON = `
         </div>
     </clr-view-edit-section>
 </div>
-`
+`;
 
 const HTML_EXAMPLE_FULL_ICON_ANGULAR = `
 compEditIcon: string = "cog";
-`
+`;
+
+const HTML_EXAMPLE_CUSTOM_ACTIONS = `
+<div class="clr-col-12">
+    <clr-view-edit-section [(clrEditMode)]="editMode" [clrTitle]="customActionsTitle" [clrEditIcon]="compEditIcon"
+        (clrSectionSubmitted)="compSectionSubmitted()" (clrSectionEditCancelled)="compSectionCancelled()">
+
+        <div action-block>
+            <clr-dropdown *ngIf="!editMode">
+              <button type="button" class="btn btn-icon btn-link ves-action dropdown-toggle" clrDropdownTrigger>
+                <clr-icon shape="ellipsis-vertical"></clr-icon>
+              </button>
+              <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
+                <button type="button" (click)="onEdit()" clrDropdownItem>
+                  Edit
+                </button>
+                <button type="button" clrDropdownItem>
+                  Duplicate
+                </button>
+                <button type="button" clrDropdownItem>
+                  Delete
+                </button>
+              </clr-dropdown-menu>
+            </clr-dropdown>
+        </div>
+
+        ...
+    </clr-view-edit-section>
+</div>
+`;
+
 @Component({
     selector: "clr-view-edit-section-demo",
     templateUrl: "./view-edit-section.demo.html",
@@ -73,6 +105,7 @@ export class ViewEditSectionDemo extends ClarityDocComponent{
     htmlExampleSideBySide = HTML_EXAMPLE_SIDE_BY_SIDE;
     htmlExampleFullIcon = HTML_EXAMPLE_FULL_ICON;
     htmlExampleFullIconAngular = HTML_EXAMPLE_FULL_ICON_ANGULAR;
+    htmlExampleCustomActions = HTML_EXAMPLE_CUSTOM_ACTIONS;
 
     birthdate: string;
     gender: string = "male";
@@ -98,8 +131,11 @@ export class ViewEditSectionDemo extends ClarityDocComponent{
     compSectionTitle: string = "Different components";
     sectionTitle: string = "Personal Data";
     addSectionTitle: string = "Additional Data";
+    customActionsTitle: string = "Example with multiple actions";
 
     compEditIcon: string = "cog";
+
+    editMode: boolean;
 
     constructor() {
         super("view-edit-section");
@@ -143,5 +179,9 @@ export class ViewEditSectionDemo extends ClarityDocComponent{
     addSectionCancelled() {
         this.editHobby = this.hobby;
         this.editLicence = this.licence;
+    }
+
+    onEdit() {
+        this.editMode = true;
     }
 }
