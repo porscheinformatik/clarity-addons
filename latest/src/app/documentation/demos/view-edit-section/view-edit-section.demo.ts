@@ -65,32 +65,28 @@ compEditIcon: string = "cog";
 `;
 
 const HTML_EXAMPLE_CUSTOM_ACTIONS = `
-<div class="clr-col-12">
-    <clr-view-edit-section [(clrEditMode)]="editMode" [clrTitle]="customActionsTitle" [clrEditIcon]="compEditIcon"
-        (clrSectionSubmitted)="compSectionSubmitted()" (clrSectionEditCancelled)="compSectionCancelled()">
-
-        <div action-block>
-            <clr-dropdown *ngIf="!editMode">
-              <button type="button" class="btn btn-icon btn-link ves-action dropdown-toggle" clrDropdownTrigger>
-                <clr-icon shape="ellipsis-vertical"></clr-icon>
-              </button>
-              <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
-                <button type="button" (click)="onEdit()" clrDropdownItem>
-                  Edit
-                </button>
-                <button type="button" clrDropdownItem>
-                  Duplicate
-                </button>
-                <button type="button" clrDropdownItem>
-                  Delete
-                </button>
-              </clr-dropdown-menu>
-            </clr-dropdown>
-        </div>
-
-        ...
-    </clr-view-edit-section>
-</div>
+<clr-view-edit-section [(clrEditMode)]="editMode" [clrTitle]="customActionsTitle"
+    (clrSectionSubmitted)="compSectionSubmitted()" (clrSectionEditCancelled)="compSectionCancelled()">
+    <div action-block>
+        <clr-dropdown *ngIf="!editMode">
+          <button type="button" class="btn btn-icon btn-link ves-action dropdown-toggle" clrDropdownTrigger>
+            <clr-icon shape="ellipsis-vertical"></clr-icon>
+          </button>
+          <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
+            <button type="button" (click)="onEdit()" clrDropdownItem>
+              Edit
+            </button>
+            <button type="button" clrDropdownItem>
+              Duplicate
+            </button>
+            <button type="button" clrDropdownItem>
+              Delete
+            </button>
+          </clr-dropdown-menu>
+        </clr-dropdown>
+    </div>
+    ...
+</clr-view-edit-section>
 `;
 
 @Component({
