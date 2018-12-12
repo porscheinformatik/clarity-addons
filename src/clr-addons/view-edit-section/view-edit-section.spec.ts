@@ -13,7 +13,7 @@ import { ClrViewEditSection } from './view-edit-section';
 
 @Component({
   template: `
-        <clr-view-edit-section [clrTitle]="title">
+        <clr-view-edit-section [clrTitle]="title" [clrSaveText]="saveText" [clrCancelText]="cancelText">
             <div view-block>
                 <div class="view-item">View</div>
             </div>
@@ -26,6 +26,21 @@ import { ClrViewEditSection } from './view-edit-section';
 class TestComponent {
   @ViewChild(ClrViewEditSection) vesInstance: ClrViewEditSection;
   title: string = 'TestTitle';
+  saveText: string = 'Test Save';
+  cancelText: string = 'Test Cancel';
+}
+
+@Component({
+  template: `
+        <clr-view-edit-section [(clrEditMode)]="editMode">
+          <div action-block>
+            Test
+          </div>
+        </clr-view-edit-section>
+    `,
+})
+class EditModeComponent {
+  editMode: boolean = false;
 }
 
 @Component({
@@ -43,7 +58,7 @@ describe('ViewEditSectionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TestComponent, EditIconComponent],
+      declarations: [TestComponent, EditIconComponent, EditModeComponent],
       imports: [ClarityModule, ClrViewEditSectionModule],
     }).compileComponents();
   }));
@@ -81,32 +96,62 @@ describe('ViewEditSectionComponent', () => {
   });
 
   it(
-    'switch from view to edit and cancel',
+    'has correct save text',
     fakeAsync(() => {
-      checkMode(fixture, false);
-
-      fixture.nativeElement.querySelector('.ves-edit').click();
+      fixture.nativeElement.querySelector('.ves-action').click();
       checkMode(fixture, true);
 
+      expect(fixture.nativeElement.querySelector('.ves-save').textContent).toMatch(fixture.componentInstance.saveText);
+    })
+  );
+
+  it(
+    'has correct cancel text',
+    fakeAsync(() => {
+      fixture.nativeElement.querySelector('.ves-action').click();
+      checkMode(fixture, true);
+
+      expect(fixture.nativeElement.querySelector('.ves-cancel').textContent).toMatch(
+        fixture.componentInstance.cancelText
+      );
+    })
+  );
+
+  it(
+    'switch from view to edit and cancel',
+    fakeAsync(() => {
+      spyOn(fixture.componentInstance.vesInstance._editModeChanged, 'emit');
       spyOn(fixture.componentInstance.vesInstance._cancelled, 'emit');
+
+      checkMode(fixture, false);
+
+      fixture.nativeElement.querySelector('.ves-action').click();
+      checkMode(fixture, true);
+      expect(fixture.componentInstance.vesInstance._editModeChanged.emit).toHaveBeenCalledWith(true);
+
       fixture.nativeElement.querySelector('.ves-cancel').click();
       checkMode(fixture, false);
       expect(fixture.componentInstance.vesInstance._cancelled.emit).toHaveBeenCalled();
+      expect(fixture.componentInstance.vesInstance._editModeChanged.emit).toHaveBeenCalledWith(false);
     })
   );
 
   it(
     'switch from view to edit and save',
     fakeAsync(() => {
+      spyOn(fixture.componentInstance.vesInstance._submitted, 'emit');
+      spyOn(fixture.componentInstance.vesInstance._editModeChanged, 'emit');
+
       checkMode(fixture, false);
 
-      fixture.nativeElement.querySelector('.ves-edit').click();
+      fixture.nativeElement.querySelector('.ves-action').click();
       checkMode(fixture, true);
+      expect(fixture.componentInstance.vesInstance._editModeChanged.emit).toHaveBeenCalledWith(true);
 
-      spyOn(fixture.componentInstance.vesInstance._submitted, 'emit');
       fixture.nativeElement.querySelector('.ves-save').click();
       checkMode(fixture, false);
       expect(fixture.componentInstance.vesInstance._submitted.emit).toHaveBeenCalled();
+      expect(fixture.componentInstance.vesInstance._editModeChanged.emit).toHaveBeenCalledWith(false);
     })
   );
 
@@ -116,6 +161,14 @@ describe('ViewEditSectionComponent', () => {
     expect(editFixture.nativeElement.querySelector('clr-icon').getAttribute('shape')).toMatch(
       editFixture.componentInstance.editIcon
     );
+    editFixture.destroy();
+  });
+
+  it('has correct action block', () => {
+    const editFixture: ComponentFixture<EditModeComponent> = TestBed.createComponent(EditModeComponent);
+    editFixture.detectChanges();
+    expect(editFixture.nativeElement.querySelector('.ves-action')).toBeNull();
+    expect(editFixture.nativeElement.querySelector('[action-block]').textContent).toMatch('Test');
     editFixture.destroy();
   });
 });

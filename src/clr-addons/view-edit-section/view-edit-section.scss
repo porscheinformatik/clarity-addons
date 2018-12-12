@@ -1,7 +1,8 @@
 @include exports('view-edit-section.clr-addons') {
   .view-edit-section {
-    .card-title .btn.ves-edit {
-      margin: 0px;
+    .card-title .btn.ves-action {
+      margin-right: 0px;
+      padding-right: 0px;
     }
 
     form,

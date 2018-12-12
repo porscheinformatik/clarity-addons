@@ -12,6 +12,7 @@
           <div class="clr-col-12">
               <clr-view-edit-section [clrTitle]="compSectionTitle" [clrEditIcon]="compEditIcon" (clrSectionSubmitted)="compSectionSubmitted()"
                   (clrSectionEditCancelled)="compSectionCancelled()">
+
                   <div view-block>
                       <form clrForm clrLayout="horizontal">
                         <div class="clr-form-control clr-row">
@@ -71,7 +72,27 @@
 
       <div class="clr-row">
           <div class="clr-col-12 clr-col-lg-6">
-              <clr-view-edit-section [clrTitle]="sectionTitle" (clrSectionSubmitted)="sectionSubmitted()" (clrSectionEditCancelled)="sectionCancelled()">
+              <clr-view-edit-section [(clrEditMode)]="editMode" [clrTitle]="sectionTitle" (clrSectionSubmitted)="sectionSubmitted()" (clrSectionEditCancelled)="sectionCancelled()">
+
+                  <div action-block>
+                    <clr-dropdown *ngIf="!editMode">
+                      <button type="button" class="btn btn-icon btn-link ves-action dropdown-toggle" clrDropdownTrigger>
+                        <clr-icon shape="ellipsis-vertical"></clr-icon>
+                      </button>
+                      <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
+                        <button type="button" (click)="onEdit()" clrDropdownItem>
+                          Edit
+                        </button>
+                        <button type="button" clrDropdownItem>
+                          Duplicate
+                        </button>
+                        <button type="button" clrDropdownItem>
+                          Delete
+                        </button>
+                      </clr-dropdown-menu>
+                    </clr-dropdown>
+                  </div>
+
                   <div view-block>
                       <form clrForm clrLayout="horizontal">
                         <div class="clr-form-control clr-row">
