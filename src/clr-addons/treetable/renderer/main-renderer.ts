@@ -39,7 +39,7 @@ export class TreetableMainRenderer<T = any> implements AfterViewChecked, OnDestr
   private shouldStabilizeColumns = true;
   ngAfterViewChecked() {
     if (this.shouldStabilizeColumns) {
-      this.organizer.resize();
+      setTimeout(() => this.organizer.resize(), 0);
       this.shouldStabilizeColumns = false;
     }
   }
