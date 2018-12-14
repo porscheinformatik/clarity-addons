@@ -177,7 +177,7 @@ export class ViewEditSectionDemo extends ClarityDocComponent {
 
     sectionSubmitted() {
         this.first = this.exampleForm.controls.editFirst.value;
-        this.last = this.exampleForm.controls.editLast.value
+        this.last = this.exampleForm.controls.editLast.value;
         this.email = this.exampleForm.controls.editEmail.value;
     }
 
