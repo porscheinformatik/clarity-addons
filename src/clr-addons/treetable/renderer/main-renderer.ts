@@ -3,15 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import {
-  AfterViewChecked,
-  AfterViewInit,
-  ContentChildren,
-  Directive,
-  ElementRef,
-  OnDestroy,
-  QueryList,
-} from '@angular/core';
+import { AfterViewChecked, ContentChildren, Directive, OnDestroy, QueryList } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { ClrTreetableColumn } from '../treetable-column';
@@ -19,17 +11,12 @@ import { TreetableRenderStep } from './render-step.enum';
 
 import { TreetableHeaderRenderer } from './header-renderer';
 import { TreetableRenderOrganizer } from './render-organizer';
-import { TableSizeService } from './table-size.service';
 
 @Directive({
   selector: 'clr-treetable',
 })
-export class TreetableMainRenderer<T = any> implements AfterViewInit, AfterViewChecked, OnDestroy {
-  constructor(
-    private organizer: TreetableRenderOrganizer,
-    private el: ElementRef,
-    private tableSizeService: TableSizeService
-  ) {
+export class TreetableMainRenderer<T = any> implements AfterViewChecked, OnDestroy {
+  constructor(private organizer: TreetableRenderOrganizer) {
     this.subscriptions.push(
       this.organizer
         .filterRenderSteps(TreetableRenderStep.COMPUTE_COLUMN_WIDTHS)
@@ -48,11 +35,6 @@ export class TreetableMainRenderer<T = any> implements AfterViewInit, AfterViewC
     );
   }
   private subscriptions: Subscription[] = [];
-
-  // Initialize and set Table width for horizontal scrolling here.
-  ngAfterViewInit() {
-    this.tableSizeService.table = this.el;
-  }
 
   private shouldStabilizeColumns = true;
   ngAfterViewChecked() {

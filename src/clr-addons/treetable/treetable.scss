@@ -52,16 +52,17 @@
       border-bottom-right-radius: 0;
       -ms-overflow-style: -ms-autohiding-scrollbar;
       overflow: auto;
-      height: 100%;
+      flex: 1 1 auto;
       margin-top: 0.5rem;
 
       .treetable-grid {
         display: flex;
         flex-direction: column;
+        flex: 1 1 auto;
         align-content: flex-start;
-        width: auto;
         min-height: 3rem; // Includes header and space for a single (non existing) row
         position: relative;
+        height: 100%;
 
         .treetable-column {
           background-color: $clr-thead-bgcolor;

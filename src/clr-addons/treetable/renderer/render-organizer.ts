@@ -32,7 +32,6 @@ export class TreetableRenderOrganizer {
     }
     this._renderStep.next(TreetableRenderStep.COMPUTE_COLUMN_WIDTHS);
     this._renderStep.next(TreetableRenderStep.ALIGN_COLUMNS);
-    this._renderStep.next(TreetableRenderStep.UPDATE_ROW_WIDTH);
     this.alreadySized = true;
   }
 }

@@ -7,13 +7,12 @@ import { AfterContentInit, Component, ContentChildren, Input, OnChanges, QueryLi
 import { ClrTreetableRow } from './treetable-row';
 import { ClrTreetableColumn } from './treetable-column';
 import { TreetableRenderOrganizer } from './renderer/render-organizer';
-import { TableSizeService } from './renderer/table-size.service';
 
 @Component({
   selector: 'clr-treetable',
   templateUrl: './treetable.html',
   host: { '[class.empty]': 'empty', '[class.treetable-host]': 'true' },
-  providers: [TreetableRenderOrganizer, TableSizeService],
+  providers: [TreetableRenderOrganizer],
 })
 export class ClrTreetable implements AfterContentInit, OnChanges {
   @Input() clrClickableRows = true;
