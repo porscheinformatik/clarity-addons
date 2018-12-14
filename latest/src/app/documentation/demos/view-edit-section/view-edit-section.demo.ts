@@ -126,9 +126,6 @@ export class ViewEditSectionDemo extends ClarityDocComponent {
     first: string = "Max";
     last: string = "Mustermann";
     email: string = "m.mustermann@mail.com";
-    editFirst: string = this.first;
-    editLast: string = this.last;
-    editEmail: string = this.email;
 
     hobby: string;
     licence: string;
@@ -145,17 +142,15 @@ export class ViewEditSectionDemo extends ClarityDocComponent {
     editMode: boolean;
 
     exampleForm = new FormGroup({
-        editFirst: new FormControl(this.editFirst, {
+        editFirst: new FormControl(this.first, {
             validators: [Validators.required],
             updateOn: "blur",
         }),
-        editLast: new FormControl(this.editLast, {
+        editLast: new FormControl(this.last, {
             validators: [Validators.required],
             updateOn: "blur",
         }),
-        editEmail: new FormControl(this.editEmail, {
-            updateOn: "blur",
-        }),
+        editEmail: new FormControl(this.email),
     });
 
     constructor() {
@@ -181,15 +176,15 @@ export class ViewEditSectionDemo extends ClarityDocComponent {
     }
 
     sectionSubmitted() {
-        this.first = this.editFirst;
-        this.last = this.editLast;
-        this.email = this.editEmail;
+        this.first = this.exampleForm.controls.editFirst.value;
+        this.last = this.exampleForm.controls.editLast.value;
+        this.email = this.exampleForm.controls.editEmail.value;
     }
 
     sectionCancelled() {
-        this.editFirst = this.first;
-        this.editLast = this.last;
-        this.editEmail = this.email;
+        this.exampleForm.controls.editFirst.setValue(this.first);
+        this.exampleForm.controls.editLast.setValue(this.last);
+        this.exampleForm.controls.editEmail.setValue(this.email);
     }
 
     addSectionSubmitted() {
