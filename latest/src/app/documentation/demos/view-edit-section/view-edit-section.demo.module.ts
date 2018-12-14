@@ -5,6 +5,7 @@
  */
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ClarityModule, ClrFormsModule} from "@clr/angular";
 import {ClrAddonsModule} from "@porscheinformatik/clr-addons";
 
@@ -12,13 +13,13 @@ import {ViewEditSectionDemo} from "./view-edit-section.demo"
 import {DocWrapperModule} from "../_doc-wrapper/doc-wrapper.module";
 import {RouterModule} from "@angular/router";
 import {UtilsModule} from "../../../utils/utils.module";
-import {FormsModule} from '@angular/forms';
 
 @NgModule({
     imports: [
         CommonModule,
         UtilsModule,
         DocWrapperModule,
+        ReactiveFormsModule,
         RouterModule.forChild([{path: "", component: ViewEditSectionDemo}]),
         FormsModule,
         ClrFormsModule,

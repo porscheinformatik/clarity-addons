@@ -320,18 +320,14 @@
             <clr-code-snippet [clrCode]="htmlExampleClickableCaret"></clr-code-snippet>
 
 
-            <h4>Optional: disable horizontal scrolling</h4>
+            <h4>Custom column sizing</h4>
 
             <p>
-                For tables with a small number of columns but with a lot of text, you might want to
-                prevent horizontal scrolling at all. Tables usually scroll horizontally on small screens.
-                Use the <strong>clr-treetable-noscroll</strong> class to deactivate this behavior.
-                A table with this class always displays all columns and cuts off overflowing text with (...) aka. ellipsis.
-                Beware that enabling this option might lead to styling issues on tables with a large
-                number of columns and/or deeper nesting.
+                For custom column widths use the <code class="clr-code">clr-col-</code> classes on the header columns <code class="clr-code">clr-tt-column</code>.
+                The cells in the body will adjust accordingly automatically.
             </p>
 
-            <clr-treetable class="clr-treetable-noscroll">
+            <clr-treetable>
                 <clr-tt-column class="clr-col-9">Some column</clr-tt-column>
                 <clr-tt-column class="clr-col-3">Some other column</clr-tt-column>
 
@@ -351,7 +347,7 @@
                 </clr-tt-row>
             </clr-treetable>
 
-            <clr-code-snippet [clrCode]="htmlExampleNoscroll"></clr-code-snippet>
+            <clr-code-snippet [clrCode]="htmlExampleCustomSize"></clr-code-snippet>
         </div>
     </article>
 </clr-doc-wrapper>

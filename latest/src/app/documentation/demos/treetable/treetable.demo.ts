@@ -50,8 +50,8 @@ const HTML_EXAMPLE_CLICKABLE_CARET = `
     ...
 </clr-treetable>`;
 
-const HTML_EXAMPLE_NOSCROLL = `
-<clr-treetable class="clr-treetable-noscroll">
+const HTML_EXAMPLE_CUSTOM_SIZE = `
+<clr-treetable>
     <clr-tt-column class="clr-col-9">Some column</clr-tt-column>
     <clr-tt-column class="clr-col-3">Some other column</clr-tt-column>
     <clr-tt-row clrExpandable="true">
@@ -70,7 +70,7 @@ const HTML_EXAMPLE_NOSCROLL = `
 export class TreetableDemo extends ClarityDocComponent {
     htmlExampleClickableRows = HTML_EXAMPLE_CLICKABLE_ROWS;
     htmlExampleClickableCaret = HTML_EXAMPLE_CLICKABLE_CARET;
-    htmlExampleNoscroll = HTML_EXAMPLE_NOSCROLL;
+    htmlExampleCustomSize = HTML_EXAMPLE_CUSTOM_SIZE;
 
     constructor() {
         super("treetable");

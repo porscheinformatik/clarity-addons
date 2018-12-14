@@ -5,10 +5,12 @@
  */
 import {Component} from "@angular/core";
 import {ClarityDocComponent} from "../clarity-doc";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 const HTML_EXAMPLE_SIDE_BY_SIDE = `
 <div class="clr-col-12 clr-col-lg-6">
-    <clr-view-edit-section [clrTitle]="sectionTitle" (clrSectionSubmitted)="sectionSubmitted()" (clrSectionEditCancelled)="sectionCancelled()">
+    <clr-view-edit-section [clrSaveDisabled]="!exampleForm.valid" [clrTitle]="sectionTitle" 
+        (clrSectionSubmitted)="sectionSubmitted()" (clrSectionEditCancelled)="sectionCancelled()">
         <div view-block>
             <form clrForm clrLayout="horizontal">
               <div class="clr-form-control clr-row">
@@ -26,18 +28,18 @@ const HTML_EXAMPLE_SIDE_BY_SIDE = `
             </form>
         </div>
         <div edit-block>
-            <form clrForm clrLayout="horizontal">
+            <form clrForm clrLayout="horizontal" [formGroup]="exampleForm">
               <clr-input-container>
-                  <label class="clr-col-md-4">First name</label>
-                  <input class="clr-col-md-8" clrInput type="text" [(ngModel)]="editFirst" name="first"/>
+                  <label class="clr-col-md-4 required">First name</label>
+                  <input class="clr-col-md-8" clrInput type="text" formControlName="editFirst" name="first"/>
               </clr-input-container>
               <clr-input-container>
-                  <label class="clr-col-md-4">Last name</label>
-                  <input class="clr-col-md-8" clrInput type="text" [(ngModel)]="editLast" name="last"/>
+                  <label class="clr-col-md-4 required">Last name</label>
+                  <input class="clr-col-md-8" clrInput type="text" formControlName="editLast" name="last"/>
               </clr-input-container>
               <clr-input-container>
                   <label class="clr-col-md-4">E-mail</label>
-                  <input class="clr-col-md-8" clrInput type="text" [(ngModel)]="editEmail" name="email"/>
+                  <input class="clr-col-md-8" clrInput type="text" formControlName="editEmail" name="email"/>
               </clr-input-container>
             </form>
         </div>
@@ -141,6 +143,20 @@ export class ViewEditSectionDemo extends ClarityDocComponent {
     compEditIcon: string = "cog";
 
     editMode: boolean;
+
+    exampleForm = new FormGroup({
+        editFirst: new FormControl(this.editFirst, {
+            validators: [Validators.required],
+            updateOn: "blur",
+        }),
+        editLast: new FormControl(this.editLast, {
+            validators: [Validators.required],
+            updateOn: "blur",
+        }),
+        editEmail: new FormControl(this.editEmail, {
+            updateOn: "blur",
+        }),
+    });
 
     constructor() {
         super("view-edit-section");

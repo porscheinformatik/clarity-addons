@@ -85,6 +85,16 @@
                 </tr>
                 <tr>
                     <td class="left">
+                        <b>[clrSaveDisabled]</b>
+                        <div class="hidden-sm-up">Type: boolean</div>
+                        <div class="hidden-sm-up">Default: false</div>
+                    </td>
+                    <td class="left hidden-xs-down">true, false</td>
+                    <td class="hidden-xs-down">false</td>
+                    <td class="left">Controls whether the save button is disabled (e.g.: for validation)</td>
+                </tr>
+                <tr>
+                    <td class="left">
                         <b>[clrCancelText]</b>
                         <div class="hidden-sm-up">Type: String</div>
                         <div class="hidden-sm-up">Default: "Cancel"</div>
@@ -130,10 +140,11 @@
         <div id="code-examples">
             <h3 id="examples">Code &amp; Examples</h3>
 
-            <h4>Side by side example</h4>
+            <h4>Side by side example with validation</h4>
             <div class="clr-row">
                 <div class="clr-col-12 clr-col-lg-6">
-                    <clr-view-edit-section [clrTitle]="sectionTitle" (clrSectionSubmitted)="sectionSubmitted()" (clrSectionEditCancelled)="sectionCancelled()">
+                    <clr-view-edit-section [clrTitle]="sectionTitle" (clrSectionSubmitted)="sectionSubmitted()" (clrSectionEditCancelled)="sectionCancelled()"
+                        [clrSaveDisabled]="!exampleForm.valid">
                         <div view-block>
                             <form clrForm clrLayout="horizontal">
                               <div class="clr-form-control clr-row">
@@ -151,18 +162,18 @@
                             </form>
                         </div>
                         <div edit-block>
-                            <form clrForm clrLayout="horizontal">
+                            <form clrForm clrLayout="horizontal" [formGroup]="exampleForm">
                               <clr-input-container>
-                                  <label class="clr-col-md-4">First name</label>
-                                  <input class="clr-col-md-8" clrInput type="text" [(ngModel)]="editFirst" name="first"/>
+                                  <label class="clr-col-md-4 required">First name</label>
+                                  <input class="clr-col-md-8" clrInput type="text" formControlName="editFirst" name="first"/>
                               </clr-input-container>
                               <clr-input-container>
-                                  <label class="clr-col-md-4">Last name</label>
-                                  <input class="clr-col-md-8" clrInput type="text" [(ngModel)]="editLast" name="last"/>
+                                  <label class="clr-col-md-4 required">Last name</label>
+                                  <input class="clr-col-md-8" clrInput type="text" formControlName="editLast" name="last"/>
                               </clr-input-container>
                               <clr-input-container>
                                   <label class="clr-col-md-4">E-mail</label>
-                                  <input class="clr-col-md-8" clrInput type="text" [(ngModel)]="editEmail" name="email"/>
+                                  <input class="clr-col-md-8" clrInput type="text" formControlName="editEmail" name="email"/>
                               </clr-input-container>
                             </form>
                         </div>
