@@ -24,11 +24,11 @@ export class TreetableCellRenderer implements OnDestroy {
 
   private clearWidth() {
     this.renderer.setStyle(this.el.nativeElement, 'flex', null);
+    this.renderer.setStyle(this.el.nativeElement, 'max-width', null);
   }
 
   public setWidth(value: number) {
-    if (this.el.nativeElement.className.indexOf('clr-col') < 0) {
-      this.renderer.setStyle(this.el.nativeElement, 'flex', '0 0 ' + value + 'px');
-    }
+    this.renderer.setStyle(this.el.nativeElement, 'flex', '0 0 ' + value + 'px');
+    this.renderer.setStyle(this.el.nativeElement, 'max-width', 'initial');
   }
 }
