@@ -16,7 +16,7 @@
         <ng-content select="[edit-block]" *ngIf="_editMode"></ng-content>
         <ng-container *ngIf="_editMode">
           <form clrForm (ngSubmit)="onSubmit()" class="button-bar">
-            <button class="btn btn-primary ves-save" type="submit">{{_saveText}}</button>
+            <button class="btn btn-primary ves-save" type="submit" [disabled]="_saveDisabled">{{_saveText}}</button>
             <button class="btn ves-cancel" (click)="onCancel()" type="button">{{_cancelText}}</button>
           </form>
         </ng-container>
