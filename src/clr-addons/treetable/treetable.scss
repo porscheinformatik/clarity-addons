@@ -30,11 +30,6 @@
     flex-flow: column nowrap;
     position: relative;
 
-    &.clr-treetable-noscroll .treetable {
-      max-width: initial;
-      width: 100%;
-    }
-
     .treetable-header,
     .treetable-body,
     .treetable-row,
