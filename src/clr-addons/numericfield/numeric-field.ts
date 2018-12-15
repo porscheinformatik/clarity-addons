@@ -4,7 +4,17 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { AfterViewChecked, Directive, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2 } from '@angular/core';
+import {
+  AfterViewChecked,
+  Directive,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  Renderer2,
+} from '@angular/core';
 
 const NEGATIVE = '-';
 const BACK_KEYCODE = 8;
@@ -18,7 +28,7 @@ const NUMBERS = new Set(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']);
     '[class.text-right]': 'textAlign === "right"',
   },
 })
-export class ClrNumericField implements OnInit, AfterViewChecked {
+export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
   @Input('clrTextAlign') textAlign = 'right';
   @Input('clrDecimalPlaces') decimalPlaces = 2;
   @Input('clrDecimalSep') decimalSeparator = ',';
@@ -28,6 +38,9 @@ export class ClrNumericField implements OnInit, AfterViewChecked {
   @Output('clrNumericValueChange') numericValueChanged = new EventEmitter<number>();
 
   private _numericValue: number;
+  private inputChangeListener: () => void;
+  private keyupListener: () => void;
+  private keydownListener: () => void;
 
   @Input('clrNumericValue')
   set numericValue(value: number) {
@@ -48,11 +61,11 @@ export class ClrNumericField implements OnInit, AfterViewChecked {
     this.allowedKeys.add(NEGATIVE);
     this.allowedKeys.add(this.decimalSeparator);
 
-    this.renderer.listen(this.inputEl.nativeElement, 'change', event => {
+    this.inputChangeListener = this.renderer.listen(this.inputEl.nativeElement, 'change', event => {
       this.formatInput(event.target);
     });
 
-    this.renderer.listen(this.inputEl.nativeElement, 'keyup', event => {
+    this.keyupListener = this.renderer.listen(this.inputEl.nativeElement, 'keyup', event => {
       if (
         event.keyCode === BACK_KEYCODE ||
         (event.keyCode >= CONTROL_KEYCODES_UPPER_BORDER && !OTHER_CONTROL_KEYS.has(event.keyCode))
@@ -61,7 +74,7 @@ export class ClrNumericField implements OnInit, AfterViewChecked {
       }
     });
 
-    this.renderer.listen(this.inputEl.nativeElement, 'keydown', event => {
+    this.keydownListener = this.renderer.listen(this.inputEl.nativeElement, 'keydown', event => {
       const value = event.target.value;
       if (
         this.allowedKeys.has(event.key) ||
@@ -103,6 +116,10 @@ export class ClrNumericField implements OnInit, AfterViewChecked {
         return false;
       }
     });
+  }
+
+  ngOnDestroy() {
+    this.detachListener();
   }
 
   ngAfterViewChecked() {
@@ -218,6 +235,21 @@ export class ClrNumericField implements OnInit, AfterViewChecked {
         this.renderer.addClass(this.unitSpan, 'unit-right');
         this.renderer.setStyle(this.inputEl.nativeElement, 'padding-right', paddingOnInput + 'px');
       }
+    }
+  }
+
+  private detachListener(): void {
+    if (!!this.inputChangeListener) {
+      this.inputChangeListener();
+      delete this.inputChangeListener;
+    }
+    if (!!this.keydownListener) {
+      this.keydownListener();
+      delete this.keydownListener;
+    }
+    if (!!this.keyupListener) {
+      this.keyupListener();
+      delete this.keyupListener;
     }
   }
 }
