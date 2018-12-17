@@ -1,5 +1,5 @@
 @mixin row-indentation($level) {
-  $base-cell-indentation: 0.5rem;
+  $base-cell-indentation: 1.5rem;
   $base-caret-indentation: 0.1rem;
   $indentation-increment: 1rem;
 
@@ -63,7 +63,6 @@
           background-color: $clr-thead-bgcolor;
           text-align: left;
           min-width: 4rem;
-          flex: 1 1 0;
           vertical-align: top;
 
           &:last-of-type {
@@ -72,7 +71,6 @@
         }
 
         .treetable-cell {
-          flex: 1 1 auto;
           text-align: left;
           min-width: 4rem;
           border-color: $clr-table-border-color;
@@ -86,9 +84,8 @@
       .treetable-expandable-caret {
         padding: calc(0.125rem - #{$clr-default-borderwidth}) $horizontalPadding 0.125rem;
         text-align: center;
-        position: relative;
+        position: absolute;
         z-index: 999;
-        flex: 0 0 25px;
         overflow: hidden;
 
         .treetable-expandable-caret-button {
@@ -100,15 +97,25 @@
 
         .treetable-expandable-caret-icon {
           color: $gray-dark;
+
           svg {
             transition: transform 0.2s ease-in-out;
           }
+        }
+
+        :focus {
+          outline: none;
         }
       }
 
       .treetable-row-scrollable {
         display: flex;
         flex-flow: row nowrap;
+
+        :first-child {
+          /* Add padding of 1.5 rem to account for the expendable icon in the rows below*/
+          padding-left: 1.5rem;
+        }
       }
 
       .treetable-header {
@@ -119,11 +126,6 @@
         z-index: map-get($clr-layers, datagrid-header);
         min-height: 1.5rem;
         width: auto;
-
-        .treetable-expandable-caret {
-          background-color: $clr-thead-bgcolor;
-          border-bottom: $clr-table-borderstyle;
-        }
 
         &.hide-header {
           visibility: hidden;
@@ -143,10 +145,6 @@
           display: flex;
           flex: 1 1 auto;
           flex-flow: row nowrap;
-
-          .treetable-cell {
-            flex-basis: 10%;
-          }
         }
 
         .treetable-row-wrapper {
@@ -204,7 +202,6 @@
         display: flex;
         flex-flow: column nowrap;
         align-items: center;
-        justify-content: center;
         justify-content: center;
         font-size: clr-getTypePropertyValueForDomElement(datagrid_placeholder, font-size);
         color: $clr-dark-midtone-gray;

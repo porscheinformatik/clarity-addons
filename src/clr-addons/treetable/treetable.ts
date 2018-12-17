@@ -4,26 +4,24 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { AfterContentInit, Component, ContentChildren, Input, OnChanges, QueryList } from '@angular/core';
-import { ClrTreetableRow } from './treetable-row';
 import { ClrTreetableColumn } from './treetable-column';
-import { TreetableRenderOrganizer } from './renderer/render-organizer';
+import { ClrTreetableRow } from './treetable-row';
 
 @Component({
   selector: 'clr-treetable',
   templateUrl: './treetable.html',
   host: { '[class.empty]': 'empty', '[class.treetable-host]': 'true' },
-  providers: [TreetableRenderOrganizer],
 })
 export class ClrTreetable implements AfterContentInit, OnChanges {
   @Input() clrClickableRows = true;
   @Input('clrHideHeader') hideHeader = false;
 
-  empty = true;
   @ContentChildren(ClrTreetableRow, { descendants: true })
   ttRows: QueryList<ClrTreetableRow>;
-
   @ContentChildren(ClrTreetableColumn, { descendants: true })
   ttColumns: QueryList<ClrTreetableRow>;
+
+  empty = true;
 
   ngAfterContentInit(): void {
     this.initClickableRows();
