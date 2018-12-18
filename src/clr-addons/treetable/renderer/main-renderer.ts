@@ -3,60 +3,46 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { AfterViewChecked, ContentChildren, Directive, OnDestroy, QueryList } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { AfterViewInit, ContentChildren, Directive, QueryList } from '@angular/core';
 
 import { ClrTreetableColumn } from '../treetable-column';
-import { TreetableRenderStep } from './render-step.enum';
-
 import { TreetableHeaderRenderer } from './header-renderer';
-import { TreetableRenderOrganizer } from './render-organizer';
+import { TreetableRowRenderer } from './row-renderer';
 
 @Directive({
   selector: 'clr-treetable',
 })
-export class TreetableMainRenderer<T = any> implements AfterViewChecked, OnDestroy {
-  constructor(private organizer: TreetableRenderOrganizer) {
-    this.subscriptions.push(
-      this.organizer
-        .filterRenderSteps(TreetableRenderStep.COMPUTE_COLUMN_WIDTHS)
-        .subscribe(() => this.computeHeadersWidth())
-    );
-  }
+export class TreetableMainRenderer<T = any> implements AfterViewInit {
+  @ContentChildren(TreetableHeaderRenderer) headers: QueryList<TreetableHeaderRenderer>;
+  @ContentChildren(TreetableRowRenderer, { descendants: true })
+  rows: QueryList<TreetableRowRenderer>;
+  @ContentChildren(ClrTreetableColumn) columns: QueryList<ClrTreetableColumn>;
 
-  @ContentChildren(TreetableHeaderRenderer) public headers: QueryList<TreetableHeaderRenderer>;
-  @ContentChildren(ClrTreetableColumn) public columns: QueryList<ClrTreetableColumn>;
+  constructor() {}
 
-  ngAfterContentInit() {
-    this.subscriptions.push(
-      this.headers.changes.subscribe(() => {
-        this.organizer.resize();
-      })
-    );
-  }
-  private subscriptions: Subscription[] = [];
-
-  private shouldStabilizeColumns = true;
-  ngAfterViewChecked() {
-    if (this.shouldStabilizeColumns) {
-      setTimeout(() => this.organizer.resize(), 0);
-      this.shouldStabilizeColumns = false;
-    }
-  }
-
-  ngOnDestroy() {
-    this.subscriptions.forEach(sub => sub.unsubscribe());
+  ngAfterViewInit(): void {
+    this.applyColumnClasses();
   }
 
   /**
-   * Makes each header compute its width.
+   * Applies css column class to every header and cell.
    */
-  private computeHeadersWidth() {
-    this.headers.forEach((header, index) => {
-      this.organizer.widths[index] = header.computeWidth();
+  private applyColumnClasses() {
+    this.headers.forEach((header, headerIndex) => {
+      const columnClasses = header.getColumnClasses();
+      if (columnClasses.length === 0) {
+        header.setDefaultColumnClass();
+        this.rows.forEach(row => {
+          // set every child cell of the same index to default class
+          row.cells.find((cell, cellIndex) => cellIndex === headerIndex).setColumnClasses(['clr-col']);
+        });
+      } else {
+        // set every child cell of the same index to the same class
+        // we do not allow overriding column width on a per cell basis different to the header.
+        this.rows.forEach(row => {
+          row.cells.find((cell, cellIndex) => cellIndex === headerIndex).setColumnClasses(columnClasses);
+        });
+      }
     });
-    this.organizer.widths[this.organizer.widths.length - 1] -= 2;
-
-    this.headers.forEach((header, index) => header.setWidth(this.organizer.widths[index]));
   }
 }

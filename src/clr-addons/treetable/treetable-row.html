@@ -6,8 +6,8 @@
 
 <div [ngClass]="{'clr-row-clickable': clickable && expandable}" class="clr-tt-node-content treetable-row" (click)="onRowClick()">
   <div class="treetable-scrolling-cells">
-    <div class="treetable-expandable-caret">
-      <button *ngIf="isExpandable()" type="button" class="treetable-expandable-caret-button" (click)="onCaretClick()">
+    <div class="treetable-expandable-caret" *ngIf="isExpandable()">
+      <button type="button" class="treetable-expandable-caret-button" (click)="onCaretClick()">
         <clr-icon shape="caret"
                   [attr.dir]="expanded ? 'down' : 'right'"
                   class="treetable-expandable-caret-icon"></clr-icon>

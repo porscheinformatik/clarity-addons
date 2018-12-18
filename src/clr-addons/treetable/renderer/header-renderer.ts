@@ -3,42 +3,26 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Directive, ElementRef, OnDestroy, Renderer2 } from '@angular/core';
-import { Subscription } from 'rxjs';
-
-import { TreetableRenderStep } from './render-step.enum';
-import { TreetableRenderOrganizer } from './render-organizer';
+import { Directive, ElementRef, Renderer2 } from '@angular/core';
 
 @Directive({ selector: 'clr-tt-column' })
-export class TreetableHeaderRenderer implements OnDestroy {
-  constructor(private el: ElementRef, private renderer: Renderer2, private organizer: TreetableRenderOrganizer) {
-    this.subscriptions.push(
-      this.organizer.filterRenderSteps(TreetableRenderStep.CLEAR_WIDTHS).subscribe(() => this.clearWidth())
-    );
+export class TreetableHeaderRenderer {
+  constructor(private el: ElementRef, private renderer: Renderer2) {}
+
+  /**
+   * Returns all classes starting with 'clr-col'.
+   */
+  public getColumnClasses(): string[] {
+    const classes: string[] = [];
+    this.el.nativeElement.classList.forEach((className: string) => {
+      if (className.indexOf('clr-col') !== -1) {
+        classes.push(className);
+      }
+    });
+    return classes;
   }
 
-  private widthSet: boolean = false;
-
-  private subscriptions: Subscription[] = [];
-  ngOnDestroy() {
-    this.subscriptions.forEach(sub => sub.unsubscribe());
-  }
-
-  private clearWidth() {
-    // remove the width only if we set it.
-    if (this.widthSet) {
-      this.renderer.setStyle(this.el.nativeElement, 'flex', null);
-      this.renderer.setStyle(this.el.nativeElement, 'max-width', null);
-    }
-  }
-
-  public computeWidth(): number {
-    return this.el.nativeElement.scrollWidth || 0;
-  }
-
-  public setWidth(width: number) {
-    this.renderer.setStyle(this.el.nativeElement, 'flex', '0 0 ' + width + 'px');
-    this.renderer.setStyle(this.el.nativeElement, 'max-width', 'initial');
-    this.widthSet = true;
+  public setDefaultColumnClass(): void {
+    this.renderer.addClass(this.el.nativeElement, 'clr-col');
   }
 }
