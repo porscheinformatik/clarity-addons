@@ -14,4 +14,8 @@ export class TreetableCellRenderer {
       this.renderer.addClass(this.el.nativeElement, className);
     });
   }
+
+  public setMaxWidth(maxWidth: number) {
+    this.renderer.setStyle(this.el.nativeElement, 'max-width', maxWidth + 'px');
+  }
 }
