@@ -10,6 +10,13 @@ export class TreetableHeaderRenderer {
   constructor(private el: ElementRef, private renderer: Renderer2) {}
 
   /**
+   * Returns the client width of the header cell.
+   */
+  public getWidth(): string {
+    return this.el.nativeElement.clientWidth;
+  }
+
+  /**
    * Returns all classes starting with 'clr-col'.
    */
   public getColumnClasses(): string[] {

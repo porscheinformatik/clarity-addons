@@ -22,6 +22,10 @@ export class TreetableMainRenderer<T = any> implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.applyColumnClasses();
+    // Apply max width after a short timeout to be able to retrieve the client rendered value
+    setTimeout(() => {
+      this.applyMaxWidth();
+    }, 100);
   }
 
   /**
@@ -43,6 +47,13 @@ export class TreetableMainRenderer<T = any> implements AfterViewInit {
           row.cells.find((cell, cellIndex) => cellIndex === headerIndex).setColumnClasses(columnClasses);
         });
       }
+    });
+  }
+
+  private applyMaxWidth() {
+    const maxWidth = this.headers.first.getWidth();
+    this.rows.forEach(row => {
+      row.cells.first.setMaxWidth(maxWidth);
     });
   }
 }
