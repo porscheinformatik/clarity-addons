@@ -12,7 +12,7 @@ export class TreetableHeaderRenderer {
   /**
    * Returns the client width of the header cell.
    */
-  public getWidth(): string {
+  public getWidth(): number {
     return this.el.nativeElement.clientWidth;
   }
 
