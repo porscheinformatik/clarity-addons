@@ -12,7 +12,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'test-component',
-  template: `<div [clrProgressSpinner]="loadingState"></div>`,
+  template: `<div *clrProgressSpinner="loadingState"> </div>`,
 })
 class TestComponent {
   public loadingState: boolean = false;
