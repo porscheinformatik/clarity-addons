@@ -13,7 +13,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class ClrViewEditSection {
   @Input('clrTitle') _title: string;
   @Input('clrSaveText') _saveText: string = 'Save';
-  @Input('clrSaveDisabled') _saveDisabled: boolean = false;
+  @Input('clrPreventModeChangeOnSave') _preventSave: boolean = false;
   @Input('clrCancelText') _cancelText: string = 'Cancel';
   @Input('clrEditable') _editable: boolean = true;
   @Input('clrEditMode') _editMode: boolean = false;
@@ -25,7 +25,9 @@ export class ClrViewEditSection {
 
   public onSubmit() {
     this._submitted.emit();
-    this.setEditMode(false);
+    if (!this._preventSave) {
+      this.setEditMode(false);
+    }
   }
 
   public onCancel() {
