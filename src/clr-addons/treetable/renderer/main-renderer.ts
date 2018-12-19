@@ -35,13 +35,19 @@ export class TreetableMainRenderer<T = any> implements AfterViewChecked {
         header.setDefaultColumnClass();
         this.rows.forEach(row => {
           // set every child cell of the same index to default class
-          row.cells.find((cell, cellIndex) => cellIndex === headerIndex).setColumnClasses(['clr-col']);
+          const cell = row.cells.find((c, cellIndex) => cellIndex === headerIndex);
+          if (!!cell) {
+            cell.setColumnClasses(['clr-col']);
+          }
         });
       } else {
         // set every child cell of the same index to the same class
         // we do not allow overriding column width on a per cell basis different to the header.
         this.rows.forEach(row => {
-          row.cells.find((cell, cellIndex) => cellIndex === headerIndex).setColumnClasses(columnClasses);
+          const cell = row.cells.find((c, cellIndex) => cellIndex === headerIndex);
+          if (!!cell) {
+            cell.setColumnClasses(columnClasses);
+          }
         });
       }
     });
