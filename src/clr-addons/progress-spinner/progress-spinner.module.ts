@@ -5,11 +5,12 @@
  */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ClrProgressSpinnerDirective } from './progress-spinner';
+import { ClrProgressSpinnerDirective, ClrProgressSpinnerWrapperComponent } from './progress-spinner';
 
 @NgModule({
   imports: [CommonModule],
-  declarations: [ClrProgressSpinnerDirective],
+  declarations: [ClrProgressSpinnerDirective, ClrProgressSpinnerWrapperComponent],
+  entryComponents: [ClrProgressSpinnerWrapperComponent],
   exports: [ClrProgressSpinnerDirective],
 })
 export class ClrProgressSpinnerModule {}
