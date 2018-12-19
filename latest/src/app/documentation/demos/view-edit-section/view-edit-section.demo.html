@@ -85,13 +85,13 @@
                 </tr>
                 <tr>
                     <td class="left">
-                        <b>[clrSaveDisabled]</b>
+                        <b>[clrPreventModeChangeOnSave]</b>
                         <div class="hidden-sm-up">Type: boolean</div>
                         <div class="hidden-sm-up">Default: false</div>
                     </td>
                     <td class="left hidden-xs-down">true, false</td>
                     <td class="hidden-xs-down">false</td>
-                    <td class="left">Controls whether the save button is disabled (e.g.: for validation)</td>
+                    <td class="left">Controls whether clicking the save button prevents change from edit to view mode (e.g.: for validation)</td>
                 </tr>
                 <tr>
                     <td class="left">
@@ -143,8 +143,7 @@
             <h4>Side by side example with validation</h4>
             <div class="clr-row">
                 <div class="clr-col-12 clr-col-lg-6">
-                    <clr-view-edit-section [clrTitle]="sectionTitle" (clrSectionSubmitted)="sectionSubmitted()" (clrSectionEditCancelled)="sectionCancelled()"
-                        [clrSaveDisabled]="!exampleForm.valid">
+                    <clr-view-edit-section [clrPreventModeChangeOnSave]="!exampleForm.valid" [clrTitle]="sectionTitle" (clrSectionSubmitted)="sectionSubmitted()" (clrSectionEditCancelled)="sectionCancelled()">
                         <div view-block>
                             <form clrForm clrLayout="horizontal">
                               <div class="clr-form-control clr-row">
@@ -166,10 +165,12 @@
                               <clr-input-container>
                                   <label class="clr-col-md-4 required">First name</label>
                                   <input class="clr-col-md-8" clrInput type="text" formControlName="editFirst" name="first"/>
+                                  <clr-control-error>You must enter a first name.</clr-control-error>
                               </clr-input-container>
                               <clr-input-container>
                                   <label class="clr-col-md-4 required">Last name</label>
                                   <input class="clr-col-md-8" clrInput type="text" formControlName="editLast" name="last"/>
+                                  <clr-control-error>You must enter a last name.</clr-control-error>
                               </clr-input-container>
                               <clr-input-container>
                                   <label class="clr-col-md-4">E-mail</label>

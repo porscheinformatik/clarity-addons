@@ -9,7 +9,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 const HTML_EXAMPLE_SIDE_BY_SIDE = `
 <div class="clr-col-12 clr-col-lg-6">
-    <clr-view-edit-section [clrSaveDisabled]="!exampleForm.valid" [clrTitle]="sectionTitle" 
+    <clr-view-edit-section [clrPreventModeChangeOnSave]="!exampleForm.valid" [clrTitle]="sectionTitle" 
         (clrSectionSubmitted)="sectionSubmitted()" (clrSectionEditCancelled)="sectionCancelled()">
         <div view-block>
             <form clrForm clrLayout="horizontal">
@@ -32,10 +32,12 @@ const HTML_EXAMPLE_SIDE_BY_SIDE = `
               <clr-input-container>
                   <label class="clr-col-md-4 required">First name</label>
                   <input class="clr-col-md-8" clrInput type="text" formControlName="editFirst" name="first"/>
+                  <clr-control-error>You must enter a first name.</clr-control-error>
               </clr-input-container>
               <clr-input-container>
                   <label class="clr-col-md-4 required">Last name</label>
                   <input class="clr-col-md-8" clrInput type="text" formControlName="editLast" name="last"/>
+                  <clr-control-error>You must enter a last name.</clr-control-error>
               </clr-input-container>
               <clr-input-container>
                   <label class="clr-col-md-4">E-mail</label>
@@ -176,9 +178,11 @@ export class ViewEditSectionDemo extends ClarityDocComponent {
     }
 
     sectionSubmitted() {
-        this.first = this.exampleForm.controls.editFirst.value;
-        this.last = this.exampleForm.controls.editLast.value;
-        this.email = this.exampleForm.controls.editEmail.value;
+        if (this.exampleForm.valid) {
+            this.first = this.exampleForm.controls.editFirst.value;
+            this.last = this.exampleForm.controls.editLast.value;
+            this.email = this.exampleForm.controls.editEmail.value;
+        }
     }
 
     sectionCancelled() {
