@@ -186,9 +186,7 @@ export class ViewEditSectionDemo extends ClarityDocComponent {
     }
 
     sectionCancelled() {
-        this.exampleForm.controls.editFirst.setValue(this.first);
-        this.exampleForm.controls.editLast.setValue(this.last);
-        this.exampleForm.controls.editEmail.setValue(this.email);
+        this.exampleForm.reset({editFirst: this.first, editLast: this.last, editEmail: this.email})
     }
 
     addSectionSubmitted() {
