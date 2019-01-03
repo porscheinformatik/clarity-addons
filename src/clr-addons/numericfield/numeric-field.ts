@@ -152,7 +152,7 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
 
     if (finalFormatting) {
       /* autofill decimal places */
-      if (this.autofillDecimals && this.decimalPlaces > 0) {
+      if (this.autofillDecimals && this.decimalPlaces > 0 && !!result) {
         let actualDecimalIndex = result.indexOf(this.decimalSeparator);
         if (actualDecimalIndex === -1) {
           actualDecimalIndex = result.length;
