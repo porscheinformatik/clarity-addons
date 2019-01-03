@@ -92,7 +92,7 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
 
         /* no duplicate decimal separators */
         const indexDecimalSep = value.indexOf(this.decimalSeparator);
-        if (event.key === this.decimalSeparator && indexDecimalSep > -1) {
+        if (event.key === this.decimalSeparator && (indexDecimalSep > -1 || this.decimalPlaces === 0)) {
           return false;
         }
 
