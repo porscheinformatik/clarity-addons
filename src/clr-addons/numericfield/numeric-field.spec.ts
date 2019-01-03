@@ -19,7 +19,7 @@ import { ClrNumericFieldModule } from './numeric-field.module';
     <clr-input-container>
       <label>Amount</label>
       <input clrInput clrNumeric type="text" clrDecimalSep="," clrGroupingSep="." [clrDecimalPlaces]="decimalPlaces"
-             [(clrNumericValue)]="input"/>
+          [clrAutofillDecimals]="autofill" [(clrNumericValue)]="input"/>
     </clr-input-container>
   `,
 })
@@ -27,6 +27,7 @@ class TestComponent {
   @ViewChild(ClrNumericField) component;
   input: number;
   decimalPlaces = 3;
+  autofill = false;
 }
 
 describe('NumericComponent', () => {
@@ -154,5 +155,33 @@ describe('NumericComponent', () => {
 
     expect(fixture.componentInstance.component.displayValue).toBe('123');
     expect(fixture.componentInstance.input).toBe(123);
+  });
+
+  it('Autofill decimal places without separator', () => {
+    fixture.componentInstance.autofill = true;
+    fixture.detectChanges();
+    addKey('1', 49);
+    addKey('2', 50);
+    addKey('3', 51);
+    inputEl.triggerEventHandler('change', { target: inputEl.nativeElement });
+    fixture.detectChanges();
+
+    expect(fixture.componentInstance.component.displayValue).toBe('123,000');
+    expect(fixture.componentInstance.input).toBe(123);
+  });
+
+  it('Autofill decimal places with separator', () => {
+    fixture.componentInstance.autofill = true;
+    fixture.detectChanges();
+    addKey('1', 49);
+    addKey('2', 50);
+    addKey('3', 51);
+    addKey(',', 188);
+    addKey('2', 50);
+    inputEl.triggerEventHandler('change', { target: inputEl.nativeElement });
+    fixture.detectChanges();
+
+    expect(fixture.componentInstance.component.displayValue).toBe('123,200');
+    expect(fixture.componentInstance.input).toBe(123.2);
   });
 });
