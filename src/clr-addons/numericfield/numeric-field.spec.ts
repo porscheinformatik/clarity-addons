@@ -18,7 +18,7 @@ import { ClrNumericFieldModule } from './numeric-field.module';
   template: `
     <clr-input-container>
       <label>Amount</label>
-      <input clrInput clrNumeric type="text" clrDecimalSep="," clrGroupingSep="." clrDecimalPlaces="3"
+      <input clrInput clrNumeric type="text" clrDecimalSep="," clrGroupingSep="." [clrDecimalPlaces]="decimalPlaces"
              [(clrNumericValue)]="input"/>
     </clr-input-container>
   `,
@@ -26,6 +26,7 @@ import { ClrNumericFieldModule } from './numeric-field.module';
 class TestComponent {
   @ViewChild(ClrNumericField) component;
   input: number;
+  decimalPlaces = 3;
 }
 
 describe('NumericComponent', () => {
@@ -62,16 +63,16 @@ describe('NumericComponent', () => {
 
   it('Multiple grouping separator', () => {
     addKey('1', 49);
-    addKey('2', 50);
-    addKey('3', 51);
-    addKey('4', 52);
-    addKey('5', 53);
-    addKey('6', 54);
-    addKey('7', 55);
+    addKey('0', 48);
+    addKey('0', 48);
+    addKey('0', 48);
+    addKey('0', 48);
+    addKey('0', 48);
+    addKey('0', 48);
     fixture.detectChanges();
 
-    expect(fixture.componentInstance.component.displayValue).toBe('1.234.567');
-    expect(fixture.componentInstance.input).toBe(1234567);
+    expect(fixture.componentInstance.component.displayValue).toBe('1.000.000');
+    expect(fixture.componentInstance.input).toBe(1000000);
   });
 
   it('Decimal separator', () => {
@@ -99,7 +100,21 @@ describe('NumericComponent', () => {
     expect(fixture.componentInstance.input).toBe(1234.5);
   });
 
-  it('Toggle negative', () => {
+  it('Add negative sign in front', () => {
+    addKey('-', 189);
+    addKey('1', 49);
+    addKey('2', 50);
+    addKey('3', 51);
+    addKey('4', 52);
+    addKey(',', 188);
+    addKey('5', 53);
+    fixture.detectChanges();
+
+    expect(fixture.componentInstance.component.displayValue).toBe('-1.234,5');
+    expect(fixture.componentInstance.input).toBe(-1234.5);
+  });
+
+  it('Add invalid negative in between', () => {
     addKey('1', 49);
     addKey('2', 50);
     addKey('3', 51);
@@ -109,8 +124,8 @@ describe('NumericComponent', () => {
     addKey('5', 53);
     fixture.detectChanges();
 
-    expect(fixture.componentInstance.component.displayValue).toBe('-1.234,5');
-    expect(fixture.componentInstance.input).toBe(-1234.5);
+    expect(fixture.componentInstance.component.displayValue).toBe('1.234,5');
+    expect(fixture.componentInstance.input).toBe(1234.5);
   });
 
   it('Decimal places check', () => {
@@ -126,5 +141,18 @@ describe('NumericComponent', () => {
 
     expect(fixture.componentInstance.component.displayValue).toBe('123,444');
     expect(fixture.componentInstance.input).toBe(123.444);
+  });
+
+  it('No Decimal places, prevent entering decimal separator', () => {
+    fixture.componentInstance.decimalPlaces = 0;
+    fixture.detectChanges();
+    addKey('1', 49);
+    addKey('2', 50);
+    addKey('3', 51);
+    addKey(',', 188);
+    fixture.detectChanges();
+
+    expect(fixture.componentInstance.component.displayValue).toBe('123');
+    expect(fixture.componentInstance.input).toBe(123);
   });
 });

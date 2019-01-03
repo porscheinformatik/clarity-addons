@@ -44,8 +44,10 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
 
   @Input('clrNumericValue')
   set numericValue(value: number) {
-    this._numericValue = value;
-    this.handleInputChanged();
+    if (this._numericValue !== value) {
+      this._numericValue = value;
+      this.handleInputChanged();
+    }
   }
 
   displayValue: string;
@@ -83,17 +85,8 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
         event.ctrlKey ||
         event.altKey
       ) {
-        /* toggle negative sign */
-        if (event.key === NEGATIVE) {
-          let cursorPos = event.target.selectionStart;
-          if (value.startsWith(NEGATIVE)) {
-            this.updateInput(value.substring(1));
-            cursorPos -= 1;
-          } else {
-            this.updateInput(NEGATIVE + value);
-            cursorPos += 1;
-          }
-          event.target.selectionStart = event.target.selectionEnd = cursorPos;
+        /* allow negative sign only as first character */
+        if (event.key === NEGATIVE && event.target.selectionStart > 0) {
           return false;
         }
 
@@ -127,26 +120,20 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   handleInputChanged() {
-    this.inputEl.nativeElement.value = !!this._numericValue ? this._numericValue.toString() : '';
-    if (!!this._numericValue && this._numericValue % 1 !== 0) {
-      const formattedNumber: string = this._numericValue
-        .toString()
-        .replace(new RegExp('[.]', 'g'), this.decimalSeparator);
-      // Call in set timeout to avoid Expression has changed after it has been checked error.
-      // Sometimes the value changes because we cut off decimal places
-      setTimeout(() => {
-        this.updateInput(this.formatNumber(formattedNumber));
-      }, 1);
-    }
+    // Call in set timeout to avoid Expression has changed after it has been checked error.
+    // Sometimes the value changes because we cut off decimal places
+    setTimeout(() => {
+      this.updateInput(
+        this.formatNumber(this._numericValue.toString().replace(new RegExp('[.]', 'g'), this.decimalSeparator))
+      );
+    }, 1);
   }
 
   formatInput(element: any) {
     const value = element.value;
     const cursorPos = element.selectionStart;
     const length = value.length;
-
     this.updateInput(this.formatNumber(value));
-
     element.selectionStart = element.selectionEnd = cursorPos + element.value.length - length;
   }
 
@@ -173,7 +160,10 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
       j++;
       if (this.allowedKeys.has(char)) {
         if (char === this.decimalSeparator) {
-          if (indexDecimalSep > -1) {
+          if (this.decimalPlaces === 0) {
+            /* dismiss content after a decimal separator, when no places allowed */
+            break;
+          } else if (indexDecimalSep > -1) {
             /* ignore subsequent decimal separators */
             continue;
           }
