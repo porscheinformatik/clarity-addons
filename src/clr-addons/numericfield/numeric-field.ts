@@ -85,8 +85,8 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
         event.ctrlKey ||
         event.altKey
       ) {
-        /* allow negative sign only as first character */
-        if (event.key === NEGATIVE && event.target.selectionStart > 0) {
+        /* allow negative sign only as first character and none exists */
+        if (event.key === NEGATIVE && (event.target.selectionStart > 0 || value.indexOf(NEGATIVE) > -1)) {
           return false;
         }
 
