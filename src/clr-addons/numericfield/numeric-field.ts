@@ -31,6 +31,7 @@ const NUMBERS = new Set(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']);
 export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
   @Input('clrTextAlign') textAlign = 'right';
   @Input('clrDecimalPlaces') decimalPlaces = 2;
+  @Input('clrAutofillDecimals') autofillDecimals = false;
   @Input('clrDecimalSep') decimalSeparator = ',';
   @Input('clrGroupingSep') groupingSeparator = '.';
   @Input('clrUnit') unit: string = null;
@@ -64,7 +65,7 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
     this.allowedKeys.add(this.decimalSeparator);
 
     this.inputChangeListener = this.renderer.listen(this.inputEl.nativeElement, 'change', event => {
-      this.formatInput(event.target);
+      this.formatInput(event.target, true);
     });
 
     this.keyupListener = this.renderer.listen(this.inputEl.nativeElement, 'keyup', event => {
@@ -72,7 +73,7 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
         event.keyCode === BACK_KEYCODE ||
         (event.keyCode >= CONTROL_KEYCODES_UPPER_BORDER && !OTHER_CONTROL_KEYS.has(event.keyCode))
       ) {
-        this.formatInput(event.target);
+        this.formatInput(event.target, false);
       }
     });
 
@@ -124,20 +125,20 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
     // Sometimes the value changes because we cut off decimal places
     setTimeout(() => {
       this.updateInput(
-        this.formatNumber(this._numericValue.toString().replace(new RegExp('[.]', 'g'), this.decimalSeparator))
+        this.formatNumber(this._numericValue.toString().replace(new RegExp('[.]', 'g'), this.decimalSeparator), true)
       );
     }, 1);
   }
 
-  formatInput(element: any) {
+  formatInput(element: any, finalFormatting: boolean) {
     const value = element.value;
     const cursorPos = element.selectionStart;
     const length = value.length;
-    this.updateInput(this.formatNumber(value));
+    this.updateInput(this.formatNumber(value, finalFormatting));
     element.selectionStart = element.selectionEnd = cursorPos + element.value.length - length;
   }
 
-  formatNumber(value: string): string {
+  formatNumber(value: string, finalFormatting: boolean): string {
     let result = this.strip(value);
 
     /* add grouping separator */
@@ -147,6 +148,21 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
     while (i > (isNegative ? 4 : 3)) {
       i -= 3;
       result = result.substring(0, i) + this.groupingSeparator + result.substring(i, result.length);
+    }
+
+    if (finalFormatting) {
+      /* autofill decimal places */
+      if (this.autofillDecimals && this.decimalPlaces > 0) {
+        let actualDecimalIndex = result.indexOf(this.decimalSeparator);
+        if (actualDecimalIndex === -1) {
+          actualDecimalIndex = result.length;
+          result += this.decimalSeparator;
+        }
+        const actualDecimalPlaces = result.length - actualDecimalIndex - 1;
+        for (let j = 0; j < this.decimalPlaces - actualDecimalPlaces; j++) {
+          result += 0;
+        }
+      }
     }
 
     return result;
@@ -195,26 +211,26 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   private injectUnitSymbol(): void {
-    // Need to inject the unit symbol until the input element width is set to its actual value, otherwise the icon wont show in the correct position
-    if (!!this.unit && (!this.unitSpan || this.inputEl.nativeElement.style.width === '0px')) {
-      // Create the span with unit symbol and apply necessary styles
-      this.unitSpan = this.renderer.createElement('span');
-      const unitSymbol = this.renderer.createText(this.unit);
-      this.renderer.appendChild(this.unitSpan, unitSymbol);
-      this.renderer.addClass(this.unitSpan, 'unit');
-
+    // Need to inject the unit symbol when the input element width is set to its actual value, otherwise the icon wont show in the correct position
+    if (!!this.unit && !this.unitSpan && this.inputEl.nativeElement.offsetWidth !== 0) {
       // Get the input wrapper and apply necessary styles
       const inputWrapper = this.inputEl.nativeElement.parentNode;
       this.renderer.addClass(inputWrapper, 'numeric-input-wrapper');
+
+      // Create the span with unit symbol and apply necessary styles
+      if (!this.unitSpan) {
+        this.unitSpan = this.renderer.createElement('span');
+        this.renderer.addClass(this.unitSpan, 'unit');
+        const unitSymbol = this.renderer.createText(this.unit);
+        this.renderer.appendChild(this.unitSpan, unitSymbol);
+        this.renderer.appendChild(inputWrapper, this.unitSpan);
+      }
 
       // Set the input width to the current width in css, so it won't extend when adding padding later on
       const inputWidth = this.inputEl.nativeElement.offsetWidth;
       this.renderer.setStyle(this.inputEl.nativeElement, 'width', inputWidth + 'px');
       // Also set the input wrapper width to same width to support horizontal form layout
       this.renderer.setStyle(inputWrapper, 'width', inputWidth + 'px');
-
-      // Add the span to the DOM
-      this.renderer.appendChild(inputWrapper, this.unitSpan);
 
       // Add padding to the input element, depending on the width of the unit symbol + 12px
       const paddingOnInput = this.unitSpan.offsetWidth + 12;
