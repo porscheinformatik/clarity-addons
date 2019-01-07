@@ -40,7 +40,7 @@
     "@clr/angular": "^1.0.0",
     "@clr/icons": "^1.0.0",
     "@clr/ui": "^1.0.0",
-    "@porscheinformatik/clr-addons": "3.4.10",
+    "@porscheinformatik/clr-addons": "3.4.11",
     "@webcomponents/custom-elements": "^1.0.4",
     "bootstrap": "^4.0.0-alpha.5",
     "classlist.js": "^1.1.20150312",
