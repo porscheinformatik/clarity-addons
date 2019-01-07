@@ -45,7 +45,7 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
 
   @Input('clrNumericValue')
   set numericValue(value: number) {
-    if (this._numericValue !== value) {
+    if (this._numericValue !== value && !(isNaN(this._numericValue) && isNaN(value))) {
       this._numericValue = value;
       this.handleInputChanged();
     }
@@ -102,6 +102,7 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
           NUMBERS.has(event.key) &&
           indexDecimalSep > -1 &&
           indexDecimalSep < event.target.selectionStart &&
+          event.target.selectionStart === event.target.selectionEnd &&
           value.length > indexDecimalSep + this.decimalPlaces
         ) {
           return false;
@@ -158,9 +159,19 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
           actualDecimalIndex = result.length;
           result += this.decimalSeparator;
         }
+        /* autoadd a zero before decimal separator, when it's missing */
+        if (actualDecimalIndex === 0) {
+          result = '0' + result;
+          actualDecimalIndex++;
+        }
+        /* autoadd a zero before decimal separator, when it's missing for negative values */
+        if (actualDecimalIndex === 1 && isNegative) {
+          result = result[0] + '0' + result.substring(1, result.length);
+          actualDecimalIndex++;
+        }
         const actualDecimalPlaces = result.length - actualDecimalIndex - 1;
         for (let j = 0; j < this.decimalPlaces - actualDecimalPlaces; j++) {
-          result += 0;
+          result += '0';
         }
       }
     }

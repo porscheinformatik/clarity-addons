@@ -184,4 +184,29 @@ describe('NumericComponent', () => {
     expect(fixture.componentInstance.component.displayValue).toBe('123,200');
     expect(fixture.componentInstance.input).toBe(123.2);
   });
+
+  it('Autofill zero before decimal separator, positive value', () => {
+    fixture.componentInstance.autofill = true;
+    fixture.detectChanges();
+    addKey(',', 188);
+    addKey('2', 50);
+    inputEl.triggerEventHandler('change', { target: inputEl.nativeElement });
+    fixture.detectChanges();
+
+    expect(fixture.componentInstance.component.displayValue).toBe('0,200');
+    expect(fixture.componentInstance.input).toBe(0.2);
+  });
+
+  it('Autofill zero before decimal separator, negative value', () => {
+    fixture.componentInstance.autofill = true;
+    fixture.detectChanges();
+    addKey('-', 189);
+    addKey(',', 188);
+    addKey('2', 50);
+    inputEl.triggerEventHandler('change', { target: inputEl.nativeElement });
+    fixture.detectChanges();
+
+    expect(fixture.componentInstance.component.displayValue).toBe('-0,200');
+    expect(fixture.componentInstance.input).toBe(-0.2);
+  });
 });
