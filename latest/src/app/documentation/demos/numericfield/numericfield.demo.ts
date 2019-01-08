@@ -15,7 +15,7 @@ const HTML_EXAMPLE = `
     <clr-input-container>
         <label>Money</label>
         <input clrInput clrNumeric type="text" [(clrNumericValue)]="money" clrUnit="€"
-               formControlName="money"/>
+               [clrAutofillDecimals]="true" formControlName="money"/>
         <clr-control-error>Please enter a value between 0 and 10.000</clr-control-error>
     </clr-input-container>
     <clr-input-container>
@@ -30,8 +30,8 @@ const HTML_EXAMPLE = `
     <clr-input-container>
         <label>Money</label>
         <input clrInput clrNumeric type="text" [(clrNumericValue)]="money" clrUnit="€"
-               formControlName="money"/>
-        <clr-control-error>Please enter a value between 1.000 and 10.000</clr-control-error>
+               [clrAutofillDecimals]="true" formControlName="money"/>
+        <clr-control-error>Please enter a value between 0 and 10.000</clr-control-error>
     </clr-input-container>
     <clr-input-container>
         <label>Percentage</label>
@@ -47,8 +47,8 @@ const HTML_EXAMPLE2 = `
     <clr-input-container>
         <label>Money</label>
         <input clrInput clrNumeric type="text" [(clrNumericValue)]="money" clrUnit="€"
-               clrUnitPosition="left" formControlName="money"/>
-        <clr-control-error>Please enter a value between 1.000 and 10.000</clr-control-error>
+               clrUnitPosition="left" [clrAutofillDecimals]="true" formControlName="money"/>
+        <clr-control-error>Please enter a value between 0 and 10.000</clr-control-error>
     </clr-input-container>
     <clr-input-container>
         <label>Percentage</label>
