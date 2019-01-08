@@ -104,13 +104,13 @@ export class ClrProgressSpinnerDirective implements OnChanges, OnDestroy, OnInit
 @Component({
   selector: 'clrProgressSpinnerWrapper',
   template: `
-    <ng-template style="position:relative">
+    <div style="position:relative">
       <div class="loading-overlay" *ngIf="showSpinner">        
           <span [class]="'spinner-'+size+' spinner'">
           </span>
       </div>
       <ng-content></ng-content>
-    </ng-template>
+    </div>
   `,
 })
 export class ClrProgressSpinnerWrapperComponent {
