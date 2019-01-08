@@ -27,7 +27,7 @@
                 </tr>
                 <tr>
                     <td class="left">
-                        <b>clrSize</b>
+                        <b>clrProgressSpinnerSize</b>
                         <div class="hidden-sm-up">Type: String</div>
                         <div class="hidden-sm-up">Default: "sm"</div>
                     </td>
@@ -46,7 +46,7 @@
                 any specific card:</p>
             <div class="clr-row">
                 <div class="clr-col-6">
-                    <div class="card" [clrProgressSpinner]="cardLoadingState">
+                    <div class="card" *clrProgressSpinner="cardLoadingState">
                         <div class="card-header">Header</div>
                         <div class="card-block">
                             <div class="card-title">
@@ -71,7 +71,7 @@
             <h4>The progress spinner on top of any content</h4>
             <p>When having multiple areas in your applicatoin which can be loaded indepedently, it is possible to show a
                 progress spinner on any specific area:</p>
-            <div [clrProgressSpinner]="loadingState" clrSize="md"
+            <div *clrProgressSpinner="loadingState; size 'md'"
                  style="position: relative; background-color: #ddd; padding: 1rem; margin-top: 1rem;">
                 <h2 style="margin-top: 0;">Content Title</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias officiis temporibus
