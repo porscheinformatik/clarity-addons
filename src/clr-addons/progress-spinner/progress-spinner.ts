@@ -3,72 +3,49 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Directive, ElementRef, Input, OnChanges, OnDestroy, OnInit, Renderer2, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  ComponentFactory,
+  ComponentFactoryResolver,
+  ComponentRef,
+  Directive,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+  TemplateRef,
+  ViewContainerRef,
+} from '@angular/core';
 
 @Directive({
   selector: '[clrProgressSpinner]',
 })
-export class ClrProgressSpinnerDirective implements OnInit, OnChanges, OnDestroy {
+export class ClrProgressSpinnerDirective implements OnChanges, OnDestroy, OnInit {
   static readonly MINIMUM_VISIBLE_DURATION = 200;
   @Input('clrProgressSpinner') showSpinner: boolean;
-  @Input('clrSize') size: string = 'sm';
-
-  loadingSpinnerVisible: boolean = false;
+  size: string = 'sm';
   startTimestamp: number;
   hideTimeout: any;
+  compFactory: ComponentFactory<ClrProgressSpinnerWrapperComponent>;
+  spinnerWrapper: ComponentRef<ClrProgressSpinnerWrapperComponent>;
 
-  spinnerElement: any;
-  loadingOverlay: any;
-
-  constructor(private element: ElementRef, private renderer: Renderer2) {
-    this.spinnerElement = this.renderer.createElement('span');
-    this.loadingOverlay = this.renderer.createElement('div');
-    this.renderer.addClass(this.loadingOverlay, 'loading-overlay');
-    this.renderer.addClass(this.spinnerElement, 'spinner');
-    this.renderer.appendChild(this.loadingOverlay, this.spinnerElement);
-
-    this.renderer.setStyle(this.loadingOverlay, 'display', 'none');
-    this.renderer.insertBefore(this.element.nativeElement, this.loadingOverlay, this.element.nativeElement.children[0]);
+  @Input('clrProgressSpinnerSize')
+  set clrProgressSpinnerSize(size: string) {
+    this.size = size;
   }
 
-  reloadState(): void {
-    if (this.showSpinner) {
-      this.show();
-    } else {
-      this.hide();
-    }
-  }
-
-  show(): void {
-    clearTimeout(this.hideTimeout);
-    this.loadingSpinnerVisible = true;
-    this.renderer.setStyle(this.loadingOverlay, 'display', 'flex');
-    this.startTimestamp = new Date().getTime();
-  }
-
-  hide(): void {
-    this.hideTimeout = setTimeout(() => {
-      this.renderer.setStyle(this.loadingOverlay, 'display', 'none');
-      this.loadingSpinnerVisible = false;
-      this.startTimestamp = undefined;
-    }, this.getRemainingVisibleTime());
-  }
-
-  getRemainingVisibleTime(): number {
-    return Math.max(0, ClrProgressSpinnerDirective.MINIMUM_VISIBLE_DURATION - this.getVisibleTime());
-  }
-
-  getVisibleTime(): number {
-    if (!this.startTimestamp) {
-      return 0;
-    } else {
-      return new Date().getTime() - this.startTimestamp;
-    }
+  constructor(
+    private templateRef: TemplateRef<any>,
+    private viewContainer: ViewContainerRef,
+    private resolver: ComponentFactoryResolver
+  ) {
+    this.compFactory = this.resolver.resolveComponentFactory(ClrProgressSpinnerWrapperComponent);
   }
 
   ngOnInit(): void {
+    this.initSpinnerWrapper();
     this.reloadState();
-    this.renderer.addClass(this.spinnerElement, 'spinner-' + this.size);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -77,5 +54,66 @@ export class ClrProgressSpinnerDirective implements OnInit, OnChanges, OnDestroy
 
   ngOnDestroy(): void {
     clearTimeout(this.hideTimeout);
+    this.viewContainer.clear();
   }
+
+  private reloadState() {
+    if (!!this.spinnerWrapper) {
+      if (!!this.showSpinner) {
+        this.show();
+      } else {
+        this.hide();
+      }
+    }
+  }
+
+  private initSpinnerWrapper() {
+    const spinnerTarget = this.viewContainer.createEmbeddedView(this.templateRef);
+    this.spinnerWrapper = this.viewContainer.createComponent(this.compFactory, 0, this.viewContainer.injector, [
+      spinnerTarget.rootNodes,
+    ]);
+    this.spinnerWrapper.instance.size = this.size;
+  }
+
+  private show(): void {
+    clearTimeout(this.hideTimeout);
+    this.startTimestamp = new Date().getTime();
+    this.spinnerWrapper.instance.showSpinner = true;
+  }
+
+  private hide(): void {
+    this.hideTimeout = setTimeout(() => {
+      this.spinnerWrapper.instance.showSpinner = false;
+      this.startTimestamp = undefined;
+    }, this.getRemainingVisibleTime());
+  }
+
+  private getRemainingVisibleTime(): number {
+    return Math.max(0, ClrProgressSpinnerDirective.MINIMUM_VISIBLE_DURATION - this.getVisibleTime());
+  }
+
+  private getVisibleTime(): number {
+    if (!this.startTimestamp) {
+      return 0;
+    } else {
+      return new Date().getTime() - this.startTimestamp;
+    }
+  }
+}
+
+@Component({
+  selector: 'clrProgressSpinnerWrapper',
+  template: `
+    <div style="position:relative">
+      <div class="loading-overlay" *ngIf="showSpinner">        
+          <span [class]="'spinner-'+size+' spinner'">
+          </span>
+      </div>
+      <ng-content></ng-content>
+    </div>
+  `,
+})
+export class ClrProgressSpinnerWrapperComponent {
+  @Input() size: string = 'sm';
+  @Input() showSpinner: boolean = false;
 }

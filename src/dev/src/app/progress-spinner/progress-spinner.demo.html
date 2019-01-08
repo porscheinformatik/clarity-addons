@@ -1,6 +1,21 @@
 <h2>Progress Spinner</h2>
-<div class="card" [clrProgressSpinner]="loadingState">Loadable Card</div>
-<div class="card" [clrProgressSpinner]="loadingState" clrSize="md">Same State bigger Spinner</div>
+<div class="card" *clrProgressSpinner="loadingState">Loadable Card</div>
+<div  *clrProgressSpinner="loadingState; size 'md'" >
+      <div class="card">
+        <div class="card-header">
+          {{item}}
+        </div>
+        <div class="card-block">
+          <div class="card-text">
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+            dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+            clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+            consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+            sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+            sea takimata sanctus est Lorem ipsum dolor sit amet.          </div>
+        </div>
+      </div>
+</div>
 
 <button class="btn btn-primary" (click)="startLoading()">Start Loading</button>
 <button class="btn btn-outline" (click)="endLoading()">End Loading</button>

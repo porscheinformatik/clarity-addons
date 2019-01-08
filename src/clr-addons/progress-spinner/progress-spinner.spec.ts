@@ -7,16 +7,30 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ClarityModule } from '@clr/angular';
 
-import { ClrProgressSpinnerDirective } from './progress-spinner';
-import { Component } from '@angular/core';
+import { ClrProgressSpinnerDirective, ClrProgressSpinnerWrapperComponent } from './progress-spinner';
+import { Component, NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'test-component',
-  template: `<div [clrProgressSpinner]="loadingState"></div>`,
+  template: `<div *clrProgressSpinner="loadingState">
+    Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+    sed diam nonumy eirmod tempor invidunt ut labore et dolore
+    magna aliquyam erat, sed diam voluptua. At vero eos et
+    accusam et justo duo dolores et ea rebum. Stet clita k
+  </div>`,
 })
 class TestComponent {
   public loadingState: boolean = false;
 }
+
+@NgModule({
+  declarations: [ClrProgressSpinnerDirective, ClrProgressSpinnerWrapperComponent],
+  imports: [ClarityModule, CommonModule],
+  exports: [ClrProgressSpinnerDirective, ClrProgressSpinnerWrapperComponent],
+  entryComponents: [ClrProgressSpinnerWrapperComponent],
+})
+class ClrProgressSpinnerDirectiveTestModule {}
 
 describe('ProgressSpinnerDirective', () => {
   let component: TestComponent;
@@ -25,8 +39,8 @@ describe('ProgressSpinnerDirective', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TestComponent, ClrProgressSpinnerDirective],
-      imports: [ClarityModule],
+      declarations: [TestComponent],
+      imports: [CommonModule, ClarityModule, ClrProgressSpinnerDirectiveTestModule],
     }).compileComponents();
   }));
 
@@ -52,16 +66,14 @@ describe('ProgressSpinnerDirective', () => {
 
   it('should be invisible', () => {
     const loadingOverlay: HTMLLinkElement = fixture.nativeElement.querySelector('.loading-overlay');
-    const display = loadingOverlay.style.display;
-    expect(display).toBe('none');
+    expect(loadingOverlay).toBe(null);
   });
 
   it('should be visible after setting the input to true', () => {
     component.loadingState = true;
     fixture.detectChanges();
     const loadingOverlay: HTMLLinkElement = fixture.nativeElement.querySelector('.loading-overlay');
-    const display = loadingOverlay.style.display;
-    expect(display).toBe('flex');
+    expect(loadingOverlay).not.toBe(null);
   });
 
   it('should be invisible after the minimal visible time', () => {
@@ -70,9 +82,11 @@ describe('ProgressSpinnerDirective', () => {
     fixture.detectChanges();
     component.loadingState = false;
     fixture.detectChanges();
+    let loadingOverlay: HTMLLinkElement = fixture.nativeElement.querySelector('.loading-overlay');
+    expect(loadingOverlay).not.toBe(null); // the spinner should be visible at least 200 ms
     jasmine.clock().tick(200);
-    const loadingOverlay: HTMLLinkElement = fixture.nativeElement.querySelector('.loading-overlay');
-    const display = loadingOverlay.style.display;
-    expect(display).toBe('none');
+    fixture.detectChanges();
+    loadingOverlay = fixture.nativeElement.querySelector('.loading-overlay');
+    expect(loadingOverlay).toBe(null);
   });
 });
