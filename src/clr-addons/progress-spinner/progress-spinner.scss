@@ -1,5 +1,5 @@
 @include exports('spinner.clr-addons') {
-  .loading-overlay {
+  .progress-spinner-overlay {
     background-color: $clr-white;
     opacity: 0.8;
     position: absolute;

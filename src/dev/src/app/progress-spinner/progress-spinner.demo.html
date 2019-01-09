@@ -1,20 +1,37 @@
 <h2>Progress Spinner</h2>
-<div class="card" *clrProgressSpinner="loadingState">Loadable Card</div>
-<div  *clrProgressSpinner="loadingState; size 'md'" >
-      <div class="card">
-        <div class="card-header">
-          {{item}}
-        </div>
-        <div class="card-block">
-          <div class="card-text">
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-            dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-            clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
-            consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-            sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-            sea takimata sanctus est Lorem ipsum dolor sit amet.          </div>
-        </div>
+<div class="clr-row">
+  <div class="card clr-col-4">
+    <div class="card-header" *clrProgressSpinner="loadingState">Card Header</div>
+    <div class="card-block">Card Block</div>
+    <div class="card-footer">Card Footer</div>
+  </div>
+  <div class="card clr-col-4">
+    <div class="card-header">Card Header</div>
+    <div class="card-block">Card Block</div>
+    <div class="card-footer">Card Footer</div>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header" *clrProgressSpinner="loadingState">Card Header</div>
+  <div class="card-block">Card Block</div>
+  <div class="card-footer">Card Footer</div>
+</div>
+<div style="position: relative">
+  <div class="card" *clrProgressSpinner="loadingState; size 'md'">
+    <div class="card-header">
+      Card Header
+    </div>
+    <div class="card-block">
+      <div class="card-text">
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+        dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+        clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+        consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+        sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+        sea takimata sanctus est Lorem ipsum dolor sit amet.
       </div>
+    </div>
+  </div>
 </div>
 
 <button class="btn btn-primary" (click)="startLoading()">Start Loading</button>
