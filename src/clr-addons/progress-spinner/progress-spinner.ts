@@ -10,10 +10,8 @@ import {
   ComponentRef,
   Directive,
   Input,
-  OnChanges,
   OnDestroy,
   OnInit,
-  SimpleChanges,
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
@@ -21,71 +19,66 @@ import {
 @Directive({
   selector: '[clrProgressSpinner]',
 })
-export class ClrProgressSpinnerDirective implements OnChanges, OnDestroy, OnInit {
-  static readonly MINIMUM_VISIBLE_DURATION = 200;
-  @Input('clrProgressSpinner') showSpinner: boolean;
-  size: string = 'sm';
-  startTimestamp: number;
-  hideTimeout: any;
-  compFactory: ComponentFactory<ClrProgressSpinnerWrapperComponent>;
-  spinnerWrapper: ComponentRef<ClrProgressSpinnerWrapperComponent>;
+export class ClrProgressSpinnerDirective implements OnDestroy, OnInit {
+  private static readonly MINIMUM_VISIBLE_DURATION = 200;
+  private _size: string = 'sm';
+  private _showSpinner: boolean;
+  private startTimestamp: number;
+  private hideTimeout: any;
+  private spinner: ComponentRef<ClrProgressSpinnerComponent>;
+  private compFactory: ComponentFactory<ClrProgressSpinnerComponent>;
+
+  @Input('clrProgressSpinner')
+  set showSpinner(value: boolean) {
+    this._showSpinner = value;
+    if (!!this._showSpinner) {
+      this.show();
+    } else {
+      this.hide();
+    }
+  }
 
   @Input('clrProgressSpinnerSize')
-  set clrProgressSpinnerSize(size: string) {
-    this.size = size;
+  set size(size: string) {
+    this._size = size;
   }
 
   constructor(
     private templateRef: TemplateRef<any>,
     private viewContainer: ViewContainerRef,
     private resolver: ComponentFactoryResolver
-  ) {
-    this.compFactory = this.resolver.resolveComponentFactory(ClrProgressSpinnerWrapperComponent);
-  }
+  ) {}
 
   ngOnInit(): void {
-    this.initSpinnerWrapper();
-    this.reloadState();
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.reloadState();
+    this.compFactory = this.resolver.resolveComponentFactory(ClrProgressSpinnerComponent);
+    this.viewContainer.createEmbeddedView(this.templateRef);
   }
 
   ngOnDestroy(): void {
     clearTimeout(this.hideTimeout);
     this.viewContainer.clear();
-  }
-
-  private reloadState() {
-    if (!!this.spinnerWrapper) {
-      if (!!this.showSpinner) {
-        this.show();
-      } else {
-        this.hide();
-      }
+    if (!!this.spinner) {
+      this.spinner.destroy();
     }
   }
 
-  private initSpinnerWrapper() {
-    const spinnerTarget = this.viewContainer.createEmbeddedView(this.templateRef);
-    this.spinnerWrapper = this.viewContainer.createComponent(this.compFactory, 0, this.viewContainer.injector, [
-      spinnerTarget.rootNodes,
-    ]);
-    this.spinnerWrapper.instance.size = this.size;
-  }
-
   private show(): void {
-    clearTimeout(this.hideTimeout);
-    this.startTimestamp = new Date().getTime();
-    this.spinnerWrapper.instance.showSpinner = true;
+    if (!!this.compFactory) {
+      clearTimeout(this.hideTimeout);
+      this.startTimestamp = new Date().getTime();
+      this.spinner = this.viewContainer.createComponent(this.compFactory);
+      this.spinner.instance.size = this._size;
+      this.spinner.instance.showSpinner = true;
+    }
   }
 
   private hide(): void {
-    this.hideTimeout = setTimeout(() => {
-      this.spinnerWrapper.instance.showSpinner = false;
-      this.startTimestamp = undefined;
-    }, this.getRemainingVisibleTime());
+    if (!!this.spinner) {
+      this.hideTimeout = setTimeout(() => {
+        this.spinner.destroy();
+        this.startTimestamp = undefined;
+      }, this.getRemainingVisibleTime());
+    }
   }
 
   private getRemainingVisibleTime(): number {
@@ -102,18 +95,15 @@ export class ClrProgressSpinnerDirective implements OnChanges, OnDestroy, OnInit
 }
 
 @Component({
-  selector: 'clrProgressSpinnerWrapper',
+  selector: 'clr-progress-spinner',
   template: `
-    <div style="position:relative">
-      <div class="loading-overlay" *ngIf="showSpinner">        
-          <span [class]="'spinner-'+size+' spinner'">
-          </span>
-      </div>
-      <ng-content></ng-content>
-    </div>
+    <span [class]="'spinner-'+size+' spinner'" *ngIf="showSpinner"></span>
   `,
+  host: {
+    '[class.progress-spinner-overlay]': 'showSpinner',
+  },
 })
-export class ClrProgressSpinnerWrapperComponent {
+export class ClrProgressSpinnerComponent {
   @Input() size: string = 'sm';
   @Input() showSpinner: boolean = false;
 }

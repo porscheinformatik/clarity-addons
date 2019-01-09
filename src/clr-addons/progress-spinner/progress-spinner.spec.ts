@@ -7,7 +7,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ClarityModule } from '@clr/angular';
 
-import { ClrProgressSpinnerDirective, ClrProgressSpinnerWrapperComponent } from './progress-spinner';
+import { ClrProgressSpinnerDirective, ClrProgressSpinnerComponent } from './progress-spinner';
 import { Component, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -25,10 +25,10 @@ class TestComponent {
 }
 
 @NgModule({
-  declarations: [ClrProgressSpinnerDirective, ClrProgressSpinnerWrapperComponent],
+  declarations: [ClrProgressSpinnerDirective, ClrProgressSpinnerComponent],
   imports: [ClarityModule, CommonModule],
-  exports: [ClrProgressSpinnerDirective, ClrProgressSpinnerWrapperComponent],
-  entryComponents: [ClrProgressSpinnerWrapperComponent],
+  exports: [ClrProgressSpinnerDirective, ClrProgressSpinnerComponent],
+  entryComponents: [ClrProgressSpinnerComponent],
 })
 class ClrProgressSpinnerDirectiveTestModule {}
 
@@ -65,14 +65,14 @@ describe('ProgressSpinnerDirective', () => {
   });
 
   it('should be invisible', () => {
-    const loadingOverlay: HTMLLinkElement = fixture.nativeElement.querySelector('.loading-overlay');
+    const loadingOverlay: HTMLLinkElement = fixture.nativeElement.querySelector('.progress-spinner-overlay');
     expect(loadingOverlay).toBe(null);
   });
 
   it('should be visible after setting the input to true', () => {
     component.loadingState = true;
     fixture.detectChanges();
-    const loadingOverlay: HTMLLinkElement = fixture.nativeElement.querySelector('.loading-overlay');
+    const loadingOverlay: HTMLLinkElement = fixture.nativeElement.querySelector('.progress-spinner-overlay');
     expect(loadingOverlay).not.toBe(null);
   });
 
@@ -82,11 +82,11 @@ describe('ProgressSpinnerDirective', () => {
     fixture.detectChanges();
     component.loadingState = false;
     fixture.detectChanges();
-    let loadingOverlay: HTMLLinkElement = fixture.nativeElement.querySelector('.loading-overlay');
+    let loadingOverlay: HTMLLinkElement = fixture.nativeElement.querySelector('.progress-spinner-overlay');
     expect(loadingOverlay).not.toBe(null); // the spinner should be visible at least 200 ms
     jasmine.clock().tick(200);
     fixture.detectChanges();
-    loadingOverlay = fixture.nativeElement.querySelector('.loading-overlay');
+    loadingOverlay = fixture.nativeElement.querySelector('.progress-spinner-overlay');
     expect(loadingOverlay).toBe(null);
   });
 });
