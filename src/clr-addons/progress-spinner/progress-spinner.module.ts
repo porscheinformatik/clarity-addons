@@ -3,14 +3,13 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ClrProgressSpinnerDirective, ClrProgressSpinnerComponent } from './progress-spinner';
+import { NgModule } from '@angular/core';
+import { ClrProgressSpinnerComponent } from './progress-spinner';
 
 @NgModule({
   imports: [CommonModule],
-  declarations: [ClrProgressSpinnerDirective, ClrProgressSpinnerComponent],
-  entryComponents: [ClrProgressSpinnerComponent],
-  exports: [ClrProgressSpinnerDirective],
+  declarations: [ClrProgressSpinnerComponent],
+  exports: [ClrProgressSpinnerComponent],
 })
 export class ClrProgressSpinnerModule {}
