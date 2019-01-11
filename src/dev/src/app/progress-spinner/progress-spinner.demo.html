@@ -1,7 +1,8 @@
 <h2>Progress Spinner</h2>
 <div class="clr-row">
   <div class="card clr-col-4">
-    <div class="card-header" *clrProgressSpinner="loadingState">Card Header</div>
+    <clr-progress-spinner [clrShowSpinner]="loadingState"></clr-progress-spinner>
+    <div class="card-header">Card Header</div>
     <div class="card-block">Card Block</div>
     <div class="card-footer">Card Footer</div>
   </div>
@@ -12,12 +13,14 @@
   </div>
 </div>
 <div class="card">
-  <div class="card-header" *clrProgressSpinner="loadingState">Card Header</div>
+  <clr-progress-spinner [clrShowSpinner]="loadingState"></clr-progress-spinner>
+  <div class="card-header">Card Header</div>
   <div class="card-block">Card Block</div>
   <div class="card-footer">Card Footer</div>
 </div>
 <div style="position: relative">
-  <div class="card" *clrProgressSpinner="loadingState; size 'md'">
+  <clr-progress-spinner [clrShowSpinner]="loadingState" clrSize="md"></clr-progress-spinner>
+  <div class="card">
     <div class="card-header">
       Card Header
     </div>

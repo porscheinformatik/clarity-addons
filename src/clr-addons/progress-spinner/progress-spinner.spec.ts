@@ -7,30 +7,29 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ClarityModule } from '@clr/angular';
 
-import { ClrProgressSpinnerDirective, ClrProgressSpinnerComponent } from './progress-spinner';
+import { ClrProgressSpinnerComponent } from './progress-spinner';
 import { Component, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'test-component',
-  template: `<div *clrProgressSpinner="loadingState">
+  template: `<clr-progress-spinner [clrShowSpinner]="loadingState">
     Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
     sed diam nonumy eirmod tempor invidunt ut labore et dolore
     magna aliquyam erat, sed diam voluptua. At vero eos et
     accusam et justo duo dolores et ea rebum. Stet clita k
-  </div>`,
+  </clr-progress-spinner>`,
 })
 class TestComponent {
   public loadingState: boolean = false;
 }
 
 @NgModule({
-  declarations: [ClrProgressSpinnerDirective, ClrProgressSpinnerComponent],
+  declarations: [ClrProgressSpinnerComponent],
   imports: [ClarityModule, CommonModule],
-  exports: [ClrProgressSpinnerDirective, ClrProgressSpinnerComponent],
-  entryComponents: [ClrProgressSpinnerComponent],
+  exports: [ClrProgressSpinnerComponent],
 })
-class ClrProgressSpinnerDirectiveTestModule {}
+class ClrProgressSpinnerComponentTestModule {}
 
 describe('ProgressSpinnerDirective', () => {
   let component: TestComponent;
@@ -40,7 +39,7 @@ describe('ProgressSpinnerDirective', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [TestComponent],
-      imports: [CommonModule, ClarityModule, ClrProgressSpinnerDirectiveTestModule],
+      imports: [CommonModule, ClarityModule, ClrProgressSpinnerComponentTestModule],
     }).compileComponents();
   }));
 
