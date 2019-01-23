@@ -5,9 +5,10 @@
  */
 
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Observable } from 'rxjs';
 
 export interface ClrFlowBarStep {
-  title: string;
+  title: Observable<string>;
   enabled: boolean;
   activeSubStep?: ClrFlowBarStep;
   subSteps?: ClrFlowBarStep[];
