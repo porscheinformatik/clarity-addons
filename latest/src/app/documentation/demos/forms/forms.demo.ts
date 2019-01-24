@@ -49,6 +49,10 @@ const CODE_EXAMPLE_FULL_FORM = `
         <label>Date label</label>
         <input type="text" [(ngModel)]="date" name="date" clrDate>
     </clr-date-container>
+    <clr-input-container class="clr-row">
+        <label>Time label</label>
+        <input type="time" [(ngModel)]="time" name="time" clrInput>
+    </clr-input-container>
     <clr-input-container>
         <label>Money label</label>
         <input clrInput clrNumeric type="text" [(clrNumericValue)]="money" clrUnit="€"/>
@@ -160,6 +164,7 @@ export class FormsDemo extends ClarityDocComponent {
     toggleValue: boolean;
     checkboxValue: boolean;
     date: string;
+    time: string;
     money: number;
     radioOption: string;
     selectOption: string;
