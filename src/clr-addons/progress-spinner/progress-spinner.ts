@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, Input, OnDestroy } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'clr-progress-spinner',
@@ -32,7 +32,7 @@ export class ClrProgressSpinnerComponent implements OnDestroy {
     }
   }
 
-  constructor() {}
+  constructor(private changeDetectorRef: ChangeDetectorRef) {}
 
   ngOnDestroy(): void {
     clearTimeout(this.hideTimeout);
@@ -48,6 +48,7 @@ export class ClrProgressSpinnerComponent implements OnDestroy {
     this.hideTimeout = setTimeout(() => {
       this.startTimestamp = undefined;
       this._showSpinner = false;
+      this.changeDetectorRef.markForCheck();
     }, this.getRemainingVisibleTime());
   }
 
