@@ -4,6 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component } from '@angular/core';
+import { of } from 'rxjs';
 import { ClrFlowBarStep } from '../../../../clr-addons/flow-bar';
 
 @Component({
@@ -14,24 +15,24 @@ export class FlowBarDemo {
   activeStep: ClrFlowBarStep;
   flowBarSteps: ClrFlowBarStep[] = [
     {
-      title: 'Step',
+      title: of('Step'),
       enabled: true,
       subSteps: [
-        { title: 'Sub Step 1/3', enabled: true },
-        { title: 'Sub Step 2/3', enabled: true },
-        { title: 'Sub Step 3/3', enabled: true },
+        { title: of('Sub Step 1/3'), enabled: true },
+        { title: of('Sub Step 2/3'), enabled: true },
+        { title: of('Sub Step 3/3'), enabled: true },
       ],
     },
     {
-      title: 'Step',
+      title: of('Step'),
       enabled: true,
-      subSteps: [{ title: 'Sub Step 1/2', enabled: true }, { title: 'Sub Step 2/2', enabled: true }],
+      subSteps: [{ title: of('Sub Step 1/2'), enabled: true }, { title: of('Sub Step 2/2'), enabled: true }],
     },
-    { title: 'Step', enabled: true },
+    { title: of('Step'), enabled: true },
     {
-      title: 'Step',
+      title: of('Step'),
       enabled: true,
-      subSteps: [{ title: 'Sub Step 1/2', enabled: true }, { title: 'Sub Step 2/2', enabled: true }],
+      subSteps: [{ title: of('Sub Step 1/2'), enabled: true }, { title: of('Sub Step 2/2'), enabled: true }],
     },
   ];
 

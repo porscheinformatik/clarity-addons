@@ -5,7 +5,7 @@
               [disabled]="!step.enabled"
               [class.active]="step === _activeStep"
               (click)="changeActiveStep(step)">
-        {{index + 1}}. {{step.title}}
+        {{index + 1}}. {{(step.title | async)}}
       </button>
       <clr-icon shape="caret right" *ngIf="!last"></clr-icon>
     </div>

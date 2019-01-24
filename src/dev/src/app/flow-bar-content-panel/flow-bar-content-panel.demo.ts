@@ -5,6 +5,7 @@
  */
 import { Component } from '@angular/core';
 import { ClrFlowBarStep } from '@porscheinformatik/clr-addons';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'clr-flow-bar-content-panel-demo',
@@ -13,11 +14,11 @@ import { ClrFlowBarStep } from '@porscheinformatik/clr-addons';
 export class FlowBarContentPanelDemo {
   myActiveStep: ClrFlowBarStep;
   flowBarSteps: ClrFlowBarStep[] = [
-    { title: 'Fahrzeug', enabled: true },
-    { title: 'Zubehör / Dienstleistungen', enabled: true },
-    { title: 'Angebotsdetails', enabled: true },
-    { title: 'Finanzierung', enabled: true },
-    { title: 'Bestellung', enabled: true },
+    { title: of('Fahrzeug'), enabled: true },
+    { title: of('Zubehör / Dienstleistungen'), enabled: true },
+    { title: of('Angebotsdetails'), enabled: true },
+    { title: of('Finanzierung'), enabled: true },
+    { title: of('Bestellung'), enabled: true },
   ];
 
   activeStepChanged(step: ClrFlowBarStep): void {

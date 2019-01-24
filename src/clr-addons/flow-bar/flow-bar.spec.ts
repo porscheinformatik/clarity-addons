@@ -6,6 +6,7 @@
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ClarityModule } from '@clr/angular';
+import { of } from 'rxjs';
 
 import { ClrFlowBar } from './flow-bar';
 
@@ -24,9 +25,9 @@ describe('FlowBarComponent', () => {
     fixture = TestBed.createComponent(ClrFlowBar);
     component = fixture.componentInstance;
     component._steps = [
-      { title: 'Step1', enabled: true },
-      { title: 'Step2', enabled: true },
-      { title: 'Step3', enabled: true },
+      { title: of('Step1'), enabled: true },
+      { title: of('Step2'), enabled: true },
+      { title: of('Step3'), enabled: true },
     ];
     fixture.detectChanges();
     expect(component._activeStep).toBe(component._steps[0]);
