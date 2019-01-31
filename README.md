@@ -1,1 +1,1 @@
-[![Travis Build Status](https://travis-ci.org/porscheinformatik/clarity-addons.svg?branch=website)](https://travis-ci.org/porscheinformatik/clarity-addons)
+[![Travis Build Status](https://travis-ci.org/porscheinformatik/clarity-addons.svg?branch=website)](https://travis-ci.org/porscheinformatik/clarity-addons) 
