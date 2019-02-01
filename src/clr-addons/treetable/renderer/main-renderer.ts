@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { AfterViewChecked, ContentChildren, Directive, QueryList } from '@angular/core';
+import { AfterViewChecked, ContentChildren, Directive, HostListener, QueryList } from '@angular/core';
 
 import { ClrTreetableColumn } from '../treetable-column';
 import { TreetableHeaderRenderer } from './header-renderer';
@@ -18,11 +18,17 @@ export class TreetableMainRenderer<T = any> implements AfterViewChecked {
   rows: QueryList<TreetableRowRenderer>;
   @ContentChildren(ClrTreetableColumn) columns: QueryList<ClrTreetableColumn>;
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.applyMaxWidth();
+  }
   constructor() {}
 
   ngAfterViewChecked(): void {
     this.applyColumnClasses();
-    this.applyMaxWidth();
+    setTimeout(() => {
+      this.applyMaxWidth();
+    }, 10);
   }
 
   /**
