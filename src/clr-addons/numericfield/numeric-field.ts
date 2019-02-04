@@ -70,7 +70,6 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
     });
 
     this.keyupListener = this.renderer.listen(this.inputEl.nativeElement, 'keyup', event => {
-      console.log('up', event.target.value);
       if (
         event.keyCode === BACK_KEYCODE ||
         (event.keyCode >= CONTROL_KEYCODES_UPPER_BORDER && !OTHER_CONTROL_KEYS.has(event.keyCode))
@@ -81,7 +80,6 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
 
     this.keydownListener = this.renderer.listen(this.inputEl.nativeElement, 'keydown', event => {
       const value: string = event.target.value;
-      console.log('down', value);
       if (
         this.allowedKeys.has(event.key) ||
         (event.keyCode <= CONTROL_KEYCODES_UPPER_BORDER && event.keyCode > 0) ||
@@ -156,7 +154,6 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
     const cursorPos = element.selectionStart;
     const length = value.length;
     this.updateInput(this.formatNumber(value, finalFormatting));
-    console.log(cursorPos, element.value.length, length);
     element.selectionStart = element.selectionEnd = Math.max(cursorPos + element.value.length - length, 0);
   }
 
