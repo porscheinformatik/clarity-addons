@@ -64,11 +64,41 @@ body,
   }
 }
 
-// Add class card-active and make it not clickable even if clickable class is applied
+// Classes active and clickable add a border around the whole card.
+// Classes card-active and selectable add a border to the left side only.
 .card {
   .list-group-item.list-group-item-action:hover {
     background-color: $clr-global-selection-color;
     cursor: pointer;
+  }
+
+  &.active {
+    box-shadow: 0 0.125rem 0 0 $clr-card-active-border-color;
+    border: $clr-default-borderwidth solid $clr-card-active-border-color;
+    cursor: default;
+    text-decoration: none;
+    transform: translateY(-2px);
+    transition: border 0.2s ease, transform 0.2s ease;
+
+    &.clickable:hover {
+      cursor: default;
+    }
+  }
+
+  @mixin disable-card-clickable-hover() {
+    &.clickable:hover {
+      border: $clr-card-border;
+      box-shadow: $clr-card-box-shadow;
+      cursor: default;
+      transform: none;
+      transition: none;
+
+      &.active:hover {
+        box-shadow: 0 0.125rem 0 0 $clr-card-active-border-color;
+        border: $clr-default-borderwidth solid $clr-card-active-border-color;
+        transform: translateY(-2px);
+      }
+    }
   }
 
   @mixin card-active-after() {
@@ -116,6 +146,10 @@ body,
   @media (hover: hover) {
     @include card-handle-hover();
   }
+
+  @media (hover: none) {
+    @include disable-card-clickable-hover();
+  }
 }
 
 .main-container.open-hamburger-menu .header .header-nav.clr-nav-level-1 {
@@ -155,6 +189,7 @@ form .required:after {
 clr-radio-container[readonly][show-only-selected='true'] .clr-radio-wrapper input:not(:checked),
 clr-checkbox-container[readonly][show-only-selected='true'] .clr-checkbox-wrapper input:not(:checked) {
   display: none;
+
   + label {
     display: none;
   }
@@ -177,6 +212,7 @@ clr-checkbox-container[readonly] .clr-checkbox-wrapper input[type='checkbox'] {
     width: 0.6rem;
     height: 1px;
   }
+
   + label::after {
     border: 0;
     border-radius: 0;
@@ -205,6 +241,7 @@ clr-checkbox-container[readonly] .clr-checkbox-wrapper input[type='checkbox'] {
       height: 0.3rem;
       transform: rotate(-45deg);
     }
+
     + label::after {
       content: none;
     }
