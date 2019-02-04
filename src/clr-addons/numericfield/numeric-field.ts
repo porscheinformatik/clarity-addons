@@ -18,6 +18,7 @@ import {
 
 const NEGATIVE = '-';
 const BACK_KEYCODE = 8;
+const DEL_KEYCODE = 46;
 const CONTROL_KEYCODES_UPPER_BORDER = 46;
 const OTHER_CONTROL_KEYS = new Set([224, 91, 93]);
 const NUMBERS = new Set(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']);
@@ -69,6 +70,7 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
     });
 
     this.keyupListener = this.renderer.listen(this.inputEl.nativeElement, 'keyup', event => {
+      console.log('up', event.target.value);
       if (
         event.keyCode === BACK_KEYCODE ||
         (event.keyCode >= CONTROL_KEYCODES_UPPER_BORDER && !OTHER_CONTROL_KEYS.has(event.keyCode))
@@ -78,7 +80,8 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
     });
 
     this.keydownListener = this.renderer.listen(this.inputEl.nativeElement, 'keydown', event => {
-      const value = event.target.value;
+      const value: string = event.target.value;
+      console.log('down', value);
       if (
         this.allowedKeys.has(event.key) ||
         (event.keyCode <= CONTROL_KEYCODES_UPPER_BORDER && event.keyCode > 0) ||
@@ -111,6 +114,19 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
         ) {
           return false;
         }
+
+        /* when deleting thousand separator, remove the digit before or after it */
+        const cursorStart = event.target.selectionStart;
+
+        if (cursorStart === event.target.selectionEnd) {
+          if (event.keyCode === BACK_KEYCODE && value.substr(cursorStart - 1, 1) === this.groupingSeparator) {
+            event.target.value = value.substring(0, cursorStart - 2) + value.substring(cursorStart - 1, value.length);
+            event.target.selectionStart = event.target.selectionEnd = cursorStart - 1;
+          } else if (event.keyCode === DEL_KEYCODE && value.substr(cursorStart, 1) === this.groupingSeparator) {
+            event.target.value = value.substring(0, cursorStart + 1) + value.substring(cursorStart + 2, value.length);
+            event.target.selectionStart = event.target.selectionEnd = cursorStart + 1;
+          }
+        }
       } else {
         return false;
       }
@@ -140,7 +156,8 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
     const cursorPos = element.selectionStart;
     const length = value.length;
     this.updateInput(this.formatNumber(value, finalFormatting));
-    element.selectionStart = element.selectionEnd = cursorPos + element.value.length - length;
+    console.log(cursorPos, element.value.length, length);
+    element.selectionStart = element.selectionEnd = Math.max(cursorPos + element.value.length - length, 0);
   }
 
   formatNumber(value: string, finalFormatting: boolean): string {

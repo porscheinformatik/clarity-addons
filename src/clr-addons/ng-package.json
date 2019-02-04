@@ -6,7 +6,9 @@
     "entryFile": "./public_api.ts",
     "flatModuleFile": "clr-addons",
     "umdModuleIds": {
-      "rxjs": "rxjs"
+      "rxjs": "rxjs",
+      "@clr/angular": "@clr/angular",
+      "util": "util"
     }
   },
   "whitelistedNonPeerDependencies": ["@angular-devkit/core"]
