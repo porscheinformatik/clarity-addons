@@ -1,7 +1,7 @@
 <clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
     <article>
         <h5 class="component-summary">The progress spinner of Clarity Addons extends the default progress spinner by an
-            Angular Directive which allows the developer to toggle the loading state depending on a boolean input.</h5>
+            Angular Component which allows the developer to toggle the loading state depending on a boolean input.</h5>
 
         <div id="design-guidelines">
             <h3>Summary of Options</h3>
@@ -17,7 +17,7 @@
                 <tbody>
                 <tr>
                     <td class="left">
-                        <b>loadingState</b>
+                        <b>clrShowSpinner</b>
                         <div class="hidden-sm-up">Type: boolean</div>
                         <div class="hidden-sm-up">Default: false</div>
                     </td>
@@ -27,7 +27,7 @@
                 </tr>
                 <tr>
                     <td class="left">
-                        <b>clrProgressSpinnerSize</b>
+                        <b>clrSize</b>
                         <div class="hidden-sm-up">Type: String</div>
                         <div class="hidden-sm-up">Default: "sm"</div>
                     </td>
@@ -46,7 +46,8 @@
                 any specific card:</p>
             <div class="clr-row">
                 <div class="clr-col-6">
-                    <div class="card" *clrProgressSpinner="cardLoadingState">
+                    <div class="card">
+                        <clr-progress-spinner [clrShowSpinner]="cardLoadingState"></clr-progress-spinner>
                         <div class="card-header">Header</div>
                         <div class="card-block">
                             <div class="card-title">
@@ -71,8 +72,8 @@
             <h4>The progress spinner on top of any content</h4>
             <p>When having multiple areas in your applicatoin which can be loaded indepedently, it is possible to show a
                 progress spinner on any specific area:</p>
-            <div *clrProgressSpinner="loadingState; size 'md'"
-                 style="position: relative; background-color: #ddd; padding: 1rem; margin-top: 1rem;">
+            <div style="position: relative; background-color: #ddd; padding: 1rem; margin-top: 1rem;">
+                <clr-progress-spinner [clrShowSpinner]="loadingState" clrSize="md"></clr-progress-spinner>
                 <h2 style="margin-top: 0;">Content Title</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias officiis temporibus
                     quod inventore, minus commodi similique corrupti repellat saepe facere aliquam minima
