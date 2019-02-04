@@ -1,0 +1,16 @@
+<h2>Breaking Changes</h2>
+<ul class="list-unstyled">
+    <li class="breaking-change">
+        <h6>Progress Spinner changed</h6>
+        The progress spinner is now a simple angular component instead of a directive.
+        For usage please have a look at:
+        <a href="https://porscheinformatik.github.io/clarity-addons/documentation/latest/progress-spinner">
+            Progress Spinner documentation
+        </a>
+    </li>
+    <li>
+        <h6>Flow bar step interface changed</h6>
+        The ClrFlowBarStep now expects an Observable of type 'string' as title instead of just a string. This is because
+        translations are most commonly retrieved asynchronous.
+    </li>
+</ul>

@@ -9,7 +9,8 @@ import { ClarityDocComponent } from "../clarity-doc";
 const HTML_EXAMPLE = `
 <div class="clr-row">
     <div class="clr-col-6">
-        <div class="card" *clrProgressSpinner="cardLoadingState">
+        <div class="card">
+            <clr-progress-spinner [clrShowSpinner]="cardLoadingState"></clr-progress-spinner>
             ...
         </div>
     </div>
@@ -18,8 +19,9 @@ const HTML_EXAMPLE = `
 `;
 
 const HTML_EXAMPLE2 = `
-<div *clrProgressSpinner="loadingState; size 'md'">
-    <h2>Content Title</h2>
+<div>
+  <clr-progress-spinner [clrShowSpinner]="loadingState" clrSize="md"></clr-progress-spinner>
+  <h2>Content Title</h2>
     <p>...</p>
 </div>
 

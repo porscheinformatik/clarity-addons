@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { Docu300Component } from "../../releases/3/3.0.0";
 import { Docu310Component } from "../../releases/3/3.1.0";
+import { Docu500Component } from "../../releases/5/5.0.0";
 import { NewsComponent } from "./news.component";
 import {Docu400Component} from "../../releases/4/4.0.0";
 
@@ -33,6 +34,13 @@ const newsRoutes: Routes = [
                 component: Docu400Component,
                 data: {
                     browserTitle: "4.0.0"
+                }
+            },
+            {
+                path: "5.0.0",
+                component: Docu500Component,
+                data: {
+                    browserTitle: "5.0.0"
                 }
             }
         ]
