@@ -52,11 +52,6 @@ export class ClrContentPanel implements OnInit {
     }
     this._open = false;
     this.closed.emit();
-    // this event is used by the tree table to adjust the colomns width
-    // 220 is for the animation to finish.
-    setTimeout(() => {
-      window.dispatchEvent(new Event('resize'));
-    }, 220);
   }
 
   public toggle(): void {
@@ -65,5 +60,10 @@ export class ClrContentPanel implements OnInit {
     } else {
       this.open();
     }
+  }
+
+  resizeWindow() {
+    // this event is used by the tree table to adjust the colomns width
+    window.dispatchEvent(new Event('resize'));
   }
 }
