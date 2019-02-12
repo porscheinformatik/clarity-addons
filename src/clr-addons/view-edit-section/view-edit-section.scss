@@ -1,8 +1,8 @@
 @include exports('view-edit-section.clr-addons') {
   .view-edit-section {
     .card-title .btn.ves-action {
-      margin-right: 0px;
-      padding-right: 0px;
+      margin-right: 0;
+      padding-right: 0;
     }
 
     .card-text {
@@ -11,12 +11,7 @@
 
     form,
     .form {
-      padding: 0px;
-
-      input {
-        /* change standard input behaviour inside view-edit section to grow to the end of the card */
-        width: 100%;
-      }
+      padding: 0;
     }
 
     .button-bar {
