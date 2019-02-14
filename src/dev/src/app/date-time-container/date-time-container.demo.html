@@ -1,0 +1,87 @@
+<!--
+  ~ Copyright (c) 2018 Porsche Informatik. All Rights Reserved.
+  ~ This software is released under MIT license.
+  ~ The full license information can be found in LICENSE in the root directory of this project.
+  -->
+
+<h2>Date Time Container</h2>
+
+<h4>Horizontal Form</h4>
+<form clrForm [clrLayout]="'horizontal'" class="clr-row">
+  <clr-input-container class="clr-col-2">
+    <label class="clr-col-4">
+      Test
+    </label>
+    <input clrInput class="clr-col-8" />
+  </clr-input-container>
+
+  <clr-date-time-container class="clr-col-6">
+    <clr-date-container>
+      <label class="clr-col-4">Date & time</label>
+      <input class="clr-col-4" clrDate type="date"/>
+    </clr-date-container>
+    <input clrTime type="time"/>
+  </clr-date-time-container>
+</form>
+
+<h4>Vertical Form</h4>
+<form clrForm [clrLayout]="'vertical'">
+  <clr-date-time-container>
+    <clr-date-container>
+      <label>Date & time</label>
+      <input clrDate type="date"/>
+    </clr-date-container>
+    <input clrTime type="time"/>
+  </clr-date-time-container>
+</form>
+
+<h4>Compact Form</h4>
+<form clrForm [clrLayout]="'compact'">
+  <clr-date-time-container>
+    <clr-date-container>
+      <label>Date & time</label>
+      <input clrDate type="date"/>
+    </clr-date-container>
+    <input clrTime type="time"/>
+  </clr-date-time-container>
+</form>
+
+<clr-view-edit-section clrTitle="View Edit Section">
+  <div view-block>
+    <h2>View block empty</h2>
+  </div>
+  <div edit-block>
+    <h4>Horizontal Form</h4>
+    <form clrForm [clrLayout]="'horizontal'">
+      <clr-date-time-container>
+        <clr-date-container>
+          <label>Date & time</label>
+          <input clrDate type="date"/>
+        </clr-date-container>
+        <input clrTime type="time"/>
+      </clr-date-time-container>
+    </form>
+
+    <h4>Vertical Form</h4>
+    <form clrForm [clrLayout]="'vertical'">
+      <clr-date-time-container>
+        <clr-date-container>
+          <label>Date & time</label>
+          <input clrDate type="date"/>
+        </clr-date-container>
+        <input clrTime type="time"/>
+      </clr-date-time-container>
+    </form>
+
+    <h4>Compact Form</h4>
+    <form clrForm [clrLayout]="'compact'">
+      <clr-date-time-container>
+        <clr-date-container>
+          <label>Date & time</label>
+          <input clrDate type="date"/>
+        </clr-date-container>
+        <input clrTime type="time"/>
+      </clr-date-time-container>
+    </form>
+  </div>
+</clr-view-edit-section>
