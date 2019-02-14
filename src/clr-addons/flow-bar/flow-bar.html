@@ -13,7 +13,7 @@
 </div>
 <clr-dropdown class="flow-bar-dropdown clr-flex-fill">
   <button type="button" class="btn btn-outline-primary" clrDropdownTrigger>
-    {{_steps.indexOf(_activeStep) + 1}}. {{_activeStep?.title}}
+    {{_steps.indexOf(_activeStep) + 1}}. {{_activeStep?.title | async}}
     <clr-icon shape="caret down"></clr-icon>
   </button>
   <clr-dropdown-menu>
@@ -21,7 +21,7 @@
       <button clrDropdownItem type="button" class="btn"
               [disabled]="!step.enabled"
               (click)="changeActiveStep(step)">
-        {{index + 1}}. {{step.title}}
+        {{index + 1}}. {{step.title | async}}
       </button>
     </ng-container>
   </clr-dropdown-menu>
