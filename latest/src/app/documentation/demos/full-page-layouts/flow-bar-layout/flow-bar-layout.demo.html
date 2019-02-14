@@ -12,10 +12,10 @@
                   (clrActiveStepChange)="setActiveStep($event)"></clr-flow-bar>
     <clr-content-panel-container>
         <clr-content-panel-container-content>
-            <h3 *ngIf="!activeStep?.subSteps || activeStep?.subSteps?.length === 0">{{activeStep?.title}}
+            <h3 *ngIf="!activeStep?.subSteps || activeStep?.subSteps?.length === 0">{{activeStep?.title | async}}
                 {{flowBarSteps.indexOf(activeStep) + 1}}</h3>
             <h3 *ngIf="activeStep?.subSteps && activeStep?.subSteps?.length > 0">
-                {{activeStep?.title}} {{flowBarSteps.indexOf(activeStep) + 1}} - {{activeStep.activeSubStep?.title}}
+                {{activeStep?.title | async}} {{flowBarSteps.indexOf(activeStep) + 1}} - {{activeStep.activeSubStep?.title | async}}
             </h3>
             <p *ngFor="let a of [1, 2, 3, 4, 5, 6, 7, 8]">
                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
@@ -46,13 +46,13 @@
                     </button>
                     <clr-dropdown *ngIf="activeStep?.subSteps?.length > 0">
                         <button type="button" class="btn btn-outline-primary" clrDropdownTrigger>
-                            {{activeStep.activeSubStep?.title}}
+                            {{activeStep.activeSubStep?.title | async}}
                             <clr-icon shape="caret down"></clr-icon>
                         </button>
                         <clr-dropdown-menu clrPosition="top-left" *clrIfOpen>
                             <button class="btn" clrDropdownItem *ngFor="let subStep of activeStep?.subSteps"
                                     (click)="flowBar.changeActiveSubStep(subStep)">
-                                {{subStep.title}}
+                                {{subStep.title | async}}
                             </button>
                         </clr-dropdown-menu>
                     </clr-dropdown>
