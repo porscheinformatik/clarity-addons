@@ -13,6 +13,7 @@
 @import './progress-spinner/progress-spinner';
 @import './numericfield/numeric-field';
 @import './combobox/combobox.clarity';
+@import './date-time-container/date-time-container';
 
 html,
 body,
@@ -246,4 +247,22 @@ clr-checkbox-container[readonly] .clr-checkbox-wrapper input[type='checkbox'] {
       content: none;
     }
   }
+}
+
+// Set the width of all inputs except time & not inside a .clr-input-group to a 100%.
+// This avoids setting the width of the datepicker to a 100% as well.
+:not(.clr-input-group) > input:not([type='time']) {
+  width: 100%;
+}
+
+.clr-control-container .clr-select-wrapper {
+  display: block;
+
+  select {
+    width: 100%;
+  }
+}
+
+.clr-control-container .clr-textarea-wrapper textarea {
+  width: 100%;
 }

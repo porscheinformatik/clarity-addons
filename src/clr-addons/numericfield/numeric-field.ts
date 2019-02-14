@@ -255,12 +255,6 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
         this.renderer.appendChild(inputWrapper, this.unitSpan);
       }
 
-      // Set the input width to the current width in css, so it won't extend when adding padding later on
-      const inputWidth = this.inputEl.nativeElement.offsetWidth;
-      this.renderer.setStyle(this.inputEl.nativeElement, 'width', inputWidth + 'px');
-      // Also set the input wrapper width to same width to support horizontal form layout
-      this.renderer.setStyle(inputWrapper, 'width', inputWidth + 'px');
-
       // Add padding to the input element, depending on the width of the unit symbol + 12px
       const paddingOnInput = this.unitSpan.offsetWidth + 12;
       if (this.unitPosition === 'left') {

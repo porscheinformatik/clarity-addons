@@ -6,22 +6,23 @@
 import { ModuleWithProviders } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BackButtonDemo } from './back-button/back-button.demo';
-
-import { LandingComponent } from './landing.component';
-import { PagerDemo } from './pager/pager.demo';
-import { ViewEditSectionDemo } from './view-edit-section/view-edit-section.demo';
-import { PagedSearchResultListDemo } from './paged-search-result-list/paged-search-result-list.demo';
+import { BreadcrumbDemo } from './breadcrumb/breadcrumb.demo';
+import { CardsDemo } from './cards/cards.demo';
 import { CollapseExpandSectionDemo } from './collapse-expand-section/collapse-expand-section.demo';
 import { ContentPanelDemo } from './content-panel/content-panel.demo';
-import { BreadcrumbDemo } from './breadcrumb/breadcrumb.demo';
-import { NotificationDemo } from './notification/notification.demo';
-import { FlowBarDemo } from './flow-bar/flow-bar.demo';
-import { CardsDemo } from './cards/cards.demo';
-import { ProgressSpinnerDemo } from './progress-spinner/progress-spinner.demo';
+import { DateTimeContainerDemo } from './date-time-container/date-time-container.demo';
 import { FlowBarContentPanelDemo } from './flow-bar-content-panel/flow-bar-content-panel.demo';
+import { FlowBarDemo } from './flow-bar/flow-bar.demo';
+
+import { LandingComponent } from './landing.component';
+import { NotificationDemo } from './notification/notification.demo';
 import { NumericFieldDemo } from './numericfield/numericfield.demo';
-import { TreetableDemo } from './treetable/treetable.demo';
+import { PagedSearchResultListDemo } from './paged-search-result-list/paged-search-result-list.demo';
+import { PagerDemo } from './pager/pager.demo';
+import { ProgressSpinnerDemo } from './progress-spinner/progress-spinner.demo';
 import { ReadonlyDemo } from './readonly/readonly.demo';
+import { TreetableDemo } from './treetable/treetable.demo';
+import { ViewEditSectionDemo } from './view-edit-section/view-edit-section.demo';
 
 export const APP_ROUTES: Routes = [
   { path: '', component: LandingComponent },
@@ -41,6 +42,7 @@ export const APP_ROUTES: Routes = [
   { path: 'treetable', component: TreetableDemo },
   { path: 'readonly', component: ReadonlyDemo },
   { path: 'combobox', loadChildren: 'src/app/combobox/combobox.demo.module#ComboboxDemoModule' },
+  { path: 'date-time-container', component: DateTimeContainerDemo },
 ];
 
 export const ROUTING: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);
