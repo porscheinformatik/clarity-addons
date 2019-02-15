@@ -20,3 +20,4 @@ export * from './progress-spinner/index';
 export * from './numericfield/index';
 export * from './treetable/index';
 export * from './combobox/index';
+export * from './date-time-container/index';
