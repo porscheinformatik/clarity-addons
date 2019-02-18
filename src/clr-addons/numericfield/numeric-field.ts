@@ -32,6 +32,7 @@ const NUMBERS = new Set(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']);
 export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
   @Input('clrTextAlign') textAlign = 'right';
   @Input('clrDecimalPlaces') decimalPlaces = 2;
+  @Input('clrRoundDisplayValue') roundValue = false;
   @Input('clrAutofillDecimals') autofillDecimals = false;
   @Input('clrDecimalSep') decimalSeparator = ',';
   @Input('clrGroupingSep') groupingSeparator = '.';
@@ -39,6 +40,7 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
   @Input('clrUnitPosition') unitPosition: string = 'right';
   @Output('clrNumericValueChange') numericValueChanged = new EventEmitter<number>();
 
+  private originalValue: number = NaN;
   private _numericValue: number;
   private inputChangeListener: () => void;
   private keyupListener: () => void;
@@ -47,17 +49,17 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
   @Input('clrNumericValue')
   set numericValue(value: number) {
     if (this._numericValue !== value && !(isNaN(this._numericValue) && isNaN(value))) {
-      this._numericValue = value;
+      this.originalValue = value;
+      this._numericValue = this.roundOrTruncate(value);
       this.handleInputChanged();
     }
   }
 
-  displayValue: string;
-
   private unitSpan: HTMLSpanElement;
   private allowedKeys = new Set(NUMBERS);
 
-  constructor(private renderer: Renderer2, private inputEl: ElementRef) {}
+  constructor(private renderer: Renderer2, private inputEl: ElementRef) {
+  }
 
   ngOnInit() {
     /* needs to be parsed as number explicitly as it comes as string from user input */
@@ -120,11 +122,14 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
           if (event.keyCode === BACK_KEYCODE && value.substr(cursorStart - 1, 1) === this.groupingSeparator) {
             event.target.value = value.substring(0, cursorStart - 2) + value.substring(cursorStart - 1, value.length);
             event.target.selectionStart = event.target.selectionEnd = cursorStart - 1;
+            return false;
           } else if (event.keyCode === DEL_KEYCODE && value.substr(cursorStart, 1) === this.groupingSeparator) {
             event.target.value = value.substring(0, cursorStart + 1) + value.substring(cursorStart + 2, value.length);
             event.target.selectionStart = event.target.selectionEnd = cursorStart + 1;
+            return false;
           }
         }
+        this.originalValue = NaN;
       } else {
         return false;
       }
@@ -144,8 +149,10 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
     // Sometimes the value changes because we cut off decimal places
     setTimeout(() => {
       this.updateInput(
-        this.formatNumber(this._numericValue.toString().replace(new RegExp('[.]', 'g'), this.decimalSeparator), true)
-      );
+        this.formatNumber(this._numericValue.toString().replace(new RegExp('[.]', 'g'),
+          this.decimalSeparator),
+          true),
+        false);
     }, 1);
   }
 
@@ -153,12 +160,13 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
     const value = element.value;
     const cursorPos = element.selectionStart;
     const length = value.length;
-    this.updateInput(this.formatNumber(value, finalFormatting));
-    element.selectionStart = element.selectionEnd = Math.max(cursorPos + element.value.length - length, 0);
+    if (this.updateInput(this.formatNumber(value, finalFormatting), true)) {
+      element.selectionStart = element.selectionEnd = Math.max(cursorPos + element.value.length - length, 0);
+    }
   }
 
   formatNumber(value: string, finalFormatting: boolean): string {
-    let result = this.strip(value);
+    let result = this.strip(value, finalFormatting);
 
     /* add grouping separator */
     const decimalIndex = result.indexOf(this.decimalSeparator);
@@ -197,10 +205,11 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
     return result;
   }
 
-  strip(value: string): string {
+  strip(value: string, removeLeadingZeros: boolean = false): string {
     let result: string = '';
     let indexDecimalSep = -1;
     let j = -1;
+    let ignoredChars = 0;
     for (const char of value) {
       j++;
       if (this.allowedKeys.has(char)) {
@@ -214,16 +223,22 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
           }
           indexDecimalSep = j;
         }
+        if (removeLeadingZeros && (char === '0' && (result.length === 0 || result === NEGATIVE))) {
+          ignoredChars++;
+          continue;
+        }
         if (char === NEGATIVE && j > 0) {
           /* dismiss content after a negative sign not on first position */
           break;
         }
-        if (indexDecimalSep > -1 && result.length > indexDecimalSep + this.decimalPlaces) {
+        if (indexDecimalSep > -1 && (result.length + ignoredChars) > indexDecimalSep + this.decimalPlaces) {
           /* dismiss content after maximum decimal places reached */
           break;
         }
         result += char;
-      } else if (char !== this.groupingSeparator) {
+      } else if (char === this.groupingSeparator) {
+        ignoredChars++;
+      } else {
         /* dismiss content after a invalid character */
         break;
       }
@@ -232,11 +247,17 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
     return result;
   }
 
-  updateInput(value: string) {
-    this.displayValue = value;
-    this.inputEl.nativeElement.value = value;
-    this._numericValue = parseFloat(this.strip(value).replace(this.decimalSeparator, '.'));
-    this.numericValueChanged.emit(this._numericValue);
+  updateInput(value: string, userEntered: boolean) {
+    if (userEntered || this.inputEl.nativeElement.value !== value) {
+      this.inputEl.nativeElement.value = value;
+      this._numericValue = parseFloat(this.strip(value).replace(this.decimalSeparator, '.'));
+      if (this._numericValue !== this.roundOrTruncate(this.originalValue)) {
+        this.originalValue = this._numericValue;
+        this.numericValueChanged.emit(this._numericValue);
+        return true;
+      }
+    }
+    return false;
   }
 
   private injectUnitSymbol(): void {
@@ -280,5 +301,10 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
       this.keyupListener();
       delete this.keyupListener;
     }
+  }
+
+  private roundOrTruncate(value: number): number {
+    const method = this.roundValue ? 'round' : (value < 0 ? 'ceil' : 'floor');
+    return Math[method](value * Math.pow(10, this.decimalPlaces)) / Math.pow(10, this.decimalPlaces);
   }
 }
