@@ -40,6 +40,7 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
   @Input('clrUnitPosition') unitPosition: string = 'right';
   @Output('clrNumericValueChange') numericValueChanged = new EventEmitter<number>();
 
+  private displayValue: string = '';
   private originalValue: number = NaN;
   private _numericValue: number;
   private inputChangeListener: () => void;
@@ -149,10 +150,8 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
     // Sometimes the value changes because we cut off decimal places
     setTimeout(() => {
       this.updateInput(
-        this.formatNumber(this._numericValue.toString().replace(new RegExp('[.]', 'g'),
-          this.decimalSeparator),
-          true),
-        false);
+        this.formatNumber(this._numericValue.toString().replace(new RegExp('[.]', 'g'), this.decimalSeparator), true)
+        , false);
     }, 1);
   }
 
@@ -160,12 +159,14 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
     const value = element.value;
     const cursorPos = element.selectionStart;
     const length = value.length;
-    if (this.updateInput(this.formatNumber(value, finalFormatting), true)) {
+    if (this.displayValue !== value) {
       element.selectionStart = element.selectionEnd = Math.max(cursorPos + element.value.length - length, 0);
     }
+    this.updateInput(this.formatNumber(value, finalFormatting), true);
   }
 
   formatNumber(value: string, finalFormatting: boolean): string {
+    console.log(value);
     let result = this.strip(value, finalFormatting);
 
     /* add grouping separator */
@@ -237,7 +238,9 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
         }
         result += char;
       } else if (char === this.groupingSeparator) {
-        ignoredChars++;
+        if (indexDecimalSep === -1) {
+          ignoredChars++;
+        }
       } else {
         /* dismiss content after a invalid character */
         break;
@@ -248,16 +251,13 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   updateInput(value: string, userEntered: boolean) {
-    if (userEntered || this.inputEl.nativeElement.value !== value) {
-      this.inputEl.nativeElement.value = value;
-      this._numericValue = parseFloat(this.strip(value).replace(this.decimalSeparator, '.'));
-      if (this._numericValue !== this.roundOrTruncate(this.originalValue)) {
-        this.originalValue = this._numericValue;
-        this.numericValueChanged.emit(this._numericValue);
-        return true;
-      }
+    this.displayValue = value;
+    this.inputEl.nativeElement.value = value;
+    this._numericValue = parseFloat(this.strip(value).replace(this.decimalSeparator, '.'));
+    if (this._numericValue !== this.roundOrTruncate(this.originalValue) || userEntered) {
+      this.originalValue = this._numericValue;
+      this.numericValueChanged.emit(this._numericValue);
     }
-    return false;
   }
 
   private injectUnitSymbol(): void {
