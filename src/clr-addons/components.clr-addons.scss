@@ -249,20 +249,51 @@ clr-checkbox-container[readonly] .clr-checkbox-wrapper input[type='checkbox'] {
   }
 }
 
-// Set the width of all inputs except time & not inside a .clr-input-group to a 100%.
-// This avoids setting the width of the datepicker to a 100% as well.
-:not(.clr-input-group) > input:not([type='time']) {
-  width: 100%;
+// FORM OVERRIDES BELOW
+
+// forms should never be bigger than 1200px
+form,
+.form {
+  max-width: 1200px;
 }
 
-.clr-control-container .clr-select-wrapper {
-  display: block;
+// Date picker should never be bigger than 6rem including the icon
+clr-date-container {
+  .clr-input-group {
+    max-width: 6rem;
 
-  select {
-    width: 100%;
+    .clr-input {
+      max-width: 4.5rem;
+    }
   }
 }
 
-.clr-control-container .clr-textarea-wrapper textarea {
+.clr-input-group {
   width: 100%;
+  max-width: 100%;
+
+  // Set all input widths inside a clr-input-group to 100% minus the icons width
+  > .clr-input {
+    width: calc(100% - 1.5rem);
+  }
+}
+
+// Set the width of all inputs except time to 100%
+input:not([type='time']) {
+  width: 100%;
+}
+
+// Set the width of text areas and selects to 100%
+.clr-control-container {
+  .clr-textarea-wrapper textarea {
+    width: 100%;
+  }
+
+  .clr-select-wrapper {
+    display: block;
+
+    select {
+      width: 100%;
+    }
+  }
 }

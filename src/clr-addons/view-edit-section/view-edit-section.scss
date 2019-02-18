@@ -1,5 +1,7 @@
 @include exports('view-edit-section.clr-addons') {
   .view-edit-section {
+    max-width: 1300px;
+
     .card-title {
       margin-bottom: 0;
 
@@ -16,7 +18,6 @@
     form,
     .form {
       padding: 0;
-      max-width: 1200px;
     }
 
     .button-bar {
