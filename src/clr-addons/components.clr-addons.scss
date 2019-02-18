@@ -278,7 +278,7 @@ clr-date-container {
   }
 }
 
-// Set the width of all inputs except time & not inside a .clr-input-group to a 100%
+// Set the width of all inputs except time to 100%
 input:not([type='time']) {
   width: 100%;
 }
