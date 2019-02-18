@@ -25,8 +25,8 @@ const CODE_EXAMPLE_FULL_FORM = `
     </clr-textarea-container>
     <clr-password-container class="clr-col-12">
         <label>Password label</label>
-        <input clrPassword placeholder="Password please!" type="text" [(ngModel)]="passwordText"
-               name="passwordName"/>
+        <input clrPassword class="clr-col-2" placeholder="Password please!" type="text"
+               [(ngModel)]="passwordText" name="passwordName"/>
     </clr-password-container>
     <clr-select-container class="clr-col-12">
         <label class="required">Select label</label>
@@ -57,8 +57,8 @@ const CODE_EXAMPLE_FULL_FORM = `
         <label>Time label</label>
         <input type="time" [(ngModel)]="time" name="time" clrInput>
     </clr-input-container>
-    <clr-date-time-container class="clr-col-12">
-        <clr-date-container>
+    <clr-date-time-container class="clr-col-12 clr-row">
+        <clr-date-container class="clr-col-12">
             <label>Date & time label</label>
             <input clrDate type="text" [(ngModel)]="date" name="date">
         </clr-date-container>

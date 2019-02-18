@@ -19,37 +19,21 @@ const fullPageLayoutsRoutes: Routes = [
                 path: `basepage-layout-sub1`,
                 children: [
                     {
-                        path: "one",
-                        loadChildren: "app/documentation/demos/full-page-layouts/basepage-layout/basepage-layout.demo.module#BasepageLayoutDemoModule",
+                        path: "forms",
+                        loadChildren: "app/documentation/demos/full-page-layouts/forms-layout/forms-layout.demo.module#FormsLayoutDemoModule",
                         data: {
-                            browserTitle: "Base Page Layout",
+                            browserTitle: "Forms Layout",
                             id: 1
                         }
                     },
                     {
-                        path: "two",
-                        loadChildren: "app/documentation/demos/full-page-layouts/basepage-layout/basepage-layout.demo.module#BasepageLayoutDemoModule",
+                        path: "ves",
+                        loadChildren: "app/documentation/demos/full-page-layouts/view-edit-section-layout/view-edit-section-layout.demo.module#ViewEditSectionLayoutDemoModule",
                         data: {
-                            browserTitle: "Base Page Layout",
+                            browserTitle: "View Edit Section Layout",
                             id: 2
                         }
-                    },
-                    {
-                        path: "three",
-                        loadChildren: "app/documentation/demos/full-page-layouts/basepage-layout/basepage-layout.demo.module#BasepageLayoutDemoModule",
-                        data: {
-                            browserTitle: "Base Page Layout",
-                            id: 3
-                        }
-                    },
-                    {
-                        path: "four",
-                        loadChildren: "app/documentation/demos/full-page-layouts/basepage-layout/basepage-layout.demo.module#BasepageLayoutDemoModule",
-                        data: {
-                            browserTitle: "Base Page Layout",
-                            id: 4
-                        }
-                    },
+                    }
                 ],
             },
             {

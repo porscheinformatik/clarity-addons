@@ -44,8 +44,8 @@
                 </clr-textarea-container>
                 <clr-password-container class="clr-col-12">
                     <label>Password label</label>
-                    <input clrPassword placeholder="Password please!" type="text" [(ngModel)]="passwordText"
-                           name="passwordName"/>
+                    <input clrPassword class="clr-col-2" placeholder="Password please!" type="text"
+                           [(ngModel)]="passwordText" name="passwordName"/>
                 </clr-password-container>
                 <clr-select-container class="clr-col-12">
                     <label class="required">Select label</label>
@@ -76,8 +76,8 @@
                     <label>Time label</label>
                     <input type="time" [(ngModel)]="time" name="time" clrInput>
                 </clr-input-container>
-                <clr-date-time-container class="clr-col-12">
-                    <clr-date-container>
+                <clr-date-time-container class="clr-col-12 clr-row">
+                    <clr-date-container class="clr-col-12">
                         <label>Date & time label</label>
                         <input clrDate type="text" [(ngModel)]="date" name="date">
                     </clr-date-container>
@@ -105,6 +105,21 @@
                 </div>
             </form>
             <clr-code-snippet [clrCode]="codeExampleFullForm"></clr-code-snippet>
+
+            <h4>Demo</h4>
+            <div>
+                <clr-icon shape="display"></clr-icon>&nbsp;
+                <a class="nav-link" routerLink="/full-page-layouts/basepage-layout-sub1/forms"
+                   routerLinkActive="active">
+                    <span class="nav-text">Full Page Forms Layout</span>
+                </a>
+            </div>
+            <div>
+                <clr-icon shape="display"></clr-icon>&nbsp;
+                <a class="nav-link" routerLink="/full-page-layouts/basepage-layout-sub1/ves" routerLinkActive="active">
+                    <span class="nav-text">Full Page View Edit Section Layout</span>
+                </a>
+            </div>
 
             <h4>Read-only fields (horizontal)</h4>
             <form clrForm [clrLayout]="'horizontal'" class="clr-row">
