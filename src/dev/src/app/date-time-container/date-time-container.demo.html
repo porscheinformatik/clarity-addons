@@ -8,18 +8,26 @@
 
 <h4>Horizontal Form</h4>
 <form clrForm [clrLayout]="'horizontal'" class="clr-row">
-  <clr-textarea-container class="clr-col-6">
+  <clr-textarea-container class="clr-col-12">
     <label>Input</label>
     <textarea clrTextarea> </textarea>
   </clr-textarea-container>
   <clr-input-container class="clr-col-6">
-    <label>Input</label>
-    <input clrInput/>
+    <label class="clr-col-4">Input</label>
+    <input clrInput class="clr-col-8"/>
   </clr-input-container>
   <clr-password-container class="clr-col-6">
-    <label>Password</label>
-    <input clrPassword/>
+    <label class="clr-col-4">Password</label>
+    <input clrPassword class="clr-col-8"/>
   </clr-password-container>
+  <clr-password-container class="clr-col-6">
+    <label class="clr-col-4">Password</label>
+    <input clrPassword class="clr-col-8"/>
+  </clr-password-container>
+  <clr-input-container class="clr-col-6">
+    <label class="clr-col-4">Input</label>
+    <input clrInput class="clr-col-8"/>
+  </clr-input-container>
 
   <clr-date-time-container class="clr-col-6">
     <clr-date-container>

@@ -249,6 +249,14 @@ clr-checkbox-container[readonly] .clr-checkbox-wrapper input[type='checkbox'] {
   }
 }
 
+// FORM OVERRIDES BELOW
+
+// forms should never be bigger than 1200px
+form,
+.form {
+  max-width: 1200px;
+}
+
 // Date picker should never be bigger than 6rem including the icon
 clr-date-container {
   .clr-input-group {
@@ -260,10 +268,11 @@ clr-date-container {
   }
 }
 
-// Set all input widths inside a clr-input-group to 100% minus the icons width
 .clr-input-group {
-  width: calc(100% - 1.5rem);
+  width: 100%;
+  max-width: 100%;
 
+  // Set all input widths inside a clr-input-group to 100% minus the icons width
   > .clr-input {
     width: calc(100% - 1.5rem);
   }
