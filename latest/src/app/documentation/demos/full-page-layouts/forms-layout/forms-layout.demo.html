@@ -3,19 +3,9 @@
 
     <div class="content-header">
         <clr-back-button></clr-back-button>
-        <h2><span *ngIf="!withCommandBar && !withContentPanel">Base Pagelayout</span>
-            <span *ngIf="withCommandBar && !withContentPanel">Command bar</span>
-            <span *ngIf="withCommandBar && withContentPanel">Content Panel</span></h2>
-        <clr-button-group class="command-bar" [clrMenuPosition]="'bottom-right'" *ngIf="withCommandBar">
-            <clr-button *ngIf="!withContentPanel">Command1</clr-button>
-            <clr-button *ngIf="!withContentPanel">Command2</clr-button>
-            <clr-button *ngIf="withContentPanel" (click)="toggleRightPanel()">Show/Hide Right</clr-button>
-            <clr-button *ngIf="withContentPanel" (click)="toggleLeftPanel()" [clrInMenu]="true">Show/Hide Left
-            </clr-button>
-            <clr-button [clrInMenu]="true">Command3</clr-button>
-        </clr-button-group>
+        <h2>Forms Layout</h2>
     </div>
-    <div class="content-container" *ngIf="!withContentPanel">
+    <div class="content-container">
         <div class="content-area">
             <form clrForm [clrLayout]="'horizontal'" class="clr-row">
                 <h4 class="clr-col-12">Personal Data</h4>
@@ -111,15 +101,4 @@
             </div>
         </div>
     </div>
-    <clr-content-panel-container *ngIf="withContentPanel">
-        <h2>Content Area</h2>
-        <clr-content-panel #leftContentPanel clrDirection="left">
-            <ng-container clr-content-panel-title>Left Content Panel</ng-container>
-            <ng-container clr-content-panel-content>Content</ng-container>
-        </clr-content-panel>
-        <clr-content-panel #rightContentPanel>
-            <ng-container clr-content-panel-title>Right Content Panel</ng-container>
-            <ng-container clr-content-panel-content>Content</ng-container>
-        </clr-content-panel>
-    </clr-content-panel-container>
 </clr-main-container>

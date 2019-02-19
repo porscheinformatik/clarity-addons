@@ -22,16 +22,14 @@ const fullPageLayoutsRoutes: Routes = [
                         path: "forms",
                         loadChildren: "app/documentation/demos/full-page-layouts/forms-layout/forms-layout.demo.module#FormsLayoutDemoModule",
                         data: {
-                            browserTitle: "Forms Layout",
-                            id: 1
+                            browserTitle: "Forms Layout"
                         }
                     },
                     {
                         path: "ves",
                         loadChildren: "app/documentation/demos/full-page-layouts/view-edit-section-layout/view-edit-section-layout.demo.module#ViewEditSectionLayoutDemoModule",
                         data: {
-                            browserTitle: "View Edit Section Layout",
-                            id: 2
+                            browserTitle: "View Edit Section Layout"
                         }
                     }
                 ],
