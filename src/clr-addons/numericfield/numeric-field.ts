@@ -149,8 +149,7 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
     // Sometimes the value changes because we cut off decimal places
     setTimeout(() => {
       this.updateInput(
-        this.formatNumber(this._numericValue.toString().replace(new RegExp('[.]', 'g'), this.decimalSeparator), true),
-        false
+        this.formatNumber(this._numericValue.toString().replace(new RegExp('[.]', 'g'), this.decimalSeparator), true)
       );
     }, 1);
   }
@@ -159,10 +158,11 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
     const value = element.value;
     const cursorPos = element.selectionStart;
     const length = value.length;
-    if (this.displayValue !== value) {
+    const setCursor = this.displayValue !== value;
+    this.updateInput(this.formatNumber(value, finalFormatting));
+    if (setCursor) {
       element.selectionStart = element.selectionEnd = Math.max(cursorPos + element.value.length - length, 0);
     }
-    this.updateInput(this.formatNumber(value, finalFormatting), true);
   }
 
   formatNumber(value: string, finalFormatting: boolean): string {
@@ -249,11 +249,11 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
     return result;
   }
 
-  updateInput(value: string, userEntered: boolean) {
+  updateInput(value: string) {
     this.displayValue = value;
     this.inputEl.nativeElement.value = value;
     this._numericValue = parseFloat(this.strip(value).replace(this.decimalSeparator, '.'));
-    if (this._numericValue !== this.roundOrTruncate(this.originalValue) || userEntered) {
+    if (this._numericValue !== this.roundOrTruncate(this.originalValue)) {
       this.originalValue = this._numericValue;
       this.numericValueChanged.emit(this._numericValue);
     }
