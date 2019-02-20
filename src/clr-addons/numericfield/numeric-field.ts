@@ -59,8 +59,7 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
   private unitSpan: HTMLSpanElement;
   private allowedKeys = new Set(NUMBERS);
 
-  constructor(private renderer: Renderer2, private inputEl: ElementRef) {
-  }
+  constructor(private renderer: Renderer2, private inputEl: ElementRef) {}
 
   ngOnInit() {
     /* needs to be parsed as number explicitly as it comes as string from user input */
@@ -150,8 +149,9 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
     // Sometimes the value changes because we cut off decimal places
     setTimeout(() => {
       this.updateInput(
-        this.formatNumber(this._numericValue.toString().replace(new RegExp('[.]', 'g'), this.decimalSeparator), true)
-        , false);
+        this.formatNumber(this._numericValue.toString().replace(new RegExp('[.]', 'g'), this.decimalSeparator), true),
+        false
+      );
     }, 1);
   }
 
@@ -166,7 +166,6 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   formatNumber(value: string, finalFormatting: boolean): string {
-    console.log(value);
     let result = this.strip(value, finalFormatting);
 
     /* add grouping separator */
@@ -232,7 +231,7 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
           /* dismiss content after a negative sign not on first position */
           break;
         }
-        if (indexDecimalSep > -1 && (result.length + ignoredChars) > indexDecimalSep + this.decimalPlaces) {
+        if (indexDecimalSep > -1 && result.length + ignoredChars > indexDecimalSep + this.decimalPlaces) {
           /* dismiss content after maximum decimal places reached */
           break;
         }
@@ -304,7 +303,7 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   private roundOrTruncate(value: number): number {
-    const method = this.roundValue ? 'round' : (value < 0 ? 'ceil' : 'floor');
+    const method = this.roundValue ? 'round' : value < 0 ? 'ceil' : 'floor';
     return Math[method](value * Math.pow(10, this.decimalPlaces)) / Math.pow(10, this.decimalPlaces);
   }
 }
