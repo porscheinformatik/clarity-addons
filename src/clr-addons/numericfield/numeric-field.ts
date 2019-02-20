@@ -155,11 +155,10 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   formatInput(element: any, finalFormatting: boolean) {
-    const value = element.value;
     const cursorPos = element.selectionStart;
-    const length = value.length;
-    const setCursor = this.displayValue !== value;
-    this.updateInput(this.formatNumber(value, finalFormatting));
+    const length = element.value.length;
+    const setCursor = this.displayValue !== element.value;
+    this.updateInput(this.formatNumber(element.value, finalFormatting));
     if (setCursor) {
       element.selectionStart = element.selectionEnd = Math.max(cursorPos + element.value.length - length, 0);
     }
