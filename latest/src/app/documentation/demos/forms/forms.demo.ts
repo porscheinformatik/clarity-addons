@@ -58,7 +58,7 @@ const CODE_EXAMPLE_FULL_FORM = `
         <input type="time" [(ngModel)]="time" name="time" clrInput>
     </clr-input-container>
     <clr-date-time-container class="clr-col-12 clr-row">
-        <clr-date-container class="clr-col-12">
+        <clr-date-container>
             <label>Date & time label</label>
             <input clrDate type="text" [(ngModel)]="date" name="date">
         </clr-date-container>

@@ -122,7 +122,7 @@ const CODE_EXAMPLE = `
 
         <h4 class="clr-col-12">Other Data</h4>
         <clr-date-time-container class="clr-col-12 clr-col-lg-6 clr-row">
-            <clr-date-container class="clr-col-12">
+            <clr-date-container>
                 <label class="clr-col-12 clr-col-sm-2 clr-col-lg-3">Start date & time</label>
                 <input clrDate type="text" class="clr-col-12 clr-col-sm-10 clr-col-lg-9"/>
             </clr-date-container>
