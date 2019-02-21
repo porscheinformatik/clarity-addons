@@ -14,7 +14,7 @@ const HTML_EXAMPLE = `
 <form clrForm clrLayout="vertical" [formGroup]="exampleForm">
     <clr-input-container>
         <label>Money</label>
-        <input clrInput clrNumeric type="text" [(clrNumericValue)]="money" clrUnit="€"
+        <input clrInput clrNumeric type="text" [(clrNumericValue)]="money" clrUnit="€" [clr
                [clrAutofillDecimals]="true" formControlName="money"/>
         <clr-control-error>Please enter a value between 0 and 10.000</clr-control-error>
     </clr-input-container>
@@ -59,6 +59,25 @@ const HTML_EXAMPLE2 = `
 </form>
 `;
 
+const HTML_EXAMPLE3 = `
+<form clrForm [formGroup]="exampleForm">
+    <clr-input-container>
+        <label>Rounded Value</label>
+        <input clrInput clrNumeric type="text" [(clrNumericValue)]="money" clrUnit="€" 
+               [clrRoundDisplayValue]="true" clrUnitPosition="left" [clrAutofillDecimals]="true"
+               formControlName="money1"/>
+        <clr-control-error>Please enter a value between 0 and 100</clr-control-error>
+    </clr-input-container>
+    <clr-input-container>
+        <label>Original Value</label>
+        <input clrInput clrNumeric type="text" [(clrNumericValue)]="money" clrUnit="€"
+               [clrDecimalPlaces]="5" clrUnitPosition="left" [clrAutofillDecimals]="true"
+               formControlName="money2"/>
+        <clr-control-error>Please enter a value between 0 and 100</clr-control-error>
+    </clr-input-container>
+</form>
+`;
+
 const TS_EXAMPLE = `
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ClrNumericFieldValidators } from "@porscheinformatik/clr-addons";
@@ -88,6 +107,7 @@ exampleForm = new FormGroup({
 export class NumericFieldDemo extends ClarityDocComponent {
     htmlExample = HTML_EXAMPLE;
     htmlExample2 = HTML_EXAMPLE2;
+    htmlExample3 = HTML_EXAMPLE3;
     tsExample = TS_EXAMPLE;
     money1: number;
     percentage1: number;
@@ -119,6 +139,18 @@ export class NumericFieldDemo extends ClarityDocComponent {
     exampleForm3 = new FormGroup({
         money3: new FormControl(this.money3, {
             validators: [ClrNumericFieldValidators.min(0, ".", ","), ClrNumericFieldValidators.max(10000, ".", ","), Validators.required],
+            updateOn: "blur",
+        })
+    });
+
+    money4: number = 89.99999;
+    exampleForm4 = new FormGroup({
+        money4: new FormControl(this.money4, {
+            validators: [ClrNumericFieldValidators.min(0, ".", ","), ClrNumericFieldValidators.max(100, ".", ","), Validators.required],
+            updateOn: "blur",
+        }),
+        money5: new FormControl(this.money4, {
+            validators: [ClrNumericFieldValidators.min(0, ".", ","), ClrNumericFieldValidators.max(100, ".", ","), Validators.required],
             updateOn: "blur",
         })
     });
