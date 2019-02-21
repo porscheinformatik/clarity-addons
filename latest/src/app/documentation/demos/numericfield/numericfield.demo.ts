@@ -14,7 +14,7 @@ const HTML_EXAMPLE = `
 <form clrForm clrLayout="vertical" [formGroup]="exampleForm">
     <clr-input-container>
         <label>Money</label>
-        <input clrInput clrNumeric type="text" [(clrNumericValue)]="money" clrUnit="€" [clr
+        <input clrInput clrNumeric type="text" [(clrNumericValue)]="money" clrUnit="€"
                [clrAutofillDecimals]="true" formControlName="money"/>
         <clr-control-error>Please enter a value between 0 and 10.000</clr-control-error>
     </clr-input-container>
