@@ -1,6 +1,14 @@
 @include exports('date-time-container.clr-addons') {
-  // Makes the border of the date picker and time picker go to the same vertical position.
-  .date-time-container .clr-input-group {
-    height: inherit;
+  .date-time-container {
+    clr-date-container {
+      flex: 1 1 auto;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    // Makes the border of the date picker and time picker go to the same vertical position.
+    .clr-input-group {
+      height: inherit;
+    }
   }
 }
