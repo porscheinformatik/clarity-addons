@@ -6,6 +6,170 @@
 
 <h2>Date Time Container</h2>
 
+<form clrForm clrLayout="horizontal" class="clr-row">
+  <clr-input-container class="clr-col-12">
+    <label class="required">Input label</label>
+    <input clrInput class="clr-col-2" type="text" [(ngModel)]="inputText" name="inputName" required
+           minlength="5"/>
+    <clr-control-helper>Helper text that shows while it is pristine and valid</clr-control-helper>
+    <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
+    <clr-control-error *clrIfError="'minlength'">Error message about requiring 5 characters
+    </clr-control-error>
+  </clr-input-container>
+  <clr-textarea-container class="clr-col-12">
+    <label class="required">Textarea label</label>
+    <textarea clrTextarea class="clr-col-2" [(ngModel)]="textareaText" name="description"
+              required></textarea>
+    <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
+  </clr-textarea-container>
+  <clr-password-container class="clr-col-12">
+    <label>Password label</label>
+    <input clrPassword class="clr-col-2" placeholder="Password please!" type="text"
+           [(ngModel)]="passwordText" name="passwordName"/>
+  </clr-password-container>
+  <clr-select-container class="clr-col-12">
+    <label class="required">Select label</label>
+    <select clrSelect class="clr-col-2" name="options" [(ngModel)]="selectOption">
+      <option value="one">One</option>
+      <option value="two">Two</option>
+      <option value="three">Three</option>
+    </select>
+  </clr-select-container>
+  <clr-radio-container class="clr-col-12">
+    <label class="required">Radio label</label>
+    <clr-radio-wrapper>
+      <input type="radio" clrRadio name="options" value="1" required [(ngModel)]="radioOption"/>
+      <label>Option 1</label>
+    </clr-radio-wrapper>
+    <clr-radio-wrapper>
+      <input type="radio" clrRadio name="options" value="2" required [(ngModel)]="radioOption"/>
+      <label>Option 2</label>
+    </clr-radio-wrapper>
+    <clr-control-helper>Helper text</clr-control-helper>
+    <clr-control-error>This field is required!</clr-control-error>
+  </clr-radio-container>
+  <clr-date-container class="clr-col-12">
+    <label>Date label</label>
+    <input type="text" [(ngModel)]="date" name="date" clrDate>
+  </clr-date-container>
+  <clr-input-container class="clr-col-12">
+    <label>Time label</label>
+    <input type="time" [(ngModel)]="time" name="time" clrInput>
+  </clr-input-container>
+  <clr-date-time-container class="clr-col-12 clr-row">
+    <clr-date-container>
+      <label>Date & time label</label>
+      <input clrDate type="text" [(ngModel)]="date" name="date">
+    </clr-date-container>
+    <input type="time" [(ngModel)]="time" name="time" clrTime>
+  </clr-date-time-container>
+  <clr-input-container class="clr-col-12">
+    <label>Money label</label>
+    <input clrInput clrNumeric class="clr-col-2" type="text" [(clrNumericValue)]="money" clrUnit="€"/>
+  </clr-input-container>
+  <clr-checkbox-container class="clr-col-12">
+    <label>Checkbox label</label>
+    <clr-checkbox-wrapper>
+      <label class="clr-col-12">Option</label>
+      <input clrCheckbox type="checkbox" [(ngModel)]="checkboxValue" name="checkboxName"/>
+    </clr-checkbox-wrapper>
+  </clr-checkbox-container>
+  <div class="clr-form-control clr-row clr-col-12">
+    <label class="clr-control-label">Toggle label</label>
+    <div class="clr-control-container clr-col-md-10">
+      <div class="toggle-switch">
+        <input type="checkbox" id="toggle" name="toggle" [(ngModel)]="toggleValue">
+        <label for="toggle" class="clr-col-none"></label>
+      </div>
+    </div>
+  </div>
+</form>
+
+<form clrForm [clrLayout]="'horizontal'" class="clr-row">
+  <h4 class="clr-col-12">Personal Data</h4>
+  <clr-input-container class="clr-col-12 clr-col-lg-6">
+    <label class="clr-col-12 clr-col-sm-2 clr-col-lg-3">First name</label>
+    <input clrInput type="text" class="clr-col-12 clr-col-sm-4 clr-col-lg-6"/>
+  </clr-input-container>
+  <clr-input-container class="clr-col-12 clr-col-lg-6">
+    <label class="clr-col-12 clr-col-sm-2 clr-col-lg-3">Last name</label>
+    <input clrInput type="text" class="clr-col-12 clr-col-sm-4 clr-col-lg-6"/>
+  </clr-input-container>
+  <clr-radio-container class="clr-col-12 clr-col-lg-6">
+    <label class="clr-col-12 clr-col-sm-2 clr-col-lg-3">Gender</label>
+    <clr-radio-wrapper>
+      <label>Male</label>
+      <input clrRadio class="clr-col-12 clr-col-sm-4 clr-col-lg-6" type="radio" name="gender"/>
+    </clr-radio-wrapper>
+    <clr-radio-wrapper>
+      <label>Female</label>
+      <input clrRadio class="clr-col-12 clr-col-sm-4 clr-col-lg-6" type="radio" name="gender"/>
+    </clr-radio-wrapper>
+  </clr-radio-container>
+  <clr-select-container class="clr-col-12 clr-col-lg-6">
+    <label class="clr-col-12 clr-col-sm-2 clr-col-lg-3">Country</label>
+    <select clrSelect class="clr-col-12 clr-col-sm-3 clr-col-lg-5">
+      <option>Austria</option>
+      <option>Germany</option>
+      <option>United States of America</option>
+    </select>
+  </clr-select-container>
+  <clr-date-container class="clr-col-12 clr-col-lg-6">
+    <label class="clr-col-12 clr-col-sm-2 clr-col-lg-3">Date of Birth</label>
+    <input clrDate type="text" class="clr-col-12 clr-col-sm-6 clr-col-lg-6"/>
+  </clr-date-container>
+  <clr-input-container class="clr-col-12 clr-col-lg-6">
+    <label class="clr-col-12 clr-col-sm-2 clr-col-lg-3">E-Mail</label>
+    <input clrInput type="text" class="clr-col-12 clr-col-sm-4 clr-col-lg-6"/>
+  </clr-input-container>
+  <clr-input-container class="clr-col-12 clr-col-lg-6">
+    <label class="clr-col-12 clr-col-sm-2 clr-col-lg-3">Phone</label>
+    <input clrInput type="text" class="clr-col-12 clr-col-sm-4 clr-col-lg-6"/>
+  </clr-input-container>
+
+  <h4 class="clr-col-12">User Data</h4>
+  <clr-input-container class="clr-col-12 clr-col-lg-6">
+    <label class="clr-col-12 clr-col-sm-2 clr-col-lg-3">Username</label>
+    <input clrInput type="text" class="clr-col-12 clr-col-sm-4 clr-col-lg-6"/>
+  </clr-input-container>
+  <clr-password-container class="clr-col-12 clr-col-lg-6">
+    <label class="clr-col-12 clr-col-sm-2 clr-col-lg-3">Password</label>
+    <input clrPassword type="password" class="clr-col-12 clr-col-sm-4 clr-col-lg-6"/>
+  </clr-password-container>
+
+  <h4 class="clr-col-12">Other Data</h4>
+  <clr-date-time-container class="clr-col-12 clr-col-lg-6 clr-row">
+    <clr-date-container class="clr-col-12">
+      <label class="clr-col-12 clr-col-sm-2 clr-col-lg-3">Start date & time</label>
+      <input clrDate type="text" class="clr-col-12 clr-col-sm-10 clr-col-lg-9"/>
+    </clr-date-container>
+    <input clrTime type="time" />
+  </clr-date-time-container>
+  <clr-input-container class="clr-col-12 clr-col-lg-6">
+    <label class="clr-col-12 clr-col-sm-2 clr-col-lg-3">End time</label>
+    <input clrInput type="time" class="clr-col-12 clr-col-sm-3 clr-col-lg-5"/>
+  </clr-input-container>
+  <clr-input-container class="clr-col-12 clr-col-lg-6">
+    <label class="clr-col-12 clr-col-sm-2 clr-col-lg-3">Daily Donation</label>
+    <input clrInput clrNumeric [clrUnit]="'€'" type="text" class="clr-col-12 clr-col-sm-3 clr-col-lg-5"/>
+  </clr-input-container>
+  <clr-checkbox-container class="clr-col-12 clr-col-lg-6">
+    <label class="clr-col-12 clr-col-sm-2 clr-col-lg-3">Newsletter Subscriptions</label>
+    <clr-checkbox-wrapper>
+      <label>Weekly</label>
+      <input clrCheckbox class="clr-col-12 clr-col-sm-6 clr-col-lg-6" type="checkbox"/>
+    </clr-checkbox-wrapper>
+    <clr-checkbox-wrapper>
+      <label>Monthly</label>
+      <input clrCheckbox class="clr-col-12 clr-col-sm-6 clr-col-lg-6" type="checkbox"/>
+    </clr-checkbox-wrapper>
+  </clr-checkbox-container>
+  <clr-textarea-container class="clr-col-12 clr-col-lg-6">
+    <label class="clr-col-12 clr-col-sm-2 clr-col-lg-3">Comment / Feedback</label>
+    <textarea clrTextarea type="text" class="clr-col-12 clr-col-sm-10 clr-col-lg-9"></textarea>
+  </clr-textarea-container>
+</form>
+
 <h4>Horizontal Form</h4>
 <form clrForm [clrLayout]="'horizontal'" class="clr-row">
   <clr-textarea-container class="clr-col-12">

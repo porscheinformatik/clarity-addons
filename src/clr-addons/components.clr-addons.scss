@@ -255,6 +255,10 @@ clr-checkbox-container[readonly] .clr-checkbox-wrapper input[type='checkbox'] {
 form,
 .form {
   max-width: 1200px;
+
+  h4:not(:first-child) {
+    margin-top: 2rem;
+  }
 }
 
 // Date picker should never be bigger than 6rem including the icon
@@ -287,6 +291,7 @@ input:not([type='time']) {
 .clr-control-container {
   .clr-textarea-wrapper textarea {
     width: 100%;
+    flex: 1 0 auto;
   }
 
   .clr-select-wrapper {
@@ -295,5 +300,12 @@ input:not([type='time']) {
     select {
       width: 100%;
     }
+  }
+}
+
+// This avoids the disposition of the clr select arrow icon if a validation error occurs.
+.clr-error {
+  .clr-select-wrapper::after {
+    right: 0.25rem;
   }
 }
