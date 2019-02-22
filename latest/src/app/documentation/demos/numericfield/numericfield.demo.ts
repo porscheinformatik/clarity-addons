@@ -63,16 +63,16 @@ const HTML_EXAMPLE3 = `
 <form clrForm [formGroup]="exampleForm">
     <clr-input-container>
         <label>Rounded Value</label>
-        <input clrInput clrNumeric type="text" [(clrNumericValue)]="money" clrUnit="€" 
+        <input clrInput clrNumeric type="text" [(clrNumericValue)]="money4" clrUnit="€" 
                [clrRoundDisplayValue]="true" clrUnitPosition="left" [clrAutofillDecimals]="true"
-               formControlName="money1"/>
+               formControlName="money4"/>
         <clr-control-error>Please enter a value between 0 and 100</clr-control-error>
     </clr-input-container>
     <clr-input-container>
         <label>Original Value</label>
-        <input clrInput clrNumeric type="text" [(clrNumericValue)]="money" clrUnit="€"
+        <input clrInput clrNumeric type="text" [(clrNumericValue)]="money4" clrUnit="€"
                [clrDecimalPlaces]="5" clrUnitPosition="left" [clrAutofillDecimals]="true"
-               formControlName="money2"/>
+               formControlName="money5"/>
         <clr-control-error>Please enter a value between 0 and 100</clr-control-error>
     </clr-input-container>
 </form>
