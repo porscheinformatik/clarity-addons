@@ -104,11 +104,11 @@ const CODE_EXAMPLE_RO_HORIZONTAL = `
 const CODE_EXAMPLE_RO_HORIZONTAL2 = `
 <form clrForm [clrLayout]="'horizontal'" class="clr-row">
     <div class="clr-col-6 clr-form-control clr-row">
-        <label class="clr-control-label clr-col-xs-12 clr-col-sm-3 clr-col-lg-2">First name</label>
+        <label class="clr-control-label clr-col-xs-12 clr-col-sm-3 clr-col-lg-1">First name</label>
         <span class="clr-col-xs-12 clr-col-sm-9 clr-col-lg-10">John</span>
     </div>
     <div class="clr-col-6 clr-form-control clr-row">
-        <label class="clr-control-label clr-col-xs-12 clr-col-sm-3 clr-col-lg-2">Lastname</label>
+        <label class="clr-control-label clr-col-xs-12 clr-col-sm-3 clr-col-lg-1">Last name</label>
         <span class="clr-col-xs-12 clr-col-sm-9 clr-col-lg-10">Doe</span>
     </div>
     <div class="clr-col-6 clr-form-control clr-row">
