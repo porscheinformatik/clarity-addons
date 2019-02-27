@@ -151,6 +151,12 @@ body,
   @media (hover: none) {
     @include disable-card-clickable-hover();
   }
+
+  &.card-placeholder {
+    border-left-style: dashed;
+    border-top-style: dashed;
+    border-right-style: dashed;
+  }
 }
 
 .main-container.open-hamburger-menu .header .header-nav.clr-nav-level-1 {
