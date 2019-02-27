@@ -4,11 +4,6 @@
 
     .card-title {
       margin-bottom: 0;
-
-      .btn.ves-action {
-        margin-right: 0;
-        padding-right: 0;
-      }
     }
 
     .card-text {
@@ -23,5 +18,13 @@
     .button-bar {
       margin-top: 1rem;
     }
+  }
+
+  .ves-action,
+  .card-action {
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+    line-height: 1rem;
+    height: 1rem;
   }
 }
