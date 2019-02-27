@@ -77,4 +77,31 @@
       </div>
     </div>
   </div>
+
+  <div class="clr-col-4">
+    <div class="card card-active selectable">
+      <div class="card-header">
+        Card header with custom actions
+        <clr-dropdown class="float-xs-right">
+          <button type="button" class="btn btn-icon btn-link card-action dropdown-toggle" clrDropdownTrigger>
+            <clr-icon shape="ellipsis-vertical"></clr-icon>
+          </button>
+          <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
+            <button type="button" clrDropdownItem>
+              Edit
+            </button>
+            <button type="button" clrDropdownItem>
+              Duplicate
+            </button>
+            <button type="button" clrDropdownItem>
+              Delete
+            </button>
+          </clr-dropdown-menu>
+        </clr-dropdown>
+      </div>
+      <div class="card-block">
+        Card Block
+      </div>
+    </div>
+  </div>
 </div>
