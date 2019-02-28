@@ -39,9 +39,40 @@ const HTML_EXAMPLE = `
         </div>
     </div>
 </div>
-            
 `;
 
+const HTML_EXAMPLE_PLACEHOLDER = `
+<div class="card card-placeholder">
+    <div class="card-header">
+        Placeholder card
+    </div>
+    <div class="card-block">
+        Card block
+        <div>
+            <a class="btn btn-link">Action</a>
+        </div>
+    </div>
+</div>
+`;
+
+const HTML_EXAMPLE_CUSTOM_ACTIONS = `
+<div class="card">
+    <div class="card-header">
+        Card header with custom actions
+        <clr-dropdown class="float-xs-right">
+            <button type="button" class="btn btn-icon btn-link card-action dropdown-toggle" clrDropdownTrigger>
+                <clr-icon shape="ellipsis-vertical"></clr-icon>
+            </button>
+            <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
+                ...
+            </clr-dropdown-menu>
+        </clr-dropdown>
+    </div>
+    <div class="card-block">
+        Card Block
+    </div>
+</div>
+`;
 interface Card {
     title: string;
     active: boolean;
@@ -57,11 +88,13 @@ interface Card {
 })
 export class CardsDemo extends ClarityDocComponent {
     htmlExample = HTML_EXAMPLE;
+    htmlExamplePlaceholder = HTML_EXAMPLE_PLACEHOLDER;
+    htmlExampleCustomActions = HTML_EXAMPLE_CUSTOM_ACTIONS;
 
     cards: Card[] = [
-        { title: 'Selectable card', active: true },
-        { title: 'Selectable card', active: false },
-        { title: 'Selectable card', active: false }
+        { title: "Selectable card", active: true },
+        { title: "Selectable card", active: false },
+        { title: "Selectable card", active: false }
     ];
 
     activateCard(index: number): void {
