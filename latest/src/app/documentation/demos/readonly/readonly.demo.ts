@@ -11,6 +11,10 @@ const HTML_CHECKBOX_EXAMPLE = `
     ...
 </clr-checkbox-container>
 
+<clr-checkbox-container readonly class="readonly-danger">
+    ...
+</clr-checkbox-container>
+
 <clr-checkbox-container readonly show-only-selected="true">
     ...
 </clr-checkbox-container>
@@ -18,6 +22,10 @@ const HTML_CHECKBOX_EXAMPLE = `
 
 const HTML_RADIOBUTTON_EXAMPLE = `
 <clr-radiobutton-container readonly>
+    ...
+</clr-radiobutton-container>
+
+<clr-radiobutton-container readonly class="readonly-danger">
     ...
 </clr-radiobutton-container>
 
