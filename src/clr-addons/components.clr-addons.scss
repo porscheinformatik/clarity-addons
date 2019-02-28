@@ -202,6 +202,16 @@ clr-checkbox-container[readonly][show-only-selected='true'] .clr-checkbox-wrappe
   }
 }
 
+clr-radio-container[readonly].readonly-danger .clr-radio-wrapper input[type='radio'],
+clr-checkbox-container[readonly].readonly-danger .clr-checkbox-wrapper input[type='checkbox'] {
+  &:checked + label {
+    color: $clr-btn-danger-bg-color;
+    &::before {
+      border-color: $clr-btn-danger-bg-color;
+    }
+  }
+}
+
 clr-radio-container[readonly] .clr-radio-wrapper input[type='radio'],
 clr-checkbox-container[readonly] .clr-checkbox-wrapper input[type='checkbox'] {
   + label {
@@ -240,7 +250,7 @@ clr-checkbox-container[readonly] .clr-checkbox-wrapper input[type='checkbox'] {
       background: none;
       border-left: $clr-forms-checkbox-border-style;
       border-bottom: $clr-forms-checkbox-border-style;
-      border-color: $clr-forms-checkbox-background-color;
+      border-color: $clr-btn-success-bg-color;
       position: absolute;
       top: 0.3rem;
       left: 0.1rem;
