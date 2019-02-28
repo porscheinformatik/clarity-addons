@@ -9,6 +9,7 @@
             <h3 id="examples">Code &amp; Examples</h3>
             To apply the readonly style, just add <code class="clr-code">readonly</code>
             to <code class="clr-code">clr-radio-container</code> or <code class="clr-code">clr-checkbox-container</code>.<br>
+            The class <code class="clr-code">readonly-danger</code> on the container gives the checked options more attention.<br>
             To just show checked options also add attribute <code class="clr-code">show-only-selected="true"</code> to the container.
         
             <h4>Radiobuttons</h4>
@@ -30,7 +31,7 @@
                     </clr-radio-wrapper>
                   </clr-radio-container>
               </div>
-              <div class="clr-col-4">
+              <div class="clr-col-3">
                   <clr-radio-container readonly>
                     <label>Radiobuttons (readonly)</label>
                     <clr-radio-wrapper>
@@ -47,7 +48,24 @@
                     </clr-radio-wrapper>
                   </clr-radio-container>
               </div>
-              <div class="clr-col-5">
+              <div class="clr-col-3">
+                  <clr-radio-container readonly class="readonly-danger">
+                    <label>Radiobuttons (readonly + danger)</label>
+                    <clr-radio-wrapper>
+                      <input clrRadio type="radio" [value]="1" [(ngModel)]="radioValue" name="status4">
+                      <label>Option 1</label>
+                    </clr-radio-wrapper>
+                    <clr-radio-wrapper>
+                      <input clrRadio type="radio" [value]="2" [(ngModel)]="radioValue" name="status4">
+                      <label>Option 2</label>
+                    </clr-radio-wrapper>
+                    <clr-radio-wrapper>
+                      <input clrRadio type="radio" [value]="3" [(ngModel)]="radioValue" name="status4">
+                      <label>Option 3</label>
+                    </clr-radio-wrapper>
+                  </clr-radio-container>
+              </div>
+              <div class="clr-col-3">
                   <clr-radio-container readonly show-only-selected="true">
                     <label>Radiobuttons (readonly, show-only-selected="true")</label>
                     <clr-radio-wrapper>
@@ -87,7 +105,7 @@
                       </clr-checkbox-wrapper>
                     </clr-checkbox-container>
                 </div>
-                <div class="clr-col-4">
+                <div class="clr-col-3">
                     <clr-checkbox-container readonly>
                       <label>Checkboxes (readonly)</label>
                       <clr-checkbox-wrapper>
@@ -104,7 +122,24 @@
                       </clr-checkbox-wrapper>
                     </clr-checkbox-container>
                 </div>
-                <div class="clr-col-5">
+                <div class="clr-col-3">
+                    <clr-checkbox-container readonly class="readonly-danger">
+                      <label>Checkboxes (readonly + danger)</label>
+                      <clr-checkbox-wrapper>
+                        <input clrCheckbox type="checkbox" [(ngModel)]="checkValue1" name="check10">
+                        <label>Option 1</label>
+                      </clr-checkbox-wrapper>
+                      <clr-checkbox-wrapper>
+                        <input clrCheckbox type="checkbox" [(ngModel)]="checkValue2" name="check11">
+                        <label>Option 2</label>
+                      </clr-checkbox-wrapper>
+                      <clr-checkbox-wrapper>
+                        <input clrCheckbox type="checkbox" [(ngModel)]="checkValue3" name="check12">
+                        <label>Option 3</label>
+                      </clr-checkbox-wrapper>
+                    </clr-checkbox-container>
+                </div>
+                <div class="clr-col-3">
                     <clr-checkbox-container readonly show-only-selected="true">
                       <label>Checkboxes (readonly, show-only-selected="true")</label>
                       <clr-checkbox-wrapper>
