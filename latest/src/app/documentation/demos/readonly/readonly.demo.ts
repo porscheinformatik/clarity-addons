@@ -11,10 +11,6 @@ const HTML_CHECKBOX_EXAMPLE = `
     ...
 </clr-checkbox-container>
 
-<clr-checkbox-container readonly class="readonly-danger">
-    ...
-</clr-checkbox-container>
-
 <clr-checkbox-container readonly show-only-selected="true">
     ...
 </clr-checkbox-container>
@@ -25,15 +21,16 @@ const HTML_RADIOBUTTON_EXAMPLE = `
     ...
 </clr-radiobutton-container>
 
-<clr-radiobutton-container readonly class="readonly-danger">
-    ...
-</clr-radiobutton-container>
-
 <clr-radiobutton-container readonly show-only-selected="true">
     ...
 </clr-radiobutton-container>
 `;
 
+const HTML_RADIO_EXAMPLE_DANGER = `
+<clr-checkbox-container readonly class="readonly-danger">
+    ...
+</clr-checkbox-container>
+`;
 
 @Component({
     selector: "clr-readonly-demo",
@@ -46,6 +43,7 @@ const HTML_RADIOBUTTON_EXAMPLE = `
 export class ReadonlyDemo extends ClarityDocComponent {
     htmlCheckboxExample = HTML_CHECKBOX_EXAMPLE;
     htmlRadiobuttonExample = HTML_RADIOBUTTON_EXAMPLE;
+    htmlRadioExampleDanger = HTML_RADIO_EXAMPLE_DANGER;
 
     radioValue: number = 1;
     checkValue1: boolean = true;
