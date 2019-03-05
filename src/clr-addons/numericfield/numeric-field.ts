@@ -223,6 +223,7 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
           indexDecimalSep = j;
         }
         if (char === '0' && removeLeadingZeros) {
+          /* remove leading zero only if it's not the only zero in the 'value' string */
           if ((result.length === 0 && j + 1 !== value.length) || result === NEGATIVE) {
             ignoredChars++;
             continue;
