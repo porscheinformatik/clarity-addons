@@ -222,9 +222,12 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
           }
           indexDecimalSep = j;
         }
-        if (removeLeadingZeros && (char === '0' && (result.length === 0 || result === NEGATIVE))) {
-          ignoredChars++;
-          continue;
+        if (char === '0' && removeLeadingZeros) {
+          /* remove leading zero only if it's not the only zero in the 'value' string */
+          if ((result.length === 0 && j + 1 !== value.length) || result === NEGATIVE) {
+            ignoredChars++;
+            continue;
+          }
         }
         if (char === NEGATIVE && j > 0) {
           /* dismiss content after a negative sign not on first position */
