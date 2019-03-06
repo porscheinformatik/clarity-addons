@@ -306,8 +306,11 @@
             <clr-code-snippet [clrCode]="htmlExample2"></clr-code-snippet>
 
             <h4>Rounding</h4>
-            <p>The value bound via [(clrNumericValue)] will be displayed rounded. A change event is only fired,
-                    after the user modifies the input field.</p>
+            <p>
+                If <code>[clrRoundDisplayValue]</code> is <code>true</code>, the value bound via The value bound via <code>[(clrNumericValue)]</code>
+                    is displayed rounded. <br />
+                A change event is only fired, after the user modifies the input field.
+            </p>
             <form clrForm [formGroup]="exampleForm4">
                 <clr-input-container>
                     <label>Rounded Value</label>
