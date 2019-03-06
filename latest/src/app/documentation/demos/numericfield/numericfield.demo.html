@@ -311,16 +311,16 @@
             <form clrForm [formGroup]="exampleForm4">
                 <clr-input-container>
                     <label>Rounded Value</label>
-                    <input class="clr-col-xl-2 clr-col-md-3 clr-col-sm-12" clrInput clrNumeric type="text" [(clrNumericValue)]="money4" clrUnit="€"
-                           [clrRoundDisplayValue]="true" clrUnitPosition="left" [clrAutofillDecimals]="true"
-                           formControlName="money4"/>
+                    <input class="clr-col-xl-2 clr-col-md-3 clr-col-sm-12" clrInput clrNumeric type="text"
+                           [(clrNumericValue)]="money4" clrUnit="€" [clrRoundDisplayValue]="true"
+                           [clrAutofillDecimals]="true" formControlName="money4"/>
                     <clr-control-error>Please enter a value between 0 and 100</clr-control-error>
                 </clr-input-container>
                 <clr-input-container>
                     <label>Original Value</label>
-                    <input class="clr-col-xl-2 clr-col-md-3 clr-col-sm-12" clrInput clrNumeric type="text" [(clrNumericValue)]="money4" clrUnit="€"
-                           [clrDecimalPlaces]="5" clrUnitPosition="left" [clrAutofillDecimals]="true"
-                           formControlName="money5"/>
+                    <input class="clr-col-xl-2 clr-col-md-3 clr-col-sm-12" clrInput clrNumeric type="text"
+                           [(clrNumericValue)]="money4" clrUnit="€" [clrDecimalPlaces]="5"
+                           [clrAutofillDecimals]="true" formControlName="money5"/>
                     <clr-control-error>Please enter a value between 0 and 100</clr-control-error>
                 </clr-input-container>
             </form>
