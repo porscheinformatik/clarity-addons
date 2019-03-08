@@ -275,6 +275,11 @@ form,
   h4:not(:first-child) {
     margin-top: 2rem;
   }
+
+  // Fix alignment of label & values
+  .clr-control-label {
+    line-height: inherit;
+  }
 }
 
 // Date picker should never be bigger than 6rem including the icon
