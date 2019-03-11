@@ -214,6 +214,8 @@ clr-checkbox-container[readonly].readonly-danger .clr-checkbox-wrapper input[typ
 
 clr-radio-container[readonly] .clr-radio-wrapper input[type='radio'],
 clr-checkbox-container[readonly] .clr-checkbox-wrapper input[type='checkbox'] {
+  pointer-events: none;
+
   + label {
     pointer-events: none;
   }
