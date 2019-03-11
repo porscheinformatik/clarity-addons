@@ -29,7 +29,6 @@ const HTML_EXAMPLE = `
                    (clrPageChange)="onPageChanged($event)"></clr-pager>
     </div>
 </div>
-            
 `;
 
 @Component({
