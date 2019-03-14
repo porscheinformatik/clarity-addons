@@ -1,0 +1,13 @@
+<div class="clr-row">
+  <div class="clr-col-10">
+    <clr-select-container>
+      <select clrSelect name="options" [(ngModel)]="selectedValue" (ngModelChange)="selectedValueChanged.emit(selectedValue)">
+        <option [ngValue]="undefined" selected disabled>{{placeholder}}</option>
+        <option *ngFor="let value of listOfValues" [ngValue]="value">{{getValue(value)}}</option>
+      </select>
+    </clr-select-container>
+  </div>
+  <div class="clr-col-auto pt-1 pl-0">
+    <clr-icon shape="trash" [ngClass]="!required?'allowed':'disabled'" (click)="!required && delete.emit()"></clr-icon>
+  </div>
+</div>

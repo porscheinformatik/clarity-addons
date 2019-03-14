@@ -23,6 +23,7 @@ import { ProgressSpinnerDemo } from './progress-spinner/progress-spinner.demo';
 import { ReadonlyDemo } from './readonly/readonly.demo';
 import { TreetableDemo } from './treetable/treetable.demo';
 import { ViewEditSectionDemo } from './view-edit-section/view-edit-section.demo';
+import { QuickListDemoComponent } from './quick-list/quick-list.demo.component';
 
 export const APP_ROUTES: Routes = [
   { path: '', component: LandingComponent },
@@ -43,6 +44,7 @@ export const APP_ROUTES: Routes = [
   { path: 'readonly', component: ReadonlyDemo },
   { path: 'combobox', loadChildren: 'src/app/combobox/combobox.demo.module#ComboboxDemoModule' },
   { path: 'date-time-container', component: DateTimeContainerDemo },
+  { path: 'quick-list', component: QuickListDemoComponent },
 ];
 
 export const ROUTING: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);

@@ -1,0 +1,51 @@
+<h1>Usage With Everything set</h1>
+<div class="clr-row">
+  <div class="clr-col-3">
+    <clr-quick-list [label]="label"
+                    [defaultValue]="values[0]"
+                    [listOfValues]="values"
+                    [onCard]="true"
+                    [required]="true"
+                    [displayField]="'s'"
+                    (selectedValuesChanged)="setValues($event)"></clr-quick-list>
+    <h3>Selected Values</h3>
+    <div *ngFor="let value of selectedValues">{{getStringValue(value)}}</div>
+  </div>
+</div>
+<hr>
+<h1>Usage Without Default Value</h1>
+<div class="clr-row">
+  <div class="clr-col-3">
+    <clr-quick-list [label]="label"
+                    [onCard]="true"
+                    [listOfValues]="values"
+                    [displayField]="'s'"
+                    [placeholder]="'mama'"
+                    (selectedValuesChanged)="setValues2($event)"></clr-quick-list>
+    <h3>Selected Values</h3>
+    <div *ngFor="let value of selectedValues2">{{value}}</div>
+  </div>
+</div>
+<hr>
+<h1>Usage Without label and default value</h1>
+<div class="clr-row">
+  <div class="clr-col-3">
+    <clr-quick-list [listOfValues]="values"
+                    [displayField]="'s'"
+                    [onCard]="true"
+                    (selectedValuesChanged)="setValues3($event)"></clr-quick-list>
+    <h3>Selected Values</h3>
+    <div *ngFor="let value of selectedValues3">{{value}}</div>
+  </div>
+</div>
+<hr>
+<h1>Usage with string array, not on a card and without default value</h1>
+<div class="clr-row">
+  <div class="clr-col-3">
+    <clr-quick-list [listOfValues]="stringValues"
+                    [onCard]="false"
+                    (selectedValuesChanged)="setValues4($event)"></clr-quick-list>
+    <h3>Selected Values</h3>
+    <div *ngFor="let value of selectedValues4">{{value}}</div>
+  </div>
+</div>

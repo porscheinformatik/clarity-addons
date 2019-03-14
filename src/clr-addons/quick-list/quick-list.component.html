@@ -1,0 +1,22 @@
+<div [ngClass]="onCard?'card':''">
+  <div class="clr-row">
+    <div *ngIf="!!label" class="clr-col-4">
+      <div class="clr-row">
+        <label class="pt-1 pl-1">{{label}}</label>
+      </div>
+    </div>
+    <div [ngClass]="!!label?'clr-col-8':'clr-col-12 pl-1'">
+      <template #listContainer></template>
+      <ng-container *ngFor="let entry of selectedValuesMap  | keyvalue">
+        <add-option [defaultValue]="entry.value" [listOfValues]="listOfValues" (delete)="delete(entry.key)"
+                    [displayField]="displayField"
+                    [required]="required ? selectedValuesMap.size === 1 : required"
+                    [placeholder]="placeholder"
+                    (selectedValueChanged)="selectedValuesChangedEmitter(entry.key, $event)"></add-option>
+      </ng-container>
+      <div class="clr-row pt-1 pb-0-5">
+        <button class="btn btn-link btn-sm pl-0-75 m-0" (click)="createComponent()">Add option</button>
+      </div>
+    </div>
+  </div>
+</div>
