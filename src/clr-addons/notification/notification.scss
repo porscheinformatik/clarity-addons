@@ -51,6 +51,9 @@
 
         .alert-item {
           justify-content: left;
+          .alert-text {
+            white-space: pre-wrap;
+          }
         }
       }
       .alert-icon-wrapper {
