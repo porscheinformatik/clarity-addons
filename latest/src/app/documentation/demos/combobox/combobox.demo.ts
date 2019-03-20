@@ -32,6 +32,18 @@ const USER_ALLOWED = `
 </clr-combobox>
 `;
 
+const PRESELECTED = `
+<clr-combobox class="clr-col-12" [clrPreselectedValue]="'Option 3'">
+    <label>Preselected option</label>
+    <clr-options>
+        <clr-option [clrValue]="'Option 1'">Option 1</clr-option>
+        <clr-option [clrValue]="'Option 2'">Option 2</clr-option>
+        <clr-option [clrValue]="'Option 3'">Option 3</clr-option>
+        <div class="clr-no-results">No search results found</div>
+    </clr-options>
+</clr-combobox>
+`;
+
 
 @Component({
     templateUrl: "./combobox.demo.html",
@@ -43,6 +55,7 @@ const USER_ALLOWED = `
 export class ComboboxDemo extends ClarityDocComponent {
     userNotAllowed = USER_NOT_ALLOWED;
     userAllowed = USER_ALLOWED;
+    preselected = PRESELECTED;
 
     selectedOption: ClrOption<string>;
     selectedOptionUser: ClrOption<string>;
