@@ -59,6 +59,7 @@ export class ComboboxDemo extends ClarityDocComponent {
 
     selectedOption: ClrOption<string>;
     selectedOptionUser: ClrOption<string>;
+    selectedOptionPre: ClrOption<string>;
     enteredValue: string;
     enteredValueUser: string;
 
