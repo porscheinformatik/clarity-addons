@@ -65,6 +65,7 @@ export function comboboxDomAdapterFactory(platformId: Object) {
 export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
   @Input('clrControlClasses') controlClasses: string;
   @Input('clrAllowUserEntry') allowUserEntry: boolean = false;
+  @Input('clrPreselectedValue') preselectedValue: T;
   @Output('clrSelectedOption') selectedOption: EventEmitter<ClrOption<T>> = new EventEmitter<ClrOption<T>>();
   @Output('clrEnteredValue') enteredValue: EventEmitter<string> = new EventEmitter<string>();
 
@@ -219,6 +220,12 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
   ngAfterContentInit() {
     this.registerPopoverIgnoredInput();
     this.optionSelectionService.setOptions(this.options);
+    if (!!this.preselectedValue) {
+      const option = this.options.options.find(o => o.value === this.preselectedValue);
+      if (!!option) {
+        this.optionSelectionService.setSelection(option);
+      }
+    }
   }
 
   ngOnDestroy() {
