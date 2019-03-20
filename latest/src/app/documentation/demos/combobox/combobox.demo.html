@@ -48,6 +48,16 @@
                     </tr>
                     <tr>
                         <td class="left">
+                            <b>[clrPreselectedValue]</b>
+                            <div class="hidden-sm-up">Type: T</div>
+                            <div class="hidden-sm-up">Default: undefined</div>
+                        </td>
+                        <td class="left hidden-xs-down">value of ClrOption</td>
+                        <td class="hidden-xs-down">undefined</td>
+                        <td class="left">The value of the preselected option</td>
+                    </tr>
+                    <tr>
+                        <td class="left">
                             <b>(clrSelectedOption)</b>
                             <div class="hidden-sm-up">Type: ClrOption</div>
                             <div class="hidden-sm-up">Default: undefined</div>
@@ -103,6 +113,21 @@
                 <br><br>Selected option: {{selectedOptionUser?.value}}
                 <br>Manually entered value: {{enteredValueUser}}
                 <clr-code-snippet [clrCode]="userAllowed"></clr-code-snippet>
+            </form>
+
+            <h4>Combobox with preselected option</h4>
+            <form clrForm>
+                <clr-combobox class="clr-col-12" (clrSelectedOption)="selectedOptionPre = $event" [clrAllowUserEntry]="false" [clrPreselectedValue]="'Option 3'">
+                    <label>Preselected Option</label>
+                    <clr-options>
+                        <clr-option [clrValue]="'Option 1'">Option 1</clr-option>
+                        <clr-option [clrValue]="'Option 2'">Option 2</clr-option>
+                        <clr-option [clrValue]="'Option 3'">Option 3</clr-option>
+                        <div class="clr-no-results">No search results found</div>
+                    </clr-options>
+                </clr-combobox>
+                <br><br>Selected option: {{selectedOptionPre?.value}}
+                <clr-code-snippet [clrCode]="preselected"></clr-code-snippet>
             </form>
         </div>
     </article>
