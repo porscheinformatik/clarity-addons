@@ -91,13 +91,13 @@
                         <form clrForm clrLayout="horizontal" [formGroup]="doForm">
                             <clr-input-container>
                                 <label class="clr-col-4">Price (gross)</label>
-                                <input class="clr-col-8" clrInput clrNumeric type="text" [(clrNumericValue)]="doMoney1"
+                                <input class="clr-col-md-5 clr-col-sm-12" clrInput clrNumeric type="text" [(clrNumericValue)]="doMoney1"
                                        clrUnit="€" [clrAutofillDecimals]="true" formControlName="doMoney1"/>
                                 <clr-control-error>Please enter a value greater than 0</clr-control-error>
                             </clr-input-container>
                             <clr-input-container>
                                 <label class="clr-col-4">Price (net)</label>
-                                <input class="clr-col-8" clrInput clrNumeric type="text" [(clrNumericValue)]="doMoney2"
+                                <input class="clr-col-md-5 clr-col-sm-12" clrInput clrNumeric type="text" [(clrNumericValue)]="doMoney2"
                                        clrUnit="€" [clrAutofillDecimals]="true" formControlName="doMoney2"/>
                                 <clr-control-error>Please enter a value greater than 0</clr-control-error>
                             </clr-input-container>
@@ -117,12 +117,12 @@
                         <form clrForm clrLayout="horizontal" [formGroup]="dontForm">
                             <clr-input-container>
                                 <label class="clr-col-4">Price (gross)</label>
-                                <input class="clr-col-8" clrInput type="text" style="width: 173px;"/>
+                                <input class="clr-col-md-5 clr-col-sm-12" clrInput type="text"/>
                                 <clr-control-error>Please enter a value greater than 0</clr-control-error>
                             </clr-input-container>
                             <clr-input-container>
                                 <label class="clr-col-4">Price (net)</label>
-                                <input class="clr-col-8" clrInput clrNumeric type="text"
+                                <input class="clr-col-md-5 clr-col-sm-12" clrInput clrNumeric type="text"
                                        [(clrNumericValue)]="dontMoney2" [clrAutofillDecimals]="true" clrUnit="€" formControlName="dontMoney2"/>
                                 <clr-control-error>Please enter a value greater than 0</clr-control-error>
                             </clr-input-container>
