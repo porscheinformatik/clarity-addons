@@ -67,7 +67,7 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
     this.allowedKeys.add(NEGATIVE);
     this.allowedKeys.add(this.decimalSeparator);
 
-    this.inputChangeListener = this.renderer.listen(this.inputEl.nativeElement, 'change', event => {
+    this.inputChangeListener = this.renderer.listen(this.inputEl.nativeElement, 'blur', event => {
       this.formatInput(event.target, true);
     });
 

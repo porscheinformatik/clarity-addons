@@ -169,7 +169,7 @@ describe('NumericComponent', () => {
     addKey('1', 49);
     addKey('2', 50);
     addKey('3', 51);
-    inputEl.triggerEventHandler('change', { target: inputEl.nativeElement });
+    inputEl.triggerEventHandler('blur', { target: inputEl.nativeElement });
     fixture.detectChanges();
 
     expect(fixture.componentInstance.component.displayValue).toBe('123,000');
@@ -184,7 +184,7 @@ describe('NumericComponent', () => {
     addKey('3', 51);
     addKey(',', 188);
     addKey('2', 50);
-    inputEl.triggerEventHandler('change', { target: inputEl.nativeElement });
+    inputEl.triggerEventHandler('blur', { target: inputEl.nativeElement });
     fixture.detectChanges();
 
     expect(fixture.componentInstance.component.displayValue).toBe('123,200');
@@ -196,7 +196,7 @@ describe('NumericComponent', () => {
     fixture.detectChanges();
     addKey(',', 188);
     addKey('2', 50);
-    inputEl.triggerEventHandler('change', { target: inputEl.nativeElement });
+    inputEl.triggerEventHandler('blur', { target: inputEl.nativeElement });
     fixture.detectChanges();
 
     expect(fixture.componentInstance.component.displayValue).toBe('0,200');
@@ -209,7 +209,7 @@ describe('NumericComponent', () => {
     addKey('-', 189);
     addKey(',', 188);
     addKey('2', 50);
-    inputEl.triggerEventHandler('change', { target: inputEl.nativeElement });
+    inputEl.triggerEventHandler('blur', { target: inputEl.nativeElement });
     fixture.detectChanges();
 
     expect(fixture.componentInstance.component.displayValue).toBe('-0,200');
@@ -231,7 +231,7 @@ describe('NumericComponent', () => {
       expect(fixture.componentInstance.component.displayValue).toBe('123,99');
       expect(fixture.componentInstance.input).toBe(123.99999);
 
-      inputEl.triggerEventHandler('change', { target: inputEl.nativeElement });
+      inputEl.triggerEventHandler('blur', { target: inputEl.nativeElement });
       fixture.detectChanges();
 
       expect(inputEl.nativeElement.value).toBe('123,99');
@@ -261,7 +261,7 @@ describe('NumericComponent', () => {
       expect(fixture.componentInstance.component.displayValue).toBe('124,00');
       expect(fixture.componentInstance.input).toBe(123.99999);
 
-      inputEl.triggerEventHandler('change', { target: inputEl.nativeElement });
+      inputEl.triggerEventHandler('blur', { target: inputEl.nativeElement });
       fixture.detectChanges();
 
       expect(inputEl.nativeElement.value).toBe('124,00');
