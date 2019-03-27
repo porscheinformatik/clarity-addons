@@ -6,7 +6,6 @@
   },
   "private": true,
   "dependencies": {
-    "@porscheinformatik/clr-addons": "5.1.16",
     "http-server": "latest"
   }
 }
