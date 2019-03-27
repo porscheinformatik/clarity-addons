@@ -23,5 +23,21 @@
         </clr-datagrid>
 
         <clr-code-snippet [clrCode]="noSelectAllExample"></clr-code-snippet>
+
+        <h3>Workaround for Datagrid issues</h3>
+        <p>
+            There are some clarity issues with using the Datagrid.
+            If the datagrid has really few number of rows, then you might face these
+            <a href="https://github.com/vmware/clarity/issues/2683">issues</a>.
+            One workaround for these issues can be to fix the height of datagrid as done in the following code snippet.
+        </p>
+        <clr-code-snippet [clrCode]="fixDatagridHeight"></clr-code-snippet>
+
+        <h3>Usage hints for server driven datagrid</h3>
+        <p>
+            Following code snippet is an example for implementing server driven Sorting, Pagination and Filtering.
+        </p>
+        <clr-code-snippet [clrCode]="serverDrivenDatagridHtml"></clr-code-snippet>
+        <clr-code-snippet [clrLanguage]="'typescript'" [clrCode]="serverDrivenDatagridTs"></clr-code-snippet>
     </article>
 </clr-doc-wrapper>
