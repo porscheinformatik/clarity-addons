@@ -4,11 +4,11 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, EventEmitter, Input, OnInit, Output, ElementRef, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, NgZone, OnInit, Output, ElementRef, ViewChild } from '@angular/core';
 import { animate, style, transition, trigger, state } from '@angular/animations';
-import { timer, Subscription } from 'rxjs';
-import { interval } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { ClrAlert } from '@clr/angular';
+import { zonedInterval, zonedTimer } from './scheduler-utils';
 
 @Component({
   selector: 'clr-notification',
@@ -68,10 +68,10 @@ export class ClrNotification implements OnInit {
 
   @Output() closed: EventEmitter<any> = new EventEmitter();
 
-  constructor(private elementRef: ElementRef) {}
+  constructor(private elementRef: ElementRef, private ngZone: NgZone) {}
 
   ngOnInit() {
-    timer(0).subscribe(() => {
+    zonedTimer(0, this.ngZone).subscribe(() => {
       this._height = this.elementRef.nativeElement.children[0].offsetHeight;
       this._heightInitalized();
     });
@@ -79,12 +79,12 @@ export class ClrNotification implements OnInit {
     if (this.timeout > 0) {
       if (this.progressbar) {
         this.startTime = new Date().getTime();
-        this.interval = interval(this.timeout / (this.timeout / this.step)).subscribe(() =>
+        this.interval = zonedInterval(this.timeout / (this.timeout / this.step), this.ngZone).subscribe(() =>
           this.updateProgressStatus()
         );
       }
 
-      this.timer = timer(this.timeout).subscribe(() => this.close());
+      this.timer = zonedTimer(this.timeout, this.ngZone).subscribe(() => this.close());
     }
   }
 
@@ -101,7 +101,7 @@ export class ClrNotification implements OnInit {
     }
     this.clrAlert._closed = false;
     this.state = { value: 'fadeOut', params: { absolute: this._translate } };
-    timer(300).subscribe(() => this.closed.emit());
+    zonedTimer(300, this.ngZone).subscribe(() => this.closed.emit());
   }
 
   public moveDown(translateValue: number): void {
@@ -117,6 +117,8 @@ export class ClrNotification implements OnInit {
   }
 
   private setCurrentPosition() {
-    timer(300).subscribe(() => (this.state = { value: 'currentPosition', params: { absolute: this._translate } }));
+    zonedTimer(300, this.ngZone).subscribe(
+      () => (this.state = { value: 'currentPosition', params: { absolute: this._translate } })
+    );
   }
 }
