@@ -20,11 +20,13 @@ import { ClrPagerModule } from './pager/pager.module';
 import { ClrProgressSpinnerModule } from './progress-spinner/progress-spinner.module';
 import { ClrTreetableModule } from './treetable/treetable.module';
 import { ClrViewEditSectionModule } from './view-edit-section/view-edit-section.module';
+import { ClrDotPagerModule } from './dot-pager/dot-pager.module';
 
 @NgModule({
   exports: [
     ClrViewEditSectionModule,
     ClrPagerModule,
+    ClrDotPagerModule,
     ClrPagedSearchResultListModule,
     ClrCollapseExpandSectionModule,
     ClrBreadcrumbModule,

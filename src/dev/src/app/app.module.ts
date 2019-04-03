@@ -31,6 +31,7 @@ import { ProgressSpinnerDemoModule } from './progress-spinner/progress-spinner.d
 import { ReadonlyDemoModule } from './readonly/readonly.demo.module';
 import { TreetableDemoModule } from './treetable/treetable.demo.module';
 import { ViewEditSectionDemoModule } from './view-edit-section/view-edit-section.demo.module';
+import { DotPagerDemoModule } from './dot-pager/dot-pager.demo.module';
 
 @NgModule({
   declarations: [AppComponent, LandingComponent, AppContentContainerComponent],
@@ -43,6 +44,7 @@ import { ViewEditSectionDemoModule } from './view-edit-section/view-edit-section
     ROUTING,
     ViewEditSectionDemoModule,
     PagerDemoModule,
+    DotPagerDemoModule,
     PagedSearchResultListDemoModule,
     CollapseExpandSectionDemoModule,
     ContentPanelDemoModule,

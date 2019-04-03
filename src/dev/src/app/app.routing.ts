@@ -23,6 +23,7 @@ import { ProgressSpinnerDemo } from './progress-spinner/progress-spinner.demo';
 import { ReadonlyDemo } from './readonly/readonly.demo';
 import { TreetableDemo } from './treetable/treetable.demo';
 import { ViewEditSectionDemo } from './view-edit-section/view-edit-section.demo';
+import { DotPagerDemo } from './dot-pager/dot-pager.demo';
 
 export const APP_ROUTES: Routes = [
   { path: '', component: LandingComponent },
@@ -30,6 +31,7 @@ export const APP_ROUTES: Routes = [
   { path: 'cards', component: CardsDemo },
   { path: 'view-edit-section', component: ViewEditSectionDemo },
   { path: 'pager', component: PagerDemo },
+  { path: 'dot-pager', component: DotPagerDemo },
   { path: 'paged-search-result-list', component: PagedSearchResultListDemo },
   { path: 'collapse-expand-section', component: CollapseExpandSectionDemo },
   { path: 'content-panel', component: ContentPanelDemo },

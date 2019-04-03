@@ -1,0 +1,11 @@
+@include exports('dot-pager.clr-addons') {
+  .dot-pager {
+    .clr-control-container {
+      margin: auto;
+    }
+
+    .clr-radio-wrapper input[type='radio']:checked + label::before {
+      box-shadow: inset 0 0 0 1rem $clr-forms-checkbox-background-color;
+    }
+  }
+}

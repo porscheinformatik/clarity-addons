@@ -1,0 +1,31 @@
+<!--
+  ~ Copyright (c) 2018 Porsche Informatik. All Rights Reserved.
+  ~ This software is released under MIT license.
+  ~ The full license information can be found in LICENSE in the root directory of this project.
+  -->
+
+<h2>Dot-Pager</h2>
+
+<div class="row" *ngFor="let item of pagedItems">
+  <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
+    <div class="card">
+      <div class="card-header">
+        {{item}}
+      </div>
+      <div class="card-block">
+        <div class="card-text">
+          This is an example card.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-6">
+    <clr-dot-pager [clrPages]="pages"
+               [clrCurrentPage]="1"
+               (clrCurrentPageChange)="onPageChanged($event)">
+    </clr-dot-pager>
+  </div>
+</div>
