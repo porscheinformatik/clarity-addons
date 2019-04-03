@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'clr-dot-pager-demo',
-  styleUrls: ['./dot-pager.demo.scss'],
   templateUrl: './dot-pager.demo.html',
 })
 export class DotPagerDemo {

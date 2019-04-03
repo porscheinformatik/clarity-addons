@@ -12,7 +12,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   host: { '[class.dot-pager]': 'true' },
 })
 export class ClrDotPager {
-  randomId = Math.floor(Math.random() * 1000);
   @Output('clrCurrentPageChange') currentPageChange: EventEmitter<number> = new EventEmitter(false);
 
   /**
