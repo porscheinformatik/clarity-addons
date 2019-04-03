@@ -1,0 +1,72 @@
+<clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
+    <article>
+        <h5 class="component-summary" id="dot-pager-header">The Dot-Pager is a basic component that can be used
+            to show a simple pagination bar.</h5>
+
+        <div id="design-guidelines">
+            <h3>Usage</h3>
+            <ul class="list">
+                <li>
+                    Use the Dot-Pager component whenever you have to show data over multiple pages, e.g. a list of Cards.
+                </li>
+                <li>
+                    Do not use the Dot-Pager component when you are showing your data in a clr-datagrid, instead use the
+                    existing clr-dg-pagination component.
+                </li>
+            </ul>
+        </div>
+
+        <div id="code-examples">
+            <h3 id="examples">Code &amp; Examples</h3>
+            <p>
+                Following interactions are available:
+            </p>
+            <ul>
+                <li>
+                    To define the pages add a <code class="clr-code">[clrPages]</code> input to the component.
+                </li>
+                <li>
+                    To define the current page add a <code class="clr-code">[clrCurrentPage]</code> input to the
+                    component.
+                </li>
+                <li>
+                    To react to page changes, bind to the event <code class="clr-code">(clrCurrentPageChange)</code>.
+                </li>
+            </ul>
+
+            <h3 id="demo">Demo</h3>
+
+            <div class="form">
+                <div class="form-group">
+                    <label for="totalItems">Total Items:</label>
+                    <input type="number" class="clr-col-1" id="totalItems" [(ngModel)]="totalItems" min="0"
+                           (ngModelChange)="createItems()"/>
+                </div>
+                <div class="form-group">
+                    <label for="pageSize">Page Size:</label>
+                    <input type="number" class="clr-col-1" id="pageSize" [(ngModel)]="pageSize" min="0"
+                           (ngModelChange)="createItems()"/>
+                </div>
+            </div>
+
+            <div class="card" *ngFor="let item of pagedItems">
+                <div class="card-header">
+                    {{item}}
+                </div>
+                <div class="card-block">
+                    <div class="card-text">
+                        This is an example card.
+                    </div>
+                </div>
+            </div>
+
+            <clr-dot-pager  [clrPages]="pages"
+                            [clrCurrentPage]="currentPage"
+                            (clrCurrentPageChange)="onPageChanged($event)">
+            </clr-dot-pager>
+
+            <clr-code-snippet [clrCode]="htmlExample"></clr-code-snippet>
+
+        </div>
+    </article>
+</clr-doc-wrapper>
