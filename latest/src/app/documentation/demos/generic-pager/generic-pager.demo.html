@@ -52,8 +52,8 @@
                 </div>
             </div>
 
-            <div class="row" *ngFor="let item of pagedItems">
-                <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
+            <div class="clr-row" *ngFor="let item of pagedItems">
+                <div class="clr-col-lg-6 clr-col-md-8 clr-col-12">
                     <div class="card">
                         <div class="card-header">
                             {{item}}
@@ -67,13 +67,11 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-lg-6 margin-top-24">
-                    <clr-pager [clrPage]="currentPage"
-                               [clrPageSize]="pageSize"
-                               [clrTotalItems]="totalItems"
-                               (clrPageChange)="onPageChanged($event)"></clr-pager>
-                </div>
+            <div class="margin-top-24">
+                <clr-pager [clrPage]="currentPage"
+                           [clrPageSize]="pageSize"
+                           [clrTotalItems]="totalItems"
+                           (clrPageChange)="onPageChanged($event)"></clr-pager>
             </div>
 
             <clr-code-snippet [clrCode]="htmlExample"></clr-code-snippet>

@@ -7,38 +7,32 @@ import { Component, OnInit } from "@angular/core";
 import { ClarityDocComponent } from "../clarity-doc";
 
 const HTML_EXAMPLE = `
-<div class="clr-row" *ngFor="let item of pagedItems">
-    <div class="clr-col-lg-6 clr-col-md-8 clr-col-12">
-        <div class="card">
-            <div class="card-header">
-                {{item}}
-            </div>
-            <div class="card-block">
-                <div class="card-text">
-                    This is an example card.
-                </div>
-            </div>
+<div class="card" *ngFor="let item of pagedItems">
+    <div class="card-header">
+        {{item}}
+    </div>
+    <div class="card-block">
+        <div class="card-text">
+            This is an example card.
         </div>
     </div>
 </div>
 
-<div class="margin-top-24">
-    <clr-pager [clrPage]="currentPage"
-               [clrPageSize]="pageSize"
-               [clrTotalItems]="totalItems"
-               (clrPageChange)="onPageChanged($event)"></clr-pager>
-</div>
+<clr-dot-pager  [clrPages]="pages"
+                [clrCurrentPage]="currentPage"
+                (clrCurrentPageChange)="onPageChanged($event)">
+</clr-dot-pager>
 `;
 
 @Component({
-    selector: "clr-generic-pager-demo",
-    templateUrl: "./generic-pager.demo.html",
+    selector: "clr-dot-pager-demo",
+    templateUrl: "./dot-pager.demo.html",
     host: {
         "[class.content-area]": "true",
         "[class.dox-content-panel]": "true"
     }
 })
-export class GenericPagerDemo extends ClarityDocComponent implements OnInit {
+export class DotPagerDemo extends ClarityDocComponent implements OnInit {
     htmlExample = HTML_EXAMPLE;
 
     allItems: string[] = [];
@@ -46,8 +40,10 @@ export class GenericPagerDemo extends ClarityDocComponent implements OnInit {
     totalItems: number = 30;
     pageSize: number = 3;
     currentPage: number = 1;
+    pages: number = 10;
 
     onPageChanged(page: number): void {
+        this.currentPage = page;
         const startIndex = (page - 1) * this.pageSize;
         const endIndex = Math.min(startIndex + this.pageSize - 1, this.allItems.length - 1);
 
@@ -59,7 +55,8 @@ export class GenericPagerDemo extends ClarityDocComponent implements OnInit {
         for (let i = 0; i < this.totalItems; i++) {
             this.allItems[i] = "Card " + (i + 1);
         }
-        this.onPageChanged(this.currentPage);
+        this.pages = Math.ceil(this.totalItems / this.pageSize);
+        this.onPageChanged(this.currentPage > this.pages ? this.pages : this.currentPage);
     }
 
     ngOnInit() {
@@ -67,6 +64,6 @@ export class GenericPagerDemo extends ClarityDocComponent implements OnInit {
     }
 
     constructor() {
-        super("generic-pager");
+        super("dot-pager");
     }
 }
