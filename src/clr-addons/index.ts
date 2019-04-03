@@ -8,6 +8,7 @@ export * from './clr-addons.module';
 
 export * from './view-edit-section/index';
 export * from './pager/index';
+export * from './dot-pager/index';
 export * from './paged-search-result-list/index';
 export * from './collapse-expand-section/index';
 export * from './main-nav-group/index';
