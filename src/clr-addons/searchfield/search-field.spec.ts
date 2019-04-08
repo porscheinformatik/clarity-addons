@@ -24,7 +24,7 @@ import { ClrSearchFieldModule } from './Search-field.module';
 })
 class TestComponent {
   @ViewChild(ClrSearchField) component;
-  input: text;
+  input: string;
   autofill = false;
   rounded = false;
 }
@@ -57,30 +57,26 @@ describe('SearchComponent', () => {
   it(
     'Truncate input value',
     fakeAsync(() => {
-      fixture.componentInstance.decimalPlaces = 2;
-      fixture.componentInstance.input = 123.99999;
+      fixture.componentInstance.input = 'testInput';
       fixture.componentInstance.rounded = false;
       fixture.componentInstance.autofill = true;
       fixture.detectChanges();
 
       tick(10);
 
-      expect(inputEl.nativeElement.value).toBe('123,99');
-      expect(fixture.componentInstance.component.displayValue).toBe('123,99');
-      expect(fixture.componentInstance.input).toBe(123.99999);
+      expect(inputEl.nativeElement.value).toBe('testInput');
+      expect(fixture.componentInstance.component.displayValue).toBe('testInput');
 
       inputEl.triggerEventHandler('blur', { target: inputEl.nativeElement });
       fixture.detectChanges();
 
-      expect(inputEl.nativeElement.value).toBe('123,99');
-      expect(fixture.componentInstance.component.displayValue).toBe('123,99');
-      expect(fixture.componentInstance.input).toBe(123.99999);
+      expect(inputEl.nativeElement.value).toBe('testInput');
+      expect(fixture.componentInstance.component.displayValue).toBe('testInput');
 
-      addKey('Backspace', 8);
+      addKey('Backspace', 5);
 
-      expect(inputEl.nativeElement.value).toBe('123,9');
-      expect(fixture.componentInstance.component.displayValue).toBe('123,9');
-      expect(fixture.componentInstance.input).toBe(123.9);
+      expect(inputEl.nativeElement.value).toBe('test');
+      expect(fixture.componentInstance.component.displayValue).toBe('test');
     })
   );
 });
