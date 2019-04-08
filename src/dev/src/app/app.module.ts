@@ -25,6 +25,7 @@ import { FlowBarDemoModule } from './flow-bar/flow-bar.demo.module';
 import { LandingComponent } from './landing.component';
 import { NotificationDemoModule } from './notification/notification.demo.module';
 import { NumericFieldDemoModule } from './numericfield/numericfield.demo.module';
+import { SearchFieldDemoModule } from './searchfield/searchfield.demo.module';
 import { PagedSearchResultListDemoModule } from './paged-search-result-list/paged-search-result-list.demo.module';
 import { PagerDemoModule } from './pager/pager.demo.module';
 import { ProgressSpinnerDemoModule } from './progress-spinner/progress-spinner.demo.module';
@@ -54,6 +55,7 @@ import { ViewEditSectionDemoModule } from './view-edit-section/view-edit-section
     ProgressSpinnerDemoModule,
     BackButtonDemoModule,
     NumericFieldDemoModule,
+    SearchFieldDemoModule,
     TreetableDemoModule,
     ReadonlyDemoModule,
     DateTimeContainerDemoModule,

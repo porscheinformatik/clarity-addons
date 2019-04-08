@@ -1,0 +1,32 @@
+@include exports('searchfield.clr-addons') {
+  .hasValue {
+    .remove {
+      display: inline-block;
+      position: absolute;
+      right: 4px;
+    }
+  }
+
+  .remove {
+    display: none;
+  }
+  .searchSymbolPosition {
+    position: relative;
+    left: 2px;
+  }
+  .deleteSymbolPosition {
+    position: relative;
+    right: 0px;
+  }
+  .search-input-wrapper {
+    position: relative;
+    .pos-left {
+      left: 3px;
+    }
+    .icon {
+      position: absolute;
+      font-size: 0rem;
+      width: 0px;
+    }
+  }
+}

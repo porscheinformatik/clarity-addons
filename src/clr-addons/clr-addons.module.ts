@@ -15,6 +15,7 @@ import { ClrFlowBarModule } from './flow-bar/flow-bar.module';
 import { ClrMainNavGroupModule } from './main-nav-group/main-nav-group.module';
 import { ClrNotificationModule } from './notification/notification.module';
 import { ClrNumericFieldModule } from './numericfield/numeric-field.module';
+import { ClrSearchFieldModule } from './searchfield/search-field.module';
 import { ClrPagedSearchResultListModule } from './paged-search-result-list/paged-search-result-list.module';
 import { ClrPagerModule } from './pager/pager.module';
 import { ClrProgressSpinnerModule } from './progress-spinner/progress-spinner.module';
@@ -34,6 +35,7 @@ import { ClrViewEditSectionModule } from './view-edit-section/view-edit-section.
     ClrFlowBarModule,
     ClrBackButtonModule,
     ClrNumericFieldModule,
+    ClrSearchFieldModule,
     ClrTreetableModule,
     ClrProgressSpinnerModule,
     ClrComboboxModule,
