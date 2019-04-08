@@ -16,12 +16,6 @@ import {
   Renderer2,
 } from '@angular/core';
 
-const NEGATIVE = '-';
-const BACK_KEYCODE = 8;
-const DEL_KEYCODE = 46;
-const CONTROL_KEYCODES_UPPER_BORDER = 46;
-const OTHER_CONTROL_KEYS = new Set([224, 91, 93]);
-
 @Directive({
   selector: '[clrSearch]',
   host: {
@@ -32,17 +26,11 @@ export class ClrSearchField implements OnInit, OnDestroy, AfterViewChecked {
   @Input('clrTextAlign') textAlign = 'left';
   @Output('clrSearchValueChange') searchValueChanged = new EventEmitter<string>();
 
-  private displayValue: string = '';
-  private originalValue: string = '';
-  private _searchValue: string;
   private inputChangeListener: () => void;
   private keyupListener: () => void;
 
   @Input('clrSearchValue')
-  set searchValue(value: string) {
-    this.originalValue = value;
-    this.handleInputChanged();
-  }
+  set searchValue(value: string) {}
 
   private deleteSymbol: HTMLElement;
   private searchSymbol: HTMLElement;
@@ -71,15 +59,7 @@ export class ClrSearchField implements OnInit, OnDestroy, AfterViewChecked {
     this.deleteSymbol.hidden = false;
   }
 
-  handleInputChanged() {}
-
-  formatInput(element: any, finalFormatting: boolean) {
-    const cursorPos = element.selectionStart;
-    const length = element.value.length;
-  }
-
   updateInput(value: string) {
-    this.displayValue = value;
     this.inputEl.nativeElement.value = value;
   }
 
@@ -103,6 +83,7 @@ export class ClrSearchField implements OnInit, OnDestroy, AfterViewChecked {
 
   clearSearchInput() {
     this.renderer.setProperty(this.inputEl.nativeElement, 'value', '');
+    this.renderer.removeClass(this.inputEl.nativeElement.parentNode, 'hasValue');
   }
   private injectSearchIcon(): void {
     if (this.inputEl.nativeElement.offsetWidth !== 0) {

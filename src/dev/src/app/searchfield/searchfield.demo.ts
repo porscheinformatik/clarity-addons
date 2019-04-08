@@ -5,7 +5,6 @@
  */
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ClrSearchFieldValidators } from '@porscheinformatik/clr-addons';
 
 @Component({
   selector: 'clr-searchfield-demo',
@@ -17,11 +16,6 @@ export class SearchFieldDemo {
 
   exampleForm = new FormGroup({
     sample: new FormControl(this.input, {
-      //       validators: [
-      //         Validators.required,
-      //         ClrSearchFieldValidators.min(0, '.', ','),
-      //         ClrSearchFieldValidators.max(100, '.', ','),
-      //       ],
       updateOn: 'blur',
     }),
   });
