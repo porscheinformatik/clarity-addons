@@ -10,9 +10,8 @@ import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClarityModule } from '@clr/angular';
-import { ClrSearchField } from './Search-field';
-
-import { ClrSearchFieldModule } from './Search-field.module';
+import { ClrSearchField } from './search-field';
+import { ClrSearchFieldModule } from './search-field.module';
 
 @Component({
   template: `
