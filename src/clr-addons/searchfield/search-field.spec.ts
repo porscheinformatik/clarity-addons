@@ -52,30 +52,13 @@ describe('SearchComponent', () => {
     }
     inputEl.triggerEventHandler('keyup', { key: key, keyCode: keyCode, target: inputEl.nativeElement });
   }
+  it('Input', () => {
+    addKey('1', 49);
+    addKey('2', 50);
+    addKey('3', 51);
+    addKey('4', 52);
+    fixture.detectChanges();
 
-  it(
-    'Truncate input value',
-    fakeAsync(() => {
-      fixture.componentInstance.input = 'testInput';
-      fixture.componentInstance.rounded = false;
-      fixture.componentInstance.autofill = true;
-      fixture.detectChanges();
-
-      tick(10);
-
-      expect(inputEl.nativeElement.value).toBe('testInput');
-      expect(fixture.componentInstance.component.displayValue).toBe('testInput');
-
-      inputEl.triggerEventHandler('blur', { target: inputEl.nativeElement });
-      fixture.detectChanges();
-
-      expect(inputEl.nativeElement.value).toBe('testInput');
-      expect(fixture.componentInstance.component.displayValue).toBe('testInput');
-
-      addKey('Backspace', 5);
-
-      expect(inputEl.nativeElement.value).toBe('test');
-      expect(fixture.componentInstance.component.displayValue).toBe('test');
-    })
-  );
+    expect(fixture.componentInstance.component.displayValue).toBe('1234');
+  });
 });
