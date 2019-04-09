@@ -4,37 +4,18 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import {
-  AfterViewChecked,
-  Directive,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-  Renderer2,
-} from '@angular/core';
+import { Directive, ElementRef, OnDestroy, OnInit, Renderer2, AfterViewInit } from '@angular/core';
 
 @Directive({
   selector: '[clrSearch]',
-  host: {
-    '[class.text-left]': 'textAlign === "left"',
-  },
+  host: { '[class.search-input]': 'true' },
 })
-export class ClrSearchField implements OnInit, OnDestroy, AfterViewChecked {
-  @Input('clrTextAlign') textAlign = 'left';
-  @Output('clrSearchValueChange') searchValueChanged = new EventEmitter<string>();
-
+export class ClrSearchField implements OnInit, OnDestroy, AfterViewInit {
   private inputChangeListener: () => void;
   private keyupListener: () => void;
 
-  @Input('clrSearchValue')
-  set searchValue(value: string) {}
-
   private deleteSymbol: HTMLElement;
   private searchSymbol: HTMLElement;
-  private searchSpan: HTMLSpanElement;
 
   constructor(private renderer: Renderer2, private inputEl: ElementRef) {}
 
@@ -42,11 +23,15 @@ export class ClrSearchField implements OnInit, OnDestroy, AfterViewChecked {
     this.keyupListener = this.renderer.listen(this.inputEl.nativeElement, 'keyup', event => {
       const value: string = event.target.value;
       if (!!value) {
-        this.renderer.addClass(this.inputEl.nativeElement.parentNode, 'hasValue');
+        this.renderer.addClass(this.inputEl.nativeElement.parentNode, 'has-value');
       } else {
-        this.renderer.removeClass(this.inputEl.nativeElement.parentNode, 'hasValue');
+        this.renderer.removeClass(this.inputEl.nativeElement.parentNode, 'has-value');
       }
     });
+  }
+
+  ngAfterViewInit() {
+    this.addClassToWrapper(this.inputEl.nativeElement.parentNode);
     this.injectSearchIcon();
     this.injectDeleteIcon();
   }
@@ -55,57 +40,45 @@ export class ClrSearchField implements OnInit, OnDestroy, AfterViewChecked {
     this.detachListener();
   }
 
-  ngAfterViewChecked() {
-    this.deleteSymbol.hidden = false;
-  }
-
   updateInput(value: string) {
     this.inputEl.nativeElement.value = value;
+  }
+
+  clearSearchInput() {
+    this.renderer.setProperty(this.inputEl.nativeElement, 'value', '');
+    this.renderer.removeClass(this.inputEl.nativeElement.parentNode, 'has-value');
+    const event = document.createEvent('Event');
+    event.initEvent('input', false, false);
+    this.inputEl.nativeElement.dispatchEvent(event);
   }
 
   private injectDeleteIcon(): void {
     if (this.inputEl.nativeElement.offsetWidth !== 0) {
       // Get the input wrapper and apply necessary styles
       const inputWrapper = this.inputEl.nativeElement.parentNode;
-      this.addClassToWrapper(inputWrapper);
 
       if (!this.deleteSymbol) {
         this.deleteSymbol = this.renderer.createElement('clr-icon');
         this.renderer.setAttribute(this.deleteSymbol, 'shape', 'times');
-        this.deleteSymbol.hidden = true;
-        this.renderer.addClass(this.deleteSymbol, 'remove');
-        this.renderer.addClass(this.deleteSymbol, 'deleteSymbolPosition');
+        this.renderer.addClass(this.deleteSymbol, 'remove-symbol');
         this.deleteSymbol.addEventListener('click', () => this.clearSearchInput());
         this.renderer.appendChild(inputWrapper, this.deleteSymbol);
       }
     }
   }
 
-  clearSearchInput() {
-    this.renderer.setProperty(this.inputEl.nativeElement, 'value', '');
-    this.renderer.removeClass(this.inputEl.nativeElement.parentNode, 'hasValue');
-  }
   private injectSearchIcon(): void {
     if (this.inputEl.nativeElement.offsetWidth !== 0) {
       // Get the input wrapper and apply necessary styles
       const inputWrapper = this.inputEl.nativeElement.parentNode;
-      this.addClassToWrapper(inputWrapper);
 
-      this.searchSymbol = this.renderer.createElement('clr-icon');
-      this.renderer.addClass(this.searchSymbol, 'searchSymbolPosition');
-      this.renderer.setAttribute(this.searchSymbol, 'shape', 'search');
-      this.renderer.insertBefore(inputWrapper, this.searchSymbol, this.inputEl.nativeElement);
-
-      // Create the span with the icon and apply necessary styles
-      if (!this.searchSpan) {
-        this.searchSpan = this.renderer.createElement('span');
-        this.renderer.addClass(this.searchSpan, 'icon');
-        this.renderer.appendChild(this.searchSpan, this.searchSymbol);
-        this.renderer.appendChild(inputWrapper, this.searchSpan);
+      // Create the icon and apply necessary styles
+      if (!this.searchSymbol) {
+        this.searchSymbol = this.renderer.createElement('clr-icon');
+        this.renderer.addClass(this.searchSymbol, 'search-symbol');
+        this.renderer.setAttribute(this.searchSymbol, 'shape', 'search');
+        this.renderer.insertBefore(inputWrapper, this.searchSymbol, this.inputEl.nativeElement);
       }
-
-      this.renderer.addClass(this.searchSpan, 'pos-left');
-      this.renderer.setStyle(this.inputEl.nativeElement, 'padding-left', '26px');
     }
   }
 

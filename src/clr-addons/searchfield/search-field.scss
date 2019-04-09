@@ -1,32 +1,28 @@
 @include exports('searchfield.clr-addons') {
-  .hasValue {
-    .remove {
-      display: inline-block;
-      position: absolute;
-      right: 4px;
-    }
-  }
-
-  .remove {
-    display: none;
-  }
-  .searchSymbolPosition {
-    position: relative;
-    left: 2px;
-  }
-  .deleteSymbolPosition {
-    position: relative;
-    right: 0px;
-  }
   .search-input-wrapper {
     position: relative;
-    .pos-left {
-      left: 3px;
+
+    .search-input {
+      padding-left: 1rem;
     }
-    .icon {
+
+    &.has-value {
+      .remove-symbol {
+        display: inline-block;
+        position: absolute;
+        right: 0.16rem;
+        height: 1rem;
+      }
+    }
+
+    .remove-symbol {
+      display: none;
+    }
+
+    .search-symbol {
       position: absolute;
-      font-size: 0rem;
-      width: 0px;
+      left: 0.25rem;
+      height: 1rem;
     }
   }
 }

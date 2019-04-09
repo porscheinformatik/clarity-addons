@@ -11,12 +11,5 @@ import { FormControl, FormGroup } from '@angular/forms';
   templateUrl: './searchfield.demo.html',
 })
 export class SearchFieldDemo {
-  input: string = '';
-  modalOpen = false;
-
-  exampleForm = new FormGroup({
-    sample: new FormControl(this.input, {
-      updateOn: 'blur',
-    }),
-  });
+  value: string = '';
 }

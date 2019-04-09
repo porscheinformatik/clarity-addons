@@ -4,26 +4,23 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, DebugElement, ViewChild } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClarityModule } from '@clr/angular';
-import { ClrSearchField } from './search-field';
 import { ClrSearchFieldModule } from './search-field.module';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   template: `
-    <clr-input-container>
-      <label>Search SPEC</label>
-      <input clrInput clrSearch type="text" [(clrSearchValue)]="input"/>
-    </clr-input-container>
+  <clr-input-container>
+    <label>Search</label>
+    <input clrInput clrSearch type="text" name="search" [(ngModel)]="value"/>
+  </clr-input-container>
   `,
 })
 class TestComponent {
-  @ViewChild(ClrSearchField) component;
-  input: string;
+  value: string;
 }
 
 describe('SearchComponent', () => {
@@ -32,7 +29,7 @@ describe('SearchComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ClarityModule, FormsModule, BrowserAnimationsModule, ClrSearchFieldModule],
+      imports: [ClarityModule, ClrSearchFieldModule, FormsModule],
       declarations: [TestComponent],
     }).compileComponents();
 
@@ -42,21 +39,39 @@ describe('SearchComponent', () => {
   });
 
   function addKey(key: string, keyCode: number) {
-    inputEl.triggerEventHandler('keydown', { key: key, keyCode: keyCode, target: inputEl.nativeElement });
     if (keyCode === 8) {
       inputEl.nativeElement.value = inputEl.nativeElement.value.substring(0, inputEl.nativeElement.value.length - 1);
     } else {
       inputEl.nativeElement.value += key;
     }
+    const event = document.createEvent('Event');
+    event.initEvent('input', false, false);
+    inputEl.nativeElement.dispatchEvent(event);
     inputEl.triggerEventHandler('keyup', { key: key, keyCode: keyCode, target: inputEl.nativeElement });
   }
-  it('Test Input', () => {
-    addKey('1', 49);
-    addKey('2', 50);
-    addKey('3', 51);
-    addKey('4', 52);
-    fixture.detectChanges();
 
-    expect(fixture.componentInstance.component.displayValue).toBe('1234');
+  it('icon search rendered', () => {
+    expect(inputEl.parent.query(By.css('[shape=search]'))).toBeTruthy();
+  });
+
+  it('icon remove invisible', () => {
+    expect(getComputedStyle(inputEl.parent.query(By.css('[shape=times]')).nativeElement).display).toBe('none');
+  });
+
+  it('icon remove visible', () => {
+    addKey('1', 49);
+    expect(getComputedStyle(inputEl.parent.query(By.css('[shape=times]')).nativeElement).display).not.toBe('none');
+  });
+
+  it('icon remove working', () => {
+    addKey('1', 49);
+    const removeIcon = inputEl.parent.query(By.css('[shape=times]')).nativeElement;
+    expect(getComputedStyle(removeIcon).display).not.toBe('none');
+    expect(fixture.componentInstance.value).toBe('1');
+
+    removeIcon.click();
+
+    expect(fixture.componentInstance.value).toBe('');
+    expect(getComputedStyle(removeIcon).display).toBe('none');
   });
 });

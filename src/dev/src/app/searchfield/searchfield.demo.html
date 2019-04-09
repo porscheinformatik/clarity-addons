@@ -7,12 +7,12 @@
 
 <div class="clr-example">
   <div class="main-container">
-    <form clrForm [clrLayout]="'vertical'" [formGroup]="exampleForm">
+    <form clrForm>
       <clr-input-container>
         <label>Search</label>
-        <input clrInput clrSearch type="text" [(clrSearchValue)]="input" [clrTextAlign]="'left'" formControlName="sample"/>
+        <input clrInput clrSearch type="text" name="search" [(ngModel)]="value"/>
       </clr-input-container>
-
+      {{value}}
     </form>
 
 
