@@ -24,8 +24,6 @@ import { ClrSearchFieldModule } from './search-field.module';
 class TestComponent {
   @ViewChild(ClrSearchField) component;
   input: string;
-  autofill = false;
-  rounded = false;
 }
 
 describe('SearchComponent', () => {
@@ -52,7 +50,7 @@ describe('SearchComponent', () => {
     }
     inputEl.triggerEventHandler('keyup', { key: key, keyCode: keyCode, target: inputEl.nativeElement });
   }
-  it('Input', () => {
+  it('Test Input', () => {
     addKey('1', 49);
     addKey('2', 50);
     addKey('3', 51);
