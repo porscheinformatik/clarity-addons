@@ -57,6 +57,13 @@ const documentationRoutes: Routes = [
                 }
             },
             {
+                path: "dot-pager",
+                loadChildren: "app/documentation/demos/dot-pager/dot-pager.demo.module#DotPagerDemoModule",
+                data: {
+                    browserTitle: "Dot Pager"
+                }
+            },
+            {
                 path: "paged-search-result-list",
                 loadChildren: "app/documentation/demos/paged-search-result-list/paged-search-result-list.demo.module#PagedSearchResultListDemoModule",
                 data: {
