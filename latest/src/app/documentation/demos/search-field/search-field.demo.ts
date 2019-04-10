@@ -4,8 +4,6 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component } from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { ClrNumericFieldValidators } from "@porscheinformatik/clr-addons";
 import { ClarityDocComponent } from "../clarity-doc";
 
 const HTML_EXAMPLE = `
