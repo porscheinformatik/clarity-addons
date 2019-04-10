@@ -11,7 +11,6 @@ import { Directive, ElementRef, OnDestroy, OnInit, Renderer2, AfterViewInit } fr
   host: { '[class.search-input]': 'true' },
 })
 export class ClrSearchField implements OnInit, OnDestroy, AfterViewInit {
-  private inputChangeListener: () => void;
   private keyupListener: () => void;
 
   private deleteSymbol: HTMLElement;
@@ -40,10 +39,6 @@ export class ClrSearchField implements OnInit, OnDestroy, AfterViewInit {
     this.detachListener();
   }
 
-  updateInput(value: string) {
-    this.inputEl.nativeElement.value = value;
-  }
-
   clearSearchInput() {
     this.renderer.setProperty(this.inputEl.nativeElement, 'value', '');
     this.renderer.removeClass(this.inputEl.nativeElement.parentNode, 'has-value');
@@ -53,32 +48,27 @@ export class ClrSearchField implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private injectDeleteIcon(): void {
-    if (this.inputEl.nativeElement.offsetWidth !== 0) {
-      // Get the input wrapper and apply necessary styles
-      const inputWrapper = this.inputEl.nativeElement.parentNode;
+    // Get the input wrapper and apply necessary styles
+    const inputWrapper = this.inputEl.nativeElement.parentNode;
 
-      if (!this.deleteSymbol) {
-        this.deleteSymbol = this.renderer.createElement('clr-icon');
-        this.renderer.setAttribute(this.deleteSymbol, 'shape', 'times');
-        this.renderer.addClass(this.deleteSymbol, 'remove-symbol');
-        this.deleteSymbol.addEventListener('click', () => this.clearSearchInput());
-        this.renderer.appendChild(inputWrapper, this.deleteSymbol);
-      }
+    if (!this.deleteSymbol) {
+      this.deleteSymbol = this.renderer.createElement('clr-icon');
+      this.renderer.setAttribute(this.deleteSymbol, 'shape', 'times');
+      this.renderer.addClass(this.deleteSymbol, 'remove-symbol');
+      this.deleteSymbol.addEventListener('click', () => this.clearSearchInput());
+      this.renderer.appendChild(inputWrapper, this.deleteSymbol);
     }
   }
 
   private injectSearchIcon(): void {
-    if (this.inputEl.nativeElement.offsetWidth !== 0) {
-      // Get the input wrapper and apply necessary styles
-      const inputWrapper = this.inputEl.nativeElement.parentNode;
+    const inputWrapper = this.inputEl.nativeElement.parentNode;
 
-      // Create the icon and apply necessary styles
-      if (!this.searchSymbol) {
-        this.searchSymbol = this.renderer.createElement('clr-icon');
-        this.renderer.addClass(this.searchSymbol, 'search-symbol');
-        this.renderer.setAttribute(this.searchSymbol, 'shape', 'search');
-        this.renderer.insertBefore(inputWrapper, this.searchSymbol, this.inputEl.nativeElement);
-      }
+    // Create the icon and apply necessary styles
+    if (!this.searchSymbol) {
+      this.searchSymbol = this.renderer.createElement('clr-icon');
+      this.renderer.addClass(this.searchSymbol, 'search-symbol');
+      this.renderer.setAttribute(this.searchSymbol, 'shape', 'search');
+      this.renderer.insertBefore(inputWrapper, this.searchSymbol, this.inputEl.nativeElement);
     }
   }
 
@@ -87,10 +77,6 @@ export class ClrSearchField implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private detachListener(): void {
-    if (!!this.inputChangeListener) {
-      this.inputChangeListener();
-      delete this.inputChangeListener;
-    }
     if (!!this.keyupListener) {
       this.keyupListener();
       delete this.keyupListener;

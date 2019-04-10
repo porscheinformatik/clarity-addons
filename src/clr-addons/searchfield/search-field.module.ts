@@ -7,12 +7,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ClarityModule, ClrFormsModule } from '@clr/angular';
+import { ClarityModule } from '@clr/angular';
 
 import { ClrSearchField } from './search-field';
 
 @NgModule({
-  imports: [CommonModule, ClarityModule, ClrFormsModule, FormsModule],
+  imports: [CommonModule, ClarityModule, FormsModule],
   declarations: [ClrSearchField],
   exports: [ClrSearchField],
 })
