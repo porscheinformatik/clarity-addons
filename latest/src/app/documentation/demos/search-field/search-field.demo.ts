@@ -27,6 +27,7 @@ const HTML_EXAMPLE = `
     }
 })
 export class SearchFieldDemo extends ClarityDocComponent {
+    value: string;
     htmlExample = HTML_EXAMPLE;
 
 

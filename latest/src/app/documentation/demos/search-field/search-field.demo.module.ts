@@ -33,5 +33,4 @@ import { SearchFieldDemo } from "./search-field.demo";
     ]
 })
 export class SearchFieldDemoModule {
-    value: string;
 }
