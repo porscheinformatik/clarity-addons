@@ -11,7 +11,6 @@ import { ClarityModule, ClrFormsModule } from "@clr/angular";
 import { ClrAddonsModule } from "@porscheinformatik/clr-addons";
 import { UtilsModule } from "../../../utils/utils.module";
 import { DocWrapperModule } from "../_doc-wrapper/doc-wrapper.module";
-
 import { SearchFieldDemo } from "./search-field.demo";
 
 @NgModule({
@@ -34,4 +33,5 @@ import { SearchFieldDemo } from "./search-field.demo";
     ]
 })
 export class SearchFieldDemoModule {
+    value: string;
 }
