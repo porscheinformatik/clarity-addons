@@ -17,6 +17,7 @@ import { FlowBarDemo } from './flow-bar/flow-bar.demo';
 import { LandingComponent } from './landing.component';
 import { NotificationDemo } from './notification/notification.demo';
 import { NumericFieldDemo } from './numericfield/numericfield.demo';
+import { SearchFieldDemo } from './searchfield/searchfield.demo';
 import { PagedSearchResultListDemo } from './paged-search-result-list/paged-search-result-list.demo';
 import { PagerDemo } from './pager/pager.demo';
 import { ProgressSpinnerDemo } from './progress-spinner/progress-spinner.demo';
@@ -41,6 +42,7 @@ export const APP_ROUTES: Routes = [
   { path: 'progress-spinner', component: ProgressSpinnerDemo },
   { path: 'notification', component: NotificationDemo },
   { path: 'numericfield', component: NumericFieldDemo },
+  { path: 'searchfield', component: SearchFieldDemo },
   { path: 'treetable', component: TreetableDemo },
   { path: 'readonly', component: ReadonlyDemo },
   { path: 'combobox', loadChildren: 'src/app/combobox/combobox.demo.module#ComboboxDemoModule' },

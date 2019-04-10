@@ -19,6 +19,7 @@ export * from './flow-bar/index';
 export * from './back-button/index';
 export * from './progress-spinner/index';
 export * from './numericfield/index';
+export * from './searchfield/index';
 export * from './treetable/index';
 export * from './combobox/index';
 export * from './date-time-container/index';
