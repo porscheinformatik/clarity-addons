@@ -141,6 +141,13 @@ const documentationRoutes: Routes = [
                 }
             },
             {
+                path: "search-field",
+                loadChildren: "app/documentation/demos/search-field/search-field.demo.module#SearchFieldDemoModule",
+                data: {
+                    browserTitle: "Search Field"
+                }
+            },
+            {
                 path: "treetable",
                 loadChildren: "app/documentation/demos/treetable/treetable.demo.module#TreetableDemoModule",
                 data: {

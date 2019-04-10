@@ -211,6 +211,18 @@
             "newLayout": true
         },
         {
+            "url": "search-field",
+            "text": "Search Field",
+            "type": "component",
+            "ux": 20,
+            "ui": 20,
+            "core": 20,
+            "ng": 20,
+            "dox": 20,
+            "comments": "",
+            "newLayout": true
+        },
+        {
             "url": "sidebarpage-layout",
             "text": "Sidebar Pagelayout",
             "type": "pagelayouts",
