@@ -10,9 +10,17 @@
     &.has-value {
       .remove-symbol {
         display: inline-block;
-        position: absolute;
-        right: 0.16rem;
+        padding-bottom: 0.33rem;
         height: 1rem;
+      }
+      .delete-button {
+        display: inline-block;
+        position: absolute;
+        right: 0rem;
+        height: 1rem;
+        min-width: 1rem;
+        margin: 0;
+        padding: 0;
       }
     }
 
@@ -20,6 +28,9 @@
       display: none;
     }
 
+    .delete-button {
+      display: none;
+    }
     .search-symbol {
       position: absolute;
       left: 0.25rem;

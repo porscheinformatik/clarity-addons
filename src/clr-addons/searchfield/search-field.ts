@@ -14,6 +14,7 @@ export class ClrSearchField implements OnInit, OnDestroy, AfterViewInit {
   private keyupListener: () => void;
 
   private deleteSymbol: HTMLElement;
+  private deleteButton: HTMLElement;
   private searchSymbol: HTMLElement;
 
   constructor(private renderer: Renderer2, private inputEl: ElementRef) {}
@@ -52,11 +53,18 @@ export class ClrSearchField implements OnInit, OnDestroy, AfterViewInit {
     const inputWrapper = this.inputEl.nativeElement.parentNode;
 
     if (!this.deleteSymbol) {
+      this.deleteButton = this.renderer.createElement('button');
+      this.renderer.setAttribute(this.deleteButton, 'type', 'button');
+      this.renderer.addClass(this.deleteButton, 'btn');
+      this.renderer.addClass(this.deleteButton, 'btn-link');
+      this.renderer.addClass(this.deleteButton, 'delete-button');
+
       this.deleteSymbol = this.renderer.createElement('clr-icon');
       this.renderer.setAttribute(this.deleteSymbol, 'shape', 'times');
       this.renderer.addClass(this.deleteSymbol, 'remove-symbol');
       this.deleteSymbol.addEventListener('click', () => this.clearSearchInput());
-      this.renderer.appendChild(inputWrapper, this.deleteSymbol);
+      this.renderer.appendChild(this.deleteButton, this.deleteSymbol);
+      this.renderer.appendChild(inputWrapper, this.deleteButton);
     }
   }
 
