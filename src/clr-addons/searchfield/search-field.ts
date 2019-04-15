@@ -63,7 +63,6 @@ export class ClrSearchField implements OnInit, OnDestroy, AfterViewInit {
 
       this.deleteSymbol = this.renderer.createElement('clr-icon');
       this.renderer.setAttribute(this.deleteSymbol, 'shape', 'times');
-      //this.renderer.addClass(this.deleteSymbol, 'remove-symbol');
       this.renderer.appendChild(this.deleteButton, this.deleteSymbol);
       this.renderer.appendChild(inputWrapper, this.deleteButton);
     }

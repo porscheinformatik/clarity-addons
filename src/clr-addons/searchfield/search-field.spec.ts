@@ -55,17 +55,19 @@ describe('SearchComponent', () => {
   });
 
   it('icon remove invisible', () => {
-    expect(getComputedStyle(inputEl.parent.query(By.css('[shape=times]')).nativeElement).display).toBe('none');
+    expect(getComputedStyle(inputEl.parent.query(By.css('[shape=times]')).parent.nativeElement).display).toBe('none');
   });
 
   it('icon remove visible', () => {
     addKey('1', 49);
-    expect(getComputedStyle(inputEl.parent.query(By.css('[shape=times]')).nativeElement).display).not.toBe('none');
+    expect(getComputedStyle(inputEl.parent.query(By.css('[shape=times]')).parent.nativeElement).display).not.toBe(
+      'none'
+    );
   });
 
   it('icon remove working', () => {
     addKey('1', 49);
-    const removeIcon = inputEl.parent.query(By.css('[shape=times]')).nativeElement;
+    const removeIcon = inputEl.parent.query(By.css('[shape=times]')).parent.nativeElement;
     expect(getComputedStyle(removeIcon).display).not.toBe('none');
     expect(fixture.componentInstance.value).toBe('1');
 
