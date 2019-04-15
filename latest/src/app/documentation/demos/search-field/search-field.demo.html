@@ -1,21 +1,32 @@
 <clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
     <article>
-        <h5 class="component-summary">The Seach Field is used to input a value to search for it. 
+        <h5 class="component-summary">The Seach Field is used to input a value to search for it. <br />
             Hitting the delete icon will remove the current value from the input field </h5>
-        <div id="code-examples">
-            <h3 id="examples">Code &amp; Examples</h3>
-            <p>
-                Because the search field is a directive, it can be applied on any <code class="clr-code">input</code>
-                element. The name of the directive is <code class="clr-code">clrSearch</code>. This makes the search field 
-                compatible with the existing <code class="clr-code">ClrInputContainer</code> and forms.
-            <h3>Angular Directive</h3>
-            <form clrForm>
-                  <clr-input-container>
-                      <label>Search for any value:</label>
-                      <input class="clr-col-md-4" clrInput clrSearch placeholder="Seach for Name, Address, Email, ..."  type="text" name="search" [(ngModel)]="value"/>
-                    </clr-input-container>
-              </form>
-            <clr-code-snippet [clrCode]="htmlExample"></clr-code-snippet>
-        </div>
+        <p>
+            <h3>Best Practices</h3>
+            <ul class="list">
+                <li><strong>Placeholder:</strong> Use a Placeholder displaying common search terms.<br />
+                    Limit your hint to just a few words, otherwise you actually increase the cognitive load.
+                <li><strong>Results: </strong> Display a message containing the searchterm, when no search results have been
+                    found.
+            </ul>
+            <div id="code-examples">
+                <h3 id="examples">Code &amp; Examples</h3>
+                <p>
+                    Because the search field is a directive, it can be applied on any <code class="clr-code">input</code>
+                    element. The name of the directive is <code class="clr-code">clrSearch</code>. This makes the search
+                    field
+                    compatible with the existing <code class="clr-code">ClrInputContainer</code> and forms.
+                    <h3>Angular Directive</h3>
+                    <form clrForm>
+                        <clr-input-container>
+                            <label>Search label (optional)</label> 
+                            <input class="clr-col-md-4" clrInput clrSearch
+                                placeholder="Seach for Name, Address, Email, ..." type="text" name="search"
+                                [(ngModel)]="value" />
+                        </clr-input-container>
+                    </form>
+                    <clr-code-snippet [clrCode]="htmlExample"></clr-code-snippet>
+            </div>
     </article>
 </clr-doc-wrapper>
