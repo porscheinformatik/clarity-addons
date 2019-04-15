@@ -7,12 +7,11 @@ import { Component } from "@angular/core";
 import { ClarityDocComponent } from "../clarity-doc";
 
 const HTML_EXAMPLE = `
-<h4>Example</h4>
 <form clrForm>
-<clr-input-container>
-  <label>Search</label>
-  <input clrInput clrSearch type="text" name="search" [(ngModel)]="value"/>
-</clr-input-container>
+    <clr-input-container>
+        <label>Search for any value:</label>
+        <input class="clr-col-md-4" clrInput clrSearch placeholder="Seach for Name, Address, Email, ..."  type="text" name="search" [(ngModel)]="value"/>
+    </clr-input-container>
 </form>
 `;
 

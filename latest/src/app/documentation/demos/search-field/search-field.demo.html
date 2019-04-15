@@ -10,11 +10,11 @@
                 compatible with the existing <code class="clr-code">ClrInputContainer</code> and forms.
             <h3>Angular Directive</h3>
             <form clrForm>
-                <clr-input-container>
-                    <label>Search for any value</label>
-                    <input clrInput clrSearch type="text" name="search" [(ngModel)]="value"/>
-                  </clr-input-container>
-            </form>
+                  <clr-input-container>
+                      <label>Search for any value:</label>
+                      <input class="clr-col-md-4" clrInput clrSearch placeholder="Seach for Name, Address, Email, ..."  type="text" name="search" [(ngModel)]="value"/>
+                    </clr-input-container>
+              </form>
             <clr-code-snippet [clrCode]="htmlExample"></clr-code-snippet>
         </div>
     </article>
