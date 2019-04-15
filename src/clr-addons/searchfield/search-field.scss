@@ -8,24 +8,15 @@
     }
 
     &.has-value {
-      .remove-symbol {
-        display: inline-block;
-        padding-bottom: 0.33rem;
-        height: 1rem;
-      }
       .delete-button {
         display: inline-block;
         position: absolute;
         right: 0rem;
+        line-height: 1rem;
         height: 1rem;
-        min-width: 1rem;
         margin: 0;
         padding: 0;
       }
-    }
-
-    .remove-symbol {
-      display: none;
     }
 
     .delete-button {
