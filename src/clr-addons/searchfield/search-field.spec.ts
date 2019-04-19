@@ -47,7 +47,6 @@ describe('SearchComponent', () => {
     const event = document.createEvent('Event');
     event.initEvent('input', false, false);
     inputEl.nativeElement.dispatchEvent(event);
-    inputEl.triggerEventHandler('keyup', { key: key, keyCode: keyCode, target: inputEl.nativeElement });
   }
 
   it('icon search rendered', () => {

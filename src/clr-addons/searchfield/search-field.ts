@@ -20,13 +20,9 @@ export class ClrSearchField implements OnInit, OnDestroy, AfterViewInit {
   constructor(private renderer: Renderer2, private inputEl: ElementRef) {}
 
   ngOnInit() {
-    this.keyupListener = this.renderer.listen(this.inputEl.nativeElement, 'keyup', event => {
-      const value: string = event.target.value;
-      if (!!value) {
-        this.renderer.addClass(this.inputEl.nativeElement.parentNode, 'has-value');
-      } else {
-        this.renderer.removeClass(this.inputEl.nativeElement.parentNode, 'has-value');
-      }
+    this.setHasValueClass(!!this.inputEl.nativeElement.value);
+    this.keyupListener = this.renderer.listen(this.inputEl.nativeElement, 'input', event => {
+      this.setHasValueClass(!!event.target.value);
     });
   }
 
@@ -42,10 +38,18 @@ export class ClrSearchField implements OnInit, OnDestroy, AfterViewInit {
 
   clearSearchInput() {
     this.renderer.setProperty(this.inputEl.nativeElement, 'value', '');
-    this.renderer.removeClass(this.inputEl.nativeElement.parentNode, 'has-value');
+    this.setHasValueClass(false);
     const event = document.createEvent('Event');
     event.initEvent('input', false, false);
     this.inputEl.nativeElement.dispatchEvent(event);
+  }
+
+  private setHasValueClass(active: boolean) {
+    if (active) {
+      this.renderer.addClass(this.inputEl.nativeElement.parentNode, 'has-value');
+    } else {
+      this.renderer.removeClass(this.inputEl.nativeElement.parentNode, 'has-value');
+    }
   }
 
   private injectDeleteIcon(): void {
