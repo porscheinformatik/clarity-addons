@@ -22,6 +22,7 @@ import { ClrProgressSpinnerModule } from './progress-spinner/progress-spinner.mo
 import { ClrTreetableModule } from './treetable/treetable.module';
 import { ClrViewEditSectionModule } from './view-edit-section/view-edit-section.module';
 import { ClrDotPagerModule } from './dot-pager/dot-pager.module';
+import { ClrQuickListModule } from './quick-list/quick-list.module';
 
 @NgModule({
   exports: [
@@ -42,6 +43,7 @@ import { ClrDotPagerModule } from './dot-pager/dot-pager.module';
     ClrProgressSpinnerModule,
     ClrComboboxModule,
     ClrDateTimeModule,
+    ClrQuickListModule,
   ],
 })
 export class ClrAddonsModule {}

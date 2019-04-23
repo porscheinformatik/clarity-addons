@@ -33,6 +33,7 @@ import { ReadonlyDemoModule } from './readonly/readonly.demo.module';
 import { TreetableDemoModule } from './treetable/treetable.demo.module';
 import { ViewEditSectionDemoModule } from './view-edit-section/view-edit-section.demo.module';
 import { DotPagerDemoModule } from './dot-pager/dot-pager.demo.module';
+import { QuickListModule } from './quick-list/quick-list.demo.module';
 
 @NgModule({
   declarations: [AppComponent, LandingComponent, AppContentContainerComponent],
@@ -61,6 +62,7 @@ import { DotPagerDemoModule } from './dot-pager/dot-pager.demo.module';
     TreetableDemoModule,
     ReadonlyDemoModule,
     DateTimeContainerDemoModule,
+    QuickListModule,
   ],
   bootstrap: [AppComponent],
   providers: [ClrNotificationService],

@@ -25,6 +25,7 @@ import { ReadonlyDemo } from './readonly/readonly.demo';
 import { TreetableDemo } from './treetable/treetable.demo';
 import { ViewEditSectionDemo } from './view-edit-section/view-edit-section.demo';
 import { DotPagerDemo } from './dot-pager/dot-pager.demo';
+import { QuickListDemo } from './quick-list/quick-list.demo';
 
 export const APP_ROUTES: Routes = [
   { path: '', component: LandingComponent },
@@ -47,6 +48,7 @@ export const APP_ROUTES: Routes = [
   { path: 'readonly', component: ReadonlyDemo },
   { path: 'combobox', loadChildren: 'src/app/combobox/combobox.demo.module#ComboboxDemoModule' },
   { path: 'date-time-container', component: DateTimeContainerDemo },
+  { path: 'quick-list-container', component: QuickListDemo },
 ];
 
 export const ROUTING: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);
