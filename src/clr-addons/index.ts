@@ -23,3 +23,4 @@ export * from './searchfield/index';
 export * from './treetable/index';
 export * from './combobox/index';
 export * from './date-time-container/index';
+export * from './quick-list/index';

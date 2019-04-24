@@ -1,0 +1,19 @@
+@include exports('quick-list.clr-addons') {
+  .quick-list {
+    .btn-add {
+      margin-top: 0.5rem;
+    }
+  }
+
+  .quick-list-input {
+    flex: 1;
+  }
+
+  .quick-list-option {
+    display: flex;
+    .btn-trash {
+      margin-bottom: 0;
+      margin-top: 0.75rem;
+    }
+  }
+}
