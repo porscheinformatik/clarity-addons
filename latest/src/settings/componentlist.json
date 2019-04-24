@@ -211,6 +211,19 @@
             "newLayout": true
         },
         {
+            "url": "quick-list",
+            "text": "Quick List",
+            "type": "component",
+            "ux": 20,
+            "ui": 20,
+            "core": 20,
+            "ng": 20,
+            "dox": 20,
+            "comments": "",
+            "newLayout": true,
+            "isNew": true
+        },
+        {
             "url": "readonly",
             "text": "Readonly",
             "type": "component",

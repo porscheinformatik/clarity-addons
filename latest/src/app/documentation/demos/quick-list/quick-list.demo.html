@@ -1,0 +1,149 @@
+<clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
+  <article>
+    <h5 class="component-summary">The quick list of Clarity Addons extends the default select component by an
+      Angular Component which allows the developer use a multi selection list.</h5>
+
+    <div id="design-guidelines">
+
+      <h3 id="usage">Usage</h3>
+
+      <p>Use the Quick List whenever you want to allow the user to select multiple option from a suggestion list.
+      The user is able to select option by scrolling over the list. By clicking the Add button below the list he is able
+      to make additional selection.</p>
+
+      <p>The component uses a predefined type <code class="clr-code">ClrQuickListValue&#8826;T&#8827; </code>
+        that encapsulates the real data (values), the developer should previously warp his list inside ClrQuickListValue.
+        So the component uses generics <code class="clr-code">T</code> for the type of the contained values.</p>
+      <p>Currently this component is not usable inside forms.</p>
+
+      <table class="table">
+        <thead>
+        <tr>
+          <th class="left">attribute</th>
+          <th class="left hidden-xs-down">Values</th>
+          <th class="left">Effect</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td class="left">
+            <b>label</b>
+            <div class="hidden-sm-up">Type: string</div>
+          </td>
+          <td class="left hidden-xs-down">string</td>
+          <td class="left">the label that will be displayed for each option</td>
+        </tr>
+        <tr>
+          <td class="left">
+            <b>value</b>
+            <div class="hidden-sm-up">Type: string</div>
+          </td>
+          <td class="left hidden-xs-down"><code class="clr-code">T</code></td>
+          <td class="left">the value behind each option</td>
+        </tr>
+        <tr>
+          <td class="left">
+            <b>id</b>
+            <div class="hidden-sm-up">Type: string</div>
+          </td>
+          <td class="left hidden-xs-down">string</td>
+          <td class="left">the ids over the list should be unique</td>
+        </tr>
+
+        </tbody>
+      </table>
+
+      <h3>Summary of Options</h3>
+      <table class="table">
+        <thead>
+        <tr>
+          <th class="left">Input/Output</th>
+          <th class="left hidden-xs-down">Values</th>
+          <th class="hidden-xs-down">Default</th>
+          <th class="left">Effect</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td class="left">
+            <b>[clrBlankOption]</b>
+            <div class="hidden-sm-up">Type: ClrQuickListValue</div>
+            <div class="hidden-sm-up">Default: default</div>
+          </td>
+          <td class="left hidden-xs-down">ClrQuickListValue</td>
+          <td class="hidden-xs-down">default</td>
+          <td class="left">The object that should refer to the no-option selected</td>
+        </tr>
+        <tr>
+          <td class="left">
+            <b>[clrAllValues]</b>
+            <div class="hidden-sm-up">Type: List of ClrQuickListValue</div>
+            <div class="hidden-sm-up">Default: false</div>
+          </td>
+          <td class="left hidden-xs-down">List of ClrQuickListValue</td>
+          <td class="hidden-xs-down">empty</td>
+          <td class="left">Contains all the options list</td>
+        </tr>
+        <tr>
+          <td class="left">
+            <b>[clrValues]</b>
+            <div class="hidden-sm-up">Type: List of ClrQuickListValue</div>
+            <div class="hidden-sm-up">Default: undefined</div>
+          </td>
+          <td class="left hidden-xs-down">List of ClrQuickListValue</td>
+          <td class="hidden-xs-down">empty List</td>
+          <td class="left">The value of the preselected option</td>
+        </tr>
+        <tr>
+          <td class="left">
+            <b>[clrAddLabel]</b>
+            <div class="hidden-sm-up">Type: string</div>
+            <div class="hidden-sm-up">Default: ADD OPTION</div>
+          </td>
+          <td class="left hidden-xs-down">string</td>
+          <td class="hidden-xs-down">ADD OPTION</td>
+          <td class="left">Label for the add button</td>
+        </tr>
+        <tr>
+          <td class="left">
+            <b>[clrMandatory]</b>
+            <div class="hidden-sm-up">Type: boolean</div>
+            <div class="hidden-sm-up">Default: false</div>
+          </td>
+          <td class="left hidden-xs-down">boolean</td>
+          <td class="hidden-xs-down">false</td>
+          <td class="left">Decides whether at least one option should be selected</td>
+        </tr>
+        <tr>
+          <td class="left">
+            <b>(clrValuesChanged)</b>
+            <div class="hidden-sm-up">Type: String</div>
+            <div class="hidden-sm-up">Default: undefined</div>
+          </td>
+          <td class="left hidden-xs-down">List of ClrQuickListValue</td>
+          <td class="hidden-xs-down">undefined</td>
+          <td class="left">Event which returns the user's selected options whenever the list changes</td>
+        </tr>
+        <tr>
+          <td class="left">
+            <b>(clrEmptyOptionAdded)</b>
+            <div class="hidden-sm-up">Type: void</div>
+            <div class="hidden-sm-up">Default: undefined</div>
+          </td>
+          <td class="left hidden-xs-down">void</td>
+          <td class="hidden-xs-down">undefined</td>
+          <td class="left">Event which triggers on the add button clicked</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="code-examples">
+      <h3 id="examples">Code &amp; Examples</h3>
+      <clr-quick-list class="clr-col-4" [clrAllValues]="possibleOptions" [(clrValues)]="selectedOptions"
+                      [clrAddLabel]="getAddLabel()" [clrBlankOption]="BLANK_OPTION" [clrMandatory]="true">
+      </clr-quick-list>
+      <clr-code-snippet [clrCode]="htmlExample"></clr-code-snippet>
+    </div>
+  </article>
+</clr-doc-wrapper>
