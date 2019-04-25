@@ -169,6 +169,13 @@ const documentationRoutes: Routes = [
                 }
             },
             {
+                path: "quick-list",
+                loadChildren: "app/documentation/demos/quick-list/quick-list.demo.module#QuickListDemoModule",
+                data: {
+                    browserTitle: "Quick List"
+                }
+            },
+            {
                 path: "datagrid",
                 loadChildren: "app/documentation/demos/datagrid/datagrid.demo.module#DatagridDemoModule",
                 data: {
