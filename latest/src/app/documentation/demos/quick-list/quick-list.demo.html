@@ -140,10 +140,13 @@
 
     <div id="code-examples">
       <h3 id="examples">Code &amp; Examples</h3>
-      <clr-quick-list class="clr-col-4" [clrAllValues]="possibleOptions" [(clrValues)]="selectedOptions"
-                      [clrAddLabel]="getAddLabel()" [clrBlankOption]="BLANK_OPTION" [clrMandatory]="true">
-      </clr-quick-list>
-      <clr-code-snippet [clrCode]="htmlExample"></clr-code-snippet>
+      <div class="clr-col-3">
+        <clr-quick-list [clrAllValues]="possibleOptions" [(clrValues)]="selectedOptions"
+                        [clrAddLabel]="getAddLabel()" [clrBlankOption]="BLANK_OPTION" [clrMandatory]="true">
+        </clr-quick-list>
+      </div>
+      <clr-code-snippet [clrCode]="htmlExample1"></clr-code-snippet>
+      <clr-code-snippet [clrCode]="htmlExample2"></clr-code-snippet>
     </div>
   </article>
 </clr-doc-wrapper>
