@@ -8,8 +8,8 @@ import { ClarityDocComponent } from "../clarity-doc";
 import { ClrOption } from "@porscheinformatik/clr-addons";
 
 const USER_NOT_ALLOWED = `
-<clr-combobox class="clr-col-12" (clrSelectedOption)="selectedOption = $event" (clrEnteredValue)="enteredValue = $event">
-    <label>Force selection</label>
+<clr-combobox class="clr-col-12 clr-row" clrControlClasses="clr-col-12 clr-col-md-3" (clrSelectedOption)="selectedOption = $event" (clrEnteredValue)="enteredValue = $event" [clrAllowUserEntry]="false">
+    <label class="clr-col-12 clr-col-md-2">Force selection</label>
     <clr-options>
         <clr-option [clrValue]="'Option 1'">Option 1</clr-option>
         <clr-option [clrValue]="'Option 2'">Option 2</clr-option>
@@ -21,8 +21,8 @@ const USER_NOT_ALLOWED = `
 `;
 
 const USER_ALLOWED = `
-<clr-combobox class="clr-col-12" [clrAllowUserEntry]="true" (clrSelectedOption)="selectedOptionUser = $event" (clrEnteredValue)="enteredValueUser = $event">
-    <label>Allow user entry</label>
+<clr-combobox class="clr-col-12 clr-row" clrControlClasses="clr-col-12 clr-col-md-3" (clrSelectedOption)="selectedOptionUser = $event" (clrEnteredValue)="enteredValueUser = $event" [clrAllowUserEntry]="true">
+    <label class="clr-col-12 clr-col-md-2">Allow user entry</label>
     <clr-options>
         <clr-option [clrValue]="'Option 1'">Option 1</clr-option>
         <clr-option [clrValue]="'Option 2'">Option 2</clr-option>
@@ -33,8 +33,8 @@ const USER_ALLOWED = `
 `;
 
 const PRESELECTED = `
-<clr-combobox class="clr-col-12" [clrPreselectedValue]="'Option 3'">
-    <label>Preselected option</label>
+<clr-combobox class="clr-col-12 clr-row" clrControlClasses="clr-col-12 clr-col-md-3" (clrSelectedOption)="selectedOptionPre = $event" [clrAllowUserEntry]="false" [clrPreselectedValue]="'Option 3'">
+    <label class="clr-col-12 clr-col-md-2">Preselected Option</label>
     <clr-options>
         <clr-option [clrValue]="'Option 1'">Option 1</clr-option>
         <clr-option [clrValue]="'Option 2'">Option 2</clr-option>

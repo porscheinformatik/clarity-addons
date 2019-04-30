@@ -84,8 +84,8 @@
             <h3 id="examples">Code &amp; Examples</h3>
             <h4>Combobox with no user entries allowed</h4>
             <form clrForm>
-                <clr-combobox class="clr-col-12" (clrSelectedOption)="selectedOption = $event" (clrEnteredValue)="enteredValue = $event" [clrAllowUserEntry]="false">
-                    <label>Force selection</label>
+                <clr-combobox class="clr-col-12 clr-row" clrControlClasses="clr-col-12 clr-col-md-3" (clrSelectedOption)="selectedOption = $event" (clrEnteredValue)="enteredValue = $event" [clrAllowUserEntry]="false">
+                    <label class="clr-col-12 clr-col-md-2">Force selection</label>
                     <clr-options>
                         <clr-option [clrValue]="'Option 1'">Option 1</clr-option>
                         <clr-option [clrValue]="'Option 2'">Option 2</clr-option>
@@ -101,8 +101,8 @@
 
             <h4>Combobox with user entries allowed</h4>
             <form clrForm>
-                <clr-combobox class="clr-col-12" (clrSelectedOption)="selectedOptionUser = $event" (clrEnteredValue)="enteredValueUser = $event" [clrAllowUserEntry]="true">
-                    <label>Allow user entry</label>
+                <clr-combobox class="clr-col-12 clr-row" clrControlClasses="clr-col-12 clr-col-md-3" (clrSelectedOption)="selectedOptionUser = $event" (clrEnteredValue)="enteredValueUser = $event" [clrAllowUserEntry]="true">
+                    <label class="clr-col-12 clr-col-md-2">Allow user entry</label>
                     <clr-options>
                         <clr-option [clrValue]="'Option 1'">Option 1</clr-option>
                         <clr-option [clrValue]="'Option 2'">Option 2</clr-option>
@@ -117,8 +117,8 @@
 
             <h4>Combobox with preselected option</h4>
             <form clrForm>
-                <clr-combobox class="clr-col-12" (clrSelectedOption)="selectedOptionPre = $event" [clrAllowUserEntry]="false" [clrPreselectedValue]="'Option 3'">
-                    <label>Preselected Option</label>
+                <clr-combobox class="clr-col-12 clr-row" clrControlClasses="clr-col-12 clr-col-md-3" (clrSelectedOption)="selectedOptionPre = $event" [clrAllowUserEntry]="false" [clrPreselectedValue]="'Option 3'">
+                    <label class="clr-col-12 clr-col-md-2">Preselected Option</label>
                     <clr-options>
                         <clr-option [clrValue]="'Option 1'">Option 1</clr-option>
                         <clr-option [clrValue]="'Option 2'">Option 2</clr-option>
