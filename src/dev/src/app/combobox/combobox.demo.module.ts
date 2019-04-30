@@ -7,15 +7,18 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ClarityModule } from '@clr/angular';
 
-import { BasicNgComboboxDemo } from './basic-ng-combobox';
-import { OptionalMenuDemo } from './optional-menu';
 import { ComboboxDemo } from './combobox.demo';
-import { ROUTING } from './combobox.demo.routing';
 import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  imports: [CommonModule, ClarityModule, ROUTING, ClrAddonsModule],
-  declarations: [ComboboxDemo, BasicNgComboboxDemo, OptionalMenuDemo],
-  exports: [ComboboxDemo, BasicNgComboboxDemo, OptionalMenuDemo],
+  imports: [
+    CommonModule,
+    ClarityModule,
+    RouterModule.forChild([{ path: '', component: ComboboxDemo }]),
+    ClrAddonsModule,
+  ],
+  declarations: [ComboboxDemo],
+  exports: [ComboboxDemo],
 })
 export class ComboboxDemoModule {}

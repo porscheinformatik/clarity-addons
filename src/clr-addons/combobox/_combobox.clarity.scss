@@ -9,16 +9,27 @@
     align-items: flex-start;
   }
 
+  .clr-combobox-input-wrapper {
+    width: 100%;
+    padding: 0 $clr-ng-select-trigger-right-padding 0 $clr-ng-select-trigger-left-padding;
+    display: inline-block;
+    max-height: 1rem;
+
+    @include form-fields-appearance($clr-forms-border-color);
+    @include input-border-bottom-animation($clr-forms-focused-color);
+  }
+
   .clr-combobox-input {
     //Dimensions
-    padding: 0 $clr-ng-select-trigger-right-padding 0 $clr-ng-select-trigger-left-padding;
+    padding: 0;
     min-height: $clr-ng-select-min-height;
-    width: $clr-ng-select-min-width;
+    width: 100%;
+    overflow: hidden;
 
     //Mixins
-    @include form-fields-appearance($clr-forms-border-color);
     @include clr-getTypePropertiesForDomElement(form_label, (font-size));
-    @include input-border-bottom-animation($clr-forms-focused-color);
+    border-bottom-width: 0 !important;
+    background-size: 0 !important;
 
     //Others
     outline: none;
@@ -30,14 +41,7 @@
     width: $clr-ng-select-trigger-dimensions;
     padding: 0;
     margin: 0;
-
-    //Other
-    background: none;
-    border: none;
-    color: $clr-ng-select-trigger-color;
-    cursor: pointer;
-    outline: none;
-    transform: translateX(-1 * $clr-ng-select-trigger-dimensions);
+    position: absolute;
   }
 
   .clr-options {
