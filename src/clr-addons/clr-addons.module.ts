@@ -23,6 +23,7 @@ import { ClrTreetableModule } from './treetable/treetable.module';
 import { ClrViewEditSectionModule } from './view-edit-section/view-edit-section.module';
 import { ClrDotPagerModule } from './dot-pager/dot-pager.module';
 import { ClrQuickListModule } from './quick-list/quick-list.module';
+import { ClrLetterAvatarModule } from './letter-avatar/letter-avatar.module';
 
 @NgModule({
   exports: [
@@ -44,6 +45,7 @@ import { ClrQuickListModule } from './quick-list/quick-list.module';
     ClrComboboxModule,
     ClrDateTimeModule,
     ClrQuickListModule,
+    ClrLetterAvatarModule,
   ],
 })
 export class ClrAddonsModule {}
