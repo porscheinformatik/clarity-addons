@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, OnInit, Input, HostBinding, ViewChild, AfterViewInit, Renderer2, ElementRef } from '@angular/core';
+import { Component, Input, HostBinding, ViewChild, AfterViewInit, Renderer2, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'clr-letter-avatar',
