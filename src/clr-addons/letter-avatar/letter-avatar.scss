@@ -1,0 +1,28 @@
+// Clarity Dependency
+@import '../../../node_modules/@clr/ui/src/utils/dependencies.clarity'; // Includes light theme
+
+.avatar-circle {
+  display: flex;
+}
+
+.avatar-initials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0 0.5rem 0 0;
+  background-color: $clr-btn-default-bg-color;
+  border-radius: 100%;
+  color: $clr-white;
+  font-weight: 500;
+  letter-spacing: normal;
+  text-transform: uppercase;
+  font-size: 80%;
+}
+
+:hover,
+:focus-within {
+  > .avatar .avatar-initials {
+    background-color: $clr-btn-link-color;
+  }
+}
