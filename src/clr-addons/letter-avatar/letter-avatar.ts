@@ -4,25 +4,21 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, OnInit, Input, HostBinding, ViewChild, AfterViewInit, Renderer2, ElementRef } from '@angular/core';
+import { Component, Input, HostBinding, ViewChild, AfterViewInit, Renderer2, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'clr-letter-avatar',
   templateUrl: './letter-avatar.html',
-  styleUrls: ['./letter-avatar.scss'],
 })
-export class ClrLetterAvatar implements OnInit, AfterViewInit {
-  @HostBinding('class.avatar') avatar = true;
+export class ClrLetterAvatar implements AfterViewInit {
+  @HostBinding('class.clr-avatar') avatar = true;
 
-  @Input() name: string;
-
-  @Input() size = 24;
+  @Input('clrName') name: string;
+  @Input('clrSize') size = 24;
 
   @ViewChild('avatar') avatarElement: ElementRef;
 
   constructor(private renderer: Renderer2) {}
-
-  ngOnInit() {}
 
   ngAfterViewInit() {
     this.renderer.setStyle(this.avatarElement.nativeElement, 'width', this.size + 'px');
@@ -31,15 +27,13 @@ export class ClrLetterAvatar implements OnInit, AfterViewInit {
 
   getInitials(): string {
     if (this.name !== undefined) {
-      let initials = this.name.split(/\s/).reduce((response, word) => {
+      return this.name.split(/\s/).reduce((response, word) => {
         if (response.length < 2) {
           return (response += word.slice(0, 1));
         } else {
           return response;
         }
       }, '');
-
-      return initials;
     } else {
       return '';
     }
