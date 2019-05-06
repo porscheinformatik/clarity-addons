@@ -6,13 +6,12 @@
 
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { ClarityModule } from '@clr/angular';
 
 import { ClrLetterAvatar } from './letter-avatar';
 
 @NgModule({
-  imports: [CommonModule, ClarityModule, FormsModule],
+  imports: [CommonModule, ClarityModule],
   declarations: [ClrLetterAvatar],
   exports: [ClrLetterAvatar],
 })
