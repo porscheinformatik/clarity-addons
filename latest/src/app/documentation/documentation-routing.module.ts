@@ -202,6 +202,13 @@ const documentationRoutes: Routes = [
                 data: {
                     browserTitle: "Readonly"
                 }
+            },
+            {
+                path: "letter-avatar",
+                loadChildren: "app/documentation/demos/letter-avatar/letter-avatar.demo.module#LetterAvatarDemoModule",
+                data: {
+                    browserTitle: "Letter Avatar"
+                }
             }
         ]
     }
