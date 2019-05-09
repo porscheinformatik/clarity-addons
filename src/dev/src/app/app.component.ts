@@ -17,7 +17,6 @@ export class AppComponent {
     { name: 'Clarity (light)', href: 'assets/styles/clr-ui.css' },
     { name: 'Clarity (dark)', href: 'assets/styles/clr-ui-dark.css' },
     { name: 'VU3', href: 'assets/styles/clr-addons-vu3.css' },
-    { name: 'MVAP', href: 'assets/styles/clr-addons-mvap.css' },
   ];
 
   constructor(@Inject(DOCUMENT) private document: Document, @Inject(PLATFORM_ID) private platformId: Object) {
