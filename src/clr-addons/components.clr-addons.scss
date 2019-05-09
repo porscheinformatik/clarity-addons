@@ -254,6 +254,7 @@ clr-checkbox-container[readonly] .clr-checkbox-wrapper input[type='checkbox'] {
     + label::before {
       content: '';
       background: none;
+      box-shadow: none;
       border-left: $clr-forms-checkbox-border-style;
       border-bottom: $clr-forms-checkbox-border-style;
       border-color: $clr-btn-success-bg-color;

@@ -18,10 +18,6 @@
         max-width: none;
       }
 
-      .dropdown-toggle:focus {
-        outline: none;
-      }
-
       .dropdown-toggle:active {
         box-shadow: none;
       }
@@ -76,10 +72,6 @@
 
           &.active {
             font-weight: 700;
-          }
-
-          &:focus {
-            outline: none;
           }
 
           // This moves the box shadow the required distance down to line up with the border
