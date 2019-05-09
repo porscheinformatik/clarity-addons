@@ -192,9 +192,3 @@ a.label.label-orange > .badge {
 .text-danger {
   color: $clr-text-color-danger !important;
 }
-
-button:focus,
-.tooltip:focus > :first-child,
-.tooltip > :first-child:focus {
-  outline: none;
-}

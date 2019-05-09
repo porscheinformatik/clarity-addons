@@ -4,17 +4,9 @@
       min-width: 1.5rem;
     }
 
-    .disabled {
+    button:disabled {
       border-color: $clr-btn-default-color;
       opacity: 1;
-
-      &:focus {
-        outline: none;
-      }
-
-      &:active {
-        box-shadow: none;
-      }
     }
   }
   @media (hover: none) {
