@@ -87,6 +87,20 @@ const CODE_EXAMPLE_FULL_FORM = `
 </form>
 `;
 
+const CODE_EXAMPLE_FORM_SUBMIT = `
+<form ... (submit)="onFormSubmit()">
+    ...
+    <input type="submit" style="display: none"> <!-- Not needed, if you already have a submit button-->
+</form>
+`;
+
+const CODE_EXAMPLE_FORM_SUBMIT_BLUR = `
+onFormSubmit() {
+    (<HTMLElement>document.activeElement).blur();
+    ...
+}
+`;
+
 const CODE_EXAMPLE_RO_HORIZONTAL = `
 <form clrForm [clrLayout]="'horizontal'" class="clr-row">
     <div class="clr-col-12 clr-form-control clr-row">
@@ -166,6 +180,8 @@ const CODE_EXAMPLE_RO_VERTICAL2 = `
 })
 export class FormsDemo extends ClarityDocComponent {
     codeExampleFullForm = CODE_EXAMPLE_FULL_FORM;
+    codeExampleFormSubmit = CODE_EXAMPLE_FORM_SUBMIT;
+    codeExampleFormSubmitBlur = CODE_EXAMPLE_FORM_SUBMIT_BLUR;
     codeExampleROHorizontal = CODE_EXAMPLE_RO_HORIZONTAL;
     codeExampleROHorizontal2 = CODE_EXAMPLE_RO_HORIZONTAL2;
     codeExampleROVertical = CODE_EXAMPLE_RO_VERTICAL;
@@ -182,7 +198,14 @@ export class FormsDemo extends ClarityDocComponent {
     selectOption: string;
     isDisabled: boolean;
 
+    inputTextSubmit: string;
+    submittedText: string;
+
     constructor() {
         super("forms");
+    }
+
+    onFormSubmit() {
+        this.submittedText = this.inputTextSubmit;
     }
 }

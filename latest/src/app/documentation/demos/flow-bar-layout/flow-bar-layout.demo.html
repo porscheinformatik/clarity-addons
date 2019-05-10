@@ -55,6 +55,14 @@
                 <span>Base Page Layout with a Flow Bar</span>
             </a>
             <clr-code-snippet [clrCode]="codeExample"></clr-code-snippet>
+
+            <h4>Submit form on enter and go to next page</h4>
+            <p>As the next button is outside your form, following steps need to be done to go to next page after submitting the form with 'enter'</p>
+            <ul>
+                <li>Add hidden submit button to your form to activate 'enter' key handling in browser (only needed if you not already have one)</li>
+                <li>React to submit of form and call next() on the flowbar</li>
+            </ul>
+            <clr-code-snippet [clrCode]="htmlExampleSubmitEnter"></clr-code-snippet>
         </div>
     </article>
 </clr-doc-wrapper>

@@ -6,7 +6,7 @@
 import { Component } from "@angular/core";
 
 const CODE_EXAMPLE = `
-<clr-view-edit-section [clrTitle]="'Personal Data'">
+<clr-view-edit-section [clrTitle]="'Personal Data'" [(clrEditMode)]="editMode">
     <form clrForm [clrLayout]="'horizontal'" class="clr-row" view-block>
         <div class="clr-col-12 clr-col-lg-6 clr-form-control clr-row">
             <label class="clr-control-label clr-col-12 clr-col-sm-2 clr-col-lg-3">First name</label>
@@ -69,7 +69,7 @@ const CODE_EXAMPLE = `
             <span class="clr-col-12 clr-col-sm-10 clr-col-lg-9">Literally the best form I ever filled out.</span>
         </div>
     </form>
-    <form clrForm [clrLayout]="'horizontal'" class="clr-row" edit-block>
+    <form clrForm [clrLayout]="'horizontal'" (submit)="editMode = false" class="clr-row" edit-block>
         <clr-input-container class="clr-col-12 clr-col-lg-6">
             <label class="clr-col-12 clr-col-sm-2 clr-col-lg-3">First name</label>
             <input clrInput type="text" class="clr-col-12 clr-col-sm-4 clr-col-lg-6"/>
@@ -151,6 +151,7 @@ const CODE_EXAMPLE = `
             <label class="clr-col-12 clr-col-sm-2 clr-col-lg-3">Comment / Feedback</label>
             <textarea clrTextarea type="text" class="clr-col-12 clr-col-sm-10 clr-col-lg-9"></textarea>
         </clr-textarea-container>
+        <input type="submit" style="display: none">
     </form>
 </clr-view-edit-section>
 `;
@@ -161,4 +162,5 @@ const CODE_EXAMPLE = `
 })
 export class ViewEditSectionLayout {
     codeExample = CODE_EXAMPLE;
+    editMode = false;
 }
