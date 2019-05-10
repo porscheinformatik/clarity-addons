@@ -79,6 +79,12 @@ const CODE_EXAMPLE = `
 </clr-main-container>
 `;
 
+const HTML_EXAMPLE_SUBMIT_ENTER = `
+<form ... (submit)="flowBar.next()">
+    ...
+    <input type="submit" style="display: none"> <!-- Not needed, if you already have a submit button-->
+</form>
+`;
 @Component({
     selector: "clr-flow-bar-layout-demo",
     templateUrl: "./flow-bar-layout.demo.html",
@@ -89,6 +95,7 @@ const CODE_EXAMPLE = `
 })
 export class FlowBarLayoutDemo extends ClarityDocComponent {
     codeExample = CODE_EXAMPLE;
+    htmlExampleSubmitEnter = HTML_EXAMPLE_SUBMIT_ENTER;
 
 
     constructor() {

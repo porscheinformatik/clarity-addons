@@ -3,13 +3,14 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import {Component} from "@angular/core";
+import {Component, ViewChild} from "@angular/core";
 import {ClarityDocComponent} from "../clarity-doc";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { ClrViewEditSection } from "@porscheinformatik/clr-addons";
 
 const HTML_EXAMPLE_SIDE_BY_SIDE = `
 <div class="clr-col-12 clr-col-lg-6">
-    <clr-view-edit-section [clrPreventModeChangeOnSave]="!exampleForm.valid" [clrTitle]="sectionTitle" 
+    <clr-view-edit-section [clrPreventModeChangeOnSave]="!exampleForm.valid" [clrTitle]="sectionTitle"
         (clrSectionSubmitted)="sectionSubmitted()" (clrSectionEditCancelled)="sectionCancelled()">
         <div view-block>
             <form clrForm clrLayout="horizontal">
@@ -101,6 +102,27 @@ const HTML_EXAMPLE_NOT_EDITABLE = `
 </clr-view-edit-section>
 `;
 
+const HTML_EXAMPLE_FORM_SUBMIT = `
+<clr-view-edit-section [(clrEditMode)]="editMode" (clrSectionSubmitted)="sectionSubmitted()">
+    ...
+    <div edit-block>
+        <form ... (submit)="onFormSubmit()">
+            ...
+            <input type="submit" style="display: none">
+        </form>
+    </div>
+</clr-view-edit-section>
+`;
+
+const ANGULAR_EXAMPLE_FORM_SUBMIT = `
+editMode = false;
+
+onFormSubmit() {
+    this.sectionSubmitted();
+    this.editMode = false;
+}
+`;
+
 @Component({
     selector: "clr-view-edit-section-demo",
     templateUrl: "./view-edit-section.demo.html",
@@ -115,6 +137,13 @@ export class ViewEditSectionDemo extends ClarityDocComponent {
     htmlExampleFullIconAngular = HTML_EXAMPLE_FULL_ICON_ANGULAR;
     htmlExampleCustomActions = HTML_EXAMPLE_CUSTOM_ACTIONS;
     htmlExampleNotEditable = HTML_EXAMPLE_NOT_EDITABLE;
+    htmlExampleFormSubmit = HTML_EXAMPLE_FORM_SUBMIT;
+    angularExampleFormSubmit = ANGULAR_EXAMPLE_FORM_SUBMIT;
+
+    editMode1 = false;
+    editMode2 = false;
+    editMode3 = false;
+    editMode4 = false;
 
     birthdate: string;
     gender: string = "male";
@@ -141,8 +170,6 @@ export class ViewEditSectionDemo extends ClarityDocComponent {
 
     compEditIcon: string = "cog";
 
-    editMode: boolean;
-
     exampleForm = new FormGroup({
         editFirst: new FormControl(this.first, {
             validators: [Validators.required],
@@ -157,6 +184,12 @@ export class ViewEditSectionDemo extends ClarityDocComponent {
 
     constructor() {
         super("view-edit-section");
+    }
+
+    onCompFormSubmit() {
+        this.compSectionSubmitted();
+        this.editMode3 = false;
+        this.editMode4 = false;
     }
 
     compSectionSubmitted() {
@@ -177,16 +210,27 @@ export class ViewEditSectionDemo extends ClarityDocComponent {
         return this.terms ? "I agreed" : "I disagreed";
     }
 
+    onFormSubmit() {
+        (<HTMLElement>document.activeElement).blur();
+        this.sectionSubmitted();
+        this.editMode1 = false;
+    }
+
     sectionSubmitted() {
         if (this.exampleForm.valid) {
-            this.first = this.exampleForm.controls.editFirst.value;
-            this.last = this.exampleForm.controls.editLast.value;
-            this.email = this.exampleForm.controls.editEmail.value;
+            this.first = this.exampleForm.value.editFirst;
+            this.last = this.exampleForm.value.editLast;
+            this.email = this.exampleForm.value.editEmail;
         }
     }
 
     sectionCancelled() {
         this.exampleForm.reset({editFirst: this.first, editLast: this.last, editEmail: this.email})
+    }
+
+    onAddFormSubmit() {
+        this.addSectionSubmitted();
+        this.editMode2 = false;
     }
 
     addSectionSubmitted() {
@@ -200,6 +244,6 @@ export class ViewEditSectionDemo extends ClarityDocComponent {
     }
 
     onEdit() {
-        this.editMode = true;
+        this.editMode3 = true;
     }
 }

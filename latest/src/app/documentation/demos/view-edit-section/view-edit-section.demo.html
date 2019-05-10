@@ -143,7 +143,7 @@
             <h4>Side by side example with validation</h4>
             <div class="clr-row">
                 <div class="clr-col-12 clr-col-lg-6">
-                    <clr-view-edit-section [clrPreventModeChangeOnSave]="!exampleForm.valid" [clrTitle]="sectionTitle" (clrSectionSubmitted)="sectionSubmitted()" (clrSectionEditCancelled)="sectionCancelled()">
+                    <clr-view-edit-section [(clrEditMode)]="editMode1" [clrPreventModeChangeOnSave]="!exampleForm.valid" [clrTitle]="sectionTitle" (clrSectionSubmitted)="sectionSubmitted()" (clrSectionEditCancelled)="sectionCancelled()">
                         <div view-block>
                             <form clrForm clrLayout="horizontal">
                               <div class="clr-form-control clr-row">
@@ -161,7 +161,7 @@
                             </form>
                         </div>
                         <div edit-block>
-                            <form clrForm clrLayout="horizontal" [formGroup]="exampleForm">
+                            <form clrForm clrLayout="horizontal" [formGroup]="exampleForm" (submit)="onFormSubmit()">
                               <clr-input-container>
                                   <label class="clr-col-md-4 required">First name</label>
                                   <input class="clr-col-md-8" clrInput type="text" formControlName="editFirst" name="first"/>
@@ -176,12 +176,13 @@
                                   <label class="clr-col-md-4">E-mail</label>
                                   <input class="clr-col-md-8" clrInput type="text" formControlName="editEmail" name="email"/>
                               </clr-input-container>
+                              <input type="submit" style="display: none">
                             </form>
                         </div>
                     </clr-view-edit-section>
                 </div>
                 <div class="crl-col-12 clr-col-lg-6">
-                    <clr-view-edit-section [clrTitle]="addSectionTitle" (clrSectionSubmitted)="addSectionSubmitted()" (clrSectionEditCancelled)="addSectionCancelled()">
+                    <clr-view-edit-section [(clrEditMode)]="editMode2" [clrTitle]="addSectionTitle" (clrSectionSubmitted)="addSectionSubmitted()" (clrSectionEditCancelled)="addSectionCancelled()">
                         <div view-block>
                             <form clrForm clrLayout="horizontal">
                               <div class="clr-form-control clr-row">
@@ -195,7 +196,7 @@
                             </form>
                         </div>
                         <div edit-block>
-                            <form clrForm clrLayout="horizontal">
+                            <form clrForm clrLayout="horizontal" (submit)="onAddFormSubmit()">
                               <clr-input-container>
                                   <label class="clr-col-md-4">Hobby</label>
                                   <input class="clr-col-md-8" clrInput type="text" [(ngModel)]="editHobby" name="hobby"/>
@@ -204,6 +205,7 @@
                                   <label class="clr-col-md-4">Driving licence number</label>
                                   <input class="clr-col-md-8" clrInput type="text" [(ngModel)]="editLicence" name="licence"/>
                               </clr-input-container>
+                              <input type="submit" style="display: none">
                             </form>
                         </div>
                     </clr-view-edit-section>
@@ -213,11 +215,11 @@
             <clr-code-snippet [clrCode]="htmlExampleSideBySide"></clr-code-snippet>
 
             <h4>Custom actions</h4>
-            When using custom actions you may use css class <code class="clr-code">ves-action</code> to remove the right margin/padding.<br>
-            Additionally you need to show/hide those actions on your own in view/edit mode if you want to. In this example, all actions are hidden in edit mode.
+            <p>When using custom actions you may use css class <code class="clr-code">ves-action</code> to remove the right margin/padding.<br>
+            Additionally you need to show/hide those actions on your own in view/edit mode if you want to. In this example, all actions are hidden in edit mode.</p>
             <div class="clr-row">
                 <div class="clr-col-12">
-                    <clr-view-edit-section [(clrEditMode)]="editMode" [clrTitle]="customActionsTitle"
+                    <clr-view-edit-section [(clrEditMode)]="editMode3" [clrTitle]="customActionsTitle"
                         (clrSectionSubmitted)="compSectionSubmitted()" (clrSectionEditCancelled)="compSectionCancelled()">
                         
                         <div action-block>
@@ -260,7 +262,7 @@
                             </form>
                         </div>
                         <div edit-block>
-                            <form clrForm clrLayout="horizontal">
+                            <form clrForm clrLayout="horizontal" (submit)="onCompFormSubmit()">
                               <clr-date-container class="clr-row">
                                 <label>Date of birth</label>
                                 <input type="text" [(ngModel)]="editBirthdate" name="birthdate" clrDate>
@@ -290,6 +292,7 @@
                                       <input clrCheckbox type="checkbox" [(ngModel)]="editTerms" name="terms" />
                                   </clr-checkbox-wrapper>
                               </clr-checkbox-container>
+                              <input type="submit" style="display: none">
                             </form>
                         </div>
                     </clr-view-edit-section>
@@ -323,7 +326,7 @@
             <h4>Custom icon and button texts</h4>
             <div class="clr-row">
                 <div class="clr-col-12">
-                    <clr-view-edit-section [clrTitle]="compSectionTitle" [clrEditIcon]="compEditIcon"
+                    <clr-view-edit-section [(clrEditMode)]="editMode4" [clrTitle]="compSectionTitle" [clrEditIcon]="compEditIcon"
                         clrSaveText="Save it" clrCancelText="Cancel it"
                         (clrSectionSubmitted)="compSectionSubmitted()" (clrSectionEditCancelled)="compSectionCancelled()">
                         
@@ -348,7 +351,7 @@
                             </form>
                         </div>
                         <div edit-block>
-                            <form clrForm clrLayout="horizontal">
+                            <form clrForm clrLayout="horizontal" (submit)="onCompFormSubmit()">
                               <clr-date-container class="clr-row">
                                 <label>Date of birth</label>
                                 <input type="text" [(ngModel)]="editBirthdate" name="birthdate" clrDate>
@@ -378,6 +381,7 @@
                                       <input clrCheckbox type="checkbox" [(ngModel)]="editTerms" name="terms" />
                                   </clr-checkbox-wrapper>
                               </clr-checkbox-container>
+                              <input type="submit" style="display: none">
                             </form>
                         </div>
                     </clr-view-edit-section>
@@ -386,6 +390,15 @@
 
             <clr-code-snippet [clrCode]="htmlExampleFullIcon"></clr-code-snippet>
             <clr-code-snippet [clrCode]="htmlExampleFullIconAngular" [clrLanguage]="'typescript'"></clr-code-snippet>
+
+            <h4>Submit form on enter</h4>
+            <p>As the save button is outside your form, following steps need to be done to enable form (edit-section) submit on 'enter'</p>
+            <ul>
+                <li>Add hidden submit button to your form to activate 'enter' key handling in browser</li>
+                <li>React to submit of form and switch section to view mode</li>
+            </ul>
+            <clr-code-snippet [clrCode]="htmlExampleFormSubmit"></clr-code-snippet>
+            <clr-code-snippet [clrCode]="angularExampleFormSubmit" [clrLanguage]="'typescript'"></clr-code-snippet>
 
             <h4>Tips</h4>
             <ul>
