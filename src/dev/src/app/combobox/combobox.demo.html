@@ -27,7 +27,7 @@
   <br>Manually entered value (will not be emitted): {{enteredValue}}
   <br>
   <clr-combobox class="clr-col-12 clr-row" clrControlClasses="clr-col-3" (clrSelectedOption)="selectedOptionUser = $event" (clrEnteredValue)="enteredValueUser = $event" [clrAllowUserEntry]="true">
-      <label class="clr-col-2">Allow user entry</label>
+      <label class="clr-col-12 clr-col-md-2">Allow user entry</label>
       <clr-options>
           <clr-option [clrValue]="'Option 1'">Option 1</clr-option>
           <clr-option [clrValue]="'Option 2'">Option 2 very very very very long option</clr-option>
