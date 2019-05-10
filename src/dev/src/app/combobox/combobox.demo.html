@@ -13,33 +13,8 @@
 <h2>Combobox</h2>
 
 <form clrForm>
-    <clr-combobox class="clr-col-12 clr-row" (clrSelectedOption)="selectedOption = $event" (clrEnteredValue)="enteredValue = $event" [clrAllowUserEntry]="false">
-        <label>Force selection</label>
-        <clr-options>
-            <clr-option [clrValue]="'Option 1'">Option 1</clr-option>
-            <clr-option [clrValue]="'Option 2'">Option 2</clr-option>
-            <clr-option [clrValue]="'Option 3'">Option 3</clr-option>
-            <div class="clr-no-results">No search results found</div>
-        </clr-options>
-        <clr-control-error>Select a value</clr-control-error>
-    </clr-combobox>
-    <br><br>Selected option: {{selectedOption?.value}}
-    <br>Manually entered value (will not be emitted): {{enteredValue}}
-    <br>
-    <clr-combobox class="clr-col-12 clr-row" clrControlClasses="clr-col-3" (clrSelectedOption)="selectedOptionUser = $event" (clrEnteredValue)="enteredValueUser = $event" [clrAllowUserEntry]="true">
-        <label class="clr-col-2">Allow user entry</label>
-        <clr-options>
-            <clr-option [clrValue]="'Option 1'">Option 1</clr-option>
-            <clr-option [clrValue]="'Option 2'">Option 2 very very very very long option</clr-option>
-            <clr-option [clrValue]="'Option 3'">Option 3</clr-option>
-            <div class="clr-no-results">No search results found</div>
-        </clr-options>
-    </clr-combobox>
-    <br><br>Selected option: {{selectedOptionUser?.value}}
-    <br>Manually entered value: {{enteredValueUser}}
-    <br>
-    <clr-combobox class="clr-col-12 clr-row" [clrPreselectedValue]="'Option 3'" [clrAllowUserEntry]="false">
-      <label>Preselected value</label>
+  <clr-combobox class="clr-col-12 clr-row" (clrSelectedOption)="selectedOption = $event" (clrEnteredValue)="enteredValue = $event" [clrAllowUserEntry]="false">
+      <label>Force selection</label>
       <clr-options>
           <clr-option [clrValue]="'Option 1'">Option 1</clr-option>
           <clr-option [clrValue]="'Option 2'">Option 2</clr-option>
@@ -47,5 +22,34 @@
           <div class="clr-no-results">No search results found</div>
       </clr-options>
       <clr-control-error>Select a value</clr-control-error>
-    </clr-combobox>
-    </form>
+  </clr-combobox>
+  <br><br>Selected option: {{selectedOption?.value}}
+  <br>Manually entered value (will not be emitted): {{enteredValue}}
+  <br>
+  <clr-combobox class="clr-col-12 clr-row" clrControlClasses="clr-col-3" (clrSelectedOption)="selectedOptionUser = $event" (clrEnteredValue)="enteredValueUser = $event" [clrAllowUserEntry]="true">
+      <label class="clr-col-2">Allow user entry</label>
+      <clr-options>
+          <clr-option [clrValue]="'Option 1'">Option 1</clr-option>
+          <clr-option [clrValue]="'Option 2'">Option 2 very very very very long option</clr-option>
+          <clr-option [clrValue]="'Option 3'">Option 3</clr-option>
+          <div class="clr-no-results">No search results found</div>
+      </clr-options>
+  </clr-combobox>
+  <br><br>Selected option: {{selectedOptionUser?.value}}
+  <br>Manually entered value: {{enteredValueUser}}
+  <br>
+  <clr-combobox class="clr-col-12 clr-row" [clrPreselectedValue]="'Option 3'" [clrAllowUserEntry]="false">
+    <label>Preselected value</label>
+    <clr-options>
+        <clr-option [clrValue]="'Option 1'">Option 1</clr-option>
+        <clr-option [clrValue]="'Option 2'">Option 2</clr-option>
+        <clr-option [clrValue]="'Option 3'">Option 3</clr-option>
+        <div class="clr-no-results">No search results found</div>
+    </clr-options>
+    <clr-control-error>Select a value</clr-control-error>
+  </clr-combobox>
+  <clr-input-container class="clr-col-12 clr-row">
+    <label class="clr-col-md-2">First name (to check if combo fits into form)</label>
+    <input class="clr-col-md-10" clrInput type="text"/>
+  </clr-input-container>
+</form>

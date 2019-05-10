@@ -10,6 +10,7 @@ import { ClarityModule } from '@clr/angular';
 import { ComboboxDemo } from './combobox.demo';
 import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { RouterModule } from '@angular/router';
     ClarityModule,
     RouterModule.forChild([{ path: '', component: ComboboxDemo }]),
     ClrAddonsModule,
+    FormsModule,
   ],
   declarations: [ComboboxDemo],
   exports: [ComboboxDemo],
