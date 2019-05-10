@@ -36,6 +36,15 @@ const CODE_EXAMPLE_FULL_FORM = `
             <option value="three">Three</option>
         </select>
     </clr-select-container>
+    <clr-combobox class="clr-col-12 clr-row" clrControlClasses="clr-col-2" [clrAllowUserEntry]="true">
+        <label class="clr-col-12 clr-col-md-2">Combobox label</label>
+        <clr-options>
+            <clr-option [clrValue]="'Option 1'">Option 1</clr-option>
+            <clr-option [clrValue]="'Option 2'">Option 2</clr-option>
+            <clr-option [clrValue]="'Option 3'">Option 3</clr-option>
+            <div class="clr-no-results">No search results found</div>
+        </clr-options>
+    </clr-combobox>
     <clr-radio-container class="clr-col-12">
         <label class="required">Radio label</label>
         <clr-radio-wrapper>
