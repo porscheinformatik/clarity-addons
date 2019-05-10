@@ -162,4 +162,5 @@ const CODE_EXAMPLE = `
 })
 export class ViewEditSectionLayout {
     codeExample = CODE_EXAMPLE;
+    editMode = false;
 }

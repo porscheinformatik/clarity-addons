@@ -3,10 +3,9 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import {Component, ViewChild} from "@angular/core";
-import {ClarityDocComponent} from "../clarity-doc";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { ClrViewEditSection } from "@porscheinformatik/clr-addons";
+import { Component } from "@angular/core";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { ClarityDocComponent } from "../clarity-doc";
 
 const HTML_EXAMPLE_SIDE_BY_SIDE = `
 <div class="clr-col-12 clr-col-lg-6">
