@@ -1,0 +1,6 @@
+{
+  "server": {
+    "baseDir": "dist/dev"
+  },
+  "open": false
+}
