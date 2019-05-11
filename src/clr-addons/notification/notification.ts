@@ -37,7 +37,7 @@ import { zonedInterval, zonedTimer } from './scheduler-utils';
   },
 })
 export class ClrNotification implements OnInit {
-  @ViewChild(ClrAlert) clrAlert: ClrAlert;
+  @ViewChild(ClrAlert, { static: true }) clrAlert: ClrAlert;
   progressStatus: number = 0;
 
   private step: number = 100;

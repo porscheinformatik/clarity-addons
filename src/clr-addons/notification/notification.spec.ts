@@ -17,13 +17,13 @@ import { ClrNotificationService } from './notification.service';
   template: `
     <ng-template #notification>
       <ng-container clr-notification-message>
-        Some Information<br>very<br>very<br>very<br>long information
+        Some Information<br />very<br />very<br />very<br />long information
       </ng-container>
     </ng-template>
   `,
 })
 class TestComponent {
-  @ViewChild('notification') notification;
+  @ViewChild('notification', { static: true }) notification;
 }
 
 describe('NotificationComponent', () => {
@@ -66,33 +66,27 @@ describe('NotificationComponent', () => {
     notifRef.close();
   });
 
-  it(
-    'with timeout',
-    fakeAsync(() => {
-      notificationService.openNotification(fixture.componentInstance.notification, { timeout: 100 });
+  it('with timeout', fakeAsync(() => {
+    notificationService.openNotification(fixture.componentInstance.notification, { timeout: 100 });
 
-      fixture.detectChanges();
-      expect(document.getElementsByTagName('clr-notification').length).toEqual(1);
+    fixture.detectChanges();
+    expect(document.getElementsByTagName('clr-notification').length).toEqual(1);
 
-      tick(400);
+    tick(400);
 
-      fixture.detectChanges();
-      expect(document.getElementsByTagName('clr-notification').length).toEqual(0);
-    })
-  );
+    fixture.detectChanges();
+    expect(document.getElementsByTagName('clr-notification').length).toEqual(0);
+  }));
 
-  it(
-    'with progressbar',
-    fakeAsync(() => {
-      notificationService.openNotification(fixture.componentInstance.notification, { timeout: 100, progressbar: true });
-      fixture.detectChanges();
+  it('with progressbar', fakeAsync(() => {
+    notificationService.openNotification(fixture.componentInstance.notification, { timeout: 100, progressbar: true });
+    fixture.detectChanges();
 
-      checkNotification('info', true, false);
+    checkNotification('info', true, false);
 
-      tick(400);
-      fixture.detectChanges();
-    })
-  );
+    tick(400);
+    fixture.detectChanges();
+  }));
 
   it('with progressbar but no timeout', () => {
     const notifRef = notificationService.openNotification(fixture.componentInstance.notification, {
@@ -107,80 +101,65 @@ describe('NotificationComponent', () => {
     fixture.detectChanges();
   });
 
-  it(
-    'dismissable',
-    fakeAsync(() => {
-      notificationService.openNotification(fixture.componentInstance.notification, { timeout: 100, dismissable: true });
-      fixture.detectChanges();
+  it('dismissable', fakeAsync(() => {
+    notificationService.openNotification(fixture.componentInstance.notification, { timeout: 100, dismissable: true });
+    fixture.detectChanges();
 
-      checkNotification('info', false, true);
+    checkNotification('info', false, true);
 
-      tick(400);
-      fixture.detectChanges();
-    })
-  );
+    tick(400);
+    fixture.detectChanges();
+  }));
 
-  it(
-    'info',
-    fakeAsync(() => {
-      notificationService.openNotification(fixture.componentInstance.notification, {
-        notificationType: 'info',
-        timeout: 100,
-      });
-      fixture.detectChanges();
+  it('info', fakeAsync(() => {
+    notificationService.openNotification(fixture.componentInstance.notification, {
+      notificationType: 'info',
+      timeout: 100,
+    });
+    fixture.detectChanges();
 
-      checkNotification('info', false, false);
+    checkNotification('info', false, false);
 
-      tick(400);
-      fixture.detectChanges();
-    })
-  );
+    tick(400);
+    fixture.detectChanges();
+  }));
 
-  it(
-    'success',
-    fakeAsync(() => {
-      notificationService.openNotification(fixture.componentInstance.notification, {
-        notificationType: 'success',
-        timeout: 100,
-      });
-      fixture.detectChanges();
+  it('success', fakeAsync(() => {
+    notificationService.openNotification(fixture.componentInstance.notification, {
+      notificationType: 'success',
+      timeout: 100,
+    });
+    fixture.detectChanges();
 
-      checkNotification('success', false, false);
+    checkNotification('success', false, false);
 
-      tick(400);
-      fixture.detectChanges();
-    })
-  );
+    tick(400);
+    fixture.detectChanges();
+  }));
 
-  it(
-    'warning',
-    fakeAsync(() => {
-      notificationService.openNotification(fixture.componentInstance.notification, {
-        notificationType: 'warning',
-        timeout: 100,
-      });
-      fixture.detectChanges();
+  it('warning', fakeAsync(() => {
+    notificationService.openNotification(fixture.componentInstance.notification, {
+      notificationType: 'warning',
+      timeout: 100,
+    });
+    fixture.detectChanges();
 
-      checkNotification('warning', false, false);
+    checkNotification('warning', false, false);
 
-      tick(400);
-      fixture.detectChanges();
-    })
-  );
+    tick(400);
+    fixture.detectChanges();
+  }));
 
-  it(
-    'danger',
-    fakeAsync(() => {
-      notificationService.openNotification(fixture.componentInstance.notification, {
-        notificationType: 'danger',
-        timeout: 100,
-      });
-      fixture.detectChanges();
+  it('danger', fakeAsync(() => {
+    notificationService.openNotification(fixture.componentInstance.notification, {
+      notificationType: 'danger',
+      timeout: 100,
+    });
+    fixture.detectChanges();
 
-      checkNotification('danger', false, false);
+    checkNotification('danger', false, false);
 
-      tick(400);
-      fixture.detectChanges();
-    })
-  );
+    tick(400);
+    fixture.detectChanges();
+  }));
 });

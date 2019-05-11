@@ -1,4 +1,4 @@
-@media screen and (max-width: map-get($grid-breakpoints, lg)) and (min-width: map-get($grid-breakpoints, md)) {
+@media screen and (max-width: map-get($clr-grid-breakpoints, lg)) and (min-width: map-get($clr-grid-breakpoints, md)) {
   .main-container {
     .header-hamburger-trigger,
     .header-overflow-trigger {
@@ -103,9 +103,7 @@
     .clr-vertical-nav.clr-nav-level-2 {
       border-right: none;
     }
-  }
 
-  .main-container {
     .header-overflow-trigger {
       position: relative;
 
@@ -140,9 +138,7 @@
         margin-left: auto;
       }
     }
-  }
 
-  .main-container {
     &.open-hamburger-menu,
     &.open-overflow-menu {
       .header {
@@ -223,7 +219,7 @@
 
           clr-icon[shape='vm-bug'],
           .clr-vmw-logo {
-            background-color: $gray-dark;
+            background-color: $clr-color-neutral-700;
             border-radius: $clr-global-borderradius;
           }
 
@@ -248,6 +244,8 @@
         padding-top: $clr-header-height + 1rem;
         transform: translateX(0);
         transition: $clr-sliding-panel-animation;
+        width: $clr-sliding-panel-width;
+        max-width: $clr-sliding-panel-width;
 
         .sidenav-content {
           padding-bottom: 1rem;
@@ -263,6 +261,8 @@
       .clr-vertical-nav.clr-nav-level-2 {
         transform: translateX(0);
         transition: $clr-sliding-panel-animation;
+        width: $clr-sliding-panel-width;
+        max-width: $clr-sliding-panel-width;
       }
 
       .header-nav.clr-nav-level-2,
@@ -274,28 +274,6 @@
       .header-overflow-trigger {
         @include menu-trigger(0, auto, (-1 * $clr-trigger-position));
         @include overflow-menu-trigger-animation();
-      }
-    }
-
-    &.open-hamburger-menu {
-      .header-nav.clr-nav-level-1,
-      .subnav.clr-nav-level-1,
-      .sub-nav.clr-nav-level-1,
-      .sidenav.clr-nav-level-1,
-      .clr-vertical-nav.clr-nav-level-1 {
-        width: $clr-sliding-panel-width;
-        max-width: $clr-sliding-panel-width;
-      }
-    }
-
-    &.open-overflow-menu {
-      .header-nav.clr-nav-level-2,
-      .subnav.clr-nav-level-2,
-      .sub-nav.clr-nav-level-2,
-      .sidenav.clr-nav-level-2,
-      .clr-vertical-nav.clr-nav-level-2 {
-        width: $clr-sliding-panel-width;
-        max-width: $clr-sliding-panel-width;
       }
     }
   }

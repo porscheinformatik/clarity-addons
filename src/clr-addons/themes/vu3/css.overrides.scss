@@ -75,58 +75,44 @@ header,
   }
 }
 
-.progress-static.top {
-  border-top-left-radius: $vu3-border-radius;
-  border-top-right-radius: $vu3-border-radius;
+.progress,
+.progress-static {
+  &.top {
+    border-top-left-radius: $vu3-border-radius;
+    border-top-right-radius: $vu3-border-radius;
+  }
 }
 
 .btn {
   border-radius: $vu3-button-border-radius;
 }
 
-.datagrid .datagrid-column {
+.datagrid .datagrid-table .datagrid-column {
   .datagrid-filter-toggle {
     &:hover {
-      background-image: generateFilterIcon($turquoise);
+      color: $turquoise;
     }
 
     &.datagrid-filter-open {
-      background-image: generateFilterIcon($turquoise);
+      color: $turquoise;
     }
 
     &.datagrid-filtered {
-      background-image: generateFilterIcon($turquoise), generateCircleIcon($turquoise);
-    }
-  }
-
-  &.asc {
-    .datagrid-column-flex::after {
-      background-image: generateUpArrowIcon($turquoise);
-    }
-  }
-  &.desc {
-    .datagrid-column-flex::after {
-      background-image: generateDownArrowIcon($turquoise);
-    }
-  }
-}
-
-.pagination-list {
-  .pagination-current {
-    border-bottom-color: $turquoise;
-  }
-}
-
-.datagrid-foot .column-switch-wrapper {
-  &.active {
-    .column-toggle--action {
       color: $turquoise;
     }
   }
-  .column-toggle--action {
-    &:hover {
-      color: $turquoise;
-    }
+
+  .datagrid-column-title .sort-icon {
+    color: $turquoise;
+  }
+}
+
+.datagrid-footer .column-switch-wrapper {
+  &.active .column-toggle--action {
+    color: $turquoise;
+  }
+  .column-toggle--action:hover {
+    color: $turquoise;
   }
 }
 
@@ -169,7 +155,7 @@ clr-icon {
 
 .label.label-orange > .badge,
 a.label.label-orange > .badge {
-  color: $clr-badge-font-color;
+  color: $clr-badge-font-color-light;
 }
 
 // Bootstrap text color overrides

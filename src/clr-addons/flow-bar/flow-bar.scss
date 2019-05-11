@@ -7,7 +7,7 @@
     .flow-bar-dropdown {
       display: none;
 
-      @media screen and (max-width: map-get($grid-breakpoints, sm)) {
+      @media screen and (max-width: map-get($clr-grid-breakpoints, sm)) {
         display: block;
       }
 
@@ -31,7 +31,7 @@
       overflow-x: auto;
       overflow-y: hidden;
 
-      @media screen and (max-width: map-get($grid-breakpoints, sm)) {
+      @media screen and (max-width: map-get($clr-grid-breakpoints, sm)) {
         display: none;
       }
 
@@ -87,7 +87,7 @@
 
           // This moves the box shadow the required distance down to line up with the border
           &.btn {
-            margin: 0 0 $clr-default-borderwidth 0;
+            margin: 0 0 $clr-global-borderwidth 0;
           }
         }
       }

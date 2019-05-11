@@ -18,14 +18,22 @@ import { ClrNumericFieldModule } from './numeric-field.module';
   template: `
     <clr-input-container>
       <label>Amount</label>
-      <input clrInput clrNumeric type="text" clrDecimalSep="," clrGroupingSep="." [clrDecimalPlaces]="decimalPlaces"
-             [clrRoundDisplayValue]="rounded"
-             [clrAutofillDecimals]="autofill" [(clrNumericValue)]="input"/>
+      <input
+        clrInput
+        clrNumeric
+        type="text"
+        clrDecimalSep=","
+        clrGroupingSep="."
+        [clrDecimalPlaces]="decimalPlaces"
+        [clrRoundDisplayValue]="rounded"
+        [clrAutofillDecimals]="autofill"
+        [(clrNumericValue)]="input"
+      />
     </clr-input-container>
   `,
 })
 class TestComponent {
-  @ViewChild(ClrNumericField) component;
+  @ViewChild(ClrNumericField, { static: true }) component;
   input: number;
   decimalPlaces = 3;
   autofill = false;
@@ -216,63 +224,57 @@ describe('NumericComponent', () => {
     expect(fixture.componentInstance.input).toBe(-0.2);
   });
 
-  it(
-    'Truncate input value',
-    fakeAsync(() => {
-      fixture.componentInstance.decimalPlaces = 2;
-      fixture.componentInstance.input = 123.99999;
-      fixture.componentInstance.rounded = false;
-      fixture.componentInstance.autofill = true;
-      fixture.detectChanges();
+  it('Truncate input value', fakeAsync(() => {
+    fixture.componentInstance.decimalPlaces = 2;
+    fixture.componentInstance.input = 123.99999;
+    fixture.componentInstance.rounded = false;
+    fixture.componentInstance.autofill = true;
+    fixture.detectChanges();
 
-      tick(10);
+    tick(10);
 
-      expect(inputEl.nativeElement.value).toBe('123,99');
-      expect(fixture.componentInstance.component.displayValue).toBe('123,99');
-      expect(fixture.componentInstance.input).toBe(123.99999);
+    expect(inputEl.nativeElement.value).toBe('123,99');
+    expect(fixture.componentInstance.component.displayValue).toBe('123,99');
+    expect(fixture.componentInstance.input).toBe(123.99999);
 
-      inputEl.triggerEventHandler('blur', { target: inputEl.nativeElement });
-      fixture.detectChanges();
+    inputEl.triggerEventHandler('blur', { target: inputEl.nativeElement });
+    fixture.detectChanges();
 
-      expect(inputEl.nativeElement.value).toBe('123,99');
-      expect(fixture.componentInstance.component.displayValue).toBe('123,99');
-      expect(fixture.componentInstance.input).toBe(123.99999);
+    expect(inputEl.nativeElement.value).toBe('123,99');
+    expect(fixture.componentInstance.component.displayValue).toBe('123,99');
+    expect(fixture.componentInstance.input).toBe(123.99999);
 
-      addKey('Backspace', 8);
+    addKey('Backspace', 8);
 
-      expect(inputEl.nativeElement.value).toBe('123,9');
-      expect(fixture.componentInstance.component.displayValue).toBe('123,9');
-      expect(fixture.componentInstance.input).toBe(123.9);
-    })
-  );
+    expect(inputEl.nativeElement.value).toBe('123,9');
+    expect(fixture.componentInstance.component.displayValue).toBe('123,9');
+    expect(fixture.componentInstance.input).toBe(123.9);
+  }));
 
-  it(
-    'Round input value',
-    fakeAsync(() => {
-      fixture.componentInstance.decimalPlaces = 2;
-      fixture.componentInstance.input = 123.99999;
-      fixture.componentInstance.rounded = true;
-      fixture.componentInstance.autofill = true;
-      fixture.detectChanges();
+  it('Round input value', fakeAsync(() => {
+    fixture.componentInstance.decimalPlaces = 2;
+    fixture.componentInstance.input = 123.99999;
+    fixture.componentInstance.rounded = true;
+    fixture.componentInstance.autofill = true;
+    fixture.detectChanges();
 
-      tick(10);
+    tick(10);
 
-      expect(inputEl.nativeElement.value).toBe('124,00');
-      expect(fixture.componentInstance.component.displayValue).toBe('124,00');
-      expect(fixture.componentInstance.input).toBe(123.99999);
+    expect(inputEl.nativeElement.value).toBe('124,00');
+    expect(fixture.componentInstance.component.displayValue).toBe('124,00');
+    expect(fixture.componentInstance.input).toBe(123.99999);
 
-      inputEl.triggerEventHandler('blur', { target: inputEl.nativeElement });
-      fixture.detectChanges();
+    inputEl.triggerEventHandler('blur', { target: inputEl.nativeElement });
+    fixture.detectChanges();
 
-      expect(inputEl.nativeElement.value).toBe('124,00');
-      expect(fixture.componentInstance.component.displayValue).toBe('124,00');
-      expect(fixture.componentInstance.input).toBe(123.99999);
+    expect(inputEl.nativeElement.value).toBe('124,00');
+    expect(fixture.componentInstance.component.displayValue).toBe('124,00');
+    expect(fixture.componentInstance.input).toBe(123.99999);
 
-      addKey('Backspace', 8);
+    addKey('Backspace', 8);
 
-      expect(inputEl.nativeElement.value).toBe('124,0');
-      expect(fixture.componentInstance.component.displayValue).toBe('124,0');
-      expect(fixture.componentInstance.input).toBe(124);
-    })
-  );
+    expect(inputEl.nativeElement.value).toBe('124,0');
+    expect(fixture.componentInstance.component.displayValue).toBe('124,0');
+    expect(fixture.componentInstance.input).toBe(124);
+  }));
 });

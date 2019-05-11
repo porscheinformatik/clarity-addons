@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'clr-view-edit-section-demo',
-  styleUrls: ['./view-edit-section.demo.scss'],
   templateUrl: './view-edit-section.demo.html',
 })
 export class ViewEditSectionDemo {

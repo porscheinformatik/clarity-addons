@@ -1,25 +1,30 @@
 <div class="card view-edit-section" (keyup.escape)="onCancel()">
-    <div class="card-block">
-      <div class="card-title">
-        {{_title}}
-        <div class="float-xs-right">
-          <button type="button" (click)="onEdit()" class="btn btn-icon btn-link ves-action" *ngIf="_editable && !_editMode && actionBlock.children.length == 0">
-            <clr-icon class="ves-edit-icon" [attr.shape]="_editIcon" size="24"></clr-icon>
-          </button>
-          <div #actionBlock>
-            <ng-content select="[action-block]"></ng-content>
-          </div>
+  <div class="card-block">
+    <div class="card-title">
+      {{_title}}
+      <div class="ves-actions">
+        <button
+          type="button"
+          (click)="onEdit()"
+          class="btn btn-icon btn-link ves-action"
+          *ngIf="_editable && !_editMode && actionBlock.children.length == 0"
+        >
+          <clr-icon class="ves-edit-icon" [attr.shape]="_editIcon" size="24"></clr-icon>
+        </button>
+        <div #actionBlock>
+          <ng-content select="[action-block]"></ng-content>
         </div>
       </div>
-      <div class="card-text">
-        <ng-content select="[view-block]" *ngIf="!_editMode"></ng-content>
-        <ng-content select="[edit-block]" *ngIf="_editMode"></ng-content>
-        <ng-container *ngIf="_editMode">
-          <form clrForm (ngSubmit)="onSubmit()" class="button-bar">
-            <button class="btn btn-primary ves-save" type="submit">{{_saveText}}</button>
-            <button class="btn ves-cancel" (click)="onCancel()" type="button">{{_cancelText}}</button>
-          </form>
-        </ng-container>
-      </div>
     </div>
+    <div class="card-text">
+      <ng-content select="[view-block]" *ngIf="!_editMode"></ng-content>
+      <ng-content select="[edit-block]" *ngIf="_editMode"></ng-content>
+      <ng-container *ngIf="_editMode">
+        <form clrForm (ngSubmit)="onSubmit()" class="button-bar">
+          <button class="btn btn-primary ves-save" type="submit">{{_saveText}}</button>
+          <button class="btn ves-cancel" (click)="onCancel()" type="button">{{_cancelText}}</button>
+        </form>
+      </ng-container>
+    </div>
+  </div>
 </div>

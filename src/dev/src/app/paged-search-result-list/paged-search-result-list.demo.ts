@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'clr-paged-search-result-list-demo',
-  styleUrls: ['./paged-search-result-list.demo.scss'],
   templateUrl: './paged-search-result-list.demo.html',
 })
 export class PagedSearchResultListDemo {

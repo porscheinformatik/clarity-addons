@@ -16,7 +16,7 @@ export class ClrLetterAvatar implements AfterViewInit {
   @Input('clrName') name: string;
   @Input('clrSize') size = 24;
 
-  @ViewChild('avatar') avatarElement: ElementRef;
+  @ViewChild('avatar', { static: true }) avatarElement: ElementRef;
 
   constructor(private renderer: Renderer2) {}
 

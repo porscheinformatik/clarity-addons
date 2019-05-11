@@ -8,7 +8,6 @@ import { ClrNotificationService } from '@porscheinformatik/clr-addons';
 
 @Component({
   selector: 'clr-notification-demo',
-  styleUrls: ['./notification.demo.scss'],
   templateUrl: './notification.demo.html',
 })
 export class NotificationDemo {

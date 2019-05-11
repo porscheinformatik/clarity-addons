@@ -8,7 +8,6 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-progress-spinner.demo',
   templateUrl: './progress-spinner.demo.html',
-  styleUrls: ['./progress-spinner.demo.css'],
 })
 export class ProgressSpinnerDemo implements OnInit {
   loadingState = false;

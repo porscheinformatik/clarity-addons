@@ -13,7 +13,6 @@ import { ClrMultilingualModule } from '../multilingual.module';
 @Component({
   template: `
     <clr-multilingual-textarea [clrSelectedLang]="selectedLang" [(ngModel)]="data" clrRequiredAllMultilang name="test">
-
       <label>Test</label>
       <clr-control-error>Error</clr-control-error>
       <clr-control-helper>Helper</clr-control-helper>
@@ -33,7 +32,6 @@ class TestComponentAllValid implements OnInit {
 @Component({
   template: `
     <clr-multilingual-textarea [clrSelectedLang]="selectedLang" [(ngModel)]="data" clrRequiredOneMultilang name="test">
-
       <label>Test</label>
       <clr-control-error>Error</clr-control-error>
       <clr-control-helper>Helper</clr-control-helper>

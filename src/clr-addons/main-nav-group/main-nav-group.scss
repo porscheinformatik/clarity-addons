@@ -10,7 +10,7 @@
   }
 
   .main-container:not(.open-hamburger-menu) .header-nav {
-    @media screen and (max-width: map-get($grid-breakpoints, lg)) {
+    @media screen and (max-width: map-get($clr-grid-breakpoints, lg)) {
       .header-overflow {
         display: none;
       }
@@ -42,7 +42,7 @@
         visibility: visible;
 
         .nav-link {
-          color: $clr-dropdown-item-text-color;
+          color: $clr-dropdown-item-color;
           opacity: 1;
           padding: $clr-rem-1px 1rem 0;
           height: 1.25rem;

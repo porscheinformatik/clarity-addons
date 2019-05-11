@@ -1,19 +1,13 @@
 @import './variables.color';
 
-// Writing default variables of clarity with custom values
-@import './variables.default';
-
-// Clarity Dependency
-@import '../../../../node_modules/@clr/ui/src/utils/dependencies.clarity'; // Includes light theme
-
-// Component variables
-@import '../../components.variables.clr-addons';
-
 // Custom theme
 @import './theme.vu3.clarity';
 
 // Clarity Component
 @import '../../../../node_modules/@clr/ui/src/utils/components.clarity';
+
+// Component variables
+@import '../../components.variables.clr-addons';
 
 // Clarity Addons Component
 @import '../../components.clr-addons';

@@ -82,7 +82,7 @@
       }
 
       .treetable-expandable-caret {
-        padding: calc(0.125rem - #{$clr-default-borderwidth}) $horizontalPadding 0.125rem;
+        padding: calc(0.125rem - #{$clr-global-borderwidth}) $horizontalPadding 0.125rem;
         text-align: center;
         position: absolute;
         z-index: map-get($clr-layers, datagrid-host) + 1;
@@ -96,7 +96,7 @@
         }
 
         .treetable-expandable-caret-icon {
-          color: $gray-dark;
+          color: $clr-color-neutral-700;
 
           svg {
             transition: transform 0.2s ease-in-out;
@@ -185,7 +185,7 @@
       flex: 1 1 auto;
       display: flex;
       justify-content: center;
-      border-top: $clr-default-borderwidth solid $clr-table-border-color;
+      border-top: $clr-global-borderwidth solid $clr-table-border-color;
     }
 
     .treetable-placeholder {
@@ -199,7 +199,7 @@
         flex-flow: column nowrap;
         align-items: center;
         justify-content: center;
-        font-size: clr-getTypePropertyValueForDomElement(datagrid_placeholder, font-size);
+        font-size: $clr-datagrid-placeholder-font-size;
         color: $clr-dark-midtone-gray;
       }
 

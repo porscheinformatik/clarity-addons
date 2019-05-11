@@ -13,10 +13,10 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   template: `
-  <clr-input-container>
-    <label>Search</label>
-    <input clrInput clrSearch type="text" name="search" [(ngModel)]="value"/>
-  </clr-input-container>
+    <clr-input-container>
+      <label>Search</label>
+      <input clrInput clrSearch type="text" name="search" [(ngModel)]="value" />
+    </clr-input-container>
   `,
 })
 class TestComponent {

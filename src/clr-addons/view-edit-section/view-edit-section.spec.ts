@@ -13,18 +13,18 @@ import { ClrViewEditSection } from './view-edit-section';
 
 @Component({
   template: `
-        <clr-view-edit-section [clrTitle]="title" [clrSaveText]="saveText" [clrCancelText]="cancelText">
-            <div view-block>
-                <div class="view-item">View</div>
-            </div>
-            <div edit-block>
-                <div class="edit-item">Edit</div>
-            </div>
-        </clr-view-edit-section>
-    `,
+    <clr-view-edit-section [clrTitle]="title" [clrSaveText]="saveText" [clrCancelText]="cancelText">
+      <div view-block>
+        <div class="view-item">View</div>
+      </div>
+      <div edit-block>
+        <div class="edit-item">Edit</div>
+      </div>
+    </clr-view-edit-section>
+  `,
 })
 class TestComponent {
-  @ViewChild(ClrViewEditSection) vesInstance: ClrViewEditSection;
+  @ViewChild(ClrViewEditSection, { static: true }) vesInstance: ClrViewEditSection;
   title: string = 'TestTitle';
   saveText: string = 'Test Save';
   cancelText: string = 'Test Cancel';
@@ -32,12 +32,12 @@ class TestComponent {
 
 @Component({
   template: `
-        <clr-view-edit-section [(clrEditMode)]="editMode">
-          <div action-block>
-            Test
-          </div>
-        </clr-view-edit-section>
-    `,
+    <clr-view-edit-section [(clrEditMode)]="editMode">
+      <div action-block>
+        Test
+      </div>
+    </clr-view-edit-section>
+  `,
 })
 class EditModeComponent {
   editMode: boolean = false;
@@ -45,9 +45,8 @@ class EditModeComponent {
 
 @Component({
   template: `
-        <clr-view-edit-section [clrEditIcon]="editIcon">
-        </clr-view-edit-section>
-    `,
+    <clr-view-edit-section [clrEditIcon]="editIcon"> </clr-view-edit-section>
+  `,
 })
 class EditIconComponent {
   editIcon: string = 'cog';
@@ -55,9 +54,8 @@ class EditIconComponent {
 
 @Component({
   template: `
-        <clr-view-edit-section [clrEditable]="false">
-        </clr-view-edit-section>
-    `,
+    <clr-view-edit-section [clrEditable]="false"> </clr-view-edit-section>
+  `,
 })
 class NotEditableComponent {}
 
@@ -103,65 +101,53 @@ describe('ViewEditSectionComponent', () => {
     expect(fixture.nativeElement.querySelector('.card-title').textContent).toMatch(fixture.componentInstance.title);
   });
 
-  it(
-    'has correct save text',
-    fakeAsync(() => {
-      fixture.nativeElement.querySelector('.ves-action').click();
-      checkMode(fixture, true);
+  it('has correct save text', fakeAsync(() => {
+    fixture.nativeElement.querySelector('.ves-action').click();
+    checkMode(fixture, true);
 
-      expect(fixture.nativeElement.querySelector('.ves-save').textContent).toMatch(fixture.componentInstance.saveText);
-    })
-  );
+    expect(fixture.nativeElement.querySelector('.ves-save').textContent).toMatch(fixture.componentInstance.saveText);
+  }));
 
-  it(
-    'has correct cancel text',
-    fakeAsync(() => {
-      fixture.nativeElement.querySelector('.ves-action').click();
-      checkMode(fixture, true);
+  it('has correct cancel text', fakeAsync(() => {
+    fixture.nativeElement.querySelector('.ves-action').click();
+    checkMode(fixture, true);
 
-      expect(fixture.nativeElement.querySelector('.ves-cancel').textContent).toMatch(
-        fixture.componentInstance.cancelText
-      );
-    })
-  );
+    expect(fixture.nativeElement.querySelector('.ves-cancel').textContent).toMatch(
+      fixture.componentInstance.cancelText
+    );
+  }));
 
-  it(
-    'switch from view to edit and cancel',
-    fakeAsync(() => {
-      spyOn(fixture.componentInstance.vesInstance._editModeChanged, 'emit');
-      spyOn(fixture.componentInstance.vesInstance._cancelled, 'emit');
+  it('switch from view to edit and cancel', fakeAsync(() => {
+    spyOn(fixture.componentInstance.vesInstance._editModeChanged, 'emit');
+    spyOn(fixture.componentInstance.vesInstance._cancelled, 'emit');
 
-      checkMode(fixture, false);
+    checkMode(fixture, false);
 
-      fixture.nativeElement.querySelector('.ves-action').click();
-      checkMode(fixture, true);
-      expect(fixture.componentInstance.vesInstance._editModeChanged.emit).toHaveBeenCalledWith(true);
+    fixture.nativeElement.querySelector('.ves-action').click();
+    checkMode(fixture, true);
+    expect(fixture.componentInstance.vesInstance._editModeChanged.emit).toHaveBeenCalledWith(true);
 
-      fixture.nativeElement.querySelector('.ves-cancel').click();
-      checkMode(fixture, false);
-      expect(fixture.componentInstance.vesInstance._cancelled.emit).toHaveBeenCalled();
-      expect(fixture.componentInstance.vesInstance._editModeChanged.emit).toHaveBeenCalledWith(false);
-    })
-  );
+    fixture.nativeElement.querySelector('.ves-cancel').click();
+    checkMode(fixture, false);
+    expect(fixture.componentInstance.vesInstance._cancelled.emit).toHaveBeenCalled();
+    expect(fixture.componentInstance.vesInstance._editModeChanged.emit).toHaveBeenCalledWith(false);
+  }));
 
-  it(
-    'switch from view to edit and save',
-    fakeAsync(() => {
-      spyOn(fixture.componentInstance.vesInstance._submitted, 'emit');
-      spyOn(fixture.componentInstance.vesInstance._editModeChanged, 'emit');
+  it('switch from view to edit and save', fakeAsync(() => {
+    spyOn(fixture.componentInstance.vesInstance._submitted, 'emit');
+    spyOn(fixture.componentInstance.vesInstance._editModeChanged, 'emit');
 
-      checkMode(fixture, false);
+    checkMode(fixture, false);
 
-      fixture.nativeElement.querySelector('.ves-action').click();
-      checkMode(fixture, true);
-      expect(fixture.componentInstance.vesInstance._editModeChanged.emit).toHaveBeenCalledWith(true);
+    fixture.nativeElement.querySelector('.ves-action').click();
+    checkMode(fixture, true);
+    expect(fixture.componentInstance.vesInstance._editModeChanged.emit).toHaveBeenCalledWith(true);
 
-      fixture.nativeElement.querySelector('.ves-save').click();
-      checkMode(fixture, false);
-      expect(fixture.componentInstance.vesInstance._submitted.emit).toHaveBeenCalled();
-      expect(fixture.componentInstance.vesInstance._editModeChanged.emit).toHaveBeenCalledWith(false);
-    })
-  );
+    fixture.nativeElement.querySelector('.ves-save').click();
+    checkMode(fixture, false);
+    expect(fixture.componentInstance.vesInstance._submitted.emit).toHaveBeenCalled();
+    expect(fixture.componentInstance.vesInstance._editModeChanged.emit).toHaveBeenCalledWith(false);
+  }));
 
   it('has correct edit icon', () => {
     const editFixture: ComponentFixture<EditIconComponent> = TestBed.createComponent(EditIconComponent);

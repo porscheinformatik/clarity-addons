@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'clr-readonly-demo',
-  styleUrls: ['./readonly.demo.scss'],
   templateUrl: './readonly.demo.html',
 })
 export class ReadonlyDemo {

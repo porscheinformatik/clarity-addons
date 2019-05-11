@@ -2,8 +2,14 @@
 <div class="clr-example">
   <div class="main-container">
     <div class="clr-row">
-      <clr-quick-list class="clr-col-6" [clrAllValues]="possibleActivityResults" [(clrValues)]="selectedActivityResults"
-                      [clrAddLabel]="getAddLabel()" [clrBlankOption]="BLANK_OPTION" [clrMandatory]="true">
+      <clr-quick-list
+        class="clr-col-3"
+        [clrAllValues]="possibleActivityResults"
+        [(clrValues)]="selectedActivityResults"
+        [clrAddLabel]="getAddLabel()"
+        [clrBlankOption]="BLANK_OPTION"
+        [clrMandatory]="true"
+      >
       </clr-quick-list>
     </div>
 
@@ -11,17 +17,17 @@
       <h3>Selected Options</h3>
       <table class="table ">
         <thead>
-        <tr>
-          <th class="left">values</th>
-        </tr>
+          <tr>
+            <th class="left">values</th>
+          </tr>
         </thead>
         <tbody>
-        <tr *ngIf="selectedActivityResults.length===0 || !selectedActivityResults[0].value">
-          <td class="left" >no option selected</td>
-        </tr>
-        <tr *ngFor="let result of selectedActivityResults">
-          <td class="left" *ngIf="result.value">{{result.value}}</td>
-        </tr>
+          <tr *ngIf="selectedActivityResults.length===0 || !selectedActivityResults[0].value">
+            <td class="left">no option selected</td>
+          </tr>
+          <tr *ngFor="let result of selectedActivityResults">
+            <td class="left" *ngIf="result.value">{{result.value}}</td>
+          </tr>
         </tbody>
       </table>
     </div>

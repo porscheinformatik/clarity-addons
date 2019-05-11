@@ -22,7 +22,7 @@ import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, TemplateRef, V
   },
 })
 export class ClrDateTimeContainer implements AfterViewInit, OnInit {
-  @ViewChild('timeInput') timeInput: TemplateRef<any>;
+  @ViewChild('timeInput', { static: true }) timeInput: TemplateRef<any>;
 
   constructor(private renderer: Renderer2, private inputEl: ElementRef) {}
 

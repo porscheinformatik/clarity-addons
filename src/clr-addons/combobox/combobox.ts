@@ -10,33 +10,32 @@ import {
   Component,
   ContentChild,
   ElementRef,
-  HostListener,
-  OnDestroy,
-  PLATFORM_ID,
-  ViewChild,
-  Optional,
-  OnInit,
-  Input,
-  Output,
   EventEmitter,
   HostBinding,
+  HostListener,
+  Input,
+  OnDestroy,
+  OnInit,
+  Optional,
+  Output,
+  PLATFORM_ID,
+  ViewChild,
 } from '@angular/core';
+import {
+  ClrLabel,
+  ɵd as IfOpenService,
+  ɵh as POPOVER_HOST_ANCHOR,
+  ɵbe as LayoutService,
+  ɵbl as ControlClassService,
+} from '@clr/angular';
 import { Subscription } from 'rxjs';
-
-import { ClrLabel } from '@clr/angular';
-import { ɵh } from '@clr/angular';
-import { ɵd } from '@clr/angular';
-import { TAB, DOWN_ARROW, UP_ARROW, ENTER } from './utils/constants';
-import { ɵr } from '@clr/angular';
-import { ɵba } from '@clr/angular';
-import { ɵs } from '@clr/angular';
-
+import { take } from 'rxjs/operators';
 import { ClrOption } from './option';
 import { ClrOptions } from './options';
 import { OptionSelectionService } from './providers/option-selection.service';
 import { ComboboxDomAdapter } from './utils/combobox-dom-adapter.service';
 import { ComboboxNoopDomAdapter } from './utils/combobox-noop-dom-adapter.service';
-import { take } from 'rxjs/operators';
+import { DOWN_ARROW, ENTER, TAB, UP_ARROW } from './utils/constants';
 
 // Fixes build error
 // @dynamic (https://github.com/angular/angular/issues/19698#issuecomment-338340211)
@@ -52,12 +51,12 @@ export function comboboxDomAdapterFactory(platformId: Object) {
   selector: 'clr-combobox',
   templateUrl: './combobox.html',
   providers: [
-    ɵd,
-    { provide: ɵh, useExisting: ElementRef },
+    IfOpenService,
+    { provide: POPOVER_HOST_ANCHOR, useExisting: ElementRef },
     OptionSelectionService,
     { provide: ComboboxDomAdapter, useFactory: comboboxDomAdapterFactory, deps: [PLATFORM_ID] },
-    ɵba,
-    ɵs,
+    ControlClassService,
+    LayoutService,
   ],
   host: {
     '[class.clr-combobox]': 'true',
@@ -72,18 +71,18 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
 
   @HostBinding('class.clr-empty') noSearchResults: boolean;
 
-  @ViewChild('input') input: ElementRef;
-  @ContentChild(ClrOptions) options: ClrOptions<T>;
-  @ContentChild(ClrLabel) label: ClrLabel;
+  @ViewChild('input', { static: true }) input: ElementRef;
+  @ContentChild(ClrOptions, { static: true }) options: ClrOptions<T>;
+  @ContentChild(ClrLabel, { static: true }) label: ClrLabel;
   invalid: boolean = false;
   private subscriptions: Subscription[] = [];
 
   constructor(
-    private ifOpenService: ɵd,
+    private ifOpenService: IfOpenService,
     private optionSelectionService: OptionSelectionService<T>,
-    @Optional() private layoutService: ɵr,
+    @Optional() private layoutService: LayoutService,
     private domAdapter: ComboboxDomAdapter,
-    private controlClassService: ɵba
+    private controlClassService: ControlClassService
   ) {}
 
   private initializeSubscriptions(): void {

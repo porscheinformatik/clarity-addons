@@ -13,7 +13,6 @@
   .clr-combobox-input-wrapper {
     width: 100%;
     padding: 0 $clr-ng-select-trigger-right-padding 0 $clr-ng-select-trigger-left-padding;
-    display: inline-block;
     max-height: 1rem;
 
     &:focus-within {
@@ -32,8 +31,7 @@
     width: 100%;
     overflow: hidden;
 
-    //Mixins
-    @include clr-getTypePropertiesForDomElement(form_label, (font-size));
+    font-size: $clr-forms-label-font-size;
     border-bottom-width: 0 !important;
     background-size: 0 !important;
 
@@ -75,7 +73,7 @@
 
     &.highlighted {
       background-color: $clr-dropdown-bg-hover-color;
-      color: $clr-dropdown-item-text-color;
+      color: $clr-dropdown-item-color;
       text-decoration: none;
     }
 

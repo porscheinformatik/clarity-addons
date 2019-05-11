@@ -30,11 +30,11 @@ export class QuickListDemo implements OnInit {
   }
 
   private map(op: string): ClrQuickListValue<string> {
-    return new class implements ClrQuickListValue<string> {
+    return new (class implements ClrQuickListValue<string> {
       id = op.substr(0, 2);
       label = op;
       value = op;
-    }();
+    })();
   }
 
   getAddLabel(): string {
