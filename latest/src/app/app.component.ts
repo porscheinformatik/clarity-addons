@@ -20,8 +20,7 @@ export class AppComponent implements OnInit {
     themes = [
         { name: "Clarity (light)", href: "styles/clr-ui.min.css" },
         { name: "Clarity (dark)", href: "styles/clr-ui-dark.min.css" },
-        { name: "VU3", href: "styles/clr-addons-vu3.min.css" },
-        { name: "MVAP", href: "styles/clr-addons-mvap.min.css" }];
+        { name: "VU3", href: "styles/clr-addons-vu3.min.css" }];
 
     constructor(private renderer: Renderer, private el: ElementRef, private router: Router, private titleService: Title,
         @Inject(DOCUMENT) private document: Document, @Inject(PLATFORM_ID) private platformId: Object) {
