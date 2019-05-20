@@ -6,6 +6,7 @@
 
 import { ComponentRef, ViewRef } from '@angular/core';
 import { ClrNotification } from './notification';
+import { take } from 'rxjs/operators';
 
 /*
  * Copyright (c) 2018 Porsche Informatik. All Rights Reserved.
@@ -34,7 +35,7 @@ export class ClrNotificationRef {
   result: Promise<any>;
 
   constructor(private _notificationCmptRef: ComponentRef<ClrNotification>, private _contentRef: ClrContentRef) {
-    _notificationCmptRef.instance.closed.subscribe(() => {
+    _notificationCmptRef.instance.closed.pipe(take(1)).subscribe(() => {
       this.close();
     });
 

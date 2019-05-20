@@ -5,11 +5,8 @@
  */
 
 import { ElementRef } from '@angular/core';
-import { Subscription } from 'rxjs';
-
-import { ɵd } from '@clr/angular';
+import { ɵd as IfOpenService } from '@clr/angular';
 import { ClrOption } from '../option';
-
 import { OptionSelectionService } from './option-selection.service';
 
 export default function() {
@@ -20,8 +17,8 @@ export default function() {
 
     beforeEach(() => {
       optionSelectionService = new OptionSelectionService();
-      fakeOption1 = new ClrOption(new ɵd(), new ElementRef(null), null, optionSelectionService);
-      fakeOption2 = new ClrOption(new ɵd(), new ElementRef(null), null, optionSelectionService);
+      fakeOption1 = new ClrOption(new IfOpenService(), new ElementRef(null), null, optionSelectionService);
+      fakeOption2 = new ClrOption(new IfOpenService(), new ElementRef(null), null, optionSelectionService);
     });
 
     it('provides an observable to notify that selected option has been changed', () => {
@@ -30,11 +27,9 @@ export default function() {
 
     it('notifies that the option has changed', () => {
       let selectedOption: ClrOption<string>;
-      const subscription: Subscription = optionSelectionService.selectionChanged.subscribe(
-        (option: ClrOption<string>) => {
-          selectedOption = option;
-        }
-      );
+      const subscription = optionSelectionService.selectionChanged.subscribe((option: ClrOption<string>) => {
+        selectedOption = option;
+      });
 
       optionSelectionService.setSelection(fakeOption1);
       expect(selectedOption).toBe(fakeOption1);
@@ -46,8 +41,8 @@ export default function() {
     });
 
     it('does not notify when the selected option remains the same', () => {
-      let count: number = -1; // as it's a BehaviorSubject ignore the first call
-      const sub: Subscription = optionSelectionService.selectionChanged.subscribe(() => {
+      let count = -1; // as it's a BehaviorSubject ignore the first call
+      const sub = optionSelectionService.selectionChanged.subscribe(() => {
         count++;
       });
 
@@ -66,7 +61,7 @@ export default function() {
 
     it('notifies that the user search value has changed', () => {
       let searchValue: string;
-      const subscription: Subscription = optionSelectionService.searchValueChanged.subscribe((value: string) => {
+      const subscription = optionSelectionService.searchValueChanged.subscribe((value: string) => {
         searchValue = value;
       });
 
@@ -80,8 +75,8 @@ export default function() {
     });
 
     it('does not notify when the user search value remains the same', () => {
-      let count: number = -1; // as it's a BehaviorSubject ignore the first call
-      const sub: Subscription = optionSelectionService.searchValueChanged.subscribe(() => {
+      let count = -1; // as it's a BehaviorSubject ignore the first call
+      const sub = optionSelectionService.searchValueChanged.subscribe(() => {
         count++;
       });
 
@@ -96,14 +91,12 @@ export default function() {
 
     it('notifies that the option has reset, when user enters a search value', () => {
       let selectedOption: ClrOption<string>;
-      const selectionSub: Subscription = optionSelectionService.selectionChanged.subscribe(
-        (option: ClrOption<string>) => {
-          selectedOption = option;
-        }
-      );
+      const selectionSub = optionSelectionService.selectionChanged.subscribe((option: ClrOption<string>) => {
+        selectedOption = option;
+      });
 
       let searchValue: string;
-      const searchSub: Subscription = optionSelectionService.searchValueChanged.subscribe((value: string) => {
+      const searchSub = optionSelectionService.searchValueChanged.subscribe((value: string) => {
         searchValue = value;
       });
 

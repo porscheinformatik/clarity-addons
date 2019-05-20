@@ -5,32 +5,28 @@
  */
 
 import {
+  AfterViewInit,
   Component,
+  ContentChildren,
   ElementRef,
   Inject,
   Injector,
-  OnDestroy,
   Optional,
-  AfterViewInit,
-  ContentChildren,
   QueryList,
 } from '@angular/core';
-import { Subscription } from 'rxjs';
-
-import { ɵi } from '@clr/angular';
-import { Point } from './utils/constants';
-import { ɵh } from '@clr/angular';
+import { ɵh as POPOVER_HOST_ANCHOR, ɵi as AbstractPopover } from '@clr/angular';
+import { take } from 'rxjs/operators';
 import { ClrOption } from './option';
+import { Point } from './utils/constants';
 
 @Component({ selector: 'clr-options', templateUrl: './options.html', host: { '[class.clr-options]': 'true' } })
-export class ClrOptions<T> extends ɵi implements OnDestroy, AfterViewInit {
-  private sub: Subscription;
+export class ClrOptions<T> extends AbstractPopover implements AfterViewInit {
   @ContentChildren(ClrOption) options: QueryList<ClrOption<T>>;
 
   constructor(
     injector: Injector,
     @Optional()
-    @Inject(ɵh)
+    @Inject(POPOVER_HOST_ANCHOR)
     parentHost: ElementRef
   ) {
     if (!parentHost) {
@@ -53,11 +49,10 @@ export class ClrOptions<T> extends ɵi implements OnDestroy, AfterViewInit {
   }
 
   private initializeSubscriptions(): void {
-    this.sub = this.ifOpenService.ignoredElementChange.subscribe((el: ElementRef) => {
+    this.ifOpenService.ignoredElementChange.pipe(take(1)).subscribe((el: ElementRef) => {
       if (el) {
         this.ignoredElement = el.nativeElement;
       }
-      this.sub.unsubscribe();
     });
   }
 
@@ -65,11 +60,5 @@ export class ClrOptions<T> extends ɵi implements OnDestroy, AfterViewInit {
   ngAfterViewInit() {
     // set anchor element for dropdown to the input
     this.anchorElem = this.parentHost.nativeElement.getElementsByClassName('clr-combobox-input')[0] || this.anchorElem;
-  }
-
-  ngOnDestroy() {
-    if (!this.sub.closed) {
-      this.sub.unsubscribe();
-    }
   }
 }

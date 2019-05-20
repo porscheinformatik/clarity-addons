@@ -15,6 +15,7 @@ import {
 import { DOCUMENT } from '@angular/common';
 import { ClrNotification } from './notification';
 import { ClrActiveNotification, ClrContentRef, ClrNotificationRef } from './notification-ref';
+import { take } from 'rxjs/operators';
 
 export interface ClrNotificationOptions {
   timeout?: number;
@@ -45,7 +46,9 @@ export class ClrNotificationService {
     const notificationRef: ClrNotificationRef = new ClrNotificationRef(notificationCmptRef, contentRef);
 
     this._applyWindowOptions(notificationCmptRef.instance, options);
-    notificationCmptRef.instance.closed.subscribe(this._afterClose.bind(this, notificationCmptRef.instance));
+    notificationCmptRef.instance.closed
+      .pipe(take(1))
+      .subscribe(this._afterClose.bind(this, notificationCmptRef.instance));
 
     notificationCmptRef.instance.heightInitalized.then(() =>
       this.elements.forEach(el => {
