@@ -209,6 +209,13 @@ const documentationRoutes: Routes = [
                 data: {
                     browserTitle: "Letter Avatar"
                 }
+            },
+            {
+                path: "multilingual-input",
+                loadChildren: "app/documentation/demos/multilingual-input/multilingual-input.demo.module#MultilingualInputDemoModule",
+                data: {
+                    browserTitle: "Multilingual Input"
+                }
             }
         ]
     }
