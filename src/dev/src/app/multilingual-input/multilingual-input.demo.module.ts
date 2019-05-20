@@ -5,22 +5,24 @@
  */
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ClarityModule } from '@clr/angular';
-
-import { ComboboxDemo } from './combobox.demo';
-import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
-import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+
+import { ClarityModule } from '@clr/angular';
+import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
+
+import { MultilingualInputDemo } from './multilingual-input.demo';
 
 @NgModule({
   imports: [
     CommonModule,
     ClarityModule,
-    RouterModule.forChild([{ path: '', component: ComboboxDemo }]),
     ClrAddonsModule,
     FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forChild([{ path: '', component: MultilingualInputDemo }]),
   ],
-  declarations: [ComboboxDemo],
-  exports: [ComboboxDemo],
+  declarations: [MultilingualInputDemo],
+  exports: [MultilingualInputDemo],
 })
-export class ComboboxDemoModule {}
+export class MultilingualInputDemoModule {}

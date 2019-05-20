@@ -1,0 +1,26 @@
+@include exports('multilingual-input.clr-addons') {
+  .clr-multilingual-input {
+    .clr-multilingual-dropdown {
+      position: absolute !important;
+    }
+
+    .clr-multilingual-button {
+      min-width: 2.3rem;
+      max-width: 2.3rem;
+      border-radius: 0.5rem;
+    }
+
+    .clr-multilingual-dd-entry {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+
+    .clr-input-wrapper {
+      position: relative;
+    }
+
+    .clr-input {
+      padding-left: 60px;
+    }
+  }
+}
