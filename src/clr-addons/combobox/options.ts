@@ -15,14 +15,12 @@ import {
   QueryList,
 } from '@angular/core';
 import { ɵh as POPOVER_HOST_ANCHOR, ɵi as AbstractPopover } from '@clr/angular';
-import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { ClrOption } from './option';
 import { Point } from './utils/constants';
 
 @Component({ selector: 'clr-options', templateUrl: './options.html', host: { '[class.clr-options]': 'true' } })
 export class ClrOptions<T> extends AbstractPopover implements AfterViewInit {
-  private sub: Subscription;
   @ContentChildren(ClrOption) options: QueryList<ClrOption<T>>;
 
   constructor(

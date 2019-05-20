@@ -5,11 +5,8 @@
  */
 
 import { ElementRef } from '@angular/core';
-import { Subscription } from 'rxjs';
-
-import { ɵd } from '@clr/angular';
+import { ɵd as IfOpenService } from '@clr/angular';
 import { ClrOption } from '../option';
-
 import { OptionSelectionService } from './option-selection.service';
 
 export default function() {
@@ -20,8 +17,8 @@ export default function() {
 
     beforeEach(() => {
       optionSelectionService = new OptionSelectionService();
-      fakeOption1 = new ClrOption(new ɵd(), new ElementRef(null), null, optionSelectionService);
-      fakeOption2 = new ClrOption(new ɵd(), new ElementRef(null), null, optionSelectionService);
+      fakeOption1 = new ClrOption(new IfOpenService(), new ElementRef(null), null, optionSelectionService);
+      fakeOption2 = new ClrOption(new IfOpenService(), new ElementRef(null), null, optionSelectionService);
     });
 
     it('provides an observable to notify that selected option has been changed', () => {

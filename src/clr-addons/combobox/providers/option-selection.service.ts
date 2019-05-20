@@ -5,8 +5,7 @@
  */
 
 import { Injectable, OnDestroy } from '@angular/core';
-import { Observable, Subject, BehaviorSubject, Subscription } from 'rxjs';
-
+import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { ClrOption } from '../option';
 import { ClrOptions } from '../options';
 
