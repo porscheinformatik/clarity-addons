@@ -28,9 +28,9 @@ export class ClrMultilingualInput implements ControlValueAccessor, AfterViewInit
   @HostBinding('class.clr-error') invalid = false;
 
   @Input('clrControlClasses') controlClasses = 'clr-col-md-10';
+  @Input('clrSelectedLang') selectedLang: string;
 
   disabled = false;
-  private _selectedLang: string;
   private _texts: Map<string, string>;
   onChange: any = () => {};
   onTouch: any = () => {};
@@ -46,15 +46,6 @@ export class ClrMultilingualInput implements ControlValueAccessor, AfterViewInit
       const control = ngControl.control as FormControl;
       control.statusChanges.pipe(takeUntil(this.destroyed)).subscribe(status => (this.invalid = status === 'INVALID'));
     }
-  }
-
-  @Input('clrSelectedLang')
-  set selectedLang(lang: string) {
-    this._selectedLang = lang;
-  }
-
-  get selectedLang() {
-    return this._selectedLang;
   }
 
   setText(key: string, value: string) {

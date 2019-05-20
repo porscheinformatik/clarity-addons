@@ -15,7 +15,7 @@
       </clr-dropdown-menu>
     </clr-dropdown>
 
-    <input class="clr-input" type="text" [ngModel]="!!this.texts && !!this.selectedLang ? this.texts.get(this.selectedLang) : ''"
+    <input class="clr-input" type="text" [ngModel]="!!texts && !!selectedLang ? texts.get(selectedLang) : ''"
       (ngModelChange)="setText(selectedLang, $event)" (blur)="onTouch()" [disabled]="disabled"/>
     <clr-icon *ngIf="invalid" class="clr-validate-icon" shape="exclamation-circle" aria-hidden="true"></clr-icon>
 
