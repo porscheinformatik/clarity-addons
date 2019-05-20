@@ -24,6 +24,7 @@ import { ClrViewEditSectionModule } from './view-edit-section/view-edit-section.
 import { ClrDotPagerModule } from './dot-pager/dot-pager.module';
 import { ClrQuickListModule } from './quick-list/quick-list.module';
 import { ClrLetterAvatarModule } from './letter-avatar/letter-avatar.module';
+import { ClrMultilingualInputModule } from './multilingual-input/multilingual-input.module';
 
 @NgModule({
   exports: [
@@ -46,6 +47,7 @@ import { ClrLetterAvatarModule } from './letter-avatar/letter-avatar.module';
     ClrDateTimeModule,
     ClrQuickListModule,
     ClrLetterAvatarModule,
+    ClrMultilingualInputModule,
   ],
 })
 export class ClrAddonsModule {}

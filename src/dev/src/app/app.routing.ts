@@ -27,6 +27,7 @@ import { ViewEditSectionDemo } from './view-edit-section/view-edit-section.demo'
 import { DotPagerDemo } from './dot-pager/dot-pager.demo';
 import { QuickListDemo } from './quick-list/quick-list.demo';
 import { LetterAvatarDemo } from './letter-avatar/letter-avatar.demo';
+import { MultilingualInputDemo } from './multilingual-input/multilingual-input.demo';
 
 export const APP_ROUTES: Routes = [
   { path: '', component: LandingComponent },
@@ -51,6 +52,7 @@ export const APP_ROUTES: Routes = [
   { path: 'date-time-container', component: DateTimeContainerDemo },
   { path: 'quick-list-container', component: QuickListDemo },
   { path: 'letter-avatar', component: LetterAvatarDemo },
+  { path: 'multilingual-input', component: MultilingualInputDemo },
 ];
 
 export const ROUTING: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);
