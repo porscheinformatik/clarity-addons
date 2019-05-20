@@ -160,8 +160,7 @@
             "ng": 20,
             "dox": 20,
             "comments": "",
-            "newLayout": true,
-            "isNew": true
+            "newLayout": true
         },
         {
             "url": "main-nav-group",
@@ -174,6 +173,19 @@
             "dox": 20,
             "comments": "",
             "newLayout": true
+        },
+        {
+            "url": "multilingual-input",
+            "text": "Multilingual Input",
+            "type": "component",
+            "ux": 20,
+            "ui": 20,
+            "core": 20,
+            "ng": 20,
+            "dox": 20,
+            "comments": "",
+            "newLayout": true,
+            "isNew": true
         },
         {
             "url": "notification",

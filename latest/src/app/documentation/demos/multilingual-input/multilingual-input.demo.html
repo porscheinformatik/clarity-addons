@@ -1,0 +1,91 @@
+<clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
+    <article>
+        <h5 class="component-summary">The multilingual input field is used to enter texts in different languages.</h5>
+
+        <div id="code-examples">
+            <h3 id="examples">Code &amp; Examples</h3>
+
+            <p>
+                The multilingual input component requires you to use custom validators:
+            </p>
+            <ul>
+                <li>
+                    Reactive forms: <code class="clr-code">ClrMultilingualInputValidators</code>
+                </li>
+                <li>
+                    Template-driven forms: <code class="clr-code">clrRequiredOneMultilang, clrRequiredAllMultilang</code>
+                </li>
+            </ul>
+
+            <h2>Angular Component</h2>
+            <h3>Summary of Options</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="left">Parameter</th>
+                        <th class="left hidden-xs-down">Values</th>
+                        <th class="hidden-xs-down">Default</th>
+                        <th class="left">Effect</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="left">
+                            <b>[clrSelectedLang]</b>
+                            <div class="hidden-sm-up">Type: String</div>
+                            <div class="hidden-sm-up">Default: ""</div>
+                        </td>
+                        <td class="left hidden-xs-down">Javascript String</td>
+                        <td class="hidden-xs-down">""</td>
+                        <td class="left">Defines the currently selected language.</td>
+                    </tr>
+                    <tr>
+                        <td class="left">
+                            <b>[clrControlClasses]</b>
+                            <div class="hidden-sm-up">Type: String</div>
+                            <div class="hidden-sm-up">Default: "clr-col-md-10"</div>
+                        </td>
+                        <td class="left hidden-xs-down">Javascript String</td>
+                        <td class="hidden-xs-down">"clr-col-md-10"</td>
+                        <td class="left">Defines the css classes applied to the input control.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Reactive forms (onBlur)</h3>
+            <form clrForm [formGroup]="exampleForm">
+                <clr-multilingual-input class="clr-col-12 clr-row" clrSelectedLang="EN" formControlName="sample"
+                    clrControlClasses="clr-col-md-9 clr-col-lg-10" name="reactive">
+
+                    <label class="clr-col-md-3 clr-col-lg-2">Reactive</label>
+                    <clr-control-helper>Helper text</clr-control-helper>
+                    <clr-control-error>Please translate in every language!</clr-control-error>
+                </clr-multilingual-input>
+
+                <h4>Output texts</h4>
+                EN: {{exampleForm.get('sample').value.get('EN')}}<br>
+                DE: {{exampleForm.get('sample').value.get('DE')}}<br>
+                FR: {{exampleForm.get('sample').value.get('FR')}}
+            </form>
+            <clr-code-snippet [clrCode]="reactiveExample"></clr-code-snippet>
+            <clr-code-snippet [clrCode]="reactiveTSExample" clrLanguage="typescript"></clr-code-snippet>
+
+            <h3>Template driven</h3>
+            <form clrForm>
+                <clr-multilingual-input class="clr-col-12 clr-row" clrSelectedLang="EN" [(ngModel)]="data" clrRequiredAllMultilang
+                    clrControlClasses="clr-col-md-9 clr-col-lg-10" name="template">
+
+                    <label class="clr-col-md-3 clr-col-lg-2">Template</label>
+                    <clr-control-error>Please translate in every language!</clr-control-error>
+                    <clr-control-helper>Helper text</clr-control-helper>
+                </clr-multilingual-input>
+
+                <h4>Output texts</h4>
+                EN: {{data.get('EN')}}<br>
+                DE: {{data.get('DE')}}<br>
+                FR: {{data.get('FR')}}
+            </form>
+            <clr-code-snippet [clrCode]="templateExample"></clr-code-snippet>
+        </div>
+    </article>
+</clr-doc-wrapper>
