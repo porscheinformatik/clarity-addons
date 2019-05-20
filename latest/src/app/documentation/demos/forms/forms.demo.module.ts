@@ -23,7 +23,7 @@ import { FormsDemo } from "./forms.demo";
         ClrNumericFieldModule,
         ClrDateTimeModule,
         ClrComboboxModule,
-        ClrMultilingualInputModule
+        ClrMultilingualInputModule,
         UtilsModule,
         DocWrapperModule,
         RouterModule.forChild([{ path: "", component: FormsDemo }])
