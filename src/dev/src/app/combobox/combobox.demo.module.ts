@@ -5,12 +5,11 @@
  */
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ClarityModule } from '@clr/angular';
-
-import { ComboboxDemo } from './combobox.demo';
-import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
+import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ClarityModule } from '@clr/angular';
+import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
+import { ComboboxDemo } from './combobox.demo';
 
 @NgModule({
   imports: [
