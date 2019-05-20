@@ -17,20 +17,20 @@ import {
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { ɵi } from '@clr/angular';
+import { ɵi as AbstractPopover, ɵh as POPOVER_HOST_ANCHOR } from '@clr/angular';
 import { Point } from './utils/constants';
-import { ɵh } from '@clr/angular';
 import { ClrOption } from './option';
+import { take } from 'rxjs/operators';
 
 @Component({ selector: 'clr-options', templateUrl: './options.html', host: { '[class.clr-options]': 'true' } })
-export class ClrOptions<T> extends ɵi implements OnDestroy, AfterViewInit {
+export class ClrOptions<T> extends AbstractPopover implements OnDestroy, AfterViewInit {
   private sub: Subscription;
   @ContentChildren(ClrOption) options: QueryList<ClrOption<T>>;
 
   constructor(
     injector: Injector,
     @Optional()
-    @Inject(ɵh)
+    @Inject(POPOVER_HOST_ANCHOR)
     parentHost: ElementRef
   ) {
     if (!parentHost) {
@@ -57,7 +57,6 @@ export class ClrOptions<T> extends ɵi implements OnDestroy, AfterViewInit {
       if (el) {
         this.ignoredElement = el.nativeElement;
       }
-      this.sub.unsubscribe();
     });
   }
 

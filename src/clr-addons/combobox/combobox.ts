@@ -36,6 +36,7 @@ import { ClrOptions } from './options';
 import { OptionSelectionService } from './providers/option-selection.service';
 import { ComboboxDomAdapter } from './utils/combobox-dom-adapter.service';
 import { ComboboxNoopDomAdapter } from './utils/combobox-noop-dom-adapter.service';
+import { take } from 'rxjs/operators';
 
 // Fixes build error
 // @dynamic (https://github.com/angular/angular/issues/19698#issuecomment-338340211)
@@ -169,9 +170,8 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
         this.validateInput();
       } else {
         // Wait for validation until dropdown is closed, as a click on a dropdown menu loses focus too early
-        const openSub = this.ifOpenService.openChange.subscribe(() => {
+        this.ifOpenService.openChange.pipe(take(1)).subscribe(() => {
           this.validateInput();
-          openSub.unsubscribe();
         });
       }
     }
