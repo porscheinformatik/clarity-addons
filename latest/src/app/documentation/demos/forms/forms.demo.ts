@@ -206,12 +206,16 @@ export class FormsDemo extends ClarityDocComponent {
     radioOption: string;
     selectOption: string;
     isDisabled: boolean;
+    data = new Map();
 
     inputTextSubmit: string;
     submittedText: string;
 
     constructor() {
         super("forms");
+        this.data.set("EN", "english text");
+        this.data.set("DE", "deutscher text");
+        this.data.set("FR", "texte français");
     }
 
     onFormSubmit() {
