@@ -93,6 +93,13 @@ const CODE_EXAMPLE_FULL_FORM = `
             </div>
         </div>
     </div>
+    <clr-multilingual-input class="clr-col-12 clr-row" clrSelectedLang="EN" [(ngModel)]="data"
+        clrRequiredAllMultilang clrControlClasses="clr-col-2" name="template">
+
+        <label class="required">Multilingual Input</label>
+        <clr-control-error>Please translate in every language!</clr-control-error>
+        <clr-control-helper>Helper text</clr-control-helper>
+    </clr-multilingual-input>
 </form>
 `;
 
