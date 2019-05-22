@@ -10,9 +10,9 @@ import { ClarityDocComponent } from "../clarity-doc";
 
 const TEMPLATE_EXAMPLE = `
 <clr-multilingual-input class="clr-col-12 clr-row" clrSelectedLang="EN" [(ngModel)]="data"
-    clrControlClasses="clr-col-md-9 clr-col-lg-10" name="template" clrRequiredAllMultilang>
+    clrControlClasses="clr-col-md-3" name="template" clrRequiredAllMultilang>
 
-    <label class="clr-col-md-3 clr-col-lg-2">Template</label>
+    <label class="clr-col-md-2 required">Template</label>
     <clr-control-error>Please translate in every language!</clr-control-error>
     <clr-control-helper>Helper text</clr-control-helper>
 </clr-multilingual-input>
@@ -21,9 +21,9 @@ const TEMPLATE_EXAMPLE = `
 const REACTIVE_EXAMPLE = `
 <form clrForm [formGroup]="exampleForm">
     <clr-multilingual-input class="clr-col-12 clr-row" clrSelectedLang="EN" formControlName="sample"
-        clrControlClasses="clr-col-md-9 clr-col-lg-10" name="reactive">
+        clrControlClasses="clr-col-md-3" name="reactive">
 
-        <label class="clr-col-md-3 clr-col-lg-2">Reactive</label>
+        <label class="clr-col-md-2 required">Reactive</label>
         <clr-control-helper>Helper text</clr-control-helper>
         <clr-control-error>Please translate in every language!</clr-control-error>
     </clr-multilingual-input>
