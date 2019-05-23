@@ -10,8 +10,8 @@ const CODE_EXAMPLE_FULL_FORM = `
 <form clrForm clrLayout="horizontal" class="clr-row">
     <clr-input-container class="clr-col-12">
         <label class="required">Input label</label>
-        <input clrInput class="clr-col-2" type="text" [(ngModel)]="inputText" name="inputName" required
-               minlength="5"/>
+        <input clrInput class="clr-col-2" type="text" [(ngModel)]="inputText" [ngModelOptions]="{ updateOn: 'blur' }"
+            name="inputName" required minlength="5"/>
         <clr-control-helper>Helper text that shows while it is pristine and valid</clr-control-helper>
         <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
         <clr-control-error *clrIfError="'minlength'">Error message about requiring 5 characters
@@ -19,14 +19,14 @@ const CODE_EXAMPLE_FULL_FORM = `
     </clr-input-container>
     <clr-textarea-container class="clr-col-12">
         <label class="required">Textarea label</label>
-        <textarea clrTextarea class="clr-col-2" [(ngModel)]="textareaText" name="description"
+        <textarea clrTextarea class="clr-col-2" [(ngModel)]="textareaText" name="description" [ngModelOptions]="{ updateOn: 'blur' }"
                   required></textarea>
         <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
     </clr-textarea-container>
     <clr-password-container class="clr-col-12">
         <label>Password label</label>
         <input clrPassword class="clr-col-2" placeholder="Password please!" type="text"
-               [(ngModel)]="passwordText" name="passwordName"/>
+               [(ngModel)]="passwordText" [ngModelOptions]="{ updateOn: 'blur' }" name="passwordName"/>
     </clr-password-container>
     <clr-select-container class="clr-col-12">
         <label class="required">Select label</label>
@@ -60,18 +60,18 @@ const CODE_EXAMPLE_FULL_FORM = `
     </clr-radio-container>
     <clr-date-container class="clr-col-12">
         <label>Date label</label>
-        <input type="text" [(ngModel)]="date" name="date" clrDate>
+        <input type="text" [(ngModel)]="date" [ngModelOptions]="{ updateOn: 'blur' }" name="date" clrDate>
     </clr-date-container>
     <clr-input-container class="clr-col-12">
         <label>Time label</label>
-        <input type="time" [(ngModel)]="time" name="time" clrInput>
+        <input type="time" [(ngModel)]="time" [ngModelOptions]="{ updateOn: 'blur' }" name="time" clrInput>
     </clr-input-container>
     <clr-date-time-container class="clr-col-12 clr-row">
         <clr-date-container>
             <label>Date & time label</label>
-            <input clrDate type="text" [(ngModel)]="date" name="date">
+            <input clrDate type="text" [(ngModel)]="date" [ngModelOptions]="{ updateOn: 'blur' }" name="date">
         </clr-date-container>
-        <input type="time" [(ngModel)]="time" name="time" clrTime>
+        <input type="time" [(ngModel)]="time" [ngModelOptions]="{ updateOn: 'blur' }" name="time" clrTime>
     </clr-date-time-container>
     <clr-input-container class="clr-col-12">
         <label>Money label</label>
@@ -93,7 +93,7 @@ const CODE_EXAMPLE_FULL_FORM = `
             </div>
         </div>
     </div>
-    <clr-multilingual-input class="clr-col-12 clr-row" clrSelectedLang="EN" [(ngModel)]="data"
+    <clr-multilingual-input class="clr-col-12 clr-row" clrSelectedLang="EN" [(ngModel)]="data" [ngModelOptions]="{ updateOn: 'blur' }"
         clrRequiredAllMultilang clrControlClasses="clr-col-2" name="template">
 
         <label class="required">Multilingual Input</label>
