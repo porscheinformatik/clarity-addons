@@ -10,7 +10,7 @@ import { ClarityDocComponent } from "../clarity-doc";
 
 const TEMPLATE_EXAMPLE = `
 <clr-multilingual-input class="clr-col-12 clr-row" clrSelectedLang="EN" [(ngModel)]="data"
-    clrControlClasses="clr-col-md-3" name="template" clrRequiredAllMultilang>
+    [ngModelOptions]="{ updateOn: 'blur' }" clrControlClasses="clr-col-md-3" name="template" clrRequiredAllMultilang>
 
     <label class="clr-col-md-2 required">Template</label>
     <clr-control-error>Please translate in every language!</clr-control-error>

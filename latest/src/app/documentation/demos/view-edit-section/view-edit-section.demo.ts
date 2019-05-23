@@ -186,6 +186,7 @@ export class ViewEditSectionDemo extends ClarityDocComponent {
     }
 
     onCompFormSubmit() {
+        (<HTMLElement>document.activeElement).blur();
         this.compSectionSubmitted();
         this.editMode3 = false;
         this.editMode4 = false;
@@ -228,6 +229,7 @@ export class ViewEditSectionDemo extends ClarityDocComponent {
     }
 
     onAddFormSubmit() {
+        (<HTMLElement>document.activeElement).blur();
         this.addSectionSubmitted();
         this.editMode2 = false;
     }

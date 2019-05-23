@@ -199,11 +199,11 @@
                             <form clrForm clrLayout="horizontal" (submit)="onAddFormSubmit()">
                               <clr-input-container>
                                   <label class="clr-col-md-4">Hobby</label>
-                                  <input class="clr-col-md-8" clrInput type="text" [(ngModel)]="editHobby" name="hobby"/>
+                                  <input class="clr-col-md-8" clrInput type="text" [(ngModel)]="editHobby" [ngModelOptions]="{ updateOn: 'blur' }" name="hobby"/>
                               </clr-input-container>
                               <clr-input-container>
                                   <label class="clr-col-md-4">Driving licence number</label>
-                                  <input class="clr-col-md-8" clrInput type="text" [(ngModel)]="editLicence" name="licence"/>
+                                  <input class="clr-col-md-8" clrInput type="text" [(ngModel)]="editLicence" [ngModelOptions]="{ updateOn: 'blur' }" name="licence"/>
                               </clr-input-container>
                               <input type="submit" style="display: none">
                             </form>
@@ -265,7 +265,7 @@
                             <form clrForm clrLayout="horizontal" (submit)="onCompFormSubmit()">
                               <clr-date-container class="clr-row">
                                 <label>Date of birth</label>
-                                <input type="text" [(ngModel)]="editBirthdate" name="birthdate" clrDate>
+                                <input type="text" [(ngModel)]="editBirthdate" [ngModelOptions]="{ updateOn: 'blur' }" name="birthdate" clrDate>
                               </clr-date-container>
                               <clr-select-container>
                                 <label>Gender</label>
@@ -354,7 +354,7 @@
                             <form clrForm clrLayout="horizontal" (submit)="onCompFormSubmit()">
                               <clr-date-container class="clr-row">
                                 <label>Date of birth</label>
-                                <input type="text" [(ngModel)]="editBirthdate" name="birthdate" clrDate>
+                                <input type="text" [(ngModel)]="editBirthdate" [ngModelOptions]="{ updateOn: 'blur' }" name="birthdate" clrDate>
                               </clr-date-container>
                               <clr-select-container>
                                 <label>Gender</label>
