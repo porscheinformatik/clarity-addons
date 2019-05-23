@@ -72,6 +72,7 @@
             <clr-code-snippet [clrCode]="reactiveTSExample" clrLanguage="typescript"></clr-code-snippet>
 
             <h3>Template driven</h3>
+            <p>Validation will happen on blur</p>
             <form clrForm>
                 <clr-multilingual-input class="clr-col-12 clr-row" clrSelectedLang="EN" [(ngModel)]="data" 
                     [ngModelOptions]="{ updateOn: 'blur' }" clrRequiredAllMultilang clrControlClasses="clr-col-md-3" name="template">

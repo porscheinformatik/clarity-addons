@@ -30,7 +30,7 @@ const CODE_EXAMPLE_FULL_FORM = `
     </clr-password-container>
     <clr-select-container class="clr-col-12">
         <label class="required">Select label</label>
-        <select clrSelect class="clr-col-2" name="options" [(ngModel)]="selectOption" [ngModelOptions]="{ updateOn: 'blur' }">
+        <select clrSelect class="clr-col-2" name="options" [(ngModel)]="selectOption">
             <option value="one">One</option>
             <option value="two">Two</option>
             <option value="three">Three</option>
