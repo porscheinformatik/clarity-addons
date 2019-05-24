@@ -131,6 +131,8 @@ module.exports = function(karma) {
       // "IE",
     ],
     browserNoActivityTimeout: 100000,
+    browserDisconnectTimeout: 10000,
+    browserDisconnectTolerance: 3,
     port: 9090,
     runnerPort: 9191,
     colors: true,
