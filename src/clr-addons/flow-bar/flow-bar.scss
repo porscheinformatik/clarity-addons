@@ -54,6 +54,12 @@
           transition: box-shadow 0.2s ease-in;
         }
 
+        &:focus-within {
+          box-shadow: 0 -0.1667rem 0 $clr-nav-active-box-shadow-color inset;
+          transition: box-shadow 0.2s ease-in;
+          outline: none;
+        }
+
         .flow-bar-btn {
           border: none;
           padding: 0 1rem;
@@ -68,6 +74,11 @@
           &.active {
             background-color: transparent;
             color: $clr-nav-link-active-color;
+          }
+
+          &:focus {
+            outline: none;
+            color: black;
           }
 
           &.active {
