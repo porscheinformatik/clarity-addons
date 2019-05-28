@@ -12,6 +12,12 @@
       min-width: 2.3rem;
       max-width: 2.3rem;
       border-radius: 0.5rem;
+
+      &:focus {
+        outline: none;
+        color: $clr-btn-default-outline-hover-color;
+        background-color: $clr-btn-default-outline-hover-bg-color;
+      }
     }
 
     .clr-multilingual-dd-entry {
