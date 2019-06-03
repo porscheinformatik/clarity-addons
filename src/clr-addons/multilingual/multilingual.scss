@@ -1,12 +1,10 @@
-@include exports('multilingual-input.clr-addons') {
-  .clr-multilingual-input {
+@include exports('multilingual.clr-addons') {
+  .clr-multilingual {
     .clr-multilingual-dropdown {
       position: absolute !important;
     }
 
     .clr-multilingual-button {
-      margin-top: -5px;
-
       line-height: 0.458333rem;
       height: 0.875rem;
       min-width: 2.3rem;
@@ -25,12 +23,30 @@
       padding-right: 0.5rem;
     }
 
-    .clr-input-wrapper {
+    .clr-input-wrapper,
+    .clr-textarea-wrapper {
       position: relative;
     }
 
+    .clr-input-wrapper .clr-multilingual-button {
+      margin-top: -5px;
+    }
+
+    .clr-textarea-wrapper {
+      overflow: hidden;
+
+      .clr-multilingual-button {
+        margin-top: 0.4rem;
+        margin-left: 0.4rem;
+      }
+    }
+
     .clr-input {
-      padding-left: 63px;
+      padding-left: 2.6rem;
+    }
+
+    .clr-textarea {
+      text-indent: 2.5rem;
     }
   }
 }
