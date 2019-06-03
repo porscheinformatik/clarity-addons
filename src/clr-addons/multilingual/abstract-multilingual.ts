@@ -18,6 +18,7 @@ export abstract class ClrMultilingualAbstract implements ControlValueAccessor, A
   @Input('clrSelectedLang') selectedLang: string;
 
   disabled = false;
+  textarea = false;
   private _texts: Map<string, string>;
   onChange: any = () => {};
   onTouch: any = () => {};
@@ -66,4 +67,6 @@ export abstract class ClrMultilingualAbstract implements ControlValueAccessor, A
     this.destroyed.next();
     this.destroyed.complete();
   }
+
+  onScroll(event) {}
 }

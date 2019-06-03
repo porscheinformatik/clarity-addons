@@ -24,10 +24,10 @@ import { ClrMultilingualAbstract } from '../abstract-multilingual';
 export class ClrMultilingualTextarea extends ClrMultilingualAbstract {
   @ViewChild(ClrDropdown, { read: ElementRef })
   dropdown: ElementRef;
-  textarea = true;
 
   constructor(injector: Injector, private renderer: Renderer2) {
     super(injector);
+    this.textarea = true;
   }
 
   onScroll(event) {
