@@ -12,76 +12,109 @@
       Change input
     </button>
 
-    <h3>Vertical Form</h3>
-    <form clrForm [clrLayout]="'vertical'" [formGroup]="exampleForm">
-      <clr-input-container>
-        <label>Amount</label>
-        <input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'€'" [clrTextAlign]="'right'"
-               [clrAutofillDecimals]="true" formControlName="sample"/>
-        <clr-control-error>Please enter a value between 0 and 100</clr-control-error>
-      </clr-input-container>
-      <clr-input-container>
-        <label>Speed</label>
-        <input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'km/h'"/>
-      </clr-input-container>
-
-      <clr-input-container>
-        <label>Amount</label>
-        <input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'€'" [clrUnitPosition]="'left'"
-               [clrTextAlign]="'right'" [clrAutofillDecimals]="true"/>
-      </clr-input-container>
-      <clr-input-container>
-        <label>Speed</label>
-        <input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'km/h'"
-               [clrUnitPosition]="'left'"/>
-      </clr-input-container>
-      <clr-input-container>
-        <label>Rounded</label>
-        <input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'€'" [clrRoundDisplayValue]="true"
-               [clrAutofillDecimals]="true" [clrUnitPosition]="'right'"/>
-      </clr-input-container>
-    </form>
-
-    <h3>Horizontal Form</h3>
-    <form clrForm [clrLayout]="'horizontal'">
-      <clr-input-container>
-        <label>Amount</label>
-        <input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'€'" [clrTextAlign]="'right'" [clrAutofillDecimals]="true"/>
-      </clr-input-container>
-      <clr-input-container>
-        <label>Speed</label>
-        <input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'km/h'"/>
-      </clr-input-container>
-
-      <clr-input-container>
-        <label>Amount</label>
-        <input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'€'" [clrUnitPosition]="'left'" [clrAutofillDecimals]="true"/>
-      </clr-input-container>
-      <clr-input-container>
-        <label>Speed</label>
-        <input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'km/h'"
-               [clrUnitPosition]="'left'"/>
-      </clr-input-container>
-    </form>
-    <h3>Value</h3>
-    <div>{{input}}</div>
-
-    <button type="button" class="btn btn-primary" (click)="modalOpen = true">
-      Open Modal
-    </button>
-    <clr-modal [(clrModalOpen)]="modalOpen">
-      <h3 class="modal-title">Vertical Form</h3>
-      <div class="modal-body">
-        <form clrForm [clrLayout]="'vertical'" [formGroup]="exampleForm">
-          <clr-input-container>
-            <label>Amount</label>
-            <input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'€'"
-                   [clrTextAlign]="'right'" [clrAutofillDecimals]="true"
-                   formControlName="sample"/>
-            <clr-control-error>Please enter a value between 0 and 100</clr-control-error>
-          </clr-input-container>
-        </form>
+    <div class="clr-row">
+      <div class="clr-col-12 clr-col-lg-6">
+        <clr-view-edit-section [clrPreventModeChangeOnSave]="!exampleForm2.valid" [clrTitle]="sectionTitle"
+                               (clrSectionSubmitted)="sectionSubmitted()"
+                               [(clrEditMode)]="editable"
+                               (clrSectionEditCancelled)="sectionCancelled()">
+          <clr-view-edit-section-block>
+            <div *clrIfActive>
+              <form clrForm>
+                <div class="clr-form-control clr-row">
+                  <label class="clr-col-md-4 clr-control-label">First name</label>
+                  <span class="clr-col-md-8">{{firstName}}</span>
+                </div>
+              </form>
+            </div>
+          </clr-view-edit-section-block>
+          <clr-view-edit-section-block>
+            <div *clrIfActive>
+              <form clrForm [formGroup]="exampleForm2">
+                <clr-input-container>
+                  <label class="clr-col-4 required">First name</label>
+                  <input class="clr-col-8" clrInput clrNumeric type="text" [(clrNumericValue)]="firstName" clrUnit="€"
+                         formControlName="firstName" [clrDecimalPlaces]="2"/>
+                </clr-input-container>
+              </form>
+            </div>
+          </clr-view-edit-section-block>
+        </clr-view-edit-section>
       </div>
-    </clr-modal>
+    </div>
+
+    <!--<h3>Vertical Form</h3>-->
+    <!--<form clrForm [clrLayout]="'vertical'" [formGroup]="exampleForm">-->
+    <!--<clr-input-container>-->
+    <!--<label>Amount</label>-->
+    <!--<input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'€'" [clrTextAlign]="'right'"-->
+    <!--[clrAutofillDecimals]="true" formControlName="sample"/>-->
+    <!--<clr-control-error>Please enter a value between 0 and 100</clr-control-error>-->
+    <!--</clr-input-container>-->
+    <!--<clr-input-container>-->
+    <!--<label>Speed</label>-->
+    <!--<input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'km/h'"/>-->
+    <!--</clr-input-container>-->
+
+    <!--<clr-input-container>-->
+    <!--<label>Amount</label>-->
+    <!--<input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'€'" [clrUnitPosition]="'left'"-->
+    <!--[clrTextAlign]="'right'" [clrAutofillDecimals]="true"/>-->
+    <!--</clr-input-container>-->
+    <!--<clr-input-container>-->
+    <!--<label>Speed</label>-->
+    <!--<input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'km/h'"-->
+    <!--[clrUnitPosition]="'left'"/>-->
+    <!--</clr-input-container>-->
+    <!--<clr-input-container>-->
+    <!--<label>Rounded</label>-->
+    <!--<input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'€'" [clrRoundDisplayValue]="true"-->
+    <!--[clrAutofillDecimals]="true" [clrUnitPosition]="'right'"/>-->
+    <!--</clr-input-container>-->
+    <!--</form>-->
+
+    <!--<h3>Horizontal Form</h3>-->
+    <!--<form clrForm [clrLayout]="'horizontal'">-->
+    <!--<clr-input-container>-->
+    <!--<label>Amount</label>-->
+    <!--<input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'€'" [clrTextAlign]="'right'"-->
+    <!--[clrAutofillDecimals]="true"/>-->
+    <!--</clr-input-container>-->
+    <!--<clr-input-container>-->
+    <!--<label>Speed</label>-->
+    <!--<input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'km/h'"/>-->
+    <!--</clr-input-container>-->
+
+    <!--<clr-input-container>-->
+    <!--<label>Amount</label>-->
+    <!--<input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'€'" [clrUnitPosition]="'left'"-->
+    <!--[clrAutofillDecimals]="true"/>-->
+    <!--</clr-input-container>-->
+    <!--<clr-input-container>-->
+    <!--<label>Speed</label>-->
+    <!--<input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'km/h'"-->
+    <!--[clrUnitPosition]="'left'"/>-->
+    <!--</clr-input-container>-->
+    <!--</form>-->
+    <!--<h3>Value</h3>-->
+    <!--<div>{{input}}</div>-->
+
+    <!--<button type="button" class="btn btn-primary" (click)="modalOpen = true">-->
+    <!--Open Modal-->
+    <!--</button>-->
+    <!--<clr-modal [(clrModalOpen)]="modalOpen">-->
+    <!--<h3 class="modal-title">Vertical Form</h3>-->
+    <!--<div class="modal-body">-->
+    <!--<form clrForm [clrLayout]="'vertical'" [formGroup]="exampleForm">-->
+    <!--<clr-input-container>-->
+    <!--<label>Amount</label>-->
+    <!--<input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'€'"-->
+    <!--[clrTextAlign]="'right'" [clrAutofillDecimals]="true"-->
+    <!--formControlName="sample"/>-->
+    <!--<clr-control-error>Please enter a value between 0 and 100</clr-control-error>-->
+    <!--</clr-input-container>-->
+    <!--</form>-->
+    <!--</div>-->
+    <!--</clr-modal>-->
   </div>
 </div>

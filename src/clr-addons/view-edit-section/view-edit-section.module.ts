@@ -10,10 +10,11 @@ import { FormsModule } from '@angular/forms';
 import { ClarityModule, ClrFormsModule } from '@clr/angular';
 
 import { ClrViewEditSection } from './view-edit-section';
+import { ClrViewEditSectionBlock } from './view-edit-section-block';
 
 @NgModule({
   imports: [CommonModule, ClarityModule, FormsModule, ClrFormsModule],
-  declarations: [ClrViewEditSection],
-  exports: [ClrViewEditSection],
+  declarations: [ClrViewEditSection, ClrViewEditSectionBlock],
+  exports: [ClrViewEditSection, ClrViewEditSectionBlock],
 })
 export class ClrViewEditSectionModule {}

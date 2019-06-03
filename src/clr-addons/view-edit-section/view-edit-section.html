@@ -12,8 +12,13 @@
         </div>
       </div>
       <div class="card-text">
-        <ng-content select="[view-block]" *ngIf="!_editMode"></ng-content>
-        <ng-content select="[edit-block]" *ngIf="_editMode"></ng-content>
+        <ng-content select="clr-view-edit-section-block"></ng-content>
+        <!--<clr-view-edit-section-block>-->
+          <!--<ng-content select="[view-block]" *clrIfActive></ng-content>-->
+        <!--</clr-view-edit-section-block>-->
+        <!--<clr-view-edit-section-block>-->
+          <!--<ng-content select="[edit-block]" *clrIfActive></ng-content>-->
+        <!--</clr-view-edit-section-block>-->
         <ng-container *ngIf="_editMode">
           <form clrForm (ngSubmit)="onSubmit()" class="button-bar">
             <button class="btn btn-primary ves-save" type="submit">{{_saveText}}</button>
