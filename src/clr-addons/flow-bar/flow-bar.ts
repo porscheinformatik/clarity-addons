@@ -68,7 +68,7 @@ export class ClrFlowBar implements OnInit {
     if (this.isPreviousAvailable()) {
       // If active step has no sub steps or first sub step is selected -> go to previous main step
       if (!this.activeTabHasSubSteps() || this.isFirstSubStep()) {
-        this.changeActiveStep(this._steps[this.getCurrentIndex() - 1]);
+        this.changeActiveStep(this.findPreviousEnabledStep());
       } else {
         const subStepIndex = this._activeStep.subSteps.indexOf(this._activeStep.activeSubStep);
         this._activeStep.activeSubStep = this._activeStep.subSteps[subStepIndex - 1];
@@ -80,7 +80,7 @@ export class ClrFlowBar implements OnInit {
     if (this.isNextAvailable()) {
       // If active step has no sub steps or last sub step is selected -> go to next main step
       if (!this.activeTabHasSubSteps() || this.isLastSubStep()) {
-        this.changeActiveStep(this._steps[this.getCurrentIndex() + 1]);
+        this.changeActiveStep(this.findNextEnabledStep());
       } else {
         const subStepIndex = this._activeStep.subSteps.indexOf(this._activeStep.activeSubStep);
         this._activeStep.activeSubStep = this._activeStep.subSteps[subStepIndex + 1];
@@ -92,7 +92,7 @@ export class ClrFlowBar implements OnInit {
     if (this._activeStep) {
       if (!this.activeTabHasSubSteps() || this.isFirstSubStep()) {
         const index = this.getCurrentIndex();
-        return index > 0 && this._steps[index - 1].enabled;
+        return index > 0 && this.isAnyPreviousStepEnabled(index);
       } else {
         return true;
       }
@@ -103,7 +103,7 @@ export class ClrFlowBar implements OnInit {
     if (this._activeStep) {
       if (!this.activeTabHasSubSteps() || this.isLastSubStep()) {
         const index = this.getCurrentIndex();
-        return index < this._steps.length - 1 && this._steps[index + 1].enabled;
+        return index < this._steps.length - 1 && this.isAnyFollowingStepEnabled(index);
       } else {
         return true;
       }
@@ -138,5 +138,26 @@ export class ClrFlowBar implements OnInit {
 
   private isLastSubStep(): boolean {
     return this._activeStep.activeSubStep === this._activeStep.subSteps[this._activeStep.subSteps.length - 1];
+  }
+
+  private isAnyPreviousStepEnabled(index: number): boolean {
+    return this._steps.slice(0, index).find(step => step.enabled) !== undefined;
+  }
+
+  private isAnyFollowingStepEnabled(index: number): boolean {
+    return this._steps.slice(index + 1, this._steps.length).find(step => step.enabled) !== undefined;
+  }
+
+  private findPreviousEnabledStep(): ClrFlowBarStep {
+    const index = this.getCurrentIndex();
+    return this._steps
+      .slice(0, index)
+      .reverse()
+      .find(step => step.enabled);
+  }
+
+  private findNextEnabledStep(): ClrFlowBarStep {
+    const index = this.getCurrentIndex();
+    return this._steps.slice(index + 1, this._steps.length).find(step => step.enabled);
   }
 }

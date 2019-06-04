@@ -68,4 +68,21 @@ describe('FlowBarComponent', () => {
     const avail = component.isPreviousAvailable();
     expect(avail).toBeFalse();
   });
+
+  it('Skip disabled steps', () => {
+    component._steps = [
+      { title: of('Step1'), enabled: true },
+      { title: of('Step2'), enabled: false },
+      { title: of('Step3'), enabled: true },
+      { title: of('Step4'), enabled: false },
+      { title: of('Step5'), enabled: false },
+      { title: of('Step6'), enabled: true },
+    ];
+    component._activeStep = component._steps[2];
+    component.previous();
+    expect(component._activeStep).toBe(component._steps[0]);
+    component.next();
+    component.next();
+    expect(component._activeStep).toBe(component._steps[5]);
+  });
 });
