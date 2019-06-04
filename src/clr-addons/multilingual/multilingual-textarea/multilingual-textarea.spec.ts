@@ -8,16 +8,16 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { ClarityModule } from '@clr/angular';
-import { ClrMultilingualInputModule } from './multilingual-input.module';
+import { ClrMultilingualModule } from '../multilingual.module';
 
 @Component({
   template: `
-    <clr-multilingual-input [clrSelectedLang]="selectedLang" [(ngModel)]="data" clrRequiredAllMultilang name="test">
+    <clr-multilingual-textarea [clrSelectedLang]="selectedLang" [(ngModel)]="data" clrRequiredAllMultilang name="test">
 
       <label>Test</label>
       <clr-control-error>Error</clr-control-error>
       <clr-control-helper>Helper</clr-control-helper>
-    </clr-multilingual-input>
+    </clr-multilingual-textarea>
   `,
 })
 class TestComponentAllValid implements OnInit {
@@ -32,12 +32,12 @@ class TestComponentAllValid implements OnInit {
 
 @Component({
   template: `
-    <clr-multilingual-input [clrSelectedLang]="selectedLang" [(ngModel)]="data" clrRequiredOneMultilang name="test">
+    <clr-multilingual-textarea [clrSelectedLang]="selectedLang" [(ngModel)]="data" clrRequiredOneMultilang name="test">
 
       <label>Test</label>
       <clr-control-error>Error</clr-control-error>
       <clr-control-helper>Helper</clr-control-helper>
-    </clr-multilingual-input>
+    </clr-multilingual-textarea>
   `,
 })
 class TestComponentOneValid implements OnInit {
@@ -50,19 +50,20 @@ class TestComponentOneValid implements OnInit {
   }
 }
 
-describe('Multilingual Input', () => {
+describe('Multilingual Textarea', () => {
   describe('Basic + all required', () => {
     let fixture: ComponentFixture<TestComponentAllValid>;
     let inputEl: HTMLInputElement;
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [ClarityModule, FormsModule, ClrMultilingualInputModule],
+        imports: [ClarityModule, FormsModule, ClrMultilingualModule],
         declarations: [TestComponentAllValid],
       }).compileComponents();
 
       fixture = TestBed.createComponent(TestComponentAllValid);
-      inputEl = fixture.debugElement.query(By.css('input')).nativeElement;
+      fixture.detectChanges();
+      inputEl = fixture.debugElement.query(By.css('textarea')).nativeElement;
     });
 
     beforeEach(async(() => {
@@ -101,12 +102,13 @@ describe('Multilingual Input', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [ClarityModule, FormsModule, ClrMultilingualInputModule],
+        imports: [ClarityModule, FormsModule, ClrMultilingualModule],
         declarations: [TestComponentOneValid],
       }).compileComponents();
 
       fixture = TestBed.createComponent(TestComponentOneValid);
-      inputEl = fixture.debugElement.query(By.css('input')).nativeElement;
+      fixture.detectChanges();
+      inputEl = fixture.debugElement.query(By.css('textarea')).nativeElement;
     });
 
     beforeEach(async(() => {
@@ -129,11 +131,11 @@ describe('Multilingual Input', () => {
 
   function validationShown(shouldBeVisible: boolean, fixture: ComponentFixture<any>) {
     if (shouldBeVisible) {
-      expect(fixture.debugElement.query(By.css('clr-multilingual-input')).classes['clr-error']).toBeTrue();
+      expect(fixture.debugElement.query(By.css('clr-multilingual-textarea')).classes['clr-error']).toBeTrue();
       expect(fixture.debugElement.query(By.css('clr-control-error'))).toBeTruthy();
       expect(fixture.debugElement.query(By.css('clr-control-helper'))).toBeFalsy();
     } else {
-      expect(fixture.debugElement.query(By.css('clr-multilingual-input')).classes['clr-error']).toBeFalse();
+      expect(fixture.debugElement.query(By.css('clr-multilingual-textarea')).classes['clr-error']).toBeFalse();
       expect(fixture.debugElement.query(By.css('clr-control-error'))).toBeFalsy();
       expect(fixture.debugElement.query(By.css('clr-control-helper'))).toBeTruthy();
     }

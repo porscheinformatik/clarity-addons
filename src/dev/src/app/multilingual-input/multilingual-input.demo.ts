@@ -13,20 +13,30 @@ import { ClrMultilingualInputValidators } from '@porscheinformatik/clr-addons';
   templateUrl: './multilingual-input.demo.html',
 })
 export class MultilingualInputDemo implements OnInit {
-  data = new Map();
-  data2 = new Map();
+  template1 = new Map();
+  template2 = new Map();
+  reactive1 = new Map();
+  reactive2 = new Map();
 
   exampleForm = new FormGroup({
-    sample: new FormControl(this.data2, {
+    sample1: new FormControl(this.reactive1, {
+      updateOn: 'blur',
+      validators: [ClrMultilingualInputValidators.requiredAll()],
+    }),
+    sample2: new FormControl(this.reactive2, {
       updateOn: 'blur',
       validators: [ClrMultilingualInputValidators.requiredAll()],
     }),
   });
 
   ngOnInit() {
-    this.data.set('EN', 'english text');
-    this.data.set('DE', 'deutscher text');
-    this.data2.set('EN', 'english text');
-    this.data2.set('DE', 'deutscher text');
+    this.template1.set('EN', 'english text');
+    this.template1.set('DE', 'deutscher text');
+    this.template2.set('EN', 'english text');
+    this.template2.set('DE', 'deutscher text');
+    this.reactive1.set('EN', 'english text');
+    this.reactive1.set('DE', 'deutscher text');
+    this.reactive2.set('EN', 'english text');
+    this.reactive2.set('DE', 'deutscher text');
   }
 }

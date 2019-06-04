@@ -4,6 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-export * from './multilingual-input';
+export * from './multilingual.module';
 export * from './multilingual-validators';
-export * from './multilingual-input.module';
+export * from './multilingual-input/multilingual-input';
+export * from './multilingual-textarea/multilingual-textarea';

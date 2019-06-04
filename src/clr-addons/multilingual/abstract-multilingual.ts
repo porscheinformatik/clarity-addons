@@ -4,33 +4,21 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { AfterViewInit, Component, forwardRef, HostBinding, Injector, Input, OnDestroy } from '@angular/core';
-import { ControlValueAccessor, FormControl, NgControl, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { ɵs as NgControlService } from '@clr/angular';
+import { AfterViewInit, HostBinding, Injector, Input, OnDestroy } from '@angular/core';
+import { ControlValueAccessor, FormControl, NgControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-@Component({
-  selector: 'clr-multilingual-input',
-  templateUrl: './multilingual-input.html',
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => ClrMultilingualInput),
-      multi: true,
-    },
-    NgControlService,
-  ],
-})
-export class ClrMultilingualInput implements ControlValueAccessor, AfterViewInit, OnDestroy {
+export abstract class ClrMultilingualAbstract implements ControlValueAccessor, AfterViewInit, OnDestroy {
   @HostBinding('class.clr-form-control') formControl = true;
-  @HostBinding('class.clr-multilingual-input') multi = true;
+  @HostBinding('class.clr-multilingual') multi = true;
   @HostBinding('class.clr-error') invalid = false;
 
   @Input('clrControlClasses') controlClasses = 'clr-col-md-10';
   @Input('clrSelectedLang') selectedLang: string;
 
   disabled = false;
+  textarea = false;
   private _texts: Map<string, string>;
   onChange: any = () => {};
   onTouch: any = () => {};
@@ -79,4 +67,6 @@ export class ClrMultilingualInput implements ControlValueAccessor, AfterViewInit
     this.destroyed.next();
     this.destroyed.complete();
   }
+
+  onScroll(event) {}
 }
