@@ -1,12 +1,12 @@
 <clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
     <article>
-        <h5 class="component-summary">The multilingual input field is used to enter texts in different languages.</h5>
+        <h5 class="component-summary">The multilingual input/textarea fields are used to enter texts in different languages.</h5>
 
         <div id="code-examples">
             <h3 id="examples">Code &amp; Examples</h3>
 
             <p>
-                The multilingual input component requires you to use custom validators:
+                The multilingual input/textarea components require you to use custom validators:
             </p>
             <ul>
                 <li>
@@ -55,18 +55,36 @@
             <h3>Reactive forms</h3>
             <p>Validation will happen on blur</p>
             <form clrForm [formGroup]="exampleForm">
-                <clr-multilingual-input class="clr-col-12 clr-row" clrSelectedLang="EN" formControlName="sample"
-                    clrControlClasses="clr-col-md-3" name="reactive">
+                <clr-multilingual-input class="clr-col-12 clr-row" clrSelectedLang="EN" formControlName="sample1"
+                    clrControlClasses="clr-col-md-5" name="reactive1">
 
                     <label class="clr-col-md-2 required">Reactive</label>
                     <clr-control-helper>Helper text</clr-control-helper>
                     <clr-control-error>Please translate in every language!</clr-control-error>
                 </clr-multilingual-input>
+                <clr-multilingual-textarea class="clr-col-12 clr-row" clrSelectedLang="EN" formControlName="sample2"
+                    clrControlClasses="clr-col-md-5" name="reactive2">
+
+                    <label class="clr-col-md-2 required">Reactive</label>
+                    <clr-control-helper>Helper text</clr-control-helper>
+                    <clr-control-error>Please translate in every language!</clr-control-error>
+                </clr-multilingual-textarea>
 
                 <h4>Output texts</h4>
-                EN: {{exampleForm.get('sample').value.get('EN')}}<br>
-                DE: {{exampleForm.get('sample').value.get('DE')}}<br>
-                FR: {{exampleForm.get('sample').value.get('FR')}}
+                <div class="clr-row">
+                    <div class="clr-col-4">
+                        <b>Input</b><br>
+                        EN: {{exampleForm.get('sample1').value.get('EN')}}<br>
+                        DE: {{exampleForm.get('sample1').value.get('DE')}}<br>
+                        FR: {{exampleForm.get('sample1').value.get('FR')}}
+                    </div>
+                    <div class="clr-col-8">
+                        <b>Textarea</b><br>
+                        EN: {{exampleForm.get('sample2').value.get('EN')}}<br>
+                        DE: {{exampleForm.get('sample2').value.get('DE')}}<br>
+                        FR: {{exampleForm.get('sample2').value.get('FR')}}
+                    </div>
+                </div>
             </form>
             <clr-code-snippet [clrCode]="reactiveExample"></clr-code-snippet>
             <clr-code-snippet [clrCode]="reactiveTSExample" clrLanguage="typescript"></clr-code-snippet>
@@ -74,18 +92,38 @@
             <h3>Template driven</h3>
             <p>Validation will happen on blur</p>
             <form clrForm>
-                <clr-multilingual-input class="clr-col-12 clr-row" clrSelectedLang="EN" [(ngModel)]="data" 
-                    [ngModelOptions]="{ updateOn: 'blur' }" clrRequiredAllMultilang clrControlClasses="clr-col-md-3" name="template">
+                <clr-multilingual-input class="clr-col-12 clr-row" clrSelectedLang="EN" [(ngModel)]="data1" 
+                    [ngModelOptions]="{ updateOn: 'blur' }" clrRequiredAllMultilang clrControlClasses="clr-col-md-5" name="template1">
 
                     <label class="clr-col-md-2 required">Template</label>
                     <clr-control-error>Please translate in every language!</clr-control-error>
                     <clr-control-helper>Helper text</clr-control-helper>
                 </clr-multilingual-input>
+                <clr-multilingual-textarea class="clr-col-12 clr-row" clrSelectedLang="EN" [(ngModel)]="data2" 
+                    [ngModelOptions]="{ updateOn: 'blur' }" clrRequiredAllMultilang clrControlClasses="clr-col-md-5" name="template2">
+
+                    <label class="clr-col-md-2 required">Template</label>
+                    <clr-control-error>Please translate in every language!</clr-control-error>
+                    <clr-control-helper>Helper text</clr-control-helper>
+                </clr-multilingual-textarea>
 
                 <h4>Output texts</h4>
-                EN: {{data.get('EN')}}<br>
-                DE: {{data.get('DE')}}<br>
-                FR: {{data.get('FR')}}
+                <div class="clr-row">
+                    <div class="clr-col-4">
+                        <b>Input</b><br>
+                        EN: {{data1.get('EN')}}<br>
+                        DE: {{data1.get('DE')}}<br>
+                        FR: {{data1.get('FR')}}
+                    </div>
+                    <div class="clr-col-8">
+                        <b>Textarea</b><br>
+                        EN: {{data2.get('EN')}}<br>
+                        DE: {{data2.get('DE')}}<br>
+                        FR: {{data2.get('FR')}}
+                    </div>
+                </div>
+                <h4>Output texts</h4>
+                
             </form>
             <clr-code-snippet [clrCode]="templateExample"></clr-code-snippet>
         </div>

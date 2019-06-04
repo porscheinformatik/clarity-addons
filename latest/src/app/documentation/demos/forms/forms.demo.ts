@@ -100,6 +100,13 @@ const CODE_EXAMPLE_FULL_FORM = `
         <clr-control-error>Please translate in every language!</clr-control-error>
         <clr-control-helper>Helper text</clr-control-helper>
     </clr-multilingual-input>
+    <clr-multilingual-textarea class="clr-col-12 clr-row" clrSelectedLang="EN" [(ngModel)]="data2" [ngModelOptions]="{ updateOn: 'blur' }"
+        clrRequiredAllMultilang clrControlClasses="clr-col-2" name="template2">
+
+        <label class="required">Multilingual Input</label>
+        <clr-control-error>Please translate in every language!</clr-control-error>
+        <clr-control-helper>Helper text</clr-control-helper>
+    </clr-multilingual-textarea>
 </form>
 `;
 
@@ -214,6 +221,7 @@ export class FormsDemo extends ClarityDocComponent {
     selectOption: string;
     isDisabled: boolean;
     data = new Map();
+    data2 = new Map();
 
     inputTextSubmit: string;
     submittedText: string;
@@ -223,6 +231,9 @@ export class FormsDemo extends ClarityDocComponent {
         this.data.set("EN", "english text");
         this.data.set("DE", "deutscher text");
         this.data.set("FR", "texte français");
+        this.data2.set("EN", "english text");
+        this.data2.set("DE", "deutscher text");
+        this.data2.set("FR", "texte français");
     }
 
     onFormSubmit() {
