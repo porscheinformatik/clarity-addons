@@ -1,7 +1,11 @@
 @include exports('multilingual.clr-addons') {
   .clr-multilingual {
     .clr-multilingual-dropdown {
-      position: absolute !important;
+      height: fit-content; //needed for dropdown-menu to open directly below the button
+    }
+
+    .clr-control-container {
+      display: flex;
     }
 
     .clr-multilingual-button {
@@ -23,30 +27,9 @@
       padding-right: 0.5rem;
     }
 
-    .clr-input-wrapper,
-    .clr-textarea-wrapper {
-      position: relative;
-    }
-
-    .clr-input-wrapper .clr-multilingual-button {
-      margin-top: -5px;
-    }
-
-    .clr-textarea-wrapper {
-      overflow: hidden;
-
-      .clr-multilingual-button {
-        margin-top: 0.4rem;
-        margin-left: 0.4rem;
-      }
-    }
-
-    .clr-input {
-      padding-left: 2.6rem;
-    }
-
-    .clr-textarea {
-      text-indent: 2.5rem;
+    .clr-multi-input-wrapper {
+      width: 100%;
+      margin-left: 0.3rem;
     }
   }
 }

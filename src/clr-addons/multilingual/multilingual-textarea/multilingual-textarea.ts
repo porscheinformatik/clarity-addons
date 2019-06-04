@@ -22,15 +22,8 @@ import { ClrMultilingualAbstract } from '../abstract-multilingual';
   ],
 })
 export class ClrMultilingualTextarea extends ClrMultilingualAbstract {
-  @ViewChild(ClrDropdown, { read: ElementRef })
-  dropdown: ElementRef;
-
-  constructor(injector: Injector, private renderer: Renderer2) {
+  constructor(injector: Injector) {
     super(injector);
     this.textarea = true;
-  }
-
-  onScroll(event) {
-    this.renderer.setStyle(this.dropdown.nativeElement, 'transform', 'translateY(-' + event.target.scrollTop + 'px)');
   }
 }

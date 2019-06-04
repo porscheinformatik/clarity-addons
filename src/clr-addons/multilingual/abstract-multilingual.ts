@@ -67,6 +67,4 @@ export abstract class ClrMultilingualAbstract implements ControlValueAccessor, A
     this.destroyed.next();
     this.destroyed.complete();
   }
-
-  onScroll(event) {}
 }
