@@ -4,9 +4,9 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, forwardRef, Injector, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { Component, forwardRef, Injector } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { ɵs as NgControlService, ClrDropdown } from '@clr/angular';
+import { ɵs as NgControlService } from '@clr/angular';
 import { ClrMultilingualAbstract } from '../abstract-multilingual';
 
 @Component({
@@ -22,15 +22,8 @@ import { ClrMultilingualAbstract } from '../abstract-multilingual';
   ],
 })
 export class ClrMultilingualTextarea extends ClrMultilingualAbstract {
-  @ViewChild(ClrDropdown, { read: ElementRef })
-  dropdown: ElementRef;
-
-  constructor(injector: Injector, private renderer: Renderer2) {
+  constructor(injector: Injector) {
     super(injector);
     this.textarea = true;
-  }
-
-  onScroll(event) {
-    this.renderer.setStyle(this.dropdown.nativeElement, 'transform', 'translateY(-' + event.target.scrollTop + 'px)');
   }
 }
