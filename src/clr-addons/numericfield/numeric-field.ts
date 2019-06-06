@@ -49,7 +49,7 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
 
   @Input('clrNumericValue')
   set numericValue(value: number) {
-    if (this._numericValue !== value && !(isNaN(this._numericValue) && isNaN(value))) {
+    if (this._numericValue !== value && !(isNaN(this._numericValue) && (isNaN(value) || value === null))) {
       this.originalValue = value;
       this._numericValue = this.roundOrTruncate(value);
       this.handleInputChanged();
