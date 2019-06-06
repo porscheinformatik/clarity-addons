@@ -12,7 +12,9 @@ import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, TemplateRef, V
     <ng-content select="clr-date-container"></ng-content>
 
     <ng-template #timeInput>
-      <ng-content select="[clrTime]"></ng-content>
+      <div class="clr-input-wrapper">
+        <ng-content select="[clrTime]"></ng-content>
+      </div>
     </ng-template>
   `,
   host: {
