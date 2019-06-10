@@ -15,9 +15,9 @@ import { CLR_BLANK_OPTION, ClrQuickListValue } from './add-option.service';
 export class ClrQuickList<T> {
   @Input('clrBlankOption') blankOption: ClrQuickListValue<T> = CLR_BLANK_OPTION;
   @Input('clrAllValues') allValues: Array<ClrQuickListValue<T>> = [this.blankOption];
-  @Input('clrValues') values: Array<ClrQuickListValue<T>> = [this.blankOption];
-  @Input('clrAddLabel') addLabel: string = 'ADD';
   @Input('clrMandatory') mandatory: boolean = false;
+  @Input('clrValues') values: Array<ClrQuickListValue<T>> = this.mandatory ? [this.blankOption] : [];
+  @Input('clrAddLabel') addLabel: string = 'ADD';
   @Output('clrValuesChanged') valuesChanged = new EventEmitter<Array<ClrQuickListValue<T>>>();
   @Output('clrEmptyOptionAdded') emptyOptionAdded = new EventEmitter<void>();
 
