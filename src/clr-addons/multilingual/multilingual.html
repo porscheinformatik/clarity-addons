@@ -1,19 +1,20 @@
 <ng-content select="label"></ng-content>
 <div class="clr-control-container" [ngClass]="controlClasses">
-  <clr-dropdown class="clr-multilingual-dropdown">
-    <button type="button" class="btn btn-outline btn-sm clr-multilingual-button" clrDropdownTrigger [disabled]="disabled">{{selectedLang}}
-      <clr-icon shape="caret down"></clr-icon>
-    </button>
-    <clr-dropdown-menu *clrIfOpen>
-      <ng-container *ngFor="let text of texts | keyvalue">
-        <button *ngIf="text.key !== selectedLang" class="clr-multilingual-dd-entry" type="button"
-          clrDropdownItem (click)="selectedLang = text.key">
-          <span class="label">{{text.key}}</span>{{text.value}}
-        </button>
-      </ng-container>
-    </clr-dropdown-menu>
-  </clr-dropdown>
-
+  <div>
+    <clr-dropdown class="clr-multilingual-dropdown">
+      <button type="button" class="btn btn-outline btn-sm clr-multilingual-button" clrDropdownTrigger [disabled]="disabled">{{selectedLang}}
+        <clr-icon shape="caret down"></clr-icon>
+      </button>
+      <clr-dropdown-menu *clrIfOpen>
+        <ng-container *ngFor="let text of texts | keyvalue">
+          <button *ngIf="text.key !== selectedLang" class="clr-multilingual-dd-entry" type="button"
+            clrDropdownItem (click)="selectedLang = text.key">
+            <span class="label">{{text.key}}</span>{{text.value}}
+          </button>
+        </ng-container>
+      </clr-dropdown-menu>
+    </clr-dropdown>
+  </div>
   <div class="clr-multi-input-wrapper">
     <div [class.clr-input-wrapper]="!textarea" [class.clr-textarea-wrapper]="textarea">
       <input *ngIf="!textarea" class="clr-input" type="text" [ngModel]="!!texts && !!selectedLang ? texts.get(selectedLang) : ''"
