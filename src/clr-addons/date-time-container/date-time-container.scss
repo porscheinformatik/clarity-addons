@@ -4,11 +4,11 @@
       flex: 1 1 auto;
       margin-left: 0;
       margin-right: 0;
-    }
 
-    // Makes the border of the date picker and time picker go to the same vertical position.
-    .clr-input-group {
-      height: inherit;
+      // Places the time input next to the date input on the same height.
+      .clr-input-wrapper {
+        display: flex;
+      }
     }
   }
 }

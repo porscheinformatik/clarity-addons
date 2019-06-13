@@ -17,7 +17,7 @@
     "start": "npm-run-all build:ui:css build:ui:prefix serve:dev",
     "start:dev": "npm-run-all build:ui:css build:ui:prefix serve:dev:port",
     "serve:dev": "ng serve dev",
-    "serve:dev:port": "ng serve dev --port 4300",
+    "serve:dev:port": "ng serve dev --port 4300 --host=0.0.0.0",
     "clean": "shx rm -rf dist",
     "test:format": "prettier --list-different ./**/*.{js,json,md,ts,scss}",
     "test:lint": "tslint -p . -c tslint.json \"src/**/*.ts\"",
