@@ -1,9 +1,5 @@
 @include exports('multilingual.clr-addons') {
   .clr-multilingual {
-    .clr-multilingual-dropdown {
-      height: fit-content; //needed for dropdown-menu to open directly below the button
-    }
-
     .clr-control-container {
       display: flex;
     }
