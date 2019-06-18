@@ -6,7 +6,7 @@
 
 import { Component, forwardRef, Injector } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { ɵs as NgControlService } from '@clr/angular';
+import { ɵbf as NgControlService } from '@clr/angular';
 import { ClrMultilingualAbstract } from '../abstract-multilingual';
 
 @Component({

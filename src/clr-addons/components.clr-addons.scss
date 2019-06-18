@@ -80,7 +80,7 @@ body,
 
   &.active {
     box-shadow: 0 0.125rem 0 0 $clr-card-active-border-color;
-    border: $clr-default-borderwidth solid $clr-card-active-border-color;
+    border: $clr-global-borderwidth solid $clr-card-active-border-color;
     cursor: default;
     text-decoration: none;
     transform: translateY(-2px);
@@ -101,7 +101,7 @@ body,
 
       &.active:hover {
         box-shadow: 0 0.125rem 0 0 $clr-card-active-border-color;
-        border: $clr-default-borderwidth solid $clr-card-active-border-color;
+        border: $clr-global-borderwidth solid $clr-card-active-border-color;
         transform: translateY(-2px);
       }
     }
@@ -256,8 +256,8 @@ clr-checkbox-container[readonly] .clr-checkbox-wrapper input[type='checkbox'] {
       content: '';
       background: none;
       box-shadow: none;
-      border-left: $clr-forms-checkbox-border-style;
-      border-bottom: $clr-forms-checkbox-border-style;
+      border-left: $clr-forms-checkbox-mark-border-size solid $clr-forms-checkbox-mark-color;
+      border-bottom: $clr-forms-checkbox-mark-border-size solid $clr-forms-checkbox-mark-color;
       border-color: $clr-btn-success-bg-color;
       position: absolute;
       top: 0.3rem;

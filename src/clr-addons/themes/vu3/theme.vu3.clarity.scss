@@ -10,6 +10,7 @@ $clr-btn-default-color: $turquoise; // border-color, color, checked-background-c
 $clr-btn-default-hover-bg-color: $turquoise-light; // hover-background-color
 $clr-btn-default-hover-color: $turquoise-darkest; // hover-color
 $clr-btn-default-box-shadow-color: $turquoise-darkest;
+$clr-btn-default-checked-bg-color: $turquoise;
 
 // Default outline button
 $clr-btn-default-outline-color: $turquoise; // border-color, color, checked-background-color
@@ -78,7 +79,7 @@ $clr-card-active-border-color: $turquoise;
 // Checkbox
 $clr-forms-checkbox-background-color: $turquoise; // checked-background-color
 $clr-forms-checkbox-checked-shadow: inset 0 0 0 0.25rem $clr-forms-checkbox-background-color;
-$clr-indeterminate-checkbox-border-color: $turquoise;
+$clr-forms-checkbox-indeterminate-border-color: $turquoise;
 
 // Datagrid
 $clr-datagrid-row-hover: $clr-global-selection-color;
@@ -94,7 +95,6 @@ $clr-calendar-active-focus-cell-background-color: $clr-global-selection-color;
 
 // Dropdown
 $clr-dropdown-bg-hover-color: $clr-global-selection-color;
-$clr-dropdown-bg-active-color: $clr-global-selection-color;
 $clr-dropdown-selection-color: $clr-global-selection-color;
 
 // Forms
@@ -105,14 +105,14 @@ $clr-forms-input-invalid-color: $red-darker;
 $clr-input-border-color: $turquoise;
 
 // Header
-$clr-header-textColor: $clr-black;
-$clr-header-bgColor: $clr-white;
-$clr-header-2-bg-color: $clr-white;
-$clr-header-3-bg-color: $clr-white;
-$clr-header-4-bg-color: $clr-white;
-$clr-header-5-bg-color: $clr-white;
-$clr-header-6-bg-color: $clr-white;
-$clr-header-7-bg-color: $clr-white;
+$clr-header-font-color: $black;
+$clr-header-bgColor: $white;
+$clr-header-2-bg-color: $white;
+$clr-header-3-bg-color: $white;
+$clr-header-4-bg-color: $white;
+$clr-header-5-bg-color: $white;
+$clr-header-6-bg-color: $white;
+$clr-header-7-bg-color: $white;
 
 // Icons
 $clr-icon-color-success: $green;

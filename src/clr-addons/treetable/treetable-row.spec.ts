@@ -15,30 +15,29 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @Component({
   template: `
     <clr-treetable>
-        <clr-tt-row [clrExpandable]="true">
-          <clr-tt-cell></clr-tt-cell>
+      <clr-tt-row [clrExpandable]="true">
+        <clr-tt-cell></clr-tt-cell>
 
-          <clr-tt-row>
-            <clr-tt-cell></clr-tt-cell>
-          </clr-tt-row>
+        <clr-tt-row>
+          <clr-tt-cell></clr-tt-cell>
         </clr-tt-row>
+      </clr-tt-row>
     </clr-treetable>
   `,
 })
 class RowClickableTestComponent {
-  @ViewChild(ClrTreetableRow) ttRow;
+  @ViewChild(ClrTreetableRow, { static: true }) ttRow;
 }
 
 @Component({
   template: `
     <clr-treetable>
-      <clr-tt-row>
-      </clr-tt-row>
+      <clr-tt-row> </clr-tt-row>
     </clr-treetable>
   `,
 })
 class EmptyTestComponent {
-  @ViewChild(ClrTreetableRow) ttRow;
+  @ViewChild(ClrTreetableRow, { static: true }) ttRow;
 }
 
 describe('ClrTreetableRow', () => {

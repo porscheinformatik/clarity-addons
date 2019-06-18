@@ -12,7 +12,7 @@
     flex-direction: column;
   }
 
-  @media screen and (min-width: map-get($grid-breakpoints, xl)) {
+  @media screen and (min-width: map-get($clr-grid-breakpoints, xl)) {
     .content-panel-outer-wrapper {
       // The content next to the panel always has order = 2
       order: 2;
@@ -41,7 +41,7 @@
     border-left: $clr-global-borderwidth solid $clr-border-color;
     overflow: auto;
 
-    @media screen and (min-width: map-get($grid-breakpoints, md)) {
+    @media screen and (min-width: map-get($clr-grid-breakpoints, md)) {
       width: $clr-content-panel-width;
 
       &.content-panel-left {
@@ -51,12 +51,12 @@
       }
     }
 
-    @media screen and (min-width: map-get($grid-breakpoints, xl)) {
+    @media screen and (min-width: map-get($clr-grid-breakpoints, xl)) {
       position: relative;
       height: 100%;
     }
 
-    @media screen and (max-width: map-get($grid-breakpoints, md)) {
+    @media screen and (max-width: map-get($clr-grid-breakpoints, md)) {
       left: 0;
       width: 100%;
       border: none;
@@ -75,15 +75,15 @@
     bottom: 0;
     right: 0;
     left: 0;
-    background-color: clr-getColor(darkest);
+    background-color: $clr-color-neutral-900;
     opacity: 0.85;
     z-index: map-get($clr-layers, dropdown-menu) - 2;
 
-    @media screen and (max-width: map-get($grid-breakpoints, md)) {
+    @media screen and (max-width: map-get($clr-grid-breakpoints, md)) {
       display: none;
     }
 
-    @media screen and (min-width: map-get($grid-breakpoints, xl)) {
+    @media screen and (min-width: map-get($clr-grid-breakpoints, xl)) {
       display: none;
     }
   }

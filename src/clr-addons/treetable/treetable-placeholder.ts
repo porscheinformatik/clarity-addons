@@ -8,11 +8,11 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'clr-tt-placeholder',
   template: `
-        <div class="treetable-placeholder treetable-empty">
-          <div class="treetable-placeholder-image"></div>
-          <ng-content></ng-content>
-        </div>
-    `,
+    <div class="treetable-placeholder treetable-empty">
+      <div class="treetable-placeholder-image"></div>
+      <ng-content></ng-content>
+    </div>
+  `,
   host: { '[class.treetable-placeholder-container]': 'true' },
 })
 export class ClrTreetablePlaceholder {}

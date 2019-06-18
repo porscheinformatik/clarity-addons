@@ -37,7 +37,7 @@ export class ClrPager {
       } else {
         // Yeap. That's the formula to keep the first item from the old page still
         // displayed in the new one.
-        this._page = Math.floor(oldSize / size * (this._page - 1)) + 1;
+        this._page = Math.floor((oldSize / size) * (this._page - 1)) + 1;
       }
       // We always emit an event even if the current page index didn't change, because
       // the size changing means the items inside the page are different

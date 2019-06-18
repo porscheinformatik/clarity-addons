@@ -17,12 +17,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       <clr-datagrid>
         <clr-tt-row>
           <clr-dg-cell>1</clr-dg-cell>
-          
+
           <clr-tt-row>
             <clr-dg-cell>2</clr-dg-cell>
           </clr-tt-row>
         </clr-tt-row>
-        
+
         <clr-tt-row>
           <clr-dg-cell>3</clr-dg-cell>
         </clr-tt-row>
@@ -31,20 +31,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   `,
 })
 class RowClickableTestComponent {
-  @ViewChild(ClrTreetable) treetable;
+  @ViewChild(ClrTreetable, { static: true }) treetable;
   @ViewChildren(ClrTreetableRow) ttRows;
 }
 
 @Component({
   template: `
     <clr-treetable>
-      <clr-datagrid>
-      </clr-datagrid>
+      <clr-datagrid> </clr-datagrid>
     </clr-treetable>
   `,
 })
 class EmptyTestComponent {
-  @ViewChild(ClrTreetable) treetable;
+  @ViewChild(ClrTreetable, { static: true }) treetable;
 }
 
 describe('ClrTreetable', () => {

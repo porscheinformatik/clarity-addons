@@ -13,13 +13,19 @@ import { ClrOption } from './option';
 
 @Component({
   template: `
-    <clr-combobox class="clr-col-12" [clrPreselectedValue]="'Option 3'" (clrSelectedOption)="selectedOption = $event" (clrEnteredValue)="enteredValue = $event" [clrAllowUserEntry]="false">
+    <clr-combobox
+      class="clr-col-12"
+      [clrPreselectedValue]="'Option 3'"
+      (clrSelectedOption)="selectedOption = $event"
+      (clrEnteredValue)="enteredValue = $event"
+      [clrAllowUserEntry]="false"
+    >
       <label>Preselected value</label>
       <clr-options>
-          <clr-option [clrValue]="'Option 1'">Option 1</clr-option>
-          <clr-option [clrValue]="'Option 2'">Option 2</clr-option>
-          <clr-option [clrValue]="'Option 3'">Option 3</clr-option>
-          <div class="clr-no-results">No search results found</div>
+        <clr-option [clrValue]="'Option 1'">Option 1</clr-option>
+        <clr-option [clrValue]="'Option 2'">Option 2</clr-option>
+        <clr-option [clrValue]="'Option 3'">Option 3</clr-option>
+        <div class="clr-no-results">No search results found</div>
       </clr-options>
       <clr-control-error>Select a value</clr-control-error>
     </clr-combobox>

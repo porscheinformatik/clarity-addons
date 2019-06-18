@@ -11,8 +11,7 @@ import { ClrMainNavGroupModule } from './main-nav-group.module';
 
 @Component({
   template: `
-    <div class="main-container"
-      [class.open-hamburger-menu]="hamburgerMenu">
+    <div class="main-container" [class.open-hamburger-menu]="hamburgerMenu">
       <div class="header">
         <div class="header-nav">
           <clr-main-nav-group [class.active]="menuActive">

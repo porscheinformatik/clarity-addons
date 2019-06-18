@@ -13,12 +13,13 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'test-component',
-  template: `<clr-progress-spinner [clrShowSpinner]="loadingState">
-    Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-    sed diam nonumy eirmod tempor invidunt ut labore et dolore
-    magna aliquyam erat, sed diam voluptua. At vero eos et
-    accusam et justo duo dolores et ea rebum. Stet clita k
-  </clr-progress-spinner>`,
+  template: `
+    <clr-progress-spinner [clrShowSpinner]="loadingState">
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+      dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita
+      k
+    </clr-progress-spinner>
+  `,
 })
 class TestComponent {
   public loadingState: boolean = false;

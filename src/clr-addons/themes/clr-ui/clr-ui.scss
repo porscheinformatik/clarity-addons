@@ -1,11 +1,8 @@
-// Clarity Dependency
-@import '../../../../node_modules/@clr/ui/src/utils/dependencies.clarity'; // Includes light theme
+// Clarity Component
+@import '../../../../node_modules/@clr/ui/src/utils/components.clarity';
 
 // Component variables
 @import '../../components.variables.clr-addons';
-
-// Clarity Component
-@import '../../../../node_modules/@clr/ui/src/utils/components.clarity';
 
 // Clarity Addons Component
 @import '../../components.clr-addons';

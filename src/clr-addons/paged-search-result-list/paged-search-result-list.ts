@@ -35,7 +35,7 @@ export class ClrPagedSearchResultList {
    * The template how each item should be displayed.
    */
   @Input('clrItemTemplate')
-  @ContentChild(TemplateRef)
+  @ContentChild(TemplateRef, { static: true })
   itemTemplate: TemplateRef<any>;
 
   /**

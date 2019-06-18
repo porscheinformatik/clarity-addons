@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'clr-collapse-expand-section-demo',
-  styleUrls: ['./collapse-expand-section.demo.scss'],
   templateUrl: './collapse-expand-section.demo.html',
 })
 export class CollapseExpandSectionDemo {}

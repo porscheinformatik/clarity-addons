@@ -1,15 +1,16 @@
 language: node_js
 node_js:
-  - "8"
-
+  - '10'
 sudo: required
 
-script: 
-  - npm install && npm run test:travis
+before_install:
+  - export NG_CLI_ANALYTICS=ci
 
+script:
+  - npm run test:travis
 #deploy:
 #  provider: npm
-#  email: marcel@ring-mail.at
+#  email: mail@mail.com
 #  api_key: $NPM_TOKEN
 #  on:
 #    tags: true

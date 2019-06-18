@@ -1,8 +1,15 @@
 <ng-container *ngFor="let value of values; index as i">
-  <clr-add-option [allValues]="allValues" [excludedValues]="values" (remove)="onRemoveValue(i)"
-                  [value]="value" (valueChanged)="onValueChanged($event, i)"
-                  [blankOption]="blankOption"
-                  [mandatory]="mandatory">
+  <clr-add-option
+    [allValues]="allValues"
+    [excludedValues]="values"
+    (remove)="onRemoveValue(i)"
+    [value]="value"
+    (valueChanged)="onValueChanged($event, i)"
+    [blankOption]="blankOption"
+    [mandatory]="mandatory"
+  >
   </clr-add-option>
 </ng-container>
-<button class="btn btn-link btn-sm p-0 btn-add" (click)="addBlankOption()" [disabled]="addNotPossible()">{{addLabel}}</button>
+<button class="btn btn-link btn-sm quick-list-add" (click)="addBlankOption()" [disabled]="addNotPossible()">
+  {{addLabel}}
+</button>

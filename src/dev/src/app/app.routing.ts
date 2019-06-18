@@ -48,7 +48,10 @@ export const APP_ROUTES: Routes = [
   { path: 'searchfield', component: SearchFieldDemo },
   { path: 'treetable', component: TreetableDemo },
   { path: 'readonly', component: ReadonlyDemo },
-  { path: 'combobox', loadChildren: 'src/app/combobox/combobox.demo.module#ComboboxDemoModule' },
+  {
+    path: 'combobox',
+    loadChildren: () => import('src/app/combobox/combobox.demo.module').then(m => m.ComboboxDemoModule),
+  },
   { path: 'date-time-container', component: DateTimeContainerDemo },
   { path: 'quick-list-container', component: QuickListDemo },
   { path: 'letter-avatar', component: LetterAvatarDemo },

@@ -8,13 +8,12 @@ import { ClrContentPanel } from '@porscheinformatik/clr-addons';
 
 @Component({
   selector: 'clr-content-panel-demo',
-  styleUrls: ['./content-panel.demo.scss'],
   templateUrl: './content-panel.demo.html',
 })
 export class ContentPanelDemo {
-  @ViewChild(ClrContentPanel) clrContentPanel: ClrContentPanel;
+  @ViewChild(ClrContentPanel, { static: true }) clrContentPanel: ClrContentPanel;
 
-  @ViewChild('contentPanelRight') clrContentPanelRight: ClrContentPanel;
+  @ViewChild('contentPanelRight', { static: true }) clrContentPanelRight: ClrContentPanel;
 
   leftPanelClick(): void {
     this.clrContentPanel.toggle();
