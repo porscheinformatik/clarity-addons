@@ -17,8 +17,8 @@
       </div>
     </div>
     <div class="card-text">
-      <ng-content select="[view-block]" *ngIf="!_editMode"></ng-content>
-      <ng-content select="[edit-block]" *ngIf="_editMode"></ng-content>
+      <ng-template [ngTemplateOutlet]="viewRef" *ngIf="!_editMode"></ng-template>
+      <ng-template [ngTemplateOutlet]="editRef" *ngIf="_editMode"></ng-template>
       <ng-container *ngIf="_editMode">
         <form clrForm (ngSubmit)="onSubmit()" class="button-bar">
           <button class="btn btn-primary ves-save" type="submit">{{_saveText}}</button>

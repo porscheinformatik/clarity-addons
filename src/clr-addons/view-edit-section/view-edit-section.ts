@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 
 @Component({
   selector: 'clr-view-edit-section',
@@ -18,6 +18,9 @@ export class ClrViewEditSection {
   @Input('clrEditable') _editable: boolean = true;
   @Input('clrEditMode') _editMode: boolean = false;
   @Input('clrEditIcon') _editIcon: string = 'pencil';
+
+  @Input() viewRef: TemplateRef<any>;
+  @Input() editRef: TemplateRef<any>;
 
   @Output('clrEditModeChange') _editModeChanged = new EventEmitter(false);
   @Output('clrSectionSubmitted') _submitted = new EventEmitter(false);

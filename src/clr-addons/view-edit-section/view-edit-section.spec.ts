@@ -13,15 +13,16 @@ import { ClrViewEditSection } from './view-edit-section';
 
 @Component({
   template: `
-    <clr-view-edit-section [clrTitle]="title" [clrSaveText]="saveText" [clrCancelText]="cancelText">
-      <div view-block>
-        <div class="view-item">View</div>
-      </div>
-      <div edit-block>
-        <div class="edit-item">Edit</div>
-      </div>
+    <clr-view-edit-section [clrTitle]="title" [clrSaveText]="saveText" [clrCancelText]="cancelText"
+      [editRef]="editBlock" [viewRef]="viewBlock">
+        <ng-template #viewBlock>
+            <div class="view-item">View</div>
+        </ng-template>
+        <ng-template #editBlock>
+            <div class="edit-item">Edit</div>
+        </ng-template>
     </clr-view-edit-section>
-  `,
+    `,
 })
 class TestComponent {
   @ViewChild(ClrViewEditSection, { static: true }) vesInstance: ClrViewEditSection;
@@ -84,12 +85,12 @@ describe('ViewEditSectionComponent', () => {
 
     if (isEditMode) {
       expect(componentFixture.componentInstance.vesInstance._editMode).toBeTrue();
-      expect(componentFixture.nativeElement.querySelector('[view-block]')).toBeNull();
-      expect(componentFixture.nativeElement.querySelector('[edit-block]')).not.toBeNull();
+      expect(componentFixture.nativeElement.querySelector('.view-item')).toBeNull();
+      expect(componentFixture.nativeElement.querySelector('.edit-item')).not.toBeNull();
     } else {
       expect(componentFixture.componentInstance.vesInstance._editMode).toBeFalse();
-      expect(componentFixture.nativeElement.querySelector('[view-block]')).not.toBeNull();
-      expect(componentFixture.nativeElement.querySelector('[edit-block]')).toBeNull();
+      expect(componentFixture.nativeElement.querySelector('.view-item')).not.toBeNull();
+      expect(componentFixture.nativeElement.querySelector('.edit-item')).toBeNull();
     }
   }
 
