@@ -91,7 +91,7 @@ module.exports = function(karma) {
 
       // Clarity UI
       {
-        pattern: './src/clr-addons/themes/vu3/vu3-theme.scss',
+        pattern: './src/clr-addons/themes/phs/phs-theme.scss',
         included: true,
         watched: true,
       },

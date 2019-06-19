@@ -1,6 +1,6 @@
-$vu3-border-radius: 0.5rem;
-$vu3-card-border-radius: 0.25rem;
-$vu3-button-border-radius: 0.25rem;
+$phs-border-radius: 0.5rem;
+$phs-card-border-radius: 0.25rem;
+$phs-button-border-radius: 0.25rem;
 
 .header-hamburger-trigger,
 .header-overflow-trigger {
@@ -43,7 +43,7 @@ header,
 }
 
 .card {
-  border-radius: $vu3-card-border-radius;
+  border-radius: $phs-card-border-radius;
 
   &.clickable:hover {
     box-shadow: 0 0.125rem 0 0 $clr-card-active-border-color;
@@ -53,38 +53,38 @@ header,
   &.selectable:hover::after,
   &.card-active::after {
     top: 0;
-    border-top-left-radius: $vu3-card-border-radius;
-    border-bottom-left-radius: $vu3-card-border-radius;
+    border-top-left-radius: $phs-card-border-radius;
+    border-bottom-left-radius: $phs-card-border-radius;
   }
 }
 
 .card-img {
   &:first-child > img {
-    border-radius: $vu3-card-border-radius $vu3-card-border-radius 0 0;
+    border-radius: $phs-card-border-radius $phs-card-border-radius 0 0;
   }
 
   &:last-child > img {
-    border-radius: 0 0 $vu3-card-border-radius $vu3-card-border-radius;
+    border-radius: 0 0 $phs-card-border-radius $phs-card-border-radius;
   }
 }
 
 .card.card-img,
 .card > .card-img:first-child:last-child {
   & > img {
-    border-radius: $vu3-card-border-radius;
+    border-radius: $phs-card-border-radius;
   }
 }
 
 .progress,
 .progress-static {
   &.top {
-    border-top-left-radius: $vu3-border-radius;
-    border-top-right-radius: $vu3-border-radius;
+    border-top-left-radius: $phs-border-radius;
+    border-top-right-radius: $phs-border-radius;
   }
 }
 
 .btn {
-  border-radius: $vu3-button-border-radius;
+  border-radius: $phs-button-border-radius;
 }
 
 .datagrid .datagrid-table .datagrid-column {
