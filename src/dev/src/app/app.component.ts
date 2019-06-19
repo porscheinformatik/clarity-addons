@@ -14,7 +14,7 @@ export class AppComponent {
   linkRef: HTMLLinkElement;
 
   themes = [
-    { name: 'VU3', href: 'assets/styles/clr-addons-vu3.css' },
+    { name: 'PHS', href: 'assets/styles/clr-addons-phs.css' },
     { name: 'Clarity (light)', href: 'assets/styles/clr-ui.css' },
     { name: 'Clarity (dark)', href: 'assets/styles/clr-ui-dark.css' },
   ];
