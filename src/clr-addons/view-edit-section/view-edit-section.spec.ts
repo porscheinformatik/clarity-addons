@@ -13,13 +13,19 @@ import { ClrViewEditSection } from './view-edit-section';
 
 @Component({
   template: `
-    <clr-view-edit-section [clrTitle]="title" [clrSaveText]="saveText" [clrCancelText]="cancelText">
-      <div view-block>
+    <clr-view-edit-section
+      [clrTitle]="title"
+      [clrSaveText]="saveText"
+      [clrCancelText]="cancelText"
+      [editRef]="editBlock"
+      [viewRef]="viewBlock"
+    >
+      <ng-template #viewBlock>
         <div class="view-item">View</div>
-      </div>
-      <div edit-block>
+      </ng-template>
+      <ng-template #editBlock>
         <div class="edit-item">Edit</div>
-      </div>
+      </ng-template>
     </clr-view-edit-section>
   `,
 })
@@ -84,12 +90,12 @@ describe('ViewEditSectionComponent', () => {
 
     if (isEditMode) {
       expect(componentFixture.componentInstance.vesInstance._editMode).toBeTrue();
-      expect(componentFixture.nativeElement.querySelector('[view-block]')).toBeNull();
-      expect(componentFixture.nativeElement.querySelector('[edit-block]')).not.toBeNull();
+      expect(componentFixture.nativeElement.querySelector('.view-item')).toBeNull();
+      expect(componentFixture.nativeElement.querySelector('.edit-item')).not.toBeNull();
     } else {
       expect(componentFixture.componentInstance.vesInstance._editMode).toBeFalse();
-      expect(componentFixture.nativeElement.querySelector('[view-block]')).not.toBeNull();
-      expect(componentFixture.nativeElement.querySelector('[edit-block]')).toBeNull();
+      expect(componentFixture.nativeElement.querySelector('.view-item')).not.toBeNull();
+      expect(componentFixture.nativeElement.querySelector('.edit-item')).toBeNull();
     }
   }
 
@@ -152,6 +158,7 @@ describe('ViewEditSectionComponent', () => {
   it('has correct edit icon', () => {
     const editFixture: ComponentFixture<EditIconComponent> = TestBed.createComponent(EditIconComponent);
     editFixture.detectChanges();
+
     expect(editFixture.nativeElement.querySelector('clr-icon').getAttribute('shape')).toMatch(
       editFixture.componentInstance.editIcon
     );
