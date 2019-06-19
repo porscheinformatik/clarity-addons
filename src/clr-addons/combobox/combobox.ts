@@ -27,6 +27,7 @@ import {
   ɵh as POPOVER_HOST_ANCHOR,
   ɵbe as LayoutService,
   ɵbl as ControlClassService,
+  ɵbd as ControlIdService,
 } from '@clr/angular';
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -57,6 +58,7 @@ export function comboboxDomAdapterFactory(platformId: Object) {
     { provide: ComboboxDomAdapter, useFactory: comboboxDomAdapterFactory, deps: [PLATFORM_ID] },
     ControlClassService,
     LayoutService,
+    ControlIdService,
   ],
   host: {
     '[class.clr-combobox]': 'true',

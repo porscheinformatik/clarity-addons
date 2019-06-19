@@ -2,26 +2,50 @@
 <div class="clr-control-container" [ngClass]="controlClasses">
   <div>
     <clr-dropdown class="clr-multilingual-dropdown">
-      <button type="button" class="btn btn-outline btn-sm clr-multilingual-button" clrDropdownTrigger [disabled]="disabled">{{selectedLang}}
+      <button
+        type="button"
+        class="btn btn-outline btn-sm clr-multilingual-button"
+        clrDropdownTrigger
+        [disabled]="disabled"
+      >
+        {{selectedLang}}
         <clr-icon shape="caret down"></clr-icon>
       </button>
       <clr-dropdown-menu *clrIfOpen>
-        <ng-container *ngFor="let text of texts | keyvalue">
-          <button *ngIf="text.key !== selectedLang" class="clr-multilingual-dd-entry" type="button"
-            clrDropdownItem (click)="selectedLang = text.key">
-            <span class="label">{{text.key}}</span>{{text.value}}
-          </button>
-        </ng-container>
+        <button
+          *ngFor="let text of texts | keyvalue"
+          class="clr-multilingual-dd-entry"
+          type="button"
+          clrDropdownItem
+          (click)="changeLanguage(text.key)"
+          [hidden]="text.key === selectedLang"
+          [disabled]="text.key === selectedLang"
+        >
+          <span class="label">{{text.key}}</span>{{text.value}}
+        </button>
       </clr-dropdown-menu>
     </clr-dropdown>
   </div>
   <div class="clr-multi-input-wrapper">
     <div [class.clr-input-wrapper]="!textarea" [class.clr-textarea-wrapper]="textarea">
-      <input *ngIf="!textarea" class="clr-input" type="text" [ngModel]="!!texts && !!selectedLang ? texts.get(selectedLang) : ''"
-        (ngModelChange)="setText(selectedLang, $event)" (blur)="onTouch()" [disabled]="disabled"/>
+      <input
+        *ngIf="!textarea"
+        class="clr-input"
+        type="text"
+        [ngModel]="!!texts && !!selectedLang ? texts.get(selectedLang) : ''"
+        (ngModelChange)="setText(selectedLang, $event)"
+        (blur)="onTouch()"
+        [disabled]="disabled"
+      />
 
-      <textarea *ngIf="textarea" class="clr-textarea" [ngModel]="!!texts && !!selectedLang ? texts.get(selectedLang) : ''"
-        (ngModelChange)="setText(selectedLang, $event)" (blur)="onTouch()" [disabled]="disabled"></textarea>
+      <textarea
+        *ngIf="textarea"
+        class="clr-textarea"
+        [ngModel]="!!texts && !!selectedLang ? texts.get(selectedLang) : ''"
+        (ngModelChange)="setText(selectedLang, $event)"
+        (blur)="onTouch()"
+        [disabled]="disabled"
+      ></textarea>
 
       <clr-icon *ngIf="invalid" class="clr-validate-icon" shape="exclamation-circle" aria-hidden="true"></clr-icon>
     </div>
