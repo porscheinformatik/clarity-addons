@@ -16,7 +16,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
       state('false', style({ display: 'none' })),
       state('true', style({ display: 'block' })),
       transition('false => true', [
-        style({ opacity: 0, height: 0, overflow: 'hidden' }),
+        style({ opacity: 0, height: 0, overflow: 'hidden', display: 'block' }),
         animate('300ms', style({ opacity: 1, height: '*' })),
       ]),
       transition('true => false', [

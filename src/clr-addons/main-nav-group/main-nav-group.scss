@@ -2,6 +2,8 @@
   header,
   .header {
     .header-nav .nav-link {
+      text-align: left;
+
       &:first-of-type::before,
       &:last-of-type::after {
         display: none;
@@ -74,6 +76,10 @@
         font-weight: $clr-typography-boldfont;
         padding-right: 1.5rem;
       }
+    }
+
+    .nav-link {
+      padding: 0;
     }
 
     .collapsible {

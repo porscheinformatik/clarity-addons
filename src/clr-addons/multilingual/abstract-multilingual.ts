@@ -36,6 +36,12 @@ export abstract class ClrMultilingualAbstract implements ControlValueAccessor, A
     }
   }
 
+  changeLanguage(key: string) {
+    // need as the click for closing the menu is registered on a single item
+    // if the language change destroys it immediately, the click won't get fired
+    setTimeout(() => (this.selectedLang = key), 0);
+  }
+
   setText(key: string, value: string) {
     this._texts.set(key, value);
     this.onChange(new Map(this._texts));

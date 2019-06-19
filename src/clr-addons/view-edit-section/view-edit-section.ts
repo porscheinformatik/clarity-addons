@@ -19,8 +19,8 @@ export class ClrViewEditSection {
   @Input('clrEditMode') _editMode: boolean = false;
   @Input('clrEditIcon') _editIcon: string = 'pencil';
 
-  @Input() viewRef: TemplateRef<any>;
-  @Input() editRef: TemplateRef<any>;
+  @Input('clrViewRef') viewRef: TemplateRef<any>;
+  @Input('clrEditRef') editRef: TemplateRef<any>;
 
   @Output('clrEditModeChange') _editModeChanged = new EventEmitter(false);
   @Output('clrSectionSubmitted') _submitted = new EventEmitter(false);

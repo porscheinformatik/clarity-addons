@@ -17,8 +17,8 @@ import { ClrViewEditSection } from './view-edit-section';
       [clrTitle]="title"
       [clrSaveText]="saveText"
       [clrCancelText]="cancelText"
-      [editRef]="editBlock"
-      [viewRef]="viewBlock"
+      [clrEditRef]="editBlock"
+      [clrViewRef]="viewBlock"
     >
       <ng-template #viewBlock>
         <div class="view-item">View</div>
