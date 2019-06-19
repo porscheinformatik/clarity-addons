@@ -22,7 +22,9 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.ts$/, loader: 'ts-loader' }
+      { test: /\.(ts|js)$/, loader: 'regexp-replace-loader', options: { match: { pattern: '\\[(Mouse|Keyboard)Event\\]', flags: 'g' }, replaceWith: '[]', } },
+      { test: /\.(ts|js)$/, loader: 'regexp-replace-loader', options: { match: { pattern: '\\[(HTMLInputElement|Event)\\]', flags: 'g' }, replaceWith: '[]', } },
+      { test: /\.ts$/, loader: 'ts-loader' },
     ]
   },
   plugins: [

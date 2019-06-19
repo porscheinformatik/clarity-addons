@@ -9,9 +9,10 @@ import { ClarityDocComponent } from "../clarity-doc";
 
 const HTML_EXAMPLE_SIDE_BY_SIDE = `
 <div class="clr-col-12 clr-col-lg-6">
-    <clr-view-edit-section [clrPreventModeChangeOnSave]="!exampleForm.valid" [clrTitle]="sectionTitle"
-        (clrSectionSubmitted)="sectionSubmitted()" (clrSectionEditCancelled)="sectionCancelled()">
-        <div view-block>
+    <clr-view-edit-section [(clrEditMode)]="editMode1" [clrPreventModeChangeOnSave]="!exampleForm.valid" [clrTitle]="sectionTitle"
+        (clrSectionSubmitted)="sectionSubmitted()" (clrSectionEditCancelled)="sectionCancelled()"
+        [clrViewRef]="viewBlock1" [clrEditRef]="editBlock1">
+        <ng-template #viewBlock1>
             <form clrForm clrLayout="horizontal">
               <div class="clr-form-control clr-row">
                   <label class="clr-col-md-4 clr-control-label">First name</label>
@@ -26,9 +27,9 @@ const HTML_EXAMPLE_SIDE_BY_SIDE = `
                   <span class="text-truncate clr-col-md-8">{{email || "&nbsp;"}}</span>
               </div>
             </form>
-        </div>
-        <div edit-block>
-            <form clrForm clrLayout="horizontal" [formGroup]="exampleForm">
+        </ng-template>
+        <ng-template #editBlock1>
+            <form clrForm clrLayout="horizontal" [formGroup]="exampleForm" (submit)="onFormSubmit()">
               <clr-input-container>
                   <label class="clr-col-md-4 required">First name</label>
                   <input class="clr-col-md-8" clrInput type="text" formControlName="editFirst" name="first"/>
@@ -43,8 +44,9 @@ const HTML_EXAMPLE_SIDE_BY_SIDE = `
                   <label class="clr-col-md-4">E-mail</label>
                   <input class="clr-col-md-8" clrInput type="text" formControlName="editEmail" name="email"/>
               </clr-input-container>
+              <input type="submit" style="display: none">
             </form>
-        </div>
+        </ng-template>
     </clr-view-edit-section>
 </div>
 `;
@@ -52,14 +54,14 @@ const HTML_EXAMPLE_SIDE_BY_SIDE = `
 const HTML_EXAMPLE_FULL_ICON = `
 <div class="clr-col-12">
     <clr-view-edit-section [clrTitle]="compSectionTitle" [clrEditIcon]="compEditIcon"
-    clrSaveText="Save it" clrCancelText="Cancel it"
-    (clrSectionSubmitted)="compSectionSubmitted()" (clrSectionEditCancelled)="compSectionCancelled()">
-        <div view-block>
+    clrSaveText="Save it" clrCancelText="Cancel it" (clrSectionSubmitted)="compSectionSubmitted()"
+    (clrSectionEditCancelled)="compSectionCancelled()" [clrViewRef]="viewBlock5" [clrEditRef]="editBlock5">
+        <ng-template #viewBlock5>
             ...
-        </div>
-        <div edit-block>
+        </ng-template>
+        <ng-template #editBlock5>
             ...
-        </div>
+        </ng-template>
     </clr-view-edit-section>
 </div>
 `;
@@ -70,7 +72,8 @@ compEditIcon: string = "cog";
 
 const HTML_EXAMPLE_CUSTOM_ACTIONS = `
 <clr-view-edit-section [(clrEditMode)]="editMode" [clrTitle]="customActionsTitle"
-    (clrSectionSubmitted)="compSectionSubmitted()" (clrSectionEditCancelled)="compSectionCancelled()">
+    (clrSectionSubmitted)="compSectionSubmitted()" (clrSectionEditCancelled)="compSectionCancelled()"
+    [clrViewRef]="viewBlock3" [clrEditRef]="editBlock3">
     <div action-block>
         <clr-dropdown *ngIf="!editMode">
           <button type="button" class="btn btn-icon btn-link ves-action dropdown-toggle" clrDropdownTrigger>
@@ -94,22 +97,22 @@ const HTML_EXAMPLE_CUSTOM_ACTIONS = `
 `;
 
 const HTML_EXAMPLE_NOT_EDITABLE = `
-<clr-view-edit-section clrTitle="Not Editable" [clrEditable]="false">
-    <div view-block>
+<clr-view-edit-section clrTitle="Not Editable" [clrEditable]="false" [clrViewRef]="viewBlock4">
+    <ng-template #viewBlock4>
         ...
-    </div>
+    </ng-template>
 </clr-view-edit-section>
 `;
 
 const HTML_EXAMPLE_FORM_SUBMIT = `
-<clr-view-edit-section [(clrEditMode)]="editMode" (clrSectionSubmitted)="sectionSubmitted()">
+<clr-view-edit-section [(clrEditMode)]="editMode" (clrSectionSubmitted)="sectionSubmitted()" [clrEditRef]="editBlock">
     ...
-    <div edit-block>
+    <ng-template #editBlock>
         <form ... (submit)="onFormSubmit()">
             ...
             <input type="submit" style="display: none">
         </form>
-    </div>
+    </ng-template>
 </clr-view-edit-section>
 `;
 

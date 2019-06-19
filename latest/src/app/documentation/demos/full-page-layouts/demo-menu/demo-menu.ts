@@ -14,7 +14,7 @@ export class DemoMenu {
     linkRef: HTMLLinkElement;
 
     themes = [
-        { name: "VU3", href: "styles/clr-addons-vu3.min.css" },
+        { name: "PHS", href: "styles/clr-addons-phs.min.css" },
         { name: "Clarity (light)", href: "styles/clr-ui.min.css" },
         { name: "Clarity (dark)", href: "styles/clr-ui-dark.min.css" }];
 

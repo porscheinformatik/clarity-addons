@@ -3,13 +3,9 @@
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "baseUrl": "./",
-    "module": "es2015",
-    "types": [
-      "node"
-    ]
+    "module": "esnext",
+    "resolveJsonModule": true,
   },
-  "exclude": [
-    "test.ts",
-    "**/*.spec.ts"
-  ]
+  "exclude": ["prerender.ts", "server.ts"]
 }
+  

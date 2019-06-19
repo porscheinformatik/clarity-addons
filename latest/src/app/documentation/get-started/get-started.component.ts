@@ -2,13 +2,13 @@ import {Component} from "@angular/core";
 
 const NODE_IMPORTS = `
 "styles": [
-      "node_modules/@porscheinformatik/clr-addons/styles/clr-addons-vu3.min.css",
+      "node_modules/@porscheinformatik/clr-addons/styles/clr-addons-phs.min.css",
       ... any other styles
 ]
 `;
 
 const HTML_IMPORTS = `
-<link rel="stylesheet" href="path/to/node_modules/@porscheinformatik/clr-addons/styles/clr-addons-vu3.min.css">
+<link rel="stylesheet" href="path/to/node_modules/@porscheinformatik/clr-addons/styles/clr-addons-phs.min.css">
 `;
 
 const NG_MODULE_EXAMPLE = `

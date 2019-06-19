@@ -14,7 +14,7 @@ const appRoutes: Routes = [
     },
     {
         path: "news",
-        loadChildren: "app/news/news.module#NewsModule",
+        loadChildren: () => import("./news/news.module").then(m => m.NewsModule),
     },
     {
         path: "**",

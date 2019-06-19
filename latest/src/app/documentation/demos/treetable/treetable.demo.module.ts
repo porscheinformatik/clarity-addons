@@ -6,7 +6,6 @@
 import {CommonModule} from "@angular/common";
 import {RouterModule} from "@angular/router";
 import {ClrAddonsModule} from "@porscheinformatik/clr-addons";
-import {ViewEditSectionDemo} from "../view-edit-section/view-edit-section.demo";
 import {ClarityModule} from "@clr/angular";
 import {NgModule} from "@angular/core";
 import {UtilsModule} from "../../../utils/utils.module";

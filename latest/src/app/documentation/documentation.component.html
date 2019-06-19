@@ -1,6 +1,7 @@
 <router-outlet></router-outlet>
 <nav class="sidenav" [clr-nav-level]="2">
     <section class="sidenav-content">
+        <div style="margin-left:1rem; font-weight:500">Version {{environment.version_display}}</div>
 
         <a class="nav-link" routerLink="get-started" routerLinkActive="active"
            [routerLinkActiveOptions]="{exact:true}">Get Started</a>

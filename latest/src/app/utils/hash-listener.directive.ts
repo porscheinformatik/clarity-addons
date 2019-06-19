@@ -10,7 +10,7 @@ import {Subscription} from "rxjs";
 @Directive({
   selector: "[hash-listener]",
   host: {
-    "[style.position]": "'relative'"
+    // "[style.position]": "'relative'"
   }
 })
 export class HashListener implements OnDestroy, OnInit {
@@ -31,7 +31,7 @@ export class HashListener implements OnDestroy, OnInit {
     if (hash && isPlatformBrowser(this.platformId)) {
       const element = document.querySelector("#" + hash);
       if (element) {
-        element.scrollIntoView({
+        element.scrollIntoView(<ScrollIntoViewOptions>{
           behavior: smooth ? "smooth" : "instant",
           block:    "start"
         });
