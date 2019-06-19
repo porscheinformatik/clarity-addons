@@ -13,16 +13,21 @@ import { ClrViewEditSection } from './view-edit-section';
 
 @Component({
   template: `
-    <clr-view-edit-section [clrTitle]="title" [clrSaveText]="saveText" [clrCancelText]="cancelText"
-      [editRef]="editBlock" [viewRef]="viewBlock">
-        <ng-template #viewBlock>
-            <div class="view-item">View</div>
-        </ng-template>
-        <ng-template #editBlock>
-            <div class="edit-item">Edit</div>
-        </ng-template>
+    <clr-view-edit-section
+      [clrTitle]="title"
+      [clrSaveText]="saveText"
+      [clrCancelText]="cancelText"
+      [editRef]="editBlock"
+      [viewRef]="viewBlock"
+    >
+      <ng-template #viewBlock>
+        <div class="view-item">View</div>
+      </ng-template>
+      <ng-template #editBlock>
+        <div class="edit-item">Edit</div>
+      </ng-template>
     </clr-view-edit-section>
-    `,
+  `,
 })
 class TestComponent {
   @ViewChild(ClrViewEditSection, { static: true }) vesInstance: ClrViewEditSection;
@@ -153,6 +158,7 @@ describe('ViewEditSectionComponent', () => {
   it('has correct edit icon', () => {
     const editFixture: ComponentFixture<EditIconComponent> = TestBed.createComponent(EditIconComponent);
     editFixture.detectChanges();
+
     expect(editFixture.nativeElement.querySelector('clr-icon').getAttribute('shape')).toMatch(
       editFixture.componentInstance.editIcon
     );
