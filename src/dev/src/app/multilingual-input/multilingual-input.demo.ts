@@ -32,11 +32,15 @@ export class MultilingualInputDemo implements OnInit {
   ngOnInit() {
     this.template1.set('EN', 'english text');
     this.template1.set('DE', 'deutscher text');
+    this.template1.set('FR', 'texte français');
     this.template2.set('EN', 'english text');
     this.template2.set('DE', 'deutscher text');
+    this.template2.set('FR', 'texte français');
     this.reactive1.set('EN', 'english text');
     this.reactive1.set('DE', 'deutscher text');
+    this.reactive1.set('FR', 'texte français');
     this.reactive2.set('EN', 'english text');
     this.reactive2.set('DE', 'deutscher text');
+    this.reactive2.set('FR', 'texte français');
   }
 }
