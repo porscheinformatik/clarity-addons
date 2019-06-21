@@ -338,3 +338,9 @@ input:not([type='time']) {
     right: 0.25rem;
   }
 }
+
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
