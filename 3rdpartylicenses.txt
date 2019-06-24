@@ -26,6 +26,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
+@angular/common
+MIT
+
 rxjs
 Apache-2.0
                                Apache License
@@ -232,9 +235,6 @@ Apache-2.0
  
 
 
-@angular/common
-MIT
-
 tslib
 Apache-2.0
 Apache License
@@ -297,19 +297,7 @@ END OF TERMS AND CONDITIONS
 @angular/platform-browser
 MIT
 
-@angular/animations
-MIT
-
 undefined
-
-@clr/angular
-MIT
-
-@angular/router
-MIT
-
-@porscheinformatik/clr-addons
-MIT
 
 util
 MIT
@@ -353,10 +341,22 @@ PERFORMANCE OF THIS SOFTWARE.
 
 
 
-@angular/core
+@angular/animations
 MIT
 
 @angular/forms
+MIT
+
+@clr/angular
+MIT
+
+@angular/router
+MIT
+
+@porscheinformatik/clr-addons
+MIT
+
+@angular/core
 MIT
 
 core-js
