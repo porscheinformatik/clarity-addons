@@ -1,0 +1,115 @@
+@import '../../styles/clarity-imports';
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.layout-home {
+  background-color: $clr-color-neutral-50;
+
+  .main-container {
+    height: auto;
+
+    .content-area {
+      overflow-x: hidden;
+      padding: 0;
+    }
+  }
+
+  $clrweb-home-sectionPadding: $bl-4_0;
+
+  section {
+    padding-top: $clrweb-home-sectionPadding;
+    padding-bottom: $clrweb-home-sectionPadding;
+
+    &.home-hero {
+      padding-top: 60px;
+      padding-bottom: 72px;
+    }
+
+    &.home-cards,
+    &.home-process {
+      padding-top: 0;
+    }
+
+    &.home-contact {
+      padding: 0;
+    }
+  }
+}
+
+.home-hero {
+  height: 696px;
+  max-width: 1248px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+
+  .home-hero-content {
+    position: relative;
+    width: 100%;
+    max-width: 648px;
+    z-index: 1;
+  }
+
+  h1 {
+    font-weight: 200;
+    letter-spacing: -0.02em;
+    line-height: $bl-3_0;
+    font-size: 64px;
+    margin-bottom: $bl-0_5;
+    margin-top: $bl-0_5;
+  }
+
+  p.head {
+    font-size: $bl-0_75;
+    font-weight: 200;
+    line-height: $bl-1_5;
+    margin: $bl-0_25 5px;
+    color: #000;
+    max-width: 624px;
+  }
+
+  .home-hero-btn {
+    margin: $bl-1_5 0 $bl-1_0;
+    padding-left: 5px;
+  }
+
+  .btn {
+    width: baselineRem(7);
+    height: $bl-2_0;
+    line-height: $bl-2_0 - 1;
+    margin: 0;
+    margin-right: $bl-0_75;
+    font-weight: 400;
+  }
+
+  .btn-secondary {
+    margin-right: 0;
+  }
+
+  p.subtext {
+    margin-left: 5px;
+
+    & > a {
+      color: inherit;
+      text-decoration: underline;
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: $clr-color-neutral-900;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .bg-img {
+    height: 520px;
+    width: 693px;
+    position: absolute;
+    bottom: 0;
+    left: 612px;
+    background-image: url('../../assets/images/clarity-logo.svg');
+    background-size: cover;
+    background-position: center center;
+  }
+}

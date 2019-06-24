@@ -1,23 +1,43 @@
-import { Component } from '@angular/core';
-import localeDe from '@angular/common/locales/de';
-import localeDeAT from '@angular/common/locales/de-AT';
-import localeEnGB from '@angular/common/locales/en-GB';
-import localeEnUS from '@angular/common/locales/en';
-import { registerLocaleData } from '@angular/common';
-import { LocaleDataIndex } from "@angular/common/src/i18n/locale_data";
+import { Component } from "@angular/core";
+import localeDe from "@angular/common/locales/de";
+import localeDeAT from "@angular/common/locales/de-AT";
+import localeEnGB from "@angular/common/locales/en-GB";
+import localeEnUS from "@angular/common/locales/en";
+import { registerLocaleData } from "@angular/common";
 import { CURRENCIES_EN } from "./currencies";
-
-import LocaleData = LocaleDataIndex;
 
 registerLocaleData(localeDe);
 registerLocaleData(localeDeAT);
 registerLocaleData(localeEnGB);
 
+enum LocaleDataIndex {
+    LocaleId = 0,
+    DayPeriodsFormat,
+    DayPeriodsStandalone,
+    DaysFormat,
+    DaysStandalone,
+    MonthsFormat,
+    MonthsStandalone,
+    Eras,
+    FirstDayOfWeek,
+    WeekendRange,
+    DateFormat,
+    TimeFormat,
+    DateTimeFormat,
+    NumberSymbols,
+    NumberFormats,
+    CurrencySymbol,
+    CurrencyName,
+    Currencies,
+    PluralCase,
+    ExtraData
+  }
+
 
 @Component({
-    selector: 'internationalization',
-    templateUrl: './internationalization.component.html',
-    styleUrls: ['internationalization.component.css'],
+    selector: "internationalization",
+    templateUrl: "./internationalization.component.html",
+    styleUrls: ["internationalization.component.css"],
     host: {
         "[class.content-area]": "true"
     }
@@ -38,78 +58,79 @@ export class InternationalizationComponent {
     }
 
     getLocaleId(locale): string {
-        return locale[LocaleData.LocaleId];
+        return locale[LocaleDataIndex.LocaleId];
     }
 
     // DATE & TIME
 
     getShortDate(locale): string {
-        return locale[LocaleData.DateFormat][0];
+        return locale[LocaleDataIndex.DateFormat][0];
     }
 
     getMediumDate(locale): string {
-        return locale[LocaleData.DateFormat][1];
+        return locale[LocaleDataIndex.DateFormat][1];
     }
 
     getLongDate(locale): string {
-        return locale[LocaleData.DateFormat][2];
+        return locale[LocaleDataIndex.DateFormat][2];
     }
 
     getFullDate(locale): string {
-        return locale[LocaleData.DateFormat][3];
+        return locale[LocaleDataIndex.DateFormat][3];
     }
 
     getShortTime(locale): string {
-        return locale[LocaleData.TimeFormat][0];
+        return locale[LocaleDataIndex.TimeFormat][0];
     }
 
     getMediumTime(locale): string {
-        return locale[LocaleData.TimeFormat][1];
+        return locale[LocaleDataIndex.TimeFormat][1];
     }
 
     getLongTime(locale): string {
-        return locale[LocaleData.TimeFormat][2];
+        return locale[LocaleDataIndex.TimeFormat][2];
     }
 
     getFullTime(locale): string {
-        return locale[LocaleData.TimeFormat][3];
+        return locale[LocaleDataIndex.TimeFormat][3];
     }
 
     getFirstDayOfWeek(locale): string {
-        return locale[LocaleData.DaysFormat][2][locale[LocaleData.FirstDayOfWeek]];
+        return locale[LocaleDataIndex.DaysFormat][2][locale[LocaleDataIndex.FirstDayOfWeek]];
     }
 
     // NUMBERS
 
     getDecimalSymbol(locale): string {
-        return locale[LocaleData.NumberSymbols][0];
+        return locale[LocaleDataIndex.NumberSymbols][0];
     }
 
     getDigitGroupingSymbol(locale): string {
-        return locale[LocaleData.NumberSymbols][1];
+        return locale[LocaleDataIndex.NumberSymbols][1];
     }
 
     getListSeparatorSymbol(locale): string {
-        return locale[LocaleData.NumberSymbols][2];
+        return locale[LocaleDataIndex.NumberSymbols][2];
     }
 
     getNegativeSignSymbol(locale): string {
-        return locale[LocaleData.NumberSymbols][5];
+        return locale[LocaleDataIndex.NumberSymbols][5];
     }
 
     // CURRENCY
 
     getCurrencySymbol(locale): string {
-        return locale[LocaleData.CurrencySymbol];
+        return locale[LocaleDataIndex.CurrencySymbol];
     }
 
     getCurrencyName(locale): string {
-        return locale[LocaleData.CurrencyName];
+        return locale[LocaleDataIndex.CurrencyName];
     }
 
     // this method gets the currency code for the currency pipe, otherwise it would always use USD.
     getCurrencyCode(locale): string {
-        const symbol = locale[LocaleData.CurrencySymbol];
+        const symbol = locale[LocaleDataIndex.CurrencySymbol];
+        // tslint:disable-next-line:forin
         for (let curr in CURRENCIES_EN) {
             let array = CURRENCIES_EN[curr];
             if (array[0] === symbol) {

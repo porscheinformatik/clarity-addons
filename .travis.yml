@@ -3,7 +3,7 @@ node_js:
   - "8"
 
 script: 
-  - cd latest && npm install && npm run deploy:ci
+  - cd latest && npm ci && npm run deploy:ci
   - cd ../
 
 deploy:

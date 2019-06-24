@@ -12,7 +12,7 @@ import { of } from "rxjs";
     templateUrl: "./flow-bar-layout.demo.html"
 })
 export class FlowBarLayoutDemo {
-    @ViewChild("flowBar") flowBar: ClrFlowBar;
+    @ViewChild("flowBar", { static: true }) flowBar: ClrFlowBar;
 
     activeStep: ClrFlowBarStep;
     flowBarSteps: ClrFlowBarStep[] = [

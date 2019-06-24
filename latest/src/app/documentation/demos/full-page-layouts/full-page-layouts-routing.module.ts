@@ -10,7 +10,7 @@ const fullPageLayoutsRoutes: Routes = [
         children: [
             {
                 path: `basepage-layout`,
-                loadChildren: "app/documentation/demos/full-page-layouts/basepage-layout/basepage-layout.demo.module#BasepageLayoutDemoModule",
+                loadChildren: () => import("./basepage-layout/basepage-layout.demo.module").then(m => m.BasepageLayoutDemoModule),
                 data: {
                     browserTitle: "Base Page Layout",
                 }
@@ -20,14 +20,15 @@ const fullPageLayoutsRoutes: Routes = [
                 children: [
                     {
                         path: "forms",
-                        loadChildren: "app/documentation/demos/full-page-layouts/forms-layout/forms-layout.demo.module#FormsLayoutDemoModule",
+                        loadChildren: () => import("./forms-layout/forms-layout.demo.module").then(m => m.FormsLayoutDemoModule),
                         data: {
                             browserTitle: "Forms Layout"
                         }
                     },
                     {
                         path: "ves",
-                        loadChildren: "app/documentation/demos/full-page-layouts/view-edit-section-layout/view-edit-section-layout.demo.module#ViewEditSectionLayoutDemoModule",
+                        loadChildren: () => import("./view-edit-section-layout/view-edit-section-layout.demo.module")
+                            .then(m => m.ViewEditSectionLayoutDemoModule),
                         data: {
                             browserTitle: "View Edit Section Layout"
                         }
@@ -39,7 +40,7 @@ const fullPageLayoutsRoutes: Routes = [
                 children: [
                     {
                         path: "five",
-                        loadChildren: "app/documentation/demos/full-page-layouts/basepage-layout/basepage-layout.demo.module#BasepageLayoutDemoModule",
+                        loadChildren: () => import("./basepage-layout/basepage-layout.demo.module").then(m => m.BasepageLayoutDemoModule),
                         data: {
                             browserTitle: "Base Page Layout",
                             id: 5
@@ -47,7 +48,7 @@ const fullPageLayoutsRoutes: Routes = [
                     },
                     {
                         path: "six",
-                        loadChildren: "app/documentation/demos/full-page-layouts/basepage-layout/basepage-layout.demo.module#BasepageLayoutDemoModule",
+                        loadChildren: () => import("./basepage-layout/basepage-layout.demo.module").then(m => m.BasepageLayoutDemoModule),
                         data: {
                             browserTitle: "Base Page Layout",
                             id: 6
@@ -57,7 +58,7 @@ const fullPageLayoutsRoutes: Routes = [
             },
             {
                 path: `basepage-layout-command`,
-                loadChildren: "app/documentation/demos/full-page-layouts/basepage-layout/basepage-layout.demo.module#BasepageLayoutDemoModule",
+                loadChildren: () => import("./basepage-layout/basepage-layout.demo.module").then(m => m.BasepageLayoutDemoModule),
                 data: {
                     browserTitle: "Base Page Layout",
                     withCommand: true
@@ -65,7 +66,7 @@ const fullPageLayoutsRoutes: Routes = [
             },
             {
                 path: `content-panel`,
-                loadChildren: "app/documentation/demos/full-page-layouts/basepage-layout/basepage-layout.demo.module#BasepageLayoutDemoModule",
+                loadChildren: () => import("./basepage-layout/basepage-layout.demo.module").then(m => m.BasepageLayoutDemoModule),
                 data: {
                     browserTitle: "Content Panel Layout",
                     withCommand: true,
@@ -74,14 +75,15 @@ const fullPageLayoutsRoutes: Routes = [
             },
             {
                 path: `flow-bar`,
-                loadChildren: "app/documentation/demos/full-page-layouts/flow-bar-layout/flow-bar-layout.demo.module#FlowBarLayoutDemoModule",
+                loadChildren: () => import("./flow-bar-layout/flow-bar-layout.demo.module").then(m => m.FlowBarLayoutDemoModule),
                 data: {
                     browserTitle: "Flow Bar Layout",
                 }
             },
             {
                 path: `sticky-footer`,
-                loadChildren: "app/documentation/demos/full-page-layouts/sticky-footer-layout/sticky-footer-layout.demo.module#StickyFooterLayoutDemoModule",
+                loadChildren: () => import("./sticky-footer-layout/sticky-footer-layout.demo.module")
+                    .then(m => m.StickyFooterLayoutDemoModule),
                 data: {
                     browserTitle: "Sticky Footer Layout",
                 }
@@ -96,7 +98,8 @@ const fullPageLayoutsRoutes: Routes = [
                     },
                     {
                         path: `one`,
-                        loadChildren: "app/documentation/demos/full-page-layouts/sidebarpage-layout/sidebarpage-layout.demo.module#SidebarpageLayoutDemoModule",
+                        loadChildren: () => import("./sidebarpage-layout/sidebarpage-layout.demo.module")
+                            .then(m => m.SidebarpageLayoutDemoModule),
                         data: {
                             browserTitle: "Sidebar Page Layout",
                             id: 1
@@ -104,7 +107,8 @@ const fullPageLayoutsRoutes: Routes = [
                     },
                     {
                         path: `two`,
-                        loadChildren: "app/documentation/demos/full-page-layouts/sidebarpage-layout/sidebarpage-layout.demo.module#SidebarpageLayoutDemoModule",
+                        loadChildren: () => import("./sidebarpage-layout/sidebarpage-layout.demo.module")
+                            .then(m => m.SidebarpageLayoutDemoModule),
                         data: {
                             browserTitle: "Sidebar Page Layout",
                             id: 2
@@ -112,7 +116,8 @@ const fullPageLayoutsRoutes: Routes = [
                     },
                     {
                         path: `three`,
-                        loadChildren: "app/documentation/demos/full-page-layouts/sidebarpage-layout/sidebarpage-layout.demo.module#SidebarpageLayoutDemoModule",
+                        loadChildren: () => import("./sidebarpage-layout/sidebarpage-layout.demo.module")
+                            .then(m => m.SidebarpageLayoutDemoModule),
                         data: {
                             browserTitle: "Sidebar Page Layout",
                             id: 3

@@ -27,12 +27,6 @@
             </p>
 
             <h3>Summary of Options</h3>
-            <p>
-                To layout the view-mode of the component simply add an element with attribute
-                <code class="clr-code">view-block</code> and for the edit-mode of the component add an element with attribute
-                <code class="clr-code">edit-block</code>. Those blocks will get rendered into the body of the view-edit section in their corresponding modes.
-                Additionally <code class="clr-code">action-block</code> can be used to define custom actions.
-            </p>
             <table class="table">
                 <thead>
                 <tr>
@@ -52,6 +46,26 @@
                     <td class="left hidden-xs-down">true, false</td>
                     <td class="hidden-xs-down">false</td>
                     <td class="left">Controls whether edit mode is active or not</td>
+                </tr>
+                <tr>
+                    <td class="left">
+                        <b>[clrViewRef]</b>
+                        <div class="hidden-sm-up">Type: TemplateRef</div>
+                        <div class="hidden-sm-up">Default: undefined</div>
+                    </td>
+                    <td class="left hidden-xs-down">any template reference</td>
+                    <td class="hidden-xs-down">undefined</td>
+                    <td class="left">Template reference to the view block</td>
+                </tr>
+                <tr>
+                    <td class="left">
+                        <b>[clrEditRef]</b>
+                        <div class="hidden-sm-up">Type: TemplateRef</div>
+                        <div class="hidden-sm-up">Default: undefined</div>
+                    </td>
+                    <td class="left hidden-xs-down">any template reference</td>
+                    <td class="hidden-xs-down">undefined</td>
+                    <td class="left">Template reference to the edit block</td>
                 </tr>
                 <tr>
                     <td class="left">
@@ -134,7 +148,10 @@
                     <td class="left">Will be triggered by cancel/escape clicks</td>
                 </tr>
                 </tbody>
-            </table>
+            </table>            
+            <p>
+                To define custom actions simply put the attribute <code class="clr-code">action-block</code> to an element.
+            </p>
         </div>
 
         <div id="code-examples">
@@ -143,8 +160,9 @@
             <h4>Side by side example with validation</h4>
             <div class="clr-row">
                 <div class="clr-col-12 clr-col-lg-6">
-                    <clr-view-edit-section [(clrEditMode)]="editMode1" [clrPreventModeChangeOnSave]="!exampleForm.valid" [clrTitle]="sectionTitle" (clrSectionSubmitted)="sectionSubmitted()" (clrSectionEditCancelled)="sectionCancelled()">
-                        <div view-block>
+                    <clr-view-edit-section [(clrEditMode)]="editMode1" [clrPreventModeChangeOnSave]="!exampleForm.valid" [clrTitle]="sectionTitle" 
+                        (clrSectionSubmitted)="sectionSubmitted()" (clrSectionEditCancelled)="sectionCancelled()" [clrViewRef]="viewBlock1" [clrEditRef]="editBlock1">
+                        <ng-template #viewBlock1>
                             <form clrForm clrLayout="horizontal">
                               <div class="clr-form-control clr-row">
                                   <label class="clr-col-md-4 clr-control-label">First name</label>
@@ -159,8 +177,8 @@
                                   <span class="text-truncate clr-col-md-8">{{email || "&nbsp;"}}</span>
                               </div>
                             </form>
-                        </div>
-                        <div edit-block>
+                        </ng-template>
+                        <ng-template #editBlock1>
                             <form clrForm clrLayout="horizontal" [formGroup]="exampleForm" (submit)="onFormSubmit()">
                               <clr-input-container>
                                   <label class="clr-col-md-4 required">First name</label>
@@ -178,12 +196,13 @@
                               </clr-input-container>
                               <input type="submit" style="display: none">
                             </form>
-                        </div>
+                        </ng-template>
                     </clr-view-edit-section>
                 </div>
                 <div class="crl-col-12 clr-col-lg-6">
-                    <clr-view-edit-section [(clrEditMode)]="editMode2" [clrTitle]="addSectionTitle" (clrSectionSubmitted)="addSectionSubmitted()" (clrSectionEditCancelled)="addSectionCancelled()">
-                        <div view-block>
+                    <clr-view-edit-section [(clrEditMode)]="editMode2" [clrTitle]="addSectionTitle" (clrSectionSubmitted)="addSectionSubmitted()"
+                        (clrSectionEditCancelled)="addSectionCancelled()" [clrViewRef]="viewBlock2" [clrEditRef]="editBlock2">
+                        <ng-template #viewBlock2>
                             <form clrForm clrLayout="horizontal">
                               <div class="clr-form-control clr-row">
                                   <label class="clr-col-md-4 clr-control-label">Hobby</label>
@@ -194,8 +213,8 @@
                                   <span class="text-truncate clr-col-md-8">{{licence || "&nbsp;"}}</span>
                               </div>
                             </form>
-                        </div>
-                        <div edit-block>
+                        </ng-template>
+                        <ng-template #editBlock2>
                             <form clrForm clrLayout="horizontal" (submit)="onAddFormSubmit()">
                               <clr-input-container>
                                   <label class="clr-col-md-4">Hobby</label>
@@ -207,7 +226,7 @@
                               </clr-input-container>
                               <input type="submit" style="display: none">
                             </form>
-                        </div>
+                        </ng-template>
                     </clr-view-edit-section>
                 </div>
             </div>
@@ -219,8 +238,8 @@
             Additionally you need to show/hide those actions on your own in view/edit mode if you want to. In this example, all actions are hidden in edit mode.</p>
             <div class="clr-row">
                 <div class="clr-col-12">
-                    <clr-view-edit-section [(clrEditMode)]="editMode3" [clrTitle]="customActionsTitle"
-                        (clrSectionSubmitted)="compSectionSubmitted()" (clrSectionEditCancelled)="compSectionCancelled()">
+                    <clr-view-edit-section [(clrEditMode)]="editMode3" [clrTitle]="customActionsTitle" (clrSectionSubmitted)="compSectionSubmitted()"
+                        (clrSectionEditCancelled)="compSectionCancelled()" [clrViewRef]="viewBlock3" [clrEditRef]="editBlock3">
                         
                         <div action-block>
                             <clr-dropdown *ngIf="!editMode3">
@@ -241,7 +260,7 @@
                             </clr-dropdown>
                         </div>
                         
-                        <div view-block>
+                        <ng-template #viewBlock3>
                             <form clrForm clrLayout="horizontal">
                               <div class="clr-form-control clr-row">
                                 <label class="clr-col-md-2 clr-control-label" for="birthdate">Date of birth</label>
@@ -260,8 +279,8 @@
                                 <span class="text-truncate clr-col-md-10">{{getTermsText()}}</span>
                               </div>
                             </form>
-                        </div>
-                        <div edit-block>
+                        </ng-template>
+                        <ng-template #editBlock3>
                             <form clrForm clrLayout="horizontal" (submit)="onCompFormSubmit()">
                               <clr-date-container class="clr-row">
                                 <label>Date of birth</label>
@@ -294,7 +313,7 @@
                               </clr-checkbox-container>
                               <input type="submit" style="display: none">
                             </form>
-                        </div>
+                        </ng-template>
                     </clr-view-edit-section>
                 </div>
             </div>
@@ -304,8 +323,8 @@
             <h4>Not editable</h4>
             <div class="clr-row">
                 <div class="clr-col-12">
-                    <clr-view-edit-section clrTitle="Not Editable" [clrEditable]="false">
-                        <div view-block>
+                    <clr-view-edit-section clrTitle="Not Editable" [clrEditable]="false" [clrViewRef]="viewBlock4">
+                        <ng-template #viewBlock4>
                             <form clrForm clrLayout="horizontal">
                               <div class="clr-form-control clr-row">
                                   <label class="clr-col-md-2 clr-control-label">Hobby</label>
@@ -316,7 +335,7 @@
                                   <span class="text-truncate clr-col-md-10">12345</span>
                               </div>
                             </form>
-                        </div>
+                        </ng-template>
                     </clr-view-edit-section>
                 </div>
             </div>
@@ -327,10 +346,10 @@
             <div class="clr-row">
                 <div class="clr-col-12">
                     <clr-view-edit-section [(clrEditMode)]="editMode4" [clrTitle]="compSectionTitle" [clrEditIcon]="compEditIcon"
-                        clrSaveText="Save it" clrCancelText="Cancel it"
-                        (clrSectionSubmitted)="compSectionSubmitted()" (clrSectionEditCancelled)="compSectionCancelled()">
+                        clrSaveText="Save it" clrCancelText="Cancel it" (clrSectionSubmitted)="compSectionSubmitted()" 
+                        (clrSectionEditCancelled)="compSectionCancelled()" [clrViewRef]="viewBlock5" [clrEditRef]="editBlock5">
                         
-                        <div view-block>
+                        <ng-template #viewBlock5>
                             <form clrForm clrLayout="horizontal">
                               <div class="clr-form-control clr-row">
                                 <label class="clr-col-md-2 clr-control-label" for="birthdate">Date of birth</label>
@@ -349,8 +368,8 @@
                                 <span class="text-truncate clr-col-md-10">{{getTermsText()}}</span>
                               </div>
                             </form>
-                        </div>
-                        <div edit-block>
+                        </ng-template>
+                        <ng-template #editBlock5>
                             <form clrForm clrLayout="horizontal" (submit)="onCompFormSubmit()">
                               <clr-date-container class="clr-row">
                                 <label>Date of birth</label>
@@ -383,7 +402,7 @@
                               </clr-checkbox-container>
                               <input type="submit" style="display: none">
                             </form>
-                        </div>
+                        </ng-template>
                     </clr-view-edit-section>
                 </div>
             </div>

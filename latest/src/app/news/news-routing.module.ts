@@ -6,6 +6,7 @@ import { Docu500Component } from "../../releases/5/5.0.0";
 import { Docu511Component } from "../../releases/5/5.1.1";
 import { NewsComponent } from "./news.component";
 import {Docu400Component} from "../../releases/4/4.0.0";
+import { Docu600Component } from "../../releases/6/6.0.0";
 
 const newsRoutes: Routes = [
     {
@@ -49,6 +50,13 @@ const newsRoutes: Routes = [
                 component: Docu511Component,
                 data: {
                     browserTitle: "5.1.1"
+                }
+            },
+            {
+                path: "6.0.0",
+                component: Docu600Component,
+                data: {
+                    browserTitle: "6.0.0"
                 }
             }
         ]

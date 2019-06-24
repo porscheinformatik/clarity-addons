@@ -1,0 +1,30 @@
+<h2>Intro</h2>
+To get this update, it's highly recommended to run <code class="clr-code">ng update @porscheinformatik/clr-addons</code> as this will also execute the update schemas for angular.
+<h2>Breaking Changes</h2>
+<ul class="list-unstyled">
+    <li class="breaking-change">
+        <h6>Clarity upgraded from 1.0.5 to 2.0.1</h6>
+        Clarity is upgraded to 2.0.1 and as always a strong peer dependency for clr-addons.<br>
+        For breaking changes in clarity see <a href="https://clarity.design/news/2.0.1">2.0.1 Changelog</a> and versions below.<br>
+        Some present examples
+    </li>
+    <li class="breaking-change">
+        <h6>Angular upgraded to version 8</h6>
+        Angular is upgraded from version 6 to 8, which is also a peer dependency for clr-addons.<br>
+        For breaking changes see <a href="https://github.com/angular/angular/blob/master/CHANGELOG.md">Angular changelog</a>.
+    </li>
+    <li class="breaking-change">
+        <h6>Cards: Custom actions</h6>
+        The class for custom actions is changed from <code class="clr-code">float-xs-right</code> to <code class="clr-code">card-actions</code>.<br>
+        See <a href="https://porscheinformatik.github.io/clarity-addons/documentation/latest/cards">Cards Docu</a> for further information
+    </li>
+    <li class="breaking-change">
+        <h6>View/Edit Section</h6>
+        To enable lazy loading of view and edit block, it's necessary to wrap them in templates and handover the template reference to the view/edit section.<br>
+        See <a href="https://porscheinformatik.github.io/clarity-addons/documentation/latest/view-edit-section">View/Edit Section Docu</a> for further information
+    </li>
+    <li class="breaking-change">
+        <h6>VU3 theme renamed to PHS</h6>
+        The VU3 theme was renamed to PHS. So you need to rename the style import from <code class="clr-code">clr-addons-vu3.min.css</code> to <code class="clr-code">clr-addons-phs.min.css</code>
+    </li>
+</ul>

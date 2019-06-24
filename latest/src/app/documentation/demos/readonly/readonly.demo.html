@@ -127,8 +127,8 @@
 
             <h4>View/Edit Section</h4>
             Example of how this could look in a View/Edit Section. Radiobuttons in view mode only show selected options. Checkboxes show all options in view mode.
-            <clr-view-edit-section clrTitle="Title">
-                <div view-block>
+            <clr-view-edit-section clrTitle="Title" [clrViewRef]="viewBlock" [clrEditRef]="editBlock">
+                <ng-template #viewBlock>
                     <form clrForm clrLayout="horizontal">
                         <clr-checkbox-container readonly>
                           <label>Checkboxes</label>
@@ -162,8 +162,8 @@
                           </clr-radio-wrapper>
                         </clr-radio-container>
                     </form>
-                </div>
-                <div edit-block>
+                </ng-template>
+                <ng-template #editBlock>
                     <form clrForm clrLayout="horizontal">
                         <clr-checkbox-container>
                           <label>Checkboxes</label>
@@ -197,7 +197,7 @@
                           </clr-radio-wrapper>
                         </clr-radio-container>
                     </form>
-                </div>
+                </ng-template>
             </clr-view-edit-section>   
             
             <h4>Stylings for readonly</h4>

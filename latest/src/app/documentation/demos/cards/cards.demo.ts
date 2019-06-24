@@ -59,7 +59,7 @@ const HTML_EXAMPLE_CUSTOM_ACTIONS = `
 <div class="card">
     <div class="card-header">
         Card header with custom actions
-        <clr-dropdown class="float-xs-right">
+        <clr-dropdown class="card-actions">
             <button type="button" class="btn btn-icon btn-link card-action dropdown-toggle" clrDropdownTrigger>
                 <clr-icon shape="ellipsis-vertical"></clr-icon>
             </button>

@@ -84,15 +84,13 @@ const CODE_EXAMPLE_FULL_FORM = `
             <input clrCheckbox type="checkbox" [(ngModel)]="checkboxValue" name="checkboxName"/>
         </clr-checkbox-wrapper>
     </clr-checkbox-container>
-    <div class="clr-form-control clr-row clr-col-12">
-        <label class="clr-control-label">Toggle label</label>
-        <div class="clr-control-container clr-col-md-10">
-            <div class="toggle-switch">
-                <input type="checkbox" id="toggle" name="toggle" [(ngModel)]="toggleValue">
-                <label for="toggle" class="clr-col-none"></label>
-            </div>
-        </div>
-    </div>
+    <clr-toggle-container class="clr-col-12">
+        <label>Toggle label</label>
+        <clr-toggle-wrapper>
+            <input type="checkbox" id="toggle" name="toggle" [(ngModel)]="toggleValue" clrToggle />
+            <label for="toggle" class="clr-col-none"></label>
+        </clr-toggle-wrapper>
+    </clr-toggle-container>
     <clr-multilingual-input class="clr-col-12 clr-row" clrSelectedLang="EN" [(ngModel)]="data" [ngModelOptions]="{ updateOn: 'blur' }"
         clrRequiredAllMultilang clrControlClasses="clr-col-2" name="template">
 

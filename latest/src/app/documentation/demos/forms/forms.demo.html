@@ -1,7 +1,7 @@
 <clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
     <article>
         <h5 class="component-summary">This describes clarity forms in more detail. Official documentation: <a
-                href="https://vmware.github.io/clarity/documentation/forms">Clarity Forms documentation</a></h5>
+                href="https://clarity.design/documentation/forms">Clarity Forms documentation</a></h5>
         <p>Find below our recommendation how to use every input component.<br>
             Please also check back frequently to get updates of the recommended way.</p>
 
@@ -103,15 +103,13 @@
                         <input clrCheckbox type="checkbox" [(ngModel)]="checkboxValue" name="checkboxName"/>
                     </clr-checkbox-wrapper>
                 </clr-checkbox-container>
-                <div class="clr-form-control clr-row clr-col-12">
-                    <label class="clr-control-label">Toggle label</label>
-                    <div class="clr-control-container clr-col-md-10">
-                        <div class="toggle-switch">
-                            <input type="checkbox" id="toggle" name="toggle" [(ngModel)]="toggleValue">
-                            <label for="toggle" class="clr-col-none"></label>
-                        </div>
-                    </div>
-                </div>
+                <clr-toggle-container class="clr-col-12">
+                  <label>Toggle label</label>
+                  <clr-toggle-wrapper>
+                    <input type="checkbox" id="toggle" name="toggle" [(ngModel)]="toggleValue" clrToggle />
+                    <label for="toggle" class="clr-col-none"></label>
+                  </clr-toggle-wrapper>
+                </clr-toggle-container>
                 <clr-multilingual-input class="clr-col-12 clr-row" clrSelectedLang="EN" [(ngModel)]="data" [ngModelOptions]="{ updateOn: 'blur' }"
                     clrRequiredAllMultilang clrControlClasses="clr-col-2 clr-col-sm-4" name="template">
 

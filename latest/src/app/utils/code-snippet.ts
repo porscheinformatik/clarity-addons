@@ -24,7 +24,7 @@ import {CodeHighlight} from "./code-highlight";
     `]
 })
 export class CodeSnippet implements AfterViewInit {
-    @ViewChild(CodeHighlight) codeHighlight: CodeHighlight;
+    @ViewChild(CodeHighlight, { static: false }) codeHighlight: CodeHighlight;
 
     @Input("clrCode") public code: string;
     @Input("clrLanguage") public language: string = "html";
