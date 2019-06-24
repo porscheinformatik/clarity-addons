@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[37],{YXEz:function(n,o,u){"use strict";u.r(o),u.d(o,"NewsModule",function(){return t});var t=function(){return function(){}}()}}]);

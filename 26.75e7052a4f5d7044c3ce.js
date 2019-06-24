@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[26],{vTEu:function(n,u,o){"use strict";o.r(u),o.d(u,"QuickListDemoModule",function(){return i});var i=function(){return function(){}}()}}]);
