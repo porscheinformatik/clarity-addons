@@ -1,6 +1,10 @@
 @include exports('combobox.clarity-addons') {
   .clr-combobox {
     display: inline-block;
+
+    .clr-input-wrapper {
+      position: relative;
+    }
   }
 
   .clr-combobox-input-container {
