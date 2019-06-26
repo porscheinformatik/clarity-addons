@@ -184,8 +184,7 @@
             "ng": 20,
             "dox": 20,
             "comments": "",
-            "newLayout": true,
-            "isNew": true
+            "newLayout": true
         },
         {
             "url": "notification",

@@ -235,6 +235,7 @@ export class FormsDemo extends ClarityDocComponent {
     }
 
     onFormSubmit() {
+        (<HTMLElement>document.activeElement).blur();
         this.submittedText = this.inputTextSubmit;
     }
 }
