@@ -15,8 +15,6 @@ const HTML_EXAMPLE1 = `
 
 const HTML_EXAMPLE2 = `
 BLANK_OPTION: ClrQuickListValue<string> = { id: '-BLANK-', label: '- Select -', value: null };
-selectedOptions: Array<ClrQuickListValue<string>> = [];
-possibleOptions: Array<ClrQuickListValue<string>> = [];
 options: Array<string> = [
   'First option',
   'Second option',
@@ -24,19 +22,12 @@ options: Array<string> = [
   'Fourth option',
   'Fifth option'
 ];
-
-ngOnInit() {
-  this.selectedOptions = [this.BLANK_OPTION];
-  this.possibleOptions = this.options.map(op => this.map(op));
-}
-
-private map(op: string): ClrQuickListValue<string> {
-  return new class implements ClrQuickListValue<string> {
+possibleOptions: Array<ClrQuickListValue<string>> = this.options.map(op=>
+  new class implements ClrQuickListValue<string> {
     id = op.substr(0, 2);
     label = op;
     value = op;
-  }();
-}
+  }());
 `
 
 @Component({
@@ -47,34 +38,26 @@ private map(op: string): ClrQuickListValue<string> {
         "[class.dox-content-panel]": "true"
     }
 })
-export class QuickListDemo extends ClarityDocComponent implements OnInit {
-    htmlExample1 = HTML_EXAMPLE1;
-    htmlExample2 = HTML_EXAMPLE2;
+export class QuickListDemo extends ClarityDocComponent{
+  htmlExample1 = HTML_EXAMPLE1;
+  htmlExample2 = HTML_EXAMPLE2;
   BLANK_OPTION: ClrQuickListValue<string> = { id: '-BLANK-', label: '- Select -', value: null };
-  selectedOptions: Array<ClrQuickListValue<string>> = [];
-  possibleOptions: Array<ClrQuickListValue<string>> = [];
-  options: Array<string> = [
-      'First option',
-      'Second option',
-      'Third Option',
-      'Fourth option',
-      'Fifth option'
-  ];
+    options: Array<string> = [
+        'First option',
+        'Second option',
+        'Third Option',
+        'Fourth option',
+        'Fifth option'
+    ];
+  possibleOptions: Array<ClrQuickListValue<string>> =
+      this.options.map(op=>new class implements ClrQuickListValue<string> {
+            id = op.substr(0, 2);
+            label = op;
+            value = op;
+          }());
+
   constructor() {
     super("quick-list");
-  }
-
-  ngOnInit() {
-      this.selectedOptions = [this.BLANK_OPTION];
-      this.possibleOptions = this.options.map(op => this.map(op));
-  }
-
-  private map(op: string): ClrQuickListValue<string> {
-    return new class implements ClrQuickListValue<string> {
-        id = op.substr(0, 2);
-        label = op;
-        value = op;
-    }();
   }
 
   getAddLabel(): string {
