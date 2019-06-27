@@ -112,7 +112,7 @@
           </td>
           <td class="left hidden-xs-down">boolean</td>
           <td class="hidden-xs-down">false</td>
-          <td class="left">Decides whether at least one option should be selected</td>
+          <td class="left">Decides whether at least one option should be selected. If mandatory, the quick-list will always display at least one field.</td>
         </tr>
         <tr>
           <td class="left">
@@ -140,10 +140,34 @@
 
     <div id="code-examples">
       <h3 id="examples">Code &amp; Examples</h3>
+      <h6>Mandatory quick list</h6>
       <div class="clr-col-3">
-        <clr-quick-list [clrAllValues]="possibleOptions" [(clrValues)]="selectedOptions"
-                        [clrAddLabel]="getAddLabel()" [clrBlankOption]="BLANK_OPTION" [clrMandatory]="true">
+        <clr-quick-list  [clrAllValues]="possibleOptions" [(clrValues)]="selectedOptionsMandatory"
+                         [clrAddLabel]="getAddLabel()" [clrBlankOption]="BLANK_OPTION"  [clrMandatory]="true">
         </clr-quick-list>
+      </div>
+
+      <h6>Non mandatory quick list</h6>
+      <div class="clr-col-3">
+        <clr-quick-list [clrAllValues]="possibleOptions" [(clrValues)]="selectedOptionsNotMandatory"
+                        [clrAddLabel]="getAddLabel()" [clrBlankOption]="BLANK_OPTION">
+        </clr-quick-list>
+      </div>
+
+      <h4>Lists content</h4>
+      <div class="clr-row">
+        <div class="clr-col-4">
+          <b>Mandatory</b><br>
+          <ul class="list-unstyled">
+            <li *ngFor="let opt of selectedOptionsMandatory">{{opt.id+' - '+opt.value}}</li>
+          </ul>
+        </div>
+        <div class="clr-col-8">
+          <b>Non mandatory</b><br>
+          <ul class="list-unstyled">
+              <li *ngFor="let opt of selectedOptionsNotMandatory">{{opt.id+' - '+opt.value}}</li>
+          </ul>
+        </div>
       </div>
       <clr-code-snippet [clrCode]="htmlExample1"></clr-code-snippet>
       <clr-code-snippet [clrCode]="htmlExample2" clrLanguage="typescript"></clr-code-snippet>
