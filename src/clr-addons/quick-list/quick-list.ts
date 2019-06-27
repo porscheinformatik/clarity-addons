@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CLR_BLANK_OPTION, ClrQuickListValue } from './add-option.service';
 
 @Component({
@@ -12,14 +12,20 @@ import { CLR_BLANK_OPTION, ClrQuickListValue } from './add-option.service';
   host: { '[class.quick-list]': 'true' },
   templateUrl: './quick-list.html',
 })
-export class ClrQuickList<T> {
+export class ClrQuickList<T> implements OnInit {
   @Input('clrBlankOption') blankOption: ClrQuickListValue<T> = CLR_BLANK_OPTION;
   @Input('clrAllValues') allValues: Array<ClrQuickListValue<T>> = [this.blankOption];
   @Input('clrMandatory') mandatory: boolean = false;
-  @Input('clrValues') values: Array<ClrQuickListValue<T>> = this.mandatory ? [this.blankOption] : [];
+  @Input('clrValues') values: Array<ClrQuickListValue<T>> = [];
   @Input('clrAddLabel') addLabel: string = 'ADD';
   @Output('clrValuesChanged') valuesChanged = new EventEmitter<Array<ClrQuickListValue<T>>>();
   @Output('clrEmptyOptionAdded') emptyOptionAdded = new EventEmitter<void>();
+
+  ngOnInit(): void {
+    if (this.values.length === 0 && this.mandatory) {
+      this.values.push(this.blankOption);
+    }
+  }
 
   onValueChanged(value: ClrQuickListValue<T>, i: number) {
     if (!!value) {
