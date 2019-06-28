@@ -15,7 +15,7 @@ const HTML_EXAMPLE = `
         </div>
     </div>
 </div>
-<button class="btn btn-primary mt-1" (click)="cardLoadingState = !cardLoadingState">Toggle Loading</button>
+<button class="btn btn-primary" (click)="cardLoadingState = !cardLoadingState">Toggle Loading</button>
 `;
 
 const HTML_EXAMPLE2 = `
@@ -25,7 +25,7 @@ const HTML_EXAMPLE2 = `
     <p>...</p>
 </div>
 
-<button class="btn btn-primary mt-1" (click)="loadingState = !loadingState">Toggle Loading</button>
+<button class="btn btn-primary" (click)="loadingState = !loadingState">Toggle Loading</button>
 `;
 
 @Component({
