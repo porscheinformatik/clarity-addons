@@ -36,10 +36,6 @@ export class ClrAddOption<T> {
   }
 
   trashDisabled(): boolean {
-    return (
-      this.mandatory &&
-      (this.excludedValues.length === 1 ||
-        (this.excludedValues.length === 2 && this.excludedValues.includes(this.blankOption)))
-    );
+    return this.mandatory && this.excludedValues.length === 1;
   }
 }
