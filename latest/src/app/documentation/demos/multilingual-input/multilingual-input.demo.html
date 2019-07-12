@@ -33,6 +33,16 @@
                 <tbody>
                     <tr>
                         <td class="left">
+                            <b>value binding (ngModel or reactive)</b>
+                            <div class="hidden-sm-up">Type: Map&lt;string, string></div>
+                            <div class="hidden-sm-up">Default: null</div>
+                        </td>
+                        <td class="left hidden-xs-down">Map of language and translation</td>
+                        <td class="hidden-xs-down">null</td>
+                        <td class="left">Value binding for control represented by a map of language as key and translation as value.</td>
+                    </tr>
+                    <tr>
+                        <td class="left">
                             <b>[clrSelectedLang]</b>
                             <div class="hidden-sm-up">Type: String</div>
                             <div class="hidden-sm-up">Default: ""</div>
@@ -128,6 +138,7 @@
                 
             </form>
             <clr-code-snippet [clrCode]="templateExample"></clr-code-snippet>
+            <clr-code-snippet [clrCode]="templateTSExample" clrLanguage="typescript"></clr-code-snippet>
         </div>
     </article>
 </clr-doc-wrapper>

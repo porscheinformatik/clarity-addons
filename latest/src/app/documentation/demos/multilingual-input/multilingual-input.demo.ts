@@ -9,19 +9,26 @@ import { ClrMultilingualInputValidators } from "@porscheinformatik/clr-addons";
 import { ClarityDocComponent } from "../clarity-doc";
 
 const TEMPLATE_EXAMPLE = `
-<clr-multilingual-input class="clr-col-12 clr-row" clrSelectedLang="EN" [(ngModel)]="data1" 
+<clr-multilingual-input class="clr-col-12 clr-row" clrSelectedLang="EN" [(ngModel)]="data1"
     [ngModelOptions]="{ updateOn: 'blur' }" clrRequiredAllMultilang clrControlClasses="clr-col-md-5" name="template1">
     <label class="clr-col-md-2 required">Template</label>
     <clr-control-error>Please translate in every language!</clr-control-error>
     <clr-control-helper>Helper text</clr-control-helper>
 </clr-multilingual-input>
-<clr-multilingual-textarea class="clr-col-12 clr-row" clrSelectedLang="EN" [(ngModel)]="data2" 
+<clr-multilingual-textarea class="clr-col-12 clr-row" clrSelectedLang="EN" [(ngModel)]="data2"
     [ngModelOptions]="{ updateOn: 'blur' }" clrRequiredAllMultilang clrControlClasses="clr-col-md-5" name="template2">
     <label class="clr-col-md-2 required">Template</label>
     <clr-control-error>Please translate in every language!</clr-control-error>
     <clr-control-helper>Helper text</clr-control-helper>
 </clr-multilingual-textarea>
 `;
+
+const TEMPLATE_TS_EXAMPLE = `
+data1 = new Map();
+this.data1.set("EN", "english text");
+this.data1.set("DE", "deutscher text");
+this.data1.set("FR", "texte français");
+`
 
 const REACTIVE_EXAMPLE = `
 <form clrForm [formGroup]="exampleForm">
@@ -43,8 +50,13 @@ const REACTIVE_EXAMPLE = `
 `;
 
 const REACTIVE_TS_EXAMPLE = `
+reactiveData1 = new Map();
+this.reactiveData1.set("EN", "english text");
+this.reactiveData1.set("DE", "deutscher text");
+this.reactiveData1.set("FR", "texte français");
+
 exampleForm = new FormGroup({
-  sample: new FormControl(this.reactiveData, {
+  sample1: new FormControl(this.reactiveData1, {
     updateOn: "blur",
     validators: [ClrMultilingualInputValidators.requiredAll()]
   })
@@ -61,6 +73,7 @@ exampleForm = new FormGroup({
 })
 export class MultilingualInputDemo extends ClarityDocComponent implements OnInit {
     templateExample = TEMPLATE_EXAMPLE;
+    templateTSExample = TEMPLATE_TS_EXAMPLE;
     reactiveExample = REACTIVE_EXAMPLE;
     reactiveTSExample = REACTIVE_TS_EXAMPLE;
 
