@@ -24,7 +24,7 @@ options: Array<string> = [
 ];
 possibleOptions: Array<ClrQuickListValue<string>> = this.options.map(op=>
   new class implements ClrQuickListValue<string> {
-    id = op.substr(0, 2);
+    id = op.substr(0, 3);
     label = op;
     value = op;
   }());
@@ -51,7 +51,7 @@ export class QuickListDemo extends ClarityDocComponent{
     ];
   possibleOptions: Array<ClrQuickListValue<string>> =
       this.options.map(op=>new class implements ClrQuickListValue<string> {
-            id = op.substr(0, 2);
+            id = op.substr(0, 3);
             label = op;
             value = op;
           }());
