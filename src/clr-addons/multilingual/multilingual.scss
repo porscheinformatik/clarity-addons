@@ -7,8 +7,8 @@
     .clr-multilingual-button {
       line-height: 0.458333rem;
       height: 0.875rem;
-      min-width: 2.3rem;
-      max-width: 2.3rem;
+      min-width: 2.65rem;
+      max-width: 2.65rem;
       border-radius: 0.5rem;
 
       &:focus {
@@ -21,6 +21,11 @@
     .clr-multilingual-dd-entry {
       padding-left: 0.5rem;
       padding-right: 0.5rem;
+
+      .label {
+        text-transform: uppercase;
+        width: 2rem;
+      }
     }
 
     .clr-multi-input-wrapper {
