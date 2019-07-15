@@ -22,7 +22,7 @@
         <th>Date & Time</th>
         <th>
             <div class="select">
-                <select id="locale-1" [(ngModel)]="firstLocale">
+                <select clrSelect id="locale-1" [(ngModel)]="firstLocale">
                     <option *ngFor="let locale of supportedLocales" [ngValue]="locale">{{ getLocaleId(locale) }}
                     </option>
                 </select>
@@ -30,7 +30,7 @@
         </th>
         <th>
             <div class="select">
-                <select id="locale-2" [(ngModel)]="secondLocale">
+                <select clrSelect id="locale-2" [(ngModel)]="secondLocale">
                     <option *ngFor="let locale of supportedLocales" [ngValue]="locale">{{
                         getLocaleId(locale)}}
                     </option>
