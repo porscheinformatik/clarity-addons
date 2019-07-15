@@ -30,17 +30,18 @@ export class MultilingualInputDemo implements OnInit {
   });
 
   ngOnInit() {
-    this.template1.set('EN', 'english text');
-    this.template1.set('DE', 'deutscher text');
-    this.template1.set('FR', 'texte français');
-    this.template2.set('EN', 'english text');
-    this.template2.set('DE', 'deutscher text');
-    this.template2.set('FR', 'texte français');
-    this.reactive1.set('EN', 'english text');
-    this.reactive1.set('DE', 'deutscher text');
-    this.reactive1.set('FR', 'texte français');
-    this.reactive2.set('EN', 'english text');
-    this.reactive2.set('DE', 'deutscher text');
-    this.reactive2.set('FR', 'texte français');
+    this.template1.set('ww', 'dummy lang with widest letters');
+    this.template1.set('en', 'english text');
+    this.template1.set('de', 'deutscher text');
+    this.template1.set('fr', 'texte français');
+    this.template2.set('en', 'english text');
+    this.template2.set('de', 'deutscher text');
+    this.template2.set('fr', 'texte français');
+    this.reactive1.set('en', 'english text');
+    this.reactive1.set('de', 'deutscher text');
+    this.reactive1.set('fr', 'texte français');
+    this.reactive2.set('eb', 'english text');
+    this.reactive2.set('de', 'deutscher text');
+    this.reactive2.set('fr', 'texte français');
   }
 }

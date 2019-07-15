@@ -2,63 +2,36 @@
 
 <h3>Template driven</h3>
 <form clrForm>
-    <clr-multilingual-input class="clr-col-12 clr-row" clrSelectedLang="EN" [(ngModel)]="template1" clrRequiredAllMultilang
-      clrControlClasses="clr-col-md-9 clr-col-lg-10" name="template1">
-      <label class="clr-col-md-3 clr-col-lg-2">Test1</label>
-      <clr-control-error>Error</clr-control-error>
-      <clr-control-helper>Helper</clr-control-helper>
-    </clr-multilingual-input>
-
-    <clr-multilingual-textarea class="clr-col-12 clr-row" clrSelectedLang="EN" [(ngModel)]="template2" clrRequiredAllMultilang
-      clrControlClasses="clr-col-md-9 clr-col-lg-10" name="template2">
-      <label class="clr-col-md-3 clr-col-lg-2">Test2</label>
-      <clr-control-error>Error</clr-control-error>
-      <clr-control-helper>Helper</clr-control-helper>
-    </clr-multilingual-textarea>
-
-    <clr-input-container class="clr-col-12">
-      <label class="clr-col-md-3 clr-col-lg-2">Normal</label>
-      <input class="clr-col-md-9 clr-col-lg-10" clrInput type="text"/>
-    </clr-input-container>
-
-    <h4>Output texts</h4>
-    <table class="table">
-      <tr>
-        <th>lang</th>
-        <th>value</th>
-      </tr>
-      <tr>
-        <td>EN</td>
-        <td>{{template1.get('EN')}}</td>
-      </tr>
-      <tr>
-        <td>DE</td>
-        <td>{{template1.get('DE')}}</td>
-      </tr>
-    </table>
-</form>
-
-<h3>Reactive forms (onBlur)</h3>
-<form clrForm [formGroup]="exampleForm">
-  <clr-multilingual-input class="clr-col-12 clr-row" clrSelectedLang="EN" formControlName="sample1"
-    clrControlClasses="clr-col-md-9 clr-col-lg-10" name="reactive1">
+  <clr-multilingual-input
+    class="clr-col-12 clr-row"
+    clrSelectedLang="ww"
+    [(ngModel)]="template1"
+    clrRequiredAllMultilang
+    clrControlClasses="clr-col-md-9 clr-col-lg-10"
+    name="template1"
+  >
     <label class="clr-col-md-3 clr-col-lg-2">Test1</label>
-    <clr-control-helper>Helper</clr-control-helper>
     <clr-control-error>Error</clr-control-error>
+    <clr-control-helper>Helper</clr-control-helper>
   </clr-multilingual-input>
 
-  <clr-multilingual-textarea class="clr-col-12 clr-row" clrSelectedLang="EN" formControlName="sample2"
-    clrControlClasses="clr-col-md-9 clr-col-lg-10" name="reactive2">
+  <clr-multilingual-textarea
+    class="clr-col-12 clr-row"
+    clrSelectedLang="en"
+    [(ngModel)]="template2"
+    clrRequiredAllMultilang
+    clrControlClasses="clr-col-md-9 clr-col-lg-10"
+    name="template2"
+  >
     <label class="clr-col-md-3 clr-col-lg-2">Test2</label>
-    <clr-control-helper>Helper</clr-control-helper>
     <clr-control-error>Error</clr-control-error>
+    <clr-control-helper>Helper</clr-control-helper>
   </clr-multilingual-textarea>
 
   <clr-input-container class="clr-col-12">
     <label class="clr-col-md-3 clr-col-lg-2">Normal</label>
-    <input class="clr-col-md-9 clr-col-lg-10" clrInput type="text"/>
+    <input class="clr-col-md-9 clr-col-lg-10" clrInput type="text" />
   </clr-input-container>
-
 
   <h4>Output texts</h4>
   <table class="table">
@@ -68,11 +41,59 @@
     </tr>
     <tr>
       <td>EN</td>
-      <td>{{exampleForm.get('sample1').value.get('EN')}}</td>
+      <td>{{template1.get('en')}}</td>
     </tr>
     <tr>
       <td>DE</td>
-      <td>{{exampleForm.get('sample1').value.get('DE')}}</td>
+      <td>{{template1.get('de')}}</td>
+    </tr>
+  </table>
+</form>
+
+<h3>Reactive forms (onBlur)</h3>
+<form clrForm [formGroup]="exampleForm">
+  <clr-multilingual-input
+    class="clr-col-12 clr-row"
+    clrSelectedLang="en"
+    formControlName="sample1"
+    clrControlClasses="clr-col-md-9 clr-col-lg-10"
+    name="reactive1"
+  >
+    <label class="clr-col-md-3 clr-col-lg-2">Test1</label>
+    <clr-control-helper>Helper</clr-control-helper>
+    <clr-control-error>Error</clr-control-error>
+  </clr-multilingual-input>
+
+  <clr-multilingual-textarea
+    class="clr-col-12 clr-row"
+    clrSelectedLang="en"
+    formControlName="sample2"
+    clrControlClasses="clr-col-md-9 clr-col-lg-10"
+    name="reactive2"
+  >
+    <label class="clr-col-md-3 clr-col-lg-2">Test2</label>
+    <clr-control-helper>Helper</clr-control-helper>
+    <clr-control-error>Error</clr-control-error>
+  </clr-multilingual-textarea>
+
+  <clr-input-container class="clr-col-12">
+    <label class="clr-col-md-3 clr-col-lg-2">Normal</label>
+    <input class="clr-col-md-9 clr-col-lg-10" clrInput type="text" />
+  </clr-input-container>
+
+  <h4>Output texts</h4>
+  <table class="table">
+    <tr>
+      <th>lang</th>
+      <th>value</th>
+    </tr>
+    <tr>
+      <td>EN</td>
+      <td>{{exampleForm.get('sample1').value.get('en')}}</td>
+    </tr>
+    <tr>
+      <td>DE</td>
+      <td>{{exampleForm.get('sample1').value.get('de')}}</td>
     </tr>
   </table>
 </form>
