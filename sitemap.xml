@@ -3,4 +3,9 @@
         <loc>https://porscheinformatik.github.io/clarity-addons/</loc>
         <changefreq>daily</changefreq>
     </url>
+    <url>
+        <loc>https://porscheinformatik.github.io/clarity-addons/not-found</loc>
+        <changefreq>daily</changefreq>
+        <priority>0</priority>
+    </url>
 </urlset>
