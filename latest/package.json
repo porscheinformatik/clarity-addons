@@ -11,7 +11,8 @@
     "start": "ng serve",
     "start:dev": "ng serve --port 4300",
     "build": "ng build",
-    "deploy:ci": "ng build --prod --outputPath=../deploy"
+    "deploy:ci": "ng build --prod --outputPath=../deploy && npm run generate:404",
+    "generate:404": "cp-cli ../deploy/index.html ../deploy/404.html"
   },
   "private": true,
   "dependencies": {
@@ -30,7 +31,6 @@
     "@clr/ui": "2.0.1",
     "@porscheinformatik/clr-addons": "6.0.4",
     "@webcomponents/custom-elements": "^1.2.4",
-    "bootstrap": "^4.0.0-alpha.5",
     "classlist.js": "^1.1.20150312",
     "core-js": "^2.5.7",
     "intl": "^1.2.5",
@@ -44,26 +44,14 @@
     "@angular/cli": "^8.0.1",
     "@angular/compiler-cli": "^8.0.1",
     "@angular/language-service": "^8.0.1",
-    "@nguniversal/express-engine": "^7.0.0",
-    "@nguniversal/module-map-ngfactory-loader": "^7.0.0",
     "@types/node": "^8.0.30",
     "codelyzer": "~4.5.0",
-    "cpy-cli": "^1.0.1",
-    "del": "^3.0.0",
-    "fs-extra": "^5.0.0",
+    "cp-cli": "^2.0.0",
     "gh-pages": "^1.1.0",
-    "http-server": "^0.10.0",
-    "make-dir": "^1.1.0",
-    "minimist": "^1.2.0",
-    "ora": "^1.3.0",
-    "reflect-metadata": "^0.1.10",
-    "regexp-replace-loader": "^1.0.1",
-    "replace-in-file": "^3.1.0",
+    "replace": "1.1.0",
     "tslib": "1.10.0",
     "tslint": "~5.9.1",
     "ts-loader": "^4.3.1",
-    "typescript": "3.4.5",
-    "webpack-cli": "^3.0.2",
-    "xml-js": "^1.5.2"
+    "typescript": "3.4.5"
   }
 }
