@@ -9,21 +9,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "start:dynamic": "npm run build:dynamic && npm run serve:dynamic",
-    "start:static": "npm run build:static && npm run serve:static",
     "start:dev": "ng serve --port 4300",
     "build": "ng build",
-    "build:client-and-server-bundles": "ng build --prod && ng run clarity:server",
-    "build:static": "npm run build:client-and-server-bundles && npm run webpack:server && npm run generate:static",
-    "build:dynamic": "npm run build:client-and-server-bundles && npm run webpack:server",
-    "generate:static": "cd dist && node prerender",
-    "generate:deploy": "cd dist && node prerender --deploy",
-    "webpack:server": "webpack --config webpack.server.config.js --progress --colors",
-    "serve:static": "cd dist/browser && http-server",
-    "serve:dynamic": "node dist/server",
-    "generate-404": "cat dist/index.html > dist/404.html",
-    "deploy": "npm run build:client-and-server-bundles && npm run webpack:server && npm run generate:deploy",
-    "deploy:ci": "npm run build:client-and-server-bundles && npm run webpack:server && npm run generate:deploy -- --directory=../../deploy"
+    "deploy:ci": "ng build --prod --outputPath=../deploy"
   },
   "private": true,
   "dependencies": {
