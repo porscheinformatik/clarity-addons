@@ -48,7 +48,6 @@
     "codelyzer": "~4.5.0",
     "cp-cli": "^2.0.0",
     "gh-pages": "^1.1.0",
-    "replace": "1.1.0",
     "tslib": "1.10.0",
     "tslint": "~5.9.1",
     "ts-loader": "^4.3.1",
