@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { AfterViewInit, HostBinding, Injector, Input, OnDestroy } from '@angular/core';
+import { AfterViewInit, HostBinding, Injector, Input, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { ControlValueAccessor, FormControl, NgControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -16,6 +16,8 @@ export abstract class ClrMultilingualAbstract implements ControlValueAccessor, A
 
   @Input('clrControlClasses') controlClasses = 'clr-col-md-10';
   @Input('clrSelectedLang') selectedLang: string;
+
+  @ViewChild('input', { static: false }) inputElement: ElementRef;
 
   disabled = false;
   textarea = false;
@@ -39,7 +41,10 @@ export abstract class ClrMultilingualAbstract implements ControlValueAccessor, A
   changeLanguage(key: string) {
     // need as the click for closing the menu is registered on a single item
     // if the language change destroys it immediately, the click won't get fired
-    setTimeout(() => (this.selectedLang = key), 0);
+    setTimeout(() => {
+      this.selectedLang = key;
+      this.inputElement.nativeElement.focus();
+    }, 0);
   }
 
   setText(key: string, value: string) {
