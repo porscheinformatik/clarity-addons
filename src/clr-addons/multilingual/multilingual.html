@@ -36,6 +36,7 @@
         (ngModelChange)="setText(selectedLang, $event)"
         (blur)="onTouch()"
         [disabled]="disabled"
+        #input
       />
 
       <textarea
@@ -45,6 +46,7 @@
         (ngModelChange)="setText(selectedLang, $event)"
         (blur)="onTouch()"
         [disabled]="disabled"
+        #input
       ></textarea>
 
       <clr-icon *ngIf="invalid" class="clr-validate-icon" shape="exclamation-circle" aria-hidden="true"></clr-icon>
