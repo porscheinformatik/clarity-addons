@@ -3,14 +3,12 @@ import {ClarityDocComponent} from "../clarity-doc";
 import {ClrQuickListValue} from "@porscheinformatik/clr-addons";
 
 const HTML_EXAMPLE1 = `
-<div class="clr-col-3">
-    <clr-quick-list [clrAllValues]="possibleOptions" 
-                    [(clrValues)]="selectedOptions"
-                    [clrAddLabel]="ADD OPTION"
-                    [clrBlankOption]="BLANK_OPTION" 
-                    [clrMandatory]="true">
-    </clr-quick-list>
-</div>
+<clr-quick-list class="clr-form-control clr-col-12 clr-row"
+                clrControlClasses="clr-col-lg-3 clr-col-md-4 clr-col-sm-5"
+                [clrAllValues]="possibleOptions" [(clrValues)]="selectedOptionsMandatory"
+                [clrAddLabel]="getAddLabel()" [clrBlankOption]="BLANK_OPTION"  [clrMandatory]="true">
+  <label class="clr-control-label  clr-col-md-2 clr-col-sm-3 required">Option list</label>
+</clr-quick-list>
 `;
 
 const HTML_EXAMPLE2 = `

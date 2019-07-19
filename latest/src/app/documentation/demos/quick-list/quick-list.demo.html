@@ -141,18 +141,25 @@
     <div id="code-examples">
       <h3 id="examples">Code &amp; Examples</h3>
       <h6>Mandatory quick list</h6>
-      <div class="clr-col-3">
-        <clr-quick-list  [clrAllValues]="possibleOptions" [(clrValues)]="selectedOptionsMandatory"
-                         [clrAddLabel]="getAddLabel()" [clrBlankOption]="BLANK_OPTION"  [clrMandatory]="true">
-        </clr-quick-list>
-      </div>
+
+      <form clrForm clrLayout="horizontal" class="clr-row">
+          <clr-quick-list class="clr-form-control clr-col-12 clr-row"
+                          clrControlClasses="clr-col-lg-3 clr-col-md-4  clr-col-sm-5"
+                          [clrAllValues]="possibleOptions" [(clrValues)]="selectedOptionsMandatory"
+                          [clrAddLabel]="getAddLabel()" [clrBlankOption]="BLANK_OPTION" [clrMandatory]="true">
+            <label class="clr-control-label  clr-col-md-2 clr-col-sm-3 required">Option list</label>
+          </clr-quick-list>
+      </form>
 
       <h6>Non mandatory quick list</h6>
-      <div class="clr-col-3">
-        <clr-quick-list [clrAllValues]="possibleOptions" [(clrValues)]="selectedOptionsNotMandatory"
-                        [clrAddLabel]="getAddLabel()" [clrBlankOption]="BLANK_OPTION">
+      <form clrForm class="clr-row">
+        <clr-quick-list class="clr-form-control clr-col-12 clr-row"
+                        clrControlClasses="clr-col-lg-3 clr-col-md-4 clr-col-sm-5"
+                        [clrAllValues]="possibleOptions" [(clrValues)]="selectedOptionsNotMandatory"
+                        [clrAddLabel]="getAddLabel()" [clrBlankOption]="BLANK_OPTION"  >
+          <label class="clr-control-label  clr-col-md-2 clr-col-sm-3 required">Option list</label>
         </clr-quick-list>
-      </div>
+      </form>
 
       <h4>Lists content</h4>
       <div class="clr-row">
