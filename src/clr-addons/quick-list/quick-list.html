@@ -1,15 +1,18 @@
-<ng-container *ngFor="let value of values; index as i">
-  <clr-add-option
-    [allValues]="allValues"
-    [excludedValues]="values"
-    (remove)="onRemoveValue(i)"
-    [value]="value"
-    (valueChanged)="onValueChanged($event, i)"
-    [blankOption]="blankOption"
-    [mandatory]="mandatory"
-  >
-  </clr-add-option>
-</ng-container>
-<button class="btn btn-link btn-sm quick-list-add" (click)="addBlankOption()" [disabled]="addNotPossible()">
-  {{addLabel}}
-</button>
+<ng-content select="label"></ng-content>
+<div class="clr-control-container" [ngClass]="controlClasses">
+  <ng-container *ngFor="let value of values; index as i">
+    <clr-add-option
+      [allValues]="allValues"
+      [excludedValues]="values"
+      (remove)="onRemoveValue(i)"
+      [value]="value"
+      (valueChanged)="onValueChanged($event, i)"
+      [blankOption]="blankOption"
+      [mandatory]="mandatory"
+    >
+    </clr-add-option>
+  </ng-container>
+  <button class="btn btn-link btn-sm quick-list-add" (click)="addBlankOption()" [disabled]="addNotPossible()">
+    {{addLabel}}
+  </button>
+</div>

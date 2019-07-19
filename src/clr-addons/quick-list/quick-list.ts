@@ -18,6 +18,7 @@ export class ClrQuickList<T> implements OnInit {
   @Input('clrMandatory') mandatory: boolean = false;
   @Input('clrValues') values: Array<ClrQuickListValue<T>> = [];
   @Input('clrAddLabel') addLabel: string = 'ADD';
+  @Input('clrControlClasses') controlClasses = 'clr-col-md-10';
   @Output('clrValuesChanged') valuesChanged = new EventEmitter<Array<ClrQuickListValue<T>>>();
   @Output('clrEmptyOptionAdded') emptyOptionAdded = new EventEmitter<void>();
 
