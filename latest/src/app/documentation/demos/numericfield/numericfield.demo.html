@@ -20,67 +20,67 @@
             <clr-input-container>
                 <label>Money Amount</label>
                 <input class="clr-col-xl-2 clr-col-md-3 clr-col-sm-12" clrInput clrNumeric type="text" [(clrNumericValue)]="money" [clrAutofillDecimals]="true" clrUnit="€" formControlName="money"/>
-                <clr-control-error>Please enter a value greater than 0</clr-control-error>
+                <clr-control-error>Please enter a value greater than or equal to 0</clr-control-error>
             </clr-input-container>
             <clr-input-container>
                 <label>Weight</label>
                 <input class="clr-col-xl-2 clr-col-md-3 clr-col-sm-12" clrInput clrNumeric type="text" [(clrNumericValue)]="weight" clrUnit="kg"
                        formControlName="weight"/>
-                <clr-control-error>Please enter a value greater than 0</clr-control-error>
+                <clr-control-error>Please enter a value greater than or equal to 0</clr-control-error>
             </clr-input-container>
             <clr-input-container>
                 <label>Emission</label>
                 <input class="clr-col-xl-2 clr-col-md-3 clr-col-sm-12" clrInput clrNumeric type="text" [(clrNumericValue)]="emission" clrUnit="g/km"
                        [clrDecimalPlaces]="0"
                        formControlName="emission"/>
-                <clr-control-error>Please enter a value greater than 0</clr-control-error>
+                <clr-control-error>Please enter a value greater than or equal to 0</clr-control-error>
             </clr-input-container>
             <clr-input-container>
                 <label>Kilometer Reading</label>
                 <input class="clr-col-xl-2 clr-col-md-3 clr-col-sm-12" clrInput clrNumeric type="text" [(clrNumericValue)]="kilometres" clrUnit="km"
                        [clrDecimalPlaces]="0"
                        formControlName="kilometres"/>
-                <clr-control-error>Please enter a value greater than 0</clr-control-error>
+                <clr-control-error>Please enter a value greater than or equal to 0</clr-control-error>
             </clr-input-container>
             <clr-input-container>
                 <label>Cubic Capacity</label>
                 <input class="clr-col-xl-2 clr-col-md-3 clr-col-sm-12" clrInput clrNumeric type="text" [(clrNumericValue)]="cubic" clrUnit="cc" [clrDecimalPlaces]="0"
                        formControlName="cubic"/>
-                <clr-control-error>Please enter a value greater than 0</clr-control-error>
+                <clr-control-error>Please enter a value greater than or equal to 0</clr-control-error>
             </clr-input-container>
             <clr-input-container>
                 <label>Millimeter</label>
                 <input class="clr-col-xl-2 clr-col-md-3 clr-col-sm-12" clrInput clrNumeric type="text" [(clrNumericValue)]="millimetres" clrUnit="mm"
                        [clrDecimalPlaces]="0"
                        formControlName="millimetres"/>
-                <clr-control-error>Please enter a value greater than 0</clr-control-error>
+                <clr-control-error>Please enter a value greater than or equal to 0</clr-control-error>
             </clr-input-container>
             <clr-input-container>
                 <label>Kilowatt</label>
                 <input class="clr-col-xl-2 clr-col-md-3 clr-col-sm-12" clrInput clrNumeric type="text" [(clrNumericValue)]="kilowatt" clrUnit="kW"
                        [clrDecimalPlaces]="0"
                        formControlName="kilowatt"/>
-                <clr-control-error>Please enter a value greater than 0</clr-control-error>
+                <clr-control-error>Please enter a value greater than or equal to 0</clr-control-error>
             </clr-input-container>
             <clr-input-container>
                 <label>Timeunit</label>
                 <input class="clr-col-xl-2 clr-col-md-3 clr-col-sm-12" clrInput clrNumeric type="text" [(clrNumericValue)]="timeunit" clrUnit="TU"
                        formControlName="timeunit"/>
-                <clr-control-error>Please enter a value greater than 0</clr-control-error>
+                <clr-control-error>Please enter a value greater than or equal to 0</clr-control-error>
             </clr-input-container>
             <clr-input-container>
                 <label>Horsepower</label>
                 <input class="clr-col-xl-2 clr-col-md-3 clr-col-sm-12" clrInput clrNumeric type="text" [(clrNumericValue)]="horsepower" clrUnit="hp"
                        [clrDecimalPlaces]="0"
                        formControlName="horsepower"/>
-                <clr-control-error>Please enter a value greater than 0</clr-control-error>
+                <clr-control-error>Please enter a value greater than or equal to 0</clr-control-error>
             </clr-input-container>
             <clr-input-container>
                 <label>Percentage</label>
                 <input class="clr-col-xl-2 clr-col-md-3 clr-col-sm-12" clrInput clrNumeric type="text" [(clrNumericValue)]="percentage" clrUnit="%"
                        [clrDecimalPlaces]="0"
                        formControlName="percentage"/>
-                <clr-control-error>Please enter a value between 0 and 100.</clr-control-error>
+                <clr-control-error>Please enter a value between 0 and 100 (including).</clr-control-error>
             </clr-input-container>
         </form>
 
