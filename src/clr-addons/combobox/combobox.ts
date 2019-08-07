@@ -107,12 +107,6 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
     this.subscriptions.push(
       this.optionSelectionService.navigatableOptionsChanged.subscribe((count: number) => {
         this.noSearchResults = count === 0;
-        if (count > 0 && !!this.preselectedValue) {
-          const option = this.options.options.find(o => o.value === this.preselectedValue);
-          if (!!option) {
-            this.optionSelectionService.setSelection(option);
-          }
-        }
       })
     );
   }
@@ -237,6 +231,21 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
   ngAfterContentInit() {
     this.registerPopoverIgnoredInput();
     this.optionSelectionService.setOptions(this.options);
+    this.optionsUpdatedByUser();
+    this.subscriptions.push(
+      this.options.options.changes.subscribe(() => {
+        this.optionsUpdatedByUser();
+      })
+    );
+  }
+
+  optionsUpdatedByUser() {
+    if (this.options.options.length > 0 && !!this.preselectedValue) {
+      const option = this.options.options.find(o => o.value === this.preselectedValue);
+      if (!!option) {
+        this.optionSelectionService.setSelection(option);
+      }
+    }
   }
 
   ngOnDestroy() {
