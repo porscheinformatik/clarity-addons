@@ -77,6 +77,7 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
   @ContentChild(ClrOptions, { static: true }) options: ClrOptions<T>;
   @ContentChild(ClrLabel, { static: true }) label: ClrLabel;
   invalid: boolean = false;
+  keyHandled: boolean = false;
   private subscriptions: Subscription[] = [];
 
   constructor(
@@ -106,6 +107,12 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
     this.subscriptions.push(
       this.optionSelectionService.navigatableOptionsChanged.subscribe((count: number) => {
         this.noSearchResults = count === 0;
+        if (count > 0 && !!this.preselectedValue) {
+          const option = this.options.options.find(o => o.value === this.preselectedValue);
+          if (!!option) {
+            this.optionSelectionService.setSelection(option);
+          }
+        }
       })
     );
   }
@@ -137,32 +144,41 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
 
   keydown(event: KeyboardEvent) {
     if (event) {
-      this.navigateOptions(event);
-      this.closeMenuOnTabPress(event);
+      this.keyHandled = this.navigateOptions(event);
+      this.keyHandled = this.keyHandled || this.closeMenuOnTabPress(event);
     }
   }
 
-  navigateOptions(event: KeyboardEvent) {
+  navigateOptions(event: KeyboardEvent): boolean {
     if (event.keyCode === DOWN_ARROW) {
       this.ifOpenService.open = true;
       this.optionSelectionService.navigateToNextOption();
+      return true;
     } else if (event.keyCode === UP_ARROW) {
       this.ifOpenService.open = true;
       this.optionSelectionService.navigateToPreviousOption();
+      return true;
     } else if (event.keyCode === ENTER) {
       this.optionSelectionService.selectActiveOption();
       event.preventDefault();
+      return true;
     }
+    return false;
   }
 
-  closeMenuOnTabPress(event: KeyboardEvent) {
+  closeMenuOnTabPress(event: KeyboardEvent): boolean {
     if (event.keyCode === TAB) {
       this.ifOpenService.open = false;
+      return true;
     }
+    return false;
   }
 
   search() {
-    this.optionSelectionService.setSearchValue(this.input.nativeElement.textContent.trim());
+    if (!this.keyHandled) {
+      this.optionSelectionService.setSearchValue(this.input.nativeElement.textContent.trim());
+    }
+    this.keyHandled = false;
   }
 
   blur() {
@@ -221,12 +237,6 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
   ngAfterContentInit() {
     this.registerPopoverIgnoredInput();
     this.optionSelectionService.setOptions(this.options);
-    if (!!this.preselectedValue) {
-      const option = this.options.options.find(o => o.value === this.preselectedValue);
-      if (!!option) {
-        this.optionSelectionService.setSelection(option);
-      }
-    }
   }
 
   ngOnDestroy() {

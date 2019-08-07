@@ -5,7 +5,7 @@
  */
 
 import { Injectable, OnDestroy } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, Subscription, ReplaySubject } from 'rxjs';
 import { ClrOption } from '../option';
 import { ClrOptions } from '../options';
 
@@ -20,7 +20,7 @@ export class OptionSelectionService<T> implements OnDestroy {
 
   private optionsSubscription: Subscription;
 
-  private _selectionChanged: Subject<ClrOption<T>> = new BehaviorSubject<ClrOption<T>>(undefined);
+  private _selectionChanged: Subject<ClrOption<T>> = new ReplaySubject<ClrOption<T>>();
 
   // This observable is to notify the ClrCombobox component to render
   // a new Option on the Input
