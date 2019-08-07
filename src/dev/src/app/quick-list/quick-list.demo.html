@@ -2,15 +2,18 @@
 <div class="clr-example">
   <div class="main-container">
     <div class="clr-row">
-      <clr-quick-list
-        class="clr-col-3"
-        [clrAllValues]="possibleActivityResults"
-        [(clrValues)]="selectedActivityResults"
-        [clrAddLabel]="getAddLabel()"
-        [clrBlankOption]="BLANK_OPTION"
-        [clrMandatory]="true"
-      >
-      </clr-quick-list>
+      <form clrForm class="clr-row">
+        <clr-quick-list
+          class="clr-form-control clr-col-12 clr-row"
+          clrControlClasses="clr-col-lg-3 clr-col-md-4 clr-col-sm-5"
+          [clrAllValues]="possibleActivityResults"
+          [(clrValues)]="selectedActivityResults"
+          [clrAddLabel]="getAddLabel()"
+          [clrBlankOption]="BLANK_OPTION"
+        >
+          <label class="clr-control-label  clr-col-md-2 clr-col-sm-3 required">Option list</label>
+        </clr-quick-list>
+      </form>
     </div>
 
     <div class="clr-col-3">
