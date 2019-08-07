@@ -44,14 +44,16 @@ export class ClrOption<T> implements OnDestroy {
       this.optionSelectionService.selectionChanged.subscribe((option: ClrOption<T>) => {
         // Check for null and undefined needed because if the user doesnt assign a value to the option,
         // all options should not be selected as the value would be null or undefined
-        if (!option) {
-          this.selected = false;
-        } else if (this === option) {
-          // TODO: Render option when current selection is set by the user
-          this.selected = true;
-        } else {
-          this.selected = false;
-        }
+        setTimeout(() => {
+          if (!option) {
+            this.selected = false;
+          } else if (this === option) {
+            // TODO: Render option when current selection is set by the user
+            this.selected = true;
+          } else {
+            this.selected = false;
+          }
+        });
       })
     );
 
