@@ -37,7 +37,7 @@ enum LocaleDataIndex {
 @Component({
     selector: "internationalization",
     templateUrl: "./internationalization.component.html",
-    styleUrls: ["internationalization.component.css"],
+    styleUrls: ["internationalization.component.scss"],
     host: {
         "[class.content-area]": "true"
     }
