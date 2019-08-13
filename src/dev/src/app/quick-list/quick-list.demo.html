@@ -1,38 +1,70 @@
-<h2>Quick List</h2>
-<div class="clr-example">
-  <div class="main-container">
-    <div class="clr-row">
-      <form clrForm class="clr-row">
-        <clr-quick-list
-          class="clr-form-control clr-col-12 clr-row"
-          clrControlClasses="clr-col-lg-3 clr-col-md-4 clr-col-sm-5"
-          [clrAllValues]="possibleActivityResults"
-          [(clrValues)]="selectedActivityResults"
-          [clrAddLabel]="getAddLabel()"
-          [clrBlankOption]="BLANK_OPTION"
-        >
-          <label class="clr-control-label  clr-col-md-2 clr-col-sm-3 required">Option list</label>
-        </clr-quick-list>
-      </form>
-    </div>
+<h2>Quick List horizontal</h2>
+<form clrForm clrLayout="horizontal">
+  <clr-quick-list
+    [clrAddLabel]="getAddLabel()"
+    [clrAllValues]="possibleActivityResults"
+    [clrBlankOption]="BLANK_OPTION"
+    [clrValues]="selectedHActivityResults"
+    class="clr-form-control clr-col-12 clr-row"
+    clrControlClasses="clr-col-lg-3 clr-col-md-4 clr-col-sm-5"
+  >
+    <label class="clr-control-label clr-col-md-2 clr-col-sm-3">Option list</label>
+  </clr-quick-list>
+  <clr-input-container class="clr-col-12 clr-row">
+    <label class="clr-col-md-2">First name</label>
+    <input class="clr-col-md-10" clrInput type="text" />
+  </clr-input-container>
+</form>
 
-    <div class="clr-col-3">
-      <h3>Selected Options</h3>
-      <table class="table ">
-        <thead>
-          <tr>
-            <th class="left">values</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngIf="selectedActivityResults.length===0 || !selectedActivityResults[0].value">
-            <td class="left">no option selected</td>
-          </tr>
-          <tr *ngFor="let result of selectedActivityResults">
-            <td class="left" *ngIf="result.value">{{result.value}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
+<h3>Selected Options (horizontal)</h3>
+<table class="table ">
+  <thead>
+    <tr>
+      <th class="left">values</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngIf="selectedHActivityResults.length===0 || !selectedHActivityResults[0].value">
+      <td class="left">no option selected</td>
+    </tr>
+    <tr *ngFor="let result of selectedHActivityResults">
+      <td *ngIf="result.value" class="left">{{result.value}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Quick List vertical</h2>
+<form clrForm clrLayout="vertical">
+  <clr-input-container class="clr-col-12">
+    <label class="clr-col-md-2">First name </label>
+    <input class="clr-col-md-10" clrInput type="text" />
+  </clr-input-container>
+
+  <clr-quick-list
+    [clrAddLabel]="getAddLabel()"
+    [clrAllValues]="possibleActivityResults"
+    [clrBlankOption]="BLANK_OPTION"
+    [clrValues]="selectedVActivityResults"
+    class="clr-form-control clr-col-12"
+    clrControlClasses="clr-col-lg-3 clr-col-md-4 clr-col-sm-5"
+  >
+    <label class="clr-control-label clr-col-md-2 clr-col-sm-3">Option list</label>
+  </clr-quick-list>
+</form>
+
+<h3>Selected Options (vertical)</h3>
+<table class="table ">
+  <thead>
+    <tr>
+      <th class="left">values</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngIf="selectedVActivityResults.length===0 || !selectedVActivityResults[0].value">
+      <td class="left">no option selected</td>
+    </tr>
+    <tr *ngFor="let result of selectedVActivityResults">
+      <td *ngIf="result.value" class="left">{{result.value}}</td>
+    </tr>
+  </tbody>
+</table>
