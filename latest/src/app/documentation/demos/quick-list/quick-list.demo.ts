@@ -1,14 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
 import {ClarityDocComponent} from "../clarity-doc";
 import {ClrQuickListValue} from "@porscheinformatik/clr-addons";
 
 const HTML_EXAMPLE1 = `
-<clr-quick-list class="clr-form-control clr-col-12 clr-row"
-                clrControlClasses="clr-col-lg-3 clr-col-md-4 clr-col-sm-5"
-                [clrAllValues]="possibleOptions" [(clrValues)]="selectedOptionsMandatory"
-                [clrAddLabel]="getAddLabel()" [clrBlankOption]="BLANK_OPTION"  [clrMandatory]="true">
-  <label class="clr-control-label  clr-col-md-2 clr-col-sm-3 required">Option list</label>
-</clr-quick-list>
+<form clrForm>
+  <clr-quick-list
+      [clrAddLabel]="getAddLabel()"
+      [clrAllValues]="possibleOptions"
+      [clrBlankOption]="BLANK_OPTION"
+      [clrMandatory]="true"
+      [clrValues]="selectedOptionsMandatory"
+      class="clr-form-control clr-col-12"
+      clrControlClasses="clr-col-lg-3 clr-col-md-4 clr-col-sm-5">
+    <label class="clr-control-label clr-col-md-2 clr-col-sm-3 required">Option list</label>
+  </clr-quick-list>
+</form>
 `;
 
 const HTML_EXAMPLE2 = `
