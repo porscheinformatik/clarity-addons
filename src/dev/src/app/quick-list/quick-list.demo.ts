@@ -13,7 +13,8 @@ import { ClrQuickListValue } from '@porscheinformatik/clr-addons';
 })
 export class QuickListDemo implements OnInit {
   BLANK_OPTION: ClrQuickListValue<string> = { id: '-BLANK-', label: '- Select an option -', value: null };
-  selectedActivityResults: Array<ClrQuickListValue<string>> = [];
+  selectedHActivityResults: Array<ClrQuickListValue<string>> = [];
+  selectedVActivityResults: Array<ClrQuickListValue<string>> = [];
   possibleActivityResults: Array<ClrQuickListValue<string>> = [];
   options: Array<string> = [
     'First contact established',
@@ -25,7 +26,6 @@ export class QuickListDemo implements OnInit {
   ];
 
   ngOnInit() {
-    this.selectedActivityResults = [this.BLANK_OPTION];
     this.possibleActivityResults = this.options.map(op => this.map(op));
   }
 

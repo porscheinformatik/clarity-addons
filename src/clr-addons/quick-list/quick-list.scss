@@ -2,12 +2,11 @@
   .quick-list {
     .quick-list-option {
       display: flex;
+      margin-bottom: 0.25rem;
       .quick-list-trash {
-        margin-bottom: 0;
-        margin-top: 0.75rem;
+        margin-top: -0.25rem;
       }
     }
-
     .quick-list-input {
       flex: 1;
     }
@@ -17,7 +16,6 @@
     }
 
     .quick-list-add {
-      margin-top: 0.5rem;
       padding: 0;
     }
   }
