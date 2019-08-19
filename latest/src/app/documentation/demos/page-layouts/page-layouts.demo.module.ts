@@ -7,7 +7,7 @@ import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {ClarityModule} from "@clr/angular";
 
-import {BasePageLayoutDemo} from "./basepage-layout.demo"
+import {PageLayoutsDemo} from "./page-layouts.demo"
 import {DocWrapperModule} from "../_doc-wrapper/doc-wrapper.module";
 import {RouterModule} from "@angular/router";
 import {UtilsModule} from "../../../utils/utils.module";
@@ -18,14 +18,14 @@ import {UtilsModule} from "../../../utils/utils.module";
         ClarityModule,
         UtilsModule,
         DocWrapperModule,
-        RouterModule.forChild([{path: "", component: BasePageLayoutDemo}])
+        RouterModule.forChild([{path: "", component: PageLayoutsDemo}])
     ],
     declarations: [
-        BasePageLayoutDemo
+        PageLayoutsDemo
     ],
     exports: [
-        BasePageLayoutDemo
+        PageLayoutsDemo
     ]
 })
-export class BasePageLayoutDemoModule {
+export class PageLayoutsDemoModule {
 }

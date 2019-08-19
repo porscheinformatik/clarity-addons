@@ -3,10 +3,9 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component } from "@angular/core";
-import { ClarityDocComponent } from "../clarity-doc";
-
-const CODE_EXAMPLE = `
+import {Component} from "@angular/core";
+import {ClarityDocComponent} from "../clarity-doc";
+const FLOWBAR_CODE_EXAMPLE = `
 <clr-main-container>
     <clr-demo-menu></clr-demo-menu>
     <div class="content-header">
@@ -79,26 +78,72 @@ const CODE_EXAMPLE = `
 </clr-main-container>
 `;
 
-const HTML_EXAMPLE_SUBMIT_ENTER = `
+const FLOWBAR_HTML_EXAMPLE_SUBMIT_ENTER = `
 <form ... (submit)="flowBar.next()">
     ...
     <input type="submit" style="display: none"> <!-- Not needed, if you already have a submit button-->
 </form>
 `;
+
+const STICKYFOOTER_CODE_EXAMPLE = `
+<clr-main-container>
+    <clr-demo-menu></clr-demo-menu>
+    <div class="content-header">
+        <h2>Sticky Footer Layout</h2>
+    </div>
+    <div class="content-container clr-flex-column">
+        <div class="content-area">
+            <h3>Content Area</h3>
+            <p *ngFor="let a of [1, 2, 3, 4, 5, 6, 7, 8]">
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et
+                ea rebum.
+                Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+                amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                aliquyam
+                erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+                gubergren,
+                no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+                sadipscing
+                elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+                voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+                takimata sanctus
+                est
+                Lorem ipsum dolor sit amet.
+            </p>
+        </div>
+        <div class="content-area-footer">
+            Sticky Footer
+        </div>
+    </div>
+</clr-main-container>
+`;
+
+const FULLSCREENDIALOG_HTML_EXAMPLE = `
+<!-- This is the router outlet for full screen dialogs -->
+<router-outlet name="overlay" (activate)="overlayActive = true" (deactivate)="overlayActive = false"></router-outlet>
+
+<!-- This is the default router outlet for all of your default pages -->
+<div [hidden]="overlayActive">
+    <router-outlet></router-outlet>
+</div>
+`;
+
 @Component({
-    selector: "clr-flow-bar-layout-demo",
-    templateUrl: "./flow-bar-layout.demo.html",
+    selector: "clr-page-layouts-demo-docu",
+    templateUrl: "./page-layouts.demo.html",
     host: {
         "[class.content-area]": "true",
         "[class.dox-content-panel]": "true"
     }
 })
-export class FlowBarLayoutDemo extends ClarityDocComponent {
-    codeExample = CODE_EXAMPLE;
-    htmlExampleSubmitEnter = HTML_EXAMPLE_SUBMIT_ENTER;
-
+export class PageLayoutsDemo extends ClarityDocComponent {
+    flowbarCodeExample = FLOWBAR_CODE_EXAMPLE;
+    flowbarHtmlExampleSubmitEnter = FLOWBAR_HTML_EXAMPLE_SUBMIT_ENTER;
+    stickyFooterCodeExample = STICKYFOOTER_CODE_EXAMPLE;
+    fullScreenDialogHtmlExample = FULLSCREENDIALOG_HTML_EXAMPLE;
 
     constructor() {
-        super("flow-bar-layout");
+        super("page-layouts");
     }
 }
