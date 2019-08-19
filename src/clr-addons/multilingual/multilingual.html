@@ -12,17 +12,17 @@
         <clr-icon shape="caret down"></clr-icon>
       </button>
       <clr-dropdown-menu *clrIfOpen>
-        <button
-          *ngFor="let text of texts | keyvalue"
-          class="clr-multilingual-dd-entry"
-          type="button"
-          clrDropdownItem
-          (click)="changeLanguage(text.key)"
-          [hidden]="text.key === selectedLang"
-          [disabled]="text.key === selectedLang"
-        >
-          <span class="label">{{text.key}}</span>{{text.value}}
-        </button>
+        <ng-container *ngFor="let text of texts | keyvalue">
+          <button
+            *ngIf="text.key !== selectedLang"
+            class="clr-multilingual-dd-entry"
+            type="button"
+            clrDropdownItem
+            (click)="changeLanguage(text.key)"
+          >
+            <span class="label">{{text.key}}</span>{{text.value}}
+          </button>
+        </ng-container>
       </clr-dropdown-menu>
     </clr-dropdown>
   </div>
