@@ -1,7 +1,7 @@
 <ng-content select="label"></ng-content>
 <div class="clr-control-container" [ngClass]="controlClasses">
   <div>
-    <clr-dropdown class="clr-multilingual-dropdown">
+    <clr-dropdown>
       <button
         type="button"
         class="btn btn-outline btn-sm clr-multilingual-button"
@@ -13,15 +13,14 @@
       </button>
       <clr-dropdown-menu *clrIfOpen>
         <ng-container *ngFor="let text of texts | keyvalue">
-          <button
+          <div
             *ngIf="text.key !== selectedLang"
             class="clr-multilingual-dd-entry"
-            type="button"
             clrDropdownItem
             (click)="changeLanguage(text.key)"
           >
             <span class="label">{{text.key}}</span>{{text.value}}
-          </button>
+          </div>
         </ng-container>
       </clr-dropdown-menu>
     </clr-dropdown>
