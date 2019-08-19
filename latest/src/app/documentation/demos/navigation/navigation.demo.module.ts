@@ -7,11 +7,10 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ClarityModule } from "@clr/angular";
 
-import { PagedSearchResultListDemo } from "./paged-search-result-list.demo";
+import { NavigationDemo } from "./navigation.demo";
 import { DocWrapperModule } from "../_doc-wrapper/doc-wrapper.module";
 import { RouterModule } from "@angular/router";
 import { UtilsModule } from "../../../utils/utils.module";
-import { ClrAddonsModule } from "@porscheinformatik/clr-addons";
 
 @NgModule({
     imports: [
@@ -19,15 +18,14 @@ import { ClrAddonsModule } from "@porscheinformatik/clr-addons";
         ClarityModule,
         UtilsModule,
         DocWrapperModule,
-        RouterModule.forChild([{ path: "", component: PagedSearchResultListDemo }]),
-        ClrAddonsModule
+        RouterModule.forChild([{ path: "", component: NavigationDemo }])
     ],
     declarations: [
-        PagedSearchResultListDemo
+        NavigationDemo
     ],
     exports: [
-        PagedSearchResultListDemo
+        NavigationDemo
     ]
 })
-export class PagedSearchResultListDemoModule {
+export class NavigationDemoModule {
 }

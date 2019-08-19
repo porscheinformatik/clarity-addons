@@ -6,7 +6,7 @@
 import { Component } from "@angular/core";
 import { ClarityDocComponent } from "../clarity-doc";
 
-const CODE_EXAMPLE = `
+const CONTENTPANEL_CODE_EXAMPLE = `
 <div class="btn-group">
     <button class="btn" (click)="leftContentPanel.toggle()">Show/Hide Left</button>
     <button class="btn" (click)="rightContentPanel.toggle()">Show/Hide Right</button>
@@ -26,18 +26,27 @@ const CODE_EXAMPLE = `
 </clr-content-panel-container>
 `;
 
+const MAINNAV_HTML_EXAMPLE = `
+<clr-main-nav-group clrTitle="Layouts" routerLinkActive="active">
+    <a class="nav-link" routerLink="/full-page-layouts/basepage-layout" routerLinkActive="active">Base Pagelayout</a>
+    <a class="nav-link" routerLink="/full-page-layouts/sidebarpage-layout" routerLinkActive="active">Sidebar Pagelayout</a>
+    <a class="nav-link" routerLink="/full-page-layouts/content-panel" routerLinkActive="active">Content Panel Layout</a>
+</clr-main-nav-group>
+`
+
 @Component({
-    selector: "clr-content-panel-layout-demo-docu",
-    templateUrl: "./content-panel-layout.demo.html",
+    selector: "clr-navigation-demo-docu",
+    templateUrl: "./navigation.demo.html",
     host: {
         "[class.content-area]": "true",
         "[class.dox-content-panel]": "true"
     }
 })
-export class ContentPanelLayoutDemo extends ClarityDocComponent {
-    codeExample = CODE_EXAMPLE;
+export class NavigationDemo extends ClarityDocComponent {
+    contentPanelCodeExample = CONTENTPANEL_CODE_EXAMPLE;
+    mainNavHtmlExample = MAINNAV_HTML_EXAMPLE;
 
     constructor() {
-        super("content-panel-layout");
+        super("navigation");
     }
 }

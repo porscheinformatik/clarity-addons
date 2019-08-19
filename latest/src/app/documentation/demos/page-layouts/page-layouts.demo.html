@@ -1,0 +1,253 @@
+<clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
+    <article>
+        <h2>Base Pagelayout</h2>
+        <h5 class="component-summary" id="generic-pager-header">The Base Pagelayout provides the most fundamental navigation and content elements.</h5>
+
+        <div id="design-guidelines">
+            <h3>Design Guidelines</h3>
+            <p>All pages in an application should follow a common layout structure to ensure a consistent user experience across applications.</p>
+            <p>The Base Pagelayout includes the following components:</p>
+              <ul class="list">
+                <li>Main Navigation</li><!-- TODO link to Main Navigation Group -->
+                <li>Pagetitle</li>
+                <li>Content Area</li>
+            </ul>
+
+            <p>Further components may complete the pagelayout as needed:</p>
+            <ul class="list">
+                <!-- TODO add links -->
+                <li>Back Button</li>
+                <li>Command bar</li>
+                <li>Sidebar</li>
+                <li>Content-Panel</li>
+            </ul>
+
+            <h4>Command Bar</h4>
+            <ul class="list">
+                <li>The Command Bar comprises the most common users tasks.</li>
+                <li>The most important ones are shown, additional ones are accessible in an overflow-menu.</li>
+                <li>Other commands, either less common ones or where the proximity to an ui element is crucial, are provided
+                    within the content area.</li>
+            </ul>
+        </div>
+
+        <div id="code-examples">
+            <h3 id="examples">Code &amp; Examples</h3>
+
+            <h4>Demo</h4>
+            <div>
+                <clr-icon shape="display"></clr-icon>&nbsp;
+                <a class="nav-link" routerLink="/full-page-layouts/basepage-layout" routerLinkActive="active">
+                    <span class="nav-text">Base Pagelayout</span>
+                </a>
+            </div>
+            <div>
+                <clr-icon shape="display"></clr-icon>&nbsp;
+                <a class="nav-link" routerLink="/full-page-layouts/basepage-layout-command" routerLinkActive="active">
+                    <span class="nav-text">Command bar</span>
+                </a>
+            </div>
+        </div>
+
+        <h2>Flow Bar Layout</h2>
+        <h5 class="component-summary">The Flow Bar Layout extends the Base Page Layout by adding a wizard-like navigation control.</h5>
+
+        <p>
+            This layout that can be used to highlight the current progress a user is making throughout multiple steps. The Flow Bar
+            allows the user to navigate between steps, by either clicking on a specific step or using the previous or next button.
+        </p>
+
+        <p>The Flow Bar Layout requires the <code class="clr-code">ClrFlowBar</code> and can optionally also contain the Sticky Footer Layout.</p>
+
+
+        <div id="design-guidelines">
+            <h3>Usage</h3>
+            <p>Use this layout if you want to guide the user through a sequence of multiple steps. Each step requires the user to perform a complex task like filling out a form.
+              Don't use this layout if the user's steps are mutually exclusive; in this case use Tabs instead.
+            </p>
+            <p>
+                When implementing a flow bar on your page, you will need to insert a <code
+                    class="clr-code">clr-flow-bar</code> right below your content-header but above your
+                content-container.
+            </p>
+            <p>
+                Following inputs & outputs are available:
+            </p>
+            <ul>
+                <li>
+                    <code class="clr-code">[clrSteps]</code> - an array of <code class="clr-code">FlowBarStep</code>.
+                    You can extend/implement this interface to save even more information in your steps.
+                </li>
+                <li>
+                    <code class="clr-code">[(clrActiveStep)]</code> two way binding of the active step.
+                </li>
+            </ul>
+            <p>
+                You can use the <code class="clr-code">@ViewChild()</code> annotation to get a reference of your
+                <code class="clr-code">ClrFlowBar</code>, which will allow you to call its methods:
+            </p>
+            <ul>
+                <li><code class="clr-code">previous()</code> - open the previous step.</li>
+                <li><code class="clr-code">next()</code> - opens the next step.</li>
+                <li><code class="clr-code">isPreviousAvailable()</code> - returns true if the previous step can be
+                    opened.
+                </li>
+                <li><code class="clr-code">isNextAvailable()</code> - returns true if the next step can be opened.</li>
+                <li><code class="clr-code">isLastStep()</code> - returns true if the current step is the last.</li>
+            </ul>
+        </div>
+
+        <div id="code-examples">
+            <h3 id="examples">Code &amp; Examples</h3>
+            <h4>Demo</h4>
+            <a routerLink="/full-page-layouts/flow-bar" routerLinkActive="active">
+                <clr-icon shape="display"></clr-icon>&nbsp;
+                <span>Base Page Layout with a Flow Bar</span>
+            </a>
+            <clr-code-snippet [clrCode]="flowbarCodeExample"></clr-code-snippet>
+
+            <h4>Submit form on enter and go to next page</h4>
+            <p>As the next button is outside your form, following steps need to be done to go to next page after submitting the form with 'enter'</p>
+            <ul>
+                <li>Add hidden submit button to your form to activate 'enter' key handling in browser (only needed if you not already have one)</li>
+                <li>React to submit of form and call next() on the flowbar</li>
+            </ul>
+            <clr-code-snippet [clrCode]="flowbarHtmlExampleSubmitEnter"></clr-code-snippet>
+        </div>
+
+        <h2>Sidebar Pagelayout</h2>
+        <h5 class="component-summary" id="generic-pager-header">The Sidebar Pagelayout enhances the Base Pagelayout with a vertical navigation sidebar.</h5>
+
+        <div id="design-guidelines">
+            <h3>Design Guidelines</h3>
+            <p>All pages in an application should follow a common layout structure to ensure a consistent user experience across applications.</p>
+            <p>The Sidebar Pagelayout includes the following components:</p>
+            <ul class="list">
+                <li>Main Navigation</li><!-- TODO link to Main Navigation Group -->
+                <li>Pagetitle</li>
+                <li>Content Area</li>
+                <li>Vertical Nav (Sidebar)</li>
+            </ul>
+
+            <p>Futher components may complete the pagelayout as needed:</p>
+            <ul class="list">
+                <li>Command Bar</li><!-- TODO add links -->
+            </ul>
+
+            <h3>Use when</h3>
+            <p>Use the Sidebar Pagelayout when you have:</p>
+            <ul class="list">
+                <li>Lots of content on one page, that can be junked in logical separated pages </li>
+                <li>If you need a summary or overview-page, this should be the first element in the sidebar </li>
+            </ul>
+
+        </div>
+
+        <div id="code-examples">
+            <h3 id="examples">Code &amp; Examples</h3>
+            <h4>Demo</h4>
+
+            <clr-icon shape="display"></clr-icon>&nbsp;<a class="nav-link" routerLink="/full-page-layouts/sidebarpage-layout" routerLinkActive="active"><span class="nav-text">Sidebar Page Layout</span></a>
+        </div>
+
+        <h2>Sticky Footer Layout</h2>
+        <h5 class="component-summary">The Sticky footer represents a bar at the bottom of your page which is always
+            visible - scrollable content is hidden behind the sticky footer.</h5>
+    
+        <p>The Sticky footer can be used for e.g. providing navigational buttons for a wizard (See also Flow Bar Layout).</p>
+    
+        <div id="design-guidelines">
+            <h3>Usage</h3>
+            <p>Use this component when you want to display permanently visible elements on the bottom of a page.
+              It works particularly well in combination with the Flow Bar Layout to provide navigational controls.
+              When the Sticky Footer contains buttons for navigation, keep in mind to place them on the right hand side to follow a logical Z Pattern.
+            </p>
+            <div class="clr-row">
+                <div class="clr-col-md-12 clr-col-lg-6">
+                    <div class="clrweb-DoxMedia is-do-block">
+                        <div class="clrweb-DoxMedia-block">
+                            <div class="clrweb-DoxMedia-img">
+                              <img src="assets/images/documentation/do.png" alt="do">
+                            </div>
+                        </div>
+                        <div class="clrweb-DoxMedia-text">
+                            <h6 class="clrweb-DoxMedia-do-dont">Do</h6>
+                            <p>
+                                Place buttons leading to next step on the right. Optional information about the user's actions are placed on the left side.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="clr-col-md-12 clr-col-lg-6">
+                    <div class="clrweb-DoxMedia is-dont-block">
+                        <div class="clrweb-DoxMedia-block">
+                            <div class="clrweb-DoxMedia-img">
+                              <img src="assets/images/documentation/dont.png" alt="dont">
+                            </div>
+                        </div>
+                        <div class="clrweb-DoxMedia-text">
+                            <h6 class="clrweb-DoxMedia-do-dont">Don't</h6>
+                            <p>
+                                Don't put navigational buttons on the left side.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <p>
+                When implementing a sticky footer on your page, you will want to insert a div with class <code
+                    class="clr-code">content-area-footer</code> right below your <code
+                    class="clr-code">content-area</code> div. This can be combined with a content panel layout, see the
+                code example of the flow bar layout for more information.
+            </p>
+        </div>
+    
+        <div id="code-examples">
+            <h3 id="examples">Code &amp; Examples</h3>
+            <h4>Demo</h4>
+            <a routerLink="/full-page-layouts/sticky-footer" routerLinkActive="active">
+                <clr-icon shape="display"></clr-icon>&nbsp;
+                <span>Base Page Layout with a Sticky Footer</span>
+            </a>
+    
+            <clr-code-snippet [clrCode]="stickyFooterCodeExample"></clr-code-snippet>
+        </div>
+
+        <h2>Full Screen Dialog</h2>
+        <h5 class="component-summary" id="generic-pager-header">The Full Screen Dialog is an alternative to the default modal dialog.</h5>
+        
+
+        <p>The Full Screen Dialog looks and feels like any other
+            page though it is conceptually a modal dialog. This means that a full screen dialog can have any page layout. From a
+            technical point of view, full screen dialogs are shown in a router outlet above the current page. This
+            eliminates the loading time which usually occurs while navigating from page to page.</p>
+
+        <div id="design-guidelines">
+            <h3>Design Guidelines</h3>
+
+            <p>A Full Screen Dialog usually contains mutliple input elements and <strong>Save</strong> and <strong>Cancel</strong> options. 
+                Place these call to action buttons on the left side of the bottom of the page. 
+                Just like you would in a regular form. Optionally the dialog can also have a Back-button. 
+                Provide a confirmation prompt if the user has already entered data and Back was selected. 
+                Note that this prompt is not required for the Cancel-button, 
+                since the user deliberately choose Cancel to discard the input.</p>
+
+            <h3>Use when</h3>
+            <p>Use the Full Screen Dialog if:</p>
+            <ul class="list">
+                <li>You want to display a complex input form that requires <strong>Save</strong> and <strong>Cancel</strong> options</li>
+                <li>You need to show additional modal dialogs. In general you should not show another modal over a modal, but you can open a modal over a Full Screen Dialog.</li>
+                <li>The dialog's content would require too much scrolling in a modal dialog. Try to avoid scrolling in modal dialogs.</li>
+            </ul>
+
+        </div>
+
+        <div id="code-examples">
+            <h3 id="examples">Code</h3>
+
+            <clr-code-snippet [clrCode]="fullScreenDialogHtmlExample"></clr-code-snippet>
+        </div>
+    </article>
+
+</clr-doc-wrapper>

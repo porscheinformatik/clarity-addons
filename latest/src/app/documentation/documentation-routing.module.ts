@@ -51,25 +51,10 @@ const documentationRoutes: Routes = [
                 }
             },
             {
-                path: "generic-pager",
-                loadChildren: () => import("./demos/generic-pager/generic-pager.demo.module").then(m => m.GenericPagerDemoModule),
+                path: "pager",
+                loadChildren: () => import("./demos/pager/pager.demo.module").then(m => m.PagerDemoModule),
                 data: {
-                    browserTitle: "Generic Pager"
-                }
-            },
-            {
-                path: "dot-pager",
-                loadChildren: () => import("./demos/dot-pager/dot-pager.demo.module").then(m => m.DotPagerDemoModule),
-                data: {
-                    browserTitle: "Dot Pager"
-                }
-            },
-            {
-                path: "paged-search-result-list",
-                loadChildren: () => import("./demos/paged-search-result-list/paged-search-result-list.demo.module")
-                    .then(m => m.PagedSearchResultListDemoModule),
-                data: {
-                    browserTitle: "Paged Search Result List"
+                    browserTitle: "Pager"
                 }
             },
             {
@@ -81,48 +66,17 @@ const documentationRoutes: Routes = [
                 }
             },
             {
-                path: "basepage-layout",
-                loadChildren: () => import("./demos/basepage-layout/basepage-layout.demo.module").then(m => m.BasePageLayoutDemoModule),
+                path: "page-layouts",
+                loadChildren: () => import("./demos/page-layouts/page-layouts.demo.module").then(m => m.PageLayoutsDemoModule),
                 data: {
-                    browserTitle: "Base Pagelayout"
+                    browserTitle: "Page layouts"
                 }
             },
             {
-                path: "content-panel-layout",
-                loadChildren: () => import("./demos/content-panel-layout/content-panel-layout.demo.module")
-                    .then(m => m.ContentPanelLayoutDemoModule),
+                path: "navigation",
+                loadChildren: () => import("./demos/navigation/navigation.demo.module").then(m => m.NavigationDemoModule),
                 data: {
-                    browserTitle: "Content Panel"
-                }
-            },
-            {
-                path: "flow-bar-layout",
-                loadChildren: () => import("./demos/flow-bar-layout/flow-bar-layout.demo.module").then(m => m.FlowBarLayoutDemoModule),
-                data: {
-                    browserTitle: "Flow Bar Layout"
-                }
-            },
-            {
-                path: "sticky-footer-layout",
-                loadChildren: () => import("./demos/sticky-footer-layout/sticky-footer-layout.demo.module")
-                    .then(m => m.StickyFooterLayoutDemoModule),
-                data: {
-                    browserTitle: "Sticky Footer Layout"
-                }
-            },
-            {
-                path: "sidebarpage-layout",
-                loadChildren: () => import("./demos/sidebarpage-layout/sidebarpage-layout.demo.module")
-                    .then(m => m.SidebarPageLayoutDemoModule),
-                data: {
-                    browserTitle: "Sidebar Pagelayout"
-                }
-            },
-            {
-                path: "main-nav-group",
-                loadChildren: () => import("./demos/main-nav-group/main-nav-group.demo.module").then(m => m.MainNavGroupDemoModule),
-                data: {
-                    browserTitle: "Main Navigation"
+                    browserTitle: "Navigation"
                 }
             },
             {
@@ -137,14 +91,6 @@ const documentationRoutes: Routes = [
                 loadChildren: () => import("./demos/notification/notification.demo.module").then(m => m.NotificationDemoModule),
                 data: {
                     browserTitle: "Notification"
-                }
-            },
-            {
-                path: "full-screen-dialog",
-                loadChildren: () => import("./demos/full-screen-dialog/full-screen-dialog.demo.module")
-                    .then(m => m.FullScreenDialogDemoModule),
-                data: {
-                    browserTitle: "Full Screen Dialog"
                 }
             },
             {

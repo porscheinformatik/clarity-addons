@@ -1,5 +1,6 @@
 <clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
     <article>
+        <h2>Content Panel</h2>
         <h5 class="component-summary">
             The Content Panel provides additional, in most cases contextual information to the content-area.
         </h5>
@@ -103,7 +104,73 @@
                 </li>
             </ul>
 
-            <clr-code-snippet [clrCode]="codeExample"></clr-code-snippet>
+            <clr-code-snippet [clrCode]="contentPanelCodeExample"></clr-code-snippet>
+        </div>
+
+        <h2>Main Navigation</h2>
+        <h5 class="component-summary" id="generic-pager-header">The Main Navigation consists of a classic mainmenu bar with dropdown submenus.</h5>
+
+        <div id="design-guidelines">
+          <h3>Design Guidelines</h3>
+          <p>The Main Navigation is an additional <a href="https://clarity.design/documentation/navigation">Navigation</a> pattern,
+            it enhances Clarity's <a href="https://clarity.design/documentation/header">Header Nav</a> with dropdown submenus.
+          </p>
+          <h3>Behavior</h3>
+          <ul class="list">
+            <li>A Header Navigation item can either lead directly to a page, or contain a submenu dropdown that leads to a list of navigation links.</li>
+            <li>First and second navigation level are covered in the Main Navigation, responsive accessible in the hamburger-menu on the left side.</li>
+            <li>Clarity supports responsive navigation for two levels of navigation.</li>
+            <li>Main Navigation adds a third responsive navigation level (see Sidebar Pagelayout)</li><!-- TODO add link  to Sidebar Pagelayout-->
+          </ul>
+
+          <h3>Use when</h3>
+          <ul class="list">
+            <li>Your application is commonly used on desktop devices</li>
+            <li>You have a dense information hierarchy, and need more than two levels of navigation responsive accessible</li>
+          </ul>
+
+          <h3>Don't use when</h3>
+          <ul class="list">
+            <li>You are building a MobileFirst application with a fairly flat information hierarchy</li>
+            <ul class="list">
+              <li>Consider using <a href="https://clarity.design/documentation/header">Header Nav</a></li>
+              <li>Consider using Material Design for a MobileFirst approach: <a href="https://material.io/design/components/bottom-navigation.html">Bottom-navigation</a> or
+                <a href="https://material.io/design/components/navigation-drawer.html">navigation-drawer</a> should be preferred.</li>
+            </ul>
+            <li>Don't combine Main Navigation with Subnav Pattern.</li>
+          </ul>
+        </div>
+
+        <div id="code-examples">
+            <h3 id="examples">Code &amp; Examples</h3>
+
+            <h4>Demo</h4>
+            <div>
+                <clr-icon shape="display"></clr-icon>&nbsp;
+                <a class="nav-link" routerLink="/full-page-layouts/basepage-layout" routerLinkActive="active">
+                    <span class="nav-text">Main Navigation in Base Pagelayout</span>
+                </a>
+            </div>
+
+            <p>
+                Following interactions are available:
+            </p>
+            <ul>
+                <li>
+                    To define the title of the group add a <code class="clr-code">[clrTitle]</code> input to the component.
+                </li>
+            </ul>
+            <p>
+                It is crucial to set <code class="clr-code">routerLinkActive="active"</code> on the component itself, to highlight the title as soon as a sublink is active.
+            </p>
+            <p>
+                On the links itself the class <code class="clr-code">nav-link</code> has to be set for correct styling.
+                Furthermore <code class="clr-code">routerLinkActive="active"</code> should be set to highlight the links in the menu when they are active.
+            </p>
+            <p>
+                Examples can be found in all of the page layouts. Sample usage shown below:
+            </p>
+            <clr-code-snippet [clrCode]="mainNavHtmlExample"></clr-code-snippet>
         </div>
     </article>
 </clr-doc-wrapper>
