@@ -7,18 +7,6 @@
     },
     "list": [
         {
-            "url": "page-layouts",
-            "text": "Page layouts",
-            "type": "layout",
-            "ux": -1,
-            "ui": -1,
-            "core": -1,
-            "ng": -1,
-            "dox": 20,
-            "comments": "",
-            "newLayout": true
-        },
-        {
             "url": "forms",
             "text": "Forms",
             "type": "layout",
@@ -33,6 +21,18 @@
         {
             "url": "navigation",
             "text": "Navigation",
+            "type": "layout",
+            "ux": -1,
+            "ui": -1,
+            "core": -1,
+            "ng": -1,
+            "dox": 20,
+            "comments": "",
+            "newLayout": true
+        },
+        {
+            "url": "page-layouts",
+            "text": "Page layouts",
             "type": "layout",
             "ux": -1,
             "ui": -1,
