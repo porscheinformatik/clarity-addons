@@ -17,6 +17,6 @@ export function escapeHtml(source: string) {
   return source.replace(/[&<>"'\/]/g, s => entityMap.get(s));
 }
 
-export function escapeRegex(s) {
+export function escapeRegex(s: string) {
   return String(s).replace(/[\\^$*+?.()|[\]{}]/g, '\\$&');
 }
