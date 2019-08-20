@@ -9,5 +9,5 @@ import { delay } from 'rxjs/operators';
 
 @Component({ templateUrl: './combobox.demo.html' })
 export class ComboboxDemo {
-  values$ = of(['Option 4', 'Option 5', 'Option 6']).pipe(delay(500));
+  values$ = of(['Option 4', '<na> Option 5', 'Option 6 (test)']).pipe(delay(500));
 }

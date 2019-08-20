@@ -25,3 +25,4 @@ export * from './combobox/index';
 export * from './date-time-container/index';
 export * from './quick-list/index';
 export * from './multilingual/index';
+export * from './util/index';
