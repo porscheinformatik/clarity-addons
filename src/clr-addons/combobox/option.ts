@@ -6,10 +6,11 @@
 import { Component, ElementRef, HostBinding, HostListener, Inject, Input, OnDestroy, Optional } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { ɵh } from '@clr/angular';
-import { ɵd } from '@clr/angular';
+import { ɵh as POPOVER_HOST_ANCHOR } from '@clr/angular';
+import { ɵd as IfOpenService } from '@clr/angular';
 
 import { OptionSelectionService } from './providers/option-selection.service';
+import { escapeHtml, escapeRegex } from '../util';
 
 @Component({
   selector: 'clr-option',
@@ -26,9 +27,9 @@ export class ClrOption<T> implements OnDestroy {
   @Input('clrValue') value: T;
 
   constructor(
-    private ifOpenService: ɵd,
+    private ifOpenService: IfOpenService,
     @Optional()
-    @Inject(ɵh)
+    @Inject(POPOVER_HOST_ANCHOR)
     parentHost: ElementRef,
     public elRef: ElementRef,
     private optionSelectionService: OptionSelectionService<T>
@@ -85,7 +86,7 @@ export class ClrOption<T> implements OnDestroy {
       elHtml = elHtml.replace('</em>', '');
 
       if (value && value.length > 0) {
-        elHtml = elHtml.replace(new RegExp(value, 'i'), '<em>$&</em>');
+        elHtml = elHtml.replace(new RegExp(escapeRegex(escapeHtml(value)), 'i'), '<em>$&</em>');
       }
       this.elRef.nativeElement.innerHTML = elHtml;
     }
