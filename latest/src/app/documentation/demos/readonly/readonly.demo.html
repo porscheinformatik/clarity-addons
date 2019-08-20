@@ -199,6 +199,11 @@
                     </form>
                 </ng-template>
             </clr-view-edit-section>   
+
+            <h4>Conditional readonly</h4>
+            Sometimes the readonly mode needs to be conditional. This can be achieved by attribute binding of angular,
+            as null values prevent rendering of the attribute.
+            <clr-code-snippet [clrCode]="htmlReadonlyConditional"></clr-code-snippet>
             
             <h4>Stylings for readonly</h4>
             The class <code class="clr-code">readonly-danger</code> on the container gives the checked options more attention.

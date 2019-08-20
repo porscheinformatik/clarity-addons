@@ -36,8 +36,8 @@ const PRESELECTED = `
 <clr-combobox class="clr-col-12 clr-row" clrControlClasses="clr-col-12 clr-col-md-3" (clrSelectedOption)="selectedOptionPre = $event" [clrAllowUserEntry]="false" [clrPreselectedValue]="'Option 3'">
     <label class="clr-col-12 clr-col-md-2">Preselected Option</label>
     <clr-options>
-        <clr-option [clrValue]="'Option 1'">Option 1</clr-option>
-        <clr-option [clrValue]="'Option 2'">Option 2</clr-option>
+        <clr-option [clrValue]="'<na> Option 1'">&lt;na&gt; Option 1</clr-option>
+        <clr-option [clrValue]="'Option 2 (additional info)'">Option 2 (additional info)</clr-option>
         <clr-option [clrValue]="'Option 3'">Option 3</clr-option>
         <div class="clr-no-results">No search results found</div>
     </clr-options>
