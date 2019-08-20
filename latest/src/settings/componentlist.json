@@ -7,18 +7,6 @@
     },
     "list": [
         {
-            "url": "page-layouts",
-            "text": "Page layouts",
-            "type": "layout",
-            "ux": -1,
-            "ui": -1,
-            "core": -1,
-            "ng": -1,
-            "dox": 20,
-            "comments": "",
-            "newLayout": true
-        },
-        {
             "url": "forms",
             "text": "Forms",
             "type": "layout",
@@ -43,8 +31,44 @@
             "newLayout": true
         },
         {
+            "url": "page-layouts",
+            "text": "Page layouts",
+            "type": "layout",
+            "ux": -1,
+            "ui": -1,
+            "core": -1,
+            "ng": -1,
+            "dox": 20,
+            "comments": "",
+            "newLayout": true
+        },
+        {
+            "url": "combobox",
+            "text": "Autocomplete Combobox",
+            "type": "component",
+            "ux": 20,
+            "ui": 20,
+            "core": 20,
+            "ng": 20,
+            "dox": 20,
+            "comments": "",
+            "newLayout": true
+        },
+        {
             "url": "breadcrumb",
             "text": "Breadcrumb",
+            "type": "component",
+            "ux": 20,
+            "ui": 20,
+            "core": 20,
+            "ng": 20,
+            "dox": 20,
+            "comments": "",
+            "newLayout": true
+        },
+        {
+            "url": "cards",
+            "text": "Cards",
             "type": "component",
             "ux": 20,
             "ui": 20,
@@ -67,13 +91,13 @@
             "newLayout": true
         },
         {
-            "url": "combobox",
-            "text": "Autocomplete Combobox",
+            "url": "datagrid",
+            "text": "Datagrid",
             "type": "component",
-            "ux": 20,
+            "ux": -1,
             "ui": 20,
-            "core": 20,
-            "ng": 20,
+            "core": -1,
+            "ng": -1,
             "dox": 20,
             "comments": "",
             "newLayout": true
@@ -206,30 +230,6 @@
             "ui": 20,
             "core": 20,
             "ng": 20,
-            "dox": 20,
-            "comments": "",
-            "newLayout": true
-        },
-        {
-            "url": "cards",
-            "text": "Cards",
-            "type": "component",
-            "ux": 20,
-            "ui": 20,
-            "core": 20,
-            "ng": 20,
-            "dox": 20,
-            "comments": "",
-            "newLayout": true
-        },
-        {
-            "url": "datagrid",
-            "text": "Datagrid",
-            "type": "component",
-            "ux": -1,
-            "ui": 20,
-            "core": -1,
-            "ng": -1,
             "dox": 20,
             "comments": "",
             "newLayout": true
