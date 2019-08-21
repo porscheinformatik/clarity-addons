@@ -10,7 +10,7 @@ const HTML_EXAMPLE1 = `
       [clrBlankOption]="BLANK_OPTION"
       [clrMandatory]="true"
       [clrValues]="selectedOptionsMandatory"
-      class="clr-form-control clr-col-12"
+      class="clr-form-control clr-row"
       clrControlClasses="clr-col-lg-3 clr-col-md-4 clr-col-sm-5">
     <label class="clr-control-label clr-col-md-2 clr-col-sm-3 required">Option list</label>
   </clr-quick-list>
