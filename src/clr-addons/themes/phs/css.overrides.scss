@@ -75,14 +75,6 @@ header,
   }
 }
 
-.progress,
-.progress-static {
-  &.top {
-    border-top-left-radius: $phs-border-radius;
-    border-top-right-radius: $phs-border-radius;
-  }
-}
-
 .btn {
   border-radius: $phs-button-border-radius;
 }
