@@ -28,7 +28,7 @@ export class ClrQuickList<T> implements OnInit, AfterViewChecked {
   @Input('clrMandatory') mandatory: boolean = false;
   @Input('clrValues') values: Array<ClrQuickListValue<T>> = [];
   @Input('clrAddLabel') addLabel: string = 'ADD';
-  @Input('clrControlClasses') controlClasses = 'clr-col-md-10';
+  @Input('clrControlClasses') controlClasses = '';
   @Output('clrValuesChanged') valuesChanged = new EventEmitter<Array<ClrQuickListValue<T>>>();
   @Output('clrEmptyOptionAdded') emptyOptionAdded = new EventEmitter<void>();
 
