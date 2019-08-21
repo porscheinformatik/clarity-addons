@@ -16,7 +16,6 @@
         that encapsulates the real data (values), the developer should previously warp his list inside
         ClrQuickListValue.
         So the component uses generics <code class="clr-code">T</code> for the type of the contained values.</p>
-      <p>Currently this component is not usable inside forms.</p>
 
       <table class="table">
         <thead>
@@ -144,64 +143,33 @@
 
     <div id="code-examples">
       <h3 id="examples">Code &amp; Examples</h3>
-      <h6>Mandatory quick list</h6>
+      <h3>Mandatory quick list</h3>
 
       <form clrForm clrLayout="vertical">
-        <clr-input-container class="clr-col-12">
-          <label class="clr-col-md-2">First name </label>
-          <input class="clr-col-md-10" clrInput type="text"/>
-        </clr-input-container>
-
         <clr-quick-list
             [clrAddLabel]="getAddLabel()"
             [clrAllValues]="possibleOptions"
             [clrBlankOption]="BLANK_OPTION"
             [clrMandatory]="true"
             [clrValues]="selectedOptionsMandatory"
-            class="clr-form-control clr-col-12"
-            clrControlClasses="clr-col-lg-3 clr-col-md-4 clr-col-sm-5">
-          <label class="clr-control-label clr-col-md-2 clr-col-sm-3 required">Option list</label>
+            class="clr-form-control"
+            clrControlClasses="">
+          <label class="clr-control-label required">Option list</label>
           </clr-quick-list>
       </form>
-      <div class="clr-col-3">
 
-      </div>
-
-      <h6>Non mandatory quick list</h6>
+      <h3>Non mandatory quick list</h3>
       <form clrForm clrLayout="horizontal">
-        <clr-input-container class="clr-col-12">
-          <label class="clr-col-md-2">First name </label>
-          <input class="clr-col-md-10" clrInput type="text"/>
-        </clr-input-container>
-
         <clr-quick-list
             [clrAddLabel]="getAddLabel()"
             [clrAllValues]="possibleOptions"
             [clrBlankOption]="BLANK_OPTION"
             [clrValues]="selectedOptionsNotMandatory"
-            class="clr-form-control clr-col-12 clr-row"
-            clrControlClasses="clr-col-lg-3 clr-col-md-4 clr-col-sm-5">
-          <label class="clr-control-label clr-col-md-2 clr-col-sm-3">Option list</label>
+            class="clr-form-control clr-row"
+            clrControlClasses="clr-col-lg-2 clr-col-md-4 clr-col-sm-5">
+          <label class="clr-control-label clr-col-md-1 clr-col-sm-3">Option list</label>
         </clr-quick-list>
       </form>
-
-      <h4>Lists content</h4>
-      <div class="clr-row">
-        <div class="clr-col-4">
-          <b>Mandatory</b><br>
-          <ul class="list-unstyled">
-            <li *ngFor="let opt of selectedOptionsMandatory">{{opt.id + ' - ' + opt.value}}</li>
-          </ul>
-        </div>
-        <div class="clr-col-8">
-          <b>Non mandatory</b><br>
-          <ul class="list-unstyled">
-            <li *ngFor="let opt of selectedOptionsNotMandatory">{{opt.id + ' - ' + opt.value}}</li>
-          </ul>
-        </div>
-      </div>
-      <clr-code-snippet [clrCode]="htmlExample1"></clr-code-snippet>
-      <clr-code-snippet [clrCode]="htmlExample2" clrLanguage="typescript"></clr-code-snippet>
     </div>
   </article>
 </clr-doc-wrapper>
