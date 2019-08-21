@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { ClrQuickListValue } from './add-option.service';
 
 @Component({
@@ -21,6 +21,8 @@ export class ClrAddOption<T> {
   @Output() valueChanged = new EventEmitter<ClrQuickListValue<T>>();
   @Output() remove = new EventEmitter<void>();
 
+  @ViewChild('select', { static: true }) select: ElementRef;
+
   set selectedValue(id: string) {
     this.value = this.allValues.find(val => val.id === id);
     this.valueChanged.emit(this.value);
@@ -37,5 +39,11 @@ export class ClrAddOption<T> {
 
   trashDisabled(): boolean {
     return this.mandatory && this.excludedValues.length === 1;
+  }
+
+  focusComponent() {
+    setTimeout(() => {
+      (this.select.nativeElement as HTMLInputElement).focus();
+    });
   }
 }

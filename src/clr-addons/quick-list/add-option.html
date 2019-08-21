@@ -1,5 +1,5 @@
 <div class="clr-select-wrapper quick-list-input">
-  <select clr-select class="quick-list-select" name="options" [(ngModel)]="selectedValue">
+  <select #select clr-select class="quick-list-select" name="options" [(ngModel)]="selectedValue">
     <option *ngIf="blankOption.id === selectedValue" [selected]="true" [disabled]="true" [ngValue]="blankOption.id">
       {{blankOption.label}}
     </option>
