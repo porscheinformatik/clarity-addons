@@ -9,35 +9,41 @@ import { ClarityDocComponent } from "../clarity-doc";
 const CODE_EXAMPLE_FULL_FORM = `
 <form clrForm clrLayout="horizontal" class="clr-row">
     <clr-input-container class="clr-col-12">
-        <label class="required">Input label</label>
-        <input clrInput class="clr-col-2" type="text" [(ngModel)]="inputText" [ngModelOptions]="{ updateOn: 'blur' }"
-            name="inputName" required minlength="5"/>
+        <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2 required">Input label</label>
+        <input clrInput class="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-3" type="text"
+               [(ngModel)]="inputText" [ngModelOptions]="{ updateOn: 'blur' }"
+               name="inputName" required minlength="5"/>
         <clr-control-helper>Helper text that shows while it is pristine and valid</clr-control-helper>
         <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
         <clr-control-error *clrIfError="'minlength'">Error message about requiring 5 characters
         </clr-control-error>
     </clr-input-container>
     <clr-textarea-container class="clr-col-12">
-        <label class="required">Textarea label</label>
-        <textarea clrTextarea class="clr-col-2" [(ngModel)]="textareaText" name="description" [ngModelOptions]="{ updateOn: 'blur' }"
-                  required></textarea>
+        <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2 required">Textarea label</label>
+        <textarea clrTextarea class="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-3"
+                  [(ngModel)]="textareaText" [ngModelOptions]="{ updateOn: 'blur' }"
+                  name="description" required></textarea>
         <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
     </clr-textarea-container>
     <clr-password-container class="clr-col-12">
-        <label>Password label</label>
-        <input clrPassword class="clr-col-2" placeholder="Password please!" type="text"
+        <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2">Password label</label>
+        <input clrPassword class="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-3"
+               placeholder="Password please!" type="text"
                [(ngModel)]="passwordText" [ngModelOptions]="{ updateOn: 'blur' }" name="passwordName"/>
     </clr-password-container>
     <clr-select-container class="clr-col-12">
-        <label class="required">Select label</label>
-        <select clrSelect class="clr-col-2" name="options" [(ngModel)]="selectOption">
+        <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2 required">Select label</label>
+        <select clrSelect class="clr-col-6 clr-col-sm-3 clr-col-md-2" name="options"
+                [(ngModel)]="selectOption">
             <option value="one">One</option>
             <option value="two">Two</option>
             <option value="three">Three</option>
         </select>
     </clr-select-container>
-    <clr-combobox class="clr-col-12 clr-row" clrControlClasses="clr-col-2" [clrAllowUserEntry]="true">
-        <label class="clr-col-12 clr-col-md-2">Combobox label</label>
+    <clr-combobox class="clr-col-12 clr-row"
+                  clrControlClasses="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-3"
+                  [clrAllowUserEntry]="true">
+        <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2">Combobox label</label>
         <clr-options>
             <clr-option [clrValue]="'Option 1'">Option 1</clr-option>
             <clr-option [clrValue]="'Option 2'">Option 2</clr-option>
@@ -46,9 +52,10 @@ const CODE_EXAMPLE_FULL_FORM = `
         </clr-options>
     </clr-combobox>
     <clr-radio-container class="clr-col-12">
-        <label class="required">Radio label</label>
+        <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2 required">Radio label</label>
         <clr-radio-wrapper>
-            <input type="radio" clrRadio name="options" value="1" required [(ngModel)]="radioOption"/>
+            <input type="radio" class="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-3" 
+                clrRadio name="options" value="1" required [(ngModel)]="radioOption"/>
             <label>Option 1</label>
         </clr-radio-wrapper>
         <clr-radio-wrapper>
@@ -59,49 +66,59 @@ const CODE_EXAMPLE_FULL_FORM = `
         <clr-control-error>This field is required!</clr-control-error>
     </clr-radio-container>
     <clr-date-container class="clr-col-12">
-        <label>Date label</label>
-        <input type="text" [(ngModel)]="date" [ngModelOptions]="{ updateOn: 'blur' }" name="date" clrDate>
+        <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2 ">Date label</label>
+        <input class="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-3" type="text" [(ngModel)]="date"
+               [ngModelOptions]="{ updateOn: 'blur' }" name="date" clrDate>
     </clr-date-container>
     <clr-input-container class="clr-col-12">
-        <label>Time label</label>
-        <input type="time" [(ngModel)]="time" [ngModelOptions]="{ updateOn: 'blur' }" name="time" clrInput>
+        <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2 ">Time label</label>
+        <input class="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-3" type="time" [(ngModel)]="time"
+               [ngModelOptions]="{ updateOn: 'blur' }" name="time" clrInput>
     </clr-input-container>
     <clr-date-time-container class="clr-col-12 clr-row">
         <clr-date-container>
-            <label>Date & time label</label>
-            <input clrDate type="text" [(ngModel)]="date" [ngModelOptions]="{ updateOn: 'blur' }" name="date">
+            <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2">Date & time label</label>
+            <input class="clr-col-8" clrDate type="text" [(ngModel)]="date"
+                   [ngModelOptions]="{ updateOn: 'blur' }" name="date">
         </clr-date-container>
         <input type="time" [(ngModel)]="time" [ngModelOptions]="{ updateOn: 'blur' }" name="time" clrTime>
     </clr-date-time-container>
     <clr-input-container class="clr-col-12">
-        <label>Money label</label>
-        <input clrInput clrNumeric class="clr-col-2" type="text" [(clrNumericValue)]="money" clrUnit="€"/>
+        <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2 ">Money label</label>
+        <input class="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-3" clrInput clrNumeric
+               class="clr-col-2" type="text" [(clrNumericValue)]="money" clrUnit="€"/>
     </clr-input-container>
     <clr-checkbox-container class="clr-col-12">
-        <label>Checkbox label</label>
+        <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2 ">Checkbox label</label>
         <clr-checkbox-wrapper>
-            <label class="clr-col-12">Option</label>
-            <input clrCheckbox type="checkbox" [(ngModel)]="checkboxValue" name="checkboxName"/>
+            <label>Option</label>
+            <input clrCheckbox class="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-3"
+                type="checkbox" [(ngModel)]="checkboxValue" name="checkboxName"/>
         </clr-checkbox-wrapper>
     </clr-checkbox-container>
     <clr-toggle-container class="clr-col-12">
-        <label>Toggle label</label>
+        <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2">Toggle label</label>
         <clr-toggle-wrapper>
-            <input type="checkbox" id="toggle" name="toggle" [(ngModel)]="toggleValue" clrToggle />
+            <input type="checkbox" class="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-3"
+                id="toggle" name="toggle" [(ngModel)]="toggleValue" clrToggle/>
             <label for="toggle" class="clr-col-none"></label>
         </clr-toggle-wrapper>
     </clr-toggle-container>
-    <clr-multilingual-input class="clr-col-12 clr-row" clrSelectedLang="EN" [(ngModel)]="data" [ngModelOptions]="{ updateOn: 'blur' }"
-        clrRequiredAllMultilang clrControlClasses="clr-col-2" name="template">
-
-        <label class="required">Multilingual Input</label>
+    <clr-multilingual-input class="clr-col-12 clr-row" clrSelectedLang="EN" [(ngModel)]="data"
+                            [ngModelOptions]="{ updateOn: 'blur' }"
+                            clrRequiredAllMultilang
+                            clrControlClasses="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-3"
+                            name="template">
+        <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2 required">Multilingual Input</label>
         <clr-control-error>Please translate in every language!</clr-control-error>
         <clr-control-helper>Helper text</clr-control-helper>
     </clr-multilingual-input>
-    <clr-multilingual-textarea class="clr-col-12 clr-row" clrSelectedLang="EN" [(ngModel)]="data2" [ngModelOptions]="{ updateOn: 'blur' }"
-        clrRequiredAllMultilang clrControlClasses="clr-col-2" name="template2">
-
-        <label class="required">Multilingual Input</label>
+    <clr-multilingual-textarea class="clr-col-12 clr-row" clrSelectedLang="EN" [(ngModel)]="data2"
+                               [ngModelOptions]="{ updateOn: 'blur' }"
+                               clrRequiredAllMultilang
+                               clrControlClasses="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-3"
+                               name="template2">
+        <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2 required">Multilingual Input</label>
         <clr-control-error>Please translate in every language!</clr-control-error>
         <clr-control-helper>Helper text</clr-control-helper>
     </clr-multilingual-textarea>

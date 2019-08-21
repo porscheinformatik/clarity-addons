@@ -142,34 +142,29 @@
                 <p>For more complex notifications (including buttons etc.) an instance to a TemplateRef can be provided as content.</p>
                 <clr-code-snippet [clrCode]="codeExample"></clr-code-snippet>
                 <clr-code-snippet [clrCode]="codeExampleTS" [clrLanguage]="'typescript'"></clr-code-snippet>
-                <form class="clr-form">
-                    <div class="form-group">
-                        <label for="clr-timeout">Timeout</label>
-                        <input clrInput type="number" id="clr-timeout" name="clr-timeout" [(ngModel)]="clrExampleTimeout">
-                    </div>
-                    <div class="form-group">
-                        <label for="clr-type">Type</label>
-                        <div class="select">
-                            <select id="clr-type" [(ngModel)]="clrExampleType" [ngModelOptions]="{standalone: true}">
-                                <option value="info">Info</option>
-                                <option value="warning">Warning</option>
-                                <option value="success">Success</option>
-                                <option value="danger">Danger</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="checkbox">
-                            <input type="checkbox" id="clr-dismissable" name="clr-dismissable" [(ngModel)]="clrExampleDismissable">
-                            <label for="clr-dismissable">Dismissable</label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="checkbox">
-                            <input type="checkbox" id="clr-progressbar" name="clr-progressbar" class="form-control" [(ngModel)]="clrExampleProgressbar">
-                            <label for="clr-progressbar">Progressbar</label>
-                        </div>
-                    </div>
+                <form clrForm clrLayout="vertical">
+                    <clr-input-container>
+                        <label>Timeout</label>
+                        <input clrInput type="number" id="clr-timeout" name="clr-timeout" [(ngModel)]="clrExampleTimeout"/>
+                    </clr-input-container>
+                    <clr-select-container>
+                        <label>Type</label>
+                        <select clrSelect id="clr-type" name="clr-type" [(ngModel)]="clrExampleType">
+                            <option value="info">Info</option>
+                            <option value="warning">Warning</option>
+                            <option value="success">Success</option>
+                            <option value="danger">Danger</option>
+                        </select>
+                    </clr-select-container>
+                    <br>
+                    <clr-checkbox-wrapper>
+                        <label>Dismissable</label>
+                        <input clrCheckbox type="checkbox" [(ngModel)]="clrExampleDismissable" name="clr-dismissable"/>
+                    </clr-checkbox-wrapper>
+                    <clr-checkbox-wrapper>
+                        <label>Progressbar</label>
+                        <input clrCheckbox type="checkbox" [(ngModel)]="clrExampleProgressbar" name="clr-progressbar"/>
+                    </clr-checkbox-wrapper>
                 </form>
                 <div class="btn-group">
                     <button class="btn" (click)="openNotify(example, { timeout: clrExampleTimeout, notificationType: clrExampleType, dismissable: clrExampleDismissable, progressbar: clrExampleProgressbar })">Show Notification</button>

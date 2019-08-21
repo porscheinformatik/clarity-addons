@@ -73,7 +73,8 @@
                 <clr-radio-container class="clr-col-12">
                     <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2 required">Radio label</label>
                     <clr-radio-wrapper>
-                        <input type="radio" clrRadio name="options" value="1" required [(ngModel)]="radioOption"/>
+                        <input type="radio" class="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-3" 
+                            clrRadio name="options" value="1" required [(ngModel)]="radioOption"/>
                         <label>Option 1</label>
                     </clr-radio-wrapper>
                     <clr-radio-wrapper>
@@ -110,13 +111,15 @@
                     <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2 ">Checkbox label</label>
                     <clr-checkbox-wrapper>
                         <label>Option</label>
-                        <input clrCheckbox type="checkbox" [(ngModel)]="checkboxValue" name="checkboxName"/>
+                        <input clrCheckbox class="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-3"
+                            type="checkbox" [(ngModel)]="checkboxValue" name="checkboxName"/>
                     </clr-checkbox-wrapper>
                 </clr-checkbox-container>
                 <clr-toggle-container class="clr-col-12">
                     <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2">Toggle label</label>
                     <clr-toggle-wrapper>
-                        <input type="checkbox" id="toggle" name="toggle" [(ngModel)]="toggleValue" clrToggle/>
+                        <input type="checkbox" class="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-3"
+                            id="toggle" name="toggle" [(ngModel)]="toggleValue" clrToggle/>
                         <label for="toggle" class="clr-col-none"></label>
                     </clr-toggle-wrapper>
                 </clr-toggle-container>
