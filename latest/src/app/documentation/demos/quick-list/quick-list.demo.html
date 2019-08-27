@@ -143,22 +143,23 @@
 
     <div id="code-examples">
       <h3 id="examples">Code &amp; Examples</h3>
-      <h3>Mandatory quick list</h3>
+      <h4>Mandatory use-case</h4>
 
-      <form clrForm clrLayout="vertical">
+      <form clrForm>
         <clr-quick-list
             [clrAddLabel]="getAddLabel()"
             [clrAllValues]="possibleOptions"
             [clrBlankOption]="BLANK_OPTION"
             [clrMandatory]="true"
             [clrValues]="selectedOptionsMandatory"
-            class="clr-form-control">
-          <label class="clr-control-label required">Option list</label>
+            class="clr-form-control clr-row"
+            clrControlClasses="clr-col-lg-3 clr-col-md-4 clr-col-sm-5">
+          <label class="clr-control-label clr-col-md-2 clr-col-sm-3 required">Mandatory list</label>
           </clr-quick-list>
       </form>
 
-      <h3>Non mandatory quick list</h3>
-      <form clrForm clrLayout="horizontal">
+      <h4>Optional use-case</h4>
+      <form clrForm >
         <clr-quick-list
             [clrAddLabel]="getAddLabel()"
             [clrAllValues]="possibleOptions"
@@ -166,9 +167,13 @@
             [clrValues]="selectedOptionsNotMandatory"
             class="clr-form-control clr-row"
             clrControlClasses="clr-col-lg-3 clr-col-md-4 clr-col-sm-5">
-          <label class="clr-control-label clr-col-md-2 clr-col-sm-3">Option list</label>
+          <label class="clr-control-label clr-col-md-2 clr-col-sm-3">Optional list</label>
         </clr-quick-list>
       </form>
+
+      <h4>Code snippet</h4>
+      <clr-code-snippet [clrCode]="htmlExample1"></clr-code-snippet>
+      <clr-code-snippet [clrCode]="htmlExample2" clrLanguage="typescript"></clr-code-snippet>
     </div>
   </article>
 </clr-doc-wrapper>
