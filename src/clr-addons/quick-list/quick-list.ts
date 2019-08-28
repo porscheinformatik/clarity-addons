@@ -22,19 +22,17 @@ import { ClrAddOption } from './add-option';
   host: { '[class.quick-list]': 'true' },
   templateUrl: './quick-list.html',
 })
-export class ClrQuickList<T> implements OnInit, AfterViewChecked {
+export class ClrQuickList<T> implements OnInit {
   @Input('clrBlankOption') blankOption: ClrQuickListValue<T> = CLR_BLANK_OPTION;
   @Input('clrAllValues') allValues: Array<ClrQuickListValue<T>> = [this.blankOption];
   @Input('clrMandatory') mandatory: boolean = false;
   @Input('clrValues') values: Array<ClrQuickListValue<T>> = [];
   @Input('clrAddLabel') addLabel: string = 'ADD';
-  @Input('clrControlClasses') controlClasses = '';
+  @Input('clrControlClasses') controlClasses = 'clr-col-md-10';
   @Output('clrValuesChanged') valuesChanged = new EventEmitter<Array<ClrQuickListValue<T>>>();
   @Output('clrEmptyOptionAdded') emptyOptionAdded = new EventEmitter<void>();
 
   @ViewChildren(ClrAddOption) options: QueryList<ClrAddOption<T>>;
-
-  focusId: string = null;
 
   ngOnInit(): void {
     if (this.values.length === 0 && this.mandatory) {
@@ -42,18 +40,10 @@ export class ClrQuickList<T> implements OnInit, AfterViewChecked {
     }
   }
 
-  ngAfterViewChecked(): void {
-    if (!!this.focusId) {
-      this.options.find(e => e.value.id === this.focusId).focusComponent();
-      this.focusId = null;
-    }
-  }
-
   onValueChanged(value: ClrQuickListValue<T>, i: number) {
     if (!!value) {
       this.values[i] = value;
       this.valuesChanged.emit(this.values);
-      this.focusId = value.id;
     }
   }
 
@@ -67,7 +57,6 @@ export class ClrQuickList<T> implements OnInit, AfterViewChecked {
       this.values.push(this.blankOption);
       this.valuesChanged.emit(this.values);
       this.emptyOptionAdded.emit();
-      this.focusId = this.blankOption.id;
     }
   }
 
