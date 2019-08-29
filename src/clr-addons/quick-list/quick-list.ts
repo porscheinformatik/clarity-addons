@@ -4,18 +4,8 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import {
-  AfterViewChecked,
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  QueryList,
-  ViewChildren,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CLR_BLANK_OPTION, ClrQuickListValue } from './add-option.service';
-import { ClrAddOption } from './add-option';
 
 @Component({
   selector: 'clr-quick-list',
@@ -31,8 +21,6 @@ export class ClrQuickList<T> implements OnInit {
   @Input('clrControlClasses') controlClasses = 'clr-col-md-10';
   @Output('clrValuesChanged') valuesChanged = new EventEmitter<Array<ClrQuickListValue<T>>>();
   @Output('clrEmptyOptionAdded') emptyOptionAdded = new EventEmitter<void>();
-
-  @ViewChildren(ClrAddOption) options: QueryList<ClrAddOption<T>>;
 
   ngOnInit(): void {
     if (this.values.length === 0 && this.mandatory) {
