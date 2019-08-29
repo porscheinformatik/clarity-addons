@@ -5,12 +5,12 @@
     [clrAllValues]="possibleActivityResults"
     [clrBlankOption]="BLANK_OPTION"
     [clrValues]="selectedHActivityResults"
-    class="clr-form-control clr-col-12 clr-row"
+    class="clr-form-control clr-row"
     clrControlClasses="clr-col-lg-3 clr-col-md-4 clr-col-sm-5"
   >
     <label class="clr-control-label clr-col-md-2 clr-col-sm-3">Option list</label>
   </clr-quick-list>
-  <clr-input-container class="clr-col-12 clr-row">
+  <clr-input-container>
     <label class="clr-col-md-2">First name</label>
     <input class="clr-col-md-10" clrInput type="text" />
   </clr-input-container>
@@ -35,9 +35,9 @@
 
 <h2>Quick List vertical</h2>
 <form clrForm clrLayout="vertical">
-  <clr-input-container class="clr-col-12">
-    <label class="clr-col-md-2">First name </label>
-    <input class="clr-col-md-10" clrInput type="text" />
+  <clr-input-container>
+    <label>First name </label>
+    <input clrInput type="text" />
   </clr-input-container>
 
   <clr-quick-list
@@ -45,10 +45,9 @@
     [clrAllValues]="possibleActivityResults"
     [clrBlankOption]="BLANK_OPTION"
     [clrValues]="selectedVActivityResults"
-    class="clr-form-control clr-col-12"
-    clrControlClasses="clr-col-lg-3 clr-col-md-4 clr-col-sm-5"
+    class="clr-form-control clr row"
   >
-    <label class="clr-control-label clr-col-md-2 clr-col-sm-3">Option list</label>
+    <label class="clr-control-label">Option list</label>
   </clr-quick-list>
 </form>
 
