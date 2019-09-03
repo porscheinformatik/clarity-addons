@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { ClrQuickListValue } from './add-option.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { ClrQuickListValue } from './add-option.service';
   templateUrl: './add-option.html',
   host: { '[class.quick-list-option]': 'true' },
 })
-export class ClrAddOption<T> implements AfterViewInit {
+export class ClrAddOption<T> {
   @Input() blankOption: ClrQuickListValue<T>;
   @Input() value: ClrQuickListValue<T>;
   @Input() mandatory: boolean = false;
@@ -41,9 +41,7 @@ export class ClrAddOption<T> implements AfterViewInit {
     return this.mandatory && this.excludedValues.length === 1;
   }
 
-  ngAfterViewInit(): void {
-    setTimeout(() => {
-      (this.select.nativeElement as HTMLInputElement).focus();
-    });
+  focusComponent(): void {
+    (this.select.nativeElement as HTMLInputElement).focus();
   }
 }
