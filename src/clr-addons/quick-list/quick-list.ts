@@ -4,8 +4,9 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChildren, QueryList } from '@angular/core';
 import { CLR_BLANK_OPTION, ClrQuickListValue } from './add-option.service';
+import { ClrAddOption } from './add-option';
 
 @Component({
   selector: 'clr-quick-list',
@@ -22,6 +23,8 @@ export class ClrQuickList<T> implements OnInit {
   @Output('clrValuesChanged') valuesChanged = new EventEmitter<Array<ClrQuickListValue<T>>>();
   @Output('clrEmptyOptionAdded') emptyOptionAdded = new EventEmitter<void>();
 
+  @ViewChildren(ClrAddOption) options: QueryList<ClrAddOption<T>>;
+
   ngOnInit(): void {
     if (this.values.length === 0 && this.mandatory) {
       this.values.push(this.blankOption);
@@ -32,6 +35,7 @@ export class ClrQuickList<T> implements OnInit {
     if (!!value) {
       this.values[i] = value;
       this.valuesChanged.emit(this.values);
+      this.focusOption(value);
     }
   }
 
@@ -45,7 +49,12 @@ export class ClrQuickList<T> implements OnInit {
       this.values.push(this.blankOption);
       this.valuesChanged.emit(this.values);
       this.emptyOptionAdded.emit();
+      this.focusOption(this.blankOption);
     }
+  }
+
+  focusOption(option: ClrQuickListValue<T>) {
+    setTimeout(() => this.options.find(opt => opt.value.id === option.id).focusComponent());
   }
 
   hasBlankOption() {

@@ -27,6 +27,7 @@ export class QuickListDemo implements OnInit {
 
   ngOnInit() {
     this.possibleActivityResults = this.options.map(op => this.map(op));
+    this.selectedHActivityResults = this.possibleActivityResults.filter((val, i) => i < 2);
   }
 
   private map(op: string): ClrQuickListValue<string> {
