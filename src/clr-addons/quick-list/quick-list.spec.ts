@@ -12,7 +12,7 @@ import { ClrQuickList } from './quick-list';
 import { ClrQuickListValue } from '@porscheinformatik/clr-addons';
 import { ClrAddOption } from './add-option';
 
-describe('QuickListComponent', () => {
+fdescribe('QuickListComponent', () => {
   let component: ClrQuickList<any>;
   let fixture: ComponentFixture<ClrQuickList<any>>;
   let el1, el2: ClrQuickListValue<any>;
