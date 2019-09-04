@@ -89,8 +89,14 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
         event.ctrlKey ||
         event.altKey
       ) {
-        /* allow negative sign only as first character and none exists */
-        if (event.key === NEGATIVE && (event.target.selectionStart > 0 || value.indexOf(NEGATIVE) > -1)) {
+        /* allow negative sign only as first character and none exists outside of text selection */
+        const indexNegativeSign = value.indexOf(NEGATIVE);
+        if (
+          event.key === NEGATIVE &&
+          (event.target.selectionStart > 0 || indexNegativeSign > -1) &&
+          (event.target.selectionStart === event.target.selectionEnd ||
+            !(indexNegativeSign >= event.target.selectionStart && indexNegativeSign <= event.target.selectionEnd))
+        ) {
           return false;
         }
 
@@ -99,7 +105,8 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
         if (
           event.key === this.decimalSeparator &&
           (indexDecimalSep > -1 || this.decimalPlaces === 0) &&
-          !(indexDecimalSep >= event.target.selectionStart && indexDecimalSep <= event.target.selectionEnd)
+          (event.target.selectionStart === event.target.selectionEnd ||
+            !(indexDecimalSep >= event.target.selectionStart && indexDecimalSep <= event.target.selectionEnd))
         ) {
           return false;
         }

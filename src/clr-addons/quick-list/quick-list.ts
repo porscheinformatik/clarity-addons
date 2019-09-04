@@ -54,7 +54,12 @@ export class ClrQuickList<T> implements OnInit {
   }
 
   focusOption(option: ClrQuickListValue<T>) {
-    setTimeout(() => this.options.find(opt => opt.value.id === option.id).focusComponent());
+    setTimeout(() => {
+      const opt = this.options.find(o => o.value.id === option.id);
+      if (!!opt) {
+        opt.focusComponent();
+      }
+    });
   }
 
   hasBlankOption() {
