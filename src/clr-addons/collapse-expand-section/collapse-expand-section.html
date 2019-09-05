@@ -1,16 +1,22 @@
 <div class="ces">
-  <div class="ces-title">
-    <h2>
+  <div class="ces-title" [class.disabled-header-styles]="disableHeaderStyles">
+    <h2 *ngIf="!disableHeaderStyles; else title">
+      <ng-container *ngTemplateOutlet="title"></ng-container>
+    </h2>
+    <ng-template #title>
       <ng-content select="[clr-ces-title]"></ng-content>
       <button type="button" (click)="onCollapseExpand()" class="btn btn-icon btn-link ces-caret-btn">
         <clr-icon shape="caret up" size="28" class="ces-caret-icon" [@rotateIcon]="isCollapsed"></clr-icon>
       </button>
-    </h2>
+    </ng-template>
   </div>
   <div class="ces-subtitle">
-    <h4>
-      <ng-content select="[clr-ces-subtitle]"></ng-content>
+    <h4 *ngIf="!disableHeaderStyles; else subtitle">
+      <ng-container *ngTemplateOutlet="subtitle"></ng-container>
     </h4>
+    <ng-template #subtitle>
+      <ng-content select="[clr-ces-subtitle]"></ng-content>
+    </ng-template>
   </div>
   <div [@collapseExpandAnimation] *ngIf="!isCollapsed">
     <ng-content select="[clr-ces-content]"></ng-content>

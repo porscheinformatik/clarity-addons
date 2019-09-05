@@ -30,10 +30,11 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   ],
 })
 export class ClrCollapseExpandSection {
-  @Input('clrIsCollapsed') isCollapsed: boolean = true;
+  @Input('clrIsCollapsed') isCollapsed = true;
+  @Input('clrDisableHeaderStyles') disableHeaderStyles = false;
 
-  @Output('clrCollapsed') collapsed: EventEmitter<any> = new EventEmitter();
-  @Output('clrExpanded') expanded: EventEmitter<any> = new EventEmitter();
+  @Output('clrCollapsed') collapsed = new EventEmitter();
+  @Output('clrExpanded') expanded = new EventEmitter();
 
   onCollapseExpand() {
     if (this.isCollapsed) {
