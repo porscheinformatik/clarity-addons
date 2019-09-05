@@ -41,6 +41,7 @@ const PRESELECTED = `
         <clr-option [clrValue]="'Option 3'">Option 3</clr-option>
         <div class="clr-no-results">No search results found</div>
     </clr-options>
+    <clr-control-error>Select a value</clr-control-error>
 </clr-combobox>
 `;
 
