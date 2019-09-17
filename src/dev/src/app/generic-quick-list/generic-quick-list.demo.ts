@@ -6,7 +6,6 @@
 
 import { Component } from '@angular/core';
 import { of, Observable } from 'rxjs';
-import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-generic-quick-list-demo',
