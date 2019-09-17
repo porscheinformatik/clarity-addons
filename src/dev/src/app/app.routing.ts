@@ -5,57 +5,99 @@
  */
 import { ModuleWithProviders } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BackButtonDemo } from './back-button/back-button.demo';
-import { BreadcrumbDemo } from './breadcrumb/breadcrumb.demo';
-import { CardsDemo } from './cards/cards.demo';
-import { CollapseExpandSectionDemo } from './collapse-expand-section/collapse-expand-section.demo';
-import { ContentPanelDemo } from './content-panel/content-panel.demo';
-import { DateTimeContainerDemo } from './date-time-container/date-time-container.demo';
-import { FlowBarContentPanelDemo } from './flow-bar-content-panel/flow-bar-content-panel.demo';
-import { FlowBarDemo } from './flow-bar/flow-bar.demo';
-
 import { LandingComponent } from './landing.component';
-import { NotificationDemo } from './notification/notification.demo';
-import { NumericFieldDemo } from './numericfield/numericfield.demo';
-import { SearchFieldDemo } from './searchfield/searchfield.demo';
-import { PagedSearchResultListDemo } from './paged-search-result-list/paged-search-result-list.demo';
-import { PagerDemo } from './pager/pager.demo';
-import { ProgressSpinnerDemo } from './progress-spinner/progress-spinner.demo';
-import { ReadonlyDemo } from './readonly/readonly.demo';
-import { TreetableDemo } from './treetable/treetable.demo';
-import { ViewEditSectionDemo } from './view-edit-section/view-edit-section.demo';
-import { DotPagerDemo } from './dot-pager/dot-pager.demo';
-import { QuickListDemo } from './quick-list/quick-list.demo';
-import { LetterAvatarDemo } from './letter-avatar/letter-avatar.demo';
-import { MultilingualInputDemo } from './multilingual-input/multilingual-input.demo';
 
 export const APP_ROUTES: Routes = [
   { path: '', component: LandingComponent },
-  { path: 'back-button', component: BackButtonDemo },
-  { path: 'cards', component: CardsDemo },
-  { path: 'view-edit-section', component: ViewEditSectionDemo },
-  { path: 'pager', component: PagerDemo },
-  { path: 'dot-pager', component: DotPagerDemo },
-  { path: 'paged-search-result-list', component: PagedSearchResultListDemo },
-  { path: 'collapse-expand-section', component: CollapseExpandSectionDemo },
-  { path: 'content-panel', component: ContentPanelDemo },
-  { path: 'flow-bar', component: FlowBarDemo },
-  { path: 'flow-bar-content-panel', component: FlowBarContentPanelDemo },
-  { path: 'breadcrumb', component: BreadcrumbDemo },
-  { path: 'progress-spinner', component: ProgressSpinnerDemo },
-  { path: 'notification', component: NotificationDemo },
-  { path: 'numericfield', component: NumericFieldDemo },
-  { path: 'searchfield', component: SearchFieldDemo },
-  { path: 'treetable', component: TreetableDemo },
-  { path: 'readonly', component: ReadonlyDemo },
   {
-    path: 'combobox',
-    loadChildren: () => import('src/app/combobox/combobox.demo.module').then(m => m.ComboboxDemoModule),
+    path: 'back-button',
+    loadChildren: () => import('./back-button/back-button.demo.module').then(m => m.BackButtonDemoModule),
   },
-  { path: 'date-time-container', component: DateTimeContainerDemo },
-  { path: 'quick-list-container', component: QuickListDemo },
-  { path: 'letter-avatar', component: LetterAvatarDemo },
-  { path: 'multilingual-input', component: MultilingualInputDemo },
+  { path: 'cards', loadChildren: () => import('./cards/cards.demo.module').then(m => m.CardsDemoModule) },
+  {
+    path: 'view-edit-section',
+    loadChildren: () =>
+      import('./view-edit-section/view-edit-section.demo.module').then(m => m.ViewEditSectionDemoModule),
+  },
+  { path: 'pager', loadChildren: () => import('./pager/pager.demo.module').then(m => m.PagerDemoModule) },
+  {
+    path: 'dot-pager',
+    loadChildren: () => import('./dot-pager/dot-pager.demo.module').then(m => m.DotPagerDemoModule),
+  },
+  {
+    path: 'paged-search-result-list',
+    loadChildren: () =>
+      import('./paged-search-result-list/paged-search-result-list.demo.module').then(
+        m => m.PagedSearchResultListDemoModule
+      ),
+  },
+  {
+    path: 'collapse-expand-section',
+    loadChildren: () =>
+      import('./collapse-expand-section/collapse-expand-section.demo.module').then(
+        m => m.CollapseExpandSectionDemoModule
+      ),
+  },
+  {
+    path: 'content-panel',
+    loadChildren: () => import('./content-panel/content-panel.demo.module').then(m => m.ContentPanelDemoModule),
+  },
+  { path: 'flow-bar', loadChildren: () => import('./flow-bar/flow-bar.demo.module').then(m => m.FlowBarDemoModule) },
+  {
+    path: 'flow-bar-content-panel',
+    loadChildren: () =>
+      import('./flow-bar-content-panel/flow-bar-content-panel.demo.module').then(m => m.FlowBarContentPanelDemoModule),
+  },
+  {
+    path: 'breadcrumb',
+    loadChildren: () => import('./breadcrumb/breadcrumb.demo.module').then(m => m.BreadcrumbDemoModule),
+  },
+  {
+    path: 'progress-spinner',
+    loadChildren: () =>
+      import('./progress-spinner/progress-spinner.demo.module').then(m => m.ProgressSpinnerDemoModule),
+  },
+  {
+    path: 'notification',
+    loadChildren: () => import('./notification/notification.demo.module').then(m => m.NotificationDemoModule),
+  },
+  {
+    path: 'numericfield',
+    loadChildren: () => import('./numericfield/numericfield.demo.module').then(m => m.NumericFieldDemoModule),
+  },
+  {
+    path: 'searchfield',
+    loadChildren: () => import('./searchfield/searchfield.demo.module').then(m => m.SearchFieldDemoModule),
+  },
+  {
+    path: 'treetable',
+    loadChildren: () => import('./treetable/treetable.demo.module').then(m => m.TreetableDemoModule),
+  },
+  { path: 'readonly', loadChildren: () => import('./readonly/readonly.demo.module').then(m => m.ReadonlyDemoModule) },
+  { path: 'combobox', loadChildren: () => import('./combobox/combobox.demo.module').then(m => m.ComboboxDemoModule) },
+  {
+    path: 'date-time-container',
+    loadChildren: () =>
+      import('./date-time-container/date-time-container.demo.module').then(m => m.DateTimeContainerDemoModule),
+  },
+  {
+    path: 'quick-list-container',
+    loadChildren: () => import('./quick-list/quick-list.demo.module').then(m => m.QuickListModule),
+  },
+  {
+    path: 'letter-avatar',
+    loadChildren: () => import('./letter-avatar/letter-avatar.demo.module').then(m => m.LetterAvatarDemoModule),
+  },
+  {
+    path: 'multilingual-input',
+    loadChildren: () =>
+      import('./multilingual-input/multilingual-input.demo.module').then(m => m.MultilingualInputDemoModule),
+  },
+  {
+    path: 'generic-quick-list',
+    loadChildren: () =>
+      import('./generic-quick-list/generic-quick-list.demo.module').then(m => m.GenericQuickListModule),
+  },
 ];
 
 export const ROUTING: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);

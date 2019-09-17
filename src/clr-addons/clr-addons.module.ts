@@ -25,6 +25,7 @@ import { ClrDotPagerModule } from './dot-pager/dot-pager.module';
 import { ClrQuickListModule } from './quick-list/quick-list.module';
 import { ClrLetterAvatarModule } from './letter-avatar/letter-avatar.module';
 import { ClrMultilingualModule } from './multilingual/multilingual.module';
+import { ClrGenericQuickListModule } from './generic-quick-list/generic-quick-list.module';
 
 @NgModule({
   exports: [
@@ -48,6 +49,7 @@ import { ClrMultilingualModule } from './multilingual/multilingual.module';
     ClrQuickListModule,
     ClrLetterAvatarModule,
     ClrMultilingualModule,
+    ClrGenericQuickListModule,
   ],
 })
 export class ClrAddonsModule {}
