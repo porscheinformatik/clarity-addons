@@ -1,0 +1,32 @@
+@include exports('generic-quick-list.clr-addons') {
+  .generic-quick-list {
+    .clr-form-control {
+      margin-top: 0;
+    }
+
+    .controls-container {
+      display: flex;
+
+      > :not(.btn-trash) {
+        flex: 1;
+        margin-right: 0.5rem;
+      }
+    }
+
+    .btn-add {
+      padding: 0;
+      text-align: left;
+    }
+  }
+
+  form:not(.clr-form-horizontal) .generic-quick-list {
+    .clr-control-container {
+      width: 100%;
+    }
+
+    .controls-container {
+      margin-right: -0.5rem;
+      margin-left: -0.5rem;
+    }
+  }
+}

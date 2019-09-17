@@ -1,0 +1,95 @@
+<h2>Generic Quick List</h2>
+<h3>Horizontal</h3>
+<form clrForm clrLayout="horizontal" #form="ngForm">
+  <clr-generic-quick-list
+    [clrAllItems]="allItems"
+    class="clr-row"
+    clrControlClasses="clr-col-md-10"
+    (clrRemoved)="itemRemoved($event)"
+    (clrAdded)="itemAdded($event)"
+  >
+    <label class="clr-control-label clr-col-md-2">Generic Quickie</label>
+    <ng-template let-item>
+      <clr-input-container>
+        <label [hidden]="true"></label>
+        <input class="clr-col-12" clrInput [(ngModel)]="item.firstname" required [name]="'first' + item.id" />
+        <clr-control-error *clrIfError="'required'">Please enter a value</clr-control-error>
+      </clr-input-container>
+      <clr-input-container>
+        <label [hidden]="true"></label>
+        <input class="clr-col-12" clrInput [(ngModel)]="item.lastname" required [name]="'last' + item.id" />
+        <clr-control-error *clrIfError="'required'">Please enter a value</clr-control-error>
+      </clr-input-container>
+    </ng-template>
+  </clr-generic-quick-list>
+  <clr-input-container>
+    <label class="clr-col-md-2">First name</label>
+    <input class="clr-col-md-10" clrInput type="text" />
+  </clr-input-container>
+</form>
+
+<h3>Selected Options (horizontal)</h3>
+Form valid: {{form.valid}}
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Firstname</th>
+      <th>Lastname</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of allItems">
+      <td>{{item.id}}</td>
+      <td>{{item.firstname}}</td>
+      <td>{{item.lastname}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Vertical</h3>
+<form clrForm clrLayout="vertical" #formV="ngForm">
+  <clr-generic-quick-list
+    [clrAllItems]="allItemsV"
+    class="clr-row clr-col-6"
+    (clrRemoved)="itemRemoved($event)"
+    (clrAdded)="itemAdded($event)"
+  >
+    <label class="clr-control-label">Generic Quickie</label>
+    <ng-template let-item>
+      <clr-input-container>
+        <label [hidden]="true"></label>
+        <input class="clr-col-12" clrInput [(ngModel)]="item.firstname" required [name]="'first' + item.id" />
+        <clr-control-error *clrIfError="'required'">Please enter a value</clr-control-error>
+      </clr-input-container>
+      <clr-input-container>
+        <label [hidden]="true"></label>
+        <input class="clr-col-12" clrInput [(ngModel)]="item.lastname" required [name]="'last' + item.id" />
+        <clr-control-error *clrIfError="'required'">Please enter a value</clr-control-error>
+      </clr-input-container>
+    </ng-template>
+  </clr-generic-quick-list>
+  <clr-input-container>
+    <label>First name</label>
+    <input clrInput type="text" />
+  </clr-input-container>
+</form>
+
+<h3>Selected Options (vertical)</h3>
+Form valid: {{formV.valid}}
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Firstname</th>
+      <th>Lastname</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of allItemsV">
+      <td>{{item.id}}</td>
+      <td>{{item.firstname}}</td>
+      <td>{{item.lastname}}</td>
+    </tr>
+  </tbody>
+</table>

@@ -26,3 +26,5 @@ export * from './date-time-container/index';
 export * from './quick-list/index';
 export * from './multilingual/index';
 export * from './util/index';
+export * from './generic-quick-list/index';
+export * from './letter-avatar/index';

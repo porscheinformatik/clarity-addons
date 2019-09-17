@@ -9,9 +9,16 @@ import { ProgressSpinnerDemo } from './progress-spinner.demo';
 import { ClarityModule } from '@clr/angular';
 import { FormsModule } from '@angular/forms';
 import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  imports: [CommonModule, ClarityModule, ClrAddonsModule, FormsModule],
+  imports: [
+    CommonModule,
+    ClarityModule,
+    ClrAddonsModule,
+    FormsModule,
+    RouterModule.forChild([{ path: '', component: ProgressSpinnerDemo }]),
+  ],
   declarations: [ProgressSpinnerDemo],
   exports: [ProgressSpinnerDemo],
 })

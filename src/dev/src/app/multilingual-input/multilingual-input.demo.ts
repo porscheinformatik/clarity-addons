@@ -40,7 +40,7 @@ export class MultilingualInputDemo implements OnInit {
     this.reactive1.set('en', 'english text');
     this.reactive1.set('de', 'deutscher text');
     this.reactive1.set('fr', 'texte français');
-    this.reactive2.set('eb', 'english text');
+    this.reactive2.set('en', 'english text');
     this.reactive2.set('de', 'deutscher text');
     this.reactive2.set('fr', 'texte français');
   }

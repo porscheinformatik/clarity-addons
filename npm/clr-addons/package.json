@@ -18,9 +18,9 @@
         "@angular/forms": "^8.0.0",
         "@angular/platform-browser": "^8.0.0",
         "@angular/platform-browser-dynamic": "^8.0.0",
-        "@clr/angular": "2.1.1",
-        "@clr/icons": "2.1.1",
-        "@clr/ui": "2.1.1"
+        "@clr/angular": "2.2.0",
+        "@clr/icons": "2.2.0",
+        "@clr/ui": "2.2.0"
     },
     "author": "porscheinformatik",
     "license": "MIT",
