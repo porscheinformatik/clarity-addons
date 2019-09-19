@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { AfterViewChecked, ContentChildren, Directive, HostListener, QueryList } from '@angular/core';
+import { AfterViewChecked, ContentChildren, Directive, HostListener, QueryList, AfterContentInit } from '@angular/core';
 
 import { ClrTreetableColumn } from '../treetable-column';
 import { TreetableHeaderRenderer } from './header-renderer';
@@ -12,29 +12,42 @@ import { TreetableRowRenderer } from './row-renderer';
 @Directive({
   selector: 'clr-treetable',
 })
-export class TreetableMainRenderer<T = any> implements AfterViewChecked {
+export class TreetableMainRenderer<T = any> implements AfterViewChecked, AfterContentInit {
   @ContentChildren(TreetableHeaderRenderer) headers: QueryList<TreetableHeaderRenderer>;
   @ContentChildren(TreetableRowRenderer, { descendants: true })
   rows: QueryList<TreetableRowRenderer>;
   @ContentChildren(ClrTreetableColumn) columns: QueryList<ClrTreetableColumn>;
+  private shouldStabilizeColumn = true;
 
   @HostListener('window:resize', ['$event'])
-  onResize(event) {
+  onResize() {
     this.applyMaxWidth();
   }
-  constructor() {}
+
+  ngAfterContentInit() {
+    this.headers.changes.subscribe(() => {
+      this.shouldStabilizeColumn = true;
+    });
+    this.rows.changes.subscribe(() => {
+      this.shouldStabilizeColumn = true;
+    });
+  }
 
   ngAfterViewChecked(): void {
-    this.applyColumnClasses();
-    setTimeout(() => {
-      this.applyMaxWidth();
-    }, 10);
+    if (this.shouldStabilizeColumn) {
+      this.applyColumnClasses();
+      setTimeout(() => {
+        this.applyMaxWidth();
+      }, 10);
+    }
   }
 
   /**
    * Applies css column class to every header and cell.
    */
   private applyColumnClasses() {
+    this.shouldStabilizeColumn = false;
+
     this.headers.forEach((header, headerIndex) => {
       const columnClasses = header.getColumnClasses();
       if (columnClasses.length === 0) {
