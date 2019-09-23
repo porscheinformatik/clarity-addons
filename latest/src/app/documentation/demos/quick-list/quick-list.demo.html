@@ -298,18 +298,18 @@
 
       <form clrForm>
         <clr-generic-quick-list [clrAddLabel]="'ADD'" [clrAllItems]="allItemsGeneric"
-            [clrRequired]="'true'" class="clr-row" clrControlClasses="clr-col-md-10">
+            [clrRequired]="'true'" class="clr-row" clrControlClasses="clr-col-md-6 clr-col-xl-4">
             <label class="clr-control-label clr-col-md-2">Generic Quick List</label>
             <ng-template let-item>
                 <!-- Custom content below -->
                 <clr-input-container>
                     <label [hidden]="true"></label>
-                    <input class="clr-col-12" clrInput [(ngModel)]="item.firstname" required [name]="'first' + item.id" />
+                    <input class="clr-col-12" placeholder="Firstname" clrInput [(ngModel)]="item.firstname" required [name]="'first' + item.id" />
                     <clr-control-error *clrIfError="'required'">Please enter a value</clr-control-error>
                 </clr-input-container>
                 <clr-input-container>
                     <label [hidden]="true"></label>
-                    <input class="clr-col-12" clrInput [(ngModel)]="item.lastname" required [name]="'last' + item.id" />
+                    <input class="clr-col-12" placeholder="Lastname" clrInput [(ngModel)]="item.lastname" required [name]="'last' + item.id" />
                     <clr-control-error *clrIfError="'required'">Please enter a value</clr-control-error>
                 </clr-input-container>
                 <!-- Custom content above -->

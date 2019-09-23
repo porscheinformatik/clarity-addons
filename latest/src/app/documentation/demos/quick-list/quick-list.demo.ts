@@ -37,18 +37,18 @@ possibleOptions: Array<ClrQuickListValue<string>> = this.options.map(op=>
 const HTML_EXAMPLE_GENERIC = `
 <form clrForm>
     <clr-generic-quick-list [clrAddLabel]="'ADD'" [clrAllItems]="allItemsGeneric"
-        [clrRequired]="'true'" class="clr-row" clrControlClasses="clr-col-md-10">
+        [clrRequired]="'true'" class="clr-row" clrControlClasses="clr-col-md-6 clr-col-xl-4">
         <label class="clr-control-label clr-col-md-2">Generic Quick List</label>
         <ng-template let-item>
             <!-- Custom content below -->
             <clr-input-container>
                 <label [hidden]="true"></label>
-                <input class="clr-col-12" clrInput [(ngModel)]="item.firstname" required [name]="'first' + item.id" />
+                <input class="clr-col-12" placeholder="Firstname" clrInput [(ngModel)]="item.firstname" required [name]="'first' + item.id" />
                 <clr-control-error *clrIfError="'required'">Please enter a value</clr-control-error>
             </clr-input-container>
             <clr-input-container>
                 <label [hidden]="true"></label>
-                <input class="clr-col-12" clrInput [(ngModel)]="item.lastname" required [name]="'last' + item.id" />
+                <input class="clr-col-12" placeholder="Lastname" clrInput [(ngModel)]="item.lastname" required [name]="'last' + item.id" />
                 <clr-control-error *clrIfError="'required'">Please enter a value</clr-control-error>
             </clr-input-container>
             <!-- Custom content above -->
@@ -63,8 +63,7 @@ interface ClrNameQuickListItem extends ClrGenericQuickListItem {
     lastname: string;
 };
 
-allItemsGeneric = [<ClrNameQuickListItem>{ id: 1, firstname: "John", lastname: "Doe" },
-    <ClrNameQuickListItem>{id: 2, firstname: "Richard", lastname: "Roe" }];
+allItemsGeneric = [<ClrNameQuickListItem>{ id: 1 }];
 `
 
 interface ClrNameQuickListItem extends ClrGenericQuickListItem {
@@ -104,8 +103,7 @@ export class QuickListDemo extends ClarityDocComponent{
   selectedOptionsMandatory: Array<ClrQuickListValue<string>> = [];
   selectedOptionsNotMandatory: Array<ClrQuickListValue<string>> = [];
 
-  allItemsGeneric = [<ClrNameQuickListItem>{ id: 1, firstname: "John", lastname: "Doe" },
-    <ClrNameQuickListItem>{id: 2, firstname: "Richard", lastname: "Roe" }];
+  allItemsGeneric = [<ClrNameQuickListItem>{ id: 1 }];
 
   constructor() {
     super("quick-list");
