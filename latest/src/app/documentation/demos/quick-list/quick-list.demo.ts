@@ -35,25 +35,27 @@ possibleOptions: Array<ClrQuickListValue<string>> = this.options.map(op=>
 `
 
 const HTML_EXAMPLE_GENERIC = `
-<form clrForm>
-    <clr-generic-quick-list [clrAddLabel]="'ADD'" [clrAllItems]="allItemsGeneric"
-        [clrRequired]="'true'" class="clr-row" clrControlClasses="clr-col-md-6 clr-col-xl-4">
-        <label class="clr-control-label clr-col-md-2">Generic Quick List</label>
-        <ng-template let-item>
-            <!-- Custom content below -->
-            <clr-input-container>
-                <label [hidden]="true"></label>
-                <input class="clr-col-12" placeholder="Firstname" clrInput [(ngModel)]="item.firstname" required [name]="'first' + item.id" />
-                <clr-control-error *clrIfError="'required'">Please enter a value</clr-control-error>
-            </clr-input-container>
-            <clr-input-container>
-                <label [hidden]="true"></label>
-                <input class="clr-col-12" placeholder="Lastname" clrInput [(ngModel)]="item.lastname" required [name]="'last' + item.id" />
-                <clr-control-error *clrIfError="'required'">Please enter a value</clr-control-error>
-            </clr-input-container>
-            <!-- Custom content above -->
-        </ng-template>
-    </clr-generic-quick-list>
+<form clrForm #form="ngForm">
+  <clr-generic-quick-list [clrAddLabel]="'ADD'" [clrAddPossible]="form.valid" [clrAllItems]="allItemsGeneric"
+      [clrRequired]="'true'" class="clr-row" clrControlClasses="clr-col-md-6 clr-col-xl-4">
+      <label class="clr-control-label clr-col-md-2 required">Generic Quick List</label>
+      <ng-template let-item>
+          <!-- Custom content below -->
+          <clr-input-container>
+              <label [hidden]="true"></label>
+              <input class="clr-col-12" placeholder="Firstname" clrInput [(ngModel)]="item.firstname"
+              [ngModelOptions]="{ updateOn: 'blur' }" required [name]="'first' + item.id" />
+              <clr-control-error *clrIfError="'required'">Please enter a value</clr-control-error>
+          </clr-input-container>
+          <clr-input-container>
+              <label [hidden]="true"></label>
+              <input class="clr-col-12" placeholder="Lastname" clrInput [(ngModel)]="item.lastname"
+              [ngModelOptions]="{ updateOn: 'blur' }" required [name]="'last' + item.id" />
+              <clr-control-error *clrIfError="'required'">Please enter a value</clr-control-error>
+          </clr-input-container>
+          <!-- Custom content above -->
+      </ng-template>
+  </clr-generic-quick-list>
 </form>
 `;
 
