@@ -4,7 +4,19 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, Input, ContentChild, TemplateRef, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  ContentChild,
+  TemplateRef,
+  Output,
+  EventEmitter,
+  ViewChildren,
+  QueryList,
+  AfterViewInit,
+  OnInit,
+  ElementRef,
+} from '@angular/core';
 
 export interface ClrGenericQuickListItem {
   id: any;
@@ -15,7 +27,7 @@ export interface ClrGenericQuickListItem {
   host: { '[class.generic-quick-list]': 'true', '[class.clr-form-control]': 'true' },
   templateUrl: './generic-quick-list.html',
 })
-export class ClrGenericQuickList<T extends ClrGenericQuickListItem> {
+export class ClrGenericQuickList<T extends ClrGenericQuickListItem> implements OnInit, AfterViewInit {
   @Input('clrAllItems') allItems = <T[]>[];
   @Input('clrAddLabel') addLabel = 'ADD (Translate me)';
   @Input('clrAddPossible') addPossible = true;
@@ -27,11 +39,18 @@ export class ClrGenericQuickList<T extends ClrGenericQuickListItem> {
   @Output('clrRemoved') removed = new EventEmitter();
 
   @ContentChild(TemplateRef, { static: false }) itemTemplate: TemplateRef<any>;
+  @ViewChildren('row') itemRows: QueryList<ElementRef>;
+
+  rowCountFocus: number;
 
   ngOnInit() {
     if (this.required && this.allItems.length === 0) {
       this.addItem();
     }
+  }
+
+  ngAfterViewInit() {
+    this.setFocusOnAdd();
   }
 
   addItem() {
@@ -44,5 +63,20 @@ export class ClrGenericQuickList<T extends ClrGenericQuickListItem> {
   removeItem(item: T) {
     this.allItems.splice(this.allItems.indexOf(item), 1);
     this.removed.emit(item);
+  }
+
+  setFocusOnAdd() {
+    this.rowCountFocus = this.itemRows.length;
+    this.itemRows.changes.subscribe((els: QueryList<ElementRef>) => {
+      if (els.length > this.rowCountFocus && !!els.last) {
+        const firstFocusable = els.last.nativeElement.querySelector(
+          "button, a, input, select, textarea, [tabindex]:not([tabindex='-1'])"
+        );
+        if (!!firstFocusable) {
+          firstFocusable.focus();
+        }
+      }
+      this.rowCountFocus = els.length;
+    });
   }
 }

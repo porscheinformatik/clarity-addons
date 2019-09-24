@@ -1,10 +1,11 @@
 <ng-content select="label"></ng-content>
 <div class="clr-control-container" [ngClass]="controlClasses">
   <ng-container *ngFor="let item of allItems">
-    <div class="controls-container" *ngIf="itemTemplate">
+    <div class="controls-container" *ngIf="itemTemplate" #row>
       <ng-container *ngTemplateOutlet="itemTemplate; context: {$implicit:item}"></ng-container>
 
       <button
+        type="button"
         class="btn btn-icon btn-link btn-trash"
         [disabled]="required && allItems.length === 1"
         (click)="removeItem(item)"
@@ -13,7 +14,7 @@
       </button>
     </div>
   </ng-container>
-  <button class="btn btn-link btn-sm btn-add" (click)="addItem()" [disabled]="!addPossible">
+  <button type="button" class="btn btn-link btn-sm btn-add" (click)="addItem()" [disabled]="!addPossible">
     {{addLabel}}
   </button>
 </div>
