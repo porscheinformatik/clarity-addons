@@ -139,6 +139,21 @@ onFormSubmit() {
 }
 `;
 
+const CODE_EXAMPLE_FORM_SUBMIT_GENERAL = `
+@ViewChild(ClrForm, { static: true }) clrForm: ClrForm;
+
+onFormSubmit() {
+    (<HTMLElement>document.activeElement).blur(); // to correctly handle invalid inputs when hitting enter
+    this.form.updateValueAndValidity(); // form is the instance to the FormGroup (reactive) or ngForm (template)
+
+    if (this.form.valid) {
+      // save the form
+    } else {
+      this.clrForm.markAsTouched(); // to show validation errors for not-touched fields
+    }
+}
+`;
+
 const CODE_EXAMPLE_RO_HORIZONTAL = `
 <form clrForm [clrLayout]="'horizontal'" class="clr-row">
     <div class="clr-col-12 clr-form-control clr-row">
@@ -220,6 +235,7 @@ export class FormsDemo extends ClarityDocComponent {
     codeExampleFullForm = CODE_EXAMPLE_FULL_FORM;
     codeExampleFormSubmit = CODE_EXAMPLE_FORM_SUBMIT;
     codeExampleFormSubmitBlur = CODE_EXAMPLE_FORM_SUBMIT_BLUR;
+    codeExampleFormSubmitGeneral = CODE_EXAMPLE_FORM_SUBMIT_GENERAL;
     codeExampleROHorizontal = CODE_EXAMPLE_RO_HORIZONTAL;
     codeExampleROHorizontal2 = CODE_EXAMPLE_RO_HORIZONTAL2;
     codeExampleROVertical = CODE_EXAMPLE_RO_VERTICAL;
