@@ -248,7 +248,7 @@
             </tr>
             <tr>
                 <td class="left">
-                    <b>[clrControlClasses</b>
+                    <b>[clrControlClasses]</b>
                     <div class="clr-hidden-sm-up">Type: string</div>
                     <div class="clr-hidden-sm-up">Default: ""</div>
                 </td>
@@ -258,14 +258,14 @@
             </tr>
             <tr>
                 <td class="left">
-                    <b>[clrRequired</b>
+                    <b>[clrMandatory]</b>
                     <div class="clr-hidden-sm-up">Type: boolean</div>
                     <div class="clr-hidden-sm-up">Default: false</div>
                 </td>
                 <td class="left clr-hidden-xs-down">boolean</td>
                 <td class="clr-hidden-xs-down">false</td>
-                <td class="left">Decides whether at least one option needs to be present. If true, the
-                    generic quick-list will always display at least one item
+                <td class="left">Decides whether at least one quick-list row needs to be present. If true, the
+                    generic quick-list will always display at least one row
                 </td>
             </tr>
             <tr>
@@ -298,20 +298,24 @@
 
       <form clrForm #form="ngForm">
         <clr-generic-quick-list [clrAddLabel]="'ADD'" [clrAddPossible]="form.valid" [clrAllItems]="allItemsGeneric"
-            [clrRequired]="'true'" class="clr-row" clrControlClasses="clr-col-md-6 clr-col-xl-4">
+            [clrMandatory]="'true'" class="clr-row" clrControlClasses="clr-col-md-6 clr-col-xl-4">
             <label class="clr-control-label clr-col-md-2 required">Generic Quick List</label>
             <ng-template let-item>
                 <!-- Custom content below -->
+                <clr-select-container>
+                  <label [hidden]="true"></label>
+                  <select required clrSelect class="clr-col-12" [name]="'salutation' + item.id"
+                          [(ngModel)]="item.salutation">
+                      <option value="mr">Mr.</option>
+                      <option value="mrs">Mrs.</option>
+                      <option value="ms">Ms.</option>
+                  </select>
+                  <clr-control-error *clrIfError="'required'">Please select a value</clr-control-error>
+                </clr-select-container>
                 <clr-input-container>
                     <label [hidden]="true"></label>
-                    <input class="clr-col-12" placeholder="Firstname" clrInput [(ngModel)]="item.firstname"
-                    [ngModelOptions]="{ updateOn: 'blur' }" required [name]="'first' + item.id" />
-                    <clr-control-error *clrIfError="'required'">Please enter a value</clr-control-error>
-                </clr-input-container>
-                <clr-input-container>
-                    <label [hidden]="true"></label>
-                    <input class="clr-col-12" placeholder="Lastname" clrInput [(ngModel)]="item.lastname"
-                    [ngModelOptions]="{ updateOn: 'blur' }" required [name]="'last' + item.id" />
+                    <input class="clr-col-12" placeholder="Name*" clrInput [(ngModel)]="item.name"
+                    required [name]="'last' + item.id" />
                     <clr-control-error *clrIfError="'required'">Please enter a value</clr-control-error>
                 </clr-input-container>
                 <!-- Custom content above -->

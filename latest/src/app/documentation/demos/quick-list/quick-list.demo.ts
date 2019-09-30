@@ -37,20 +37,24 @@ possibleOptions: Array<ClrQuickListValue<string>> = this.options.map(op=>
 const HTML_EXAMPLE_GENERIC = `
 <form clrForm #form="ngForm">
   <clr-generic-quick-list [clrAddLabel]="'ADD'" [clrAddPossible]="form.valid" [clrAllItems]="allItemsGeneric"
-      [clrRequired]="'true'" class="clr-row" clrControlClasses="clr-col-md-6 clr-col-xl-4">
+      [clrMandatory]="'true'" class="clr-row" clrControlClasses="clr-col-md-6 clr-col-xl-4">
       <label class="clr-control-label clr-col-md-2 required">Generic Quick List</label>
       <ng-template let-item>
           <!-- Custom content below -->
+          <clr-select-container>
+            <label [hidden]="true"></label>
+            <select required clrSelect class="clr-col-12" [name]="'salutation' + item.id"
+                    [(ngModel)]="item.salutation">
+                <option value="mr">Mr.</option>
+                <option value="mrs">Mrs.</option>
+                <option value="ms">Ms.</option>
+            </select>
+            <clr-control-error *clrIfError="'required'">Please select a value</clr-control-error>
+          </clr-select-container>
           <clr-input-container>
               <label [hidden]="true"></label>
-              <input class="clr-col-12" placeholder="Firstname" clrInput [(ngModel)]="item.firstname"
-              [ngModelOptions]="{ updateOn: 'blur' }" required [name]="'first' + item.id" />
-              <clr-control-error *clrIfError="'required'">Please enter a value</clr-control-error>
-          </clr-input-container>
-          <clr-input-container>
-              <label [hidden]="true"></label>
-              <input class="clr-col-12" placeholder="Lastname" clrInput [(ngModel)]="item.lastname"
-              [ngModelOptions]="{ updateOn: 'blur' }" required [name]="'last' + item.id" />
+              <input class="clr-col-12" placeholder="Name*" clrInput [(ngModel)]="item.name"
+              required [name]="'last' + item.id" />
               <clr-control-error *clrIfError="'required'">Please enter a value</clr-control-error>
           </clr-input-container>
           <!-- Custom content above -->
@@ -61,16 +65,16 @@ const HTML_EXAMPLE_GENERIC = `
 
 const ANGULAR_EXAMPLE_GENERIC = `
 interface ClrNameQuickListItem extends ClrGenericQuickListItem {
-    firstname: string;
-    lastname: string;
+    salutation: string;
+    name: string;
 };
 
 allItemsGeneric = [<ClrNameQuickListItem>{ id: 1 }];
 `
 
 interface ClrNameQuickListItem extends ClrGenericQuickListItem {
-    firstname: string;
-    lastname: string;
+    salutation: string;
+    name: string;
 };
 
 @Component({
