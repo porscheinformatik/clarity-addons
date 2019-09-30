@@ -16,7 +16,7 @@ import { ClrGenericQuickListModule } from './generic-quick-list.module';
 @Component({
   template: `
     <form clrForm>
-      <clr-generic-quick-list [clrAllItems]="allItems" [clrRequired]="isRequired" [clrAddPossible]="isAddPossible">
+      <clr-generic-quick-list [clrAllItems]="allItems" [clrMandatory]="isRequired" [clrAddPossible]="isAddPossible">
         <label>Generic Quickie</label>
         <ng-template let-item>
           <clr-input-container>
