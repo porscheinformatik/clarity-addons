@@ -25,6 +25,10 @@ html,
 body,
 .main-container {
   height: 100%;
+
+  > .content-container {
+    border-top: $clr-global-borderwidth solid $clr-border-color;
+  }
 }
 
 .content-header {
@@ -45,11 +49,6 @@ body,
     .dropdown-menu {
       z-index: map-get($clr-layers, sidepanel) - 2;
     }
-  }
-
-  // Only show the border if no flow-bar is between content header + content container, otherwise border is displayed by flow-bar
-  + .content-container {
-    border-top: $clr-global-borderwidth solid $clr-border-color;
   }
 }
 
