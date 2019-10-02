@@ -7,149 +7,145 @@
 <h2>Read-only radio buttons and checkboxes</h2>
 
 <div class="clr-example">
-  <div class="main-container">
-    <div class="clr-row">
-        <div class="clr-col-3">
-            <clr-radio-container>
-              <label>Radiobuttons</label>
-              <clr-radio-wrapper>
-                <input clrRadio type="radio" [value]="1" [(ngModel)]="radioValue" name="status1">
-                <label>Option 1</label>
-              </clr-radio-wrapper>
-              <clr-radio-wrapper>
-                <input clrRadio type="radio" [value]="2" [(ngModel)]="radioValue" name="status1">
-                <label>Option 2</label>
-              </clr-radio-wrapper>
-              <clr-radio-wrapper>
-                <input clrRadio type="radio" [value]="3" [(ngModel)]="radioValue" name="status1">
-                <label>Option 3</label>
-              </clr-radio-wrapper>
-            </clr-radio-container>
-        </div>
-        <div class="clr-col-3">
-            <clr-radio-container readonly>
-              <label>Radiobuttons (readonly)</label>
-              <clr-radio-wrapper>
-                <input clrRadio type="radio" [value]="1" [(ngModel)]="radioValue" name="status3">
-                <label>Option 1</label>
-              </clr-radio-wrapper>
-              <clr-radio-wrapper>
-                <input clrRadio type="radio" [value]="2" [(ngModel)]="radioValue" name="status3">
-                <label>Option 2</label>
-              </clr-radio-wrapper>
-              <clr-radio-wrapper>
-                <input clrRadio type="radio" [value]="3" [(ngModel)]="radioValue" name="status3">
-                <label>Option 3</label>
-              </clr-radio-wrapper>
-            </clr-radio-container>
-        </div>
-        <div class="clr-col-3">
-            <clr-radio-container readonly class="readonly-danger">
-              <label>Radiobuttons (readonly + danger)</label>
-              <clr-radio-wrapper>
-                <input clrRadio type="radio" [value]="1" [(ngModel)]="radioValue" name="status4">
-                <label>Option 1</label>
-              </clr-radio-wrapper>
-              <clr-radio-wrapper>
-                <input clrRadio type="radio" [value]="2" [(ngModel)]="radioValue" name="status4">
-                <label>Option 2</label>
-              </clr-radio-wrapper>
-              <clr-radio-wrapper>
-                <input clrRadio type="radio" [value]="3" [(ngModel)]="radioValue" name="status4">
-                <label>Option 3</label>
-              </clr-radio-wrapper>
-            </clr-radio-container>
-        </div>
-        <div class="clr-col-3">
-            <clr-radio-container readonly show-only-selected="true">
-              <label>Radiobuttons (readonly, show-only-selected="true")</label>
-              <clr-radio-wrapper>
-                <input clrRadio type="radio" [value]="1" [(ngModel)]="radioValue" name="status2">
-                <label>Option 1</label>
-              </clr-radio-wrapper>
-              <clr-radio-wrapper>
-                <input clrRadio type="radio" [value]="2" [(ngModel)]="radioValue" name="status2">
-                <label>Option 2</label>
-              </clr-radio-wrapper>
-              <clr-radio-wrapper>
-                <input clrRadio type="radio" [value]="3" [(ngModel)]="radioValue" name="status2">
-                <label>Option 3</label>
-              </clr-radio-wrapper>
-            </clr-radio-container>
-        </div>
-      </div>
+  <div class="clr-row">
+    <div class="clr-col-3">
+      <clr-radio-container>
+        <label>Radiobuttons</label>
+        <clr-radio-wrapper>
+          <input clrRadio type="radio" [value]="1" [(ngModel)]="radioValue" name="status1" />
+          <label>Option 1</label>
+        </clr-radio-wrapper>
+        <clr-radio-wrapper>
+          <input clrRadio type="radio" [value]="2" [(ngModel)]="radioValue" name="status1" />
+          <label>Option 2</label>
+        </clr-radio-wrapper>
+        <clr-radio-wrapper>
+          <input clrRadio type="radio" [value]="3" [(ngModel)]="radioValue" name="status1" />
+          <label>Option 3</label>
+        </clr-radio-wrapper>
+      </clr-radio-container>
+    </div>
+    <div class="clr-col-3">
+      <clr-radio-container readonly>
+        <label>Radiobuttons (readonly)</label>
+        <clr-radio-wrapper>
+          <input clrRadio type="radio" [value]="1" [(ngModel)]="radioValue" name="status3" />
+          <label>Option 1</label>
+        </clr-radio-wrapper>
+        <clr-radio-wrapper>
+          <input clrRadio type="radio" [value]="2" [(ngModel)]="radioValue" name="status3" />
+          <label>Option 2</label>
+        </clr-radio-wrapper>
+        <clr-radio-wrapper>
+          <input clrRadio type="radio" [value]="3" [(ngModel)]="radioValue" name="status3" />
+          <label>Option 3</label>
+        </clr-radio-wrapper>
+      </clr-radio-container>
+    </div>
+    <div class="clr-col-3">
+      <clr-radio-container readonly class="readonly-danger">
+        <label>Radiobuttons (readonly + danger)</label>
+        <clr-radio-wrapper>
+          <input clrRadio type="radio" [value]="1" [(ngModel)]="radioValue" name="status4" />
+          <label>Option 1</label>
+        </clr-radio-wrapper>
+        <clr-radio-wrapper>
+          <input clrRadio type="radio" [value]="2" [(ngModel)]="radioValue" name="status4" />
+          <label>Option 2</label>
+        </clr-radio-wrapper>
+        <clr-radio-wrapper>
+          <input clrRadio type="radio" [value]="3" [(ngModel)]="radioValue" name="status4" />
+          <label>Option 3</label>
+        </clr-radio-wrapper>
+      </clr-radio-container>
+    </div>
+    <div class="clr-col-3">
+      <clr-radio-container readonly show-only-selected="true">
+        <label>Radiobuttons (readonly, show-only-selected="true")</label>
+        <clr-radio-wrapper>
+          <input clrRadio type="radio" [value]="1" [(ngModel)]="radioValue" name="status2" />
+          <label>Option 1</label>
+        </clr-radio-wrapper>
+        <clr-radio-wrapper>
+          <input clrRadio type="radio" [value]="2" [(ngModel)]="radioValue" name="status2" />
+          <label>Option 2</label>
+        </clr-radio-wrapper>
+        <clr-radio-wrapper>
+          <input clrRadio type="radio" [value]="3" [(ngModel)]="radioValue" name="status2" />
+          <label>Option 3</label>
+        </clr-radio-wrapper>
+      </clr-radio-container>
+    </div>
+  </div>
 
-
-      <div class="clr-row">
-          <div class="clr-col-3">
-              <clr-checkbox-container>
-                <label>Checkboxes</label>
-                <clr-checkbox-wrapper>
-                  <input clrCheckbox type="checkbox" [(ngModel)]="checkValue1" name="check1">
-                  <label>Option 1</label>
-                </clr-checkbox-wrapper>
-                <clr-checkbox-wrapper>
-                  <input clrCheckbox type="checkbox" [(ngModel)]="checkValue2" name="check2">
-                  <label>Option 2</label>
-                </clr-checkbox-wrapper>
-                <clr-checkbox-wrapper>
-                  <input clrCheckbox type="checkbox" [(ngModel)]="checkValue3" name="check3">
-                  <label>Option 3</label>
-                </clr-checkbox-wrapper>
-              </clr-checkbox-container>
-          </div>
-          <div class="clr-col-3">
-              <clr-checkbox-container readonly>
-                <label>Checkboxes (readonly)</label>
-                <clr-checkbox-wrapper>
-                  <input clrCheckbox type="checkbox" [(ngModel)]="checkValue1" name="check4">
-                  <label>Option 1</label>
-                </clr-checkbox-wrapper>
-                <clr-checkbox-wrapper>
-                  <input clrCheckbox type="checkbox" [(ngModel)]="checkValue2" name="check5">
-                  <label>Option 2</label>
-                </clr-checkbox-wrapper>
-                <clr-checkbox-wrapper>
-                  <input clrCheckbox type="checkbox" [(ngModel)]="checkValue3" name="check6">
-                  <label>Option 3</label>
-                </clr-checkbox-wrapper>
-              </clr-checkbox-container>
-          </div>
-          <div class="clr-col-3">
-              <clr-checkbox-container readonly class="readonly-danger">
-                <label>Checkboxes (readonly + danger)</label>
-                <clr-checkbox-wrapper>
-                  <input clrCheckbox type="checkbox" [(ngModel)]="checkValue1" name="check10">
-                  <label>Option 1</label>
-                </clr-checkbox-wrapper>
-                <clr-checkbox-wrapper>
-                  <input clrCheckbox type="checkbox" [(ngModel)]="checkValue2" name="check11">
-                  <label>Option 2</label>
-                </clr-checkbox-wrapper>
-                <clr-checkbox-wrapper>
-                  <input clrCheckbox type="checkbox" [(ngModel)]="checkValue3" name="check12">
-                  <label>Option 3</label>
-                </clr-checkbox-wrapper>
-              </clr-checkbox-container>
-          </div>
-          <div class="clr-col-3">
-              <clr-checkbox-container readonly show-only-selected="true">
-                <label>Checkboxes (readonly, show-only-selected="true")</label>
-                <clr-checkbox-wrapper>
-                  <input clrCheckbox type="checkbox" [(ngModel)]="checkValue1" name="check7">
-                  <label>Option 1</label>
-                </clr-checkbox-wrapper>
-                <clr-checkbox-wrapper>
-                  <input clrCheckbox type="checkbox" [(ngModel)]="checkValue2" name="check8">
-                  <label>Option 2</label>
-                </clr-checkbox-wrapper>
-                <clr-checkbox-wrapper>
-                  <input clrCheckbox type="checkbox" [(ngModel)]="checkValue3" name="check9">
-                  <label>Option 3</label>
-                </clr-checkbox-wrapper>
-              </clr-checkbox-container>
-          </div>
-      </div>
+  <div class="clr-row">
+    <div class="clr-col-3">
+      <clr-checkbox-container>
+        <label>Checkboxes</label>
+        <clr-checkbox-wrapper>
+          <input clrCheckbox type="checkbox" [(ngModel)]="checkValue1" name="check1" />
+          <label>Option 1</label>
+        </clr-checkbox-wrapper>
+        <clr-checkbox-wrapper>
+          <input clrCheckbox type="checkbox" [(ngModel)]="checkValue2" name="check2" />
+          <label>Option 2</label>
+        </clr-checkbox-wrapper>
+        <clr-checkbox-wrapper>
+          <input clrCheckbox type="checkbox" [(ngModel)]="checkValue3" name="check3" />
+          <label>Option 3</label>
+        </clr-checkbox-wrapper>
+      </clr-checkbox-container>
+    </div>
+    <div class="clr-col-3">
+      <clr-checkbox-container readonly>
+        <label>Checkboxes (readonly)</label>
+        <clr-checkbox-wrapper>
+          <input clrCheckbox type="checkbox" [(ngModel)]="checkValue1" name="check4" />
+          <label>Option 1</label>
+        </clr-checkbox-wrapper>
+        <clr-checkbox-wrapper>
+          <input clrCheckbox type="checkbox" [(ngModel)]="checkValue2" name="check5" />
+          <label>Option 2</label>
+        </clr-checkbox-wrapper>
+        <clr-checkbox-wrapper>
+          <input clrCheckbox type="checkbox" [(ngModel)]="checkValue3" name="check6" />
+          <label>Option 3</label>
+        </clr-checkbox-wrapper>
+      </clr-checkbox-container>
+    </div>
+    <div class="clr-col-3">
+      <clr-checkbox-container readonly class="readonly-danger">
+        <label>Checkboxes (readonly + danger)</label>
+        <clr-checkbox-wrapper>
+          <input clrCheckbox type="checkbox" [(ngModel)]="checkValue1" name="check10" />
+          <label>Option 1</label>
+        </clr-checkbox-wrapper>
+        <clr-checkbox-wrapper>
+          <input clrCheckbox type="checkbox" [(ngModel)]="checkValue2" name="check11" />
+          <label>Option 2</label>
+        </clr-checkbox-wrapper>
+        <clr-checkbox-wrapper>
+          <input clrCheckbox type="checkbox" [(ngModel)]="checkValue3" name="check12" />
+          <label>Option 3</label>
+        </clr-checkbox-wrapper>
+      </clr-checkbox-container>
+    </div>
+    <div class="clr-col-3">
+      <clr-checkbox-container readonly show-only-selected="true">
+        <label>Checkboxes (readonly, show-only-selected="true")</label>
+        <clr-checkbox-wrapper>
+          <input clrCheckbox type="checkbox" [(ngModel)]="checkValue1" name="check7" />
+          <label>Option 1</label>
+        </clr-checkbox-wrapper>
+        <clr-checkbox-wrapper>
+          <input clrCheckbox type="checkbox" [(ngModel)]="checkValue2" name="check8" />
+          <label>Option 2</label>
+        </clr-checkbox-wrapper>
+        <clr-checkbox-wrapper>
+          <input clrCheckbox type="checkbox" [(ngModel)]="checkValue3" name="check9" />
+          <label>Option 3</label>
+        </clr-checkbox-wrapper>
+      </clr-checkbox-container>
+    </div>
   </div>
 </div>
-
