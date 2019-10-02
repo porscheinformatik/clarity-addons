@@ -25,7 +25,10 @@ html,
 body,
 .main-container {
   height: 100%;
+}
 
+.main-container,
+.u-main-container {
   > .content-container {
     border-top: $clr-global-borderwidth solid $clr-border-color;
   }
