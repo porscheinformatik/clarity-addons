@@ -5,6 +5,57 @@
  */
 import {Component} from "@angular/core";
 import {ClarityDocComponent} from "../clarity-doc";
+
+const BASEPAGE_CODE_EXAMPLE = `
+<clr-main-container>
+    <clr-demo-menu></clr-demo-menu>
+
+    <div class="content-header">
+        <clr-back-button></clr-back-button>
+        <h2>Base Pagelayout</h2>
+        <clr-button-group class="command-bar" [clrMenuPosition]="'bottom-right'">
+            <clr-button>Command1</clr-button>
+            <clr-button>Command2</clr-button>
+            <clr-button [clrInMenu]="true">Command3</clr-button>
+        </clr-button-group>
+    </div>
+    <div class="content-container">
+        <div class="content-area">
+            This is the page content
+        </div>
+    </div>
+</clr-main-container>
+`;
+
+const BASEPAGE_ROUTING_CODE_EXAMPLE = `
+<clr-main-container>
+    <clr-demo-menu></clr-demo-menu>
+
+    <router-outlet></router-outlet>
+</clr-main-container>
+`;
+
+const BASEPAGE_ROUTING_PAGE_CODE_EXAMPLE = `
+<div class="content-header">
+    <clr-back-button></clr-back-button>
+    <h2>Base Pagelayout</h2>
+    <clr-button-group class="command-bar" [clrMenuPosition]="'bottom-right'">
+        <clr-button>Command1</clr-button>
+        <clr-button>Command2</clr-button>
+        <clr-button [clrInMenu]="true">Command3</clr-button>
+    </clr-button-group>
+</div>
+<div class="content-container">
+    <div class="content-area">
+        This is the page content
+    </div>
+</div>
+`;
+
+const BASEPAGE_ROUTING_PAGE_TS_CODE_EXAMPLE = `
+@HostBinding('class.u-main-container') bindMainContainer = true;
+`;
+
 const FLOWBAR_CODE_EXAMPLE = `
 <clr-main-container>
     <clr-demo-menu></clr-demo-menu>
@@ -138,6 +189,10 @@ const FULLSCREENDIALOG_HTML_EXAMPLE = `
     }
 })
 export class PageLayoutsDemo extends ClarityDocComponent {
+    basePageCodeExample = BASEPAGE_CODE_EXAMPLE;
+    basePageRoutingCodeExample = BASEPAGE_ROUTING_CODE_EXAMPLE;
+    basePageRoutingPageCodeExample = BASEPAGE_ROUTING_PAGE_CODE_EXAMPLE;
+    basePageRoutingPageTSCodeExample = BASEPAGE_ROUTING_PAGE_TS_CODE_EXAMPLE;
     flowbarCodeExample = FLOWBAR_CODE_EXAMPLE;
     flowbarHtmlExampleSubmitEnter = FLOWBAR_HTML_EXAMPLE_SUBMIT_ENTER;
     stickyFooterCodeExample = STICKYFOOTER_CODE_EXAMPLE;
