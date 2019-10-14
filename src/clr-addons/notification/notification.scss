@@ -1,3 +1,5 @@
+@import '../../../node_modules/@clr/ui/src/layout/grid/variables/variables.clarity';
+
 @mixin progress-color($alertLevel, $color) {
   &.#{$alertLevel} {
     progress {
@@ -76,5 +78,12 @@
         }
       }
     }
+  }
+}
+
+@media screen and (max-width: map-get($clr-grid-breakpoints, sm)) {
+  .notification__wrapper {
+    width: calc(100% - 2rem) !important;
+    margin: 0 1rem;
   }
 }
