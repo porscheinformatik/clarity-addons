@@ -23,6 +23,11 @@
       border-radius: 4px;
       margin: 0 auto;
       overflow: hidden;
+
+      @media screen and (max-width: map-get($clr-grid-breakpoints, sm)) {
+        width: calc(100% - 2rem);
+        margin: 0 1rem;
+      }
     }
     .progress {
       height: 0.5em;
