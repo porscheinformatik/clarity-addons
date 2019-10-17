@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Directive } from '@angular/core';
+import { Directive, Input } from '@angular/core';
 import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator, ValidatorFn } from '@angular/forms';
 
 export class ClrMultilingualInputValidators {
@@ -33,7 +33,7 @@ export class ClrMultilingualInputValidators {
           return null;
         }
       }
-      return { requiredOne: false };
+      return { requiredOne: true };
     };
 
     return validatorFn;
@@ -58,7 +58,7 @@ export class ClrMultilingualInputValidators {
       if (!!texts) {
         for (const text of Array.from(texts.values())) {
           if (!text) {
-            return { requiredAll: false };
+            return { requiredAll: true };
           }
         }
       }
@@ -74,8 +74,15 @@ export class ClrMultilingualInputValidators {
   providers: [{ provide: NG_VALIDATORS, useExisting: ClrRequiredOneMultilang, multi: true }],
 })
 export class ClrRequiredOneMultilang implements Validator {
+  _active: boolean;
+
+  @Input('clrRequiredOneMultilang')
+  set active(active: boolean | string) {
+    this._active = active != null && active !== false && `${active}` !== 'false';
+  }
+
   validate(control: AbstractControl): { [key: string]: any } | null {
-    return ClrMultilingualInputValidators.requiredOne()(control);
+    return this._active ? ClrMultilingualInputValidators.requiredOne()(control) : null;
   }
 }
 
@@ -84,7 +91,14 @@ export class ClrRequiredOneMultilang implements Validator {
   providers: [{ provide: NG_VALIDATORS, useExisting: ClrRequiredAllMultilang, multi: true }],
 })
 export class ClrRequiredAllMultilang implements Validator {
+  _active: boolean;
+
+  @Input('clrRequiredAllMultilang')
+  set active(active: boolean | string) {
+    this._active = active != null && active !== false && `${active}` !== 'false';
+  }
+
   validate(control: AbstractControl): { [key: string]: any } | null {
-    return ClrMultilingualInputValidators.requiredAll()(control);
+    return this._active ? ClrMultilingualInputValidators.requiredAll()(control) : null;
   }
 }

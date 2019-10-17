@@ -31,6 +31,7 @@
         *ngIf="!textarea"
         class="clr-input"
         type="text"
+        [id]="inputId"
         [ngModel]="!!texts && !!selectedLang ? texts.get(selectedLang) : ''"
         (ngModelChange)="setText(selectedLang, $event)"
         (blur)="onTouch()"
@@ -41,6 +42,7 @@
       <textarea
         *ngIf="textarea"
         class="clr-textarea"
+        [id]="inputId"
         [ngModel]="!!texts && !!selectedLang ? texts.get(selectedLang) : ''"
         (ngModelChange)="setText(selectedLang, $event)"
         (blur)="onTouch()"
@@ -48,10 +50,10 @@
         #input
       ></textarea>
 
-      <clr-icon *ngIf="invalid" class="clr-validate-icon" shape="exclamation-circle" aria-hidden="true"></clr-icon>
+      <clr-icon *ngIf="showError" class="clr-validate-icon" shape="exclamation-circle" aria-hidden="true"></clr-icon>
     </div>
 
-    <ng-content select="clr-control-helper" *ngIf="!invalid"></ng-content>
-    <ng-content select="clr-control-error" *ngIf="invalid"></ng-content>
+    <ng-content select="clr-control-helper" *ngIf="!showError"></ng-content>
+    <ng-content select="clr-control-error" *ngIf="showError"></ng-content>
   </div>
 </div>
