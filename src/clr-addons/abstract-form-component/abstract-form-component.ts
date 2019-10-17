@@ -55,9 +55,7 @@ export abstract class ClrAbstractFormComponent implements ControlValueAccessor, 
     this.onChange = fn;
   }
 
-  onTouch: any = () => {
-    this.defaultOnTouch();
-  };
+  onTouch: any = () => this.defaultOnTouch();
   registerOnTouched(fn: any): void {
     this.onTouch = () => {
       fn();
