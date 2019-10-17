@@ -86,10 +86,14 @@ describe('Multilingual Input', () => {
       expect(fixture.componentInstance.data.get('DE')).toBe('anderer deutscher text');
     });
 
-    it('show validation error', () => {
+    it('show validation error on touched', () => {
       validationShown(false, fixture);
 
       sendInput(inputEl, fixture, '');
+      validationShown(false, fixture);
+
+      inputEl.dispatchEvent(new Event('blur'));
+      fixture.detectChanges();
       validationShown(true, fixture);
     });
   });
@@ -114,9 +118,10 @@ describe('Multilingual Input', () => {
       fixture.whenStable();
     }));
 
-    it('show validation error', () => {
+    it('show validation error on touched', () => {
       validationShown(false, fixture);
 
+      inputEl.dispatchEvent(new Event('blur'));
       sendInput(inputEl, fixture, '');
       fixture.componentInstance.selectedLang = 'DE';
       fixture.detectChanges();
