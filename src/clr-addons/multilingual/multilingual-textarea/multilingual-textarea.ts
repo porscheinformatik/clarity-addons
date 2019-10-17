@@ -6,8 +6,8 @@
 
 import { Component, forwardRef, Injector } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { ɵbf as NgControlService } from '@clr/angular';
 import { ClrMultilingualAbstract } from '../abstract-multilingual';
+import { ɵbd as ControlIdService } from '@clr/angular';
 
 @Component({
   selector: 'clr-multilingual-textarea',
@@ -18,7 +18,7 @@ import { ClrMultilingualAbstract } from '../abstract-multilingual';
       useExisting: forwardRef(() => ClrMultilingualTextarea),
       multi: true,
     },
-    NgControlService,
+    ControlIdService,
   ],
 })
 export class ClrMultilingualTextarea extends ClrMultilingualAbstract {
