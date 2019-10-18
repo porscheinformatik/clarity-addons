@@ -29,7 +29,7 @@
     "@clr/angular": "2.2.0",
     "@clr/icons": "2.2.0",
     "@clr/ui": "2.2.0",
-    "@porscheinformatik/clr-addons": "6.3.4",
+    "@porscheinformatik/clr-addons": "6.3.5",
     "@webcomponents/custom-elements": "^1.2.4",
     "classlist.js": "^1.1.20150312",
     "core-js": "^2.5.7",
