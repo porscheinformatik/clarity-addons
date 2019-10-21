@@ -1,4 +1,4 @@
-if: type != push OR branch = master
+if: type != push OR branch = master OR tag IS present
 
 language: node_js
 node_js:
@@ -10,10 +10,11 @@ before_install:
 
 script:
   - npm run test:travis
-#deploy:
-#  provider: npm
-#  email: mail@mail.com
-#  api_key: $NPM_TOKEN
-#  on:
-#    tags: true
-#    branch: master
+  - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ./.npmrc
+
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: npm run publish
+  on:
+    tags: true
