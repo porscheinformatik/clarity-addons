@@ -4,7 +4,6 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import 'core-js/es7/reflect';
 import 'zone.js/dist/zone';
 import 'zone.js/dist/zone-testing';
 import 'jasmine-expect';
