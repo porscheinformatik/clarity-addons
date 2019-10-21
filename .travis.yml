@@ -1,3 +1,5 @@
+if: type != push OR branch = master
+
 language: node_js
 node_js:
   - '10'
