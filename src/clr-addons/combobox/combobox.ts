@@ -23,11 +23,11 @@ import {
 } from '@angular/core';
 import {
   ClrLabel,
-  ɵd as IfOpenService,
-  ɵh as POPOVER_HOST_ANCHOR,
-  ɵbe as LayoutService,
-  ɵbl as ControlClassService,
-  ɵbd as ControlIdService,
+  ɵe as IfOpenService,
+  ɵi as POPOVER_HOST_ANCHOR,
+  ɵbf as LayoutService,
+  ɵbm as ControlClassService,
+  ɵbe as ControlIdService,
 } from '@clr/angular';
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';

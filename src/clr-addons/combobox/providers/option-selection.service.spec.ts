@@ -5,7 +5,7 @@
  */
 
 import { ElementRef } from '@angular/core';
-import { ɵd as IfOpenService } from '@clr/angular';
+import { ɵe as IfOpenService } from '@clr/angular';
 import { ClrOption } from '../option';
 import { OptionSelectionService } from './option-selection.service';
 

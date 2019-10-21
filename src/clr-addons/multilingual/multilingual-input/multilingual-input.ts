@@ -7,7 +7,7 @@
 import { Component, forwardRef, Injector } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ClrMultilingualAbstract } from '../abstract-multilingual';
-import { ɵbd as ControlIdService } from '@clr/angular';
+import { ɵbe as ControlIdService } from '@clr/angular';
 
 @Component({
   selector: 'clr-multilingual-input',

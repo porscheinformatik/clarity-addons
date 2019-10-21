@@ -6,8 +6,8 @@
 import { Component, ElementRef, HostBinding, HostListener, Inject, Input, OnDestroy, Optional } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { ɵh as POPOVER_HOST_ANCHOR } from '@clr/angular';
-import { ɵd as IfOpenService } from '@clr/angular';
+import { ɵi as POPOVER_HOST_ANCHOR } from '@clr/angular';
+import { ɵe as IfOpenService } from '@clr/angular';
 
 import { OptionSelectionService } from './providers/option-selection.service';
 import { escapeHtml, escapeRegex } from '../util';
