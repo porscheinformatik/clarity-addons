@@ -44,11 +44,6 @@ body,
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-
-    @media screen and (max-width: map-get($clr-grid-breakpoints, sm)) {
-      width: calc(100% - 1.6rem);
-      padding: 0;
-    }
   }
 
   .command-bar {
@@ -62,18 +57,13 @@ body,
     }
 
     @media screen and (max-width: map-get($clr-grid-breakpoints, sm)) {
-      margin-bottom: 0.5rem;
+      margin-right: 0;
+      align-items: center;
     }
   }
 
   @media screen and (max-width: map-get($clr-grid-breakpoints, sm)) {
-    display: block;
-    overflow: hidden;
     padding: 0 0.5rem;
-
-    > * {
-      float: left;
-    }
   }
 }
 
@@ -373,7 +363,7 @@ input:not([type='time']) {
 
 @media screen and (max-width: map-get($clr-grid-breakpoints, sm)) {
   .main-container .content-container .content-area,
-  .content-area-footer,
+  .content-container .content-area-footer,
   .content-panel-content-wrapper {
     padding: 0.5rem;
   }
