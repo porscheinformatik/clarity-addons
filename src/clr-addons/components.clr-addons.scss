@@ -31,6 +31,18 @@ body,
 .u-main-container {
   > .content-container {
     border-top: $clr-global-borderwidth solid $clr-border-color;
+
+    @media screen and (max-width: map-get($clr-grid-breakpoints, sm)) {
+      min-height: unset;
+    }
+  }
+}
+
+.main-container {
+  @media screen and (max-width: map-get($clr-grid-breakpoints, sm)) {
+    padding-top: $clr-header-height;
+    display: block;
+    overflow-y: auto;
   }
 }
 
@@ -41,9 +53,6 @@ body,
 
   h2 {
     margin-top: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
   .command-bar {
@@ -55,15 +64,6 @@ body,
     .dropdown-menu {
       z-index: map-get($clr-layers, sidepanel) - 2;
     }
-
-    @media screen and (max-width: map-get($clr-grid-breakpoints, sm)) {
-      margin-right: 0;
-      align-items: center;
-    }
-  }
-
-  @media screen and (max-width: map-get($clr-grid-breakpoints, sm)) {
-    padding: 0 0.5rem;
   }
 }
 
@@ -362,9 +362,15 @@ input:not([type='time']) {
 }
 
 @media screen and (max-width: map-get($clr-grid-breakpoints, sm)) {
-  .main-container .content-container .content-area,
-  .content-container .content-area-footer,
-  .content-panel-content-wrapper {
-    padding: 0.5rem;
+  .content-area-footer {
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    bottom: 0;
+    left: 0;
+  }
+
+  .container-with-footer {
+    padding-bottom: 2.5rem;
   }
 }
