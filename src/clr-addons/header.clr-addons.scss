@@ -278,16 +278,3 @@
     }
   }
 }
-
-@media screen and (max-width: map-get($clr-grid-breakpoints, sm)) {
-  .open-overflow-menu {
-    overflow: hidden;
-  }
-
-  .header {
-    position: fixed;
-    width: 100%;
-    z-index: 1000;
-    top: 0;
-  }
-}
