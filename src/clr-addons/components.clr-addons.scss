@@ -41,6 +41,9 @@ body,
 
   h2 {
     margin-top: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .command-bar {
@@ -52,6 +55,15 @@ body,
     .dropdown-menu {
       z-index: map-get($clr-layers, sidepanel) - 2;
     }
+
+    @media screen and (max-width: map-get($clr-grid-breakpoints, sm)) {
+      margin-right: 0;
+      align-items: center;
+    }
+  }
+
+  @media screen and (max-width: map-get($clr-grid-breakpoints, sm)) {
+    padding: 0 0.5rem;
   }
 }
 
@@ -214,6 +226,7 @@ clr-radio-container[readonly].readonly-danger .clr-radio-wrapper input[type='rad
 clr-checkbox-container[readonly].readonly-danger .clr-checkbox-wrapper input[type='checkbox'] {
   &:checked + label {
     color: $clr-btn-danger-bg-color;
+
     &::before {
       border-color: $clr-btn-danger-bg-color;
     }
@@ -346,4 +359,12 @@ input:not([type='time']) {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+@media screen and (max-width: map-get($clr-grid-breakpoints, sm)) {
+  .main-container .content-container .content-area,
+  .content-container .content-area-footer,
+  .content-panel-content-wrapper {
+    padding: 0.5rem;
+  }
 }
