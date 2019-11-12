@@ -59,7 +59,7 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
   private unitSpan: HTMLSpanElement;
   private allowedKeys = new Set(NUMBERS);
 
-  constructor(private renderer: Renderer2, private inputEl: ElementRef) {}
+  constructor(private renderer: Renderer2, private inputEl: ElementRef) { }
 
   ngOnInit() {
     /* needs to be parsed as number explicitly as it comes as string from user input */
@@ -184,30 +184,43 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
     }
 
     if (finalFormatting) {
-      /* autofill decimal places */
-      if (this.autofillDecimals && this.decimalPlaces > 0 && !!result) {
+
+      if (this.decimalPlaces > 0 && !!result) {
+
+        /* autofill decimal places */
         let actualDecimalIndex = result.indexOf(this.decimalSeparator);
-        if (actualDecimalIndex === -1) {
-          actualDecimalIndex = result.length;
-          result += this.decimalSeparator;
-        }
-        /* autoadd a zero before decimal separator, when it's missing */
-        if (actualDecimalIndex === 0) {
-          result = '0' + result;
-          actualDecimalIndex++;
-        }
-        /* autoadd a zero before decimal separator, when it's missing for negative values */
-        if (actualDecimalIndex === 1 && isNegative) {
-          result = result[0] + '0' + result.substring(1, result.length);
-          actualDecimalIndex++;
-        }
-        const actualDecimalPlaces = result.length - actualDecimalIndex - 1;
-        for (let j = 0; j < this.decimalPlaces - actualDecimalPlaces; j++) {
-          result += '0';
+        if (this.autofillDecimals) {
+          if (actualDecimalIndex === -1) {
+            actualDecimalIndex = result.length;
+            result += this.decimalSeparator;
+          }
+
+          result = this.addMissingLeadingZero(result, actualDecimalIndex);
+          actualDecimalIndex = result.indexOf(this.decimalSeparator);
+
+          const actualDecimalPlaces = result.length - actualDecimalIndex - 1;
+          for (let j = 0; j < this.decimalPlaces - actualDecimalPlaces; j++) {
+            result += '0';
+          }
+        } else {
+          result = this.addMissingLeadingZero(result, actualDecimalIndex);
         }
       }
     }
 
+    return result;
+  }
+
+  addMissingLeadingZero(result: string, actualDecimalIndex: number): string {
+    const isNegative = result[0] === NEGATIVE;
+    /* autoadd a zero before decimal separator, when it's missing */
+    if (actualDecimalIndex === 0) {
+      result = '0' + result;
+    }
+    /* autoadd a zero before decimal separator, when it's missing for negative values */
+    if (actualDecimalIndex === 1 && isNegative) {
+      result = result[0] + '0' + result.substring(1, result.length);
+    }
     return result;
   }
 
