@@ -184,9 +184,7 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
     }
 
     if (finalFormatting) {
-
       if (this.decimalPlaces > 0 && !!result) {
-
         /* autofill decimal places */
         let actualDecimalIndex = result.indexOf(this.decimalSeparator);
         if (this.autofillDecimals) {
@@ -217,7 +215,7 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
     if (actualDecimalIndex === 0) {
       result = '0' + result;
     }
-    /* autoadd a zero before decimal separator, when it's missing for negative values */
+    /* autoadd a zero before decimal separator, when it's missing, for negative values */
     if (actualDecimalIndex === 1 && isNegative) {
       result = result[0] + '0' + result.substring(1, result.length);
     }
