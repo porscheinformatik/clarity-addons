@@ -184,30 +184,41 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
     }
 
     if (finalFormatting) {
-      /* autofill decimal places */
-      if (this.autofillDecimals && this.decimalPlaces > 0 && !!result) {
+      if (this.decimalPlaces > 0 && !!result) {
+        /* autofill decimal places */
         let actualDecimalIndex = result.indexOf(this.decimalSeparator);
-        if (actualDecimalIndex === -1) {
-          actualDecimalIndex = result.length;
-          result += this.decimalSeparator;
-        }
-        /* autoadd a zero before decimal separator, when it's missing */
-        if (actualDecimalIndex === 0) {
-          result = '0' + result;
-          actualDecimalIndex++;
-        }
-        /* autoadd a zero before decimal separator, when it's missing for negative values */
-        if (actualDecimalIndex === 1 && isNegative) {
-          result = result[0] + '0' + result.substring(1, result.length);
-          actualDecimalIndex++;
-        }
-        const actualDecimalPlaces = result.length - actualDecimalIndex - 1;
-        for (let j = 0; j < this.decimalPlaces - actualDecimalPlaces; j++) {
-          result += '0';
+        if (this.autofillDecimals) {
+          if (actualDecimalIndex === -1) {
+            actualDecimalIndex = result.length;
+            result += this.decimalSeparator;
+          }
+
+          result = this.addMissingLeadingZero(result, actualDecimalIndex);
+          actualDecimalIndex = result.indexOf(this.decimalSeparator);
+
+          const actualDecimalPlaces = result.length - actualDecimalIndex - 1;
+          for (let j = 0; j < this.decimalPlaces - actualDecimalPlaces; j++) {
+            result += '0';
+          }
+        } else {
+          result = this.addMissingLeadingZero(result, actualDecimalIndex);
         }
       }
     }
 
+    return result;
+  }
+
+  addMissingLeadingZero(result: string, actualDecimalIndex: number): string {
+    const isNegative = result[0] === NEGATIVE;
+    /* autoadd a zero before decimal separator, when it's missing */
+    if (actualDecimalIndex === 0) {
+      result = '0' + result;
+    }
+    /* autoadd a zero before decimal separator, when it's missing, for negative values */
+    if (actualDecimalIndex === 1 && isNegative) {
+      result = result[0] + '0' + result.substring(1, result.length);
+    }
     return result;
   }
 
@@ -269,7 +280,8 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   private injectUnitSymbol(): void {
-    // Need to inject the unit symbol when the input element width is set to its actual value, otherwise the icon wont show in the correct position
+    // Need to inject the unit symbol when the input element width is set to its actual value,
+    // otherwise the icon wont show in the correct position
     if (!!this.unit && !this.unitSpan && this.inputEl.nativeElement.offsetWidth !== 0) {
       // Get the input wrapper and apply necessary styles
       const inputWrapper = this.inputEl.nativeElement.parentNode;
