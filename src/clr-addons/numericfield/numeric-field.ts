@@ -59,7 +59,7 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
   private unitSpan: HTMLSpanElement;
   private allowedKeys = new Set(NUMBERS);
 
-  constructor(private renderer: Renderer2, private inputEl: ElementRef) { }
+  constructor(private renderer: Renderer2, private inputEl: ElementRef) {}
 
   ngOnInit() {
     /* needs to be parsed as number explicitly as it comes as string from user input */
@@ -280,7 +280,8 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   private injectUnitSymbol(): void {
-    // Need to inject the unit symbol when the input element width is set to its actual value, otherwise the icon wont show in the correct position
+    // Need to inject the unit symbol when the input element width is set to its actual value,
+    // otherwise the icon wont show in the correct position
     if (!!this.unit && !this.unitSpan && this.inputEl.nativeElement.offsetWidth !== 0) {
       // Get the input wrapper and apply necessary styles
       const inputWrapper = this.inputEl.nativeElement.parentNode;
