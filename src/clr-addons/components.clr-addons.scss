@@ -31,6 +31,17 @@ body,
 .u-main-container {
   > .content-container {
     border-top: $clr-global-borderwidth solid $clr-border-color;
+    @media screen and (max-width: map-get($clr-grid-breakpoints, sm)) {
+      min-height: unset;
+    }
+  }
+}
+
+.main-container {
+  @media screen and (max-width: map-get($clr-grid-breakpoints, sm)) {
+    padding-top: $clr-header-height;
+    display: block;
+    overflow-y: auto;
   }
 }
 
@@ -366,5 +377,18 @@ input:not([type='time']) {
   .content-container .content-area-footer,
   .content-panel-content-wrapper {
     padding: 0.5rem;
+  }
+
+  .container-with-fixed-footer {
+    padding-bottom: $clr-footer-height;
+
+    .content-area-footer {
+      position: fixed;
+      width: 100%;
+      height: $clr-footer-height;
+      z-index: 1000;
+      bottom: 0;
+      left: 0;
+    }
   }
 }
