@@ -27,11 +27,13 @@ export class ClrSearchField implements OnInit, OnDestroy, AfterViewInit {
   ngOnInit() {
     this.setHasValueClass(!!this.inputEl.nativeElement.value);
 
+    // use angular form control for change detection and input listener as fallback
     if (!!this.ngControl) {
       this.ngControl.valueChanges.pipe(takeUntil(this.destroyed)).subscribe(value => this.setHasValueClass(!!value));
     } else {
       this.keyupListener = this.renderer.listen(this.inputEl.nativeElement, 'input', event =>
-        this.setHasValueClass(!!event.target.value));
+        this.setHasValueClass(!!event.target.value)
+      );
     }
   }
 
