@@ -4,7 +4,10 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Directive, ElementRef, OnDestroy, OnInit, Renderer2, AfterViewInit } from '@angular/core';
+import { Directive, ElementRef, OnDestroy, OnInit, Renderer2, AfterViewInit, HostBinding } from '@angular/core';
+import { NgControl } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Directive({
   selector: '[clrSearch]',
@@ -17,13 +20,19 @@ export class ClrSearchField implements OnInit, OnDestroy, AfterViewInit {
   private deleteButton: HTMLElement;
   private searchSymbol: HTMLElement;
 
-  constructor(private renderer: Renderer2, private inputEl: ElementRef) {}
+  destroyed = new Subject();
+
+  constructor(private renderer: Renderer2, private inputEl: ElementRef, private ngControl: NgControl) {}
 
   ngOnInit() {
     this.setHasValueClass(!!this.inputEl.nativeElement.value);
-    this.keyupListener = this.renderer.listen(this.inputEl.nativeElement, 'input', event => {
-      this.setHasValueClass(!!event.target.value);
-    });
+
+    if (!!this.ngControl) {
+      this.ngControl.valueChanges.pipe(takeUntil(this.destroyed)).subscribe(value => this.setHasValueClass(!!value));
+    } else {
+      this.keyupListener = this.renderer.listen(this.inputEl.nativeElement, 'input', event =>
+        this.setHasValueClass(!!event.target.value));
+    }
   }
 
   ngAfterViewInit() {
@@ -34,6 +43,8 @@ export class ClrSearchField implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnDestroy() {
     this.detachListener();
+    this.destroyed.next();
+    this.destroyed.complete();
   }
 
   clearSearchInput() {

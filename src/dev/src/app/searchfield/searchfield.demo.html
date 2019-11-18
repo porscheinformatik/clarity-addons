@@ -12,5 +12,10 @@
       <input clrInput clrSearch type="text" name="search" [(ngModel)]="value" />
     </clr-input-container>
     {{value}}
+    <clr-input-container>
+      <label>Search Prefilled</label>
+      <input clrInput clrSearch type="text" name="preFilledSearch" [(ngModel)]="preFilledValue" />
+    </clr-input-container>
+    {{preFilledValue}}
   </form>
 </div>
