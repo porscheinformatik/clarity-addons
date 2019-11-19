@@ -11,4 +11,5 @@ import { Component } from '@angular/core';
 })
 export class SearchFieldDemo {
   value: string = '';
+  preFilledValue: string = 'Demo text';
 }
