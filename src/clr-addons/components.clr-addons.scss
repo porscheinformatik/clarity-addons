@@ -37,14 +37,6 @@ body,
   }
 }
 
-.main-container {
-  @media screen and (max-width: map-get($clr-grid-breakpoints, sm)) {
-    padding-top: $clr-header-height;
-    display: block;
-    overflow-y: auto;
-  }
-}
-
 .content-header {
   padding: 0.5rem 0.5rem 0 1rem;
   display: flex;
@@ -92,6 +84,16 @@ body,
     // For some reason clarity sets the margin to 0 for dropdown buttons - we want the default btn margin inside the footer
     .dropdown .dropdown-toggle {
       margin-right: 0.5rem;
+    }
+
+    //Make footer sticky on sm screen size as the .main-container class gets the property display:block (instead of display:flex)
+    @media screen and (max-width: map-get($clr-grid-breakpoints, sm)) {
+      position: fixed;
+      width: 100%;
+      height: $clr-footer-height;
+      z-index: map-get($clr-layers, datagrid-host);
+      bottom: 0;
+      left: 0;
     }
   }
 }
@@ -379,16 +381,24 @@ input:not([type='time']) {
     padding: 0.5rem;
   }
 
-  .container-with-fixed-footer {
-    padding-bottom: $clr-footer-height;
+  //prevents the upper body part from being hidden by the fixed header
+  body {
+    padding-top: $clr-header-height;
+  }
 
-    .content-area-footer {
-      position: fixed;
-      width: 100%;
-      height: $clr-footer-height;
-      z-index: 1000;
-      bottom: 0;
-      left: 0;
-    }
+  //main-container needs the display:block property in order to work properly on safari
+  .main-container {
+    display: block;
+    overflow-y: auto;
+  }
+
+  .u-main-container {
+    min-height: 100%;
+  }
+
+  //every container which contains .content-area-footer class needs padding-bottom
+  //due to fixed positioning of the .content-area-footer
+  .content-container-fixed-footer {
+    padding-bottom: $clr-footer-height;
   }
 }

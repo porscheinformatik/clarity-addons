@@ -283,10 +283,11 @@
   .open-overflow-menu {
     overflow: hidden;
   }
+
   .header {
     position: fixed;
     width: 100%;
-    z-index: 1000;
+    z-index: map-get($clr-layers, datagrid-host);
     top: 0;
   }
 }
