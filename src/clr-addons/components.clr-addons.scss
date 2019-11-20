@@ -91,7 +91,7 @@ body,
       position: fixed;
       width: 100%;
       height: $clr-footer-height;
-      z-index: map-get($clr-layers, datagrid-host);
+      z-index: map-get($clr-layers, column-switch);
       bottom: 0;
       left: 0;
     }

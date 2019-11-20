@@ -287,7 +287,8 @@
   .header {
     position: fixed;
     width: 100%;
-    z-index: map-get($clr-layers, datagrid-host);
+    z-index: map-get($clr-layers, column-switch);
     top: 0;
+    left: 0;
   }
 }
