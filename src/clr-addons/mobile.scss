@@ -1,0 +1,68 @@
+@media screen and (max-width: map-get($clr-grid-breakpoints, sm)) {
+  .open-overflow-menu {
+    overflow: hidden;
+  }
+
+  .header {
+    position: fixed;
+    width: 100%;
+    z-index: map-get($clr-layers, column-switch);
+    top: 0;
+    left: 0;
+  }
+
+  .content-header {
+    padding: 0 0.5rem;
+
+    .command-bar {
+      margin-right: 0;
+      align-items: center;
+    }
+  }
+
+  .main-container .content-container .content-area,
+  .content-container .content-area-footer,
+  .content-panel-content-wrapper {
+    padding: 0.5rem;
+  }
+
+  //prevents the upper body part from being hidden by the fixed header
+  body {
+    padding-top: $clr-header-height;
+  }
+
+  //main-container needs the display:block property in order to work properly on safari
+  .main-container {
+    display: block;
+    overflow-y: auto;
+  }
+
+  .u-main-container {
+    min-height: 100%;
+  }
+
+  //every container which contains .content-area-footer class needs padding-bottom
+  //due to fixed positioning of the .content-area-footer
+  .content-container-fixed-footer {
+    padding-bottom: $clr-footer-height;
+  }
+
+  //Make footer sticky on sm screen size as the .main-container class gets the property display:block (instead of display:flex)
+  .content-container {
+    .content-area-footer {
+      position: fixed;
+      width: 100%;
+      height: $clr-footer-height;
+      z-index: map-get($clr-layers, column-switch);
+      bottom: 0;
+      left: 0;
+    }
+  }
+
+  .modal {
+    .modal-header,
+    .modal-footer {
+      padding-right: 0;
+    }
+  }
+}
