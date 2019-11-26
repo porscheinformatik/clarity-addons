@@ -18,9 +18,9 @@
     (clrSelectedOption)="selectedOption = $event"
     (clrEnteredValue)="enteredValue = $event"
     [clrAllowUserEntry]="false"
-    [clrPreselectedValue]="'Option 4'"
+    [clrPreselectedValue]="'Option 7'"
   >
-    <label>Force selection</label>
+    <label>Do not allow user entry</label>
     <clr-options>
       <clr-option *ngFor="let option of values$ | async" [clrValue]="option">{{option}}</clr-option>
       <div class="clr-no-results">No search results found</div>
@@ -31,11 +31,11 @@
   {{enteredValue}}
   <br />
   <clr-combobox
-    class="clr-col-12 clr-row"
-    clrControlClasses="clr-col-3"
+    class="clr-col-12 clr-row clr-col-sm-4"
     (clrSelectedOption)="selectedOptionUser = $event"
     (clrEnteredValue)="enteredValueUser = $event"
     [clrAllowUserEntry]="true"
+    [clrPreselectedValue]="'Option 3'"
   >
     <label class="clr-col-12 clr-col-md-2">Allow user entry</label>
     <clr-options>
@@ -46,7 +46,6 @@
     </clr-options>
   </clr-combobox>
   <br /><br />Selected option: {{selectedOptionUser?.value}} <br />Manually entered value: {{enteredValueUser}}
-  <br />
   <clr-combobox class="clr-col-12 clr-row" [clrPreselectedValue]="'Option 3'" [clrAllowUserEntry]="false">
     <label>Preselected value</label>
     <clr-options>
@@ -61,4 +60,76 @@
     <label class="clr-col-md-2">First name (to check if combo fits into form)</label>
     <input class="clr-col-md-10" clrInput type="text" />
   </clr-input-container>
+
+  <br />
+  <br />
+  <br />
+
+  <h3>Test the mobile behaviour with different options</h3>
+  <h5>Breakpoint: 576px</h5>
+  <div class="clr-row">
+    <div class="clr-col-md-6 clr-col-12">
+      <clr-radio-container>
+        <clr-radio-wrapper>
+          <input clrRadio type="radio" [(ngModel)]="mobileOptions.userEntry" [value]="true" name="status4" />
+          <label>Allow user entries</label>
+        </clr-radio-wrapper>
+        <clr-radio-wrapper>
+          <input clrRadio type="radio" [(ngModel)]="mobileOptions.userEntry" [value]="false" name="status5" />
+          <label>Do not allow user entries</label>
+        </clr-radio-wrapper>
+      </clr-radio-container>
+    </div>
+    <div class="clr-col-md-6 clr-col-12">
+      <clr-radio-container>
+        <clr-radio-wrapper>
+          <input
+            clrRadio
+            type="radio"
+            [(ngModel)]="mobileOptions.mobileBehaviour"
+            [value]="forcedBehaviourMobile.UNSET"
+            name="status1"
+          />
+          <label>forcedBehaviourMobile: UNSET</label>
+        </clr-radio-wrapper>
+        <clr-radio-wrapper>
+          <input
+            clrRadio
+            type="radio"
+            [(ngModel)]="mobileOptions.mobileBehaviour"
+            [value]="forcedBehaviourMobile.DISPLAY_SELECT_BOX"
+            name="status2"
+          />
+          <label>forcedBehaviourMobile: DISPLAY_SELECT_BOX</label>
+        </clr-radio-wrapper>
+        <clr-radio-wrapper>
+          <input
+            clrRadio
+            type="radio"
+            [(ngModel)]="mobileOptions.mobileBehaviour"
+            [value]="forcedBehaviourMobile.DISPLAY_AUTOCOMPLETE"
+            name="status3"
+          />
+          <label>forcedBehaviourMobile: DISPLAY_AUTOCOMPLETE</label>
+        </clr-radio-wrapper>
+      </clr-radio-container>
+    </div>
+  </div>
+
+  <clr-combobox
+    class="clr-col-12 clr-row"
+    (clrSelectedOption)="selectedOptionMobile = $event"
+    (clrEnteredValue)="enteredValueMobile = $event"
+    [clrAllowUserEntry]="mobileOptions.userEntry"
+    [forcedBehaviourMobile]="mobileOptions.mobileBehaviour"
+    [clrPreselectedValue]="'Option 3'"
+  >
+    <clr-options>
+      <clr-option [clrValue]="'Option 1'">Option 1</clr-option>
+      <clr-option [clrValue]="'Option 2'">Option 2 very very very very long option</clr-option>
+      <clr-option [clrValue]="'Option 3'">Option 3</clr-option>
+      <div class="clr-no-results">No search results found</div>
+    </clr-options>
+  </clr-combobox>
+  <br /><br />Selected option: {{selectedOptionMobile?.value}} <br />Manually entered value: {{enteredValueMobile}}
 </form>

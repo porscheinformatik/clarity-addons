@@ -12,9 +12,10 @@ import { ClrIconModule } from '@clr/angular';
 import { ClrOption } from './option';
 import { ClrOptions } from './options';
 import { ClrCombobox } from './combobox';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  imports: [CommonModule, ClrIconModule],
+  imports: [CommonModule, ClrIconModule, FormsModule],
   declarations: [ClrCombobox, ClrOptions, ClrOption],
   exports: [ClrCombobox, ClrOptions, ClrOption],
 })
