@@ -1,4 +1,5 @@
 @import './header.clr-addons';
+@import './mobile';
 @import './collapse-expand-section/collapse-expand-section';
 @import './main-nav-group/main-nav-group';
 @import './paged-search-result-list/paged-search-result-list';
@@ -351,5 +352,3 @@ input:not([type='time']) {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
-@import './mobile';
