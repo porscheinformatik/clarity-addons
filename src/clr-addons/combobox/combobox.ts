@@ -51,7 +51,6 @@ export function comboboxDomAdapterFactory(platformId: Object) {
 @Component({
   selector: 'clr-combobox',
   templateUrl: './combobox.html',
-  styleUrls: ['./combobox.scss'],
   providers: [
     IfOpenService,
     { provide: POPOVER_HOST_ANCHOR, useExisting: ElementRef },

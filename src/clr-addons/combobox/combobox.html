@@ -8,6 +8,7 @@ More info here: https://stackoverflow.com/a/34445203/3538394
   <label *ngIf="!label && addGrid()"></label>
   <div class="clr-control-container" [ngClass]="controlClass()">
     <div class="clr-input-wrapper">
+      <!-- Show these elements on display size XS when showSelect() returns false -->
       <div
         class="clr-combobox-input"
         [class.hidden-sm]="showSelect()"
@@ -29,7 +30,7 @@ More info here: https://stackoverflow.com/a/34445203/3538394
       >
         <clr-icon shape="caret down" size="12"></clr-icon>
       </button>
-      <!-- If forcedMobileBehaviour, render this -->
+      <!-- Show this element on display size XS when showSelect() returns true -->
       <select
         class="clr-combobox-input select-element"
         [class.visible-sm]="showSelect()"

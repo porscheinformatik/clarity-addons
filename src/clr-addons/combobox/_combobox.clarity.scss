@@ -100,4 +100,20 @@
       background: none;
     }
   }
+
+  .select-element {
+    display: none;
+    border: none;
+    outline: none;
+  }
+
+  @media screen and (max-width: map-get($clr-grid-breakpoints, sm)) {
+    .hidden-sm {
+      display: none;
+    }
+
+    .visible-sm {
+      display: block;
+    }
+  }
 }
