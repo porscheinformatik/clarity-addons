@@ -6,15 +6,13 @@
 import { Component } from '@angular/core';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { ForcedBehaviourMobile } from '../../../../clr-addons/combobox/utils/constants';
+import { MobileBehaviourMode } from '../../../../clr-addons/combobox/utils/constants';
 
 @Component({ templateUrl: './combobox.demo.html' })
 export class ComboboxDemo {
-  forcedBehaviourMobile = ForcedBehaviourMobile;
+  mobileBehaviourMode = MobileBehaviourMode;
   values$ = of(['Option 4', '<na> Option 5', 'Option 6 (test)', 'Option 7']).pipe(delay(500));
 
-  mobileOptions = {
-    mobileBehaviour: ForcedBehaviourMobile.UNSET,
-    userEntry: false,
-  };
+  mobileBehaviourModeRadioBox = MobileBehaviourMode.DEFAULT;
+  userEntryAllowedRadioBox = false;
 }

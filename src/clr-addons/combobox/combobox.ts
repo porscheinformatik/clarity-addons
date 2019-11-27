@@ -36,7 +36,7 @@ import { ClrOptions } from './options';
 import { OptionSelectionService } from './providers/option-selection.service';
 import { ComboboxDomAdapter } from './utils/combobox-dom-adapter.service';
 import { ComboboxNoopDomAdapter } from './utils/combobox-noop-dom-adapter.service';
-import { DOWN_ARROW, ENTER, ForcedBehaviourMobile, TAB, UP_ARROW } from './utils/constants';
+import { DOWN_ARROW, ENTER, MobileBehaviourMode, TAB, UP_ARROW } from './utils/constants';
 
 // Fixes build error
 // @dynamic (https://github.com/angular/angular/issues/19698#issuecomment-338340211)
@@ -69,7 +69,7 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
   @Input('clrControlClasses') controlClasses: string;
   @Input('clrAllowUserEntry') allowUserEntry: boolean = false;
   @Input('clrPreselectedValue') preselectedValue: T;
-  @Input('forcedBehaviourMobile') forcedBehaviourMobile: ForcedBehaviourMobile = ForcedBehaviourMobile.UNSET;
+  @Input('clrMobileBehaviourMode') mobileBehaviourMode: MobileBehaviourMode = MobileBehaviourMode.DEFAULT;
   @Output('clrSelectedOption') selectedOption: EventEmitter<ClrOption<T>> = new EventEmitter<ClrOption<T>>();
   @Output('clrEnteredValue') enteredValue: EventEmitter<string> = new EventEmitter<string>();
 
@@ -81,7 +81,7 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
   invalid: boolean = false;
   keyHandled: boolean = false;
   private subscriptions: Subscription[] = [];
-  private selectBoxValue: T = this.preselectedValue;
+  private selectedValue: T = this.preselectedValue;
 
   constructor(
     private ifOpenService: IfOpenService,
@@ -117,7 +117,7 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
   private renderSelection(selectedOption: ClrOption<T>): void {
     this.selectedOption.emit(selectedOption);
     if (this.input && selectedOption) {
-      this.selectBoxValue = selectedOption.value;
+      this.selectedValue = selectedOption.value;
       this.input.nativeElement.innerText = selectedOption.getDisplayedText();
       this.validateInput();
     }
@@ -256,11 +256,11 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
-  showSelectBox() {
-    switch (this.forcedBehaviourMobile) {
-      case ForcedBehaviourMobile.DISPLAY_SELECT_BOX:
+  showSelect() {
+    switch (this.mobileBehaviourMode) {
+      case MobileBehaviourMode.FORCE_SELECT:
         return true;
-      case ForcedBehaviourMobile.DISPLAY_AUTOCOMPLETE:
+      case MobileBehaviourMode.FORCE_AUTOCOMPLETE:
         return false;
       default:
         return !this.allowUserEntry;
@@ -274,10 +274,8 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
     return [];
   }
 
-  handleSelectBoxChange() {
-    const option = this.options.options.find(o => o.value === this.selectBoxValue);
-    if (!!option) {
-      this.optionSelectionService.setSelection(option);
-    }
+  selectedValueChange() {
+    const option = this.options.options.find(o => o.value === this.selectedValue);
+    this.optionSelectionService.setSelection(option);
   }
 }

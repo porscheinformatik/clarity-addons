@@ -10,7 +10,7 @@ More info here: https://stackoverflow.com/a/34445203/3538394
     <div class="clr-input-wrapper">
       <div
         class="clr-combobox-input"
-        [class.hidden-sm]="showSelectBox()"
+        [class.hidden-sm]="showSelect()"
         contenteditable="true"
         #input
         (keydown)="keydown($event)"
@@ -25,16 +25,16 @@ More info here: https://stackoverflow.com/a/34445203/3538394
         class="clr-combobox-trigger"
         tabindex="-1"
         (click)="toggleOptionsMenu($event)"
-        [class.hidden-sm]="showSelectBox()"
+        [class.hidden-sm]="showSelect()"
       >
         <clr-icon shape="caret down" size="12"></clr-icon>
       </button>
       <!-- If forcedMobileBehaviour, render this -->
       <select
         class="clr-combobox-input select-element"
-        [class.visible-sm]="showSelectBox()"
-        [(ngModel)]="selectBoxValue"
-        (change)="handleSelectBoxChange()"
+        [class.visible-sm]="showSelect()"
+        [(ngModel)]="selectedValue"
+        (change)="selectedValueChange()"
       >
         <option></option>
         <option *ngFor="let option of getOptionsAsArray()" [value]="option.value">{{option.getDisplayedText()}}</option>

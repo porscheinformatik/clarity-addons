@@ -71,11 +71,11 @@
     <div class="clr-col-md-6 clr-col-12">
       <clr-radio-container>
         <clr-radio-wrapper>
-          <input clrRadio type="radio" [(ngModel)]="mobileOptions.userEntry" [value]="true" name="status4" />
+          <input clrRadio type="radio" [(ngModel)]="userEntryAllowedRadioBox" [value]="true" name="status1" />
           <label>Allow user entries</label>
         </clr-radio-wrapper>
         <clr-radio-wrapper>
-          <input clrRadio type="radio" [(ngModel)]="mobileOptions.userEntry" [value]="false" name="status5" />
+          <input clrRadio type="radio" [(ngModel)]="userEntryAllowedRadioBox" [value]="false" name="status2" />
           <label>Do not allow user entries</label>
         </clr-radio-wrapper>
       </clr-radio-container>
@@ -86,31 +86,31 @@
           <input
             clrRadio
             type="radio"
-            [(ngModel)]="mobileOptions.mobileBehaviour"
-            [value]="forcedBehaviourMobile.UNSET"
-            name="status1"
-          />
-          <label>forcedBehaviourMobile: UNSET</label>
-        </clr-radio-wrapper>
-        <clr-radio-wrapper>
-          <input
-            clrRadio
-            type="radio"
-            [(ngModel)]="mobileOptions.mobileBehaviour"
-            [value]="forcedBehaviourMobile.DISPLAY_SELECT_BOX"
-            name="status2"
-          />
-          <label>forcedBehaviourMobile: DISPLAY_SELECT_BOX</label>
-        </clr-radio-wrapper>
-        <clr-radio-wrapper>
-          <input
-            clrRadio
-            type="radio"
-            [(ngModel)]="mobileOptions.mobileBehaviour"
-            [value]="forcedBehaviourMobile.DISPLAY_AUTOCOMPLETE"
+            [(ngModel)]="mobileBehaviourModeRadioBox"
+            [value]="mobileBehaviourMode.DEFAULT"
             name="status3"
           />
-          <label>forcedBehaviourMobile: DISPLAY_AUTOCOMPLETE</label>
+          <label>mobileBehaviourMode: DEFAULT</label>
+        </clr-radio-wrapper>
+        <clr-radio-wrapper>
+          <input
+            clrRadio
+            type="radio"
+            [(ngModel)]="mobileBehaviourModeRadioBox"
+            [value]="mobileBehaviourMode.FORCE_SELECT"
+            name="status4"
+          />
+          <label>mobileBehaviourMode: FORCE_SELECT</label>
+        </clr-radio-wrapper>
+        <clr-radio-wrapper>
+          <input
+            clrRadio
+            type="radio"
+            [(ngModel)]="mobileBehaviourModeRadioBox"
+            [value]="mobileBehaviourMode.FORCE_AUTOCOMPLETE"
+            name="status5"
+          />
+          <label>mobileBehaviourMode: FORCE_AUTOCOMPLETE</label>
         </clr-radio-wrapper>
       </clr-radio-container>
     </div>
@@ -120,8 +120,8 @@
     class="clr-col-12 clr-row"
     (clrSelectedOption)="selectedOptionMobile = $event"
     (clrEnteredValue)="enteredValueMobile = $event"
-    [clrAllowUserEntry]="mobileOptions.userEntry"
-    [forcedBehaviourMobile]="mobileOptions.mobileBehaviour"
+    [clrAllowUserEntry]="userEntryAllowedRadioBox"
+    [clrMobileBehaviourMode]="mobileBehaviourModeRadioBox"
     [clrPreselectedValue]="'Option 3'"
   >
     <clr-options>
