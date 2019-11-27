@@ -168,6 +168,10 @@ body,
     border-top-style: dashed;
     border-right-style: dashed;
   }
+
+  @media screen and (max-width: map-get($clr-grid-breakpoints, sm)) {
+    margin-top: 0.5rem;
+  }
 }
 
 .main-container.open-hamburger-menu .header .header-nav.clr-nav-level-1 {
