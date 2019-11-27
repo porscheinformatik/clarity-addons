@@ -1,4 +1,5 @@
 @import './header.clr-addons';
+@import './mobile';
 @import './collapse-expand-section/collapse-expand-section';
 @import './main-nav-group/main-nav-group';
 @import './paged-search-result-list/paged-search-result-list';
@@ -55,15 +56,6 @@ body,
     .dropdown-menu {
       z-index: map-get($clr-layers, sidepanel) - 2;
     }
-
-    @media screen and (max-width: map-get($clr-grid-breakpoints, sm)) {
-      margin-right: 0;
-      align-items: center;
-    }
-  }
-
-  @media screen and (max-width: map-get($clr-grid-breakpoints, sm)) {
-    padding: 0 0.5rem;
   }
 }
 
@@ -359,12 +351,4 @@ input:not([type='time']) {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-@media screen and (max-width: map-get($clr-grid-breakpoints, sm)) {
-  .main-container .content-container .content-area,
-  .content-container .content-area-footer,
-  .content-panel-content-wrapper {
-    padding: 0.5rem;
-  }
 }
