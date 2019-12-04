@@ -53,7 +53,8 @@
       position: fixed;
       width: 100%;
       height: $clr-footer-height;
-      z-index: map-get($clr-layers, column-switch);
+      // Sticky footer should be shown above datagrid-host but below column-switch
+      z-index: map-get($clr-layers, datagrid-host) + 5;
       bottom: 0;
       left: 0;
     }
