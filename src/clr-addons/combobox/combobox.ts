@@ -80,7 +80,7 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
   invalid: boolean = false;
   keyHandled: boolean = false;
   private subscriptions: Subscription[] = [];
-  private selectedValue: T = this.preselectedValue;
+  selectedValue: T = this.preselectedValue;
 
   constructor(
     private ifOpenService: IfOpenService,

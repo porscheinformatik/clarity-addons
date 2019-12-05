@@ -122,12 +122,10 @@
     (clrEnteredValue)="enteredValueMobile = $event"
     [clrAllowUserEntry]="userEntryAllowedRadioBox"
     [clrMobileBehaviourMode]="mobileBehaviourModeRadioBox"
-    [clrPreselectedValue]="'Option 3'"
+    [clrPreselectedValue]="'Option 4'"
   >
     <clr-options>
-      <clr-option [clrValue]="'Option 1'">Option 1</clr-option>
-      <clr-option [clrValue]="'Option 2'">Option 2 very very very very long option</clr-option>
-      <clr-option [clrValue]="'Option 3'">Option 3</clr-option>
+      <clr-option *ngFor="let option of values$ | async" [clrValue]="option">{{option}}</clr-option>
       <div class="clr-no-results">No search results found</div>
     </clr-options>
   </clr-combobox>
