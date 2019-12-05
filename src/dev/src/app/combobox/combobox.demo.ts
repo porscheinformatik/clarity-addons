@@ -6,8 +6,13 @@
 import { Component } from '@angular/core';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { MobileBehaviourMode } from '../../../../clr-addons/combobox/utils/constants';
 
 @Component({ templateUrl: './combobox.demo.html' })
 export class ComboboxDemo {
-  values$ = of(['Option 4', '<na> Option 5', 'Option 6 (test)']).pipe(delay(500));
+  mobileBehaviourMode = MobileBehaviourMode;
+  values$ = of(['Option 4', '<na> Option 5', 'Option 6 (test)', 'Option 7']).pipe(delay(500));
+
+  mobileBehaviourModeRadioBox = MobileBehaviourMode.DEFAULT;
+  userEntryAllowedRadioBox = false;
 }

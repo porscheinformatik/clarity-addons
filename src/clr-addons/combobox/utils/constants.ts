@@ -27,3 +27,9 @@ export enum Point {
   LEFT_TOP,
   LEFT_BOTTOM,
 }
+
+export enum MobileBehaviourMode {
+  DEFAULT,
+  FORCE_SELECT,
+  FORCE_AUTOCOMPLETE,
+}

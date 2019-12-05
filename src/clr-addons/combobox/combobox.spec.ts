@@ -4,12 +4,14 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ClarityModule } from '@clr/angular';
 
 import { ClrComboboxModule } from './combobox.module';
 import { ClrOption } from './option';
+import { MobileBehaviourMode } from './utils/constants';
+import { By } from '@angular/platform-browser';
 
 @Component({
   template: `
@@ -18,7 +20,8 @@ import { ClrOption } from './option';
       [clrPreselectedValue]="'Option 3'"
       (clrSelectedOption)="selectedOption = $event"
       (clrEnteredValue)="enteredValue = $event"
-      [clrAllowUserEntry]="false"
+      [clrMobileBehaviourMode]="mobileBehaviourMode"
+      [clrAllowUserEntry]="allowUserEntry"
     >
       <label>Preselected value</label>
       <clr-options>
@@ -34,10 +37,14 @@ import { ClrOption } from './option';
 class TestComponent {
   selectedOption: ClrOption<string>;
   enteredValue: string;
+  mobileBehaviourMode: MobileBehaviourMode = MobileBehaviourMode.DEFAULT;
+  allowUserEntry: boolean = false;
 }
 
 describe('ComboboxComponent', () => {
   let fixture: ComponentFixture<TestComponent>;
+  let inputEl: DebugElement;
+  let selectEl: DebugElement;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -46,12 +53,68 @@ describe('ComboboxComponent', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(TestComponent);
+    inputEl = fixture.debugElement.query(By.css('.clr-combobox-input'));
+    selectEl = fixture.debugElement.query(By.css('.clr-combobox-input.select-element'));
     fixture.detectChanges();
   });
+
+  function selectIsShown() {
+    return (
+      inputEl.nativeElement.classList.contains('hidden-sm') && selectEl.nativeElement.classList.contains('visible-sm')
+    );
+  }
 
   it('Preselect option', () => {
     fixture.detectChanges();
 
     expect(fixture.componentInstance.selectedOption.value).toBe('Option 3');
+  });
+
+  it('Select element shown by default - user entries allowed', () => {
+    fixture.componentInstance.mobileBehaviourMode = MobileBehaviourMode.DEFAULT;
+    fixture.componentInstance.allowUserEntry = false;
+    fixture.detectChanges();
+
+    expect(selectIsShown()).toBe(true);
+  });
+
+  it('Select element shown by default - user entries not allowed', () => {
+    fixture.componentInstance.mobileBehaviourMode = MobileBehaviourMode.DEFAULT;
+    fixture.componentInstance.allowUserEntry = true;
+    fixture.detectChanges();
+
+    expect(selectIsShown()).toBe(false);
+  });
+
+  it('Select element shown when forced select - user entries not allowed', () => {
+    fixture.componentInstance.mobileBehaviourMode = MobileBehaviourMode.FORCE_SELECT;
+    fixture.componentInstance.allowUserEntry = false;
+    fixture.detectChanges();
+
+    expect(selectIsShown()).toBe(true);
+  });
+
+  it('Select element shown when forced select - user entries allowed', () => {
+    fixture.componentInstance.mobileBehaviourMode = MobileBehaviourMode.FORCE_SELECT;
+    fixture.componentInstance.allowUserEntry = true;
+    fixture.detectChanges();
+
+    expect(selectIsShown()).toBe(true);
+  });
+
+  it('Select element not shown when forced autocomplete - user entries not allowed', () => {
+    fixture.componentInstance.mobileBehaviourMode = MobileBehaviourMode.FORCE_AUTOCOMPLETE;
+    fixture.componentInstance.allowUserEntry = false;
+    fixture.detectChanges();
+
+    expect(selectIsShown()).toBe(false);
+  });
+
+  it('Select element not shown when forced autocomplete - user entries allowed', () => {
+    fixture.componentInstance.mobileBehaviourMode = MobileBehaviourMode.FORCE_AUTOCOMPLETE;
+    fixture.componentInstance.allowUserEntry = true;
+    fixture.detectChanges();
+
+    expect(selectIsShown()).toBe(false);
   });
 });

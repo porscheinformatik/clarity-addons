@@ -8,8 +8,10 @@ More info here: https://stackoverflow.com/a/34445203/3538394
   <label *ngIf="!label && addGrid()"></label>
   <div class="clr-control-container" [ngClass]="controlClass()">
     <div class="clr-input-wrapper">
+      <!-- Show these elements on display size XS when showSelect() returns false -->
       <div
         class="clr-combobox-input"
+        [class.hidden-sm]="showSelect()"
         contenteditable="true"
         #input
         (keydown)="keydown($event)"
@@ -19,9 +21,25 @@ More info here: https://stackoverflow.com/a/34445203/3538394
         <br />
         <!-- Highlighted options will be rendererd here later.-->
       </div>
-      <button type="button" class="clr-combobox-trigger" tabindex="-1" (click)="toggleOptionsMenu($event)">
+      <button
+        type="button"
+        class="clr-combobox-trigger"
+        tabindex="-1"
+        (click)="toggleOptionsMenu($event)"
+        [class.hidden-sm]="showSelect()"
+      >
         <clr-icon shape="caret down" size="12"></clr-icon>
       </button>
+      <!-- Show this element on display size XS when showSelect() returns true -->
+      <select
+        class="clr-combobox-input select-element"
+        [class.visible-sm]="showSelect()"
+        [(ngModel)]="selectedValue"
+        (change)="selectedValueChange()"
+      >
+        <option></option>
+        <option *ngFor="let option of getOptionsAsArray()" [value]="option.value">{{option.getDisplayedText()}}</option>
+      </select>
     </div>
     <ng-content select="clr-control-helper" *ngIf="!invalid"></ng-content>
     <ng-content select="clr-control-error" *ngIf="invalid"></ng-content>
