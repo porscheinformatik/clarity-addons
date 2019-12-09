@@ -70,4 +70,32 @@
   .card {
     margin-top: 0.5rem;
   }
+
+  .signpost {
+    .signpost-content {
+      width: calc(100% - 2rem);
+      margin: auto;
+      position: fixed !important;
+      top: 0 !important;
+      bottom: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      height: max-content !important;
+      transform: unset !important;
+
+      .popover-pointer {
+        display: none;
+      }
+
+      .signpost-action.close {
+        width: 1rem;
+        height: 1rem;
+
+        clr-icon {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+  }
 }
