@@ -5,7 +5,7 @@
   "packageRules": [
     {
       "packagePatterns": ["^@clr/"],
-      "groupName": "clarity monorepo (!! check npm/package.json for changes !!!)"
+      "groupName": "clarity monorepo"
     }
   ]
 }
