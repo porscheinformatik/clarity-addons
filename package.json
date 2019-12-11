@@ -61,7 +61,7 @@
     "@types/jasminewd2": "2.0.8",
     "@types/node": "12.12.17",
     "autoprefixer": "9.7.3",
-    "cpy-cli": "2.0.0",
+    "cpy-cli": "3.0.0",
     "cross-var": "1.1.0",
     "csso-cli": "2.0.2",
     "del-cli": "3.0.0",
