@@ -80,7 +80,7 @@
     "karma-jasmine-html-reporter": "1.4.2",
     "karma-jasmine-matchers": "4.0.2",
     "karma-mocha-reporter": "2.2.5",
-    "karma-notify-reporter": "1.1.0",
+    "karma-notify-reporter": "1.2.0",
     "karma-safari-launcher": "1.0.0",
     "karma-sauce-launcher": "2.0.2",
     "karma-scss-preprocessor": "4.0.0",
