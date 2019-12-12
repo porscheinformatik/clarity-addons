@@ -18,7 +18,7 @@ import {
 } from '@clr/angular';
 import { ClrComboboxModule } from './combobox.module';
 import { ClrOption } from './option';
-import { MobileBehaviourMode } from './utils/constants';
+import { MobileBehaviourMode } from './utils/mobile-behaviour-mode';
 
 @Component({
   template: `

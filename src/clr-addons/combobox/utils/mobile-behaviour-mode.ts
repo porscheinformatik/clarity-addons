@@ -4,8 +4,8 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-export * from './combobox';
-export * from './combobox.module';
-export * from './options';
-export * from './option';
-export * from './utils/mobile-behaviour-mode';
+export enum MobileBehaviourMode {
+  DEFAULT,
+  FORCE_SELECT,
+  FORCE_AUTOCOMPLETE,
+}

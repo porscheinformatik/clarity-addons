@@ -6,7 +6,7 @@
 import { Component } from '@angular/core';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { MobileBehaviourMode } from '../../../../clr-addons/combobox/utils/constants';
+import { MobileBehaviourMode } from '@porscheinformatik/clr-addons';
 
 @Component({ templateUrl: './combobox.demo.html' })
 export class ComboboxDemo {
