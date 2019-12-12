@@ -23,9 +23,9 @@ import {
 } from '@angular/core';
 import {
   ClrLabel,
-  ɵbe as ControlIdService,
-  ɵbf as LayoutService,
-  ɵbm as ControlClassService,
+  ɵbg as ControlIdService,
+  ɵbh as LayoutService,
+  ɵbo as ControlClassService,
   ɵe as IfOpenService,
   ɵi as POPOVER_HOST_ANCHOR,
 } from '@clr/angular';
