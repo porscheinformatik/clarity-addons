@@ -36,7 +36,8 @@ import { ClrOptions } from './options';
 import { OptionSelectionService } from './providers/option-selection.service';
 import { ComboboxDomAdapter } from './utils/combobox-dom-adapter.service';
 import { ComboboxNoopDomAdapter } from './utils/combobox-noop-dom-adapter.service';
-import { DOWN_ARROW, ENTER, MobileBehaviourMode, TAB, UP_ARROW } from './utils/constants';
+import { DOWN_ARROW, ENTER, TAB, UP_ARROW } from './utils/constants';
+import { MobileBehaviourMode } from './utils/mobile-behaviour-mode';
 
 // Fixes build error
 // @dynamic (https://github.com/angular/angular/issues/19698#issuecomment-338340211)
