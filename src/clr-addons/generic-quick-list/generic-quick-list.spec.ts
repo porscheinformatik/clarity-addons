@@ -39,7 +39,10 @@ class TestComponent {
 
   isRequired = false;
   isAddPossible = true;
-  allItems = [{ id: 1, firstname: 'first', lastname: 'last' }, { id: 2, firstname: 'second', lastname: 'secondLast' }];
+  allItems = [
+    { id: 1, firstname: 'first', lastname: 'last' },
+    { id: 2, firstname: 'second', lastname: 'secondLast' },
+  ];
 }
 
 describe('GenericQuickListComponent', () => {
