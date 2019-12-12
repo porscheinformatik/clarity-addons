@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { ClarityModule } from '@clr/angular';
+import { ClarityModule, ɵbg as ControlIdService } from '@clr/angular';
 import { ClrMultilingualModule } from '../multilingual.module';
 
 @Component({
@@ -130,6 +130,10 @@ describe('Multilingual Textarea', () => {
       sendInput(inputEl, fixture, '');
       validationShown(true, fixture);
     });
+  });
+
+  it('check correct obfuscated imports', () => {
+    expect(new ControlIdService().constructor.name).toBe('ControlIdService');
   });
 
   function validationShown(shouldBeVisible: boolean, fixture: ComponentFixture<any>) {
