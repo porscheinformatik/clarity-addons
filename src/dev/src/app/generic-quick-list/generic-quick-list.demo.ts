@@ -12,9 +12,15 @@ import { of, Observable } from 'rxjs';
   templateUrl: './generic-quick-list.demo.html',
 })
 export class GenericQuickListDemo {
-  allItems = [{ id: 1, firstname: 'asdf', lastname: 'yxcv' }, { id: 2, firstname: 'qwert', lastname: 'uipp' }];
+  allItems = [
+    { id: 1, firstname: 'asdf', lastname: 'yxcv' },
+    { id: 2, firstname: 'qwert', lastname: 'uipp' },
+  ];
 
-  allItemsV = [{ id: 1, firstname: 'asdf', lastname: 'yxcv' }, { id: 2, firstname: 'qwert', lastname: 'uipp' }];
+  allItemsV = [
+    { id: 1, firstname: 'asdf', lastname: 'yxcv' },
+    { id: 2, firstname: 'qwert', lastname: 'uipp' },
+  ];
 
   itemRemoved(itemId) {
     console.log('item removed', itemId);
