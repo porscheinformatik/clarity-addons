@@ -6,12 +6,19 @@
 
 import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ClarityModule } from '@clr/angular';
-
+import { By } from '@angular/platform-browser';
+import {
+  ClarityModule,
+  ɵbg as ControlIdService,
+  ɵbh as LayoutService,
+  ɵbo as ControlClassService,
+  ɵe as IfOpenService,
+  ɵi as POPOVER_HOST_ANCHOR,
+  ɵt as AbstractPopover,
+} from '@clr/angular';
 import { ClrComboboxModule } from './combobox.module';
 import { ClrOption } from './option';
 import { MobileBehaviourMode } from './utils/constants';
-import { By } from '@angular/platform-browser';
 
 @Component({
   template: `
@@ -116,5 +123,14 @@ describe('ComboboxComponent', () => {
     fixture.detectChanges();
 
     expect(selectIsShown()).toBe(false);
+  });
+
+  it('check correct obfuscated imports', () => {
+    expect(new IfOpenService().constructor.name).toBe('IfOpenService');
+    expect(new ControlIdService().constructor.name).toBe('ControlIdService');
+    expect(new LayoutService().constructor.name).toBe('LayoutService');
+    expect(new ControlClassService().constructor.name).toBe('ControlClassService');
+    expect(AbstractPopover.toString()).toContain('AbstractPopover');
+    expect(POPOVER_HOST_ANCHOR.toString()).toContain('POPOVER_HOST_ANCHOR');
   });
 });
