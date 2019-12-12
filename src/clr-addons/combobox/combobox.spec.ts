@@ -8,13 +8,17 @@ import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
-  ClarityModule, ɵbg as ControlIdService, ɵbh as LayoutService, ɵbo as ControlClassService,
-  ɵe as IfOpenService, ɵi as POPOVER_HOST_ANCHOR, ɵt as AbstractPopover
+  ClarityModule,
+  ɵbg as ControlIdService,
+  ɵbh as LayoutService,
+  ɵbo as ControlClassService,
+  ɵe as IfOpenService,
+  ɵi as POPOVER_HOST_ANCHOR,
+  ɵt as AbstractPopover,
 } from '@clr/angular';
 import { ClrComboboxModule } from './combobox.module';
 import { ClrOption } from './option';
 import { MobileBehaviourMode } from './utils/constants';
-
 
 @Component({
   template: `
