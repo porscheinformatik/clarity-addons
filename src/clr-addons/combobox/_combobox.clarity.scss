@@ -101,19 +101,21 @@
     }
   }
 
-  .select-element {
-    display: none;
+  .clr-select-wrapper {
+    display: none !important;
     border: none;
     outline: none;
   }
 
   @media screen and (max-width: map-get($clr-grid-breakpoints, sm)) {
-    .hidden-sm {
-      display: none;
-    }
+    .clr-control-container {
+      > .hidden-sm {
+        display: none !important;
+      }
 
-    .visible-sm {
-      display: block;
+      > .visible-sm {
+        display: flex !important;
+      }
     }
   }
 }

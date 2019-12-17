@@ -60,8 +60,8 @@ describe('ComboboxComponent', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(TestComponent);
-    inputEl = fixture.debugElement.query(By.css('.clr-combobox-input'));
-    selectEl = fixture.debugElement.query(By.css('.clr-combobox-input.select-element'));
+    inputEl = fixture.debugElement.query(By.css('.clr-input-wrapper'));
+    selectEl = fixture.debugElement.query(By.css('.clr-select-wrapper'));
     fixture.detectChanges();
   });
 
