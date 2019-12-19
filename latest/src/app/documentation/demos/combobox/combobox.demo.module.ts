@@ -12,6 +12,8 @@ import { ComboboxDemo } from "./combobox.demo";
 import { ClrAddonsModule } from "@porscheinformatik/clr-addons";
 import { DocWrapperModule } from "../_doc-wrapper/doc-wrapper.module";
 import { UtilsModule } from "../../../utils/utils.module";
+import { FormsModule } from "@angular/forms";
+
 
 @NgModule({
   imports: [
@@ -20,6 +22,7 @@ import { UtilsModule } from "../../../utils/utils.module";
     ClrAddonsModule,
     DocWrapperModule,
     UtilsModule,
+    FormsModule,
     RouterModule.forChild([{ path: "", component: ComboboxDemo }])],
   declarations: [ComboboxDemo],
   exports: [ComboboxDemo],
