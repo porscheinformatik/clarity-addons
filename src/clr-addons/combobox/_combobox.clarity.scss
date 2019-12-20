@@ -21,6 +21,12 @@
       border-bottom-color: $clr-forms-invalid-color;
       @include input-border-bottom-animation($clr-forms-invalid-color);
     }
+
+    .clr-select-wrapper {
+      display: none !important;
+      border: none;
+      outline: none;
+    }
   }
 
   .clr-combobox-input-container {
@@ -99,12 +105,6 @@
     &.active {
       background: none;
     }
-  }
-
-  .clr-select-wrapper {
-    display: none !important;
-    border: none;
-    outline: none;
   }
 
   @media screen and (max-width: map-get($clr-grid-breakpoints, sm)) {
