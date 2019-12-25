@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2018 Porsche Informatik. All Rights Reserved.
+  ~ Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
@@ -8,66 +8,98 @@
 
 <h4>Treetable with whole clickable rows</h4>
 <clr-treetable>
-    <clr-tt-column>Col1</clr-tt-column>
-    <clr-tt-column>Col2</clr-tt-column>
-    <clr-tt-column>Col3</clr-tt-column>
-    <clr-tt-column>Col4</clr-tt-column>
-    <clr-tt-column>Col5</clr-tt-column>
-    <clr-tt-column>Col6</clr-tt-column>
+  <clr-tt-column>Col1</clr-tt-column>
+  <clr-tt-column>Col2</clr-tt-column>
+  <clr-tt-column>Col3</clr-tt-column>
+  <clr-tt-column>Col4</clr-tt-column>
+  <clr-tt-column>Col5</clr-tt-column>
+  <clr-tt-column>Col6</clr-tt-column>
+
+  <clr-tt-row [clrExpanded]="true" [clrExpandable]="true">
+    <clr-tt-cell>Vehicle configuration</clr-tt-cell>
+    <clr-tt-cell></clr-tt-cell>
+    <clr-tt-cell>18,519.99EUR</clr-tt-cell>
+    <clr-tt-cell>20%</clr-tt-cell>
+    <clr-tt-cell>19.99EUR</clr-tt-cell>
+    <clr-tt-cell>-519.99EUR</clr-tt-cell>
+
+    <clr-tt-row>
+      <clr-tt-cell>Audi A1 3-Türer Attraction 1.2 TFSI 63(86) kW(PS) 5-Gang</clr-tt-cell>
+      <clr-tt-cell>EUR 16,750.00</clr-tt-cell>
+      <clr-tt-cell></clr-tt-cell>
+      <clr-tt-cell>20%</clr-tt-cell>
+      <clr-tt-cell>19.99EUR</clr-tt-cell>
+      <clr-tt-cell>-519.99EUR</clr-tt-cell>
+    </clr-tt-row>
+
+    <clr-tt-row>
+      <clr-tt-cell
+        >Florettsilber Metallic Brillantschwarz / granatrot-schwarz-granatrot / schwarz- schwarz / schwarz /
+        titangrau</clr-tt-cell
+      >
+      <clr-tt-cell>EUR 480.00</clr-tt-cell>
+      <clr-tt-cell></clr-tt-cell>
+      <clr-tt-cell>20%</clr-tt-cell>
+      <clr-tt-cell>19.99EUR</clr-tt-cell>
+      <clr-tt-cell>-519.99EUR</clr-tt-cell>
+    </clr-tt-row>
 
     <clr-tt-row [clrExpanded]="true" [clrExpandable]="true">
-      <clr-tt-cell>Vehicle configuration</clr-tt-cell>
+      <clr-tt-cell>Extra</clr-tt-cell>
+      <clr-tt-cell>EUR 1,289.99</clr-tt-cell>
       <clr-tt-cell></clr-tt-cell>
-      <clr-tt-cell>18,519.99EUR</clr-tt-cell>
       <clr-tt-cell>20%</clr-tt-cell>
       <clr-tt-cell>19.99EUR</clr-tt-cell>
       <clr-tt-cell>-519.99EUR</clr-tt-cell>
 
       <clr-tt-row>
-        <clr-tt-cell>Audi A1 3-Türer Attraction 1.2 TFSI  63(86) kW(PS) 5-Gang</clr-tt-cell>
-        <clr-tt-cell>EUR 16,750.00</clr-tt-cell>
-        <clr-tt-cell></clr-tt-cell>
-        <clr-tt-cell>20%</clr-tt-cell>
-        <clr-tt-cell>19.99EUR</clr-tt-cell>
-        <clr-tt-cell>-519.99EUR</clr-tt-cell>
-      </clr-tt-row>
-
-      <clr-tt-row>
-        <clr-tt-cell>Florettsilber Metallic Brillantschwarz / granatrot-schwarz-granatrot / schwarz- schwarz / schwarz / titangrau</clr-tt-cell>
-        <clr-tt-cell>EUR 480.00</clr-tt-cell>
-        <clr-tt-cell></clr-tt-cell>
-        <clr-tt-cell>20%</clr-tt-cell>
-        <clr-tt-cell>19.99EUR</clr-tt-cell>
-        <clr-tt-cell>-519.99EUR</clr-tt-cell>
-      </clr-tt-row>
-
-      <clr-tt-row [clrExpanded]="true" [clrExpandable]="true">
-        <clr-tt-cell>Extra</clr-tt-cell>
-        <clr-tt-cell>EUR 1,289.99</clr-tt-cell>
+        <clr-tt-cell>Sitzpaket (PV2)</clr-tt-cell>
+        <clr-tt-cell>EUR 0.00</clr-tt-cell>
         <clr-tt-cell></clr-tt-cell>
         <clr-tt-cell>20%</clr-tt-cell>
         <clr-tt-cell>19.99EUR</clr-tt-cell>
         <clr-tt-cell>-519.99EUR</clr-tt-cell>
 
         <clr-tt-row>
-          <clr-tt-cell>Sitzpaket (PV2)</clr-tt-cell>
-          <clr-tt-cell>EUR 0.00</clr-tt-cell>
+          <clr-tt-cell>Vehicle configuration</clr-tt-cell>
           <clr-tt-cell></clr-tt-cell>
+          <clr-tt-cell>18,519.99EUR</clr-tt-cell>
           <clr-tt-cell>20%</clr-tt-cell>
           <clr-tt-cell>19.99EUR</clr-tt-cell>
           <clr-tt-cell>-519.99EUR</clr-tt-cell>
 
           <clr-tt-row>
-            <clr-tt-cell>Vehicle configuration</clr-tt-cell>
+            <clr-tt-cell>Audi A1 3-Türer Attraction 1.2 TFSI 63(86) kW(PS) 5-Gang</clr-tt-cell>
+            <clr-tt-cell>EUR 16,750.00</clr-tt-cell>
             <clr-tt-cell></clr-tt-cell>
-            <clr-tt-cell>18,519.99EUR</clr-tt-cell>
+            <clr-tt-cell>20%</clr-tt-cell>
+            <clr-tt-cell>19.99EUR</clr-tt-cell>
+            <clr-tt-cell>-519.99EUR</clr-tt-cell>
+          </clr-tt-row>
+
+          <clr-tt-row>
+            <clr-tt-cell
+              >Florettsilber Metallic Brillantschwarz / granatrot-schwarz-granatrot/schwarz-
+              schwarz/schwarz/titangrau</clr-tt-cell
+            >
+            <clr-tt-cell>EUR 480.00</clr-tt-cell>
+            <clr-tt-cell></clr-tt-cell>
+            <clr-tt-cell>20%</clr-tt-cell>
+            <clr-tt-cell>19.99EUR</clr-tt-cell>
+            <clr-tt-cell>-519.99EUR</clr-tt-cell>
+          </clr-tt-row>
+
+          <clr-tt-row [clrExpandable]="true">
+            <clr-tt-cell>Extra</clr-tt-cell>
+            <clr-tt-cell>EUR 1,289.99</clr-tt-cell>
+            <clr-tt-cell></clr-tt-cell>
             <clr-tt-cell>20%</clr-tt-cell>
             <clr-tt-cell>19.99EUR</clr-tt-cell>
             <clr-tt-cell>-519.99EUR</clr-tt-cell>
 
             <clr-tt-row>
-              <clr-tt-cell>Audi A1 3-Türer Attraction 1.2 TFSI  63(86) kW(PS) 5-Gang</clr-tt-cell>
-              <clr-tt-cell>EUR 16,750.00</clr-tt-cell>
+              <clr-tt-cell>Sitzpaket (PV2)</clr-tt-cell>
+              <clr-tt-cell>EUR 0.00</clr-tt-cell>
               <clr-tt-cell></clr-tt-cell>
               <clr-tt-cell>20%</clr-tt-cell>
               <clr-tt-cell>19.99EUR</clr-tt-cell>
@@ -75,167 +107,140 @@
             </clr-tt-row>
 
             <clr-tt-row>
-              <clr-tt-cell>Florettsilber Metallic Brillantschwarz / granatrot-schwarz-granatrot/schwarz- schwarz/schwarz/titangrau</clr-tt-cell>
-              <clr-tt-cell>EUR 480.00</clr-tt-cell>
+              <clr-tt-cell>style Paket (WMV)</clr-tt-cell>
+              <clr-tt-cell>EUR 950.00</clr-tt-cell>
               <clr-tt-cell></clr-tt-cell>
               <clr-tt-cell>20%</clr-tt-cell>
               <clr-tt-cell>19.99EUR</clr-tt-cell>
               <clr-tt-cell>-519.99EUR</clr-tt-cell>
             </clr-tt-row>
 
-            <clr-tt-row [clrExpandable]="true">
-              <clr-tt-cell>Extra</clr-tt-cell>
-              <clr-tt-cell>EUR 1,289.99</clr-tt-cell>
+            <clr-tt-row>
+              <clr-tt-cell>Sportsitze vorn (PS1)</clr-tt-cell>
+              <clr-tt-cell>EUR 339.99</clr-tt-cell>
               <clr-tt-cell></clr-tt-cell>
               <clr-tt-cell>20%</clr-tt-cell>
               <clr-tt-cell>19.99EUR</clr-tt-cell>
               <clr-tt-cell>-519.99EUR</clr-tt-cell>
-
-              <clr-tt-row>
-                <clr-tt-cell>Sitzpaket (PV2)</clr-tt-cell>
-                <clr-tt-cell>EUR 0.00</clr-tt-cell>
-                <clr-tt-cell></clr-tt-cell>
-                <clr-tt-cell>20%</clr-tt-cell>
-                <clr-tt-cell>19.99EUR</clr-tt-cell>
-                <clr-tt-cell>-519.99EUR</clr-tt-cell>
-              </clr-tt-row>
-
-              <clr-tt-row>
-                <clr-tt-cell>style Paket (WMV)</clr-tt-cell>
-                <clr-tt-cell>EUR 950.00</clr-tt-cell>
-                <clr-tt-cell></clr-tt-cell>
-                <clr-tt-cell>20%</clr-tt-cell>
-                <clr-tt-cell>19.99EUR</clr-tt-cell>
-                <clr-tt-cell>-519.99EUR</clr-tt-cell>
-              </clr-tt-row>
-
-              <clr-tt-row>
-                <clr-tt-cell>Sportsitze vorn (PS1)</clr-tt-cell>
-                <clr-tt-cell>EUR 339.99</clr-tt-cell>
-                <clr-tt-cell></clr-tt-cell>
-                <clr-tt-cell>20%</clr-tt-cell>
-                <clr-tt-cell>19.99EUR</clr-tt-cell>
-                <clr-tt-cell>-519.99EUR</clr-tt-cell>
-              </clr-tt-row>
             </clr-tt-row>
-
           </clr-tt-row>
-        </clr-tt-row>
-
-        <clr-tt-row>
-          <clr-tt-cell>style Paket (WMV)</clr-tt-cell>
-          <clr-tt-cell>EUR 950.00</clr-tt-cell>
-          <clr-tt-cell></clr-tt-cell>
-          <clr-tt-cell>20%</clr-tt-cell>
-          <clr-tt-cell>19.99EUR</clr-tt-cell>
-          <clr-tt-cell>-519.99EUR</clr-tt-cell>
-        </clr-tt-row>
-
-        <clr-tt-row>
-          <clr-tt-cell>Sportsitze vorn (PS1)</clr-tt-cell>
-          <clr-tt-cell>EUR 339.99</clr-tt-cell>
-          <clr-tt-cell></clr-tt-cell>
-          <clr-tt-cell>20%</clr-tt-cell>
-          <clr-tt-cell>19.99EUR</clr-tt-cell>
-          <clr-tt-cell>-519.99EUR</clr-tt-cell>
         </clr-tt-row>
       </clr-tt-row>
 
-    </clr-tt-row>
-    <clr-tt-row>
-      <clr-tt-cell>Sales add-ons</clr-tt-cell>
-      <clr-tt-cell></clr-tt-cell>
-      <clr-tt-cell></clr-tt-cell>
-      <clr-tt-cell>20%</clr-tt-cell>
-      <clr-tt-cell>19.99EUR</clr-tt-cell>
-      <clr-tt-cell>-519.99EUR</clr-tt-cell>
-    </clr-tt-row>
-
-    <clr-tt-row [clrExpandable]="true">
-      <clr-tt-cell>Additional positions</clr-tt-cell>
-      <clr-tt-cell></clr-tt-cell>
-      <clr-tt-cell>150.00 EUR</clr-tt-cell>
-      <clr-tt-cell>20%</clr-tt-cell>
-      <clr-tt-cell>19.99EUR</clr-tt-cell>
-      <clr-tt-cell>-519.99EUR</clr-tt-cell>
+      <clr-tt-row>
+        <clr-tt-cell>style Paket (WMV)</clr-tt-cell>
+        <clr-tt-cell>EUR 950.00</clr-tt-cell>
+        <clr-tt-cell></clr-tt-cell>
+        <clr-tt-cell>20%</clr-tt-cell>
+        <clr-tt-cell>19.99EUR</clr-tt-cell>
+        <clr-tt-cell>-519.99EUR</clr-tt-cell>
+      </clr-tt-row>
 
       <clr-tt-row>
-        <clr-tt-cell>Disko Kugel (20 % VAT)</clr-tt-cell>
-        <clr-tt-cell>EUR 150.00</clr-tt-cell>
+        <clr-tt-cell>Sportsitze vorn (PS1)</clr-tt-cell>
+        <clr-tt-cell>EUR 339.99</clr-tt-cell>
         <clr-tt-cell></clr-tt-cell>
         <clr-tt-cell>20%</clr-tt-cell>
         <clr-tt-cell>19.99EUR</clr-tt-cell>
         <clr-tt-cell>-519.99EUR</clr-tt-cell>
       </clr-tt-row>
     </clr-tt-row>
+  </clr-tt-row>
+  <clr-tt-row>
+    <clr-tt-cell>Sales add-ons</clr-tt-cell>
+    <clr-tt-cell></clr-tt-cell>
+    <clr-tt-cell></clr-tt-cell>
+    <clr-tt-cell>20%</clr-tt-cell>
+    <clr-tt-cell>19.99EUR</clr-tt-cell>
+    <clr-tt-cell>-519.99EUR</clr-tt-cell>
+  </clr-tt-row>
+
+  <clr-tt-row [clrExpandable]="true">
+    <clr-tt-cell>Additional positions</clr-tt-cell>
+    <clr-tt-cell></clr-tt-cell>
+    <clr-tt-cell>150.00 EUR</clr-tt-cell>
+    <clr-tt-cell>20%</clr-tt-cell>
+    <clr-tt-cell>19.99EUR</clr-tt-cell>
+    <clr-tt-cell>-519.99EUR</clr-tt-cell>
+
+    <clr-tt-row>
+      <clr-tt-cell>Disko Kugel (20 % VAT)</clr-tt-cell>
+      <clr-tt-cell>EUR 150.00</clr-tt-cell>
+      <clr-tt-cell></clr-tt-cell>
+      <clr-tt-cell>20%</clr-tt-cell>
+      <clr-tt-cell>19.99EUR</clr-tt-cell>
+      <clr-tt-cell>-519.99EUR</clr-tt-cell>
+    </clr-tt-row>
+  </clr-tt-row>
 </clr-treetable>
 
 <h4>Treetable with rows expandable by button only</h4>
 <clr-treetable [clrClickableRows]="false">
-    <clr-tt-column class="clr-col-lg-10 clr-col-md-8">Position</clr-tt-column>
-    <clr-tt-column class="clr-col-lg-2 clr-col-md-4 text-right">Price</clr-tt-column>
+  <clr-tt-column class="clr-col-lg-10 clr-col-md-8">Position</clr-tt-column>
+  <clr-tt-column class="clr-col-lg-2 clr-col-md-4 text-right">Price</clr-tt-column>
 
-    <clr-tt-row [clrExpandable]="true">
-      <clr-tt-cell >Vehicle configuration</clr-tt-cell>
-      <clr-tt-cell class="text-right">18,519.99 EUR</clr-tt-cell>
+  <clr-tt-row [clrExpandable]="true">
+    <clr-tt-cell>Vehicle configuration</clr-tt-cell>
+    <clr-tt-cell class="text-right">18,519.99 EUR</clr-tt-cell>
 
-      <clr-tt-row>
-        <clr-tt-cell>Audi A1 3-Türer Attraction 1.2 TFSI  63(86) kW(PS) 5-Gang</clr-tt-cell>
-        <clr-tt-cell class="text-right">16,750.00 EUR</clr-tt-cell>
-      </clr-tt-row>
-
-      <clr-tt-row>
-        <clr-tt-cell>Florettsilber Metallic Brillantschwarz / granatrot-schwarz-granatrot/schwarz- schwarz/schwarz/titangrau</clr-tt-cell>
-        <clr-tt-cell class="text-right">480.00 EUR</clr-tt-cell>
-      </clr-tt-row>
-
-      <clr-tt-row [clrExpandable]="true">
-        <clr-tt-cell>Extra</clr-tt-cell>
-        <clr-tt-cell class="text-right">1,289.99 EUR</clr-tt-cell>
-
-        <clr-tt-row>
-          <clr-tt-cell><a href="http://www.google.com" target="_blank">Sitzpaket (PV2)</a></clr-tt-cell>
-          <clr-tt-cell class="text-right">0.00 EUR</clr-tt-cell>
-        </clr-tt-row>
-
-        <clr-tt-row>
-          <clr-tt-cell><a href="http://www.google.com" target="_blank">style Paket (WMV)</a></clr-tt-cell>
-          <clr-tt-cell class="text-right">950.00 EUR</clr-tt-cell>
-        </clr-tt-row>
-
-        <clr-tt-row>
-          <clr-tt-cell><a href="http://www.google.com" target="_blank">Sportsitze vorn (PS1)</a></clr-tt-cell>
-          <clr-tt-cell class="text-right">339.99 EUR</clr-tt-cell>
-        </clr-tt-row>
-      </clr-tt-row>
-
-    </clr-tt-row>
     <clr-tt-row>
-      <clr-tt-cell>Sales add-ons</clr-tt-cell>
-      <clr-tt-cell class="text-right"></clr-tt-cell>
+      <clr-tt-cell>Audi A1 3-Türer Attraction 1.2 TFSI 63(86) kW(PS) 5-Gang</clr-tt-cell>
+      <clr-tt-cell class="text-right">16,750.00 EUR</clr-tt-cell>
+    </clr-tt-row>
+
+    <clr-tt-row>
+      <clr-tt-cell
+        >Florettsilber Metallic Brillantschwarz / granatrot-schwarz-granatrot/schwarz-
+        schwarz/schwarz/titangrau</clr-tt-cell
+      >
+      <clr-tt-cell class="text-right">480.00 EUR</clr-tt-cell>
     </clr-tt-row>
 
     <clr-tt-row [clrExpandable]="true">
-      <clr-tt-cell>Additional positions</clr-tt-cell>
+      <clr-tt-cell>Extra</clr-tt-cell>
+      <clr-tt-cell class="text-right">1,289.99 EUR</clr-tt-cell>
+
+      <clr-tt-row>
+        <clr-tt-cell><a href="http://www.google.com" target="_blank">Sitzpaket (PV2)</a></clr-tt-cell>
+        <clr-tt-cell class="text-right">0.00 EUR</clr-tt-cell>
+      </clr-tt-row>
+
+      <clr-tt-row>
+        <clr-tt-cell><a href="http://www.google.com" target="_blank">style Paket (WMV)</a></clr-tt-cell>
+        <clr-tt-cell class="text-right">950.00 EUR</clr-tt-cell>
+      </clr-tt-row>
+
+      <clr-tt-row>
+        <clr-tt-cell><a href="http://www.google.com" target="_blank">Sportsitze vorn (PS1)</a></clr-tt-cell>
+        <clr-tt-cell class="text-right">339.99 EUR</clr-tt-cell>
+      </clr-tt-row>
+    </clr-tt-row>
+  </clr-tt-row>
+  <clr-tt-row>
+    <clr-tt-cell>Sales add-ons</clr-tt-cell>
+    <clr-tt-cell class="text-right"></clr-tt-cell>
+  </clr-tt-row>
+
+  <clr-tt-row [clrExpandable]="true">
+    <clr-tt-cell>Additional positions</clr-tt-cell>
+    <clr-tt-cell class="text-right">150.00 EUR</clr-tt-cell>
+
+    <clr-tt-row>
+      <clr-tt-cell>Disko Kugel (20 % VAT)</clr-tt-cell>
       <clr-tt-cell class="text-right">150.00 EUR</clr-tt-cell>
-
-      <clr-tt-row>
-        <clr-tt-cell>Disko Kugel (20 % VAT)</clr-tt-cell>
-        <clr-tt-cell class="text-right">150.00 EUR</clr-tt-cell>
-      </clr-tt-row>
     </clr-tt-row>
-    <clr-tt-row>
-      <clr-tt-cell><strong>Customer Price</strong></clr-tt-cell>
-      <clr-tt-cell class="text-right"><strong>18669.99 EUR</strong></clr-tt-cell>
-    </clr-tt-row>
+  </clr-tt-row>
+  <clr-tt-row>
+    <clr-tt-cell><strong>Customer Price</strong></clr-tt-cell>
+    <clr-tt-cell class="text-right"><strong>18669.99 EUR</strong></clr-tt-cell>
+  </clr-tt-row>
 </clr-treetable>
-
 
 <h4>Empty treetable</h4>
 <clr-treetable>
-    <clr-tt-column>User ID</clr-tt-column>
-    <clr-tt-column>Name</clr-tt-column>
-    <clr-tt-column>Creation date</clr-tt-column>
+  <clr-tt-column>User ID</clr-tt-column>
+  <clr-tt-column>Name</clr-tt-column>
+  <clr-tt-column>Creation date</clr-tt-column>
 
-    <clr-tt-placeholder>No users found</clr-tt-placeholder>
+  <clr-tt-placeholder>No users found</clr-tt-placeholder>
 </clr-treetable>

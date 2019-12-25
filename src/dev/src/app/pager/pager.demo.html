@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2018 Porsche Informatik. All Rights Reserved.
+  ~ Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
@@ -23,8 +23,10 @@
 
 <div class="row">
   <div class="col-lg-6 pager">
-    <clr-pager [clrPageSize]="pageSize"
-               [clrTotalItems]="allItems.length"
-               (clrPageChange)="onPageChanged($event)"></clr-pager>
+    <clr-pager
+      [clrPageSize]="pageSize"
+      [clrTotalItems]="allItems.length"
+      (clrPageChange)="onPageChanged($event)"
+    ></clr-pager>
   </div>
 </div>
