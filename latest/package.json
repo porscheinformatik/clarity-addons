@@ -11,8 +11,11 @@
     "start": "ng serve",
     "start:dev": "ng serve --port 4300",
     "build": "ng build",
-    "deploy:ci": "ng build --prod --outputPath=../deploy && npm run generate:404",
-    "generate:404": "cp-cli ../deploy/index.html ../deploy/404.html"
+    "deploy:ci": "ng build --prod --outputPath=../deploy && npm run generate:404 && npm run update:versions",
+    "generate:404": "cp-cli ../deploy/index.html ../deploy/404.html",
+    "update:versions": "npm run update:addons_version && npm run update:clarity_version",
+    "update:addons_version": "cross-var replace @ADDONS_VERSION $npm_package_dependencies__porscheinformatik_clr_addons ../deploy/ --recursive",
+    "update:clarity_version": "cross-var replace @CLARITY_VERSION $npm_package_dependencies__clr_angular ../deploy/ --recursive"
   },
   "private": true,
   "dependencies": {
@@ -47,10 +50,12 @@
     "@types/node": "^8.0.30",
     "codelyzer": "~4.5.0",
     "cp-cli": "^2.0.0",
+    "cross-var": "1.1.0",
     "gh-pages": "^1.1.0",
+    "replace": "^1.1.1",
+    "ts-loader": "^4.3.1",
     "tslib": "1.10.0",
     "tslint": "5.20.0",
-    "ts-loader": "^4.3.1",
     "typescript": "3.5.3"
   }
 }
