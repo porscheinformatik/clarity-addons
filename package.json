@@ -27,6 +27,7 @@
     "test:watch": "ng test clr-addons --watch",
     "test:travis": "npm-run-all test:format test:lint test build",
     "format:fix": "pretty-quick --staged",
+    "license:fix": "node scripts/update-license",
     "lint:fix": "tslint -p . -c tslint.json --fix \"src/**/*.ts\" -e \"**/node_modules/**\"",
     "lint:styles:fix": "stylelint --fix \"src/**/*.scss\" \"src/**/*.css\"",
     "publish": "npm publish dist/clr-addons --access public"
@@ -110,7 +111,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run format:fix"
+      "pre-commit": "npm run format:fix && npm run license:fix"
     }
   }
 }

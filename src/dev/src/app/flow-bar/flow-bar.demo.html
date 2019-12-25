@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2018 Porsche Informatik. All Rights Reserved.
+  ~ Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
@@ -14,7 +14,7 @@
     <div class="header-nav" [clr-nav-level]="1">
       <div class="header-overflow">
         <a class="nav-link" href="#"><span class="nav-text">Menu1</span></a>
-        <a class="nav-link" href='#'><span class="nav-text">Menu2</span></a>
+        <a class="nav-link" href="#"><span class="nav-text">Menu2</span></a>
         <clr-main-nav-group clrTitle="Main Nav Group" routerLinkActive="active">
           <a class="nav-link" routerLink="/view-edit-section" routerLinkActive="active">ViewEdit Section</a>
           <a class="nav-link" href="#" onClick="return false;">Submenu 3 2</a>
@@ -28,7 +28,8 @@
           <clr-icon shape="cog"></clr-icon>
         </button>
         <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
-          <button type="button" *ngFor="let theme of themes" (click)="setTheme(theme)" clrDropdownItem>{{theme.name}}
+          <button type="button" *ngFor="let theme of themes" (click)="setTheme(theme)" clrDropdownItem>
+            {{theme.name}}
           </button>
         </clr-dropdown-menu>
       </clr-dropdown>
@@ -41,14 +42,20 @@
       <clr-button [clrInMenu]="true">Command2</clr-button>
     </clr-button-group>
   </div>
-  <clr-flow-bar [clrSteps]="flowBarSteps" [clrActiveStep]="activeStep"
-                (clrActiveStepChange)="activeStepChanged($event)" #flowBar></clr-flow-bar>
+  <clr-flow-bar
+    [clrSteps]="flowBarSteps"
+    [clrActiveStep]="activeStep"
+    (clrActiveStepChange)="activeStepChanged($event)"
+    #flowBar
+  ></clr-flow-bar>
   <div class="content-container clr-flex-column">
     <div class="content-area">
-      <h3 *ngIf="!activeStep?.subSteps || activeStep?.subSteps.length === 0">{{activeStep?.title | async}}
-        {{flowBarSteps.indexOf(activeStep) + 1}}</h3>
+      <h3 *ngIf="!activeStep?.subSteps || activeStep?.subSteps.length === 0">
+        {{activeStep?.title | async}} {{flowBarSteps.indexOf(activeStep) + 1}}
+      </h3>
       <h3 *ngIf="activeStep?.subSteps && activeStep?.subSteps.length > 0">
-        {{activeStep?.title | async}} {{flowBarSteps.indexOf(activeStep) + 1}} - {{activeStep?.activeSubStep?.title | async}}
+        {{activeStep?.title | async}} {{flowBarSteps.indexOf(activeStep) + 1}} - {{activeStep?.activeSubStep?.title |
+        async}}
       </h3>
       <p *ngFor="let i of [1, 2, 3, 4, 5, 6]">
         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
@@ -65,8 +72,8 @@
           Current Step Info
         </div>
         <div class="clr-col-auto">
-          <button type="button" class="btn btn-link" (click)="flowBar.previous()"
-                  *ngIf="flowBar.isPreviousAvailable()">Previous
+          <button type="button" class="btn btn-link" (click)="flowBar.previous()" *ngIf="flowBar.isPreviousAvailable()">
+            Previous
           </button>
           <clr-dropdown *ngIf="activeStep?.subSteps?.length > 0">
             <button type="button" class="btn btn-outline-primary" clrDropdownTrigger>
@@ -74,14 +81,24 @@
               <clr-icon shape="caret down"></clr-icon>
             </button>
             <clr-dropdown-menu clrPosition="top-left" *clrIfOpen>
-              <button class="btn" clrDropdownItem *ngFor="let subStep of activeStep?.subSteps"
-                      (click)="flowBar.changeActiveSubStep(subStep)">
+              <button
+                class="btn"
+                clrDropdownItem
+                *ngFor="let subStep of activeStep?.subSteps"
+                (click)="flowBar.changeActiveSubStep(subStep)"
+              >
                 {{subStep.title | async}}
               </button>
             </clr-dropdown-menu>
           </clr-dropdown>
-          <button type="button" class="btn btn-primary" (click)="flowBar.next()" [disabled]="!flowBar.isNextAvailable()"
-                  *ngIf="!flowBar.isLastStep()">Next
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="flowBar.next()"
+            [disabled]="!flowBar.isNextAvailable()"
+            *ngIf="!flowBar.isLastStep()"
+          >
+            Next
           </button>
           <button type="button" class="btn btn-success" *ngIf="flowBar.isLastStep()">Finish</button>
         </div>

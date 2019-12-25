@@ -1,16 +1,22 @@
 <!--
-  ~ Copyright (c) 2018 Porsche Informatik. All Rights Reserved.
+  ~ Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
 
-<div [ngClass]="{'clr-row-clickable': clickable && expandable}" class="clr-tt-node-content treetable-row" (click)="onRowClick()">
+<div
+  [ngClass]="{'clr-row-clickable': clickable && expandable}"
+  class="clr-tt-node-content treetable-row"
+  (click)="onRowClick()"
+>
   <div class="treetable-scrolling-cells">
     <div class="treetable-expandable-caret" *ngIf="isExpandable()">
       <button type="button" class="treetable-expandable-caret-button" (click)="onCaretClick()">
-        <clr-icon shape="caret"
-                  [attr.dir]="expanded ? 'down' : 'right'"
-                  class="treetable-expandable-caret-icon"></clr-icon>
+        <clr-icon
+          shape="caret"
+          [attr.dir]="expanded ? 'down' : 'right'"
+          class="treetable-expandable-caret-icon"
+        ></clr-icon>
       </button>
     </div>
 

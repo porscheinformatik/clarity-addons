@@ -1,12 +1,12 @@
 <!--
-  ~ Copyright (c) 2018 Porsche Informatik. All Rights Reserved.
+  ~ Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
 
 <h2>Notification</h2>
 <div class="btn-group">
-    <button class="btn" (click)="openInfo(info)">Show Info Notification</button>
+  <button class="btn" (click)="openInfo(info)">Show Info Notification</button>
 </div>
 <div class="btn-group">
   <button class="btn" (click)="openWarning(warning)">Show Warning Notification</button>
@@ -23,7 +23,7 @@
 
 <ng-template #info>
   <ng-container clr-notification-message>
-    Some Information<br>very<br>very<br>very<br>long information
+    Some Information<br />very<br />very<br />very<br />long information
     <button class="btn" (click)="showAlert()">Show Alert</button>
   </ng-container>
 </ng-template>
