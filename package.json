@@ -66,7 +66,7 @@
     "cross-var": "1.1.0",
     "csso-cli": "3.0.0",
     "del-cli": "3.0.0",
-    "husky": "3.1.0",
+    "husky": "4.0.3",
     "jasmine-core": "3.5.0",
     "jasmine-expect": "4.0.3",
     "jasmine-spec-reporter": "4.2.1",
