@@ -27,94 +27,94 @@
       border: none;
       outline: none;
     }
-  }
 
-  .clr-combobox-input-container {
-    //Delete when merging to clarity
-    display: flex;
-    align-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  .clr-combobox-input {
-    //Dimensions
-    padding: 0;
-    min-height: $clr-ng-select-min-height;
-    width: 100%;
-    overflow: hidden;
-
-    font-size: $clr-forms-label-font-size;
-    border-bottom-width: 0 !important;
-    background-size: 0 !important;
-
-    //Others
-    outline: none;
-  }
-
-  .clr-combobox-trigger {
-    display: block;
-    transform: translateX(0);
-  }
-
-  .clr-options {
-    @include generate-dropdown-menu();
-
-    visibility: visible;
-    overflow-y: auto;
-    white-space: nowrap;
-    max-height: 10rem;
-
-    .clr-no-results {
-      display: none;
+    .clr-combobox-input-container {
+      //Delete when merging to clarity
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
     }
-  }
 
-  .clr-combobox.clr-empty {
-    .clr-no-results {
+    .clr-combobox-input {
+      //Dimensions
+      padding: 0;
+      min-height: $clr-ng-select-min-height;
+      width: 100%;
+      overflow: hidden;
+
+      font-size: $clr-forms-label-font-size;
+      border-bottom-width: 0 !important;
+      background-size: 0 !important;
+
+      //Others
+      outline: none;
+    }
+
+    .clr-combobox-trigger {
       display: block;
-      @include generate-dropdown-item-height();
-    }
-  }
-
-  .clr-option {
-    @include generate-dropdown-item();
-
-    &.highlighted {
-      background-color: $clr-dropdown-bg-hover-color;
-      color: $clr-dropdown-item-color;
-      text-decoration: none;
+      transform: translateX(0);
     }
 
-    &.hidden {
-      display: none;
+    .clr-options {
+      @include generate-dropdown-menu();
+
+      visibility: visible;
+      overflow-y: auto;
+      white-space: nowrap;
+      max-height: 10rem;
+
+      .clr-no-results {
+        display: none;
+      }
     }
 
-    em {
-      font-style: normal;
-      font-weight: bold;
+    &.clr-empty {
+      .clr-no-results {
+        display: block;
+        @include generate-dropdown-item-height();
+      }
     }
-  }
 
-  //NOTE: Adjust the height of the option only when its in the options menu
-  .clr-options .clr-option {
-    @include generate-dropdown-item-height();
-  }
+    .clr-option {
+      @include generate-dropdown-item();
 
-  .clr-combobox-input .clr-option {
-    &:hover,
-    &.active {
-      background: none;
-    }
-  }
-
-  @media screen and (max-width: map-get($clr-grid-breakpoints, sm)) {
-    .clr-control-container {
-      > .hidden-sm {
-        display: none !important;
+      &.highlighted {
+        background-color: $clr-dropdown-bg-hover-color;
+        color: $clr-dropdown-item-color;
+        text-decoration: none;
       }
 
-      > .visible-sm {
-        display: flex !important;
+      &.hidden {
+        display: none;
+      }
+
+      em {
+        font-style: normal;
+        font-weight: bold;
+      }
+    }
+
+    //NOTE: Adjust the height of the option only when its in the options menu
+    .clr-options .clr-option {
+      @include generate-dropdown-item-height();
+    }
+
+    .clr-combobox-input .clr-option {
+      &:hover,
+      &.active {
+        background: none;
+      }
+    }
+
+    @media screen and (max-width: map-get($clr-grid-breakpoints, sm)) {
+      .clr-control-container {
+        > .hidden-sm {
+          display: none !important;
+        }
+
+        > .visible-sm {
+          display: flex !important;
+        }
       }
     }
   }
