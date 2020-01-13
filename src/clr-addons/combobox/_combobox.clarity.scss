@@ -68,7 +68,7 @@
       }
     }
 
-    .clr-combobox.clr-empty {
+    &.clr-empty {
       .clr-no-results {
         display: block;
         @include generate-dropdown-item-height();
