@@ -81,7 +81,7 @@
     "lite-server": "2.5.4",
     "ng-packagr": "5.7.1",
     "node-sass": "4.13.1",
-    "sass": "1.24.4",
+    "sass": "1.24.5",
     "npm-run-all": "4.1.5",
     "postcss-cli": "7.1.0",
     "prettier": "1.19.1",
