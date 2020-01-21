@@ -93,7 +93,7 @@
     "stylelint-config-recommended": "3.0.0",
     "tsickle": "0.38.0",
     "tslib": "1.10.0",
-    "tslint": "5.20.1",
+    "tslint": "6.0.0",
     "tslint-config-prettier": "1.18.0",
     "tslint-defocus": "2.0.6",
     "typescript": "3.5.3"
