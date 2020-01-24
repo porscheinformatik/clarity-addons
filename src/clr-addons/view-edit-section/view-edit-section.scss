@@ -2,6 +2,11 @@
   .view-edit-section {
     max-width: 1300px;
 
+    .card-block {
+      display: flex;
+      flex-direction: column;
+    }
+
     .card-title {
       margin-bottom: 0;
     }
