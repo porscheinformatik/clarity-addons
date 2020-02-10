@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -35,8 +35,10 @@ export class ClrPagedSearchResultList {
    * The template how each item should be displayed.
    */
   @Input('clrItemTemplate')
+  itemTemplateInput: TemplateRef<any>;
+
   @ContentChild(TemplateRef, { static: true })
-  itemTemplate: TemplateRef<any>;
+  itemTemplateContent: TemplateRef<any>;
 
   /**
    * The position of the pager
@@ -47,4 +49,8 @@ export class ClrPagedSearchResultList {
    * Triggered whenever a page change occurs.
    */
   @Output('clrPageChange') pageChange: EventEmitter<any> = new EventEmitter();
+
+  get itemTemplate(): TemplateRef<any> {
+    return this.itemTemplateInput || this.itemTemplateContent;
+  }
 }
