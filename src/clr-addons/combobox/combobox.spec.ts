@@ -11,6 +11,8 @@ import {
   ClarityModule,
   ɵbg as ControlIdService,
   ɵbh as LayoutService,
+  ɵbi as NgControlService,
+  ɵbj as IfErrorService,
   ɵbo as ControlClassService,
   ɵe as IfOpenService,
   ɵi as POPOVER_HOST_ANCHOR,
@@ -130,6 +132,8 @@ describe('ComboboxComponent', () => {
     expect(new ControlIdService().constructor.name).toBe('ControlIdService');
     expect(new LayoutService().constructor.name).toBe('LayoutService');
     expect(new ControlClassService().constructor.name).toBe('ControlClassService');
+    expect(new NgControlService().constructor.name).toBe('NgControlService');
+    expect(new IfErrorService(new NgControlService()).constructor.name).toBe('IfErrorService');
     expect(AbstractPopover.toString()).toContain('AbstractPopover');
     expect(POPOVER_HOST_ANCHOR.toString()).toContain('POPOVER_HOST_ANCHOR');
   });
