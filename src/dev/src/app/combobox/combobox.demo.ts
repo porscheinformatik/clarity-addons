@@ -15,4 +15,5 @@ export class ComboboxDemo {
 
   mobileBehaviourModeRadioBox = MobileBehaviourMode.DEFAULT;
   userEntryAllowedRadioBox = false;
+  disabled = true;
 }

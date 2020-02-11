@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+  ~ Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
@@ -62,8 +62,19 @@
   </clr-input-container>
 
   <br />
+
+  <clr-combobox class="clr-col-12 clr-row" [clrAllowUserEntry]="true" [clrDisabled]="disabled">
+    <label>Disabled combobox</label>
+    <clr-options>
+      <clr-option *ngFor="let option of values$ | async" [clrValue]="option">{{option}}</clr-option>
+      <div class="clr-no-results">No search results found</div>
+    </clr-options>
+    <clr-control-error>Select a value</clr-control-error>
+  </clr-combobox>
   <br />
-  <br />
+
+  <button (click)="disabled = !disabled" class="btn btn-primary">{{ disabled ? 'Enable' : 'Disable' }}</button>
+  <br /><br />
 
   <h3>Test the mobile behaviour with different options</h3>
   <h5>Breakpoint: 576px</h5>

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -25,6 +25,8 @@ import {
   ClrLabel,
   ɵbg as ControlIdService,
   ɵbh as LayoutService,
+  ɵbi as NgControlService,
+  ɵbj as IfErrorService,
   ɵbo as ControlClassService,
   ɵe as IfOpenService,
   ɵi as POPOVER_HOST_ANCHOR,
@@ -60,6 +62,8 @@ export function comboboxDomAdapterFactory(platformId: Object) {
     ControlClassService,
     LayoutService,
     ControlIdService,
+    NgControlService,
+    IfErrorService,
   ],
   host: {
     '[class.clr-combobox]': 'true',
@@ -72,6 +76,7 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
   @Input('clrMobileBehaviourMode') mobileBehaviourMode: MobileBehaviourMode = MobileBehaviourMode.DEFAULT;
   @Output('clrSelectedOption') selectedOption: EventEmitter<ClrOption<T>> = new EventEmitter<ClrOption<T>>();
   @Output('clrEnteredValue') enteredValue: EventEmitter<string> = new EventEmitter<string>();
+  @Input('clrDisabled') disabled = false;
 
   @HostBinding('class.clr-empty') noSearchResults: boolean;
 
@@ -141,7 +146,7 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
   }
 
   keydown(event: KeyboardEvent) {
-    if (event) {
+    if (event && !this.disabled) {
       this.keyHandled = this.navigateOptions(event);
       this.keyHandled = this.keyHandled || this.closeMenuOnTabPress(event);
     }
@@ -173,7 +178,7 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
   }
 
   search() {
-    if (!this.keyHandled) {
+    if (!this.keyHandled && !this.disabled) {
       this.optionSelectionService.setSearchValue(this.input.nativeElement.textContent.trim());
     }
     this.keyHandled = false;

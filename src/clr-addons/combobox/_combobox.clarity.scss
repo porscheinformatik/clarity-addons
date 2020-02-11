@@ -48,11 +48,19 @@
 
       //Others
       outline: none;
+
+      &[contenteditable='false'] {
+        cursor: not-allowed;
+      }
     }
 
     .clr-combobox-trigger {
       display: block;
       transform: translateX(0);
+
+      &[disabled] {
+        cursor: not-allowed;
+      }
     }
 
     .clr-options {
