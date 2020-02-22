@@ -59,7 +59,7 @@
     "@types/jasmine": "3.5.3",
     "@types/jasmine-matchers": "0.2.32",
     "@types/jasminewd2": "2.0.8",
-    "@types/node": "12.12.27",
+    "@types/node": "12.12.28",
     "autoprefixer": "9.7.4",
     "cpy-cli": "3.0.0",
     "cross-var": "1.1.0",
