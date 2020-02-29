@@ -1,19 +1,20 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { ElementRef, HostBinding, Injector, Input, ViewChild } from '@angular/core';
+import { ElementRef, HostBinding, Injector, Input, ViewChild, Directive } from '@angular/core';
 import { ClrAbstractFormComponent } from '../abstract-form-component/abstract-form-component';
 
+@Directive()
 export abstract class ClrMultilingualAbstract extends ClrAbstractFormComponent {
   @HostBinding('class.clr-multilingual') multi = true;
 
   @Input('clrControlClasses') controlClasses = 'clr-col-md-10';
   @Input('clrSelectedLang') selectedLang: string;
 
-  @ViewChild('input', { static: false }) inputElement: ElementRef;
+  @ViewChild('input') inputElement: ElementRef;
 
   textarea = false;
   private _texts: Map<string, string>;

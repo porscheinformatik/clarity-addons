@@ -3,11 +3,10 @@
   "compilerOptions": {
     "outDir": "../out-tsc/dev",
     "baseUrl": "./",
-    "module": "esnext",
     "paths": {
       "@porscheinformatik/clr-addons": ["../clr-addons"]
     }
   },
-
-  "exclude": ["test.ts", "**/*.spec.ts"]
+  "files": ["src/main.ts", "src/polyfills.ts"],
+  "include": ["src/**/*.d.ts"]
 }
