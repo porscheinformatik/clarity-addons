@@ -12,6 +12,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist/dev",
             "index": "src/dev/src/index.html",
             "main": "src/dev/src/main.ts",
@@ -51,6 +52,12 @@
           },
           "configurations": {
             "production": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
               "fileReplacements": [
                 {
                   "replace": "src/dev/src/environments/environment.ts",
@@ -124,7 +131,8 @@
           },
           "configurations": {
             "production": {
-              "project": "src/clr-addons/ng-package.prod.json"
+              "project": "src/clr-addons/ng-package.prod.json",
+              "tsConfig": "src/clr-addons/tsconfig.lib.prod.json"
             }
           }
         },
@@ -148,7 +156,7 @@
   },
   "schematics": {
     "@schematics/angular:component": {
-      "styleext": "css"
+      "style": "css"
     }
   },
   "defaultProject": "dev"
