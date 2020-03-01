@@ -15,7 +15,6 @@ import {
   QueryList,
 } from '@angular/core';
 import { ɵe as POPOVER_HOST_ANCHOR, ɵp as AbstractPopover } from '@clr/angular';
-import { take } from 'rxjs/operators';
 import { ClrOption } from './option';
 import { Point } from './utils/constants';
 
