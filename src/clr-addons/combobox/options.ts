@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -14,7 +14,7 @@ import {
   Optional,
   QueryList,
 } from '@angular/core';
-import { ɵi as POPOVER_HOST_ANCHOR, ɵt as AbstractPopover } from '@clr/angular';
+import { ɵe as POPOVER_HOST_ANCHOR, ɵp as AbstractPopover } from '@clr/angular';
 import { take } from 'rxjs/operators';
 import { ClrOption } from './option';
 import { Point } from './utils/constants';
@@ -49,11 +49,12 @@ export class ClrOptions<T> extends AbstractPopover implements AfterViewInit {
   }
 
   private initializeSubscriptions(): void {
-    this.ifOpenService.ignoredElementChange.pipe(take(1)).subscribe((el: ElementRef) => {
-      if (el) {
-        this.ignoredElement = el.nativeElement;
-      }
-    });
+    // @TODO COMBOBOX: intentionally commented; resolve while merging the Combobox
+    // this.toggleService.ignoredElementChange.pipe(take(1)).subscribe((el: ElementRef) => {
+    //   if (el) {
+    //     this.ignoredElement = el.nativeElement;
+    //   }
+    // });
   }
 
   // Lifecycle hooks

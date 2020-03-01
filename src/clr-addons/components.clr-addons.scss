@@ -99,7 +99,10 @@ body,
 
   @mixin disable-card-clickable-hover() {
     &.clickable:hover {
-      border: $clr-card-border;
+      @include css-var(border-radius, clr-card-border-radius, $clr-global-borderradius, $clr-use-custom-properties);
+      @include css-var(border-width, clr-card-border-width, $clr-global-borderwidth, $clr-use-custom-properties);
+      border-style: solid;
+      @include css-var(border-color, clr-card-border-color, $clr-card-border-color, $clr-use-custom-properties);
       box-shadow: $clr-card-box-shadow;
       cursor: default;
       transform: none;
@@ -135,7 +138,10 @@ body,
     }
 
     &.selectable:hover {
-      border: $clr-card-border;
+      @include css-var(border-radius, clr-card-border-radius, $clr-global-borderradius, $clr-use-custom-properties);
+      @include css-var(border-width, clr-card-border-width, $clr-global-borderwidth, $clr-use-custom-properties);
+      border-style: solid;
+      @include css-var(border-color, clr-card-border-color, $clr-card-border-color, $clr-use-custom-properties);
       box-shadow: $clr-card-box-shadow;
       cursor: pointer;
       transform: translateY(-2px);

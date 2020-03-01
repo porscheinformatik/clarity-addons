@@ -23,13 +23,13 @@ import {
 } from '@angular/core';
 import {
   ClrLabel,
-  ɵbg as ControlIdService,
-  ɵbh as LayoutService,
-  ɵbi as NgControlService,
-  ɵbj as IfErrorService,
-  ɵbo as ControlClassService,
-  ɵe as IfOpenService,
-  ɵi as POPOVER_HOST_ANCHOR,
+  ClrPopoverToggleService,
+  ɵz as ControlIdService,
+  ɵba as LayoutService,
+  ɵba as NgControlService,
+  ɵbc as IfErrorService,
+  ɵbe as ControlClassService,
+  ɵe as POPOVER_HOST_ANCHOR,
 } from '@clr/angular';
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -55,7 +55,7 @@ export function comboboxDomAdapterFactory(platformId: Object) {
   selector: 'clr-combobox',
   templateUrl: './combobox.html',
   providers: [
-    IfOpenService,
+    ClrPopoverToggleService,
     { provide: POPOVER_HOST_ANCHOR, useExisting: ElementRef },
     OptionSelectionService,
     { provide: ComboboxDomAdapter, useFactory: comboboxDomAdapterFactory, deps: [PLATFORM_ID] },
@@ -89,7 +89,7 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
   selectedValue: T = this.preselectedValue;
 
   constructor(
-    private ifOpenService: IfOpenService,
+    private ifOpenService: ClrPopoverToggleService,
     private optionSelectionService: OptionSelectionService<T>,
     @Optional() private layoutService: LayoutService,
     private domAdapter: ComboboxDomAdapter,
@@ -130,7 +130,8 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
 
   private registerPopoverIgnoredInput() {
     if (this.input) {
-      this.ifOpenService.registerIgnoredElement(this.input);
+      // @TODO COMBOBOX: intentionally commented; resolve while merging the Combobox
+      // this.ifOpenService.registerIgnoredElement(this.input);
     }
   }
 

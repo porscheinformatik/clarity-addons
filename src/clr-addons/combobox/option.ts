@@ -1,13 +1,12 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component, ElementRef, HostBinding, HostListener, Inject, Input, OnDestroy, Optional } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { ɵi as POPOVER_HOST_ANCHOR } from '@clr/angular';
-import { ɵe as IfOpenService } from '@clr/angular';
+import { ClrPopoverToggleService, ɵe as POPOVER_HOST_ANCHOR } from '@clr/angular';
 
 import { OptionSelectionService } from './providers/option-selection.service';
 import { escapeHtml, escapeRegex } from '../util';
@@ -27,7 +26,7 @@ export class ClrOption<T> implements OnDestroy {
   @Input('clrValue') value: T;
 
   constructor(
-    private ifOpenService: IfOpenService,
+    private ifOpenService: ClrPopoverToggleService,
     @Optional()
     @Inject(POPOVER_HOST_ANCHOR)
     parentHost: ElementRef,
