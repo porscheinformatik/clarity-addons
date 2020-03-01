@@ -145,7 +145,7 @@
 
         .treetable-row-wrapper {
           .clr-tt-node-content.treetable-row {
-            border-top: $clr-table-borderstyle;
+            border-top: solid;
           }
 
           @include row-indentation(0);

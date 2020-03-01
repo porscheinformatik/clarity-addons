@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -9,14 +9,13 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
   ClarityModule,
-  ɵbg as ControlIdService,
-  ɵbh as LayoutService,
-  ɵbi as NgControlService,
-  ɵbj as IfErrorService,
-  ɵbo as ControlClassService,
-  ɵe as IfOpenService,
-  ɵi as POPOVER_HOST_ANCHOR,
-  ɵt as AbstractPopover,
+  ɵz as ControlIdService,
+  ɵba as LayoutService,
+  ɵba as NgControlService,
+  ɵbc as IfErrorService,
+  ɵbe as ControlClassService,
+  ɵe as POPOVER_HOST_ANCHOR,
+  ɵp as AbstractPopover,
 } from '@clr/angular';
 import { ClrComboboxModule } from './combobox.module';
 import { ClrOption } from './option';
@@ -128,7 +127,6 @@ describe('ComboboxComponent', () => {
   });
 
   it('check correct obfuscated imports', () => {
-    expect(new IfOpenService().constructor.name).toBe('IfOpenService');
     expect(new ControlIdService().constructor.name).toBe('ControlIdService');
     expect(new LayoutService().constructor.name).toBe('LayoutService');
     expect(new ControlClassService().constructor.name).toBe('ControlClassService');

@@ -1,6 +1,6 @@
 {
   "name": "clr-addons",
-  "version": "6.4.10",
+  "version": "7.0.0",
   "private": true,
   "scripts": {
     "build:ui:css": "sass --source-map --precision=8 ./src/clr-addons/themes/clr-ui/clr-ui.scss ./dist/clr-addons/styles/clr-ui.css && sass --source-map --precision=8 ./src/clr-addons/themes/clr-ui-dark/clr-ui-dark.scss ./dist/clr-addons/styles/clr-ui-dark.css && sass --source-map --precision=8 ./src/clr-addons/themes/phs/phs-theme.scss ./dist/clr-addons/styles/clr-addons-phs.css",
@@ -41,15 +41,16 @@
     "@angular/platform-browser": "9.0.4",
     "@angular/platform-browser-dynamic": "9.0.4",
     "@angular/router": "9.0.4",
-    "@clr/angular": "2.3.8",
-    "@clr/icons": "2.3.8",
-    "@clr/ui": "2.3.8",
-    "@webcomponents/custom-elements": "1.4.1",
+    "@clr/angular": "3.0.0",
+    "@clr/core": "3.0.0",
+    "@clr/icons": "3.0.0",
+    "@clr/ui": "3.0.0",
     "core-js": "3.6.4",
     "rxjs": "6.5.4",
     "tslib": "^1.10.0",
     "web-animations-js": "^2.3.2",
-    "zone.js": "~0.10.3"
+    "zone.js": "~0.10.3",
+    "@webcomponents/webcomponentsjs": "^2.0.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.900.4",
