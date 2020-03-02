@@ -142,7 +142,7 @@ describe('Multilingual Input', () => {
       expect(fixture.debugElement.query(By.css('clr-control-error'))).toBeTruthy();
       expect(fixture.debugElement.query(By.css('clr-control-helper'))).toBeFalsy();
     } else {
-      expect(fixture.debugElement.query(By.css('clr-multilingual-input')).classes['clr-error']).toBeFalse();
+      expect(fixture.debugElement.query(By.css('clr-multilingual-input')).classes['clr-error']).toBeFalsy();
       expect(fixture.debugElement.query(By.css('clr-control-error'))).toBeFalsy();
       expect(fixture.debugElement.query(By.css('clr-control-helper'))).toBeTruthy();
     }
