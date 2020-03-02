@@ -26,7 +26,7 @@ import {
   ClrPopoverToggleService,
   ɵz as ControlIdService,
   ɵba as LayoutService,
-  ɵba as NgControlService,
+  ɵbb as NgControlService,
   ɵbc as IfErrorService,
   ɵbe as ControlClassService,
   ɵe as POPOVER_HOST_ANCHOR,
