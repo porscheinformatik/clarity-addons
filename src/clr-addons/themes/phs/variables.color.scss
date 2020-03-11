@@ -1,32 +1,34 @@
-$blue-light: #e6f3f8;
-$blue-mid: #85c3df;
-$blue-dark: #0d88c0;
-$blue-darker: #0c75a6;
+:root {
+  --blue-light: #e6f3f8;
+  --blue-mid: #85c3df;
+  --blue-dark: #0d88c0;
+  --blue-darker: #0c75a6;
 
-$turquoise: #14a1a9;
-$turquoise-lighter: #e8f3f3;
-$turquoise-light: #e7f5f6;
-$turquoise-darkest: #19888d;
+  --turquoise: #14a1a9;
+  --turquoise-lighter: #e8f3f3;
+  --turquoise-light: #e7f5f6;
+  --turquoise-darkest: #19888d;
 
-$green-turquiose: #1f9c70;
-$green-lighter: #e8f2e9;
-$green-light: #b7e8d7;
-$green-light-mid: #29cf95;
-$green-mid: #24b582;
-$green: #14a91e;
-$green-dark: #208427;
-$green-darkest: #266900;
+  --green-turquiose: #1f9c70;
+  --green-lighter: #e8f2e9;
+  --green-light: #b7e8d7;
+  --green-light-mid: #29cf95;
+  --green-mid: #24b582;
+  --green: #14a91e;
+  --green-dark: #208427;
+  --green-darkest: #266900;
 
-$red-lighter: #f7eae7;
-$red-light: #ffdddb;
-$red-dark: #b12d12;
-$red-darker: #c11810;
-$red-darkest: #a8150d;
+  --red-lighter: #f7eae7;
+  --red-light: #ffdddb;
+  --red-dark: #b12d12;
+  --red-darker: #c11810;
+  --red-darkest: #a8150d;
 
-$orange-dark: #d25617;
-$orange-darker: #b84b14;
+  --orange-dark: #d25617;
+  --orange-darker: #b84b14;
 
-$yellow-light: #efd603;
+  --yellow-light: #efd603;
 
-$black: #000;
-$white: #fff;
+  --black: #000;
+  --white: #fff;
+}

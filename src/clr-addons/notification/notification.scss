@@ -1,17 +1,20 @@
 @mixin progress-color($alertLevel, $color) {
   &.#{$alertLevel} {
     progress {
-      @include clr-progress-color($color);
+      color: $color;
+
+      &::-webkit-progress-value {
+        background-color: $color;
+      }
+
+      &::-moz-progress-bar {
+        background-color: $color;
+      }
     }
   }
 }
 
 @include exports('notification.clr-addons') {
-  $clr-notification-progress-info-bar-color: $clr-progress-defaultBarColor !default;
-  $clr-notification-progress-success-bar-color: $clr-progress-success-color !default;
-  $clr-notification-progress-warning-bar-color: $clr-progress-warning-color !default;
-  $clr-notification-progress-danger-bar-color: $clr-progress-danger-color !default;
-
   .notification {
     &__wrapper {
       position: fixed;
@@ -29,19 +32,22 @@
         margin: 0 1rem;
       }
     }
+
     .progress {
       height: 0.5em;
       position: absolute;
       z-index: 1;
 
-      @include progress-color('info', $clr-notification-progress-info-bar-color);
-      @include progress-color('success', $clr-notification-progress-success-bar-color);
-      @include progress-color('warning', $clr-notification-progress-warning-bar-color);
-      @include progress-color('danger', $clr-notification-progress-danger-bar-color);
+      @include progress-color('info', var(--clr-notification-progress-info-bar-color));
+      @include progress-color('success', var(--clr-progress-alt-color-1));
+      @include progress-color('warning', var(--clr-progress-alt-color-3));
+      @include progress-color('danger', var(--clr-progress-alt-color-2));
     }
+
     .alert-items {
       padding: 0.333333rem calc(0.75rem - 1px);
     }
+
     .alert-app-level {
       font-size: 0.59rem;
 
@@ -56,15 +62,18 @@
 
         .alert-item {
           justify-content: left;
+
           .alert-text {
             white-space: pre-wrap;
           }
         }
       }
+
       .alert-icon-wrapper {
         margin-top: 0.05rem;
         height: 1.2rem;
       }
+
       .close {
         flex: 0 0 2.266667rem;
         height: 3rem;

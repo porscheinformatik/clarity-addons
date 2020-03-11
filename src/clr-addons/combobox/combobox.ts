@@ -24,12 +24,12 @@ import {
 import {
   ClrLabel,
   ClrPopoverToggleService,
-  ɵz as ControlIdService,
   ɵba as LayoutService,
   ɵbb as NgControlService,
   ɵbc as IfErrorService,
   ɵbe as ControlClassService,
   ɵe as POPOVER_HOST_ANCHOR,
+  ɵz as ControlIdService,
 } from '@clr/angular';
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -51,6 +51,12 @@ export function comboboxDomAdapterFactory(platformId: Object) {
   }
 }
 
+/**
+ * @deprecated in v7.0
+ * This component is deprecated, do not use it anymore.
+ * Instead use Clarity's Data List Component: {@link https://clarity.design/documentation/datalist}.
+ * Will be removed with version 8!
+ */
 @Component({
   selector: 'clr-combobox',
   templateUrl: './combobox.html',

@@ -6,15 +6,15 @@
 
     .clr-multilingual-button {
       line-height: 0.458333rem;
-      height: 0.875rem;
-      min-width: 2.65rem;
-      max-width: 2.65rem;
+      height: 1rem;
+      min-width: 3.2rem;
+      max-width: 3.2rem;
       border-radius: 0.5rem;
 
       &:focus {
         outline: none;
-        color: $clr-btn-default-outline-hover-color;
-        background-color: $clr-btn-default-outline-hover-bg-color;
+        color: var(--clr-btn-default-outline-hover-color);
+        background-color: var(--clr-btn-default-outline-hover-bg-color);
       }
     }
 

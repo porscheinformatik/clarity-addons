@@ -1,5 +1,7 @@
 @include exports('content-panel.clr-addons') {
-  $clr-content-panel-width: 456px;
+  :root {
+    --clr-content-panel-width: 456px;
+  }
 
   .content-panel-container {
     position: relative;
@@ -30,23 +32,23 @@
   }
 
   .content-panel-content-wrapper {
-    background-color: $clr-global-app-background;
+    background-color: var(--clr-global-app-background);
     z-index: map-get($clr-layers, dropdown-menu) - 1;
     padding: 1rem;
     position: absolute;
     top: 0;
     bottom: 0;
     right: 0;
-    left: calc(100% - var($clr-content-panel-width));
-    border-left: $clr-global-borderwidth solid $clr-border-color;
+    left: calc(100% - var(--clr-content-panel-width));
+    border-left: var(--clr-global-borderwidth) solid var(--clr-border-color);
     overflow: auto;
 
     @media screen and (min-width: map-get($clr-grid-breakpoints, md)) {
-      width: $clr-content-panel-width;
+      width: var(--clr-content-panel-width);
 
       &.content-panel-left {
         left: 0;
-        border-right: $clr-global-borderwidth solid $clr-border-color;
+        border-right: var(--clr-global-borderwidth) solid var(--clr-border-color);
         border-left: none;
       }
     }
@@ -75,7 +77,7 @@
     bottom: 0;
     right: 0;
     left: 0;
-    background-color: $clr-color-neutral-900;
+    background-color: var(--clr-color-neutral-900);
     opacity: 0.85;
     z-index: map-get($clr-layers, dropdown-menu) - 2;
 
@@ -93,10 +95,10 @@
   }
 
   .close .content-panel-close-icon {
-    fill: $clr-link-color;
+    fill: var(--clr-link-color);
   }
 
   .close:hover .content-panel-close-icon {
-    fill: $clr-link-hover-color;
+    fill: var(--clr-link-hover-color);
   }
 }

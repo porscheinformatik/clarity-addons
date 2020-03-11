@@ -5,21 +5,21 @@
     .clr-input-wrapper {
       display: flex !important;
       width: 100%;
-      padding-left: $clr-ng-select-trigger-left-padding;
+      padding-left: var(--clr-ng-select-trigger-left-padding);
       max-height: 1rem;
 
       &:focus-within {
-        border-bottom: 1px solid $clr-forms-focused-color;
+        border-bottom: 1px solid var(--clr-forms-focused-color);
         background-size: 100% 100%;
       }
 
-      @include form-fields-appearance($clr-forms-border-color);
-      @include input-border-bottom-animation($clr-forms-focused-color);
+      @include form-fields-appearance(var(--clr-forms-border-color));
+      @include input-border-bottom-animation(var(--clr-forms-focused-color));
     }
 
     .clr-error .clr-input-wrapper {
-      border-bottom-color: $clr-forms-invalid-color;
-      @include input-border-bottom-animation($clr-forms-invalid-color);
+      border-bottom-color: var(--clr-forms-invalid-color);
+      @include input-border-bottom-animation(var(--clr-forms-invalid-color));
     }
 
     .clr-select-wrapper {
@@ -38,11 +38,11 @@
     .clr-combobox-input {
       //Dimensions
       padding: 0;
-      min-height: $clr-ng-select-min-height;
+      min-height: var(--clr-ng-select-min-height);
       width: 100%;
       overflow: hidden;
 
-      font-size: $clr-forms-label-font-size;
+      font-size: var(--clr-forms-label-font-size);
       border-bottom-width: 0 !important;
       background-size: 0 !important;
 
@@ -87,8 +87,8 @@
       @include generate-dropdown-item();
 
       &.highlighted {
-        background-color: $clr-dropdown-bg-hover-color;
-        color: $clr-dropdown-item-color;
+        background-color: var(--clr-dropdown-bg-hover-color);
+        color: var(--clr-dropdown-item-color);
         text-decoration: none;
       }
 

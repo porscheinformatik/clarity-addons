@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+  ~ Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
@@ -12,7 +12,7 @@
     <input clrInput class="clr-col-2" type="text" [(ngModel)]="inputText" name="inputName" required minlength="5" />
     <clr-control-helper>Helper text that shows while it is pristine and valid</clr-control-helper>
     <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
-    <clr-control-error *clrIfError="'minlength'">Error message about requiring 5 characters </clr-control-error>
+    <clr-control-error *clrIfError="'minlength'">Error message about requiring 5 characters</clr-control-error>
   </clr-input-container>
   <clr-textarea-container class="clr-col-12">
     <label class="required">Textarea label</label>
@@ -197,7 +197,7 @@
   <clr-date-time-container class="clr-col-6 clr-row">
     <clr-date-container>
       <label class="clr-col-4">Date & time</label>
-      <input class="clr-col-4" clrDate type="date" />
+      <input class="clr-col-8" clrDate type="date" />
     </clr-date-container>
     <input clrTime type="time" />
   </clr-date-time-container>

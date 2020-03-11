@@ -28,7 +28,7 @@
 
   //prevents the upper body part from being hidden by the fixed header
   body {
-    padding-top: $clr-header-height;
+    padding-top: var(--clr-header-height);
   }
 
   //main-container needs the display:block property in order to work properly on safari
@@ -44,7 +44,7 @@
   //every container which contains .content-area-footer class needs padding-bottom
   //due to fixed positioning of the .content-area-footer
   .content-container-fixed-footer {
-    padding-bottom: $clr-footer-height;
+    padding-bottom: var(--clr-footer-height);
   }
 
   //Make footer sticky on sm screen size as the .main-container class gets the property display:block (instead of display:flex)
@@ -52,7 +52,7 @@
     .content-area-footer {
       position: fixed;
       width: 100%;
-      height: $clr-footer-height;
+      height: var(--clr-footer-height);
       // Sticky footer should be shown above datagrid-host but below column-switch
       z-index: map-get($clr-layers, datagrid-host) + 5;
       bottom: 0;

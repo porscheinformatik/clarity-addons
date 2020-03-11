@@ -30,7 +30,7 @@ body,
 .main-container,
 .u-main-container {
   > .content-container {
-    border-top: $clr-global-borderwidth solid $clr-border-color;
+    border-top: var(--clr-global-borderwidth) solid var(--clr-border-color);
   }
 }
 
@@ -61,12 +61,12 @@ body,
 .content-container {
   // Define the sticky footer css when inside a content-container
   .content-area-footer {
-    border-top: $clr-global-borderwidth solid $clr-border-color;
+    border-top: var(--clr-global-borderwidth) solid var(--clr-border-color);
     display: flex;
     flex: 0 0 auto;
     align-items: center;
     padding: 0.25rem 1rem;
-    background-color: $clr-global-app-background;
+    background-color: var(--clr-global-app-background);
     min-height: 2rem;
 
     // For some reason clarity sets the margin to 0 for dropdown buttons - we want the default btn margin inside the footer
@@ -80,13 +80,13 @@ body,
 // Classes card-active and selectable add a border to the left side only.
 .card {
   .list-group-item.list-group-item-action:hover {
-    background-color: $clr-global-selection-color;
+    background-color: var(--clr-global-selection-color);
     cursor: pointer;
   }
 
   &.active {
-    box-shadow: 0 0.125rem 0 0 $clr-card-active-border-color;
-    border: $clr-global-borderwidth solid $clr-card-active-border-color;
+    box-shadow: 0 0.125rem 0 0 var(--clr-card-active-border-color);
+    border: var(--clr-global-borderwidth) solid var(--clr-card-active-border-color);
     cursor: default;
     text-decoration: none;
     transform: translateY(-2px);
@@ -99,18 +99,18 @@ body,
 
   @mixin disable-card-clickable-hover() {
     &.clickable:hover {
-      @include css-var(border-radius, clr-card-border-radius, $clr-global-borderradius, $clr-use-custom-properties);
-      @include css-var(border-width, clr-card-border-width, $clr-global-borderwidth, $clr-use-custom-properties);
+      border-radius: var(--clr-card-border-radius);
+      border-width: var(--clr-card-border-width);
+      border-color: var(--clr-card-border-color);
       border-style: solid;
-      @include css-var(border-color, clr-card-border-color, $clr-card-border-color, $clr-use-custom-properties);
-      box-shadow: $clr-card-box-shadow;
+      box-shadow: var(--clr-card-box-shadow);
       cursor: default;
       transform: none;
       transition: none;
 
       &.active:hover {
-        box-shadow: 0 0.125rem 0 0 $clr-card-active-border-color;
-        border: $clr-global-borderwidth solid $clr-card-active-border-color;
+        box-shadow: 0 0.125rem 0 0 var(--clr-card-active-border-color);
+        border: var(--clr-global-borderwidth) solid var(--clr-card-active-border-color);
         transform: translateY(-2px);
       }
     }
@@ -120,12 +120,12 @@ body,
     content: '';
     width: 0.1667rem;
     position: absolute;
-    background: $clr-card-active-border-color;
+    background: var(--clr-card-active-border-color);
     top: -1px;
     left: -1px;
     bottom: 0;
-    border-top-left-radius: $clr-global-borderradius;
-    border-bottom-left-radius: $clr-global-borderradius;
+    border-top-left-radius: var(--clr-global-borderradius);
+    border-bottom-left-radius: var(--clr-global-borderradius);
   }
 
   &.card-active::after {
@@ -138,11 +138,11 @@ body,
     }
 
     &.selectable:hover {
-      @include css-var(border-radius, clr-card-border-radius, $clr-global-borderradius, $clr-use-custom-properties);
-      @include css-var(border-width, clr-card-border-width, $clr-global-borderwidth, $clr-use-custom-properties);
+      border-radius: var(--clr-card-border-radius);
+      border-width: var(--clr-card-border-width);
+      border-color: var(--clr-card-border-color);
       border-style: solid;
-      @include css-var(border-color, clr-card-border-color, $clr-card-border-color, $clr-use-custom-properties);
-      box-shadow: $clr-card-box-shadow;
+      box-shadow: var(--clr-card-box-shadow);
       cursor: pointer;
       transform: translateY(-2px);
       transition: border 0.2s ease, transform 0.2s ease;
@@ -195,7 +195,7 @@ body,
   tbody {
     tr {
       &.highlight {
-        background-color: $clr-global-selection-color;
+        background-color: var(--clr-global-selection-color);
       }
     }
   }
@@ -205,7 +205,7 @@ form .required:after {
   content: '*';
   font-size: 0.58479532rem; // Approximately 14px.
   line-height: 0.5rem;
-  color: $clr-red;
+  color: var(--clr-red);
   margin-left: 0.25rem;
 }
 
@@ -222,10 +222,10 @@ clr-checkbox-container[readonly][show-only-selected='true'] .clr-checkbox-wrappe
 clr-radio-container[readonly].readonly-danger .clr-radio-wrapper input[type='radio'],
 clr-checkbox-container[readonly].readonly-danger .clr-checkbox-wrapper input[type='checkbox'] {
   &:checked + label {
-    color: $clr-btn-danger-bg-color;
+    color: var(--clr-btn-danger-bg-color);
 
     &::before {
-      border-color: $clr-btn-danger-bg-color;
+      border-color: var(--clr-btn-danger-bg-color);
     }
   }
 }
@@ -243,7 +243,7 @@ clr-checkbox-container[readonly] .clr-checkbox-wrapper input[type='checkbox'] {
     border-radius: 0;
     box-shadow: none;
     transform: rotate(45deg);
-    background: $clr-forms-radio-label-color;
+    background: var(--clr-forms-radio-label-color);
     top: 0.5rem;
     left: 1px;
     width: 0.6rem;
@@ -256,7 +256,7 @@ clr-checkbox-container[readonly] .clr-checkbox-wrapper input[type='checkbox'] {
     content: '';
     display: inline-block;
     transform: rotate(-45deg);
-    background: $clr-forms-radio-label-color;
+    background: var(--clr-forms-radio-label-color);
     position: absolute;
     top: 0.5rem;
     left: 1px;
@@ -269,9 +269,9 @@ clr-checkbox-container[readonly] .clr-checkbox-wrapper input[type='checkbox'] {
       content: '';
       background: none;
       box-shadow: none;
-      border-left: $clr-forms-checkbox-mark-border-size solid $clr-forms-checkbox-mark-color;
-      border-bottom: $clr-forms-checkbox-mark-border-size solid $clr-forms-checkbox-mark-color;
-      border-color: $clr-btn-success-bg-color;
+      border-left: var(--clr-forms-checkbox-mark-border-size) solid var(--clr-forms-checkbox-mark-color);
+      border-bottom: var(--clr-forms-checkbox-mark-border-size) solid var(--clr-forms-checkbox-mark-color);
+      border-color: var(--clr-btn-success-bg-color);
       position: absolute;
       top: 0.3rem;
       left: 0.1rem;
@@ -303,13 +303,13 @@ form,
   }
 }
 
-// Date picker should never be bigger than 6rem including the icon
+// Date picker should never be bigger than 7.2rem including the icon
 clr-date-container {
   .clr-input-group {
-    max-width: 6rem;
+    max-width: 7rem;
 
     .clr-input {
-      max-width: 4.5rem;
+      max-width: 5.5rem;
     }
   }
 }

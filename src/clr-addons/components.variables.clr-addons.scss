@@ -1,6 +1,9 @@
-$clr-border-color: $clr-color-neutral-400 !default;
-$clr-card-default-border-color: rgba(215, 215, 215, 1) !default;
-$clr-card-active-border-color: rgba(0, 148, 210, 1) !default;
-$clr-footer-height: 2.5rem;
+:root {
+  --clr-border-color: var(--clr-color-neutral-400);
+  --clr-card-default-border-color: rgba(215, 215, 215, 1);
+  --clr-card-active-border-color: rgba(0, 148, 210, 1);
+  --clr-footer-height: 2.5rem;
+  --clr-notification-progress-info-bar-color: var(--clr-progress-default-color);
+}
 
 @import './combobox/variables.combobox';
