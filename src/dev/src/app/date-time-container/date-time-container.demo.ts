@@ -4,20 +4,30 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component } from '@angular/core';
+import { ClrOption } from '@porscheinformatik/clr-addons';
+import { of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'clr-pager-demo',
   templateUrl: './date-time-container.demo.html',
 })
 export class DateTimeContainerDemo {
+  values$ = of(['Option 4', '<na> Option 5', 'Option 6 (test)', 'Option 7']).pipe(delay(500));
+
   inputText: string;
   textareaText: string;
   passwordText: string;
-  selectOption: any;
+  selectedOption: any;
+  comboboxOption: ClrOption<string>;
   radioOption: any;
   date: any;
   time: any;
   money: any;
   checkboxValue: any;
   toggleValue: any;
+
+  selectOption(value: ClrOption<string>) {
+    this.comboboxOption = value;
+  }
 }

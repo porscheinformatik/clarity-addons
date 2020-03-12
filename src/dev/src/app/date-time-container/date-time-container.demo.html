@@ -32,7 +32,7 @@
   </clr-password-container>
   <clr-select-container class="clr-col-12">
     <label class="required">Select label</label>
-    <select clrSelect class="clr-col-2" name="options" [(ngModel)]="selectOption">
+    <select clrSelect class="clr-col-2" name="options" [(ngModel)]="selectedOption">
       <option value="one">One</option>
       <option value="two">Two</option>
       <option value="three">Three</option>
@@ -84,6 +84,19 @@
       <label for="toggle" class="clr-col-none"></label>
     </clr-toggle-wrapper>
   </clr-toggle-container>
+  <clr-combobox
+    class="clr-col-12 clr-row"
+    clrControlClasses="clr-col-2"
+    (clrSelectedOption)="selectOption($event)"
+    [clrPreselectedValue]="'Option 7'"
+  >
+    <label>Combobox</label>
+    <clr-options>
+      <clr-option *ngFor="let option of values$ | async" [clrValue]="option">{{option}}</clr-option>
+      <div class="clr-no-results">No search results found</div>
+    </clr-options>
+    <clr-control-error>Select a value</clr-control-error>
+  </clr-combobox>
 </form>
 
 <form clrForm [clrLayout]="'horizontal'" class="clr-row">
@@ -239,6 +252,19 @@
         </clr-date-container>
         <input clrTime type="time" />
       </clr-date-time-container>
+
+      <clr-combobox
+        class="clr-row clr-col-12"
+        (clrSelectedOption)="selectOption($event)"
+        [clrPreselectedValue]="'Option 7'"
+      >
+        <label>Combobox</label>
+        <clr-options>
+          <clr-option *ngFor="let option of values$ | async" [clrValue]="option">{{option}}</clr-option>
+          <div class="clr-no-results">No search results found</div>
+        </clr-options>
+        <clr-control-error>Select a value</clr-control-error>
+      </clr-combobox>
     </form>
 
     <h4>Vertical Form</h4>

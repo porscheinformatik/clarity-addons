@@ -18,11 +18,14 @@ export class ComboboxDemo {
   disabled = true;
 
   selectedOption: ClrOption<string>;
-  enteredValue: string;
 
   selectedOptionMobile: ClrOption<string>;
   enteredValueMobile: string;
 
   selectedOptionUser: ClrOption<string>;
   enteredValueUser: string;
+
+  selectOption(value: ClrOption<string>) {
+    this.selectedOption = value;
+  }
 }

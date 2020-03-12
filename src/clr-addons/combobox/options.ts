@@ -34,7 +34,6 @@ export class ClrOptions<T> extends AbstractPopover implements AfterViewInit {
     super(injector, parentHost);
 
     // Configure Popover
-    this.initializeSubscriptions();
     this.configurePopover();
   }
 
@@ -45,15 +44,6 @@ export class ClrOptions<T> extends AbstractPopover implements AfterViewInit {
     this.anchorPoint = Point.BOTTOM_LEFT;
     this.popoverPoint = Point.LEFT_TOP;
     this.closeOnOutsideClick = true;
-  }
-
-  private initializeSubscriptions(): void {
-    // @TODO COMBOBOX: intentionally commented; resolve while merging the Combobox
-    // this.toggleService.ignoredElementChange.pipe(take(1)).subscribe((el: ElementRef) => {
-    //   if (el) {
-    //     this.ignoredElement = el.nativeElement;
-    //   }
-    // });
   }
 
   // Lifecycle hooks

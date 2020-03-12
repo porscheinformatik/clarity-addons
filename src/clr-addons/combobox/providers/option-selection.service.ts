@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -33,7 +33,8 @@ export class OptionSelectionService<T> implements OnDestroy {
       return;
     }
     this.currentOption = option;
-    this._selectionChanged.next(option);
+    // Emit within timeout to avoid ExpressionChangedAfterItHasBeenCheckedError
+    setTimeout(() => this._selectionChanged.next(option), 1);
 
     if (option) {
       // Reset manual user search value in case of selection

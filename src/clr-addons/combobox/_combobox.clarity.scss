@@ -6,7 +6,6 @@
       display: flex !important;
       width: 100%;
       padding-left: var(--clr-ng-select-trigger-left-padding);
-      max-height: 1rem;
 
       &:focus-within {
         border-bottom: 1px solid var(--clr-forms-focused-color);
@@ -42,7 +41,7 @@
       width: 100%;
       overflow: hidden;
 
-      font-size: var(--clr-forms-label-font-size);
+      font-size: 0.65rem;
       border-bottom-width: 0 !important;
       background-size: 0 !important;
 

@@ -26,7 +26,7 @@ export class ClrOption<T> implements OnDestroy {
   @Input('clrValue') value: T;
 
   constructor(
-    private ifOpenService: ClrPopoverToggleService,
+    private popoverToggleService: ClrPopoverToggleService,
     @Optional()
     @Inject(POPOVER_HOST_ANCHOR)
     parentHost: ElementRef,
@@ -106,7 +106,7 @@ export class ClrOption<T> implements OnDestroy {
     // assigned a value to the option, we should atleast display the selection on the input.
     // This is what the native select does.
     this.optionSelectionService.setSelection(this);
-    this.ifOpenService.open = false;
+    this.popoverToggleService.open = false;
   }
 
   set hidden(value: boolean) {

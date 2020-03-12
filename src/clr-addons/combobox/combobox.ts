@@ -80,9 +80,9 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
   @Input('clrAllowUserEntry') allowUserEntry: boolean = false;
   @Input('clrPreselectedValue') preselectedValue: T;
   @Input('clrMobileBehaviourMode') mobileBehaviourMode: MobileBehaviourMode = MobileBehaviourMode.DEFAULT;
+  @Input('clrDisabled') disabled = false;
   @Output('clrSelectedOption') selectedOption: EventEmitter<ClrOption<T>> = new EventEmitter<ClrOption<T>>();
   @Output('clrEnteredValue') enteredValue: EventEmitter<string> = new EventEmitter<string>();
-  @Input('clrDisabled') disabled = false;
 
   @HostBinding('class.clr-empty') noSearchResults: boolean;
 
@@ -95,12 +95,14 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
   selectedValue: T = this.preselectedValue;
 
   constructor(
-    private ifOpenService: ClrPopoverToggleService,
+    private popoverToggleService: ClrPopoverToggleService,
     private optionSelectionService: OptionSelectionService<T>,
     @Optional() private layoutService: LayoutService,
     private domAdapter: ComboboxDomAdapter,
     private controlClassService: ControlClassService
-  ) {}
+  ) {
+    console.warn('The ClrCombobox is deprecated as of clr-addons version 7. Use the ClrDataList instead!');
+  }
 
   private initializeSubscriptions(): void {
     this.subscriptions.push(
@@ -114,7 +116,7 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
           this.enteredValue.emit(value);
         }
         if (value !== null) {
-          this.ifOpenService.open = true;
+          this.popoverToggleService.open = true;
         }
       })
     );
@@ -134,15 +136,8 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
     }
   }
 
-  private registerPopoverIgnoredInput() {
-    if (this.input) {
-      // @TODO COMBOBOX: intentionally commented; resolve while merging the Combobox
-      // this.ifOpenService.registerIgnoredElement(this.input);
-    }
-  }
-
   toggleOptionsMenu(event: MouseEvent): void {
-    this.ifOpenService.toggleWithEvent(event);
+    this.popoverToggleService.toggleWithEvent(event);
   }
 
   @HostListener('click')
@@ -161,11 +156,11 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
 
   navigateOptions(event: KeyboardEvent): boolean {
     if (event.keyCode === DOWN_ARROW) {
-      this.ifOpenService.open = true;
+      this.popoverToggleService.open = true;
       this.optionSelectionService.navigateToNextOption();
       return true;
     } else if (event.keyCode === UP_ARROW) {
-      this.ifOpenService.open = true;
+      this.popoverToggleService.open = true;
       this.optionSelectionService.navigateToPreviousOption();
       return true;
     } else if (event.keyCode === ENTER) {
@@ -178,7 +173,7 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
 
   closeMenuOnTabPress(event: KeyboardEvent): boolean {
     if (event.keyCode === TAB) {
-      this.ifOpenService.open = false;
+      this.popoverToggleService.open = false;
       return true;
     }
     return false;
@@ -193,11 +188,11 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
 
   blur() {
     if (!this.allowUserEntry) {
-      if (!this.ifOpenService.open) {
+      if (!this.popoverToggleService.open) {
         this.validateInput();
       } else {
         // Wait for validation until dropdown is closed, as a click on a dropdown menu loses focus too early
-        this.ifOpenService.openChange.pipe(take(1)).subscribe(() => {
+        this.popoverToggleService.openChange.pipe(take(1)).subscribe(() => {
           this.validateInput();
         });
       }
@@ -245,7 +240,6 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
   }
 
   ngAfterContentInit() {
-    this.registerPopoverIgnoredInput();
     this.optionSelectionService.setOptions(this.options);
     this.optionsUpdatedByUser();
     this.subscriptions.push(
