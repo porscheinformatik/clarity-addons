@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+  ~ Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
@@ -14,38 +14,36 @@
   <form clrForm [clrLayout]="'vertical'" [formGroup]="exampleForm">
     <clr-input-container>
       <label>Amount</label>
-      <input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'€'" [clrTextAlign]="'right'"
-        [clrAutofillDecimals]="true" formControlName="sample" />
-      <clr-control-error>Please enter a value between 0 and 100</clr-control-error>
-    </clr-input-container>
-    <clr-input-container>
-      <label>Speed</label>
-      <input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'km/h'" />
+      <input
+        clrInput
+        clrNumeric
+        type="text"
+        [clrUnit]="'€'"
+        [clrTextAlign]="'right'"
+        [clrAutofillDecimals]="true"
+        formControlName="sample"
+      />
+      <clr-control-error *clrIfError="'required'">Please enter a value</clr-control-error>
+      <clr-control-error *clrIfError="'min'">Please enter a value above 0</clr-control-error>
+      <clr-control-error *clrIfError="'max'">Please enter a value below 100</clr-control-error>
     </clr-input-container>
 
-    <clr-input-container>
-      <label>Amount</label>
-      <input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'€'" [clrUnitPosition]="'left'"
-        [clrTextAlign]="'right'" [clrAutofillDecimals]="true" />
-    </clr-input-container>
-    <clr-input-container>
-      <label>Speed</label>
-      <input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'km/h'"
-        [clrUnitPosition]="'left'" />
-    </clr-input-container>
-    <clr-input-container>
-      <label>Rounded</label>
-      <input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'€'" [clrRoundDisplayValue]="true"
-        [clrAutofillDecimals]="true" [clrUnitPosition]="'right'" />
-    </clr-input-container>
+    <button class="btn btn-primary" type="button" (click)="submitForm()">Submit</button>
   </form>
 
   <h3>Horizontal Form</h3>
   <form clrForm [clrLayout]="'horizontal'">
     <clr-input-container>
       <label>Amount</label>
-      <input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'€'" [clrTextAlign]="'right'"
-        [clrAutofillDecimals]="true" />
+      <input
+        clrInput
+        clrNumeric
+        type="text"
+        [(clrNumericValue)]="input"
+        [clrUnit]="'€'"
+        [clrTextAlign]="'right'"
+        [clrAutofillDecimals]="true"
+      />
     </clr-input-container>
     <clr-input-container>
       <label>Speed</label>
@@ -54,13 +52,26 @@
 
     <clr-input-container>
       <label>Amount</label>
-      <input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'€'" [clrUnitPosition]="'left'"
-        [clrAutofillDecimals]="true" />
+      <input
+        clrInput
+        clrNumeric
+        type="text"
+        [(clrNumericValue)]="input"
+        [clrUnit]="'€'"
+        [clrUnitPosition]="'left'"
+        [clrAutofillDecimals]="true"
+      />
     </clr-input-container>
     <clr-input-container>
       <label>Speed</label>
-      <input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'km/h'"
-        [clrUnitPosition]="'left'" />
+      <input
+        clrInput
+        clrNumeric
+        type="text"
+        [(clrNumericValue)]="input"
+        [clrUnit]="'km/h'"
+        [clrUnitPosition]="'left'"
+      />
     </clr-input-container>
   </form>
   <h3>Value</h3>
@@ -75,8 +86,16 @@
       <form clrForm [clrLayout]="'vertical'" [formGroup]="exampleForm">
         <clr-input-container>
           <label>Amount</label>
-          <input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'€'" [clrTextAlign]="'right'"
-            [clrAutofillDecimals]="true" formControlName="sample" />
+          <input
+            clrInput
+            clrNumeric
+            type="text"
+            [(clrNumericValue)]="input"
+            [clrUnit]="'€'"
+            [clrTextAlign]="'right'"
+            [clrAutofillDecimals]="true"
+            formControlName="sample"
+          />
           <clr-control-error>Please enter a value between 0 and 100</clr-control-error>
         </clr-input-container>
       </form>

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -9,12 +9,14 @@ import {
   Directive,
   ElementRef,
   EventEmitter,
+  forwardRef,
   Input,
   OnDestroy,
   OnInit,
   Output,
   Renderer2,
 } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 const NEGATIVE = '-';
 const BACK_KEYCODE = 8;
@@ -27,9 +29,19 @@ const NUMBERS = new Set(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']);
   selector: '[clrNumeric]',
   host: {
     '[class.text-right]': 'textAlign === "right"',
+    '(change)': 'onChange(getValueForFormControl())',
+    '(input)': 'onChange(getValueForFormControl())',
+    '(blur)': 'onTouched()',
   },
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ClrNumericField),
+      multi: true,
+    },
+  ],
 })
-export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
+export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked, ControlValueAccessor {
   @Input('clrTextAlign') textAlign = 'right';
   @Input('clrDecimalPlaces') decimalPlaces = 2;
   @Input('clrRoundDisplayValue') roundValue = false;
@@ -58,6 +70,26 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
 
   private unitSpan: HTMLSpanElement;
   private allowedKeys = new Set(NUMBERS);
+
+  /* Control Values Accessor Stuff below */
+  onChange;
+  onTouched;
+
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    // Dont need to implement since its just a directive
+  }
+
+  writeValue(value: number): void {
+    this.numericValue = value;
+  }
 
   constructor(private renderer: Renderer2, private inputEl: ElementRef) {}
 
@@ -277,6 +309,14 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked {
       this.originalValue = this._numericValue;
       this.numericValueChanged.emit(this._numericValue);
     }
+  }
+
+  private getValueForFormControl(): number {
+    if (isNaN(this._numericValue)) {
+      // Return undefined instead of NaN to support the default required validator.
+      return undefined;
+    }
+    return this._numericValue;
   }
 
   private injectUnitSymbol(): void {
