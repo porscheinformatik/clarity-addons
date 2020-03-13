@@ -136,6 +136,10 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
     }
   }
 
+  showOptions(): boolean {
+    return this.popoverToggleService.open;
+  }
+
   toggleOptionsMenu(event: MouseEvent): void {
     this.popoverToggleService.toggleWithEvent(event);
   }

@@ -44,7 +44,7 @@ More info here: https://stackoverflow.com/a/34445203/3538394
 
 <!-- Content projected by the consumer in ng-template. -->
 <ng-template #projectedOptions>
-  <ng-content select="clr-options" *ngIf="popoverToggleService.open"></ng-content>
+  <ng-content select="clr-options" *ngIf="showOptions()"></ng-content>
 </ng-template>
 
 <!--&lt;!&ndash; If consumer provides the menu, render it &ndash;&gt;-->
