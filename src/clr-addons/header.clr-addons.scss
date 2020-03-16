@@ -74,7 +74,7 @@
           max-width: 100%;
           overflow: hidden;
           text-overflow: ellipsis;
-          border-radius: $clr-global-borderradius 0 0 $clr-global-borderradius;
+          border-radius: var(--clr-global-borderradius) 0 0 var(--clr-global-borderradius);
 
           @include vertical-nav-link-colors();
 
@@ -92,7 +92,9 @@
         &:hover,
         &.active {
           color: inherit;
-          background: $clr-responsive-nav-hover-bg; // Is the menu that showsup when the viewport is narrow (x-axis)
+          background: var(
+            --clr-responsive-nav-hover-bg
+          ); // Is the menu that showsup when the viewport is narrow (x-axis)
         }
       }
     }
@@ -148,7 +150,7 @@
           bottom: 0;
           left: 0;
           right: 0;
-          background: rgba($clr-black, 0.85);
+          background: rgba(var(--black), 0.85);
           cursor: pointer;
           z-index: $clr-sliding-panel-backdrop-z-index;
         }
@@ -164,11 +166,9 @@
             }
 
             .nav-text {
-              $nav-text-height: 1rem;
-
               display: inline-block;
-              color: $clr-sliding-panel-text-color;
-              line-height: $nav-text-height;
+              color: var(--clr-sliding-panel-text-color);
+              line-height: 1rem;
               padding: 0.25rem 0 0.25rem 1rem;
               white-space: normal;
               font-weight: normal;
@@ -220,11 +220,11 @@
           clr-icon[shape='vm-bug'],
           .clr-vmw-logo {
             background-color: $clr-color-neutral-700;
-            border-radius: $clr-global-borderradius;
+            border-radius: var(--clr-global-borderradius);
           }
 
           .title {
-            color: $clr-sliding-panel-text-color;
+            color: var(--clr-sliding-panel-text-color);
             text-overflow: ellipsis;
             overflow: hidden;
           }

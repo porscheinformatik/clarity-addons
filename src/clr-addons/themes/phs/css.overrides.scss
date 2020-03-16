@@ -3,7 +3,7 @@
   & > span,
   & > span::before,
   & > span::after {
-    background: var(--clr-black);
+    background: var(--black);
   }
 }
 
@@ -12,7 +12,7 @@
   & > span,
   & > span::before,
   & > span::after {
-    background: var(--clr-white);
+    background: var(--white);
   }
 }
 
@@ -105,7 +105,7 @@ header,
 }
 
 .spinner.spinner-inverse {
-  background: generateSpinnerIcon(var(--clr-white), var(--clr-spinner-color));
+  background: generateSpinnerIcon(var(--white), var(--clr-spinner-color));
 }
 
 clr-tooltip clr-icon {
