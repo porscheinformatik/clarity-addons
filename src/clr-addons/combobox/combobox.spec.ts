@@ -5,17 +5,17 @@
  */
 
 import { Component, DebugElement } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
   ClarityModule,
-  ɵz as ControlIdService,
   ɵba as LayoutService,
   ɵbb as NgControlService,
   ɵbc as IfErrorService,
   ɵbe as ControlClassService,
   ɵe as POPOVER_HOST_ANCHOR,
   ɵp as AbstractPopover,
+  ɵz as ControlIdService,
 } from '@clr/angular';
 import { ClrComboboxModule } from './combobox.module';
 import { ClrOption } from './option';
@@ -72,11 +72,15 @@ describe('ComboboxComponent', () => {
     );
   }
 
-  it('Preselect option', () => {
+  it('Preselect option', fakeAsync(() => {
+    // Need to fake an async test here because the value gets emitted within a setTimeout.
+    tick(500);
     fixture.detectChanges();
 
-    expect(fixture.componentInstance.selectedOption.value).toBe('Option 3');
-  });
+    fixture.whenStable().then(() => {
+      expect(fixture.componentInstance.selectedOption.value).toBe('Option 3');
+    });
+  }));
 
   it('Select element shown by default - user entries allowed', () => {
     fixture.componentInstance.mobileBehaviourMode = MobileBehaviourMode.DEFAULT;

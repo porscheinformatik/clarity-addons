@@ -4,6 +4,7 @@
     "importHelpers": true,
     "module": "esnext",
     "outDir": "./dist/out-tsc",
+    "rootDir": "./",
     "baseUrl": "./",
     "sourceMap": true,
     "declaration": false,
@@ -15,6 +16,6 @@
     "paths": {
       "@porscheinformatik/clr-addons": ["src/clr-addons"]
     },
-    "lib": ["es2017", "dom"]
+    "lib": ["es2018", "dom"]
   }
 }
