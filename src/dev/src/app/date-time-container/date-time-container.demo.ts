@@ -26,6 +26,7 @@ export class DateTimeContainerDemo {
   money: any;
   checkboxValue: any;
   toggleValue: any;
+  dataList: any;
 
   selectOption(value: ClrOption<string>) {
     this.comboboxOption = value;

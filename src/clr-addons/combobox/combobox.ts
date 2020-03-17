@@ -13,10 +13,10 @@ import {
   EventEmitter,
   HostBinding,
   HostListener,
+  Injector,
   Input,
   OnDestroy,
   OnInit,
-  Optional,
   Output,
   PLATFORM_ID,
   ViewChild,
@@ -94,14 +94,20 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
   private subscriptions: Subscription[] = [];
   selectedValue: T = this.preselectedValue;
 
+  private layoutService: LayoutService;
+  private controlClassService: ControlClassService;
+
   constructor(
     private popoverToggleService: ClrPopoverToggleService,
     private optionSelectionService: OptionSelectionService<T>,
-    @Optional() private layoutService: LayoutService,
     private domAdapter: ComboboxDomAdapter,
-    private controlClassService: ControlClassService
+    private injector: Injector
   ) {
     console.warn('The ClrCombobox is deprecated as of clr-addons version 7. Use the ClrDataList instead!');
+    // We have to inject obfuscated imports this way,
+    // otherwise ivy compilation does not work for applications using clarity-addons!
+    this.layoutService = injector.get(LayoutService);
+    this.controlClassService = injector.get(ControlClassService);
   }
 
   private initializeSubscriptions(): void {

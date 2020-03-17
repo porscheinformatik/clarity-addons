@@ -320,7 +320,10 @@ clr-date-container {
 
   // Set all input widths inside a clr-input-group to 100% minus the icons width
   > .clr-input {
-    width: calc(100% - 1.5rem);
+    // Except for the Clr Data List Input, because this one just looks terrible otherwise (clarity using diff icon here)
+    &:not([clrdatalistinput]) {
+      width: calc(100% - 1.5rem);
+    }
   }
 }
 

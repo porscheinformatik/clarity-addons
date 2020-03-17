@@ -97,6 +97,16 @@
     </clr-options>
     <clr-control-error>Select a value</clr-control-error>
   </clr-combobox>
+
+  <clr-datalist-container class="clr-col-12">
+    <label>Template Datalist</label>
+    <input class="clr-col-2" minlength="4" name="Option" required clrDatalistInput [(ngModel)]="dataList" />
+    <datalist>
+      <option *ngFor="let item of values$ | async" [value]="item"></option>
+    </datalist>
+    <clr-control-helper>Helper text</clr-control-helper>
+    <clr-control-error>There was an error</clr-control-error>
+  </clr-datalist-container>
 </form>
 
 <form clrForm [clrLayout]="'horizontal'" class="clr-row">
