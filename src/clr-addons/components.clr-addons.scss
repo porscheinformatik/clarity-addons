@@ -142,7 +142,6 @@ body,
       border-width: var(--clr-card-border-width);
       border-color: var(--clr-card-border-color);
       border-style: solid;
-      box-shadow: var(--clr-card-box-shadow);
       cursor: pointer;
       transform: translateY(-2px);
       transition: border 0.2s ease, transform 0.2s ease;
@@ -269,8 +268,8 @@ clr-checkbox-container[readonly] .clr-checkbox-wrapper input[type='checkbox'] {
       content: '';
       background: none;
       box-shadow: none;
-      border-left: var(--clr-forms-checkbox-mark-border-size) solid var(--clr-forms-checkbox-mark-color);
-      border-bottom: var(--clr-forms-checkbox-mark-border-size) solid var(--clr-forms-checkbox-mark-color);
+      border-left: 2px solid var(--clr-forms-checkbox-mark-color);
+      border-bottom: 2px solid var(--clr-forms-checkbox-mark-color);
       border-color: var(--clr-btn-success-bg-color);
       position: absolute;
       top: 0.3rem;
