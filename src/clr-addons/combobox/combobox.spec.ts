@@ -1,22 +1,21 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
 import { Component, DebugElement } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
   ClarityModule,
-  ɵbg as ControlIdService,
-  ɵbh as LayoutService,
-  ɵbi as NgControlService,
-  ɵbj as IfErrorService,
-  ɵbo as ControlClassService,
-  ɵe as IfOpenService,
-  ɵi as POPOVER_HOST_ANCHOR,
-  ɵt as AbstractPopover,
+  ɵba as LayoutService,
+  ɵbb as NgControlService,
+  ɵbc as IfErrorService,
+  ɵbe as ControlClassService,
+  ɵe as POPOVER_HOST_ANCHOR,
+  ɵp as AbstractPopover,
+  ɵz as ControlIdService,
 } from '@clr/angular';
 import { ClrComboboxModule } from './combobox.module';
 import { ClrOption } from './option';
@@ -73,11 +72,15 @@ describe('ComboboxComponent', () => {
     );
   }
 
-  it('Preselect option', () => {
+  it('Preselect option', fakeAsync(() => {
+    // Need to fake an async test here because the value gets emitted within a setTimeout.
+    tick(500);
     fixture.detectChanges();
 
-    expect(fixture.componentInstance.selectedOption.value).toBe('Option 3');
-  });
+    fixture.whenStable().then(() => {
+      expect(fixture.componentInstance.selectedOption.value).toBe('Option 3');
+    });
+  }));
 
   it('Select element shown by default - user entries allowed', () => {
     fixture.componentInstance.mobileBehaviourMode = MobileBehaviourMode.DEFAULT;
@@ -128,10 +131,9 @@ describe('ComboboxComponent', () => {
   });
 
   it('check correct obfuscated imports', () => {
-    expect(new IfOpenService().constructor.name).toBe('IfOpenService');
     expect(new ControlIdService().constructor.name).toBe('ControlIdService');
     expect(new LayoutService().constructor.name).toBe('LayoutService');
-    expect(new ControlClassService().constructor.name).toBe('ControlClassService');
+    expect(new ControlClassService(new LayoutService()).constructor.name).toBe('ControlClassService');
     expect(new NgControlService().constructor.name).toBe('NgControlService');
     expect(new IfErrorService(new NgControlService()).constructor.name).toBe('IfErrorService');
     expect(AbstractPopover.toString()).toContain('AbstractPopover');

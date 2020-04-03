@@ -4,12 +4,13 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { AfterViewInit, HostBinding, Injector, OnDestroy } from '@angular/core';
+import { AfterViewInit, HostBinding, Injector, OnDestroy, Directive } from '@angular/core';
 import { ControlValueAccessor, FormControl, NgControl } from '@angular/forms';
-import { ɵbg as ControlIdService, ɵbk as MarkControlService } from '@clr/angular';
+import { ɵz as ControlIdService, ɵbd as MarkControlService } from '@clr/angular';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
+@Directive()
 export abstract class ClrAbstractFormComponent implements ControlValueAccessor, AfterViewInit, OnDestroy {
   @HostBinding('class.clr-form-control') formControl = true;
   @HostBinding('class.clr-error') showError = false;

@@ -38,7 +38,7 @@ export class ClrGenericQuickList<T extends ClrGenericQuickListItem> implements O
   @Output('clrAdded') added = new EventEmitter();
   @Output('clrRemoved') removed = new EventEmitter();
 
-  @ContentChild(TemplateRef, { static: false }) itemTemplate: TemplateRef<any>;
+  @ContentChild(TemplateRef) itemTemplate: TemplateRef<any>;
   @ViewChildren('row') itemRows: QueryList<ElementRef>;
 
   rowCountFocus: number;

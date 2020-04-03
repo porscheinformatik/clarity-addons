@@ -1,185 +1,191 @@
-// Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+// Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
 // This software is released under MIT license.
 // The full license information can be found in LICENSE in the root directory of this project.
 
-// Global
-$clr-global-selection-color: $turquoise-light;
+:root {
+  --phs-border-radius: 0.5rem;
+  --phs-card-border-radius: 0.25rem;
+  --phs-button-border-radius: 0.25rem;
 
-// Default button colors
-$clr-btn-default-color: $turquoise; // border-color, color, checked-background-color
-$clr-btn-default-hover-bg-color: $turquoise-light; // hover-background-color
-$clr-btn-default-hover-color: $turquoise-darkest; // hover-color
-$clr-btn-default-box-shadow-color: $turquoise-darkest;
-$clr-btn-default-checked-bg-color: $turquoise;
+  // Global
+  --clr-global-selection-color: var(--turquoise-light);
 
-// Default outline button
-$clr-btn-default-outline-color: $turquoise; // border-color, color, checked-background-color
-$clr-btn-default-outline-hover-bg-color: $turquoise-lighter; // hover-background-color
-$clr-btn-default-outline-hover-color: $turquoise-darkest; // hover-color
-$clr-btn-default-outline-box-shadow-color: $turquoise-darkest;
+  // Default button colors
+  --clr-btn-default-color: var(--turquoise); // border-color, color, checked-background-color
+  --clr-btn-default-hover-bg-color: var(--turquoise-light); // hover-background-color
+  --clr-btn-default-hover-color: var(--turquoise-darkest); // hover-color
+  --clr-btn-default-box-shadow-color: var(--turquoise-darkest);
+  --clr-btn-default-checked-bg-color: var(--turquoise);
 
-// Primary button
-$clr-btn-primary-bg-color: $turquoise; // background-color, disabled-background-color
-$clr-btn-primary-border-color: $turquoise; // border-color
-$clr-btn-primary-hover-bg-color: $turquoise-darkest; // hover-background-color
-$clr-btn-primary-box-shadow-color: $turquoise;
+  // Default outline button
+  --clr-btn-default-outline-color: var(--turquoise); // border-color, color, checked-background-color
+  --clr-btn-default-outline-hover-bg-color: var(--turquoise-lighter); // hover-background-color
+  --clr-btn-default-outline-hover-color: var(--turquoise-darkest); // hover-color
+  --clr-btn-default-outline-box-shadow-color: var(--turquoise-darkest);
 
-// Success button
-$clr-btn-success-bg-color: $green;
-$clr-btn-success-hover-bg-color: $green-dark;
-$clr-btn-success-box-shadow-color: $green;
-$clr-btn-success-checked-bg-color: $clr-btn-success-hover-bg-color;
+  // Primary button
+  --clr-btn-primary-bg-color: var(--turquoise); // background-color, disabled-background-color
+  --clr-btn-primary-border-color: var(--turquoise); // border-color
+  --clr-btn-primary-hover-bg-color: var(--turquoise-darkest); // hover-background-color
+  --clr-btn-primary-box-shadow-color: var(--turquoise);
 
-// Success button outline
-$clr-btn-success-outline-color: $green;
-$clr-btn-success-outline-hover-bg-color: $green-lighter;
-$clr-btn-success-outline-border-color: $green;
-$clr-btn-success-outline-hover-color: $green-dark;
-$clr-btn-success-outline-box-shadow-color: $green-dark;
+  // Success button
+  --clr-btn-success-bg-color: var(--green);
+  --clr-btn-success-hover-bg-color: var(--green-dark);
+  --clr-btn-success-box-shadow-color: var(--green);
+  --clr-btn-success-checked-bg-color: var(--clr-btn-success-hover-bg-color);
 
-// Danger button
-$clr-btn-danger-hover-bg-color: $red-dark;
+  // Success button outline
+  --clr-btn-success-outline-color: var(--green);
+  --clr-btn-success-outline-hover-bg-color: var(--green-lighter);
+  --clr-btn-success-outline-border-color: var(--green);
+  --clr-btn-success-outline-hover-color: var(--green-dark);
+  --clr-btn-success-outline-box-shadow-color: var(--green-dark);
 
-// Danger button outline
-$clr-btn-danger-outline-hover-bg-color: $red-lighter;
+  // Danger button
+  --clr-btn-danger-hover-bg-color: var(--red-dark);
 
-// Link button colors
-$clr-btn-link-color: $turquoise; // color
-$clr-btn-link-hover-color: $turquoise-darkest; // hover-color
+  // Danger button outline
+  --clr-btn-danger-outline-hover-bg-color: var(--red-lighter);
 
-// Alert
-$clr-alert-success-bg-color: $green-light;
-$clr-alert-success-border-color: $green-light-mid;
-$clr-alert-success-icon-color: $green-turquiose;
+  // Link button colors
+  --clr-btn-link-color: var(--turquoise); // color
+  --clr-btn-link-hover-color: var(--turquoise-darkest); // hover-color
 
-$clr-alert-info-bg-color: $blue-light;
-$clr-alert-info-border-color: $blue-mid;
-$clr-alert-info-icon-color: $turquoise;
+  // Alert
+  --clr-alert-success-bg-color: var(--green-light);
+  --clr-alert-success-border-color: var(--green-light-mid);
+  --clr-alert-success-icon-color: var(--green-turquiose);
 
-$clr-alert-warning-border-color: $yellow-light;
+  --clr-alert-info-bg-color: var(--blue-light);
+  --clr-alert-info-border-color: var(--blue-mid);
+  --clr-alert-info-icon-color: var(--turquoise);
 
-$clr-alert-danger-bg-color: $red-light;
-$clr-alert-danger-icon-color: $red-darker;
+  --clr-alert-warning-border-color: var(--yellow-light);
 
-$clr-app-alert-info-bg-color: $blue-dark;
-$clr-app-alert-warning-bg-color: $orange-dark;
-$clr-app-alert-danger-bg-color: $red-darker;
+  --clr-alert-danger-bg-color: var(--red-light);
+  --clr-alert-danger-icon-color: var(--red-darker);
 
-// Badge
-$clr-badge-info-bg-color: $turquoise;
-$clr-badge-success-bg-color: $green;
-$clr-badge-warning-bg-color: $yellow-light;
-$clr-badge-danger-bg-color: $red-darker;
-$clr-badge-orange-bg-color: $orange-dark;
-$clr-badge-light-blue-bg-color: $blue-mid;
+  --clr-app-alert-info-bg-color: var(--blue-dark);
+  --clr-app-alert-warning-bg-color: var(--orange-dark);
+  --clr-app-alert-danger-bg-color: var(--red-darker);
 
-// Card
-$clr-card-active-border-color: $turquoise;
+  // Badge
+  --clr-badge-info-bg-color: var(--turquoise);
+  --clr-badge-success-bg-color: var(--green);
+  --clr-badge-warning-bg-color: var(--yellow-light);
+  --clr-badge-danger-bg-color: var(--red-darker);
+  --clr-badge-orange-bg-color: var(--orange-dark);
+  --clr-badge-light-blue-bg-color: var(--blue-mid);
 
-// Checkbox
-$clr-forms-checkbox-background-color: $turquoise; // checked-background-color
-$clr-forms-checkbox-checked-shadow: inset 0 0 0 0.25rem $clr-forms-checkbox-background-color;
-$clr-forms-checkbox-indeterminate-border-color: $turquoise;
+  // Card
+  --clr-card-active-border-color: var(--turquoise);
 
-// Datagrid
-$clr-datagrid-row-hover: $clr-global-selection-color;
-$clr-datagrid-action-popover-hover-color: $clr-global-selection-color;
+  // Checkbox
+  --clr-forms-checkbox-background-color: var(--turquoise); // checked-background-color
+  --clr-forms-checkbox-checked-shadow: inset 0 0 0 0.25rem var(--clr-forms-checkbox-background-color);
+  --clr-forms-checkbox-indeterminate-border-color: var(--turquoise);
 
-// Datepicker
-$clr-datepicker-trigger-color: $turquoise;
-$clr-datepicker-trigger-hover-color: $turquoise-darkest;
-$clr-calendar-btn-color: $turquoise;
-$clr-calendar-active-cell-background-color: $clr-global-selection-color;
-$clr-calendar-btn-hover-focus-color: $clr-global-selection-color;
-$clr-calendar-active-focus-cell-background-color: $clr-global-selection-color;
+  // Datagrid
+  --clr-datagrid-row-hover: var(--clr-global-selection-color);
+  --clr-datagrid-action-popover-hover-color: var(--clr-global-selection-color);
 
-// Dropdown
-$clr-dropdown-selection-color: $clr-global-selection-color;
+  // Datepicker
+  --clr-datepicker-trigger-color: var(--turquoise);
+  --clr-datepicker-trigger-hover-color: var(--turquoise-darkest);
+  --clr-calendar-btn-color: var(--turquoise);
+  --clr-calendar-active-cell-background-color: var(--clr-global-selection-color);
+  --clr-calendar-btn-hover-focus-color: var(--clr-global-selection-color);
+  --clr-calendar-active-focus-cell-background-color: var(--clr-global-selection-color);
 
-// Forms
-$clr-forms-focused-color: $turquoise;
-$clr-forms-input-invalid-color: $red-darker;
+  // Dropdown
+  --clr-dropdown-selection-color: var(--clr-global-selection-color);
 
-// Input
-$clr-input-border-color: $turquoise;
+  // Forms
+  --clr-forms-focused-color: var(--turquoise);
+  --clr-forms-input-invalid-color: var(--red-darker);
 
-// Header
-$clr-header-font-color: $black;
-$clr-header-bgColor: $white;
-$clr-header-2-bg-color: $white;
-$clr-header-3-bg-color: $white;
-$clr-header-4-bg-color: $white;
-$clr-header-5-bg-color: $white;
-$clr-header-6-bg-color: $white;
-$clr-header-7-bg-color: $white;
+  // Input
+  --clr-input-border-color: var(--turquoise);
 
-// Icons
-$clr-icon-color-success: $green;
-$clr-icon-color-danger: $red-darker;
-$clr-icon-color-warning: $yellow-light;
-$clr-icon-color-error: $red-darker;
-$clr-icon-color-info: $turquoise;
-$clr-icon-color-highlight: $turquoise;
+  // Header
+  --clr-header-font-color: var(--black);
+  --clr-header-bg-color: var(--white);
+  --clr-header-2-bg-color: var(--white);
+  --clr-header-3-bg-color: var(--white);
+  --clr-header-4-bg-color: var(--white);
+  --clr-header-5-bg-color: var(--white);
+  --clr-header-6-bg-color: var(--white);
+  --clr-header-7-bg-color: var(--white);
 
-// Label
-$clr-label-success-bg-color: $green-light;
-$clr-label-success-font-color: $green-darkest;
-$clr-label-success-border-color: $green-light-mid;
+  // Icons
+  --clr-icon-color-success: var(--green);
+  --clr-icon-color-danger: var(--red-darker);
+  --clr-icon-color-warning: var(--yellow-light);
+  --clr-icon-color-error: var(--red-darker);
+  --clr-icon-color-info: var(--turquoise);
+  --clr-icon-color-highlight: var(--turquoise);
 
-$clr-label-warning-border-color: $yellow-light;
+  // Label
+  --clr-label-success-bg-color: var(--green-light);
+  --clr-label-success-font-color: var(--green-darkest);
+  --clr-label-success-border-color: var(--green-light-mid);
 
-$clr-label-danger-bg-color: $red-light;
+  --clr-label-warning-border-color: var(--yellow-light);
 
-$clr-label-orange-bg-color: $orange-dark;
-$clr-label-light-blue-bg-color: $blue-mid;
+  --clr-label-danger-bg-color: var(--red-light);
 
-// Links
-$clr-link-active-color: $turquoise;
-$clr-link-color: $turquoise;
-$clr-link-hover-color: $turquoise;
-$clr-link-visited-color: $turquoise-darkest;
+  --clr-label-orange-bg-color: var(--orange-dark);
+  --clr-label-light-blue-bg-color: var(--blue-mid);
 
-// Notification
-$clr-notification-progress-info-bar-color: $blue-darker;
+  // Links
+  --clr-link-active-color: var(--turquoise);
+  --clr-link-color: var(--turquoise);
+  --clr-link-hover-color: var(--turquoise);
+  --clr-link-visited-color: var(--turquoise-darkest);
 
-// Progress bar
-$clr-progress-defaultBarColor: $turquoise;
-$clr-progress-success-color: $green-mid;
-$clr-progress-danger-color: $red-darkest;
-$clr-progress-warning-color: $orange-darker;
+  // Notification
+  --clr-notification-progress-info-bar-color: var(--blue-darker);
 
-// Radiobutton
-$clr-forms-radio-selected-shadow: $clr-forms-checkbox-checked-shadow; // selected-background-color
+  // Progress bar
+  --clr-progress-default-color: var(--turquoise);
+  --clr-progress-alt-color-1: var(--green-mid);
+  --clr-progress-alt-color-2: var(--red-darkest);
+  --clr-progress-alt-color-3: var(--orange-darker);
 
-// Sidenav
-$clr-sidenav-link-hover-color: $clr-global-selection-color;
+  // Radiobutton
+  --clr-forms-radio-selected-shadow: var(--clr-forms-checkbox-checked-shadow); // selected-background-color
 
-// Signposts
-$clr-signpost-action-hover-color: $turquoise;
+  // Sidenav
+  --clr-sidenav-link-hover-color: var(--clr-global-selection-color);
 
-// Spinner
-$clr-spinner-color: $turquoise;
+  // Signposts
+  --clr-signpost-action-hover-color: var(--turquoise);
 
-// Stack View
-$clr-stack-view-stack-block-expanded-bg-color: $turquoise-light;
-$clr-stack-view-stack-block-expandable-hover: $clr-global-selection-color;
+  // Spinner
+  --clr-spinner-color: var(--turquoise);
 
-// Subnav
-$clr-nav-active-box-shadow-color: $turquoise;
+  // Stack View
+  --clr-stack-view-stack-block-expanded-bg-color: var(--turquoise-light);
+  --clr-stack-view-stack-block-expandable-hover: var(--clr-global-selection-color);
 
-// Text
-$clr-text-color-primary: $turquoise;
-$clr-text-color-success: $green;
-$clr-text-color-info: $turquoise;
-$clr-text-color-warning: $yellow-light;
-$clr-text-color-danger: $red-darker;
+  // Subnav
+  --clr-nav-active-box-shadow-color: var(--turquoise);
 
-// Toggle
-$clr-toggle-bg-color-on: $turquoise;
+  // Text
+  --clr-text-color-primary: var(--turquoise);
+  --clr-text-color-success: var(--green);
+  --clr-text-color-info: var(--turquoise);
+  --clr-text-color-warning: var(--yellow-light);
+  --clr-text-color-danger: var(--red-darker);
 
-// Tree View
-$clr-tree-link-hover-color: $clr-global-selection-color;
-$clr-tree-link-selection-color: $clr-global-selection-color;
+  // Toggle
+  --clr-toggle-bg-color-on: var(--turquoise);
 
-// Wizard
-$clr-wizard-stepnav-active-bgcolor: $clr-global-selection-color;
+  // Tree View
+  --clr-tree-link-hover-color: var(--clr-global-selection-color);
+  --clr-tree-link-selection-color: var(--clr-global-selection-color);
+
+  // Wizard
+  --clr-wizard-stepnav-active-bgcolor: var(--clr-global-selection-color);
+}

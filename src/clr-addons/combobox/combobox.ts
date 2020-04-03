@@ -13,23 +13,23 @@ import {
   EventEmitter,
   HostBinding,
   HostListener,
+  Injector,
   Input,
   OnDestroy,
   OnInit,
-  Optional,
   Output,
   PLATFORM_ID,
   ViewChild,
 } from '@angular/core';
 import {
   ClrLabel,
-  ɵbg as ControlIdService,
-  ɵbh as LayoutService,
-  ɵbi as NgControlService,
-  ɵbj as IfErrorService,
-  ɵbo as ControlClassService,
-  ɵe as IfOpenService,
-  ɵi as POPOVER_HOST_ANCHOR,
+  ClrPopoverToggleService,
+  ɵba as LayoutService,
+  ɵbb as NgControlService,
+  ɵbc as IfErrorService,
+  ɵbe as ControlClassService,
+  ɵe as POPOVER_HOST_ANCHOR,
+  ɵz as ControlIdService,
 } from '@clr/angular';
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -51,11 +51,17 @@ export function comboboxDomAdapterFactory(platformId: Object) {
   }
 }
 
+/**
+ * @deprecated in v7.0
+ * This component is deprecated, do not use it anymore.
+ * Instead use Clarity's Data List Component: {@link https://clarity.design/documentation/datalist}.
+ * Will be removed with version 8!
+ */
 @Component({
   selector: 'clr-combobox',
   templateUrl: './combobox.html',
   providers: [
-    IfOpenService,
+    ClrPopoverToggleService,
     { provide: POPOVER_HOST_ANCHOR, useExisting: ElementRef },
     OptionSelectionService,
     { provide: ComboboxDomAdapter, useFactory: comboboxDomAdapterFactory, deps: [PLATFORM_ID] },
@@ -74,9 +80,9 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
   @Input('clrAllowUserEntry') allowUserEntry: boolean = false;
   @Input('clrPreselectedValue') preselectedValue: T;
   @Input('clrMobileBehaviourMode') mobileBehaviourMode: MobileBehaviourMode = MobileBehaviourMode.DEFAULT;
+  @Input('clrDisabled') disabled = false;
   @Output('clrSelectedOption') selectedOption: EventEmitter<ClrOption<T>> = new EventEmitter<ClrOption<T>>();
   @Output('clrEnteredValue') enteredValue: EventEmitter<string> = new EventEmitter<string>();
-  @Input('clrDisabled') disabled = false;
 
   @HostBinding('class.clr-empty') noSearchResults: boolean;
 
@@ -88,13 +94,21 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
   private subscriptions: Subscription[] = [];
   selectedValue: T = this.preselectedValue;
 
+  private layoutService: LayoutService;
+  private controlClassService: ControlClassService;
+
   constructor(
-    private ifOpenService: IfOpenService,
+    private popoverToggleService: ClrPopoverToggleService,
     private optionSelectionService: OptionSelectionService<T>,
-    @Optional() private layoutService: LayoutService,
     private domAdapter: ComboboxDomAdapter,
-    private controlClassService: ControlClassService
-  ) {}
+    private injector: Injector
+  ) {
+    console.warn('The ClrCombobox is deprecated as of clr-addons version 7. Use the ClrDataList instead!');
+    // We have to inject obfuscated imports this way,
+    // otherwise ivy compilation does not work for applications using clarity-addons!
+    this.layoutService = injector.get(LayoutService);
+    this.controlClassService = injector.get(ControlClassService);
+  }
 
   private initializeSubscriptions(): void {
     this.subscriptions.push(
@@ -108,7 +122,7 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
           this.enteredValue.emit(value);
         }
         if (value !== null) {
-          this.ifOpenService.open = true;
+          this.popoverToggleService.open = true;
         }
       })
     );
@@ -128,14 +142,12 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
     }
   }
 
-  private registerPopoverIgnoredInput() {
-    if (this.input) {
-      this.ifOpenService.registerIgnoredElement(this.input);
-    }
+  showOptions(): boolean {
+    return this.popoverToggleService.open;
   }
 
   toggleOptionsMenu(event: MouseEvent): void {
-    this.ifOpenService.toggleWithEvent(event);
+    this.popoverToggleService.toggleWithEvent(event);
   }
 
   @HostListener('click')
@@ -154,11 +166,11 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
 
   navigateOptions(event: KeyboardEvent): boolean {
     if (event.keyCode === DOWN_ARROW) {
-      this.ifOpenService.open = true;
+      this.popoverToggleService.open = true;
       this.optionSelectionService.navigateToNextOption();
       return true;
     } else if (event.keyCode === UP_ARROW) {
-      this.ifOpenService.open = true;
+      this.popoverToggleService.open = true;
       this.optionSelectionService.navigateToPreviousOption();
       return true;
     } else if (event.keyCode === ENTER) {
@@ -171,7 +183,7 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
 
   closeMenuOnTabPress(event: KeyboardEvent): boolean {
     if (event.keyCode === TAB) {
-      this.ifOpenService.open = false;
+      this.popoverToggleService.open = false;
       return true;
     }
     return false;
@@ -186,11 +198,11 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
 
   blur() {
     if (!this.allowUserEntry) {
-      if (!this.ifOpenService.open) {
+      if (!this.popoverToggleService.open) {
         this.validateInput();
       } else {
         // Wait for validation until dropdown is closed, as a click on a dropdown menu loses focus too early
-        this.ifOpenService.openChange.pipe(take(1)).subscribe(() => {
+        this.popoverToggleService.openChange.pipe(take(1)).subscribe(() => {
           this.validateInput();
         });
       }
@@ -238,7 +250,6 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
   }
 
   ngAfterContentInit() {
-    this.registerPopoverIgnoredInput();
     this.optionSelectionService.setOptions(this.options);
     this.optionsUpdatedByUser();
     this.subscriptions.push(

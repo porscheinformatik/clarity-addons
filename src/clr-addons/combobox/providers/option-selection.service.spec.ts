@@ -1,11 +1,11 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
 import { ElementRef } from '@angular/core';
-import { ɵe as IfOpenService } from '@clr/angular';
+import { ClrPopoverToggleService } from '@clr/angular';
 import { ClrOption } from '../option';
 import { OptionSelectionService } from './option-selection.service';
 
@@ -17,8 +17,8 @@ export default function() {
 
     beforeEach(() => {
       optionSelectionService = new OptionSelectionService();
-      fakeOption1 = new ClrOption(new IfOpenService(), new ElementRef(null), null, optionSelectionService);
-      fakeOption2 = new ClrOption(new IfOpenService(), new ElementRef(null), null, optionSelectionService);
+      fakeOption1 = new ClrOption(new ClrPopoverToggleService(), new ElementRef(null), null, optionSelectionService);
+      fakeOption2 = new ClrOption(new ClrPopoverToggleService(), new ElementRef(null), null, optionSelectionService);
     });
 
     it('provides an observable to notify that selected option has been changed', () => {

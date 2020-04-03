@@ -1,8 +1,5 @@
 @import './variables.color';
 
-// Custom theme
-@import './theme.clarity';
-
 // Clarity Component
 @import '../../../../node_modules/@clr/ui/src/utils/components.clarity';
 
@@ -11,6 +8,9 @@
 
 // Clarity Addons Component
 @import '../../components.clr-addons';
+
+// Custom theme
+@import './theme.clarity';
 
 // Custom CSS overrides
 @import './css.overrides';

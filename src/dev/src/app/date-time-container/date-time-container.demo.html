@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+  ~ Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
@@ -12,7 +12,7 @@
     <input clrInput class="clr-col-2" type="text" [(ngModel)]="inputText" name="inputName" required minlength="5" />
     <clr-control-helper>Helper text that shows while it is pristine and valid</clr-control-helper>
     <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
-    <clr-control-error *clrIfError="'minlength'">Error message about requiring 5 characters </clr-control-error>
+    <clr-control-error *clrIfError="'minlength'">Error message about requiring 5 characters</clr-control-error>
   </clr-input-container>
   <clr-textarea-container class="clr-col-12">
     <label class="required">Textarea label</label>
@@ -32,7 +32,7 @@
   </clr-password-container>
   <clr-select-container class="clr-col-12">
     <label class="required">Select label</label>
-    <select clrSelect class="clr-col-2" name="options" [(ngModel)]="selectOption">
+    <select clrSelect class="clr-col-2" name="options" [(ngModel)]="selectedOption">
       <option value="one">One</option>
       <option value="two">Two</option>
       <option value="three">Three</option>
@@ -84,6 +84,29 @@
       <label for="toggle" class="clr-col-none"></label>
     </clr-toggle-wrapper>
   </clr-toggle-container>
+  <clr-combobox
+    class="clr-col-12 clr-row"
+    clrControlClasses="clr-col-2"
+    (clrSelectedOption)="selectOption($event)"
+    [clrPreselectedValue]="'Option 7'"
+  >
+    <label>Combobox</label>
+    <clr-options>
+      <clr-option *ngFor="let option of values$ | async" [clrValue]="option">{{option}}</clr-option>
+      <div class="clr-no-results">No search results found</div>
+    </clr-options>
+    <clr-control-error>Select a value</clr-control-error>
+  </clr-combobox>
+
+  <clr-datalist-container class="clr-col-12">
+    <label>Template Datalist</label>
+    <input class="clr-col-2" minlength="4" name="Option" required clrDatalistInput [(ngModel)]="dataList" />
+    <datalist>
+      <option *ngFor="let item of values$ | async" [value]="item"></option>
+    </datalist>
+    <clr-control-helper>Helper text</clr-control-helper>
+    <clr-control-error>There was an error</clr-control-error>
+  </clr-datalist-container>
 </form>
 
 <form clrForm [clrLayout]="'horizontal'" class="clr-row">
@@ -197,7 +220,7 @@
   <clr-date-time-container class="clr-col-6 clr-row">
     <clr-date-container>
       <label class="clr-col-4">Date & time</label>
-      <input class="clr-col-4" clrDate type="date" />
+      <input class="clr-col-8" clrDate type="date" />
     </clr-date-container>
     <input clrTime type="time" />
   </clr-date-time-container>
@@ -239,6 +262,19 @@
         </clr-date-container>
         <input clrTime type="time" />
       </clr-date-time-container>
+
+      <clr-combobox
+        class="clr-row clr-col-12"
+        (clrSelectedOption)="selectOption($event)"
+        [clrPreselectedValue]="'Option 7'"
+      >
+        <label>Combobox</label>
+        <clr-options>
+          <clr-option *ngFor="let option of values$ | async" [clrValue]="option">{{option}}</clr-option>
+          <div class="clr-no-results">No search results found</div>
+        </clr-options>
+        <clr-control-error>Select a value</clr-control-error>
+      </clr-combobox>
     </form>
 
     <h4>Vertical Form</h4>

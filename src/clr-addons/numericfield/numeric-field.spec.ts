@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -51,6 +51,7 @@ describe('NumericComponent', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(TestComponent);
+    fixture.componentInstance.component.onTouched = () => {};
     inputEl = fixture.debugElement.query(By.css('input'));
     fixture.detectChanges();
   });

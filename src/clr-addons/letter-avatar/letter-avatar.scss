@@ -9,7 +9,7 @@
 
   background-color: lightgray;
   border-radius: 100%;
-  color: $clr-white;
+  color: var(--white);
   font-weight: 500;
   letter-spacing: normal;
   text-transform: uppercase;
@@ -19,6 +19,6 @@
 :hover,
 :focus-within {
   > .clr-avatar .avatar-initials {
-    background-color: $clr-btn-link-color;
+    background-color: var(--clr-btn-link-color);
   }
 }

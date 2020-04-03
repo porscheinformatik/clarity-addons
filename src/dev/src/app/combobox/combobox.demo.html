@@ -15,9 +15,7 @@
 <form clrForm>
   <clr-combobox
     class="clr-col-12 clr-row"
-    (clrSelectedOption)="selectedOption = $event"
-    (clrEnteredValue)="enteredValue = $event"
-    [clrAllowUserEntry]="false"
+    (clrSelectedOption)="selectOption($event)"
     [clrPreselectedValue]="'Option 7'"
   >
     <label>Do not allow user entry</label>
@@ -27,9 +25,8 @@
     </clr-options>
     <clr-control-error>Select a value</clr-control-error>
   </clr-combobox>
-  <br /><br />Selected option: {{selectedOption?.value}} <br />Manually entered value (will not be emitted):
-  {{enteredValue}}
-  <br />
+  <br /><br />Selected option: {{selectedOption?.value}} <br /><br />
+
   <clr-combobox
     class="clr-col-12 clr-row clr-col-sm-4"
     (clrSelectedOption)="selectedOptionUser = $event"
@@ -46,6 +43,7 @@
     </clr-options>
   </clr-combobox>
   <br /><br />Selected option: {{selectedOptionUser?.value}} <br />Manually entered value: {{enteredValueUser}}
+
   <clr-combobox class="clr-col-12 clr-row" [clrPreselectedValue]="'Option 3'" [clrAllowUserEntry]="false">
     <label>Preselected value</label>
     <clr-options>

@@ -5,18 +5,18 @@
     }
 
     button:disabled {
-      border-color: $clr-btn-default-color;
+      border-color: var(--clr-btn-default-color);
       opacity: 1;
     }
   }
   @media (hover: none) {
     .pager .btn:not(.btn-primary):hover {
-      background-color: $clr-btn-default-bg-color;
-      color: $clr-btn-default-color;
+      background-color: var(--clr-btn-default-bg-color);
+      color: var(--clr-btn-default-color);
     }
     .pager .btn.btn-primary:hover {
-      background-color: $clr-btn-primary-bg-color;
-      color: $clr-btn-primary-color;
+      background-color: var(--clr-btn-primary-bg-color);
+      color: var(--clr-btn-primary-color);
     }
   }
 }

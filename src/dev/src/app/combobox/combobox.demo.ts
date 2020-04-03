@@ -1,12 +1,12 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component } from '@angular/core';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { MobileBehaviourMode } from '@porscheinformatik/clr-addons';
+import { ClrOption, MobileBehaviourMode } from '@porscheinformatik/clr-addons';
 
 @Component({ templateUrl: './combobox.demo.html' })
 export class ComboboxDemo {
@@ -16,4 +16,16 @@ export class ComboboxDemo {
   mobileBehaviourModeRadioBox = MobileBehaviourMode.DEFAULT;
   userEntryAllowedRadioBox = false;
   disabled = true;
+
+  selectedOption: ClrOption<string>;
+
+  selectedOptionMobile: ClrOption<string>;
+  enteredValueMobile: string;
+
+  selectedOptionUser: ClrOption<string>;
+  enteredValueUser: string;
+
+  selectOption(value: ClrOption<string>) {
+    this.selectedOption = value;
+  }
 }

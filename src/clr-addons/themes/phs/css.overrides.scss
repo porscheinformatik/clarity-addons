@@ -1,13 +1,9 @@
-$phs-border-radius: 0.5rem;
-$phs-card-border-radius: 0.25rem;
-$phs-button-border-radius: 0.25rem;
-
 .header-hamburger-trigger,
 .header-overflow-trigger {
   & > span,
   & > span::before,
   & > span::after {
-    background: $clr-black;
+    background: var(--black);
   }
 }
 
@@ -16,26 +12,26 @@ $phs-button-border-radius: 0.25rem;
   & > span,
   & > span::before,
   & > span::after {
-    background: $clr-white;
+    background: var(--white);
   }
 }
 
 .header .header-nav .nav-link.active {
-  background: $clr-global-selection-color;
+  background: var(--clr-global-selection-color);
 }
 
 header,
 .header {
   .header-actions {
     > .dropdown > .nav-icon {
-      color: $turquoise-darkest;
+      color: var(--turquoise-darkest);
     }
     .nav-icon {
-      color: $turquoise-darkest;
+      color: var(--turquoise-darkest);
     }
   }
   .settings .nav-icon {
-    color: $turquoise-darkest;
+    color: var(--turquoise-darkest);
   }
   .branding {
     min-width: 4rem;
@@ -43,130 +39,130 @@ header,
 }
 
 .card {
-  border-radius: $phs-card-border-radius;
+  border-radius: var(--phs-card-border-radius);
 
   &.clickable:hover {
-    box-shadow: 0 0.125rem 0 0 $clr-card-active-border-color;
-    border-color: $clr-card-active-border-color;
+    box-shadow: 0 0.125rem 0 0 var(--clr-card-active-border-color);
+    border-color: var(--clr-card-active-border-color);
   }
 
   &.selectable:hover::after,
   &.card-active::after {
     top: 0;
-    border-top-left-radius: $phs-card-border-radius;
-    border-bottom-left-radius: $phs-card-border-radius;
+    border-top-left-radius: var(--phs-card-border-radius);
+    border-bottom-left-radius: var(--phs-card-border-radius);
   }
 }
 
 .card-img {
   &:first-child > img {
-    border-radius: $phs-card-border-radius $phs-card-border-radius 0 0;
+    border-radius: var(--phs-card-border-radius) var(--phs-card-border-radius) 0 0;
   }
 
   &:last-child > img {
-    border-radius: 0 0 $phs-card-border-radius $phs-card-border-radius;
+    border-radius: 0 0 var(--phs-card-border-radius) var(--phs-card-border-radius);
   }
 }
 
 .card.card-img,
 .card > .card-img:first-child:last-child {
   & > img {
-    border-radius: $phs-card-border-radius;
+    border-radius: var(--phs-card-border-radius);
   }
 }
 
 .btn {
-  border-radius: $phs-button-border-radius;
+  border-radius: var(--phs-button-border-radius);
 }
 
 .datagrid .datagrid-table .datagrid-column {
   .datagrid-filter-toggle {
     &:hover {
-      color: $turquoise;
+      color: var(--turquoise);
     }
 
     &.datagrid-filter-open {
-      color: $turquoise;
+      color: var(--turquoise);
     }
 
     &.datagrid-filtered {
-      color: $turquoise;
+      color: var(--turquoise);
     }
   }
 
   .datagrid-column-title .sort-icon {
-    color: $turquoise;
+    color: var(--turquoise);
   }
 }
 
 .datagrid-footer .column-switch-wrapper {
   &.active .column-toggle--action {
-    color: $turquoise;
+    color: var(--turquoise);
   }
   .column-toggle--action:hover {
-    color: $turquoise;
+    color: var(--turquoise);
   }
 }
 
 .spinner.spinner-inverse {
-  background: generateSpinnerIcon($clr-white, $clr-spinner-color);
+  background: generateSpinnerIcon(var(--white), var(--clr-spinner-color));
 }
 
 clr-tooltip clr-icon {
-  color: $turquoise;
+  color: var(--turquoise);
 }
 
 // Use !important because the clr-icons.css is higher priority otherwise
 clr-icon {
   &.is-green,
   &.is-success {
-    fill: $clr-icon-color-success !important;
+    fill: var(--clr-icon-color-success) !important;
   }
   &.is-danger {
-    fill: $clr-icon-color-danger !important;
+    fill: var(--clr-icon-color-danger) !important;
   }
   &.is-red,
   &.is-error {
-    fill: $clr-icon-color-error !important;
+    fill: var(--clr-icon-color-error) !important;
   }
   &.is-warning {
-    fill: $clr-icon-color-warning !important;
+    fill: var(--clr-icon-color-warning) !important;
   }
   &.is-blue,
   &.is-info {
-    fill: $clr-icon-color-info !important;
+    fill: var(--clr-icon-color-info) !important;
   }
   &.is-highlight {
-    fill: $clr-icon-color-highlight !important;
+    fill: var(--clr-icon-color-highlight) !important;
   }
 }
 
 .alert-app-level.alert-success {
-  background: $green-light-mid;
+  background: var(--green-light-mid);
 }
 
 .label.label-orange > .badge,
 a.label.label-orange > .badge {
-  color: $clr-badge-font-color-light;
+  color: var(--clr-badge-font-color-light);
 }
 
 // Bootstrap text color overrides
 .text-primary {
-  color: $clr-text-color-primary !important;
+  color: var(--clr-text-color-primary) !important;
 }
 
 .text-success {
-  color: $clr-text-color-success !important;
+  color: var(--clr-text-color-success) !important;
 }
 
 .text-info {
-  color: $clr-text-color-info !important;
+  color: var(--clr-text-color-info) !important;
 }
 
 .text-warning {
-  color: $clr-text-color-warning !important;
+  color: var(--clr-text-color-warning) !important;
 }
 
 .text-danger {
-  color: $clr-text-color-danger !important;
+  color: var(--clr-text-color-danger) !important;
 }

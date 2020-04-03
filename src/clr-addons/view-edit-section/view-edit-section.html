@@ -9,7 +9,7 @@
           class="btn btn-icon btn-link ves-action"
           *ngIf="_editable && !_editMode && actionBlock.children.length == 0"
         >
-          <clr-icon class="ves-edit-icon" [attr.shape]="_editIcon" size="24"></clr-icon>
+          <clr-icon class="ves-edit-icon" [attr.shape]="_editIcon" size="20"></clr-icon>
         </button>
         <div #actionBlock>
           <ng-content select="[action-block]"></ng-content>

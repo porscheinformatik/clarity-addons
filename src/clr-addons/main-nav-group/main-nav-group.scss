@@ -35,8 +35,8 @@
           transform: unset;
           top: 0;
           left: 0.2rem;
-          width: 0.416667rem;
-          height: 0.416667rem;
+          width: 0.5rem;
+          height: 0.5rem;
         }
       }
 
@@ -44,21 +44,21 @@
         visibility: visible;
 
         .nav-link {
-          color: $clr-dropdown-item-color;
+          color: var(--clr-dropdown-item-color);
           opacity: 1;
-          padding: $clr-rem-1px 1rem 0;
+          padding: 1px 1rem 0;
           height: 1.25rem;
           line-height: 1.25rem;
           overflow: hidden;
           text-overflow: ellipsis;
 
           &:hover {
-            background-color: $clr-dropdown-bg-hover-color;
+            background-color: var(--clr-dropdown-bg-hover-color);
           }
 
           &.active {
-            background: $clr-dropdown-selection-color;
-            color: $clr-dropdown-active-text-color;
+            background: var(--clr-dropdown-selection-color);
+            color: var(--clr-dropdown-active-text-color);
           }
         }
       }
@@ -73,7 +73,7 @@
       height: 100vh;
 
       .nav-link .nav-text {
-        font-weight: $clr-typography-boldfont;
+        font-weight: var(--clr-font-weight-bold);
         padding-right: 1.5rem;
       }
     }

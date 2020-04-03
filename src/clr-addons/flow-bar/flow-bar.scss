@@ -35,7 +35,7 @@
       }
 
       .flow-bar-step {
-        box-shadow: 0 -0.1667rem 0 $clr-nav-box-shadow-color inset;
+        box-shadow: 0 -0.35rem 0 var(--clr-nav-box-shadow-color) inset;
         display: flex;
         align-items: center;
         overflow: hidden;
@@ -49,12 +49,12 @@
 
         &:hover,
         &.active {
-          box-shadow: 0 -0.1667rem 0 $clr-nav-active-box-shadow-color inset;
+          box-shadow: 0 -0.35rem 0 var(--clr-nav-active-box-shadow-color) inset;
           transition: box-shadow 0.2s ease-in;
         }
 
         &:focus-within {
-          box-shadow: 0 -0.1667rem 0 $clr-nav-active-box-shadow-color inset;
+          box-shadow: 0 -0.35rem 0 var(--clr-nav-active-box-shadow-color) inset;
           transition: box-shadow 0.2s ease-in;
           outline: none;
         }
@@ -62,9 +62,9 @@
         .flow-bar-btn {
           border: none;
           padding: 0 1rem;
-          color: $clr-nav-link-color;
+          color: var(--clr-nav-link-color);
           text-transform: none;
-          font-size: 0.6rem;
+          font-size: 0.7rem;
           font-weight: 400;
           letter-spacing: normal;
           min-width: 0;
@@ -72,7 +72,7 @@
           &:hover,
           &.active {
             background-color: transparent;
-            color: $clr-nav-link-active-color;
+            color: var(--clr-nav-link-active-color);
           }
 
           &:focus {
@@ -86,7 +86,7 @@
 
           // This moves the box shadow the required distance down to line up with the border
           &.btn {
-            margin: 0 0 $clr-global-borderwidth 0;
+            margin: 0 0 var(--clr-global-borderwidth) 0;
           }
         }
       }

@@ -12,6 +12,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist/dev",
             "index": "src/dev/src/index.html",
             "main": "src/dev/src/main.ts",
@@ -42,7 +43,8 @@
               "includePaths": ["node_modules"]
             },
             "scripts": [
-              "node_modules/@webcomponents/custom-elements/custom-elements.min.js",
+              "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js",
+              "node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js",
               "node_modules/@clr/icons/clr-icons.min.js",
               "node_modules/prismjs/prism.js",
               "node_modules/prismjs/components/prism-typescript.min.js",
@@ -51,6 +53,12 @@
           },
           "configurations": {
             "production": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
               "fileReplacements": [
                 {
                   "replace": "src/dev/src/environments/environment.ts",
@@ -124,7 +132,7 @@
           },
           "configurations": {
             "production": {
-              "project": "src/clr-addons/ng-package.prod.json"
+              "tsConfig": "src/clr-addons/tsconfig.lib.prod.json"
             }
           }
         },
@@ -139,7 +147,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["src/clr-addons/tsconfig.lint.json", "src/clr-addons/tsconfig.spec.json"],
+            "tsConfig": ["src/clr-addons/tsconfig.lib.json", "tsconfig.spec.json"],
             "exclude": ["**/node_modules/**"]
           }
         }
@@ -148,7 +156,7 @@
   },
   "schematics": {
     "@schematics/angular:component": {
-      "styleext": "css"
+      "style": "css"
     }
   },
   "defaultProject": "dev"
