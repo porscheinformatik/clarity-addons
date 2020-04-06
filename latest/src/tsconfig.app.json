@@ -3,9 +3,14 @@
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "baseUrl": "./",
-    "module": "esnext",
     "resolveJsonModule": true,
   },
-  "exclude": ["prerender.ts", "server.ts"]
+  "files": [
+    "main.ts",
+    "polyfills.ts"
+  ],
+  "include": [
+    "src/**/*.d.ts"
+  ]
 }
   
