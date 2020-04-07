@@ -50,7 +50,7 @@ export class ClrGenericQuickList<T extends ClrGenericQuickListItem> implements O
   }
 
   ngAfterViewInit() {
-    this.setFocusOnAdd();
+    setTimeout(() => this.setFocusOnAdd(), 1);
   }
 
   addItem() {
