@@ -14,7 +14,7 @@ import { ClrBreadcrumbModel } from './breadcrumb-model.interface';
 export class ClrBreadcrumbService {
   breadcrumbChange: Subject<ClrBreadcrumbModel[]> = new Subject();
 
-  updateBreadcrumb(breadcrumbElements: ClrBreadcrumbModel[]) {
+  updateBreadcrumb(breadcrumbElements: ClrBreadcrumbModel[]): void {
     this.breadcrumbChange.next(breadcrumbElements);
   }
 }

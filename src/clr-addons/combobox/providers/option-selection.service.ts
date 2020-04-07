@@ -15,7 +15,7 @@ export class OptionSelectionService<T> implements OnDestroy {
   private currentOption: ClrOption<T>;
   private currentSearchValue: string;
   private currentNavigatedOption: ClrOption<T>;
-  private _currentNavigatedOptionIndex: number = -1;
+  private _currentNavigatedOptionIndex = -1;
   private navigatableOptions: ClrOption<T>[];
 
   private optionsSubscription: Subscription;
@@ -28,7 +28,7 @@ export class OptionSelectionService<T> implements OnDestroy {
     return this._selectionChanged.asObservable();
   }
 
-  setSelection(option: ClrOption<T>) {
+  setSelection(option: ClrOption<T>): void {
     if (this.currentOption === option) {
       return;
     }
@@ -49,7 +49,7 @@ export class OptionSelectionService<T> implements OnDestroy {
     return this._searchValueChanged.asObservable();
   }
 
-  setSearchValue(value: string, resetSelection: boolean = true) {
+  setSearchValue(value: string, resetSelection = true): void {
     if (this.currentSearchValue === value || (this.currentOption && this.currentOption.getDisplayedText()) === value) {
       return;
     }
@@ -89,11 +89,11 @@ export class OptionSelectionService<T> implements OnDestroy {
 
   // Using an index to keep track of currently navigated option
   // Otherwise going up and down requires looping through all options
-  get currentNavigatedOptionIndex() {
+  get currentNavigatedOptionIndex(): number {
     return this._currentNavigatedOptionIndex;
   }
 
-  setOptions(options: ClrOptions<T>) {
+  setOptions(options: ClrOptions<T>): void {
     this.options = options;
 
     if (this.optionsSubscription) {
@@ -113,7 +113,7 @@ export class OptionSelectionService<T> implements OnDestroy {
     return this._navigatableOptionsChanged.asObservable();
   }
   // This updates the internal navigatable option elements (only do this on changes)
-  updateNavigatableOptions() {
+  updateNavigatableOptions(): void {
     if (this.options) {
       this.navigatableOptions = this.options.options.filter(opt => !opt.hidden);
       this._navigatableOptionsChanged.next(this.navigatableOptions ? this.navigatableOptions.length : 0);
@@ -121,7 +121,7 @@ export class OptionSelectionService<T> implements OnDestroy {
     this.currentNavigatedOptionIndex = -1;
   }
 
-  navigateToNextOption() {
+  navigateToNextOption(): void {
     if (this.navigatableOptions) {
       if (this.currentNavigatedOptionIndex + 1 < this.navigatableOptions.length) {
         this.currentNavigatedOptionIndex++;
@@ -129,13 +129,13 @@ export class OptionSelectionService<T> implements OnDestroy {
     }
   }
 
-  navigateToPreviousOption() {
+  navigateToPreviousOption(): void {
     if (this.currentNavigatedOptionIndex > 0) {
       this.currentNavigatedOptionIndex--;
     }
   }
 
-  selectActiveOption() {
+  selectActiveOption(): void {
     if (
       this.navigatableOptions &&
       this.currentNavigatedOptionIndex > -1 &&
@@ -145,7 +145,7 @@ export class OptionSelectionService<T> implements OnDestroy {
     }
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if (this.optionsSubscription) {
       this.optionsSubscription.unsubscribe();
     }

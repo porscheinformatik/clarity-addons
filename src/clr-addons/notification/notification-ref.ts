@@ -55,7 +55,7 @@ export class ClrNotificationRef {
     }
   }
 
-  private _removeModalElements() {
+  private _removeModalElements(): void {
     const notificationNativeEl = this._notificationCmptRef.location.nativeElement;
     notificationNativeEl.parentNode.removeChild(notificationNativeEl);
     this._notificationCmptRef.destroy();

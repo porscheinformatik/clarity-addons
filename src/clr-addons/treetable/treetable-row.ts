@@ -32,19 +32,19 @@ export class ClrTreetableRow {
 
   @Input('clrExpandable') expandable = false;
 
-  private toggleExpand() {
+  private toggleExpand(): void {
     if (this.expandable) {
       this.expanded = !this.expanded;
     }
   }
 
-  onRowClick() {
+  onRowClick(): void {
     if (this.clickable) {
       this.toggleExpand();
     }
   }
 
-  onCaretClick() {
+  onCaretClick(): void {
     if (!this.clickable) {
       this.toggleExpand();
     }

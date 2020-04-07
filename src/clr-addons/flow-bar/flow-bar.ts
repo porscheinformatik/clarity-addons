@@ -26,7 +26,7 @@ export class ClrFlowBar implements OnInit {
   @Input('clrActiveStep') _activeStep: ClrFlowBarStep;
   @Output('clrActiveStepChange') _activeStepChange: EventEmitter<ClrFlowBarStep> = new EventEmitter(false);
 
-  ngOnInit() {
+  ngOnInit(): void {
     // If no active step is set as input or the active step is not enabled, select the first enabled step
     if (!this._activeStep || !this._activeStep.enabled) {
       this._activeStep = this._steps.find(step => {
@@ -97,6 +97,7 @@ export class ClrFlowBar implements OnInit {
         return true;
       }
     }
+    return false;
   }
 
   public isNextAvailable(): boolean {
@@ -108,6 +109,7 @@ export class ClrFlowBar implements OnInit {
         return true;
       }
     }
+    return false;
   }
 
   public isLastStep(): boolean {

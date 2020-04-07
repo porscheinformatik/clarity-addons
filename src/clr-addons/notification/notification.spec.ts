@@ -42,7 +42,7 @@ describe('NotificationComponent', () => {
     fixture.detectChanges();
   });
 
-  function checkNotification(notificationType: string, progressbar: boolean, dismissable: boolean) {
+  function checkNotification(notificationType: string, progressbar: boolean, dismissable: boolean): void {
     const notifEl = document.getElementsByTagName('clr-notification').item(0);
 
     expect(notifEl.querySelector('.alert.alert-' + notificationType)).toBeTruthy();

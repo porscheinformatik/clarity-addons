@@ -12,7 +12,7 @@ import { ClrNumericFieldValidators } from '@porscheinformatik/clr-addons';
   templateUrl: './numericfield.demo.html',
 })
 export class NumericFieldDemo {
-  input: number = 123.99999;
+  input = 123.99999;
   modalOpen = false;
 
   exampleForm = new FormGroup({
@@ -25,7 +25,7 @@ export class NumericFieldDemo {
     }),
   });
 
-  submitForm() {
+  submitForm(): void {
     console.log(this.exampleForm);
   }
 }

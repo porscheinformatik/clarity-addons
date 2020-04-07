@@ -42,9 +42,9 @@ export class PagedSearchResultListDemo {
     'Lottie',
     'Genoveva',
   ];
-  pageSize: number = 5;
+  pageSize = 5;
   pagedItems: string[] = [];
-  currentPage: number = 1;
+  currentPage = 1;
 
   onPageChanged(page: any): void {
     this.currentPage = page;

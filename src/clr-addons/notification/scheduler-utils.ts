@@ -19,6 +19,7 @@ class OutsideAngularZoneScheduler implements SchedulerLike {
   }
 
   schedule(...args: any[]): Subscription {
+    // eslint-disable-next-line prefer-spread
     return this.zone.runOutsideAngular(() => this.scheduler.schedule.apply(this.scheduler, args));
   }
 }
@@ -34,6 +35,7 @@ class InsideAngularZoneScheduler implements SchedulerLike {
   }
 
   schedule(...args: any[]): Subscription {
+    // eslint-disable-next-line prefer-spread
     return this.zone.run(() => this.scheduler.schedule.apply(this.scheduler, args));
   }
 }

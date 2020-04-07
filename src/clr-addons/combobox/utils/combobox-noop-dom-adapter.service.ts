@@ -14,11 +14,13 @@ import { ComboboxDomAdapter } from './combobox-dom-adapter.service';
 
 @Injectable()
 export class ComboboxNoopDomAdapter implements ComboboxDomAdapter {
-  focus(element: any): void {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  focus(): void {}
 
-  clearChildren(element: any): void {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  clearChildren(): void {}
 
-  cloneNode(element: any): any {
+  cloneNode(): any {
     return null;
   }
 }

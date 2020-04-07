@@ -12,12 +12,12 @@ import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/co
 })
 export class ClrViewEditSection {
   @Input('clrTitle') _title: string;
-  @Input('clrSaveText') _saveText: string = 'Save';
-  @Input('clrPreventModeChangeOnSave') _preventSave: boolean = false;
-  @Input('clrCancelText') _cancelText: string = 'Cancel';
-  @Input('clrEditable') _editable: boolean = true;
-  @Input('clrEditMode') _editMode: boolean = false;
-  @Input('clrEditIcon') _editIcon: string = 'pencil';
+  @Input('clrSaveText') _saveText = 'Save';
+  @Input('clrPreventModeChangeOnSave') _preventSave = false;
+  @Input('clrCancelText') _cancelText = 'Cancel';
+  @Input('clrEditable') _editable = true;
+  @Input('clrEditMode') _editMode = false;
+  @Input('clrEditIcon') _editIcon = 'pencil';
 
   @Input('clrViewRef') viewRef: TemplateRef<any>;
   @Input('clrEditRef') editRef: TemplateRef<any>;
@@ -26,23 +26,23 @@ export class ClrViewEditSection {
   @Output('clrSectionSubmitted') _submitted = new EventEmitter(false);
   @Output('clrSectionEditCancelled') _cancelled = new EventEmitter(false);
 
-  public onSubmit() {
+  public onSubmit(): void {
     this._submitted.emit();
     if (!this._preventSave) {
       this.setEditMode(false);
     }
   }
 
-  public onCancel() {
+  public onCancel(): void {
     this._cancelled.emit();
     this.setEditMode(false);
   }
 
-  public onEdit() {
+  public onEdit(): void {
     this.setEditMode(true);
   }
 
-  private setEditMode(mode: boolean) {
+  private setEditMode(mode: boolean): void {
     this._editMode = mode;
     this._editModeChanged.emit(this._editMode);
   }

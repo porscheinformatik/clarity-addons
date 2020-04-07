@@ -28,11 +28,11 @@ export interface ClrGenericQuickListItem {
   templateUrl: './generic-quick-list.html',
 })
 export class ClrGenericQuickList<T extends ClrGenericQuickListItem> implements OnInit, AfterViewInit {
-  @Input('clrAllItems') allItems = <T[]>[];
+  @Input('clrAllItems') allItems = [] as T[];
   @Input('clrAddLabel') addLabel = 'ADD (Translate me)';
   @Input('clrAddPossible') addPossible = true;
-  @Input('clrBlankItem') blankItem = <any>{};
-  @Input('clrControlClasses') controlClasses;
+  @Input('clrBlankItem') blankItem = {} as any;
+  @Input('clrControlClasses') controlClasses: string;
   @Input('clrMandatory') required = false;
 
   @Output('clrAdded') added = new EventEmitter();
@@ -43,36 +43,36 @@ export class ClrGenericQuickList<T extends ClrGenericQuickListItem> implements O
 
   rowCountFocus: number;
 
-  ngOnInit() {
+  ngOnInit(): void {
     if (this.required && this.allItems.length === 0) {
       this.addItem();
     }
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.setFocusOnAdd();
   }
 
-  addItem() {
+  addItem(): void {
     const newItem = { ...this.blankItem };
     newItem.id = Math.ceil(Math.random() * 100000);
     this.allItems.push(newItem);
     this.added.emit(newItem);
   }
 
-  removeItem(item: T) {
+  removeItem(item: T): void {
     this.allItems.splice(this.allItems.indexOf(item), 1);
     this.removed.emit(item);
   }
 
-  setFocusOnAdd() {
+  setFocusOnAdd(): void {
     this.rowCountFocus = this.itemRows.length;
     this.itemRows.changes.subscribe((els: QueryList<ElementRef>) => {
       if (els.length > this.rowCountFocus && !!els.last) {
         const firstFocusable = els.last.nativeElement.querySelector(
           "button, a, input, select, textarea, [tabindex]:not([tabindex='-1'])"
         );
-        if (!!firstFocusable) {
+        if (firstFocusable) {
           firstFocusable.focus();
         }
       }

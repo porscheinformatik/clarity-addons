@@ -22,14 +22,14 @@ export class ClrMultilingualInputValidators {
    */
   static requiredOne(): ValidatorFn {
     const validatorFn = (control: AbstractControl): ValidationErrors | null => {
-      const texts = <Map<string, string>>control.value;
+      const texts = control.value as Map<string, string>;
 
       if (!texts) {
         return null;
       }
 
       for (const text of Array.from(texts.values())) {
-        if (!!text) {
+        if (text) {
           return null;
         }
       }
@@ -53,9 +53,9 @@ export class ClrMultilingualInputValidators {
    */
   static requiredAll(): ValidatorFn {
     const validatorFn = (control: AbstractControl): ValidationErrors | null => {
-      const texts = <Map<string, string>>control.value;
+      const texts = control.value as Map<string, string>;
 
-      if (!!texts) {
+      if (texts) {
         for (const text of Array.from(texts.values())) {
           if (!text) {
             return { requiredAll: true };

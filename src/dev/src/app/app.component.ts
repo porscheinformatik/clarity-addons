@@ -19,7 +19,10 @@ export class AppComponent {
     { name: 'Clarity (dark)', href: 'assets/styles/clr-ui-dark.css' },
   ];
 
-  constructor(@Inject(DOCUMENT) private document: Document, @Inject(PLATFORM_ID) private platformId: Object) {
+  constructor(
+    @Inject(DOCUMENT) private document: Document,
+    @Inject(PLATFORM_ID) private platformId: Record<string, any>
+  ) {
     if (isPlatformBrowser(this.platformId)) {
       this.linkRef = this.document.createElement('link');
       this.linkRef.rel = 'stylesheet';
@@ -28,7 +31,7 @@ export class AppComponent {
     }
   }
 
-  setTheme(theme) {
+  setTheme(theme): void {
     this.linkRef.href = theme.href;
   }
 }

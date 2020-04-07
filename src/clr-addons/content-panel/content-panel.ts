@@ -4,8 +4,8 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'clr-content-panel',
@@ -25,14 +25,12 @@ import { animate, style, transition, trigger } from '@angular/animations';
     '[class.left]': 'direction === "left"',
   },
 })
-export class ClrContentPanel implements OnInit {
-  _open: boolean = false;
-  @Input('clrDirection') direction: string = 'right';
+export class ClrContentPanel {
+  _open = false;
+  @Input('clrDirection') direction = 'right';
 
   @Output('clrOpened') opened: EventEmitter<any> = new EventEmitter();
   @Output('clrClosed') closed: EventEmitter<any> = new EventEmitter();
-
-  ngOnInit() {}
 
   public isOpen(): boolean {
     return this._open;
@@ -62,7 +60,7 @@ export class ClrContentPanel implements OnInit {
     }
   }
 
-  resizeWindow() {
+  resizeWindow(): void {
     // this event is used by the tree table to adjust the colomns width
     window.dispatchEvent(new Event('resize'));
   }

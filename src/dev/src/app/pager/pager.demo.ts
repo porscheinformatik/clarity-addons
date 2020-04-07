@@ -43,7 +43,7 @@ export class PagerDemo {
     'Lottie',
     'Genoveva',
   ];
-  pageSize: number = 5;
+  pageSize = 5;
   pagedItems: string[] = [];
 
   onPageChanged(page: any): void {

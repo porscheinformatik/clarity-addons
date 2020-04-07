@@ -13,10 +13,10 @@ const entityMap: Map<string, string> = new Map([
   ['/', '&#x2F;'],
 ]);
 
-export function escapeHtml(source: string) {
-  return source.replace(/[&<>"'\/]/g, s => entityMap.get(s));
+export function escapeHtml(source: string): string {
+  return source.replace(/[&<>"'/]/g, s => entityMap.get(s));
 }
 
-export function escapeRegex(s: string) {
+export function escapeRegex(s: string): string {
   return String(s).replace(/[\\^$*+?.()|[\]{}]/g, '\\$&');
 }

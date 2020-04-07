@@ -24,7 +24,7 @@ export class ClrTreetable {
   private _ttRows: QueryList<ClrTreetableRow>;
 
   @ContentChildren(ClrTreetableRow, { descendants: true })
-  set ttRows(items) {
+  set ttRows(items: QueryList<ClrTreetableRow>) {
     this._ttRows = items;
     this.initClickableRows();
     this.initEmpty();
@@ -32,7 +32,7 @@ export class ClrTreetable {
 
   private initClickableRows(): void {
     if (this._ttRows) {
-      this._ttRows.forEach((ttRow, index) => {
+      this._ttRows.forEach(ttRow => {
         ttRow.clickable = this.clrClickableRows;
       });
     }

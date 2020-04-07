@@ -28,7 +28,7 @@ export class DateTimeContainerDemo {
   toggleValue: any;
   dataList: any;
 
-  selectOption(value: ClrOption<string>) {
+  selectOption(value: ClrOption<string>): void {
     this.comboboxOption = value;
   }
 }

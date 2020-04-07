@@ -24,8 +24,8 @@ import { ClrMainNavGroupModule } from './main-nav-group.module';
   `,
 })
 class TestComponent {
-  hamburgerMenu: boolean = false;
-  menuActive: boolean = false;
+  hamburgerMenu = false;
+  menuActive = false;
 }
 
 describe('ClrMainNavGroupComponent', () => {
@@ -49,14 +49,14 @@ describe('ClrMainNavGroupComponent', () => {
     fixture.destroy();
   });
 
-  function checkNavVisible(componentFixture: ComponentFixture<TestComponent>, isVisible: boolean) {
+  function checkNavVisible(componentFixture: ComponentFixture<TestComponent>, isVisible: boolean): void {
     fixture.detectChanges();
 
     const displayStyle: string = window
-      .getComputedStyle(<HTMLElement>componentFixture.nativeElement.querySelector('.nav-list'))
+      .getComputedStyle(componentFixture.nativeElement.querySelector('.nav-list') as HTMLElement)
       .getPropertyValue('visibility');
 
-    const input = <HTMLInputElement>componentFixture.nativeElement.querySelector('input[type=checkbox]');
+    const input = componentFixture.nativeElement.querySelector('input[type=checkbox]') as HTMLInputElement;
 
     if (isVisible) {
       expect(input.checked).toBeTrue();

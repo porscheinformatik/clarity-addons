@@ -22,27 +22,27 @@ export class ClrMainNavGroup implements OnInit, OnDestroy {
   private hostClickListener: () => void;
   private documentClickListener: () => void;
   private windowResizeListener: () => void;
-  private ignore;
+  private ignore: any;
 
   constructor(injector: Injector) {
     this.el = injector.get(ElementRef);
     this.renderer = injector.get(Renderer2);
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.id = ++instances;
     this.attachOutsideClickListener();
     this.attachResizeListener();
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.detachListener();
   }
 
-  onClick(event) {
+  onClick(event: any): void {
     if (event.target.classList.contains('collapsible')) {
       // toggle hidden checkbox when clickng nav group div
-      const input = <HTMLInputElement>document.getElementById(this.prefix + this.id);
+      const input = document.getElementById(this.prefix + this.id) as HTMLInputElement;
       input.checked = !input.checked;
     }
   }
@@ -57,7 +57,7 @@ export class ClrMainNavGroup implements OnInit, OnDestroy {
     return this.el.nativeElement.classList.contains('active') && this.el.nativeElement.closest('.open-hamburger-menu');
   }
 
-  private closeMenus(selector: string) {
+  private closeMenus(selector: string): void {
     selector = '.main-container:not(.open-hamburger-menu) ' + selector;
     const hiddenInputs: NodeListOf<HTMLInputElement> = document.querySelectorAll(selector);
     // tslint:disable-next-line:prefer-for-of
@@ -66,7 +66,7 @@ export class ClrMainNavGroup implements OnInit, OnDestroy {
     }
   }
 
-  private attachOutsideClickListener() {
+  private attachOutsideClickListener(): void {
     this.hostClickListener = this.renderer.listen(this.el.nativeElement, 'click', event => {
       /* close other menus when opening this one */
       this.closeMenus('[id^=' + this.prefix + ']:not(#' + this.prefix + this.id + ')');
@@ -91,11 +91,11 @@ export class ClrMainNavGroup implements OnInit, OnDestroy {
     });
   }
 
-  private attachResizeListener() {
-    this.windowResizeListener = this.renderer.listen('window', 'resize', event => {
+  private attachResizeListener(): void {
+    this.windowResizeListener = this.renderer.listen('window', 'resize', () => {
       /* when resizing window above 768, remove open-hamburger-menu when present */
       if (!window.matchMedia('(max-width: 992px)').matches) {
-        const hamburgerMenu = <Element>this.el.nativeElement.closest('.open-hamburger-menu');
+        const hamburgerMenu = this.el.nativeElement.closest('.open-hamburger-menu') as Element;
         if (hamburgerMenu) {
           hamburgerMenu.classList.remove('open-hamburger-menu');
           this.closeMenus('[id^=' + this.prefix + ']');
@@ -104,7 +104,7 @@ export class ClrMainNavGroup implements OnInit, OnDestroy {
     });
   }
 
-  private detachListener() {
+  private detachListener(): void {
     if (this.hostClickListener) {
       this.hostClickListener();
       delete this.hostClickListener;

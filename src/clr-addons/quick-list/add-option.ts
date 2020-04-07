@@ -14,7 +14,7 @@ import { ClrQuickListValue } from './add-option.service';
 export class ClrAddOption<T> {
   @Input() blankOption: ClrQuickListValue<T>;
   @Input() value: ClrQuickListValue<T>;
-  @Input() mandatory: boolean = false;
+  @Input() mandatory = false;
   @Input() allValues: Array<ClrQuickListValue<T>> = [];
   @Input() excludedValues: Array<ClrQuickListValue<T>> = [];
 
@@ -32,7 +32,7 @@ export class ClrAddOption<T> {
     return this.value.id;
   }
 
-  getValues() {
+  getValues(): ClrQuickListValue<T>[] {
     const excludedIds = this.excludedValues.filter(val => val.id !== this.value.id).map(val => val.id);
     return this.allValues.filter(val => !excludedIds.includes(val.id));
   }

@@ -24,11 +24,11 @@ export class ClrSearchField implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(private renderer: Renderer2, private inputEl: ElementRef, private ngControl: NgControl) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.setHasValueClass(!!this.inputEl.nativeElement.value);
 
     // use angular form control for change detection and input listener as fallback
-    if (!!this.ngControl) {
+    if (this.ngControl) {
       this.ngControl.valueChanges.pipe(takeUntil(this.destroyed)).subscribe(value => this.setHasValueClass(!!value));
     } else {
       this.keyupListener = this.renderer.listen(this.inputEl.nativeElement, 'input', event =>
@@ -37,19 +37,19 @@ export class ClrSearchField implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.addClassToWrapper(this.inputEl.nativeElement.parentNode);
     this.injectSearchIcon();
     this.injectDeleteIcon();
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.detachListener();
     this.destroyed.next();
     this.destroyed.complete();
   }
 
-  clearSearchInput() {
+  clearSearchInput(): void {
     this.renderer.setProperty(this.inputEl.nativeElement, 'value', '');
     this.setHasValueClass(false);
     const event = document.createEvent('Event');
@@ -57,7 +57,7 @@ export class ClrSearchField implements OnInit, OnDestroy, AfterViewInit {
     this.inputEl.nativeElement.dispatchEvent(event);
   }
 
-  private setHasValueClass(active: boolean) {
+  private setHasValueClass(active: boolean): void {
     if (active) {
       this.renderer.addClass(this.inputEl.nativeElement.parentNode, 'has-value');
     } else {
@@ -97,12 +97,12 @@ export class ClrSearchField implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  private addClassToWrapper(inputWrapper: any) {
+  private addClassToWrapper(inputWrapper: any): void {
     this.renderer.addClass(inputWrapper, 'search-input-wrapper');
   }
 
   private detachListener(): void {
-    if (!!this.keyupListener) {
+    if (this.keyupListener) {
       this.keyupListener();
       delete this.keyupListener;
     }

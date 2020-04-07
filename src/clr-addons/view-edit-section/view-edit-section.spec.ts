@@ -31,9 +31,9 @@ import { ClrViewEditSection } from './view-edit-section';
 })
 class TestComponent {
   @ViewChild(ClrViewEditSection, { static: true }) vesInstance: ClrViewEditSection;
-  title: string = 'TestTitle';
-  saveText: string = 'Test Save';
-  cancelText: string = 'Test Cancel';
+  title = 'TestTitle';
+  saveText = 'Test Save';
+  cancelText = 'Test Cancel';
 }
 
 @Component({
@@ -46,7 +46,7 @@ class TestComponent {
   `,
 })
 class EditModeComponent {
-  editMode: boolean = false;
+  editMode = false;
 }
 
 @Component({
@@ -55,7 +55,7 @@ class EditModeComponent {
   `,
 })
 class EditIconComponent {
-  editIcon: string = 'cog';
+  editIcon = 'cog';
 }
 
 @Component({
@@ -84,7 +84,7 @@ describe('ViewEditSectionComponent', () => {
     fixture.destroy();
   });
 
-  function checkMode(componentFixture: ComponentFixture<TestComponent>, isEditMode: boolean) {
+  function checkMode(componentFixture: ComponentFixture<TestComponent>, isEditMode: boolean): void {
     fixture.detectChanges();
     tick();
 

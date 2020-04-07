@@ -20,7 +20,7 @@ export class ClrLetterAvatar implements AfterViewInit {
 
   constructor(private renderer: Renderer2) {}
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.renderer.setStyle(this.avatarElement.nativeElement, 'width', this.size + 'px');
     this.renderer.setStyle(this.avatarElement.nativeElement, 'height', this.size + 'px');
   }

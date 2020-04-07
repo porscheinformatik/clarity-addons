@@ -18,8 +18,6 @@ import { ClrDataListValidators } from './data-list.validator';
 export class ClrDataListPredefinedValidatorDirective implements Validator {
   @Input() clrDataListPredefined: string[] = [];
 
-  constructor() {}
-
   validate(control: AbstractControl): { [key: string]: any } | null {
     return ClrDataListValidators.predefined(this.clrDataListPredefined)(control);
   }

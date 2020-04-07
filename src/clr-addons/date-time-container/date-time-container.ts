@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, TemplateRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Renderer2, TemplateRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'clr-date-time-container',
@@ -21,12 +21,10 @@ import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, TemplateRef, V
     '[class.date-time-container]': 'true',
   },
 })
-export class ClrDateTimeContainer implements AfterViewInit, OnInit {
+export class ClrDateTimeContainer implements AfterViewInit {
   @ViewChild('timeInput', { static: true }) timeInput: TemplateRef<any>;
 
   constructor(private renderer: Renderer2, private inputEl: ElementRef) {}
-
-  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     // Create the time input

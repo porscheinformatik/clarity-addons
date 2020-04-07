@@ -10,6 +10,6 @@ import { Component } from '@angular/core';
   templateUrl: './searchfield.demo.html',
 })
 export class SearchFieldDemo {
-  value: string = '';
-  preFilledValue: string = 'Demo text';
+  value = '';
+  preFilledValue = 'Demo text';
 }

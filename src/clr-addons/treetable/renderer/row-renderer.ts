@@ -9,6 +9,4 @@ import { TreetableCellRenderer } from './cell-renderer';
 @Directive({ selector: 'clr-tt-row' })
 export class TreetableRowRenderer {
   @ContentChildren(TreetableCellRenderer) cells: QueryList<TreetableCellRenderer>;
-
-  constructor() {}
 }
