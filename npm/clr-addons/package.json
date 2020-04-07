@@ -24,10 +24,10 @@
     "@angular/forms": "^9.0.0",
     "@angular/platform-browser": "^9.0.0",
     "@angular/platform-browser-dynamic": "^9.0.0",
-    "@clr/angular": "3.0.0",
-    "@clr/core": "3.0.0",
-    "@clr/icons": "3.0.0",
-    "@clr/ui": "3.0.0"
+    "@clr/angular": "3.1.0",
+    "@clr/core": "3.1.0",
+    "@clr/icons": "3.1.0",
+    "@clr/ui": "3.1.0"
   },
   "author": "porscheinformatik",
   "license": "MIT",
