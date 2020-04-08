@@ -23,7 +23,7 @@ export abstract class ClrMultilingualAbstract extends ClrAbstractFormComponent {
     super(injector);
   }
 
-  changeLanguage(key: string) {
+  changeLanguage(key: string): void {
     // need as the click for closing the menu is registered on a single item
     // if the language change destroys it immediately, the click won't get fired
     setTimeout(() => {
@@ -32,17 +32,17 @@ export abstract class ClrMultilingualAbstract extends ClrAbstractFormComponent {
     }, 0);
   }
 
-  setText(key: string, value: string) {
+  setText(key: string, value: string): void {
     this._texts.set(key, value);
     this.onChange(new Map(this._texts));
   }
 
-  get texts() {
+  get texts(): Map<string, string> {
     return this._texts;
   }
 
   writeValue(value: Map<string, string>): void {
-    if (!!value) {
+    if (value) {
       this._texts = new Map(value);
     }
   }

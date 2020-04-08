@@ -38,21 +38,21 @@ import { zonedInterval, zonedTimer } from './scheduler-utils';
 })
 export class ClrNotification implements OnInit {
   @ViewChild(ClrAlert, { static: true }) clrAlert: ClrAlert;
-  progressStatus: number = 0;
+  progressStatus = 0;
 
-  private step: number = 100;
+  private step = 100;
   private startTime: number;
   state: any;
   private timer: Subscription;
   private interval: Subscription;
 
   private _translate = 0;
-  get translate() {
+  get translate(): number {
     return this._translate;
   }
 
   private _height = 0;
-  get height() {
+  get height(): number {
     return this._height + 10;
   }
 
@@ -61,16 +61,16 @@ export class ClrNotification implements OnInit {
     this._heightInitalized = resolve;
   });
 
-  @Input() timeout: number = 2000;
-  @Input() notificationType: string = 'info'; // "info", "warning", "success" and "danger"
-  @Input() dismissable: boolean = false;
-  @Input() progressbar: boolean = false;
+  @Input() timeout = 2000;
+  @Input() notificationType = 'info'; // "info", "warning", "success" and "danger"
+  @Input() dismissable = false;
+  @Input() progressbar = false;
 
   @Output() closed: EventEmitter<any> = new EventEmitter();
 
   constructor(private elementRef: ElementRef, private ngZone: NgZone) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     zonedTimer(0, this.ngZone).subscribe(() => {
       this._height = this.elementRef.nativeElement.children[0].offsetHeight;
       this._heightInitalized();
@@ -116,7 +116,7 @@ export class ClrNotification implements OnInit {
     this.setCurrentPosition();
   }
 
-  private setCurrentPosition() {
+  private setCurrentPosition(): void {
     zonedTimer(300, this.ngZone).subscribe(
       () => (this.state = { value: 'currentPosition', params: { absolute: this._translate } })
     );

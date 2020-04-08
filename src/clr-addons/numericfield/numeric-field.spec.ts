@@ -51,12 +51,13 @@ describe('NumericComponent', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(TestComponent);
-    fixture.componentInstance.component.onTouched = () => {};
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    fixture.componentInstance.component.onTouched = (): void => {};
     inputEl = fixture.debugElement.query(By.css('input'));
     fixture.detectChanges();
   });
 
-  function addKey(key: string, keyCode: number) {
+  function addKey(key: string, keyCode: number): void {
     inputEl.triggerEventHandler('keydown', { key: key, keyCode: keyCode, target: inputEl.nativeElement });
     if (keyCode === 8) {
       inputEl.nativeElement.value = inputEl.nativeElement.value.substring(0, inputEl.nativeElement.value.length - 1);

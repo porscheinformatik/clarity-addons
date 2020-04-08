@@ -22,7 +22,7 @@ export class ClrProgressSpinnerComponent implements OnDestroy {
   private startTimestamp: number;
   private hideTimeout: any;
 
-  @Input('clrSize') size: string = 'sm';
+  @Input('clrSize') size = 'sm';
 
   _showSpinner: boolean;
 

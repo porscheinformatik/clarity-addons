@@ -46,7 +46,7 @@ class TestComponent {
   selectedOption: ClrOption<string>;
   enteredValue: string;
   mobileBehaviourMode: MobileBehaviourMode = MobileBehaviourMode.DEFAULT;
-  allowUserEntry: boolean = false;
+  allowUserEntry = false;
 }
 
 describe('ComboboxComponent', () => {
@@ -66,7 +66,7 @@ describe('ComboboxComponent', () => {
     fixture.detectChanges();
   });
 
-  function selectIsShown() {
+  function selectIsShown(): boolean {
     return (
       inputEl.nativeElement.classList.contains('hidden-sm') && selectEl.nativeElement.classList.contains('visible-sm')
     );

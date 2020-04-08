@@ -12,11 +12,11 @@ import { Component } from '@angular/core';
 export class ViewEditSectionDemo {
   birthdate: string;
   gender: string;
-  status: string = 'Active';
+  status = 'Active';
   terms: boolean;
   editBirthdate: string = this.birthdate;
   editGender: string;
-  editStatus: number = 1;
+  editStatus = 1;
   editTerms: boolean;
 
   first: string;
@@ -31,51 +31,51 @@ export class ViewEditSectionDemo {
   editHobby: string;
   editLicence: string;
 
-  compSectionTitle: string = 'Different components';
-  sectionTitle: string = 'Example with multiple actions';
-  addSectionTitle: string = 'Additional Data';
+  compSectionTitle = 'Different components';
+  sectionTitle = 'Example with multiple actions';
+  addSectionTitle = 'Additional Data';
 
-  compEditIcon: string = 'cog';
+  compEditIcon = 'cog';
 
   editMode: boolean;
 
-  compSectionSubmitted() {
+  compSectionSubmitted(): void {
     this.birthdate = this.editBirthdate;
     this.gender = this.editGender;
     this.status = this.editStatus === 1 ? 'Active' : 'Inactive';
     this.terms = this.editTerms;
   }
 
-  compSectionCancelled() {
+  compSectionCancelled(): void {
     this.editBirthdate = this.birthdate;
     this.editGender = this.gender;
     this.editStatus = this.status === 'Active' ? 1 : 2;
     this.editTerms = this.terms;
   }
 
-  sectionSubmitted() {
+  sectionSubmitted(): void {
     this.first = this.editFirst;
     this.last = this.editLast;
     this.email = this.editEmail;
   }
 
-  sectionCancelled() {
+  sectionCancelled(): void {
     this.editFirst = this.first;
     this.editLast = this.last;
     this.editEmail = this.email;
   }
 
-  addSectionSubmitted() {
+  addSectionSubmitted(): void {
     this.hobby = this.editHobby;
     this.licence = this.editLicence;
   }
 
-  addSectionCancelled() {
+  addSectionCancelled(): void {
     this.editHobby = this.hobby;
     this.editLicence = this.licence;
   }
 
-  onEdit() {
+  onEdit(): void {
     this.editMode = true;
   }
 }

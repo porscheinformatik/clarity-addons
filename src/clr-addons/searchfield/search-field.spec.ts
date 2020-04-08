@@ -38,7 +38,7 @@ describe('SearchComponent', () => {
     fixture.detectChanges();
   });
 
-  function addKey(key: string, keyCode: number) {
+  function addKey(key: string, keyCode: number): void {
     if (keyCode === 8) {
       inputEl.nativeElement.value = inputEl.nativeElement.value.substring(0, inputEl.nativeElement.value.length - 1);
     } else {

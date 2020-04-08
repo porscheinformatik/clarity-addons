@@ -33,7 +33,7 @@ export class ClrNotificationService {
     private _injector: Injector,
     private _applicationRef: ApplicationRef,
     private _componentFactoryResolver: ComponentFactoryResolver,
-    @Inject(DOCUMENT) private _document
+    @Inject(DOCUMENT) private _document: Document
   ) {}
 
   openNotification(content: any, options: ClrNotificationOptions = {}): ClrNotificationRef {
@@ -62,7 +62,7 @@ export class ClrNotificationService {
     return notificationRef;
   }
 
-  private _afterClose(notification: ClrNotification) {
+  private _afterClose(notification: ClrNotification): void {
     this.elements.delete(notification);
 
     this.elements.forEach(el => {
@@ -101,7 +101,7 @@ export class ClrNotificationService {
     return containerCmptRef;
   }
 
-  private _applyWindowOptions(notificationInstance: ClrNotification, options: Object): void {
+  private _applyWindowOptions(notificationInstance: any, options: Record<string, any>): void {
     this._notificationAttributes.forEach((optionName: string) => {
       if (options[optionName] !== undefined && options[optionName] != null) {
         notificationInstance[optionName] = options[optionName];

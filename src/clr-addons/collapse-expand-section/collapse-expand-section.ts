@@ -36,7 +36,7 @@ export class ClrCollapseExpandSection {
   @Output('clrCollapsed') collapsed = new EventEmitter();
   @Output('clrExpanded') expanded = new EventEmitter();
 
-  onCollapseExpand() {
+  onCollapseExpand(): void {
     if (this.isCollapsed) {
       this.expanded.emit();
     } else {

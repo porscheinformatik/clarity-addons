@@ -49,11 +49,11 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked, Con
   @Input('clrDecimalSep') decimalSeparator = ',';
   @Input('clrGroupingSep') groupingSeparator = '.';
   @Input('clrUnit') unit: string = null;
-  @Input('clrUnitPosition') unitPosition: string = 'right';
+  @Input('clrUnitPosition') unitPosition = 'right';
   @Output('clrNumericValueChange') numericValueChanged = new EventEmitter<number>();
 
-  private displayValue: string = '';
-  private originalValue: number = NaN;
+  private displayValue = '';
+  private originalValue = NaN;
   private _numericValue: number;
   private inputChangeListener: () => void;
   private keyupListener: () => void;
@@ -72,8 +72,10 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked, Con
   private allowedKeys = new Set(NUMBERS);
 
   /* Control Values Accessor Stuff below */
-  onChange;
-  onTouched;
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  onChange: any = () => {};
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  onTouched: any = () => {};
 
   registerOnChange(fn: any): void {
     this.onChange = fn;
@@ -83,7 +85,7 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked, Con
     this.onTouched = fn;
   }
 
-  setDisabledState(isDisabled: boolean): void {
+  setDisabledState(): void {
     // Dont need to implement since its just a directive
   }
 
@@ -93,7 +95,7 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked, Con
 
   constructor(private renderer: Renderer2, private inputEl: ElementRef) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     /* needs to be parsed as number explicitly as it comes as string from user input */
     this.decimalPlaces = Number.parseInt(this.decimalPlaces.toString(), 10);
     this.allowedKeys.add(NEGATIVE);
@@ -172,18 +174,19 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked, Con
       } else {
         return false;
       }
+      return true;
     });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.detachListener();
   }
 
-  ngAfterViewChecked() {
+  ngAfterViewChecked(): void {
     this.injectUnitSymbol();
   }
 
-  handleInputChanged() {
+  handleInputChanged(): void {
     // Call in set timeout to avoid Expression has changed after it has been checked error.
     // Sometimes the value changes because we cut off decimal places
     setTimeout(() => {
@@ -193,7 +196,7 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked, Con
     }, 1);
   }
 
-  formatInput(element: any, finalFormatting: boolean) {
+  formatInput(element: any, finalFormatting: boolean): void {
     const cursorPos = element.selectionStart;
     const length = element.value.length;
     const setCursor = this.displayValue !== element.value;
@@ -254,8 +257,8 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked, Con
     return result;
   }
 
-  strip(value: string, removeLeadingZeros: boolean = false): string {
-    let result: string = '';
+  strip(value: string, removeLeadingZeros = false): string {
+    let result = '';
     let indexDecimalSep = -1;
     let j = -1;
     let ignoredChars = 0;
@@ -301,7 +304,7 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked, Con
     return result;
   }
 
-  updateInput(value: string) {
+  updateInput(value: string): void {
     this.displayValue = value;
     this.inputEl.nativeElement.value = value;
     this._numericValue = parseFloat(this.strip(value).replace(this.decimalSeparator, '.'));
@@ -311,7 +314,7 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked, Con
     }
   }
 
-  private getValueForFormControl(): number {
+  public getValueForFormControl(): number {
     if (isNaN(this._numericValue)) {
       // Return undefined instead of NaN to support the default required validator.
       return undefined;
@@ -349,15 +352,15 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked, Con
   }
 
   private detachListener(): void {
-    if (!!this.inputChangeListener) {
+    if (this.inputChangeListener) {
       this.inputChangeListener();
       delete this.inputChangeListener;
     }
-    if (!!this.keydownListener) {
+    if (this.keydownListener) {
       this.keydownListener();
       delete this.keydownListener;
     }
-    if (!!this.keyupListener) {
+    if (this.keyupListener) {
       this.keyupListener();
       delete this.keyupListener;
     }

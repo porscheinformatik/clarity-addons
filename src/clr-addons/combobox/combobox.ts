@@ -43,7 +43,7 @@ import { MobileBehaviourMode } from './utils/mobile-behaviour-mode';
 
 // Fixes build error
 // @dynamic (https://github.com/angular/angular/issues/19698#issuecomment-338340211)
-export function comboboxDomAdapterFactory(platformId: Object) {
+export function comboboxDomAdapterFactory(platformId: Record<string, any>): ComboboxDomAdapter {
   if (isPlatformBrowser(platformId)) {
     return new ComboboxDomAdapter();
   } else {
@@ -77,7 +77,7 @@ export function comboboxDomAdapterFactory(platformId: Object) {
 })
 export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
   @Input('clrControlClasses') controlClasses: string;
-  @Input('clrAllowUserEntry') allowUserEntry: boolean = false;
+  @Input('clrAllowUserEntry') allowUserEntry = false;
   @Input('clrPreselectedValue') preselectedValue: T;
   @Input('clrMobileBehaviourMode') mobileBehaviourMode: MobileBehaviourMode = MobileBehaviourMode.DEFAULT;
   @Input('clrDisabled') disabled = false;
@@ -89,8 +89,8 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
   @ViewChild('input', { static: true }) input: ElementRef;
   @ContentChild(ClrOptions, { static: true }) options: ClrOptions<T>;
   @ContentChild(ClrLabel, { static: true }) label: ClrLabel;
-  invalid: boolean = false;
-  keyHandled: boolean = false;
+  invalid = false;
+  keyHandled = false;
   private subscriptions: Subscription[] = [];
   selectedValue: T = this.preselectedValue;
 
@@ -101,7 +101,7 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
     private popoverToggleService: ClrPopoverToggleService,
     private optionSelectionService: OptionSelectionService<T>,
     private domAdapter: ComboboxDomAdapter,
-    private injector: Injector
+    injector: Injector
   ) {
     console.warn('The ClrCombobox is deprecated as of clr-addons version 7. Use the ClrDataList instead!');
     // We have to inject obfuscated imports this way,
@@ -151,13 +151,13 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
   }
 
   @HostListener('click')
-  focusInput() {
+  focusInput(): void {
     if (this.input) {
       this.domAdapter.focus(this.input.nativeElement);
     }
   }
 
-  keydown(event: KeyboardEvent) {
+  keydown(event: KeyboardEvent): void {
     if (event && !this.disabled) {
       this.keyHandled = this.navigateOptions(event);
       this.keyHandled = this.keyHandled || this.closeMenuOnTabPress(event);
@@ -189,14 +189,14 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
     return false;
   }
 
-  search() {
+  search(): void {
     if (!this.keyHandled && !this.disabled) {
       this.optionSelectionService.setSearchValue(this.input.nativeElement.textContent.trim());
     }
     this.keyHandled = false;
   }
 
-  blur() {
+  blur(): void {
     if (!this.allowUserEntry) {
       if (!this.popoverToggleService.open) {
         this.validateInput();
@@ -209,7 +209,7 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
     }
   }
 
-  validateInput() {
+  validateInput(): void {
     let selectedOption: ClrOption<T>;
     let searchValue: string;
 
@@ -231,25 +231,25 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
     }
   }
 
-  addGrid() {
+  addGrid(): boolean {
     if (this.layoutService && !this.layoutService.isVertical()) {
       return true;
     }
     return false;
   }
 
-  controlClass() {
+  controlClass(): string {
     return this.controlClasses
       ? this.controlClasses
       : this.controlClassService.controlClass(this.invalid, this.addGrid());
   }
 
   // Lifecycle methods
-  ngOnInit() {
+  ngOnInit(): void {
     this.initializeSubscriptions();
   }
 
-  ngAfterContentInit() {
+  ngAfterContentInit(): void {
     this.optionSelectionService.setOptions(this.options);
     this.optionsUpdatedByUser();
     this.subscriptions.push(
@@ -259,20 +259,20 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
     );
   }
 
-  optionsUpdatedByUser() {
+  optionsUpdatedByUser(): void {
     if (this.options.options.length > 0 && !!this.preselectedValue) {
       const option = this.options.options.find(o => o.value === this.preselectedValue);
-      if (!!option) {
+      if (option) {
         this.optionSelectionService.setSelection(option);
       }
     }
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
-  showSelect() {
+  showSelect(): boolean {
     switch (this.mobileBehaviourMode) {
       case MobileBehaviourMode.FORCE_SELECT:
         return true;
@@ -290,7 +290,7 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
     return [];
   }
 
-  selectedValueChange() {
+  selectedValueChange(): void {
     const option = this.options.options.find(o => o.value === this.selectedValue);
     this.optionSelectionService.setSelection(option);
   }

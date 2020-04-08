@@ -16,9 +16,9 @@ import { ClrAddOption } from './add-option';
 export class ClrQuickList<T> implements OnInit {
   @Input('clrBlankOption') blankOption: ClrQuickListValue<T> = CLR_BLANK_OPTION;
   @Input('clrAllValues') allValues: Array<ClrQuickListValue<T>> = [this.blankOption];
-  @Input('clrMandatory') mandatory: boolean = false;
+  @Input('clrMandatory') mandatory = false;
   @Input('clrValues') values: Array<ClrQuickListValue<T>> = [];
-  @Input('clrAddLabel') addLabel: string = 'ADD';
+  @Input('clrAddLabel') addLabel = 'ADD';
   @Input('clrControlClasses') controlClasses = 'clr-col-md-10';
   @Output('clrValuesChanged') valuesChanged = new EventEmitter<Array<ClrQuickListValue<T>>>();
   @Output('clrEmptyOptionAdded') emptyOptionAdded = new EventEmitter<void>();
@@ -31,20 +31,20 @@ export class ClrQuickList<T> implements OnInit {
     }
   }
 
-  onValueChanged(value: ClrQuickListValue<T>, i: number) {
-    if (!!value) {
+  onValueChanged(value: ClrQuickListValue<T>, i: number): void {
+    if (value) {
       this.values[i] = value;
       this.valuesChanged.emit(this.values);
       this.focusOption(value);
     }
   }
 
-  onRemoveValue(i: number) {
+  onRemoveValue(i: number): void {
     this.values.splice(i, 1);
     this.valuesChanged.emit(this.values);
   }
 
-  addBlankOption() {
+  addBlankOption(): void {
     if (!this.hasBlankOption()) {
       this.values.push(this.blankOption);
       this.valuesChanged.emit(this.values);
@@ -53,20 +53,20 @@ export class ClrQuickList<T> implements OnInit {
     }
   }
 
-  focusOption(option: ClrQuickListValue<T>) {
+  focusOption(option: ClrQuickListValue<T>): void {
     setTimeout(() => {
       const opt = this.options.find(o => o.value.id === option.id);
-      if (!!opt) {
+      if (opt) {
         opt.focusComponent();
       }
     });
   }
 
-  hasBlankOption() {
+  hasBlankOption(): boolean {
     return this.values.map(val => val.id).includes(this.blankOption.id);
   }
 
-  addNotPossible() {
+  addNotPossible(): boolean {
     return this.hasBlankOption() || this.values.length === this.allValues.length;
   }
 }

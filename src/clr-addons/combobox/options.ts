@@ -47,7 +47,7 @@ export class ClrOptions<T> extends AbstractPopover implements AfterViewInit {
   }
 
   // Lifecycle hooks
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     // set anchor element for dropdown to the input
     this.anchorElem = this.parentHost.nativeElement.getElementsByClassName('clr-combobox-input')[0] || this.anchorElem;
   }

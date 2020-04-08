@@ -41,7 +41,7 @@ export class DotPagerDemo {
     'Debby',
     'Lottie',
   ];
-  pageSize: number = 5;
+  pageSize = 5;
   pagedItems: string[] = [];
   pages = Math.ceil(this.allItems.length / this.pageSize);
 

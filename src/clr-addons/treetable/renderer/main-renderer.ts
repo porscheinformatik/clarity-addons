@@ -12,7 +12,7 @@ import { TreetableRowRenderer } from './row-renderer';
 @Directive({
   selector: 'clr-treetable',
 })
-export class TreetableMainRenderer<T = any> implements AfterViewChecked, AfterContentInit {
+export class TreetableMainRenderer implements AfterViewChecked, AfterContentInit {
   @ContentChildren(TreetableHeaderRenderer) headers: QueryList<TreetableHeaderRenderer>;
   @ContentChildren(TreetableRowRenderer, { descendants: true })
   rows: QueryList<TreetableRowRenderer>;
@@ -20,11 +20,11 @@ export class TreetableMainRenderer<T = any> implements AfterViewChecked, AfterCo
   private shouldStabilizeColumn = true;
 
   @HostListener('window:resize', ['$event'])
-  onResize() {
+  onResize(): void {
     this.applyMaxWidth();
   }
 
-  ngAfterContentInit() {
+  ngAfterContentInit(): void {
     this.headers.changes.subscribe(() => {
       this.shouldStabilizeColumn = true;
     });
@@ -45,7 +45,7 @@ export class TreetableMainRenderer<T = any> implements AfterViewChecked, AfterCo
   /**
    * Applies css column class to every header and cell.
    */
-  private applyColumnClasses() {
+  private applyColumnClasses(): void {
     this.shouldStabilizeColumn = false;
 
     this.headers.forEach((header, headerIndex) => {
@@ -54,8 +54,8 @@ export class TreetableMainRenderer<T = any> implements AfterViewChecked, AfterCo
         header.setDefaultColumnClass();
         this.rows.forEach(row => {
           // set every child cell of the same index to default class
-          const cell = row.cells.find((c, cellIndex) => cellIndex === headerIndex);
-          if (!!cell) {
+          const cell = row.cells.find((_c, cellIndex) => cellIndex === headerIndex);
+          if (cell) {
             cell.setColumnClasses(['clr-col']);
           }
         });
@@ -63,8 +63,8 @@ export class TreetableMainRenderer<T = any> implements AfterViewChecked, AfterCo
         // set every child cell of the same index to the same class
         // we do not allow overriding column width on a per cell basis different to the header.
         this.rows.forEach(row => {
-          const cell = row.cells.find((c, cellIndex) => cellIndex === headerIndex);
-          if (!!cell) {
+          const cell = row.cells.find((_c, cellIndex) => cellIndex === headerIndex);
+          if (cell) {
             cell.setColumnClasses(columnClasses);
           }
         });
@@ -72,8 +72,8 @@ export class TreetableMainRenderer<T = any> implements AfterViewChecked, AfterCo
     });
   }
 
-  private applyMaxWidth() {
-    if (!!this.headers.first) {
+  private applyMaxWidth(): void {
+    if (this.headers.first) {
       const maxWidth = this.headers.first.getWidth();
       if (maxWidth === 0) {
         // If the max width is zero, call this in a timeout to be able to retrieve the client rendered value

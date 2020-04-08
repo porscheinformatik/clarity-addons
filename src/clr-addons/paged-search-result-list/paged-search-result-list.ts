@@ -40,7 +40,7 @@ export class ClrPagedSearchResultList {
   /**
    * The position of the pager
    */
-  @Input('clrPagerPosition') clrPagerPosition: string = 'bottom';
+  @Input('clrPagerPosition') clrPagerPosition = 'bottom';
 
   /**
    * Triggered whenever a page change occurs.

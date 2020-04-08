@@ -10,8 +10,8 @@ import { Component } from '@angular/core';
   templateUrl: './readonly.demo.html',
 })
 export class ReadonlyDemo {
-  radioValue: number = 1;
-  checkValue1: boolean = true;
+  radioValue = 1;
+  checkValue1 = true;
   checkValue2: boolean;
-  checkValue3: boolean = true;
+  checkValue3 = true;
 }

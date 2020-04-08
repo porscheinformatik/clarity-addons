@@ -29,7 +29,7 @@ export class MultilingualInputDemo implements OnInit {
     }),
   });
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.template1.set('ww', 'dummy lang with widest letters');
     this.template1.set('en', 'english text');
     this.template1.set('de', 'deutscher text');

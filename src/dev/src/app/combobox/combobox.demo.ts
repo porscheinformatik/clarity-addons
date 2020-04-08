@@ -25,7 +25,7 @@ export class ComboboxDemo {
   selectedOptionUser: ClrOption<string>;
   enteredValueUser: string;
 
-  selectOption(value: ClrOption<string>) {
+  selectOption(value: ClrOption<string>): void {
     this.selectedOption = value;
   }
 }

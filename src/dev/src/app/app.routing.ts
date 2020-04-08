@@ -7,6 +7,7 @@ import { ModuleWithProviders } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LandingComponent } from './landing.component';
 
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 export const APP_ROUTES: Routes = [
   { path: '', component: LandingComponent },
   {

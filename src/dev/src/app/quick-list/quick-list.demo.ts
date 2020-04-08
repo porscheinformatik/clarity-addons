@@ -25,7 +25,7 @@ export class QuickListDemo implements OnInit {
     'Offer handed out',
   ];
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.possibleActivityResults = this.options.map(op => this.map(op));
     this.selectedHActivityResults = this.possibleActivityResults.filter((val, i) => i < 2);
   }

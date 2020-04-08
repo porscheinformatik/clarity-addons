@@ -101,7 +101,7 @@ export class ClrPager {
   /**
    * Moves to the previous page if it exists
    */
-  public previous() {
+  public previous(): void {
     if (this.page > 1) {
       this.page--;
     }
@@ -110,7 +110,7 @@ export class ClrPager {
   /**
    * Moves to the next page if it exists
    */
-  public next() {
+  public next(): void {
     if (this.page < this.last) {
       this.page++;
     }

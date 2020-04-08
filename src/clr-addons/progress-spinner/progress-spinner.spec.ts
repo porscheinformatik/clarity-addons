@@ -22,7 +22,7 @@ import { CommonModule } from '@angular/common';
   `,
 })
 class TestComponent {
-  public loadingState: boolean = false;
+  public loadingState = false;
 }
 
 @NgModule({

@@ -23,7 +23,7 @@ class TestComponentAllValid implements OnInit {
   selectedLang = 'EN';
   data = new Map();
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.data.set('EN', 'english text');
     this.data.set('DE', 'deutscher text');
   }
@@ -42,7 +42,7 @@ class TestComponentOneValid implements OnInit {
   selectedLang = 'EN';
   data = new Map();
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.data.set('EN', 'english text');
     this.data.set('DE', 'deutscher text');
   }
@@ -136,7 +136,7 @@ describe('Multilingual Input', () => {
     expect(new ControlIdService().constructor.name).toBe('ControlIdService');
   });
 
-  function validationShown(shouldBeVisible: boolean, fixture: ComponentFixture<any>) {
+  function validationShown(shouldBeVisible: boolean, fixture: ComponentFixture<any>): void {
     if (shouldBeVisible) {
       expect(fixture.debugElement.query(By.css('clr-multilingual-input')).classes['clr-error']).toBeTrue();
       expect(fixture.debugElement.query(By.css('clr-control-error'))).toBeTruthy();
@@ -148,7 +148,7 @@ describe('Multilingual Input', () => {
     }
   }
 
-  function sendInput(inputEl: HTMLInputElement, fixture: ComponentFixture<any>, text: string) {
+  function sendInput(inputEl: HTMLInputElement, fixture: ComponentFixture<any>, text: string): void {
     inputEl.value = text;
     inputEl.dispatchEvent(new Event('input'));
     fixture.detectChanges();

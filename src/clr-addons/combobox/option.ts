@@ -19,9 +19,9 @@ import { escapeHtml, escapeRegex } from '../util';
 export class ClrOption<T> implements OnDestroy {
   private subscriptions: Subscription[] = [];
 
-  @HostBinding('class.active') selected: boolean = false;
-  @HostBinding('class.highlighted') highlighted: boolean = false;
-  @HostBinding('class.hidden') _hidden: boolean = false;
+  @HostBinding('class.active') selected = false;
+  @HostBinding('class.highlighted') highlighted = false;
+  @HostBinding('class.hidden') _hidden = false;
 
   @Input('clrValue') value: T;
 
@@ -101,7 +101,7 @@ export class ClrOption<T> implements OnDestroy {
    * We will handle that later.
    */
   @HostListener('click')
-  updateSelectionAndCloseMenu() {
+  updateSelectionAndCloseMenu(): void {
     // We call render here without checking the value because even if the user hasn't
     // assigned a value to the option, we should atleast display the selection on the input.
     // This is what the native select does.
@@ -118,7 +118,7 @@ export class ClrOption<T> implements OnDestroy {
     this.optionSelectionService.updateNavigatableOptions();
   }
 
-  get hidden() {
+  get hidden(): boolean {
     return this._hidden;
   }
 
