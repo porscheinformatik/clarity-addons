@@ -5,19 +5,12 @@
   "plugins": [
     "stylelint-scss"
   ],
-  "ignoreFiles": [
-    "src/clr-angular/utils/_normalize.scss"
-  ],
   "rules": {
     "no-descending-specificity": null,
-    "no-duplicate-selectors": null,
     "at-rule-no-unknown": null,
     "scss/at-rule-no-unknown": true,
     "selector-type-no-unknown": [true, {
-      "ignoreTypes": ["/^clr-/", "/^app-/", "/^_/", "_"]
+      "ignoreTypes": ["/^clr-/"]
     }],
-    "selector-pseudo-element-no-unknown":[true, {
-      "ignorePseudoElements": ["/^ng-deep/"]
-    }]
   }
 }
