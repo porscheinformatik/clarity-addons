@@ -2,6 +2,7 @@
   --clr-border-color: var(--clr-color-neutral-400);
   --clr-card-default-border-color: rgba(215, 215, 215, 1);
   --clr-card-active-border-color: rgba(0, 148, 210, 1);
+  --clr-header-height: #{$clr-header-height};
   --clr-footer-height: 2.5rem;
   --clr-notification-progress-info-bar-color: var(--clr-progress-default-color);
 }
