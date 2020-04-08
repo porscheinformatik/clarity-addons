@@ -9,68 +9,90 @@ import { ClrNumericFieldValidators } from "@porscheinformatik/clr-addons";
 import { ClarityDocComponent } from "../clarity-doc";
 
 const HTML_EXAMPLE = `
-<h4>Vertical Form</h4>
-<p>In the following section you can find some examples with validation.</p>
 <form clrForm clrLayout="vertical" [formGroup]="exampleForm">
     <clr-input-container>
         <label>Money</label>
-        <input clrInput clrNumeric type="text" [(clrNumericValue)]="money" clrUnit="€"
-               [clrAutofillDecimals]="true" formControlName="money"/>
+        <input clrInput clrNumeric
+               type="text"
+               formControlName="money"
+               [clrUnit]="'€'"
+               [clrAutofillDecimals]="true"/>
         <clr-control-error>Please enter a value between 0 and 10.000</clr-control-error>
     </clr-input-container>
     <clr-input-container>
         <label>Percentage</label>
-        <input clrInput clrNumeric type="text" [(clrNumericValue)]="percentage" clrUnit="%"
-               formControlName="percentage" [clrDecimalPlaces]="0"/>
-        <clr-control-error>Please enter a value between 0 and 100</clr-control-error>
-    </clr-input-container>
-</form>
-<h4>Horizontal Form</h4>
-<form clrForm [formGroup]="exampleForm">
-    <clr-input-container>
-        <label>Money</label>
-        <input clrInput clrNumeric type="text" [(clrNumericValue)]="money" clrUnit="€"
-               [clrAutofillDecimals]="true" formControlName="money"/>
-        <clr-control-error>Please enter a value between 0 and 10.000</clr-control-error>
-    </clr-input-container>
-    <clr-input-container>
-        <label>Percentage</label>
-        <input clrInput clrNumeric type="text" [(clrNumericValue)]="percentage" clrUnit="%"
-               formControlName="percentage" [clrDecimalPlaces]="0"/>
+        <input clrInput clrNumeric
+               type="text"
+               formControlName="percentage"
+               [clrUnit]="'%'"
+               [clrDecimalPlaces]="0"/>
         <clr-control-error>Please enter a value between 0 and 100</clr-control-error>
     </clr-input-container>
 </form>
 `;
 
 const HTML_EXAMPLE2 = `
-<form clrForm [formGroup]="exampleForm">
+<form clrForm>
     <clr-input-container>
         <label>Money</label>
-        <input clrInput clrNumeric type="text" [(clrNumericValue)]="money" clrUnit="€"
-               clrUnitPosition="left" [clrAutofillDecimals]="true" formControlName="money"/>
+        <input clrInput clrNumeric
+               class="clr-col-xl-2 clr-col-md-3 clr-col-sm-12"
+               type="text"
+               [clrUnit]="'€'"
+               [(ngModel)]="money"
+               [clrAutofillDecimals]="true"/>
         <clr-control-error>Please enter a value between 0 and 10.000</clr-control-error>
     </clr-input-container>
     <clr-input-container>
         <label>Percentage</label>
-        <input clrInput clrNumeric type="text" [(clrNumericValue)]="percentage" clrUnit="%"
-               clrUnitPosition="left" clrTextAlign="left" formControlName="percentage" [clrDecimalPlaces]="0"/>
+        <input clrInput clrNumeric
+               class="clr-col-xl-2 clr-col-md-3 clr-col-sm-12"
+               type="text"
+               [clrUnit]="'%'"
+               [(ngModel)]="percentage"
+               [clrDecimalPlaces]="0"/>
         <clr-control-error>Please enter a value between 0 and 100</clr-control-error>
     </clr-input-container>
 </form>
 `;
 
 const HTML_EXAMPLE3 = `
-<form clrForm [formGroup]="exampleForm">
+<form clrForm>
+    <clr-input-container>
+        <label>Money</label>
+        <input clrInput clrNumeric
+               class="clr-col-xl-2 clr-col-md-3 clr-col-sm-12"
+               type="text"
+               [clrUnit]="'€'"
+               [clrUnitPosition]="'left'"
+               [clrAutofillDecimals]="true"/>
+        <clr-control-error>Please enter a value between 0 and 10.000</clr-control-error>
+    </clr-input-container>
+</form>
+`;
+
+const HTML_EXAMPLE4 = `
+<form clrForm [formGroup]="exampleForm2">
     <clr-input-container>
         <label>Rounded Value</label>
-        <input clrInput clrNumeric type="text" [(clrNumericValue)]="money" clrUnit="€"
-               [clrRoundDisplayValue]="true" [clrAutofillDecimals]="true" formControlName="money1"/>
+        <input clrInput clrNumeric
+               class="clr-col-xl-2 clr-col-md-3 clr-col-sm-12"
+               type="text"
+               formControlName="money1"
+               [clrUnit]="'€'"
+               [clrRoundDisplayValue]="true"
+               [clrAutofillDecimals]="true"/>
         <clr-control-error>Please enter a value between 0 and 100</clr-control-error>
     </clr-input-container>
     <clr-input-container>
         <label>Original Value</label>
-        <input clrInput clrNumeric type="text" [(clrNumericValue)]="money" clrUnit="€"
-               [clrDecimalPlaces]="5" [clrAutofillDecimals]="true" formControlName="money2"/>
+        <input clrInput clrNumeric
+               class="clr-col-xl-2 clr-col-md-3 clr-col-sm-12"
+               type="text"
+               formControlName="money2"
+               [clrUnit]="'€'"
+               [clrDecimalPlaces]="5"
+               [clrAutofillDecimals]="true"/>
         <clr-control-error>Please enter a value between 0 and 100</clr-control-error>
     </clr-input-container>
 </form>
@@ -80,14 +102,12 @@ const TS_EXAMPLE = `
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ClrNumericFieldValidators } from "@porscheinformatik/clr-addons";
 
-money1: number;
-percentage1: number;
 exampleForm = new FormGroup({
-    money1: new FormControl(this.money1, {
+    money: new FormControl(undefined, {
         validators: [ClrNumericFieldValidators.min(0, ".", ","), ClrNumericFieldValidators.max(10000, ".", ","), Validators.required],
         updateOn: "blur",
     }),
-    percentage1: new FormControl(this.percentage1, {
+    percentage: new FormControl(undefined, {
         validators: [ClrNumericFieldValidators.min(0, ".", ","), ClrNumericFieldValidators.max(100, ".", ","), Validators.required],
         updateOn: "blur",
     }),
@@ -106,126 +126,72 @@ export class NumericFieldDemo extends ClarityDocComponent {
     htmlExample = HTML_EXAMPLE;
     htmlExample2 = HTML_EXAMPLE2;
     htmlExample3 = HTML_EXAMPLE3;
+    htmlExample4 = HTML_EXAMPLE4;
     tsExample = TS_EXAMPLE;
-    money1: number;
-    percentage1: number;
+
+    moneyTemplate: number;
+    percentageTemplate: number;
+
     exampleForm = new FormGroup({
-        money1: new FormControl(this.money1, {
+        money: new FormControl(undefined, {
             validators: [ClrNumericFieldValidators.min(0, ".", ","), ClrNumericFieldValidators.max(10000, ".", ","), Validators.required],
             updateOn: "blur",
         }),
-        percentage1: new FormControl(this.percentage1, {
+        percentage: new FormControl(undefined, {
             validators: [ClrNumericFieldValidators.min(0, ".", ","), ClrNumericFieldValidators.max(100, ".", ","), Validators.required],
             updateOn: "blur",
         }),
     });
 
-    money2: number;
-    percentage2: number;
     exampleForm2 = new FormGroup({
-        money2: new FormControl(this.money2, {
-            validators: [ClrNumericFieldValidators.min(0, ".", ","), ClrNumericFieldValidators.max(10000, ".", ","), Validators.required],
-            updateOn: "blur",
-        }),
-        percentage2: new FormControl(this.percentage2, {
+        money1: new FormControl(89.99999, {
             validators: [ClrNumericFieldValidators.min(0, ".", ","), ClrNumericFieldValidators.max(100, ".", ","), Validators.required],
             updateOn: "blur",
         }),
-    });
-
-    money3: number;
-    exampleForm3 = new FormGroup({
-        money3: new FormControl(this.money3, {
-            validators: [ClrNumericFieldValidators.min(0, ".", ","), ClrNumericFieldValidators.max(10000, ".", ","), Validators.required],
-            updateOn: "blur",
-        })
-    });
-
-    money4: number = 89.99999;
-    exampleForm4 = new FormGroup({
-        money4: new FormControl(this.money4, {
-            validators: [ClrNumericFieldValidators.min(0, ".", ","), ClrNumericFieldValidators.max(100, ".", ","), Validators.required],
-            updateOn: "blur",
-        }),
-        money5: new FormControl(this.money4, {
+        money2: new FormControl(89.99999, {
             validators: [ClrNumericFieldValidators.min(0, ".", ","), ClrNumericFieldValidators.max(100, ".", ","), Validators.required],
             updateOn: "blur",
         })
     });
-
-    doMoney1: number;
-    doMoney2: number;
-
-    doForm = new FormGroup({
-        doMoney1: new FormControl(this.doMoney1, {
-            validators: [ClrNumericFieldValidators.min(0, ".", ","), Validators.required],
-            updateOn: "blur",
-        }),
-        doMoney2: new FormControl(this.doMoney2, {
-            validators: [ClrNumericFieldValidators.min(0, ".", ","), Validators.required],
-            updateOn: "blur",
-        }),
-    });
-
-    dontMoney1: number;
-    dontMoney2: number;
-
-    dontForm = new FormGroup({
-        dontMoney2: new FormControl(this.dontMoney2, {
-            validators: [ClrNumericFieldValidators.min(0, ".", ","), Validators.required],
-            updateOn: "blur",
-        })
-    });
-
-    money: number;
-    weight: number;
-    emission: number;
-    kilometres: number;
-    cubic: number;
-    millimetres: number;
-    kilowatt: number;
-    timeunit: number;
-    horsepower: number;
-    percentage: number;
 
     usageForm = new FormGroup({
-        money: new FormControl(this.money, {
+        money: new FormControl(undefined, {
             validators: [ClrNumericFieldValidators.min(0, ".", ","), Validators.required],
             updateOn: "blur",
         }),
-        weight: new FormControl(this.weight, {
+        weight: new FormControl(undefined, {
             validators: [ClrNumericFieldValidators.min(0, ".", ","), Validators.required],
             updateOn: "blur",
         }),
-        emission: new FormControl(this.emission, {
+        emission: new FormControl(undefined, {
             validators: [ClrNumericFieldValidators.min(0, ".", ","), Validators.required],
             updateOn: "blur",
         }),
-        kilometres: new FormControl(this.kilometres, {
+        kilometres: new FormControl(undefined, {
             validators: [ClrNumericFieldValidators.min(0, ".", ","), Validators.required],
             updateOn: "blur",
         }),
-        cubic: new FormControl(this.cubic, {
+        cubic: new FormControl(undefined, {
             validators: [ClrNumericFieldValidators.min(0, ".", ","), Validators.required],
             updateOn: "blur",
         }),
-        millimetres: new FormControl(this.millimetres, {
+        millimetres: new FormControl(undefined, {
             validators: [Validators.required],
             updateOn: "blur",
         }),
-        kilowatt: new FormControl(this.kilowatt, {
+        kilowatt: new FormControl(undefined, {
             validators: [ClrNumericFieldValidators.min(0, ".", ","), Validators.required],
             updateOn: "blur",
         }),
-        timeunit: new FormControl(this.timeunit, {
+        timeunit: new FormControl(undefined, {
             validators: [ClrNumericFieldValidators.min(0, ".", ","), Validators.required],
             updateOn: "blur",
         }),
-        horsepower: new FormControl(this.horsepower, {
+        horsepower: new FormControl(undefined, {
             validators: [ClrNumericFieldValidators.min(0, ".", ","), Validators.required],
             updateOn: "blur",
         }),
-        percentage: new FormControl(this.percentage, {
+        percentage: new FormControl(undefined, {
             validators: [ClrNumericFieldValidators.min(0, ".", ","), ClrNumericFieldValidators.max(100, ".", ","), Validators.required],
             updateOn: "blur",
         }),

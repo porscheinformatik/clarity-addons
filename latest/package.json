@@ -15,7 +15,8 @@
     "generate:404": "cp-cli ../deploy/index.html ../deploy/404.html",
     "update:versions": "npm run update:addons_version && npm run update:clarity_version",
     "update:addons_version": "cross-var replace @ADDONS_VERSION $npm_package_dependencies__porscheinformatik_clr_addons ../deploy/ --recursive",
-    "update:clarity_version": "cross-var replace @CLARITY_VERSION $npm_package_dependencies__clr_angular ../deploy/ --recursive"
+    "update:clarity_version": "cross-var replace @CLARITY_VERSION $npm_package_dependencies__clr_angular ../deploy/ --recursive",
+    "postinstall": "ngcc"
   },
   "private": true,
   "dependencies": {
@@ -28,11 +29,12 @@
     "@angular/platform-browser-dynamic": "9.1.0",
     "@angular/platform-server": "9.1.0",
     "@angular/router": "9.1.0",
-    "@clr/angular": "2.3.3",
-    "@clr/icons": "2.3.3",
-    "@clr/ui": "2.3.3",
-    "@porscheinformatik/clr-addons": "6.4.9",
-    "@webcomponents/custom-elements": "1.3.0",
+    "@clr/angular": "3.0.0",
+    "@clr/core": "3.0.0",
+    "@clr/icons": "3.0.0",
+    "@clr/ui": "3.0.0",
+    "@porscheinformatik/clr-addons": "7.0.0",
+    "@webcomponents/webcomponentsjs": "^2.0.0",
     "classlist.js": "^1.1.20150312",
     "core-js": "^2.5.7",
     "intl": "^1.2.5",

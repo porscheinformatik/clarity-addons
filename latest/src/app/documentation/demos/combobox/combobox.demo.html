@@ -1,5 +1,19 @@
-<clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
+<clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout" [deprecated]="true">
     <article>
+        <div class="alert alert-warning" role="alert">
+            <div class="alert-items">
+                <div class="alert-item static">
+                    <div class="alert-icon-wrapper">
+                        <clr-icon class="alert-icon" shape="exclamation-triangle"></clr-icon>
+                    </div>
+                    <span class="alert-text">
+                    This Component is deprecated. Use the <a
+                            href="https://clarity.design/documentation/datalist">Clarity Data List</a> instead.
+                </span>
+                </div>
+            </div>
+        </div>
+
         <h5 class="component-summary">The Combobox is used to select between multiple predefined options or entering an
             own value (optional).
             Additionally users can search in the predefined options.
@@ -169,11 +183,13 @@
                     <div class="clr-col-md-6 clr-col-12">
                         <clr-radio-container>
                             <clr-radio-wrapper>
-                                <input clrRadio type="radio" [(ngModel)]="userEntryAllowedRadioBox" [value]="true" name="status1" />
+                                <input clrRadio type="radio" [(ngModel)]="userEntryAllowedRadioBox" [value]="true"
+                                       name="status1"/>
                                 <label>Allow user entries</label>
                             </clr-radio-wrapper>
                             <clr-radio-wrapper>
-                                <input clrRadio type="radio" [(ngModel)]="userEntryAllowedRadioBox" [value]="false" name="status2" />
+                                <input clrRadio type="radio" [(ngModel)]="userEntryAllowedRadioBox" [value]="false"
+                                       name="status2"/>
                                 <label>Do not allow user entries</label>
                             </clr-radio-wrapper>
                         </clr-radio-container>
