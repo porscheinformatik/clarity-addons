@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, Renderer, InjectionToken, Inject, PLATFORM_ID} from "@angular/core";
+import { Component, ElementRef, OnInit, InjectionToken, Inject, PLATFORM_ID, Renderer2 } from "@angular/core";
 import {Router, NavigationEnd} from "@angular/router";
 import {Title} from "@angular/platform-browser";
 import {DOCUMENT, isPlatformBrowser} from "@angular/common";
@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
         { name: "Clarity (light)", href: "styles/clr-ui.min.css" },
         { name: "Clarity (dark)", href: "styles/clr-ui-dark.min.css" }];
 
-    constructor(private renderer: Renderer, private el: ElementRef, private router: Router, private titleService: Title,
+    constructor(private renderer: Renderer2, private el: ElementRef, private router: Router, private titleService: Title,
         @Inject(DOCUMENT) private document: Document, @Inject(PLATFORM_ID) private platformId: Object) {
 
         if (isPlatformBrowser(this.platformId)) {
@@ -37,9 +37,9 @@ export class AppComponent implements OnInit {
     ngOnInit() {
         this.router.events.subscribe((change: any) => {
             if (change instanceof NavigationEnd) {
-                this.bodyClasses.forEach(className => this.renderer.setElementClass(this.el.nativeElement, className, false));
+                this.bodyClasses.forEach(className => this.renderer.removeClass(this.el.nativeElement, className));
                 this.updateBodyClasses();
-                this.bodyClasses.forEach(className => this.renderer.setElementClass(this.el.nativeElement, className, true));
+                this.bodyClasses.forEach(className => this.renderer.addClass(this.el.nativeElement, className));
 
                 this.updateBrowserTitle();
 

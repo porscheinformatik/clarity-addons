@@ -18,6 +18,7 @@ export class DocWrapper {
     @Input() ui: number = 0;
     @Input() ng: number = 0;
     @Input() description: string = "";
+    @Input() deprecated = false;
 
     get useNewLayout() {
         return !!this.newLayout;

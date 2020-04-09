@@ -16,10 +16,10 @@ export class BasepageLayoutDemo implements OnInit {
     withContentPanel = false;
     id: string;
 
-    @ViewChild("leftContentPanel", { static: false })
+    @ViewChild("leftContentPanel")
     leftContentPanel: ClrContentPanel;
 
-    @ViewChild("rightContentPanel", { static: false })
+    @ViewChild("rightContentPanel")
     rightContentPanel: ClrContentPanel;
 
     constructor(private router: Router) {
