@@ -46,7 +46,7 @@
     "@clr/core": "3.1.0",
     "@clr/icons": "3.1.0",
     "@clr/ui": "3.1.0",
-    "core-js": "3.6.4",
+    "core-js": "3.6.5",
     "rxjs": "6.5.5",
     "tslib": "1.11.1",
     "web-animations-js": "2.3.2",
