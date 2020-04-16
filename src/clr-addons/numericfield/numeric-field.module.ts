@@ -10,10 +10,11 @@ import { FormsModule } from '@angular/forms';
 import { ClarityModule, ClrFormsModule } from '@clr/angular';
 
 import { ClrNumericField } from './numeric-field';
+import { ClrMaxNumericField, ClrMinNumericField } from './numeric-field-validators';
 
 @NgModule({
   imports: [CommonModule, ClarityModule, ClrFormsModule, FormsModule],
-  declarations: [ClrNumericField],
-  exports: [ClrNumericField],
+  declarations: [ClrNumericField, ClrMaxNumericField, ClrMinNumericField],
+  exports: [ClrNumericField, ClrMaxNumericField, ClrMinNumericField],
 })
 export class ClrNumericFieldModule {}

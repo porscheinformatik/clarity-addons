@@ -4,8 +4,9 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { AbstractControl, ValidationErrors, ValidatorFn, NG_VALIDATORS, Validator } from '@angular/forms';
 import { isString } from 'util';
+import { Directive, Input } from '@angular/core';
 
 function isEmptyInputValue(value: any): boolean {
   // we don't check for string here so it also works with arrays
@@ -85,5 +86,33 @@ export class ClrNumericFieldValidators {
     const notGroupedNumber: string = value.replace(new RegExp('[' + groupingSeparator + ']', 'g'), '');
     const formattedNumber: string = notGroupedNumber.replace(new RegExp('[' + decimalSeparator + ']', 'g'), '.');
     return parseFloat(formattedNumber);
+  }
+}
+
+@Directive({
+  selector: '[clrMaxNumericField]',
+  providers: [{ provide: NG_VALIDATORS, useExisting: ClrMaxNumericField, multi: true }],
+})
+export class ClrMaxNumericField implements Validator {
+  @Input('clrMaxNumericField') _max: number;
+  @Input('clrGroupingSep') _groupingSep = '.';
+  @Input('clrDecimalSep') _decimalSep = ',';
+
+  validate(control: AbstractControl): { [key: string]: any } | null {
+    return ClrNumericFieldValidators.max(this._max, this._groupingSep, this._decimalSep)(control);
+  }
+}
+
+@Directive({
+  selector: '[clrMinNumericField]',
+  providers: [{ provide: NG_VALIDATORS, useExisting: ClrMinNumericField, multi: true }],
+})
+export class ClrMinNumericField implements Validator {
+  @Input('clrMinNumericField') _min: number;
+  @Input('clrGroupingSep') _groupingSep = '.';
+  @Input('clrDecimalSep') _decimalSep = ',';
+
+  validate(control: AbstractControl): { [key: string]: any } | null {
+    return ClrNumericFieldValidators.min(this._min, this._groupingSep, this._decimalSep)(control);
   }
 }

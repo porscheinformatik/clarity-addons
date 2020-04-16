@@ -77,6 +77,23 @@
   <h3>Value</h3>
   <div>{{input}}</div>
 
+  <h3>Template driven</h3>
+  <form clrForm [clrLayout]="'horizontal'">
+    <clr-input-container>
+      <label>Amount</label>
+      <input clrInput clrNumeric type="text" [(ngModel)]="input" [ngModelOptions]="{ updateOn: 'blur' }" name="amount"
+        [clrUnit]="'€'" [clrTextAlign]="'right'" [clrAutofillDecimals]="true"
+        [clrMinNumericField]="1" [clrMaxNumericField]="100"/>
+      <clr-control-error>Between 1 and 100</clr-control-error>
+    </clr-input-container>
+    <clr-input-container>
+      <label>Speed</label>
+      <input clrInput clrNumeric type="text" [(ngModel)]="input" [ngModelOptions]="{ updateOn: 'blur' }" [clrUnit]="'km/h'" name="speed"
+        [clrMinNumericField]="5" [clrMaxNumericField]="10"/>
+      <clr-control-error>Between 5 and 10</clr-control-error>
+    </clr-input-container>
+  </form>
+
   <button type="button" class="btn btn-primary" (click)="modalOpen = true">
     Open Modal
   </button>
