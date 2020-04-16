@@ -90,11 +90,11 @@ export class ClrNumericFieldValidators {
 }
 
 @Directive({
-  selector: '[clrMaxNumericField]',
-  providers: [{ provide: NG_VALIDATORS, useExisting: ClrMaxNumericField, multi: true }],
+  selector: '[clrMaxNumeric]',
+  providers: [{ provide: NG_VALIDATORS, useExisting: ClrMaxNumeric, multi: true }],
 })
-export class ClrMaxNumericField implements Validator {
-  @Input('clrMaxNumericField') _max: number;
+export class ClrMaxNumeric implements Validator {
+  @Input('clrMaxNumeric') _max: number;
   @Input('clrGroupingSep') _groupingSep = '.';
   @Input('clrDecimalSep') _decimalSep = ',';
 
@@ -104,11 +104,11 @@ export class ClrMaxNumericField implements Validator {
 }
 
 @Directive({
-  selector: '[clrMinNumericField]',
-  providers: [{ provide: NG_VALIDATORS, useExisting: ClrMinNumericField, multi: true }],
+  selector: '[clrMinNumeric]',
+  providers: [{ provide: NG_VALIDATORS, useExisting: ClrMinNumeric, multi: true }],
 })
-export class ClrMinNumericField implements Validator {
-  @Input('clrMinNumericField') _min: number;
+export class ClrMinNumeric implements Validator {
+  @Input('clrMinNumeric') _min: number;
   @Input('clrGroupingSep') _groupingSep = '.';
   @Input('clrDecimalSep') _decimalSep = ',';
 
