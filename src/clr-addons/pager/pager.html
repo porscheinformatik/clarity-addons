@@ -5,7 +5,6 @@
   <button *ngIf="page > 2" class="btn" (click)="page = 1">1</button>
   <button *ngIf="page > 3" class="btn" disabled>...</button>
 
-
   <ng-container *ngFor="let pageNum of middlePages">
     <button *ngIf="pageNum !== page; else activePage" class="btn" (click)="page = pageNum">{{pageNum}}</button>
     <ng-template #activePage>

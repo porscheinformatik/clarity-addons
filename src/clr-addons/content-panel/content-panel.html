@@ -1,7 +1,10 @@
 <ng-container *ngIf="_open">
-  <div [@slideIn] class="content-panel-content-wrapper"
-       [class.content-panel-left]="direction == 'left'"
-       (@slideIn.done)=resizeWindow()>
+  <div
+    [@slideIn]
+    class="content-panel-content-wrapper"
+    [class.content-panel-left]="direction == 'left'"
+    (@slideIn.done)="resizeWindow()"
+  >
     <h3 class="content-panel-title">
       <button type="button" class="close content-panel-close-btn" (click)="close()">
         <clr-icon class="content-panel-close-icon" shape="close" size="36"></clr-icon>
@@ -10,6 +13,5 @@
     </h3>
     <ng-content select="[clr-content-panel-content]"></ng-content>
   </div>
-  <div [@fade] class="content-panel-backdrop" (click)="close()"
-      (@fade.done)=resizeWindow()></div>
+  <div [@fade] class="content-panel-backdrop" (click)="close()" (@fade.done)="resizeWindow()"></div>
 </ng-container>

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -50,18 +50,14 @@ class EditModeComponent {
 }
 
 @Component({
-  template: `
-    <clr-view-edit-section [clrEditIcon]="editIcon"> </clr-view-edit-section>
-  `,
+  template: ` <clr-view-edit-section [clrEditIcon]="editIcon"> </clr-view-edit-section> `,
 })
 class EditIconComponent {
   editIcon = 'cog';
 }
 
 @Component({
-  template: `
-    <clr-view-edit-section [clrEditable]="false"> </clr-view-edit-section>
-  `,
+  template: ` <clr-view-edit-section [clrEditable]="false"> </clr-view-edit-section> `,
 })
 class NotEditableComponent {}
 

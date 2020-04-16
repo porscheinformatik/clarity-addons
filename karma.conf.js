@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-module.exports = function(karma) {
+module.exports = function (karma) {
   'use strict';
 
   const config = {

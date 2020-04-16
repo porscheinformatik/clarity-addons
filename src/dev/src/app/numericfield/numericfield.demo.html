@@ -81,15 +81,34 @@
   <form clrForm [clrLayout]="'horizontal'">
     <clr-input-container>
       <label>Amount</label>
-      <input clrInput clrNumeric type="text" [(ngModel)]="input" [ngModelOptions]="{ updateOn: 'blur' }" name="amount"
-        [clrUnit]="'€'" [clrTextAlign]="'right'" [clrAutofillDecimals]="true"
-        [clrMinNumeric]="1" [clrMaxNumeric]="100"/>
+      <input
+        clrInput
+        clrNumeric
+        type="text"
+        [(ngModel)]="input"
+        [ngModelOptions]="{ updateOn: 'blur' }"
+        name="amount"
+        [clrUnit]="'€'"
+        [clrTextAlign]="'right'"
+        [clrAutofillDecimals]="true"
+        [clrMinNumeric]="1"
+        [clrMaxNumeric]="100"
+      />
       <clr-control-error>Between 1 and 100</clr-control-error>
     </clr-input-container>
     <clr-input-container>
       <label>Speed</label>
-      <input clrInput clrNumeric type="text" [(ngModel)]="input" [ngModelOptions]="{ updateOn: 'blur' }" [clrUnit]="'km/h'" name="speed"
-        [clrMinNumeric]="5" [clrMaxNumeric]="10"/>
+      <input
+        clrInput
+        clrNumeric
+        type="text"
+        [(ngModel)]="input"
+        [ngModelOptions]="{ updateOn: 'blur' }"
+        [clrUnit]="'km/h'"
+        name="speed"
+        [clrMinNumeric]="5"
+        [clrMaxNumeric]="10"
+      />
       <clr-control-error>Between 5 and 10</clr-control-error>
     </clr-input-container>
   </form>

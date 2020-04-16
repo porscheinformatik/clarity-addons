@@ -1,6 +1,6 @@
 <clr-radio-container *ngIf="pages > 0" clrInline>
   <clr-radio-wrapper *ngFor="let a of pageArray(); let page = index">
-    <input clrRadio type="radio" [value]="page+1" [(ngModel)]="currentPage" name="{{uniqueName}}">
+    <input clrRadio type="radio" [value]="page+1" [(ngModel)]="currentPage" name="{{uniqueName}}" />
     <label>&nbsp;</label>
   </clr-radio-wrapper>
 </clr-radio-container>
