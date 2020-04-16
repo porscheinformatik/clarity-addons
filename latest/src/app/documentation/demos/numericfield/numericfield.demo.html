@@ -145,10 +145,16 @@
             </p>
             <p>
                 The numeric field supports template driven as well as reactive forms, see the form demos below.
-            <p>
-                The numeric field requires you to use custom validators, namely <code class="clr-code">ClrNumericFieldValidators</code>
-                to validate min and max values.
             </p>
+  
+            <p>
+              The numeric field requires you to use custom validators to validate min and max values:
+            </p>
+            <ul>
+              <li>Reactive: <code class="clr-code">ClrNumericFieldValidators</code></li>
+              <li>Template driven: <code class="clr-code">clrMaxNumeric</code> and <code class="clr-code">clrMinNumeric</code></li>
+            </ul>
+
 
             <h2>Angular Directive</h2>
             <h3>Summary of Options</h3>
@@ -213,16 +219,6 @@
                     <td class="left">Defines whether decimal places should automatically be filled with zeroes until
                         clrDecimalPlaces is reached. Useful for money fields.
                     </td>
-                </tr>
-                <tr>
-                    <td class="left">
-                        <b>[(clrNumericValue)]</b>
-                        <div class="clr-hidden-sm-up">Type: Number</div>
-                        <div class="clr-hidden-sm-up">Default: ""</div>
-                    </td>
-                    <td class="left clr-hidden-xs-down">Javascript Number</td>
-                    <td class="clr-hidden-xs-down">""</td>
-                    <td class="left">Two-way bound parameter for the value of the input component.</td>
                 </tr>
                 <tr>
                     <td class="left">
@@ -329,8 +325,7 @@
 
             <h4>Rounding</h4>
             <p>
-                If <code>[clrRoundDisplayValue]</code> is <code>true</code>, the value bound via <code>[(clrNumericValue)]</code>
-                is displayed rounded.<br/>
+                If <code>[clrRoundDisplayValue]</code> is <code>true</code>, the displayed value is rounded.<br/>
                 A change event is only fired, after the user modifies the input field.
             </p>
             <form clrForm [formGroup]="exampleForm2">
