@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -21,25 +21,25 @@ export class NotificationDemo {
     alert('Button was clicked');
   }
 
-  openInfo(content): void {
+  openInfo(content: any): void {
     this.clrNotificationService
       .openNotification(content, { timeout: 100000, notificationType: 'info', dismissable: true, progressbar: true })
       .result.then(this.onClose);
   }
 
-  openWarning(content): void {
+  openWarning(content: any): void {
     this.clrNotificationService
       .openNotification(content, { timeout: 20000, notificationType: 'warning', dismissable: true, progressbar: true })
       .result.then(this.onClose);
   }
 
-  openSuccess(content): void {
+  openSuccess(content: any): void {
     this.clrNotificationService
       .openNotification(content, { timeout: 30000, notificationType: 'success', dismissable: true, progressbar: true })
       .result.then(this.onClose);
   }
 
-  openDanger(content): void {
+  openDanger(content: any): void {
     this.clrNotificationService
       .openNotification(content, { timeout: 40000, notificationType: 'danger', dismissable: true, progressbar: true })
       .result.then(this.onClose);

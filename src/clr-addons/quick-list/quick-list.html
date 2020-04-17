@@ -9,10 +9,16 @@
       (valueChanged)="onValueChanged($event, i)"
       [blankOption]="blankOption"
       [mandatory]="mandatory"
+      [readonly]="readonly"
     >
     </clr-add-option>
   </ng-container>
-  <button class="btn btn-link btn-sm quick-list-add" (click)="addBlankOption()" [disabled]="addNotPossible()">
+  <button
+    *ngIf="!(readonly || readonly === '')"
+    class="btn btn-link btn-sm quick-list-add"
+    (click)="addBlankOption()"
+    [disabled]="addNotPossible()"
+  >
     {{addLabel}}
   </button>
 </div>

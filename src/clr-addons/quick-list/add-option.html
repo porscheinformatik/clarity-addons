@@ -1,4 +1,4 @@
-<div class="clr-select-wrapper quick-list-input">
+<div *ngIf="!(readonly || readonly === ''); else readonlyView" class="clr-select-wrapper quick-list-input">
   <select #select clr-select class="quick-list-select" name="options" [(ngModel)]="selectedValue">
     <option *ngIf="blankOption.id === selectedValue" [selected]="true" [disabled]="true" [ngValue]="blankOption.id">
       {{blankOption.label}}
@@ -9,6 +9,15 @@
   </select>
 </div>
 
-<button class="btn btn-icon btn-link quick-list-trash" [disabled]="trashDisabled()" (click)="remove.emit()">
+<ng-template #readonlyView>
+  <span>{{value.label}}</span>
+</ng-template>
+
+<button
+  *ngIf="!(readonly || readonly === '')"
+  class="btn btn-icon btn-link quick-list-trash"
+  [disabled]="trashDisabled()"
+  (click)="remove.emit()"
+>
   <clr-icon shape="trash"></clr-icon>
 </button>

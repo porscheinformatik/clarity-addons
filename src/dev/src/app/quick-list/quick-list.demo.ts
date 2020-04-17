@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -27,7 +27,7 @@ export class QuickListDemo implements OnInit {
 
   ngOnInit(): void {
     this.possibleActivityResults = this.options.map(op => this.map(op));
-    this.selectedHActivityResults = this.possibleActivityResults.filter((val, i) => i < 2);
+    this.selectedHActivityResults = this.possibleActivityResults.filter((_val, i) => i < 2);
   }
 
   private map(op: string): ClrQuickListValue<string> {

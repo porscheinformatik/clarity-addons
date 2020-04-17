@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -17,6 +17,7 @@ export class ClrAddOption<T> {
   @Input() mandatory = false;
   @Input() allValues: Array<ClrQuickListValue<T>> = [];
   @Input() excludedValues: Array<ClrQuickListValue<T>> = [];
+  @Input() readonly: string;
 
   @Output() valueChanged = new EventEmitter<ClrQuickListValue<T>>();
   @Output() remove = new EventEmitter<void>();

@@ -13,6 +13,7 @@ export abstract class ClrMultilingualAbstract extends ClrAbstractFormComponent {
 
   @Input('clrControlClasses') controlClasses = 'clr-col-md-10';
   @Input('clrSelectedLang') selectedLang: string;
+  @Input() readonly: string;
 
   @ViewChild('input') inputElement: ElementRef;
 

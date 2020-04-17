@@ -5,6 +5,7 @@
       <ng-container *ngTemplateOutlet="itemTemplate; context: {$implicit:item}"></ng-container>
 
       <button
+        *ngIf="!(readonly || readonly === '')"
         type="button"
         class="btn btn-icon btn-link btn-trash"
         [disabled]="required && allItems.length === 1"
@@ -14,7 +15,13 @@
       </button>
     </div>
   </ng-container>
-  <button type="button" class="btn btn-link btn-sm btn-add" (click)="addItem()" [disabled]="!addPossible">
+  <button
+    *ngIf="!(readonly || readonly === '')"
+    type="button"
+    class="btn btn-link btn-sm btn-add"
+    (click)="addItem()"
+    [disabled]="!addPossible"
+  >
     {{addLabel}}
   </button>
 </div>
