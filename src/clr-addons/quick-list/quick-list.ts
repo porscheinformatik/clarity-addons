@@ -27,7 +27,6 @@ export class ClrQuickList<T> implements OnInit {
   @ViewChildren(ClrAddOption) options: QueryList<ClrAddOption<T>>;
 
   ngOnInit(): void {
-    console.log(this.readonly);
     if (this.values.length === 0 && this.mandatory) {
       this.values.push(this.blankOption);
     }
