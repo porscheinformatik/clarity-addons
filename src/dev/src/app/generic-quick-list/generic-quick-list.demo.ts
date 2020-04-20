@@ -22,11 +22,11 @@ export class GenericQuickListDemo {
     { id: 2, firstname: 'qwert', lastname: 'uipp' },
   ];
 
-  itemRemoved(itemId): void {
+  itemRemoved(itemId: any): void {
     console.log('item removed', itemId);
   }
 
-  itemAdded(item): void {
+  itemAdded(item: any): void {
     console.log('item added', item);
   }
 

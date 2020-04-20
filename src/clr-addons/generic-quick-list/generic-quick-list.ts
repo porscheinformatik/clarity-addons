@@ -34,6 +34,7 @@ export class ClrGenericQuickList<T extends ClrGenericQuickListItem> implements O
   @Input('clrBlankItem') blankItem = {} as any;
   @Input('clrControlClasses') controlClasses: string;
   @Input('clrMandatory') required = false;
+  @Input() readonly: string;
 
   @Output('clrAdded') added = new EventEmitter();
   @Output('clrRemoved') removed = new EventEmitter();

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -20,6 +20,7 @@ export class ClrQuickList<T> implements OnInit {
   @Input('clrValues') values: Array<ClrQuickListValue<T>> = [];
   @Input('clrAddLabel') addLabel = 'ADD';
   @Input('clrControlClasses') controlClasses = 'clr-col-md-10';
+  @Input() readonly: string;
   @Output('clrValuesChanged') valuesChanged = new EventEmitter<Array<ClrQuickListValue<T>>>();
   @Output('clrEmptyOptionAdded') emptyOptionAdded = new EventEmitter<void>();
 

@@ -36,6 +36,7 @@
         (ngModelChange)="setText(selectedLang, $event)"
         (blur)="onTouch()"
         [disabled]="disabled"
+        [readonly]="readonly || readonly === ''"
         #input
       />
 
@@ -47,6 +48,7 @@
         (ngModelChange)="setText(selectedLang, $event)"
         (blur)="onTouch()"
         [disabled]="disabled"
+        [readonly]="readonly || readonly === ''"
         #input
       ></textarea>
 
