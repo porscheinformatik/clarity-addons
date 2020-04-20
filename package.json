@@ -99,7 +99,7 @@
     "shx": "0.3.2",
     "stylelint": "13.3.2",
     "stylelint-config-recommended": "3.0.0",
-    "stylelint-scss": "3.17.0",
+    "stylelint-scss": "3.17.1",
     "typescript": "3.8.3"
   },
   "engines": {
