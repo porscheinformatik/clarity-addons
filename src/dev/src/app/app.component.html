@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+  ~ Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
@@ -16,14 +16,16 @@
         <a class="nav-link" href="#"><span class="nav-text">Menu1</span></a>
         <a class="nav-link" href="#"><span class="nav-text">Menu2</span></a>
         <clr-main-nav-group clrTitle="Main Nav Group" routerLinkActive="active">
-          <a class="nav-link" routerLink="/cards" routerLinkActive="active">Cards</a>
-          <a class="nav-link" routerLink="/view-edit-section" routerLinkActive="active">ViewEdit Section</a>
-          <a class="nav-link" href="#" onClick="return false;">Submenu 3 3</a>
+          <a class="nav-link" routerLink="/cards" routerLinkActive="active" clrMainNavGroupItem>Cards</a>
+          <a class="nav-link" routerLink="/view-edit-section" routerLinkActive="active" clrMainNavGroupItem
+            >ViewEdit Section</a
+          >
+          <a class="nav-link" href="#" onClick="return false;" clrMainNavGroupItem>Submenu 3 3</a>
         </clr-main-nav-group>
         <clr-main-nav-group clrTitle="Main Nav Group 2" routerLinkActive="active">
-          <a class="nav-link" routerLink="/pager" routerLinkActive="active">Pager</a>
-          <a class="nav-link" href="#" onClick="return false;">Submenu 4 2</a>
-          <a class="nav-link" href="#" onClick="return false;">Submenu 4 3</a>
+          <a class="nav-link" routerLink="/pager" routerLinkActive="active" clrMainNavGroupItem>Pager</a>
+          <a class="nav-link" href="#" onClick="return false;" clrMainNavGroupItem>Submenu 4 2</a>
+          <a class="nav-link" href="#" onClick="return false;" clrMainNavGroupItem>Submenu 4 3</a>
         </clr-main-nav-group>
       </div>
     </div>
