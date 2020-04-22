@@ -133,11 +133,18 @@
 
   .main-nav-group {
     &.active .collapsible.active .nav-text {
-      opacity: 1;
+      opacity: 0.99;
     }
 
-    .collapsible > input[type='checkbox'] {
-      display: none;
+    .collapsible {
+      &:active,
+      &:hover {
+        outline-width: 0;
+      }
+
+      > input[type='checkbox'] {
+        display: none;
+      }
     }
   }
 }
