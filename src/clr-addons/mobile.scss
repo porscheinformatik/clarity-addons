@@ -73,7 +73,9 @@
 
   .signpost {
     .signpost-content {
-      width: calc(100% - 2rem);
+      width: max-content;
+      min-width: 5rem;
+      max-width: calc(100% - 2rem);
       margin: auto;
       position: fixed !important;
       top: 0 !important;

@@ -5,28 +5,39 @@
  */
 
 import {
-  AfterViewInit,
+  AfterContentInit,
   Component,
   ContentChildren,
   ElementRef,
   Inject,
   Injector,
+  OnDestroy,
   Optional,
   QueryList,
 } from '@angular/core';
-import { ɵe as POPOVER_HOST_ANCHOR, ɵp as AbstractPopover } from '@clr/angular';
+import {
+  ɵe as POPOVER_HOST_ANCHOR,
+  ɵp as AbstractPopover,
+  ɵo as FocusableItem,
+  ɵi as DropdownFocusHandler,
+} from '@clr/angular';
 import { ClrOption } from './option';
 import { Point } from './utils/constants';
 
-@Component({ selector: 'clr-options', templateUrl: './options.html', host: { '[class.clr-options]': 'true' } })
-export class ClrOptions<T> extends AbstractPopover implements AfterViewInit {
+@Component({
+  selector: 'clr-options',
+  templateUrl: './options.html',
+  host: { '[class.clr-options]': 'true' },
+})
+export class ClrOptions<T> extends AbstractPopover implements AfterContentInit, OnDestroy {
   @ContentChildren(ClrOption) options: QueryList<ClrOption<T>>;
 
   constructor(
     injector: Injector,
     @Optional()
     @Inject(POPOVER_HOST_ANCHOR)
-    parentHost: ElementRef
+    parentHost: ElementRef,
+    focusHandler: DropdownFocusHandler
   ) {
     if (!parentHost) {
       throw new Error('clr-options should only be used inside of a clr-combobox');
@@ -35,6 +46,7 @@ export class ClrOptions<T> extends AbstractPopover implements AfterViewInit {
 
     // Configure Popover
     this.configurePopover();
+    this.focusHandler = focusHandler;
   }
 
   /**
@@ -46,9 +58,21 @@ export class ClrOptions<T> extends AbstractPopover implements AfterViewInit {
     this.closeOnOutsideClick = true;
   }
 
+  private focusHandler: DropdownFocusHandler;
+  @ContentChildren(FocusableItem) items: QueryList<FocusableItem>;
+
   // Lifecycle hooks
-  ngAfterViewInit(): void {
+  ngAfterContentInit(): void {
     // set anchor element for dropdown to the input
     this.anchorElem = this.parentHost.nativeElement.getElementsByClassName('clr-combobox-input')[0] || this.anchorElem;
+    this.focusHandler.container = this.el.nativeElement;
+    this.items.changes.subscribe(() => this.focusHandler.addChildren(this.items.toArray()));
+    // I saw this on GitHub as a solution to avoid code duplication because of missed QueryList changes
+    this.items.notifyOnChanges();
+  }
+
+  ngOnDestroy() {
+    super.ngOnDestroy();
+    this.focusHandler.resetChildren();
   }
 }
