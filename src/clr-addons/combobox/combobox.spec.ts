@@ -9,6 +9,7 @@ import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testin
 import { By } from '@angular/platform-browser';
 import {
   ClarityModule,
+  ClrPopoverToggleService,
   ɵba as LayoutService,
   ɵbb as NgControlService,
   ɵbd as IfErrorService,
@@ -16,6 +17,12 @@ import {
   ɵe as POPOVER_HOST_ANCHOR,
   ɵp as AbstractPopover,
   ɵz as ControlIdService,
+  ɵi as DropdownFocusHandler,
+  ɵo as FocusableItem,
+  ɵb as RootDropdownService,
+  ɵj as DROPDOWN_FOCUS_HANDLER_PROVIDER,
+  ɵh as FOCUS_SERVICE_PROVIDER,
+  ɵd as ROOT_DROPDOWN_PROVIDER,
 } from '@clr/angular';
 import { ClrComboboxModule } from './combobox.module';
 import { ClrOption } from './option';
@@ -138,5 +145,13 @@ describe('ComboboxComponent', () => {
     expect(new IfErrorService(new NgControlService()).constructor.name).toBe('IfErrorService');
     expect(AbstractPopover.toString()).toContain('AbstractPopover');
     expect(POPOVER_HOST_ANCHOR.toString()).toContain('POPOVER_HOST_ANCHOR');
+    expect(new RootDropdownService().constructor.name).toBe('RootDropdownService');
+    expect(new DropdownFocusHandler(null, null, null, new ClrPopoverToggleService(), null, null).constructor.name).toBe(
+      'DropdownFocusHandler'
+    );
+    expect(FocusableItem.toString()).toContain('FocusableItem');
+    expect(Object.keys({ ROOT_DROPDOWN_PROVIDER })[0]).toBe('ROOT_DROPDOWN_PROVIDER');
+    expect(Object.keys({ DROPDOWN_FOCUS_HANDLER_PROVIDER })[0]).toBe('DROPDOWN_FOCUS_HANDLER_PROVIDER');
+    expect(Object.keys({ FOCUS_SERVICE_PROVIDER })[0]).toBe('FOCUS_SERVICE_PROVIDER');
   });
 });
