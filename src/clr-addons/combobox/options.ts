@@ -32,12 +32,14 @@ import { Point } from './utils/constants';
 export class ClrOptions<T> extends AbstractPopover implements AfterContentInit, OnDestroy {
   @ContentChildren(ClrOption) options: QueryList<ClrOption<T>>;
 
+  @ContentChildren(FocusableItem) items: QueryList<FocusableItem>;
+  private focusHandler: DropdownFocusHandler;
+
   constructor(
     injector: Injector,
     @Optional()
     @Inject(POPOVER_HOST_ANCHOR)
-    parentHost: ElementRef,
-    focusHandler: DropdownFocusHandler
+    parentHost: ElementRef
   ) {
     if (!parentHost) {
       throw new Error('clr-options should only be used inside of a clr-combobox');
@@ -46,7 +48,7 @@ export class ClrOptions<T> extends AbstractPopover implements AfterContentInit, 
 
     // Configure Popover
     this.configurePopover();
-    this.focusHandler = focusHandler;
+    this.focusHandler = injector.get(DropdownFocusHandler);
   }
 
   /**
@@ -57,9 +59,6 @@ export class ClrOptions<T> extends AbstractPopover implements AfterContentInit, 
     this.popoverPoint = Point.LEFT_TOP;
     this.closeOnOutsideClick = true;
   }
-
-  private focusHandler: DropdownFocusHandler;
-  @ContentChildren(FocusableItem) items: QueryList<FocusableItem>;
 
   // Lifecycle hooks
   ngAfterContentInit(): void {

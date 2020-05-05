@@ -105,13 +105,13 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
 
   private layoutService: LayoutService;
   private controlClassService: ControlClassService;
+  private dropdownService: RootDropdownService;
 
   constructor(
     private cd: ChangeDetectorRef,
     public popoverToggleService: ClrPopoverToggleService,
     private optionSelectionService: OptionSelectionService<T>,
     private domAdapter: ComboboxDomAdapter,
-    dropdownService: RootDropdownService,
     injector: Injector
   ) {
     console.warn('The ClrCombobox is deprecated as of clr-addons version 7. Use the ClrDataList instead!');
@@ -119,7 +119,8 @@ export class ClrCombobox<T> implements OnInit, AfterContentInit, OnDestroy {
     // otherwise ivy compilation does not work for applications using clarity-addons!
     this.layoutService = injector.get(LayoutService);
     this.controlClassService = injector.get(ControlClassService);
-    this.subscriptions.push(dropdownService.changes.subscribe(value => (this.popoverToggleService.open = value)));
+    this.dropdownService = injector.get(RootDropdownService);
+    this.subscriptions.push(this.dropdownService.changes.subscribe(value => (this.popoverToggleService.open = value)));
     this.subscriptions.push(popoverToggleService.openChange.subscribe(() => this.cd.markForCheck()));
   }
 
