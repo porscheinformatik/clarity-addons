@@ -15,6 +15,7 @@ import { ClrDateTimeModule } from './date-time-container/date-time-module';
 import { ClrDotPagerModule } from './dot-pager/dot-pager.module';
 import { ClrFlowBarModule } from './flow-bar/flow-bar.module';
 import { ClrGenericQuickListModule } from './generic-quick-list/generic-quick-list.module';
+import { ClrAddonsIconsModule } from './icons/icons.module';
 import { ClrLetterAvatarModule } from './letter-avatar/letter-avatar.module';
 import { ClrMainNavGroupModule } from './main-nav-group/main-nav-group.module';
 import { ClrMultilingualModule } from './multilingual/multilingual.module';
@@ -52,6 +53,7 @@ import { ClrViewEditSectionModule } from './view-edit-section/view-edit-section.
     ClrMultilingualModule,
     ClrGenericQuickListModule,
     ClrDataListValidatorModule,
+    ClrAddonsIconsModule,
   ],
 })
 export class ClrAddonsModule {}
