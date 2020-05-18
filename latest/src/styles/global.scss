@@ -21,6 +21,7 @@ p.squish {
 ol.indent {
   padding-left: $bl-2_0;
   margin-top: $bl-1_0;
+
   & li {
     padding-bottom: $bl-0_5;
   }
@@ -43,6 +44,7 @@ h6.indent + p.indent {
 
 .list-unstyled {
   @extend %killListStyles;
+
   & > li {
     @extend %killListStyles;
   }
@@ -63,10 +65,12 @@ h6.indent + p.indent {
     display: block;
     width: 100%;
   }
+
   .nav-group label > a {
     color: inherit;
     text-decoration: none;
     padding-left: $bl-0_5;
+
     &:hover,
     &:active,
     &:focus {
@@ -74,8 +78,10 @@ h6.indent + p.indent {
       text-decoration: none;
       background: #eee;
     }
+
     &.active {
       background: #d9e4ea;
+
       &:hover,
       &:active,
       &:focus {
@@ -83,6 +89,7 @@ h6.indent + p.indent {
       }
     }
   }
+
   a.nav-link {
     & > .nav-link-tag {
       color: #313131;
@@ -92,9 +99,11 @@ h6.indent + p.indent {
       font-weight: 400;
       vertical-align: top;
       letter-spacing: 0.02em;
+
       &.new {
         color: #7e00b4;
       }
+
       &.updated {
         color: #0094d2;
       }
@@ -112,6 +121,7 @@ h6.indent + p.indent {
 
 .valign {
   display: table;
+
   & > * {
     display: table-cell;
     vertical-align: middle;
@@ -139,6 +149,7 @@ code[class*='language-'] {
 
 a.btn-primary {
   color: #fafafa;
+
   &:hover,
   &:active,
   &:visited,
@@ -221,37 +232,46 @@ a.btn-primary {
   h3 {
     margin-top: 1rem;
   }
+
   h2 + h3 {
     margin-top: $bl-1_5;
   }
+
   h5 {
     color: #000;
     margin-top: 1rem;
   }
+
   h4 {
     margin-top: 1rem;
   }
+
   h6 {
     margin-top: 1rem;
   }
+
   h5 + h6 {
     margin-top: 1rem;
   }
+
   h3 + h5,
   h2 + h5,
   h3 + h4,
   h1 + h5 {
     margin-top: $bl-1_0;
   }
+
   h6 + p {
     margin-top: $bl-0_25;
   }
+
   pre {
     // TODO: move this into the background style of the code-highlight
     // component...
     background: #fff !important;
   }
 }
+
 .btn.no-margin {
   padding: 0;
   margin: 0;
@@ -306,6 +326,150 @@ a.btn-primary {
       .header {
         transform: none;
       }
+    }
+  }
+
+  .icons-header {
+    position: fixed;
+    top: 3rem;
+    left: 0;
+    width: 100%;
+    height: 12rem;
+    background: #680094;
+
+    .icons-background {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+
+      .icon-bg-wrapper {
+        width: 4rem;
+        height: 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: hsla(0,0%,100%,.2);
+        transition: all .3s ease-out;
+      }
+    }
+
+    .icons-header-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0 1.8rem;
+
+      h1 {
+        color: #fff;
+        text-align: center;
+        margin: 0 0 .6rem;
+        font-weight: 400;
+      }
+
+      .icons-header-message {
+        font-size: .8rem;
+        color: #fff;
+        text-align: center;
+        font-weight: 100;
+        margin: .6rem 0 1.2rem;
+      }
+    }
+  }
+
+  .icons-content {
+    position: absolute;
+    top: 15rem;
+    left: 0;
+    background-color: #fafafa;
+    min-height: calc(100vh - 15rem);
+    width: 100%;
+    text-align: center;
+
+    .content-container {
+      max-width: 54rem;
+      margin: 0 auto;
+      text-align: left;
+    }
+  }
+
+  .icons-sidenav {
+    border: none;
+    padding: 0;
+    text-align: left;
+    width: 10.8rem;
+
+    .sidenav-content {
+      padding: 1.8rem 0 0 1.2rem;
+    }
+
+    .nav-group {
+
+      .nav-list {
+        padding: 0;
+
+        .nav-link {
+          padding: .15rem .3rem;
+          border-radius: .15rem;
+        }
+      }
+
+      label {
+        text-transform: uppercase;
+        font-weight: 400;
+        font-size: .6rem;
+        padding: 0 0 .3rem .3rem;
+      }
+    }
+  }
+
+  .clr-icon-collection {
+    padding: 1.2rem 0;
+
+    .clr-icon-item {
+      padding: 0 .6rem;
+
+      clr-icon {
+        margin: 0 .6rem;
+        transform: translateZ(0);
+      }
+
+      .icon-shape-name {
+        white-space: nowrap;
+      }
+    }
+  }
+
+  .visible-icon {
+    position: relative;
+    top: .15rem;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    text-align: left;
+    padding: .9rem .3rem;
+    background-color: transparent;
+    border: .05rem solid hsla(0, 0%, 83.9%, 0);
+    transform: translateZ(0);
+    color: #666;
+    cursor: pointer;
+    z-index: 1;
+
+    .icon-shape {
+      flex: 0 0 auto;
+    }
+
+    .icon-shape-name {
+      flex: 1 1 auto;
+      margin-right: .6rem;
     }
   }
 }

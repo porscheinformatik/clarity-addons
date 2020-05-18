@@ -17,6 +17,10 @@ const appRoutes: Routes = [
         loadChildren: () => import("./news/news.module").then(m => m.NewsModule),
     },
     {
+        path: "icons",
+        loadChildren: () => import("./icons/icons.module").then(m => m.IconsModule),
+    },
+    {
         path: "**",
         component: PageNotFoundComponent,
         data: {
