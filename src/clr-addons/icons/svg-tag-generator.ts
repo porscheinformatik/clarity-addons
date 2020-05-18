@@ -13,8 +13,9 @@ const SOLID_CLASS = 'clr-i-solid';
  *
  * @see {@link https://github.com/vmware/clarity/blob/0afa75bf6bf183bb76474f7c3b20ebc7dcf89263/packages/icons/src/utils/svg-tag-generator.ts}
  * @param content content of the SVG
+ * @param viewBox viewBox of the SVG
  */
-export function clrIconSVG(content: string): string {
+export function clrIconSVG(content: string, viewBox = '0 0 24 24'): string {
   let classes = '';
 
   if (content.indexOf(BADGED_CLASS_SUBSTRING) > -1) {
@@ -31,10 +32,10 @@ export function clrIconSVG(content: string): string {
 
   let openingTag;
   if (classes) {
-    openingTag = `<svg version="1.1" class="${classes}" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet"
+    openingTag = `<svg version="1.1" class="${classes}" viewBox="${viewBox}" preserveAspectRatio="xMidYMid meet"
     xmlns="http://www.w3.org/2000/svg" focusable="false" role="img">`;
   } else {
-    openingTag = `<svg version="1.1" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet"
+    openingTag = `<svg version="1.1" viewBox="${viewBox}" preserveAspectRatio="xMidYMid meet"
     xmlns="http://www.w3.org/2000/svg" focusable="false" role="img">`;
   }
   const closingTag = `</svg>`;
