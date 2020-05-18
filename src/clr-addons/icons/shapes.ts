@@ -221,6 +221,11 @@ export const OffersShape = clrIconSVG(
   '0 0 48 48'
 );
 
+export const VWShape = clrIconSVG(
+  `<path d="M24 45.792c-11.952 0-21.744-9.84-21.744-21.792 0-2.688.48-5.232 1.392-7.632l12.72 25.584c.144.336.384.624.768.624s.624-.288.768-.624l5.856-13.104c.048-.144.144-.288.288-.288s.192.144.288.288l5.856 13.104c.144.336.384.624.768.624s.624-.288.768-.624l12.72-25.584A21.318 21.318 0 0145.84 24C45.744 35.952 35.952 45.792 24 45.792zm0-26.736c-.144 0-.192-.144-.288-.288l-6.816-15.36A20.473 20.473 0 0124 2.16c2.496 0 4.896.432 7.104 1.248l-6.816 15.36c-.096.192-.144.288-.288.288zm-6.96 15.792c-.144 0-.192-.144-.288-.288L5.712 12.288C7.68 9.264 10.32 6.72 13.536 4.944l7.968 17.712c.096.288.336.384.576.384h3.84c.288 0 .48-.048.624-.384l7.968-17.712a22.496 22.496 0 017.824 7.344L31.2 34.56c-.048.144-.144.288-.288.288s-.192-.144-.288-.288l-4.176-9.504c-.144-.336-.336-.384-.624-.384h-3.84c-.288 0-.48.048-.624.384l-4.032 9.504c-.048.144-.144.288-.288.288zM24 48c13.296 0 24-10.704 24-24S37.296 0 24 0 0 10.704 0 24s10.704 24 24 24z"/>`,
+  '0 0 48 48'
+);
+
 export const ClrAddonsIconShapes: any = {
   'air-conditioner': ACShape,
   accessories: AccessoriesShape,
@@ -236,8 +241,8 @@ export const ClrAddonsIconShapes: any = {
   'customers-center': CustomersCenterShape,
   'drivers-assistance': DriversAssistanceShape,
   efficiency: EfficiencyShape,
-  'electric-cars-service': ElectricCarsServiceShape,
   'electric-cars': ElectricCarsShape,
+  'electric-cars-service': ElectricCarsServiceShape,
   electricity: ElectricityShape,
   engine: EngineShape,
   'express-service': ExpressServiceShape,
@@ -261,16 +266,17 @@ export const ClrAddonsIconShapes: any = {
   'power-train': PowerTrainShape,
   'qualified-workshop': QualifiedWorkshopShape,
   'roadside-assistance': RoadsideAssistanceShape,
-  'seat-air': SeatAirShape,
   seat: SeatShape,
-  'service-bell': ServiceBellShape,
+  'seat-air': SeatAirShape,
   service: ServiceShape,
+  'service-bell': ServiceBellShape,
   'stock-locator-commercial': StockLocatorCommercialShape,
   'stock-locator-private': StockLocatorPrivateShape,
   'transmission-automatic': TransmissionAutomaticShape,
   'transmission-manual': TransmissionManualShape,
   'used-car-commercial': UsedCarCommercialShape,
   'used-car-private': UsedCarPrivateShape,
+  volkswagen: VWShape,
   'view-360': View360Shape,
   'wheel-to-wheel': WheelToWheelShape,
 };
