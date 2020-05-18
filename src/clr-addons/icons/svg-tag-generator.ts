@@ -15,7 +15,7 @@ const SOLID_CLASS = 'clr-i-solid';
  * @param content content of the SVG
  */
 export function clrIconSVG(content: string): string {
-  let classes: string = '';
+  let classes = '';
 
   if (content.indexOf(BADGED_CLASS_SUBSTRING) > -1) {
     classes += 'can-badge ';
@@ -29,7 +29,7 @@ export function clrIconSVG(content: string): string {
     classes += 'has-solid ';
   }
 
-  let openingTag: string;
+  let openingTag;
   if (classes) {
     openingTag = `<svg version="1.1" class="${classes}" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet"
     xmlns="http://www.w3.org/2000/svg" focusable="false" role="img">`;
