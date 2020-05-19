@@ -6,5 +6,4 @@
 
 export * from './shapes';
 export * from './svg-tag-generator';
-export * from './icons.service';
 export * from './icons.module';
