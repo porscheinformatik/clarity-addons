@@ -1,0 +1,19 @@
+<section class="icon-sets-container">
+    <div class="clr-row">
+        <h2>All Shapes</h2>
+    </div>
+    <div class="clr-row clr-icon-collection" *ngIf="shapes.length > 0">
+        <div class="clr-icon-item clr-col-12 clr-col-sm-6 clr-col-md-4" *ngFor="let shape of shapes">
+            <button class="visible-icon">
+                <clr-icon [attr.shape]="shape" size="24" class="icon-shape"></clr-icon>
+                <span class="icon-shape-name">{{shape}}</span>
+            </button>
+        </div>
+    </div>
+</section>
+<section class="icon-sets-footer">
+    <p>Clarity Addons Icons, © Volkswagen 2020</p>
+    <p>When using the icons, copyrights, name and trademark rights as well as other property rights of Volkswagen AG
+        must be observed. The icons and the brand are protected. No licence or other right of use is granted by the
+        availability of the icons.</p>
+</section>
