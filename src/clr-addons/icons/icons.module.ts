@@ -8,18 +8,26 @@ import { CommonModule } from '@angular/common';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ClarityModule } from '@clr/angular';
-import { ClrIconsService } from './icons.service';
+import { ClarityIcons } from '@clr/icons';
+import { ClrAddonsIconShapes } from './shapes';
+
+/**
+ * Adds custom icons to the ClarityIcons Api
+ *
+ * @see {@link https://clarity.design/icons/api}
+ */
+export function loadIcons() {
+  return () => ClarityIcons.add(ClrAddonsIconShapes);
+}
 
 @NgModule({
   imports: [CommonModule, ClarityModule, FormsModule],
   declarations: [],
   exports: [],
   providers: [
-    ClrIconsService,
     {
       provide: APP_INITIALIZER,
-      useFactory: (service: ClrIconsService) => () => service.loadIcons(),
-      deps: [ClrIconsService],
+      useFactory: loadIcons,
       multi: true,
     },
   ],

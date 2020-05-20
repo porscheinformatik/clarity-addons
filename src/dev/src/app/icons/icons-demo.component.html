@@ -8,21 +8,9 @@
 
 <div class="clr-example">
   <div class="clr-row">
-    <div class="clr-col-3">
-      <clr-icon shape="new-car-commercial" size="24"></clr-icon>
-      <span>new-car-commercial</span>
-    </div>
-    <div class="clr-col-3">
-      <clr-icon shape="new-car-private" size="24"></clr-icon>
-      <span>new-car-private</span>
-    </div>
-    <div class="clr-col-3">
-      <clr-icon shape="used-car-commercial" size="24"></clr-icon>
-      <span>used-car-commercial</span>
-    </div>
-    <div class="clr-col-3">
-      <clr-icon shape="used-car-private" size="24"></clr-icon>
-      <span>used-car-private</span>
+    <div class="clr-col-2" *ngFor="let shape of shapes" style="margin-top: 1rem;">
+      <clr-icon [attr.shape]="shape" size="24"></clr-icon>
+      <span>{{ shape }}</span>
     </div>
   </div>
 </div>
