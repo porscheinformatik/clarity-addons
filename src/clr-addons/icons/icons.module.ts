@@ -9,6 +9,7 @@ import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ClarityModule } from '@clr/angular';
 import { ClarityIcons } from '@clr/icons';
+import { AllShapes } from '@clr/icons/shapes/all-shapes';
 import { ClrAddonsIconShapes } from './shapes';
 
 /**
@@ -17,7 +18,12 @@ import { ClrAddonsIconShapes } from './shapes';
  * @see {@link https://clarity.design/icons/api}
  */
 export function loadIcons() {
-  return () => ClarityIcons.add(ClrAddonsIconShapes);
+  return () => {
+    // Add all available shapes from clarity, per default only the core-shapes are loaded.
+    ClarityIcons.add(AllShapes);
+    // Add our custom shapes
+    ClarityIcons.add(ClrAddonsIconShapes);
+  };
 }
 
 @NgModule({
