@@ -26,8 +26,8 @@ enum LocaleDataIndex {
     DateTimeFormat,
     NumberSymbols,
     NumberFormats,
-    CurrencySymbol,
     CurrencyName,
+    CurrencySymbol,
     Currencies,
     PluralCase,
     ExtraData
