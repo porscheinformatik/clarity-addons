@@ -22,7 +22,7 @@ export class ClrAddOption<T> {
   @Output() valueChanged = new EventEmitter<ClrQuickListValue<T>>();
   @Output() remove = new EventEmitter<void>();
 
-  @ViewChild('select', { static: true }) select: ElementRef;
+  @ViewChild('select', { static: false }) select: ElementRef;
 
   set selectedValue(id: string) {
     this.value = this.allValues.find(val => val.id === id);
@@ -43,6 +43,6 @@ export class ClrAddOption<T> {
   }
 
   focusComponent(): void {
-    (this.select.nativeElement as HTMLInputElement).focus();
+    !!this.select && (this.select.nativeElement as HTMLInputElement).focus();
   }
 }
