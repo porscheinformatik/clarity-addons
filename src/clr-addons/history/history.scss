@@ -1,0 +1,21 @@
+@include exports('history.clr-addons') {
+  .history {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: -1rem;
+    list-style: none;
+    font-size: 13px;
+  }
+
+  .history-item {
+    + .history-item {
+      padding-left: 0.5rem;
+
+      &::before {
+        content: '/';
+        display: inline-block;
+        padding-right: 0.5rem;
+      }
+    }
+  }
+}

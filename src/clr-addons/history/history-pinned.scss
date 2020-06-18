@@ -1,0 +1,23 @@
+@include exports('history-pinned.clr-addons') {
+  .history-container {
+    padding: 15px;
+  }
+
+  .history {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: -1rem;
+    list-style: none;
+    font-size: 13px;
+  }
+
+  .history-item {
+    cursor: pointer;
+    &::before {
+      padding-left: 0.5rem;
+      content: '>';
+      display: inline-block;
+      padding-right: 0.5rem;
+    }
+  }
+}
