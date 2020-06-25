@@ -52,16 +52,6 @@ describe('ClrHistory', () => {
   });
 
   it('reset', () => {
-    const historyEntry: ClrHistoryModel = {
-      username: 'admin',
-      applicationName: 'TEST',
-      context: '123',
-      pageName: 'test1',
-      title: 'test1',
-      url: 'url1',
-    };
-    historyService.addHistoryEntry(historyEntry);
-    expect(historyService.getHistory('admin', 'TEST').length).toEqual(1);
     historyService.resetHistory();
     expect(historyService.getHistory('admin', 'TEST').length).toEqual(0);
   });
