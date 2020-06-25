@@ -13,13 +13,13 @@ import { ClrHistoryService } from './history.service';
   templateUrl: './history.html',
 })
 export class ClrHistory implements OnInit {
-  @Input('username') username: string;
-  @Input('application') application: string;
-  @Input('tenantId') tenantId: string;
-  @Input('pinActive') pinActive = true;
-  @Input('dropdownHeader') dropdownHeader = 'History';
-  @Input('dropdownPin') dropdownPin = 'Pin History';
-  @Input('dropdownUnpin') dropdownUnpin = 'Unpin History';
+  @Input('clrUsername') username: string;
+  @Input('clrApplication') application: string;
+  @Input('clrTenantId') tenantId: string;
+  @Input('clrPinActive') pinActive = true;
+  @Input('clrDropdownHeader') dropdownHeader = 'History';
+  @Input('clrDropdownPin') dropdownPin = 'Pin History';
+  @Input('clrDropdownUnpin') dropdownUnpin = 'Unpin History';
 
   /**
    * The array of history elements to be displayed.
@@ -35,7 +35,7 @@ export class ClrHistory implements OnInit {
     if (this.historyElements) {
       this.historyElements.pop();
     }
-    this.pinActivated = this.historyService.getHistoryPinned(this.username);
+    this.historyService.initializeCookieSettings(this.username);
     this.historyService.cookieSettings$.subscribe(settings => {
       this.pinActivated = settings.find(setting => setting.username === this.username).historyPinned;
     });
@@ -46,6 +46,6 @@ export class ClrHistory implements OnInit {
   }
 
   togglePinHistory(): void {
-    this.historyService.setHistoryPinned(this.username, !this.historyService.getHistoryPinned(this.username));
+    this.historyService.setHistoryPinned(this.username, !this.pinActivated);
   }
 }

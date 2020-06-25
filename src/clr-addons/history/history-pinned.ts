@@ -14,9 +14,9 @@ import { Subscription } from 'rxjs';
   templateUrl: './history-pinned.html',
 })
 export class ClrHistoryPinned implements OnInit, OnDestroy {
-  @Input('username') username: string;
-  @Input('application') application: string;
-  @Input('tenantId') tenantId: string;
+  @Input('clrUsername') username: string;
+  @Input('clrApplication') application: string;
+  @Input('clrTenantId') tenantId: string;
 
   /**
    * The array of history elements to be displayed.
@@ -33,8 +33,8 @@ export class ClrHistoryPinned implements OnInit, OnDestroy {
     if (this.historyElements) {
       this.historyElements.pop();
     }
-    this.active = this.historyService.getHistoryPinned(this.username);
-    this.historyService.cookieSettings$.subscribe(settings => {
+    this.historyService.initializeCookieSettings(this.username);
+    this.settingsSubscription = this.historyService.cookieSettings$.subscribe(settings => {
       const setting = settings.find(setting => setting.username === this.username);
       if (setting) {
         this.active = setting.historyPinned;

@@ -9,10 +9,12 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ClrHistory } from './history';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ClrHistoryService } from './history.service';
+import { ClrHistoryModel } from './history-model.interface';
 
 describe('ClrHistory', () => {
   let component: ClrHistory;
   let fixture: ComponentFixture<ClrHistory>;
+  let historyService: ClrHistoryService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -20,6 +22,10 @@ describe('ClrHistory', () => {
       imports: [RouterTestingModule],
       declarations: [ClrHistory],
     }).compileComponents();
+
+    fixture = TestBed.createComponent(ClrHistory);
+    historyService = fixture.debugElement.injector.get<ClrHistoryService>(ClrHistoryService);
+    fixture.detectChanges();
   }));
 
   beforeEach(() => {
@@ -30,5 +36,33 @@ describe('ClrHistory', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should add', () => {
+    const historyEntry: ClrHistoryModel = {
+      username: 'admin',
+      applicationName: 'TEST',
+      context: '123',
+      pageName: 'test1',
+      title: 'test1',
+      url: 'url1',
+    };
+    historyService.addHistoryEntry(historyEntry);
+    expect(historyService.getHistory('admin', 'TEST').length).toEqual(1);
+  });
+
+  it('reset', () => {
+    const historyEntry: ClrHistoryModel = {
+      username: 'admin',
+      applicationName: 'TEST',
+      context: '123',
+      pageName: 'test1',
+      title: 'test1',
+      url: 'url1',
+    };
+    historyService.addHistoryEntry(historyEntry);
+    expect(historyService.getHistory('admin', 'TEST').length).toEqual(1);
+    historyService.resetHistory();
+    expect(historyService.getHistory('admin', 'TEST').length).toEqual(0);
   });
 });

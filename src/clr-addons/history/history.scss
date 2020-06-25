@@ -1,4 +1,8 @@
 @include exports('history.clr-addons') {
+  .history-container {
+    padding: 15px;
+  }
+
   .history {
     display: flex;
     flex-wrap: wrap;

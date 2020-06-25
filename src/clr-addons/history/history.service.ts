@@ -22,6 +22,10 @@ export class ClrHistoryService {
     this.expiryDate.setTime(this.expiryDate.getTime() + 365 * 24 * 60 * 60 * 1000);
   }
 
+  /**
+   * Add a new history entry
+   * @param historyEntry The entry to be added
+   */
   addHistoryEntry(historyEntry: ClrHistoryModel): void {
     this.removeFromHistory(historyEntry);
     let history = this.getHistory(historyEntry.username, historyEntry.applicationName, historyEntry.tenantid);
@@ -32,6 +36,12 @@ export class ClrHistoryService {
     history.push(historyEntry);
     /* only consider the last 4 bread crumbs per tenantid */
     history = history.slice(-4);
+    /* leave entries for other applications untouched */
+    let historyOther = this.getCookieByName(this.cookieName);
+    historyOther = historyOther.filter(
+      element => element.username === historyEntry.username && element.applicationName !== historyEntry.applicationName
+    );
+    history = history.concat(historyOther);
     this.setHistory(history);
   }
 
@@ -52,8 +62,7 @@ export class ClrHistoryService {
   }
 
   /**
-   * Set history for username, application and tenant id
-   * Keep other untouched
+   * Set history
    * @param entries
    */
   private setHistory(entries: ClrHistoryModel[]): void {
@@ -83,18 +92,13 @@ export class ClrHistoryService {
     this.setHistory(history);
   }
 
-  getHistoryPinned(username: string): boolean {
+  initializeCookieSettings(username: string): void {
     let historySettings: ClrHistorySettingsModel[] = this.getCookieByName(this.cookieNameSettings);
     if (!historySettings || historySettings.length === 0) {
       this.setHistoryPinned(username, false);
       historySettings = [{ username: username, historyPinned: false }];
     }
     this.cookieSettings$.next(historySettings);
-    const historySetting = historySettings.find(hSetting => hSetting.username === username);
-    if (historySetting) {
-      return historySetting.historyPinned;
-    }
-    return false;
   }
 
   setHistoryPinned(username: string, pin: boolean): void {
@@ -125,14 +129,15 @@ export class ClrHistoryService {
   }
 
   private setCookie(name: string, content: string): void {
-    document.cookie =
-      name +
-      '=' +
-      content +
-      ';domain=' +
-      window.location.hostname.split('-').slice(-1) +
-      ';expires=' +
-      this.expiryDate.toUTCString() +
-      '; path=/';
+    document.cookie = name + '=' + content + ';domain=' + this.getDomain();
+    ';expires=' + this.expiryDate.toUTCString() + '; path=/';
+  }
+
+  private getDomain(): string {
+    if (window.location.hostname.includes('-')) {
+      return window.location.hostname.split('-').slice(-1).join();
+    } else {
+      return window.location.hostname.split('.').slice(-2).join('.');
+    }
   }
 }

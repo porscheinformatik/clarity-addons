@@ -23,7 +23,7 @@ export interface ClrHistoryModel {
   /**
    * The context of the page
    */
-  context?: string;
+  context: string;
 
   /**
    * The title to be displayed.
