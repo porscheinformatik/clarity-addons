@@ -170,7 +170,14 @@ const documentationRoutes: Routes = [
                 data: {
                     browserTitle: "Multilingual Input"
                 }
-            }
+            },
+            {
+                path: "history",
+                loadChildren: () => import("./demos/history/history.demo.module").then(m => m.HistoryDemoModule),
+                data: {
+                    browserTitle: "History"
+                }
+            },            
         ]
     }
 ];
