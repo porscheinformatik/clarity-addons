@@ -41,18 +41,25 @@ describe('ClrHistory', () => {
   it('should add', () => {
     const historyEntry: ClrHistoryModel = {
       username: 'admin',
-      applicationName: 'TEST',
-      context: '123',
+      context: { ['applicationName']: 'TEST' },
       pageName: 'test1',
       title: 'test1',
       url: 'url1',
     };
     historyService.addHistoryEntry(historyEntry);
-    expect(historyService.getHistory('admin', 'TEST').length).toEqual(1);
+    expect(historyService.getHistory('admin', { ['applicationName']: 'TEST' }).length).toEqual(1);
   });
 
   it('reset', () => {
+    const historyEntry: ClrHistoryModel = {
+      username: 'admin',
+      context: { ['applicationName']: 'TEST' },
+      pageName: 'test2',
+      title: 'test1',
+      url: 'url1',
+    };
+    historyService.addHistoryEntry(historyEntry);
     historyService.resetHistory();
-    expect(historyService.getHistory('admin', 'TEST').length).toEqual(0);
+    expect(historyService.getHistory('admin', { ['applicationName']: 'TEST' }).length).toEqual(0);
   });
 });

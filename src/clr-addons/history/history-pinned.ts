@@ -15,8 +15,7 @@ import { Subscription } from 'rxjs';
 })
 export class ClrHistoryPinned implements OnInit, OnDestroy {
   @Input('clrUsername') username: string;
-  @Input('clrApplication') application: string;
-  @Input('clrTenantId') tenantId: string;
+  @Input('clrContext') context: { [key: string]: string };
 
   /**
    * The array of history elements to be displayed.
@@ -28,7 +27,7 @@ export class ClrHistoryPinned implements OnInit, OnDestroy {
   constructor(private historyService: ClrHistoryService) {}
 
   ngOnInit(): void {
-    this.historyElements = this.historyService.getHistory(this.username, this.application, this.tenantId);
+    this.historyElements = this.historyService.getHistory(this.username, this.context);
     // remove last element to prevent showing one history entry
     if (this.historyElements) {
       this.historyElements.pop();

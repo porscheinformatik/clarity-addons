@@ -11,11 +11,6 @@ export interface ClrHistoryModel {
   username: string;
 
   /**
-   * The tenant id
-   */
-  tenantid?: string;
-
-  /**
    * The name of the page
    */
   pageName: string;
@@ -23,7 +18,7 @@ export interface ClrHistoryModel {
   /**
    * The context of the page
    */
-  context: string;
+  context: { [key: string]: string };
 
   /**
    * The title to be displayed.
@@ -34,11 +29,6 @@ export interface ClrHistoryModel {
    * The url where the navigation goes.
    */
   url: string;
-
-  /**
-   * The name of the application
-   */
-  applicationName: string;
 }
 
 export interface ClrHistorySettingsModel {

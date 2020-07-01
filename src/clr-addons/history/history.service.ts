@@ -11,10 +11,8 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable()
 export class ClrHistoryService {
   public cookieSettings$ = new BehaviorSubject<ClrHistorySettingsModel[]>([]);
-  cookieName = 'cng.history';
-  cookieNameSettings = 'cng.history.settings';
-  // prefix from old solution in tapestry
-  private tenantPrefix = 't';
+  cookieName = 'clr.history';
+  cookieNameSettings = 'clr.history.settings';
   private expiryDate: Date;
 
   constructor() {
@@ -28,68 +26,68 @@ export class ClrHistoryService {
    */
   addHistoryEntry(historyEntry: ClrHistoryModel): void {
     this.removeFromHistory(historyEntry);
-    let history = this.getHistory(historyEntry.username, historyEntry.applicationName, historyEntry.tenantid);
+    let history = this.getHistory(historyEntry.username, historyEntry.context);
     /* add it as last element */
-    if (historyEntry.tenantid) {
-      historyEntry.tenantid = this.tenantPrefix + historyEntry.tenantid;
-    }
     history.push(historyEntry);
     /* only consider the last 4 bread crumbs per tenantid */
     history = history.slice(-4);
-    /* leave entries for other applications untouched */
-    let historyOther = this.getCookieByName(this.cookieName);
-    historyOther = historyOther.filter(
-      element => element.username === historyEntry.username && element.applicationName !== historyEntry.applicationName
-    );
-    history = history.concat(historyOther);
-    this.setHistory(history);
+    this.setHistory(history, historyEntry.username);
   }
 
-  getHistory(username: string, application: string, tenant?: string): ClrHistoryModel[] {
+  getHistory(username: string, context: { [key: string]: string }): ClrHistoryModel[] {
     const history: ClrHistoryModel[] = this.getCookieByName(this.cookieName);
     if (!history) {
       return [];
     }
-    if (tenant) {
-      return history.filter(
-        element =>
-          element.username === username &&
-          element.applicationName === application &&
-          element.tenantid === this.tenantPrefix + tenant
-      );
-    }
-    return history.filter(element => element.username === username && element.applicationName === application);
+    return history.filter(element => this.checkEqualContext(element, context) && element.username === username);
   }
 
   /**
    * Set history
    * @param entries
    */
-  private setHistory(entries: ClrHistoryModel[]): void {
+  private setHistory(entries: ClrHistoryModel[], username: string): void {
     if (!entries) {
       // clear all entries
-      this.setCookie(this.cookieName, '');
+      this.setCookie(this.cookieName, JSON.stringify(''));
+    } else {
+      /* leave entries for other applications untouched */
+      let historyOther = this.getCookieByName(this.cookieName);
+      historyOther = historyOther.filter(
+        element =>
+          element.username === username && !(entries.length > 0 && this.checkEqualContext(element, entries[0].context))
+      );
+      entries = entries.concat(historyOther);
+      this.setCookie(this.cookieName, JSON.stringify(entries));
     }
-    this.setCookie(this.cookieName, JSON.stringify(entries));
   }
 
   resetHistory(): void {
-    this.setHistory(null);
+    this.setHistory(null, null);
   }
 
   removeFromHistory(entry: ClrHistoryModel): void {
-    let history = this.getHistory(entry.username, entry.applicationName, entry.tenantid);
+    let history = this.getHistory(entry.username, entry.context);
     /* remove current entry from array */
     history = history.filter(
       element =>
         !(
           element.pageName === entry.pageName &&
-          element.context.indexOf(entry.context) === 0 &&
-          element.tenantid === this.tenantPrefix + entry.tenantid &&
-          element.username === entry.username
+          element.username === entry.username &&
+          this.checkEqualContext(element, entry.context)
         )
     );
-    this.setHistory(history);
+    this.setHistory(history, entry.username);
+  }
+
+  private checkEqualContext(entry: ClrHistoryModel, toCompare: { [key: string]: string }): boolean {
+    let equal = false;
+    if (entry && toCompare) {
+      Object.keys(toCompare).forEach(key => {
+        equal = entry.context[key] === toCompare[key];
+      });
+    }
+    return equal;
   }
 
   initializeCookieSettings(username: string): void {
@@ -129,8 +127,8 @@ export class ClrHistoryService {
   }
 
   private setCookie(name: string, content: string): void {
-    document.cookie = name + '=' + content + ';domain=' + this.getDomain();
-    ';expires=' + this.expiryDate.toUTCString() + '; path=/';
+    document.cookie =
+      name + '=' + content + ';domain=' + this.getDomain() + ';expires=' + this.expiryDate.toUTCString() + ';path=/';
   }
 
   private getDomain(): string {

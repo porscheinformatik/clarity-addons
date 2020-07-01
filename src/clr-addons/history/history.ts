@@ -14,8 +14,7 @@ import { ClrHistoryService } from './history.service';
 })
 export class ClrHistory implements OnInit {
   @Input('clrUsername') username: string;
-  @Input('clrApplication') application: string;
-  @Input('clrTenantId') tenantId: string;
+  @Input('clrContext') context: { [key: string]: string };
   @Input('clrPinActive') pinActive = true;
   @Input('clrDropdownHeader') dropdownHeader = 'History';
   @Input('clrDropdownPin') dropdownPin = 'Pin History';
@@ -30,7 +29,7 @@ export class ClrHistory implements OnInit {
   constructor(private historyService: ClrHistoryService) {}
 
   ngOnInit(): void {
-    this.historyElements = this.historyService.getHistory(this.username, this.application, this.tenantId);
+    this.historyElements = this.historyService.getHistory(this.username, this.context);
     // remove last element to prevent showing own history entry
     if (this.historyElements) {
       this.historyElements.pop();
