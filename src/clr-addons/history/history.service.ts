@@ -29,7 +29,7 @@ export class ClrHistoryService {
     let history = this.getHistory(historyEntry.username, historyEntry.context);
     /* add it as last element */
     history.push(historyEntry);
-    /* only consider the last 4 bread crumbs per tenantid */
+    /* only consider the last 4 history entries */
     history = history.slice(-4);
     this.setHistory(history, historyEntry.username);
   }
