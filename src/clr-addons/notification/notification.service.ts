@@ -23,7 +23,7 @@ export interface ClrNotificationOptions {
   dismissable?: boolean;
   progressbar?: boolean;
   /* If your notification is a ng-template with variables, the variables must be set in the ngTemplateOutletContext */
-  ngTemplateOutletContext?: Object;
+  ngTemplateOutletContext?: Record<string, any>;
 }
 
 @Injectable()
