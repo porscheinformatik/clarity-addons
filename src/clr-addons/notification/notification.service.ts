@@ -83,7 +83,7 @@ export class ClrNotificationService {
     return new ClrContentRef([]);
   }
 
-  private _createFromTemplateRef(content: TemplateRef<any>, context: Object): ClrContentRef {
+  private _createFromTemplateRef(content: TemplateRef<any>, context: Record<string, any>): ClrContentRef {
     const viewRef = content.createEmbeddedView(context);
     this._applicationRef.attachView(viewRef);
     return new ClrContentRef([viewRef.rootNodes], viewRef);
