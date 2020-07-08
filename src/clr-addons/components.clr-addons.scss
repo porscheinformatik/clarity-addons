@@ -202,11 +202,13 @@ body,
 }
 
 form .required:after {
+  position: absolute;
   content: '*';
   font-size: 0.58479532rem; // Approximately 14px.
   line-height: 0.5rem;
   color: var(--red-dark);
   margin-left: 0.25rem;
+  margin-top: 0.25rem;
 }
 
 // Readonly checkboxes, radiobuttons
