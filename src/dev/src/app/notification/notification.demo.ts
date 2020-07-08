@@ -29,7 +29,13 @@ export class NotificationDemo {
 
   openWarning(content: any): void {
     this.clrNotificationService
-      .openNotification(content, { timeout: 20000, notificationType: 'warning', dismissable: true, progressbar: true })
+      .openNotification(content, {
+        timeout: 20000,
+        notificationType: 'warning',
+        dismissable: true,
+        progressbar: true,
+        ngTemplateOutletContext: { variable1: 123, variable2: 456 },
+      })
       .result.then(this.onClose);
   }
 

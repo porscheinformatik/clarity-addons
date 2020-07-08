@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+  ~ Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
@@ -27,9 +27,9 @@
     <button class="btn" (click)="showAlert()">Show Alert</button>
   </ng-container>
 </ng-template>
-<ng-template #warning>
+<ng-template #warning let-variable1="variable1" let-variable2="variable2">
   <ng-container clr-notification-message>
-    Warning
+    Warning {{variable1}} {{variable2}}
     <button class="btn" (click)="showAlert()">Show Alert</button>
   </ng-container>
 </ng-template>
