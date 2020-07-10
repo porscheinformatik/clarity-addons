@@ -201,14 +201,28 @@ body,
   }
 }
 
-form .required:after {
-  position: absolute;
-  content: '*';
-  font-size: 0.58479532rem; // Approximately 14px.
-  line-height: 0.5rem;
-  color: var(--red-dark);
-  margin-left: 0.25rem;
-  margin-top: 0.25rem;
+@mixin required-asterisk($color: var(--red-dark)) {
+  position: relative;
+
+  &:after {
+    position: absolute;
+    content: '*';
+    font-size: 0.58479532rem; // Approximately 14px.
+    line-height: 0.5rem;
+    color: $color;
+    margin-left: 0.25rem;
+    margin-top: 0.25rem;
+  }
+}
+
+form {
+  .required {
+    @include required-asterisk;
+  }
+
+  .required-multiple {
+    @include required-asterisk(var(--orange-light));
+  }
 }
 
 // Readonly checkboxes, radiobuttons
