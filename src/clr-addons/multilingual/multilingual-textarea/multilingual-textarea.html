@@ -1,0 +1,28 @@
+<ng-content select="label"></ng-content>
+<div class="clr-control-container" [ngClass]="controlClasses">
+  <clr-multilingual-selector
+    *ngIf="texts.size > 1 || showSingleLanguageSelector"
+    [disabled]="disabled"
+    [texts]="texts"
+    [selectedLang]="selectedLang"
+    (selectedLangChange)="changeLanguage($event)"
+  >
+  </clr-multilingual-selector>
+  <div class="clr-multi-input-wrapper">
+    <div class="clr-input-wrapper">
+      <textarea
+        class="clr-textarea"
+        [id]="inputId"
+        [ngModel]="!!texts && !!selectedLang ? texts.get(selectedLang) : ''"
+        (ngModelChange)="setText(selectedLang, $event)"
+        (blur)="onTouch()"
+        [disabled]="disabled"
+        [readonly]="readonly || readonly === ''"
+        #input
+      ></textarea>
+      <clr-icon *ngIf="showError" class="clr-validate-icon" shape="exclamation-circle" aria-hidden="true"></clr-icon>
+    </div>
+    <ng-content select="clr-control-helper" *ngIf="!showError"></ng-content>
+    <ng-content select="clr-control-error" *ngIf="showError"></ng-content>
+  </div>
+</div>

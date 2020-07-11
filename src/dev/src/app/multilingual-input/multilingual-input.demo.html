@@ -28,10 +28,43 @@
     <clr-control-helper>Helper</clr-control-helper>
   </clr-multilingual-textarea>
 
+  <clr-checkbox-container class="clr-col-12 clr-row">
+    <label>Show single language</label>
+    <clr-checkbox-wrapper>
+      <label>Show</label>
+      <input type="checkbox" name="showSingleLanguage" clrCheckbox [(ngModel)]="showSingleLanguage" />
+    </clr-checkbox-wrapper>
+  </clr-checkbox-container>
+  <clr-multilingual-input
+    class="clr-col-12 clr-row"
+    clrSelectedLang="en"
+    [(ngModel)]="template3"
+    [showSingleLanguageSelector]="showSingleLanguage"
+    clrControlClasses="clr-col-md-9 clr-col-lg-10"
+    name="template3"
+  >
+    <label class="clr-col-md-3 clr-col-lg-2">Single language</label>
+  </clr-multilingual-input>
+  <clr-multilingual-textarea
+    class="clr-col-12 clr-row"
+    clrSelectedLang="en"
+    [(ngModel)]="template3"
+    [showSingleLanguageSelector]="showSingleLanguage"
+    clrControlClasses="clr-col-md-9 clr-col-lg-10"
+    name="template3textarea"
+  >
+    <label class="clr-col-md-3 clr-col-lg-2">Single language</label>
+  </clr-multilingual-textarea>
+
   <clr-input-container class="clr-col-12">
-    <label class="clr-col-md-3 clr-col-lg-2">Normal</label>
+    <label class="clr-col-md-3 clr-col-lg-2">Normal Text</label>
     <input class="clr-col-md-9 clr-col-lg-10" clrInput type="text" />
   </clr-input-container>
+
+  <clr-textarea-container class="clr-col-12">
+    <label class="clr-col-md-3 clr-col-lg-2">Normal Textarea</label>
+    <textarea clrTextarea class="clr-col-md-9 clr-col-lg-10"></textarea>
+  </clr-textarea-container>
 
   <h4>Output texts</h4>
   <table class="table">
