@@ -1,27 +1,29 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
+import { DOCUMENT } from '@angular/common';
 import {
-  Injectable,
-  ComponentFactoryResolver,
-  Injector,
-  TemplateRef,
   ApplicationRef,
+  ComponentFactoryResolver,
   ComponentRef,
   Inject,
+  Injectable,
+  Injector,
+  TemplateRef,
 } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
-import { ClrNotification } from './notification';
-import { ClrActiveNotification, ClrContentRef, ClrNotificationRef } from './notification-ref';
 import { take } from 'rxjs/operators';
+import { ClrNotification } from './notification';
+import { ClrContentRef, ClrNotificationRef } from './notification-ref';
 
 export interface ClrNotificationOptions {
   timeout?: number;
   notificationType?: string;
   dismissable?: boolean;
   progressbar?: boolean;
+  /* If your notification is a ng-template with variables, the variables must be set in the ngTemplateOutletContext */
+  ngTemplateOutletContext?: Record<string, any>;
 }
 
 @Injectable()
@@ -37,8 +39,7 @@ export class ClrNotificationService {
   ) {}
 
   openNotification(content: any, options: ClrNotificationOptions = {}): ClrNotificationRef {
-    const activeNotification = new ClrActiveNotification();
-    const contentRef = this._getContentRef(content, activeNotification);
+    const contentRef = this._getContentRef(content, options);
     const notificationCmptRef: ComponentRef<ClrNotification> = this._attachWindowComponent(
       this._document.body,
       contentRef
@@ -72,9 +73,9 @@ export class ClrNotificationService {
     });
   }
 
-  private _getContentRef(content: any, context: ClrActiveNotification): ClrContentRef {
+  private _getContentRef(content: any, options: ClrNotificationOptions): ClrContentRef {
     if (content instanceof TemplateRef) {
-      return this._createFromTemplateRef(content, context);
+      return this._createFromTemplateRef(content, options.ngTemplateOutletContext);
     } else if (typeof content === 'string') {
       return this._createFromString(content);
     }
@@ -82,7 +83,7 @@ export class ClrNotificationService {
     return new ClrContentRef([]);
   }
 
-  private _createFromTemplateRef(content: TemplateRef<any>, context: ClrActiveNotification): ClrContentRef {
+  private _createFromTemplateRef(content: TemplateRef<any>, context: Record<string, any>): ClrContentRef {
     const viewRef = content.createEmbeddedView(context);
     this._applicationRef.attachView(viewRef);
     return new ClrContentRef([viewRef.rootNodes], viewRef);

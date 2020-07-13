@@ -28,6 +28,7 @@ import { ClrQuickListModule } from './quick-list/quick-list.module';
 import { ClrSearchFieldModule } from './searchfield/search-field.module';
 import { ClrTreetableModule } from './treetable/treetable.module';
 import { ClrViewEditSectionModule } from './view-edit-section/view-edit-section.module';
+import { ClrHistoryModule } from './history/history.module';
 
 @NgModule({
   exports: [
@@ -54,6 +55,7 @@ import { ClrViewEditSectionModule } from './view-edit-section/view-edit-section.
     ClrGenericQuickListModule,
     ClrDataListValidatorModule,
     ClrAddonsIconsModule,
+    ClrHistoryModule,
   ],
 })
 export class ClrAddonsModule {}

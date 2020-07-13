@@ -1,0 +1,9 @@
+<nav aria-label="history" class="history-container" *ngIf="historyElements.length && active">
+  <ol class="history">
+    <ng-container *ngFor="let historyItem of historyElements">
+      <li *ngIf="historyItem.url" class="history-item">
+        <a (click)="select(historyItem)">{{historyItem.title}}</a>
+      </li>
+    </ng-container>
+  </ol>
+</nav>
