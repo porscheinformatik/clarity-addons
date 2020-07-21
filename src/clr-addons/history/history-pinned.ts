@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs';
 export class ClrHistoryPinned implements OnInit, OnDestroy {
   @Input('clrUsername') username: string;
   @Input('clrContext') context: { [key: string]: string };
-  @Input('clrHideOwn') hideOwn: true;
+  @Input('clrHideLast') hideLast: true;
 
   /**
    * The array of history elements to be displayed.
@@ -30,7 +30,7 @@ export class ClrHistoryPinned implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.historyElements = this.historyService.getHistory(this.username, this.context);
     // remove last element to prevent showing one history entry
-    if (this.historyElements && this.hideOwn) {
+    if (this.historyElements && this.hideLast) {
       this.historyElements.pop();
     }
     this.historyService.initializeCookieSettings(this.username);
