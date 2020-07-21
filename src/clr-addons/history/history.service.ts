@@ -132,10 +132,8 @@ export class ClrHistoryService {
   }
 
   private getDomain(): string {
-    if (window.location.hostname.includes('-')) {
-      return window.location.hostname.split('-').slice(-1).join();
-    } else {
-      return window.location.hostname.split('.').slice(-2).join('.');
-    }
+    const domain = window.location.hostname.split('.');
+    domain.shift();
+    return domain.join('.');
   }
 }
