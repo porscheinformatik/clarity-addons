@@ -19,6 +19,7 @@ export class ClrHistory implements OnInit {
   @Input('clrDropdownHeader') dropdownHeader = 'History';
   @Input('clrDropdownPin') dropdownPin = 'Pin History';
   @Input('clrDropdownUnpin') dropdownUnpin = 'Unpin History';
+  @Input('clrHideOwn') hideOwn: true;
 
   /**
    * The array of history elements to be displayed.
@@ -31,7 +32,7 @@ export class ClrHistory implements OnInit {
   ngOnInit(): void {
     this.historyElements = this.historyService.getHistory(this.username, this.context);
     // remove last element to prevent showing own history entry
-    if (this.historyElements) {
+    if (this.historyElements && this.hideOwn) {
       this.historyElements.pop();
     }
     this.historyService.initializeCookieSettings(this.username);
