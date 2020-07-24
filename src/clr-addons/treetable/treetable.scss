@@ -85,7 +85,7 @@
         padding: 0.1rem 0.2rem 0.15rem;
         text-align: center;
         position: absolute;
-        z-index: map-get($clr-layers, datagrid-host) + 1;
+        z-index: map-get($clr-layers, datagrid-header) - 1;
         overflow: hidden;
 
         .treetable-expandable-caret-button {
