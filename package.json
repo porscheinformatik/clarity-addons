@@ -100,7 +100,7 @@
     "stylelint": "13.6.1",
     "stylelint-config-recommended": "3.0.0",
     "stylelint-scss": "3.18.0",
-    "typescript": "3.8.3"
+    "typescript": "3.9.7"
   },
   "engines": {
     "node": ">=10.9.0 <11.0.0",
