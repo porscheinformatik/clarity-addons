@@ -103,6 +103,18 @@
             "newLayout": true
         },
         {
+            "url": "history",
+            "text": "History",
+            "type": "component",
+            "ux": 20,
+            "ui": 20,
+            "core": 20,
+            "ng": 20,
+            "dox": 20,
+            "comments": "",
+            "newLayout": true
+        },        
+        {
             "url": "letter-avatar",
             "text": "Letter avatar",
             "type": "component",

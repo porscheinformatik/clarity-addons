@@ -1,0 +1,180 @@
+<clr-doc-wrapper [ng]="ng" [ui]="ui" [title]="title" [newLayout]="newLayout">
+    <article>
+
+        <h5 class="component-summary" id="generic-pager-header">
+            History is used to navigate back to last viewed pages. It's like a browser history, but only manually added
+            pages are available in the history.
+            It must be pointet out, that a history is <strong>not</strong> a breadcrumb!
+        </h5>
+
+        <div id="design-guidelines">
+            <h3>Usage</h3>
+            <p>The history provides a pinned feature. The pinned feature can be activate through clrPinActive. If active
+                you can add the clr-history-pinned component. The normal history component is delivered as a dropdown.
+                The pinned version is a list of links.</p>
+            <h3>Note</h3>
+            <p>The last added/current page is not displayed to avoid a link to the current page. Circles are handled by ignoring equal pages. 
+                History entries are filtered for the user and the same context.
+            </p>
+        </div>
+
+
+        <div class="row">
+
+            <div class="clr-col-md-12 clr-col-lg-6">
+                <div class="clrweb-DoxMedia is-do-block">
+                    <div class="clrweb-DoxMedia-block">
+                        <div class="clrweb-DoxMedia-img">
+                            <a class="nav-link" routerLink="/full-page-layouts/content-with-history" routerLinkActive="active" clrMainNavGroupItem>See -> Content Panel Layout with History</a>
+                        </div>
+                    </div>
+                    <div class="clrweb-DoxMedia-text">
+                        <h6 class="clrweb-DoxMedia-do-dont">Do</h6>
+                        <p>
+                            The history should be placed in the header on the right side!
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="clr-col-md-12 clr-col-lg-6">
+                <div class="clrweb-DoxMedia is-do-block">
+                    <div class="clrweb-DoxMedia-block">
+                        <div class="clrweb-DoxMedia-img">
+                            <a class="nav-link" routerLink="/full-page-layouts/content-with-history" routerLinkActive="active" clrMainNavGroupItem>See -> Content Panel Layout with History</a>
+                        </div>
+                    </div>
+                    <div class="clrweb-DoxMedia-text">
+                        <h6 class="clrweb-DoxMedia-do-dont">Do</h6>
+                        <p>
+                            The pinned history should be placed over the header left aligned!
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+            <h3>Summary of Options</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="left">Input</th>
+                        <th class="left clr-hidden-xs-down">Values</th>
+                        <th class="clr-hidden-xs-down">Default</th>
+                        <th class="left">Effect</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="left">
+                            <b>[clrUsername]</b>
+                            <div class="clr-hidden-sm-up">Type: String</div>
+                            <div class="clr-hidden-sm-up">empty</div>
+                        </td>
+                        <td class="left clr-hidden-xs-down">string</td>
+                        <td class="clr-hidden-xs-down">empty</td>
+                        <td class="left">The current username.</td>
+                    </tr>
+                    <tr>
+                        <td class="left">
+                            <b>[clrContext]</b>
+                            <div class="clr-hidden-sm-up">List of key:string/value:string</div>
+                            <div class="clr-hidden-sm-up"></div>
+                        </td>
+                        <td class="left clr-hidden-xs-down">List of key:string/value:string</td>
+                        <td class="clr-hidden-xs-down"></td>
+                        <td class="left">A map of context attributes. You can define any param you want. The history
+                            entries are saved/filtered by context.</td>
+                    </tr>
+                    <tr>
+                        <td class="left">
+                            <b>[clrPinActive]</b>
+                            <div class="clr-hidden-sm-up">boolean</div>
+                            <div class="clr-hidden-sm-up">true</div>
+                        </td>
+                        <td class="left clr-hidden-xs-down">boolean</td>
+                        <td class="clr-hidden-xs-down">true</td>
+                        <td class="left">If true, the pinned history feature is available.</td>
+                    </tr>
+                    <tr>
+                        <td class="left">
+                            <b>[clrDropdownHeader]</b>
+                            <div class="clr-hidden-sm-up">string</div>
+                            <div class="clr-hidden-sm-up">History</div>
+                        </td>
+                        <td class="left clr-hidden-xs-down">string</td>
+                        <td class="clr-hidden-xs-down">History</td>
+                        <td class="left">The header text in the dropdonw. You can provide your own translated text.</td>
+                    </tr>
+                    <tr>
+                        <td class="left">
+                            <b>[clrDropdownPin]</b>
+                            <div class="clr-hidden-sm-up">string</div>
+                            <div class="clr-hidden-sm-up">Pin History</div>
+                        </td>
+                        <td class="left clr-hidden-xs-down">string</td>
+                        <td class="clr-hidden-xs-down">Pin History</td>
+                        <td class="left">The pin histoy text in the dropdonw. You can provide your own translated text.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="left">
+                            <b>[clrDropdownUnpin]</b>
+                            <div class="clr-hidden-sm-up">string</div>
+                            <div class="clr-hidden-sm-up">History</div>
+                        </td>
+                        <td class="left clr-hidden-xs-down">string</td>
+                        <td class="clr-hidden-xs-down">History</td>
+                        <td class="left">The unpin histoy text in the dropdonw. You can provide your own translated
+                            text.</td>
+                    </tr>
+                    <tr>
+                        <td class="left">
+                            <b>[clrHideLaste]</b>
+                            <div class="clr-hidden-sm-up">boolean</div>
+                            <div class="clr-hidden-sm-up">true</div>
+                        </td>
+                        <td class="left clr-hidden-xs-down">boolean</td>
+                        <td class="clr-hidden-xs-down">true</td>
+                        <td class="left">If false, also the last entry is shown. This is used if you only show the history and don't add a new entry on a page.</td>
+                    </tr>                    
+
+                </tbody>
+            </table>
+        </div>
+
+        <div id="code-examples">
+            <h3 id="examples">Code &amp; Examples</h3>
+            <p>
+                To set the history, the service <code class="clr-code">ClrHistoryService</code>
+                in conjunction with <code class="clr-code">ClrHistoryModel</code> has to be used.
+            </p>
+
+            <clr-code-snippet [clrCode]="angularExample" [clrLanguage]="'typescript'"></clr-code-snippet>
+            <clr-code-snippet [clrCode]="angularExampleContext" [clrLanguage]="'typescript'"></clr-code-snippet>
+            <div class="clrweb-DoxMedia">
+                <div class="clrweb-DoxMedia-block">
+                    <div class="clrweb-DoxMedia-img history-demo">
+                        <clr-history [clrUsername]="'admin'" [clrContext]="context"></clr-history>
+                    </div>
+                </div>
+            </div>
+            <p>
+                To display the history simply place the angular component.
+            </p>
+            <clr-code-snippet [clrCode]="htmlExample"></clr-code-snippet>
+            <div class="clrweb-DoxMedia">
+                <div class="clrweb-DoxMedia-block">
+                    <div class="clrweb-DoxMedia-img history-demo">
+                        <clr-history-pinned [clrUsername]="'admin'" [clrContext]="context"></clr-history-pinned>
+                    </div>
+                </div>
+            </div>
+            <p>
+                To use the pinned feature simply place the angular component.
+            </p>
+            <clr-code-snippet [clrCode]="htmlExamplePinned"></clr-code-snippet>
+
+        </div>
+    </article>
+</clr-doc-wrapper>

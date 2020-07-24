@@ -74,6 +74,16 @@ const fullPageLayoutsRoutes: Routes = [
                 }
             },
             {
+                path: `content-with-history`,
+                loadChildren: () => import("./basepage-layout/basepage-layout.demo.module").then(m => m.BasepageLayoutDemoModule),
+                data: {
+                    browserTitle: "Content Panel Layout",
+                    withCommand: true,
+                    withPanel: true,
+                    withHistory: true
+                }
+            },
+            {
                 path: `flow-bar`,
                 loadChildren: () => import("./flow-bar-layout/flow-bar-layout.demo.module").then(m => m.FlowBarLayoutDemoModule),
                 data: {
