@@ -35,6 +35,10 @@ export abstract class ClrMultilingualAbstract extends ClrAbstractFormComponent {
     this.onChange(new Map(this.texts));
   }
 
+  showLanguageSelector(): boolean {
+    return (this.texts && this.texts.size > 1) || this.showSingleLanguageSelector;
+  }
+
   changeLanguage(lang: string): void {
     setTimeout(() => {
       this.selectedLang = lang;

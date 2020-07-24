@@ -1,7 +1,7 @@
 <ng-content select="label"></ng-content>
 <div class="clr-control-container" [ngClass]="controlClasses">
   <clr-multilingual-selector
-    *ngIf="texts && texts.size > 1 || showSingleLanguageSelector"
+    *ngIf="showLanguageSelector()"
     [disabled]="disabled"
     [texts]="texts"
     [selectedLang]="selectedLang"
