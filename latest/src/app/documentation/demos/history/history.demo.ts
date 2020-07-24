@@ -8,29 +8,29 @@ import { ClarityDocComponent } from "../clarity-doc";
 import { ClrHistoryService, ClrHistoryModel } from "@porscheinformatik/clr-addons";
 
 const HTML_EXAMPLE = `
-<clr-history [clrUsername]="'admin'" [clrContext]="context"></clr-history>
+<clr-history [clrUsername]=""admin"" [clrContext]="context"></clr-history>
 `
 
 const HTML_EXAMPLE_PINNED = `
-<clr-history-pinned [clrUsername]="'admin'" [clrContext]="context"></clr-history-pinned>
+<clr-history-pinned [clrUsername]=""admin"" [clrContext]="context"></clr-history-pinned>
 `
 
 const ANGULAR_EXAMPLE = `
-const historyEntry1: ClrHistoryModel = {username: 'admin', pageName: 'DocPage',
-url: 'https://porscheinformatik.github.io/clarity-addons/documentation/latest/get-started', title: 'DocPage',
+const historyEntry1: ClrHistoryModel = {username: "admin", pageName: "DocPage",
+url: "https://porscheinformatik.github.io/clarity-addons/documentation/latest/get-started", title: "DocPage",
 context: {
-    applicationName: 'ADDONS'
+    applicationName: "ADDONS"
 }};
 this.historyService.addHistoryEntry(historyEntry1);
-const historyEntry2: ClrHistoryModel = {username: 'admin', pageName: 'SourcePage',
-url: 'https://porscheinformatik.github.io/clarity-addons/documentation/latest/get-started', title: 'SourcePage',
+const historyEntry2: ClrHistoryModel = {username: "admin", pageName: "SourcePage",
+url: "https://porscheinformatik.github.io/clarity-addons/documentation/latest/get-started", title: "SourcePage",
 context: {
-    applicationName: 'ADDONS'
+    applicationName: "ADDONS"
 }};
 this.historyService.addHistoryEntry(historyEntry2);`
 
 const ANGULAR_EXAMPLE_CONTEXT = `
-context = {['applicationName'] : 'ADDONS'};
+context = {["applicationName"] : "ADDONS"};
 `
 
 @Component({
@@ -50,29 +50,29 @@ export class HistoryDemo extends ClarityDocComponent implements OnInit {
     htmlExamplePinned = HTML_EXAMPLE_PINNED;
     angularExample = ANGULAR_EXAMPLE;
     angularExampleContext = ANGULAR_EXAMPLE_CONTEXT;
-    context = {['applicationName'] : 'ADDONS'};
+    context = {["applicationName"] : "ADDONS"};
 
     constructor(private historyService: ClrHistoryService) {
         super("history");
     }
 
     ngOnInit() {
-        const historyEntry1: ClrHistoryModel = {username: 'admin', pageName: 'DocPage',
-        url: 'https://porscheinformatik.github.io/clarity-addons/documentation/latest/get-started', title: 'DocPage',
+        const historyEntry1: ClrHistoryModel = {username: "admin", pageName: "DocPage",
+        url: "https://porscheinformatik.github.io/clarity-addons/documentation/latest/get-started", title: "DocPage",
         context: {
-            applicationName: 'ADDONS'
+            applicationName: "ADDONS"
         }};
         this.historyService.addHistoryEntry(historyEntry1);
-        const historyEntry2: ClrHistoryModel = {username: 'admin', pageName: 'SourcePage',
-        url: 'https://github.com/porscheinformatik/clarity-addons', title: 'SourcePage',
+        const historyEntry2: ClrHistoryModel = {username: "admin", pageName: "SourcePage",
+        url: "https://github.com/porscheinformatik/clarity-addons", title: "SourcePage",
         context: {
-            applicationName: 'ADDONS'
+            applicationName: "ADDONS"
         }};
         this.historyService.addHistoryEntry(historyEntry2);
-        const historyEntry3: ClrHistoryModel = {username: 'admin', pageName: 'GitHub',
-        url: 'https://github.com/porscheinformatik/clarity-addons', title: 'GitHub',
+        const historyEntry3: ClrHistoryModel = {username: "admin", pageName: "GitHub",
+        url: "https://github.com/porscheinformatik/clarity-addons", title: "GitHub",
         context: {
-            applicationName: 'ADDONS'
+            applicationName: "ADDONS"
         }};
         this.historyService.addHistoryEntry(historyEntry3);
     }

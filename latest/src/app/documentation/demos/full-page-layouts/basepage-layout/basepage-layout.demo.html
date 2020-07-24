@@ -1,11 +1,12 @@
 <clr-main-container>
     <clr-demo-menu></clr-demo-menu>
-
+    <clr-history-pinned *ngIf="withHistory" [clrUsername]="'admin'" [clrContext]="context"></clr-history-pinned>
     <div class="content-header">
         <clr-back-button></clr-back-button>
         <h2><span *ngIf="!withCommandBar && !withContentPanel">Base Pagelayout</span>
             <span *ngIf="withCommandBar && !withContentPanel">Command bar</span>
             <span *ngIf="withCommandBar && withContentPanel">Content Panel</span></h2>
+        <clr-history class="history-bar" *ngIf="withHistory" [clrUsername]="'admin'" [clrContext]="context"></clr-history>
         <clr-button-group class="command-bar" [clrMenuPosition]="'bottom-right'" *ngIf="withCommandBar">
             <clr-button *ngIf="!withContentPanel">Command1</clr-button>
             <clr-button *ngIf="!withContentPanel">Command2</clr-button>
