@@ -4,9 +4,9 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { ClrAbstractFormComponent } from '../abstract-form-component/abstract-form-component';
-import { Component, ElementRef, HostBinding, Injector, Input, ViewChild } from '@angular/core';
+import { Directive, ElementRef, HostBinding, Injector, Input, ViewChild } from '@angular/core';
 
-@Component({ template: '' })
+@Directive()
 export abstract class ClrMultilingualAbstract extends ClrAbstractFormComponent {
   @HostBinding('class.clr-multilingual') multi = true;
 
