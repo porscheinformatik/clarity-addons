@@ -4,13 +4,14 @@ about: Create a report to help us improve
 title: ''
 labels: ''
 assignees: ''
-
 ---
 
 ## Describe the bug
+
 A clear and concise description of what the bug is.
 
 ## To Reproduce
+
 Add a StackBlitz to reproduce the problem easily. (Start with one of the [Clarity Stackblitz templates](https://stackblitz.com/@clr-team) and add @porscheinformatik/clr-addons dependency yourself)
 
 Steps to reproduce the behavior:
@@ -21,6 +22,7 @@ Steps to reproduce the behavior:
 4.  See error
 
 ## Expected behavior
+
 A clear and concise description of what you expected to happen.
 
 ## Versions
@@ -40,4 +42,5 @@ A clear and concise description of what you expected to happen.
 - Version [e.g. 22]
 
 ## Additional context
+
 Add any other context about the problem here.
