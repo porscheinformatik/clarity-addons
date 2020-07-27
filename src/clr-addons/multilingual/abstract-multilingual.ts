@@ -3,9 +3,8 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-
-import { ElementRef, HostBinding, Injector, Input, ViewChild, Directive } from '@angular/core';
 import { ClrAbstractFormComponent } from '../abstract-form-component/abstract-form-component';
+import { Directive, ElementRef, HostBinding, Injector, Input, ViewChild } from '@angular/core';
 
 @Directive()
 export abstract class ClrMultilingualAbstract extends ClrAbstractFormComponent {
@@ -14,37 +13,36 @@ export abstract class ClrMultilingualAbstract extends ClrAbstractFormComponent {
   @Input('clrControlClasses') controlClasses = 'clr-col-md-10';
   @Input('clrSelectedLang') selectedLang: string;
   @Input() readonly: string;
+  /** Show language selector when only one language provided */
+  @Input('clrShowSingleLanguageSelector') showSingleLanguageSelector: boolean;
 
   @ViewChild('input') inputElement: ElementRef;
 
-  textarea = false;
-  private _texts: Map<string, string>;
+  texts: Map<string, string>;
 
-  constructor(injector: Injector) {
+  protected constructor(injector: Injector) {
     super(injector);
   }
 
-  changeLanguage(key: string): void {
-    // need as the click for closing the menu is registered on a single item
-    // if the language change destroys it immediately, the click won't get fired
-    setTimeout(() => {
-      this.selectedLang = key;
-      this.inputElement.nativeElement.focus();
-    }, 0);
+  writeValue(value: any): void {
+    if (value) {
+      this.texts = new Map(value);
+    }
   }
 
   setText(key: string, value: string): void {
-    this._texts.set(key, value);
-    this.onChange(new Map(this._texts));
+    this.texts.set(key, value);
+    this.onChange(new Map(this.texts));
   }
 
-  get texts(): Map<string, string> {
-    return this._texts;
+  showLanguageSelector(): boolean {
+    return (this.texts && this.texts.size > 1) || this.showSingleLanguageSelector;
   }
 
-  writeValue(value: Map<string, string>): void {
-    if (value) {
-      this._texts = new Map(value);
-    }
+  changeLanguage(lang: string): void {
+    setTimeout(() => {
+      this.selectedLang = lang;
+      this.inputElement.nativeElement.focus();
+    }, 0);
   }
 }

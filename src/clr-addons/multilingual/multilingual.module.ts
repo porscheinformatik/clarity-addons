@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -8,13 +8,20 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ClarityModule } from '@clr/angular';
-import { ClrRequiredOneMultilang, ClrRequiredAllMultilang } from './multilingual-validators';
+import { ClrRequiredAllMultilang, ClrRequiredOneMultilang } from './multilingual-validators';
 import { ClrMultilingualInput } from './multilingual-input/multilingual-input';
 import { ClrMultilingualTextarea } from './multilingual-textarea/multilingual-textarea';
+import { ClrMultilingualSelector } from './multilingual-selector';
 
 @NgModule({
   imports: [CommonModule, ClarityModule, FormsModule],
-  declarations: [ClrMultilingualInput, ClrMultilingualTextarea, ClrRequiredOneMultilang, ClrRequiredAllMultilang],
+  declarations: [
+    ClrMultilingualInput,
+    ClrMultilingualTextarea,
+    ClrRequiredOneMultilang,
+    ClrRequiredAllMultilang,
+    ClrMultilingualSelector,
+  ],
   exports: [ClrMultilingualInput, ClrMultilingualTextarea, ClrRequiredOneMultilang, ClrRequiredAllMultilang],
 })
 export class ClrMultilingualModule {}
