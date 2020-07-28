@@ -20,6 +20,7 @@ export class ClrHistory implements OnInit {
   @Input('clrDropdownPin') dropdownPin = 'Pin History';
   @Input('clrDropdownUnpin') dropdownUnpin = 'Unpin History';
   @Input('clrHideLast') hideLast: true;
+  @Input('clrDomain') domain: string;
 
   /**
    * The array of history elements to be displayed.
@@ -35,7 +36,7 @@ export class ClrHistory implements OnInit {
     if (this.historyElements && this.hideLast) {
       this.historyElements.pop();
     }
-    this.historyService.initializeCookieSettings(this.username);
+    this.historyService.initializeCookieSettings(this.username, this.domain);
     this.historyService.cookieSettings$.subscribe(settings => {
       this.pinActivated = settings.find(setting => setting.username === this.username).historyPinned;
     });

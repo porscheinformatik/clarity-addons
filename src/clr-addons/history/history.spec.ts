@@ -10,6 +10,7 @@ import { ClrHistory } from './history';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ClrHistoryService } from './history.service';
 import { ClrHistoryModel } from './history-model.interface';
+import { ClarityModule } from '@clr/angular';
 
 describe('ClrHistory', () => {
   let component: ClrHistory;
@@ -19,7 +20,7 @@ describe('ClrHistory', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       providers: [ClrHistoryService],
-      imports: [RouterTestingModule],
+      imports: [RouterTestingModule, ClarityModule],
       declarations: [ClrHistory],
     }).compileComponents();
 

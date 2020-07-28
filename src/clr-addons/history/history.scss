@@ -12,10 +12,9 @@
   }
 
   .history-item {
+    cursor: pointer;
     + .history-item {
       padding-left: 0.5rem;
-      cursor: pointer;
-
       &::before {
         content: '/';
         display: inline-block;
