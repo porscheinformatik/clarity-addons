@@ -23,15 +23,16 @@ export class ClrHistoryService {
   /**
    * Add a new history entry
    * @param historyEntry The entry to be added
+   * @param domain The optional domain param where the cookie is stored
    */
-  addHistoryEntry(historyEntry: ClrHistoryModel): void {
+  addHistoryEntry(historyEntry: ClrHistoryModel, domain?: string): void {
     this.removeFromHistory(historyEntry);
     let history = this.getHistory(historyEntry.username, historyEntry.context);
     /* add it as last element */
     history.push(historyEntry);
     /* only consider the last 4 history entries */
     history = history.slice(-4);
-    this.setHistory(history, historyEntry.username);
+    this.setHistory(history, historyEntry.username, domain);
   }
 
   getHistory(username: string, context: { [key: string]: string }): ClrHistoryModel[] {
@@ -45,11 +46,13 @@ export class ClrHistoryService {
   /**
    * Set history
    * @param entries
+   * @param username
+   * @param domain
    */
-  private setHistory(entries: ClrHistoryModel[], username: string): void {
+  private setHistory(entries: ClrHistoryModel[], username: string, domain?: string): void {
     if (!entries) {
       // clear all entries
-      this.setCookie(this.cookieName, JSON.stringify(''));
+      this.setCookie(this.cookieName, JSON.stringify(''), domain);
     } else {
       /* leave entries for other applications untouched */
       let historyOther = this.getCookieByName(this.cookieName);
@@ -58,7 +61,7 @@ export class ClrHistoryService {
           element.username === username && !(entries.length > 0 && this.checkEqualContext(element, entries[0].context))
       );
       entries = entries.concat(historyOther);
-      this.setCookie(this.cookieName, JSON.stringify(entries));
+      this.setCookie(this.cookieName, JSON.stringify(entries), domain);
     }
   }
 
@@ -90,16 +93,16 @@ export class ClrHistoryService {
     return equal;
   }
 
-  initializeCookieSettings(username: string): void {
+  initializeCookieSettings(username: string, domain?: string): void {
     let historySettings: ClrHistorySettingsModel[] = this.getCookieByName(this.cookieNameSettings);
     if (!historySettings || historySettings.length === 0) {
-      this.setHistoryPinned(username, false);
+      this.setHistoryPinned(username, false, domain);
       historySettings = [{ username: username, historyPinned: false }];
     }
     this.cookieSettings$.next(historySettings);
   }
 
-  setHistoryPinned(username: string, pin: boolean): void {
+  setHistoryPinned(username: string, pin: boolean, domain?: string): void {
     const historySettings: ClrHistorySettingsModel[] = this.getCookieByName(this.cookieNameSettings);
     const historySetting = historySettings.find(hSetting => hSetting.username === username);
     if (historySetting) {
@@ -109,7 +112,7 @@ export class ClrHistoryService {
     }
     this.cookieSettings$.next(historySettings);
     // Set it
-    this.setCookie(this.cookieNameSettings, JSON.stringify(historySettings));
+    this.setCookie(this.cookieNameSettings, JSON.stringify(historySettings), domain);
   }
 
   private getCookieByName(name: string): any[] {
@@ -126,9 +129,11 @@ export class ClrHistoryService {
     );
   }
 
-  private setCookie(name: string, content: string): void {
+  private setCookie(name: string, content: string, domain?: string): void {
     document.cookie =
-      name + '=' + content + ';domain=' + this.getDomain() + ';expires=' + this.expiryDate.toUTCString() + ';path=/';
+      name + '=' + content + ';domain=' + domain
+        ? domain
+        : this.getDomain() + ';expires=' + this.expiryDate.toUTCString() + ';path=/';
   }
 
   private getDomain(): string {

@@ -17,6 +17,7 @@ export class ClrHistoryPinned implements OnInit, OnDestroy {
   @Input('clrUsername') username: string;
   @Input('clrContext') context: { [key: string]: string };
   @Input('clrHideLast') hideLast: true;
+  @Input('clrDomnain') domain: string;
 
   /**
    * The array of history elements to be displayed.
@@ -33,7 +34,7 @@ export class ClrHistoryPinned implements OnInit, OnDestroy {
     if (this.historyElements && this.hideLast) {
       this.historyElements.pop();
     }
-    this.historyService.initializeCookieSettings(this.username);
+    this.historyService.initializeCookieSettings(this.username, this.domain);
     this.settingsSubscription = this.historyService.cookieSettings$.subscribe(settings => {
       const setting = settings.find(setting => setting.username === this.username);
       if (setting) {
