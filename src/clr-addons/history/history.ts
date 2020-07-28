@@ -20,7 +20,7 @@ export class ClrHistory implements OnInit {
   @Input('clrDropdownPin') dropdownPin = 'Pin History';
   @Input('clrDropdownUnpin') dropdownUnpin = 'Unpin History';
   @Input('clrHideLast') hideLast: true;
-  @Input('clrDomnain') domain?: string;
+  @Input('clrDomain') domain: string;
 
   /**
    * The array of history elements to be displayed.

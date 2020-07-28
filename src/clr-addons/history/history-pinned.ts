@@ -17,7 +17,7 @@ export class ClrHistoryPinned implements OnInit, OnDestroy {
   @Input('clrUsername') username: string;
   @Input('clrContext') context: { [key: string]: string };
   @Input('clrHideLast') hideLast: true;
-  @Input('clrDomnain') domain?: string;
+  @Input('clrDomain') domain: string;
 
   /**
    * The array of history elements to be displayed.

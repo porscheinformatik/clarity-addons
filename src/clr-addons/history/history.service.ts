@@ -129,15 +129,24 @@ export class ClrHistoryService {
     );
   }
 
-  private setCookie(name: string, content: string, domain?: string): void {
+  private setCookie(name: string, content: string, domain: string): void {
     document.cookie =
-      name + '=' + content + ';domain=' + domain
-        ? domain
-        : this.getDomain() + ';expires=' + this.expiryDate.toUTCString() + ';path=/';
+      name +
+      '=' +
+      content +
+      ';domain=' +
+      (!!domain ? domain : this.getDomain()) +
+      ';expires=' +
+      this.expiryDate.toUTCString() +
+      ';path=/';
   }
 
   private getDomain(): string {
     const domain = window.location.hostname.split('.');
+    //localhost fallback
+    if (domain.length === 1) {
+      return domain[0];
+    }
     domain.shift();
     return domain.join('.');
   }
