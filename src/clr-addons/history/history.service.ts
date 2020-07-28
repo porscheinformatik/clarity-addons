@@ -135,7 +135,7 @@ export class ClrHistoryService {
       '=' +
       content +
       ';domain=' +
-      (!!domain ? domain : this.getDomain()) +
+      (domain ? domain : this.getDomain()) +
       ';expires=' +
       this.expiryDate.toUTCString() +
       ';path=/';
