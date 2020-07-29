@@ -40,20 +40,20 @@ export class BasepageLayoutDemo implements OnInit {
             context: {
                 applicationName: "ADDONS"
             }};
-            this.historyService.addHistoryEntry(historyEntry1);
+            this.historyService.addHistoryEntry(historyEntry1, "porscheinformatik.github.io");
             const historyEntry2: ClrHistoryModel = {username: "admin", pageName: "SourcePage",
             url: "https://github.com/porscheinformatik/clarity-addons", title: "SourcePage",
             context: {
                 applicationName: "ADDONS"
             }};
-            this.historyService.addHistoryEntry(historyEntry2);
+            this.historyService.addHistoryEntry(historyEntry2, "porscheinformatik.github.io");
             const historyEntry3: ClrHistoryModel = {username: "admin", pageName: "GitHub",
             url: "https://github.com/porscheinformatik/clarity-addons", title: "GitHub",
             context: {
                 applicationName: "ADDONS"
             }};
-            this.historyService.addHistoryEntry(historyEntry3);
-            this.historyService.setHistoryPinned("admin", true);
+            this.historyService.addHistoryEntry(historyEntry3, "porscheinformatik.github.io");
+            this.historyService.setHistoryPinned("admin", true, "porscheinformatik.github.io");
         }
     }
 
