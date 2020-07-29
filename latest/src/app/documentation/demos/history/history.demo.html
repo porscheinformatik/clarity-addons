@@ -13,7 +13,7 @@
                 you can add the clr-history-pinned component. The normal history component is delivered as a dropdown.
                 The pinned version is a list of links.</p>
             <h3>Note</h3>
-            <p>The last added/current page is not displayed to avoid a link to the current page. Circles are handled by ignoring equal pages. 
+            <p>The last added/current page is not displayed to avoid a link to the current page. Circles are handled by ignoring equal pages.
                 History entries are filtered for the user and the same context.
             </p>
         </div>
@@ -22,34 +22,28 @@
         <div class="row">
 
             <div class="clr-col-md-12 clr-col-lg-6">
-                <div class="clrweb-DoxMedia is-do-block">
+                <div class="clrweb-DoxMedia">
                     <div class="clrweb-DoxMedia-block">
                         <div class="clrweb-DoxMedia-img">
                             <a class="nav-link" routerLink="/full-page-layouts/content-with-history" routerLinkActive="active" clrMainNavGroupItem>See -> Content Panel Layout with History</a>
                         </div>
                     </div>
-                    <div class="clrweb-DoxMedia-text">
-                        <h6 class="clrweb-DoxMedia-do-dont">Do</h6>
-                        <p>
-                            The history should be placed in the header on the right side!
-                        </p>
-                    </div>
+                    <p>
+                        The history should be placed in the header on the right side!
+                    </p>
                 </div>
             </div>
 
             <div class="clr-col-md-12 clr-col-lg-6">
-                <div class="clrweb-DoxMedia is-do-block">
+                <div class="clrweb-DoxMedia">
                     <div class="clrweb-DoxMedia-block">
                         <div class="clrweb-DoxMedia-img">
                             <a class="nav-link" routerLink="/full-page-layouts/content-with-history" routerLinkActive="active" clrMainNavGroupItem>See -> Content Panel Layout with History</a>
                         </div>
                     </div>
-                    <div class="clrweb-DoxMedia-text">
-                        <h6 class="clrweb-DoxMedia-do-dont">Do</h6>
-                        <p>
-                            The pinned history should be placed over the header left aligned!
-                        </p>
-                    </div>
+                    <p>
+                        The pinned history should be placed over the header left aligned!
+                    </p>
                 </div>
             </div>
 
@@ -137,7 +131,7 @@
                         <td class="left clr-hidden-xs-down">boolean</td>
                         <td class="clr-hidden-xs-down">true</td>
                         <td class="left">If false, also the last entry is shown. This is used if you only show the history and don't add a new entry on a page.</td>
-                    </tr>                    
+                    </tr>
 
                 </tbody>
             </table>
@@ -155,7 +149,7 @@
             <div class="clrweb-DoxMedia">
                 <div class="clrweb-DoxMedia-block">
                     <div class="clrweb-DoxMedia-img history-demo">
-                        <clr-history [clrUsername]="'admin'" [clrContext]="context"></clr-history>
+                        <clr-history [clrUsername]="'admin'" [clrContext]="context" [clrDomain]="'porscheinformatik.github.io'"></clr-history>
                     </div>
                 </div>
             </div>
@@ -166,7 +160,7 @@
             <div class="clrweb-DoxMedia">
                 <div class="clrweb-DoxMedia-block">
                     <div class="clrweb-DoxMedia-img history-demo">
-                        <clr-history-pinned [clrUsername]="'admin'" [clrContext]="context"></clr-history-pinned>
+                        <clr-history-pinned [clrUsername]="'admin'" [clrContext]="context" [clrDomain]="'porscheinformatik.github.io'"></clr-history-pinned>
                     </div>
                 </div>
             </div>
