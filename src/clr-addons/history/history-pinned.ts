@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ClrHistoryModel } from './history-model.interface';
 import { ClrHistoryService } from './history.service';
 import { Subscription } from 'rxjs';
@@ -45,9 +45,5 @@ export class ClrHistoryPinned implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.settingsSubscription.unsubscribe();
-  }
-
-  select(history: ClrHistoryModel): void {
-    window.location.href = history.url;
   }
 }

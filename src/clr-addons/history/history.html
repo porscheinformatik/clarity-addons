@@ -3,7 +3,7 @@
     <clr-icon shape="history" size="24"></clr-icon>
     <clr-icon shape="caret down" size="12"></clr-icon>
   </button>
-  <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+  <clr-dropdown-menu [clrPosition]="position" *clrIfOpen>
     <label class="dropdown-header" aria-hidden="true">{{dropdownHeader}}</label>
     <button type="button" clrDropdownItem *ngFor="let history of historyElements" (click)="select(history)">
       {{history.title}}
