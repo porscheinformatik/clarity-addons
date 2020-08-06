@@ -17,9 +17,9 @@
         <a class="nav-link" href="#"><span class="nav-text">Menu2</span></a>
         <clr-main-nav-group clrTitle="Main Nav Group" routerLinkActive="active">
           <a class="nav-link" routerLink="/cards" routerLinkActive="active" clrMainNavGroupItem>Cards</a>
-          <a class="nav-link" routerLink="/view-edit-section" routerLinkActive="active" clrMainNavGroupItem
-            >ViewEdit Section</a
-          >
+          <a class="nav-link" routerLink="/view-edit-section" routerLinkActive="active" clrMainNavGroupItem>
+            ViewEdit Section
+          </a>
           <a class="nav-link" href="#" onClick="return false;" clrMainNavGroupItem>Submenu 3 3</a>
         </clr-main-nav-group>
         <clr-main-nav-group clrTitle="Main Nav Group 2" routerLinkActive="active">
@@ -42,13 +42,17 @@
       </clr-dropdown>
     </div>
   </clr-header>
+  <clr-history-pinned [clrUsername]="'me'" [clrContext]="{ tenantId: '1' }"></clr-history-pinned>
   <div class="content-header">
     <clr-back-button></clr-back-button>
     <h2>Content Header</h2>
-    <clr-button-group class="command-bar" [clrMenuPosition]="'bottom-right'">
-      <clr-button>Command 1</clr-button>
-      <clr-button [clrInMenu]="true">Command2</clr-button>
-    </clr-button-group>
+    <div class="command-bar">
+      <clr-history [clrUsername]="'me'" [clrContext]="{ tenantId: '1' }"></clr-history>
+      <clr-button-group [clrMenuPosition]="'bottom-right'">
+        <clr-button>Command 1</clr-button>
+        <clr-button [clrInMenu]="true">Command2</clr-button>
+      </clr-button-group>
+    </div>
   </div>
   <my-app-content-container class="content-container"></my-app-content-container>
 </clr-main-container>

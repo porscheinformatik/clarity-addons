@@ -19,8 +19,9 @@ export class ClrHistory implements OnInit {
   @Input('clrDropdownHeader') dropdownHeader = 'History';
   @Input('clrDropdownPin') dropdownPin = 'Pin History';
   @Input('clrDropdownUnpin') dropdownUnpin = 'Unpin History';
-  @Input('clrHideLast') hideLast: true;
+  @Input('clrHideLast') hideLast = true;
   @Input('clrDomain') domain: string;
+  @Input('clrPosition') position = 'bottom-right';
 
   /**
    * The array of history elements to be displayed.

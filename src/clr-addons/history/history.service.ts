@@ -31,7 +31,7 @@ export class ClrHistoryService {
     /* add it as last element */
     history.push(historyEntry);
     /* only consider the last 4 history entries */
-    history = history.slice(-4);
+    history = history.slice(-3);
     this.setHistory(history, historyEntry.username, domain);
   }
 

@@ -2,7 +2,7 @@
   <ol class="history">
     <ng-container *ngFor="let historyItem of historyElements">
       <li *ngIf="historyItem.url" class="history-item">
-        <a (click)="select(historyItem)">{{historyItem.title}}</a>
+        <a [href]="historyItem.url">{{historyItem.title}}</a>
       </li>
     </ng-container>
   </ol>

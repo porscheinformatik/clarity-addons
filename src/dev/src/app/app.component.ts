@@ -3,13 +3,14 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, PLATFORM_ID, Inject } from '@angular/core';
+import { Component, PLATFORM_ID, Inject, OnInit } from '@angular/core';
 import { Route } from '@angular/router';
 import { APP_ROUTES } from './app.routing';
 import { isPlatformBrowser, DOCUMENT } from '@angular/common';
+import { RouteHistoryService } from './route-history.service';
 
 @Component({ selector: 'app-root', templateUrl: './app.component.html' })
-export class AppComponent {
+export class AppComponent implements OnInit {
   public routes: Route[] = APP_ROUTES;
   linkRef: HTMLLinkElement;
 
@@ -21,7 +22,8 @@ export class AppComponent {
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    @Inject(PLATFORM_ID) private platformId: Record<string, any>
+    @Inject(PLATFORM_ID) private platformId: Record<string, any>,
+    private routeHistoryService: RouteHistoryService
   ) {
     if (isPlatformBrowser(this.platformId)) {
       this.linkRef = this.document.createElement('link');
@@ -29,6 +31,10 @@ export class AppComponent {
       this.linkRef.href = this.themes[0].href;
       this.document.querySelector('head').appendChild(this.linkRef);
     }
+  }
+
+  ngOnInit(): void {
+    this.routeHistoryService.init();
   }
 
   setTheme(theme: { href: string }): void {
