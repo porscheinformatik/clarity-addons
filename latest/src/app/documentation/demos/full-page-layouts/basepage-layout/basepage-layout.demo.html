@@ -5,16 +5,19 @@
         <clr-back-button></clr-back-button>
         <h2><span *ngIf="!withCommandBar && !withContentPanel">Base Pagelayout</span>
             <span *ngIf="withCommandBar && !withContentPanel">Command bar</span>
-            <span *ngIf="withCommandBar && withContentPanel">Content Panel</span></h2>
-        <clr-history class="history-bar" *ngIf="withHistory" [clrUsername]="'admin'" [clrContext]="context" [clrDomain]="'porscheinformatik.github.io'"></clr-history>
-        <clr-button-group class="command-bar" [clrMenuPosition]="'bottom-right'" *ngIf="withCommandBar">
-            <clr-button *ngIf="!withContentPanel">Command1</clr-button>
-            <clr-button *ngIf="!withContentPanel">Command2</clr-button>
-            <clr-button *ngIf="withContentPanel" (click)="toggleRightPanel()">Show/Hide Right</clr-button>
-            <clr-button *ngIf="withContentPanel" (click)="toggleLeftPanel()" [clrInMenu]="true">Show/Hide Left
-            </clr-button>
-            <clr-button [clrInMenu]="true">Command3</clr-button>
-        </clr-button-group>
+            <span *ngIf="withCommandBar && withContentPanel">Content Panel</span>
+        </h2>
+        <div class="command-bar">
+            <clr-history class="history-bar" *ngIf="withHistory" [clrUsername]="'admin'" [clrContext]="context" [clrDomain]="'porscheinformatik.github.io'"></clr-history>
+            <clr-button-group [clrMenuPosition]="'bottom-right'" *ngIf="withCommandBar">
+                <clr-button *ngIf="!withContentPanel">Command1</clr-button>
+                <clr-button *ngIf="!withContentPanel">Command2</clr-button>
+                <clr-button *ngIf="withContentPanel" (click)="toggleRightPanel()">Show/Hide Right</clr-button>
+                <clr-button *ngIf="withContentPanel" (click)="toggleLeftPanel()" [clrInMenu]="true">Show/Hide Left
+                </clr-button>
+                <clr-button [clrInMenu]="true">Command3</clr-button>
+            </clr-button-group>
+        </div>
     </div>
     <div class="content-container" *ngIf="!withContentPanel">
         <div class="content-area">
