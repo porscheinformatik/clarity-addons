@@ -32,7 +32,7 @@ A clear and concise description of what you expected to happen.
 - Angular: [e.g. 9]
 - Node: [e.g. 10.0.0]
 - Clarity: [e.g. 3.1.5]
-- Clarity-Addons: [e.g. 8.2.1]
+- Clarity-Addons: [e.g. 8.2.3]
 
 **Device:**
 
