@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs';
 export class ClrHistoryPinned implements OnInit, OnDestroy {
   @Input('clrUsername') username: string;
   @Input('clrContext') context: { [key: string]: string };
-  @Input('clrHideLast') hideLast: true;
+  @Input('clrHideLast') hideLast = true;
   @Input('clrDomain') domain: string;
 
   /**
