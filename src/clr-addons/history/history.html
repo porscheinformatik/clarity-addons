@@ -9,7 +9,9 @@
       {{history.title}}
     </button>
     <div *ngIf="pinActive" class="dropdown-divider" role="separator" aria-hidden="true"></div>
-    <div clrDropdownItem *ngIf="pinActive && !pinActivated" (click)="togglePinHistory()">{{dropdownPin}}</div>
-    <div clrDropdownItem *ngIf="pinActive && pinActivated" (click)="togglePinHistory()">{{dropdownUnpin}}</div>
+    <button clrDropdownItem (click)="togglePinHistory()">
+      <span *ngIf="pinActive && !pinActivated">{{dropdownPin}}</span>
+      <span *ngIf="pinActive && pinActivated">{{dropdownUnpin}}</span>
+    </button>
   </clr-dropdown-menu>
 </clr-dropdown>

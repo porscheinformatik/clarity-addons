@@ -31,7 +31,7 @@ export class ClrHistoryService {
     /* add it as last element */
     history.push(historyEntry);
     /* only consider the last 4 history entries */
-    history = history.slice(-3);
+    history = history.slice(-4);
     this.setHistory(history, historyEntry.username, domain);
   }
 
@@ -50,7 +50,7 @@ export class ClrHistoryService {
    * @param domain
    */
   private setHistory(entries: ClrHistoryModel[], username: string, domain?: string): void {
-    if (!entries) {
+    if (!entries || entries.length === 0) {
       // clear all entries
       this.setCookie(this.cookieName, JSON.stringify(''), domain);
     } else {
@@ -77,6 +77,7 @@ export class ClrHistoryService {
         !(
           element.pageName === entry.pageName &&
           element.username === entry.username &&
+          element.url === entry.url &&
           this.checkEqualContext(element, entry.context)
         )
     );
