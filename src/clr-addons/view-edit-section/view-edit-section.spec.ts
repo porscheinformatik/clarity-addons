@@ -39,9 +39,7 @@ class TestComponent {
 @Component({
   template: `
     <clr-view-edit-section [(clrEditMode)]="editMode">
-      <div action-block>
-        Test
-      </div>
+      <div action-block>Test</div>
     </clr-view-edit-section>
   `,
 })
