@@ -37,8 +37,8 @@ export class ClrHistoryService {
       history.push(historyEntry);
     }
 
-    /* support a maximum of 8 page cycles (a 3 pages) in history */
-    history = history.slice(-24);
+    /* support a maximum of 5 pages in history due to cookie size */
+    history = history.slice(-5);
     this.setHistory(history, historyEntry.username, domain);
   }
 
