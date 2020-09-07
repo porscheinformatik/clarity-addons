@@ -26,13 +26,40 @@ export class ClrHistoryService {
    * @param domain The optional domain param where the cookie is stored
    */
   addHistoryEntry(historyEntry: ClrHistoryModel, domain?: string): void {
-    this.removeFromHistory(historyEntry);
     let history = this.getHistory(historyEntry.username, historyEntry.context);
-    /* add it as last element */
-    history.push(historyEntry);
-    /* only consider the last 4 history entries */
-    history = history.slice(-4);
+    if (history && history.length > 0) {
+      if (history[history.length - 1].title !== historyEntry.title) {
+        /* add it as last element */
+        history.push(historyEntry);
+      }
+    } else {
+      /* add it as last element */
+      history.push(historyEntry);
+    }
+
+    /* support a maximum of 5 pages in history due to cookie size */
+    history = history.slice(-5);
     this.setHistory(history, historyEntry.username, domain);
+  }
+
+  getHistoryDisplay(username: string, context: { [key: string]: string }): ClrHistoryModel[] {
+    const history = this.getHistory(username, context);
+    if (history.length > 0) {
+      const currentPageTitle = history[history.length - 1].title;
+      let toDisplay: ClrHistoryModel[];
+      let alreadyDisplay: string[];
+
+      for (let i = history.length - 1; i >= 0 && alreadyDisplay.length < 4; i--) {
+        if (!alreadyDisplay.includes(history[i].title) && history[i].title !== currentPageTitle) {
+          toDisplay.push(history[i]);
+          alreadyDisplay.push(history[i].title);
+        }
+      }
+
+      return toDisplay;
+    } else {
+      return history;
+    }
   }
 
   getHistory(username: string, context: { [key: string]: string }): ClrHistoryModel[] {
