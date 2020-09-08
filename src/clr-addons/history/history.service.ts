@@ -46,8 +46,8 @@ export class ClrHistoryService {
     const history = this.getHistory(username, context);
     if (history.length > 0) {
       const currentPageTitle = history[history.length - 1].title;
-      let toDisplay: ClrHistoryModel[];
-      let alreadyDisplay: string[];
+      const toDisplay: ClrHistoryModel[] = [];
+      const alreadyDisplay: string[] = [];
 
       for (let i = history.length - 1; i >= 0 && alreadyDisplay.length < 4; i--) {
         if (!alreadyDisplay.includes(history[i].title) && history[i].title !== currentPageTitle) {
@@ -56,7 +56,7 @@ export class ClrHistoryService {
         }
       }
 
-      return toDisplay;
+      return toDisplay.reverse();
     } else {
       return history;
     }
