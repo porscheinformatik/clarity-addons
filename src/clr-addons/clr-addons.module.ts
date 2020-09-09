@@ -29,6 +29,7 @@ import { ClrSearchFieldModule } from './searchfield/search-field.module';
 import { ClrTreetableModule } from './treetable/treetable.module';
 import { ClrViewEditSectionModule } from './view-edit-section/view-edit-section.module';
 import { ClrHistoryModule } from './history/history.module';
+import { ClrAutocompleteOffModule } from './autocomplete-off/autocomplete-off.module';
 
 @NgModule({
   exports: [
@@ -56,6 +57,7 @@ import { ClrHistoryModule } from './history/history.module';
     ClrDataListValidatorModule,
     ClrAddonsIconsModule,
     ClrHistoryModule,
+    ClrAutocompleteOffModule,
   ],
 })
 export class ClrAddonsModule {}
