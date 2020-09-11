@@ -8,7 +8,6 @@ import { NgModule } from '@angular/core';
 import { ClrBackButtonModule } from './back-button/back-button.module';
 import { ClrBreadcrumbModule } from './breadcrumb/breadcrumb.module';
 import { ClrCollapseExpandSectionModule } from './collapse-expand-section/collapse-expand-section.module';
-import { ClrComboboxModule } from './combobox/combobox.module';
 import { ClrContentPanelModule } from './content-panel/content-panel.module';
 import { ClrDataListValidatorModule } from './data-list-validator/data-list-validator.module';
 import { ClrDateTimeModule } from './date-time-container/date-time-module';
@@ -48,7 +47,6 @@ import { ClrAutocompleteOffModule } from './autocomplete-off/autocomplete-off.mo
     ClrSearchFieldModule,
     ClrTreetableModule,
     ClrProgressSpinnerModule,
-    ClrComboboxModule,
     ClrDateTimeModule,
     ClrQuickListModule,
     ClrLetterAvatarModule,

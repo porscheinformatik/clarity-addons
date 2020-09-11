@@ -1,11 +1,10 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
 import { AbstractControl, ValidationErrors, ValidatorFn, NG_VALIDATORS, Validator } from '@angular/forms';
-import { isString } from 'util';
 import { Directive, Input } from '@angular/core';
 
 function isEmptyInputValue(value: any): boolean {
@@ -80,7 +79,7 @@ export class ClrNumericFieldValidators {
   }
 
   private static parseInputString(value: string, groupingSeparator: string, decimalSeparator: string): number {
-    if (!isString(value)) {
+    if (typeof value !== 'string') {
       return parseFloat(value);
     }
     const notGroupedNumber: string = value.replace(new RegExp('[' + groupingSeparator + ']', 'g'), '');
