@@ -4,7 +4,6 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component } from '@angular/core';
-import { ClrOption } from '@porscheinformatik/clr-addons';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
@@ -19,7 +18,7 @@ export class DateTimeContainerDemo {
   textareaText: string;
   passwordText: string;
   selectedOption: any;
-  comboboxOption: ClrOption<string>;
+  comboboxOption = 'Option 7';
   radioOption: any;
   date: any;
   time: any;
@@ -27,8 +26,4 @@ export class DateTimeContainerDemo {
   checkboxValue: any;
   toggleValue: any;
   dataList: any;
-
-  selectOption(value: ClrOption<string>): void {
-    this.comboboxOption = value;
-  }
 }

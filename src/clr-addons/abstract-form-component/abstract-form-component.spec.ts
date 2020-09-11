@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { ɵz as ControlIdService, ɵbe as MarkControlService } from '@clr/angular';
+import { ɵbb as ControlIdService, ɵbg as MarkControlService } from '@clr/angular';
 
 describe('AbstractFormComponent', () => {
   it('check correct obfuscated imports', () => {

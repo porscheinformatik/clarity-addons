@@ -75,7 +75,6 @@ export const APP_ROUTES: Routes = [
     loadChildren: () => import('./treetable/treetable.demo.module').then(m => m.TreetableDemoModule),
   },
   { path: 'readonly', loadChildren: () => import('./readonly/readonly.demo.module').then(m => m.ReadonlyDemoModule) },
-  { path: 'combobox', loadChildren: () => import('./combobox/combobox.demo.module').then(m => m.ComboboxDemoModule) },
   {
     path: 'date-time-container',
     loadChildren: () =>
@@ -105,4 +104,4 @@ export const APP_ROUTES: Routes = [
   },
 ];
 
-export const ROUTING: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);
+export const ROUTING: ModuleWithProviders<RouterModule> = RouterModule.forRoot(APP_ROUTES);

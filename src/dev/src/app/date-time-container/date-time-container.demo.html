@@ -84,19 +84,15 @@
       <label for="toggle" class="clr-col-none"></label>
     </clr-toggle-wrapper>
   </clr-toggle-container>
-  <clr-combobox
-    class="clr-col-12 clr-row"
-    clrControlClasses="clr-col-2"
-    (clrSelectedOption)="selectOption($event)"
-    [clrPreselectedValue]="'Option 7'"
-  >
+  <clr-combobox-container class="clr-col-12">
     <label>Combobox</label>
-    <clr-options>
-      <clr-option *ngFor="let option of values$ | async" [clrValue]="option">{{option}}</clr-option>
-      <div class="clr-no-results">No search results found</div>
-    </clr-options>
-    <clr-control-error>Select a value</clr-control-error>
-  </clr-combobox>
+    <clr-combobox [(ngModel)]="comboboxOption" name="combobox">
+      <clr-options>
+        <clr-option *ngFor="let option of values$ | async" [clrValue]="option">{{option}}</clr-option>
+      </clr-options>
+      <clr-control-error>Select a value</clr-control-error>
+    </clr-combobox>
+  </clr-combobox-container>
 
   <clr-datalist-container class="clr-col-12">
     <label>Template Datalist</label>
@@ -263,18 +259,15 @@
         <input clrTime type="time" />
       </clr-date-time-container>
 
-      <clr-combobox
-        class="clr-row clr-col-12"
-        (clrSelectedOption)="selectOption($event)"
-        [clrPreselectedValue]="'Option 7'"
-      >
+      <clr-combobox-container class="clr-row">
         <label>Combobox</label>
-        <clr-options>
-          <clr-option *ngFor="let option of values$ | async" [clrValue]="option">{{option}}</clr-option>
-          <div class="clr-no-results">No search results found</div>
-        </clr-options>
-        <clr-control-error>Select a value</clr-control-error>
-      </clr-combobox>
+        <clr-combobox [(ngModel)]="comboboxOption" name="combobox">
+          <clr-options>
+            <clr-option *ngFor="let option of values$ | async" [clrValue]="option">{{option}}</clr-option>
+          </clr-options>
+          <clr-control-error>Select a value</clr-control-error>
+        </clr-combobox>
+      </clr-combobox-container>
     </form>
 
     <h4>Vertical Form</h4>
