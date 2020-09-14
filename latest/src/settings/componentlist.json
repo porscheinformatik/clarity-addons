@@ -43,18 +43,6 @@
             "newLayout": true
         },
         {
-            "url": "combobox",
-            "text": "Autocomplete Combobox",
-            "type": "component",
-            "ux": 20,
-            "ui": 20,
-            "core": 20,
-            "ng": 20,
-            "dox": 20,
-            "comments": "",
-            "newLayout": true
-        },
-        {
             "url": "breadcrumb",
             "text": "Breadcrumb",
             "type": "component",

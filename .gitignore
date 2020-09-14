@@ -27,6 +27,7 @@
 npm-debug.log
 yarn.lock
 src/yarn.lock
+reports/
 
 # System Files
 .DS_Store

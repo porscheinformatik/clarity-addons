@@ -143,13 +143,6 @@ const documentationRoutes: Routes = [
                 }
             },
             {
-                path: "combobox",
-                loadChildren: () => import("./demos/combobox/combobox.demo.module").then(m => m.ComboboxDemoModule),
-                data: {
-                    browserTitle: "Combobox"
-                }
-            },
-            {
                 path: "readonly",
                 loadChildren: () => import("./demos/readonly/readonly.demo.module").then(m => m.ReadonlyDemoModule),
                 data: {
