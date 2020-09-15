@@ -1,6 +1,6 @@
 {
   "name": "clr-addons",
-  "version": "8.4.1",
+  "version": "8.4.2",
   "private": true,
   "scripts": {
     "build:ui:css": "sass --source-map --precision=8 ./src/clr-addons/themes/clr-ui/clr-ui.scss ./dist/clr-addons/styles/clr-ui.css && sass --source-map --precision=8 ./src/clr-addons/themes/clr-ui-dark/clr-ui-dark.scss ./dist/clr-addons/styles/clr-ui-dark.css && sass --source-map --precision=8 ./src/clr-addons/themes/phs/phs-theme.scss ./dist/clr-addons/styles/clr-addons-phs.css",
