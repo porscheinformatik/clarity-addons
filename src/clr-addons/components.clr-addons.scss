@@ -315,7 +315,7 @@ form,
 }
 
 // Set max width for the date picker - Only needs to be as wide as the displayed date
-clr-date-container {
+clr-date-container .clr-control-container {
   .clr-input-group {
     max-width: 7rem;
 
