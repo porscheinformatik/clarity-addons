@@ -29,8 +29,9 @@ export class ClrHistoryService {
    * Add a new history entry
    * @param historyEntry The entry to be added
    * @param domain The optional domain param where the cookie is stored
+   * @returns true when entry added, otherwise false is returned
    */
-  addHistoryEntry(historyEntry: ClrHistoryModel, domain?: string): void {
+  addHistoryEntry(historyEntry: ClrHistoryModel, domain?: string): boolean {
     this.removeFromHistory(historyEntry);
     let history = this.getHistory(historyEntry.username, historyEntry.context);
 
@@ -41,7 +42,9 @@ export class ClrHistoryService {
       /* support a maximum of 4 pages in history */
       history = history.slice(-4);
       this.setHistory(history, historyEntry.username, domain);
+      return true;
     }
+    return false;
   }
 
   getHistoryDisplay(username: string, context: { [key: string]: string }): ClrHistoryModel[] {
