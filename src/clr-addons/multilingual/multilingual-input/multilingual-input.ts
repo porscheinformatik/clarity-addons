@@ -5,7 +5,7 @@
  */
 import { Component, forwardRef, Injector } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { ɵbb as ControlIdService } from '@clr/angular';
+import { ɵbc as ControlIdService } from '@clr/angular';
 import { ClrMultilingualAbstract } from '../abstract-multilingual';
 
 @Component({
