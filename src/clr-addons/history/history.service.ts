@@ -15,6 +15,11 @@ export class ClrHistoryService {
   cookieNameSettings = 'clr.history.settings';
   private expiryDate: Date;
 
+  // maxmimum history length
+  private maxSize = 1024;
+  // maximum url length for usage in history
+  private maxUrlSize = 256;
+
   constructor() {
     this.expiryDate = new Date();
     this.expiryDate.setTime(this.expiryDate.getTime() + 365 * 24 * 60 * 60 * 1000);
@@ -24,16 +29,22 @@ export class ClrHistoryService {
    * Add a new history entry
    * @param historyEntry The entry to be added
    * @param domain The optional domain param where the cookie is stored
+   * @returns true when entry added, otherwise false is returned
    */
-  addHistoryEntry(historyEntry: ClrHistoryModel, domain?: string): void {
+  addHistoryEntry(historyEntry: ClrHistoryModel, domain?: string): boolean {
     this.removeFromHistory(historyEntry);
     let history = this.getHistory(historyEntry.username, historyEntry.context);
-    /* add it as last element */
-    history.push(historyEntry);
 
-    /* support a maximum of 4 pages in history */
-    history = history.slice(-4);
-    this.setHistory(history, historyEntry.username, domain);
+    /* only add to history in case url does not exceed maxUrlSize characters */
+    if (historyEntry.url && historyEntry.url.length < this.maxUrlSize) {
+      /* add it as last element */
+      history.push(historyEntry);
+      /* support a maximum of 4 pages in history */
+      history = history.slice(-4);
+      this.setHistory(history, historyEntry.username, domain);
+      return true;
+    }
+    return false;
   }
 
   getHistoryDisplay(username: string, context: { [key: string]: string }): ClrHistoryModel[] {
@@ -83,7 +94,23 @@ export class ClrHistoryService {
           element.username === username && !(entries.length > 0 && this.checkEqualContext(element, entries[0].context))
       );
       entries = entries.concat(historyOther);
+      entries = this.reduceSize(entries);
+
       this.setCookie(this.cookieName, JSON.stringify(entries), domain);
+    }
+  }
+
+  reduceSize(entries: ClrHistoryModel[]): ClrHistoryModel[] {
+    if (JSON.stringify(entries).length > this.maxSize) {
+      const reduced: ClrHistoryModel[] = [];
+      do {
+        for (let i = 0; i < entries.length; i++) {
+          reduced.push(entries[i]);
+        }
+      } while (JSON.stringify(reduced).length < this.maxSize);
+      return reduced;
+    } else {
+      return entries;
     }
   }
 
