@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { ClarityModule, ɵbb as ControlIdService } from '@clr/angular';
+import { ClarityModule, ɵbc as ControlIdService } from '@clr/angular';
 import { ClrMultilingualModule } from '../multilingual.module';
 
 @Component({

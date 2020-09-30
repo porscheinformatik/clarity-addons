@@ -279,4 +279,15 @@ describe('NumericComponent', () => {
     expect(fixture.componentInstance.component.displayValue).toBe('124,0');
     expect(fixture.componentInstance.input).toBe(124);
   }));
+
+  it('Simulate pasted value from clipboard', () => {
+    fixture.componentInstance.autofill = true;
+    fixture.detectChanges();
+    inputEl.nativeElement.value = '123,2';
+    inputEl.triggerEventHandler('blur', { target: inputEl.nativeElement });
+    fixture.detectChanges();
+
+    expect(fixture.componentInstance.component.displayValue).toBe('123,200');
+    expect(fixture.componentInstance.input).toBe(123.2);
+  });
 });

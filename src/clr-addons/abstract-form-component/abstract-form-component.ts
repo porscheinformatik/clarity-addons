@@ -6,7 +6,7 @@
 
 import { AfterViewInit, HostBinding, Injector, OnDestroy, Directive } from '@angular/core';
 import { ControlValueAccessor, FormControl, NgControl } from '@angular/forms';
-import { ɵbb as ControlIdService, ɵbg as MarkControlService } from '@clr/angular';
+import { ɵbc as ControlIdService, ɵbg as MarkControlService } from '@clr/angular';
 
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
