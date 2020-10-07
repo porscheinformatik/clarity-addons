@@ -56,8 +56,8 @@ export class ClrHistoryService {
 
       for (let i = history.length - 1; i >= 0 && alreadyDisplay.length < 4; i--) {
         if (!alreadyDisplay.includes(history[i].title) && history[i].title !== currentPageTitle) {
-          toDisplay.push(history[i]);
           alreadyDisplay.push(history[i].title);
+          toDisplay.push(history[i]);
         }
       }
 
@@ -95,7 +95,13 @@ export class ClrHistoryService {
       );
       entries = entries.concat(historyOther);
       entries = this.reduceSize(entries);
-
+      // encode title & pagename to be cookie saving save
+      if (entries && entries.length > 0) {
+        entries.forEach(entry => {
+          entry.title = encodeURI(entry.title);
+          entry.pageName = encodeURI(entry.pageName);
+        });
+      }
       this.setCookie(this.cookieName, JSON.stringify(entries), domain);
     }
   }
@@ -165,7 +171,7 @@ export class ClrHistoryService {
   }
 
   private getCookieByName(name: string): any[] {
-    return (
+    const cookieEntries =
       document.cookie
         .split(';')
         .map(c => c.trim())
@@ -174,8 +180,18 @@ export class ClrHistoryService {
         })
         .map(cookie => {
           return JSON.parse(cookie.substring(name.length + 1));
-        })[0] || []
-    );
+        })[0] || [];
+    if (cookieEntries && cookieEntries.length > 0) {
+      cookieEntries.forEach((entry: any) => {
+        if (entry.title) {
+          entry.title = decodeURI(entry.title);
+        }
+        if (entry.pageName) {
+          entry.pageName = decodeURI(entry.pageName);
+        }
+      });
+    }
+    return cookieEntries;
   }
 
   private setCookie(name: string, content: string, domain: string): void {
