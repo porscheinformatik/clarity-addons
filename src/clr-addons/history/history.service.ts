@@ -32,7 +32,6 @@ export class ClrHistoryService {
    * @returns true when entry added, otherwise false is returned
    */
   addHistoryEntry(historyEntry: ClrHistoryModel, domain?: string): boolean {
-    // encode title & pagename to be cookie saving save
     this.removeFromHistory(historyEntry);
     let history = this.getHistory(historyEntry.username, historyEntry.context);
 
@@ -103,6 +102,7 @@ export class ClrHistoryService {
       );
       entries = entries.concat(historyOther);
       entries = this.reduceSize(entries);
+      // encode title & pagename to be cookie saving save
       if (entries && entries.length > 0) {
         entries.forEach(entry => {
           entry.title = encodeURI(entry.title);
