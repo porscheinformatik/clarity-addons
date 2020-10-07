@@ -69,7 +69,7 @@
     "cross-var": "1.1.0",
     "csso-cli": "3.0.0",
     "del-cli": "3.0.1",
-    "eslint": "7.9.0",
+    "eslint": "7.10.0",
     "eslint-config-prettier": "6.12.0",
     "eslint-plugin-jasmine": "4.1.1",
     "husky": "4.3.0",
