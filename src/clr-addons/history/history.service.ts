@@ -57,7 +57,6 @@ export class ClrHistoryService {
       for (let i = history.length - 1; i >= 0 && alreadyDisplay.length < 4; i--) {
         if (!alreadyDisplay.includes(history[i].title) && history[i].title !== currentPageTitle) {
           alreadyDisplay.push(history[i].title);
-          history[i].title = decodeURI(history[i].title);
           toDisplay.push(history[i]);
         }
       }
@@ -72,12 +71,6 @@ export class ClrHistoryService {
     const history: ClrHistoryModel[] = this.getCookieByName(this.cookieName);
     if (!history) {
       return [];
-    }
-    if (history && history.length > 0) {
-      history.forEach(entry => {
-        entry.title = decodeURI(entry.title);
-        entry.pageName = decodeURI(entry.pageName);
-      });
     }
     return history.filter(element => this.checkEqualContext(element, context) && element.username === username);
   }
