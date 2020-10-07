@@ -32,6 +32,9 @@ export class ClrHistoryService {
    * @returns true when entry added, otherwise false is returned
    */
   addHistoryEntry(historyEntry: ClrHistoryModel, domain?: string): boolean {
+    // encode title & pagename to be cookie saving save
+    historyEntry.title = encodeURI(historyEntry.title);
+    historyEntry.pageName = encodeURI(historyEntry.pageName);
     this.removeFromHistory(historyEntry);
     let history = this.getHistory(historyEntry.username, historyEntry.context);
 
@@ -56,8 +59,9 @@ export class ClrHistoryService {
 
       for (let i = history.length - 1; i >= 0 && alreadyDisplay.length < 4; i--) {
         if (!alreadyDisplay.includes(history[i].title) && history[i].title !== currentPageTitle) {
-          toDisplay.push(history[i]);
           alreadyDisplay.push(history[i].title);
+          history[i].title = decodeURI(history[i].title);
+          toDisplay.push(history[i]);
         }
       }
 
