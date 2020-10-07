@@ -33,8 +33,6 @@ export class ClrHistoryService {
    */
   addHistoryEntry(historyEntry: ClrHistoryModel, domain?: string): boolean {
     // encode title & pagename to be cookie saving save
-    historyEntry.title = encodeURI(historyEntry.title);
-    historyEntry.pageName = encodeURI(historyEntry.pageName);
     this.removeFromHistory(historyEntry);
     let history = this.getHistory(historyEntry.username, historyEntry.context);
 
@@ -76,6 +74,12 @@ export class ClrHistoryService {
     if (!history) {
       return [];
     }
+    if (history && history.length > 0) {
+      history.forEach(entry => {
+        entry.title = decodeURI(entry.title);
+        entry.pageName = decodeURI(entry.pageName);
+      });
+    }
     return history.filter(element => this.checkEqualContext(element, context) && element.username === username);
   }
 
@@ -99,7 +103,12 @@ export class ClrHistoryService {
       );
       entries = entries.concat(historyOther);
       entries = this.reduceSize(entries);
-
+      if (entries && entries.length > 0) {
+        entries.forEach(entry => {
+          entry.title = encodeURI(entry.title);
+          entry.pageName = encodeURI(entry.pageName);
+        });
+      }
       this.setCookie(this.cookieName, JSON.stringify(entries), domain);
     }
   }
