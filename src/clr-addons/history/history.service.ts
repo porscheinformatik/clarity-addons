@@ -171,7 +171,7 @@ export class ClrHistoryService {
   }
 
   private getCookieByName(name: string): any[] {
-    return (
+    const cookieEntries =
       document.cookie
         .split(';')
         .map(c => c.trim())
@@ -180,8 +180,18 @@ export class ClrHistoryService {
         })
         .map(cookie => {
           return JSON.parse(cookie.substring(name.length + 1));
-        })[0] || []
-    );
+        })[0] || [];
+    if (cookieEntries && cookieEntries.length > 0) {
+      cookieEntries.forEach((entry: any) => {
+        if (entry.title) {
+          entry.title = decodeURI(entry.title);
+        }
+        if (entry.pageName) {
+          entry.pageName = decodeURI(entry.pageName);
+        }
+      });
+    }
+    return cookieEntries;
   }
 
   private setCookie(name: string, content: string, domain: string): void {
