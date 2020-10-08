@@ -2,52 +2,54 @@
     <article>
 
         <h5 class="component-summary" id="generic-pager-header">
-            History is used to navigate back to last viewed pages. It's like a browser history, but only manually added
-            pages are available in the history.
-            It must be pointet out, that a history is <strong>not</strong> a breadcrumb!
+            The History is used to navigate back to the recently viewed pages similar to the browser's history. It must
+            be pointed out that the history uses a historical path, rather than <a class="nav-link"
+                routerLink="/documentation/latest/breadcrumb" routerLinkActive="active">Breadcrumb</a> hierarchical one.
         </h5>
 
         <div id="design-guidelines">
             <h3>Usage</h3>
-            <p>The history provides a pinned feature. The pinned feature can be activate through clrPinActive. If active
-                you can add the clr-history-pinned component. The normal history component is delivered as a dropdown.
-                The pinned version is a list of links.</p>
-            <h3>Note</h3>
-            <p>The last added/current page is not displayed to avoid a link to the current page. Circles are handled by ignoring equal pages.
-                History entries are filtered for the user and the same context.
+            <p>Use History in your application when the last recently visited pages are to high importance for your
+                user.
             </p>
+            <p>
+                Further the information structure of your application plays an important part. If the information
+                structure forms a semantic net - the History is recommended if it forms a hierarchical tree, breadcrumbs
+                might be suitable to aid your users navigating.
+            </p>
+            <h4>Features</h4>
+            <p>
+                Pin - The history provides a pin-feature.
+                If the history is pinned it is shown above the page title as a list of links in the history-bar.
+                If the history is unpinned the last visited pages are shown as a dropdown beneath the history icon.
+            </p>
+            <p> If the users pins the history this setting must be stored to the users-settings/browser-storage/cookie.
+                Default behavior, pinned or unpinned, should be decided on the applications target
+            </p>
+            <h4>Placement</h4>
+            <p>
+                The history icon is placed in the command-bar in the upper right of the page layout.
+            </p>
+            <h3>Behavior</h3>
+            <p>Some basic rules apply to the History
+            </p>
+
+            <ol>
+                <li>The current page is not displayed</li>
+                <li>Cycles are not logged, so the same page does not appear multiple times in the path.</li>
+                <li>Maximum of 3 items are displayed in the path</li>
+                <li>Browser back (via Browser-functionality or via Back-Link) calls the last recorded page in the
+                    history.</li>
+            </ol>
+            <h3>Notes</h3>
+            <p>Creation pages (when on the last visited page a new entity is created) should be omitted in the
+                historical path at this either requires to update an already created object or triggers a possibly
+                unwanted additional creation (duplicate) of an object.</p>
+            <p>Obviously the History AND Breadcrumb SHOULD NOT BE used together on a page.</p>
         </div>
 
 
         <div class="row">
-
-            <div class="clr-col-md-12 clr-col-lg-6">
-                <div class="clrweb-DoxMedia">
-                    <div class="clrweb-DoxMedia-block">
-                        <div class="clrweb-DoxMedia-img">
-                            <a class="nav-link" routerLink="/full-page-layouts/content-with-history" routerLinkActive="active" clrMainNavGroupItem>See -> Content Panel Layout with History</a>
-                        </div>
-                    </div>
-                    <p>
-                        The history should be placed in the header on the right side!
-                    </p>
-                </div>
-            </div>
-
-            <div class="clr-col-md-12 clr-col-lg-6">
-                <div class="clrweb-DoxMedia">
-                    <div class="clrweb-DoxMedia-block">
-                        <div class="clrweb-DoxMedia-img">
-                            <a class="nav-link" routerLink="/full-page-layouts/content-with-history" routerLinkActive="active" clrMainNavGroupItem>See -> Content Panel Layout with History</a>
-                        </div>
-                    </div>
-                    <p>
-                        The pinned history should be placed over the header left aligned!
-                    </p>
-                </div>
-            </div>
-
-
             <h3>Summary of Options</h3>
             <table class="table">
                 <thead>
@@ -151,6 +153,8 @@
             <p>
                 To set the history, the service <code class="clr-code">ClrHistoryService</code>
                 in conjunction with <code class="clr-code">ClrHistoryModel</code> has to be used.
+                Pagelayout with <a class="nav-link" routerLink="/full-page-layouts/content-with-history"
+                    routerLinkActive="active">History</a>.
             </p>
 
             <clr-code-snippet [clrCode]="angularExample" [clrLanguage]="'typescript'"></clr-code-snippet>
@@ -158,7 +162,8 @@
             <div class="clrweb-DoxMedia">
                 <div class="clrweb-DoxMedia-block">
                     <div class="clrweb-DoxMedia-img history-demo">
-                        <clr-history [clrUsername]="'admin'" [clrContext]="context" [clrDomain]="'porscheinformatik.github.io'"></clr-history>
+                        <clr-history [clrUsername]="'admin'" [clrContext]="context"
+                            [clrDomain]="'porscheinformatik.github.io'"></clr-history>
                     </div>
                 </div>
             </div>
@@ -169,7 +174,8 @@
             <div class="clrweb-DoxMedia">
                 <div class="clrweb-DoxMedia-block">
                     <div class="clrweb-DoxMedia-img history-demo">
-                        <clr-history-pinned [clrUsername]="'admin'" [clrContext]="context" [clrDomain]="'porscheinformatik.github.io'"></clr-history-pinned>
+                        <clr-history-pinned [clrUsername]="'admin'" [clrContext]="context"
+                            [clrDomain]="'porscheinformatik.github.io'"></clr-history-pinned>
                     </div>
                 </div>
             </div>
