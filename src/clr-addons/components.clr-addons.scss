@@ -339,8 +339,11 @@ clr-date-container .clr-control-container {
 }
 
 // Set the width of all inputs except time to 100%
-input:not([type='time']) {
-  width: 100%;
+.clr-input-wrapper {
+  max-width: none;
+  input:not([type='time']) {
+    width: 100%;
+  }
 }
 
 // Set the width of text areas and selects to 100%
