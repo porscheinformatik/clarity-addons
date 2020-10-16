@@ -1,6 +1,6 @@
 {
   "name": "clr-addons",
-  "version": "9.0.5",
+  "version": "9.0.6",
   "private": true,
   "scripts": {
     "build:ui:css": "sass --source-map --precision=8 ./src/clr-addons/themes/clr-ui/clr-ui.scss ./dist/clr-addons/styles/clr-ui.css && sass --source-map --precision=8 ./src/clr-addons/themes/clr-ui-dark/clr-ui-dark.scss ./dist/clr-addons/styles/clr-ui-dark.css && sass --source-map --precision=8 ./src/clr-addons/themes/phs/phs-theme.scss ./dist/clr-addons/styles/clr-addons-phs.css",
@@ -15,7 +15,7 @@
     "ng": "ng",
     "start": "npm-run-all build:ui:css build:ui:prefix serve:dev",
     "start:dev": "npm-run-all build:ui:css build:ui:prefix serve:dev:port",
-    "serve:dev": "ng serve dev",
+    "serve:dev": "ng serve dev --ssl",
     "serve:dev:port": "ng serve dev --port 4300 --host=0.0.0.0",
     "clean": "shx rm -rf dist",
     "test:format": "prettier --check './**/*.{js,json,md,ts,scss}'",
