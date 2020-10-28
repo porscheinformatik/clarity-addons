@@ -18,6 +18,7 @@ export class MultilingualInputDemo implements OnInit {
   template3 = new Map();
   reactive1 = new Map();
   reactive2 = new Map();
+  templateML = new Map();
   showSingleLanguage = false;
 
   exampleForm = new FormGroup({
@@ -46,5 +47,7 @@ export class MultilingualInputDemo implements OnInit {
     this.reactive2.set('en', 'english text');
     this.reactive2.set('de', 'deutscher text');
     this.reactive2.set('fr', 'texte français');
+    this.templateML.set('ww', 'Test');
+    this.templateML.set('en', 'Test');
   }
 }
