@@ -16,7 +16,7 @@
     "start": "npm-run-all build:ui:css build:ui:prefix serve:dev",
     "start:dev": "npm-run-all build:ui:css build:ui:prefix serve:dev:port",
     "serve:dev": "ng serve dev",
-    "serve:dev:port": "ng serve dev --port 4300 --ssl --host=0.0.0.0",
+    "serve:dev:port": "ng serve dev --port 4300 --host=0.0.0.0",
     "clean": "shx rm -rf dist",
     "test:format": "prettier --check './**/*.{js,json,md,ts,scss}'",
     "test:lint:ts": "eslint \"src/clr-addons/**/*.ts\" \"src/dev/**/*.ts\"",
