@@ -66,6 +66,34 @@
     <textarea clrTextarea class="clr-col-md-9 clr-col-lg-10"></textarea>
   </clr-textarea-container>
 
+  <clr-multilingual-input
+    class="clr-col-12 clr-row"
+    clrSelectedLang="ww"
+    [(ngModel)]="templateML"
+    clrRequiredAllMultilang
+    clrControlClasses="clr-col-md-9 clr-col-lg-10"
+    name="templateML1"
+    [maxlength]="4"
+  >
+    <label class="clr-col-md-3 clr-col-lg-2">Max Length (4)</label>
+    <clr-control-error>Error</clr-control-error>
+    <clr-control-helper>Helper</clr-control-helper>
+  </clr-multilingual-input>
+
+  <clr-multilingual-textarea
+    class="clr-col-12 clr-row"
+    clrSelectedLang="en"
+    [(ngModel)]="templateML"
+    clrRequiredAllMultilang
+    clrControlClasses="clr-col-md-9 clr-col-lg-10"
+    name="templateML2"
+    [maxlength]="4"
+  >
+    <label class="clr-col-md-3 clr-col-lg-2">Max Length (4)</label>
+    <clr-control-error>Error</clr-control-error>
+    <clr-control-helper>Helper</clr-control-helper>
+  </clr-multilingual-textarea>
+
   <h4>Output texts</h4>
   <table class="table">
     <tr>
