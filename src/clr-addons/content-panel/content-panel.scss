@@ -33,7 +33,7 @@
 
   .content-panel-content-wrapper {
     background-color: var(--clr-global-app-background);
-    z-index: map-get($clr-layers, dropdown-menu) - 1;
+    z-index: map-get($clr-layers, sidepanel-bg) - 1;
     padding: 1rem;
     position: absolute;
     top: 0;
