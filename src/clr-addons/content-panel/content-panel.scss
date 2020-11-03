@@ -79,7 +79,7 @@
     left: 0;
     background-color: var(--clr-color-neutral-900);
     opacity: 0.85;
-    z-index: map-get($clr-layers, dropdown-menu) - 2;
+    z-index: map-get($clr-layers, sidepanel-bg) - 2;
 
     @media screen and (max-width: map-get($clr-grid-breakpoints, md)) {
       display: none;
