@@ -375,6 +375,11 @@ clr-date-container .clr-control-container {
   }
 }
 
+// Keeps the validation-icon on same level as the input
+.clr-combobox-form-control .clr-control-container {
+  white-space: nowrap;
+}
+
 // This avoids the disposition of the clr select arrow icon if a validation error occurs.
 .clr-error {
   .clr-select-wrapper::after {
