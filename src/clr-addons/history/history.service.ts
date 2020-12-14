@@ -41,7 +41,7 @@ export class ClrHistoryService {
       history.push(historyEntry);
       /* support a maximum of 4 pages in history */
       history = history.slice(-4);
-      this.setHistory(history, historyEntry.username, domain);
+      this.setHistory(history, domain);
       return true;
     }
     return false;
@@ -78,22 +78,13 @@ export class ClrHistoryService {
   /**
    * Set history
    * @param entries
-   * @param username
    * @param domain
    */
-  private setHistory(entries: ClrHistoryModel[], username: string, domain?: string): void {
+  private setHistory(entries: ClrHistoryModel[], domain?: string): void {
     if (!entries || entries.length === 0) {
       // clear all entries
       this.setCookie(this.cookieName, JSON.stringify(''), domain);
     } else {
-      /* leave entries for other applications untouched
-       */
-      let historyOther = this.getCookieByName(this.cookieName);
-      historyOther = historyOther.filter(
-        element =>
-          element.username === username && !(entries.length > 0 && this.checkEqualContext(element, entries[0].context))
-      );
-      entries = entries.concat(historyOther);
       entries = this.reduceSize(entries);
       // encode title & pagename to be cookie saving save
       if (entries && entries.length > 0) {
@@ -121,7 +112,7 @@ export class ClrHistoryService {
   }
 
   resetHistory(): void {
-    this.setHistory(null, null);
+    this.setHistory(null);
   }
 
   removeFromHistory(entry: ClrHistoryModel): void {
@@ -135,7 +126,7 @@ export class ClrHistoryService {
           this.checkEqualContext(element, entry.context)
         )
     );
-    this.setHistory(history, entry.username);
+    this.setHistory(history);
   }
 
   private checkEqualContext(entry: ClrHistoryModel, toCompare: { [key: string]: string }): boolean {
