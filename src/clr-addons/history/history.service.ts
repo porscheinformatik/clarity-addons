@@ -187,7 +187,7 @@ export class ClrHistoryService {
 
   private encode(content: string): string {
     const jsonString = btoa(JSON.stringify(content));
-    return jsonString.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=/g, '!');
+    return jsonString.replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '!');
   }
 
   private decode(content: string): ClrHistoryModel[] {
