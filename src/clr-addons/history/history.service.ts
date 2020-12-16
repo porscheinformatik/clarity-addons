@@ -191,7 +191,11 @@ export class ClrHistoryService {
   }
 
   private decode(content: string): ClrHistoryModel[] {
-    return JSON.parse(atob(content.replace(/-/g, '+').replace(/_/g, '/').replace(/!/g, '=')));
+    try {
+      return JSON.parse(atob(content.replace(/-/g, '+').replace(/_/g, '/').replace(/!/g, '=')));
+    } catch (error) {
+      return [];
+    }
   }
 
   private setCookie(name: string, content: string, domain: string): void {
