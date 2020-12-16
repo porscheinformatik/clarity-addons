@@ -83,7 +83,7 @@ export class ClrHistoryService {
   private setHistory(entries: ClrHistoryModel[], domain?: string): void {
     if (!entries || entries.length === 0) {
       // clear all entries
-      this.setCookie(this.cookieName, JSON.stringify(''), domain);
+      this.setCookie(this.cookieName, this.encode([]), domain);
     } else {
       entries = this.reduceSize(entries);
       // encode title & pagename to be cookie saving save
@@ -93,7 +93,7 @@ export class ClrHistoryService {
           entry.pageName = encodeURI(entry.pageName);
         });
       }
-      this.setCookie(this.cookieName, JSON.stringify(entries), domain);
+      this.setCookie(this.cookieName, this.encode(entries), domain);
     }
   }
 
@@ -170,7 +170,9 @@ export class ClrHistoryService {
           return cookie.substring(0, name.length + 1) === `${name}=`;
         })
         .map(cookie => {
-          return JSON.parse(cookie.substring(name.length + 1));
+          return name === this.cookieName
+            ? this.decode(cookie.substring(name.length + 1))
+            : JSON.parse(cookie.substring(name.length + 1));
         })[0] || [];
     if (cookieEntries && cookieEntries.length > 0) {
       cookieEntries.forEach((entry: any) => {
@@ -183,6 +185,20 @@ export class ClrHistoryService {
       });
     }
     return cookieEntries;
+  }
+
+  private encode(content: ClrHistoryModel[]): string {
+    const jsonString = btoa(JSON.stringify(content));
+    return jsonString.replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '!');
+  }
+
+  private decode(content: string): ClrHistoryModel[] {
+    try {
+      const base64 = content.replace(/-/g, '+').replace(/_/g, '/').replace(/!/g, '=');
+      return JSON.parse(atob(base64));
+    } catch (error) {
+      return [];
+    }
   }
 
   private setCookie(name: string, content: string, domain: string): void {
