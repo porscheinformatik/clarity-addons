@@ -47,7 +47,7 @@
     "@clr/ui": "4.0.6",
     "core-js": "3.6.5",
     "rxjs": "6.6.3",
-    "tslib": "2.0.2",
+    "tslib": "2.1.0",
     "web-animations-js": "2.3.2",
     "zone.js": "0.11.1",
     "@webcomponents/webcomponentsjs": "2.4.4"
