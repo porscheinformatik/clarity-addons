@@ -58,27 +58,13 @@
         min-height: 3rem; // Includes header and space for a single (non existing) row
         position: relative;
         height: 100%;
+      }
 
-        .treetable-column {
-          background-color: var(--clr-thead-bgcolor);
-          text-align: left;
-          min-width: 4rem;
-          vertical-align: top;
-
-          &:last-of-type {
-            padding-right: 1rem;
-          }
-        }
-
-        .treetable-cell {
-          text-align: left;
-          min-width: 4rem;
-          border-color: var(--clr-table-border-color);
-
-          &:last-of-type {
-            padding-right: 1rem;
-          }
-        }
+      .treetable-action-trigger {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        background: none;
       }
 
       .treetable-expandable-caret {
@@ -104,13 +90,42 @@
         }
       }
 
+      .treetable-row-actions {
+        min-width: 1.9rem;
+        max-width: 1.9rem;
+        flex: 0 0 1.9rem;
+        position: relative;
+
+        &:after {
+          content: '';
+          width: 0.05rem;
+          height: calc(100% - 0.5rem);
+          position: absolute;
+          right: 0;
+          top: 0.25rem;
+          background-color: var(--clr-table-border-color, #ccc);
+        }
+      }
+
       .treetable-row-scrollable {
         display: flex;
         flex-flow: row nowrap;
+        flex: 1 1 auto;
 
         :first-child {
           /* Add padding of 1.5 rem to account for the expendable icon in the rows below*/
           padding-left: 1.5rem;
+        }
+
+        .treetable-column {
+          background-color: var(--clr-thead-bgcolor);
+          text-align: left;
+          min-width: 4rem;
+          vertical-align: top;
+
+          &:last-of-type {
+            padding-right: 1rem;
+          }
         }
       }
 
@@ -120,7 +135,9 @@
         // bug(popover): prevents action-overflow from being on top (first row).
         // Needed to keep select/radio and expand svgs underneath header on scrolling
         z-index: map-get($clr-layers, datagrid-header);
-        width: auto;
+        display: flex;
+        flex-flow: row nowrap;
+        flex: 1 1 auto;
 
         &.hide-header {
           visibility: hidden;
@@ -136,36 +153,50 @@
           background-color: var(--clr-datagrid-row-hover);
         }
 
-        .treetable-scrolling-cells {
-          display: flex;
-          flex: 1 1 auto;
-          flex-flow: row nowrap;
-        }
-
         .treetable-row-wrapper {
           .clr-tt-node-content.treetable-row {
             border-top: var(--clr-global-borderwidth) solid var(--clr-table-border-color);
+            display: flex;
+            flex: 1 1 auto;
+            flex-flow: row nowrap;
           }
 
-          @include row-indentation(0);
+          .treetable-scrolling-cells {
+            display: flex;
+            flex: 1 1 auto;
+            flex-flow: row nowrap;
+            position: relative;
 
-          .treetable-row-wrapper {
-            @include row-indentation(1);
+            .treetable-cell {
+              text-align: left;
+              min-width: 4rem;
+              border-color: var(--clr-table-border-color);
+
+              &:last-of-type {
+                padding-right: 1rem;
+              }
+            }
+
+            @include row-indentation(0);
 
             .treetable-row-wrapper {
-              @include row-indentation(2);
+              @include row-indentation(1);
 
               .treetable-row-wrapper {
-                @include row-indentation(3);
+                @include row-indentation(2);
 
                 .treetable-row-wrapper {
-                  @include row-indentation(4);
+                  @include row-indentation(3);
 
                   .treetable-row-wrapper {
-                    @include row-indentation(5);
+                    @include row-indentation(4);
 
                     .treetable-row-wrapper {
-                      @include row-indentation(6);
+                      @include row-indentation(5);
+
+                      .treetable-row-wrapper {
+                        @include row-indentation(6);
+                      }
                     }
                   }
                 }

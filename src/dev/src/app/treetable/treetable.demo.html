@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
+  ~ Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
@@ -236,6 +236,37 @@
   </clr-tt-row>
 </clr-treetable>
 
+<h4>Treetable with actions</h4>
+<clr-treetable [clrClickableRows]="false">
+  <clr-tt-column class="clr-col-lg-10 clr-col-md-8">Position</clr-tt-column>
+  <clr-tt-column class="clr-col-lg-2 clr-col-md-4 text-right">Price</clr-tt-column>
+
+  <clr-tt-row [clrExpandable]="true">
+    <clr-tt-action-overflow>
+      <button class="action-item">Test</button>
+    </clr-tt-action-overflow>
+    <clr-tt-cell>Vehicle configuration</clr-tt-cell>
+    <clr-tt-cell class="text-right">18,519.99 EUR</clr-tt-cell>
+
+    <clr-tt-row>
+      <clr-tt-cell>Audi A1 3-Türer Attraction 1.2 TFSI 63(86) kW(PS) 5-Gang</clr-tt-cell>
+      <clr-tt-cell class="text-right">16,750.00 EUR</clr-tt-cell>
+    </clr-tt-row>
+
+    <clr-tt-row>
+      <clr-tt-cell
+        >Florettsilber Metallic Brillantschwarz / granatrot-schwarz-granatrot/schwarz-
+        schwarz/schwarz/titangrau</clr-tt-cell
+      >
+      <clr-tt-cell class="text-right">480.00 EUR</clr-tt-cell>
+    </clr-tt-row>
+  </clr-tt-row>
+  <clr-tt-row>
+    <clr-tt-cell>Sales add-ons</clr-tt-cell>
+    <clr-tt-cell class="text-right"></clr-tt-cell>
+  </clr-tt-row>
+</clr-treetable>
+
 <h4>Empty treetable</h4>
 <clr-treetable>
   <clr-tt-column>User ID</clr-tt-column>
@@ -246,7 +277,7 @@
 </clr-treetable>
 
 <h4>Fixed height</h4>
-<clr-treetable [clrClickableRows]="false" style="height: 250px;">
+<clr-treetable [clrClickableRows]="false" style="height: 250px">
   <clr-tt-column class="clr-col-lg-10 clr-col-md-8">Position<br />and more</clr-tt-column>
   <clr-tt-column class="clr-col-lg-2 clr-col-md-4 text-right">Price</clr-tt-column>
 
