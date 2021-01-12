@@ -1,238 +1,99 @@
 {
-    "status": {
-        "done": 20,
-        "started": 10,
-        "notStarted": 5,
-        "notDoing": -1
-    },
     "list": [
         {
             "url": "forms",
             "text": "Forms",
-            "type": "layout",
-            "ux": -1,
-            "ui": -1,
-            "core": -1,
-            "ng": -1,
-            "dox": 20,
-            "comments": "",
-            "newLayout": true
+            "type": "layout"
         },
         {
             "url": "navigation",
             "text": "Navigation",
-            "type": "layout",
-            "ux": -1,
-            "ui": -1,
-            "core": -1,
-            "ng": -1,
-            "dox": 20,
-            "comments": "",
-            "newLayout": true
+            "type": "layout"
         },
         {
             "url": "page-layouts",
             "text": "Page layouts",
-            "type": "layout",
-            "ux": -1,
-            "ui": -1,
-            "core": -1,
-            "ng": -1,
-            "dox": 20,
-            "comments": "",
-            "newLayout": true
+            "type": "layout"
         },
         {
             "url": "breadcrumb",
             "text": "Breadcrumb",
-            "type": "component",
-            "ux": 20,
-            "ui": 20,
-            "core": 20,
-            "ng": 20,
-            "dox": 20,
-            "comments": "",
-            "newLayout": true
+            "type": "component"
         },
         {
             "url": "cards",
             "text": "Cards",
-            "type": "component",
-            "ux": 20,
-            "ui": 20,
-            "core": 20,
-            "ng": 20,
-            "dox": 20,
-            "comments": "",
-            "newLayout": true
+            "type": "component"
         },
         {
             "url": "collapse-expand-section",
             "text": "Collapse/Expand Section",
-            "type": "component",
-            "ux": 20,
-            "ui": 20,
-            "core": 20,
-            "ng": 20,
-            "dox": 20,
-            "comments": "",
-            "newLayout": true
+            "type": "component"
         },
         {
             "url": "datagrid",
             "text": "Datagrid",
-            "type": "component",
-            "ux": -1,
-            "ui": 20,
-            "core": -1,
-            "ng": -1,
-            "dox": 20,
-            "comments": "",
-            "newLayout": true
+            "type": "component"
         },
         {
             "url": "history",
             "text": "History",
-            "type": "component",
-            "ux": 20,
-            "ui": 20,
-            "core": 20,
-            "ng": 20,
-            "dox": 20,
-            "comments": "",
-            "newLayout": true
+            "type": "component"
         },        
         {
             "url": "letter-avatar",
             "text": "Letter avatar",
-            "type": "component",
-            "ux": 20,
-            "ui": 20,
-            "core": 20,
-            "ng": 20,
-            "dox": 20,
-            "comments": "",
-            "newLayout": true
+            "type": "component"
         },
         {
             "url": "multilingual-input",
             "text": "Multilingual Inputs",
-            "type": "component",
-            "ux": 20,
-            "ui": 20,
-            "core": 20,
-            "ng": 20,
-            "dox": 20,
-            "comments": "",
-            "newLayout": true
+            "type": "component"
         },
         {
             "url": "notification",
             "text": "Notification",
-            "type": "component",
-            "ux": 20,
-            "ui": 20,
-            "core": 20,
-            "ng": 20,
-            "dox": 20,
-            "comments": "",
-            "newLayout": true
+            "type": "component"
         },
         {
             "url": "numericfield",
             "text": "Numeric Field",
-            "type": "component",
-            "ux": 20,
-            "ui": 20,
-            "core": 20,
-            "ng": 20,
-            "dox": 20,
-            "comments": "",
-            "newLayout": true
+            "type": "component"
         },
         {
             "url": "pager",
             "text": "Pager",
-            "type": "component",
-            "ux": 20,
-            "ui": 20,
-            "core": 20,
-            "ng": 20,
-            "dox": 20,
-            "comments": "",
-            "newLayout": true
+            "type": "component"
         },
         {
             "url": "progress-spinner",
             "text": "Progress Spinner",
-            "type": "component",
-            "ux": 20,
-            "ui": 20,
-            "core": 20,
-            "ng": 20,
-            "dox": 20,
-            "comments": "",
-            "newLayout": true
+            "type": "component"
         },
         {
             "url": "quick-list",
             "text": "Quick List",
-            "type": "component",
-            "ux": 20,
-            "ui": 20,
-            "core": 20,
-            "ng": 20,
-            "dox": 20,
-            "comments": "",
-            "newLayout": true
+            "type": "component"
         },
         {
             "url": "readonly",
             "text": "Readonly",
-            "type": "component",
-            "ux": 20,
-            "ui": 20,
-            "core": 20,
-            "ng": 20,
-            "dox": 20,
-            "comments": "",
-            "newLayout": true
+            "type": "component"
         },
         {
             "url": "search-field",
             "text": "Search Field",
-            "type": "component",
-            "ux": 20,
-            "ui": 20,
-            "core": 20,
-            "ng": 20,
-            "dox": 20,
-            "comments": "",
-            "newLayout": true
+            "type": "component"
         },
         {
             "url": "treetable",
             "text": "Treetable",
-            "type": "component",
-            "ux": 20,
-            "ui": 20,
-            "core": 20,
-            "ng": 20,
-            "dox": 20,
-            "comments": "",
-            "newLayout": true
+            "type": "component"
         },
         {
             "url": "view-edit-section",
             "text": "View/Edit Section",
-            "type": "component",
-            "ux": 20,
-            "ui": 20,
-            "core": 20,
-            "ng": 20,
-            "dox": 20,
-            "comments": "",
-            "newLayout": true
+            "type": "component"
         }
     ]
 }
