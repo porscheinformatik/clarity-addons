@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -16,6 +16,7 @@ import { TreetableHeaderRenderer } from './renderer/header-renderer';
 import { TreetableMainRenderer } from './renderer/main-renderer';
 import { TreetableRowRenderer } from './renderer/row-renderer';
 import { TreetableCellRenderer } from './renderer/cell-renderer';
+import { ClrTreetableActionOverflow } from './treetable-action-overflow';
 
 const CLR_TREETABLE_DIRECTIVES: Type<any>[] = [
   ClrTreetable,
@@ -23,6 +24,7 @@ const CLR_TREETABLE_DIRECTIVES: Type<any>[] = [
   ClrTreetableCell,
   ClrTreetableColumn,
   ClrTreetablePlaceholder,
+  ClrTreetableActionOverflow,
 
   TreetableMainRenderer,
   TreetableHeaderRenderer,

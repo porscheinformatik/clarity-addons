@@ -1,11 +1,12 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, ContentChild, EventEmitter, Input, Output } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { ClrTreetableActionOverflow } from './treetable-action-overflow';
 
 @Component({
   selector: 'clr-tt-row',
@@ -29,8 +30,19 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 export class ClrTreetableRow {
   @Input('clrExpanded') expanded = false;
   @Input('clrClickable') clickable = true;
-
   @Input('clrExpandable') expandable = false;
+
+  @Output() hasActionOverflow = new EventEmitter<boolean>();
+
+  showActionOverflow = false;
+  showEmptyActionOverflow = false;
+
+  @ContentChild(ClrTreetableActionOverflow)
+  set actionOverflow(actionOverflow: ClrTreetableActionOverflow) {
+    this.showActionOverflow = !!actionOverflow;
+    this.showEmptyActionOverflow = !this.showActionOverflow;
+    this.hasActionOverflow.emit(this.showActionOverflow);
+  }
 
   private toggleExpand(): void {
     if (this.expandable) {
