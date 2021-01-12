@@ -493,6 +493,43 @@
         [clrCode]="htmlExampleClickableCaret"
       ></clr-code-snippet>
 
+      <h4>Treetable with single row actions</h4>
+
+      <p>
+        To show single row actions add <code class="clr-code">clr-tt-action-overflow</code> inside a <code class="clr-code">clr-tt-row</code>
+      </p>
+
+      <clr-treetable>
+        <clr-tt-column>Some column</clr-tt-column>
+        <clr-tt-column>Some other column</clr-tt-column>
+
+        <clr-tt-row clrExpandable="true">
+          <clr-tt-action-overflow>
+            <button class="action-item">Test Action</button>
+          </clr-tt-action-overflow>
+          <clr-tt-cell
+            >Lorem ipsum dolor sit amet</clr-tt-cell
+          >
+          <clr-tt-cell>2</clr-tt-cell>
+
+          <clr-tt-row>
+            <clr-tt-cell
+              >Lorem ipsum dolor sit amet</clr-tt-cell
+            >
+            <clr-tt-cell>3</clr-tt-cell>
+          </clr-tt-row>
+        </clr-tt-row>
+
+        <clr-tt-row>
+          <clr-tt-cell
+            >Lorem ipsum dolor sit amet</clr-tt-cell
+          >
+          <clr-tt-cell>1</clr-tt-cell>
+        </clr-tt-row>
+      </clr-treetable>
+
+      <clr-code-snippet [clrCode]="htmlExampleSingleRowAction"></clr-code-snippet>
+
       <h4>Custom column sizing</h4>
 
       <p>

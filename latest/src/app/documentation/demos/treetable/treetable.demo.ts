@@ -59,6 +59,28 @@ const HTML_EXAMPLE_CUSTOM_SIZE = `
     </clr-tt-row>
 </clr-treetable>`;
 
+const HTML_EXAMPLE_SINGLE_ROW_ACTION = `
+<clr-treetable>
+  <clr-tt-column>Some column</clr-tt-column>
+  <clr-tt-column>Some other column</clr-tt-column>
+  <clr-tt-row clrExpandable="true">
+    <clr-tt-action-overflow>
+      <button class="action-item">Test Action</button>
+    </clr-tt-action-overflow>
+    <clr-tt-cell>Lorem ipsum dolor sit amet</clr-tt-cell>
+    <clr-tt-cell>2</clr-tt-cell>
+    <clr-tt-row>
+      <clr-tt-cell>Lorem ipsum dolor sit amet</clr-tt-cell>
+      <clr-tt-cell>3</clr-tt-cell>
+    </clr-tt-row>
+  </clr-tt-row>
+  <clr-tt-row>
+    <clr-tt-cell>Lorem ipsum dolor sit amet</clr-tt-cell>
+    <clr-tt-cell>1</clr-tt-cell>
+  </clr-tt-row>
+</clr-treetable>
+`
+
 @Component({
     selector: "clr-treetable-demo",
     templateUrl: "./treetable.demo.html",
@@ -71,6 +93,7 @@ export class TreetableDemo extends ClarityDocComponent {
     htmlExampleClickableRows = HTML_EXAMPLE_CLICKABLE_ROWS;
     htmlExampleClickableCaret = HTML_EXAMPLE_CLICKABLE_CARET;
     htmlExampleCustomSize = HTML_EXAMPLE_CUSTOM_SIZE;
+    htmlExampleSingleRowAction = HTML_EXAMPLE_SINGLE_ROW_ACTION;
 
     constructor() {
         super("treetable");
