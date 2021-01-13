@@ -3,14 +3,16 @@
   $base-caret-indentation: 0.1rem;
   $indentation-increment: 1rem;
 
-  .treetable-cell:first-of-type {
-    padding-left: $base-cell-indentation + $level * $indentation-increment;
-  }
-  .treetable-expandable-caret {
-    @if ($level > 0) {
-      left: $level * $indentation-increment;
-    } @else {
-      left: $base-caret-indentation;
+  .treetable-scrolling-cells {
+    .treetable-cell:first-of-type {
+      padding-left: $base-cell-indentation + $level * $indentation-increment;
+    }
+    .treetable-expandable-caret {
+      @if ($level > 0) {
+        left: $level * $indentation-increment;
+      } @else {
+        left: $base-caret-indentation;
+      }
     }
   }
 }
@@ -176,27 +178,27 @@
                 padding-right: 1rem;
               }
             }
+          }
 
-            @include row-indentation(0);
+          @include row-indentation(0);
+
+          .treetable-row-wrapper {
+            @include row-indentation(1);
 
             .treetable-row-wrapper {
-              @include row-indentation(1);
+              @include row-indentation(2);
 
               .treetable-row-wrapper {
-                @include row-indentation(2);
+                @include row-indentation(3);
 
                 .treetable-row-wrapper {
-                  @include row-indentation(3);
+                  @include row-indentation(4);
 
                   .treetable-row-wrapper {
-                    @include row-indentation(4);
+                    @include row-indentation(5);
 
                     .treetable-row-wrapper {
-                      @include row-indentation(5);
-
-                      .treetable-row-wrapper {
-                        @include row-indentation(6);
-                      }
+                      @include row-indentation(6);
                     }
                   }
                 }
