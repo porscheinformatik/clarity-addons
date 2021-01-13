@@ -33,7 +33,7 @@
     "@clr/core": "4.0.6",
     "@clr/icons": "4.0.6",
     "@clr/ui": "4.0.6",
-    "@porscheinformatik/clr-addons": "9.2.0",
+    "@porscheinformatik/clr-addons": "9.2.1",
     "@webcomponents/webcomponentsjs": "^2.4.4",
     "classlist.js": "^1.1.20150312",
     "core-js": "^3.6.5",
