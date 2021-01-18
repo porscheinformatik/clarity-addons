@@ -30,12 +30,17 @@ import { ClrTreetableActionOverflow } from './treetable-action-overflow';
 export class ClrTreetableRow {
   @Input('clrExpanded') expanded = false;
   @Input('clrClickable') clickable = true;
-  @Input('clrExpandable') expandable = false;
+
+  @Input('clrExpandable')
+  set clrExpandable(expandable: boolean) {
+    setTimeout(() => (this.expandable = expandable));
+  }
 
   @Output() hasActionOverflow = new EventEmitter<boolean>();
 
   showActionOverflow = false;
   showEmptyActionOverflow = false;
+  expandable = false;
 
   @ContentChild(ClrTreetableActionOverflow)
   set actionOverflow(actionOverflow: ClrTreetableActionOverflow) {
