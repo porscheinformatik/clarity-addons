@@ -71,7 +71,7 @@ describe('ClrTreetableRow', () => {
   it('should expand if clicked', () => {
     expect(rowClickableTestComponent.ttRow.expanded).toBeFalsy();
     const row = rowClickableTestComponentFixture.debugElement.query(By.css('.treetable-row:first-of-type'));
-    row.triggerEventHandler('click', {});
+    row.triggerEventHandler('click', { target: row.nativeElement });
     rowClickableTestComponentFixture.detectChanges();
     expect(rowClickableTestComponent.ttRow.expanded).toBeTruthy();
   });
