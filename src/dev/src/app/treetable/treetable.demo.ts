@@ -4,27 +4,34 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'treetable-demo',
   templateUrl: './treetable.demo.html',
 })
-export class TreetableDemo {
-  root = [
-    {
-      name: 'Parent1',
-      type: 'Parent',
-      version: 'V1',
-      children: [
-        {
-          name: 'Child1',
-          type: 'Child',
-          version: 'V1',
-          children: [{ name: 'ChildChild1', type: 'ChildChild', version: 'V1' }],
-        },
-        { name: 'Child2', type: 'Child', version: 'V1' },
-      ],
-    },
-  ];
+export class TreetableDemo implements OnInit {
+  root = [] as any[];
+
+  ngOnInit(): void {
+    setTimeout(
+      () =>
+        (this.root = [
+          {
+            name: 'Parent1',
+            type: 'Parent',
+            version: 'V1',
+            children: [
+              {
+                name: 'Child1',
+                type: 'Child',
+                version: 'V1',
+                children: [{ name: 'ChildChild1', type: 'ChildChild', version: 'V1' }],
+              },
+              { name: 'Child2', type: 'Child', version: 'V1' },
+            ],
+          },
+        ])
+    );
+  }
 }

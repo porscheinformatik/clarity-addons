@@ -48,14 +48,19 @@ export class ClrTreetable implements OnDestroy {
   }
 
   private initActionOverflow() {
-    this._ttRows.forEach(row =>
+    this._ttRows.forEach(row => {
+      this.setActionOverflow(row.showActionOverflow);
       row.hasActionOverflow.pipe(takeUntil(this.destroyed$)).subscribe((hasActionOverflow: boolean) => {
-        this.hasActionOverflow = this.hasActionOverflow || hasActionOverflow;
-        if (this.hasActionOverflow) {
-          this._ttRows.forEach(ttRow => (ttRow.showActionOverflow = true));
-        }
-      })
-    );
+        this.setActionOverflow(hasActionOverflow);
+      });
+    });
+  }
+
+  private setActionOverflow(hasActionOverflow: boolean) {
+    this.hasActionOverflow = this.hasActionOverflow || hasActionOverflow;
+    if (this.hasActionOverflow) {
+      this._ttRows.forEach(ttRow => (ttRow.showActionOverflow = true));
+    }
   }
 
   ngOnDestroy(): void {
