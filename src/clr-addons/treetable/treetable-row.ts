@@ -55,8 +55,8 @@ export class ClrTreetableRow {
     }
   }
 
-  onRowClick(): void {
-    if (this.clickable) {
+  onRowClick(event: MouseEvent): void {
+    if (this.clickable && !(event.target as HTMLElement).closest('.treetable-action-trigger')) {
       this.toggleExpand();
     }
   }
