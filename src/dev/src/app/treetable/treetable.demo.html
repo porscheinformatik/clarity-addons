@@ -378,6 +378,9 @@
 
   <ng-template #singleNode let-node>
     <clr-tt-row [clrExpandable]="node.children?.length > 0" [clrExpanded]="true">
+      <clr-tt-action-overflow>
+        <button class="action-item">Test</button>
+      </clr-tt-action-overflow>
       <clr-tt-cell>{{node.name}}</clr-tt-cell>
       <clr-tt-cell>{{node.type}}</clr-tt-cell>
       <clr-tt-cell>{{node.version}}</clr-tt-cell>
