@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, HostListener, Input, NgZone, OnDestroy } from '@angular/core';
+import { Component, Input, NgZone, OnDestroy } from '@angular/core';
 import {
   ClrAlignment,
   ClrAxis,
@@ -74,11 +74,6 @@ export class ClrTreetableActionOverflow implements OnDestroy {
 
   closeOverflowContent(event: Event): void {
     this.smartToggleService.toggleWithEvent(event);
-  }
-
-  @HostListener('click', ['$event'])
-  onClick(event: MouseEvent): void {
-    event.stopPropagation();
   }
 
   ngOnDestroy(): void {

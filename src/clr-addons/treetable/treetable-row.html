@@ -7,7 +7,7 @@
 <div
   [ngClass]="{'clr-row-clickable': clickable && expandable}"
   class="clr-tt-node-content treetable-row"
-  (click)="onRowClick()"
+  (click)="onRowClick($event)"
 >
   <ng-content select="clr-tt-action-overflow"></ng-content>
   <clr-tt-action-overflow *ngIf="showActionOverflow && showEmptyActionOverflow" [empty]="true"></clr-tt-action-overflow>
