@@ -6,7 +6,7 @@
 
 import { CommonModule } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { ClarityModule } from '@clr/angular';
@@ -48,12 +48,14 @@ class TestComponent {
 describe('GenericQuickListComponent', () => {
   let fixture: ComponentFixture<TestComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [TestComponent],
-      imports: [CommonModule, ClarityModule, FormsModule, ClrGenericQuickListModule],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [TestComponent],
+        imports: [CommonModule, ClarityModule, FormsModule, ClrGenericQuickListModule],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TestComponent);

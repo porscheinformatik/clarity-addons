@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ClarityModule } from '@clr/angular';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
@@ -26,12 +26,14 @@ describe('CustomCSS', () => {
   describe('Datagrid', () => {
     let fixture: ComponentFixture<DataGridComponent>;
 
-    beforeEach(async(() => {
-      TestBed.configureTestingModule({
-        declarations: [DataGridComponent],
-        imports: [ClarityModule],
-      }).compileComponents();
-    }));
+    beforeEach(
+      waitForAsync(() => {
+        TestBed.configureTestingModule({
+          declarations: [DataGridComponent],
+          imports: [ClarityModule],
+        }).compileComponents();
+      })
+    );
 
     beforeEach(() => {
       fixture = TestBed.createComponent(DataGridComponent);

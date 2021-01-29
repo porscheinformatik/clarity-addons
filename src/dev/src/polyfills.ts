@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -8,36 +8,15 @@
  * BROWSER POLYFILLS
  */
 
-/* IE9, IE10 and IE11 requires all of the following polyfills. */
-import 'core-js/es/symbol';
-import 'core-js/es/object';
-import 'core-js/es/function';
-import 'core-js/es/parse-int';
-import 'core-js/es/parse-float';
-import 'core-js/es/number';
-import 'core-js/es/math';
-import 'core-js/es/string';
-import 'core-js/es/date';
-import 'core-js/es/array';
-import 'core-js/es/regexp';
-import 'core-js/es/map';
-import 'core-js/es/weak-map';
-import 'core-js/es/set';
-
 /* IE10 and IE11 requires the following for NgClass support on SVG elements */
 // import "classlist.js"; // Run `npm install --save classlist.js`.
 
-/* Evergreen browsers require these. */
-import 'core-js/es/reflect';
-
-/* Polyfill for icons web components */
-import '@webcomponents/custom-elements';
-
-/*
- * Required to support Web Animations `@angular/animation`.
- * Needed for: All but Chrome, Firefox and Opera. http://caniuse.com/#feat=web-animation
+/**
+ * Web Animations `@angular/platform-browser/animations`
+ * Only required if AnimationBuilder is used within the application and using IE/Edge or Safari.
+ * Standard animation support in Angular DOES NOT require any polyfills (as of Angular 6.0).
  */
-import 'web-animations-js'; // Run `npm install --save web-animations-js`.
+// import 'web-animations-js';  // Run `npm install --save web-animations-js`.
 
 /***************************************************************************************************
  * Zone JS is required by Angular itself.

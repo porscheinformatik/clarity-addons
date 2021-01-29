@@ -1,3 +1,5 @@
+@import './mixins';
+
 @import './header.clr-addons';
 @import './collapse-expand-section/collapse-expand-section';
 @import './main-nav-group/main-nav-group';
@@ -32,25 +34,25 @@ body,
   > .content-container {
     border-top: var(--clr-global-borderwidth) solid var(--clr-border-color);
   }
-}
 
-.content-header {
-  padding: 0.5rem 0.5rem 0 1rem;
-  display: flex;
-  flex: 0 0 auto;
-
-  h2 {
-    margin-top: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .command-bar {
+  .content-header {
+    padding: 0.5rem 0.5rem 0 1rem;
     display: flex;
-    flex: 1 0 auto;
-    justify-content: flex-end;
-    align-items: flex-start;
+    flex: 0 0 auto;
+
+    h2 {
+      margin-top: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .command-bar {
+      display: flex;
+      flex: 1 0 auto;
+      justify-content: flex-end;
+      align-items: flex-start;
+    }
   }
 }
 
@@ -212,7 +214,7 @@ body,
 
 form {
   .required {
-    @include required-asterisk;
+    @include required-asterisk();
   }
 
   .required-multiple {
@@ -391,6 +393,10 @@ clr-date-container .clr-control-container {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.btn clr-icon {
+  transform: translate3d(0, -0.1rem, 0);
 }
 
 // Has to be at the bottom to override the styles from the above properly

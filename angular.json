@@ -36,18 +36,15 @@
               }
             ],
             "styles": [
+              "node_modules/normalize.css/normalize.css",
+              "node_modules/@cds/core/global.min.css",
+              "node_modules/@cds/core/styles/module.shims.min.css",
               "node_modules/@clr/icons/clr-icons.min.css",
-              "node_modules/prismjs/themes/prism-solarizedlight.css"
+              "node_modules/@clr/ui/clr-ui.min.css"
             ],
-            "stylePreprocessorOptions": {
-              "includePaths": ["node_modules"]
-            },
             "scripts": [
               "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js",
-              "node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js",
-              "node_modules/prismjs/prism.js",
-              "node_modules/prismjs/components/prism-typescript.min.js",
-              "node_modules/prismjs/components/prism-json.min.js"
+              "node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"
             ]
           },
           "configurations": {
@@ -67,7 +64,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
@@ -118,7 +114,7 @@
       "prefix": "clr",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "project": "src/clr-addons/ng-package.json"
           },

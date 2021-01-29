@@ -1,12 +1,16 @@
 $clr-color-hue: 183.2;
 
-:root {
+$turquoise: #14a1a9;
+$white: #fff;
+$black: #000;
+
+[cds-theme~='phs'] {
   --blue-light: #e6f3f8;
   --blue-mid: #85c3df;
   --blue-dark: #0d88c0;
   --blue-darker: #0c75a6;
 
-  --turquoise: #14a1a9;
+  --turquoise: #{$turquoise};
   --turquoise-lighter: #e8f3f3;
   --turquoise-light: #e7f5f6;
   --turquoise-darkest: #19888d;
@@ -32,6 +36,6 @@ $clr-color-hue: 183.2;
 
   --yellow-light: #efd603;
 
-  --black: #000;
-  --white: #fff;
+  --black: #{$black};
+  --white: #{$white};
 }

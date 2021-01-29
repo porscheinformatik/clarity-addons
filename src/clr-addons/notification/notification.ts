@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -56,7 +56,7 @@ export class ClrNotification implements OnInit {
     return this._height + 10;
   }
 
-  private _heightInitalized: () => void;
+  private _heightInitalized: (value?: unknown) => void;
   heightInitalized = new Promise(resolve => {
     this._heightInitalized = resolve;
   });

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -18,7 +18,7 @@ import { ClrAddonsIconShapes } from './shapes';
  * @see {@link https://clarity.design/icons/api}
  */
 export function loadIcons() {
-  return () => {
+  return (): void => {
     // Add all available shapes from clarity, per default only the core-shapes are loaded.
     ClarityIcons.add(AllShapes);
     // Add our custom shapes

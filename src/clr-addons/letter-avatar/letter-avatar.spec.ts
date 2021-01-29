@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ClrLetterAvatar } from './letter-avatar';
 
@@ -12,11 +12,13 @@ describe('LetterAvatarComponent', () => {
   let component: ClrLetterAvatar;
   let fixture: ComponentFixture<ClrLetterAvatar>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ClrLetterAvatar],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [ClrLetterAvatar],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ClrLetterAvatar);

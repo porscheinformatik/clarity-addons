@@ -1,168 +1,180 @@
-.header-hamburger-trigger,
-.header-overflow-trigger {
-  & > span,
-  & > span::before,
-  & > span::after {
-    background: var(--black);
-  }
-}
-
-.open-hamburger-menu .header-hamburger-trigger,
-.open-overflow-menu .header-overflow-trigger {
-  & > span,
-  & > span::before,
-  & > span::after {
-    background: var(--white);
-  }
-}
-
-.header .header-nav .nav-link.active {
-  background: var(--clr-global-selection-color);
-}
-
-header,
-.header {
-  .header-actions {
-    > .dropdown > .nav-icon {
-      color: var(--turquoise-darkest);
-    }
-    .nav-icon {
-      color: var(--turquoise-darkest);
+[cds-theme~='phs'] {
+  .header-hamburger-trigger,
+  .header-overflow-trigger {
+    & > span,
+    & > span::before,
+    & > span::after {
+      background: var(--black);
     }
   }
-  .settings .nav-icon {
-    color: var(--turquoise-darkest);
-  }
-  .branding {
-    min-width: 4rem;
-  }
-}
 
-.card {
-  border-radius: var(--phs-card-border-radius);
-
-  &.clickable:hover {
-    box-shadow: 0 0.125rem 0 0 var(--clr-card-active-border-color);
-    border-color: var(--clr-card-active-border-color);
+  .header .header-nav .nav-link.active {
+    background: var(--clr-global-selection-color);
   }
 
-  &.selectable:hover::after,
-  &.card-active::after {
-    top: 0;
-    border-top-left-radius: var(--phs-card-border-radius);
-    border-bottom-left-radius: var(--phs-card-border-radius);
+  header,
+  .header {
+    .header-actions {
+      > .dropdown > .nav-icon {
+        color: var(--turquoise-darkest);
+      }
+      .nav-icon {
+        color: var(--turquoise-darkest);
+      }
+    }
+    .settings .nav-icon {
+      color: var(--turquoise-darkest);
+    }
+    .branding {
+      min-width: 4rem;
+    }
   }
-}
 
-.card-img {
-  &:first-child > img {
-    border-radius: var(--phs-card-border-radius) var(--phs-card-border-radius) 0 0;
-  }
-
-  &:last-child > img {
-    border-radius: 0 0 var(--phs-card-border-radius) var(--phs-card-border-radius);
-  }
-}
-
-.card.card-img,
-.card > .card-img:first-child:last-child {
-  & > img {
+  .card {
     border-radius: var(--phs-card-border-radius);
-  }
-}
 
-.btn {
-  border-radius: var(--phs-button-border-radius);
-}
-
-.datagrid .datagrid-table .datagrid-column {
-  .datagrid-filter-toggle {
-    &:hover {
-      color: var(--turquoise);
+    &.clickable:hover {
+      box-shadow: 0 0.125rem 0 0 var(--clr-card-active-border-color);
+      border-color: var(--clr-card-active-border-color);
     }
 
-    &.datagrid-filter-open {
-      color: var(--turquoise);
-    }
-
-    &.datagrid-filtered {
-      color: var(--turquoise);
+    &.selectable:hover::after,
+    &.card-active::after {
+      top: 0;
+      border-top-left-radius: var(--phs-card-border-radius);
+      border-bottom-left-radius: var(--phs-card-border-radius);
     }
   }
 
-  .datagrid-column-title .sort-icon {
+  .card-img {
+    &:first-child > img {
+      border-radius: var(--phs-card-border-radius) var(--phs-card-border-radius) 0 0;
+    }
+
+    &:last-child > img {
+      border-radius: 0 0 var(--phs-card-border-radius) var(--phs-card-border-radius);
+    }
+  }
+
+  .card.card-img,
+  .card > .card-img:first-child:last-child {
+    & > img {
+      border-radius: var(--phs-card-border-radius);
+    }
+  }
+
+  .btn {
+    border-radius: var(--phs-button-border-radius);
+  }
+
+  .datagrid .datagrid-table .datagrid-column {
+    .datagrid-filter-toggle {
+      &:hover {
+        color: var(--turquoise);
+      }
+
+      &.datagrid-filter-open {
+        color: var(--turquoise);
+      }
+
+      &.datagrid-filtered {
+        color: var(--turquoise);
+      }
+    }
+
+    .datagrid-column-title .sort-icon {
+      color: var(--turquoise);
+    }
+  }
+
+  .datagrid-footer .column-switch-wrapper {
+    &.active .column-toggle--action {
+      color: var(--turquoise);
+    }
+    .column-toggle--action:hover {
+      color: var(--turquoise);
+    }
+  }
+
+  .spinner {
+    background: generateSpinnerIcon($black, $turquoise);
+
+    &.spinner-inverse {
+      background: generateSpinnerIcon($white, $turquoise);
+    }
+  }
+
+  clr-tooltip clr-icon {
     color: var(--turquoise);
   }
-}
 
-.datagrid-footer .column-switch-wrapper {
-  &.active .column-toggle--action {
-    color: var(--turquoise);
+  // Use !important because the clr-icons.css is higher priority otherwise
+  clr-icon {
+    &.is-green,
+    &.is-success {
+      fill: var(--clr-icon-color-success) !important;
+    }
+    &.is-danger {
+      fill: var(--clr-icon-color-danger) !important;
+    }
+    &.is-red,
+    &.is-error {
+      fill: var(--clr-icon-color-error) !important;
+    }
+    &.is-warning {
+      fill: var(--clr-icon-color-warning) !important;
+    }
+    &.is-blue,
+    &.is-info {
+      fill: var(--clr-icon-color-info) !important;
+    }
+    &.is-highlight {
+      fill: var(--clr-icon-color-highlight) !important;
+    }
   }
-  .column-toggle--action:hover {
-    color: var(--turquoise);
+
+  .alert-app-level.alert-success {
+    background: var(--green-light-mid);
   }
-}
 
-.spinner.spinner-inverse {
-  background: generateSpinnerIcon(var(--white), var(--clr-spinner-color));
-}
-
-clr-tooltip clr-icon {
-  color: var(--turquoise);
-}
-
-// Use !important because the clr-icons.css is higher priority otherwise
-clr-icon {
-  &.is-green,
-  &.is-success {
-    fill: var(--clr-icon-color-success) !important;
+  .label.label-orange > .badge,
+  a.label.label-orange > .badge {
+    color: var(--clr-badge-font-color-light);
   }
-  &.is-danger {
-    fill: var(--clr-icon-color-danger) !important;
+
+  // Bootstrap text color overrides
+  .text-primary {
+    color: var(--clr-text-color-primary) !important;
   }
-  &.is-red,
-  &.is-error {
-    fill: var(--clr-icon-color-error) !important;
+
+  .text-success {
+    color: var(--clr-text-color-success) !important;
   }
-  &.is-warning {
-    fill: var(--clr-icon-color-warning) !important;
+
+  .text-info {
+    color: var(--clr-text-color-info) !important;
   }
-  &.is-blue,
-  &.is-info {
-    fill: var(--clr-icon-color-info) !important;
+
+  .text-warning {
+    color: var(--clr-text-color-warning) !important;
   }
-  &.is-highlight {
-    fill: var(--clr-icon-color-highlight) !important;
+
+  .text-danger {
+    color: var(--clr-text-color-danger) !important;
   }
-}
 
-.alert-app-level.alert-success {
-  background: var(--green-light-mid);
-}
+  .dropdown .dropdown-toggle {
+    &.btn clr-icon[shape^='caret'] {
+      right: 0.6rem;
+    }
 
-.label.label-orange > .badge,
-a.label.label-orange > .badge {
-  color: var(--clr-badge-font-color-light);
-}
-
-// Bootstrap text color overrides
-.text-primary {
-  color: var(--clr-text-color-primary) !important;
-}
-
-.text-success {
-  color: var(--clr-text-color-success) !important;
-}
-
-.text-info {
-  color: var(--clr-text-color-info) !important;
-}
-
-.text-warning {
-  color: var(--clr-text-color-warning) !important;
-}
-
-.text-danger {
-  color: var(--clr-text-color-danger) !important;
+    clr-icon[shape^='caret'] {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: inherit;
+      height: 0.5rem;
+      width: 0.5rem;
+    }
+  }
 }

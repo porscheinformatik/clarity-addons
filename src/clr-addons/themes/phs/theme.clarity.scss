@@ -1,8 +1,8 @@
-// Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
+// Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
 // This software is released under MIT license.
 // The full license information can be found in LICENSE in the root directory of this project.
 
-:root {
+[cds-theme~='phs'] {
   --phs-border-radius: 0.5rem;
   --phs-card-border-radius: 0.25rem;
   --phs-button-border-radius: 0.25rem;
@@ -12,6 +12,7 @@
 
   // Default button colors
   --clr-btn-default-color: var(--turquoise); // border-color, color, checked-background-color
+  --clr-btn-default-border-color: var(--turquoise);
   --clr-btn-default-hover-bg-color: var(--turquoise-light); // hover-background-color
   --clr-btn-default-hover-color: var(--turquoise-darkest); // hover-color
   --clr-btn-default-box-shadow-color: var(--turquoise-darkest);
@@ -19,6 +20,7 @@
 
   // Default outline button
   --clr-btn-default-outline-color: var(--turquoise); // border-color, color, checked-background-color
+  --clr-btn-default-outline-border-color: var(--turquoise);
   --clr-btn-default-outline-hover-bg-color: var(--turquoise-lighter); // hover-background-color
   --clr-btn-default-outline-hover-color: var(--turquoise-darkest); // hover-color
   --clr-btn-default-outline-box-shadow-color: var(--turquoise-darkest);
@@ -110,6 +112,7 @@
 
   // Header
   --clr-header-font-color: var(--black);
+  --clr-header-title-color: var(--black);
   --clr-header-bg-color: var(--white);
   --clr-header-2-bg-color: var(--white);
   --clr-header-3-bg-color: var(--white);
@@ -127,6 +130,9 @@
   --clr-icon-color-highlight: var(--turquoise);
 
   // Label
+  --clr-label-info-font-color: var(--turquoise);
+  --clr-label-info-border-color: var(--turquoise);
+
   --clr-label-success-bg-color: var(--green-light);
   --clr-label-success-font-color: var(--green-darkest);
   --clr-label-success-border-color: var(--green-light-mid);
@@ -162,9 +168,6 @@
   // Signposts
   --clr-signpost-action-hover-color: var(--turquoise);
 
-  // Spinner
-  --clr-spinner-color: var(--turquoise);
-
   // Stack View
   --clr-stack-view-stack-block-expanded-bg-color: var(--turquoise-light);
   --clr-stack-view-stack-block-expandable-hover: var(--clr-global-selection-color);
@@ -188,4 +191,69 @@
 
   // Wizard
   --clr-wizard-stepnav-active-bgcolor: var(--clr-global-selection-color);
+
+  // *************************
+  // CDS variables
+  // *************************
+  --cds-global-typography-font-family: Metropolis, 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+  --cds-alias-object-interaction-background-selected: var(--turquoise-light);
+
+  --cds-alias-status-danger-shade: var(--red-darker);
+  --cds-alias-status-danger-tint: var(--red-light);
+  --cds-alias-status-warning-shade: var(--yellow-light);
+  --cds-alias-status-warning: var(--yellow-light);
+  --cds-alias-status-info-shade: var(--turquoise);
+  --cds-alias-status-info-tint: var(--blue-light);
+  --cds-alias-status-info: var(--turquoise);
+  --cds-alias-status-success-shade: var(--green);
+  --cds-alias-status-success-tint: var(--green-light);
+  --cds-alias-status-success: var(--green);
+
+  cds-alert-group {
+    &[status='info'] {
+      --cds-alias-status-info: var(--blue-mid);
+    }
+    &[status='success'] {
+      --cds-alias-status-success: var(--green-light-mid);
+    }
+    &[type='banner'] {
+      &[status='info'] {
+        --cds-alias-status-info: var(--blue-dark);
+      }
+
+      &[status='warning'] {
+        --cds-alias-status-warning: var(--orange-dark);
+        cds-alert {
+          --color: var(--white);
+        }
+      }
+    }
+  }
+
+  cds-badge {
+    &[color='light-blue'] {
+      --background: var(--blue-mid);
+    }
+    &[color='orange'] {
+      --background: var(--orange-dark);
+      --color: var(--white);
+    }
+  }
+
+  cds-tag {
+    &[color='light-blue'] {
+      --border-color: var(--blue-mid);
+    }
+    &[color='orange'] {
+      --border-color: var(--orange-dark);
+    }
+  }
+
+  cds-textarea textarea {
+    outline-color: var(--turquoise);
+  }
+
+  cds-toggle {
+    --cds-alias-status-success: var(--turquoise);
+  }
 }

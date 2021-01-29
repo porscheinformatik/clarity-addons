@@ -1,11 +1,11 @@
 /*
- * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
 import { Component, ViewChild } from '@angular/core';
-import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, tick, fakeAsync, waitForAsync } from '@angular/core/testing';
 import { ClarityModule } from '@clr/angular';
 
 import { ClrViewEditSectionModule } from './view-edit-section.module';
@@ -62,12 +62,14 @@ class NotEditableComponent {}
 describe('ViewEditSectionComponent', () => {
   let fixture: ComponentFixture<TestComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [TestComponent, EditIconComponent, EditModeComponent, NotEditableComponent],
-      imports: [ClarityModule, ClrViewEditSectionModule],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [TestComponent, EditIconComponent, EditModeComponent, NotEditableComponent],
+        imports: [ClarityModule, ClrViewEditSectionModule],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TestComponent);

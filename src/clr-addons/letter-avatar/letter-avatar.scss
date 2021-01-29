@@ -1,24 +1,26 @@
-.avatar-circle {
-  display: flex;
-}
+@include exports('letter-avatar.clr-addons') {
+  .avatar-circle {
+    display: flex;
+  }
 
-.avatar-initials {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  .avatar-initials {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  background-color: lightgray;
-  border-radius: 100%;
-  color: var(--white);
-  font-weight: 500;
-  letter-spacing: normal;
-  text-transform: uppercase;
-  font-size: 0.8em;
-}
+    background-color: lightgray;
+    border-radius: 100%;
+    color: var(--white);
+    font-weight: 500;
+    letter-spacing: normal;
+    text-transform: uppercase;
+    font-size: 0.8em;
+  }
 
-:hover,
-:focus-within {
-  > .clr-avatar .avatar-initials {
-    background-color: var(--clr-btn-link-color);
+  :hover,
+  :focus-within {
+    > .clr-avatar .avatar-initials {
+      background-color: var(--clr-btn-link-color);
+    }
   }
 }

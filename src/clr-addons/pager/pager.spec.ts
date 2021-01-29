@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { ClarityModule } from '@clr/angular';
 
@@ -14,12 +14,14 @@ describe('PagerComponent', () => {
   let component: ClrPager;
   let fixture: ComponentFixture<ClrPager>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ClrPager],
-      imports: [ClarityModule, FormsModule],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [ClrPager],
+        imports: [ClarityModule, FormsModule],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ClrPager);
