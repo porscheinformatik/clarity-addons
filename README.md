@@ -1,7 +1,5 @@
 # Addons for the Clarity Design System
 
-[![Travis Build Status](https://travis-ci.org/porscheinformatik/clarity-addons.svg?branch=master)](https://travis-ci.org/porscheinformatik/clarity-addons)
-
 Clarity Addons provides additional components and themes to the [Clarity Design System](https://github.com/vmware/clarity).
 
 ## Getting Started
