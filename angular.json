@@ -30,8 +30,8 @@
                 "output": "/assets"
               },
               {
-                "glob": "**/*",
-                "input": "dist/clr-addons/styles",
+                "glob": "clr-ui-dark.css",
+                "input": "node_modules/@clr/ui/",
                 "output": "/assets/styles"
               }
             ],
@@ -40,7 +40,8 @@
               "node_modules/@cds/core/global.min.css",
               "node_modules/@cds/core/styles/module.shims.min.css",
               "node_modules/@clr/icons/clr-icons.min.css",
-              "node_modules/@clr/ui/clr-ui.min.css"
+              "node_modules/@clr/ui/clr-ui.min.css",
+              "dist/clr-addons/styles/clr-addons-phs.css"
             ],
             "scripts": [
               "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js",
