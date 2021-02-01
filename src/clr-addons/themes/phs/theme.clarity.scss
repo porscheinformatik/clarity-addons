@@ -5,6 +5,7 @@
 :root[cds-theme~='phs'] {
   // Global
   --clr-global-selection-color: var(--turquoise-light);
+  --clr-responsive-nav-trigger-bg-color: var(--black);
 
   // Default button colors
   --clr-btn-border-radius: 0.25rem;
@@ -65,6 +66,7 @@
   --clr-alert-danger-bg-color: var(--red-light);
   --clr-alert-danger-icon-color: var(--red-darker);
 
+  --clr-app-alert-success-bg-color: var(--green-light-mid);
   --clr-app-alert-info-bg-color: var(--blue-dark);
   --clr-app-alert-warning-bg-color: var(--orange-dark);
   --clr-app-alert-danger-bg-color: var(--red-darker);
@@ -80,6 +82,8 @@
   // Card
   --clr-card-border-radius: 0.25rem;
   --clr-card-active-border-color: var(--turquoise);
+  --clr-card-clickable-box-shadow-color: var(--turquoise);
+  --clr-card-clickable-border-color: var(--turquoise);
 
   // Checkbox
   --clr-forms-checkbox-background-color: var(--turquoise); // checked-background-color

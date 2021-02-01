@@ -1,13 +1,4 @@
 :root[cds-theme~='phs'] {
-  .header-hamburger-trigger,
-  .header-overflow-trigger {
-    & > span,
-    & > span::before,
-    & > span::after {
-      background: var(--black);
-    }
-  }
-
   .header .header-nav .nav-link.active {
     background: var(--clr-global-selection-color);
   }
@@ -31,11 +22,6 @@
   }
 
   .card {
-    &.clickable:hover {
-      box-shadow: 0 0.125rem 0 0 var(--clr-card-active-border-color);
-      border-color: var(--clr-card-active-border-color);
-    }
-
     &.selectable:hover::after,
     &.card-active::after {
       top: 0;
@@ -61,31 +47,21 @@
 
   .datagrid .datagrid-table .datagrid-column {
     .datagrid-filter-toggle {
-      &:hover {
-        color: var(--turquoise);
-      }
-
+      &:hover,
       &.datagrid-filter-open {
-        color: var(--turquoise);
-      }
-
-      &.datagrid-filtered {
-        color: var(--turquoise);
+        cds-icon {
+          --color: var(--turquoise);
+        }
       }
     }
 
     .datagrid-column-title .sort-icon {
-      color: var(--turquoise);
+      --color: var(--turquoise);
     }
   }
 
-  .datagrid-footer .column-switch-wrapper {
-    &.active .column-toggle--action {
-      color: var(--turquoise);
-    }
-    .column-toggle--action:hover {
-      color: var(--turquoise);
-    }
+  .datagrid-footer .column-switch-wrapper .column-toggle--action:hover cds-icon {
+    --color: var(--turquoise);
   }
 
   .spinner {
@@ -100,38 +76,28 @@
     color: var(--turquoise);
   }
 
-  // Use !important because the clr-icons.css is higher priority otherwise
   clr-icon {
     &.is-green,
     &.is-success {
-      fill: var(--clr-icon-color-success) !important;
+      fill: var(--clr-icon-color-success);
     }
     &.is-danger {
-      fill: var(--clr-icon-color-danger) !important;
+      fill: var(--clr-icon-color-danger);
     }
     &.is-red,
     &.is-error {
-      fill: var(--clr-icon-color-error) !important;
+      fill: var(--clr-icon-color-error);
     }
     &.is-warning {
-      fill: var(--clr-icon-color-warning) !important;
+      fill: var(--clr-icon-color-warning);
     }
     &.is-blue,
     &.is-info {
-      fill: var(--clr-icon-color-info) !important;
+      fill: var(--clr-icon-color-info);
     }
     &.is-highlight {
-      fill: var(--clr-icon-color-highlight) !important;
+      fill: var(--clr-icon-color-highlight);
     }
-  }
-
-  .alert-app-level.alert-success {
-    background: var(--green-light-mid);
-  }
-
-  .label.label-orange > .badge,
-  a.label.label-orange > .badge {
-    color: var(--clr-badge-font-color-light);
   }
 
   // Bootstrap text color overrides
