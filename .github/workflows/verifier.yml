@@ -5,7 +5,7 @@ name: Verifier
 
 on:
   pull_request:
-    branches: [master]
+    branches: [website]
 
 jobs:
   build:
