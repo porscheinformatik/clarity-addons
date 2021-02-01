@@ -2,7 +2,7 @@
 // This software is released under MIT license.
 // The full license information can be found in LICENSE in the root directory of this project.
 
-[cds-theme~='phs'] {
+:root[cds-theme~='phs'] {
   --phs-border-radius: 0.5rem;
   --phs-card-border-radius: 0.25rem;
   --phs-button-border-radius: 0.25rem;
