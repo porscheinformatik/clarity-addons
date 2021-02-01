@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ClrHistory } from './history';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -17,17 +17,19 @@ describe('ClrHistory', () => {
   let fixture: ComponentFixture<ClrHistory>;
   let historyService: ClrHistoryService;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      providers: [ClrHistoryService],
-      imports: [RouterTestingModule, ClarityModule],
-      declarations: [ClrHistory],
-    }).compileComponents();
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        providers: [ClrHistoryService],
+        imports: [RouterTestingModule, ClarityModule],
+        declarations: [ClrHistory],
+      }).compileComponents();
 
-    fixture = TestBed.createComponent(ClrHistory);
-    historyService = fixture.debugElement.injector.get<ClrHistoryService>(ClrHistoryService);
-    fixture.detectChanges();
-  }));
+      fixture = TestBed.createComponent(ClrHistory);
+      historyService = fixture.debugElement.injector.get<ClrHistoryService>(ClrHistoryService);
+      fixture.detectChanges();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ClrHistory);

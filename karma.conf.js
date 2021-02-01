@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -27,31 +27,25 @@ module.exports = function (karma) {
       require('karma-chrome-launcher'),
     ],
     files: [
-      //PrismJS
-      {
-        pattern: './node_modules/prismjs/themes/prism.css',
-        included: true,
-        watched: false,
-      },
-      {
-        pattern: './node_modules/prismjs/prism.js',
-        included: true,
-        watched: false,
-      },
-      {
-        pattern: './node_modules/prismjs/components/prism-typescript.min.js',
-        included: true,
-        watched: false,
-      },
-
       // Custom Elements
       {
         pattern: './node_modules/@webcomponents/custom-elements/custom-elements.min.js',
         included: true,
         watched: false,
       },
-
-      // Clarity UI
+      // Clarity Core
+      {
+        pattern: './node_modules/@cds/core/global.min.css',
+        included: true,
+        watched: false,
+      },
+      // Clarity Angular
+      {
+        pattern: './node_modules/@clr/ui/clr-ui.min.css',
+        included: true,
+        watched: false,
+      },
+      // Clarity Addons
       {
         pattern: './src/clr-addons/themes/phs/phs-theme.scss',
         included: true,

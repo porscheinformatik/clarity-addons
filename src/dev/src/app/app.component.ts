@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -15,8 +15,8 @@ export class AppComponent implements OnInit {
   linkRef: HTMLLinkElement;
 
   themes = [
-    { name: 'PHS', href: 'assets/styles/clr-addons-phs.css' },
-    { name: 'Clarity (light)', href: 'assets/styles/clr-ui.css' },
+    { name: 'PHS', cdsTheme: 'phs' },
+    { name: 'Clarity (light)', cdsTheme: 'light' },
     { name: 'Clarity (dark)', href: 'assets/styles/clr-ui-dark.css' },
   ];
 
@@ -37,7 +37,8 @@ export class AppComponent implements OnInit {
     this.routeHistoryService.init();
   }
 
-  setTheme(theme: { href: string }): void {
+  setTheme(theme: { cdsTheme: string; href: string }): void {
+    this.document.documentElement.setAttribute('cds-theme', theme.cdsTheme);
     this.linkRef.href = theme.href;
   }
 }

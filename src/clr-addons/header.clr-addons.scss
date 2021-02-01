@@ -1,3 +1,48 @@
+@mixin sliding-nav-positioning($top: 0, $right: auto, $bottom: 0, $left: 0) {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+  background: var(--clr-nav-background-color);
+  z-index: $clr-sliding-panel-z-index;
+  height: 100vh;
+}
+
+@mixin vertical-nav-link-colors() {
+  color: var(--clr-vertical-nav-item-color);
+
+  &.active {
+    color: var(--clr-vertical-nav-item-active-color);
+    background-color: var(--clr-vertical-nav-active-bg-color);
+
+    .nav-icon {
+      fill: var(--clr-vertical-nav-icon-active-color);
+    }
+  }
+}
+
+@mixin menu-trigger($right: auto, $left: 0, $transformX: $clr-sliding-panel-width + 0.5rem) {
+  position: fixed;
+  top: 0;
+  right: $right;
+  left: $left;
+  z-index: $clr-sliding-panel-z-index;
+  transform: translateX($transformX);
+  transition: $clr-trigger-animation;
+
+  &::after {
+    content: none;
+  }
+}
+
+.header-actions > .dropdown .dropdown-toggle.nav-icon clr-icon:not([shape^='caret']) {
+  height: 1.1rem;
+  width: 1.1rem;
+}
+
 @media screen and (max-width: map-get($clr-grid-breakpoints, lg)) and (min-width: map-get($clr-grid-breakpoints, md)) {
   .main-container {
     .header-hamburger-trigger,
@@ -8,18 +53,22 @@
       background: none;
       cursor: pointer;
       font-size: 1rem;
-      height: $clr-header-height;
-      width: $clr-header-height;
-      padding: 0 0 0.166667rem 0;
+      height: var(--clr-header-height);
+      width: var(--clr-header-height);
+      padding: 0 0 0.2rem 0;
       //4px to vertically align the trigger lines. display flex was not working on all browsers.
       text-align: center;
       white-space: nowrap;
+      color: var(--clr-header-font-color);
+      opacity: var(--clr-header-nav-opacity);
+
+      &:enabled:hover {
+        opacity: var(--clr-header-nav-hover-opacity);
+      }
 
       &:focus {
         outline-offset: -0.208333rem; //So that the outline styles aren't hidden because of the browser
       }
-
-      @include header-nav-appearance();
     }
 
     .header-nav.clr-nav-level-1,
@@ -110,9 +159,14 @@
       position: relative;
 
       &::after {
+        display: inline-block;
         position: absolute;
         content: '';
-        @include header-section-divider();
+        background: var(--clr-header-font-color);
+        opacity: var(--clr-header-divider-opacity);
+        height: calc(var(--clr-header-height) - 1rem);
+        width: var(--clr-global-borderwidth);
+        top: 0.5rem;
         left: 0;
       }
     }
@@ -217,12 +271,6 @@
             display: inline-block;
           }
 
-          clr-icon[shape='vm-bug'],
-          .clr-vmw-logo {
-            background-color: $clr-color-neutral-700;
-            border-radius: var(--clr-global-borderradius);
-          }
-
           .title {
             color: var(--clr-sliding-panel-text-color);
             text-overflow: ellipsis;
@@ -233,7 +281,25 @@
 
       .header-hamburger-trigger {
         @include menu-trigger();
-        @include hamburger-menu-trigger-animation();
+
+        > span {
+          background: transparent;
+
+          &::before,
+          &::after {
+            left: 0.15rem;
+            transform-origin: 9%;
+            transition: $clr-trigger-animation;
+          }
+
+          &::before {
+            transform: rotate(45deg);
+          }
+
+          &::after {
+            transform: rotate(-45deg);
+          }
+        }
       }
 
       .header-nav.clr-nav-level-1,
@@ -241,7 +307,7 @@
       .sub-nav.clr-nav-level-1,
       .sidenav.clr-nav-level-1,
       .clr-vertical-nav.clr-nav-level-1 {
-        padding-top: $clr-header-height + 1rem;
+        padding-top: calc(var(--clr-header-height) + 1rem);
         transform: translateX(0);
         transition: $clr-sliding-panel-animation;
         width: $clr-sliding-panel-width;
@@ -272,8 +338,28 @@
       }
 
       .header-overflow-trigger {
-        @include menu-trigger(0, auto, (-1 * $clr-trigger-position));
-        @include overflow-menu-trigger-animation();
+        @include menu-trigger(0, auto, (-1 * ($clr-sliding-panel-width + 0.5rem)));
+
+        > span {
+          background: transparent;
+
+          &::before,
+          &::after {
+            height: 0.1rem;
+            width: 1.2rem;
+            left: -0.3rem;
+            transform-origin: -3%;
+            transition: $clr-trigger-animation;
+          }
+
+          &::before {
+            transform: rotate(45deg);
+          }
+
+          &::after {
+            transform: rotate(-45deg);
+          }
+        }
       }
     }
   }

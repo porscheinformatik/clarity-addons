@@ -2,7 +2,41 @@
   --clr-border-color: var(--clr-color-neutral-400);
   --clr-card-default-border-color: rgba(215, 215, 215, 1);
   --clr-card-active-border-color: rgba(0, 148, 210, 1);
-  --clr-header-height: #{$clr-header-height};
+  --clr-header-height: 3rem;
   --clr-footer-height: 2.5rem;
   --clr-notification-progress-info-bar-color: var(--clr-progress-default-color);
 }
+
+$clr-grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+) !default;
+
+$clr-layers: (
+  content: 0,
+  select-box: 2,
+  datagrid-row: 500,
+  datagrid-row-sticky: 500,
+  datagrid-header: 501,
+  datagrid-header-sticky: 502,
+  datagrid-host: 590,
+  alert: 1033,
+  sidepanel-bg: 1038,
+  sidepanel: 1039,
+  modal-bg: 1040,
+  modal: 1050,
+  dropdown-menu: 1060,
+  column-switch: 1060,
+  tooltips: 1070,
+  smart-popover: 5000,
+  draggable-ghost: 2147483647,
+) !default;
+
+$clr-sliding-panel-width: 18rem;
+$clr-sliding-panel-animation: transform 0.3s ease;
+$clr-trigger-animation: transform 0.6s ease;
+$clr-sliding-panel-z-index: map-get($clr-layers, sidepanel);
+$clr-sliding-panel-backdrop-z-index: map-get($clr-layers, sidepanel-bg);
