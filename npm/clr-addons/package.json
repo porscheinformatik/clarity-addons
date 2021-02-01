@@ -19,13 +19,9 @@
   },
   "peerDependencies": {
     "@angular/common": "^11.0.0",
-    "@angular/compiler": "^11.0.0",
     "@angular/core": "^11.0.0",
-    "@angular/forms": "^11.0.0",
-    "@angular/platform-browser": "^11.0.0",
-    "@angular/platform-browser-dynamic": "^11.0.0",
     "@clr/angular": "@CLARITY_VERSION",
-    "@clr/core": "@CLARITY_VERSION",
+    "@cds/core": "@CLARITY_VERSION",
     "@clr/icons": "@CLARITY_VERSION",
     "@clr/ui": "@CLARITY_VERSION"
   },

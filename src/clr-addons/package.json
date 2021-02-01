@@ -1,6 +1,6 @@
 {
   "name": "@porscheinformatik/clr-addons",
-  "version": "10.0.0-rc.1",
+  "version": "10.0.0",
   "description": "Addon components for Clarity Angular",
   "es2015": "esm2015/clr-addons.js",
   "homepage": "https://porscheinformatik.github.io/clarity-addons/",
@@ -19,13 +19,9 @@
   },
   "peerDependencies": {
     "@angular/common": "^11.0.0",
-    "@angular/compiler": "^11.0.0",
     "@angular/core": "^11.0.0",
-    "@angular/forms": "^11.0.0",
-    "@angular/platform-browser": "^11.0.0",
-    "@angular/platform-browser-dynamic": "^11.0.0",
     "@clr/angular": "5.0.0",
-    "@clr/core": "5.0.0",
+    "@cds/core": "5.0.0",
     "@clr/icons": "5.0.0",
     "@clr/ui": "5.0.0"
   },
