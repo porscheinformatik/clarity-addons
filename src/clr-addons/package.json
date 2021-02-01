@@ -25,7 +25,7 @@
     "@angular/platform-browser": "^11.0.0",
     "@angular/platform-browser-dynamic": "^11.0.0",
     "@clr/angular": "5.0.0",
-    "@clr/core": "5.0.0",
+    "@clr/core": "4.0.10",
     "@clr/icons": "5.0.0",
     "@clr/ui": "5.0.0"
   },
