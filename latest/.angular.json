@@ -27,19 +27,19 @@
                 "output": "/"
               },
               {
-                "glob": "clr-*.min.css*",
-                "input": "node_modules/@porscheinformatik/clr-addons/styles",
-                "output": "/styles"
-              },
-              {
-                "glob": "**/*",
-                "input": "node_modules/@porscheinformatik/clr-addons/fonts",
-                "output": "/fonts"
+                "glob": "clr-ui-dark.css",
+                "input": "node_modules/@clr/ui/",
+                "output": "/assets/styles"
               }
             ],
             "styles": [
               "node_modules/prismjs/themes/prism-solarizedlight.css",
+              "node_modules/normalize.css/normalize.css",
+              "node_modules/@cds/core/global.min.css",
+              "node_modules/@cds/core/styles/module.shims.min.css",
               "node_modules/@clr/icons/clr-icons.min.css",
+              "node_modules/@clr/ui/clr-ui.min.css",
+              "node_modules/@porscheinformatik/clr-addons/styles/clr-addons-phs.min.css",
               "src/styles/main.scss"
             ],
             "scripts": [
@@ -60,7 +60,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
