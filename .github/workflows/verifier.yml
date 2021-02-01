@@ -26,4 +26,3 @@ jobs:
           cd latest
           npm ci
           npm run deploy:ci
-          cd ../
