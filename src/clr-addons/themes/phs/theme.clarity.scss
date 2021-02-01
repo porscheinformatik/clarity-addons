@@ -3,13 +3,11 @@
 // The full license information can be found in LICENSE in the root directory of this project.
 
 :root[cds-theme~='phs'] {
-  --clr-card-border-radius: 0.25rem;
-  --clr-btn-border-radius: 0.25rem;
-
   // Global
   --clr-global-selection-color: var(--turquoise-light);
 
   // Default button colors
+  --clr-btn-border-radius: 0.25rem;
   --clr-btn-default-color: var(--turquoise); // border-color, color, checked-background-color
   --clr-btn-default-border-color: var(--turquoise);
   --clr-btn-default-hover-bg-color: var(--turquoise-light); // hover-background-color
@@ -80,6 +78,7 @@
   --clr-badge-light-blue-bg-color: var(--blue-mid);
 
   // Card
+  --clr-card-border-radius: 0.25rem;
   --clr-card-active-border-color: var(--turquoise);
 
   // Checkbox
