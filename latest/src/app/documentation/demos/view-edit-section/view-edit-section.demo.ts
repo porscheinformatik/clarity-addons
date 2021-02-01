@@ -151,7 +151,7 @@ export class ViewEditSectionDemo extends ClarityDocComponent {
     gender: string = "male";
     status: string = "Active";
     terms: boolean;
-    editBirthdate: string = this.birthdate;
+    editBirthdate: string;
     editGender: string = this.gender;
     editStatus: number = 1;
     editTerms: boolean;

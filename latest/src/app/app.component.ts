@@ -18,9 +18,10 @@ export class AppComponent implements OnInit {
     noHeader: boolean = false;
 
     themes = [
-        { name: "PHS", href: "styles/clr-addons-phs.min.css" },
-        { name: "Clarity (light)", href: "styles/clr-ui.min.css" },
-        { name: "Clarity (dark)", href: "styles/clr-ui-dark.min.css" }];
+      { name: "PHS", cdsTheme: "phs" },
+      { name: "Clarity (light)", cdsTheme: "light" },
+      { name: "Clarity (dark)", href: "assets/styles/clr-ui-dark.css" },
+    ];
 
     constructor(private renderer: Renderer2, private el: ElementRef, private router: Router, private titleService: Title,
         @Inject(DOCUMENT) private document: Document, @Inject(PLATFORM_ID) private platformId: Object) {
@@ -102,7 +103,8 @@ export class AppComponent implements OnInit {
         return returnArray;
     }
 
-    setTheme(theme) {
-        this.linkRef.href = theme.href;
+    setTheme(theme: { cdsTheme: string; href: string }): void {
+      this.document.documentElement.setAttribute("cds-theme", theme.cdsTheme);
+      this.linkRef.href = theme.href;
     }
 }

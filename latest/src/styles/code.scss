@@ -10,13 +10,13 @@
     }
   }
   &.squeeze {
-    padding: $clr_baselineRem_2;
+    padding: $bl-2_0;
   }
 }
 
 .modal.static {
   position: relative;
-  padding: $clr_baselineRem_3;
+  padding: $bl-3_0;
 }
 
 .modal-backdrop.static {
@@ -31,16 +31,16 @@
   float: left;
   color: $clr-color-success-400;
   font-size: rem(3);
-  margin-right: $clr_baselineRem_0_5;
+  margin-right: $bl-0_5;
 }
 
 .backdrop-example-container {
   position: relative;
-  padding: $clr_baselineRem_1;
+  padding: $bl-1_0;
 }
 
 .bump-down {
-  margin-top: $clr_baselineRem_1 !important;
+  margin-top: $bl-1_0 !important;
 }
 
 //Overriding PrismJS styles. This is in code.scss and not in code.clarity.scss because
@@ -50,7 +50,7 @@
 pre[class*='language-'],
 pre {
   background: transparent;
-  padding: 0 0 $clr_baselineRem_1 $clr_baselineRem_1;
+  padding: 0 0 $bl-1_0 $bl-1_0;
 }
 
 // Fixes specific prism issue only for labels with badges (#1700: https://github.com/vmware/clarity/issues/1700)
