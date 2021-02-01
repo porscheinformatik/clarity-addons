@@ -31,8 +31,6 @@
   }
 
   .card {
-    border-radius: var(--phs-card-border-radius);
-
     &.clickable:hover {
       box-shadow: 0 0.125rem 0 0 var(--clr-card-active-border-color);
       border-color: var(--clr-card-active-border-color);
@@ -41,30 +39,24 @@
     &.selectable:hover::after,
     &.card-active::after {
       top: 0;
-      border-top-left-radius: var(--phs-card-border-radius);
-      border-bottom-left-radius: var(--phs-card-border-radius);
     }
   }
 
   .card-img {
     &:first-child > img {
-      border-radius: var(--phs-card-border-radius) var(--phs-card-border-radius) 0 0;
+      border-radius: var(--clr-card-border-radius) var(--clr-card-border-radius) 0 0;
     }
 
     &:last-child > img {
-      border-radius: 0 0 var(--phs-card-border-radius) var(--phs-card-border-radius);
+      border-radius: 0 0 var(--clr-card-border-radius) var(--clr-card-border-radius);
     }
   }
 
   .card.card-img,
   .card > .card-img:first-child:last-child {
     & > img {
-      border-radius: var(--phs-card-border-radius);
+      border-radius: var(--clr-card-border-radius);
     }
-  }
-
-  .btn {
-    border-radius: var(--phs-button-border-radius);
   }
 
   .datagrid .datagrid-table .datagrid-column {

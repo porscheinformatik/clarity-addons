@@ -3,9 +3,8 @@
 // The full license information can be found in LICENSE in the root directory of this project.
 
 :root[cds-theme~='phs'] {
-  --phs-border-radius: 0.5rem;
-  --phs-card-border-radius: 0.25rem;
-  --phs-button-border-radius: 0.25rem;
+  --clr-card-border-radius: 0.25rem;
+  --clr-btn-border-radius: 0.25rem;
 
   // Global
   --clr-global-selection-color: var(--turquoise-light);

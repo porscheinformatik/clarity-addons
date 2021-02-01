@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
   }
 
   setTheme(theme: { cdsTheme: string; href: string }): void {
-    this.document.body.setAttribute('cds-theme', theme.cdsTheme);
+    this.document.documentElement.setAttribute('cds-theme', theme.cdsTheme);
     this.linkRef.href = theme.href;
   }
 }
