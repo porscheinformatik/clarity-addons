@@ -15,6 +15,22 @@
     <clr-control-helper>Helper</clr-control-helper>
   </clr-multilingual-input>
 
+  <h4>Output texts</h4>
+  <table class="table">
+    <tr>
+      <th>lang</th>
+      <th>value</th>
+    </tr>
+    <tr>
+      <td>EN</td>
+      <td>{{template1.get('en')}}</td>
+    </tr>
+    <tr>
+      <td>DE</td>
+      <td>{{template1.get('de')}}</td>
+    </tr>
+  </table>
+
   <clr-multilingual-textarea
     class="clr-col-12 clr-row"
     clrSelectedLang="en"
@@ -93,22 +109,6 @@
     <clr-control-error>Error</clr-control-error>
     <clr-control-helper>Helper</clr-control-helper>
   </clr-multilingual-textarea>
-
-  <h4>Output texts</h4>
-  <table class="table">
-    <tr>
-      <th>lang</th>
-      <th>value</th>
-    </tr>
-    <tr>
-      <td>EN</td>
-      <td>{{template1.get('en')}}</td>
-    </tr>
-    <tr>
-      <td>DE</td>
-      <td>{{template1.get('de')}}</td>
-    </tr>
-  </table>
 </form>
 
 <h3>Reactive forms (onBlur)</h3>

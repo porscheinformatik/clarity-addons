@@ -5,7 +5,13 @@
  */
 
 import { Component } from '@angular/core';
+import { ClrGenericQuickListItem } from '@porscheinformatik/clr-addons';
 import { of, Observable } from 'rxjs';
+
+interface QuickListItem extends ClrGenericQuickListItem {
+  firstname: string;
+  lastname: string;
+}
 
 @Component({
   selector: 'app-generic-quick-list-demo',
@@ -13,20 +19,20 @@ import { of, Observable } from 'rxjs';
 })
 export class GenericQuickListDemo {
   allItems = [
-    { id: 1, firstname: 'asdf', lastname: 'yxcv' },
-    { id: 2, firstname: 'qwert', lastname: 'uipp' },
+    { id: 1, firstname: 'asdf', lastname: 'yxcv' } as QuickListItem,
+    { id: 2, firstname: 'qwert', lastname: 'uipp' } as QuickListItem,
   ];
 
   allItemsV = [
-    { id: 1, firstname: 'asdf', lastname: 'yxcv' },
-    { id: 2, firstname: 'qwert', lastname: 'uipp' },
+    { id: 1, firstname: 'asdf', lastname: 'yxcv' } as QuickListItem,
+    { id: 2, firstname: 'qwert', lastname: 'uipp' } as QuickListItem,
   ];
 
-  itemRemoved(itemId: any): void {
-    console.log('item removed', itemId);
+  itemRemoved(item: QuickListItem): void {
+    console.log('item removed', item);
   }
 
-  itemAdded(item: any): void {
+  itemAdded(item: QuickListItem): void {
     console.log('item added', item);
   }
 

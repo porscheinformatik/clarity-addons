@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -73,15 +73,15 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked, Con
 
   /* Control Values Accessor Stuff below */
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onChange: any = () => {};
+  onChange = (_: number): void => {};
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onTouched: any = () => {};
+  onTouched = (): void => {};
 
-  registerOnChange(fn: any): void {
+  registerOnChange(fn: (_: number) => void): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: any): void {
+  registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
 
@@ -196,7 +196,7 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked, Con
     }, 1);
   }
 
-  formatInput(element: any, finalFormatting: boolean): void {
+  formatInput(element: HTMLInputElement, finalFormatting: boolean): void {
     const cursorPos = element.selectionStart;
     const length = element.value.length;
     const setCursor = this.displayValue !== element.value;

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -57,16 +57,19 @@ export class ClrMainNavGroup implements OnInit, OnDestroy {
     this.detachListener();
   }
 
-  onClick(event: any): void {
+  onClick(event: MouseEvent): void {
     const input = document.getElementById(this.prefix + this.id) as HTMLInputElement;
-    if (event.target.classList.contains('collapsible')) {
+    if ((event.target as HTMLElement).classList.contains('collapsible')) {
       // toggle hidden checkbox when clicking nav group div
       input.checked = !input.checked;
       if (input.checked) {
         this.focusFirstItemOnOpen();
       }
     }
-    if (event.target.classList.contains('nav-trigger')) {
+    if (
+      (event.target as HTMLElement).classList.contains('nav-trigger') ||
+      (event.target as HTMLElement).parentElement.classList.contains('nav-trigger')
+    ) {
       // '!checked' as the nav-trigger click comes before the update of the checkbox
       if (!input.checked) {
         this.focusFirstItemOnOpen();
