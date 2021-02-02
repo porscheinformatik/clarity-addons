@@ -50,16 +50,16 @@ export abstract class ClrAbstractFormComponent implements ControlValueAccessor, 
     }
   }
 
-  abstract writeValue(value: any): void;
+  abstract writeValue(value: unknown): void;
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onChange: any = () => {};
-  registerOnChange(fn: any): void {
+  onChange = (_: unknown): void => {};
+  registerOnChange(fn: (_: unknown) => void): void {
     this.onChange = fn;
   }
 
-  onTouch: any = () => this.defaultOnTouch();
-  registerOnTouched(fn: any): void {
+  onTouch = this.defaultOnTouch;
+  registerOnTouched(fn: () => void): void {
     this.onTouch = (): void => {
       fn();
       this.defaultOnTouch();

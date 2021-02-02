@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -45,7 +45,7 @@ export class DotPagerDemo {
   pagedItems: string[] = [];
   pages = Math.ceil(this.allItems.length / this.pageSize);
 
-  onPageChanged(page: any): void {
+  onPageChanged(page: number): void {
     const startIndex = (page - 1) * this.pageSize;
     const endIndex = Math.min(startIndex + this.pageSize - 1, this.allItems.length - 1);
 

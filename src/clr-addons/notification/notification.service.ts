@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -23,12 +23,11 @@ export interface ClrNotificationOptions {
   dismissable?: boolean;
   progressbar?: boolean;
   /* If your notification is a ng-template with variables, the variables must be set in the ngTemplateOutletContext */
-  ngTemplateOutletContext?: Record<string, any>;
+  ngTemplateOutletContext?: Record<string, unknown>;
 }
 
 @Injectable()
 export class ClrNotificationService {
-  private _notificationAttributes = ['timeout', 'notificationType', 'dismissable', 'progressbar'];
   private elements = new Set<ClrNotification>();
 
   constructor(
@@ -38,7 +37,7 @@ export class ClrNotificationService {
     @Inject(DOCUMENT) private _document: Document
   ) {}
 
-  openNotification(content: any, options: ClrNotificationOptions = {}): ClrNotificationRef {
+  openNotification(content: TemplateRef<unknown> | string, options: ClrNotificationOptions = {}): ClrNotificationRef {
     const contentRef = this._getContentRef(content, options);
     const notificationCmptRef: ComponentRef<ClrNotification> = this._attachWindowComponent(
       this._document.body,
@@ -73,7 +72,7 @@ export class ClrNotificationService {
     });
   }
 
-  private _getContentRef(content: any, options: ClrNotificationOptions): ClrContentRef {
+  private _getContentRef(content: TemplateRef<unknown> | string, options: ClrNotificationOptions): ClrContentRef {
     if (content instanceof TemplateRef) {
       return this._createFromTemplateRef(content, options.ngTemplateOutletContext);
     } else if (typeof content === 'string') {
@@ -83,7 +82,7 @@ export class ClrNotificationService {
     return new ClrContentRef([]);
   }
 
-  private _createFromTemplateRef(content: TemplateRef<any>, context: Record<string, any>): ClrContentRef {
+  private _createFromTemplateRef(content: TemplateRef<unknown>, context: Record<string, unknown>): ClrContentRef {
     const viewRef = content.createEmbeddedView(context);
     this._applicationRef.attachView(viewRef);
     return new ClrContentRef([viewRef.rootNodes], viewRef);
@@ -94,7 +93,7 @@ export class ClrNotificationService {
     return new ClrContentRef([[component]]);
   }
 
-  private _attachWindowComponent(containerEl: any, contentRef: ClrContentRef): ComponentRef<ClrNotification> {
+  private _attachWindowComponent(containerEl: HTMLElement, contentRef: ClrContentRef): ComponentRef<ClrNotification> {
     const containerFactory = this._componentFactoryResolver.resolveComponentFactory(ClrNotification);
     const containerCmptRef = containerFactory.create(this._injector, contentRef.nodes);
     this._applicationRef.attachView(containerCmptRef.hostView);
@@ -102,11 +101,18 @@ export class ClrNotificationService {
     return containerCmptRef;
   }
 
-  private _applyWindowOptions(notificationInstance: any, options: Record<string, any>): void {
-    this._notificationAttributes.forEach((optionName: string) => {
-      if (options[optionName] !== undefined && options[optionName] != null) {
-        notificationInstance[optionName] = options[optionName];
-      }
-    });
+  private _applyWindowOptions(notificationInstance: ClrNotification, options: ClrNotificationOptions): void {
+    if (options.timeout != undefined && options.timeout != null) {
+      notificationInstance.timeout = options.timeout;
+    }
+    if (options.notificationType != undefined && options.notificationType != null) {
+      notificationInstance.notificationType = options.notificationType;
+    }
+    if (options.dismissable != undefined && options.dismissable != null) {
+      notificationInstance.dismissable = options.dismissable;
+    }
+    if (options.progressbar != undefined && options.progressbar != null) {
+      notificationInstance.progressbar = options.progressbar;
+    }
   }
 }

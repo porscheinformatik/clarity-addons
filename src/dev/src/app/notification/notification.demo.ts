@@ -1,9 +1,9 @@
 /*
- * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component } from '@angular/core';
+import { Component, TemplateRef } from '@angular/core';
 import { ClrNotificationService } from '@porscheinformatik/clr-addons';
 
 @Component({
@@ -21,13 +21,13 @@ export class NotificationDemo {
     alert('Button was clicked');
   }
 
-  openInfo(content: any): void {
+  openInfo(content: TemplateRef<unknown> | string): void {
     this.clrNotificationService
       .openNotification(content, { timeout: 100000, notificationType: 'info', dismissable: true, progressbar: true })
       .result.then(this.onClose);
   }
 
-  openWarning(content: any): void {
+  openWarning(content: TemplateRef<unknown>): void {
     this.clrNotificationService
       .openNotification(content, {
         timeout: 20000,
@@ -39,13 +39,13 @@ export class NotificationDemo {
       .result.then(this.onClose);
   }
 
-  openSuccess(content: any): void {
+  openSuccess(content: TemplateRef<unknown>): void {
     this.clrNotificationService
       .openNotification(content, { timeout: 30000, notificationType: 'success', dismissable: true, progressbar: true })
       .result.then(this.onClose);
   }
 
-  openDanger(content: any): void {
+  openDanger(content: TemplateRef<unknown>): void {
     this.clrNotificationService
       .openNotification(content, { timeout: 40000, notificationType: 'danger', dismissable: true, progressbar: true })
       .result.then(this.onClose);
