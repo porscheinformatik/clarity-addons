@@ -7,7 +7,6 @@
 import {
   Component,
   Input,
-  ContentChild,
   TemplateRef,
   Output,
   EventEmitter,
@@ -16,6 +15,7 @@ import {
   AfterViewInit,
   OnInit,
   ElementRef,
+  ContentChildren,
 } from '@angular/core';
 
 export interface ClrGenericQuickListItem {
@@ -39,7 +39,7 @@ export class ClrGenericQuickList<T extends ClrGenericQuickListItem> implements O
   @Output('clrAdded') added = new EventEmitter();
   @Output('clrRemoved') removed = new EventEmitter();
 
-  @ContentChild(TemplateRef) itemTemplate: TemplateRef<any>;
+  @ContentChildren(TemplateRef) itemTemplate: QueryList<TemplateRef<any>>;
   @ViewChildren('row') itemRows: QueryList<ElementRef>;
 
   rowCountFocus: number;

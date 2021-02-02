@@ -1,8 +1,10 @@
 <ng-content select="label"></ng-content>
 <div class="clr-control-container" [ngClass]="controlClasses">
+  <ng-content select=".header-container"></ng-content>
+
   <ng-container *ngFor="let item of allItems">
     <div class="controls-container" *ngIf="itemTemplate" #row>
-      <ng-container *ngTemplateOutlet="itemTemplate; context: {$implicit:item}"></ng-container>
+      <ng-container *ngTemplateOutlet="itemTemplate.get(0); context: {$implicit:item}"></ng-container>
 
       <button
         *ngIf="!(readonly || readonly === '')"
@@ -15,6 +17,7 @@
       </button>
     </div>
   </ng-container>
+
   <button
     *ngIf="!(readonly || readonly === '')"
     type="button"
