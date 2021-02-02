@@ -14,6 +14,19 @@
       }
     }
 
+    .header-container {
+      display: flex;
+      max-width: calc(100% - 18px); // for correct alignment; 18px is the width of trash button in content rows
+
+      > * {
+        flex: 1;
+        display: block;
+        color: var(--clr-forms-label-color);
+        font-size: 0.65rem;
+        font-weight: var(--clr-forms-label-font-weight);
+      }
+    }
+
     .btn-add {
       padding: 0;
       text-align: left;
@@ -28,6 +41,16 @@
   form:not(.clr-form-horizontal) .generic-quick-list {
     .clr-control-container {
       width: 100%;
+    }
+
+    .header-container {
+      margin: 0 -0.5rem;
+      max-width: calc(100% + 2px);
+
+      > * {
+        padding-left: 0.6rem;
+        margin-right: 0.5rem;
+      }
     }
 
     .controls-container {

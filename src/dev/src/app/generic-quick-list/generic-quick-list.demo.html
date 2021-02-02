@@ -9,6 +9,9 @@
     (clrAdded)="itemAdded($event)"
   >
     <label class="clr-control-label clr-col-md-2">Generic Quickie</label>
+
+    <div class="header-container"><div *ngFor="let num of [1, 2]">{{num}}</div></div>
+
     <ng-template let-item>
       <clr-input-container>
         <label [hidden]="true"></label>
@@ -56,6 +59,10 @@ Form valid: {{form.valid}}
     (clrAdded)="itemAdded($event)"
   >
     <label class="clr-control-label">Generic Quickie</label>
+    <div class="header-container">
+      <div *ngFor="let num of [1, 2]">{{num}}</div>
+    </div>
+
     <ng-template let-item>
       <clr-input-container>
         <label [hidden]="true"></label>
