@@ -215,16 +215,17 @@ export class ViewEditSectionDemo extends ClarityDocComponent {
 
     onFormSubmit() {
         (<HTMLElement>document.activeElement).blur();
-        this.sectionSubmitted();
-        this.editMode1 = false;
+        this.editMode1 = !this.sectionSubmitted();
     }
 
-    sectionSubmitted() {
+    sectionSubmitted(): boolean {
         if (this.exampleForm.valid) {
             this.first = this.exampleForm.value.editFirst;
             this.last = this.exampleForm.value.editLast;
             this.email = this.exampleForm.value.editEmail;
+            return true;
         }
+        return false;
     }
 
     sectionCancelled() {
