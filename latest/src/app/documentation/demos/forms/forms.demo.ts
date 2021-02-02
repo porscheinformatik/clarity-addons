@@ -42,7 +42,7 @@ const CODE_EXAMPLE_FULL_FORM = `
     </clr-select-container>
     <clr-combobox-container class="clr-col-12">
         <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2">Combobox label</label>
-        <clr-combobox>
+        <clr-combobox class="clr-col-6 clr-col-sm-3 clr-col-md-2">
             <clr-options>
                 <clr-option [clrValue]="'Option 1'">Option 1</clr-option>
                 <clr-option [clrValue]="'Option 2'">Option 2</clr-option>
