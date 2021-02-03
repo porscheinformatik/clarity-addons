@@ -195,6 +195,15 @@
           This type currently only requires an id, which will be filled with a random number on add.
       </p>
 
+      <p>
+          For a header row add a element with class <code class="clr-code">header-container</code>.
+      </p>
+
+      <p>
+          To specify the row layout add a <code class="clr-code">ng-template</code>, which will be rendered for every entry in your values array.
+          To pass row data into the template use the <code class="clr-code">let</code> syntax. e.g. <code class="clr-code">let-item</code>.
+      </p>
+
       <h3>Summary of Options</h3>
       <table class="table">
         <thead>
@@ -300,6 +309,10 @@
         <clr-generic-quick-list [clrAddLabel]="'ADD'" [clrAddPossible]="form.valid" [clrAllItems]="allItemsGeneric"
             [clrMandatory]="'true'" class="clr-row" clrControlClasses="clr-col-md-6 clr-col-xl-4">
             <label class="clr-control-label clr-col-md-2 required">Generic Quick List</label>
+            <div class="header-container">
+              <div class="required">Salutation</div>
+              <div class="required">Name</div>
+            </div>
             <ng-template let-item>
                 <!-- Custom content below -->
                 <clr-select-container>
@@ -314,7 +327,7 @@
                 </clr-select-container>
                 <clr-input-container>
                     <label [hidden]="true"></label>
-                    <input class="clr-col-12" placeholder="Name*" clrInput [(ngModel)]="item.name"
+                    <input class="clr-col-12" clrInput [(ngModel)]="item.name"
                     required [name]="'last' + item.id" />
                     <clr-control-error *clrIfError="'required'">Please enter a value</clr-control-error>
                 </clr-input-container>
