@@ -3,18 +3,16 @@ import {ClarityDocComponent} from "../clarity-doc";
 import {ClrQuickListValue, ClrGenericQuickListItem} from "@porscheinformatik/clr-addons";
 
 const HTML_EXAMPLE1 = `
-<form clrForm>
-  <clr-quick-list
-      [clrAddLabel]="getAddLabel()"
-      [clrAllValues]="possibleOptions"
-      [clrBlankOption]="BLANK_OPTION"
-      [clrMandatory]="true"
-      [clrValues]="selectedOptionsMandatory"
-      class="clr-form-control clr-row"
-      clrControlClasses="clr-col-lg-3 clr-col-md-4 clr-col-sm-5">
-    <label class="clr-control-label clr-col-md-2 clr-col-sm-3 required">Option list</label>
-  </clr-quick-list>
-</form>
+<clr-quick-list
+    [clrAddLabel]="getAddLabel()"
+    [clrAllValues]="possibleOptions"
+    [clrBlankOption]="BLANK_OPTION"
+    [clrMandatory]="true"
+    [clrValues]="selectedOptionsMandatory"
+    class="clr-form-control clr-row"
+    clrControlClasses="clr-col-lg-3 clr-col-md-4 clr-col-sm-5">
+  <label class="clr-control-label clr-col-md-2 clr-col-sm-3 required">Option list</label>
+</clr-quick-list>
 `;
 
 const HTML_EXAMPLE2 = `
@@ -35,32 +33,38 @@ possibleOptions: Array<ClrQuickListValue<string>> = this.options.map(op=>
 `
 
 const HTML_EXAMPLE_GENERIC = `
-<form clrForm #form="ngForm">
-  <clr-generic-quick-list [clrAddLabel]="'ADD'" [clrAddPossible]="form.valid" [clrAllItems]="allItemsGeneric"
-      [clrMandatory]="'true'" class="clr-row" clrControlClasses="clr-col-md-6 clr-col-xl-4">
-      <label class="clr-control-label clr-col-md-2 required">Generic Quick List</label>
-      <ng-template let-item>
-          <!-- Custom content below -->
-          <clr-select-container>
+<clr-generic-quick-list [clrAddLabel]="'ADD'" [clrAddPossible]="form.valid" [clrAllItems]="allItemsGeneric"
+    [clrMandatory]="'true'" class="clr-row" clrControlClasses="clr-col-md-6 clr-col-xl-4">
+
+    <!-- Label in front of the control -->
+    <label class="clr-control-label clr-col-md-2 required">Generic Quick List</label>
+
+    <!-- Optional header row -->
+    <div class="header-container">
+        <div class="required">Salutation</div>
+        <div class="required">Name</div>
+    </div>
+
+    <!-- Custom row template -->
+    <ng-template let-item>
+        <clr-select-container>
+          <label [hidden]="true"></label>
+          <select required clrSelect class="clr-col-12" [name]="'salutation' + item.id"
+                  [(ngModel)]="item.salutation">
+              <option value="mr">Mr.</option>
+              <option value="mrs">Mrs.</option>
+              <option value="ms">Ms.</option>
+          </select>
+          <clr-control-error *clrIfError="'required'">Please select a value</clr-control-error>
+        </clr-select-container>
+        <clr-input-container>
             <label [hidden]="true"></label>
-            <select required clrSelect class="clr-col-12" [name]="'salutation' + item.id"
-                    [(ngModel)]="item.salutation">
-                <option value="mr">Mr.</option>
-                <option value="mrs">Mrs.</option>
-                <option value="ms">Ms.</option>
-            </select>
-            <clr-control-error *clrIfError="'required'">Please select a value</clr-control-error>
-          </clr-select-container>
-          <clr-input-container>
-              <label [hidden]="true"></label>
-              <input class="clr-col-12" placeholder="Name*" clrInput [(ngModel)]="item.name"
-              required [name]="'last' + item.id" />
-              <clr-control-error *clrIfError="'required'">Please enter a value</clr-control-error>
-          </clr-input-container>
-          <!-- Custom content above -->
-      </ng-template>
-  </clr-generic-quick-list>
-</form>
+            <input class="clr-col-12" placeholder="Name*" clrInput [(ngModel)]="item.name"
+            required [name]="'last' + item.id" />
+            <clr-control-error *clrIfError="'required'">Please enter a value</clr-control-error>
+        </clr-input-container>
+    </ng-template>
+</clr-generic-quick-list>
 `;
 
 const ANGULAR_EXAMPLE_GENERIC = `
