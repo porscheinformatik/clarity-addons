@@ -12,6 +12,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TreetableDemo implements OnInit {
   root = [] as any[];
+  veryLongString =
+    ' This is a very long string which should show that text will be truncated properly and not overflow its parent';
 
   ngOnInit(): void {
     setTimeout(

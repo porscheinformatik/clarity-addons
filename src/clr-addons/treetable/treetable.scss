@@ -256,6 +256,7 @@
             flex: 1 1 auto;
             flex-flow: row nowrap;
             position: relative;
+            overflow: hidden;
 
             .treetable-cell {
               text-align: left;
