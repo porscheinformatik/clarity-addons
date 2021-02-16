@@ -390,3 +390,28 @@
     </clr-tt-row>
   </ng-template>
 </clr-treetable>
+
+<h4>Text truncate</h4>
+<clr-treetable [clrClickableRows]="true">
+  <clr-tt-column>Name</clr-tt-column>
+  <clr-tt-column>Type</clr-tt-column>
+  <clr-tt-column>Version</clr-tt-column>
+
+  <ng-container ngProjectAs="clr-tt-row" *ngFor="let node of root">
+    <ng-container *ngTemplateOutlet="truncateNode; context: { $implicit: node }"></ng-container>
+  </ng-container>
+
+  <ng-template #truncateNode let-node>
+    <clr-tt-row [clrExpandable]="node.children?.length > 0" [clrExpanded]="true">
+      <clr-tt-action-overflow>
+        <button class="action-item">Test</button>
+      </clr-tt-action-overflow>
+      <clr-tt-cell class="text-truncate">{{node.name}} {{veryLongString}}</clr-tt-cell>
+      <clr-tt-cell class="text-truncate">{{node.type}} {{veryLongString}}</clr-tt-cell>
+      <clr-tt-cell class="text-truncate">{{node.version}} {{veryLongString}}</clr-tt-cell>
+      <ng-container ngProjectAs="clr-tt-row" *ngFor="let childNode of node.children">
+        <ng-container *ngTemplateOutlet="truncateNode; context: { $implicit: childNode }"></ng-container>
+      </ng-container>
+    </clr-tt-row>
+  </ng-template>
+</clr-treetable>
