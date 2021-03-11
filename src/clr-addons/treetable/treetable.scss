@@ -9,9 +9,9 @@
     }
     .treetable-expandable-caret {
       @if ($level > 0) {
-        left: $level * $indentation-increment;
+        margin-left: $level * $indentation-increment;
       } @else {
-        left: $base-caret-indentation;
+        margin-left: $base-caret-indentation;
       }
     }
   }
@@ -148,6 +148,7 @@
         padding: 0;
         border: 0;
         background: none;
+        cursor: pointer;
       }
 
       .treetable-expandable-caret {
@@ -255,7 +256,6 @@
             display: flex;
             flex: 1 1 auto;
             flex-flow: row nowrap;
-            position: relative;
             overflow: hidden;
 
             .treetable-cell {

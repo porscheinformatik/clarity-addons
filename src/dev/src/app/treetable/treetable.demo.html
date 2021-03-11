@@ -415,3 +415,40 @@
     </clr-tt-row>
   </ng-template>
 </clr-treetable>
+
+<h4>Signpost</h4>
+<clr-treetable [clrClickableRows]="false">
+  <clr-tt-column>Name</clr-tt-column>
+  <clr-tt-column>Type</clr-tt-column>
+  <clr-tt-column>Version</clr-tt-column>
+
+  <ng-container ngProjectAs="clr-tt-row" *ngFor="let node of root">
+    <ng-container *ngTemplateOutlet="signpostNode; context: { $implicit: node }"></ng-container>
+  </ng-container>
+
+  <ng-template #signpostNode let-node>
+    <clr-tt-row [clrExpandable]="node.children?.length > 0" [clrExpanded]="true">
+      <clr-tt-action-overflow>
+        <button class="action-item">Test</button>
+      </clr-tt-action-overflow>
+      <clr-tt-cell class="text-truncate"
+        >{{node.name}}
+        <clr-signpost>
+          <button
+            class="btn btn-link btn-icon btn-sm"
+            style="padding: 0; min-width: 1.2rem; height: 0.65rem; border-width: 0"
+            clrSignpostTrigger
+          >
+            <clr-icon shape="info-standard" size="13" style="vertical-align: initial"></clr-icon>
+          </button>
+          <clr-signpost-content>Signpost</clr-signpost-content>
+        </clr-signpost>
+      </clr-tt-cell>
+      <clr-tt-cell class="text-truncate">{{node.type}}</clr-tt-cell>
+      <clr-tt-cell class="text-truncate">{{node.version}}</clr-tt-cell>
+      <ng-container ngProjectAs="clr-tt-row" *ngFor="let childNode of node.children">
+        <ng-container *ngTemplateOutlet="signpostNode; context: { $implicit: childNode }"></ng-container>
+      </ng-container>
+    </clr-tt-row>
+  </ng-template>
+</clr-treetable>
