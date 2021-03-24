@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, ContentChild, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, ContentChild, EventEmitter, Input, Output } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ClrTreetableActionOverflow } from './treetable-action-overflow';
 
@@ -33,7 +33,10 @@ export class ClrTreetableRow {
 
   @Input('clrExpandable')
   set clrExpandable(expandable: boolean) {
-    setTimeout(() => (this.expandable = expandable));
+    setTimeout(() => {
+      this.expandable = expandable;
+      this.changeDetectorRef.markForCheck();
+    });
   }
 
   @Output() hasActionOverflow = new EventEmitter<boolean>();
@@ -48,6 +51,8 @@ export class ClrTreetableRow {
     this.showEmptyActionOverflow = !this.showActionOverflow;
     this.hasActionOverflow.emit(this.showActionOverflow);
   }
+
+  constructor(private changeDetectorRef: ChangeDetectorRef) {}
 
   private toggleExpand(): void {
     if (this.expandable) {
