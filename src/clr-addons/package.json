@@ -20,10 +20,10 @@
   "peerDependencies": {
     "@angular/common": "^11.0.0",
     "@angular/core": "^11.0.0",
-    "@clr/angular": "5.0.0",
-    "@cds/core": "5.0.0",
-    "@clr/icons": "5.0.0",
-    "@clr/ui": "5.0.0"
+    "@clr/angular": "5.1.1",
+    "@cds/core": "5.1.1",
+    "@clr/icons": "5.1.1",
+    "@clr/ui": "5.1.1"
   },
   "author": "porscheinformatik",
   "license": "MIT",

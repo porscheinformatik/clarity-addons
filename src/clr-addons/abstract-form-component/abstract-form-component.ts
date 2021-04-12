@@ -6,7 +6,7 @@
 
 import { AfterViewInit, HostBinding, Injector, OnDestroy, Directive } from '@angular/core';
 import { ControlValueAccessor, FormControl, NgControl } from '@angular/forms';
-import { ɵbc as ControlIdService, ɵbg as MarkControlService } from '@clr/angular';
+import { ɵbc as ControlIdService, ɵbi as MarkControlService } from '@clr/angular';
 
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -54,11 +54,13 @@ export abstract class ClrAbstractFormComponent implements ControlValueAccessor, 
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   onChange = (_: unknown): void => {};
+
   registerOnChange(fn: (_: unknown) => void): void {
     this.onChange = fn;
   }
 
   onTouch = this.defaultOnTouch;
+
   registerOnTouched(fn: () => void): void {
     this.onTouch = (): void => {
       fn();
