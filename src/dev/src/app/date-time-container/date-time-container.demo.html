@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
+  ~ Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
@@ -84,14 +84,26 @@
       <label for="toggle" class="clr-col-none"></label>
     </clr-toggle-wrapper>
   </clr-toggle-container>
+
   <clr-combobox-container class="clr-col-12">
-    <label>Combobox</label>
-    <clr-combobox [(ngModel)]="comboboxOption" name="combobox">
+    <label>Single Select Combobox</label>
+    <clr-combobox [(ngModel)]="comboboxOption" name="combobox" required>
       <clr-options>
         <clr-option *ngFor="let option of values$ | async" [clrValue]="option">{{option}}</clr-option>
       </clr-options>
-      <clr-control-error>Select a value</clr-control-error>
     </clr-combobox>
+    <clr-control-error>Select a value</clr-control-error>
+  </clr-combobox-container>
+
+  <clr-combobox-container class="clr-col-12">
+    <label>Multi Select Combobox</label>
+    <clr-combobox [(ngModel)]="comboboxOptions" name="combobox" required [clrMulti]="true">
+      <ng-container *clrOptionSelected="let selected"> {{selected}} </ng-container>
+      <clr-options>
+        <clr-option *clrOptionItems="let option of values2$ | async" [clrValue]="option"> {{option}} </clr-option>
+      </clr-options>
+    </clr-combobox>
+    <clr-control-error>Select 2 values</clr-control-error>
   </clr-combobox-container>
 
   <clr-datalist-container class="clr-col-12">
@@ -261,7 +273,7 @@
 
       <clr-combobox-container class="clr-row">
         <label>Combobox</label>
-        <clr-combobox [(ngModel)]="comboboxOption" name="combobox">
+        <clr-combobox [(ngModel)]="comboboxOption" name="combobox" required>
           <clr-options>
             <clr-option *ngFor="let option of values$ | async" [clrValue]="option">{{option}}</clr-option>
           </clr-options>

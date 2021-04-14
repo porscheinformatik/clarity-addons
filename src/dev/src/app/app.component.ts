@@ -9,7 +9,10 @@ import { APP_ROUTES } from './app.routing';
 import { isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { RouteHistoryService } from './route-history.service';
 
-@Component({ selector: 'app-root', templateUrl: './app.component.html' })
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+})
 export class AppComponent implements OnInit {
   public routes: Route[] = APP_ROUTES;
   linkRef: HTMLLinkElement;
