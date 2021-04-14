@@ -364,24 +364,6 @@ clr-date-container .clr-control-container {
   }
 }
 
-// Set the width of the combobox to 100% so that it really fills the place it has been given
-.clr-combobox {
-  width: 100%;
-
-  .clr-combobox-wrapper {
-    width: 100%;
-
-    .clr-combobox-input {
-      width: 100%;
-    }
-  }
-}
-
-// Keeps the validation-icon on same level as the input
-.clr-combobox-form-control .clr-control-container {
-  white-space: nowrap;
-}
-
 // This avoids the disposition of the clr select arrow icon if a validation error occurs.
 .clr-error {
   .clr-select-wrapper::after {

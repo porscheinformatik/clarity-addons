@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
+  ~ Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
@@ -33,6 +33,7 @@
       <clr-dropdown>
         <button type="button" class="nav-icon dropdown-toggle" clrDropdownTrigger>
           <clr-icon shape="cog"></clr-icon>
+          <clr-icon shape="caret down"></clr-icon>
         </button>
         <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
           <button type="button" *ngFor="let theme of themes" (click)="setTheme(theme)" clrDropdownItem>
@@ -40,8 +41,20 @@
           </button>
         </clr-dropdown-menu>
       </clr-dropdown>
+
+      <!-- user menu drop down -->
+      <clr-dropdown>
+        <button type="button" class="nav-icon dropdown-toggle" clrDropdownTrigger>
+          <clr-icon shape="user"></clr-icon>
+          <clr-icon shape="caret down"></clr-icon>
+        </button>
+        <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
+          <h4 class="dropdown-header">Max Mustermann</h4>
+        </clr-dropdown-menu>
+      </clr-dropdown>
     </div>
   </clr-header>
+
   <clr-history-pinned [clrUsername]="'me'" [clrContext]="{ tenantId: '1' }"></clr-history-pinned>
   <div class="content-header">
     <clr-back-button></clr-back-button>

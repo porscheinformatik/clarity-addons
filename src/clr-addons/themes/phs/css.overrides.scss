@@ -6,16 +6,19 @@
   header,
   .header {
     .header-actions {
-      > .dropdown > .nav-icon {
+      > .dropdown > .nav-icon > clr-icon {
         color: var(--turquoise-darkest);
       }
-      .nav-icon {
+
+      .nav-icon > clr-icon {
         color: var(--turquoise-darkest);
       }
     }
-    .settings .nav-icon {
+
+    .settings .nav-icon > clr-icon {
       color: var(--turquoise-darkest);
     }
+
     .branding {
       min-width: 4rem;
     }
@@ -81,20 +84,25 @@
     &.is-success {
       fill: var(--clr-icon-color-success);
     }
+
     &.is-danger {
       fill: var(--clr-icon-color-danger);
     }
+
     &.is-red,
     &.is-error {
       fill: var(--clr-icon-color-error);
     }
+
     &.is-warning {
       fill: var(--clr-icon-color-warning);
     }
+
     &.is-blue,
     &.is-info {
       fill: var(--clr-icon-color-info);
     }
+
     &.is-highlight {
       fill: var(--clr-icon-color-highlight);
     }
@@ -121,18 +129,15 @@
     color: var(--clr-text-color-danger) !important;
   }
 
+  .header .header-actions > .dropdown .dropdown-toggle.nav-icon,
   .dropdown .dropdown-toggle {
-    &.btn clr-icon[shape^='caret'] {
-      right: 0.6rem;
-    }
-
     clr-icon[shape^='caret'] {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      color: inherit;
       height: 0.5rem;
       width: 0.5rem;
+      right: 0.6rem;
     }
   }
 }
