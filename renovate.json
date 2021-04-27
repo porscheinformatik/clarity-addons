@@ -9,5 +9,6 @@
     }
   ],
   "baseBranches": ["master", "website"],
-  "dependencyDashboard": true
+  "dependencyDashboard": true,
+  "prHourlyLimit": 5
 }
