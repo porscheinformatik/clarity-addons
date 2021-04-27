@@ -8,5 +8,6 @@
       "groupName": "clarity monorepo"
     }
   ],
-  "baseBranches": ["master", "website"]
+  "baseBranches": ["master", "website"],
+  "dependencyDashboard": true
 }
