@@ -4,13 +4,91 @@
       margin-top: 0;
     }
 
+    .controls-wrapper {
+      display: flex;
+    }
+
     .controls-container {
       display: flex;
+      flex: 1;
       margin-bottom: 0.25rem;
 
       > :not(.btn-trash) {
         flex: 1;
         margin-right: 0.5rem;
+      }
+
+      > .clr-col-xl,
+      > .clr-col-xl-auto,
+      > .clr-col-xl-12,
+      > .clr-col-xl-11,
+      > .clr-col-xl-10,
+      > .clr-col-xl-9,
+      > .clr-col-xl-8,
+      > .clr-col-xl-7,
+      > .clr-col-xl-6,
+      > .clr-col-xl-5,
+      > .clr-col-xl-4,
+      > .clr-col-xl-3,
+      > .clr-col-xl-2,
+      > .clr-col-xl-1,
+      > .clr-col-lg,
+      > .clr-col-lg-auto,
+      > .clr-col-lg-12,
+      > .clr-col-lg-11,
+      > .clr-col-lg-10,
+      > .clr-col-lg-9,
+      > .clr-col-lg-8,
+      > .clr-col-lg-7,
+      > .clr-col-lg-6,
+      > .clr-col-lg-5,
+      > .clr-col-lg-4,
+      > .clr-col-lg-3,
+      > .clr-col-lg-2,
+      > .clr-col-lg-1,
+      > .clr-col-md,
+      > .clr-col-md-auto,
+      > .clr-col-md-12,
+      > .clr-col-md-11,
+      > .clr-col-md-10,
+      > .clr-col-md-9,
+      > .clr-col-md-8,
+      > .clr-col-md-7,
+      > .clr-col-md-6,
+      > .clr-col-md-5,
+      > .clr-col-md-4,
+      > .clr-col-md-3,
+      > .clr-col-md-2,
+      > .clr-col-md-1,
+      > .clr-col-sm,
+      > .clr-col-sm-auto,
+      > .clr-col-sm-12,
+      > .clr-col-sm-11,
+      > .clr-col-sm-10,
+      > .clr-col-sm-9,
+      > .clr-col-sm-8,
+      > .clr-col-sm-7,
+      > .clr-col-sm-6,
+      > .clr-col-sm-5,
+      > .clr-col-sm-4,
+      > .clr-col-sm-3,
+      > .clr-col-sm-2,
+      > .clr-col-sm-1,
+      > .clr-col,
+      > .clr-col-auto,
+      > .clr-col-12,
+      > .clr-col-11,
+      > .clr-col-10,
+      > .clr-col-9,
+      > .clr-col-8,
+      > .clr-col-7,
+      > .clr-col-6,
+      > .clr-col-5,
+      > .clr-col-4,
+      > .clr-col-3,
+      > .clr-col-2,
+      > .clr-col-1 {
+        padding: 0;
       }
     }
 
@@ -24,6 +102,81 @@
         color: var(--clr-forms-label-color);
         font-size: 0.65rem;
         font-weight: var(--clr-forms-label-font-weight);
+      }
+
+      > .clr-col-xl,
+      > .clr-col-xl-auto,
+      > .clr-col-xl-12,
+      > .clr-col-xl-11,
+      > .clr-col-xl-10,
+      > .clr-col-xl-9,
+      > .clr-col-xl-8,
+      > .clr-col-xl-7,
+      > .clr-col-xl-6,
+      > .clr-col-xl-5,
+      > .clr-col-xl-4,
+      > .clr-col-xl-3,
+      > .clr-col-xl-2,
+      > .clr-col-xl-1,
+      > .clr-col-lg,
+      > .clr-col-lg-auto,
+      > .clr-col-lg-12,
+      > .clr-col-lg-11,
+      > .clr-col-lg-10,
+      > .clr-col-lg-9,
+      > .clr-col-lg-8,
+      > .clr-col-lg-7,
+      > .clr-col-lg-6,
+      > .clr-col-lg-5,
+      > .clr-col-lg-4,
+      > .clr-col-lg-3,
+      > .clr-col-lg-2,
+      > .clr-col-lg-1,
+      > .clr-col-md,
+      > .clr-col-md-auto,
+      > .clr-col-md-12,
+      > .clr-col-md-11,
+      > .clr-col-md-10,
+      > .clr-col-md-9,
+      > .clr-col-md-8,
+      > .clr-col-md-7,
+      > .clr-col-md-6,
+      > .clr-col-md-5,
+      > .clr-col-md-4,
+      > .clr-col-md-3,
+      > .clr-col-md-2,
+      > .clr-col-md-1,
+      > .clr-col-sm,
+      > .clr-col-sm-auto,
+      > .clr-col-sm-12,
+      > .clr-col-sm-11,
+      > .clr-col-sm-10,
+      > .clr-col-sm-9,
+      > .clr-col-sm-8,
+      > .clr-col-sm-7,
+      > .clr-col-sm-6,
+      > .clr-col-sm-5,
+      > .clr-col-sm-4,
+      > .clr-col-sm-3,
+      > .clr-col-sm-2,
+      > .clr-col-sm-1,
+      > .clr-col,
+      > .clr-col-auto,
+      > .clr-col-12,
+      > .clr-col-11,
+      > .clr-col-10,
+      > .clr-col-9,
+      > .clr-col-8,
+      > .clr-col-7,
+      > .clr-col-6,
+      > .clr-col-5,
+      > .clr-col-4,
+      > .clr-col-3,
+      > .clr-col-2,
+      > .clr-col-1 {
+        margin-left: -0.6rem;
+        margin-right: 0.5rem;
+        padding-left: 0.6rem;
       }
     }
 
@@ -50,12 +203,17 @@
       > * {
         padding-left: 0.6rem;
         margin-right: 0.5rem;
+        margin-left: 0;
       }
     }
 
     .controls-container {
       margin-right: -0.5rem;
       margin-left: -0.5rem;
+
+      > * {
+        padding: 0;
+      }
     }
   }
 }
