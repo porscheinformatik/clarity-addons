@@ -1,0 +1,16 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "packageRules": [
+    {
+      "packagePatterns": ["^@clr/", "^@cds/"],
+      "groupName": "clarity monorepo"
+    },
+    {
+      "packagePatterns": ["*"],
+      "excludePackagePatterns": ["@porscheinformatik/clr-addons", "^@clr/", "^@cds/"],
+      "enabled": false
+    }
+  ]
+}
