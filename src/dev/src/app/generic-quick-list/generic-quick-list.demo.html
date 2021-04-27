@@ -10,15 +10,30 @@
   >
     <label class="clr-control-label clr-col-md-2">Generic Quickie</label>
 
-    <div class="header-container"><div *ngFor="let num of [1, 2]">{{num}}</div></div>
+    <div class="header-container">
+      <div class="clr-col-2">1</div>
+      <div class="clr-col-3">2</div>
+      <div class="clr-col-4">3</div>
+      <div class="clr-col-3">4</div>
+    </div>
 
     <ng-template let-item>
-      <clr-input-container>
+      <clr-input-container class="clr-col-2">
         <label [hidden]="true"></label>
         <input class="clr-col-12" clrInput [(ngModel)]="item.firstname" required [name]="'first' + item.id" />
         <clr-control-error *clrIfError="'required'">Please enter a value</clr-control-error>
       </clr-input-container>
-      <clr-input-container>
+      <clr-input-container class="clr-col-3">
+        <label [hidden]="true"></label>
+        <input class="clr-col-12" clrInput [(ngModel)]="item.lastname" required [name]="'last' + item.id" />
+        <clr-control-error *clrIfError="'required'">Please enter a value</clr-control-error>
+      </clr-input-container>
+      <clr-input-container class="clr-col-4">
+        <label [hidden]="true"></label>
+        <input class="clr-col-12" clrInput [(ngModel)]="item.lastname" required [name]="'last' + item.id" />
+        <clr-control-error *clrIfError="'required'">Please enter a value</clr-control-error>
+      </clr-input-container>
+      <clr-input-container class="clr-col-3">
         <label [hidden]="true"></label>
         <input class="clr-col-12" clrInput [(ngModel)]="item.lastname" required [name]="'last' + item.id" />
         <clr-control-error *clrIfError="'required'">Please enter a value</clr-control-error>
@@ -60,16 +75,29 @@ Form valid: {{form.valid}}
   >
     <label class="clr-control-label">Generic Quickie</label>
     <div class="header-container">
-      <div *ngFor="let num of [1, 2]">{{num}}</div>
+      <div class="clr-col-2">1</div>
+      <div class="clr-col-3">2</div>
+      <div class="clr-col-4">3</div>
+      <div class="clr-col-3">4</div>
     </div>
 
     <ng-template let-item>
-      <clr-input-container>
+      <clr-input-container class="clr-col-2">
         <label [hidden]="true"></label>
         <input class="clr-col-12" clrInput [(ngModel)]="item.firstname" required [name]="'first' + item.id" />
         <clr-control-error *clrIfError="'required'">Please enter a value</clr-control-error>
       </clr-input-container>
-      <clr-input-container>
+      <clr-input-container class="clr-col-3">
+        <label [hidden]="true"></label>
+        <input class="clr-col-12" clrInput [(ngModel)]="item.lastname" required [name]="'last' + item.id" />
+        <clr-control-error *clrIfError="'required'">Please enter a value</clr-control-error>
+      </clr-input-container>
+      <clr-input-container class="clr-col-4">
+        <label [hidden]="true"></label>
+        <input class="clr-col-12" clrInput [(ngModel)]="item.lastname" required [name]="'last' + item.id" />
+        <clr-control-error *clrIfError="'required'">Please enter a value</clr-control-error>
+      </clr-input-container>
+      <clr-input-container class="clr-col-3">
         <label [hidden]="true"></label>
         <input class="clr-col-12" clrInput [(ngModel)]="item.lastname" required [name]="'last' + item.id" />
         <clr-control-error *clrIfError="'required'">Please enter a value</clr-control-error>
