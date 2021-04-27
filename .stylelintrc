@@ -12,5 +12,6 @@
     "selector-type-no-unknown": [true, {
       "ignoreTypes": ["/^clr-/", "/^cds-/"]
     }],
+    "no-invalid-position-at-import-rule": false
   }
 }
