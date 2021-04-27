@@ -44,10 +44,6 @@ MIT
 @cds/core
 MIT
 
-@cds/core/icon
-
-@cds/core/internal
-
 @clr/angular
 MIT
 
