@@ -7,6 +7,6 @@
       "packagePatterns": ["^@clr/"],
       "groupName": "clarity monorepo"
     }
-  ]
+  ],
   "baseBranches": ["master", "website"]
 }
