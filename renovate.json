@@ -4,8 +4,14 @@
   ],
   "packageRules": [
     {
-      "packagePatterns": ["^@clr/"],
+      "packagePatterns": ["^@clr/", "^@cds/"],
       "groupName": "clarity monorepo"
+    },
+    {
+      "matchBaseBranches": ["website"]
+      "packagePatterns": ["*"],
+      "excludePackagePatterns": ["@porscheinformatik/clr-addons", "^@clr/", "^@cds/"],
+      "enabled": false
     }
   ],
   "baseBranches": ["master", "website"]
