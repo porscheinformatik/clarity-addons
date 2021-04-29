@@ -30,7 +30,8 @@
     "lint:fix": "eslint --fix \"src/clr-addons/**/*.ts\" \"src/dev/**/*.ts\"",
     "lint:styles:fix": "stylelint --fix \"src/**/*.scss\" \"src/**/*.css\"",
     "publish": "npm publish dist/clr-addons --access public",
-    "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points"
+    "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@angular/animations": "11.2.12",
@@ -73,7 +74,7 @@
     "eslint": "7.25.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-jasmine": "4.1.2",
-    "husky": "4.3.8",
+    "husky": "^6.0.0",
     "jasmine-core": "3.7.1",
     "jasmine-spec-reporter": "7.0.0",
     "karma": "6.3.2",
@@ -105,11 +106,6 @@
   "engines": {
     "node": ">=10.13.0 <15.0.0",
     "npm": ">=5.0.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run format:fix && npm run license:fix"
-    }
   },
   "postcss": {
     "plugins": {
