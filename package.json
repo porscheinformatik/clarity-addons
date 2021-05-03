@@ -98,7 +98,7 @@
     "replace": "1.2.1",
     "sass": "1.32.12",
     "shx": "0.3.3",
-    "stylelint": "13.13.0",
+    "stylelint": "13.13.1",
     "stylelint-config-recommended": "5.0.0",
     "stylelint-scss": "3.19.0",
     "typescript": "4.1.3"
