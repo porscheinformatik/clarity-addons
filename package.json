@@ -48,7 +48,7 @@
     "@clr/ui": "5.1.1",
     "@webcomponents/custom-elements": "1.4.3",
     "@webcomponents/webcomponentsjs": "2.5.0",
-    "core-js": "3.11.1",
+    "core-js": "3.11.2",
     "rxjs": "6.6.7",
     "tslib": "2.2.0",
     "web-animations-js": "2.3.2",
