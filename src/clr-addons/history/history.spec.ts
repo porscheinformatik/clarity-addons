@@ -65,4 +65,23 @@ describe('ClrHistory', () => {
     historyService.resetHistory();
     expect(historyService.getHistory('admin', { ['applicationName']: 'TEST' }).length).toEqual(0);
   });
+
+  it('encodeUTF8', () => {
+    const czech = 'Škoda v čínštině';
+    const chinese = '斯柯达👾';
+    const historyEntry: ClrHistoryModel = {
+      username: 'utf8',
+      context: { ['applicationName']: 'TEST' },
+      pageName: czech,
+      title: chinese,
+      url: 'url1',
+    };
+    historyService.resetHistory();
+    expect(historyService.getHistory('utf8', { ['applicationName']: 'TEST' }).length).toEqual(0);
+    historyService.addHistoryEntry(historyEntry);
+    expect(historyService.getHistory('utf8', { ['applicationName']: 'TEST' }).length).toEqual(1);
+    const lastHistoryEntry = historyService.getHistory('utf8', { ['applicationName']: 'TEST' }).pop();
+    expect(lastHistoryEntry.pageName).toEqual(czech);
+    expect(lastHistoryEntry.title).toEqual(chinese);
+  });
 });

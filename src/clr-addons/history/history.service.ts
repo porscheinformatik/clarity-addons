@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -188,14 +188,14 @@ export class ClrHistoryService {
   }
 
   private encode(content: ClrHistoryModel[]): string {
-    const jsonString = btoa(JSON.stringify(content));
+    const jsonString = btoa(encodeURIComponent(JSON.stringify(content)));
     return jsonString.replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '!');
   }
 
   private decode(content: string): ClrHistoryModel[] {
     try {
       const base64 = content.replace(/-/g, '+').replace(/_/g, '/').replace(/!/g, '=');
-      return JSON.parse(atob(base64));
+      return JSON.parse(decodeURIComponent(atob(base64)));
     } catch (error) {
       return [];
     }
