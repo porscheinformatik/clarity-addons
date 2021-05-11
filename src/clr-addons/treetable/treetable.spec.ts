@@ -108,18 +108,21 @@ describe('ClrTreetable', () => {
   });
 
   it('should not have action column', () => {
-    const noOfClickableRows = rowClickableTestComponentFixture.debugElement.queryAll(By.css('.treetable-row-actions'))
-      .length;
+    const noOfClickableRows = rowClickableTestComponentFixture.debugElement.queryAll(
+      By.css('.treetable-row-actions')
+    ).length;
     expect(noOfClickableRows).toBe(0);
   });
 
   it('should have action column', () => {
-    const noOfActionCellsWHeader = actionTestComponentFixture.debugElement.queryAll(By.css('.treetable-row-actions'))
-      .length;
+    const noOfActionCellsWHeader = actionTestComponentFixture.debugElement.queryAll(
+      By.css('.treetable-row-actions')
+    ).length;
     expect(noOfActionCellsWHeader).toBe(4);
 
-    const noOfActionButtons = actionTestComponentFixture.debugElement.queryAll(By.css('.treetable-action-trigger'))
-      .length;
+    const noOfActionButtons = actionTestComponentFixture.debugElement.queryAll(
+      By.css('.treetable-action-trigger')
+    ).length;
     expect(noOfActionButtons).toBe(1);
   });
 });
