@@ -25,6 +25,7 @@
     "test:watch": "ng test clr-addons --watch",
     "test:travis": "npm-run-all test:format lint test build",
     "format:fix": "pretty-quick --staged",
+    "format:global:fix": "prettier -w './**/*.{js,json,md,ts,scss}'",
     "license:fix": "node scripts/update-license",
     "lint": "npm-run-all test:lint:ts test:lint:styles",
     "lint:fix": "eslint --fix \"src/clr-addons/**/*.ts\" \"src/dev/**/*.ts\"",
