@@ -12,25 +12,31 @@
     "build:angular:ngpackagr": "ng build clr-addons --prod",
     "build:angular": "npm-run-all build:angular:package build:angular:ngpackagr",
     "build": "npm-run-all clean build:ui build:angular",
-    "ng": "ng",
+    "clean": "shx rm -rf dist",
+
     "start": "npm-run-all build:ui:css build:ui:prefix serve:dev",
-    "start:dev": "npm-run-all build:ui:css build:ui:prefix serve:dev:port",
+    "start:port": "npm-run-all build:ui:css build:ui:prefix serve:dev:port",
     "serve:dev": "ng serve dev",
     "serve:dev:port": "ng serve dev --port 4300 --host=0.0.0.0",
-    "clean": "shx rm -rf dist",
+
     "test:format": "prettier --check './**/*.{js,json,md,ts,scss}'",
+    "format:fix": "pretty-quick --staged",
+    "format:global:fix": "prettier -w './**/*.{js,json,md,ts,scss}'",
+
+    "lint": "npm-run-all test:lint:ts test:lint:styles",
     "test:lint:ts": "eslint \"src/clr-addons/**/*.ts\" \"src/dev/**/*.ts\"",
+    "lint:fix": "eslint --fix \"src/clr-addons/**/*.ts\" \"src/dev/**/*.ts\"",
     "test:lint:styles": "stylelint \"src/**/*.scss\" \"src/**/*.css\"",
+    "lint:styles:fix": "stylelint --fix \"src/**/*.scss\" \"src/**/*.css\"",
+
     "test": "ng test clr-addons --watch false",
     "test:watch": "ng test clr-addons --watch",
     "test:travis": "npm-run-all test:format lint test build",
-    "format:fix": "pretty-quick --staged",
-    "format:global:fix": "prettier -w './**/*.{js,json,md,ts,scss}'",
+
     "license:fix": "node scripts/update-license",
-    "lint": "npm-run-all test:lint:ts test:lint:styles",
-    "lint:fix": "eslint --fix \"src/clr-addons/**/*.ts\" \"src/dev/**/*.ts\"",
-    "lint:styles:fix": "stylelint --fix \"src/**/*.scss\" \"src/**/*.css\"",
+
     "publish": "npm publish dist/clr-addons --access public",
+
     "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points",
     "prepare": "husky install"
   },
