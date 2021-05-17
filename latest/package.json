@@ -50,7 +50,7 @@
     "@angular/cli": "11.2.12",
     "@angular/compiler-cli": "11.2.13",
     "@angular/language-service": "11.2.13",
-    "@types/node": "13.13.51",
+    "@types/node": "13.13.52",
     "codelyzer": "6.0.2",
     "cp-cli": "2.0.0",
     "cross-var": "1.1.0",
