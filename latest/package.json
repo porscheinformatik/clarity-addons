@@ -54,7 +54,7 @@
     "codelyzer": "6.0.2",
     "cp-cli": "2.0.0",
     "cross-var": "1.1.0",
-    "gh-pages": "3.1.0",
+    "gh-pages": "3.2.0",
     "replace": "1.2.1",
     "ts-loader": "9.2.2",
     "tslint": "6.1.3",
