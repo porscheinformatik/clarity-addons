@@ -6,6 +6,13 @@
     {
       "packagePatterns": ["^@clr/", "^@cds/"],
       "groupName": "clarity monorepo"
+    },
+    {
+      "matchSourceUrlPrefixes": [
+        "https://github.com/angular/angular",
+        "https://github.com/angular/angular-cli"
+      ],
+      "groupName": "angular+cli monorepo"
     }
   ],
   "baseBranches": ["master", "website"],
