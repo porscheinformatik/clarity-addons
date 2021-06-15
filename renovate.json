@@ -4,7 +4,9 @@
   ],
   "packageRules": [
     {
-      "packagePatterns": ["^@clr/", "^@cds/"],
+      "matchSourceUrlPrefixes": [
+        "https://github.com/vmware/clarity"
+      ],
       "groupName": "clarity monorepo"
     },
     {
