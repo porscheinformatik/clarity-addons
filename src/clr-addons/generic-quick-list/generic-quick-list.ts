@@ -16,6 +16,7 @@ import {
   OnInit,
   ElementRef,
   ContentChildren,
+  OnDestroy,
 } from '@angular/core';
 
 export interface ClrGenericQuickListItem {
@@ -27,7 +28,7 @@ export interface ClrGenericQuickListItem {
   host: { '[class.generic-quick-list]': 'true', '[class.clr-form-control]': 'true' },
   templateUrl: './generic-quick-list.html',
 })
-export class ClrGenericQuickList<T extends ClrGenericQuickListItem> implements OnInit, AfterViewInit {
+export class ClrGenericQuickList<T extends ClrGenericQuickListItem> implements OnInit, AfterViewInit, OnDestroy {
   @Input('clrAllItems') allItems = [] as T[];
   @Input('clrAddLabel') addLabel = 'ADD (Translate me)';
   @Input('clrAddPossible') addPossible = true;
@@ -44,6 +45,8 @@ export class ClrGenericQuickList<T extends ClrGenericQuickListItem> implements O
 
   rowCountFocus: number;
 
+  private timeout: NodeJS.Timeout;
+
   ngOnInit(): void {
     if (this.required && this.allItems.length === 0) {
       this.addItem();
@@ -51,7 +54,7 @@ export class ClrGenericQuickList<T extends ClrGenericQuickListItem> implements O
   }
 
   ngAfterViewInit(): void {
-    setTimeout(() => this.setFocusOnAdd(), 1);
+    this.timeout = setTimeout(() => this.setFocusOnAdd(), 1);
   }
 
   addItem(): void {
@@ -79,5 +82,9 @@ export class ClrGenericQuickList<T extends ClrGenericQuickListItem> implements O
       }
       this.rowCountFocus = els.length;
     });
+  }
+
+  ngOnDestroy(): void {
+    clearTimeout(this.timeout);
   }
 }
