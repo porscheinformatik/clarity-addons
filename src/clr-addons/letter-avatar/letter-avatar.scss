@@ -8,7 +8,7 @@
     justify-content: center;
     align-items: center;
 
-    background-color: lightgray;
+    background-color: #707070;
     border-radius: 100%;
     color: var(--white);
     font-weight: 500;
@@ -21,6 +21,7 @@
   :focus-within {
     > .clr-avatar .avatar-initials {
       background-color: var(--clr-btn-link-color);
+      cursor: default;
     }
   }
 }
