@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -83,6 +83,10 @@ export const APP_ROUTES: Routes = [
   {
     path: 'quick-list-container',
     loadChildren: () => import('./quick-list/quick-list.demo.module').then(m => m.QuickListModule),
+  },
+  {
+    path: 'brand-avatar',
+    loadChildren: () => import('./brand-avatar/brand-avatar.demo.module').then(m => m.BrandAvatarDemoModule),
   },
   {
     path: 'letter-avatar',
