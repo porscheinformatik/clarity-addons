@@ -33,7 +33,7 @@
     "@clr/angular": "5.1.1",
     "@clr/icons": "5.1.1",
     "@clr/ui": "5.1.1",
-    "@porscheinformatik/clr-addons": "10.1.8",
+    "@porscheinformatik/clr-addons": "10.1.9",
     "@webcomponents/custom-elements": "1.4.3",
     "@webcomponents/webcomponentsjs": "2.5.0",
     "classlist.js": "1.1.20150312",
