@@ -1,0 +1,28 @@
+@include exports('brand-avatar.clr-addons') {
+  .avatar-container {
+    display: flex;
+  }
+
+  .avatar-rectangle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 2.5px;
+    color: #fff;
+  }
+
+  .other-brand-icon {
+    width: 22px;
+    height: 22px;
+    margin-top: 4px;
+  }
+
+  :hover,
+  :focus-within {
+    > .clr-avatar .avatar-rectangle:hover {
+      background-color: var(--clr-btn-link-color) !important;
+    }
+  }
+}
