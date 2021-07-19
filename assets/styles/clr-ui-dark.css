@@ -12,6 +12,9 @@
  * Where possible, there is a list files affected by the variable.
  */
 /*********
+ * Baseline Rem Variables
+ */
+/*********
  * $clr-global-app-background
  * Change the background for the clarity application.
  * Usage: clarity-root/src/clr-angular/layout/main-container/_layout.clarity.scss
@@ -4036,12 +4039,14 @@ a:active {
   box-shadow: none;
 }
 
-.btn-group > .btn cds-icon,
 .btn-group > .btn clr-icon,
-.btn cds-icon,
 .btn clr-icon {
   -webkit-transform: translate3d(0, -0.1rem, 0);
   transform: translate3d(0, -0.1rem, 0);
+}
+.btn-group > .btn cds-icon,
+.btn cds-icon {
+  margin-top: -0.14rem;
 }
 
 .btn.btn-secondary,
@@ -4762,13 +4767,20 @@ a:active {
   border-color: transparent;
 }
 
-.btn-sm:not(.btn-link) cds-icon, .alert-app-level .alert-item .btn:not(.btn-link) cds-icon {
+.btn-sm:not(.btn-link) clr-icon, .alert-app-level .alert-item .btn:not(.btn-link) clr-icon {
   /* clr-btn-appearance-standard-icon-size */
   width: 0.6rem;
   /* clr-btn-appearance-standard-icon-size */
   height: 0.6rem;
   -webkit-transform: translate3d(0, -0.05rem, 0);
   transform: translate3d(0, -0.05rem, 0);
+}
+.btn-sm:not(.btn-link) cds-icon, .alert-app-level .alert-item .btn:not(.btn-link) cds-icon {
+  /* clr-btn-appearance-standard-icon-size */
+  width: 0.6rem;
+  /* clr-btn-appearance-standard-icon-size */
+  height: 0.6rem;
+  margin-top: -0.1rem;
 }
 
 .btn-icon {
@@ -6521,7 +6533,7 @@ button.alerts-pager-button {
 }
 .dropdown .dropdown-toggle cds-icon[shape^=angle] {
   position: absolute;
-  top: 45%;
+  top: 35%;
   color: inherit;
   height: 0.5rem;
   width: 0.5rem;
@@ -8493,11 +8505,11 @@ a.link-visited:link {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  -webkit-box-shadow: 0 -0.05rem 0 #495865 inset;
-  box-shadow: 0 -0.05rem 0 #495865 inset;
   margin: 0;
   width: 100%;
   white-space: nowrap;
+  -webkit-box-shadow: 0 -0.05rem 0 #495865 inset;
+  box-shadow: 0 -0.05rem 0 #495865 inset;
 }
 .nav .nav-item {
   display: inline-block;
@@ -8884,7 +8896,6 @@ a.link-visited:link {
   -ms-flex-negative: 0;
   flex-shrink: 0;
   width: 0.8rem;
-  height: 1.8rem;
   -ms-flex-item-align: center;
   align-self: center;
   margin-left: 0.5rem;
@@ -11346,6 +11357,9 @@ _:-ms-input-placeholder .progress-block > label,
 .clr-input-group:focus, .clr-input-group.clr-focus {
   border-bottom-color: #4aaed9;
   background-size: 100% 100%;
+}
+.clr-input-group.clr-focus {
+  width: auto;
 }
 .clr-input-group .clr-input {
   background: none;
@@ -14395,6 +14409,12 @@ button.datagrid-table .datagrid-cell .datagrid-action-toggle {
   -webkit-box-flex: 0;
   -ms-flex: 0 0 auto;
   flex: 0 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 .datagrid-footer .column-switch-wrapper.active .column-toggle--action cds-icon,
 .datagrid-footer .column-switch-wrapper.active .column-toggle--action clr-icon {
@@ -14556,8 +14576,17 @@ button.datagrid-table .datagrid-cell .datagrid-action-toggle {
   justify-content: flex-end;
 }
 
+.clr-form-control-disabled {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 100%;
+}
+
 .clr-form-control-disabled .datagrid-footer-select.clr-checkbox-wrapper input[type=checkbox]:checked + label {
-  top: 0.2rem;
   cursor: default;
   margin-right: 0.45rem;
 }
@@ -14683,6 +14712,7 @@ button.datagrid-compact .datagrid-expandable-caret .datagrid-expandable-caret-bu
   white-space: nowrap;
   display: block;
   text-align: right;
+  margin: auto 0;
 }
 
 .pagination-list {
@@ -15968,7 +15998,7 @@ _:-ms-fullscreen .tab-content,
           The signpost is above the icon top-{HORIZONTAL_POSITION}
       */
   /***
-          TODO: Create a general mix-in for the poover-pointer that can
+          TODO: Create a general mix-in for the popover-pointer that can
           1. Accomadate all 12 positions
           2. Unification for the nomenclature between components
               (if possible, I know they all use slightly different terms)
@@ -16008,10 +16038,12 @@ _:-ms-fullscreen .tab-content,
   position: absolute;
 }
 .signpost-content.top-left .popover-pointer, .signpost-content.top-middle .popover-pointer, .signpost-content.top-right .popover-pointer {
+  /* clr-signpost-pointer-border */
   border-top: 0.6rem solid black;
   bottom: -0.6rem;
 }
 .signpost-content.top-left .popover-pointer:before, .signpost-content.top-middle .popover-pointer:before, .signpost-content.top-right .popover-pointer:before {
+  /* clr-signpost-pointer-psuedo-border */
   border-top: 0.6rem solid #21333b;
   bottom: 0.1rem;
 }
@@ -16019,18 +16051,22 @@ _:-ms-fullscreen .tab-content,
   border-bottom-right-radius: 0;
 }
 .signpost-content.top-left .popover-pointer {
+  /* clr-signpost-pointer-invisible-border */
   border-left: 0.6rem solid transparent;
   right: -0.05rem;
 }
 .signpost-content.top-left .popover-pointer:before {
+  /* clr-signpost-pointer-invisible-border */
   border-left: 0.6rem solid transparent;
   right: 0.05rem;
 }
 .signpost-content.top-middle .popover-pointer {
+  /* clr-signpost-pointer-invisible-border */
   border-right: 0.6rem solid transparent;
   left: 50%;
 }
 .signpost-content.top-middle .popover-pointer:before {
+  /* clr-signpost-pointer-invisible-border */
   border-right: 0.6rem solid transparent;
   left: 0.05rem;
 }
@@ -16038,18 +16074,22 @@ _:-ms-fullscreen .tab-content,
   border-bottom-left-radius: 0;
 }
 .signpost-content.top-right .popover-pointer {
+  /* clr-signpost-pointer-invisible-border */
   border-right: 0.6rem solid transparent;
   left: -0.05rem;
 }
 .signpost-content.top-right .popover-pointer:before {
+  /* clr-signpost-pointer-invisible-border */
   border-right: 0.6rem solid transparent;
   left: 0.05rem;
 }
 .signpost-content.bottom-left .popover-pointer, .signpost-content.bottom-middle .popover-pointer, .signpost-content.bottom-right .popover-pointer {
+  /* clr-signpost-pointer-border */
   border-bottom: 0.6rem solid black;
   top: -0.55rem;
 }
 .signpost-content.bottom-left .popover-pointer:before, .signpost-content.bottom-middle .popover-pointer:before, .signpost-content.bottom-right .popover-pointer:before {
+  /* clr-signpost-pointer-psuedo-border */
   border-bottom: 0.6rem solid #21333b;
   top: 0.1rem;
 }
@@ -16057,18 +16097,22 @@ _:-ms-fullscreen .tab-content,
   border-top-right-radius: 0;
 }
 .signpost-content.bottom-left .popover-pointer {
+  /* clr-signpost-pointer-invisible-border */
   border-left: 0.6rem solid transparent;
   right: -0.05rem;
 }
 .signpost-content.bottom-left .popover-pointer:before {
+  /* clr-signpost-pointer-invisible-border */
   border-left: 0.6rem solid transparent;
   right: 0.05rem;
 }
 .signpost-content.bottom-middle .popover-pointer {
+  /* clr-signpost-pointer-invisible-border */
   border-right: 0.6rem solid transparent;
   right: 50%;
 }
 .signpost-content.bottom-middle .popover-pointer:before {
+  /* clr-signpost-pointer-invisible-border */
   border-right: 0.6rem solid transparent;
   right: -0.65rem;
 }
@@ -16076,39 +16120,47 @@ _:-ms-fullscreen .tab-content,
   border-top-left-radius: 0;
 }
 .signpost-content.bottom-right .popover-pointer {
+  /* clr-signpost-pointer-invisible-border */
   border-right: 0.6rem solid transparent;
   left: -0.05rem;
 }
 .signpost-content.bottom-right .popover-pointer:before {
+  /* clr-signpost-pointer-invisible-border */
   border-right: 0.6rem solid transparent;
   left: 0.05rem;
 }
 .signpost-content.left-top .popover-pointer, .signpost-content.left-middle .popover-pointer, .signpost-content.left-bottom .popover-pointer {
+  /* clr-signpost-pointer-border */
   border-left: 0.6rem solid black;
   right: -0.6rem;
 }
 .signpost-content.left-top .popover-pointer:before, .signpost-content.left-middle .popover-pointer:before, .signpost-content.left-bottom .popover-pointer:before {
+  /* clr-signpost-pointer-psuedo-border */
   border-left: 0.6rem solid #21333b;
 }
 .signpost-content.left-top .signpost-wrap {
   border-bottom-right-radius: 0;
 }
 .signpost-content.left-top .popover-pointer {
+  /* clr-signpost-pointer-invisible-border */
   border-top: 0.6rem solid transparent;
   bottom: -0.05rem;
 }
 .signpost-content.left-top .popover-pointer:before {
+  /* clr-signpost-pointer-invisible-border */
   border-top: 0.6rem solid transparent;
   top: -0.65rem;
   right: 0.1rem;
 }
 .signpost-content.left-middle .popover-pointer {
+  /* clr-signpost-pointer-invisible-border */
   border-bottom: 0.6rem solid transparent;
   top: 50%;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
 .signpost-content.left-middle .popover-pointer:before {
+  /* clr-signpost-pointer-invisible-border */
   border-bottom: 0.6rem solid transparent;
   top: 0.05rem;
   left: -0.7rem;
@@ -16117,19 +16169,23 @@ _:-ms-fullscreen .tab-content,
   border-top-right-radius: 0;
 }
 .signpost-content.left-bottom .popover-pointer {
+  /* clr-signpost-pointer-invisible-border */
   border-bottom: 0.6rem solid transparent;
   top: -0.05rem;
 }
 .signpost-content.left-bottom .popover-pointer:before {
+  /* clr-signpost-pointer-invisible-border */
   border-bottom: 0.6rem solid transparent;
   top: 0.05rem;
   left: -0.7rem;
 }
 .signpost-content.right-top .popover-pointer, .signpost-content.right-middle .popover-pointer, .signpost-content.right-bottom .popover-pointer {
+  /* clr-signpost-pointer-border */
   border-right: 0.6rem solid black;
   left: -0.6rem;
 }
 .signpost-content.right-top .popover-pointer:before, .signpost-content.right-middle .popover-pointer:before, .signpost-content.right-bottom .popover-pointer:before {
+  /* clr-signpost-pointer-psuedo-border */
   border-right: 0.6rem solid #21333b;
   left: 0.1rem;
 }
@@ -16137,20 +16193,24 @@ _:-ms-fullscreen .tab-content,
   border-bottom-left-radius: 0;
 }
 .signpost-content.right-top .popover-pointer {
+  /* clr-signpost-pointer-invisible-border */
   border-top: 0.6rem solid transparent;
   bottom: -0.05rem;
 }
 .signpost-content.right-top .popover-pointer:before {
+  /* clr-signpost-pointer-invisible-border */
   border-top: 0.6rem solid transparent;
   top: -0.65rem;
 }
 .signpost-content.right-middle .popover-pointer {
+  /* clr-signpost-pointer-invisible-border */
   border-bottom: 0.6rem solid transparent;
   top: 50%;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
 .signpost-content.right-middle .popover-pointer:before {
+  /* clr-signpost-pointer-invisible-border */
   border-bottom: 0.6rem solid transparent;
   top: 0.05rem;
 }
@@ -16158,10 +16218,12 @@ _:-ms-fullscreen .tab-content,
   border-top-left-radius: 0;
 }
 .signpost-content.right-bottom .popover-pointer {
+  /* clr-signpost-pointer-invisible-border */
   border-bottom: 0.6rem solid transparent;
   top: -0.05rem;
 }
 .signpost-content.right-bottom .popover-pointer:before {
+  /* clr-signpost-pointer-invisible-border */
   border-bottom: 0.6rem solid transparent;
   top: 0.05rem;
 }
@@ -16390,6 +16452,8 @@ _:-ms-fullscreen .tab-content,
 .clr-accordion-angle {
   -webkit-transition: all 200ms ease-in-out;
   transition: all 200ms ease-in-out;
+  -webkit-transform: rotate(90);
+  transform: rotate(90);
 }
 
 .clr-accordion-error-icon,
@@ -16406,8 +16470,8 @@ _:-ms-fullscreen .tab-content,
 }
 .clr-accordion-panel-open .clr-accordion-angle {
   visibility: visible;
-  -webkit-transform: rotate(90deg);
-  transform: rotate(90deg);
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 .clr-accordion-panel-open .clr-accordion-header {
   /* clr-accordion-active-background-color */
