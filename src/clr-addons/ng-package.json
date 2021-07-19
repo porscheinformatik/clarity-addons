@@ -11,5 +11,5 @@
       "util": "util"
     }
   },
-  "whitelistedNonPeerDependencies": ["@angular-devkit/core"]
+  "allowedNonPeerDependencies": ["@angular-devkit/core"]
 }
