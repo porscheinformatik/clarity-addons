@@ -85,8 +85,8 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked, Con
     this.onTouched = fn;
   }
 
-  setDisabledState(): void {
-    // Dont need to implement since its just a directive
+  setDisabledState(isDisabled: boolean): void {
+    this.renderer.setProperty(this.inputEl.nativeElement, 'disabled', isDisabled);
   }
 
   writeValue(value: number): void {
