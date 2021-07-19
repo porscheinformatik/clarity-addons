@@ -16,7 +16,7 @@ module.exports = function (karma) {
       require('karma-jasmine'),
       require('karma-jasmine-matchers'),
       require('@angular-devkit/build-angular/plugins/karma'),
-      require('karma-scss-preprocessor'),
+      require('@alasdair/karma-scss-preprocessor'),
       // Reporters
       require('karma-jasmine-html-reporter'),
       require('karma-htmlfile-reporter'),

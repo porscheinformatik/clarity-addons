@@ -15,6 +15,7 @@
 
 <button
   *ngIf="!(readonly || readonly === '')"
+  type="button"
   class="btn btn-icon btn-link quick-list-trash"
   [disabled]="trashDisabled()"
   (click)="remove.emit()"
