@@ -11,7 +11,6 @@ import { ClarityModule } from '@clr/angular';
 import { ClarityIcons } from '@clr/icons';
 import { AllShapes } from '@clr/icons/shapes/all-shapes';
 import { ClrAddonsIconShapes } from './shapes';
-import { initCdsIcons } from './cds-icons';
 
 /**
  * Adds custom icons to the ClarityIcons Api
@@ -24,8 +23,6 @@ export function loadIcons() {
     ClarityIcons.add(AllShapes);
     // Add our custom shapes
     ClarityIcons.add(ClrAddonsIconShapes);
-    // Initialize CDS icons
-    initCdsIcons();
   };
 }
 
