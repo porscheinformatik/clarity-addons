@@ -29,7 +29,7 @@ import { ClrTreetableModule } from './treetable/treetable.module';
 import { ClrViewEditSectionModule } from './view-edit-section/view-edit-section.module';
 import { ClrHistoryModule } from './history/history.module';
 import { ClrAutocompleteOffModule } from './autocomplete-off/autocomplete-off.module';
-import { ClrBrandAvatarModule } from './brand-avatar';
+import { ClrBrandAvatarModule } from './brand-avatar/brand-avatar.module';
 
 @NgModule({
   exports: [
