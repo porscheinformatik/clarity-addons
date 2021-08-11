@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -29,6 +29,7 @@ import { ClrTreetableModule } from './treetable/treetable.module';
 import { ClrViewEditSectionModule } from './view-edit-section/view-edit-section.module';
 import { ClrHistoryModule } from './history/history.module';
 import { ClrAutocompleteOffModule } from './autocomplete-off/autocomplete-off.module';
+import { ClrBrandAvatarModule } from './brand-avatar/brand-avatar.module';
 
 @NgModule({
   exports: [
@@ -56,6 +57,7 @@ import { ClrAutocompleteOffModule } from './autocomplete-off/autocomplete-off.mo
     ClrAddonsIconsModule,
     ClrHistoryModule,
     ClrAutocompleteOffModule,
+    ClrBrandAvatarModule,
   ],
 })
 export class ClrAddonsModule {}
