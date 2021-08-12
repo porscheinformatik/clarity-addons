@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -22,6 +22,12 @@ import { ClrMultilingualSelector } from './multilingual-selector';
     ClrRequiredAllMultilang,
     ClrMultilingualSelector,
   ],
-  exports: [ClrMultilingualInput, ClrMultilingualTextarea, ClrRequiredOneMultilang, ClrRequiredAllMultilang],
+  exports: [
+    ClrMultilingualInput,
+    ClrMultilingualTextarea,
+    ClrRequiredOneMultilang,
+    ClrRequiredAllMultilang,
+    ClrMultilingualSelector,
+  ],
 })
 export class ClrMultilingualModule {}
