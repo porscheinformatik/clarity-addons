@@ -50,7 +50,7 @@
     "@webcomponents/webcomponentsjs": "2.6.0",
     "core-js": "3.16.1",
     "rxjs": "6.6.7",
-    "tslib": "2.3.0",
+    "tslib": "2.3.1",
     "web-animations-js": "2.3.2",
     "zone.js": "0.11.4"
   },
