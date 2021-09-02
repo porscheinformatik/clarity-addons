@@ -4,15 +4,14 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { AfterViewInit, HostBinding, Injector, OnDestroy, Directive } from '@angular/core';
+import { AfterViewInit, Directive, HostBinding, Injector, OnDestroy, OnInit } from '@angular/core';
 import { ControlValueAccessor, FormControl, NgControl } from '@angular/forms';
 import { ɵbc as ControlIdService, ɵbi as MarkControlService } from '@clr/angular';
-
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 @Directive()
-export abstract class ClrAbstractFormComponent implements ControlValueAccessor, AfterViewInit, OnDestroy {
+export abstract class ClrAbstractFormComponent implements ControlValueAccessor, OnInit, AfterViewInit, OnDestroy {
   @HostBinding('class.clr-form-control') formControl = true;
   @HostBinding('class.clr-error') showError = false;
 
@@ -23,6 +22,13 @@ export abstract class ClrAbstractFormComponent implements ControlValueAccessor, 
   destroyed = new Subject();
 
   constructor(private injector: Injector) {}
+
+  ngOnInit(): void {
+    const controlIdService = this.injector.get(ControlIdService, null);
+    if (controlIdService) {
+      this.inputId = controlIdService.id;
+    }
+  }
 
   ngAfterViewInit(): void {
     // get the form control to know invalid state in angular
@@ -41,12 +47,6 @@ export abstract class ClrAbstractFormComponent implements ControlValueAccessor, 
         this.control.markAsTouched();
         this.control.updateValueAndValidity();
       });
-    }
-
-    const controlIdService = this.injector.get(ControlIdService, null);
-    if (controlIdService) {
-      // timeout to prevent ExpressionChangedAfterItHasBeenCheckedError
-      setTimeout(() => (this.inputId = controlIdService.id));
     }
   }
 

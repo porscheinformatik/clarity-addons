@@ -41,9 +41,11 @@ export abstract class ClrMultilingualAbstract extends ClrAbstractFormComponent {
   }
 
   changeLanguage(lang: string): void {
+    // need as the click for closing the menu is registered on a single item
+    // if the language change destroys it immediately, the click won't get fired
     setTimeout(() => {
       this.selectedLang = lang;
       this.inputElement.nativeElement.focus();
-    }, 0);
+    });
   }
 }
