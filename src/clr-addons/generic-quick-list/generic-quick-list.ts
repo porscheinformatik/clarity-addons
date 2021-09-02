@@ -54,7 +54,7 @@ export class ClrGenericQuickList<T extends ClrGenericQuickListItem> implements O
   }
 
   ngAfterViewInit(): void {
-    this.timeout = setTimeout(() => this.setFocusOnAdd(), 1);
+    this.timeout = setTimeout(() => this.setFocusOnAdd());
   }
 
   addItem(): void {
@@ -77,7 +77,8 @@ export class ClrGenericQuickList<T extends ClrGenericQuickListItem> implements O
           "button, a, input, select, textarea, [tabindex]:not([tabindex='-1'])"
         );
         if (firstFocusable) {
-          firstFocusable.focus();
+          // needed if the first focusable binds to focus attribute -> ExpressionHasChangedAfterItHasBeenChecked
+          setTimeout(() => firstFocusable.focus());
         }
       }
       this.rowCountFocus = els.length;

@@ -187,13 +187,9 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked, Con
   }
 
   handleInputChanged(): void {
-    // Call in set timeout to avoid Expression has changed after it has been checked error.
-    // Sometimes the value changes because we cut off decimal places
-    setTimeout(() => {
-      this.updateInput(
-        this.formatNumber(this._numericValue.toString().replace(new RegExp('[.]', 'g'), this.decimalSeparator), true)
-      );
-    }, 1);
+    this.updateInput(
+      this.formatNumber(this._numericValue.toString().replace(new RegExp('[.]', 'g'), this.decimalSeparator), true)
+    );
   }
 
   formatInput(element: HTMLInputElement, finalFormatting: boolean): void {
@@ -310,7 +306,9 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked, Con
     this._numericValue = parseFloat(this.strip(value).replace(this.decimalSeparator, '.'));
     if (this._numericValue !== this.roundOrTruncate(this.originalValue)) {
       this.originalValue = this._numericValue;
-      this.numericValueChanged.emit(this._numericValue);
+      // Call in setTimeout to avoid Expression has changed after it has been checked error.
+      // This happens for example if the initial input has more decimal places than allowed
+      setTimeout(() => this.numericValueChanged.emit(this._numericValue));
     }
   }
 
