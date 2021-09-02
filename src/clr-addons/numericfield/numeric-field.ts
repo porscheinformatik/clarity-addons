@@ -188,7 +188,8 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked, Con
 
   handleInputChanged(): void {
     this.updateInput(
-      this.formatNumber(this._numericValue.toString().replace(new RegExp('[.]', 'g'), this.decimalSeparator), true)
+      this.formatNumber(this._numericValue.toString().replace(new RegExp('[.]', 'g'), this.decimalSeparator), true),
+      true
     );
   }
 
@@ -196,7 +197,7 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked, Con
     const cursorPos = element.selectionStart;
     const length = element.value.length;
     const setCursor = this.displayValue !== element.value;
-    this.updateInput(this.formatNumber(element.value, finalFormatting));
+    this.updateInput(this.formatNumber(element.value, finalFormatting), false);
     if (setCursor) {
       element.selectionStart = element.selectionEnd = Math.max(cursorPos + element.value.length - length, 0);
     }
@@ -300,15 +301,19 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked, Con
     return result;
   }
 
-  updateInput(value: string): void {
+  updateInput(value: string, updateAsync: boolean): void {
     this.displayValue = value;
     this.inputEl.nativeElement.value = value;
     this._numericValue = parseFloat(this.strip(value).replace(this.decimalSeparator, '.'));
     if (this._numericValue !== this.roundOrTruncate(this.originalValue)) {
       this.originalValue = this._numericValue;
-      // Call in setTimeout to avoid Expression has changed after it has been checked error.
-      // This happens for example if the initial input has more decimal places than allowed
-      setTimeout(() => this.numericValueChanged.emit(this._numericValue));
+      if (updateAsync) {
+        // Call in setTimeout to avoid Expression has changed after it has been checked error.
+        // This happens for example if the initial input has more decimal places than allowed
+        setTimeout(() => this.numericValueChanged.emit(this._numericValue));
+      } else {
+        this.numericValueChanged.emit(this._numericValue);
+      }
     }
   }
 
