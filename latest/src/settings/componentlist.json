@@ -46,6 +46,11 @@
             "type": "component"
         },
         {
+            "url": "brand-avatar",
+            "text": "Brand avatar",
+            "type": "component"
+        },
+        {
             "url": "multilingual-input",
             "text": "Multilingual Inputs",
             "type": "component"
