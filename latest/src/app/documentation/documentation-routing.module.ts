@@ -157,6 +157,13 @@ const documentationRoutes: Routes = [
                 }
             },
             {
+                path: "brand-avatar",
+                loadChildren: () => import("./demos/brand-avatar/brand-avatar.demo.module").then(m => m.BrandAvatarDemoModule),
+                data: {
+                    browserTitle: "Brand Avatar"
+                }
+            },
+            {
                 path: "multilingual-input",
                 loadChildren: () => import("./demos/multilingual-input/multilingual-input.demo.module")
                     .then(m => m.MultilingualInputDemoModule),
