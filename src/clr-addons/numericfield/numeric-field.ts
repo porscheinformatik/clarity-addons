@@ -48,13 +48,13 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked, Con
   @Input('clrAutofillDecimals') autofillDecimals = false;
   @Input('clrDecimalSep') decimalSeparator = ',';
   @Input('clrGroupingSep') groupingSeparator = '.';
-  @Input('clrUnit') unit: string = null;
   @Input('clrUnitPosition') unitPosition = 'right';
   @Output('clrNumericValueChange') numericValueChanged = new EventEmitter<number>();
 
   private displayValue = '';
   private originalValue = NaN;
   private _numericValue: number;
+  private _unit: string = null;
   private inputChangeListener: () => void;
   private keyupListener: () => void;
   private keydownListener: () => void;
@@ -65,6 +65,18 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked, Con
       this.originalValue = value;
       this._numericValue = this.roundOrTruncate(value);
       this.handleInputChanged();
+    }
+  }
+
+  @Input('clrUnit')
+  set unit(value: string) {
+    if (value != this._unit) {
+      this._unit = value;
+      if (this.unitSpan != null) {
+        this.unitSpan.innerHTML = '';
+        const newUnitText = this.renderer.createText(value);
+        this.renderer.appendChild(this.unitSpan, newUnitText);
+      }
     }
   }
 
@@ -329,7 +341,7 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked, Con
   private injectUnitSymbol(): void {
     // Need to inject the unit symbol when the input element width is set to its actual value,
     // otherwise the icon wont show in the correct position
-    if (!!this.unit && !this.unitSpan && this.inputEl.nativeElement.offsetWidth !== 0) {
+    if (!!this._unit && !this.unitSpan && this.inputEl.nativeElement.offsetWidth !== 0) {
       // Get the input wrapper and apply necessary styles
       const inputWrapper = this.inputEl.nativeElement.parentNode;
       this.renderer.addClass(inputWrapper, 'numeric-input-wrapper');
@@ -338,7 +350,7 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked, Con
       if (!this.unitSpan) {
         this.unitSpan = this.renderer.createElement('span');
         this.renderer.addClass(this.unitSpan, 'unit');
-        const unitSymbol = this.renderer.createText(this.unit);
+        const unitSymbol = this.renderer.createText(this._unit);
         this.renderer.appendChild(this.unitSpan, unitSymbol);
         this.renderer.appendChild(inputWrapper, this.unitSpan);
       }
