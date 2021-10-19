@@ -40,8 +40,8 @@
         }
       }
 
-      input[type='checkbox']:checked ~ .nav-list {
-        visibility: visible;
+      .nav-list {
+        display: none;
 
         .nav-link {
           color: var(--clr-dropdown-item-color);
@@ -61,6 +61,11 @@
             color: var(--clr-dropdown-active-text-color);
           }
         }
+      }
+
+      input[type='checkbox']:checked ~ .nav-list {
+        visibility: visible;
+        display: flex;
       }
     }
   }
