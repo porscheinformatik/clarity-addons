@@ -384,6 +384,7 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked, Con
 
   private roundOrTruncate(value: number): number {
     const method = this.roundValue ? 'round' : value < 0 ? 'ceil' : 'floor';
-    return Math[method](value * Math.pow(10, this.decimalPlaces)) / Math.pow(10, this.decimalPlaces);
+    // 16 is the highest precision before numbers have weird behaviour. see https://stackoverflow.com/q/21472828/15120942
+    return Math[method](+(value * Math.pow(10, this.decimalPlaces)).toPrecision(16)) / Math.pow(10, this.decimalPlaces);
   }
 }
