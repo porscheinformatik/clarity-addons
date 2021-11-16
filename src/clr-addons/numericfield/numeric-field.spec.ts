@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -278,6 +278,20 @@ describe('NumericComponent', () => {
     expect(inputEl.nativeElement.value).toBe('124,0');
     expect(fixture.componentInstance.component.displayValue).toBe('124,0');
     expect(fixture.componentInstance.input).toBe(124);
+  }));
+
+  it('Issue #1378', fakeAsync(() => {
+    fixture.componentInstance.decimalPlaces = 2;
+    fixture.componentInstance.input = 1.13;
+    fixture.componentInstance.rounded = false;
+    fixture.componentInstance.autofill = true;
+    fixture.detectChanges();
+
+    tick(10);
+
+    expect(inputEl.nativeElement.value).toBe('1,13');
+    expect(fixture.componentInstance.component.displayValue).toBe('1,13');
+    expect(fixture.componentInstance.input).toBe(1.13);
   }));
 
   it('Simulate pasted value from clipboard', () => {
