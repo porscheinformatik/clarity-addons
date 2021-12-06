@@ -37,7 +37,7 @@
     "@webcomponents/custom-elements": "1.5.0",
     "@webcomponents/webcomponentsjs": "2.6.0",
     "classlist.js": "1.1.20150312",
-    "core-js": "3.19.2",
+    "core-js": "3.19.3",
     "intl": "1.2.5",
     "jump.js": "1.0.2",
     "prismjs": "1.25.0",
