@@ -18,5 +18,6 @@
     }
   ],
   "baseBranches": ["master", "website"],
-  "prHourlyLimit": 5
+  "prHourlyLimit": 5,
+  "prConcurrentLimit": 0
 }
