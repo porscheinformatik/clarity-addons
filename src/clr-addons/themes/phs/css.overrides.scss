@@ -67,7 +67,7 @@
     --color: var(--turquoise);
   }
 
-  .spinner {
+  .spinner:not(.spinner-check) {
     background: generateSpinnerIcon($black, $turquoise);
 
     &.spinner-inverse {
