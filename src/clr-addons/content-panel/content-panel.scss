@@ -16,19 +16,13 @@
 
   @media screen and (min-width: map-get($clr-grid-breakpoints, xl)) {
     .content-panel-outer-wrapper {
-      // The content next to the panel always has order = 2
-      order: 2;
+      order: 1;
     }
   }
 
   .content-panel {
-    // Default position is right so set order = 3 because 3 > 2
-    order: 3;
-
-    &.left {
-      // If position is set to left set order = 1 because 1 < 2
-      order: 1;
-    }
+    // Position content-panel to the right of the main content
+    order: 2;
   }
 
   .content-panel-content-wrapper {
@@ -39,18 +33,11 @@
     top: 0;
     bottom: 0;
     right: 0;
-    left: calc(100% - var(--clr-content-panel-width));
     border-left: var(--clr-global-borderwidth) solid var(--clr-border-color);
     overflow: auto;
 
     @media screen and (min-width: map-get($clr-grid-breakpoints, md)) {
       width: var(--clr-content-panel-width);
-
-      &.content-panel-left {
-        left: 0;
-        border-right: var(--clr-global-borderwidth) solid var(--clr-border-color);
-        border-left: none;
-      }
     }
 
     @media screen and (min-width: map-get($clr-grid-breakpoints, xl)) {
@@ -59,7 +46,6 @@
     }
 
     @media screen and (max-width: map-get($clr-grid-breakpoints, md)) {
-      left: 0;
       width: 100%;
       border: none;
     }

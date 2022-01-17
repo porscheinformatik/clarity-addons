@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -14,7 +14,6 @@ import { ClrDateTimeModule } from './date-time-container/date-time-module';
 import { ClrDotPagerModule } from './dot-pager/dot-pager.module';
 import { ClrFlowBarModule } from './flow-bar/flow-bar.module';
 import { ClrGenericQuickListModule } from './generic-quick-list/generic-quick-list.module';
-import { ClrAddonsIconsModule } from './icons/icons.module';
 import { ClrLetterAvatarModule } from './letter-avatar/letter-avatar.module';
 import { ClrMainNavGroupModule } from './main-nav-group/main-nav-group.module';
 import { ClrMultilingualModule } from './multilingual/multilingual.module';
@@ -54,7 +53,6 @@ import { ClrBrandAvatarModule } from './brand-avatar/brand-avatar.module';
     ClrMultilingualModule,
     ClrGenericQuickListModule,
     ClrDataListValidatorModule,
-    ClrAddonsIconsModule,
     ClrHistoryModule,
     ClrAutocompleteOffModule,
     ClrBrandAvatarModule,
