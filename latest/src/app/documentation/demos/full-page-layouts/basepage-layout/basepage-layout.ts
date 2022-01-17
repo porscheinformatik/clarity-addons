@@ -19,11 +19,8 @@ export class BasepageLayoutDemo implements OnInit {
     id: string;
     context = {["applicationName"] : "ADDONS"};
 
-    @ViewChild("leftContentPanel")
-    leftContentPanel: ClrContentPanel;
-
-    @ViewChild("rightContentPanel")
-    rightContentPanel: ClrContentPanel;
+    @ViewChild("contentPanel")
+    contentPanel: ClrContentPanel;
 
     constructor(private router: Router,
                 private historyService: ClrHistoryService) {
@@ -57,12 +54,8 @@ export class BasepageLayoutDemo implements OnInit {
         }
     }
 
-    private toggleLeftPanel() {
-        this.leftContentPanel.toggle();
-    }
-
-    private toggleRightPanel() {
-        this.rightContentPanel.toggle();
+    private togglePanel() {
+        this.contentPanel.toggle();
     }
 
     private collectRouteData(key: string) {

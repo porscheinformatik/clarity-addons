@@ -11,7 +11,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "aot": true,
             "outputPath": "dist/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -34,7 +33,7 @@
             ],
             "styles": [
               "node_modules/prismjs/themes/prism-solarizedlight.css",
-              "node_modules/normalize.css/normalize.css",
+              "node_modules/modern-normalize/modern-normalize.css",
               "node_modules/@cds/core/global.min.css",
               "node_modules/@cds/core/styles/module.shims.min.css",
               "node_modules/@clr/icons/clr-icons.min.css",
@@ -47,7 +46,13 @@
               "node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js",
               "node_modules/prismjs/prism.js",
               "node_modules/prismjs/components/prism-typescript.min.js"
-            ]
+            ],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -61,7 +66,6 @@
               "outputHashing": "all",
               "sourceMap": false,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -73,7 +77,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -156,7 +161,6 @@
       "skipTests": true
     },
     "@schematics/angular:module": {
-      "skipTests": true
     },
     "@schematics/angular:pipe": {
       "skipTests": true
