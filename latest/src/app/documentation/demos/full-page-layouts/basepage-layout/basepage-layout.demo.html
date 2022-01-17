@@ -14,9 +14,7 @@
             <clr-button-group [clrMenuPosition]="'bottom-right'" *ngIf="withCommandBar">
                 <clr-button *ngIf="!withContentPanel">Command1</clr-button>
                 <clr-button *ngIf="!withContentPanel">Command2</clr-button>
-                <clr-button *ngIf="withContentPanel" (click)="toggleRightPanel()">Show/Hide Right</clr-button>
-                <clr-button *ngIf="withContentPanel" (click)="toggleLeftPanel()" [clrInMenu]="true">Show/Hide Left
-                </clr-button>
+                <clr-button *ngIf="withContentPanel" (click)="togglePanel()">Show/Hide</clr-button>
                 <clr-button [clrInMenu]="true">Command3</clr-button>
             </clr-button-group>
         </div>
@@ -106,11 +104,7 @@
     </div>
     <clr-content-panel-container *ngIf="withContentPanel">
         <h2>Content Area</h2>
-        <clr-content-panel #leftContentPanel clrDirection="left">
-            <ng-container clr-content-panel-title>Left Content Panel</ng-container>
-            <ng-container clr-content-panel-content>Content</ng-container>
-        </clr-content-panel>
-        <clr-content-panel #rightContentPanel>
+        <clr-content-panel #contentPanel>
             <ng-container clr-content-panel-title>Right Content Panel</ng-container>
             <ng-container clr-content-panel-content>Content</ng-container>
         </clr-content-panel>
