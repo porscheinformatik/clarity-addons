@@ -6,7 +6,7 @@
   .header {
     position: fixed;
     width: 100%;
-    z-index: map-get($clr-layers, column-switch);
+    z-index: map-get($clr-layers, sidepanel);
     top: 0;
     left: 0;
   }

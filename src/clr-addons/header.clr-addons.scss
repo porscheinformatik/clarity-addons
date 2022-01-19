@@ -204,7 +204,8 @@
           bottom: 0;
           left: 0;
           right: 0;
-          background: rgba(var(--black), 0.85);
+          background: var(--clr-responsive-nav-header-backdrop-bg-color, black);
+          opacity: var(--clr-responsive-nav-header-backdrop-opacity, 0.85);
           cursor: pointer;
           z-index: $clr-sliding-panel-backdrop-z-index;
         }
@@ -362,5 +363,15 @@
         }
       }
     }
+  }
+}
+
+.open-hamburger-menu .header-hamburger-trigger,
+.open-overflow-menu .header-overflow-trigger {
+  span::before {
+    background-color: white;
+  }
+  span::after {
+    background-color: white;
   }
 }
