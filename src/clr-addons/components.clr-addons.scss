@@ -332,6 +332,10 @@ clr-date-container .clr-control-container {
   width: 100%;
   max-width: 100%;
 
+  &.clr-focus {
+    width: 100%;
+  }
+
   // Set all input widths inside a clr-input-group to 100% minus the icons width
   > .clr-input {
     // Except for the Clr Data List Input, because this one just looks terrible otherwise (clarity using diff icon here)

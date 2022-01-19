@@ -6,4 +6,19 @@
 
 <h2>Kitchen Sink</h2>
 
+<h3>Button Loading State</h3>
 <button [clrLoading]="validateBtnState" class="btn btn-info-outline" (click)="validateDemo()">Validate</button>
+
+<h3>Password in form</h3>
+<form clrForm clrLayout="horizontal" class="clr-row">
+  <clr-password-container class="clr-col-12">
+    <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2">Password label</label>
+    <input
+      clrPassword
+      class="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-3"
+      placeholder="Password please!"
+      type="text"
+      name="passwordName"
+    />
+  </clr-password-container>
+</form>
