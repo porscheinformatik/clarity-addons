@@ -29,7 +29,7 @@ import { ClrViewEditSectionModule } from './view-edit-section/view-edit-section.
 import { ClrHistoryModule } from './history/history.module';
 import { ClrAutocompleteOffModule } from './autocomplete-off/autocomplete-off.module';
 import { ClrBrandAvatarModule } from './brand-avatar/brand-avatar.module';
-import { ClrLocationBarModule } from './location-bar';
+import { ClrLocationBarModule } from './location-bar/location-bar.module';
 
 @NgModule({
   exports: [
