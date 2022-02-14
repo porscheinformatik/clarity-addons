@@ -59,6 +59,10 @@ export const APP_ROUTES: Routes = [
       import('./progress-spinner/progress-spinner.demo.module').then(m => m.ProgressSpinnerDemoModule),
   },
   {
+    path: 'location-bar',
+    loadChildren: () => import('./location-bar/location-bar.demo.module').then(m => m.LocationBarDemoModule),
+  },
+  {
     path: 'notification',
     loadChildren: () => import('./notification/notification.demo.module').then(m => m.NotificationDemoModule),
   },
