@@ -13,10 +13,10 @@ ClarityIcons.addIcons(organizationIcon);
 export class LocationBarComponent<T extends NodeId> {
   root$ = new ReplaySubject<LocationBarNode<T>>();
 
-  @Input() iconShape = 'organization';
-  @Input() iconTitle = '';
+  @Input('clrIconShape') iconShape = 'organization';
+  @Input('clrIconTitle') iconTitle = '';
 
-  @Input()
+  @Input('clrRoots')
   set roots(roots: LocationBarNode<T>[]) {
     const internalRoot = new LocationBarNode(null, null, false);
     internalRoot.setChildren(roots);
@@ -26,7 +26,7 @@ export class LocationBarComponent<T extends NodeId> {
     this.root$.next(internalRoot);
   }
 
-  @Output() selectionChanged = new EventEmitter<T[]>();
+  @Output('clrSelectionChanged') selectionChanged = new EventEmitter<T[]>();
 
   onSelectionChanged(selection: T[]) {
     this.selectionChanged.emit(selection);

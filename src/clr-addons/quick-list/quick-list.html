@@ -10,6 +10,7 @@
       [blankOption]="blankOption"
       [mandatory]="mandatory"
       [readonly]="readonly"
+      [disabled]="disabled"
     >
     </clr-add-option>
   </ng-container>
@@ -18,7 +19,7 @@
     type="button"
     class="btn btn-link btn-sm quick-list-add"
     (click)="addBlankOption()"
-    [disabled]="addNotPossible()"
+    [disabled]="addNotPossible() || disabled"
   >
     {{addLabel}}
   </button>
