@@ -1,0 +1,153 @@
+<clr-doc-wrapper [title]="title">
+  <article>
+    <h5 class="component-summary">The location bar is used to select a node in hierarchical data.</h5>
+    <div id="design-guidelines">
+
+      <h3>Features</h3>
+      <p>
+        Preselection: Nodes can be preselected by simply setting their <code class="clr-code">preselected</code> attribute to <code class="clr-code">true</code>.
+      </p>
+      <p>
+        Unselectable nodes: Only makes sense in combination with preselection. Preselect some parent nodes and set them unselectable 
+        to give some context, without allowing the user to change it. Attribute <code class="clr-code">selectable</code> controls this behavior.
+      </p>
+      <p>
+        Lazy Loading: When loading of all data in advance is too expensive, the component also supports lazy loading of children.
+        As soon as a node has an undefined children array, it will try to lazy load its children via the injected
+        <code class="clr-code">LocationBarContentProvider</code>, which needs to be provided via injection token
+        <code class="clr-code">CONTENT_PROVIDER</code>. See example below for implementation details.
+      </p>
+
+      <h3>Usage</h3>
+      <p>
+        The component uses <code class="clr-code">LocationBarNode&#8826;T&#8827; </code> for its values.
+        The generic type <code class="clr-code">T</code> represents the id of a node.
+      </p>
+
+      <h4>LocationBarNode description</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">attribute</th>
+            <th class="left clr-hidden-xs-down">Values</th>
+            <th class="left">Effect</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left">
+              <b>id</b>
+              <div class="clr-hidden-sm-up">Type: T</div>
+            </td>
+            <td class="left clr-hidden-xs-down"><code class="clr-code">T</code></td>
+            <td class="left">The generic identifier of a node</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>label</b>
+              <div class="clr-hidden-sm-up">Type: string</div>
+            </td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="left">The label that will be displayed for a node/td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>preSelected</b>
+              <div class="clr-hidden-sm-up">Type: boolean</div>
+            </td>
+            <td class="left clr-hidden-xs-down">boolean</td>
+            <td class="left">Whether the node is preselected</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>selectable</b>
+              <div class="clr-hidden-sm-up">Type: boolean</div>
+            </td>
+            <td class="left clr-hidden-xs-down">boolean</td>
+            <td class="left">Whether the node is selectable</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>setChildren(children: LocationBarNode&lt;T>[])</b>
+              <div class="clr-hidden-sm-up">Type: method</div>
+            </td>
+            <td class="left clr-hidden-xs-down">method</td>
+            <td class="left">Sets the children for the node</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Summary of Options</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Parameter</th>
+            <th class="left clr-hidden-xs-down">Values</th>
+            <th class="clr-hidden-xs-down">Default</th>
+            <th class="left">Effect</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left">
+              <b>[clrRoots]</b>
+              <div class="clr-hidden-sm-up">Type: LocationBarNode&lt;T>[]</div>
+              <div class="clr-hidden-sm-up">Default: []</div>
+            </td>
+            <td class="left clr-hidden-xs-down">LocationBarNode&lt;T>[]</td>
+            <td class="clr-hidden-xs-down">[]</td>
+            <td class="left">Value binding for control represented by a list of LocationBarNode&lt;T>.</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[clrIconShape]</b>
+              <div class="clr-hidden-sm-up">Type: string</div>
+              <div class="clr-hidden-sm-up">Default: "organization"</div>
+            </td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="clr-hidden-xs-down">"organization"</td>
+            <td class="left">Name of the shape displayed before the location bar. Can be null to hide the icon.</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[clrIconTitle]</b>
+              <div class="clr-hidden-sm-up">Type: string</div>
+              <div class="clr-hidden-sm-up">Default: ""</div>
+            </td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="clr-hidden-xs-down">""</td>
+            <td class="left">Title attribute of the icon displayed before the location bar.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="code-examples">
+      <h3 id="examples">Code &amp; Examples</h3>
+
+      <h4>Standard behavior</h4>
+      <div>
+        <clr-location-bar [clrRoots]="roots1"></clr-location-bar>
+      </div>
+      <clr-code-snippet [clrCode]="standardExample"></clr-code-snippet>
+      <clr-code-snippet [clrCode]="standardTSExample" clrLanguage="typescript"></clr-code-snippet>
+
+      <h4>Preselected nodes</h4>
+      <div>
+        <clr-location-bar [clrRoots]="roots2"></clr-location-bar>
+      </div>
+      <clr-code-snippet [clrCode]="preExample"></clr-code-snippet>
+      <clr-code-snippet [clrCode]="preTSExample" clrLanguage="typescript"></clr-code-snippet>
+
+      <h4>Lazy loading children</h4>
+      <div>
+        <clr-location-bar [clrRoots]="rootsLazy"></clr-location-bar>
+      </div>
+      <clr-code-snippet [clrCode]="lazyExample"></clr-code-snippet>
+      <clr-code-snippet [clrCode]="lazyTSExample" clrLanguage="typescript"></clr-code-snippet>
+      <clr-code-snippet [clrCode]="lazyContentProvider" clrLanguage="typescript"></clr-code-snippet>
+      <clr-code-snippet [clrCode]="lazyProviderModule" clrLanguage="typescript"></clr-code-snippet>
+
+    </div>
+  </article>
+</clr-doc-wrapper>
