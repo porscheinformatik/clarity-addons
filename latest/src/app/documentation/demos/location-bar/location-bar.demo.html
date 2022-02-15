@@ -20,7 +20,7 @@
 
       <h3>Usage</h3>
       <p>
-        The component uses <code class="clr-code">LocationBarNode&#8826;T&#8827; </code> for its values.
+        The component uses <code class="clr-code">LocationBarNode&#8826;T extends NodeId&#8827; </code> for its values.
         The generic type <code class="clr-code">T</code> represents the id of a node.
       </p>
 
@@ -39,7 +39,7 @@
               <b>id</b>
               <div class="clr-hidden-sm-up">Type: T</div>
             </td>
-            <td class="left clr-hidden-xs-down"><code class="clr-code">T</code></td>
+            <td class="left clr-hidden-xs-down"><code class="clr-code">T extends NodeId</code></td>
             <td class="left">The generic identifier of a node</td>
           </tr>
           <tr>
@@ -131,6 +131,7 @@
       </div>
       <clr-code-snippet [clrCode]="standardExample"></clr-code-snippet>
       <clr-code-snippet [clrCode]="standardTSExample" clrLanguage="typescript"></clr-code-snippet>
+      <clr-code-snippet [clrCode]="standardIDExample" clrLanguage="typescript"></clr-code-snippet>
 
       <h4>Preselected nodes</h4>
       <div>

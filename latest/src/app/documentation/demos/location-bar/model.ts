@@ -1,4 +1,4 @@
-import { NodeId } from '@porscheinformatik/clr-addons';
+import { NodeId } from "@porscheinformatik/clr-addons";
 
 export class DemoLocationBarNodeId extends NodeId {
   constructor(public id: string) {

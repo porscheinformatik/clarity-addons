@@ -34,6 +34,18 @@ private buildRoots1() {
 }
 `;
 
+const STANDARD_ID_EXAMPLE = `
+export class DemoLocationBarNodeId extends NodeId {
+  constructor(public id: string) {
+    super();
+  }
+
+  equals(other: DemoLocationBarNodeId): boolean {
+    return this.id === other.id;
+  }
+}
+`;
+
 const PRE_EXAMPLE = `
 <clr-location-bar [clrRoots]="roots2"></clr-location-bar>
 `;
@@ -102,6 +114,7 @@ export class LocationBarDemoModule {}
 export class LocationBarDemo extends ClarityDocComponent implements OnInit {
   standardExample = STANDARD_EXAMPLE;
   standardTSExample = STANDARD_TS_EXAMPLE;
+  standardIDExample = STANDARD_ID_EXAMPLE;
   preExample = PRE_EXAMPLE;
   preTSExample = PRE_TS_EXAMPLE;
   lazyExample = LAZY_EXAMPLE;
