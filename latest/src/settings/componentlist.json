@@ -44,6 +44,11 @@
             "url": "letter-avatar",
             "text": "Letter avatar",
             "type": "component"
+        },        
+        {
+            "url": "location-bar",
+            "text": "Location Bar",
+            "type": "component"
         },
         {
             "url": "brand-avatar",

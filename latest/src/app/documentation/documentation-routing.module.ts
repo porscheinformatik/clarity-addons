@@ -157,6 +157,13 @@ const documentationRoutes: Routes = [
                 }
             },
             {
+                path: "location-bar",
+                loadChildren: () => import("./demos/location-bar/location-bar.demo.module").then(m => m.LocationBarDemoModule),
+                data: {
+                    browserTitle: "Location Bar"
+                }
+            },
+            {
                 path: "brand-avatar",
                 loadChildren: () => import("./demos/brand-avatar/brand-avatar.demo.module").then(m => m.BrandAvatarDemoModule),
                 data: {
@@ -177,7 +184,7 @@ const documentationRoutes: Routes = [
                 data: {
                     browserTitle: "History"
                 }
-            },            
+            },
         ]
     }
 ];
