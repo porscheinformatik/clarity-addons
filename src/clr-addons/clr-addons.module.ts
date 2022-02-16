@@ -30,6 +30,7 @@ import { ClrHistoryModule } from './history/history.module';
 import { ClrAutocompleteOffModule } from './autocomplete-off/autocomplete-off.module';
 import { ClrBrandAvatarModule } from './brand-avatar/brand-avatar.module';
 import { ClrLocationBarModule } from './location-bar/location-bar.module';
+import { ClrFormModule } from './abstract-form-component/form.module';
 
 @NgModule({
   exports: [
@@ -58,6 +59,7 @@ import { ClrLocationBarModule } from './location-bar/location-bar.module';
     ClrAutocompleteOffModule,
     ClrBrandAvatarModule,
     ClrLocationBarModule,
+    ClrFormModule,
   ],
 })
 export class ClrAddonsModule {}

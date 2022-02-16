@@ -339,17 +339,17 @@ clr-date-container .clr-control-container {
 
   // Set all input widths inside a clr-input-group to 100% minus the icons width
   > .clr-input {
-    // Except for the Clr Data List Input, because this one just looks terrible otherwise (clarity using diff icon here)
-    &:not([clrdatalistinput]) {
+    // Except for the ClrDataListInput and ClrDate, because this one just looks terrible otherwise (clarity using diff icon here)
+    &:not([clrdatalistinput]):not([clrdate]) {
       width: calc(100% - 1.5rem);
     }
   }
 }
 
-// Set the width of all inputs except time to 100%
+// Set the width of all inputs except time and date to 100%
 .clr-input-wrapper {
   max-width: none;
-  input:not([type='time']) {
+  input:not([type='time']):not([clrdate]) {
     width: 100%;
   }
 }
@@ -385,6 +385,10 @@ clr-date-container .clr-control-container {
 
 .btn clr-icon {
   transform: translate3d(0, -0.1rem, 0);
+}
+
+.clr-treenode-link:hover:visited {
+  color: inherit;
 }
 
 // Has to be at the bottom to override the styles from the above properly
