@@ -35,6 +35,7 @@ describe('LocationBarComponent', () => {
       declarations: [LocationBarComponent, LocationBarNodeComponent],
       imports: [ClrIconModule, ClrDropdownModule],
       providers: [{ provide: CONTENT_PROVIDER, useClass: TestContentProvider }],
+      teardown: { destroyAfterEach: false },
     }).compileComponents();
 
     /* create component and test fixture */

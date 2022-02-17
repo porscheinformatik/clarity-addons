@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -20,7 +20,7 @@ export class ClrSearchField implements OnInit, OnDestroy, AfterViewInit {
   private deleteButton: HTMLElement;
   private searchSymbol: HTMLElement;
 
-  destroyed = new Subject();
+  destroyed = new Subject<void>();
 
   constructor(private renderer: Renderer2, private inputEl: ElementRef, private ngControl: NgControl) {}
 

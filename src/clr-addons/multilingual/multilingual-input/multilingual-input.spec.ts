@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { ClarityModule, ɵbc as ControlIdService } from '@clr/angular';
+import { ClarityModule } from '@clr/angular';
 import { ClrMultilingualModule } from '../multilingual.module';
 
 @Component({
@@ -57,6 +57,7 @@ describe('Multilingual Input', () => {
       TestBed.configureTestingModule({
         imports: [ClarityModule, FormsModule, ClrMultilingualModule],
         declarations: [TestComponentAllValid],
+        teardown: { destroyAfterEach: false },
       }).compileComponents();
 
       fixture = TestBed.createComponent(TestComponentAllValid);
@@ -67,7 +68,7 @@ describe('Multilingual Input', () => {
     beforeEach(
       waitForAsync(() => {
         fixture.detectChanges();
-        fixture.whenStable();
+        fixture.whenStable().then();
       })
     );
 
@@ -108,6 +109,7 @@ describe('Multilingual Input', () => {
       TestBed.configureTestingModule({
         imports: [ClarityModule, FormsModule, ClrMultilingualModule],
         declarations: [TestComponentOneValid],
+        teardown: { destroyAfterEach: false },
       }).compileComponents();
 
       fixture = TestBed.createComponent(TestComponentOneValid);
@@ -118,7 +120,7 @@ describe('Multilingual Input', () => {
     beforeEach(
       waitForAsync(() => {
         fixture.detectChanges();
-        fixture.whenStable();
+        fixture.whenStable().then();
       })
     );
 
@@ -134,10 +136,6 @@ describe('Multilingual Input', () => {
       sendInput(inputEl, fixture, '');
       validationShown(true, fixture);
     });
-  });
-
-  it('check correct obfuscated imports', () => {
-    expect(new ControlIdService().constructor.name).toBe('ControlIdService');
   });
 
   function validationShown(shouldBeVisible: boolean, fixture: ComponentFixture<any>): void {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -69,7 +69,7 @@ export class AppContentContainerComponent implements OnDestroy {
   private static readonly TEST_BREADCRUMB_ELEMENT = { label: 'breadcrumb', url: 'breadcrumb' };
 
   public routes: Route[] = APP_ROUTES;
-  destroyed = new Subject();
+  destroyed = new Subject<void>();
 
   constructor(private breadcrumbService: ClrBreadcrumbService, private router: Router) {
     this.router.events.pipe(takeUntil(this.destroyed)).subscribe(val => {

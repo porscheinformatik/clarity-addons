@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -19,7 +19,7 @@ export class ClrBreadcrumb implements OnDestroy {
    * The array of breadcrumb elements to be displayed.
    */
   breadcrumbElements: ClrBreadcrumbModel[] = [];
-  destroyed = new Subject();
+  destroyed = new Subject<void>();
 
   constructor(private breadcrumbService: ClrBreadcrumbService) {
     this.breadcrumbService.breadcrumbChange.pipe(takeUntil(this.destroyed)).subscribe(r => {

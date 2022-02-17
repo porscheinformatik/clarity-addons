@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -76,6 +76,7 @@ describe('ClrTreetable', () => {
       TestBed.configureTestingModule({
         declarations: [EmptyTestComponent, RowClickableTestComponent, ActionTestComponent],
         imports: [ClarityModule, FormsModule, ClrTreetableModule, BrowserAnimationsModule],
+        teardown: { destroyAfterEach: false },
       }).compileComponents();
     })
   );

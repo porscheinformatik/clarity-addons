@@ -4,12 +4,7 @@
   "deleteDestPath": false,
   "lib": {
     "entryFile": "./public_api.ts",
-    "flatModuleFile": "clr-addons",
-    "umdModuleIds": {
-      "rxjs": "rxjs",
-      "@clr/angular": "@clr/angular",
-      "util": "util"
-    }
+    "flatModuleFile": "clr-addons"
   },
   "allowedNonPeerDependencies": ["@angular-devkit/core"]
 }

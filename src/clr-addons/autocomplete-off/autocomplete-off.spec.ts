@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -35,6 +35,7 @@ describe('AutocompleteOffDirective', () => {
     TestBed.configureTestingModule({
       imports: [ClarityModule, FormsModule, BrowserAnimationsModule, ClrAddonsModule],
       declarations: [TestComponent],
+      teardown: { destroyAfterEach: false },
     }).compileComponents();
 
     fixture = TestBed.createComponent(TestComponent);

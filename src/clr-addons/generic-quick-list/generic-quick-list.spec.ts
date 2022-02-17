@@ -53,6 +53,7 @@ describe('GenericQuickListComponent', () => {
       TestBed.configureTestingModule({
         declarations: [TestComponent],
         imports: [CommonModule, ClarityModule, FormsModule, ClrGenericQuickListModule],
+        teardown: { destroyAfterEach: false },
       }).compileComponents();
     })
   );
