@@ -8,7 +8,7 @@ import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { ClarityModule, ClrFormsModule } from "@clr/angular";
-import { ClrNumericFieldModule, ClrDateTimeModule, ClrMultilingualModule } from "@porscheinformatik/clr-addons";
+import { ClrAddonsModule } from "@porscheinformatik/clr-addons";
 import { UtilsModule } from "../../../utils/utils.module";
 import { DocWrapperModule } from "../_doc-wrapper/doc-wrapper.module";
 
@@ -20,9 +20,7 @@ import { FormsDemo } from "./forms.demo";
         FormsModule,
         ClarityModule,
         ClrFormsModule,
-        ClrNumericFieldModule,
-        ClrDateTimeModule,
-        ClrMultilingualModule,
+        ClrAddonsModule,
         UtilsModule,
         DocWrapperModule,
         RouterModule.forChild([{ path: "", component: FormsDemo }])
