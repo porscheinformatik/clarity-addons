@@ -1,13 +1,9 @@
-import { Directive, ElementRef, HostBinding, Input, OnDestroy, OnInit, Optional, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, OnDestroy, OnInit, Optional, Renderer2 } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { ControlIdService } from './control-id.service';
 
 @Directive({ selector: 'label' })
 export class ClrAddonsLabel implements OnInit, OnDestroy {
-  @HostBinding('attr.for')
-  @Input('for')
-  forAttr: string;
-
   destroyed$ = new Subject<void>();
 
   constructor(
@@ -22,8 +18,11 @@ export class ClrAddonsLabel implements OnInit, OnDestroy {
       this.renderer.addClass(this.el.nativeElement, 'clr-control-label');
     }
 
-    if (this.controlIdService && !this.forAttr) {
-      this.controlIdService.idChange.pipe(takeUntil(this.destroyed$)).subscribe(id => (this.forAttr = id));
+    if (this.controlIdService && !(this.el.nativeElement as HTMLLabelElement).getAttribute('for')) {
+      this.controlIdService.idChange.pipe(takeUntil(this.destroyed$)).subscribe(id =>
+        // setTimeout needed, otherwise the ClrLabel directive of clarity will remove this via HostBinding again
+        setTimeout(() => this.renderer.setAttribute(this.el.nativeElement, 'for', id))
+      );
     }
   }
 

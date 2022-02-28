@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
+import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { ClrAddonsLabel } from './label';
@@ -50,17 +50,19 @@ describe('ClrAddonsLabel', () => {
     ).toBeTrue();
   });
 
-  it('sets the for attribute to the id given by the service', function () {
+  it('sets the for attribute to the id given by the service', fakeAsync(() => {
     TestBed.configureTestingModule({ declarations: [ClrAddonsLabel, NoForTest], providers: [ControlIdService] });
     const fixture = TestBed.createComponent(NoForTest);
     fixture.detectChanges();
     const controlIdService = fixture.debugElement.injector.get(ControlIdService);
     const label = fixture.nativeElement.querySelector('label');
+    tick(1);
     expect(label.getAttribute('for')).toBe(controlIdService.id);
     controlIdService.id = 'test';
     fixture.detectChanges();
+    tick(1);
     expect(label.getAttribute('for')).toBe('test');
-  });
+  }));
 
   it('leaves the for attribute untouched if it exists', function () {
     TestBed.configureTestingModule({ declarations: [ClrAddonsLabel, ExplicitForTest], providers: [ControlIdService] });
