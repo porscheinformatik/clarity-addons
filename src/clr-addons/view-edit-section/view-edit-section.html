@@ -2,6 +2,14 @@
   <div class="card-block">
     <div class="card-title">
       {{_title}}
+      <button
+        type="button"
+        (click)="onCollapseExpand()"
+        class="btn btn-icon btn-link ces-caret-btn"
+        *ngIf="_isCollapsible && !_editMode"
+      >
+        <clr-icon shape="caret up" size="20" class="ces-caret-icon" [@rotateIcon]="_isCollapsed"></clr-icon>
+      </button>
       <div class="ves-actions">
         <button
           type="button"
@@ -16,7 +24,7 @@
         </div>
       </div>
     </div>
-    <div class="card-text">
+    <div class="card-text" [@collapseExpandAnimation] *ngIf="!_isCollapsed">
       <ng-template [ngTemplateOutlet]="viewRef" *ngIf="!_editMode"></ng-template>
       <ng-template [ngTemplateOutlet]="editRef" *ngIf="_editMode"></ng-template>
       <ng-container *ngIf="_editMode">
