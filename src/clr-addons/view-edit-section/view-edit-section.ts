@@ -37,6 +37,7 @@ export class ClrViewEditSection {
   @Input('clrEditable') _editable = true;
   @Input('clrEditIcon') _editIcon = 'pencil';
   @Input('clrIsCollapsible') _isCollapsible = false;
+  @Input('clrIsCollapsed') _isCollapsed = false;
 
   @Input('clrViewRef') viewRef: TemplateRef<any>;
   @Input('clrEditRef') editRef: TemplateRef<any>;
@@ -46,32 +47,20 @@ export class ClrViewEditSection {
   @Output('clrSectionSubmitted') _submitted = new EventEmitter(false);
   @Output('clrSectionEditCancelled') _cancelled = new EventEmitter(false);
 
-  @Input('clrIsCollapsed')
-  public set _isCollapsed(value: boolean) {
-    if (this._isCollapsible) {
-      this.__isCollapsed = value;
-    }
-  }
-
-  public get _isCollapsed(): boolean {
-    return this.__isCollapsed;
-  }
-
   @Input('clrEditMode')
-  public set _editMode(value: boolean) {
-    this.__editMode = value;
+  public set editMode(value: boolean) {
+    this._editMode = value;
 
     if (value) {
       this.toggleCollapsed(false);
     }
   }
 
-  public get _editMode(): boolean {
-    return this.__editMode;
+  public get editMode(): boolean {
+    return this._editMode;
   }
 
-  private __editMode = false;
-  private __isCollapsed = false;
+  private _editMode = false;
 
   public onSubmit(): void {
     this._submitted.emit();
@@ -91,8 +80,8 @@ export class ClrViewEditSection {
   }
 
   private setEditMode(mode: boolean): void {
-    this._editMode = mode;
-    this._editModeChanged.emit(this._editMode);
+    this.editMode = mode;
+    this._editModeChanged.emit(this.editMode);
   }
 
   private toggleCollapsed(collapsed: boolean) {

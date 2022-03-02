@@ -6,7 +6,7 @@
         type="button"
         (click)="onCollapseExpand()"
         class="btn btn-icon btn-link ces-caret-btn"
-        *ngIf="_isCollapsible && !_editMode"
+        *ngIf="_isCollapsible && !editMode"
       >
         <clr-icon shape="caret up" size="20" class="ces-caret-icon" [@rotateIcon]="_isCollapsed"></clr-icon>
       </button>
@@ -15,7 +15,7 @@
           type="button"
           (click)="onEdit()"
           class="btn btn-icon btn-link ves-action"
-          *ngIf="_editable && !_editMode && actionBlock.children.length == 0"
+          *ngIf="_editable && !editMode && actionBlock.children.length == 0"
         >
           <clr-icon class="ves-edit-icon" [attr.shape]="_editIcon" size="20"></clr-icon>
         </button>
@@ -24,10 +24,10 @@
         </div>
       </div>
     </div>
-    <div class="card-text" [@collapseExpandAnimation] *ngIf="!_isCollapsed">
-      <ng-template [ngTemplateOutlet]="viewRef" *ngIf="!_editMode"></ng-template>
-      <ng-template [ngTemplateOutlet]="editRef" *ngIf="_editMode"></ng-template>
-      <ng-container *ngIf="_editMode">
+    <div class="card-text" [@collapseExpandAnimation] *ngIf="!(_isCollapsed && _isCollapsible)">
+      <ng-template [ngTemplateOutlet]="viewRef" *ngIf="!editMode"></ng-template>
+      <ng-template [ngTemplateOutlet]="editRef" *ngIf="editMode"></ng-template>
+      <ng-container *ngIf="editMode">
         <form clrForm (ngSubmit)="onSubmit()" class="button-bar">
           <button class="btn btn-primary ves-save" type="submit">{{_saveText}}</button>
           <button class="btn ves-cancel" (click)="onCancel()" type="button">{{_cancelText}}</button>

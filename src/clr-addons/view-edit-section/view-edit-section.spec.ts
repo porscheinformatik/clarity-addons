@@ -90,11 +90,11 @@ describe('ViewEditSectionComponent', () => {
     tick();
 
     if (isEditMode) {
-      expect(componentFixture.componentInstance.vesInstance._editMode).toBeTrue();
+      expect(componentFixture.componentInstance.vesInstance.editMode).toBeTrue();
       expect(componentFixture.nativeElement.querySelector('.view-item')).toBeNull();
       expect(componentFixture.nativeElement.querySelector('.edit-item')).not.toBeNull();
     } else {
-      expect(componentFixture.componentInstance.vesInstance._editMode).toBeFalse();
+      expect(componentFixture.componentInstance.vesInstance.editMode).toBeFalse();
       expect(componentFixture.nativeElement.querySelector('.view-item')).not.toBeNull();
       expect(componentFixture.nativeElement.querySelector('.edit-item')).toBeNull();
     }
