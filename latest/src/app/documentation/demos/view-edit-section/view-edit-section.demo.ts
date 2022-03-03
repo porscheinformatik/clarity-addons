@@ -116,6 +116,33 @@ const HTML_EXAMPLE_FORM_SUBMIT = `
 </clr-view-edit-section>
 `;
 
+const HTML_EXAMPLE_COLLAPSIBLE = `
+<clr-view-edit-section [(clrEditMode)]="editMode5" clrTitle="Collapsible - Expanded"
+                       [clrViewRef]="viewBlock1" [clrEditRef]="editBlock1"
+                       [clrPreventModeChangeOnSave]="!exampleForm.valid"
+                       (clrSectionSubmitted)="sectionSubmitted()" (clrSectionEditCancelled)="sectionCancelled()"
+                       [clrIsCollapsible]="true">
+    <ng-template #viewBlock1>
+        ...
+    </ng-template>
+    <ng-template #editBlock1>
+        ...
+    </ng-template>
+</clr-view-edit-section>
+<clr-view-edit-section [(clrEditMode)]="editMode6" clrTitle="Starts Collapsed"
+                       [clrViewRef]="viewBlock1" [clrEditRef]="editBlock1"
+                       [clrPreventModeChangeOnSave]="!exampleForm.valid"
+                       (clrSectionSubmitted)="sectionSubmitted()" (clrSectionEditCancelled)="sectionCancelled()"
+                       [clrIsCollapsible]="true" [clrIsCollapsed]="true">
+    <ng-template #viewBlock1>
+        ...
+    </ng-template>
+    <ng-template #editBlock1>
+        ...
+    </ng-template>
+</clr-view-edit-section>
+`;
+
 const ANGULAR_EXAMPLE_FORM_SUBMIT = `
 editMode = false;
 
@@ -140,12 +167,15 @@ export class ViewEditSectionDemo extends ClarityDocComponent {
     htmlExampleCustomActions = HTML_EXAMPLE_CUSTOM_ACTIONS;
     htmlExampleNotEditable = HTML_EXAMPLE_NOT_EDITABLE;
     htmlExampleFormSubmit = HTML_EXAMPLE_FORM_SUBMIT;
+    htmlExampleCollapsible = HTML_EXAMPLE_COLLAPSIBLE;
     angularExampleFormSubmit = ANGULAR_EXAMPLE_FORM_SUBMIT;
 
     editMode1 = false;
     editMode2 = false;
     editMode3 = false;
     editMode4 = false;
+    editMode5 = false;
+    editMode6 = false;
 
     birthdate: string;
     gender: string = "male";

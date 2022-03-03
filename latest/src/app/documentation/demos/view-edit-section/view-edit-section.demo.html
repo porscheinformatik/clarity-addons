@@ -26,6 +26,21 @@
                 <br> The user needs to actively end the edit-mode by saving or cancelling the changes.
             </p>
 
+            <h3>Collapse/Expand Section</h3>
+            <p>Follows the basic principles of: <a class="nav-link" routerLink="../collapse-expand-section">Clarity Addons - Collapse/Expand Section</a>
+                <br>
+                <br>The View-Edit section offers the possibility to collapse/expand its content.
+                <br> The user can actively collapse and expand the section in view mode.
+                Upon entering edit mode, the section is automatically expanded, and the collapse button is hidden.
+                <br>
+                <br>Use when:
+            </p>
+            <ul>
+                <li>Lots of information is already on the page. Collapse/Expand can aid gaining overview.</li>
+                <li>Customized user view is necessary. For example different types of users, with different interests are using the same page.
+                    There the Collapse/Expand feature can aid by maining a single page and every user hides currently unnecessary information.</li>
+            </ul>
+
             <h3>Summary of Options</h3>
             <table class="table">
                 <thead>
@@ -37,6 +52,16 @@
                 </tr>
                 </thead>
                 <tbody>
+                <tr>
+                    <td class="left">
+                        <b>[(clrIsCollapsed)]</b>
+                        <div class="clr-hidden-sm-up">Type: boolean</div>
+                        <div class="clr-hidden-sm-up">Default: false</div>
+                    </td>
+                    <td class="left clr-hidden-xs-down">true, false</td>
+                    <td class="clr-hidden-xs-down">false</td>
+                    <td class="left">Controls whether the section is collapsed or not</td>
+                </tr>
                 <tr>
                     <td class="left">
                         <b>[(clrEditMode)]</b>
@@ -126,6 +151,16 @@
                     <td class="left clr-hidden-xs-down">any shape of clr-icon</td>
                     <td class="clr-hidden-xs-down">"pencil"</td>
                     <td class="left">Defines the edit icon. Every shape of clr-icon can be used</td>
+                </tr>
+                <tr>
+                    <td class="left">
+                        <b>[clrIsCollapsible]</b>
+                        <div class="clr-hidden-sm-up">Type: Boolean</div>
+                        <div class="clr-hidden-sm-up">Default: false</div>
+                    </td>
+                    <td class="left clr-hidden-xs-down">true, false</td>
+                    <td class="clr-hidden-xs-down">false</td>
+                    <td class="left">Controls whether the component is collapsible</td>
                 </tr>
                 <tr>
                     <td class="left">
@@ -418,6 +453,108 @@
             </ul>
             <clr-code-snippet [clrCode]="htmlExampleFormSubmit"></clr-code-snippet>
             <clr-code-snippet [clrCode]="angularExampleFormSubmit" [clrLanguage]="'typescript'"></clr-code-snippet>
+
+
+
+            <h4>Collapse and expand</h4>
+            <p>When entering edit mode, the section automatically expands and hides the collapse button.
+                <br>
+                <br>With setting</p>
+            <ul>
+                <li><code class="clr-code">clrIsCollapsible</code> to true, the section is able collapse.</li>
+                <li><code class="clr-code">clrIsCollapsed</code> to true, the section is collapsed by default.</li>
+            </ul>
+
+            <div class="clr-row">
+                <div class="clr-col-12 clr-col-lg-6">
+                    <clr-view-edit-section [(clrEditMode)]="editMode5" clrTitle="Starts expanded"
+                                           [clrViewRef]="viewBlock1" [clrEditRef]="editBlock1"
+                                           [clrPreventModeChangeOnSave]="!exampleForm.valid"
+                                           (clrSectionSubmitted)="sectionSubmitted()" (clrSectionEditCancelled)="sectionCancelled()"
+                                           [clrIsCollapsible]="true">
+                        <ng-template #viewBlock1>
+                            <form clrForm clrLayout="horizontal">
+                                <div class="clr-form-control clr-row">
+                                    <label class="clr-col-md-4 clr-control-label">First name</label>
+                                    <span class="text-truncate clr-col-md-8">{{first || "&nbsp;"}}</span>
+                                </div>
+                                <div class="clr-form-control clr-row">
+                                    <label class="clr-col-md-4 clr-control-label">Last name</label>
+                                    <span class="text-truncate clr-col-md-8">{{last || "&nbsp;"}}</span>
+                                </div>
+                                <div class="clr-form-control clr-row">
+                                    <label class="clr-col-md-4 clr-control-label">E-mail</label>
+                                    <span class="text-truncate clr-col-md-8">{{email || "&nbsp;"}}</span>
+                                </div>
+                            </form>
+                        </ng-template>
+                        <ng-template #editBlock1>
+                            <form clrForm clrLayout="horizontal" [formGroup]="exampleForm" (submit)="onFormSubmit()">
+                                <clr-input-container>
+                                    <label class="clr-col-md-4 required">First name</label>
+                                    <input class="clr-col-md-8" clrInput type="text" formControlName="editFirst" name="first"/>
+                                    <clr-control-error>You must enter a first name.</clr-control-error>
+                                </clr-input-container>
+                                <clr-input-container>
+                                    <label class="clr-col-md-4 required">Last name</label>
+                                    <input class="clr-col-md-8" clrInput type="text" formControlName="editLast" name="last"/>
+                                    <clr-control-error>You must enter a last name.</clr-control-error>
+                                </clr-input-container>
+                                <clr-input-container>
+                                    <label class="clr-col-md-4">E-mail</label>
+                                    <input class="clr-col-md-8" clrInput type="text" formControlName="editEmail" name="email"/>
+                                </clr-input-container>
+                                <input type="submit" style="display: none">
+                            </form>
+                        </ng-template>
+                    </clr-view-edit-section>
+                </div>
+                <div class="clr-col-12 clr-col-lg-6">
+                    <clr-view-edit-section [(clrEditMode)]="editMode6" clrTitle="Starts collapsed"
+                                           [clrViewRef]="viewBlock1" [clrEditRef]="editBlock1"
+                                           [clrPreventModeChangeOnSave]="!exampleForm.valid"
+                                           (clrSectionSubmitted)="sectionSubmitted()" (clrSectionEditCancelled)="sectionCancelled()"
+                                           [clrIsCollapsible]="true" [clrIsCollapsed]="true">
+                        <ng-template #viewBlock1>
+                            <form clrForm clrLayout="horizontal">
+                                <div class="clr-form-control clr-row">
+                                    <label class="clr-col-md-4 clr-control-label">First name</label>
+                                    <span class="text-truncate clr-col-md-8">{{first || "&nbsp;"}}</span>
+                                </div>
+                                <div class="clr-form-control clr-row">
+                                    <label class="clr-col-md-4 clr-control-label">Last name</label>
+                                    <span class="text-truncate clr-col-md-8">{{last || "&nbsp;"}}</span>
+                                </div>
+                                <div class="clr-form-control clr-row">
+                                    <label class="clr-col-md-4 clr-control-label">E-mail</label>
+                                    <span class="text-truncate clr-col-md-8">{{email || "&nbsp;"}}</span>
+                                </div>
+                            </form>
+                        </ng-template>
+                        <ng-template #editBlock1>
+                            <form clrForm clrLayout="horizontal" [formGroup]="exampleForm" (submit)="onFormSubmit()">
+                                <clr-input-container>
+                                    <label class="clr-col-md-4 required">First name</label>
+                                    <input class="clr-col-md-8" clrInput type="text" formControlName="editFirst" name="first"/>
+                                    <clr-control-error>You must enter a first name.</clr-control-error>
+                                </clr-input-container>
+                                <clr-input-container>
+                                    <label class="clr-col-md-4 required">Last name</label>
+                                    <input class="clr-col-md-8" clrInput type="text" formControlName="editLast" name="last"/>
+                                    <clr-control-error>You must enter a last name.</clr-control-error>
+                                </clr-input-container>
+                                <clr-input-container>
+                                    <label class="clr-col-md-4">E-mail</label>
+                                    <input class="clr-col-md-8" clrInput type="text" formControlName="editEmail" name="email"/>
+                                </clr-input-container>
+                                <input type="submit" style="display: none">
+                            </form>
+                        </ng-template>
+                    </clr-view-edit-section>
+                </div>
+            </div>
+
+            <clr-code-snippet [clrCode]="htmlExampleCollapsible"></clr-code-snippet>
 
             <h4>Tips</h4>
             <ul>
