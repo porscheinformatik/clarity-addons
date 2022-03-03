@@ -9,7 +9,7 @@
     "build:ui:optimize": "csso -i ./dist/clr-addons/styles/clr-addons-phs.css -o ./dist/clr-addons/styles/clr-addons-phs.min.css -s file",
     "build:ui": "npm-run-all build:ui:css build:ui:prefix build:ui:src build:ui:optimize",
     "build:angular:package": "npm-run-all build:angular:package:cpytemplate build:angular:package:version build:angular:package:clrversion build:angular:package:cdsversion",
-    "build:angular:package:cpytemplate": "cpy ./npm/clr-addons/package.json ./npm/clr-addons/README.md ./src/clr-addons/",
+    "build:angular:package:cpytemplate": "cpy . ../../src/clr-addons --cwd=npm/clr-addons --flat",
     "build:angular:package:version": "cross-var replace @VERSION $npm_package_version ./src/clr-addons/package.json",
     "build:angular:package:clrversion": "cross-var replace @CLARITY_VERSION $npm_package_dependencies__clr_angular ./src/clr-addons/package.json",
     "build:angular:package:cdsversion": "cross-var replace @CDS_CORE_VERSION $npm_package_dependencies__cds_core ./src/clr-addons/package.json",
