@@ -10,6 +10,7 @@ import { ClarityModule } from '@clr/angular';
 
 import { ClrViewEditSectionModule } from './view-edit-section.module';
 import { ClrViewEditSection } from './view-edit-section';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   template: `
@@ -19,6 +20,7 @@ import { ClrViewEditSection } from './view-edit-section';
       [clrCancelText]="cancelText"
       [clrEditRef]="editBlock"
       [clrViewRef]="viewBlock"
+      [clrIsCollapsible]="true"
     >
       <ng-template #viewBlock>
         <div class="view-item">View</div>
@@ -61,12 +63,13 @@ class NotEditableComponent {}
 
 describe('ViewEditSectionComponent', () => {
   let fixture: ComponentFixture<TestComponent>;
+  let component: ClrViewEditSection;
 
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
         declarations: [TestComponent, EditIconComponent, EditModeComponent, NotEditableComponent],
-        imports: [ClarityModule, ClrViewEditSectionModule],
+        imports: [ClarityModule, ClrViewEditSectionModule, BrowserAnimationsModule],
         teardown: { destroyAfterEach: false },
       }).compileComponents();
     })
@@ -74,6 +77,7 @@ describe('ViewEditSectionComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TestComponent);
+    component = fixture.componentInstance.vesInstance;
     fixture.detectChanges();
   });
 
@@ -86,11 +90,11 @@ describe('ViewEditSectionComponent', () => {
     tick();
 
     if (isEditMode) {
-      expect(componentFixture.componentInstance.vesInstance._editMode).toBeTrue();
+      expect(componentFixture.componentInstance.vesInstance.editMode).toBeTrue();
       expect(componentFixture.nativeElement.querySelector('.view-item')).toBeNull();
       expect(componentFixture.nativeElement.querySelector('.edit-item')).not.toBeNull();
     } else {
-      expect(componentFixture.componentInstance.vesInstance._editMode).toBeFalse();
+      expect(componentFixture.componentInstance.vesInstance.editMode).toBeFalse();
       expect(componentFixture.nativeElement.querySelector('.view-item')).not.toBeNull();
       expect(componentFixture.nativeElement.querySelector('.edit-item')).toBeNull();
     }
@@ -176,5 +180,27 @@ describe('ViewEditSectionComponent', () => {
     expect(editFixture.nativeElement.querySelector('.ves-action')).toBeNull();
     expect(editFixture.nativeElement.querySelector('[action-block]')).toBeNull();
     editFixture.destroy();
+  });
+
+  it('should be expanded then collapsed', () => {
+    component.onCollapseExpand();
+    expect(component._isCollapsed).toBeTrue();
+    component.onCollapseExpand();
+    expect(component._isCollapsed).toBeFalse();
+  });
+
+  it('should fire collapse state changed event twice', () => {
+    spyOn(component._isCollapsedChange, 'emit');
+    component.onCollapseExpand();
+    expect(component._isCollapsedChange.emit).toHaveBeenCalledWith(true);
+    component.onCollapseExpand();
+    expect(component._isCollapsedChange.emit).toHaveBeenCalledWith(false);
+    expect(component._isCollapsedChange.emit).toHaveBeenCalledTimes(2);
+  });
+
+  it('should have no collapse icon when in edit mode', () => {
+    component.onEdit();
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('.ces-caret-btn')).toBeNull();
   });
 });
