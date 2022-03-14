@@ -27,14 +27,16 @@
             </p>
 
             <h3>Collapse/Expand Section</h3>
-            <p>Follows the basic principles of: <a class="nav-link" routerLink="../collapse-expand-section">Clarity Addons - Collapse/Expand Section</a>
+            <p>Follows the basic principles of: <a class="nav-link" routerLink="../collapse-expand-section">Clarity Addons - Collapse/Expand Section</a></p>
+            <p>
+                The View-Edit section offers the possibility to collapse/expand its content.
                 <br>
-                <br>The View-Edit section offers the possibility to collapse/expand its content.
-                <br> The user can actively collapse and expand the section in view mode.
+                The user can actively collapse and expand the section in view mode.
                 Upon entering edit mode, the section is automatically expanded, and the collapse button is hidden.
-                <br>
-                <br>Use when:
             </p>
+
+            <h3>Use when</h3>
+            <br>
             <ul>
                 <li>Lots of information is already on the page. Collapse/Expand can aid gaining overview.</li>
                 <li>Customized user view is necessary. For example different types of users, with different interests are using the same page.
@@ -183,7 +185,7 @@
                     <td class="left">Will be triggered by cancel/escape clicks</td>
                 </tr>
                 </tbody>
-            </table>            
+            </table>
             <p>
                 To define custom actions simply put the attribute <code class="clr-code">action-block</code> to an element.
             </p>
@@ -195,7 +197,7 @@
             <h4>Side by side example with validation</h4>
             <div class="clr-row">
                 <div class="clr-col-12 clr-col-lg-6">
-                    <clr-view-edit-section [(clrEditMode)]="editMode1" [clrPreventModeChangeOnSave]="!exampleForm.valid" [clrTitle]="sectionTitle" 
+                    <clr-view-edit-section [(clrEditMode)]="editMode1" [clrPreventModeChangeOnSave]="!exampleForm.valid" [clrTitle]="sectionTitle"
                         (clrSectionSubmitted)="sectionSubmitted()" (clrSectionEditCancelled)="sectionCancelled()" [clrViewRef]="viewBlock1" [clrEditRef]="editBlock1">
                         <ng-template #viewBlock1>
                             <form clrForm clrLayout="horizontal">
@@ -275,7 +277,7 @@
                 <div class="clr-col-12">
                     <clr-view-edit-section [(clrEditMode)]="editMode3" [clrTitle]="customActionsTitle" (clrSectionSubmitted)="compSectionSubmitted()"
                         (clrSectionEditCancelled)="compSectionCancelled()" [clrViewRef]="viewBlock3" [clrEditRef]="editBlock3">
-                        
+
                         <div action-block>
                             <clr-dropdown *ngIf="!editMode3">
                               <button type="button" class="btn btn-icon btn-link ves-action dropdown-toggle" clrDropdownTrigger>
@@ -294,7 +296,7 @@
                               </clr-dropdown-menu>
                             </clr-dropdown>
                         </div>
-                        
+
                         <ng-template #viewBlock3>
                             <form clrForm clrLayout="horizontal">
                               <div class="clr-form-control clr-row">
@@ -381,9 +383,9 @@
             <div class="clr-row">
                 <div class="clr-col-12">
                     <clr-view-edit-section [(clrEditMode)]="editMode4" [clrTitle]="compSectionTitle" [clrEditIcon]="compEditIcon"
-                        clrSaveText="Save it" clrCancelText="Cancel it" (clrSectionSubmitted)="compSectionSubmitted()" 
+                        clrSaveText="Save it" clrCancelText="Cancel it" (clrSectionSubmitted)="compSectionSubmitted()"
                         (clrSectionEditCancelled)="compSectionCancelled()" [clrViewRef]="viewBlock5" [clrEditRef]="editBlock5">
-                        
+
                         <ng-template #viewBlock5>
                             <form clrForm clrLayout="horizontal">
                               <div class="clr-form-control clr-row">
@@ -457,9 +459,8 @@
 
 
             <h4>Collapse and expand</h4>
-            <p>When entering edit mode, the section automatically expands and hides the collapse button.
-                <br>
-                <br>With setting</p>
+            <p>When entering edit mode, the section automatically expands and hides the collapse button.</p>
+            <p>With setting</p>
             <ul>
                 <li><code class="clr-code">clrIsCollapsible</code> to true, the section is able collapse.</li>
                 <li><code class="clr-code">clrIsCollapsed</code> to true, the section is collapsed by default.</li>
