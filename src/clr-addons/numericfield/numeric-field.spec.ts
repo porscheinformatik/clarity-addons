@@ -281,6 +281,34 @@ describe('NumericComponent', () => {
     expect(fixture.componentInstance.input).toBe(124);
   }));
 
+  it('Fix rounding error in case of 4.1 input', fakeAsync(() => {
+    fixture.componentInstance.decimalPlaces = 2;
+    fixture.componentInstance.input = 4.1;
+    fixture.componentInstance.rounded = false;
+    fixture.componentInstance.autofill = true;
+    fixture.detectChanges();
+
+    tick(10);
+
+    expect(inputEl.nativeElement.value).toBe('4,10');
+    expect(fixture.componentInstance.component.displayValue).toBe('4,10');
+    expect(fixture.componentInstance.input).toBe(4.1);
+  }));
+
+  it('Fix rounding error in case of 5.1 input', fakeAsync(() => {
+    fixture.componentInstance.decimalPlaces = 2;
+    fixture.componentInstance.input = 5.1;
+    fixture.componentInstance.rounded = false;
+    fixture.componentInstance.autofill = true;
+    fixture.detectChanges();
+
+    tick(10);
+
+    expect(inputEl.nativeElement.value).toBe('5,10');
+    expect(fixture.componentInstance.component.displayValue).toBe('5,10');
+    expect(fixture.componentInstance.input).toBe(5.1);
+  }));
+
   it('Issue #1378', fakeAsync(() => {
     fixture.componentInstance.decimalPlaces = 2;
     fixture.componentInstance.input = 1.13;
