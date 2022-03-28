@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -385,6 +385,6 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked, Con
   private roundOrTruncate(value: number): number {
     const method = this.roundValue ? 'round' : value < 0 ? 'ceil' : 'floor';
     // 16 is the highest precision before numbers have weird behaviour. see https://stackoverflow.com/q/21472828/15120942
-    return Math[method](+(value * Math.pow(10, this.decimalPlaces)).toPrecision(16)) / Math.pow(10, this.decimalPlaces);
+    return Math[method](+(value * Math.pow(10, this.decimalPlaces)).toPrecision(15)) / Math.pow(10, this.decimalPlaces);
   }
 }
