@@ -12,14 +12,12 @@ describe('LetterAvatarComponent', () => {
   let component: ClrLetterAvatar;
   let fixture: ComponentFixture<ClrLetterAvatar>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [ClrLetterAvatar],
-        teardown: { destroyAfterEach: false },
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [ClrLetterAvatar],
+      teardown: { destroyAfterEach: false },
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ClrLetterAvatar);

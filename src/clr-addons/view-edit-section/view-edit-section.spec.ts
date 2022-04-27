@@ -65,15 +65,13 @@ describe('ViewEditSectionComponent', () => {
   let fixture: ComponentFixture<TestComponent>;
   let component: ClrViewEditSection;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [TestComponent, EditIconComponent, EditModeComponent, NotEditableComponent],
-        imports: [ClarityModule, ClrViewEditSectionModule, BrowserAnimationsModule],
-        teardown: { destroyAfterEach: false },
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [TestComponent, EditIconComponent, EditModeComponent, NotEditableComponent],
+      imports: [ClarityModule, ClrViewEditSectionModule, BrowserAnimationsModule],
+      teardown: { destroyAfterEach: false },
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TestComponent);

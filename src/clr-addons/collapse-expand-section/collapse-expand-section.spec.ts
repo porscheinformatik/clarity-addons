@@ -15,15 +15,13 @@ describe('CollapseExpandSectionComponent', () => {
   let component: ClrCollapseExpandSection;
   let fixture: ComponentFixture<ClrCollapseExpandSection>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [ClrCollapseExpandSection],
-        imports: [ClarityModule, FormsModule, BrowserAnimationsModule],
-        teardown: { destroyAfterEach: false },
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [ClrCollapseExpandSection],
+      imports: [ClarityModule, FormsModule, BrowserAnimationsModule],
+      teardown: { destroyAfterEach: false },
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ClrCollapseExpandSection);

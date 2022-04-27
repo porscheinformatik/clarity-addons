@@ -14,15 +14,13 @@ describe('FlowBarComponent', () => {
   let fixture: ComponentFixture<ClrFlowBar>;
   let component: ClrFlowBar;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [ClrFlowBar],
-        imports: [ClarityModule],
-        teardown: { destroyAfterEach: false },
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [ClrFlowBar],
+      imports: [ClarityModule],
+      teardown: { destroyAfterEach: false },
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ClrFlowBar);

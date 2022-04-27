@@ -13,15 +13,13 @@ describe('ClrBreadcrumb', () => {
   let component: ClrBreadcrumb;
   let fixture: ComponentFixture<ClrBreadcrumb>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [RouterTestingModule],
-        declarations: [ClrBreadcrumb],
-        teardown: { destroyAfterEach: false },
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
+      declarations: [ClrBreadcrumb],
+      teardown: { destroyAfterEach: false },
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ClrBreadcrumb);
