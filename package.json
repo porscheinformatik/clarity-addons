@@ -1,6 +1,6 @@
 {
   "name": "clr-addons",
-  "version": "12.2.0",
+  "version": "12.2.1",
   "private": true,
   "scripts": {
     "build:ui:css": "sass --source-map --precision=8 ./src/clr-addons/themes/phs/phs-theme.scss ./dist/clr-addons/styles/clr-addons-phs.css",
@@ -8,10 +8,11 @@
     "build:ui:src": "cpy --parents --cwd=src/clr-addons **/*.scss ../../dist/clr-addons/src/",
     "build:ui:optimize": "csso -i ./dist/clr-addons/styles/clr-addons-phs.css -o ./dist/clr-addons/styles/clr-addons-phs.min.css -s file",
     "build:ui": "npm-run-all build:ui:css build:ui:prefix build:ui:src build:ui:optimize",
-    "build:angular:package": "npm-run-all build:angular:package:cpytemplate build:angular:package:version build:angular:package:clrversion build:angular:package:cdsversion",
+    "build:angular:package": "npm-run-all build:angular:package:cpytemplate build:angular:package:version build:angular:package:clrversion build:angular:package:clriconsversion build:angular:package:cdsversion",
     "build:angular:package:cpytemplate": "cpy . ../../src/clr-addons --cwd=npm/clr-addons --flat",
     "build:angular:package:version": "cross-var replace @VERSION $npm_package_version ./src/clr-addons/package.json",
     "build:angular:package:clrversion": "cross-var replace @CLARITY_VERSION $npm_package_dependencies__clr_angular ./src/clr-addons/package.json",
+    "build:angular:package:clriconsversion": "cross-var replace @CLARITY_ICONS_VERSION $npm_package_dependencies__clr_icons ./src/clr-addons/package.json",
     "build:angular:package:cdsversion": "cross-var replace @CDS_CORE_VERSION $npm_package_dependencies__cds_core ./src/clr-addons/package.json",
     "build:angular:ngpackagr": "ng build clr-addons --configuration production",
     "build:angular": "npm-run-all build:angular:package build:angular:ngpackagr",
