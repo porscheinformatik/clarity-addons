@@ -15,15 +15,13 @@ describe('ContentPanelComponent', () => {
   let component: ClrContentPanel;
   let fixture: ComponentFixture<ClrContentPanel>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [ClrContentPanel],
-        imports: [ClarityModule, FormsModule, BrowserAnimationsModule],
-        teardown: { destroyAfterEach: false },
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [ClrContentPanel],
+      imports: [ClarityModule, FormsModule, BrowserAnimationsModule],
+      teardown: { destroyAfterEach: false },
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ClrContentPanel);

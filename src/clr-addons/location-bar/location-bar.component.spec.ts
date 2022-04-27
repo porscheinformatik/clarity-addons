@@ -44,68 +44,59 @@ describe('LocationBarComponent', () => {
     spyOn(component.selectionChanged, 'emit');
   });
 
-  it(
-    'Render selectable node',
-    waitForAsync(() => {
-      /* GIVEN */
-      const nodeId = new TestNodeId(Math.floor(Math.random() * 1000).toString());
-      component.roots = [new LocationBarNode(nodeId, 'Global Root Node')];
+  it('Render selectable node', waitForAsync(() => {
+    /* GIVEN */
+    const nodeId = new TestNodeId(Math.floor(Math.random() * 1000).toString());
+    component.roots = [new LocationBarNode(nodeId, 'Global Root Node')];
 
-      /* WHEN */
+    /* WHEN */
+    fixture.detectChanges();
+
+    /* THEN */
+    fixture.whenStable().then(() => {
       fixture.detectChanges();
+      const buttonDebug = fixture.debugElement.query(By.css('button'));
+      expect(buttonDebug).toBeTruthy();
+      const button: HTMLButtonElement = buttonDebug.nativeElement;
+      expect(button.textContent).toContain('Global Root Node');
+      expect(button.disabled).toBeFalsy();
+    });
+  }));
+
+  it('Render not selectable node', waitForAsync(() => {
+    /* GIVEN */
+    const nodeId = new TestNodeId(Math.floor(Math.random() * 1000).toString());
+    component.roots = [new LocationBarNode(nodeId, 'Global Root Node', false)];
+
+    /* WHEN */
+    fixture.detectChanges();
+
+    /* THEN */
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      const span = fixture.debugElement.query(By.css('.unselectable-node'));
+      expect(span).toBeTruthy();
+      const button: HTMLSpanElement = span.nativeElement;
+      expect(button.textContent).toContain('Global Root Node');
+    });
+  }));
+
+  it('Select node', waitForAsync(() => {
+    /* GIVEN */
+    const nodeId = new TestNodeId(Math.floor(Math.random() * 1000).toString());
+    component.roots = [new LocationBarNode(nodeId, 'Global Root Node', true)];
+
+    /* WHEN */
+    fixture.detectChanges();
+
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      const buttonDebug = fixture.debugElement.query(By.css('button'));
+      expect(buttonDebug).toBeTruthy();
+      buttonDebug.nativeElement.click();
 
       /* THEN */
-      fixture.whenStable().then(() => {
-        fixture.detectChanges();
-        const buttonDebug = fixture.debugElement.query(By.css('button'));
-        expect(buttonDebug).toBeTruthy();
-        const button: HTMLButtonElement = buttonDebug.nativeElement;
-        expect(button.textContent).toContain('Global Root Node');
-        expect(button.disabled).toBeFalsy();
-      });
-    })
-  );
-
-  it(
-    'Render not selectable node',
-    waitForAsync(() => {
-      /* GIVEN */
-      const nodeId = new TestNodeId(Math.floor(Math.random() * 1000).toString());
-      component.roots = [new LocationBarNode(nodeId, 'Global Root Node', false)];
-
-      /* WHEN */
-      fixture.detectChanges();
-
-      /* THEN */
-      fixture.whenStable().then(() => {
-        fixture.detectChanges();
-        const span = fixture.debugElement.query(By.css('.unselectable-node'));
-        expect(span).toBeTruthy();
-        const button: HTMLSpanElement = span.nativeElement;
-        expect(button.textContent).toContain('Global Root Node');
-      });
-    })
-  );
-
-  it(
-    'Select node',
-    waitForAsync(() => {
-      /* GIVEN */
-      const nodeId = new TestNodeId(Math.floor(Math.random() * 1000).toString());
-      component.roots = [new LocationBarNode(nodeId, 'Global Root Node', true)];
-
-      /* WHEN */
-      fixture.detectChanges();
-
-      fixture.whenStable().then(() => {
-        fixture.detectChanges();
-        const buttonDebug = fixture.debugElement.query(By.css('button'));
-        expect(buttonDebug).toBeTruthy();
-        buttonDebug.nativeElement.click();
-
-        /* THEN */
-        expect(component.selectionChanged.emit).toHaveBeenCalledWith([nodeId]);
-      });
-    })
-  );
+      expect(component.selectionChanged.emit).toHaveBeenCalledWith([nodeId]);
+    });
+  }));
 });

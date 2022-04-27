@@ -65,12 +65,10 @@ describe('Multilingual Textarea', () => {
       inputEl = fixture.debugElement.query(By.css('textarea')).nativeElement;
     });
 
-    beforeEach(
-      waitForAsync(() => {
-        fixture.detectChanges();
-        fixture.whenStable().then();
-      })
-    );
+    beforeEach(waitForAsync(() => {
+      fixture.detectChanges();
+      fixture.whenStable().then();
+    }));
 
     it('should create', () => {
       expect(fixture.componentInstance).toBeTruthy();
@@ -117,12 +115,10 @@ describe('Multilingual Textarea', () => {
       inputEl = fixture.debugElement.query(By.css('textarea')).nativeElement;
     });
 
-    beforeEach(
-      waitForAsync(() => {
-        fixture.detectChanges();
-        fixture.whenStable().then();
-      })
-    );
+    beforeEach(waitForAsync(() => {
+      fixture.detectChanges();
+      fixture.whenStable().then();
+    }));
 
     it('show validation error on touched', () => {
       validationShown(false, fixture);

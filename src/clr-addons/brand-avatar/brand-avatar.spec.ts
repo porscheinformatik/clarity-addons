@@ -12,14 +12,12 @@ describe('BrandAvatarComponent', () => {
   let component: ClrBrandAvatar;
   let fixture: ComponentFixture<ClrBrandAvatar>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [ClrBrandAvatar],
-        teardown: { destroyAfterEach: false },
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [ClrBrandAvatar],
+      teardown: { destroyAfterEach: false },
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ClrBrandAvatar);

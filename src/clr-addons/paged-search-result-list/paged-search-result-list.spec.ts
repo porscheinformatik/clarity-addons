@@ -15,15 +15,13 @@ describe('PagedSearchResultListComponent', () => {
   let component: ClrPagedSearchResultList;
   let fixture: ComponentFixture<ClrPagedSearchResultList>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [ClrPagedSearchResultList],
-        imports: [ClarityModule, FormsModule, ClrPagerModule],
-        teardown: { destroyAfterEach: false },
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [ClrPagedSearchResultList],
+      imports: [ClarityModule, FormsModule, ClrPagerModule],
+      teardown: { destroyAfterEach: false },
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ClrPagedSearchResultList);

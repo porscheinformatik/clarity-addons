@@ -17,20 +17,18 @@ describe('ClrHistory', () => {
   let fixture: ComponentFixture<ClrHistory>;
   let historyService: ClrHistoryService;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        providers: [ClrHistoryService],
-        imports: [RouterTestingModule, ClarityModule],
-        declarations: [ClrHistory],
-        teardown: { destroyAfterEach: false },
-      }).compileComponents();
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      providers: [ClrHistoryService],
+      imports: [RouterTestingModule, ClarityModule],
+      declarations: [ClrHistory],
+      teardown: { destroyAfterEach: false },
+    }).compileComponents();
 
-      fixture = TestBed.createComponent(ClrHistory);
-      historyService = fixture.debugElement.injector.get<ClrHistoryService>(ClrHistoryService);
-      fixture.detectChanges();
-    })
-  );
+    fixture = TestBed.createComponent(ClrHistory);
+    historyService = fixture.debugElement.injector.get<ClrHistoryService>(ClrHistoryService);
+    fixture.detectChanges();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ClrHistory);

@@ -14,15 +14,13 @@ describe('DotPagerComponent', () => {
   let component: ClrDotPager;
   let fixture: ComponentFixture<ClrDotPager>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [ClrDotPager],
-        imports: [ClarityModule, FormsModule],
-        teardown: { destroyAfterEach: false },
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [ClrDotPager],
+      imports: [ClarityModule, FormsModule],
+      teardown: { destroyAfterEach: false },
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ClrDotPager);

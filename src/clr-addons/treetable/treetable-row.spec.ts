@@ -47,23 +47,21 @@ describe('ClrTreetableRow', () => {
   let rowClickableTestComponentFixture: ComponentFixture<RowClickableTestComponent>;
   let emptyTestComponentFixture: ComponentFixture<EmptyTestComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [EmptyTestComponent, RowClickableTestComponent],
-        imports: [ClarityModule, FormsModule, ClrTreetableModule, BrowserAnimationsModule],
-        teardown: { destroyAfterEach: false },
-      }).compileComponents();
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [EmptyTestComponent, RowClickableTestComponent],
+      imports: [ClarityModule, FormsModule, ClrTreetableModule, BrowserAnimationsModule],
+      teardown: { destroyAfterEach: false },
+    }).compileComponents();
 
-      rowClickableTestComponentFixture = TestBed.createComponent(RowClickableTestComponent);
-      rowClickableTestComponent = rowClickableTestComponentFixture.componentInstance;
-      rowClickableTestComponentFixture.detectChanges();
+    rowClickableTestComponentFixture = TestBed.createComponent(RowClickableTestComponent);
+    rowClickableTestComponent = rowClickableTestComponentFixture.componentInstance;
+    rowClickableTestComponentFixture.detectChanges();
 
-      emptyTestComponentFixture = TestBed.createComponent(EmptyTestComponent);
-      emptyTestComponent = emptyTestComponentFixture.componentInstance;
-      emptyTestComponentFixture.detectChanges();
-    })
-  );
+    emptyTestComponentFixture = TestBed.createComponent(EmptyTestComponent);
+    emptyTestComponent = emptyTestComponentFixture.componentInstance;
+    emptyTestComponentFixture.detectChanges();
+  }));
 
   it('should create', () => {
     expect(emptyTestComponent).toBeTruthy();

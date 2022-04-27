@@ -71,15 +71,13 @@ describe('ClrTreetable', () => {
   let emptyTestComponentFixture: ComponentFixture<EmptyTestComponent>;
   let actionTestComponentFixture: ComponentFixture<ActionTestComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [EmptyTestComponent, RowClickableTestComponent, ActionTestComponent],
-        imports: [ClarityModule, FormsModule, ClrTreetableModule, BrowserAnimationsModule],
-        teardown: { destroyAfterEach: false },
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [EmptyTestComponent, RowClickableTestComponent, ActionTestComponent],
+      imports: [ClarityModule, FormsModule, ClrTreetableModule, BrowserAnimationsModule],
+      teardown: { destroyAfterEach: false },
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     rowClickableTestComponentFixture = TestBed.createComponent(RowClickableTestComponent);

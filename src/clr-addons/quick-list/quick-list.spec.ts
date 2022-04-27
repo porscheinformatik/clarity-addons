@@ -18,15 +18,13 @@ describe('QuickListComponent', () => {
   let el1, el2: ClrQuickListValue<any>;
   let allValues: Array<ClrQuickListValue<any>>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [ClrQuickList, ClrAddOption],
-        imports: [ClarityModule, FormsModule],
-        teardown: { destroyAfterEach: false },
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [ClrQuickList, ClrAddOption],
+      imports: [ClarityModule, FormsModule],
+      teardown: { destroyAfterEach: false },
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     el1 = { id: '1', label: 'one', value: 1 };

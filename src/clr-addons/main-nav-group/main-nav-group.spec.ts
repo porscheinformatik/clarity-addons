@@ -32,15 +32,13 @@ describe('ClrMainNavGroupComponent', () => {
   let component: TestComponent;
   let fixture: ComponentFixture<TestComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [TestComponent],
-        imports: [ClarityModule, ClrMainNavGroupModule],
-        teardown: { destroyAfterEach: false },
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [TestComponent],
+      imports: [ClarityModule, ClrMainNavGroupModule],
+      teardown: { destroyAfterEach: false },
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TestComponent);

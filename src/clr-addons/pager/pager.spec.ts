@@ -14,15 +14,13 @@ describe('PagerComponent', () => {
   let component: ClrPager;
   let fixture: ComponentFixture<ClrPager>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [ClrPager],
-        imports: [ClarityModule, FormsModule],
-        teardown: { destroyAfterEach: false },
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [ClrPager],
+      imports: [ClarityModule, FormsModule],
+      teardown: { destroyAfterEach: false },
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ClrPager);

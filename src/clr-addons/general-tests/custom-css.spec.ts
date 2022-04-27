@@ -26,15 +26,13 @@ describe('CustomCSS', () => {
   describe('Datagrid', () => {
     let fixture: ComponentFixture<DataGridComponent>;
 
-    beforeEach(
-      waitForAsync(() => {
-        TestBed.configureTestingModule({
-          declarations: [DataGridComponent],
-          imports: [ClarityModule],
-          teardown: { destroyAfterEach: false },
-        }).compileComponents();
-      })
-    );
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [DataGridComponent],
+        imports: [ClarityModule],
+        teardown: { destroyAfterEach: false },
+      }).compileComponents();
+    }));
 
     beforeEach(() => {
       fixture = TestBed.createComponent(DataGridComponent);
