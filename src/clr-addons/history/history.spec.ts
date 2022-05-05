@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 
 import { ClrHistory } from './history';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -83,4 +83,18 @@ describe('ClrHistory', () => {
     expect(lastHistoryEntry.pageName).toEqual(czech);
     expect(lastHistoryEntry.title).toEqual(chinese);
   });
+
+  it('wont update settings after onDestroy is called', fakeAsync(() => {
+    const username = 'testUsername';
+    component.username = username;
+    historyService.setHistoryPinned(username, true);
+    tick(1);
+    expect(component.pinActivated).toBeTrue();
+
+    component.ngOnDestroy();
+
+    historyService.setHistoryPinned(username, false);
+    tick(1);
+    expect(component.pinActivated).toBeTrue();
+  }));
 });
