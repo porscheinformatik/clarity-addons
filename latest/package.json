@@ -33,7 +33,7 @@
     "@clr/angular": "13.2.1",
     "@clr/icons": "13.0.2",
     "@clr/ui": "13.2.1",
-    "@porscheinformatik/clr-addons": "12.2.2",
+    "@porscheinformatik/clr-addons": "12.2.3",
     "@webcomponents/custom-elements": "1.5.0",
     "@webcomponents/webcomponentsjs": "2.6.0",
     "core-js": "3.22.4",
