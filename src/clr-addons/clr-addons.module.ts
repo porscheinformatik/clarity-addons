@@ -31,6 +31,7 @@ import { ClrAutocompleteOffModule } from './autocomplete-off/autocomplete-off.mo
 import { ClrBrandAvatarModule } from './brand-avatar/brand-avatar.module';
 import { ClrLocationBarModule } from './location-bar/location-bar.module';
 import { ClrFormModule } from './abstract-form-component/form.module';
+import { ClrDropdownOverflowModule } from './dropdown';
 
 @NgModule({
   exports: [
@@ -60,6 +61,7 @@ import { ClrFormModule } from './abstract-form-component/form.module';
     ClrBrandAvatarModule,
     ClrLocationBarModule,
     ClrFormModule,
+    ClrDropdownOverflowModule,
   ],
 })
 export class ClrAddonsModule {}
