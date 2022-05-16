@@ -4,10 +4,10 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { AfterViewChecked, Directive, ElementRef, Input } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, Input } from '@angular/core';
 
 @Directive({ selector: 'clr-dropdown-menu' })
-export class ClrDropdownOverflowDirective implements AfterViewChecked {
+export class ClrDropdownOverflowDirective implements AfterViewInit {
   @Input() clrDropdownMenuMaxHeight: string | number; // can be of px, rem, vh, or a number (which then is considered as px value)
   @Input() clrDropdownMenuItemMinHeight: string | number; // can be of px, rem, vh, or a number (which then is considered as px value)
 
@@ -16,7 +16,7 @@ export class ClrDropdownOverflowDirective implements AfterViewChecked {
 
   public constructor(private elRef: ElementRef) {}
 
-  public ngAfterViewChecked(): void {
+  public ngAfterViewInit(): void {
     this.calculateDropdownMenu();
   }
 
