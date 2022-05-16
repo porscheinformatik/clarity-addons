@@ -5,3 +5,4 @@
  */
 
 export * from './clr-dropdown-overflow.module';
+export * from './clr-dropdown-overflow.directive';

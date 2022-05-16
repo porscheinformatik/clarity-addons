@@ -34,3 +34,4 @@ export * from './brand-avatar/index';
 export * from './location-bar/index';
 export * from './autocomplete-off/index';
 export * from './abstract-form-component/index';
+export * from './dropdown/index';
