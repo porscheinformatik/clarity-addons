@@ -54,8 +54,8 @@
           <clr-dropdown-menu
             clrPosition="bottom-right"
             *clrIfOpen
-            [menu-max-height]="'5000px'"
-            [item-min-height]="'1rem'"
+            [clrDropdownMenuMaxHeight]="'5000px'"
+            [clrDropdownMenuItemMinHeight]="'1rem'"
           >
             <div *ngFor="let number of getDemoArrayWithSize(100)" class="sort-column-btn" clrDropdownItem>
               {{number}}
@@ -76,7 +76,7 @@
           <button type="button" class="btn btn-icon btn-link card-action dropdown-toggle" clrDropdownTrigger>
             Drop me
           </button>
-          <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen [menu-max-height]="'500px'">
+          <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen [clrDropdownMenuMaxHeight]="'500px'">
             <div *ngFor="let number of getDemoArrayWithSize(100)" class="sort-column-btn" clrDropdownItem>
               {{number}}
             </div>
@@ -94,7 +94,7 @@
           <button type="button" class="btn btn-icon btn-link card-action dropdown-toggle" clrDropdownTrigger>
             Drop me
           </button>
-          <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen [menu-max-height]="'750px'">
+          <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen [clrDropdownMenuMaxHeight]="'750px'">
             <div *ngFor="let number of getDemoArrayWithSize(10)" class="sort-column-btn" clrDropdownItem>
               {{number}}
             </div>

@@ -8,8 +8,8 @@ import { AfterViewChecked, Directive, ElementRef, Input } from '@angular/core';
 
 @Directive({ selector: 'clr-dropdown-menu' })
 export class ClrDropdownOverflowDirective implements AfterViewChecked {
-  @Input('menu-max-height') menuMaxHeight: string | number; // can be of px, rem, vh, or a number (which then is considered as px value)
-  @Input('item-min-height') itemMinHeight: string | number; // can be of px, rem, vh, or a number (which then is considered as px value)
+  @Input() clrDropdownMenuMaxHeight: string | number; // can be of px, rem, vh, or a number (which then is considered as px value)
+  @Input() clrDropdownMenuItemMinHeight: string | number; // can be of px, rem, vh, or a number (which then is considered as px value)
 
   public readonly defaultItemMinHeightRem = 1.5;
   public readonly marginBottomRem = 0.1;
@@ -24,7 +24,7 @@ export class ClrDropdownOverflowDirective implements AfterViewChecked {
     // the vertical position of our element in the current window
     const y = this.elRef.nativeElement.getBoundingClientRect().y;
 
-    const itemMinHeightPx = this.getItemMinHeight(this.itemMinHeight);
+    const itemMinHeightPx = this.getItemMinHeight(this.clrDropdownMenuItemMinHeight);
     // see https://stackoverflow.com/questions/22754315/for-loop-for-htmlcollection-elements
     for (const item of this.elRef.nativeElement.getElementsByClassName('dropdown-item')) {
       item.style.minHeight = itemMinHeightPx + 'px';
@@ -32,7 +32,7 @@ export class ClrDropdownOverflowDirective implements AfterViewChecked {
 
     this.elRef.nativeElement.style.maxHeight =
       this.getMenuMaxHeight(
-        this.menuMaxHeight,
+        this.clrDropdownMenuMaxHeight,
         window.innerHeight - y - this.convertRemToPixels(this.marginBottomRem)
       ) + 'px';
     this.elRef.nativeElement.style.overflowY = 'auto';
