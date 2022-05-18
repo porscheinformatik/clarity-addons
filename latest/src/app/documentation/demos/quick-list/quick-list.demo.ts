@@ -16,6 +16,10 @@ const HTML_EXAMPLE1 = `
 `;
 
 const HTML_EXAMPLE2 = `
+import { ClrQuickListValue } from '@porscheinformatik/clr-addons';
+
+...
+
 BLANK_OPTION: ClrQuickListValue<string> = { id: "-BLANK-", label: "- Select -", value: null };
 options: Array<string> = [
   "First option",
@@ -68,6 +72,8 @@ const HTML_EXAMPLE_GENERIC = `
 `;
 
 const ANGULAR_EXAMPLE_GENERIC = `
+import { ClrGenericQuickListItem } from '@porscheinformatik/clr-addons';
+
 interface ClrNameQuickListItem extends ClrGenericQuickListItem {
     salutation: string;
     name: string;
