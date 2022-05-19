@@ -1,6 +1,6 @@
 {
   "name": "@porscheinformatik/clr-addons",
-  "version": "12.2.3",
+  "version": "12.3.1",
   "description": "Addon components for Clarity Angular",
   "es2015": "esm2015/clr-addons.js",
   "homepage": "https://porscheinformatik.github.io/clarity-addons/",
