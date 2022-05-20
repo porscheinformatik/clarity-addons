@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -12,9 +12,10 @@ import { ClrRequiredAllMultilang, ClrRequiredOneMultilang } from './multilingual
 import { ClrMultilingualInput } from './multilingual-input/multilingual-input';
 import { ClrMultilingualTextarea } from './multilingual-textarea/multilingual-textarea';
 import { ClrMultilingualSelector } from './multilingual-selector';
+import { ClrDropdownOverflowModule } from '../dropdown';
 
 @NgModule({
-  imports: [CommonModule, ClarityModule, FormsModule],
+  imports: [CommonModule, ClarityModule, FormsModule, ClrDropdownOverflowModule],
   declarations: [
     ClrMultilingualInput,
     ClrMultilingualTextarea,
