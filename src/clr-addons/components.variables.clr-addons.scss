@@ -40,3 +40,4 @@ $clr-sliding-panel-animation: transform 0.3s ease;
 $clr-trigger-animation: transform 0.6s ease;
 $clr-sliding-panel-z-index: map-get($clr-layers, sidepanel);
 $clr-sliding-panel-backdrop-z-index: map-get($clr-layers, sidepanel-bg);
+$clr-max-width: 65rem;
