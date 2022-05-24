@@ -1,6 +1,6 @@
 @include exports('view-edit-section.clr-addons') {
   .view-edit-section {
-    max-width: 1300px;
+    max-width: $clr-max-width;
 
     .card-block {
       display: flex;
