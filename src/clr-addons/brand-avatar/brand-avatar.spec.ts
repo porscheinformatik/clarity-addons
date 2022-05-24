@@ -5,6 +5,7 @@
  */
 
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ClrIconModule } from '@clr/angular';
 
 import { ClrBrandAvatar } from './brand-avatar';
 
@@ -14,6 +15,7 @@ describe('BrandAvatarComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
+      imports: [ClrIconModule],
       declarations: [ClrBrandAvatar],
       teardown: { destroyAfterEach: false },
     }).compileComponents();

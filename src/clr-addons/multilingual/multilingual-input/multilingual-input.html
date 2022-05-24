@@ -3,7 +3,7 @@
   <clr-multilingual-selector
     *ngIf="showLanguageSelector()"
     [disabled]="disabled"
-    [texts]="texts"
+    [texts]="shownTexts"
     [selectedLang]="selectedLang"
     (selectedLangChange)="changeLanguage($event)"
   >
@@ -14,7 +14,7 @@
         class="clr-input"
         type="text"
         [id]="inputId"
-        [ngModel]="!!texts && !!selectedLang ? texts.get(selectedLang) : ''"
+        [ngModel]="!!shownTexts && !!selectedLang ? shownTexts.get(selectedLang) : ''"
         (ngModelChange)="setText(selectedLang, $event)"
         (blur)="onTouch()"
         [disabled]="disabled"
