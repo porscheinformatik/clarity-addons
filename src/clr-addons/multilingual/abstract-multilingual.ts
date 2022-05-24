@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -20,24 +20,99 @@ export abstract class ClrMultilingualAbstract extends ClrAbstractFormComponent {
   @ViewChild('input') inputElement: ElementRef;
 
   texts: Map<string, string>;
+  shownTexts: Map<string, string>;
+  languages: string[];
+  missingPrefix = '';
+  fallbackLang: string;
 
   protected constructor(injector: Injector) {
     super(injector);
+  }
+
+  @Input('clrFallbackLang')
+  set fallbackLanguage(fallbackLang: string) {
+    this.fallbackLang = fallbackLang;
+    this.updateShownTexts();
+  }
+
+  @Input('clrMissingPrefix')
+  set missingPre(missingPrefix: string) {
+    this.missingPrefix = missingPrefix;
+    this.updateShownTexts();
+  }
+
+  @Input('clrLanguages')
+  set langs(languages: string[]) {
+    this.languages = languages;
+    this.updateShownTexts();
   }
 
   writeValue(value: Map<string, string>): void {
     if (value) {
       this.texts = new Map(value);
     }
+    this.updateShownTexts();
   }
 
   setText(key: string, value: string): void {
     this.texts.set(key, value);
     this.onChange(new Map(this.texts));
+    this.updateShownTexts();
+  }
+
+  updateShownTexts() {
+    if (this.texts) {
+      if (this.languages) {
+        this.shownTexts = this.applyMissingPrefix(
+          new Map(this.languages.map(lang => [lang, this.texts.get(lang) || '']))
+        );
+      } else {
+        this.shownTexts = this.applyMissingPrefix(new Map(this.texts));
+      }
+    }
+  }
+
+  applyMissingPrefix(texts: Map<string, string>): Map<string, string> {
+    if (!this.missingPrefix) {
+      return texts;
+    }
+
+    const fallbackText = this.missingPrefix + this.determineFallbackText();
+    for (const lang of texts.keys()) {
+      if (!texts.get(lang)) {
+        texts.set(lang, fallbackText);
+      }
+    }
+    return texts;
+  }
+
+  determineFallbackText(): string {
+    const fallbackText = this.fallbackLang && this.texts.get(this.fallbackLang);
+    if (fallbackText) {
+      return fallbackText;
+    }
+
+    const languages = [...(this.languages || [])].sort();
+
+    const nonEmptyTextFromShownTexts = languages.map(lang => this.texts.get(lang)).find(text => text);
+    if (nonEmptyTextFromShownTexts) {
+      return nonEmptyTextFromShownTexts;
+    }
+
+    const nonEmptyTextFromHiddenTexts = [...this.texts.keys()]
+      .sort()
+      .filter(lang => !languages.includes(lang))
+      .map(lang => this.texts.get(lang))
+      .find(text => text);
+    if (nonEmptyTextFromHiddenTexts) {
+      return nonEmptyTextFromHiddenTexts;
+    }
+
+    return '';
   }
 
   showLanguageSelector(): boolean {
-    return (this.texts && this.texts.size > 1) || this.showSingleLanguageSelector;
+    return this.shownTexts?.size > 1 || this.showSingleLanguageSelector;
   }
 
   changeLanguage(lang: string): void {
