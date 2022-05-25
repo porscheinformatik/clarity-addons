@@ -17,6 +17,7 @@ export class MultilingualInputDemo implements OnInit {
   template2 = new Map();
   template3 = new Map();
   templateNA = new Map();
+  templateNAEmpty = new Map();
   reactive1 = new Map();
   reactive2 = new Map();
   templateML = new Map();
