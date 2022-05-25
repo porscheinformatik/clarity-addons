@@ -57,29 +57,34 @@ export abstract class ClrMultilingualAbstract extends ClrAbstractFormComponent {
   setText(key: string, value: string): void {
     this.texts.set(key, value);
     this.onChange(new Map(this.texts));
-    this.updateShownTexts();
+    this.updateShownTexts(key);
   }
 
-  updateShownTexts() {
+  updateShownTexts(currentlyEditingLang?: string) {
     if (this.texts) {
       if (this.languages) {
         this.shownTexts = this.applyMissingPrefix(
-          new Map(this.languages.map(lang => [lang, this.texts.get(lang) || '']))
+          new Map(this.languages.map(lang => [lang, this.texts.get(lang) || ''])),
+          currentlyEditingLang
         );
       } else {
-        this.shownTexts = this.applyMissingPrefix(new Map(this.texts));
+        this.shownTexts = this.applyMissingPrefix(new Map(this.texts), currentlyEditingLang);
       }
     }
   }
 
-  applyMissingPrefix(texts: Map<string, string>): Map<string, string> {
+  applyMissingPrefix(texts: Map<string, string>, currentlyEditingLang: string): Map<string, string> {
     if (!this.missingPrefix) {
       return texts;
     }
 
-    const fallbackText = this.missingPrefix + this.determineFallbackText();
+    let fallbackText = this.determineFallbackText();
+    if (!fallbackText) {
+      return texts;
+    }
+    fallbackText = this.missingPrefix + fallbackText;
     for (const lang of texts.keys()) {
-      if (!texts.get(lang)) {
+      if (!texts.get(lang) && lang !== currentlyEditingLang) {
         texts.set(lang, fallbackText);
       }
     }
@@ -108,7 +113,7 @@ export abstract class ClrMultilingualAbstract extends ClrAbstractFormComponent {
       return nonEmptyTextFromHiddenTexts;
     }
 
-    return '';
+    return undefined;
   }
 
   showLanguageSelector(): boolean {
