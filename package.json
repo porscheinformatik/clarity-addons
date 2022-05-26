@@ -85,7 +85,7 @@
     "karma-coverage-istanbul-reporter": "3.0.3",
     "karma-htmlfile-reporter": "0.3.8",
     "karma-jasmine": "5.0.1",
-    "karma-jasmine-html-reporter": "1.7.0",
+    "karma-jasmine-html-reporter": "2.0.0",
     "karma-jasmine-matchers": "5.0.0",
     "karma-mocha-reporter": "2.2.5",
     "karma-notify-reporter": "1.3.0",
