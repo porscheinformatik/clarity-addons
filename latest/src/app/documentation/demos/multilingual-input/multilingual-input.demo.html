@@ -61,6 +61,46 @@
                         <td class="clr-hidden-xs-down">"clr-col-md-10"</td>
                         <td class="left">Defines the css classes applied to the input control.</td>
                     </tr>
+                    <tr>
+                        <td class="left">
+                            <b>[clrShowSingleLanguageSelector]</b>
+                            <div class="clr-hidden-sm-up">Type: boolean</div>
+                            <div class="clr-hidden-sm-up">Default: false</div>
+                        </td>
+                        <td class="left clr-hidden-xs-down">Javascript boolean</td>
+                        <td class="clr-hidden-xs-down">false</td>
+                        <td class="left">Defines whether the language selector is shown when only one language is present.</td>
+                    </tr>
+                    <tr>
+                        <td class="left">
+                            <b>[clrLanguages]</b>
+                            <div class="clr-hidden-sm-up">Type: string[]</div>
+                            <div class="clr-hidden-sm-up">Default: undefined</div>
+                        </td>
+                        <td class="left clr-hidden-xs-down">Javascript string array</td>
+                        <td class="clr-hidden-xs-down">undefined</td>
+                        <td class="left">Defines the languages to show in language selector independently from bound form model.</td>
+                    </tr>
+                    <tr>
+                        <td class="left">
+                            <b>[clrFallbackLang]</b>
+                            <div class="clr-hidden-sm-up">Type: string</div>
+                            <div class="clr-hidden-sm-up">Default: undefined</div>
+                        </td>
+                        <td class="left clr-hidden-xs-down">Javascript string</td>
+                        <td class="clr-hidden-xs-down">undefined</td>
+                        <td class="left">Defines the language to show text from when a text in a language is missing. <code class="clr-code">clrMissingPrefix</code> must be defined as a prerequisite.</td>
+                    </tr>
+                    <tr>
+                        <td class="left">
+                            <b>[clrMissingPrefix]</b>
+                            <div class="clr-hidden-sm-up">Type: string</div>
+                            <div class="clr-hidden-sm-up">Default: ""</div>
+                        </td>
+                        <td class="left clr-hidden-xs-down">Javascript string</td>
+                        <td class="clr-hidden-xs-down">""</td>
+                        <td class="left">Defines the prefix which will be shown when a text in a language is missing.</td>
+                    </tr>
                 </tbody>
             </table>
 
@@ -139,6 +179,39 @@
             </form>
             <clr-code-snippet [clrCode]="templateExample"></clr-code-snippet>
             <clr-code-snippet [clrCode]="templateTSExample" clrLanguage="typescript"></clr-code-snippet>
+
+            <h3>Missing texts handling</h3>
+            <p>
+              To not only show an empty string for missing texts in a given language, the component provides the possibility
+              to define a prefix for missing texts with a fallback logic to show the text of another language.
+            </p>
+            <p>
+              Fallback text logic:
+            </p>
+            <ul>
+              <li>Text from fallback language (<code class="clr-code">clrFallbackLang</code>)</li>
+              <li>Text of first shown (defined in <code class="clr-code">clrLanguages</code> if present) non-empty language ordered by language</li>
+              <li>Text of first hidden (not defined in <code class="clr-code">clrLanguages</code> if present) non-empty language ordered by language</li>
+            </ul>
+
+            <form clrForm>
+              <clr-multilingual-input class="clr-col-12 clr-row" clrControlClasses="clr-col-md-5" name="templateNA"
+                clrSelectedLang="EN" [(ngModel)]="templateNa" [clrLanguages]="languagesNa" clrMissingPrefix="<na> ">
+
+                  <label class="clr-col-md-2">Missing Text</label>
+              </clr-multilingual-input>
+
+              <clr-code-snippet [clrCode]="naExample"></clr-code-snippet>
+              <clr-code-snippet [clrCode]="naTSExample" clrLanguage="typescript"></clr-code-snippet>
+
+              <clr-multilingual-input class="clr-col-12 clr-row" clrControlClasses="clr-col-md-5" name="templateNA2"
+                clrSelectedLang="EN" clrFallbackLang="FR" [(ngModel)]="templateNa2" [clrLanguages]="languagesNa2" clrMissingPrefix="<na> ">
+
+                  <label class="clr-col-md-2">Missing Text hidden fallback</label>
+              </clr-multilingual-input>
+              <clr-code-snippet [clrCode]="na2Example"></clr-code-snippet>
+              <clr-code-snippet [clrCode]="na2TSExample" clrLanguage="typescript"></clr-code-snippet>
+            </form>
         </div>
     </article>
 </clr-doc-wrapper>
