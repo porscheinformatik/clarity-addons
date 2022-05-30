@@ -63,6 +63,37 @@ exampleForm = new FormGroup({
 });
 `;
 
+
+const NA_EXAMPLE = `
+<clr-multilingual-input class="clr-col-12 clr-row" clrControlClasses="clr-col-md-5" name="templateNA"
+  clrSelectedLang="EN" [(ngModel)]="templateNa" [clrLanguages]="languagesNa" clrMissingPrefix="<na> ">
+    <label class="clr-col-md-2">Missing Text</label>
+</clr-multilingual-input>
+`;
+
+const NA_TS_EXAMPLE = `
+templateNa = new Map();
+languagesNa = ["EN", "DE"];
+
+this.templateNa.set("EN", "english text");
+`;
+
+const NA2_EXAMPLE = `
+<clr-multilingual-input class="clr-col-12 clr-row" clrControlClasses="clr-col-md-5" name="templateNA2"
+  clrSelectedLang="EN" clrFallbackLang="FR" [(ngModel)]="templateNa2" [clrLanguages]="languagesNa2" clrMissingPrefix="<na> ">
+    <label class="clr-col-md-2">Missing Text hidden fallback</label>
+</clr-multilingual-input>
+`;
+
+const NA2_TS_EXAMPLE = `
+templateNa2 = new Map();
+languagesNa2 = ["EN", "DE"];
+
+this.templateNa2.set("EN", "english text");
+this.templateNa2.set("FR", "texte français");
+`;
+
+
 @Component({
     selector: "clr-multilingual-demo",
     templateUrl: "./multilingual-input.demo.html",
@@ -76,11 +107,19 @@ export class MultilingualInputDemo extends ClarityDocComponent implements OnInit
     templateTSExample = TEMPLATE_TS_EXAMPLE;
     reactiveExample = REACTIVE_EXAMPLE;
     reactiveTSExample = REACTIVE_TS_EXAMPLE;
+    naExample = NA_EXAMPLE;
+    naTSExample = NA_TS_EXAMPLE;
+    na2Example = NA2_EXAMPLE;
+    na2TSExample = NA2_TS_EXAMPLE;
 
     data1 = new Map();
     data2 = new Map();
     reactiveData1 = new Map();
     reactiveData2 = new Map();
+    templateNa = new Map();
+    templateNa2 = new Map();
+    languagesNa = ["EN", "DE"];
+    languagesNa2 = ["EN", "DE"];
 
     exampleForm = new FormGroup({
       sample1: new FormControl(this.reactiveData1, {
@@ -110,5 +149,8 @@ export class MultilingualInputDemo extends ClarityDocComponent implements OnInit
         this.reactiveData2.set("EN", "english text\nSecond line with a little more text");
         this.reactiveData2.set("DE", "deutscher text\nZweite Zeile mit etwas mehr Text");
         this.reactiveData2.set("FR", "texte français\nDeuxième ligne avec un peu plus de texte");
+        this.templateNa.set("EN", "english text");
+        this.templateNa2.set("EN", "english text");
+        this.templateNa2.set("FR", "texte français");
       }
 }
