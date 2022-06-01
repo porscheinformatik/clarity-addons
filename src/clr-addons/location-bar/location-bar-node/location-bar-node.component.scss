@@ -13,12 +13,13 @@
 
     .unselectable-node {
       display: inline-block;
+      line-height: 0.35rem;
       padding: 0 0.5rem;
       text-transform: uppercase;
-      font-size: 0.458333rem;
+      font-size: 0.4rem;
       font-weight: 500;
       letter-spacing: 0.073em;
-      max-width: 15rem;
+      max-width: 18rem;
     }
 
     .last-level {

@@ -10,9 +10,13 @@
     <clr-dropdown>
       <button class="btn btn-link btn-sm" (blur)="focus = false" (focus)="focus = true" clrDropdownTrigger>
         <ng-container *ngIf="parentNode.getSelectedChild() as node; else unselected">
-          <span [class.last-level]="!parentNode.getSelectedChild().getSelectedChild()" title="{{ node.label }}">{{
-            node.label
-          }}</span>
+          <span
+            class="text-truncate"
+            [class.last-level]="!parentNode.getSelectedChild().getSelectedChild()"
+            title="{{ node.label }}"
+          >
+            {{ node.label }}
+          </span>
           <cds-icon shape="angle" direction="down" size="xs" class="caret-icon"></cds-icon>
         </ng-container>
         <ng-template #unselected>
@@ -49,7 +53,7 @@
       </ng-container>
       <ng-template #unselectable>
         <span
-          class="unselectable-node"
+          class="unselectable-node text-truncate"
           [class.last-level]="!parentNode.getSelectedChild().getSelectedChild()"
           title="{{ parentNode.getSelectedChild().label }}"
         >
