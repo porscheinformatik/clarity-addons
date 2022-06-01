@@ -15,11 +15,13 @@ export class LocationBarDemo implements OnInit {
   roots1: LocationBarNode<DemoLocationBarNodeId>[];
   roots2: LocationBarNode<DemoLocationBarNodeId>[];
   rootsLazy: LocationBarNode<DemoLocationBarNodeId>[];
+  rootsLongTexts: LocationBarNode<DemoLocationBarNodeId>[];
 
   ngOnInit() {
     this.buildRoots1();
     this.buildRoots2();
     this.buildRootsLazy();
+    this.buildRootsLongTexts();
   }
 
   private buildRoots1() {
@@ -61,5 +63,31 @@ export class LocationBarDemo implements OnInit {
     l1.setChildren([lazy]);
 
     this.rootsLazy = [l1];
+  }
+
+  private buildRootsLongTexts() {
+    const l1 = new LocationBarNode<DemoLocationBarNodeId>(
+      new DemoLocationBarNodeId('long1'),
+      'L1 This is a pretty long text to show that we should also handle this case',
+      false,
+      true
+    );
+    const l11 = new LocationBarNode<DemoLocationBarNodeId>(
+      new DemoLocationBarNodeId('long1.1'),
+      'L1.1 This is another pretty long text to show that we should also handle this case'
+    );
+    const l12 = new LocationBarNode<DemoLocationBarNodeId>(
+      new DemoLocationBarNodeId('long1.2'),
+      'L1.2 This is another pretty long text to show that we should also handle this case'
+    );
+    const l112 = new LocationBarNode<DemoLocationBarNodeId>(
+      new DemoLocationBarNodeId('long1.1.2'),
+      'L1.1.2 This is a pretty long text to show that we should also handle this case'
+    );
+
+    l11.setChildren([l112]);
+    l1.setChildren([l11, l12]);
+
+    this.rootsLongTexts = [l1];
   }
 }
