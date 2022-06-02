@@ -36,7 +36,7 @@ export class ColumnHiddenStatePersistenceDirective implements OnInit {
     /* read grid state if existing */
     const persistedGridStateJson = localStorage.getItem(this.statePersistenceKey.clrStatePersistenceKey);
     if (persistedGridStateJson !== null) {
-      const persistedGridState = JSON.parse(persistedGridStateJson);
+      const persistedGridState = JSON.parse(persistedGridStateJson) as DatagridState;
 
       /* read column state if existing */
       const persistedColumnState = persistedGridState[this.columnDirective.clrDgField];
@@ -56,7 +56,7 @@ export class ColumnHiddenStatePersistenceDirective implements OnInit {
       const persistedGridStateJson = localStorage.getItem(this.statePersistenceKey.clrStatePersistenceKey);
       let persistedGridState = {} as DatagridState;
       if (persistedGridStateJson !== null) {
-        persistedGridState = JSON.parse(persistedGridStateJson);
+        persistedGridState = JSON.parse(persistedGridStateJson) as DatagridState;
       }
 
       /* read column state if existing */
