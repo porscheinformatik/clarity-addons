@@ -33,16 +33,16 @@ export class ColumnHiddenStatePersistenceDirective implements OnInit {
   }
 
   private initHiddenState() {
-    /* 1. read grid state if existing */
+    /* read grid state if existing */
     const persistedGridStateJson = localStorage.getItem(this.statePersistenceKey.clrStatePersistenceKey);
-    if (persistedGridStateJson != null) {
+    if (persistedGridStateJson !== null) {
       const persistedGridState = JSON.parse(persistedGridStateJson);
 
-      /* 2. read column state if existing */
+      /* read column state if existing */
       const persistedColumnState = persistedGridState[this.columnDirective.clrDgField];
       if (persistedColumnState) {
-        /* 3. read column hidden state if existing */
-        const persistedColumnHiddenState = persistedColumnState['hidden'];
+        /* read column hidden state if existing */
+        const persistedColumnHiddenState = persistedColumnState.hidden;
         if (persistedColumnHiddenState) {
           this.hideableColumnDirective.clrDgHidden = persistedColumnHiddenState === true;
         }
@@ -52,22 +52,22 @@ export class ColumnHiddenStatePersistenceDirective implements OnInit {
 
   private setHiddenState(hidden: boolean) {
     if (!this.datagrid?.detailService?.isOpen) {
-      /* 1. read grid state if existing */
+      /* read grid state if existing */
       const persistedGridStateJson = localStorage.getItem(this.statePersistenceKey.clrStatePersistenceKey);
       let persistedGridState = {} as DatagridState;
-      if (persistedGridStateJson != null) {
+      if (persistedGridStateJson !== null) {
         persistedGridState = JSON.parse(persistedGridStateJson);
       }
 
-      /* 2. read column state if existing */
+      /* read column state if existing */
       let persistedColumnState = persistedGridState[this.columnDirective.clrDgField];
       if (!persistedColumnState) {
         persistedColumnState = {};
         persistedGridState[this.columnDirective.clrDgField] = persistedColumnState;
       }
 
-      /* 3. set column hidden state and persist in local storage */
-      persistedColumnState['hidden'] = hidden;
+      /* set column hidden state and persist in local storage */
+      persistedColumnState.hidden = hidden;
       localStorage.setItem(this.statePersistenceKey.clrStatePersistenceKey, JSON.stringify(persistedGridState));
     }
   }
