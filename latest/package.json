@@ -36,7 +36,7 @@
     "@porscheinformatik/clr-addons": "12.4.1",
     "@webcomponents/custom-elements": "1.5.0",
     "@webcomponents/webcomponentsjs": "2.6.0",
-    "core-js": "3.22.5",
+    "core-js": "3.22.8",
     "intl": "1.2.5",
     "jump.js": "1.0.2",
     "prismjs": "1.28.0",
