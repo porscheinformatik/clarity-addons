@@ -4,9 +4,10 @@
             Datagrids are for organizing large volumes of data that users can scan, compare and perform actions on.
         </h5>
         <p>
-            Please find the main documentation here: <a href="https://clarity.design/documentation/datagrid/structure">Clarity Datagrid</a>
+            Please find the main documentation here: <a href="https://angular.clarity.design/documentation/datagrid/structure">Clarity Datagrid</a>
             <br>In the following only additional features are documented
         </p>
+        <!-- SELECTION -->
         <h3>Selection</h3>
         <h4>Omit "select-all" in datagrid header</h4>
         <p>
@@ -23,5 +24,28 @@
         </clr-datagrid>
 
         <clr-code-snippet [clrCode]="noSelectAllExample"></clr-code-snippet>
+
+        <!-- COLUMNS -->
+        <h3>Column handling</h3>
+        <h4>Persist hidden state of columns in local storage</h4>
+        <p>
+            Add <code class="clr-code">clrStatePersistenceKey</code> attribute to datagrid and use <code class="clr-code">clrDgField</code>
+            attribute for columns. That's enough to automagically persist the hidden state of a column which is
+            flagged as hideable column (see <a href="https://angular.clarity.design/documentation/datagrid/hide-show">Clarity docu</a> for details).
+        </p>
+
+        <clr-datagrid [clrStatePersistenceKey]="'datagrid.demo.statePersistence'">
+            <clr-dg-column [clrDgField]="'hideableColumn'">
+                <ng-template clrDgHideableColumn>Hideable</ng-template>
+            </clr-dg-column>
+            <clr-dg-column>Not Hideable</clr-dg-column>
+
+            <clr-dg-row clrDgItem="1"><clr-dg-cell>Hideable item 1</clr-dg-cell><clr-dg-cell>Not hideable item 1</clr-dg-cell></clr-dg-row>
+            <clr-dg-row clrDgItem="2"><clr-dg-cell>Hideable item 2</clr-dg-cell><clr-dg-cell>Not hideable item 2</clr-dg-cell></clr-dg-row>
+
+            <clr-dg-footer></clr-dg-footer>
+        </clr-datagrid>
+
+        <clr-code-snippet [clrCode]="columnStateExample"></clr-code-snippet>
     </article>
 </clr-doc-wrapper>

@@ -11,11 +11,13 @@ import {DatagridDemo} from "./datagrid.demo";
 import { DocWrapperModule } from "../_doc-wrapper/doc-wrapper.module";
 import {RouterModule} from "@angular/router";
 import {UtilsModule} from "../../../utils/utils.module";
+import {ClrAddonsModule} from "@porscheinformatik/clr-addons";
 
 @NgModule({
     imports: [
         CommonModule,
         ClarityModule,
+        ClrAddonsModule,
         DocWrapperModule,
         UtilsModule,
         RouterModule.forChild([{path: "", component: DatagridDemo}])
