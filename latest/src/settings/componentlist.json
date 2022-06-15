@@ -106,8 +106,8 @@
             "type": "component"
         },
         {
-            "url": "angular-grid",
-            "text": "Angular grid",
+            "url": "responsiveness",
+            "text": "Responsiveness",
             "type": "layout"
         }
     ]

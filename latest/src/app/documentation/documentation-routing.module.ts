@@ -186,10 +186,10 @@ const documentationRoutes: Routes = [
                 }
             },
             {
-                path: "angular-grid",
-                loadChildren: () => import("./demos/angular-grid/angular-grid.demo.module").then(m => m.AngularGridDemoModule),
+                path: "responsiveness",
+                loadChildren: () => import("./demos/responsiveness/responsiveness.demo.module").then(m => m.ResponsivenessDemoModule),
                 data: {
-                    browserTitle: "Angular Grid"
+                    browserTitle: "Responsiveness"
                 }
             },
         ]

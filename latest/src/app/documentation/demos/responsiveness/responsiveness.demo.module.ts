@@ -11,7 +11,7 @@ import { ClarityModule, ClrFormsModule } from "@clr/angular";
 import { ClrAddonsModule } from "@porscheinformatik/clr-addons";
 import { UtilsModule } from "../../../utils/utils.module";
 import { DocWrapperModule } from "../_doc-wrapper/doc-wrapper.module";
-import { AngularGridDemo } from "./angular-grid.demo";
+import { ResponsivenessDemo } from "./responsiveness.demo";
 
 
 
@@ -24,14 +24,14 @@ import { AngularGridDemo } from "./angular-grid.demo";
         ClrAddonsModule,
         UtilsModule,
         DocWrapperModule,
-        RouterModule.forChild([{ path: "", component: AngularGridDemo }])
+        RouterModule.forChild([{ path: "", component: ResponsivenessDemo }])
     ],
     declarations: [
-        AngularGridDemo
+        ResponsivenessDemo
     ],
     exports: [
-        AngularGridDemo
+        ResponsivenessDemo
     ]
 })
-export class AngularGridDemoModule {
+export class ResponsivenessDemoModule {
 }
