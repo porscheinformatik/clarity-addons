@@ -16,6 +16,19 @@ const NO_SELECT_ALL_HTML = `
     <clr-dg-row clrDgItem="5"><clr-dg-cell>Item 5</clr-dg-cell></clr-dg-row>
 </clr-datagrid>`
 
+const PERSITED_COLUMN_STATE = `
+<clr-datagrid [clrStatePersistenceKey]="'datagrid.demo.statePersistence'">
+    <clr-dg-column [clrDgField]="'hideableColumn'">
+        <ng-template clrDgHideableColumn>Hideable</ng-template>
+    </clr-dg-column>
+    <clr-dg-column>Not Hideable</clr-dg-column>
+
+    <clr-dg-row clrDgItem="1"><clr-dg-cell>Hideable item 1</clr-dg-cell><clr-dg-cell>Not hideable item 1</clr-dg-cell></clr-dg-row>
+    <clr-dg-row clrDgItem="2"><clr-dg-cell>Hideable item 2</clr-dg-cell><clr-dg-cell>Not hideable item 2</clr-dg-cell></clr-dg-row>
+
+    <clr-dg-footer></clr-dg-footer>
+</clr-datagrid>`
+
 @Component({
     selector: "clr-datagrid-demo-docu",
     templateUrl: "./datagrid.demo.html",
@@ -26,6 +39,7 @@ const NO_SELECT_ALL_HTML = `
 })
 export class DatagridDemo extends ClarityDocComponent {
     noSelectAllExample = NO_SELECT_ALL_HTML;
+    columnStateExample = PERSITED_COLUMN_STATE;
     selected: any[] = [];
 
     constructor() {
