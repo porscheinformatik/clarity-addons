@@ -104,6 +104,11 @@
             "url": "view-edit-section",
             "text": "View/Edit Section",
             "type": "component"
+        },
+        {
+            "url": "angular-grid",
+            "text": "Angular grid",
+            "type": "layout"
         }
     ]
 }

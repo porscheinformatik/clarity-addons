@@ -185,6 +185,13 @@ const documentationRoutes: Routes = [
                     browserTitle: "History"
                 }
             },
+            {
+                path: "angular-grid",
+                loadChildren: () => import("./demos/angular-grid/angular-grid.demo.module").then(m => m.AngularGridDemoModule),
+                data: {
+                    browserTitle: "Angular Grid"
+                }
+            },
         ]
     }
 ];
