@@ -185,6 +185,13 @@ const documentationRoutes: Routes = [
                     browserTitle: "History"
                 }
             },
+            {
+                path: "responsiveness",
+                loadChildren: () => import("./demos/responsiveness/responsiveness.demo.module").then(m => m.ResponsivenessDemoModule),
+                data: {
+                    browserTitle: "Responsiveness"
+                }
+            },
         ]
     }
 ];

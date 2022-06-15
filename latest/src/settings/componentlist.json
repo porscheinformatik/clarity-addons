@@ -104,6 +104,11 @@
             "url": "view-edit-section",
             "text": "View/Edit Section",
             "type": "component"
+        },
+        {
+            "url": "responsiveness",
+            "text": "Responsiveness",
+            "type": "layout"
         }
     ]
 }
