@@ -16,6 +16,11 @@
             "type": "layout"
         },
         {
+            "url": "angular-grid",
+            "text": "Angular grid",
+            "type": "layout"
+        },
+        {
             "url": "breadcrumb",
             "text": "Breadcrumb",
             "type": "component"
