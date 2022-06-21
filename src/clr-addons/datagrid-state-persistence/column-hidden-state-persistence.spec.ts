@@ -59,7 +59,7 @@ describe('ColumnHiddenStatePersistenceDirective', () => {
   });
 
   it('Loaded from storage', () => {
-    const storageModel = '{"column1": {"hidden":true}, "column2": {"hidden":false}}';
+    const storageModel = '{"columns":{"column1": {"hidden":true}, "column2": {"hidden":false}}}';
     localStorage.setItem('ColumnHiddenStatePersistenceDirective', storageModel);
 
     fixture = TestBed.createComponent(TestComponent);
@@ -84,6 +84,6 @@ describe('ColumnHiddenStatePersistenceDirective', () => {
     expect(fixture.debugElement.query(By.css('#column5')).nativeElement).not.toHaveClass('datagrid-hidden-column');
 
     const storageModel = localStorage.getItem('ColumnHiddenStatePersistenceDirective');
-    expect(storageModel).toMatch('{"column1":{"hidden":true},"column5":{"hidden":false}}');
+    expect(storageModel).toBe('{"columns":{"column1":{"hidden":true},"column5":{"hidden":false}}}');
   });
 });

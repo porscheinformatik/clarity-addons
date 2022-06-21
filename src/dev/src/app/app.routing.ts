@@ -115,6 +115,13 @@ export const APP_ROUTES: Routes = [
     loadChildren: () => import('./kitchen-sink/kitchen-sink.module').then(m => m.KitchenSinkModule),
   },
   { path: 'dropdown', loadChildren: () => import('./dropdown/dropdown.demo.module').then(m => m.DropdownDemoModule) },
+  {
+    path: 'datagrid-state-persistence',
+    loadChildren: () =>
+      import('./datagrid-state-persistence/datagrid-state-persistence.demo.module').then(
+        m => m.DatagridStatePersistenceDemoModule
+      ),
+  },
 ];
 
 export const ROUTING: ModuleWithProviders<RouterModule> = RouterModule.forRoot(APP_ROUTES);
