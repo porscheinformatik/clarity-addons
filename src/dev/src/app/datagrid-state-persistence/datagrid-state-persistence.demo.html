@@ -1,0 +1,21 @@
+<h2>Datagrid state persistence</h2>
+
+<clr-datagrid [clrStatePersistenceKey]="'datagrid.demo.statePersistence'">
+  <clr-dg-column [clrDgField]="'hideableColumn'">
+    <ng-template clrDgHideableColumn>Hideable</ng-template>
+  </clr-dg-column>
+  <clr-dg-column>Not Hideable</clr-dg-column>
+
+  <clr-dg-row clrDgItem="1"
+    ><clr-dg-cell>Hideable item 1</clr-dg-cell><clr-dg-cell>Not hideable item 1</clr-dg-cell></clr-dg-row
+  >
+  <clr-dg-row clrDgItem="2"
+    ><clr-dg-cell>Hideable item 2</clr-dg-cell><clr-dg-cell>Not hideable item 2</clr-dg-cell></clr-dg-row
+  >
+
+  <clr-dg-footer>
+    <clr-dg-pagination #pagination [clrDgPageSize]="15">
+      <clr-dg-page-size [clrPageSizeOptions]="[10,15,20,50,100]">Entries per page</clr-dg-page-size>
+    </clr-dg-pagination>
+  </clr-dg-footer>
+</clr-datagrid>

@@ -2,12 +2,7 @@ import { Directive, OnInit, Optional } from '@angular/core';
 import { DatagridFieldDirective } from './datagrid-field.directive';
 import { ClrDatagrid, ClrDatagridHideableColumn } from '@clr/angular';
 import { StatePersistenceKeyDirective } from './state-persistence-key.directive';
-
-type DatagridState = { [key: string]: ColumnState };
-
-interface ColumnState {
-  hidden?: boolean;
-}
+import { ClrDatagridStatePersistenceModel } from './datagrid-state-persistence-model.interface';
 
 @Directive({
   selector: '[clrDgHideableColumn]',
@@ -36,13 +31,12 @@ export class ColumnHiddenStatePersistenceDirective implements OnInit {
     /* read grid state if existing */
     const persistedGridStateJson = localStorage.getItem(this.statePersistenceKey.clrStatePersistenceKey);
     if (persistedGridStateJson !== null) {
-      const persistedGridState = JSON.parse(persistedGridStateJson) as DatagridState;
+      const persistedGridState = JSON.parse(persistedGridStateJson) as ClrDatagridStatePersistenceModel;
 
       /* read column state if existing */
-      const persistedColumnState = persistedGridState[this.columnDirective.clrDgField];
-      if (persistedColumnState) {
+      if (persistedGridState.columns && persistedGridState.columns[this.columnDirective.clrDgField]) {
         /* read column hidden state if existing */
-        const persistedColumnHiddenState = persistedColumnState.hidden;
+        const persistedColumnHiddenState = persistedGridState.columns[this.columnDirective.clrDgField].hidden;
         if (persistedColumnHiddenState) {
           this.hideableColumnDirective.clrDgHidden = persistedColumnHiddenState === true;
         }
@@ -54,16 +48,19 @@ export class ColumnHiddenStatePersistenceDirective implements OnInit {
     if (!this.datagrid?.detailService?.isOpen) {
       /* read grid state if existing */
       const persistedGridStateJson = localStorage.getItem(this.statePersistenceKey.clrStatePersistenceKey);
-      let persistedGridState = {} as DatagridState;
+      let persistedGridState = {} as ClrDatagridStatePersistenceModel;
       if (persistedGridStateJson !== null) {
-        persistedGridState = JSON.parse(persistedGridStateJson) as DatagridState;
+        persistedGridState = JSON.parse(persistedGridStateJson) as ClrDatagridStatePersistenceModel;
       }
 
       /* read column state if existing */
-      let persistedColumnState = persistedGridState[this.columnDirective.clrDgField];
+      if (!persistedGridState.columns) {
+        persistedGridState.columns = {};
+      }
+      let persistedColumnState = persistedGridState.columns[this.columnDirective.clrDgField];
       if (!persistedColumnState) {
         persistedColumnState = {};
-        persistedGridState[this.columnDirective.clrDgField] = persistedColumnState;
+        persistedGridState.columns[this.columnDirective.clrDgField] = persistedColumnState;
       }
 
       /* set column hidden state and persist in local storage */
