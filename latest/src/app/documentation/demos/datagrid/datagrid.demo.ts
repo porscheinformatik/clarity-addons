@@ -29,6 +29,22 @@ const PERSITED_COLUMN_STATE = `
     <clr-dg-footer></clr-dg-footer>
 </clr-datagrid>`
 
+const PERSITED_PAGE_SIZE = `
+<clr-datagrid [clrStatePersistenceKey]="'datagrid.demo.statePersistence'">
+    <clr-dg-column>Description</clr-dg-column>
+    
+    <clr-dg-row *clrDgItems="let item of pageableItems" [clrDgItem]="item">
+        <clr-dg-cell>{{item}}</clr-dg-cell>
+    </clr-dg-row>
+
+    <clr-dg-footer>
+        <clr-dg-pagination #pagination [(clrDgPage)]="currentPage" [clrDgPageSize]="3"
+                           [clrDgTotalItems]="totalItems">
+            <clr-dg-page-size [clrPageSizeOptions]="[1,3,5,8]">Entries per page</clr-dg-page-size>
+        </clr-dg-pagination>
+    </clr-dg-footer>
+</clr-datagrid>`
+
 @Component({
     selector: "clr-datagrid-demo-docu",
     templateUrl: "./datagrid.demo.html",
@@ -40,7 +56,13 @@ const PERSITED_COLUMN_STATE = `
 export class DatagridDemo extends ClarityDocComponent {
     noSelectAllExample = NO_SELECT_ALL_HTML;
     columnStateExample = PERSITED_COLUMN_STATE;
+    persistedPageSizeExample = PERSITED_PAGE_SIZE;
     selected: any[] = [];
+
+    pageableItems: any[] = ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5"]
+
+    currentPage = 1;
+    totalItems = 5;
 
     constructor() {
         super("datagrid");

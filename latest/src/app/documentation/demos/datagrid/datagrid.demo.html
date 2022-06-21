@@ -47,5 +47,29 @@
         </clr-datagrid>
 
         <clr-code-snippet [clrCode]="columnStateExample"></clr-code-snippet>
+
+        <!-- PAGINATION -->
+        <h3>Pagination</h3>
+        <h4>Persist page size in local storage</h4>
+        <p>
+            Add <code class="clr-code">clrStatePersistenceKey</code> attribute to datagrid (if not already done).
+            That's enough to automagically persist the page size.
+        </p>
+
+        <clr-datagrid [clrStatePersistenceKey]="'datagrid.demo.statePersistence'">
+            <clr-dg-column>Description</clr-dg-column>
+            <clr-dg-row *clrDgItems="let item of pageableItems" [clrDgItem]="item">
+                <clr-dg-cell>{{item}}</clr-dg-cell>
+            </clr-dg-row>
+
+            <clr-dg-footer>
+                <clr-dg-pagination #pagination [(clrDgPage)]="currentPage" [clrDgPageSize]="3"
+                                   [clrDgTotalItems]="totalItems">
+                    <clr-dg-page-size [clrPageSizeOptions]="[1,3,5,8]">Entries per page</clr-dg-page-size>
+                </clr-dg-pagination>
+            </clr-dg-footer>
+        </clr-datagrid>
+
+        <clr-code-snippet [clrCode]="persistedPageSizeExample"></clr-code-snippet>
     </article>
 </clr-doc-wrapper>
