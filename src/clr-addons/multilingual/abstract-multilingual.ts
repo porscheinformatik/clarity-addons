@@ -14,7 +14,6 @@ export abstract class ClrMultilingualAbstract extends ClrAbstractFormComponent {
   @Input('clrSelectedLang') selectedLang: string;
   @Input() readonly: string;
   @Input() maxlength: number;
-  @Input() rows: number;
   /** Show language selector when only one language provided */
   @Input('clrShowSingleLanguageSelector') showSingleLanguageSelector: boolean;
 
