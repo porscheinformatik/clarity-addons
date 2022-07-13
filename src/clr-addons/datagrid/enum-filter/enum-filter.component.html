@@ -1,0 +1,13 @@
+<clr-checkbox-container class="filter-selection">
+  <clr-checkbox-wrapper *ngFor="let possibleValue of possibleValues">
+    <input
+      type="checkbox"
+      clrCheckbox
+      value="{{ possibleValue }}"
+      name="possibleValue"
+      ngModel
+      (ngModelChange)="onChange(possibleValue, $event)"
+    />
+    <label>{{ possibleValue }}</label>
+  </clr-checkbox-wrapper>
+</clr-checkbox-container>

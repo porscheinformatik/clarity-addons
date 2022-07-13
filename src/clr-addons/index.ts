@@ -35,4 +35,4 @@ export * from './location-bar/index';
 export * from './autocomplete-off/index';
 export * from './abstract-form-component/index';
 export * from './dropdown/index';
-export * from './datagrid-state-persistence/index';
+export * from './datagrid/index';

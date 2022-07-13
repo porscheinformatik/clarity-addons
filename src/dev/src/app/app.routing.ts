@@ -122,6 +122,10 @@ export const APP_ROUTES: Routes = [
         m => m.DatagridStatePersistenceDemoModule
       ),
   },
+  {
+    path: 'enum-filter',
+    loadChildren: () => import('./enum-filter/enum-filter.demo.module').then(m => m.EnumFilterDemoModule),
+  },
 ];
 
 export const ROUTING: ModuleWithProviders<RouterModule> = RouterModule.forRoot(APP_ROUTES);
