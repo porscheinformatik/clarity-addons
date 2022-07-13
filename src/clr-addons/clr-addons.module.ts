@@ -32,7 +32,7 @@ import { ClrBrandAvatarModule } from './brand-avatar/brand-avatar.module';
 import { ClrLocationBarModule } from './location-bar/location-bar.module';
 import { ClrFormModule } from './abstract-form-component/form.module';
 import { ClrDropdownOverflowModule } from './dropdown';
-import { ClrDatagridStatePersistenceModule } from './datagrid-state-persistence/datagrid-state-persistence.module';
+import { ClrDatagridStatePersistenceModule, ClrEnumFilterModule } from './datagrid';
 
 @NgModule({
   exports: [
@@ -64,6 +64,7 @@ import { ClrDatagridStatePersistenceModule } from './datagrid-state-persistence/
     ClrFormModule,
     ClrDropdownOverflowModule,
     ClrDatagridStatePersistenceModule,
+    ClrEnumFilterModule,
   ],
 })
 export class ClrAddonsModule {}

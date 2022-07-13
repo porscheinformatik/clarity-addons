@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClarityModule, ClrDatagridPagination } from '@clr/angular';
-import { ClrAddonsModule } from '../clr-addons.module';
+import { ClrDatagridStatePersistenceModule } from './datagrid-state-persistence.module';
 
 @Component({
   template: `
@@ -30,7 +30,7 @@ describe('StatePersistenceKeyDirective', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ClarityModule, FormsModule, BrowserAnimationsModule, ClrAddonsModule],
+      imports: [ClarityModule, FormsModule, BrowserAnimationsModule, ClrDatagridStatePersistenceModule],
       declarations: [TestComponent],
       teardown: { destroyAfterEach: false },
     }).compileComponents();
