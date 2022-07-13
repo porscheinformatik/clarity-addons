@@ -25,10 +25,10 @@ export class StatePersistenceKeyDirective implements AfterContentInit {
       });
 
       /* init page size of datagrid if already persisted in local storage */
-      const state = JSON.parse(localStorage.getItem(this.clrStatePersistenceKey));
-      if (state && state.pageSize) {
+      const loadedState = JSON.parse(localStorage.getItem(this.clrStatePersistenceKey));
+      if (loadedState?.pageSize) {
         /* postpone set size to other cycle as it is already set in this change detection cycle */
-        setTimeout(() => (this.pagination.page.size = state.pageSize));
+        setTimeout(() => (this.pagination.page.size = loadedState.pageSize));
       }
     }
   }
