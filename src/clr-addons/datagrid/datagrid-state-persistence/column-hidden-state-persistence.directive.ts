@@ -37,7 +37,7 @@ export class ColumnHiddenStatePersistenceDirective implements OnInit {
       if (persistedGridState.columns && persistedGridState.columns[this.columnDirective.clrDgField]) {
         /* read column hidden state if existing */
         const persistedColumnHiddenState = persistedGridState.columns[this.columnDirective.clrDgField].hidden;
-        if (persistedColumnHiddenState) {
+        if (persistedColumnHiddenState !== undefined) {
           this.hideableColumnDirective.clrDgHidden = persistedColumnHiddenState === true;
         }
       }
