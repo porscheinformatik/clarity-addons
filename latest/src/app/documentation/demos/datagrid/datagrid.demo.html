@@ -7,6 +7,49 @@
             Please find the main documentation here: <a href="https://angular.clarity.design/documentation/datagrid/structure">Clarity Datagrid</a>
             <br>In the following only additional features are documented
         </p>
+
+        <!-- ENUM FILTER -->
+        <h3>Enum Filter</h3>
+        <p>
+            When you need a filter with checkboxes based on grid data or custom values use the custom <code class="clr-code">clr-enum-filter</code>.
+        </p>
+
+        <h4>Filter values derived from datagrid data</h4>
+        <p>Just provide the <code class="clr-code">clrProperty</code> input which defines the name of the attribute in datagrid data to derive the values from.
+          This filter will then show distinct values of this attribute.</p>
+        <clr-datagrid>
+          <clr-dg-column [clrDgField]="'name'"
+            >Name
+            <clr-dg-filter>
+              <clr-enum-filter clrProperty="name"> </clr-enum-filter>
+            </clr-dg-filter>
+          </clr-dg-column>
+        
+          <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
+            <clr-dg-cell>{{data.name}}</clr-dg-cell>
+          </clr-dg-row>
+        </clr-datagrid>
+
+        <clr-code-snippet [clrCode]="enumFilterExample"></clr-code-snippet>
+        
+        <h4>Filter values provided explicitly</h4>
+        <p>In some cases you want to specify the filter values explicitly (e.g. server driven datagrid).
+          In this case just provide all possible values with <code class="clr-code">clrPossibleValues</code> input parameter.</p>
+        <clr-datagrid>
+          <clr-dg-column [clrDgField]="'name'"
+            >Name
+            <clr-dg-filter>
+              <clr-enum-filter clrProperty="name" [clrPossibleValues]="customPossibleValues"> </clr-enum-filter>
+            </clr-dg-filter>
+          </clr-dg-column>
+        
+          <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
+            <clr-dg-cell>{{data.name}}</clr-dg-cell>
+          </clr-dg-row>
+        </clr-datagrid>
+
+        <clr-code-snippet [clrCode]="enumFilterCustomExample"></clr-code-snippet>
+
         <!-- SELECTION -->
         <h3>Selection</h3>
         <h4>Omit "select-all" in datagrid header</h4>
