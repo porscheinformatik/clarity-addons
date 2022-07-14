@@ -45,6 +45,36 @@ const PERSITED_PAGE_SIZE = `
     </clr-dg-footer>
 </clr-datagrid>`
 
+const ENUM_FILTER = `
+<clr-datagrid>
+  <clr-dg-column [clrDgField]="'name'"
+    >Name
+    <clr-dg-filter>
+      <clr-enum-filter clrProperty="name"> </clr-enum-filter>
+    </clr-dg-filter>
+  </clr-dg-column>
+
+  <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
+    <clr-dg-cell>{{data.name}}</clr-dg-cell>
+  </clr-dg-row>
+</clr-datagrid>
+`
+
+const ENUM_FILTER_CUSTOM = `
+<clr-datagrid>
+  <clr-dg-column [clrDgField]="'name'"
+    >Name
+    <clr-dg-filter>
+      <clr-enum-filter clrProperty="name" [clrPossibleValues]="customPossibleValues"> </clr-enum-filter>
+    </clr-dg-filter>
+  </clr-dg-column>
+
+  <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
+    <clr-dg-cell>{{data.name}}</clr-dg-cell>
+  </clr-dg-row>
+</clr-datagrid>
+`
+
 @Component({
     selector: "clr-datagrid-demo-docu",
     templateUrl: "./datagrid.demo.html",
@@ -57,12 +87,19 @@ export class DatagridDemo extends ClarityDocComponent {
     noSelectAllExample = NO_SELECT_ALL_HTML;
     columnStateExample = PERSITED_COLUMN_STATE;
     persistedPageSizeExample = PERSITED_PAGE_SIZE;
+    enumFilterExample = ENUM_FILTER;
+    enumFilterCustomExample = ENUM_FILTER_CUSTOM;
+
     selected: any[] = [];
 
     pageableItems: any[] = ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5"]
 
     currentPage = 1;
     totalItems = 5;
+
+
+    dataList = [{ name: "TestValue1" }, { name: "TestValue2" }];
+    customPossibleValues = ["TestValue1", "TestValue2", "TestValue3"];
 
     constructor() {
         super("datagrid");
