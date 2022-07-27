@@ -5,7 +5,7 @@
       clrCheckbox
       value="{{ possibleValue }}"
       name="possibleValue"
-      ngModel
+      [ngModel]="filteredValues.includes(possibleValue)"
       (ngModelChange)="onChange(possibleValue, $event)"
     />
     <label>{{ possibleValue }}</label>

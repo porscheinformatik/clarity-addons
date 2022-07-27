@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 import { ClrDatagrid, ClrDatagridFilter, ClrDatagridFilterInterface } from '@clr/angular';
 import { Subject, takeUntil } from 'rxjs';
 
@@ -11,6 +11,12 @@ export class ClrEnumFilterComponent<T extends { [key: string]: any }>
   implements ClrDatagridFilterInterface<T>, OnDestroy
 {
   @Input('clrProperty') property = '';
+  @Input('clrFilterValues')
+  set clrFilterValues(values: string[]) {
+    this.filteredValues = values;
+  }
+
+  @Output() clrFilterValuesChange = new EventEmitter<string[]>();
 
   possibleValues: string[] = [];
   customPossibleValues = false;
@@ -42,6 +48,7 @@ export class ClrEnumFilterComponent<T extends { [key: string]: any }>
       this.filteredValues = this.filteredValues.filter(filteredState => filteredState !== selectedValue);
     }
 
+    this.clrFilterValuesChange.emit(this.filteredValues);
     this.changes.emit(true);
   }
 

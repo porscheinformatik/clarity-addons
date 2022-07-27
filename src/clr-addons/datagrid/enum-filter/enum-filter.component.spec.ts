@@ -49,6 +49,32 @@ class TestComponentCustomValues {
   @ViewChild(ClrDatagrid) datagrid: ClrDatagrid;
 }
 
+@Component({
+  template: `
+    <body>
+      <clr-datagrid>
+        <clr-dg-column [clrDgField]="'name'">
+          <clr-dg-filter>
+            <clr-enum-filter clrProperty="name" [clrFilterValues]="preselectedValues"> </clr-enum-filter>
+          </clr-dg-filter>
+        </clr-dg-column>
+
+        <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
+          <clr-dg-cell>{{ data.name }}</clr-dg-cell>
+        </clr-dg-row>
+      </clr-datagrid>
+    </body>
+  `,
+})
+class TestComponentPreselectedValues {
+  dataList = [{ name: 'TestValue1' }, { name: 'TestValue2' }, { name: 'TestValue3' }];
+
+  preselectedValues = ['TestValue1', 'TestValue3'];
+
+  @ViewChild(ClrEnumFilterComponent) component: ClrEnumFilterComponent<{ name: string }>;
+  @ViewChild(ClrDatagrid) datagrid: ClrDatagrid;
+}
+
 describe('EnumFilterComponent', () => {
   describe('Derived possible values', () => {
     let fixture: ComponentFixture<TestComponent>;
@@ -110,5 +136,30 @@ describe('EnumFilterComponent', () => {
 
       expect(fixture.componentInstance.datagrid.rows.length).toBe(1);
     });
+  });
+
+  describe('Preselected values', () => {
+    let fixture: ComponentFixture<TestComponentPreselectedValues>;
+
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [ClarityModule],
+        declarations: [TestComponentPreselectedValues, ClrEnumFilterComponent],
+        providers: [],
+      }).compileComponents();
+    }));
+
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestComponentPreselectedValues);
+      fixture.detectChanges();
+    });
+
+    it('should create', () => {
+      expect(fixture.componentInstance.component).toBeTruthy();
+    });
+
+    it('preselected values should be filtered', waitForAsync(() => {
+      expect(fixture.componentInstance.datagrid.rows.length).toBe(2);
+    }));
   });
 });
