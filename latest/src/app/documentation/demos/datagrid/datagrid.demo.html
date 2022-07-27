@@ -50,6 +50,26 @@
 
         <clr-code-snippet [clrCode]="enumFilterCustomExample"></clr-code-snippet>
 
+        <h4>Preselect filter values</h4>
+        <p>In some cases you want to preselect some filter values.
+          In this case just provide the filter values with <code class="clr-code">clrFilterValues</code> input parameter.
+          There is also a output parameter (<code class="clr-code">clrFilterValuesChange</code>) for this, when the filter changes.
+        </p>
+        <clr-datagrid>
+          <clr-dg-column [clrDgField]="'name'"
+            >Name
+            <clr-dg-filter>
+              <clr-enum-filter clrProperty="name" [clrFilterValues]="preselectedValues"> </clr-enum-filter>
+            </clr-dg-filter>
+          </clr-dg-column>
+        
+          <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
+            <clr-dg-cell>{{data.name}}</clr-dg-cell>
+          </clr-dg-row>
+        </clr-datagrid>
+
+        <clr-code-snippet [clrCode]="enumFilterPreselectExample"></clr-code-snippet>
+
         <!-- SELECTION -->
         <h3>Selection</h3>
         <h4>Omit "select-all" in datagrid header</h4>
