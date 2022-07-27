@@ -1,5 +1,6 @@
 <h2>Enum Filter</h2>
 
+<h3>Simple</h3>
 <clr-datagrid>
   <clr-dg-column [clrDgField]="'name'"
     >Name
@@ -13,6 +14,7 @@
   </clr-dg-row>
 </clr-datagrid>
 
+<h3>Custom values</h3>
 <clr-datagrid>
   <clr-dg-column [clrDgField]="'name'"
     >Name
@@ -25,3 +27,23 @@
     <clr-dg-cell>{{data.name}}</clr-dg-cell>
   </clr-dg-row>
 </clr-datagrid>
+
+<h3>Preselected filter</h3>
+<clr-datagrid>
+  <clr-dg-column [clrDgField]="'name'"
+    >Name
+    <clr-dg-filter>
+      <clr-enum-filter
+        clrProperty="name"
+        [clrFilterValues]="preSelectedValues"
+        (clrFilterValuesChange)="filterChanged($event)"
+      >
+      </clr-enum-filter>
+    </clr-dg-filter>
+  </clr-dg-column>
+
+  <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
+    <clr-dg-cell>{{data.name}}</clr-dg-cell>
+  </clr-dg-row>
+</clr-datagrid>
+Current Filters: {{currentFilter}}
