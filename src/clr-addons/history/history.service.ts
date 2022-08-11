@@ -145,6 +145,10 @@ export class ClrHistoryService {
       this.setHistoryPinned(username, false, domain);
       historySettings = [{ username: username, historyPinned: false }];
     }
+    if (!historySettings.find(hSetting => hSetting.username === username)) {
+      this.setHistoryPinned(username, false, domain);
+      historySettings.push({ username: username, historyPinned: false });
+    }
     this.cookieSettings$.next(historySettings);
   }
 
