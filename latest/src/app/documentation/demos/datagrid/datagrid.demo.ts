@@ -75,6 +75,21 @@ const ENUM_FILTER_CUSTOM = `
 </clr-datagrid>
 `
 
+const ENUM_FILTER_PRESELECT = `
+<clr-datagrid>
+  <clr-dg-column [clrDgField]="'name'"
+    >Name
+    <clr-dg-filter>
+      <clr-enum-filter clrProperty="name" [clrFilterValues]="preselectedValues"> </clr-enum-filter>
+    </clr-dg-filter>
+  </clr-dg-column>
+
+  <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
+    <clr-dg-cell>{{data.name}}</clr-dg-cell>
+  </clr-dg-row>
+</clr-datagrid>
+`
+
 @Component({
     selector: "clr-datagrid-demo-docu",
     templateUrl: "./datagrid.demo.html",
@@ -89,6 +104,7 @@ export class DatagridDemo extends ClarityDocComponent {
     persistedPageSizeExample = PERSITED_PAGE_SIZE;
     enumFilterExample = ENUM_FILTER;
     enumFilterCustomExample = ENUM_FILTER_CUSTOM;
+    enumFilterPreselectExample = ENUM_FILTER_PRESELECT;
 
     selected: any[] = [];
 
@@ -98,8 +114,9 @@ export class DatagridDemo extends ClarityDocComponent {
     totalItems = 5;
 
 
-    dataList = [{ name: "TestValue1" }, { name: "TestValue2" }];
-    customPossibleValues = ["TestValue1", "TestValue2", "TestValue3"];
+    dataList = [{ name: "TestValue1" }, { name: "TestValue2" }, { name: "TestValue3" }];
+    customPossibleValues = ["TestValue1", "TestValue2", "TestValue3", "TestValue4"];
+    preselectedValues = ["TestValue1", "TestValue3"];
 
     constructor() {
         super("datagrid");
