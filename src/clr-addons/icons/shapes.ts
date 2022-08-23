@@ -412,7 +412,7 @@ export const ItemsForwardShape = clrIconSVG(
   '0 0 36 36'
 );
 
-export const DollarBillShape = clrIconSVG(
+export const DollarBillPartialShape = clrIconSVG(
   `<path d="M18 24.55h-.16a5.52 5.52 0 01-1.07-.15 1 1 0 01-.77-1.23 1 1 0 011.22-.72 6.48 6.48 0 00.86.1 3.2 3.2 0 00.62-.09 1 1 0 11.5 1.93 4.74 4.74 0 01-1.2.16zM14.67 22.9a1 1 0 01-.76-.35 6.84 6.84 0 01-1.44-3 1 1 0 012-.43 4.79 4.79 0 001 2.1 1 1 0 01-.12 1.41 1 1 0 01-.68.27zm-1.21-5.33a.78.78 0 01-.22 0 1 1 0 01-.76-1.19 6.87 6.87 0 011.45-3 1 1 0 111.52 1.3 4.87 4.87 0 00-1 2.09 1 1 0 01-.99.8zM21.35 22.88a1 1 0 01-.64-.23 1 1 0 01-.13-1.41 4.88 4.88 0 001-2.1 1 1 0 011.19-.76 1 1 0 01.76 1.18 6.79 6.79 0 01-1.41 3 1 1 0 01-.77.32zm1.19-5.34a1 1 0 01-1-.77 4.85 4.85 0 00-1-2.08 1 1 0 011.52-1.31 6.85 6.85 0 011.46 2.94 1 1 0 01-.75 1.2.82.82 0 01-.23.02zm-5.48-4a1 1 0 01-.23-2 5 5 0 012.34 0 1 1 0 11-.47 1.94 3 3 0 00-1.4 0z"/><path d="M21.57 26H9.49A5.87 5.87 0 004 20.44V15.6A5.87 5.87 0 009.51 10h17A5.87 5.87 0 0032 15.6v3.93l2-1.25V10a2 2 0 00-2-2H4a2 2 0 00-2 2v16a2 2 0 002 2h14.35zM32 10v4a4.25 4.25 0 01-3.9-4zM4 10h3.9A4.25 4.25 0 014 14zm0 16v-3.94A4.25 4.25 0 017.9 26z"/><path fill="none" d="M0 0h36v36H0z"/>`,
   '0 0 36 36'
 );
@@ -546,7 +546,7 @@ export const ClrAddonsIconShapes: any = {
   'paint-material-fwd': PaintMaterialForwardShape,
   'items-receive': ItemsRecieveShape,
   'items-forward': ItemsForwardShape,
-  'dollar-bill': DollarBillShape,
+  'money-partial': DollarBillPartialShape,
   'money-fwd': DollarBillForwardShape,
   'blocksgroup-fwd': BlocksGroupForwardShape,
   'text-fwd': TextForward,
