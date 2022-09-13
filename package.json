@@ -1,6 +1,6 @@
 {
   "name": "clr-addons",
-  "version": "12.8.2",
+  "version": "12.8.3",
   "private": true,
   "scripts": {
     "build:ui:css": "sass --source-map --precision=8 ./src/clr-addons/themes/phs/phs-theme.scss ./dist/clr-addons/styles/clr-addons-phs.css",
