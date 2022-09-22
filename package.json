@@ -54,14 +54,14 @@
     "core-js": "3.23.4",
     "rxjs": "7.5.6",
     "tslib": "2.4.0",
-    "zone.js": "0.11.6"
+    "zone.js": "0.11.8"
   },
   "devDependencies": {
     "@alasdair/karma-scss-preprocessor": "5.0.0-3",
-    "@angular-devkit/build-angular": "13.3.8",
-    "@angular-devkit/core": "13.3.8",
+    "@angular-devkit/build-angular": "13.3.9",
+    "@angular-devkit/core": "13.3.9",
     "@angular-eslint/builder": "14.0.2",
-    "@angular/cli": "13.3.8",
+    "@angular/cli": "13.3.9",
     "@angular/compiler-cli": "13.3.11",
     "@types/jasmine": "4.0.3",
     "@types/jasmine-matchers": "0.2.32",
