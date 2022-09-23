@@ -1,0 +1,27 @@
+<h2>Datagrid filters</h2>
+
+<clr-datagrid>
+  <clr-dg-column [clrDgField]="'name'">Name</clr-dg-column>
+  <clr-dg-column [clrDgField]="'amount'">
+    Amount
+    <clr-dg-numeric-filter [clrDgNumericFilter]="amountFilter"></clr-dg-numeric-filter>
+  </clr-dg-column>
+  <clr-dg-column [clrDgField]="'created'">
+    Created (filter={{ createdFilterValue | json }})
+    <clr-dg-filter>
+      <clr-date-filter [clrProperty]="'created'" [(clrFilterValue)]="createdFilterValue"></clr-date-filter>
+    </clr-dg-filter>
+  </clr-dg-column>
+
+  <clr-dg-row *clrDgItems="let item of items">
+    <clr-dg-cell>{{item.name}}</clr-dg-cell>
+    <clr-dg-cell>{{item.amount}}</clr-dg-cell>
+    <clr-dg-cell>{{item.created | date}}</clr-dg-cell>
+  </clr-dg-row>
+
+  <clr-dg-footer>
+    <clr-dg-pagination #pagination [clrDgPageSize]="15">
+      <clr-dg-page-size [clrPageSizeOptions]="[10,15,20,50,100]">Entries per page</clr-dg-page-size>
+    </clr-dg-pagination>
+  </clr-dg-footer>
+</clr-datagrid>

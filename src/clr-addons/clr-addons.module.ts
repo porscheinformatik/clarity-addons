@@ -33,6 +33,7 @@ import { ClrLocationBarModule } from './location-bar/location-bar.module';
 import { ClrFormModule } from './abstract-form-component/form.module';
 import { ClrDropdownOverflowModule } from './dropdown';
 import { ClrDatagridStatePersistenceModule, ClrEnumFilterModule } from './datagrid';
+import { ClrDateFilterModule } from './datagrid/date-filter/date-filter.module';
 
 @NgModule({
   exports: [
@@ -65,6 +66,7 @@ import { ClrDatagridStatePersistenceModule, ClrEnumFilterModule } from './datagr
     ClrDropdownOverflowModule,
     ClrDatagridStatePersistenceModule,
     ClrEnumFilterModule,
+    ClrDateFilterModule,
   ],
 })
 export class ClrAddonsModule {}
