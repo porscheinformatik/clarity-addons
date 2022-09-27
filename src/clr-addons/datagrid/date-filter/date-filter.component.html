@@ -1,0 +1,21 @@
+<clr-date-container>
+  <input
+    #input_from
+    type="date"
+    name="from"
+    class="datagrid-date-filter-input"
+    [(clrDate)]="from"
+    [placeholder]="minPlaceholderValue"
+    [attr.aria-label]="minPlaceholderValue"
+  />
+</clr-date-container>
+<clr-date-container>
+  <input
+    type="date"
+    name="to"
+    class="datagrid-date-filter-input"
+    [(clrDate)]="to"
+    [placeholder]="maxPlaceholderValue"
+    [attr.aria-label]="maxPlaceholderValue"
+  />
+</clr-date-container>

@@ -116,6 +116,11 @@ export const APP_ROUTES: Routes = [
   },
   { path: 'dropdown', loadChildren: () => import('./dropdown/dropdown.demo.module').then(m => m.DropdownDemoModule) },
   {
+    path: 'datagrid-filters',
+    loadChildren: () =>
+      import('./datagrid-filters/datagrid-filters.demo.module').then(m => m.DatagridFiltersDemoModule),
+  },
+  {
     path: 'datagrid-state-persistence',
     loadChildren: () =>
       import('./datagrid-state-persistence/datagrid-state-persistence.demo.module').then(
