@@ -1,0 +1,34 @@
+<div class="dox-wrapper dox-header new-component-layout">
+  <section>
+    <h1>
+      {{title}}
+      <span class="label label-warning clr-align-middle" *ngIf="deprecated">
+        Deprecated
+        <span class="badge badge-warning">v7.0</span>
+      </span>
+    </h1>
+    <h5 *ngIf="description">{{ description }}</h5>
+
+    <div class="dox-tabs">
+      <ul class="list-unstyled" [scrollspy]="scrollable">
+        <li>
+          <a routerLink="." routerLinkActive="active" fragment="top" id="topTabLink" class="clrweb-tablink">
+            Design Guidelines
+          </a>
+        </li>
+        <li>
+          <a routerLink="." routerLinkActive="active" fragment="examples" class="clrweb-tablink" id="guidelinesTabLink">
+            Code &amp; Examples
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<section class="dox-content" hash-listener #scrollable>
+  <div class="dox-content-wrapper">
+    <a id="top"></a>
+    <ng-content></ng-content>
+  </div>
+</section>

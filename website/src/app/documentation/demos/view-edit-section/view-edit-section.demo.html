@@ -1,0 +1,641 @@
+<clr-doc-wrapper [title]="title">
+  <article>
+    <h5 class="component-summary" id="view-edit-section-header">
+      The View-Edit Section (VES) is a basic component used to display and edit data.
+      <br />
+      View-Edit Sections should semantically group information that belongs together, providing a meaningful information
+      structure to the user.
+    </h5>
+
+    <div id="design-guidelines">
+      <h3>View-mode</h3>
+      <p>
+        In view-mode the section consists of label-value pairs to display data to user. The user can switch the mode of
+        the section clicking the pencil-icon when editing data is required.
+      </p>
+
+      <h3>Edit-mode</h3>
+      <p>
+        In edit-mode the label-value pairs transform to label-input fields, a form, and can be edited. The changes can
+        be saved or cancelled, which will return the VES back to view-mode. The ESC key also cancels the edit-mode.
+      </p>
+
+      <h3>Multiple View-Edit Sections</h3>
+      <p>
+        There can be multiple View-Edit sections placed in the content area, multiple sections can be edited at once, no
+        automatic inactivation of other View-Edit Sections should occur. <br />
+        The user needs to actively end the edit-mode by saving or cancelling the changes.
+      </p>
+
+      <h3>Collapse/Expand Section</h3>
+      <p>
+        Follows the basic principles of:
+        <a class="nav-link" routerLink="../collapse-expand-section">Clarity Addons - Collapse/Expand Section</a>
+      </p>
+      <p>
+        The View-Edit section offers the possibility to collapse/expand its content.
+        <br />
+        The user can actively collapse and expand the section in view mode. Upon entering edit mode, the section is
+        automatically expanded, and the collapse button is hidden.
+      </p>
+
+      <h3>Use when</h3>
+      <br />
+      <ul>
+        <li>Lots of information is already on the page. Collapse/Expand can aid gaining overview.</li>
+        <li>
+          Customized user view is necessary. For example different types of users, with different interests are using
+          the same page. There the Collapse/Expand feature can aid by maining a single page and every user hides
+          currently unnecessary information.
+        </li>
+      </ul>
+
+      <h3>Summary of Options</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Property</th>
+            <th class="left clr-hidden-xs-down">Values</th>
+            <th class="clr-hidden-xs-down">Default</th>
+            <th class="left">Effect</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left">
+              <b>[(clrIsCollapsed)]</b>
+              <div class="clr-hidden-sm-up">Type: boolean</div>
+              <div class="clr-hidden-sm-up">Default: false</div>
+            </td>
+            <td class="left clr-hidden-xs-down">true, false</td>
+            <td class="clr-hidden-xs-down">false</td>
+            <td class="left">Controls whether the section is collapsed or not</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[(clrEditMode)]</b>
+              <div class="clr-hidden-sm-up">Type: boolean</div>
+              <div class="clr-hidden-sm-up">Default: false</div>
+            </td>
+            <td class="left clr-hidden-xs-down">true, false</td>
+            <td class="clr-hidden-xs-down">false</td>
+            <td class="left">Controls whether edit mode is active or not</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[clrViewRef]</b>
+              <div class="clr-hidden-sm-up">Type: TemplateRef</div>
+              <div class="clr-hidden-sm-up">Default: undefined</div>
+            </td>
+            <td class="left clr-hidden-xs-down">any template reference</td>
+            <td class="clr-hidden-xs-down">undefined</td>
+            <td class="left">Template reference to the view block</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[clrEditRef]</b>
+              <div class="clr-hidden-sm-up">Type: TemplateRef</div>
+              <div class="clr-hidden-sm-up">Default: undefined</div>
+            </td>
+            <td class="left clr-hidden-xs-down">any template reference</td>
+            <td class="clr-hidden-xs-down">undefined</td>
+            <td class="left">Template reference to the edit block</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[clrEditable]</b>
+              <div class="clr-hidden-sm-up">Type: boolean</div>
+              <div class="clr-hidden-sm-up">Default: true</div>
+            </td>
+            <td class="left clr-hidden-xs-down">true, false</td>
+            <td class="clr-hidden-xs-down">true</td>
+            <td class="left">Controls whether the section is editable</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[clrTitle]</b>
+              <div class="clr-hidden-sm-up">Type: String</div>
+              <div class="clr-hidden-sm-up">Default: ""</div>
+            </td>
+            <td class="left clr-hidden-xs-down">any string</td>
+            <td class="clr-hidden-xs-down">""</td>
+            <td class="left">Defines the title of the View/Edit Section</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[clrSaveText]</b>
+              <div class="clr-hidden-sm-up">Type: String</div>
+              <div class="clr-hidden-sm-up">Default: "Save"</div>
+            </td>
+            <td class="left clr-hidden-xs-down">any string</td>
+            <td class="clr-hidden-xs-down">"Save"</td>
+            <td class="left">Defines the text of the submit button</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[clrPreventModeChangeOnSave]</b>
+              <div class="clr-hidden-sm-up">Type: boolean</div>
+              <div class="clr-hidden-sm-up">Default: false</div>
+            </td>
+            <td class="left clr-hidden-xs-down">true, false</td>
+            <td class="clr-hidden-xs-down">false</td>
+            <td class="left">
+              Controls whether clicking the save button prevents change from edit to view mode (e.g.: for validation)
+            </td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[clrCancelText]</b>
+              <div class="clr-hidden-sm-up">Type: String</div>
+              <div class="clr-hidden-sm-up">Default: "Cancel"</div>
+            </td>
+            <td class="left clr-hidden-xs-down">any string</td>
+            <td class="clr-hidden-xs-down">"Cancel"</td>
+            <td class="left">Defines the text of the cancel button</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[clrEditIcon]</b>
+              <div class="clr-hidden-sm-up">Type: String</div>
+              <div class="clr-hidden-sm-up">Default: "pencil"</div>
+            </td>
+            <td class="left clr-hidden-xs-down">any shape of clr-icon</td>
+            <td class="clr-hidden-xs-down">"pencil"</td>
+            <td class="left">Defines the edit icon. Every shape of clr-icon can be used</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[clrIsCollapsible]</b>
+              <div class="clr-hidden-sm-up">Type: Boolean</div>
+              <div class="clr-hidden-sm-up">Default: false</div>
+            </td>
+            <td class="left clr-hidden-xs-down">true, false</td>
+            <td class="clr-hidden-xs-down">false</td>
+            <td class="left">Controls whether the component is collapsible</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>(clrSectionSubmitted)</b>
+              <div class="clr-hidden-sm-up">Type: EventEmitter</div>
+              <div class="clr-hidden-sm-up"></div>
+            </td>
+            <td class="left clr-hidden-xs-down"></td>
+            <td class="clr-hidden-xs-down"></td>
+            <td class="left">Will be triggered by submit clicks</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>(clrSectionEditCancelled)</b>
+              <div class="clr-hidden-sm-up">Type: EventEmitter</div>
+              <div class="clr-hidden-sm-up"></div>
+            </td>
+            <td class="left clr-hidden-xs-down"></td>
+            <td class="clr-hidden-xs-down"></td>
+            <td class="left">Will be triggered by cancel/escape clicks</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>To define custom actions simply put the attribute <code class="clr-code">action-block</code> to an element.</p>
+    </div>
+
+    <div id="code-examples">
+      <h3 id="examples">Code &amp; Examples</h3>
+
+      <h4>Side by side example with validation</h4>
+      <div class="clr-row">
+        <div class="clr-col-12 clr-col-lg-6">
+          <clr-view-edit-section
+            [(clrEditMode)]="editMode1"
+            [clrPreventModeChangeOnSave]="!exampleForm.valid"
+            [clrTitle]="sectionTitle"
+            (clrSectionSubmitted)="sectionSubmitted()"
+            (clrSectionEditCancelled)="sectionCancelled()"
+            [clrViewRef]="viewBlock1"
+            [clrEditRef]="editBlock1"
+          >
+            <ng-template #viewBlock1>
+              <form clrForm clrLayout="horizontal">
+                <div class="clr-form-control clr-row">
+                  <label class="clr-col-md-4 clr-control-label">First name</label>
+                  <span class="text-truncate clr-col-md-8">{{first || "&nbsp;"}}</span>
+                </div>
+                <div class="clr-form-control clr-row">
+                  <label class="clr-col-md-4 clr-control-label">Last name</label>
+                  <span class="text-truncate clr-col-md-8">{{last || "&nbsp;"}}</span>
+                </div>
+                <div class="clr-form-control clr-row">
+                  <label class="clr-col-md-4 clr-control-label">E-mail</label>
+                  <span class="text-truncate clr-col-md-8">{{email || "&nbsp;"}}</span>
+                </div>
+              </form>
+            </ng-template>
+            <ng-template #editBlock1>
+              <form clrForm clrLayout="horizontal" [formGroup]="exampleForm" (submit)="onFormSubmit()">
+                <clr-input-container>
+                  <label class="clr-col-md-4 required">First name</label>
+                  <input class="clr-col-md-8" clrInput type="text" formControlName="editFirst" name="first" />
+                  <clr-control-error>You must enter a first name.</clr-control-error>
+                </clr-input-container>
+                <clr-input-container>
+                  <label class="clr-col-md-4 required">Last name</label>
+                  <input class="clr-col-md-8" clrInput type="text" formControlName="editLast" name="last" />
+                  <clr-control-error>You must enter a last name.</clr-control-error>
+                </clr-input-container>
+                <clr-input-container>
+                  <label class="clr-col-md-4">E-mail</label>
+                  <input class="clr-col-md-8" clrInput type="text" formControlName="editEmail" name="email" />
+                </clr-input-container>
+                <input type="submit" style="display: none" />
+              </form>
+            </ng-template>
+          </clr-view-edit-section>
+        </div>
+        <div class="crl-col-12 clr-col-lg-6">
+          <clr-view-edit-section
+            [(clrEditMode)]="editMode2"
+            [clrTitle]="addSectionTitle"
+            (clrSectionSubmitted)="addSectionSubmitted()"
+            (clrSectionEditCancelled)="addSectionCancelled()"
+            [clrViewRef]="viewBlock2"
+            [clrEditRef]="editBlock2"
+          >
+            <ng-template #viewBlock2>
+              <form clrForm clrLayout="horizontal">
+                <div class="clr-form-control clr-row">
+                  <label class="clr-col-md-4 clr-control-label">Hobby</label>
+                  <span class="text-truncate clr-col-md-8">{{hobby || "&nbsp;"}}</span>
+                </div>
+                <div class="clr-form-control clr-row">
+                  <label class="clr-col-md-4 clr-control-label">Driving licence number</label>
+                  <span class="text-truncate clr-col-md-8">{{licence || "&nbsp;"}}</span>
+                </div>
+              </form>
+            </ng-template>
+            <ng-template #editBlock2>
+              <form clrForm clrLayout="horizontal" (submit)="onAddFormSubmit()">
+                <clr-input-container>
+                  <label class="clr-col-md-4">Hobby</label>
+                  <input
+                    class="clr-col-md-8"
+                    clrInput
+                    type="text"
+                    [(ngModel)]="editHobby"
+                    [ngModelOptions]="{ updateOn: 'blur' }"
+                    name="hobby"
+                  />
+                </clr-input-container>
+                <clr-input-container>
+                  <label class="clr-col-md-4">Driving licence number</label>
+                  <input
+                    class="clr-col-md-8"
+                    clrInput
+                    type="text"
+                    [(ngModel)]="editLicence"
+                    [ngModelOptions]="{ updateOn: 'blur' }"
+                    name="licence"
+                  />
+                </clr-input-container>
+                <input type="submit" style="display: none" />
+              </form>
+            </ng-template>
+          </clr-view-edit-section>
+        </div>
+      </div>
+
+      <clr-code-snippet [clrCode]="htmlExampleSideBySide"></clr-code-snippet>
+
+      <h4>Custom actions</h4>
+      <p>
+        When using custom actions you may use css class <code class="clr-code">ves-action</code> to remove the right
+        margin/padding.<br />
+        Additionally you need to show/hide those actions on your own in view/edit mode if you want to. In this example,
+        all actions are hidden in edit mode.
+      </p>
+      <div class="clr-row">
+        <div class="clr-col-12">
+          <clr-view-edit-section
+            [(clrEditMode)]="editMode3"
+            [clrTitle]="customActionsTitle"
+            (clrSectionSubmitted)="compSectionSubmitted()"
+            (clrSectionEditCancelled)="compSectionCancelled()"
+            [clrViewRef]="viewBlock3"
+            [clrEditRef]="editBlock3"
+          >
+            <div action-block>
+              <clr-dropdown *ngIf="!editMode3">
+                <button type="button" class="btn btn-icon btn-link ves-action dropdown-toggle" clrDropdownTrigger>
+                  <clr-icon shape="ellipsis-vertical"></clr-icon>
+                </button>
+                <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
+                  <button type="button" (click)="onEdit()" clrDropdownItem>Edit</button>
+                  <button type="button" clrDropdownItem>Duplicate</button>
+                  <button type="button" clrDropdownItem>Delete</button>
+                </clr-dropdown-menu>
+              </clr-dropdown>
+            </div>
+
+            <ng-template #viewBlock3>
+              <form clrForm clrLayout="horizontal">
+                <div class="clr-form-control clr-row">
+                  <label class="clr-col-md-2 clr-control-label" for="birthdate">Date of birth</label>
+                  <span class="text-truncate clr-col-md-10">{{birthdate || "" | date}}</span>
+                </div>
+                <div class="clr-form-control clr-row">
+                  <label class="clr-col-md-2 clr-control-label" for="gender">Gender</label>
+                  <span class="text-truncate clr-col-md-10">{{gender || "&nbsp;"}}</span>
+                </div>
+                <div class="clr-form-control clr-row">
+                  <label class="clr-col-md-2 clr-control-label" for="status">Status</label>
+                  <span class="text-truncate clr-col-md-10">{{status || "&nbsp;"}}</span>
+                </div>
+                <div class="clr-form-control clr-row">
+                  <label class="clr-col-md-2 clr-control-label" for="terms">Terms &amp; Conditions</label>
+                  <span class="text-truncate clr-col-md-10">{{getTermsText()}}</span>
+                </div>
+              </form>
+            </ng-template>
+            <ng-template #editBlock3>
+              <form clrForm clrLayout="horizontal" (submit)="onCompFormSubmit()">
+                <clr-date-container class="clr-row">
+                  <label>Date of birth</label>
+                  <input
+                    type="text"
+                    [(ngModel)]="editBirthdate"
+                    [ngModelOptions]="{ updateOn: 'blur' }"
+                    name="birthdate"
+                    clrDate
+                  />
+                </clr-date-container>
+                <clr-select-container>
+                  <label>Gender</label>
+                  <select clrSelect [(ngModel)]="editGender" name="gender">
+                    <option>male</option>
+                    <option>female</option>
+                  </select>
+                </clr-select-container>
+                <clr-radio-container>
+                  <label>Status</label>
+                  <clr-radio-wrapper>
+                    <input clrRadio type="radio" [value]="1" [(ngModel)]="editStatus" name="status" />
+                    <label>Active</label>
+                  </clr-radio-wrapper>
+                  <clr-radio-wrapper>
+                    <input clrRadio type="radio" [value]="2" [(ngModel)]="editStatus" name="status" />
+                    <label>Inactive</label>
+                  </clr-radio-wrapper>
+                </clr-radio-container>
+                <clr-checkbox-container>
+                  <label>Terms &amp; Conditions</label>
+                  <clr-checkbox-wrapper>
+                    <label class="clr-col-12">I agree to the terms and conditions</label>
+                    <input clrCheckbox type="checkbox" [(ngModel)]="editTerms" name="terms" />
+                  </clr-checkbox-wrapper>
+                </clr-checkbox-container>
+                <input type="submit" style="display: none" />
+              </form>
+            </ng-template>
+          </clr-view-edit-section>
+        </div>
+      </div>
+
+      <clr-code-snippet [clrCode]="htmlExampleCustomActions"></clr-code-snippet>
+
+      <h4>Not editable</h4>
+      <div class="clr-row">
+        <div class="clr-col-12">
+          <clr-view-edit-section clrTitle="Not Editable" [clrEditable]="false" [clrViewRef]="viewBlock4">
+            <ng-template #viewBlock4>
+              <form clrForm clrLayout="horizontal">
+                <div class="clr-form-control clr-row">
+                  <label class="clr-col-md-2 clr-control-label">Hobby</label>
+                  <span class="text-truncate clr-col-md-10">Computer</span>
+                </div>
+                <div class="clr-form-control clr-row">
+                  <label class="clr-col-md-2 clr-control-label">Driving licence number</label>
+                  <span class="text-truncate clr-col-md-10">12345</span>
+                </div>
+              </form>
+            </ng-template>
+          </clr-view-edit-section>
+        </div>
+      </div>
+
+      <clr-code-snippet [clrCode]="htmlExampleNotEditable"></clr-code-snippet>
+
+      <h4>Custom icon and button texts</h4>
+      <div class="clr-row">
+        <div class="clr-col-12">
+          <clr-view-edit-section
+            [(clrEditMode)]="editMode4"
+            [clrTitle]="compSectionTitle"
+            [clrEditIcon]="compEditIcon"
+            clrSaveText="Save it"
+            clrCancelText="Cancel it"
+            (clrSectionSubmitted)="compSectionSubmitted()"
+            (clrSectionEditCancelled)="compSectionCancelled()"
+            [clrViewRef]="viewBlock5"
+            [clrEditRef]="editBlock5"
+          >
+            <ng-template #viewBlock5>
+              <form clrForm clrLayout="horizontal">
+                <div class="clr-form-control clr-row">
+                  <label class="clr-col-md-2 clr-control-label" for="birthdate">Date of birth</label>
+                  <span class="text-truncate clr-col-md-10">{{birthdate || "" | date}}</span>
+                </div>
+                <div class="clr-form-control clr-row">
+                  <label class="clr-col-md-2 clr-control-label" for="gender">Gender</label>
+                  <span class="text-truncate clr-col-md-10">{{gender || "&nbsp;"}}</span>
+                </div>
+                <div class="clr-form-control clr-row">
+                  <label class="clr-col-md-2 clr-control-label" for="status">Status</label>
+                  <span class="text-truncate clr-col-md-10">{{status || "&nbsp;"}}</span>
+                </div>
+                <div class="clr-form-control clr-row">
+                  <label class="clr-col-md-2 clr-control-label" for="terms">Terms &amp; Conditions</label>
+                  <span class="text-truncate clr-col-md-10">{{getTermsText()}}</span>
+                </div>
+              </form>
+            </ng-template>
+            <ng-template #editBlock5>
+              <form clrForm clrLayout="horizontal" (submit)="onCompFormSubmit()">
+                <clr-date-container class="clr-row">
+                  <label>Date of birth</label>
+                  <input
+                    type="text"
+                    [(ngModel)]="editBirthdate"
+                    [ngModelOptions]="{ updateOn: 'blur' }"
+                    name="birthdate"
+                    clrDate
+                  />
+                </clr-date-container>
+                <clr-select-container>
+                  <label>Gender</label>
+                  <select clrSelect [(ngModel)]="editGender" name="gender">
+                    <option>male</option>
+                    <option>female</option>
+                  </select>
+                </clr-select-container>
+                <clr-radio-container>
+                  <label>Status</label>
+                  <clr-radio-wrapper>
+                    <input clrRadio type="radio" [value]="1" [(ngModel)]="editStatus" name="status" />
+                    <label>Active</label>
+                  </clr-radio-wrapper>
+                  <clr-radio-wrapper>
+                    <input clrRadio type="radio" [value]="2" [(ngModel)]="editStatus" name="status" />
+                    <label>Inactive</label>
+                  </clr-radio-wrapper>
+                </clr-radio-container>
+                <clr-checkbox-container>
+                  <label>Terms &amp; Conditions</label>
+                  <clr-checkbox-wrapper>
+                    <label class="clr-col-12">I agree to the terms and conditions</label>
+                    <input clrCheckbox type="checkbox" [(ngModel)]="editTerms" name="terms" />
+                  </clr-checkbox-wrapper>
+                </clr-checkbox-container>
+                <input type="submit" style="display: none" />
+              </form>
+            </ng-template>
+          </clr-view-edit-section>
+        </div>
+      </div>
+
+      <clr-code-snippet [clrCode]="htmlExampleFullIcon"></clr-code-snippet>
+      <clr-code-snippet [clrCode]="htmlExampleFullIconAngular" [clrLanguage]="'typescript'"></clr-code-snippet>
+
+      <h4>Submit form on enter</h4>
+      <p>
+        As the save button is outside your form, following steps need to be done to enable form (edit-section) submit on
+        'enter'
+      </p>
+      <ul>
+        <li>Add hidden submit button to your form to activate 'enter' key handling in browser</li>
+        <li>React to submit of form and switch section to view mode</li>
+      </ul>
+      <clr-code-snippet [clrCode]="htmlExampleFormSubmit"></clr-code-snippet>
+      <clr-code-snippet [clrCode]="angularExampleFormSubmit" [clrLanguage]="'typescript'"></clr-code-snippet>
+
+      <h4>Collapse and expand</h4>
+      <p>When entering edit mode, the section automatically expands and hides the collapse button.</p>
+      <p>With setting</p>
+      <ul>
+        <li><code class="clr-code">clrIsCollapsible</code> to true, the section is able collapse.</li>
+        <li><code class="clr-code">clrIsCollapsed</code> to true, the section is collapsed by default.</li>
+      </ul>
+
+      <div class="clr-row">
+        <div class="clr-col-12 clr-col-lg-6">
+          <clr-view-edit-section
+            [(clrEditMode)]="editMode5"
+            clrTitle="Starts expanded"
+            [clrViewRef]="viewBlock1"
+            [clrEditRef]="editBlock1"
+            [clrPreventModeChangeOnSave]="!exampleForm.valid"
+            (clrSectionSubmitted)="sectionSubmitted()"
+            (clrSectionEditCancelled)="sectionCancelled()"
+            [clrIsCollapsible]="true"
+          >
+            <ng-template #viewBlock1>
+              <form clrForm clrLayout="horizontal">
+                <div class="clr-form-control clr-row">
+                  <label class="clr-col-md-4 clr-control-label">First name</label>
+                  <span class="text-truncate clr-col-md-8">{{first || "&nbsp;"}}</span>
+                </div>
+                <div class="clr-form-control clr-row">
+                  <label class="clr-col-md-4 clr-control-label">Last name</label>
+                  <span class="text-truncate clr-col-md-8">{{last || "&nbsp;"}}</span>
+                </div>
+                <div class="clr-form-control clr-row">
+                  <label class="clr-col-md-4 clr-control-label">E-mail</label>
+                  <span class="text-truncate clr-col-md-8">{{email || "&nbsp;"}}</span>
+                </div>
+              </form>
+            </ng-template>
+            <ng-template #editBlock1>
+              <form clrForm clrLayout="horizontal" [formGroup]="exampleForm" (submit)="onFormSubmit()">
+                <clr-input-container>
+                  <label class="clr-col-md-4 required">First name</label>
+                  <input class="clr-col-md-8" clrInput type="text" formControlName="editFirst" name="first" />
+                  <clr-control-error>You must enter a first name.</clr-control-error>
+                </clr-input-container>
+                <clr-input-container>
+                  <label class="clr-col-md-4 required">Last name</label>
+                  <input class="clr-col-md-8" clrInput type="text" formControlName="editLast" name="last" />
+                  <clr-control-error>You must enter a last name.</clr-control-error>
+                </clr-input-container>
+                <clr-input-container>
+                  <label class="clr-col-md-4">E-mail</label>
+                  <input class="clr-col-md-8" clrInput type="text" formControlName="editEmail" name="email" />
+                </clr-input-container>
+                <input type="submit" style="display: none" />
+              </form>
+            </ng-template>
+          </clr-view-edit-section>
+        </div>
+        <div class="clr-col-12 clr-col-lg-6">
+          <clr-view-edit-section
+            [(clrEditMode)]="editMode6"
+            clrTitle="Starts collapsed"
+            [clrViewRef]="viewBlock1"
+            [clrEditRef]="editBlock1"
+            [clrPreventModeChangeOnSave]="!exampleForm.valid"
+            (clrSectionSubmitted)="sectionSubmitted()"
+            (clrSectionEditCancelled)="sectionCancelled()"
+            [clrIsCollapsible]="true"
+            [clrIsCollapsed]="true"
+          >
+            <ng-template #viewBlock1>
+              <form clrForm clrLayout="horizontal">
+                <div class="clr-form-control clr-row">
+                  <label class="clr-col-md-4 clr-control-label">First name</label>
+                  <span class="text-truncate clr-col-md-8">{{first || "&nbsp;"}}</span>
+                </div>
+                <div class="clr-form-control clr-row">
+                  <label class="clr-col-md-4 clr-control-label">Last name</label>
+                  <span class="text-truncate clr-col-md-8">{{last || "&nbsp;"}}</span>
+                </div>
+                <div class="clr-form-control clr-row">
+                  <label class="clr-col-md-4 clr-control-label">E-mail</label>
+                  <span class="text-truncate clr-col-md-8">{{email || "&nbsp;"}}</span>
+                </div>
+              </form>
+            </ng-template>
+            <ng-template #editBlock1>
+              <form clrForm clrLayout="horizontal" [formGroup]="exampleForm" (submit)="onFormSubmit()">
+                <clr-input-container>
+                  <label class="clr-col-md-4 required">First name</label>
+                  <input class="clr-col-md-8" clrInput type="text" formControlName="editFirst" name="first" />
+                  <clr-control-error>You must enter a first name.</clr-control-error>
+                </clr-input-container>
+                <clr-input-container>
+                  <label class="clr-col-md-4 required">Last name</label>
+                  <input class="clr-col-md-8" clrInput type="text" formControlName="editLast" name="last" />
+                  <clr-control-error>You must enter a last name.</clr-control-error>
+                </clr-input-container>
+                <clr-input-container>
+                  <label class="clr-col-md-4">E-mail</label>
+                  <input class="clr-col-md-8" clrInput type="text" formControlName="editEmail" name="email" />
+                </clr-input-container>
+                <input type="submit" style="display: none" />
+              </form>
+            </ng-template>
+          </clr-view-edit-section>
+        </div>
+      </div>
+
+      <clr-code-snippet [clrCode]="htmlExampleCollapsible"></clr-code-snippet>
+
+      <h4>Tips</h4>
+      <ul>
+        <li>
+          Use class
+          <code class="clr-code">text-truncate</code> in view-block to prevent long texts from destroying your layout.
+        </li>
+        <li>
+          Use pipe
+          <code class="clr-code">|| "&amp;nbsp;"</code> in view-block so the span element always has a correct height.
+        </li>
+      </ul>
+    </div>
+  </article>
+</clr-doc-wrapper>

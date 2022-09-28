@@ -1,0 +1,96 @@
+<clr-doc-wrapper [title]="title">
+  <article>
+    <h5 class="component-summary">
+      The progress spinner of Clarity Addons extends the default progress spinner by an Angular Component which allows
+      the developer to toggle the loading state depending on a boolean input.
+    </h5>
+
+    <div id="design-guidelines">
+      <h3>Summary of Options</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Input</th>
+            <th class="left clr-hidden-xs-down">Values</th>
+            <th class="clr-hidden-xs-down">Default</th>
+            <th class="left">Effect</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left">
+              <b>clrShowSpinner</b>
+              <div class="clr-hidden-sm-up">Type: boolean</div>
+              <div class="clr-hidden-sm-up">Default: false</div>
+            </td>
+            <td class="left clr-hidden-xs-down">true, false</td>
+            <td class="clr-hidden-xs-down">false</td>
+            <td class="left">Controls if the spinner is shown</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>clrSize</b>
+              <div class="clr-hidden-sm-up">Type: String</div>
+              <div class="clr-hidden-sm-up">Default: "sm"</div>
+            </td>
+            <td class="left clr-hidden-xs-down">sm, md, lg</td>
+            <td class="clr-hidden-xs-down">"sm"</td>
+            <td class="left">Defines the size of progress spinner</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="code-examples">
+      <h3 id="examples">Code &amp; Examples</h3>
+      <h4>The progress spinner on top of any card</h4>
+      <p>
+        When having multiple cards which can be loaded independently, it is possible show a progress spinner on any
+        specific card:
+      </p>
+      <div class="clr-row">
+        <div class="clr-col-6">
+          <div class="card">
+            <clr-progress-spinner [clrShowSpinner]="cardLoadingState"></clr-progress-spinner>
+            <div class="card-header">Header</div>
+            <div class="card-block">
+              <div class="card-title">Block</div>
+              <div class="card-text">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias officiis temporibus quod inventore,
+                minus commodi similique corrupti repellat saepe facere aliquam minima deserunt esse nemo, vel illum
+                optio necessitatibus deleniti.
+              </div>
+            </div>
+            <div class="card-footer">Footer</div>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" (click)="cardLoadingState = !cardLoadingState">Toggle Loading</button>
+      <clr-code-snippet [clrCode]="htmlExample"></clr-code-snippet>
+
+      <h4>The progress spinner on top of any content</h4>
+      <p>
+        When having multiple areas in your applicatoin which can be loaded indepedently, it is possible to show a
+        progress spinner on any specific area:
+      </p>
+      <div style="position: relative; background-color: #ddd; padding: 1rem; margin-top: 1rem">
+        <clr-progress-spinner [clrShowSpinner]="loadingState" clrSize="md"></clr-progress-spinner>
+        <h2 style="margin-top: 0">Content Title</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias officiis temporibus quod inventore, minus
+          commodi similique corrupti repellat saepe facere aliquam minima deserunt esse nemo, vel illum optio
+          necessitatibus deleniti.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias officiis temporibus quod inventore, minus
+          commodi similique corrupti repellat saepe facere aliquam minima deserunt esse nemo, vel illum optio
+          necessitatibus deleniti.
+        </p>
+      </div>
+
+      <button class="btn btn-primary" (click)="loadingState = !loadingState">Toggle Loading</button>
+      <clr-code-snippet [clrCode]="htmlExample2"></clr-code-snippet>
+    </div>
+  </article>
+</clr-doc-wrapper>

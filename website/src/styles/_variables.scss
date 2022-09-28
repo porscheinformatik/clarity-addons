@@ -1,0 +1,52 @@
+$clrweb-content-maxwidth: 900px;
+$clr-font-size: 16px;
+$clr-rem-denominator: 16;
+$clr-baseline: 24px;
+
+@function baselineRem($multiplier) {
+  @return $multiplier * $clr-baseline;
+}
+
+$bl-0_25: baselineRem(0.25);
+$bl-0_5: baselineRem(0.5);
+$bl-0_75: baselineRem(0.75);
+$bl-1_5: baselineRem(1.5);
+$bl-0_833: baselineRem(0.83333);
+$bl-1_0: baselineRem(1);
+$bl-1_5: baselineRem(1.5);
+$bl-2_0: baselineRem(2);
+$bl-2_5: baselineRem(2.5);
+$bl-3_0: baselineRem(3);
+$bl-4_0: baselineRem(4);
+
+$clr-layers: (
+  content: 0,
+  select-box: 2,
+  datagrid-row: 500,
+  datagrid-row-sticky: 500,
+  datagrid-header: 501,
+  datagrid-header-sticky: 502,
+  datagrid-host: 590,
+  alert: 1033,
+  sidepanel-bg: 1038,
+  sidepanel: 1039,
+  modal-bg: 1040,
+  modal: 1050,
+  dropdown-menu: 1060,
+  column-switch: 1060,
+  tooltips: 1070,
+  smart-popover: 5000,
+  draggable-ghost: 2147483647,
+) !default;
+
+$clr-grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+) !default;
+
+$clr-color-neutral-50: hsl(198, 0%, 98%) !default;
+$clr-color-neutral-900: hsl(198, 0%, 20%) !default;
+$clr-color-success-400: hsl(93, 79%, 40%) !default;

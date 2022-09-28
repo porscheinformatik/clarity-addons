@@ -1,0 +1,160 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "clarity": {
+      "root": "",
+      "sourceRoot": "src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/browser",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "polyfills": "src/polyfills.ts",
+            "preserveSymlinks": true,
+            "assets": [
+              "src/assets",
+              "src/sitemap.xml",
+              "src/favicon.ico",
+              {
+                "glob": "versions.json",
+                "input": "src/settings",
+                "output": "/"
+              },
+              {
+                "glob": "clr-ui-dark.css",
+                "input": "node_modules/@clr/ui/",
+                "output": "/assets/styles"
+              }
+            ],
+            "styles": [
+              "node_modules/prismjs/themes/prism-solarizedlight.css",
+              "node_modules/modern-normalize/modern-normalize.css",
+              "node_modules/@cds/core/global.min.css",
+              "node_modules/@cds/core/styles/module.shims.min.css",
+              "node_modules/@clr/icons/clr-icons.min.css",
+              "node_modules/@clr/ui/clr-ui.min.css",
+              "node_modules/@porscheinformatik/clr-addons/styles/clr-addons-phs.min.css",
+              "src/styles/main.scss"
+            ],
+            "scripts": [
+              "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js",
+              "node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js",
+              "node_modules/prismjs/prism.js",
+              "node_modules/prismjs/components/prism-typescript.min.js"
+            ],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "baseHref": "/clarity-addons/",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          },
+          "defaultConfiguration": ""
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "clarity:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "clarity:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "clarity:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "karmaConfig": "./karma.conf.js",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.spec.json",
+            "scripts": [
+              "node_modules/@webcomponents/custom-elements/custom-elements.min.js",
+              "node_modules/@clr/icons/clr-icons.min.js",
+              "node_modules/prismjs/prism.js",
+              "node_modules/prismjs/components/prism-typescript.min.js"
+            ],
+            "styles": [
+              "node_modules/@clr/ui/clr-ui.min.css",
+              "node_modules/prismjs/themes/prism-solarizedlight.css",
+              "node_modules/@clr/icons/clr-icons.min.css",
+              "src/styles/main.scss"
+            ],
+            "assets": [
+              "src/assets",
+              "src/sitemap.xml",
+              "src/favicon.ico",
+              {
+                "glob": "versions.json",
+                "input": "src/settings",
+                "output": "/"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "clarity",
+  "schematics": {
+    "@schematics/angular:class": {
+      "skipTests": true
+    },
+    "@schematics/angular:component": {
+      "skipTests": true,
+      "prefix": "app",
+      "style": "scss"
+    },
+    "@schematics/angular:directive": {
+      "skipTests": true,
+      "prefix": "app"
+    },
+    "@schematics/angular:guard": {
+      "skipTests": true
+    },
+    "@schematics/angular:module": {},
+    "@schematics/angular:pipe": {
+      "skipTests": true
+    },
+    "@schematics/angular:service": {
+      "skipTests": true
+    }
+  }
+}

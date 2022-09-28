@@ -1,0 +1,472 @@
+<clr-doc-wrapper [title]="title">
+  <article>
+    <h5 class="component-summary">Treetables are for organizing hierarchical data with multiple columns.</h5>
+
+    <div id="design-guidelines">
+      <h3>Use When</h3>
+
+      <p>
+        Use this component when you need to display a hierarchichal data structure with multiple columns per entry. Make
+        sure all entries use the same columns. E.g. the parent has a name and a description column, the child cannot
+        have a name and a date column.
+      </p>
+
+      <h3>Do not use</h3>
+      <p>Avoid using this component in any of the following cases:</p>
+      <ul class="list">
+        <li>You require using a pagination. The treetable does not support paging.</li>
+        <li>
+          The entries in your datastructure do not have multiple values (columns). Consider using a
+          <a href="https://clarity.design/documentation/tree-view">TreeView</a>.
+        </li>
+        <li>
+          Your elements need to be sorted. Since the data-rows are indented, a change of the order would cause
+          confusion.
+        </li>
+      </ul>
+
+      <h3>Behavior</h3>
+      <p>
+        Each entry can have none, one or multiple descendants. The first column of a descendant-row is indentend to
+        visualize the hierarchy. Parent rows are collapsed, i.e. all children rows are hidden initially. To display the
+        children the user can either click on the leading caret-icon or the whole parent row, depending on the
+        row-selection mode. Avoid the row-selection mode when the row contains individually clickable items.
+      </p>
+
+      <h4>Sorting</h4>
+      The treetable cannot be sorted by the user. Display the entries in alphabetical order. Consider collapsing either
+      all or none of the parent nodes.
+
+      <h3>Technical limitations</h3>
+      <p>Note that up to 6 levels of nesting are supported.</p>
+
+      <h3>Summary of Options</h3>
+      <h4>clr-treetable</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Input/Output</th>
+            <th class="left clr-hidden-xs-down">Values</th>
+            <th class="clr-hidden-xs-down">Default</th>
+            <th class="left">Effect</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left">
+              <b>[clrClickableRows]</b>
+              <div class="clr-hidden-sm-up">Type: boolean</div>
+              <div class="clr-hidden-sm-up">Default: true</div>
+            </td>
+            <td class="left clr-hidden-xs-down">boolean</td>
+            <td class="clr-hidden-xs-down">true</td>
+            <td class="left">Sets the [clrClickable] for every row</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[clrHideHeader]</b>
+              <div class="clr-hidden-sm-up">Type: boolean</div>
+              <div class="clr-hidden-sm-up">Default: false</div>
+            </td>
+            <td class="left clr-hidden-xs-down">boolean</td>
+            <td class="clr-hidden-xs-down">false</td>
+            <td class="left">Hides the header row</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4>clr-tt-row</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Input/Output</th>
+            <th class="left clr-hidden-xs-down">Values</th>
+            <th class="clr-hidden-xs-down">Default</th>
+            <th class="left">Effect</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left">
+              <b>[clrExpanded]</b>
+              <div class="clr-hidden-sm-up">Type: boolean</div>
+              <div class="clr-hidden-sm-up">Default: false</div>
+            </td>
+            <td class="left clr-hidden-xs-down">boolean</td>
+            <td class="clr-hidden-xs-down">false</td>
+            <td class="left">Whether the row is expanded or not</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[clrClickable]</b>
+              <div class="clr-hidden-sm-up">Type: boolean</div>
+              <div class="clr-hidden-sm-up">Default: true</div>
+            </td>
+            <td class="left clr-hidden-xs-down">boolean</td>
+            <td class="clr-hidden-xs-down">true</td>
+            <td class="left">Whether the whole row is clickable to expand it</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[clrExpandable]</b>
+              <div class="clr-hidden-sm-up">Type: boolean</div>
+              <div class="clr-hidden-sm-up">Default: false</div>
+            </td>
+            <td class="left clr-hidden-xs-down">boolean</td>
+            <td class="clr-hidden-xs-down">false</td>
+            <td class="left">Whether the row is expandable (also shows caret icons)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="examples">
+      <h3>Code &amp; Examples</h3>
+
+      <h4>Treetable with clickable rows</h4>
+
+      <p>Click on a row to display its children.</p>
+
+      <clr-treetable>
+        <clr-tt-column>Name</clr-tt-column>
+        <clr-tt-column>Role</clr-tt-column>
+        <clr-tt-column>Random Number</clr-tt-column>
+        <clr-tt-column>Random Date</clr-tt-column>
+
+        <clr-tt-row clrExpandable="true">
+          <clr-tt-cell>David Wallace</clr-tt-cell>
+          <clr-tt-cell>CFO</clr-tt-cell>
+          <clr-tt-cell>2</clr-tt-cell>
+          <clr-tt-cell>2nd of August</clr-tt-cell>
+
+          <clr-tt-row clrExpandable="true">
+            <clr-tt-cell>Michael Scott</clr-tt-cell>
+            <clr-tt-cell>Regional Manager</clr-tt-cell>
+            <clr-tt-cell>19</clr-tt-cell>
+            <clr-tt-cell>3rd of April</clr-tt-cell>
+
+            <clr-tt-row>
+              <clr-tt-cell>Dwight K. Schrute</clr-tt-cell>
+              <clr-tt-cell>Assistant to the Regional Manager</clr-tt-cell>
+              <clr-tt-cell>290</clr-tt-cell>
+              <clr-tt-cell>17th of May</clr-tt-cell>
+            </clr-tt-row>
+
+            <clr-tt-row clrExpandable="true">
+              <clr-tt-cell>Jim Halpert</clr-tt-cell>
+              <clr-tt-cell>Head of Sales</clr-tt-cell>
+              <clr-tt-cell>Lucky 7</clr-tt-cell>
+              <clr-tt-cell>21st of December</clr-tt-cell>
+
+              <clr-tt-row>
+                <clr-tt-cell>Andy Bernard</clr-tt-cell>
+                <clr-tt-cell></clr-tt-cell>
+                <clr-tt-cell>13</clr-tt-cell>
+                <clr-tt-cell>1st of December</clr-tt-cell>
+              </clr-tt-row>
+
+              <clr-tt-row>
+                <clr-tt-cell>Stanley Hudson</clr-tt-cell>
+                <clr-tt-cell></clr-tt-cell>
+                <clr-tt-cell>3</clr-tt-cell>
+                <clr-tt-cell>15th of November</clr-tt-cell>
+              </clr-tt-row>
+
+              <clr-tt-row>
+                <clr-tt-cell>Phyllis Vance</clr-tt-cell>
+                <clr-tt-cell></clr-tt-cell>
+                <clr-tt-cell></clr-tt-cell>
+                <clr-tt-cell></clr-tt-cell>
+              </clr-tt-row>
+
+              <clr-tt-row>
+                <clr-tt-cell>Todd Packer</clr-tt-cell>
+                <clr-tt-cell>The Packman</clr-tt-cell>
+                <clr-tt-cell>96</clr-tt-cell>
+                <clr-tt-cell>6th of September</clr-tt-cell>
+              </clr-tt-row>
+            </clr-tt-row>
+
+            <clr-tt-row clrExpandable="true">
+              <clr-tt-cell>Angela Martin</clr-tt-cell>
+              <clr-tt-cell>Head of Accounting</clr-tt-cell>
+              <clr-tt-cell>29</clr-tt-cell>
+              <clr-tt-cell>7th of September</clr-tt-cell>
+
+              <clr-tt-row>
+                <clr-tt-cell>Kevin Malone</clr-tt-cell>
+                <clr-tt-cell></clr-tt-cell>
+                <clr-tt-cell>10</clr-tt-cell>
+                <clr-tt-cell>4th of June</clr-tt-cell>
+              </clr-tt-row>
+
+              <clr-tt-row>
+                <clr-tt-cell>Oscar Martinez</clr-tt-cell>
+                <clr-tt-cell></clr-tt-cell>
+                <clr-tt-cell>11</clr-tt-cell>
+                <clr-tt-cell>9th of June</clr-tt-cell>
+              </clr-tt-row>
+            </clr-tt-row>
+
+            <clr-tt-row clrExpandable="true">
+              <clr-tt-cell>Kelly Kapoor</clr-tt-cell>
+              <clr-tt-cell>Head of Customer Service</clr-tt-cell>
+              <clr-tt-cell>1</clr-tt-cell>
+              <clr-tt-cell></clr-tt-cell>
+
+              <clr-tt-row>
+                <clr-tt-cell>Ryan Howard</clr-tt-cell>
+                <clr-tt-cell>Temp</clr-tt-cell>
+                <clr-tt-cell></clr-tt-cell>
+                <clr-tt-cell></clr-tt-cell>
+              </clr-tt-row>
+            </clr-tt-row>
+
+            <clr-tt-row>
+              <clr-tt-cell>Creed Bratton</clr-tt-cell>
+              <clr-tt-cell>Quality Assurance</clr-tt-cell>
+              <clr-tt-cell>3</clr-tt-cell>
+              <clr-tt-cell>Early 1900s</clr-tt-cell>
+            </clr-tt-row>
+
+            <clr-tt-row>
+              <clr-tt-cell>Meredith Palmer</clr-tt-cell>
+              <clr-tt-cell>Supplier Relations</clr-tt-cell>
+              <clr-tt-cell></clr-tt-cell>
+              <clr-tt-cell></clr-tt-cell>
+            </clr-tt-row>
+
+            <clr-tt-row>
+              <clr-tt-cell>Toby Flenderson</clr-tt-cell>
+              <clr-tt-cell>Human Resources</clr-tt-cell>
+              <clr-tt-cell>0</clr-tt-cell>
+              <clr-tt-cell>Ugh...</clr-tt-cell>
+            </clr-tt-row>
+
+            <clr-tt-row>
+              <clr-tt-cell>Pam Beesly</clr-tt-cell>
+              <clr-tt-cell>Reception</clr-tt-cell>
+              <clr-tt-cell>10</clr-tt-cell>
+              <clr-tt-cell>4th of July</clr-tt-cell>
+            </clr-tt-row>
+
+            <clr-tt-row>
+              <clr-tt-cell>Darryl Philbin</clr-tt-cell>
+              <clr-tt-cell>Warehouse</clr-tt-cell>
+              <clr-tt-cell>99</clr-tt-cell>
+              <clr-tt-cell>31st of August</clr-tt-cell>
+            </clr-tt-row>
+          </clr-tt-row>
+        </clr-tt-row>
+        <clr-tt-row>
+          <clr-tt-cell>Some Dude - you probably know him, but he definitely knows you!</clr-tt-cell>
+          <clr-tt-cell>N/A</clr-tt-cell>
+          <clr-tt-cell>-1</clr-tt-cell>
+          <clr-tt-cell>1st of April</clr-tt-cell>
+        </clr-tt-row>
+      </clr-treetable>
+
+      <clr-code-snippet [clrCode]="htmlExampleClickableRows"></clr-code-snippet>
+
+      <h4>Treetable with clickable carets and expanded rows</h4>
+
+      <p>
+        Sometimes you might want to have links or buttons inside your rows. Click event bubbling might prevent clicking
+        on said links without expanding or contracting that row. Additionally, you can have rows that are expanded by
+        default using the
+        <code class="clr-code">clrExpanded</code> input property.
+      </p>
+
+      <clr-treetable [clrClickableRows]="false">
+        <clr-tt-column>Name</clr-tt-column>
+        <clr-tt-column>Role</clr-tt-column>
+        <clr-tt-column>Actor</clr-tt-column>
+
+        <clr-tt-row [clrExpanded]="true" clrExpandable="true">
+          <clr-tt-cell>David Wallace</clr-tt-cell>
+          <clr-tt-cell>CFO</clr-tt-cell>
+          <clr-tt-cell><a target="_blank" href="https://www.google.com">Some actor</a></clr-tt-cell>
+
+          <clr-tt-row clrExpandable="true">
+            <clr-tt-cell>Michael Scott</clr-tt-cell>
+            <clr-tt-cell>Regional Manager</clr-tt-cell>
+            <clr-tt-cell><a target="_blank" href="https://www.google.com">Some actor</a></clr-tt-cell>
+
+            <clr-tt-row>
+              <clr-tt-cell>Dwight K. Schrute</clr-tt-cell>
+              <clr-tt-cell>Assistant to the Regional Manager</clr-tt-cell>
+              <clr-tt-cell><a target="_blank" href="https://www.google.com">Some actor</a></clr-tt-cell>
+            </clr-tt-row>
+
+            <clr-tt-row>
+              <clr-tt-cell>Jim Halpert</clr-tt-cell>
+              <clr-tt-cell>Head of Sales</clr-tt-cell>
+              <clr-tt-cell><a target="_blank" href="https://www.google.com">Some actor</a></clr-tt-cell>
+
+              <clr-tt-row>
+                <clr-tt-cell>Andy Bernard</clr-tt-cell>
+                <clr-tt-cell></clr-tt-cell>
+                <clr-tt-cell><a target="_blank" href="https://www.google.com">Some actor</a></clr-tt-cell>
+              </clr-tt-row>
+
+              <clr-tt-row>
+                <clr-tt-cell>Stanley Hudson</clr-tt-cell>
+                <clr-tt-cell></clr-tt-cell>
+                <clr-tt-cell><a target="_blank" href="https://www.google.com">Some actor</a></clr-tt-cell>
+              </clr-tt-row>
+
+              <clr-tt-row>
+                <clr-tt-cell>Phyllis Vance</clr-tt-cell>
+                <clr-tt-cell></clr-tt-cell>
+                <clr-tt-cell><a target="_blank" href="https://www.google.com">Some actor</a></clr-tt-cell>
+              </clr-tt-row>
+
+              <clr-tt-row>
+                <clr-tt-cell>Todd Packer</clr-tt-cell>
+                <clr-tt-cell>The Packman</clr-tt-cell>
+                <clr-tt-cell><a target="_blank" href="https://www.google.com">Some actor</a></clr-tt-cell>
+              </clr-tt-row>
+            </clr-tt-row>
+
+            <clr-tt-row clrExpandable="true">
+              <clr-tt-cell>Angela Martin</clr-tt-cell>
+              <clr-tt-cell>Head of Accounting</clr-tt-cell>
+              <clr-tt-cell><a target="_blank" href="https://www.google.com">Some actor</a></clr-tt-cell>
+
+              <clr-tt-row>
+                <clr-tt-cell>Kevin Malone</clr-tt-cell>
+                <clr-tt-cell></clr-tt-cell>
+                <clr-tt-cell><a target="_blank" href="https://www.google.com">Some actor</a></clr-tt-cell>
+              </clr-tt-row>
+
+              <clr-tt-row>
+                <clr-tt-cell>Oscar Martinez</clr-tt-cell>
+                <clr-tt-cell></clr-tt-cell>
+                <clr-tt-cell><a target="_blank" href="https://www.google.com">Some actor</a></clr-tt-cell>
+              </clr-tt-row>
+            </clr-tt-row>
+
+            <clr-tt-row clrExpandable="true">
+              <clr-tt-cell>Kelly Kapoor</clr-tt-cell>
+              <clr-tt-cell>Head of Customer Service</clr-tt-cell>
+              <clr-tt-cell><a target="_blank" href="https://www.google.com">Some actor</a></clr-tt-cell>
+
+              <clr-tt-row>
+                <clr-tt-cell>Ryan Howard</clr-tt-cell>
+                <clr-tt-cell>Temp</clr-tt-cell>
+                <clr-tt-cell><a target="_blank" href="https://www.google.com">Some actor</a></clr-tt-cell>
+              </clr-tt-row>
+            </clr-tt-row>
+
+            <clr-tt-row>
+              <clr-tt-cell>Creed Bratton</clr-tt-cell>
+              <clr-tt-cell>Quality Assurance</clr-tt-cell>
+              <clr-tt-cell><a target="_blank" href="https://www.google.com">Some actor</a></clr-tt-cell>
+            </clr-tt-row>
+
+            <clr-tt-row>
+              <clr-tt-cell>Meredith Palmer</clr-tt-cell>
+              <clr-tt-cell>Supplier Relations</clr-tt-cell>
+              <clr-tt-cell><a target="_blank" href="https://www.google.com">Some actor</a></clr-tt-cell>
+            </clr-tt-row>
+
+            <clr-tt-row>
+              <clr-tt-cell>Toby Flenderson</clr-tt-cell>
+              <clr-tt-cell>Human Resources</clr-tt-cell>
+              <clr-tt-cell><a target="_blank" href="https://www.google.com">Some actor</a></clr-tt-cell>
+            </clr-tt-row>
+
+            <clr-tt-row>
+              <clr-tt-cell>Pam Beesly</clr-tt-cell>
+              <clr-tt-cell>Reception</clr-tt-cell>
+              <clr-tt-cell><a target="_blank" href="https://www.google.com">Some actor</a></clr-tt-cell>
+            </clr-tt-row>
+
+            <clr-tt-row>
+              <clr-tt-cell>Darryl Philbin</clr-tt-cell>
+              <clr-tt-cell>Warehouse</clr-tt-cell>
+              <clr-tt-cell><a target="_blank" href="https://www.google.com">Some actor</a></clr-tt-cell>
+            </clr-tt-row>
+          </clr-tt-row>
+        </clr-tt-row>
+        <clr-tt-row>
+          <clr-tt-cell>Some Dude</clr-tt-cell>
+          <clr-tt-cell>N/A</clr-tt-cell>
+          <clr-tt-cell>You know him, nothing more to see</clr-tt-cell>
+        </clr-tt-row>
+      </clr-treetable>
+
+      <clr-code-snippet [clrCode]="htmlExampleClickableCaret"></clr-code-snippet>
+
+      <h4>Treetable with single row actions</h4>
+
+      <p>
+        To show single row actions add <code class="clr-code">clr-tt-action-overflow</code> inside a
+        <code class="clr-code">clr-tt-row</code>
+      </p>
+
+      <clr-treetable>
+        <clr-tt-column>Some column</clr-tt-column>
+        <clr-tt-column>Some other column</clr-tt-column>
+
+        <clr-tt-row clrExpandable="true">
+          <clr-tt-action-overflow>
+            <button class="action-item">Test Action</button>
+          </clr-tt-action-overflow>
+          <clr-tt-cell>Lorem ipsum dolor sit amet</clr-tt-cell>
+          <clr-tt-cell>2</clr-tt-cell>
+
+          <clr-tt-row>
+            <clr-tt-cell>Lorem ipsum dolor sit amet</clr-tt-cell>
+            <clr-tt-cell>3</clr-tt-cell>
+          </clr-tt-row>
+        </clr-tt-row>
+
+        <clr-tt-row>
+          <clr-tt-cell>Lorem ipsum dolor sit amet</clr-tt-cell>
+          <clr-tt-cell>1</clr-tt-cell>
+        </clr-tt-row>
+      </clr-treetable>
+
+      <clr-code-snippet [clrCode]="htmlExampleSingleRowAction"></clr-code-snippet>
+
+      <h4>Custom column sizing</h4>
+
+      <p>
+        For custom column widths use the
+        <code class="clr-code">clr-col-</code> classes on the header columns
+        <code class="clr-code">clr-tt-column</code>. The cells in the body will adjust accordingly automatically.
+      </p>
+
+      <clr-treetable>
+        <clr-tt-column class="clr-col-9">Some column</clr-tt-column>
+        <clr-tt-column class="clr-col-3">Some other column</clr-tt-column>
+
+        <clr-tt-row clrExpandable="true">
+          <clr-tt-cell
+            >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi delectus dignissimos,
+            ducimus...</clr-tt-cell
+          >
+          <clr-tt-cell>2</clr-tt-cell>
+
+          <clr-tt-row>
+            <clr-tt-cell
+              >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur assumenda, at atque dignissimos
+              ...</clr-tt-cell
+            >
+            <clr-tt-cell>3</clr-tt-cell>
+          </clr-tt-row>
+        </clr-tt-row>
+
+        <clr-tt-row>
+          <clr-tt-cell
+            >Lorem ipsum dolor sit amet, consectetur adipisicing elit. At aut cumque ex libero, minus ...</clr-tt-cell
+          >
+          <clr-tt-cell>1</clr-tt-cell>
+        </clr-tt-row>
+      </clr-treetable>
+
+      <clr-code-snippet [clrCode]="htmlExampleCustomSize"></clr-code-snippet>
+    </div>
+  </article>
+</clr-doc-wrapper>

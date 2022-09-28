@@ -1,0 +1,101 @@
+<clr-doc-wrapper [title]="title">
+  <article>
+    <h5 class="component-summary" id="cards-header">
+      The Addons extend the default Clarity cards by providing following additional types:
+    </h5>
+    <ul>
+      <li>Selectable card. The selected stays visually highlighted.</li>
+      <li>Placeholder card. Represents an empty card which can be filled by user actions.</li>
+    </ul>
+
+    <h2>Selectable card</h2>
+    <div id="design-guidelines">
+      <h3>Behavior</h3>
+      <p>
+        Only one card at the time can have the selection indicator. Compare this behavior to a radio button. Note the
+        different hover style in the example below.
+      </p>
+
+      <h6>Default clickable card (Standard Clarity)</h6>
+      <div class="clr-row">
+        <div class="clr-col-4">
+          <div class="card clickable">
+            <div class="card-header">Default card</div>
+            <div class="card-block">
+              See the official <a href="https://clarity.design/documentation/cards">Clarity documentation</a> for
+              details.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h6>Selectable card (Clarity Addons)</h6>
+      <div class="clr-row">
+        <div class="clr-col-4" *ngFor="let card of cards;let index = index;">
+          <div class="card selectable" [class.card-active]="card.active" (click)="activateCard(index)">
+            <div class="card-header">{{card.title}}</div>
+            <div class="card-block" *ngIf="!card.active">Click to select me</div>
+            <div class="card-block" *ngIf="card.active">I am the selected card</div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Usage</h3>
+      <p>
+        On contrast to the default clickable-cards, the selectable card does not start an action, it is only marked as
+        selected. Note that multiple selection is not supported. If you depend on multi-selection, use a different
+        element such as a checkbox. A selectable card should have the class
+        <code class="clr-code">selectable</code> instead of the clarity-default
+        <code class="clr-code">clickable</code> class. Use the <code class="clr-code">card-active</code> class to mark
+        the currently selected one.
+      </p>
+    </div>
+
+    <div id="examples">
+      <clr-code-snippet [clrCode]="htmlExample"></clr-code-snippet>
+    </div>
+
+    <h2>Placeholder card</h2>
+    The placeholder card represents an empty card by a dashed border. The style is provided by class
+    <code class="clr-code">card-placeholder</code>. All buttons inside a placeholder card should be flat (btn-link).
+    <div class="clr-row">
+      <div class="clr-col-4">
+        <div class="card card-placeholder">
+          <div class="card-header">Placeholder card</div>
+          <div class="card-block">
+            Card block
+            <div>
+              <a class="btn btn-link">Action</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <clr-code-snippet [clrCode]="htmlExamplePlaceholder"></clr-code-snippet>
+
+    <h2>Card with custom actions</h2>
+    To use a card with custom actions, use the classes <code class="clr-code">card-actions</code> on the dropdown itself
+    and <code class="clr-code">card-action</code> on the dropdown-toggle.
+    <div class="clr-row">
+      <div class="clr-col-4">
+        <div class="card">
+          <div class="card-header">
+            Card header with custom actions
+            <clr-dropdown class="card-actions">
+              <button type="button" class="btn btn-icon btn-link card-action dropdown-toggle" clrDropdownTrigger>
+                <clr-icon shape="ellipsis-vertical"></clr-icon>
+              </button>
+              <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
+                <button type="button" clrDropdownItem>Edit</button>
+                <button type="button" clrDropdownItem>Duplicate</button>
+                <button type="button" clrDropdownItem>Delete</button>
+              </clr-dropdown-menu>
+            </clr-dropdown>
+          </div>
+          <div class="card-block">Card Block</div>
+        </div>
+      </div>
+    </div>
+    <clr-code-snippet [clrCode]="htmlExampleCustomActions"></clr-code-snippet>
+  </article>
+</clr-doc-wrapper>

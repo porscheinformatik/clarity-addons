@@ -1,0 +1,62 @@
+<clr-doc-wrapper [title]="title">
+  <article>
+    <div id="design-guidelines">
+      <h3>Max Width</h3>
+      <p>
+        The css class <code class="clr-code">clr-max-width</code> can be used to set the max-width. It is set 65 rem and
+        used for View/Edit sections as a default.
+      </p>
+      <h3>Use when</h3>
+      <p>Your page content never needs more width and starts looking awkward in case it's getting more width.</p>
+
+      <h3>Don't use when</h3>
+      <p>
+        Your datagrid has various widths because of the column show/hide feature and when all colums are enabled,<br />
+        the additional width would be beneficial for the user.
+      </p>
+    </div>
+    <div id="code-examples">
+      <h3 id="examples">Code &amp; Examples</h3>
+      <h4>Datagrid</h4>
+
+      <clr-datagrid class="clr-max-width">
+        <clr-dg-column>Description</clr-dg-column>
+        <clr-dg-row clrDgItem="1">
+          <clr-dg-cell>Item 1</clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-row clrDgItem="2">
+          <clr-dg-cell>Item 2</clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-row clrDgItem="3">
+          <clr-dg-cell>Item 3</clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-row clrDgItem="4">
+          <clr-dg-cell>Item 4</clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-row clrDgItem="5">
+          <clr-dg-cell>Item 5</clr-dg-cell>
+        </clr-dg-row>
+      </clr-datagrid>
+      <clr-code-snippet [clrCode]="codeExample"></clr-code-snippet>
+      <h4>View/Edit section</h4>
+      <div class="clr-row">
+        <div class="clr-col-12">
+          <clr-view-edit-section clrTitle="View/Edit section" [clrEditable]="false" [clrViewRef]="viewBlock4">
+            <ng-template #viewBlock4>
+              <form clrForm clrLayout="horizontal">
+                <div class="clr-form-control clr-row">
+                  <label class="clr-col-md-2 clr-control-label">Hobby</label>
+                  <span class="text-truncate clr-col-md-10">Computer</span>
+                </div>
+                <div class="clr-form-control clr-row">
+                  <label class="clr-col-md-2 clr-control-label">Driving licence number</label>
+                  <span class="text-truncate clr-col-md-10">12345</span>
+                </div>
+              </form>
+            </ng-template>
+          </clr-view-edit-section>
+        </div>
+      </div>
+    </div>
+  </article>
+</clr-doc-wrapper>

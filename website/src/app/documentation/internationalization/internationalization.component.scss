@@ -1,0 +1,17 @@
+h3 {
+  margin-top: 1rem;
+}
+
+.table td {
+  text-align: left;
+}
+
+.align-values-right {
+  td:not(:first-child) {
+    text-align: right;
+  }
+
+  clr-select-container {
+    align-items: flex-end;
+  }
+}
