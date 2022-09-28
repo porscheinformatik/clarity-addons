@@ -30,6 +30,7 @@ export class ClrTreetable implements OnDestroy {
   @ContentChildren(ClrTreetableRow, { descendants: true })
   set ttRows(items: QueryList<ClrTreetableRow>) {
     this._ttRows = items;
+    this.hasActionOverflow = false;
     this.initClickableRows();
     this.initEmpty();
     this.initActionOverflow();
@@ -57,9 +58,14 @@ export class ClrTreetable implements OnDestroy {
   }
 
   private setActionOverflow(hasActionOverflow: boolean) {
-    this.hasActionOverflow = this.hasActionOverflow || hasActionOverflow;
-    if (this.hasActionOverflow) {
-      this._ttRows.forEach(ttRow => (ttRow.showActionOverflow = true));
+    if (!this.hasActionOverflow && hasActionOverflow) {
+      this.hasActionOverflow = true;
+      // setTimeout needed, as this method needs to change data which shouldn't be changed anymore in this cycle
+      setTimeout(() => {
+        if (this.hasActionOverflow) {
+          this._ttRows.forEach(ttRow => (ttRow.showActionOverflow = true));
+        }
+      });
     }
   }
 
