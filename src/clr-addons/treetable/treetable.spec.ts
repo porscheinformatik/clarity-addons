@@ -113,15 +113,20 @@ describe('ClrTreetable', () => {
     expect(noOfClickableRows).toBe(0);
   });
 
-  it('should have action column', () => {
-    const noOfActionCellsWHeader = actionTestComponentFixture.debugElement.queryAll(
-      By.css('.treetable-row-actions')
-    ).length;
-    expect(noOfActionCellsWHeader).toBe(4);
+  it('should have action column', waitForAsync(() => {
+    setTimeout(() => {
+      actionTestComponentFixture.whenStable().then(() => {
+        actionTestComponentFixture.detectChanges();
+        const noOfActionCellsWHeader = actionTestComponentFixture.debugElement.queryAll(
+          By.css('.treetable-row-actions')
+        ).length;
+        expect(noOfActionCellsWHeader).toBe(4);
 
-    const noOfActionButtons = actionTestComponentFixture.debugElement.queryAll(
-      By.css('.treetable-action-trigger')
-    ).length;
-    expect(noOfActionButtons).toBe(1);
-  });
+        const noOfActionButtons = actionTestComponentFixture.debugElement.queryAll(
+          By.css('.treetable-action-trigger')
+        ).length;
+        expect(noOfActionButtons).toBe(1);
+      });
+    }, 2);
+  }));
 });
