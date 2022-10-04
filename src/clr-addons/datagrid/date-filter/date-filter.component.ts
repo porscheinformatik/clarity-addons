@@ -100,9 +100,12 @@ export class ClrDateFilterComponent<T extends { [key: string]: any }>
   }
 
   accepts(item: T): boolean {
-    const propValue = this.nestedProp.getPropValue(item);
+    let propValue = this.nestedProp ? this.nestedProp.getPropValue(item) : item;
     if (propValue === undefined) {
       return false;
+    }
+    if (typeof propValue === 'string') {
+      propValue = new Date(propValue);
     }
     if (this._from !== null && (!(propValue instanceof Date) || propValue.getTime() < this._from.getTime())) {
       return false;

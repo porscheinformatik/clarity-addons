@@ -4,7 +4,7 @@ import { ClrDatagridNumericFilterInterface, ClrDatagridStringFilterInterface } f
 interface Item {
   name: string;
   amount: number;
-  created: Date;
+  created: Date | string;
 }
 
 @Component({
@@ -22,6 +22,11 @@ export class DatagridFiltersDemo {
       name: 'Item 2',
       amount: 2,
       created: new Date(),
+    },
+    {
+      name: 'Item 3',
+      amount: 3,
+      created: '2022-10-01',
     },
   ];
   createdFilterValue = [new Date(), null];
