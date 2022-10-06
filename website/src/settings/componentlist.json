@@ -1,0 +1,114 @@
+{
+  "list": [
+    {
+      "url": "forms",
+      "text": "Forms",
+      "type": "layout"
+    },
+    {
+      "url": "navigation",
+      "text": "Navigation",
+      "type": "layout"
+    },
+    {
+      "url": "page-layouts",
+      "text": "Page layouts",
+      "type": "layout"
+    },
+    {
+      "url": "breadcrumb",
+      "text": "Breadcrumb",
+      "type": "component"
+    },
+    {
+      "url": "cards",
+      "text": "Cards",
+      "type": "component"
+    },
+    {
+      "url": "collapse-expand-section",
+      "text": "Collapse/Expand Section",
+      "type": "component"
+    },
+    {
+      "url": "datagrid",
+      "text": "Datagrid",
+      "type": "component"
+    },
+    {
+      "url": "history",
+      "text": "History",
+      "type": "component"
+    },
+    {
+      "url": "letter-avatar",
+      "text": "Letter avatar",
+      "type": "component"
+    },
+    {
+      "url": "location-bar",
+      "text": "Location Bar",
+      "type": "component"
+    },
+    {
+      "url": "brand-avatar",
+      "text": "Brand avatar",
+      "type": "component"
+    },
+    {
+      "url": "multilingual-input",
+      "text": "Multilingual Inputs",
+      "type": "component"
+    },
+    {
+      "url": "notification",
+      "text": "Notification",
+      "type": "component"
+    },
+    {
+      "url": "numericfield",
+      "text": "Numeric Field",
+      "type": "component"
+    },
+    {
+      "url": "pager",
+      "text": "Pager",
+      "type": "component"
+    },
+    {
+      "url": "progress-spinner",
+      "text": "Progress Spinner",
+      "type": "component"
+    },
+    {
+      "url": "quick-list",
+      "text": "Quick List",
+      "type": "component"
+    },
+    {
+      "url": "readonly",
+      "text": "Readonly",
+      "type": "component"
+    },
+    {
+      "url": "search-field",
+      "text": "Search Field",
+      "type": "component"
+    },
+    {
+      "url": "treetable",
+      "text": "Treetable",
+      "type": "component"
+    },
+    {
+      "url": "view-edit-section",
+      "text": "View/Edit Section",
+      "type": "component"
+    },
+    {
+      "url": "responsiveness",
+      "text": "Responsiveness",
+      "type": "layout"
+    }
+  ]
+}

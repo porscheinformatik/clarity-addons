@@ -1,0 +1,61 @@
+//Styles for Clarity Demos
+.clr-example {
+  margin-top: baselineRem(1);
+  .main-container {
+    height: auto;
+    padding-top: 0;
+    background: $clr-color-neutral-50;
+    .content-area {
+      overflow-y: hidden;
+    }
+  }
+  &.squeeze {
+    padding: $bl-2_0;
+  }
+}
+
+.modal.static {
+  position: relative;
+  padding: $bl-3_0;
+}
+
+.modal-backdrop.static {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.modal-icon {
+  float: left;
+  color: $clr-color-success-400;
+  font-size: rem(3);
+  margin-right: $bl-0_5;
+}
+
+.backdrop-example-container {
+  position: relative;
+  padding: $bl-1_0;
+}
+
+.bump-down {
+  margin-top: $bl-1_0 !important;
+}
+
+//Overriding PrismJS styles. This is in code.scss and not in code.clarity.scss because
+//we don't want to override the background in case someone chooses to use
+//another PrismJS theme.
+:not(pre) > code[class*='language-'],
+pre[class*='language-'],
+pre {
+  background: transparent;
+  padding: 0 0 $bl-1_0 $bl-1_0;
+}
+
+// Fixes specific prism issue only for labels with badges (#1700: https://github.com/vmware/clarity/issues/1700)
+.prism-fix {
+  pre {
+    margin-top: 7px;
+  }
+}

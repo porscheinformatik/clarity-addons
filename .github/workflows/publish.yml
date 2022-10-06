@@ -1,4 +1,4 @@
-name: Publish to npmjs
+name: Publish to npmjs.com
 on:
   release:
     types: [created]
@@ -6,14 +6,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    # Setup .npmrc file to publish to npm
-    - uses: actions/setup-node@v3
-      with:
-        node-version: '12.x'
-        registry-url: 'https://registry.npmjs.org'
-    - run: npm install
-    - run: npm run build
-    - run: npm run publish
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - uses: actions/checkout@v3
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+      - name: Build
+        run: |
+          npm ci
+          npm run build
+      - name: Publish
+        run: npm run publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

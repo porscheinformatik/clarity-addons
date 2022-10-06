@@ -1,0 +1,152 @@
+<clr-doc-wrapper [title]="title">
+  <article>
+    <h5 class="component-summary">
+      Datagrids are for organizing large volumes of data that users can scan, compare and perform actions on.
+    </h5>
+    <p>
+      Please find the main documentation here:
+      <a href="https://angular.clarity.design/documentation/datagrid/structure">Clarity Datagrid</a> <br />In the
+      following only additional features are documented
+    </p>
+
+    <!-- ENUM FILTER -->
+    <h3>Enum Filter</h3>
+    <p>
+      When you need a filter with checkboxes based on grid data or custom values use the custom
+      <code class="clr-code">clr-enum-filter</code>.
+    </p>
+
+    <h4>Filter values derived from datagrid data</h4>
+    <p>
+      Just provide the <code class="clr-code">clrProperty</code> input which defines the name of the attribute in
+      datagrid data to derive the values from. This filter will then show distinct values of this attribute.
+    </p>
+    <clr-datagrid>
+      <clr-dg-column [clrDgField]="'name'"
+        >Name
+        <clr-dg-filter>
+          <clr-enum-filter clrProperty="name"> </clr-enum-filter>
+        </clr-dg-filter>
+      </clr-dg-column>
+
+      <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
+        <clr-dg-cell>{{data.name}}</clr-dg-cell>
+      </clr-dg-row>
+    </clr-datagrid>
+
+    <clr-code-snippet [clrCode]="enumFilterExample"></clr-code-snippet>
+
+    <h4>Filter values provided explicitly</h4>
+    <p>
+      In some cases you want to specify the filter values explicitly (e.g. server driven datagrid). In this case just
+      provide all possible values with <code class="clr-code">clrPossibleValues</code> input parameter.
+    </p>
+    <clr-datagrid>
+      <clr-dg-column [clrDgField]="'name'"
+        >Name
+        <clr-dg-filter>
+          <clr-enum-filter clrProperty="name" [clrPossibleValues]="customPossibleValues"> </clr-enum-filter>
+        </clr-dg-filter>
+      </clr-dg-column>
+
+      <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
+        <clr-dg-cell>{{data.name}}</clr-dg-cell>
+      </clr-dg-row>
+    </clr-datagrid>
+
+    <clr-code-snippet [clrCode]="enumFilterCustomExample"></clr-code-snippet>
+
+    <h4>Preselect filter values</h4>
+    <p>
+      In some cases you want to preselect some filter values. In this case just provide the filter values with
+      <code class="clr-code">clrFilterValues</code> input parameter. There is also a output parameter (<code
+        class="clr-code"
+        >clrFilterValuesChange</code
+      >) for this, when the filter changes.
+    </p>
+    <clr-datagrid>
+      <clr-dg-column [clrDgField]="'name'"
+        >Name
+        <clr-dg-filter>
+          <clr-enum-filter clrProperty="name" [clrFilterValues]="preselectedValues"> </clr-enum-filter>
+        </clr-dg-filter>
+      </clr-dg-column>
+
+      <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
+        <clr-dg-cell>{{data.name}}</clr-dg-cell>
+      </clr-dg-row>
+    </clr-datagrid>
+
+    <clr-code-snippet [clrCode]="enumFilterPreselectExample"></clr-code-snippet>
+
+    <!-- SELECTION -->
+    <h3>Selection</h3>
+    <h4>Omit "select-all" in datagrid header</h4>
+    <p>
+      Use class <code class="clr-code">datagrid-no-select-all</code> to prevent rendering of the select-all checkbox in
+      datagrid header.
+    </p>
+
+    <clr-datagrid class="datagrid-no-select-all" [(clrDgSelected)]="selected">
+      <clr-dg-column>Description</clr-dg-column>
+      <clr-dg-row clrDgItem="1"><clr-dg-cell>Item 1</clr-dg-cell></clr-dg-row>
+      <clr-dg-row clrDgItem="2"><clr-dg-cell>Item 2</clr-dg-cell></clr-dg-row>
+      <clr-dg-row clrDgItem="3"><clr-dg-cell>Item 3</clr-dg-cell></clr-dg-row>
+      <clr-dg-row clrDgItem="4"><clr-dg-cell>Item 4</clr-dg-cell></clr-dg-row>
+      <clr-dg-row clrDgItem="5"><clr-dg-cell>Item 5</clr-dg-cell></clr-dg-row>
+    </clr-datagrid>
+
+    <clr-code-snippet [clrCode]="noSelectAllExample"></clr-code-snippet>
+
+    <!-- COLUMNS -->
+    <h3>Column handling</h3>
+    <h4>Persist hidden state of columns in local storage</h4>
+    <p>
+      Add <code class="clr-code">clrStatePersistenceKey</code> attribute to datagrid and use
+      <code class="clr-code">clrDgField</code> attribute for columns. That's enough to automagically persist the hidden
+      state of a column which is flagged as hideable column (see
+      <a href="https://angular.clarity.design/documentation/datagrid/hide-show">Clarity docu</a> for details).
+    </p>
+
+    <clr-datagrid [clrStatePersistenceKey]="'datagrid.demo.statePersistence'">
+      <clr-dg-column [clrDgField]="'hideableColumn'">
+        <ng-template clrDgHideableColumn>Hideable</ng-template>
+      </clr-dg-column>
+      <clr-dg-column>Not Hideable</clr-dg-column>
+
+      <clr-dg-row clrDgItem="1"
+        ><clr-dg-cell>Hideable item 1</clr-dg-cell><clr-dg-cell>Not hideable item 1</clr-dg-cell></clr-dg-row
+      >
+      <clr-dg-row clrDgItem="2"
+        ><clr-dg-cell>Hideable item 2</clr-dg-cell><clr-dg-cell>Not hideable item 2</clr-dg-cell></clr-dg-row
+      >
+
+      <clr-dg-footer></clr-dg-footer>
+    </clr-datagrid>
+
+    <clr-code-snippet [clrCode]="columnStateExample"></clr-code-snippet>
+
+    <!-- PAGINATION -->
+    <h3>Pagination</h3>
+    <h4>Persist page size in local storage</h4>
+    <p>
+      Add <code class="clr-code">clrStatePersistenceKey</code> attribute to datagrid (if not already done). That's
+      enough to automagically persist the page size.
+    </p>
+
+    <clr-datagrid [clrStatePersistenceKey]="'datagrid.demo.statePersistence'">
+      <clr-dg-column>Description</clr-dg-column>
+      <clr-dg-row *clrDgItems="let item of pageableItems" [clrDgItem]="item">
+        <clr-dg-cell>{{item}}</clr-dg-cell>
+      </clr-dg-row>
+
+      <clr-dg-footer>
+        <clr-dg-pagination #pagination [(clrDgPage)]="currentPage" [clrDgPageSize]="3" [clrDgTotalItems]="totalItems">
+          <clr-dg-page-size [clrPageSizeOptions]="[1,3,5,8]">Entries per page</clr-dg-page-size>
+        </clr-dg-pagination>
+      </clr-dg-footer>
+    </clr-datagrid>
+
+    <clr-code-snippet [clrCode]="persistedPageSizeExample"></clr-code-snippet>
+  </article>
+</clr-doc-wrapper>

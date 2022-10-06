@@ -1,0 +1,347 @@
+<clr-doc-wrapper [title]="title">
+  <article>
+    <h5 class="component-summary">
+      This describes clarity forms in more detail. Official documentation:
+      <a href="https://clarity.design/documentation/forms">Clarity Forms documentation</a>
+    </h5>
+    <p>
+      Find below our recommendation how to use every input component.<br />
+      Please also check back frequently to get updates of the recommended way.
+    </p>
+
+    <div id="design-guidelines">
+      <h3>Usage</h3>
+      <ul>
+        <li>
+          <strong
+            >Don't mix core (webcomponents) and angular components inside a form, as they have different layout
+            philosophies.</strong
+          >
+        </li>
+        <li><strong>Always use forms.</strong> Don't display multiple labels and input fields outside of a form.</li>
+        <li>When adding subheaders inside a form, use <code class="clr-code">h4</code> elements.</li>
+        <li>
+          Control the width of labels and inputs by adding <code class="clr-code">clr-col-*</code> classes inside the
+          <code class="clr-code">clr-*-container</code>.
+        </li>
+        <li>
+          Forms in a <code class="clr-code">clr-view-edit-section</code> should also be displayed using the below
+          examples.
+        </li>
+        <li>
+          Make your forms responsive. Use the correct <code class="clr-code">clr-col-*</code> classes to make your forms
+          fit every screen size.
+        </li>
+        <li>Always use 1 column layouts on screen sizes below 768px. (md-breakpoint)</li>
+      </ul>
+    </div>
+
+    <div id="code-examples">
+      <h3 id="examples">Code &amp; Examples</h3>
+      <h4>Standard form</h4>
+      <form clrForm clrLayout="horizontal" class="clr-row">
+        <clr-input-container class="clr-col-12">
+          <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2 required">Input label</label>
+          <input
+            clrInput
+            class="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-3"
+            type="text"
+            [(ngModel)]="inputText"
+            [ngModelOptions]="{ updateOn: 'blur' }"
+            name="inputName"
+            required
+            minlength="5"
+          />
+          <clr-control-helper>Helper text that shows while it is pristine and valid</clr-control-helper>
+          <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
+          <clr-control-error *clrIfError="'minlength'">Error message about requiring 5 characters </clr-control-error>
+        </clr-input-container>
+        <clr-textarea-container class="clr-col-12">
+          <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2 required">Textarea label</label>
+          <textarea
+            clrTextarea
+            class="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-3"
+            [(ngModel)]="textareaText"
+            [ngModelOptions]="{ updateOn: 'blur' }"
+            name="description"
+            required
+          ></textarea>
+          <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
+        </clr-textarea-container>
+        <clr-password-container class="clr-col-12">
+          <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2">Password label</label>
+          <input
+            clrPassword
+            class="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-3"
+            placeholder="Password please!"
+            type="text"
+            [(ngModel)]="passwordText"
+            [ngModelOptions]="{ updateOn: 'blur' }"
+            name="passwordName"
+          />
+        </clr-password-container>
+        <clr-select-container class="clr-col-12">
+          <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2 required">Select label</label>
+          <select clrSelect class="clr-col-6 clr-col-sm-3 clr-col-md-2" name="options" [(ngModel)]="selectOption">
+            <option value="one">One</option>
+            <option value="two">Two</option>
+            <option value="three">Three</option>
+          </select>
+        </clr-select-container>
+        <clr-combobox-container class="clr-col-12">
+          <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2">Combobox label</label>
+          <clr-combobox class="clr-col-6 clr-col-sm-3 clr-col-md-2">
+            <clr-options>
+              <clr-option [clrValue]="'Option 1'">Option 1</clr-option>
+              <clr-option [clrValue]="'Option 2'">Option 2</clr-option>
+              <clr-option [clrValue]="'Option 3'">Option 3</clr-option>
+            </clr-options>
+          </clr-combobox>
+        </clr-combobox-container>
+        <clr-radio-container class="clr-col-12">
+          <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2 required">Radio label</label>
+          <clr-radio-wrapper>
+            <input
+              type="radio"
+              class="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-3"
+              clrRadio
+              name="options"
+              value="1"
+              required
+              [(ngModel)]="radioOption"
+            />
+            <label>Option 1</label>
+          </clr-radio-wrapper>
+          <clr-radio-wrapper>
+            <input type="radio" clrRadio name="options" value="2" required [(ngModel)]="radioOption" />
+            <label>Option 2</label>
+          </clr-radio-wrapper>
+          <clr-control-helper>Helper text</clr-control-helper>
+          <clr-control-error>This field is required!</clr-control-error>
+        </clr-radio-container>
+        <clr-date-container class="clr-col-12">
+          <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2">Date label</label>
+          <input
+            class="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-3"
+            type="text"
+            [(ngModel)]="date"
+            [ngModelOptions]="{ updateOn: 'blur' }"
+            name="date"
+            clrDate
+          />
+        </clr-date-container>
+        <clr-input-container class="clr-col-12">
+          <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2">Time label</label>
+          <input
+            class="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-3"
+            type="time"
+            [(ngModel)]="time"
+            [ngModelOptions]="{ updateOn: 'blur' }"
+            name="time"
+            clrInput
+          />
+        </clr-input-container>
+        <clr-date-time-container class="clr-col-12 clr-row">
+          <clr-date-container>
+            <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2">Date & time label</label>
+            <input
+              class="clr-col-8"
+              clrDate
+              type="text"
+              [(ngModel)]="date"
+              [ngModelOptions]="{ updateOn: 'blur' }"
+              name="date"
+            />
+          </clr-date-container>
+          <input type="time" [(ngModel)]="time" [ngModelOptions]="{ updateOn: 'blur' }" name="time" clrTime />
+        </clr-date-time-container>
+        <clr-input-container class="clr-col-12">
+          <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2">Money label</label>
+          <input
+            class="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-3"
+            clrInput
+            clrNumeric
+            class="clr-col-2"
+            type="text"
+            [(clrNumericValue)]="money"
+            clrUnit="€"
+          />
+        </clr-input-container>
+        <clr-checkbox-container class="clr-col-12">
+          <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2">Checkbox label</label>
+          <clr-checkbox-wrapper>
+            <label>Option</label>
+            <input
+              clrCheckbox
+              class="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-3"
+              type="checkbox"
+              [(ngModel)]="checkboxValue"
+              name="checkboxName"
+            />
+          </clr-checkbox-wrapper>
+        </clr-checkbox-container>
+        <clr-toggle-container class="clr-col-12">
+          <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2">Toggle label</label>
+          <clr-toggle-wrapper>
+            <input
+              type="checkbox"
+              class="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-3"
+              id="toggle"
+              name="toggle"
+              [(ngModel)]="toggleValue"
+              clrToggle
+            />
+            <label for="toggle" class="clr-col-none"></label>
+          </clr-toggle-wrapper>
+        </clr-toggle-container>
+        <clr-multilingual-input
+          class="clr-col-12 clr-row"
+          clrSelectedLang="EN"
+          [(ngModel)]="data"
+          [ngModelOptions]="{ updateOn: 'blur' }"
+          clrRequiredAllMultilang
+          clrControlClasses="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-3"
+          name="template"
+        >
+          <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2 required">Multilingual Input</label>
+          <clr-control-error>Please translate in every language!</clr-control-error>
+          <clr-control-helper>Helper text</clr-control-helper>
+        </clr-multilingual-input>
+        <clr-multilingual-textarea
+          class="clr-col-12 clr-row"
+          clrSelectedLang="EN"
+          [(ngModel)]="data2"
+          [ngModelOptions]="{ updateOn: 'blur' }"
+          clrRequiredAllMultilang
+          clrControlClasses="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-3"
+          name="template2"
+        >
+          <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2 required">Multilingual Input</label>
+          <clr-control-error>Please translate in every language!</clr-control-error>
+          <clr-control-helper>Helper text</clr-control-helper>
+        </clr-multilingual-textarea>
+      </form>
+      <br />
+      <clr-code-snippet [clrCode]="codeExampleFullForm"></clr-code-snippet>
+
+      <h4>Demo</h4>
+      <div>
+        <clr-icon shape="display"></clr-icon>&nbsp;
+        <a class="nav-link" routerLink="/full-page-layouts/basepage-layout-sub1/forms" routerLinkActive="active">
+          <span class="nav-text">Full Page Forms Layout</span>
+        </a>
+      </div>
+      <div>
+        <clr-icon shape="display"></clr-icon>&nbsp;
+        <a class="nav-link" routerLink="/full-page-layouts/basepage-layout-sub1/ves" routerLinkActive="active">
+          <span class="nav-text">Full Page View Edit Section Layout</span>
+        </a>
+      </div>
+
+      <h4>Submit form on enter</h4>
+      <p>To enable form submit on enter, following prerequisites need to be done:</p>
+      <ul>
+        <li>
+          Add hidden submit button to your form to activate 'enter' key handling in browser (only needed if you not
+          already have one)
+        </li>
+        <li>React to submit of form</li>
+      </ul>
+      <form clrForm class="clr-row" (submit)="onFormSubmit()">
+        <clr-input-container class="clr-col-12">
+          <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2 clr-col-md-2">Input label</label>
+          <input
+            clrInput
+            class="clr-col-2"
+            type="text"
+            [(ngModel)]="inputTextSubmit"
+            [ngModelOptions]="{ updateOn: 'blur' }"
+            name="inputNameSubmit"
+          />
+        </clr-input-container>
+        <input type="submit" style="display: none" />
+      </form>
+      Submitted text (hit enter to submit): {{submittedText}}
+      <clr-code-snippet [clrCode]="codeExampleFormSubmit"></clr-code-snippet>
+
+      <h5>Special case for updateOn: blur</h5>
+      <p>
+        Hitting the enter key doesn't trigger the blur event, so the form field is not up to date. To overcome this,
+        blur the field manually.
+      </p>
+      <clr-code-snippet [clrCode]="codeExampleFormSubmitBlur"></clr-code-snippet>
+
+      <h4>General form submit pattern</h4>
+      <clr-code-snippet [clrCode]="codeExampleFormSubmitGeneral"></clr-code-snippet>
+
+      <h4>Read-only fields (horizontal)</h4>
+      <form clrForm [clrLayout]="'horizontal'" class="clr-row">
+        <div class="clr-col-12 clr-form-control clr-row">
+          <label class="clr-control-label clr-col-xs-12 clr-col-sm-3 clr-col-lg-1">First name</label>
+          <span class="clr-col-xs-12 clr-col-sm-9 clr-col-lg-10">John</span>
+        </div>
+
+        <div class="clr-col-12 clr-form-control clr-row">
+          <label class="clr-control-label clr-col-xs-12 clr-col-sm-3 clr-col-lg-1">Last name</label>
+          <span class="clr-col-xs-12 clr-col-sm-9 clr-col-lg-10">Doe</span>
+        </div>
+      </form>
+      <clr-code-snippet [clrCode]="codeExampleROHorizontal"></clr-code-snippet>
+
+      <h4>Read-only fields (horizontal 2 columns)</h4>
+      <form clrForm [clrLayout]="'horizontal'" class="clr-row">
+        <div class="clr-col-6 clr-form-control clr-row">
+          <label class="clr-control-label clr-col-xs-12 clr-col-sm-3 clr-col-lg-2">First name</label>
+          <span class="clr-col-xs-12 clr-col-sm-9 clr-col-lg-10">John</span>
+        </div>
+        <div class="clr-col-6 clr-form-control clr-row">
+          <label class="clr-control-label clr-col-xs-12 clr-col-sm-3 clr-col-lg-2">Last name</label>
+          <span class="clr-col-xs-12 clr-col-sm-9 clr-col-lg-10">Doe</span>
+        </div>
+        <div class="clr-col-6 clr-form-control clr-row">
+          <label class="clr-control-label clr-col-xs-12 clr-col-sm-3 clr-col-lg-2">Email</label>
+          <span class="clr-col-xs-12 clr-col-sm-9 clr-col-lg-10">john.doe@mail.com</span>
+        </div>
+        <div class="clr-col-6 clr-form-control clr-row">
+          <label class="clr-control-label clr-col-xs-12 clr-col-sm-3 clr-col-lg-2">Phone</label>
+          <span class="clr-col-xs-12 clr-col-sm-9 clr-col-lg-10">1234567890123</span>
+        </div>
+      </form>
+      <clr-code-snippet [clrCode]="codeExampleROHorizontal2"></clr-code-snippet>
+
+      <h4>Read-only fields (vertical)</h4>
+      <form clrForm [clrLayout]="'vertical'">
+        <div class="clr-form-control">
+          <label class="clr-control-label">First name</label>
+          <span>John</span>
+        </div>
+        <div class="clr-form-control">
+          <label class="clr-control-label">Lastname</label>
+          <span>Doe</span>
+        </div>
+      </form>
+      <clr-code-snippet [clrCode]="codeExampleROVertical"></clr-code-snippet>
+
+      <h4>Read-only fields (vertical 2 columns)</h4>
+      <form clrForm [clrLayout]="'vertical'" class="clr-row">
+        <div class="clr-form-control clr-col-6">
+          <label class="clr-control-label">First name</label>
+          <span>John</span>
+        </div>
+        <div class="clr-form-control clr-col-6">
+          <label class="clr-control-label">Lastname</label>
+          <span>Doe</span>
+        </div>
+        <div class="clr-form-control clr-col-6">
+          <label class="clr-control-label">Email</label>
+          <span>john.doe@mail.com</span>
+        </div>
+        <div class="clr-form-control clr-col-6">
+          <label class="clr-control-label">Phone</label>
+          <span>1234567890123</span>
+        </div>
+      </form>
+      <clr-code-snippet [clrCode]="codeExampleROVertical2"></clr-code-snippet>
+    </div>
+  </article>
+</clr-doc-wrapper>

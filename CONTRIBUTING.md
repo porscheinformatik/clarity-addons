@@ -15,7 +15,7 @@ You can submit an issue or a bug to our GitHub repository. You must provide:
 
 Start by [forking](https://help.github.com/articles/fork-a-repo/) the repository. Make your changes locally and be sure to run all tests, check the format and run the build with:
 
-    npm run test:travis
+    npm run test:ci
 
 Before submitting the pull request please rebase to the current master (or release branch) and check/test your code again.
 
