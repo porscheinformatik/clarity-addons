@@ -17,7 +17,7 @@
       "groupName": "angular+cli monorepo"
     }
   ],
-  "baseBranches": ["master", "website"],
+  "baseBranches": ["master"],
   "prHourlyLimit": 5,
   "prConcurrentLimit": 0
 }
