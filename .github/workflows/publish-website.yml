@@ -14,6 +14,8 @@ jobs:
           node-version: '16.x'
       - name: Build website
         run: |
+          npm ci
+          npm run build
           cd website
           npm ci
           npm run deploy:ci
