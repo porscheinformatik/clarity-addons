@@ -20,11 +20,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Test
+      - name: Test library
         run: |
           npm ci
           npm run test:ci
-      - name: Build website
+      - name: Test website
         run: |
           cd website
           npm ci
