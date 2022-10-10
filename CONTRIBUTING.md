@@ -19,4 +19,6 @@ Start by [forking](https://help.github.com/articles/fork-a-repo/) the repository
 
 Before submitting the pull request please rebase to the current master (or release branch) and check/test your code again.
 
+Also provide some demo/documentation code in the website folder for the deployed documentation.
+
 Next, create the pull request and provide a description of the changes. Reference any issue numbers when the code change fixes a bug or implements an enhancement.
