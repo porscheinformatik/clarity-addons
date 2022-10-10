@@ -12,10 +12,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '16.x'
-      - name: Build website
+      - name: Build library
         run: |
           npm ci
           npm run build
+      - name: Build website
+        run: |
           cd website
           npm ci
           npm run deploy:ci
@@ -24,5 +26,5 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: gh-pages # The branch the action should deploy to.
-          folder: deploy # The folder the action should deploy.
+          folder: website/deploy # The folder the action should deploy.
           clean: true # Automatically remove deleted files from the deploy branch
