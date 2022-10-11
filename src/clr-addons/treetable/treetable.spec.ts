@@ -113,7 +113,7 @@ describe('ClrTreetable', () => {
     expect(noOfClickableRows).toBe(0);
   });
 
-  it('should have action column', waitForAsync(() => {
+  it('should have action column', done => {
     setTimeout(() => {
       actionTestComponentFixture.whenStable().then(() => {
         actionTestComponentFixture.detectChanges();
@@ -126,7 +126,8 @@ describe('ClrTreetable', () => {
           By.css('.treetable-action-trigger')
         ).length;
         expect(noOfActionButtons).toBe(1);
+        done();
       });
-    }, 2);
-  }));
+    }, 100);
+  });
 });
