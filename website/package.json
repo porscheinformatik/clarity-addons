@@ -28,7 +28,7 @@
     "@angular/platform-browser-dynamic": "13.3.11",
     "@angular/platform-server": "13.3.11",
     "@angular/router": "13.3.11",
-    "@cds/core": "5.7.1",
+    "@cds/core": "6.1.6",
     "@clr/angular": "13.2.1",
     "@clr/icons": "13.0.2",
     "@clr/ui": "13.2.1",
