@@ -112,8 +112,8 @@ export class MultilingualInputDemo extends ClarityDocComponent implements OnInit
 
   data1 = new Map();
   data2 = new Map();
-  reactiveData1 = new Map();
-  reactiveData2 = new Map();
+  reactiveData1 = new Map<string, string>();
+  reactiveData2 = new Map<string, string>();
   templateNa = new Map();
   templateNa2 = new Map();
   languagesNa = ['EN', 'DE'];

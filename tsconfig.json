@@ -20,7 +20,7 @@
     "strictNullChecks": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es2015",
+    "target": "es2020",
     "typeRoots": ["node_modules/@types"],
     "paths": {
       "@porscheinformatik/clr-addons": ["src/clr-addons"]
