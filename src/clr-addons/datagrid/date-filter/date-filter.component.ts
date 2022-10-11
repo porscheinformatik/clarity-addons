@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ClrCommonStringsService, ClrDatagridFilter, ClrDatagridFilterInterface } from '@clr/angular';
 import { Observable, Subject } from 'rxjs';
 import { NestedProperty } from './nested-property';
@@ -9,7 +9,7 @@ import { NestedProperty } from './nested-property';
   styleUrls: ['./date-filter.component.scss'],
 })
 export class ClrDateFilterComponent<T extends { [key: string]: any }>
-  implements ClrDatagridFilterInterface<T>, OnDestroy
+  implements ClrDatagridFilterInterface<T>
 {
   private nestedProp: NestedProperty<any>;
   @Input('clrProperty') set property(value: string) {
@@ -135,9 +135,5 @@ export class ClrDateFilterComponent<T extends { [key: string]: any }>
 
   public equals(other: ClrDatagridFilterInterface<T, any>): boolean {
     return other === this;
-  }
-
-  ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
   }
 }
