@@ -8,9 +8,7 @@ import { NestedProperty } from './nested-property';
   templateUrl: './date-filter.component.html',
   styleUrls: ['./date-filter.component.scss'],
 })
-export class ClrDateFilterComponent<T extends { [key: string]: any }>
-  implements ClrDatagridFilterInterface<T>
-{
+export class ClrDateFilterComponent<T extends { [key: string]: any }> implements ClrDatagridFilterInterface<T> {
   private nestedProp: NestedProperty<any>;
   @Input('clrProperty') set property(value: string) {
     this.nestedProp = new NestedProperty(value);
