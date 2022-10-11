@@ -5,7 +5,7 @@
  */
 
 import { AfterViewInit, Directive, HostBinding, Injector, OnDestroy, OnInit } from '@angular/core';
-import { ControlValueAccessor, FormControl, NgControl } from '@angular/forms';
+import { ControlValueAccessor, UntypedFormControl, NgControl } from '@angular/forms';
 import { ClrForm } from '@clr/angular';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -22,7 +22,7 @@ export abstract class ClrAbstractFormComponent implements ControlValueAccessor, 
     return this.invalid && this.control.touched;
   }
 
-  control: FormControl;
+  control: UntypedFormControl;
   inputId: string;
   disabled = false;
   invalid = false;
@@ -44,7 +44,7 @@ export abstract class ClrAbstractFormComponent implements ControlValueAccessor, 
     // get the form control to know invalid state in angular
     const ngControl: NgControl = this.injector.get(NgControl, null);
     if (ngControl) {
-      this.control = ngControl.control as FormControl;
+      this.control = ngControl.control as UntypedFormControl;
       this.control.statusChanges.pipe(takeUntil(this.destroyed)).subscribe(status => {
         this.invalid = status === 'INVALID';
       });

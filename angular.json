@@ -37,7 +37,6 @@
             "styles": [
               "node_modules/modern-normalize/modern-normalize.css",
               "node_modules/@cds/core/global.min.css",
-              "node_modules/@cds/core/styles/module.shims.min.css",
               "node_modules/@clr/icons/clr-icons.min.css",
               "node_modules/@clr/ui/clr-ui.min.css",
               "dist/clr-addons/styles/clr-addons-phs.css"
@@ -94,7 +93,6 @@
           "options": {
             "main": "src/dev/test.ts",
             "polyfills": "src/dev/polyfills.ts",
-            "tsConfig": "src/dev/tsconfig.spec.json",
             "karmaConfig": "src/dev/karma.conf.js",
             "styles": [],
             "scripts": [],
@@ -151,6 +149,5 @@
     "@schematics/angular:component": {
       "style": "css"
     }
-  },
-  "defaultProject": "dev"
+  }
 }

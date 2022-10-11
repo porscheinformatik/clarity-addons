@@ -133,7 +133,7 @@ export class NumericFieldDemo extends ClarityDocComponent {
   percentageTemplate: number;
 
   exampleForm = new FormGroup({
-    money: new FormControl(undefined, {
+    money: new FormControl<number>(undefined, {
       validators: [
         ClrNumericFieldValidators.min(0, '.', ','),
         ClrNumericFieldValidators.max(10000, '.', ','),
@@ -141,7 +141,7 @@ export class NumericFieldDemo extends ClarityDocComponent {
       ],
       updateOn: 'blur',
     }),
-    percentage: new FormControl(undefined, {
+    percentage: new FormControl<number>(undefined, {
       validators: [
         ClrNumericFieldValidators.min(0, '.', ','),
         ClrNumericFieldValidators.max(100, '.', ','),
@@ -171,43 +171,43 @@ export class NumericFieldDemo extends ClarityDocComponent {
   });
 
   usageForm = new FormGroup({
-    money: new FormControl(undefined, {
+    money: new FormControl<number>(undefined, {
       validators: [ClrNumericFieldValidators.min(0, '.', ','), Validators.required],
       updateOn: 'blur',
     }),
-    weight: new FormControl(undefined, {
+    weight: new FormControl<number>(undefined, {
       validators: [ClrNumericFieldValidators.min(0, '.', ','), Validators.required],
       updateOn: 'blur',
     }),
-    emission: new FormControl(undefined, {
+    emission: new FormControl<number>(undefined, {
       validators: [ClrNumericFieldValidators.min(0, '.', ','), Validators.required],
       updateOn: 'blur',
     }),
-    kilometres: new FormControl(undefined, {
+    kilometres: new FormControl<number>(undefined, {
       validators: [ClrNumericFieldValidators.min(0, '.', ','), Validators.required],
       updateOn: 'blur',
     }),
-    cubic: new FormControl(undefined, {
+    cubic: new FormControl<number>(undefined, {
       validators: [ClrNumericFieldValidators.min(0, '.', ','), Validators.required],
       updateOn: 'blur',
     }),
-    millimetres: new FormControl(undefined, {
+    millimetres: new FormControl<number>(undefined, {
       validators: [Validators.required],
       updateOn: 'blur',
     }),
-    kilowatt: new FormControl(undefined, {
+    kilowatt: new FormControl<number>(undefined, {
       validators: [ClrNumericFieldValidators.min(0, '.', ','), Validators.required],
       updateOn: 'blur',
     }),
-    timeunit: new FormControl(undefined, {
+    timeunit: new FormControl<number>(undefined, {
       validators: [ClrNumericFieldValidators.min(0, '.', ','), Validators.required],
       updateOn: 'blur',
     }),
-    horsepower: new FormControl(undefined, {
+    horsepower: new FormControl<number>(undefined, {
       validators: [ClrNumericFieldValidators.min(0, '.', ','), Validators.required],
       updateOn: 'blur',
     }),
-    percentage: new FormControl(undefined, {
+    percentage: new FormControl<number>(undefined, {
       validators: [
         ClrNumericFieldValidators.min(0, '.', ','),
         ClrNumericFieldValidators.max(100, '.', ','),

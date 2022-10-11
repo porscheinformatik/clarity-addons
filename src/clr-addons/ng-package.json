@@ -3,7 +3,7 @@
   "dest": "../../dist/clr-addons",
   "deleteDestPath": false,
   "lib": {
-    "entryFile": "./public_api.ts",
+    "entryFile": "./index.ts",
     "flatModuleFile": "clr-addons"
   },
   "allowedNonPeerDependencies": ["@angular-devkit/core"]
