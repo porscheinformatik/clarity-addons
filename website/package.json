@@ -48,7 +48,7 @@
     "@angular/cli": "14.2.6",
     "@angular/compiler-cli": "14.2.6",
     "@angular/language-service": "14.2.6",
-    "@types/node": "16.11.66",
+    "@types/node": "16.18.0",
     "codelyzer": "6.0.2",
     "cp-cli": "2.0.0",
     "gh-pages": "4.0.0",
