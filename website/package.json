@@ -34,7 +34,7 @@
     "@clr/ui": "13.9.0",
     "@porscheinformatik/clr-addons": "../dist/clr-addons",
     "@webcomponents/custom-elements": "1.5.1",
-    "@webcomponents/webcomponentsjs": "2.6.0",
+    "@webcomponents/webcomponentsjs": "2.7.0",
     "core-js": "3.26.0",
     "intl": "1.2.5",
     "jump.js": "1.0.2",
