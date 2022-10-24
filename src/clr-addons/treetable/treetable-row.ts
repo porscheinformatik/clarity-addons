@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -40,6 +40,7 @@ export class ClrTreetableRow {
   }
 
   @Output() hasActionOverflow = new EventEmitter<boolean>();
+  @Output('clrExpandedChange') expandedChange = new EventEmitter<boolean>();
 
   showActionOverflow = false;
   showEmptyActionOverflow = false;
@@ -57,6 +58,7 @@ export class ClrTreetableRow {
   private toggleExpand(): void {
     if (this.expandable) {
       this.expanded = !this.expanded;
+      this.expandedChange.emit(this.expanded);
     }
   }
 
