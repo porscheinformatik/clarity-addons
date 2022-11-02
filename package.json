@@ -63,7 +63,7 @@
     "@types/jasmine": "4.3.0",
     "@types/jasmine-matchers": "0.2.32",
     "@types/jasminewd2": "2.0.10",
-    "@types/node": "17.0.18",
+    "@types/node": "18.11.9",
     "@typescript-eslint/eslint-plugin": "5.40.1",
     "@typescript-eslint/parser": "5.40.1",
     "autoprefixer": "10.4.13",
