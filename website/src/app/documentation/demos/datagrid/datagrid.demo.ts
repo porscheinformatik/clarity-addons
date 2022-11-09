@@ -90,6 +90,47 @@ const ENUM_FILTER_PRESELECT = `
 </clr-datagrid>
 `;
 
+const DATE_FILTER = `
+<clr-datagrid>
+  <clr-dg-column>
+    Name
+  </clr-dg-column>
+  <clr-dg-column [clrDgField]="'date'">
+    Date
+    <clr-dg-filter>
+      <clr-date-filter clrProperty="date"></clr-date-filter>
+    </clr-dg-filter>
+  </clr-dg-column>
+
+  <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
+    <clr-dg-cell>{{data.name}}</clr-dg-cell>
+    <clr-dg-cell>{{data.date|date}}</clr-dg-cell>
+  </clr-dg-row>
+</clr-datagrid>`;
+
+const DATE_FILTER_PRESELECT = `
+<clr-datagrid>
+  <clr-dg-column>
+    Name
+  </clr-dg-column>
+  <clr-dg-column [clrDgField]="'date'">
+    Date
+    <clr-dg-filter>
+      <clr-date-filter clrProperty="date" [(clrFilterValue)]="dateFilterValue"></clr-date-filter>
+    </clr-dg-filter>
+  </clr-dg-column>
+
+  <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
+    <clr-dg-cell>{{data.name}}</clr-dg-cell>
+    <clr-dg-cell>{{data.date|date}}</clr-dg-cell>
+  </clr-dg-row>
+</clr-datagrid>
+`;
+
+const today = new Date(Date.now());
+const yesterday = new Date(Date.now() - 24 * 1000 * 60 * 60);
+const tomorrow = new Date(Date.now() + 24 * 1000 * 60 * 60);
+
 @Component({
   selector: 'clr-datagrid-demo-docu',
   templateUrl: './datagrid.demo.html',
@@ -105,6 +146,8 @@ export class DatagridDemo extends ClarityDocComponent {
   enumFilterExample = ENUM_FILTER;
   enumFilterCustomExample = ENUM_FILTER_CUSTOM;
   enumFilterPreselectExample = ENUM_FILTER_PRESELECT;
+  dateFilterExample = DATE_FILTER;
+  dateFilterPreselectExample = DATE_FILTER_PRESELECT;
 
   selected: any[] = [];
 
@@ -113,9 +156,14 @@ export class DatagridDemo extends ClarityDocComponent {
   currentPage = 1;
   totalItems = 5;
 
-  dataList = [{ name: 'TestValue1' }, { name: 'TestValue2' }, { name: 'TestValue3' }];
+  dataList = [
+    { name: 'TestValue1', date: today },
+    { name: 'TestValue2', date: yesterday },
+    { name: 'TestValue3', date: tomorrow },
+  ];
   customPossibleValues = ['TestValue1', 'TestValue2', 'TestValue3', 'TestValue4'];
   preselectedValues = ['TestValue1', 'TestValue3'];
+  dateFilterValue = [null, today];
 
   constructor() {
     super('datagrid');

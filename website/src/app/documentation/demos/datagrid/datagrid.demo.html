@@ -9,8 +9,18 @@
       following only additional features are documented
     </p>
 
+    <br />
+
+    <ul>
+      <li><a routerLink="." fragment="enum-filter" skipLocationChange>Enum Filter</a></li>
+      <li><a routerLink="." fragment="date-filter" skipLocationChange>Date Filter</a></li>
+      <li><a routerLink="." fragment="selection" skipLocationChange>Selection</a></li>
+      <li><a routerLink="." fragment="column-handling" skipLocationChange>Column Handling</a></li>
+      <li><a routerLink="." fragment="pagination" skipLocationChange>Pagination</a></li>
+    </ul>
+
     <!-- ENUM FILTER -->
-    <h3>Enum Filter</h3>
+    <h3 id="enum-filter">Enum Filter</h3>
     <p>
       When you need a filter with checkboxes based on grid data or custom values use the custom
       <code class="clr-code">clr-enum-filter</code>.
@@ -79,8 +89,49 @@
 
     <clr-code-snippet [clrCode]="enumFilterPreselectExample"></clr-code-snippet>
 
+    <!-- DATE FILTER -->
+    <h3 id="date-filter">Date filter</h3>
+    <p>
+      When you need a filter for dates and timestamps in the data grid use the custom
+      <code class="clr-code">clr-date-filter</code>.
+    </p>
+    <clr-datagrid>
+      <clr-dg-column> Name </clr-dg-column>
+      <clr-dg-column [clrDgField]="'date'">
+        Date
+        <clr-dg-filter>
+          <clr-date-filter clrProperty="date"></clr-date-filter>
+        </clr-dg-filter>
+      </clr-dg-column>
+
+      <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
+        <clr-dg-cell>{{data.name}}</clr-dg-cell>
+        <clr-dg-cell>{{data.date|date}}</clr-dg-cell>
+      </clr-dg-row>
+    </clr-datagrid>
+
+    <clr-code-snippet [clrCode]="dateFilterExample"></clr-code-snippet>
+
+    <h4>Preselect filter values</h4>
+    <clr-datagrid>
+      <clr-dg-column> Name </clr-dg-column>
+      <clr-dg-column [clrDgField]="'date'">
+        Date
+        <clr-dg-filter>
+          <clr-date-filter clrProperty="date" [(clrFilterValue)]="dateFilterValue"></clr-date-filter>
+        </clr-dg-filter>
+      </clr-dg-column>
+
+      <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
+        <clr-dg-cell>{{data.name}}</clr-dg-cell>
+        <clr-dg-cell>{{data.date|date}}</clr-dg-cell>
+      </clr-dg-row>
+    </clr-datagrid>
+
+    <clr-code-snippet [clrCode]="dateFilterPreselectExample"></clr-code-snippet>
+
     <!-- SELECTION -->
-    <h3>Selection</h3>
+    <h3 id="selection">Selection</h3>
     <h4>Omit "select-all" in datagrid header</h4>
     <p>
       Use class <code class="clr-code">datagrid-no-select-all</code> to prevent rendering of the select-all checkbox in
@@ -99,7 +150,7 @@
     <clr-code-snippet [clrCode]="noSelectAllExample"></clr-code-snippet>
 
     <!-- COLUMNS -->
-    <h3>Column handling</h3>
+    <h3 id="column-handling">Column Handling</h3>
     <h4>Persist hidden state of columns in local storage</h4>
     <p>
       Add <code class="clr-code">clrStatePersistenceKey</code> attribute to datagrid and use
@@ -127,7 +178,7 @@
     <clr-code-snippet [clrCode]="columnStateExample"></clr-code-snippet>
 
     <!-- PAGINATION -->
-    <h3>Pagination</h3>
+    <h3 id="pagination">Pagination</h3>
     <h4>Persist page size in local storage</h4>
     <p>
       Add <code class="clr-code">clrStatePersistenceKey</code> attribute to datagrid (if not already done). That's
