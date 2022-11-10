@@ -5,9 +5,9 @@ import { Component } from '@angular/core';
   templateUrl: './enum-filter.demo.html',
 })
 export class EnumFilterDemo {
-  dataList = [{ name: 'TestValue1' }, { name: 'TestValue2' }];
+  dataList = [{ name: 'TestValue2' }, { name: 'TestValue1' }];
 
-  customPossibleValues = ['TestValue1', 'TestValue2', 'TestValue3'];
+  customPossibleValues = ['TestValue2', 'TestValue1', 'TestValue3'];
 
   preSelectedValues = ['TestValue2'];
 
