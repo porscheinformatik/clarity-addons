@@ -12,7 +12,7 @@ export class ClrEnumFilterComponent<T extends { [key: string]: any }>
 {
   @Input('clrProperty') property = '';
   @Input('clrFilterValues')
-  set clrFilterValues(values: string[]) {
+  public set value(values: string[]) {
     this.filteredValues = values;
   }
 
