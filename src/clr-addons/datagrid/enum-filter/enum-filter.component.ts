@@ -26,7 +26,7 @@ export class ClrEnumFilterComponent<T extends { [key: string]: any }>
   destroyed$ = new Subject<void>();
 
   @Input() set clrPossibleValues(values: string[]) {
-    this.possibleValues = values;
+    this.setPossibleValues(values);
     this.customPossibleValues = true;
   }
 
@@ -34,11 +34,16 @@ export class ClrEnumFilterComponent<T extends { [key: string]: any }>
     filterContainer.setFilter(this);
     datagrid.items.allChanges.pipe(takeUntil(this.destroyed$)).subscribe(items => {
       if (!this.customPossibleValues) {
-        this.possibleValues = items
-          .map(item => item[this.property])
-          .filter((value, index, self) => self.indexOf(value) === index);
+        this.setPossibleValues(
+          items.map(item => item[this.property]).filter((value, index, self) => self.indexOf(value) === index)
+        );
       }
     });
+  }
+
+  setPossibleValues(values: string[]) {
+    this.possibleValues = values;
+    this.possibleValues.sort();
   }
 
   onChange(selectedValue: string, checkboxState: boolean) {
