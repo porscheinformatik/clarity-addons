@@ -176,6 +176,11 @@
       Special requirement for hidden state and current filters: You must use
       <code class="clr-code">clrDgField</code> directive for columns.
     </p>
+    <p>
+      Special requirement for custom filters to be persisted: It must implement a readable
+      <code class="clr-code">state</code> property and every property of the state must have a setter. The state must
+      consist of a property called <code class="clr-code">property</code> holding the field name of the datagrid.
+    </p>
     <br />
     <code class="clr-code">[clrStatePersistenceKey]</code> must consist of following properties:
     <ul>
