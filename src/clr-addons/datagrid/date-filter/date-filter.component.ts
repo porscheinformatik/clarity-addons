@@ -10,8 +10,13 @@ import { NestedProperty } from './nested-property';
 })
 export class ClrDateFilterComponent<T extends { [key: string]: any }> implements ClrDatagridFilterInterface<T> {
   private nestedProp: NestedProperty<any>;
+
   @Input('clrProperty') set property(value: string) {
     this.nestedProp = new NestedProperty(value);
+  }
+
+  get property() {
+    return this.nestedProp.prop;
   }
 
   constructor(filterContainer: ClrDatagridFilter, private commonStrings: ClrCommonStringsService) {
@@ -118,6 +123,7 @@ export class ClrDateFilterComponent<T extends { [key: string]: any }> implements
    * The Observable required as part of the Filter interface
    */
   private _changes = new Subject<[Date, Date]>();
+
   // We do not want to expose the Subject itself, but the Observable which is read-only
   public get changes(): Observable<[Date, Date]> {
     return this._changes.asObservable();

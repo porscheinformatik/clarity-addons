@@ -11,7 +11,7 @@
 export class NestedProperty<T = any> {
   private splitProp: string[];
 
-  constructor(private prop: string) {
+  constructor(public prop: string) {
     if (prop.indexOf('.') >= 0) {
       this.splitProp = prop.split('.');
     }

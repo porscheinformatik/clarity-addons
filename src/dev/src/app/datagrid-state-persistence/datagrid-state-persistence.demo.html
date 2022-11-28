@@ -1,17 +1,32 @@
 <h2>Datagrid state persistence</h2>
 
-<clr-datagrid [clrStatePersistenceKey]="'datagrid.demo.statePersistence'">
-  <clr-dg-column [clrDgField]="'hideableColumn'">
-    <ng-template clrDgHideableColumn>Hideable</ng-template>
+<clr-datagrid
+  (clrDgRefresh)="refresh($event)"
+  [clrStatePersistenceKey]="{key:'datagrid.demo.statePersistence', serverDriven: true}"
+>
+  <clr-dg-column [clrDgField]="'hideableCol'">
+    <ng-template clrDgHideableColumn>Hideable String</ng-template>
   </clr-dg-column>
-  <clr-dg-column>Not Hideable</clr-dg-column>
+  <clr-dg-column [clrDgField]="'numericCol'" clrDgColType="number">Numeric</clr-dg-column>
+  <clr-dg-column [clrDgField]="'dateCol'"
+    >Date
+    <clr-dg-filter>
+      <clr-date-filter clrProperty="dateCol"></clr-date-filter>
+    </clr-dg-filter>
+  </clr-dg-column>
+  <clr-dg-column [clrDgField]="'enumCol'">
+    Enum
+    <clr-dg-filter>
+      <clr-enum-filter clrProperty="enumCol"></clr-enum-filter>
+    </clr-dg-filter>
+  </clr-dg-column>
 
-  <clr-dg-row clrDgItem="1"
-    ><clr-dg-cell>Hideable item 1</clr-dg-cell><clr-dg-cell>Not hideable item 1</clr-dg-cell></clr-dg-row
-  >
-  <clr-dg-row clrDgItem="2"
-    ><clr-dg-cell>Hideable item 2</clr-dg-cell><clr-dg-cell>Not hideable item 2</clr-dg-cell></clr-dg-row
-  >
+  <clr-dg-row *clrDgItems="let item of data$ | async" [clrDgItem]="item">
+    <clr-dg-cell>{{item.hideableCol}}</clr-dg-cell>
+    <clr-dg-cell>{{item.numericCol}}</clr-dg-cell>
+    <clr-dg-cell>{{item.dateCol | date}}</clr-dg-cell>
+    <clr-dg-cell>{{item.enumCol}}</clr-dg-cell>
+  </clr-dg-row>
 
   <clr-dg-footer>
     <clr-dg-pagination #pagination [clrDgPageSize]="15">
