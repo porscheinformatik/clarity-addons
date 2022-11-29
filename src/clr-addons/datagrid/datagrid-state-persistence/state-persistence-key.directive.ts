@@ -1,10 +1,15 @@
 import { AfterContentInit, ContentChild, ContentChildren, Directive, Input, OnDestroy, QueryList } from '@angular/core';
-import { ClrDatagrid, ClrDatagridFilter, ClrDatagridPagination } from '@clr/angular';
+import { ClrDatagrid, ClrDatagridFilter, ClrDatagridFilterInterface, ClrDatagridPagination } from '@clr/angular';
 import { ClrDatagridStatePersistenceModel } from './datagrid-state-persistence-model.interface';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 const DATE_TYPE = 'date';
+
+interface FilterValueWithMetadata {
+  type: string;
+  value: unknown;
+}
 
 @Directive({
   selector: '[clrStatePersistenceKey]',
@@ -112,17 +117,17 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
    * As a date is serialized as string, but not deserialized as date
    * we need to add some meta information to do that manually later
    */
-  private enrichFilterValue(filter: any) {
-    const result = {} as any;
+  private enrichFilterValue(filter: Record<string, unknown>) {
+    const result = {} as Record<string, unknown>;
 
     Object.keys(filter).forEach(
       key =>
         (result[key] =
           filter[key] instanceof Date
-            ? {
+            ? ({
                 type: DATE_TYPE,
                 value: filter[key],
-              }
+              } as FilterValueWithMetadata)
             : filter[key])
     );
 
@@ -132,11 +137,13 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
   /**
    * Parse filter values with meta information like date, which needs manual deserialization to a date object
    */
-  private parseFilterValue(value: any) {
-    return value?.type === DATE_TYPE ? new Date(value.value) : value;
+  private parseFilterValue(value: unknown): unknown {
+    return (value as FilterValueWithMetadata)?.type === DATE_TYPE
+      ? new Date((value as FilterValueWithMetadata).value as string)
+      : value;
   }
 
-  private getFilter(prop: string) {
+  private getFilter(prop: string): ClrDatagridFilterInterface<unknown, unknown> {
     // get default filter or custom filter
     return (
       this.datagrid.columns.find(col => col.field === prop)?.filter ||
@@ -144,9 +151,10 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
     );
   }
 
-  private getFilterPropertyName(filter: any) {
+  private getFilterPropertyName(filter: ClrDatagridFilterInterface<unknown, unknown>): string {
     // for NestedProperty we need to get the original property
-    return filter.property?.prop || filter.property;
+    const filterWithProp = filter as unknown as { property: unknown };
+    return ((filterWithProp.property as Record<string, unknown>)?.prop || filterWithProp.property) as string;
   }
 
   ngOnDestroy() {
