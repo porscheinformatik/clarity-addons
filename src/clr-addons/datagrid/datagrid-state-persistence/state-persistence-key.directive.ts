@@ -1,7 +1,7 @@
 import { AfterContentInit, ContentChild, ContentChildren, Directive, Input, OnDestroy, QueryList } from '@angular/core';
 import { ClrDatagrid, ClrDatagridFilter, ClrDatagridFilterInterface, ClrDatagridPagination } from '@clr/angular';
 import { ClrDatagridStatePersistenceModel } from './datagrid-state-persistence-model.interface';
-import { Subject } from 'rxjs';
+import { delay, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 const DATE_TYPE = 'date';
@@ -90,7 +90,9 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
   }
 
   private initDatagridPersister() {
-    this.datagrid.refresh.pipe(takeUntil(this.destroy$)).subscribe(dgState => {
+    // delay is needed, as onDestroy the filters emit empty values.
+    // So delay it to the end of the current cycle, so the directive is also destroyed before it gets the next values
+    this.datagrid.refresh.pipe(delay(0), takeUntil(this.destroy$)).subscribe(dgState => {
       const state = this.getVolatileDataState();
 
       state.currentPage = dgState.page?.current;
