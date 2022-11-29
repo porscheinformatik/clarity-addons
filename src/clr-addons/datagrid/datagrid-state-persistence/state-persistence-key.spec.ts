@@ -7,7 +7,7 @@ import { ClrDatagridStatePersistenceModule } from './datagrid-state-persistence.
 
 @Component({
   template: `
-    <clr-datagrid [clrStatePersistenceKey]="'StatePersistenceKeyDirective'">
+    <clr-datagrid [clrStatePersistenceKey]="{ key: 'StatePersistenceKeyDirective', serverDriven: true }">
       <clr-dg-column id="column1" [clrDgField]="'column1'">
         <ng-template clrDgHideableColumn><span>column1</span></ng-template>
       </clr-dg-column>

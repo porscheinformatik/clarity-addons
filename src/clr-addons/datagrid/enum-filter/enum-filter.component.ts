@@ -11,9 +11,11 @@ export class ClrEnumFilterComponent<T extends { [key: string]: any }>
   implements ClrDatagridFilterInterface<T>, OnDestroy
 {
   @Input('clrProperty') property = '';
+
   @Input('clrFilterValues')
   public set value(values: string[]) {
     this.filteredValues = values;
+    this.changes.emit(true);
   }
 
   @Output() clrFilterValuesChange = new EventEmitter<string[]>();
@@ -63,6 +65,13 @@ export class ClrEnumFilterComponent<T extends { [key: string]: any }>
 
   accepts(item: T): boolean {
     return this.filteredValues.includes(item[this.property]);
+  }
+
+  public get state(): any {
+    return {
+      property: this.property,
+      value: this.filteredValues,
+    };
   }
 
   ngOnDestroy() {

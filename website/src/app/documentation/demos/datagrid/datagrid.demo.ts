@@ -5,6 +5,8 @@
  */
 import { Component } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
+import { of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 const NO_SELECT_ALL_HTML = `
 <clr-datagrid class="datagrid-no-select-all" [(clrDgSelected)]="selected">
@@ -16,33 +18,36 @@ const NO_SELECT_ALL_HTML = `
     <clr-dg-row clrDgItem="5"><clr-dg-cell>Item 5</clr-dg-cell></clr-dg-row>
 </clr-datagrid>`;
 
-const PERSITED_COLUMN_STATE = `
-<clr-datagrid [clrStatePersistenceKey]="'datagrid.demo.statePersistence'">
-    <clr-dg-column [clrDgField]="'hideableColumn'">
-        <ng-template clrDgHideableColumn>Hideable</ng-template>
-    </clr-dg-column>
-    <clr-dg-column>Not Hideable</clr-dg-column>
+const PERSISTED_STATE = `
+<clr-datagrid [clrStatePersistenceKey]="{key: 'datagrid.demo.statePersistence', serverDriven: true}">
+  <clr-dg-column [clrDgField]="'hideableCol'">
+    <ng-template clrDgHideableColumn>Hideable String</ng-template>
+  </clr-dg-column>
+  <clr-dg-column [clrDgField]="'numericCol'" clrDgColType="number">Numeric</clr-dg-column>
+  <clr-dg-column [clrDgField]="'dateCol'">Date
+    <clr-dg-filter>
+      <clr-date-filter clrProperty="dateCol"></clr-date-filter>
+    </clr-dg-filter>
+  </clr-dg-column>
+  <clr-dg-column [clrDgField]="'enumCol'">
+    Enum
+    <clr-dg-filter>
+      <clr-enum-filter clrProperty="enumCol"></clr-enum-filter>
+    </clr-dg-filter>
+  </clr-dg-column>
 
-    <clr-dg-row clrDgItem="1"><clr-dg-cell>Hideable item 1</clr-dg-cell><clr-dg-cell>Not hideable item 1</clr-dg-cell></clr-dg-row>
-    <clr-dg-row clrDgItem="2"><clr-dg-cell>Hideable item 2</clr-dg-cell><clr-dg-cell>Not hideable item 2</clr-dg-cell></clr-dg-row>
+  <clr-dg-row *clrDgItems="let item of data$ | async" [clrDgItem]="item">
+    <clr-dg-cell>{{item.hideableCol}}</clr-dg-cell>
+    <clr-dg-cell>{{item.numericCol}}</clr-dg-cell>
+    <clr-dg-cell>{{item.dateCol | date}}</clr-dg-cell>
+    <clr-dg-cell>{{item.enumCol}}</clr-dg-cell>
+  </clr-dg-row>
 
-    <clr-dg-footer></clr-dg-footer>
-</clr-datagrid>`;
-
-const PERSITED_PAGE_SIZE = `
-<clr-datagrid [clrStatePersistenceKey]="'datagrid.demo.statePersistence'">
-    <clr-dg-column>Description</clr-dg-column>
-    
-    <clr-dg-row *clrDgItems="let item of pageableItems" [clrDgItem]="item">
-        <clr-dg-cell>{{item}}</clr-dg-cell>
-    </clr-dg-row>
-
-    <clr-dg-footer>
-        <clr-dg-pagination #pagination [(clrDgPage)]="currentPage" [clrDgPageSize]="3"
-                           [clrDgTotalItems]="totalItems">
-            <clr-dg-page-size [clrPageSizeOptions]="[1,3,5,8]">Entries per page</clr-dg-page-size>
-        </clr-dg-pagination>
-    </clr-dg-footer>
+  <clr-dg-footer>
+    <clr-dg-pagination [clrDgPageSize]="5">
+      <clr-dg-page-size [clrPageSizeOptions]="[5,10,15,50,100]">Entries per page</clr-dg-page-size>
+    </clr-dg-pagination>
+  </clr-dg-footer>
 </clr-datagrid>`;
 
 const ENUM_FILTER = `
@@ -141,8 +146,7 @@ const tomorrow = new Date(Date.now() + 24 * 1000 * 60 * 60);
 })
 export class DatagridDemo extends ClarityDocComponent {
   noSelectAllExample = NO_SELECT_ALL_HTML;
-  columnStateExample = PERSITED_COLUMN_STATE;
-  persistedPageSizeExample = PERSITED_PAGE_SIZE;
+  persistedStateExample = PERSISTED_STATE;
   enumFilterExample = ENUM_FILTER;
   enumFilterCustomExample = ENUM_FILTER_CUSTOM;
   enumFilterPreselectExample = ENUM_FILTER_PRESELECT;
@@ -151,7 +155,14 @@ export class DatagridDemo extends ClarityDocComponent {
 
   selected: any[] = [];
 
-  pageableItems: any[] = ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5'];
+  data$ = of(
+    [...Array(15).keys()].map(i => ({
+      hideableCol: 'item' + i,
+      numericCol: i,
+      dateCol: new Date(),
+      enumCol: 'Enum ' + i,
+    }))
+  ).pipe(delay(0));
 
   currentPage = 1;
   totalItems = 5;

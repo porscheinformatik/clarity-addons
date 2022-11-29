@@ -1,13 +1,17 @@
-import { Directive, OnInit, Optional } from '@angular/core';
+import { Directive, OnDestroy, OnInit, Optional } from '@angular/core';
 import { DatagridFieldDirective } from './datagrid-field.directive';
 import { ClrDatagrid, ClrDatagridHideableColumn } from '@clr/angular';
 import { StatePersistenceKeyDirective } from './state-persistence-key.directive';
 import { ClrDatagridStatePersistenceModel } from './datagrid-state-persistence-model.interface';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Directive({
   selector: '[clrDgHideableColumn]',
 })
-export class ColumnHiddenStatePersistenceDirective implements OnInit {
+export class ColumnHiddenStatePersistenceDirective implements OnInit, OnDestroy {
+  destroy$ = new Subject<void>();
+
   constructor(
     @Optional() private columnDirective: DatagridFieldDirective,
     @Optional() private statePersistenceKey: StatePersistenceKeyDirective,
@@ -16,12 +20,12 @@ export class ColumnHiddenStatePersistenceDirective implements OnInit {
   ) {}
 
   ngOnInit() {
-    if (this.statePersistenceKey?.clrStatePersistenceKey && this.columnDirective?.clrDgField) {
+    if (this.statePersistenceKey?.options.key && this.columnDirective?.clrDgField) {
       /* set hidden states from local storage (if existing) */
       this.initHiddenState();
 
       /* listen to state changes and persist in local storage */
-      this.hideableColumnDirective.hiddenChange.subscribe(hidden => {
+      this.hideableColumnDirective.hiddenChange.pipe(takeUntil(this.destroy$)).subscribe(hidden => {
         this.setHiddenState(hidden);
       });
     }
@@ -29,17 +33,14 @@ export class ColumnHiddenStatePersistenceDirective implements OnInit {
 
   private initHiddenState() {
     /* read grid state if existing */
-    const persistedGridStateJson = localStorage.getItem(this.statePersistenceKey.clrStatePersistenceKey);
-    if (persistedGridStateJson !== null) {
-      const persistedGridState = JSON.parse(persistedGridStateJson) as ClrDatagridStatePersistenceModel;
+    const persistedGridState = this.readStoredState();
 
-      /* read column state if existing */
-      if (persistedGridState.columns && persistedGridState.columns[this.columnDirective.clrDgField]) {
-        /* read column hidden state if existing */
-        const persistedColumnHiddenState = persistedGridState.columns[this.columnDirective.clrDgField].hidden;
-        if (persistedColumnHiddenState !== undefined) {
-          this.hideableColumnDirective.clrDgHidden = persistedColumnHiddenState === true;
-        }
+    /* read column state if existing */
+    if (persistedGridState?.columns?.[this.columnDirective.clrDgField]) {
+      /* read column hidden state if existing */
+      const persistedColumnHiddenState = persistedGridState.columns[this.columnDirective.clrDgField].hidden;
+      if (persistedColumnHiddenState !== undefined) {
+        this.hideableColumnDirective.clrDgHidden = persistedColumnHiddenState === true;
       }
     }
   }
@@ -47,11 +48,7 @@ export class ColumnHiddenStatePersistenceDirective implements OnInit {
   private setHiddenState(hidden: boolean) {
     if (!this.datagrid?.detailService?.isOpen) {
       /* read grid state if existing */
-      const persistedGridStateJson = localStorage.getItem(this.statePersistenceKey.clrStatePersistenceKey);
-      let persistedGridState = {} as ClrDatagridStatePersistenceModel;
-      if (persistedGridStateJson !== null) {
-        persistedGridState = JSON.parse(persistedGridStateJson) as ClrDatagridStatePersistenceModel;
-      }
+      const persistedGridState = this.readStoredState();
 
       /* read column state if existing */
       if (!persistedGridState.columns) {
@@ -65,7 +62,16 @@ export class ColumnHiddenStatePersistenceDirective implements OnInit {
 
       /* set column hidden state and persist in local storage */
       persistedColumnState.hidden = hidden;
-      localStorage.setItem(this.statePersistenceKey.clrStatePersistenceKey, JSON.stringify(persistedGridState));
+      localStorage.setItem(this.statePersistenceKey.options.key, JSON.stringify(persistedGridState));
     }
+  }
+
+  private readStoredState(): ClrDatagridStatePersistenceModel {
+    return JSON.parse(localStorage.getItem(this.statePersistenceKey.options.key)) || {};
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
