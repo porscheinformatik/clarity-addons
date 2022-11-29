@@ -18,6 +18,9 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
   @Input('clrStatePersistenceKey')
   options: { key: string; serverDriven: boolean };
 
+  @Input('clrUseLocalStoreOnly')
+  useLocalStoreOnly = false;
+
   @ContentChild(ClrDatagridPagination)
   pagination: ClrDatagridPagination;
 
@@ -39,15 +42,15 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
   }
 
   private init() {
-    const sessionState = this.getSessionState();
+    const volatileDataState = this.getVolatileDataState();
     const localStorageState = this.getLocalStorageState();
 
-    this.initFilter(sessionState);
+    this.initFilter(volatileDataState);
     this.initDatagridPersister();
 
     if (this.pagination && this.pagination.page) {
       this.initPageSizePersister(localStorageState);
-      this.initCurrentPage(sessionState);
+      this.initCurrentPage(volatileDataState);
     }
   }
 
@@ -88,7 +91,7 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
 
   private initDatagridPersister() {
     this.datagrid.refresh.pipe(takeUntil(this.destroy$)).subscribe(dgState => {
-      const state = this.getSessionState();
+      const state = this.getVolatileDataState();
 
       state.currentPage = dgState.page?.current;
       state.columns = state.columns || {};
@@ -101,12 +104,15 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
         }
       });
 
-      sessionStorage.setItem(this.options.key, JSON.stringify(state));
+      (this.useLocalStoreOnly ? localStorage : sessionStorage).setItem(this.options.key, JSON.stringify(state));
     });
   }
 
-  getSessionState(): ClrDatagridStatePersistenceModel {
-    return JSON.parse(sessionStorage.getItem(this.options.key)) || {};
+  /**
+   * Gets the state of volatile data. This can be influenced by clrUseLocalStoreOnly.
+   */
+  getVolatileDataState(): ClrDatagridStatePersistenceModel {
+    return JSON.parse((this.useLocalStoreOnly ? localStorage : sessionStorage).getItem(this.options.key)) || {};
   }
 
   getLocalStorageState(): ClrDatagridStatePersistenceModel {
