@@ -1,36 +1,41 @@
-<h2>Datagrid state persistence</h2>
+<div [ngStyle]="{display: 'flex', 'flex-direction': 'column', height: 'calc(100% - 30px)'}">
+  <h2>Datagrid state persistence</h2>
 
-<clr-datagrid
-  (clrDgRefresh)="refresh($event)"
-  [clrStatePersistenceKey]="{key:'datagrid.demo.statePersistence', serverDriven: true}"
->
-  <clr-dg-column [clrDgField]="'hideableCol'">
-    <ng-template clrDgHideableColumn>Hideable String</ng-template>
-  </clr-dg-column>
-  <clr-dg-column [clrDgField]="'numericCol'" clrDgColType="number">Numeric</clr-dg-column>
-  <clr-dg-column [clrDgField]="'dateCol'"
-    >Date
-    <clr-dg-filter>
-      <clr-date-filter clrProperty="dateCol"></clr-date-filter>
-    </clr-dg-filter>
-  </clr-dg-column>
-  <clr-dg-column [clrDgField]="'enumCol'">
-    Enum
-    <clr-dg-filter>
-      <clr-enum-filter clrProperty="enumCol"></clr-enum-filter>
-    </clr-dg-filter>
-  </clr-dg-column>
+  <div [ngStyle]="{'min-height': 0}">
+    <clr-datagrid
+      class="datagrid-full-height"
+      (clrDgRefresh)="refresh($event)"
+      [clrStatePersistenceKey]="{key:'datagrid.demo.statePersistence', serverDriven: true}"
+    >
+      <clr-dg-column [clrDgField]="'hideableCol'">
+        <ng-template clrDgHideableColumn>Hideable String</ng-template>
+      </clr-dg-column>
+      <clr-dg-column [clrDgField]="'numericCol'" clrDgColType="number">Numeric</clr-dg-column>
+      <clr-dg-column [clrDgField]="'dateCol'"
+        >Date
+        <clr-dg-filter>
+          <clr-date-filter clrProperty="dateCol"></clr-date-filter>
+        </clr-dg-filter>
+      </clr-dg-column>
+      <clr-dg-column [clrDgField]="'enumCol'">
+        Enum
+        <clr-dg-filter>
+          <clr-enum-filter clrProperty="enumCol"></clr-enum-filter>
+        </clr-dg-filter>
+      </clr-dg-column>
 
-  <clr-dg-row *clrDgItems="let item of data$ | async" [clrDgItem]="item">
-    <clr-dg-cell>{{item.hideableCol}}</clr-dg-cell>
-    <clr-dg-cell>{{item.numericCol}}</clr-dg-cell>
-    <clr-dg-cell>{{item.dateCol | date}}</clr-dg-cell>
-    <clr-dg-cell>{{item.enumCol}}</clr-dg-cell>
-  </clr-dg-row>
+      <clr-dg-row *clrDgItems="let item of data$ | async" [clrDgItem]="item">
+        <clr-dg-cell>{{item.hideableCol}}</clr-dg-cell>
+        <clr-dg-cell>{{item.numericCol}}</clr-dg-cell>
+        <clr-dg-cell>{{item.dateCol | date}}</clr-dg-cell>
+        <clr-dg-cell>{{item.enumCol}}</clr-dg-cell>
+      </clr-dg-row>
 
-  <clr-dg-footer>
-    <clr-dg-pagination #pagination [clrDgPageSize]="15">
-      <clr-dg-page-size [clrPageSizeOptions]="[10,15,20,50,100]">Entries per page</clr-dg-page-size>
-    </clr-dg-pagination>
-  </clr-dg-footer>
-</clr-datagrid>
+      <clr-dg-footer>
+        <clr-dg-pagination #pagination [clrDgPageSize]="15">
+          <clr-dg-page-size [clrPageSizeOptions]="[10,15,20,50,100]">Entries per page</clr-dg-page-size>
+        </clr-dg-pagination>
+      </clr-dg-footer>
+    </clr-datagrid>
+  </div>
+</div>

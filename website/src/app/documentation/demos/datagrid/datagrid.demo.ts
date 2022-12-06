@@ -18,6 +18,29 @@ const NO_SELECT_ALL_HTML = `
     <clr-dg-row clrDgItem="5"><clr-dg-cell>Item 5</clr-dg-cell></clr-dg-row>
 </clr-datagrid>`;
 
+const FULL_HEIGHT_HTML = `
+<div [ngStyle]="{height: '150px'}"> <!-- ngStyle just here for example, don't use in prod -->
+  <clr-datagrid class="datagrid-full-height">
+    <clr-dg-column>Description</clr-dg-column>
+    <clr-dg-row>
+      <clr-dg-cell>Item 1</clr-dg-cell>
+    </clr-dg-row>
+    <clr-dg-row>
+      <clr-dg-cell>Item 2</clr-dg-cell>
+    </clr-dg-row>
+    <clr-dg-row>
+      <clr-dg-cell>Item 3</clr-dg-cell>
+    </clr-dg-row>
+    <clr-dg-row>
+      <clr-dg-cell>Item 4</clr-dg-cell>
+    </clr-dg-row>
+    <clr-dg-row>
+      <clr-dg-cell>Item 5</clr-dg-cell>
+    </clr-dg-row>
+  </clr-datagrid>
+</div>
+`;
+
 const PERSISTED_STATE = `
 <clr-datagrid [clrStatePersistenceKey]="{key: 'datagrid.demo.statePersistence', serverDriven: true}">
   <clr-dg-column [clrDgField]="'hideableCol'">
@@ -146,6 +169,7 @@ const tomorrow = new Date(Date.now() + 24 * 1000 * 60 * 60);
 })
 export class DatagridDemo extends ClarityDocComponent {
   noSelectAllExample = NO_SELECT_ALL_HTML;
+  fullHeightExample = FULL_HEIGHT_HTML;
   persistedStateExample = PERSISTED_STATE;
   enumFilterExample = ENUM_FILTER;
   enumFilterCustomExample = ENUM_FILTER_CUSTOM;

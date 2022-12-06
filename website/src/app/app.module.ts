@@ -12,6 +12,12 @@ import { DocumentationModule } from './documentation/documentation.module';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
+import 'prismjs';
+import 'prismjs/components/prism-javascript';
+import 'prismjs/components/prism-typescript';
+import 'prismjs/components/prism-css';
+import 'prismjs/components/prism-scss';
+
 export function loadIcons() {
   return (): void => {
     // All shapes are added currently, could be reduced to only the shape categories needed

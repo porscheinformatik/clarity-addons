@@ -189,6 +189,10 @@ body,
   display: none;
 }
 
+.datagrid-full-height {
+  max-height: 100%;
+}
+
 .datagrid-filter {
   .datagrid-date-filter-input {
     width: 7rem;

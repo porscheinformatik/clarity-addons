@@ -15,6 +15,7 @@
       <li><a routerLink="." fragment="enum-filter" skipLocationChange>Enum Filter</a></li>
       <li><a routerLink="." fragment="date-filter" skipLocationChange>Date Filter</a></li>
       <li><a routerLink="." fragment="selection" skipLocationChange>Selection</a></li>
+      <li><a routerLink="." fragment="full-height" skipLocationChange>Full-Height</a></li>
       <li><a routerLink="." fragment="state-persistence" skipLocationChange>State persistence</a></li>
     </ul>
 
@@ -157,6 +158,37 @@
     </clr-datagrid>
 
     <clr-code-snippet [clrCode]="noSelectAllExample"></clr-code-snippet>
+
+    <!-- FULL HEIGHT -->
+    <h3 id="full-height">Full Height</h3>
+    <h4>Datagrid should use at maximum 100% of its available space</h4>
+    <p>
+      Use class <code class="clr-code">datagrid-full-height</code> to prevent the datagrid from overflowing its
+      container.
+    </p>
+
+    <div [ngStyle]="{height: '150px'}">
+      <clr-datagrid class="datagrid-full-height">
+        <clr-dg-column>Description</clr-dg-column>
+        <clr-dg-row>
+          <clr-dg-cell>Item 1</clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>Item 2</clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>Item 3</clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>Item 4</clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>Item 5</clr-dg-cell>
+        </clr-dg-row>
+      </clr-datagrid>
+    </div>
+
+    <clr-code-snippet [clrCode]="fullHeightExample"></clr-code-snippet>
 
     <!-- State persistence -->
     <h3 id="state-persistence">State persistence</h3>

@@ -22,7 +22,7 @@ export class CodeHighlight implements AfterContentInit {
 
   public redraw() {
     // Only run Prism in browser engines
-    if (this._el && this._el.nativeElement && isPlatformBrowser(this.platformId)) {
+    if (Prism && this._el && this._el.nativeElement && isPlatformBrowser(this.platformId)) {
       Prism.highlightElement(this._el.nativeElement);
     }
   }
