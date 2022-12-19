@@ -131,9 +131,9 @@ export class ClrHistoryService {
 
   private checkEqualContext(entry: ClrHistoryModel, toCompare: { [key: string]: string }): boolean {
     let equal = false;
-    if (entry && toCompare) {
+    if (entry && entry.context && toCompare) {
       Object.keys(toCompare).forEach(key => {
-        equal = entry.context[key] === toCompare[key];
+        equal = key in entry.context && entry.context[key] === toCompare[key];
       });
     }
     return equal;
