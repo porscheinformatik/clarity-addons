@@ -1,5 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ClrCommonStringsService, ClrDatagridFilter, ClrDatagridFilterInterface } from '@clr/angular';
+import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ClrCommonStringsService,
+  ClrDatagridFilter,
+  ClrDatagridFilterInterface,
+  ClrPopoverEventsService,
+} from '@clr/angular';
 import { Observable, Subject } from 'rxjs';
 import { NestedProperty } from './nested-property';
 
@@ -8,7 +13,9 @@ import { NestedProperty } from './nested-property';
   templateUrl: './date-filter.component.html',
   styleUrls: ['./date-filter.component.scss'],
 })
-export class ClrDateFilterComponent<T extends { [key: string]: any }> implements ClrDatagridFilterInterface<T> {
+export class ClrDateFilterComponent<T extends { [key: string]: any }>
+  implements ClrDatagridFilterInterface<T>, AfterViewInit
+{
   private nestedProp: NestedProperty<any>;
 
   @Input('clrProperty') set property(value: string) {
@@ -19,8 +26,16 @@ export class ClrDateFilterComponent<T extends { [key: string]: any }> implements
     return this.nestedProp.prop;
   }
 
-  constructor(filterContainer: ClrDatagridFilter, private commonStrings: ClrCommonStringsService) {
+  constructor(
+    private commonStrings: ClrCommonStringsService,
+    private clrPopoverEventsService: ClrPopoverEventsService,
+    filterContainer: ClrDatagridFilter
+  ) {
     filterContainer.setFilter(this);
+  }
+
+  public ngAfterViewInit(): void {
+    this.clrPopoverEventsService.outsideClickClose = false;
   }
 
   /**
