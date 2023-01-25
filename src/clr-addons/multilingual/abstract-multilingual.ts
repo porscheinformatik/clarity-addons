@@ -86,7 +86,7 @@ export abstract class ClrMultilingualAbstract extends ClrAbstractFormComponent {
     for (const lang of texts.keys()) {
       if (!texts.get(lang) && lang !== currentlyEditingLang) {
         texts.set(lang, fallbackText);
-      } else if (lang === currentlyEditingLang) {
+      } else if (lang === currentlyEditingLang && texts.get(lang).startsWith(this.missingPrefix)) {
         texts.set(lang, texts.get(lang).replace(this.missingPrefix, ''));
       }
     }
