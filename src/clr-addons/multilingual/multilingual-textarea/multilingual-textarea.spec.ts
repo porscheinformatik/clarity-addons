@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -73,6 +73,33 @@ class TestComponentComplex implements OnInit {
     this.data.set('EN', 'english text');
     this.data.set('DE', 'deutscher text');
     this.data.set('FR', 'texte français');
+  }
+}
+
+@Component({
+  template: `
+    <clr-multilingual-textarea
+      [clrSelectedLang]="selectedLang"
+      [clrLanguages]="languages"
+      clrMissingPrefix="<na> "
+      clrFallbackLang="EN"
+      [(ngModel)]="data"
+      name="test"
+    >
+      <label>Test</label>
+      <clr-control-error>Error</clr-control-error>
+      <clr-control-helper>Helper</clr-control-helper>
+    </clr-multilingual-textarea>
+  `,
+})
+class TestComponentPrefix implements OnInit {
+  selectedLang = 'EN';
+  languages = ['EN', 'DE'];
+  data = new Map();
+
+  ngOnInit(): void {
+    this.data.set('EN', 'english text');
+    this.data.set('DE', '<na> english text');
   }
 }
 
@@ -240,6 +267,38 @@ describe('Multilingual Textarea', () => {
       expect(fixture.componentInstance.data.get('EN')).toBe('different english text');
       expect(fixture.componentInstance.data.get('DE')).toBe('deutscher text');
       expect(fixture.componentInstance.data.get('FR')).toBe('texte français');
+    });
+  });
+
+  describe('Prefix Test', () => {
+    let fixture: ComponentFixture<TestComponentPrefix>;
+    let inputEl: HTMLInputElement;
+
+    beforeEach(() => {
+      TestBed.configureTestingModule({
+        imports: [ClarityModule, FormsModule, ClrMultilingualModule],
+        declarations: [TestComponentPrefix],
+        teardown: { destroyAfterEach: false },
+      }).compileComponents();
+
+      fixture = TestBed.createComponent(TestComponentPrefix);
+      fixture.detectChanges();
+      inputEl = fixture.debugElement.query(By.css('textarea')).nativeElement;
+    });
+
+    beforeEach(waitForAsync(() => {
+      fixture.detectChanges();
+      fixture.whenStable().then();
+    }));
+
+    it('check prefix removed', () => {
+      expect(fixture.componentInstance.data.get('EN')).toBe('english text');
+      expect(fixture.componentInstance.data.get('DE')).toBe('<na> english text');
+      fixture.componentInstance.selectedLang = 'DE';
+      fixture.detectChanges();
+
+      sendInput(inputEl, fixture, 'new text');
+      expect(fixture.componentInstance.data.get('DE')).toBe('new text');
     });
   });
 
