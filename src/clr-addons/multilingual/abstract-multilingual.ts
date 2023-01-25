@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -86,6 +86,8 @@ export abstract class ClrMultilingualAbstract extends ClrAbstractFormComponent {
     for (const lang of texts.keys()) {
       if (!texts.get(lang) && lang !== currentlyEditingLang) {
         texts.set(lang, fallbackText);
+      } else if (lang === currentlyEditingLang && texts.get(lang).startsWith(this.missingPrefix)) {
+        texts.set(lang, texts.get(lang).replace(this.missingPrefix, ''));
       }
     }
     return texts;
