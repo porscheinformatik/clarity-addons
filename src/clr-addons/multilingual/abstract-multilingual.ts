@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { ClrAbstractFormComponent } from '../abstract-form-component/abstract-form-component';
-import { Directive, ElementRef, HostBinding, Injector, Input, ViewChild } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, HostBinding, Injector, Input, Output, ViewChild } from '@angular/core';
 
 @Directive()
 export abstract class ClrMultilingualAbstract extends ClrAbstractFormComponent {
@@ -14,6 +14,7 @@ export abstract class ClrMultilingualAbstract extends ClrAbstractFormComponent {
   @Input('clrSelectedLang') selectedLang: string;
   @Input() readonly: string;
   @Input() maxlength: number;
+  @Output() inputFieldKeyup = new EventEmitter<KeyboardEvent>();
   /** Show language selector when only one language provided */
   @Input('clrShowSingleLanguageSelector') showSingleLanguageSelector: boolean;
 

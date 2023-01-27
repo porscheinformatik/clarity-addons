@@ -20,6 +20,7 @@
         [readonly]="readonly || readonly === ''"
         [maxlength]="maxlength || null"
         [rows]="rows || 1"
+        (keyup)="inputFieldKeyup.emit($event)"
         #input
       ></textarea>
       <clr-icon *ngIf="showError" class="clr-validate-icon" shape="exclamation-circle" aria-hidden="true"></clr-icon>

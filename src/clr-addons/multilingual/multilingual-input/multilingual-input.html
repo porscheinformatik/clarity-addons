@@ -21,6 +21,7 @@
         [readonly]="readonly || readonly === ''"
         autocomplete="off"
         [maxlength]="maxlength || null"
+        (keyup)="inputFieldKeyup.emit($event)"
         #input
       />
       <clr-icon *ngIf="showError" class="clr-validate-icon" shape="exclamation-circle" aria-hidden="true"></clr-icon>
