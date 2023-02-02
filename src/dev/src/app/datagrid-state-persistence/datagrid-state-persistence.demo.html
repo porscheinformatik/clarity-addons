@@ -6,6 +6,7 @@
       class="datagrid-full-height"
       (clrDgRefresh)="refresh($event)"
       [clrStatePersistenceKey]="{key:'datagrid.demo.statePersistence', serverDriven: true}"
+      [clrPaginationDescription]="'{{first}} - {{last}} of {{total}} entries'"
     >
       <clr-dg-column [clrDgField]="'hideableCol'">
         <ng-template clrDgHideableColumn>Hideable String</ng-template>
@@ -32,7 +33,7 @@
       </clr-dg-row>
 
       <clr-dg-footer>
-        <clr-dg-pagination #pagination [clrDgPageSize]="15">
+        <clr-dg-pagination [clrDgTotalItems]="total" [clrDgPageSize]="15">
           <clr-dg-page-size [clrPageSizeOptions]="[10,15,20,50,100]">Entries per page</clr-dg-page-size>
         </clr-dg-pagination>
       </clr-dg-footer>
