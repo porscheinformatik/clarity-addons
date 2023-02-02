@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { ClrDatagridStateInterface } from '@clr/angular';
-import { of } from 'rxjs';
+import { Component, HostListener, ViewChild } from '@angular/core';
+import { ClrDatagrid, ClrDatagridStateInterface } from '@clr/angular';
+import { of, tap } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
 @Component({
@@ -17,7 +17,19 @@ export class DatagridStatePersistenceDemo {
       dateCol: new Date(),
       enumCol: 'Enum ' + i,
     }))
-  ).pipe(delay(0));
+  ).pipe(
+    delay(0),
+    tap(() => (this.total = 100))
+  );
+
+  total = 0;
+
+  @ViewChild(ClrDatagrid) dataGrid: ClrDatagrid;
+
+  @HostListener('window:resize')
+  onResize() {
+    this.dataGrid?.resize();
+  }
 
   refresh(state: ClrDatagridStateInterface) {
     console.log('data refresh needed', JSON.stringify(state));

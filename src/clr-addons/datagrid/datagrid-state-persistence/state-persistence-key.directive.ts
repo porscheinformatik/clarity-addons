@@ -1,4 +1,13 @@
-import { AfterContentInit, ContentChild, ContentChildren, Directive, Input, OnDestroy, QueryList } from '@angular/core';
+import {
+  AfterContentInit,
+  ContentChild,
+  ContentChildren,
+  Directive,
+  ElementRef,
+  Input,
+  OnDestroy,
+  QueryList,
+} from '@angular/core';
 import { ClrDatagrid, ClrDatagridFilter, ClrDatagridFilterInterface, ClrDatagridPagination } from '@clr/angular';
 import { ClrDatagridStatePersistenceModel } from './datagrid-state-persistence-model.interface';
 import { delay, Subject } from 'rxjs';
@@ -21,12 +30,20 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
   @Input('clrUseLocalStoreOnly')
   useLocalStoreOnly = false;
 
+  @Input('clrPaginationDescription')
+  paginationDescription = '';
+
   @ContentChild(ClrDatagridPagination)
   pagination: ClrDatagridPagination;
+
+  @ContentChild(ClrDatagridPagination, { read: ElementRef })
+  paginationElem: ElementRef;
 
   @ContentChildren(ClrDatagridFilter, { descendants: true })
   customFilters: QueryList<ClrDatagridFilter>;
 
+  canShowPaginationDescription = false;
+  warnedAboutCustomDescription = false;
   destroy$ = new Subject<void>();
 
   constructor(private datagrid: ClrDatagrid) {}
@@ -52,6 +69,7 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
       this.initPageSizePersister(localStorageState);
       this.initCurrentPage(volatileDataState);
     }
+    this.canShowPaginationDescription = true;
   }
 
   private initPageSizePersister(savedState: ClrDatagridStatePersistenceModel) {
@@ -107,7 +125,40 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
       });
 
       (this.useLocalStoreOnly ? localStorage : sessionStorage).setItem(this.options.key, JSON.stringify(state));
+      if (this.canShowPaginationDescription) {
+        this.updatePaginationDescription();
+      }
     });
+
+    this.datagrid.items.change.pipe(takeUntil(this.destroy$)).subscribe(() => this.updatePaginationDescription());
+  }
+
+  /**
+   * Pagination description must be set by this directive,
+   * otherwise we can't update datagrid values from localStorage
+   * without getting ExpressionChangedAfterItHasBeenCheckedError
+   */
+  private updatePaginationDescription() {
+    if (this.paginationElem && this.pagination) {
+      const paginationDescElem = (<HTMLElement>this.paginationElem.nativeElement).getElementsByClassName(
+        'pagination-description'
+      )?.[0];
+      if (paginationDescElem) {
+        if (!this.warnedAboutCustomDescription && paginationDescElem.textContent.trim().length !== 0) {
+          console.error(
+            'When using clrStatePersistenceKey directive, you should not use custom pagination description' +
+              ' inside pagination component content, but use [clrPaginationDescription] on clr-datagrid'
+          );
+        }
+        this.warnedAboutCustomDescription = true;
+        if (this.paginationDescription) {
+          paginationDescElem.textContent = this.paginationDescription
+            .replace('{{first}}', (this.pagination.firstItem + 1).toString())
+            .replace('{{last}}', (this.pagination.lastItem + 1).toString())
+            .replace('{{total}}', this.pagination.totalItems.toString());
+        }
+      }
+    }
   }
 
   /**
