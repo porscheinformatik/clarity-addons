@@ -72,6 +72,17 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
     this.canShowPaginationDescription = true;
   }
 
+  /**
+   *Withthismethodfilterscanbecleared
+   *@param key The key for clrStatePersistenceKey
+   *@param useLocalStoreOnly The clrUseLocalStoreOnly indicator
+   */
+  static clearFilters(key: string, useLocalStoreOnly: boolean): void {
+    const data = JSON.parse((useLocalStoreOnly ? localStorage : sessionStorage).getItem(key)) || {};
+    data.columns = {};
+    (useLocalStoreOnly ? localStorage : sessionStorage).setItem(key, JSON.stringify(data));
+  }
+
   private initPageSizePersister(savedState: ClrDatagridStatePersistenceModel) {
     /* persist page size changes in local storage */
     this.pagination.page.sizeChange.pipe(takeUntil(this.destroy$)).subscribe(pageSize => {
