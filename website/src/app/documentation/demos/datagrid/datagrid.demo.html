@@ -240,6 +240,14 @@
       <li>serverDriven: Whether your datagrid loads the data asynchronous (true) or synchronous (false)</li>
     </ul>
 
+    <br />
+    <p>
+      When existing column filters should be cleared on page visit (will be loaded automatically from storage) the
+      method
+      <code class="clr-code">StatePersistenceKeyDirective.clearFilters(key: string, useLocalStoreOnly: boolean)</code>
+      can be called to clear existing filter settings from storage.
+    </p>
+
     <h4>Drawbacks</h4>
     <p>
       When using <code class="clr-code">serverDriven=false</code> the persisted datagrid state gets set asynchronously,
