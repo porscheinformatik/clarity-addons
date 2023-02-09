@@ -73,9 +73,9 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
   }
 
   /**
-   *Withthismethodfilterscanbecleared
-   *@param key The key for clrStatePersistenceKey
-   *@param useLocalStoreOnly The clrUseLocalStoreOnly indicator
+   * With this method filters can be cleared
+   * @param key The key for clrStatePersistenceKey
+   * @param useLocalStoreOnly The clrUseLocalStoreOnly indicator
    */
   static clearFilters(key: string, useLocalStoreOnly: boolean): void {
     const data = JSON.parse((useLocalStoreOnly ? localStorage : sessionStorage).getItem(key)) || {};
