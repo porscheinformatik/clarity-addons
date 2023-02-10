@@ -1,6 +1,6 @@
 {
   "name": "clr-addons",
-  "version": "12.9.2",
+  "version": "12.9.3",
   "private": true,
   "scripts": {
     "build:ui:css": "sass --source-map --precision=8 ./src/clr-addons/themes/phs/phs-theme.scss ./dist/clr-addons/styles/clr-addons-phs.css",
@@ -46,9 +46,9 @@
     "@angular/platform-browser-dynamic": "13.3.11",
     "@angular/router": "13.3.11",
     "@cds/core": "5.7.1",
-    "@clr/angular": "13.2.1",
+    "@clr/angular": "13.10.1",
     "@clr/icons": "13.0.2",
-    "@clr/ui": "13.2.1",
+    "@clr/ui": "13.10.1",
     "@webcomponents/custom-elements": "1.5.0",
     "@webcomponents/webcomponentsjs": "2.6.0",
     "core-js": "3.23.4",
