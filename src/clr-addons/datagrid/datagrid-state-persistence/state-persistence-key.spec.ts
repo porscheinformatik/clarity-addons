@@ -1,19 +1,23 @@
 import { Component, ViewChild } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClarityModule, ClrDatagridPagination } from '@clr/angular';
 import { ClrDatagridStatePersistenceModule } from './datagrid-state-persistence.module';
+import { By } from '@angular/platform-browser';
 
 @Component({
   template: `
-    <clr-datagrid [clrStatePersistenceKey]="{ key: 'StatePersistenceKeyDirective', serverDriven: true }">
+    <clr-datagrid
+      [clrStatePersistenceKey]="{ key: 'StatePersistenceKeyDirective', serverDriven: true }"
+      [clrPaginationDescription]="'{{first}} - {{last}} of {{total}} entries'"
+    >
       <clr-dg-column id="column1" [clrDgField]="'column1'">
         <ng-template clrDgHideableColumn><span>column1</span></ng-template>
       </clr-dg-column>
 
       <clr-dg-footer>
-        <clr-dg-pagination #pagination [clrDgPageSize]="15">
+        <clr-dg-pagination [clrDgPageSize]="15">
           <clr-dg-page-size [clrPageSizeOptions]="[10, 15, 20, 50, 100]"></clr-dg-page-size>
         </clr-dg-pagination>
       </clr-dg-footer>
@@ -48,7 +52,7 @@ describe('StatePersistenceKeyDirective', () => {
     expect(fixture.componentInstance.pagination.page.size).toBe(15);
   });
 
-  it('Page size loaded from storage', () => {
+  it('Page size loaded from storage', waitForAsync(() => {
     const storageModel = '{"pageSize":50,"columns":{"column1": {"hidden":true}}}';
     localStorage.setItem('StatePersistenceKeyDirective', storageModel);
 
@@ -59,7 +63,7 @@ describe('StatePersistenceKeyDirective', () => {
     setTimeout(() => {
       expect(fixture.componentInstance.pagination.page.size).toBe(50);
     });
-  });
+  }));
 
   it('Page size persisted to storage', () => {
     fixture.componentInstance.pagination.pageSize = 100;
@@ -70,4 +74,20 @@ describe('StatePersistenceKeyDirective', () => {
     const storageModel = localStorage.getItem('StatePersistenceKeyDirective');
     expect(storageModel).toBe('{"pageSize":100}');
   });
+
+  it('Pagination description updated', waitForAsync(() => {
+    const storageModel = '{"pageSize":50}';
+    localStorage.setItem('StatePersistenceKeyDirective', storageModel);
+
+    fixture = TestBed.createComponent(TestComponent);
+    fixture.detectChanges();
+
+    expect(fixture.componentInstance.pagination).toBeTruthy();
+    setTimeout(() => {
+      expect(fixture.componentInstance.pagination.page.size).toBe(50);
+      expect(fixture.debugElement.query(By.css('.pagination-description')).nativeElement.textContent).toEqual(
+        '1 - 50 of 0 entries'
+      );
+    }, 1);
+  }));
 });

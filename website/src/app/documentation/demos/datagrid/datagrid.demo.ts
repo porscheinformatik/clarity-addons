@@ -42,7 +42,8 @@ const FULL_HEIGHT_HTML = `
 `;
 
 const PERSISTED_STATE = `
-<clr-datagrid [clrStatePersistenceKey]="{key: 'datagrid.demo.statePersistence', serverDriven: true}">
+<clr-datagrid [clrStatePersistenceKey]="{key: 'datagrid.demo.statePersistence', serverDriven: true}"
+              [clrPaginationDescription]="'{{first}} - {{last}} of {{total}} entries'">
   <clr-dg-column [clrDgField]="'hideableCol'">
     <ng-template clrDgHideableColumn>Hideable String</ng-template>
   </clr-dg-column>
