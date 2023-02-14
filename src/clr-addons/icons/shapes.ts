@@ -11,56 +11,45 @@ import { clrIconSVG } from './svg-tag-generator';
 // To support badges, alerts or the is-solid, the SVGs would need to be extended.
 
 export const CampaignOutdatedShape = clrIconSVG(
-  `<g id="g4796">
-		<path style="font-weight:bold;font-size:19.6262px;font-family:Metropolis;-inkscape-font-specification:'Metropolis, Bold';fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0.9;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
-		      d="m 24.622114,26.496917 0.03513,-4.700373"
-		      id="path4568"/>
-		<path style="font-weight:bold;font-size:19.6262px;font-family:Metropolis;-inkscape-font-specification:'Metropolis, Bold';fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.71386;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0.9;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
-		      d="m 27.457296,26.481217 -2.84178,-0.0041"
-		      id="path4570"/>
-		<path id="path12594"
-		      style="font-weight:bold;font-size:19.6262px;font-family:Metropolis;-inkscape-font-specification:'Metropolis, Bold';fill:none;fill-opacity:1;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0.9;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
-		      d="m 27.424497,31.893031 a 6.3786268,6.2510548 0 0 1 -2.780923,0.625364 6.3786268,6.2510548 0 0 1 -6.378627,-6.251054 6.3786268,6.2510548 0 0 1 6.378627,-6.251055 6.3786268,6.2510548 0 0 1 2.778352,0.624144"/>
-		<ellipse style="font-weight:bold;font-size:19.6262px;font-family:Metropolis;-inkscape-font-specification:'Metropolis, Bold';fill:none;fill-opacity:1;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0.9;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
-		         id="path1679-7"
-		         cx="11.355627"
-		         cy="9.7330551"
-		         rx="6.3786268"
-		         ry="6.2510548"/>
-		<path style="font-weight:bold;font-size:19.6262px;font-family:Metropolis;-inkscape-font-specification:'Metropolis, Bold';fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0.9;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
-		      d="M 6.809521,29.944547 29.189775,6.0559424"
-		      id="path4763"/>
-		<g aria-label="!"
-		   id="text10260"
-		   style="font-weight:600;font-size:18.4686px;font-family:Metropolis;-inkscape-font-specification:'Metropolis, Semi-Bold';stroke-width:0.690646;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0.9;paint-order:markers stroke fill">
-			<path d="m 30.658139,28.609324 h 1.551362 l 0.53559,-8.532493 H 30.12255 Z m 0.775681,4.377058 c 0.775681,0 1.422082,-0.664869 1.422082,-1.477488 0,-0.757212 -0.646401,-1.422082 -1.422082,-1.422082 -0.849555,0 -1.477488,0.66487 -1.477488,1.422082 0,0.812619 0.627933,1.477488 1.477488,1.477488 z"
-			      id="path27260"/>
-		</g>
-	</g>`
+  ` <path
+  d="m 24.664062,20.947266 a 0.85000002,0.85000002 0 0 0 -0.857421,0.84375 l -0.03516,4.699218 a 0.85000002,0.85000002 0 0 0 0.84375,0.857422 0.85000002,0.85000002 0 0 0 0.857422,-0.84375 l 0.03516,-4.701172 a 0.85000002,0.85000002 0 0 0 -0.84375,-0.855468 z"
+  id="path1534" />
+<path
+  d="m 24.622114,26.496917 0.03513,-4.700373"
+  id="path1536" />
+<path
+  d="m 24.617187,25.621094 a 0.85693002,0.85693002 0 0 0 -0.859375,0.855468 0.85693002,0.85693002 0 0 0 0.857422,0.857422 l 2.841797,0.0039 A 0.85693002,0.85693002 0 0 0 28.314453,26.482422 0.85693002,0.85693002 0 0 0 27.458984,25.625 Z"
+  id="path1540" />
+<path
+  d="m 27.457296,26.481217 -2.84178,-0.0041"
+  id="path1542" />
+<path
+  d="m 24.644531,18.515625 c -4.317261,0 -7.878906,3.472391 -7.878906,7.751953 1e-6,4.279562 3.561646,7.75 7.878906,7.75 1.185221,0 2.354902,-0.262058 3.423828,-0.769531 A 1.5,1.5 0 0 0 28.779297,31.25 1.5,1.5 0 0 0 26.78125,30.537109 c -0.664871,0.315648 -1.395409,0.480469 -2.136719,0.480469 -2.728368,0 -4.878906,-2.124845 -4.878906,-4.75 0,-2.625155 2.150538,-4.751953 4.878906,-4.751953 0.740568,0 1.470412,0.165426 2.134766,0.480469 a 1.5,1.5 0 0 0 1.998047,-0.712891 1.5,1.5 0 0 0 -0.712891,-1.998047 c -1.068084,-0.506494 -2.235887,-0.769531 -3.419922,-0.769531 z"
+  id="path12594" />
+<path
+  d="m 11.355469,1.9824219 c -4.3172613,0 -7.8789065,3.4704378 -7.8789065,7.75 0,4.2795621 3.5616452,7.7519531 7.8789065,7.7519531 4.317261,0 7.878906,-3.472391 7.878906,-7.7519531 0,-4.2795622 -3.561645,-7.75 -7.878906,-7.75 z m 0,3 c 2.728368,0 4.878906,2.1248446 4.878906,4.75 0,2.6251551 -2.150538,4.7519531 -4.878906,4.7519531 -2.7283688,0 -4.8789065,-2.126798 -4.8789065,-4.7519531 0,-2.6251554 2.1505377,-4.75 4.8789065,-4.75 z"
+  id="path1679-7" />
+<path
+  d="M 29.140625,4.5566406 A 1.5,1.5 0 0 0 28.095703,5.03125 L 5.7148437,28.919922 a 1.5,1.5 0 0 0 0.068359,2.11914 1.5,1.5 0 0 0 2.1210938,-0.06836 L 30.285156,7.0820312 A 1.5,1.5 0 0 0 30.214844,4.9609375 1.5,1.5 0 0 0 29.140625,4.5566406 Z"
+  id="path1554" />
+<path
+style="fill:#000000"
+  d="m 30.658139,28.609324 h 1.551362 l 0.53559,-8.532493 H 30.12255 Z m 0.775681,4.377058 c 0.775681,0 1.422082,-0.664869 1.422082,-1.477488 0,-0.757212 -0.646401,-1.422082 -1.422082,-1.422082 -0.849555,0 -1.477488,0.66487 -1.477488,1.422082 0,0.812619 0.627933,1.477488 1.477488,1.477488 z"
+  id="path27260" />`,
+  '0 0 36 36'
 );
 
 export const CampaignShape = clrIconSVG(
-  `<g
-  id="g4796">
- <ellipse
-    style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0.9;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
-    id="path1679"
-    cx="24.643927"
-    cy="26.267096"
-    rx="6.3786268"
-    ry="6.2510548" />
- <ellipse
-    style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0.9;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
-    id="path1679-7"
-    cx="11.355979"
-    cy="9.73281"
-    rx="6.3786268"
-    ry="6.2510548" />
- <path
-    style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0.9;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
-    d="M 6.8098732,29.944302 29.190127,6.0556978"
-    id="path4763" />
-</g>`
+  `  <path
+  d="m 24.644531,18.515625 c -4.317261,0 -7.878906,3.472391 -7.878906,7.751953 1e-6,4.279562 3.561646,7.75 7.878906,7.75 4.317261,0 7.878906,-3.470438 7.878906,-7.75 10e-7,-4.279562 -3.561645,-7.751952 -7.878906,-7.751953 z m 0,3 c 2.728369,0 4.878907,2.126798 4.878906,4.751953 0,2.625155 -2.150538,4.75 -4.878906,4.75 -2.728368,0 -4.878906,-2.124845 -4.878906,-4.75 0,-2.625155 2.150538,-4.751953 4.878906,-4.751953 z"
+  id="path1679" />
+<path
+  d="m 11.355469,1.9824219 c -4.3172613,-1e-7 -7.8789064,3.4704378 -7.8789065,7.75 -10e-8,4.2795621 3.5616451,7.7519531 7.8789065,7.7519531 4.317261,0 7.878906,-3.472391 7.878906,-7.7519531 0,-4.2795622 -3.561645,-7.7500002 -7.878906,-7.75 z m 0,3 c 2.728368,-1e-7 4.878906,2.1248445 4.878906,4.75 0,2.6251551 -2.150538,4.7519531 -4.878906,4.7519531 -2.7283689,0 -4.8789066,-2.126798 -4.8789065,-4.7519531 0,-2.6251554 2.1505377,-4.7500001 4.8789065,-4.75 z"
+  id="path1679-7" />
+<path
+  d="m 30.214844,4.9609375 a 1.5,1.5 0 0 0 -2.119141,0.068359 L 5.7148437,28.917969 a 1.5,1.5 0 0 0 0.070312,2.121093 1.5,1.5 0 0 0 2.1191407,-0.06836 L 30.285156,7.0820312 a 1.5,1.5 0 0 0 -0.07031,-2.1210937 z"
+  id="path432" />`,
+  '0 0 36 36'
 );
 
 export const NewCarCommercialShape = clrIconSVG(
