@@ -1,0 +1,49 @@
+.clr-input-wrapper {
+  margin-top: 0;
+  max-width: none;
+
+  // The hover animation was overridden when putting `.clr-input` inside `.clr-input-group`.
+  // But, the hover animation should not be applied on the whole group (containing input + icon).
+  // Only on the input.
+  .clr-input-group ::ng-deep .clr-input {
+    background: linear-gradient(to bottom, transparent 95%, var(--clr-forms-focused-color, hsl(198deg, 100%, 32%)) 95%)
+      no-repeat;
+    background-size: 0% 100%;
+  }
+}
+
+.clr-daterangepicker-container-popup {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+  margin-top: 0.3rem;
+  background: hsl(198deg, 0%, 100%);
+  background: var(--clr-calendar-background-color, hsl(198deg, 0%, 100%));
+  border: 0.05rem solid;
+  border-color: hsl(198deg, 0%, 80%);
+  border-color: var(--clr-calendar-border-color, hsl(198deg, 0%, 80%));
+  border-radius: 0.15rem;
+  border-radius: var(--clr-global-borderradius, 0.15rem);
+  box-shadow: 0 0.05rem 0.15rem rgb(140 140 140 / 25%);
+  box-shadow: 0 0.05rem 0.15rem var(--clr-popover-box-shadow-color, rgba(140, 140, 140, 0.25));
+  overflow: hidden;
+  z-index: 1050;
+
+  .clr-daterangepicker-container-container {
+    margin-right: 1rem;
+
+    ::ng-deep clr-datepicker:first-of-type ::ng-deep clr-date-container {
+      margin-top: 0;
+    }
+  }
+
+  .clr-btn-group-vertical {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+
+    .btn {
+      margin-right: 0;
+    }
+  }
+}

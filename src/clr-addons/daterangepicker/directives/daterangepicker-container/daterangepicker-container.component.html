@@ -1,0 +1,59 @@
+<ng-content select="label"></ng-content>
+<div class="clr-control-container" [class.clr-error]="this.isInvalid">
+  <div class="clr-input-wrapper" clrPopoverAnchor>
+    <div class="clr-input-group" [class.clr-focus]="this.focus">
+      <ng-content select="[clrDaterangepicker]"></ng-content>
+      <button
+        type="button"
+        class="clr-input-group-icon-action"
+        [disabled]="this.disabled"
+        [title]="this.friendlyDaterange"
+        [attr.aria-label]="this.friendlyDaterange"
+        clrPopoverOpenCloseButton
+      >
+        <cds-icon status="info" shape="calendar"></cds-icon>
+      </button>
+    </div>
+    <cds-icon
+      *ngIf="this.isInvalid"
+      class="clr-validate-icon"
+      shape="exclamation-circle"
+      status="danger"
+      aria-hidden="true"
+    ></cds-icon>
+  </div>
+  <ng-content select="clr-control-error" *ngIf="this.isInvalid"></ng-content>
+
+  <div
+    class="clr-daterangepicker-container-popup"
+    *clrPopoverContent="this.open; at: this.popoverPosition; outsideClickToClose: true; scrollToClose: true"
+  >
+    <div class="clr-daterangepicker-container-container">
+      <clr-datepicker
+        class="clr-datepicker"
+        [label]="this.labelFrom"
+        [value]="this.dateFrom"
+        [minDate]="this.minDate"
+        [maxDate]="this.maxDate"
+        (valueChange)="this.onDateFromChange($event)"
+      >
+      </clr-datepicker>
+      <clr-datepicker
+        class="clr-datepicker"
+        [label]="this.labelTo"
+        [value]="this.dateTo"
+        [minDate]="this.minDate"
+        [maxDate]="this.maxDate"
+        (valueChange)="this.onDateToChange($event)"
+      >
+      </clr-datepicker>
+    </div>
+    <div class="clr-btn-group-vertical" *ngIf="this.presets?.length > 0">
+      <ng-container *ngFor="let preset of this.presets">
+        <button class="btn btn-outline btn-sm" type="button" (click)="this.applyPreset(preset)">
+          {{ preset.text }}
+        </button>
+      </ng-container>
+    </div>
+  </div>
+</div>

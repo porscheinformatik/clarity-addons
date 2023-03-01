@@ -1,0 +1,11 @@
+<clr-date-container>
+  <label>{{ this.label }}</label>
+  <input
+    #input
+    clrDate
+    [(clrDate)]="this.date"
+    [disabled]="this.disabled"
+    [min]="this.minDateAttr"
+    [max]="this.maxDateAttr"
+  />
+</clr-date-container>
