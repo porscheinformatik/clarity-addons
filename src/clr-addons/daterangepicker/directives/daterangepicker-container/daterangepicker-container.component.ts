@@ -62,13 +62,13 @@ export class ClrDaterangepickerContainerComponent implements AfterViewInit, OnDe
    * Text for the 'from' label.
    */
   @Input()
-  public labelFrom: string = 'From';
+  public labelFrom = 'From';
 
   /**
    * Text for the 'to' label.
    */
   @Input()
-  public labelTo: string = 'To';
+  public labelTo = 'To';
 
   /** List of datepicker components children. */
   @ViewChildren(ClrDatepickerComponent)
@@ -80,12 +80,12 @@ export class ClrDaterangepickerContainerComponent implements AfterViewInit, OnDe
 
   /** CSS classes. */
   @HostBinding('class')
-  public classes: string = 'clr-date-container clr-form-control';
+  public classes = 'clr-date-container clr-form-control';
 
   /**
    * Popover open state.
    */
-  protected open: boolean = false;
+  protected open = false;
 
   /**
    * Popover position config.

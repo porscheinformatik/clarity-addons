@@ -6,7 +6,7 @@ import { EventEmitter, Injectable } from '@angular/core';
  */
 @Injectable({ providedIn: 'root' })
 export class OpenedDatepickersTrackerService {
-  private openedDatepickersCount: number = 0;
+  private openedDatepickersCount = 0;
 
   /**
    * Event triggered when value changes.

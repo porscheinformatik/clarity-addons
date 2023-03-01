@@ -75,10 +75,10 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
 
   /** Set the `type` attribute always to "text", to not get the native datepicker. */
   @HostBinding('attr.type')
-  public inputType: string = 'text';
+  public inputType = 'text';
 
   @HostBinding('class.clr-input')
-  public inputClass: boolean = true;
+  public inputClass = true;
 
   /** List of subscriptions to later destroy. */
   private subscriptions: Array<Subscription> = [];
@@ -247,7 +247,7 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
     console.log('ClrDaterangepickerDirective.registerOnChange', { fn });
     this.onChanged = fn;
   }
-  private onChanged = (_value: NullableDaterange) => undefined;
+  private onChanged = (_value: NullableDaterange): void => undefined;
 
   /**
    * ControlValueAccessor method. Register touch event. When control is dirty.
@@ -257,7 +257,7 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
     console.log('ClrDaterangepickerDirective.registerOnTouched', { fn });
     this.onTouched = fn;
   }
-  private onTouched = (_value: NullableDaterange) => undefined;
+  private onTouched = (_value: NullableDaterange): void => undefined;
 
   /**
    * ControlValueAccessor method. Set disabled state.

@@ -30,7 +30,7 @@ export class ClrDaterangeMinMaxValidator implements Validator {
   /** Validation max error name. */
   public static readonly validationMaxErrorName = 'max';
 
-  private _active: boolean = true;
+  private _active = true;
 
   public constructor(@Optional() private readonly daterangeService: DaterangeService) {}
 
@@ -73,7 +73,7 @@ export class ClrDaterangeMinMaxValidator implements Validator {
     if (min == null && max == null) return null;
 
     const errors: ValidationErrors = {};
-    let hasError: boolean = false;
+    let hasError = false;
     const { from, to } = control.value;
 
     if (min != null && from != null && from.isBefore(min)) {

@@ -32,7 +32,7 @@ export class ClrDatepickerComponent implements AfterViewInit, OnDestroy {
    * Text label.
    */
   @Input()
-  public label: string = 'Date';
+  public label = 'Date';
 
   /**
    * Minimum date that can be selected.
@@ -61,7 +61,7 @@ export class ClrDatepickerComponent implements AfterViewInit, OnDestroy {
   /**
    * Disabled state.
    */
-  protected disabled: boolean = false;
+  protected disabled = false;
 
   /**
    * Get date.

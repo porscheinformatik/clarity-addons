@@ -26,7 +26,7 @@ export class ClrDaterangeOrderValidator implements Validator {
   /** Validation error name. */
   public static readonly validationErrorName = 'fromIsAfterTo';
 
-  private _active: boolean = true;
+  private _active = true;
 
   /**
    * Disable validator by setting value to `false`.

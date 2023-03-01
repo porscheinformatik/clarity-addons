@@ -17,10 +17,10 @@ export class DaterangeService {
   public maxDate: NullableDayModel = null;
 
   /** Disabled control state. */
-  public disabled: boolean = false;
+  public disabled = false;
 
   /** Focused. */
-  public focused: boolean = false;
+  public focused = false;
 
   /** List of validation errors. */
   public errors: ValidationErrors | null = null;
@@ -38,7 +38,7 @@ export class DaterangeService {
    * @param value - New selected daterange value.
    * @param triggerEvent - Trigger change event (default true).
    */
-  public updateSelectedDaterange(value: NullableDaterange, triggerEvent: boolean = true): void {
+  public updateSelectedDaterange(value: NullableDaterange, triggerEvent = true): void {
     console.log('DaterangeService.selectedDaterange.set', {
       value,
       oldValue: this._selectedDaterange,
@@ -54,7 +54,7 @@ export class DaterangeService {
    */
   public valueChange = new EventEmitter<NullableDaterange>();
 
-  private _invalid: boolean = false;
+  private _invalid = false;
   /**
    * Control invalid status.
    * @returns Control invalid status.

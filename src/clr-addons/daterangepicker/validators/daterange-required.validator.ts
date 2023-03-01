@@ -26,7 +26,7 @@ export class ClrDaterangeRequiredValidator implements Validator {
   /** Validation error name. */
   public static readonly validationErrorName = 'required';
 
-  private _active: boolean = true;
+  private _active = true;
 
   /**
    * Disable validator by setting value to `false`.
