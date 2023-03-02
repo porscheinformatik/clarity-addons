@@ -1,0 +1,100 @@
+<h2>Daterangepicker</h2>
+
+<h3>Reactive Forms</h3>
+<form clrForm [formGroup]="reactiveForm">
+  <clr-daterangepicker-container>
+    <label class="clr-col-12 clr-col-md-2 clr-control-label">Daterange</label>
+    <input clrDaterangepicker type="date" formControlName="daterange" />
+  </clr-daterangepicker-container>
+  <clr-input-container>
+    <label>Input label</label>
+    <input clrInput type="text" formControlName="otherValue" />
+  </clr-input-container>
+  <button class="btn" (click)="updateReactiveForm()">Pre-fill</button>
+  <pre>{{reactiveForm.value | json}}</pre>
+</form>
+
+<h3>Template Driven</h3>
+<form clrForm>
+  <clr-daterangepicker-container>
+    <label>Daterange</label>
+    <input clrDaterangepicker type="date" name="daterange" [(ngModel)]="templateDrivenValue" />
+  </clr-daterangepicker-container>
+  <button class="btn" (click)="updateTemplateDriven()">Pre-fill</button>
+  <pre>{{templateDrivenValue | json}}</pre>
+</form>
+
+<h3>Vertical Form</h3>
+<form clrForm [clrLayout]="'vertical'" [formGroup]="reactiveForm">
+  <clr-daterangepicker-container>
+    <label>Daterange</label>
+    <input clrDaterangepicker type="date" formControlName="daterange" />
+  </clr-daterangepicker-container>
+  <clr-input-container>
+    <label>Input label</label>
+    <input clrInput type="text" formControlName="otherValue" />
+  </clr-input-container>
+  <pre>{{reactiveForm.value | json}}</pre>
+</form>
+
+<h3>Horizontal Form</h3>
+<form clrForm [clrLayout]="'horizontal'" [formGroup]="reactiveForm">
+  <clr-daterangepicker-container>
+    <label>Daterange</label>
+    <input clrDaterangepicker type="date" formControlName="daterange" />
+  </clr-daterangepicker-container>
+  <clr-input-container>
+    <label>Input label</label>
+    <input clrInput type="text" formControlName="otherValue" />
+  </clr-input-container>
+  <pre>{{reactiveForm.value | json}}</pre>
+</form>
+
+<h3>Validation</h3>
+<form clrForm [clrLayout]="'horizontal'" [formGroup]="validationForm">
+  <p>Daterange cannot be before {{minDate | json}}.</p>
+  <p>Daterange cannot be after {{maxDate | json}}.</p>
+  <clr-daterangepicker-container>
+    <label>Daterange</label>
+    <input clrDaterangepicker type="date" [min]="minDate" [max]="maxDate" formControlName="daterange" />
+    <clr-control-error *clrIfDaterangeError="'required'">Daterange is mandatory!</clr-control-error>
+    <clr-control-error *clrIfDaterangeError="'fromIsAfterTo'">
+      Date "from" must be before date "to"!
+    </clr-control-error>
+    <clr-control-error *clrIfDaterangeError="'min'; error as err">
+      Daterange minimum is {{ err.min.toDate() | date }}
+    </clr-control-error>
+    <clr-control-error *clrIfDaterangeError="'max'; error as err">
+      Daterange maximum is {{ err.max.toDate() | date }}
+    </clr-control-error>
+    <clr-control-error *clrIfDaterangeError="'invalid'">No valid daterange value!</clr-control-error>
+  </clr-daterangepicker-container>
+  <button class="btn" (click)="triggerMinMaxValidation()">Trigger min/max validation</button>
+  <pre>{{reactiveForm.value | json}}</pre>
+</form>
+
+<h3>Configuration</h3>
+<form clrForm>
+  <clr-daterangepicker-container [presets]="presets">
+    <label>Presets</label>
+    <input clrDaterangepicker type="date" name="daterange1" [(ngModel)]="configurationValue" />
+    <clr-control-helper>Open picker to see the presets.</clr-control-helper>
+  </clr-daterangepicker-container>
+  <clr-daterangepicker-container [clrPosition]="'top-right'">
+    <label>Position</label>
+    <input clrDaterangepicker type="date" name="daterange2" [(ngModel)]="configurationValue" />
+    <clr-control-helper>Change the position of the picker.</clr-control-helper>
+  </clr-daterangepicker-container>
+  <clr-daterangepicker-container [presets]="presetsI18n" [labelFrom]="'Van'" [labelTo]="'Tot'">
+    <label>Translation</label>
+    <input
+      clrDaterangepicker
+      type="date"
+      name="daterange3"
+      [(ngModel)]="configurationValue"
+      [separatorText]="' tot '"
+    />
+    <clr-control-helper>Translation for 'from' and 'to' labels, and separator text.</clr-control-helper>
+  </clr-daterangepicker-container>
+  <pre>{{configurationValue | json}}</pre>
+</form>

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -130,6 +130,10 @@ export const APP_ROUTES: Routes = [
   {
     path: 'enum-filter',
     loadChildren: () => import('./enum-filter/enum-filter.demo.module').then(m => m.EnumFilterDemoModule),
+  },
+  {
+    path: 'daterangepicker',
+    loadChildren: () => import('./daterangepicker/daterangepicker.demo.module').then(m => m.DaterangepickerDemoModule),
   },
 ];
 
