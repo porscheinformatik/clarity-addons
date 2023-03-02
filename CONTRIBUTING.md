@@ -28,3 +28,10 @@ To test the clarity-addons library locally you can start a dev environment via "
 
 ### Testing the documentation locally
 To test the documentation which will be visible on the documentation page, execute the command "npm run start" inside the /website folder. Make sure to always add documentation when developing components.
+
+## Versioning schema
+A new version will be created whenever an important breaking change happens (e.g. massive refactoring), a new component is ready or a bugfix needs to be published
+
+- MAJOR: on breaking changes
+- MINOR: on every new component/feature
+- PATCH: for bugfix only releases
