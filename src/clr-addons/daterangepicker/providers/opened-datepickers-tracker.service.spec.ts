@@ -4,21 +4,21 @@ describe('Service: OpenedDatepickersTrackerService', () => {
   it('should emit change event and return `true` after tracking an opened datepicker', () => {
     // Arrange.
     const service = new OpenedDatepickersTrackerService();
-    let emittedOpenedStateValue: boolean;
-    service.valueChange.subscribe(openedState => (emittedOpenedStateValue = openedState));
+    const spy = jasmine.createSpy();
+    service.valueChange.subscribe(spy);
 
     // Act.
     service.track(true);
 
     // Assert.
-    expect(emittedOpenedStateValue).toBeTrue();
+    expect(spy).toHaveBeenCalledWith(true);
   });
 
   it('should emit change event and return `false` after tracking closed datepickers', () => {
     // Arrange.
     const service = new OpenedDatepickersTrackerService();
-    let emittedOpenedStateValue: boolean;
-    service.valueChange.subscribe(openedState => (emittedOpenedStateValue = openedState));
+    const spy = jasmine.createSpy();
+    service.valueChange.subscribe(spy);
 
     // Act.
     service.track(true);
@@ -27,6 +27,6 @@ describe('Service: OpenedDatepickersTrackerService', () => {
     service.track(false);
 
     // Assert.
-    expect(emittedOpenedStateValue).toBeFalse();
+    expect(spy).toHaveBeenCalledWith(false);
   });
 });

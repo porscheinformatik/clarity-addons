@@ -13,7 +13,7 @@ import {
   USER_INPUT_REGEX,
 } from '../daterange.constants';
 import { NullableDaterange } from '../interfaces/daterange.interface';
-import { DayModel } from '../models/day.model';
+import { DayModel, NullableDayModel } from '../models/day.model';
 
 /**
  * Daterange parsing service.
@@ -24,17 +24,10 @@ import { DayModel } from '../models/day.model';
   providedIn: 'root',
 })
 export class DaterangeParsingService {
-  private localeDisplayFormat: InputDateDisplayFormat;
-  private localeDelimiter: Array<string> = [];
+  public readonly localeDisplayFormat: InputDateDisplayFormat;
+  public readonly localeDelimiter: Array<string> = [];
 
   public constructor(@Inject(LOCALE_ID) private readonly locale: string) {
-    this.initLocaleDisplayFormat();
-  }
-
-  /**
-   * Get locale display format.
-   */
-  private initLocaleDisplayFormat(): void {
     const localeFormat = getLocaleDateFormat(this.locale, FormatWidth.Short);
     const format: string = localeFormat.toLocaleLowerCase();
 
@@ -130,6 +123,7 @@ export class DaterangeParsingService {
       separator,
       locale: this.locale,
     });
+    if (daterangeString == null || daterangeString === '') return null;
 
     const [fromString, toString] = daterangeString.split(separator);
     const from = this.getDayModelFromDateString(fromString);
@@ -144,8 +138,7 @@ export class DaterangeParsingService {
 
     if (from == null && to == null) return null;
 
-    const daterange: NullableDaterange = { from, to };
-    return daterange;
+    return { from, to };
   }
 
   /**
@@ -153,13 +146,13 @@ export class DaterangeParsingService {
    * @param dateString - Date string.
    * @returns DayModel.
    */
-  private getDayModelFromDateString(dateString: string): DayModel | null {
+  private getDayModelFromDateString(dateString: string): NullableDayModel {
     console.log('DaterangeParsingService.getDayModelFromDateString', {
       dateString,
       match: dateString?.match(USER_INPUT_REGEX),
     });
 
-    if (!dateString) return null;
+    if (dateString == null || dateString === '') return null;
 
     const dateParts: RegExpMatchArray = dateString.match(USER_INPUT_REGEX);
     if (dateParts == null || dateParts.length !== 3) return null;
@@ -184,7 +177,7 @@ export class DaterangeParsingService {
    * @param dateString - Date string.
    * @returns DayModel.
    */
-  private getDayModelFromDateParts(yearString: string, monthString: string, dateString: string): DayModel | null {
+  private getDayModelFromDateParts(yearString: string, monthString: string, dateString: string): NullableDayModel {
     console.log('DaterangeParsingService.validateAndGetDate', {
       yearString,
       monthString,
