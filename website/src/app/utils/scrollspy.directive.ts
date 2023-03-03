@@ -3,7 +3,7 @@
  */
 
 import { Directive, Input, OnDestroy, OnInit, ContentChildren, QueryList, ElementRef, Renderer2 } from '@angular/core';
-import { RouterLinkWithHref } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Directive({
@@ -18,15 +18,15 @@ export class ScrollSpy implements OnDestroy, OnInit {
 
   sub: Subscription;
 
-  @ContentChildren(RouterLinkWithHref, { descendants: true })
-  set links(routerLinks: QueryList<RouterLinkWithHref>) {
+  @ContentChildren(RouterLink, { descendants: true })
+  set links(routerLinks: QueryList<RouterLink>) {
     this.anchors = routerLinks.map(routerLink => '#' + routerLink.fragment);
     this.sub = routerLinks.changes.subscribe(() => {
       this.anchors = routerLinks.map(routerLink => '#' + routerLink.fragment);
     });
   }
 
-  @ContentChildren(RouterLinkWithHref, { descendants: true, read: ElementRef })
+  @ContentChildren(RouterLink, { descendants: true, read: ElementRef })
   linkElements: QueryList<ElementRef>;
 
   throttle = false;

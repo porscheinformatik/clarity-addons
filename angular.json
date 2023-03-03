@@ -87,28 +87,6 @@
               "browserTarget": "dev:build:production"
             }
           }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "src/dev/test.ts",
-            "polyfills": "src/dev/polyfills.ts",
-            "karmaConfig": "src/dev/karma.conf.js",
-            "styles": [],
-            "scripts": [],
-            "assets": [
-              {
-                "glob": "favicon.ico",
-                "input": "src/dev/",
-                "output": "/"
-              },
-              {
-                "glob": "**/*",
-                "input": "src/dev/assets",
-                "output": "/assets"
-              }
-            ]
-          }
         }
       }
     },
