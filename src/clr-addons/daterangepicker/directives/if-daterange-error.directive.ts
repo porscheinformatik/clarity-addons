@@ -1,7 +1,7 @@
 import { Directive, EmbeddedViewRef, Input, OnDestroy, Optional, TemplateRef, ViewContainerRef } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { ControlStateService } from '../providers/control-state.service';
 
-import { DaterangeService } from '../providers/daterange.service';
 import { ClrDaterangepickerContainerComponent } from './daterangepicker-container/daterangepicker-container.component';
 
 /**
@@ -33,24 +33,24 @@ export class ClrIfDaterangeErrorDirective implements OnDestroy {
   public constructor(
     private readonly template: TemplateRef<any>,
     private readonly container: ViewContainerRef,
-    @Optional() private readonly daterangeService: DaterangeService,
+    @Optional() private readonly controlStateService: ControlStateService,
     @Optional()
     private readonly daterangepickerContainerComponent: ClrDaterangepickerContainerComponent
   ) {
     console.log('ClrIfDaterangeErrorDirective.ctor', {
-      daterangeService: this.daterangeService,
+      daterangeService: this.controlStateService,
       daterangepickerContainerComponent: this.daterangepickerContainerComponent,
     });
 
     // This directive only works inside `clr-daterangepicker-container`.
-    if (this.daterangeService == null || this.daterangepickerContainerComponent == null) {
+    if (this.controlStateService == null || this.daterangepickerContainerComponent == null) {
       throw new Error('`ClrIfDaterangeErrorDirective` can only be used within `ClrDaterangepickerContainerComponent`');
     }
 
     // Listen to status changes to toggle error visibility.
     this.subscriptions.push(
-      this.daterangeService.statusChange.subscribe((_status: boolean) => {
-        console.log('ClrIfDaterangeErrorDirective.daterangeService.statusChange', {
+      this.controlStateService.statusChange.subscribe((_status: boolean) => {
+        console.log('ClrIfDaterangeErrorDirective.controlStateService.statusChange', {
           _status,
         });
 
@@ -68,17 +68,17 @@ export class ClrIfDaterangeErrorDirective implements OnDestroy {
    */
   private handleState() {
     console.log('ClrIfDaterangeErrorDirective.toggleErrorVisibility', {
-      invalid: this.daterangeService.invalid,
-      errors: this.daterangeService.errors,
+      invalid: this.controlStateService.invalid,
+      errors: this.controlStateService.errors,
       clrIfDaterangeError: this.clrIfDaterangeError,
     });
 
-    if (!this.daterangeService.invalid) {
+    if (!this.controlStateService.invalid) {
       // If control is not invalid, hide all errors.
       this.toggleErrorVisibility(false);
     } else if (this.clrIfDaterangeError) {
       // Display error only if error input is list of errors.
-      const hasError = this.clrIfDaterangeError in this.daterangeService.errors;
+      const hasError = this.clrIfDaterangeError in this.controlStateService.errors;
       this.toggleErrorVisibility(hasError);
     } else {
       // Display error.
@@ -92,15 +92,15 @@ export class ClrIfDaterangeErrorDirective implements OnDestroy {
    */
   private toggleErrorVisibility(displayError: boolean) {
     console.log('ClrIfDaterangeErrorDirective.toggleErrorVisibility', {
-      invalid: this.daterangeService.invalid,
-      errors: this.daterangeService.errors,
+      invalid: this.controlStateService.invalid,
+      errors: this.controlStateService.errors,
       container: this.container,
       displayedContent: this.displayedContent,
       embeddedViewRef: this.embeddedViewRef,
     });
 
     if (displayError) {
-      const error = this.daterangeService.errors[this.clrIfDaterangeError];
+      const error = this.controlStateService.errors[this.clrIfDaterangeError];
       if (this.displayedContent === false) {
         this.embeddedViewRef = this.container.createEmbeddedView(this.template, {
           error,

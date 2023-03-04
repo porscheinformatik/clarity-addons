@@ -25,6 +25,7 @@ import { DaterangeParsingService } from '../../providers/daterange-parsing.servi
 import { OpenedDatepickersTrackerService } from '../../providers/opened-datepickers-tracker.service';
 import { ClrDatepickerComponent } from '../datepicker/datepicker.component';
 import { ClrDaterangepickerDirective } from '../daterangepicker/daterangepicker.directive';
+import { ControlStateService } from '../../providers/control-state.service';
 
 /**
  * Daterangepicker container.
@@ -37,6 +38,7 @@ import { ClrDaterangepickerDirective } from '../daterangepicker/daterangepicker.
     ClrPopoverToggleService,
     ClrPopoverEventsService,
     ClrPopoverPositionService,
+    ControlStateService,
     DaterangeService,
     OpenedDatepickersTrackerService,
   ],
@@ -80,7 +82,7 @@ export class ClrDaterangepickerContainerComponent implements AfterViewInit, OnDe
 
   /** CSS classes. */
   @HostBinding('class')
-  public classes = 'clr-date-container clr-form-control';
+  public classes = 'clr-date-container clr-form-control clr-row';
 
   /**
    * Popover open state.
@@ -97,8 +99,8 @@ export class ClrDaterangepickerContainerComponent implements AfterViewInit, OnDe
    * @returns Disabled state.
    */
   protected get disabled(): boolean {
-    //console.log('ClrDaterangepickerContainerComponent.disabled', this.daterangeService.disabled);
-    return this.daterangeService.disabled;
+    //console.log('ClrDaterangepickerContainerComponent.disabled', this.controlStateService.disabled);
+    return this.controlStateService.disabled;
   }
 
   /**
@@ -138,7 +140,7 @@ export class ClrDaterangepickerContainerComponent implements AfterViewInit, OnDe
    * @returns Wether control is focused.
    */
   protected get focus(): boolean {
-    return this.daterangeService.focused;
+    return this.controlStateService.focused;
   }
 
   private _friendlyDaterange?: string;
@@ -155,7 +157,7 @@ export class ClrDaterangepickerContainerComponent implements AfterViewInit, OnDe
    * @returns Wether control is invalid.
    */
   protected get isInvalid(): boolean {
-    return this.daterangeService.invalid;
+    return this.controlStateService.invalid;
   }
 
   /** List of subscriptions to later destroy. */
@@ -164,6 +166,7 @@ export class ClrDaterangepickerContainerComponent implements AfterViewInit, OnDe
   public constructor(
     private readonly clrPopoverEventsService: ClrPopoverEventsService,
     private readonly clrPopoverToggleService: ClrPopoverToggleService,
+    private readonly controlStateService: ControlStateService,
     private readonly openedDatepickersTrackerService: OpenedDatepickersTrackerService,
     private readonly daterangeService: DaterangeService,
     private readonly daterangeParsingService: DaterangeParsingService

@@ -19,6 +19,7 @@ import { NullableDaterange } from '../../interfaces/daterange.interface';
 import { DayModel } from '../../models/day.model';
 import { DaterangeService } from '../../providers/daterange.service';
 import { DaterangeParsingService } from '../../providers/daterange-parsing.service';
+import { ControlStateService } from '../../providers/control-state.service';
 
 /**
  * Daterangepicker.
@@ -56,7 +57,7 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
   @Input()
   public set disabled(value: boolean) {
     //console.log('ClrDaterangepickerDirective.disabled.set', value);
-    this.daterangeService.disabled = value;
+    this.controlStateService.disabled = value;
   }
   /**
    * Disabled state.
@@ -64,7 +65,7 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
    */
   public get disabled() {
     //console.log('ClrDaterangepickerDirective.disabled.get', this.daterangeService.disabled);
-    return this.daterangeService.disabled;
+    return this.controlStateService.disabled;
   }
 
   /**
@@ -88,6 +89,7 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
     private readonly control: NgControl,
     private readonly element: ElementRef,
     private readonly renderer: Renderer2,
+    private readonly controlStateService: ControlStateService,
     private readonly daterangeService: DaterangeService,
     private readonly daterangeParsingService: DaterangeParsingService
   ) {
@@ -132,7 +134,7 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
           invalid: this.control.invalid,
           errors: this.control.errors,
         });
-        this.daterangeService.updateStatus(this.control.control);
+        this.controlStateService.updateStatus(this.control.control);
       })
     );
   }
@@ -175,7 +177,7 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
    */
   @HostListener('focus')
   public focusEvent(): void {
-    this.daterangeService.focused = true;
+    this.controlStateService.focused = true;
   }
 
   /**
@@ -183,7 +185,7 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
    */
   @HostListener('blur')
   public blurEvent(): void {
-    this.daterangeService.focused = false;
+    this.controlStateService.focused = false;
   }
 
   /**
@@ -265,6 +267,6 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
    */
   public setDisabledState(disabled: boolean): void {
     console.log('ClrDaterangepickerDirective.setDisabledState', { disabled });
-    this.daterangeService.disabled = disabled;
+    this.controlStateService.disabled = disabled;
   }
 }

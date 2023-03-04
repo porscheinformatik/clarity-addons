@@ -4,7 +4,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { ClrControlError, ClrPopoverEventsService, ClrPopoverToggleService } from '@clr/angular';
 
 import { ClrDaterangepickerModule } from '../daterangepicker.module';
-import { DaterangeService } from '../providers/daterange.service';
+import { ControlStateService } from '../providers/control-state.service';
 import { ClrDaterangepickerContainerComponent } from './daterangepicker-container/daterangepicker-container.component';
 import { ClrIfDaterangeErrorDirective } from './if-daterange-error.directive';
 
@@ -19,7 +19,12 @@ class InvalidUseTestComponent {}
 
 @Component({
   template: `<clr-control-error *clrIfDaterangeError>${errorMessage}</clr-control-error>`,
-  providers: [ClrDaterangepickerContainerComponent, ClrPopoverEventsService, ClrPopoverToggleService, DaterangeService],
+  providers: [
+    ClrDaterangepickerContainerComponent,
+    ClrPopoverEventsService,
+    ClrPopoverToggleService,
+    ControlStateService,
+  ],
 })
 class GeneralErrorTestComponent {}
 
@@ -31,7 +36,12 @@ class GeneralErrorTestComponent {}
       ${maxLengthMessage}-{{ err.requiredLength }}-{{ err.actualLength }}
     </clr-control-error>
   `,
-  providers: [ClrDaterangepickerContainerComponent, ClrPopoverEventsService, ClrPopoverToggleService, DaterangeService],
+  providers: [
+    ClrDaterangepickerContainerComponent,
+    ClrPopoverEventsService,
+    ClrPopoverToggleService,
+    ControlStateService,
+  ],
 })
 class SpecificErrorTestComponent {}
 
@@ -52,7 +62,7 @@ describe('Directive ClrIfDaterangeErrorDirective', () => {
 
   describe('general error', () => {
     let fixture: ComponentFixture<GeneralErrorTestComponent>;
-    let daterangeService: DaterangeService;
+    let controlStateService: ControlStateService;
 
     beforeEach(() => {
       TestBed.configureTestingModule({
@@ -61,7 +71,7 @@ describe('Directive ClrIfDaterangeErrorDirective', () => {
       });
       fixture = TestBed.createComponent(GeneralErrorTestComponent);
       fixture.detectChanges();
-      daterangeService = fixture.debugElement.injector.get(DaterangeService);
+      controlStateService = fixture.debugElement.injector.get(ControlStateService);
     });
 
     it('hides the error initially', () => {
@@ -75,7 +85,7 @@ describe('Directive ClrIfDaterangeErrorDirective', () => {
       control.markAsTouched();
 
       // Act.
-      daterangeService.updateStatus(control);
+      controlStateService.updateStatus(control);
       tick();
       fixture.detectChanges();
 
@@ -86,7 +96,7 @@ describe('Directive ClrIfDaterangeErrorDirective', () => {
 
   describe('specific error', () => {
     let fixture: ComponentFixture<SpecificErrorTestComponent>;
-    let daterangeService: DaterangeService;
+    let controlStateService: ControlStateService;
 
     beforeEach(() => {
       TestBed.configureTestingModule({
@@ -95,7 +105,7 @@ describe('Directive ClrIfDaterangeErrorDirective', () => {
       });
       fixture = TestBed.createComponent(SpecificErrorTestComponent);
       fixture.detectChanges();
-      daterangeService = fixture.debugElement.injector.get(DaterangeService);
+      controlStateService = fixture.debugElement.injector.get(ControlStateService);
     });
 
     it('hides the error initially', () => {
@@ -109,7 +119,7 @@ describe('Directive ClrIfDaterangeErrorDirective', () => {
       control.markAsTouched();
 
       // Act.
-      daterangeService.updateStatus(control);
+      controlStateService.updateStatus(control);
       tick();
       fixture.detectChanges();
 
@@ -123,7 +133,7 @@ describe('Directive ClrIfDaterangeErrorDirective', () => {
       const control = new FormControl('abc', [Validators.required, Validators.minLength(5)]);
 
       // Act.
-      daterangeService.updateStatus(control);
+      controlStateService.updateStatus(control);
       tick();
       fixture.detectChanges();
 
@@ -137,7 +147,7 @@ describe('Directive ClrIfDaterangeErrorDirective', () => {
       const control = new FormControl('abcdef', [Validators.maxLength(5)]);
 
       // Act.
-      daterangeService.updateStatus(control);
+      controlStateService.updateStatus(control);
       tick();
       fixture.detectChanges();
 
@@ -151,7 +161,7 @@ describe('Directive ClrIfDaterangeErrorDirective', () => {
       const control = new FormControl('abcdef', [Validators.maxLength(5)]);
 
       // Act.
-      daterangeService.updateStatus(control);
+      controlStateService.updateStatus(control);
       tick();
       fixture.detectChanges();
 
@@ -160,7 +170,7 @@ describe('Directive ClrIfDaterangeErrorDirective', () => {
 
       // Act.
       control.setValue('abcdefg');
-      daterangeService.updateStatus(control);
+      controlStateService.updateStatus(control);
       tick();
       fixture.detectChanges();
 
@@ -178,7 +188,7 @@ describe('Directive ClrIfDaterangeErrorDirective', () => {
       control.markAsTouched();
 
       // Required message.
-      daterangeService.updateStatus(control);
+      controlStateService.updateStatus(control);
       tick();
       fixture.detectChanges();
       expect(fixture.nativeElement.innerHTML).toContain(errorMessage);
@@ -187,7 +197,7 @@ describe('Directive ClrIfDaterangeErrorDirective', () => {
 
       // MinLength message.
       control.setValue('abc');
-      daterangeService.updateStatus(control);
+      controlStateService.updateStatus(control);
       tick();
       fixture.detectChanges();
       expect(fixture.nativeElement.innerHTML).not.toContain(errorMessage);
@@ -196,7 +206,7 @@ describe('Directive ClrIfDaterangeErrorDirective', () => {
 
       // MaxLength message.
       control.setValue('abcdef');
-      daterangeService.updateStatus(control);
+      controlStateService.updateStatus(control);
       tick();
       fixture.detectChanges();
       expect(fixture.nativeElement.innerHTML).not.toContain(errorMessage);
@@ -205,7 +215,7 @@ describe('Directive ClrIfDaterangeErrorDirective', () => {
 
       // No errors.
       control.setValue('abcde');
-      daterangeService.updateStatus(control);
+      controlStateService.updateStatus(control);
       tick();
       fixture.detectChanges();
       expect(fixture.nativeElement.innerHTML).not.toContain(errorMessage);
