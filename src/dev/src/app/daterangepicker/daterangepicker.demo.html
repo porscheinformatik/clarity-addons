@@ -92,11 +92,16 @@
     <input clrDaterangepicker type="date" name="daterange1" [(ngModel)]="configurationValue" />
     <clr-control-helper>Open picker to see the presets.</clr-control-helper>
   </clr-daterangepicker-container>
-  <clr-daterangepicker-container [clrPosition]="'top-right'">
+  <clr-daterangepicker-container [clrPosition]="position">
     <label>Position</label>
     <input clrDaterangepicker type="date" name="daterange2" [(ngModel)]="configurationValue" />
     <clr-control-helper>Change the position of the picker.</clr-control-helper>
   </clr-daterangepicker-container>
+  <clr-select-container>
+    <select clrSelect name="options" [(ngModel)]="position">
+      <option *ngFor="let option of positions" [value]="option">{{option}}</option>
+    </select>
+  </clr-select-container>
   <clr-daterangepicker-container [presets]="presetsI18n" [labelFrom]="'Van'" [labelTo]="'Tot'">
     <label>Translation</label>
     <input

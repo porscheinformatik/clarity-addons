@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { DaterangePreset, DayModel, NullableDaterange } from '../../../../clr-addons/daterangepicker';
+import {
+  DaterangePreset,
+  DayModel,
+  NullableDaterange,
+  PopoverPosition,
+  PopoverPositions,
+} from '../../../../clr-addons/daterangepicker';
 
 @Component({
   selector: 'clr-daterangepicker-demo',
@@ -36,6 +42,9 @@ export class DaterangepickerDemo {
       }),
     },
   ];
+
+  position: PopoverPosition = 'top-right';
+  positions = PopoverPositions.options;
 
   public updateReactiveForm(): void {
     this.reactiveForm.patchValue({

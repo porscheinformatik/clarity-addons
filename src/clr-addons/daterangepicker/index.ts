@@ -6,6 +6,7 @@ export * from './directives/if-daterange-error.directive';
 export * from './interfaces/daterange-preset.interface';
 export * from './interfaces/daterange.interface';
 export * from './models/day.model';
+export * from './models/popover-positions.model';
 export * from './validators/daterange-min-max.validator';
 export * from './validators/daterange-order.validator';
 export * from './validators/daterange-required.validator';
