@@ -89,12 +89,12 @@
 <form clrForm>
   <clr-daterangepicker-container [presets]="presets">
     <label>Presets</label>
-    <input clrDaterangepicker type="date" name="daterange1" [(ngModel)]="configurationValue" />
+    <input clrDaterangepicker type="date" name="daterange-presets" [(ngModel)]="configurationValue" />
     <clr-control-helper>Open picker to see the presets.</clr-control-helper>
   </clr-daterangepicker-container>
   <clr-daterangepicker-container [clrPosition]="position">
     <label>Position</label>
-    <input clrDaterangepicker type="date" name="daterange2" [(ngModel)]="configurationValue" />
+    <input clrDaterangepicker type="date" name="daterange-position" [(ngModel)]="configurationValue" />
     <clr-control-helper>Change the position of the picker.</clr-control-helper>
   </clr-daterangepicker-container>
   <clr-select-container>
@@ -102,12 +102,23 @@
       <option *ngFor="let option of positions" [value]="option">{{option}}</option>
     </select>
   </clr-select-container>
+  <clr-daterangepicker-container>
+    <label>Placeholder</label>
+    <input
+      clrDaterangepicker
+      type="date"
+      name="daterange-placeholder"
+      placeholder="Custom placeholder"
+      [(ngModel)]="configurationValue"
+    />
+    <clr-control-helper>Custom placeholder text.</clr-control-helper>
+  </clr-daterangepicker-container>
   <clr-daterangepicker-container [presets]="presetsI18n" [labelFrom]="'Van'" [labelTo]="'Tot'">
     <label>Translation</label>
     <input
       clrDaterangepicker
       type="date"
-      name="daterange3"
+      name="daterange-translation"
       [(ngModel)]="configurationValue"
       [separatorText]="' tot '"
     />
