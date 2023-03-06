@@ -27,6 +27,17 @@ export class DaterangeParsingService {
   public readonly localeDisplayFormat: InputDateDisplayFormat;
   public readonly localeDelimiter: Array<string> = [];
 
+  /** Locale format. */
+  public get localeFormat(): string {
+    return (
+      this.localeDisplayFormat.format[0] +
+      this.localeDelimiter[0] +
+      this.localeDisplayFormat.format[1] +
+      this.localeDelimiter[1] +
+      this.localeDisplayFormat.format[2]
+    );
+  }
+
   public constructor(@Inject(LOCALE_ID) private readonly locale: string) {
     const localeFormat = getLocaleDateFormat(this.locale, FormatWidth.Short);
     const format: string = localeFormat.toLocaleLowerCase();

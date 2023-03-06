@@ -29,6 +29,7 @@ describe('Service: DaterangeParsingService', () => {
         format: ['DD', 'MM', 'YYYY'],
       });
       expect(sut.localeDelimiter).toEqual(['-', '-']);
+      expect(sut.localeFormat).toBe('DD-MM-YYYY');
     });
 
     it('should set locale display format and delimiter based on MIDDLE_ENDIAN locale', () => {
@@ -44,6 +45,7 @@ describe('Service: DaterangeParsingService', () => {
         format: ['MM', 'DD', 'YYYY'],
       });
       expect(sut.localeDelimiter).toEqual(['/', '/']);
+      expect(sut.localeFormat).toBe('MM/DD/YYYY');
     });
 
     it('should set locale display format and delimiter based on BIG_ENDIAN locale', () => {
@@ -59,6 +61,7 @@ describe('Service: DaterangeParsingService', () => {
         format: ['YYYY', 'MM', 'DD'],
       });
       expect(sut.localeDelimiter).toEqual(['/', '/']);
+      expect(sut.localeFormat).toBe('YYYY/MM/DD');
     });
   });
 

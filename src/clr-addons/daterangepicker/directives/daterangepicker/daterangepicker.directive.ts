@@ -52,6 +52,21 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
   public separatorText: string = SEPARATOR_TEXT_DEFAULT;
 
   /**
+   * Placeholder text.
+   *
+   * It is recommend against overriding the automatically generated placeholder.
+   * Adding an incorrect placeholder will create confusion while entering the daterange in the input.
+   */
+  @Input() public placeholder: string;
+  @HostBinding('attr.placeholder')
+  public get placeholderText(): string {
+    return (
+      this.placeholder ??
+      this.daterangeParsingService.localeFormat + this.separatorText + this.daterangeParsingService.localeFormat
+    );
+  }
+
+  /**
    * Id-attribute.
    */
   @HostBinding()
