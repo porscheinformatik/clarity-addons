@@ -98,7 +98,7 @@
     <clr-control-helper>Change the position of the picker.</clr-control-helper>
   </clr-daterangepicker-container>
   <clr-select-container>
-    <select clrSelect name="options" [(ngModel)]="position">
+    <select clrSelect name="daterange-positions" [(ngModel)]="position">
       <option *ngFor="let option of positions" [value]="option">{{option}}</option>
     </select>
   </clr-select-container>
