@@ -13,9 +13,6 @@
 }
 
 .clr-daterangepicker-container-popup {
-  display: flex;
-  flex-direction: row;
-  padding: 1rem;
   margin-top: 0.3rem;
   background: hsl(198deg, 0%, 100%);
   background: var(--clr-calendar-background-color, hsl(198deg, 0%, 100%));
@@ -29,21 +26,33 @@
   overflow: hidden;
   z-index: 1050;
 
-  .clr-daterangepicker-container-container {
-    margin-right: 1rem;
-
-    ::ng-deep clr-datepicker:first-of-type ::ng-deep clr-date-container {
-      margin-top: 0;
-    }
+  .clr-smart-close-button {
+    min-width: 1.2rem;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 0;
   }
 
-  .clr-btn-group-vertical {
-    flex-direction: column;
+  .clr-daterangepicker-container-popup-content {
+    padding: 0.6rem;
     display: flex;
-    justify-content: center;
+    flex-direction: row;
 
-    .btn {
-      margin-right: 0;
+    .clr-form ::ng-deep clr-datepicker:first-of-type ::ng-deep clr-date-container {
+      margin-top: 0;
+    }
+
+    .clr-daterangepicker-container-popup-content-presets {
+      margin-left: 0.6rem;
+      padding: 0.3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .btn {
+        margin-right: 0;
+      }
     }
   }
 }

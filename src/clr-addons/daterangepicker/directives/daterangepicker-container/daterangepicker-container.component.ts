@@ -9,6 +9,8 @@ import {
   ViewChildren,
 } from '@angular/core';
 import {
+  ClrCommonStrings,
+  ClrCommonStringsService,
   ClrPopoverEventsService,
   ClrPopoverPosition,
   ClrPopoverPositionService,
@@ -138,12 +140,20 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
     return this._friendlyDaterange;
   }
 
+  /**
+   * List of common translation keys.
+   */
+  protected get commonStrings(): Readonly<ClrCommonStrings> {
+    return this.clrCommonStringsService.keys;
+  }
+
   /** List of subscriptions to later destroy. */
   private subscriptions: Array<Subscription> = [];
 
   public constructor(
     private readonly clrPopoverEventsService: ClrPopoverEventsService,
     private readonly clrPopoverToggleService: ClrPopoverToggleService,
+    private readonly clrCommonStringsService: ClrCommonStringsService,
     protected readonly controlStateService: ControlStateService,
     private readonly openedDatepickersTrackerService: OpenedDatepickersTrackerService,
     private readonly daterangeService: DaterangeService,

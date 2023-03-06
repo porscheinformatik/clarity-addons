@@ -37,7 +37,16 @@
     class="clr-daterangepicker-container-popup"
     *clrPopoverContent="this.open; at: this.popoverPosition; outsideClickToClose: true; scrollToClose: true"
   >
-    <div class="clr-daterangepicker-container-container">
+    <button
+      class="btn btn-sm btn-link close"
+      clrPopoverCloseButton
+      type="button"
+      [attr.aria-label]="this.commonStrings.close"
+    >
+      <cds-icon shape="window-close" aria-hidden="true" [attr.title]="this.commonStrings.close"></cds-icon>
+      <span class="clr-sr-only">{{ this.commonStrings.close }}</span>
+    </button>
+    <div class="clr-daterangepicker-container-popup-content">
       <form clrForm [clrLayout]="'vertical'">
         <clr-datepicker
           class="clr-datepicker"
@@ -58,13 +67,13 @@
         >
         </clr-datepicker>
       </form>
-    </div>
-    <div class="clr-btn-group-vertical" *ngIf="this.presets?.length > 0">
-      <ng-container *ngFor="let preset of this.presets">
-        <button class="btn btn-outline btn-sm" type="button" (click)="this.applyPreset(preset)">
-          {{ preset.text }}
-        </button>
-      </ng-container>
+      <div class="clr-daterangepicker-container-popup-content-presets" *ngIf="this.presets?.length > 0">
+        <ng-container *ngFor="let preset of this.presets">
+          <button class="btn btn-outline btn-sm" type="button" (click)="this.applyPreset(preset)">
+            {{ preset.text }}
+          </button>
+        </ng-container>
+      </div>
     </div>
   </div>
 </div>
