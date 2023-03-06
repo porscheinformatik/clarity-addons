@@ -38,24 +38,26 @@
     *clrPopoverContent="this.open; at: this.popoverPosition; outsideClickToClose: true; scrollToClose: true"
   >
     <div class="clr-daterangepicker-container-container">
-      <clr-datepicker
-        class="clr-datepicker"
-        [label]="this.labelFrom"
-        [value]="this.dateFrom"
-        [minDate]="this.minDate"
-        [maxDate]="this.maxDate"
-        (valueChange)="this.onDateFromChange($event)"
-      >
-      </clr-datepicker>
-      <clr-datepicker
-        class="clr-datepicker"
-        [label]="this.labelTo"
-        [value]="this.dateTo"
-        [minDate]="this.minDate"
-        [maxDate]="this.maxDate"
-        (valueChange)="this.onDateToChange($event)"
-      >
-      </clr-datepicker>
+      <form clrForm [clrLayout]="'vertical'">
+        <clr-datepicker
+          class="clr-datepicker"
+          [label]="this.labelFrom"
+          [value]="this.dateFrom"
+          [minDate]="this.minDate"
+          [maxDate]="this.maxDate"
+          (valueChange)="this.onDateFromChange($event)"
+        >
+        </clr-datepicker>
+        <clr-datepicker
+          class="clr-datepicker"
+          [label]="this.labelTo"
+          [value]="this.dateTo"
+          [minDate]="this.minDate"
+          [maxDate]="this.maxDate"
+          (valueChange)="this.onDateToChange($event)"
+        >
+        </clr-datepicker>
+      </form>
     </div>
     <div class="clr-btn-group-vertical" *ngIf="this.presets?.length > 0">
       <ng-container *ngFor="let preset of this.presets">
