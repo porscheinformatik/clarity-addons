@@ -20,6 +20,7 @@ import { DayModel } from '../../models/day.model';
 import { DaterangeService } from '../../providers/daterange.service';
 import { DaterangeParsingService } from '../../providers/daterange-parsing.service';
 import { ControlStateService } from '../../providers/control-state.service';
+import { ControlIdService } from '../../../abstract-form-component/control-id.service';
 
 /**
  * Daterangepicker.
@@ -49,6 +50,22 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
    */
   @Input()
   public separatorText: string = SEPARATOR_TEXT_DEFAULT;
+
+  /**
+   * Id-attribute.
+   */
+  @HostBinding()
+  @Input()
+  public get id() {
+    return this.controlIdService.id;
+  }
+  /**
+   * Id-attribute.
+   * @returns Id-attribute.
+   */
+  public set id(value: string) {
+    this.controlIdService.id = value;
+  }
 
   /**
    * Disable control.
@@ -90,6 +107,7 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
     private readonly element: ElementRef,
     private readonly renderer: Renderer2,
     private readonly controlStateService: ControlStateService,
+    private readonly controlIdService: ControlIdService,
     private readonly daterangeService: DaterangeService,
     private readonly daterangeParsingService: DaterangeParsingService
   ) {

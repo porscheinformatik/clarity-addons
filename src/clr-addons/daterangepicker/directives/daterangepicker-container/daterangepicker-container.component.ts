@@ -27,6 +27,7 @@ import { ClrDatepickerComponent } from '../datepicker/datepicker.component';
 import { ClrDaterangepickerDirective } from '../daterangepicker/daterangepicker.directive';
 import { ControlStateService } from '../../providers/control-state.service';
 import { ClrAbstractContainer } from '../abstract-container.component';
+import { ControlIdService } from '../../../abstract-form-component/control-id.service';
 
 /**
  * Daterangepicker container.
@@ -42,6 +43,7 @@ import { ClrAbstractContainer } from '../abstract-container.component';
     ControlStateService,
     DaterangeService,
     OpenedDatepickersTrackerService,
+    ControlIdService,
   ],
 })
 export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer implements AfterViewInit, OnDestroy {
