@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
+  ~ Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
@@ -89,7 +89,7 @@
     <label>Single Select Combobox</label>
     <clr-combobox [(ngModel)]="comboboxOption" name="combobox" required>
       <clr-options>
-        <clr-option *ngFor="let option of values$ | async" [clrValue]="option">{{option}}</clr-option>
+        <clr-option *clrOptionItems="let option of values$ | async" [clrValue]="option">{{option}}</clr-option>
       </clr-options>
     </clr-combobox>
     <clr-control-error>Select a value</clr-control-error>
