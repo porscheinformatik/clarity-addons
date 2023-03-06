@@ -52,11 +52,17 @@
 
 <h3>Validation</h3>
 <form clrForm [clrLayout]="'horizontal'" [formGroup]="validationForm">
-  <p>Daterange cannot be before {{minDate | json}}.</p>
-  <p>Daterange cannot be after {{maxDate | json}}.</p>
+  Validations:
+  <ul>
+    <li>Daterange is required.</li>
+    <li>Daterange "from" cannot be after "to".</li>
+    <li>Daterange cannot be before {{minDate | date}}.</li>
+    <li>Daterange cannot be after {{maxDate | date}}</li>
+  </ul>
   <clr-daterangepicker-container>
     <label>Daterange</label>
     <input clrDaterangepicker type="date" [min]="minDate" [max]="maxDate" formControlName="daterange" />
+    <clr-control-helper>Helper text.</clr-control-helper>
     <clr-control-error *clrIfDaterangeError="'required'">Daterange is mandatory!</clr-control-error>
     <clr-control-error *clrIfDaterangeError="'fromIsAfterTo'">
       Date "from" must be before date "to"!
@@ -68,9 +74,15 @@
       Daterange maximum is {{ err.max.toDate() | date }}
     </clr-control-error>
     <clr-control-error *clrIfDaterangeError="'invalid'">No valid daterange value!</clr-control-error>
+    <clr-control-success>✅ Valid.</clr-control-success>
   </clr-daterangepicker-container>
-  <button class="btn" (click)="triggerMinMaxValidation()">Trigger min/max validation</button>
-  <pre>{{reactiveForm.value | json}}</pre>
+  <button class="btn btn-danger-outline" (click)="triggerRequiredValidation()">Trigger required validation</button>
+  <button class="btn btn-danger-outline" (click)="triggerFromIsAfterToValidation()">
+    Trigger fromIsAfterTo validation
+  </button>
+  <button class="btn btn-danger-outline" (click)="triggerMinMaxValidation()">Trigger min/max validation</button>
+  <button class="btn btn-success-outline" (click)="triggerSuccess()">Trigger success</button>
+  <pre>{{ reactiveForm.value | json}}</pre>
 </form>
 
 <h3>Configuration</h3>

@@ -53,11 +53,33 @@ export class DaterangepickerDemo {
     };
   }
 
+  public triggerRequiredValidation(): void {
+    this.validationForm.patchValue({ daterange: null });
+  }
+
+  public triggerFromIsAfterToValidation(): void {
+    this.validationForm.patchValue({
+      daterange: {
+        from: new DayModel(2023, 5, 3),
+        to: new DayModel(2023, 4, 3),
+      },
+    });
+  }
+
   public triggerMinMaxValidation(): void {
     this.validationForm.patchValue({
       daterange: {
         from: new DayModel(2020, 4, 3),
         to: new DayModel(2030, 4, 3),
+      },
+    });
+  }
+
+  public triggerSuccess(): void {
+    this.validationForm.patchValue({
+      daterange: {
+        from: new DayModel(2023, 4, 3),
+        to: new DayModel(2023, 5, 3),
       },
     });
   }
