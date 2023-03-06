@@ -15,6 +15,7 @@ export class ControlStateService {
 
   /** List of validation errors. */
   public errors: ValidationErrors | null = null;
+
   private _invalid = false;
   /**
    * Control invalid status.
@@ -22,6 +23,15 @@ export class ControlStateService {
    */
   public get invalid(): boolean {
     return this._invalid;
+  }
+
+  private _touched = false;
+  /**
+   * Touched.
+   * @returns Touched.
+   */
+  public get touched(): boolean {
+    return this._touched;
   }
 
   /**
@@ -39,6 +49,8 @@ export class ControlStateService {
       invalid: control.invalid,
       control,
     });
+
+    this._touched = control.touched;
 
     // We only care about valid & invalid status changes.
     // There is an bug where `ClrDaterangepickerDirective.writeValue` is called twice with same value (`null`).

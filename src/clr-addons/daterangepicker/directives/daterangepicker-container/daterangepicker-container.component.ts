@@ -26,6 +26,7 @@ import { OpenedDatepickersTrackerService } from '../../providers/opened-datepick
 import { ClrDatepickerComponent } from '../datepicker/datepicker.component';
 import { ClrDaterangepickerDirective } from '../daterangepicker/daterangepicker.directive';
 import { ControlStateService } from '../../providers/control-state.service';
+import { ClrAbstractContainer } from '../abstract-container.component';
 
 /**
  * Daterangepicker container.
@@ -43,7 +44,7 @@ import { ControlStateService } from '../../providers/control-state.service';
     OpenedDatepickersTrackerService,
   ],
 })
-export class ClrDaterangepickerContainerComponent implements AfterViewInit, OnDestroy {
+export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer implements AfterViewInit, OnDestroy {
   /**
    * List of presets.
    */
@@ -82,7 +83,7 @@ export class ClrDaterangepickerContainerComponent implements AfterViewInit, OnDe
 
   /** CSS classes. */
   @HostBinding('class')
-  public classes = 'clr-date-container clr-form-control clr-row';
+  public classes = 'clr-date-container clr-row';
 
   /**
    * Popover open state.
@@ -93,15 +94,6 @@ export class ClrDaterangepickerContainerComponent implements AfterViewInit, OnDe
    * Popover position config.
    */
   protected popoverPosition: ClrPopoverPosition = PopoverPositions['bottom-left'];
-
-  /**
-   * Disabled state.
-   * @returns Disabled state.
-   */
-  protected get disabled(): boolean {
-    //console.log('ClrDaterangepickerContainerComponent.disabled', this.controlStateService.disabled);
-    return this.controlStateService.disabled;
-  }
 
   /**
    * Date from.
@@ -135,14 +127,6 @@ export class ClrDaterangepickerContainerComponent implements AfterViewInit, OnDe
     return this.daterangeService.maxDate;
   }
 
-  /**
-   * If control is focused.
-   * @returns Wether control is focused.
-   */
-  protected get focus(): boolean {
-    return this.controlStateService.focused;
-  }
-
   private _friendlyDaterange?: string;
   /**
    * Get friendly daterange text.
@@ -152,25 +136,19 @@ export class ClrDaterangepickerContainerComponent implements AfterViewInit, OnDe
     return this._friendlyDaterange;
   }
 
-  /**
-   * Wether control is invalid.
-   * @returns Wether control is invalid.
-   */
-  protected get isInvalid(): boolean {
-    return this.controlStateService.invalid;
-  }
-
   /** List of subscriptions to later destroy. */
   private subscriptions: Array<Subscription> = [];
 
   public constructor(
     private readonly clrPopoverEventsService: ClrPopoverEventsService,
     private readonly clrPopoverToggleService: ClrPopoverToggleService,
-    private readonly controlStateService: ControlStateService,
+    protected readonly controlStateService: ControlStateService,
     private readonly openedDatepickersTrackerService: OpenedDatepickersTrackerService,
     private readonly daterangeService: DaterangeService,
     private readonly daterangeParsingService: DaterangeParsingService
-  ) {}
+  ) {
+    super(controlStateService);
+  }
 
   public ngAfterViewInit(): void {
     if (this.daterangepickerDirective == null) {

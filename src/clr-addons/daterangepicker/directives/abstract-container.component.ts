@@ -1,0 +1,77 @@
+import { ContentChild, Directive, HostBinding } from '@angular/core';
+import { ClrControlSuccess, ClrControlError, ClrControlHelper } from '@clr/angular';
+import { ControlStateService } from '../providers/control-state.service';
+
+@Directive()
+export abstract class ClrAbstractContainer {
+  @HostBinding('class.clr-form-control') protected readonly isFormControl = true;
+
+  /** Helper control component. */
+  @ContentChild(ClrControlHelper) protected controlHelperComponent: ClrControlHelper;
+  /** Error control component. */
+  @ContentChild(ClrControlError) protected controlErrorComponent: ClrControlError;
+  /** Success control component. */
+  @ContentChild(ClrControlSuccess) protected controlSuccessComponent: ClrControlSuccess;
+
+  /**
+   * Wether to show the helper control.
+   * @returns Wether to show the helper control.
+   */
+  protected get showHelper(): boolean {
+    if (this.controlHelperComponent == null) return false;
+
+    // Helper Component exist and the state of the form is NONE (not touched).
+    if (!this.controlStateService.touched) return true;
+
+    // Or there is no success component but the state of the form is VALID - show helper information.
+    if (this.controlSuccessComponent == null && this.controlStateService.touched && !this.controlStateService.invalid)
+      return true;
+
+    // Or there is no error component but the state of the form is INVALID - show helper information.
+    if (this.controlErrorComponent == null && this.controlStateService.invalid) return true;
+
+    return false;
+  }
+
+  /**
+   * Wether to show the valid control.
+   * @returns Wether to show the valid control.
+   */
+  protected get showValid(): boolean {
+    return !this.controlStateService.invalid && !!this.controlSuccessComponent;
+  }
+
+  /**
+   * Wether to show the invalid control.
+   * @returns Wether to show the invalid control.
+   */
+  protected get showInvalid(): boolean {
+    return this.controlStateService.invalid && !!this.controlErrorComponent;
+  }
+
+  /**
+   * Disabled state.
+   * @returns Disabled state.
+   */
+  protected get disabled(): boolean {
+    return this.controlStateService.disabled;
+  }
+
+  /**
+   * If control is focused.
+   * @returns Wether control is focused.
+   */
+  protected get focus(): boolean {
+    return this.controlStateService.focused;
+  }
+
+  /**
+   * Wether control is invalid.
+   * @returns Wether control is invalid.
+   */
+  protected get isInvalid(): boolean {
+    return this.controlStateService.invalid;
+  }
+
+  public constructor(protected readonly controlStateService: ControlStateService) {}
+}

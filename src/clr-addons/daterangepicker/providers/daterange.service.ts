@@ -5,7 +5,7 @@ import { NullableDayModel } from '../models/day.model';
 
 /**
  * Daterange service.
- * Stores data for communication between container and input.
+ * Keeps track of daterange related values.
  */
 @Injectable()
 export class DaterangeService {

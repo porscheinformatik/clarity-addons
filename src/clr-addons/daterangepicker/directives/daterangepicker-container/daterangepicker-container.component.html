@@ -1,5 +1,5 @@
 <ng-content select="label"></ng-content>
-<div class="clr-control-container" [class.clr-error]="this.isInvalid">
+<div class="clr-col-12 clr-col-md-10 clr-control-container" [class.clr-error]="this.isInvalid">
   <div class="clr-input-wrapper" clrPopoverAnchor>
     <div class="clr-input-group" [class.clr-focus]="this.focus">
       <ng-content select="[clrDaterangepicker]"></ng-content>
@@ -21,8 +21,17 @@
       status="danger"
       aria-hidden="true"
     ></cds-icon>
+    <cds-icon
+      *ngIf="!this.isInvalid"
+      class="clr-validate-icon"
+      shape="check-circle"
+      status="success"
+      aria-hidden="true"
+    ></cds-icon>
   </div>
-  <ng-content select="clr-control-error" *ngIf="this.isInvalid"></ng-content>
+  <ng-content select="clr-control-helper" *ngIf="this.showHelper"></ng-content>
+  <ng-content select="clr-control-error" *ngIf="this.showInvalid"></ng-content>
+  <ng-content select="clr-control-success" *ngIf="this.showValid"></ng-content>
 
   <div
     class="clr-daterangepicker-container-popup"
