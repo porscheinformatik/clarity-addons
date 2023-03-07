@@ -8,7 +8,7 @@
   </clr-daterangepicker-container>
   <clr-input-container>
     <label>Input label</label>
-    <input clrInput type="text" formControlName="otherValue" />
+    <input clrInput type="text" placeholder="Some input" formControlName="otherValue" />
   </clr-input-container>
   <button class="btn" (click)="updateReactiveForm()">Pre-fill</button>
   <pre>{{reactiveForm.value | json}}</pre>
