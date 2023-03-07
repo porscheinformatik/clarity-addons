@@ -5,6 +5,7 @@ import { ClrControlError, ClrPopoverEventsService, ClrPopoverToggleService } fro
 
 import { ClrDaterangepickerModule } from '../daterangepicker.module';
 import { DaterangeControlStateService } from '../providers/daterange-control-state.service';
+import { DaterangeService } from '../providers/daterange.service';
 import { ClrDaterangepickerContainerComponent } from './daterangepicker-container/daterangepicker-container.component';
 import { ClrIfDaterangeErrorDirective } from './if-daterange-error.directive';
 
@@ -24,6 +25,7 @@ class InvalidUseTestComponent {}
     ClrPopoverEventsService,
     ClrPopoverToggleService,
     DaterangeControlStateService,
+    DaterangeService,
   ],
 })
 class GeneralErrorTestComponent {}
@@ -41,6 +43,7 @@ class GeneralErrorTestComponent {}
     ClrPopoverEventsService,
     ClrPopoverToggleService,
     DaterangeControlStateService,
+    DaterangeService,
   ],
 })
 class SpecificErrorTestComponent {}
