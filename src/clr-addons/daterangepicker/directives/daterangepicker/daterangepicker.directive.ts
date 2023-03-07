@@ -19,7 +19,7 @@ import { NullableDaterange } from '../../interfaces/daterange.interface';
 import { DayModel } from '../../models/day.model';
 import { DaterangeService } from '../../providers/daterange.service';
 import { DaterangeParsingService } from '../../providers/daterange-parsing.service';
-import { ControlStateService } from '../../providers/control-state.service';
+import { DaterangeControlStateService } from '../../providers/daterange-control-state.service';
 import { ControlIdService } from '../../../abstract-form-component/control-id.service';
 
 /**
@@ -88,16 +88,14 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
   @HostBinding('disabled')
   @Input()
   public set disabled(value: boolean) {
-    //console.log('ClrDaterangepickerDirective.disabled.set', value);
-    this.controlStateService.disabled = value;
+    this.daterangeControlStateService.disabled = value;
   }
   /**
    * Disabled state.
    * @returns Disabled state.
    */
   public get disabled() {
-    //console.log('ClrDaterangepickerDirective.disabled.get', this.daterangeService.disabled);
-    return this.controlStateService.disabled;
+    return this.daterangeControlStateService.disabled;
   }
 
   /**
@@ -121,7 +119,7 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
     private readonly control: NgControl,
     private readonly element: ElementRef,
     private readonly renderer: Renderer2,
-    private readonly controlStateService: ControlStateService,
+    private readonly daterangeControlStateService: DaterangeControlStateService,
     private readonly controlIdService: ControlIdService,
     private readonly daterangeService: DaterangeService,
     private readonly daterangeParsingService: DaterangeParsingService
@@ -167,7 +165,7 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
           invalid: this.control.invalid,
           errors: this.control.errors,
         });
-        this.controlStateService.updateStatus(this.control.control);
+        this.daterangeControlStateService.updateStatus(this.control.control);
       })
     );
   }
@@ -210,7 +208,7 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
    */
   @HostListener('focus')
   public focusEvent(): void {
-    this.controlStateService.focused = true;
+    this.daterangeControlStateService.focused = true;
   }
 
   /**
@@ -218,7 +216,7 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
    */
   @HostListener('blur')
   public blurEvent(): void {
-    this.controlStateService.focused = false;
+    this.daterangeControlStateService.focused = false;
   }
 
   /**
@@ -300,6 +298,6 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
    */
   public setDisabledState(disabled: boolean): void {
     console.log('ClrDaterangepickerDirective.setDisabledState', { disabled });
-    this.controlStateService.disabled = disabled;
+    this.daterangeControlStateService.disabled = disabled;
   }
 }

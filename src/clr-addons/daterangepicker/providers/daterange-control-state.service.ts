@@ -2,11 +2,11 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { AbstractControl, ValidationErrors } from '@angular/forms';
 
 /**
- * Control state service.
- * Stores data for communication between container and input.
+ * Daterange control state service.
+ * Stores data for communication between daterange container and input.
  */
 @Injectable()
-export class ControlStateService {
+export class DaterangeControlStateService {
   /** Disabled control state. */
   public disabled = false;
 
@@ -43,7 +43,7 @@ export class ControlStateService {
    * @param control
    */
   public updateStatus(control: AbstractControl) {
-    console.log('ControlStateService.updateStatus', {
+    console.log('DaterangeControlStateService.updateStatus', {
       status: control.status,
       errors: control.errors,
       invalid: control.invalid,

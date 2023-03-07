@@ -27,7 +27,7 @@ import { DaterangeParsingService } from '../../providers/daterange-parsing.servi
 import { OpenedDatepickersTrackerService } from '../../providers/opened-datepickers-tracker.service';
 import { ClrDatepickerComponent } from '../datepicker/datepicker.component';
 import { ClrDaterangepickerDirective } from '../daterangepicker/daterangepicker.directive';
-import { ControlStateService } from '../../providers/control-state.service';
+import { DaterangeControlStateService } from '../../providers/daterange-control-state.service';
 import { ClrAbstractContainer } from '../abstract-container.component';
 import { ControlIdService } from '../../../abstract-form-component/control-id.service';
 
@@ -42,7 +42,7 @@ import { ControlIdService } from '../../../abstract-form-component/control-id.se
     ClrPopoverToggleService,
     ClrPopoverEventsService,
     ClrPopoverPositionService,
-    ControlStateService,
+    DaterangeControlStateService,
     DaterangeService,
     OpenedDatepickersTrackerService,
     ControlIdService,
@@ -154,12 +154,12 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
     private readonly clrPopoverEventsService: ClrPopoverEventsService,
     private readonly clrPopoverToggleService: ClrPopoverToggleService,
     private readonly clrCommonStringsService: ClrCommonStringsService,
-    protected readonly controlStateService: ControlStateService,
+    protected readonly daterangeControlStateService: DaterangeControlStateService,
     private readonly openedDatepickersTrackerService: OpenedDatepickersTrackerService,
     private readonly daterangeService: DaterangeService,
     private readonly daterangeParsingService: DaterangeParsingService
   ) {
-    super(controlStateService);
+    super(daterangeControlStateService);
   }
 
   public ngAfterViewInit(): void {

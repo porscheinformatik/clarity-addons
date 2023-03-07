@@ -1,6 +1,6 @@
 import { ContentChild, Directive, HostBinding } from '@angular/core';
 import { ClrControlSuccess, ClrControlError, ClrControlHelper } from '@clr/angular';
-import { ControlStateService } from '../providers/control-state.service';
+import { DaterangeControlStateService } from '../providers/daterange-control-state.service';
 
 @Directive()
 export abstract class ClrAbstractContainer {
@@ -21,14 +21,18 @@ export abstract class ClrAbstractContainer {
     if (this.controlHelperComponent == null) return false;
 
     // Helper Component exist and the state of the form is NONE (not touched).
-    if (!this.controlStateService.touched) return true;
+    if (!this.daterangeControlStateService.touched) return true;
 
     // Or there is no success component but the state of the form is VALID - show helper information.
-    if (this.controlSuccessComponent == null && this.controlStateService.touched && !this.controlStateService.invalid)
+    if (
+      this.controlSuccessComponent == null &&
+      this.daterangeControlStateService.touched &&
+      !this.daterangeControlStateService.invalid
+    )
       return true;
 
     // Or there is no error component but the state of the form is INVALID - show helper information.
-    if (this.controlErrorComponent == null && this.controlStateService.invalid) return true;
+    if (this.controlErrorComponent == null && this.daterangeControlStateService.invalid) return true;
 
     return false;
   }
@@ -38,7 +42,7 @@ export abstract class ClrAbstractContainer {
    * @returns Wether to show the valid control.
    */
   protected get showValid(): boolean {
-    return !this.controlStateService.invalid && !!this.controlSuccessComponent;
+    return !this.daterangeControlStateService.invalid && !!this.controlSuccessComponent;
   }
 
   /**
@@ -46,7 +50,7 @@ export abstract class ClrAbstractContainer {
    * @returns Wether to show the invalid control.
    */
   protected get showInvalid(): boolean {
-    return this.controlStateService.invalid && !!this.controlErrorComponent;
+    return this.daterangeControlStateService.invalid && !!this.controlErrorComponent;
   }
 
   /**
@@ -54,7 +58,7 @@ export abstract class ClrAbstractContainer {
    * @returns Disabled state.
    */
   protected get disabled(): boolean {
-    return this.controlStateService.disabled;
+    return this.daterangeControlStateService.disabled;
   }
 
   /**
@@ -62,7 +66,7 @@ export abstract class ClrAbstractContainer {
    * @returns Wether control is focused.
    */
   protected get focus(): boolean {
-    return this.controlStateService.focused;
+    return this.daterangeControlStateService.focused;
   }
 
   /**
@@ -70,8 +74,8 @@ export abstract class ClrAbstractContainer {
    * @returns Wether control is invalid.
    */
   protected get isInvalid(): boolean {
-    return this.controlStateService.invalid;
+    return this.daterangeControlStateService.invalid;
   }
 
-  public constructor(protected readonly controlStateService: ControlStateService) {}
+  public constructor(protected readonly daterangeControlStateService: DaterangeControlStateService) {}
 }
