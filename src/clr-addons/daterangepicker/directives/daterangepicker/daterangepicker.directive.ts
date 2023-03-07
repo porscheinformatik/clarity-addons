@@ -185,7 +185,10 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
     if (this.control.control.hasError('invalid')) delete this.control.control.errors.invalid;
 
     // If there is nothing to parse, `ClrDaterangeRequiredValidator` will take care of this.
-    if (!target.value) return;
+    if (!target.value) {
+      this.daterangeService.updateSelectedDaterange(null, true);
+      return;
+    }
 
     const daterange = this.daterangeParsingService.parse(target.value, this.separatorText);
     const invalidDaterange: boolean = daterange == null || daterange.from == null || daterange.to == null;
