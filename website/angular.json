@@ -94,37 +94,6 @@
           "options": {
             "browserTarget": "clarity:build"
           }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "src/test.ts",
-            "karmaConfig": "./karma.conf.js",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.spec.json",
-            "scripts": [
-              "node_modules/@webcomponents/custom-elements/custom-elements.min.js",
-              "node_modules/@clr/icons/clr-icons.min.js",
-              "node_modules/prismjs/prism.js",
-              "node_modules/prismjs/components/prism-typescript.min.js"
-            ],
-            "styles": [
-              "node_modules/@clr/ui/clr-ui.min.css",
-              "node_modules/prismjs/themes/prism-solarizedlight.css",
-              "node_modules/@clr/icons/clr-icons.min.css",
-              "src/styles/main.scss"
-            ],
-            "assets": [
-              "src/assets",
-              "src/sitemap.xml",
-              "src/favicon.ico",
-              {
-                "glob": "versions.json",
-                "input": "src/settings",
-                "output": "/"
-              }
-            ]
-          }
         }
       }
     }

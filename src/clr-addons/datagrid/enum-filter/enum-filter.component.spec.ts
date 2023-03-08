@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { ClarityModule, ClrDatagrid } from '@clr/angular';
 import { ClrEnumFilterComponent } from './enum-filter.component';
 
@@ -81,7 +82,7 @@ describe('EnumFilterComponent', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [ClarityModule],
+        imports: [ClarityModule, FormsModule],
         declarations: [TestComponent, ClrEnumFilterComponent],
         providers: [],
       }).compileComponents();
@@ -112,7 +113,7 @@ describe('EnumFilterComponent', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [ClarityModule],
+        imports: [ClarityModule, FormsModule],
         declarations: [TestComponentCustomValues, ClrEnumFilterComponent],
         providers: [],
       }).compileComponents();
@@ -143,7 +144,7 @@ describe('EnumFilterComponent', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [ClarityModule],
+        imports: [ClarityModule, FormsModule],
         declarations: [TestComponentPreselectedValues, ClrEnumFilterComponent],
         providers: [],
       }).compileComponents();
