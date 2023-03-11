@@ -1,10 +1,21 @@
-import { ContentChild, Directive, HostBinding } from '@angular/core';
-import { ClrControlSuccess, ClrControlError, ClrControlHelper } from '@clr/angular';
+import { ContentChild, Directive, HostBinding, Optional } from '@angular/core';
+import { ClrControlSuccess, ClrControlError, ClrControlHelper, ClrLayout, ClrLabel } from '@clr/angular';
 import { DaterangeControlStateService } from '../providers/daterange-control-state.service';
 
 @Directive()
 export abstract class ClrAbstractContainer {
   @HostBinding('class.clr-form-control') protected readonly isFormControl = true;
+
+  /**
+   * Detect if container is not part of an vertical form to apply correct grid classes.
+   */
+  @HostBinding('class.clr-row')
+  public get addLayoutGrid() {
+    return !this.clrLayout?.layoutService?.isVertical();
+  }
+
+  /** Label component. */
+  @ContentChild(ClrLabel) protected labelComponent: ClrLabel;
 
   /** Helper control component. */
   @ContentChild(ClrControlHelper) protected controlHelperComponent: ClrControlHelper;
@@ -84,5 +95,8 @@ export abstract class ClrAbstractContainer {
     return this.daterangeControlStateService.invalid;
   }
 
-  public constructor(protected readonly daterangeControlStateService: DaterangeControlStateService) {}
+  public constructor(
+    @Optional() protected readonly clrLayout: ClrLayout,
+    protected readonly daterangeControlStateService: DaterangeControlStateService
+  ) {}
 }

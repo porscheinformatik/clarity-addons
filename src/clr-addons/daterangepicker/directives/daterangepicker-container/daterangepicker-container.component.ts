@@ -5,6 +5,7 @@ import {
   HostBinding,
   Input,
   OnDestroy,
+  Optional,
   QueryList,
   ViewChildren,
 } from '@angular/core';
@@ -13,6 +14,7 @@ import '@cds/core/icon/register.js';
 import {
   ClrCommonStrings,
   ClrCommonStringsService,
+  ClrLayout,
   ClrPopoverEventsService,
   ClrPopoverPosition,
   ClrPopoverPositionService,
@@ -91,7 +93,7 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
 
   /** CSS classes. */
   @HostBinding('class')
-  public classes = 'clr-date-container clr-row';
+  public classes = 'clr-date-container';
 
   /**
    * Popover open state.
@@ -158,12 +160,13 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
     private readonly clrPopoverEventsService: ClrPopoverEventsService,
     private readonly clrPopoverToggleService: ClrPopoverToggleService,
     private readonly clrCommonStringsService: ClrCommonStringsService,
+    @Optional() protected readonly clrLayout: ClrLayout,
     protected readonly daterangeControlStateService: DaterangeControlStateService,
     private readonly openedDatepickersTrackerService: OpenedDatepickersTrackerService,
     private readonly daterangeService: DaterangeService,
     private readonly daterangeParsingService: DaterangeParsingService
   ) {
-    super(daterangeControlStateService);
+    super(clrLayout, daterangeControlStateService);
   }
 
   public ngAfterViewInit(): void {
