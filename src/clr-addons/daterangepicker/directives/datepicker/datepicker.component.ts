@@ -19,7 +19,6 @@ import { OpenedDatepickersTrackerService } from '../../providers/opened-datepick
 @Component({
   selector: 'clr-datepicker',
   templateUrl: './datepicker.component.html',
-  styleUrls: ['./datepicker.component.scss'],
 })
 export class ClrDatepickerComponent implements AfterViewInit, OnDestroy {
   /**
