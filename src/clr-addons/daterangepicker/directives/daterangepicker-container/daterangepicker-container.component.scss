@@ -1,14 +1,10 @@
-.clr-input-wrapper {
-  margin-top: 0;
-  max-width: none;
+.clr-input-wrapper > .clr-input-group {
+  max-width: fit-content;
+  padding-right: 1.5rem;
 
-  // The hover animation was overridden when putting `.clr-input` inside `.clr-input-group`.
-  // But, the hover animation should not be applied on the whole group (containing input + icon).
-  // Only on the input.
-  .clr-input-group ::ng-deep .clr-input {
-    background: linear-gradient(to bottom, transparent 95%, var(--clr-forms-focused-color, hsl(198deg, 100%, 32%)) 95%)
-      no-repeat;
-    background-size: 0% 100%;
+  ::ng-deep > .clr-input {
+    width: 100%;
+    padding: 0;
   }
 }
 

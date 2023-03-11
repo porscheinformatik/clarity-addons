@@ -16,6 +16,7 @@ import {
 export class DaterangepickerDemo {
   reactiveForm = new FormGroup({
     daterange: new FormControl(null),
+    date: new FormControl(null),
     otherValue: new FormControl(''),
   });
 
