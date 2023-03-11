@@ -16,6 +16,7 @@ export class DaterangeService {
   public maxDate: NullableDayModel = null;
 
   private _selectedDaterange: NullableDaterange = null;
+
   /**
    * Selected daterange value.
    * @returns Selected daterange value.
@@ -23,13 +24,14 @@ export class DaterangeService {
   public get selectedDaterange(): NullableDaterange {
     return this._selectedDaterange;
   }
+
   /**
    * Selected daterange value.
    * @param value - New selected daterange value.
    * @param triggerEvent - Trigger change event (default true).
    */
   public updateSelectedDaterange(value: NullableDaterange, triggerEvent = true): void {
-    console.log('DaterangeService.selectedDaterange.set', {
+    console.log('DaterangeService.updateSelectedDaterange', {
       value,
       oldValue: this._selectedDaterange,
       condition: this._selectedDaterange === value,
