@@ -46,8 +46,11 @@ export class ClrDatepickerComponent implements AfterViewInit, OnDestroy {
   @Input()
   public maxDate: NullableDayModel = undefined;
 
+  /**
+   * Input control.
+   */
   @ViewChild('input', { static: false })
-  private input: ElementRef<any>;
+  private input: ElementRef<HTMLInputElement>;
 
   @ViewChildren(ClrDateContainer)
   private dateComponents: QueryList<ClrDateContainer>;
