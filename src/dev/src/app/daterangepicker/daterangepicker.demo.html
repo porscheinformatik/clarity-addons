@@ -10,7 +10,7 @@
     <label>Input label</label>
     <input clrInput type="text" placeholder="Some input" formControlName="otherValue" />
   </clr-input-container>
-  <button class="btn" (click)="updateReactiveForm()">Pre-fill</button>
+  <button type="button" class="btn" (click)="updateReactiveForm()">Pre-fill</button>
   <pre>{{reactiveForm.value | json}}</pre>
 </form>
 
@@ -20,7 +20,7 @@
     <label>Daterange</label>
     <input clrDaterangepicker type="date" name="daterange" [(ngModel)]="templateDrivenValue" />
   </clr-daterangepicker-container>
-  <button class="btn" (click)="updateTemplateDriven()">Pre-fill</button>
+  <button type="button" class="btn" (click)="updateTemplateDriven()">Pre-fill</button>
   <pre>{{templateDrivenValue | json}}</pre>
 </form>
 
@@ -84,12 +84,16 @@
     <clr-control-error *clrIfDaterangeError="'invalid'">No valid daterange value!</clr-control-error>
     <clr-control-success>✅ Valid.</clr-control-success>
   </clr-daterangepicker-container>
-  <button class="btn btn-danger-outline" (click)="triggerRequiredValidation()">Trigger required validation</button>
-  <button class="btn btn-danger-outline" (click)="triggerFromIsAfterToValidation()">
+  <button type="button" class="btn btn-danger-outline" (click)="triggerRequiredValidation()">
+    Trigger required validation
+  </button>
+  <button type="button" class="btn btn-danger-outline" (click)="triggerFromIsAfterToValidation()">
     Trigger fromIsAfterTo validation
   </button>
-  <button class="btn btn-danger-outline" (click)="triggerMinMaxValidation()">Trigger min/max validation</button>
-  <button class="btn btn-success-outline" (click)="triggerSuccess()">Trigger success</button>
+  <button type="button" class="btn btn-danger-outline" (click)="triggerMinMaxValidation()">
+    Trigger min/max validation
+  </button>
+  <button type="button" class="btn btn-success-outline" (click)="triggerSuccess()">Trigger success</button>
   <pre>{{ reactiveForm.value | json}}</pre>
 </form>
 
