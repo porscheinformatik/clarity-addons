@@ -8,6 +8,8 @@ import {
   QueryList,
   ViewChildren,
 } from '@angular/core';
+import { calendarIcon, checkCircleIcon, ClarityIcons, exclamationCircleIcon, windowCloseIcon } from '@cds/core/icon';
+import '@cds/core/icon/register.js';
 import {
   ClrCommonStrings,
   ClrCommonStringsService,
@@ -30,6 +32,8 @@ import { ClrDaterangepickerDirective } from '../daterangepicker/daterangepicker.
 import { DaterangeControlStateService } from '../../providers/daterange-control-state.service';
 import { ClrAbstractContainer } from '../abstract-container.component';
 import { ControlIdService } from '../../../abstract-form-component/control-id.service';
+
+ClarityIcons.addIcons(calendarIcon, exclamationCircleIcon, checkCircleIcon, windowCloseIcon);
 
 /**
  * Daterangepicker container.
