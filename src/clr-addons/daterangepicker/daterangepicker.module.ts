@@ -7,7 +7,8 @@ import { ClrDatepickerComponent } from './directives/datepicker/datepicker.compo
 import { ClrDaterangepickerDirective } from './directives/daterangepicker/daterangepicker.directive';
 import { ClrDaterangepickerContainerComponent } from './directives/daterangepicker-container/daterangepicker-container.component';
 import { ClrIfDaterangeErrorDirective } from './directives/if-daterange-error.directive';
-import { ClrDaterangeMinMaxValidator } from './validators/daterange-min-max.validator';
+import { ClrDaterangeMaxValidator } from './validators/daterange-max.validator';
+import { ClrDaterangeMinValidator } from './validators/daterange-min.validator';
 import { ClrDaterangeOrderValidator } from './validators/daterange-order.validator';
 import { ClrDaterangeRequiredValidator } from './validators/daterange-required.validator';
 
@@ -15,7 +16,8 @@ import { ClrDaterangeRequiredValidator } from './validators/daterange-required.v
   imports: [CommonModule, FormsModule, ClarityModule, ClrDatepickerModule, ClrIconModule],
   declarations: [
     ClrDatepickerComponent,
-    ClrDaterangeMinMaxValidator,
+    ClrDaterangeMaxValidator,
+    ClrDaterangeMinValidator,
     ClrDaterangeOrderValidator,
     ClrDaterangepickerContainerComponent,
     ClrDaterangepickerDirective,
@@ -24,7 +26,8 @@ import { ClrDaterangeRequiredValidator } from './validators/daterange-required.v
   ],
   entryComponents: [ClrDatepickerComponent],
   exports: [
-    ClrDaterangeMinMaxValidator,
+    ClrDaterangeMaxValidator,
+    ClrDaterangeMinValidator,
     ClrDaterangeOrderValidator,
     ClrDaterangepickerContainerComponent,
     ClrDaterangepickerDirective,

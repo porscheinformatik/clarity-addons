@@ -8,24 +8,16 @@ import { NullableDaterange } from '../interfaces/daterange.interface';
 import { DayModel } from '../models/day.model';
 
 const MIN_DATE = new Date(2022, 0, 1);
-const MAX_DATE = new Date(2022, 11, 31);
 
 @Component({
   template: `
     <clr-daterangepicker-container>
-      <input
-        type="date"
-        clrDaterangepicker
-        [min]="this.minDate"
-        [max]="this.maxDate"
-        [formControl]="this.formControl"
-      />
+      <input type="date" clrDaterangepicker [min]="this.minDate" [formControl]="this.formControl" />
     </clr-daterangepicker-container>
   `,
 })
 class TestComponent {
   public readonly minDate = MIN_DATE;
-  public readonly maxDate = MAX_DATE;
   public readonly formControl = new FormControl();
 }
 
@@ -36,8 +28,7 @@ class TestComponent {
         type="date"
         clrDaterangepicker
         [min]="this.minDate"
-        [max]="this.maxDate"
-        [clrDaterangeMinMax]="this.validationState"
+        [clrDaterangeMin]="this.validationState"
         [formControl]="this.formControl"
       />
     </clr-daterangepicker-container>
@@ -45,12 +36,11 @@ class TestComponent {
 })
 class TestWithToggleableValidationComponent {
   public readonly minDate = MIN_DATE;
-  public readonly maxDate = MAX_DATE;
   public validationState: unknown;
   public readonly formControl = new FormControl();
 }
 
-describe('Validator: ClrDaterangeMinMaxValidator', () => {
+describe('Validator: ClrDaterangeMinValidator', () => {
   describe('validation', () => {
     let fixture: ComponentFixture<TestComponent>;
 
@@ -64,7 +54,7 @@ describe('Validator: ClrDaterangeMinMaxValidator', () => {
       fixture = TestBed.createComponent(TestComponent);
     });
 
-    it('should not allow a daterange less than the min date', () => {
+    it('should not allow a daterange that is before the min date', () => {
       // Arrange.
       const daterange: NullableDaterange = {
         from: new DayModel(MIN_DATE).incrementBy(-1),
@@ -100,7 +90,7 @@ describe('Validator: ClrDaterangeMinMaxValidator', () => {
       expect(fixture.componentInstance.formControl.errors).toBeNull();
     });
 
-    it('should allow a daterange between the min and max dates', () => {
+    it('should allow a daterange after the min date', () => {
       // Arrange.
       const daterange: NullableDaterange = {
         from: new DayModel(2022, 6, 1),
@@ -113,67 +103,6 @@ describe('Validator: ClrDaterangeMinMaxValidator', () => {
 
       // Assert.
       expect(fixture.componentInstance.formControl.errors).toBeNull();
-    });
-
-    it('should allow a daterange equal to the max date', () => {
-      // Arrange.
-      const daterange: NullableDaterange = {
-        from: new DayModel(2022, 6, 1),
-        to: new DayModel(MAX_DATE),
-      };
-
-      // Act.
-      fixture.componentInstance.formControl.setValue(daterange);
-      fixture.detectChanges();
-
-      // Assert.
-      expect(fixture.componentInstance.formControl.errors).toBeNull();
-    });
-
-    it('should not allow a daterange greater than the max date', () => {
-      // Arrange.
-      const daterange: NullableDaterange = {
-        from: new DayModel(2022, 6, 1),
-        to: new DayModel(MAX_DATE).incrementBy(1),
-      };
-      const expectedErrors = {
-        max: {
-          max: new DayModel(MAX_DATE),
-          actual: new DayModel(MAX_DATE).incrementBy(1),
-        },
-      };
-
-      // Act.
-      fixture.componentInstance.formControl.setValue(daterange);
-      fixture.detectChanges();
-
-      // Assert.
-      expect(fixture.componentInstance.formControl.errors).toEqual(expectedErrors);
-    });
-
-    it('should not allow a daterange less than the min date and greater than the max date', () => {
-      // Arrange.
-      const daterange: NullableDaterange = {
-        from: new DayModel(MIN_DATE).incrementBy(-1),
-        to: new DayModel(MAX_DATE).incrementBy(1),
-      };
-      const expectedErrors = {
-        min: {
-          min: new DayModel(MIN_DATE),
-          actual: new DayModel(MIN_DATE).incrementBy(-1),
-        },
-        max: {
-          max: new DayModel(MAX_DATE),
-          actual: new DayModel(MAX_DATE).incrementBy(1),
-        },
-      };
-
-      // Act.
-      fixture.componentInstance.formControl.setValue(daterange);
-      fixture.detectChanges();
-
-      // Assert.
-      expect(fixture.componentInstance.formControl.errors).toEqual(expectedErrors);
     });
   });
 
@@ -194,16 +123,12 @@ describe('Validator: ClrDaterangeMinMaxValidator', () => {
       // Arrange.
       const daterange: NullableDaterange = {
         from: new DayModel(MIN_DATE).incrementBy(-1),
-        to: new DayModel(MAX_DATE).incrementBy(1),
+        to: new DayModel(2022, 11, 31),
       };
       const expectedErrors = {
         min: {
           min: new DayModel(MIN_DATE),
           actual: new DayModel(MIN_DATE).incrementBy(-1),
-        },
-        max: {
-          max: new DayModel(MAX_DATE),
-          actual: new DayModel(MAX_DATE).incrementBy(1),
         },
       };
 
@@ -220,16 +145,12 @@ describe('Validator: ClrDaterangeMinMaxValidator', () => {
       // Arrange.
       const daterange: NullableDaterange = {
         from: new DayModel(MIN_DATE).incrementBy(-1),
-        to: new DayModel(MAX_DATE).incrementBy(1),
+        to: new DayModel(2022, 11, 31),
       };
       const expectedErrors = {
         min: {
           min: new DayModel(MIN_DATE),
           actual: new DayModel(MIN_DATE).incrementBy(-1),
-        },
-        max: {
-          max: new DayModel(MAX_DATE),
-          actual: new DayModel(MAX_DATE).incrementBy(1),
         },
       };
 
@@ -246,16 +167,12 @@ describe('Validator: ClrDaterangeMinMaxValidator', () => {
       // Arrange.
       const daterange: NullableDaterange = {
         from: new DayModel(MIN_DATE).incrementBy(-1),
-        to: new DayModel(MAX_DATE).incrementBy(1),
+        to: new DayModel(2022, 11, 31),
       };
       const expectedErrors = {
         min: {
           min: new DayModel(MIN_DATE),
           actual: new DayModel(MIN_DATE).incrementBy(-1),
-        },
-        max: {
-          max: new DayModel(MAX_DATE),
-          actual: new DayModel(MAX_DATE).incrementBy(1),
         },
       };
 
@@ -272,7 +189,7 @@ describe('Validator: ClrDaterangeMinMaxValidator', () => {
       // Arrange.
       const daterange: NullableDaterange = {
         from: new DayModel(MIN_DATE).incrementBy(-1),
-        to: new DayModel(MAX_DATE).incrementBy(1),
+        to: new DayModel(2022, 11, 31),
       };
 
       // Act.
@@ -288,7 +205,7 @@ describe('Validator: ClrDaterangeMinMaxValidator', () => {
       // Arrange.
       const daterange: NullableDaterange = {
         from: new DayModel(MIN_DATE).incrementBy(-1),
-        to: new DayModel(MAX_DATE).incrementBy(1),
+        to: new DayModel(2022, 11, 31),
       };
 
       // Act.
