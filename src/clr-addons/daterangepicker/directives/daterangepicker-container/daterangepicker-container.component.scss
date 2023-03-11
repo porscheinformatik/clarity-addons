@@ -8,19 +8,12 @@
   }
 }
 
-.clr-daterangepicker-container-popup {
-  margin-top: 0.3rem;
-  background: hsl(198deg, 0%, 100%);
-  background: var(--clr-calendar-background-color, hsl(198deg, 0%, 100%));
-  border: 0.05rem solid;
-  border-color: hsl(198deg, 0%, 80%);
-  border-color: var(--clr-calendar-border-color, hsl(198deg, 0%, 80%));
-  border-radius: 0.15rem;
-  border-radius: var(--clr-global-borderradius, 0.15rem);
-  box-shadow: 0 0.05rem 0.15rem rgb(140 140 140 / 25%);
-  box-shadow: 0 0.05rem 0.15rem var(--clr-popover-box-shadow-color, rgba(140, 140, 140, 0.25));
-  overflow: hidden;
-  z-index: 1050;
+// The `.datepicker` class contains all styling for the popover.
+.clr-daterangepicker-container-popup.datepicker {
+  padding: 0;
+  width: auto;
+  height: auto;
+  display: block;
 
   .clr-smart-close-button {
     min-width: 1.2rem;
