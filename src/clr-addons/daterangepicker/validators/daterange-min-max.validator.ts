@@ -58,9 +58,13 @@ export class ClrDaterangeMinMaxValidator implements Validator {
       control,
     });
 
-    if (!this._active) return null;
+    if (!this._active) {
+      return null;
+    }
 
-    if (control.value == null) return null;
+    if (control.value == null) {
+      return null;
+    }
 
     const min: NullableDayModel = this.daterangeService.minDate;
     const max: NullableDayModel = this.daterangeService.maxDate;
@@ -70,7 +74,9 @@ export class ClrDaterangeMinMaxValidator implements Validator {
       max,
     });
 
-    if (min == null && max == null) return null;
+    if (min == null && max == null) {
+      return null;
+    }
 
     const errors: ValidationErrors = {};
     let hasError = false;
@@ -92,7 +98,9 @@ export class ClrDaterangeMinMaxValidator implements Validator {
       hasError = true;
     }
 
-    if (hasError) return errors;
+    if (hasError) {
+      return errors;
+    }
 
     return null;
   }

@@ -52,10 +52,14 @@ export class ClrDaterangeRequiredValidator implements Validator {
       control,
     });
 
-    if (!this._active) return null;
+    if (!this._active) {
+      return null;
+    }
 
     // Validation with `null` value is done with the regular required validator.
-    if (control.value == null) return null;
+    if (control.value == null) {
+      return null;
+    }
 
     const { from, to } = control.value;
     if (from == null || to == null) {

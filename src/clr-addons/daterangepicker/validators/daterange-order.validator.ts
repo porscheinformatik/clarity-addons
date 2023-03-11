@@ -52,15 +52,21 @@ export class ClrDaterangeOrderValidator implements Validator {
       control,
     });
 
-    if (!this._active) return null;
+    if (!this._active) {
+      return null;
+    }
 
     // Validation with `null` value is done with the regular required validator.
-    if (control.value == null) return null;
+    if (control.value == null) {
+      return null;
+    }
 
     const { from, to } = control.value;
 
     // Validation with `null` values from 'from' & 'to' is done with the ClrDaterangeRequiredValidator.
-    if (from == null || to == null) return null;
+    if (from == null || to == null) {
+      return null;
+    }
 
     if (from.isAfter(to)) {
       return {

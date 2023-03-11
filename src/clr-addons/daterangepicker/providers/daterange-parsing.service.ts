@@ -74,10 +74,14 @@ export class DaterangeParsingService {
       locale: this.locale,
     });
 
-    if (daterange == null) return '';
+    if (daterange == null) {
+      return '';
+    }
 
     const { from, to } = daterange;
-    if (from == null || to == null) return '';
+    if (from == null || to == null) {
+      return '';
+    }
 
     const fromDate = from.toDate();
     const toDate = to.toDate();
@@ -134,7 +138,9 @@ export class DaterangeParsingService {
       separator,
       locale: this.locale,
     });
-    if (daterangeString == null || daterangeString === '') return null;
+    if (daterangeString == null || daterangeString === '') {
+      return null;
+    }
 
     const [fromString, toString] = daterangeString.split(separator);
     const from = this.getDayModelFromDateString(fromString);
@@ -147,7 +153,9 @@ export class DaterangeParsingService {
       from,
     });
 
-    if (from == null && to == null) return null;
+    if (from == null && to == null) {
+      return null;
+    }
 
     return { from, to };
   }
@@ -163,10 +171,14 @@ export class DaterangeParsingService {
       match: dateString?.match(USER_INPUT_REGEX),
     });
 
-    if (dateString == null || dateString === '') return null;
+    if (dateString == null || dateString === '') {
+      return null;
+    }
 
     const dateParts: RegExpMatchArray = dateString.match(USER_INPUT_REGEX);
-    if (dateParts == null || dateParts.length !== 3) return null;
+    if (dateParts == null || dateParts.length !== 3) {
+      return null;
+    }
 
     const [firstPart, secondPart, thirdPart] = dateParts;
     if (this.localeDisplayFormat === LITTLE_ENDIAN) {
@@ -197,18 +209,26 @@ export class DaterangeParsingService {
 
     // Check for valid date part strings.
     let year: number = parseInt(yearString);
-    if (isNaN(year)) return null;
+    if (isNaN(year)) {
+      return null;
+    }
     let month: number = parseInt(monthString);
-    if (isNaN(month)) return null;
+    if (isNaN(month)) {
+      return null;
+    }
     const date: number = parseInt(dateString);
-    if (isNaN(date)) return null;
+    if (isNaN(date)) {
+      return null;
+    }
 
     // Convert year to 4 digit year.
     year = this.parseToFourDigitYear(year);
     console.log('DaterangeParsingService.validateAndGetDate.2', {
       year,
     });
-    if (year == null) return null;
+    if (year == null) {
+      return null;
+    }
 
     // Month is zero-indexed.
     month -= 1;
@@ -216,7 +236,9 @@ export class DaterangeParsingService {
     // Creating new Javascript Date object, because it will automatically take care of
     // switching to next or previous months & years without we having to worry about it.
     const parsedDate = new Date(year, month, date);
-    if (isNaN(parsedDate.getTime())) return null;
+    if (isNaN(parsedDate.getTime())) {
+      return null;
+    }
 
     return new DayModel(parsedDate);
   }

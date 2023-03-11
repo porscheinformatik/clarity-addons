@@ -36,7 +36,9 @@ export class DaterangeService {
     });
     this._selectedDaterange = value;
 
-    if (triggerEvent) this.valueChange.emit(value);
+    if (triggerEvent) {
+      this.valueChange.emit(value);
+    }
   }
 
   /**

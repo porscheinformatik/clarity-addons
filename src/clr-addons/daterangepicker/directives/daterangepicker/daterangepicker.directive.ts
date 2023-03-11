@@ -182,7 +182,9 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
     });
 
     // Remove 'invalid' error.
-    if (this.control.control.hasError('invalid')) delete this.control.control.errors.invalid;
+    if (this.control.control.hasError('invalid')) {
+      delete this.control.control.errors.invalid;
+    }
 
     // If there is nothing to parse, `ClrDaterangeRequiredValidator` will take care of this.
     if (!target.value) {

@@ -18,21 +18,28 @@ export abstract class ClrAbstractContainer {
    * @returns Wether to show the helper control.
    */
   protected get showHelper(): boolean {
-    if (this.controlHelperComponent == null) return false;
+    if (this.controlHelperComponent == null) {
+      return false;
+    }
 
     // Helper Component exist and the state of the form is NONE (not touched).
-    if (!this.daterangeControlStateService.touched) return true;
+    if (!this.daterangeControlStateService.touched) {
+      return true;
+    }
 
     // Or there is no success component but the state of the form is VALID - show helper information.
     if (
       this.controlSuccessComponent == null &&
       this.daterangeControlStateService.touched &&
       !this.daterangeControlStateService.invalid
-    )
+    ) {
       return true;
+    }
 
     // Or there is no error component but the state of the form is INVALID - show helper information.
-    if (this.controlErrorComponent == null && this.daterangeControlStateService.invalid) return true;
+    if (this.controlErrorComponent == null && this.daterangeControlStateService.invalid) {
+      return true;
+    }
 
     return false;
   }
