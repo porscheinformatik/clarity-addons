@@ -69,7 +69,7 @@
       </form>
       <div class="clr-daterangepicker-container-popup-content-presets" *ngIf="this.presets?.length > 0">
         <ng-container *ngFor="let preset of this.presets">
-          <button class="btn btn-outline btn-sm" type="button" (click)="this.applyPreset(preset)">
+          <button class="btn btn-outline btn-sm btn-block" type="button" (click)="this.applyPreset(preset)">
             {{ preset.text }}
           </button>
         </ng-container>
