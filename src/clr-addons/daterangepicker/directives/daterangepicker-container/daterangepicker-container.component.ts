@@ -197,11 +197,6 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
           daterange,
           this.daterangepickerDirective.separatorText
         );
-
-        // When value is empty, reset all datepicker components too.
-        if (daterange == null) {
-          this.datepickerComponents.forEach(component => component.resetValue());
-        }
       })
     );
   }

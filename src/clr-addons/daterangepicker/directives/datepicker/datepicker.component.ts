@@ -49,10 +49,10 @@ export class ClrDatepickerComponent implements AfterViewInit, OnDestroy {
    * Input control.
    */
   @ViewChild('input', { static: false })
-  private input: ElementRef<HTMLInputElement>;
+  private input!: ElementRef<HTMLInputElement>;
 
   @ViewChildren(ClrDateContainer)
-  private dateComponents: QueryList<ClrDateContainer>;
+  private dateComponents!: QueryList<ClrDateContainer>;
 
   /**
    * Event triggered when value changes.
@@ -117,13 +117,6 @@ export class ClrDatepickerComponent implements AfterViewInit, OnDestroy {
 
   public ngOnDestroy(): void {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
-  }
-
-  /**
-   * Reset value.
-   */
-  public resetValue(): void {
-    this.input.nativeElement.value = '';
   }
 
   /**
