@@ -1,34 +1,35 @@
 <router-outlet></router-outlet>
-<nav class="sidenav" [clr-nav-level]="2">
-  <section class="sidenav-content">
-    <div style="margin-left: 1rem; font-weight: 500">Addons Version {{ environment.addons_version }}</div>
-    <div style="margin-left: 1rem; font-weight: 500">Clarity Version {{ environment.clarity_version }}</div>
-
-    <a class="nav-link" routerLink="get-started" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-      >Get Started</a
-    >
-
-    <a
-      class="nav-link"
-      [routerLink]="['/documentation', environment.version, 'internationalization']"
-      routerLinkActive="active"
-      [routerLinkActiveOptions]="{ exact: true }"
-      >Internationalization</a
-    >
-
-    <section class="nav-group collapsible">
-      <input id="tab3" type="checkbox" />
-      <label for="tab3">Layout</label>
-      <ul class="nav-list">
-        <documentation-nav-links type="layout"></documentation-nav-links>
-      </ul>
-    </section>
-    <section class="nav-group collapsible">
-      <input id="tab1" type="checkbox" />
-      <label for="tab1">Components</label>
-      <ul class="nav-list">
-        <documentation-nav-links type="component"></documentation-nav-links>
-      </ul>
-    </section>
-  </section>
-</nav>
+<clr-vertical-nav [clrVerticalNavCollapsible]="true" [clrVerticalNavCollapsed]="false">
+  <div style="margin-left: 1rem">Addons Version {{ environment.addons_version }}</div>
+  <div style="margin-left: 1rem">Clarity Version {{ environment.clarity_version }}</div>
+  <a
+    class="nav-link"
+    clrVerticalNavLink
+    routerLink="get-started"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    Get Started
+  </a>
+  <a
+    class="nav-link"
+    clrVerticalNavLink
+    [routerLink]="['/documentation', environment.version, 'internationalization']"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    Internationalization
+  </a>
+  <clr-vertical-nav-group routerLinkActive="active">
+    Layout
+    <clr-vertical-nav-group-children>
+      <documentation-nav-links type="layout"></documentation-nav-links>
+    </clr-vertical-nav-group-children>
+  </clr-vertical-nav-group>
+  <clr-vertical-nav-group routerLinkActive="active">
+    Components
+    <clr-vertical-nav-group-children>
+      <documentation-nav-links type="component"></documentation-nav-links>
+    </clr-vertical-nav-group-children>
+  </clr-vertical-nav-group>
+</clr-vertical-nav>
