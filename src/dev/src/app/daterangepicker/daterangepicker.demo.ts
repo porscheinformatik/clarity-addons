@@ -68,7 +68,7 @@ export class DaterangepickerDemo {
   }
 
   public triggerPartialRequiredValidation(): void {
-    this.validationForm.patchValue({ daterange: { from: null, to: null } });
+    this.validationForm.patchValue({ daterange: { from: null, to: new DayModel(2023, 4, 3) } });
   }
 
   public triggerFromIsAfterToValidation(): void {

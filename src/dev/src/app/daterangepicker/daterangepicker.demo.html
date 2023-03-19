@@ -69,7 +69,7 @@
   </ul>
   <clr-daterangepicker-container>
     <label>Daterange</label>
-    <input clrDaterangepicker type="date" [min]="minDate" [max]="maxDate" formControlName="daterange" />
+    <input clrDaterangepicker type="date" [min]="minDate" [max]="maxDate" formControlName="daterange" required />
     <clr-control-helper>Helper text.</clr-control-helper>
     <clr-control-error *clrIfDaterangeError="'required'">Daterange is mandatory!</clr-control-error>
     <clr-control-error *clrIfDaterangeError="'fromIsAfterTo'">
