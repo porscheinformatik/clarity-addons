@@ -58,59 +58,6 @@ h6.indent + p.indent {
   }
 }
 
-.sidenav,
-.slider-nav {
-  .nav-group label {
-    font-weight: bold;
-    display: block;
-    width: 100%;
-  }
-
-  .nav-group label > a {
-    color: inherit;
-    text-decoration: none;
-    padding-left: $bl-0_5;
-
-    &:hover,
-    &:active,
-    &:focus {
-      color: inherit;
-      text-decoration: none;
-      background: #eee;
-    }
-
-    &.active {
-      background: #d9e4ea;
-
-      &:hover,
-      &:active,
-      &:focus {
-        background: #d9e4ea;
-      }
-    }
-  }
-
-  a.nav-link {
-    & > .nav-link-tag {
-      color: #313131;
-      display: inline-block;
-      padding-left: 8px;
-      font-size: 10px;
-      font-weight: 400;
-      vertical-align: top;
-      letter-spacing: 0.02em;
-
-      &.new {
-        color: #7e00b4;
-      }
-
-      &.updated {
-        color: #0094d2;
-      }
-    }
-  }
-}
-
 .slider-nav .nav-group label > a {
   display: block;
   width: auto;
@@ -180,21 +127,12 @@ a.btn-primary {
   }
 }
 
-.sidenav .sidenav-content {
-  margin-bottom: 0;
-  padding-bottom: $bl-1_0;
-}
-
 .header .branding .clarity-logo {
   background-image: url(../assets/images/clarity-logo.svg);
   margin-right: $bl-0_5 - 1;
   min-width: none;
   height: 36px;
   width: 36px;
-}
-
-.layout-documentation .sidenav {
-  max-width: 11.33rem;
 }
 
 @media (min-width: 769px) {
@@ -395,38 +333,8 @@ a.btn-primary {
     text-align: center;
 
     .content-container {
-      max-width: 54rem;
       margin: 0 auto;
       text-align: left;
-    }
-  }
-
-  .icons-sidenav {
-    border: none;
-    padding: 0;
-    text-align: left;
-    width: 10.8rem;
-
-    .sidenav-content {
-      padding: 1.8rem 0 0 1.2rem;
-    }
-
-    .nav-group {
-      .nav-list {
-        padding: 0;
-
-        .nav-link {
-          padding: 0.15rem 0.3rem;
-          border-radius: 0.15rem;
-        }
-      }
-
-      label {
-        text-transform: uppercase;
-        font-weight: 400;
-        font-size: 0.6rem;
-        padding: 0 0 0.3rem 0.3rem;
-      }
     }
   }
 

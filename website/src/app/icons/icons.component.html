@@ -17,24 +17,22 @@
 
 <div class="icons-content">
   <div class="content-container">
-    <nav class="sidenav icons-sidenav" [clr-nav-level]="2">
-      <section class="sidenav-content">
-        <section class="nav-group">
-          <input id="overview" type="checkbox" />
-          <label for="overview">Overview</label>
-          <ul class="nav-list">
-            <li><a [routerLink]="['./get-started']" routerLinkActive="active" class="nav-link">Get Started</a></li>
-          </ul>
-        </section>
-        <section class="nav-group">
-          <input id="iconsets" type="checkbox" />
-          <label for="iconsets">Icon Sets</label>
-          <ul class="nav-list">
-            <li><a [routerLink]="['./icon-sets']" routerLinkActive="active" class="nav-link">All</a></li>
-          </ul>
-        </section>
-      </section>
-    </nav>
+    <clr-vertical-nav>
+      <clr-vertical-nav-group>
+        Overview
+        <clr-vertical-nav-group-children>
+          <a clrVerticalNavLink [routerLink]="['./get-started']" routerLinkActive="active" class="nav-link">
+            Get Started
+          </a>
+        </clr-vertical-nav-group-children>
+      </clr-vertical-nav-group>
+      <clr-vertical-nav-group>
+        Icon Sets
+        <clr-vertical-nav-group-children>
+          <a clrVerticalNavLink [routerLink]="['./icon-sets']" routerLinkActive="active" class="nav-link"> All </a>
+        </clr-vertical-nav-group-children>
+      </clr-vertical-nav-group>
+    </clr-vertical-nav>
     <div class="content-area">
       <router-outlet></router-outlet>
     </div>
