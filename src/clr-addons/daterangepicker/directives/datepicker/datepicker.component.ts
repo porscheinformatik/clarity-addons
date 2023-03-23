@@ -61,11 +61,6 @@ export class ClrDatepickerComponent implements AfterViewInit, OnDestroy {
   public valueChange = new EventEmitter<NullableDayModel>();
 
   /**
-   * Disabled state.
-   */
-  protected disabled = false;
-
-  /**
    * Get date.
    * @returns JavaScript Date object.
    */
@@ -124,19 +119,5 @@ export class ClrDatepickerComponent implements AfterViewInit, OnDestroy {
    */
   public focus(): void {
     this.input.nativeElement.focus();
-  }
-
-  /**
-   * Disable control.
-   */
-  public disable(): void {
-    this.disabled = true;
-  }
-
-  /**
-   * Enable control.
-   */
-  public enable(): void {
-    this.disabled = false;
   }
 }
