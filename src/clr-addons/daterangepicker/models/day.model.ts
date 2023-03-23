@@ -24,7 +24,7 @@ export class DayModel {
    * @param date - The date as a number between 1 and 31.
    */
   public constructor(year: number, month: number, date: number);
-  public constructor(...args: Array<any>) {
+  public constructor(...args: Array<number | Date>) {
     if (args[0] instanceof Date) {
       const date: Date = args[0];
       this.year = date.getFullYear();
@@ -32,8 +32,8 @@ export class DayModel {
       this.date = date.getDate();
     } else {
       this.year = args[0];
-      this.month = args[1];
-      this.date = args[2];
+      this.month = args[1] as number;
+      this.date = args[2] as number;
     }
   }
 
