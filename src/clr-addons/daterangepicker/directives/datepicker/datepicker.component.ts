@@ -1,15 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  Output,
-  QueryList,
-  ViewChild,
-  ViewChildren,
-} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
 import { ClrDateContainer, ClrPopoverToggleService } from '@clr/angular';
 import { Subscription } from 'rxjs';
 
@@ -48,11 +37,14 @@ export class ClrDatepickerComponent implements AfterViewInit, OnDestroy {
   /**
    * Input control.
    */
-  @ViewChild('input', { static: false })
-  private input!: ElementRef<HTMLInputElement>;
+  @ViewChild('inputElm')
+  private inputElm!: ElementRef<HTMLInputElement>;
 
-  @ViewChildren(ClrDateContainer)
-  private dateComponents!: QueryList<ClrDateContainer>;
+  /**
+   * Clarity datepicker container.
+   */
+  @ViewChild(ClrDateContainer)
+  private clrDateContainer!: ClrDateContainer;
 
   /**
    * Event triggered when value changes.
@@ -101,7 +93,7 @@ export class ClrDatepickerComponent implements AfterViewInit, OnDestroy {
 
   public ngAfterViewInit(): void {
     // eslint-disable-next-line dot-notation -- Need access to this private property.
-    const toggleService = this.dateComponents.first['toggleService'] as ClrPopoverToggleService;
+    const toggleService = this.clrDateContainer['toggleService'] as ClrPopoverToggleService;
     this.subscriptions.push(
       toggleService.openChange.subscribe(openState => {
         console.log('ClrDatepickerComponent.toggleService.openChange', { openState });
@@ -118,6 +110,6 @@ export class ClrDatepickerComponent implements AfterViewInit, OnDestroy {
    * Focus input.
    */
   public focus(): void {
-    this.input.nativeElement.focus();
+    this.inputElm.nativeElement.focus();
   }
 }
