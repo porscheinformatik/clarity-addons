@@ -48,7 +48,7 @@ class GeneralErrorTestComponent {}
 })
 class SpecificErrorTestComponent {}
 
-describe('Directive ClrIfDaterangeErrorDirective', () => {
+describe('Directive: ClrIfDaterangeErrorDirective', () => {
   describe('invalid use', () => {
     it('throws error when used outside of `ClrDaterangepickerContainerComponent`', () => {
       TestBed.configureTestingModule({
