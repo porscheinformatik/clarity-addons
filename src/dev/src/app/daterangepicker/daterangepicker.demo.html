@@ -6,8 +6,12 @@
     <label>Daterange</label>
     <input clrDaterangepicker type="date" formControlName="daterange" />
   </clr-daterangepicker-container>
+  <clr-date-container>
+    <label>Date</label>
+    <input clrDate type="date" formControlName="date" />
+  </clr-date-container>
   <clr-input-container>
-    <label>Input label</label>
+    <label>Input</label>
     <input clrInput type="text" placeholder="Some input" formControlName="otherValue" />
   </clr-input-container>
   <button type="button" class="btn" (click)="updateReactiveForm()">Pre-fill</button>
@@ -35,7 +39,7 @@
     <input clrDate type="date" formControlName="date" />
   </clr-date-container>
   <clr-input-container>
-    <label>Input label</label>
+    <label>Input</label>
     <input clrInput type="text" formControlName="otherValue" />
   </clr-input-container>
   <pre>{{reactiveForm.value | json}}</pre>
@@ -52,7 +56,7 @@
     <input clrDate type="date" formControlName="date" />
   </clr-date-container>
   <clr-input-container>
-    <label>Input label</label>
+    <label>Input</label>
     <input clrInput type="text" formControlName="otherValue" />
   </clr-input-container>
   <pre>{{reactiveForm.value | json}}</pre>
