@@ -143,7 +143,7 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
    * @returns Friendly daterange text.
    */
   protected get friendlyDaterange(): string {
-    return this._friendlyDaterange ?? this.commonStrings.datepickerToggleChooseDateLabel;
+    return this._friendlyDaterange || this.commonStrings.datepickerToggleChooseDateLabel;
   }
 
   /**
