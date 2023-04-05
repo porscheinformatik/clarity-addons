@@ -172,7 +172,7 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
 
   /**
    * Listen to manual changes to the input.
-   * @param target - Input.
+   * @param target - Input element.
    */
   @HostListener('change', ['$event.target'])
   public onChangeEvent(target: HTMLInputElement): void {
