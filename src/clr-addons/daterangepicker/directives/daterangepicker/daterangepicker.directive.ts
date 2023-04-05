@@ -238,9 +238,9 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
     let daterange = this.daterangeService.selectedDaterange;
     console.log('ClrDaterangepickerDirective.triggerChange', { daterange });
 
-    // When both `from` and `to` properties are not set, just return null.
+    // When `from` or `to` properties are not set, return null.
     // This will trigger the `required` validator.
-    if (daterange != null && daterange.from == null && daterange.to == null) {
+    if (daterange != null && (daterange.from == null || daterange.to == null)) {
       daterange = null;
     }
 
