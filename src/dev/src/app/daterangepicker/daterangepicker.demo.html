@@ -64,12 +64,11 @@
 
 <h3>Validation</h3>
 <form clrForm [clrLayout]="'horizontal'" [formGroup]="validationForm">
-  Validations:
   <ul>
-    <li>Daterange is required.</li>
+    <li>Daterange is required. When absent or partial.</li>
     <li>Daterange "from" cannot be after "to".</li>
-    <li>Daterange cannot be before {{minDate | date}}.</li>
-    <li>Daterange cannot be after {{maxDate | date}}</li>
+    <li>Daterange cannot start before min date: {{minDate | date}}.</li>
+    <li>Daterange cannot end after max date: {{maxDate | date}}</li>
   </ul>
   <clr-daterangepicker-container>
     <label>Daterange</label>
