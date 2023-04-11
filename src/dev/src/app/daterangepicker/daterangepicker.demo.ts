@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {
   DaterangePreset,
@@ -27,6 +27,7 @@ export class DaterangepickerDemo {
       validators: [Validators.required],
     }),
   });
+  @ViewChild('validationInput') validationInput!: ElementRef<HTMLInputElement>;
   minDate = new Date(2023, 0, 1);
   maxDate = new Date(2024, 11, 31);
 
@@ -87,6 +88,12 @@ export class DaterangepickerDemo {
         to: new DayModel(2030, 4, 3),
       },
     });
+  }
+
+  public triggerInvalidValidation(): void {
+    this.validationInput.nativeElement.value = 'abc-123';
+    this.validationInput.nativeElement.dispatchEvent(new Event('change'));
+    // This will not make the control touched, and therefor not hide the helper.
   }
 
   public triggerSuccess(): void {

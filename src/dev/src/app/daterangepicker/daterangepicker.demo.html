@@ -72,7 +72,15 @@
   </ul>
   <clr-daterangepicker-container>
     <label>Daterange</label>
-    <input clrDaterangepicker type="date" [min]="minDate" [max]="maxDate" formControlName="daterange" required />
+    <input
+      #validationInput
+      clrDaterangepicker
+      type="date"
+      [min]="minDate"
+      [max]="maxDate"
+      formControlName="daterange"
+      required
+    />
     <clr-control-helper>Helper text.</clr-control-helper>
     <clr-control-error *clrIfDaterangeError="'required'">Daterange is mandatory!</clr-control-error>
     <clr-control-error *clrIfDaterangeError="'fromIsAfterTo'">
@@ -98,6 +106,9 @@
   </button>
   <button type="button" class="btn btn-danger-outline" (click)="triggerMinMaxValidation()">
     Trigger min/max validation
+  </button>
+  <button type="button" class="btn btn-danger-outline" (click)="triggerInvalidValidation()">
+    Trigger invalid validation
   </button>
   <button type="button" class="btn btn-success-outline" (click)="triggerSuccess()">Trigger success</button>
   <pre>{{ validationForm.value | json}}</pre>
