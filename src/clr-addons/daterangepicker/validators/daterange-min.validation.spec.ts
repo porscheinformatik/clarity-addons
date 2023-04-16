@@ -18,7 +18,7 @@ const MIN_DATE = new Date(2022, 0, 1);
 })
 class TestComponent {
   public readonly minDate = MIN_DATE;
-  public readonly formControl = new FormControl();
+  public readonly formControl = new FormControl<NullableDaterange>(null);
 }
 
 @Component({
@@ -37,7 +37,7 @@ class TestComponent {
 class TestWithToggleableValidationComponent {
   public readonly minDate = MIN_DATE;
   public validationState: unknown;
-  public readonly formControl = new FormControl();
+  public readonly formControl = new FormControl<NullableDaterange>(null);
 }
 
 describe('Validator: ClrDaterangeMinValidator', () => {

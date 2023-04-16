@@ -18,7 +18,7 @@ const MAX_DATE = new Date(2022, 11, 31);
 })
 class TestComponent {
   public readonly maxDate = MAX_DATE;
-  public readonly formControl = new FormControl();
+  public readonly formControl = new FormControl<NullableDaterange>(null);
 }
 
 @Component({
@@ -37,7 +37,7 @@ class TestComponent {
 class TestWithToggleableValidationComponent {
   public readonly maxDate = MAX_DATE;
   public validationState: unknown;
-  public readonly formControl = new FormControl();
+  public readonly formControl = new FormControl<NullableDaterange>(null);
 }
 
 describe('Validator: ClrDaterangeMaxValidator', () => {

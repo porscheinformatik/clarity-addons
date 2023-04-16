@@ -15,7 +15,7 @@ import { DayModel } from '../models/day.model';
   `,
 })
 class TestComponent {
-  public readonly formControl = new FormControl();
+  public readonly formControl = new FormControl<NullableDaterange>(null);
 }
 
 @Component({
@@ -32,7 +32,7 @@ class TestComponent {
 })
 class TestWithToggleableValidationComponent {
   public validationState: unknown;
-  public readonly formControl = new FormControl();
+  public readonly formControl = new FormControl<NullableDaterange>(null);
 }
 
 describe('Validator: ClrDaterangeOrderValidator', () => {
