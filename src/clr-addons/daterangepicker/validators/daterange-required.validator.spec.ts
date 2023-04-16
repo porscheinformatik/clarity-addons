@@ -4,9 +4,13 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 import { ClrDaterangepickerModule } from '../daterangepicker.module';
-import { NullableDaterange } from '../interfaces/daterange.interface';
+import { Daterange, NullableDaterange } from '../interfaces/daterange.interface';
 import { DayModel } from '../models/day.model';
 import { ClrDaterangeRequiredValidator } from './daterange-required.validator';
+
+type RequiredValidationError = {
+  required: Daterange;
+};
 
 @Component({
   template: `
@@ -56,7 +60,7 @@ describe('Validator: ClrDaterangeRequiredValidator', () => {
         from: null,
         to: new DayModel(2022, 0, 1),
       };
-      const expectedErrors = {
+      const expectedErrors: RequiredValidationError = {
         required: { from: null, to: new DayModel(2022, 0, 1) },
       };
 
@@ -74,7 +78,7 @@ describe('Validator: ClrDaterangeRequiredValidator', () => {
         from: new DayModel(2022, 0, 1),
         to: null,
       };
-      const expectedErrors = {
+      const expectedErrors: RequiredValidationError = {
         required: { from: new DayModel(2022, 0, 1), to: null },
       };
 
@@ -92,7 +96,7 @@ describe('Validator: ClrDaterangeRequiredValidator', () => {
         from: null,
         to: null,
       };
-      const expectedErrors = {
+      const expectedErrors: RequiredValidationError = {
         required: { from: null, to: null },
       };
 
@@ -156,7 +160,7 @@ describe('Validator: ClrDaterangeRequiredValidator', () => {
         from: null,
         to: null,
       };
-      const expectedErrors = {
+      const expectedErrors: RequiredValidationError = {
         required: { from: null, to: null },
       };
 
@@ -175,7 +179,7 @@ describe('Validator: ClrDaterangeRequiredValidator', () => {
         from: null,
         to: null,
       };
-      const expectedErrors = {
+      const expectedErrors: RequiredValidationError = {
         required: { from: null, to: null },
       };
 
@@ -194,7 +198,7 @@ describe('Validator: ClrDaterangeRequiredValidator', () => {
         from: null,
         to: null,
       };
-      const expectedErrors = {
+      const expectedErrors: RequiredValidationError = {
         required: { from: null, to: null },
       };
 
