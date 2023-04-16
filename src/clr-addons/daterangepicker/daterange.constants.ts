@@ -34,3 +34,8 @@ export const BIG_ENDIAN: InputDateDisplayFormat = {
 
 /** Default separator text. */
 export const SEPARATOR_TEXT_DEFAULT = ' - ';
+
+export const TRANSLATIONS = {
+  from: 'From',
+  to: 'To',
+};

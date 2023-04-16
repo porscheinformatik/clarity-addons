@@ -34,6 +34,7 @@ import { ClrDaterangepickerDirective } from '../daterangepicker/daterangepicker.
 import { DaterangeControlStateService } from '../../providers/daterange-control-state.service';
 import { ClrAbstractContainer } from '../abstract-container.component';
 import { ControlIdService } from '../../../abstract-form-component/control-id.service';
+import { TRANSLATIONS } from '../../daterange.constants';
 
 ClarityIcons.addIcons(calendarIcon, exclamationCircleIcon, checkCircleIcon, windowCloseIcon);
 
@@ -75,13 +76,13 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
    * Text for the 'from' label.
    */
   @Input()
-  public labelFrom = 'From';
+  public labelFrom = TRANSLATIONS.from;
 
   /**
    * Text for the 'to' label.
    */
   @Input()
-  public labelTo = 'To';
+  public labelTo = TRANSLATIONS.to;
 
   /** List of datepicker components children. */
   @ViewChildren(ClrDatepickerComponent)
