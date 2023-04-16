@@ -255,6 +255,11 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
           });
         } else {
           this.daterangepickerDirective.focus();
+
+          // When closing popover modal and daterange is not valid, reset model.
+          if (!this.daterangeService.isValid()) {
+            this.daterangeService.updateSelectedDaterange(null);
+          }
         }
       })
     );
