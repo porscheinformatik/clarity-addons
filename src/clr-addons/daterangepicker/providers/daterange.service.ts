@@ -26,7 +26,7 @@ export class DaterangeService {
   }
 
   /**
-   * Selected daterange value.
+   * Set selected daterange value.
    * @param value - New selected daterange value.
    * @param triggerEvent - Trigger change event (default true).
    */
