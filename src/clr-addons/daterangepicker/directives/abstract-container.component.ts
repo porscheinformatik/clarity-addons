@@ -1,5 +1,5 @@
 import { ContentChild, Directive, HostBinding, Optional } from '@angular/core';
-import { ClrControlSuccess, ClrControlError, ClrControlHelper, ClrLayout, ClrLabel } from '@clr/angular';
+import { ClrControlError, ClrControlHelper, ClrControlSuccess, ClrLabel, ClrLayout } from '@clr/angular';
 import { DaterangeControlStateService } from '../providers/daterange-control-state.service';
 
 @Directive()

@@ -9,7 +9,7 @@ import {
   QueryList,
   ViewChildren,
 } from '@angular/core';
-import { calendarIcon, checkCircleIcon, ClarityIcons, exclamationCircleIcon, windowCloseIcon } from '@cds/core/icon';
+import { ClarityIcons, calendarIcon, checkCircleIcon, exclamationCircleIcon, windowCloseIcon } from '@cds/core/icon';
 import '@cds/core/icon/register.js';
 import {
   ClrCommonStrings,
@@ -22,19 +22,19 @@ import {
 } from '@clr/angular';
 import { Subscription } from 'rxjs';
 
-import { NullableDaterange } from '../../interfaces/daterange.interface';
-import { DaterangePreset } from '../../interfaces/daterange-preset.interface';
-import { NullableDayModel } from '../../models/day.model';
-import { PopoverPositions } from '../../models/popover-positions.model';
-import { DaterangeService } from '../../providers/daterange.service';
-import { DaterangeParsingService } from '../../providers/daterange-parsing.service';
-import { OpenedDatepickersTrackerService } from '../../providers/opened-datepickers-tracker.service';
-import { ClrDatepickerComponent } from '../datepicker/datepicker.component';
-import { ClrDaterangepickerDirective } from '../daterangepicker/daterangepicker.directive';
-import { DaterangeControlStateService } from '../../providers/daterange-control-state.service';
-import { ClrAbstractContainer } from '../abstract-container.component';
 import { ControlIdService } from '../../../abstract-form-component/control-id.service';
 import { TRANSLATIONS } from '../../daterange.constants';
+import { DaterangePreset } from '../../interfaces/daterange-preset.interface';
+import { NullableDaterange } from '../../interfaces/daterange.interface';
+import { NullableDayModel } from '../../models/day.model';
+import { PopoverPositions } from '../../models/popover-positions.model';
+import { DaterangeControlStateService } from '../../providers/daterange-control-state.service';
+import { DaterangeParsingService } from '../../providers/daterange-parsing.service';
+import { DaterangeService } from '../../providers/daterange.service';
+import { OpenedDatepickersTrackerService } from '../../providers/opened-datepickers-tracker.service';
+import { ClrAbstractContainer } from '../abstract-container.component';
+import { ClrDatepickerComponent } from '../datepicker/datepicker.component';
+import { ClrDaterangepickerDirective } from '../daterangepicker/daterangepicker.directive';
 
 ClarityIcons.addIcons(calendarIcon, exclamationCircleIcon, checkCircleIcon, windowCloseIcon);
 
