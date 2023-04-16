@@ -302,8 +302,7 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
 
     // Close popover here, because it's not possible to conditionally
     // apply `clrPopoverCloseButton` directive on preset button.
-    const valid = range.from != null && range.to != null;
-    if (valid) {
+    if (this.daterangeService.isValid()) {
       this.clrPopoverToggleService.open = false;
     }
   }

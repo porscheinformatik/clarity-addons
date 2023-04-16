@@ -47,4 +47,16 @@ export class DaterangeService {
    * Event triggered when value changes.
    */
   public valueChange = new EventEmitter<NullableDaterange>();
+
+  /**
+   * Checks if daterange is valid.
+   * Daterange is considered invalid when it's empty, or when one of it's properties is absent.
+   * @returns Wether daterange is valid.
+   */
+  public isValid(): boolean {
+    if (this._selectedDaterange == null || this._selectedDaterange.from == null || this._selectedDaterange.to == null) {
+      return false;
+    }
+    return true;
+  }
 }
