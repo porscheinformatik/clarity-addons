@@ -112,7 +112,12 @@
   </button>
   <button type="button" class="btn btn-success-outline" (click)="triggerSuccess()">Trigger success</button>
   <pre>{{ validationForm.value | json}}</pre>
-  <pre>{{ validationForm.controls.daterange.errors | json}}</pre>
+  <pre>
+{{ {
+      touched: validationForm.controls.daterange.touched,
+      errors: validationForm.controls.daterange.errors
+    } | json}}
+  </pre>
 </form>
 
 <h3>Configuration</h3>
