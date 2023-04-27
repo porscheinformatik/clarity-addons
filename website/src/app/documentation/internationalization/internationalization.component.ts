@@ -1,14 +1,28 @@
 import { Component } from '@angular/core';
 import localeDe from '@angular/common/locales/de';
 import localeDeAT from '@angular/common/locales/de-AT';
+import localeDeBE from '@angular/common/locales/de-BE';
+import localeEn from '@angular/common/locales/en';
+import localeEnBE from '@angular/common/locales/en-BE';
 import localeEnGB from '@angular/common/locales/en-GB';
-import localeEnUS from '@angular/common/locales/en';
+import localeFr from '@angular/common/locales/fr';
+import localeFrBE from '@angular/common/locales/fr-BE';
+import localeNl from '@angular/common/locales/nl';
+import localeNlBE from '@angular/common/locales/nl-BE';
+
 import { registerLocaleData } from '@angular/common';
 import { CURRENCIES_EN } from './currencies';
 
 registerLocaleData(localeDe);
 registerLocaleData(localeDeAT);
+registerLocaleData(localeDeBE);
+registerLocaleData(localeEn);
+registerLocaleData(localeEnBE);
 registerLocaleData(localeEnGB);
+registerLocaleData(localeFr);
+registerLocaleData(localeFrBE);
+registerLocaleData(localeNl);
+registerLocaleData(localeNlBE);
 
 enum LocaleDataIndex {
   LocaleId = 0,
@@ -44,7 +58,7 @@ enum LocaleDataIndex {
 export class InternationalizationComponent {
   // If you want to extend this to more locales, simply import the locale file, call registerLocaleData()
   // and add it into this array - then it should become visible to be selected from the dropdown!
-  supportedLocales = [localeDe, localeDeAT, localeEnUS, localeEnGB];
+  supportedLocales = [localeDe, localeDeAT, localeDeBE, localeEn, localeEnBE, localeEnGB, localeFr, localeFrBE, localeNl, localeNlBE];
   firstLocale = localeDe;
   secondLocale = localeEnGB;
 
