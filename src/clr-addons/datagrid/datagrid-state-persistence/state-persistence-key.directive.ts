@@ -8,10 +8,20 @@ import {
   OnDestroy,
   QueryList,
 } from '@angular/core';
-import { ClrDatagrid, ClrDatagridFilter, ClrDatagridFilterInterface, ClrDatagridPagination } from '@clr/angular';
+import {
+  ClrDatagrid,
+  ClrDatagridComparatorInterface,
+  ClrDatagridFilter,
+  ClrDatagridFilterInterface,
+  ClrDatagridPagination,
+  ClrDatagridSortOrder,
+  ClrDatagridStateInterface,
+  DatagridPropertyComparator,
+} from '@clr/angular';
 import { ClrDatagridStatePersistenceModel } from './datagrid-state-persistence-model.interface';
 import { delay, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { StatePersistenceOptions } from './state-persistence-options.interface';
 
 const DATE_TYPE = 'date';
 
@@ -24,8 +34,15 @@ interface FilterValueWithMetadata {
   selector: '[clrStatePersistenceKey]',
 })
 export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy {
+  /**
+   * Configuration options for the persistence.
+   * 'Key' represents the local storage key under which the persistence state is stored.
+   *
+   * Optional fields with the 'persist' prefix toggle the persistence of the respective datagrid functionality,
+   * the default value is always 'true'.
+   */
   @Input('clrStatePersistenceKey')
-  options: { key: string; serverDriven: boolean };
+  options: StatePersistenceOptions;
 
   @Input('clrUseLocalStoreOnly')
   useLocalStoreOnly = false;
@@ -63,9 +80,11 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
     const localStorageState = this.getLocalStorageState();
 
     this.initFilter(volatileDataState);
+    this.initSorting(localStorageState);
     this.initDatagridPersister();
 
-    if (this.pagination && this.pagination.page) {
+    const paginationPersistenceEnabled = this.options.persistPagination ?? true;
+    if (this.pagination?.page && paginationPersistenceEnabled) {
       this.initPageSizePersister(localStorageState);
       this.initCurrentPage(volatileDataState);
     }
@@ -104,8 +123,9 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
     }
   }
 
-  private initFilter(savedState: ClrDatagridStatePersistenceModel) {
-    if (savedState.columns) {
+  private initFilter(savedState: ClrDatagridStatePersistenceModel): void {
+    const filterPersistenceEnabled = this.options.persistFilters ?? true;
+    if (savedState.columns && filterPersistenceEnabled) {
       Object.keys(savedState.columns).forEach(prop => {
         const filter = this.getFilter(prop);
         if (filter) {
@@ -118,14 +138,46 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
     }
   }
 
+  private initSorting(savedState: ClrDatagridStatePersistenceModel): void {
+    const sortPersistenceEnabled = this.options.persistSort ?? true;
+    if (savedState.sortBy && sortPersistenceEnabled) {
+      this.datagrid.columns.forEach(column => {
+        if (this.getSortProperty(column.sortBy) === savedState.sortBy) {
+          column.sortOrder = savedState.sortReverse ? ClrDatagridSortOrder.DESC : ClrDatagridSortOrder.ASC;
+        } else {
+          column.sortOrder = ClrDatagridSortOrder.UNSORTED;
+        }
+      });
+    }
+  }
+
   private initDatagridPersister() {
     // delay is needed, as onDestroy the filters emit empty values.
     // So delay it to the end of the current cycle, so the directive is also destroyed before it gets the next values
     this.datagrid.refresh.pipe(delay(0), takeUntil(this.destroy$)).subscribe(dgState => {
-      const state = this.getVolatileDataState();
+      this.persistFiltersAndCurrentPage(dgState);
+      this.persistSorting(dgState);
 
+      if (this.canShowPaginationDescription) {
+        this.updatePaginationDescription();
+      }
+    });
+
+    this.datagrid.items.change.pipe(takeUntil(this.destroy$)).subscribe(() => this.updatePaginationDescription());
+  }
+
+  private persistFiltersAndCurrentPage(dgState: ClrDatagridStateInterface<unknown>): void {
+    const filterPersistenceEnabled = this.options.persistFilters ?? true;
+    const paginationPersistenceEnabled = this.options.persistPagination ?? true;
+
+    const state = this.getVolatileDataState();
+    state.columns = state.columns || {};
+
+    if (paginationPersistenceEnabled) {
       state.currentPage = dgState.page?.current;
-      state.columns = state.columns || {};
+    }
+
+    if (filterPersistenceEnabled) {
       Object.keys(state.columns).forEach(prop => (state.columns[prop].filterValue = undefined));
       dgState.filters?.forEach(filter => {
         const property = this.getFilterPropertyName(filter);
@@ -134,14 +186,20 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
           state.columns[property].filterValue = this.enrichFilterValue(filter);
         }
       });
+    }
 
-      (this.useLocalStoreOnly ? localStorage : sessionStorage).setItem(this.options.key, JSON.stringify(state));
-      if (this.canShowPaginationDescription) {
-        this.updatePaginationDescription();
-      }
-    });
+    (this.useLocalStoreOnly ? localStorage : sessionStorage).setItem(this.options.key, JSON.stringify(state));
+  }
 
-    this.datagrid.items.change.pipe(takeUntil(this.destroy$)).subscribe(() => this.updatePaginationDescription());
+  private persistSorting(dgState: ClrDatagridStateInterface<unknown>): void {
+    const sortPersistenceEnabled = this.options.persistSort ?? true;
+    if (sortPersistenceEnabled) {
+      const state = this.getLocalStorageState();
+      state.sortBy = this.getSortProperty(dgState.sort?.by);
+      state.sortReverse = dgState.sort?.reverse;
+
+      localStorage.setItem(this.options.key, JSON.stringify(state));
+    }
   }
 
   /**
@@ -225,6 +283,18 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
     // for NestedProperty we need to get the original property
     const filterWithProp = filter as unknown as { property: unknown };
     return ((filterWithProp.property as Record<string, unknown>)?.prop || filterWithProp.property) as string;
+  }
+
+  private getSortProperty(sortBy: ClrDatagridComparatorInterface<unknown> | string): string | undefined {
+    if (sortBy) {
+      if (typeof sortBy === 'string') {
+        return sortBy;
+      }
+      if (sortBy instanceof DatagridPropertyComparator) {
+        return sortBy.prop;
+      }
+    }
+    return undefined;
   }
 
   ngOnDestroy() {
