@@ -1,14 +1,19 @@
 import { Component } from '@angular/core';
+
+// check for existing locales before import: https://www.npmjs.com/package/@angular/common?activeTab=code
 import localeDe from '@angular/common/locales/de';
 import localeDeAT from '@angular/common/locales/de-AT';
 import localeDeBE from '@angular/common/locales/de-BE';
 import localeEn from '@angular/common/locales/en';
 import localeEnBE from '@angular/common/locales/en-BE';
 import localeEnGB from '@angular/common/locales/en-GB';
+import localeEnSE from '@angular/common/locales/en-SE';
 import localeFr from '@angular/common/locales/fr';
 import localeFrBE from '@angular/common/locales/fr-BE';
 import localeNl from '@angular/common/locales/nl';
 import localeNlBE from '@angular/common/locales/nl-BE';
+import localePtPT from '@angular/common/locales/pt-PT';
+import localeSeSE from '@angular/common/locales/se-SE';
 
 import { registerLocaleData } from '@angular/common';
 import { CURRENCIES_EN } from './currencies';
@@ -19,10 +24,13 @@ registerLocaleData(localeDeBE);
 registerLocaleData(localeEn);
 registerLocaleData(localeEnBE);
 registerLocaleData(localeEnGB);
+registerLocaleData(localeEnSE);
 registerLocaleData(localeFr);
 registerLocaleData(localeFrBE);
 registerLocaleData(localeNl);
 registerLocaleData(localeNlBE);
+registerLocaleData(localePtPT);
+registerLocaleData(localeSeSE);
 
 enum LocaleDataIndex {
   LocaleId = 0,
@@ -58,7 +66,7 @@ enum LocaleDataIndex {
 export class InternationalizationComponent {
   // If you want to extend this to more locales, simply import the locale file, call registerLocaleData()
   // and add it into this array - then it should become visible to be selected from the dropdown!
-  supportedLocales = [localeDe, localeDeAT, localeDeBE, localeEn, localeEnBE, localeEnGB, localeFr, localeFrBE, localeNl, localeNlBE];
+  supportedLocales = [localeDe, localeDeAT, localeDeBE, localeEn, localeEnBE, localeEnGB, localeEnSE, localeFr, localeFrBE, localeNl, localeNlBE, localePtPT, localeSeSE];
   firstLocale = localeDe;
   secondLocale = localeEnGB;
 
