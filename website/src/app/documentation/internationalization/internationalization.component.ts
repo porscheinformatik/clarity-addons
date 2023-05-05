@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
+
+// check for existing locales before import: https://www.npmjs.com/package/@angular/common?activeTab=code
 import localeDe from '@angular/common/locales/de';
 import localeDeAT from '@angular/common/locales/de-AT';
 import localeDeBE from '@angular/common/locales/de-BE';
 import localeEn from '@angular/common/locales/en';
 import localeEnBE from '@angular/common/locales/en-BE';
 import localeEnGB from '@angular/common/locales/en-GB';
-import localeEnPT from '@angular/common/locales/en-PT';
 import localeEnSE from '@angular/common/locales/en-SE';
 import localeFr from '@angular/common/locales/fr';
 import localeFrBE from '@angular/common/locales/fr-BE';
@@ -23,7 +24,6 @@ registerLocaleData(localeDeBE);
 registerLocaleData(localeEn);
 registerLocaleData(localeEnBE);
 registerLocaleData(localeEnGB);
-registerLocaleData(localeEnPT);
 registerLocaleData(localeEnSE);
 registerLocaleData(localeFr);
 registerLocaleData(localeFrBE);
