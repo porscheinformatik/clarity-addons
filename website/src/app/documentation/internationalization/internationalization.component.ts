@@ -66,7 +66,7 @@ enum LocaleDataIndex {
 export class InternationalizationComponent {
   // If you want to extend this to more locales, simply import the locale file, call registerLocaleData()
   // and add it into this array - then it should become visible to be selected from the dropdown!
-  supportedLocales = [localeDe, localeDeAT, localeDeBE, localeEn, localeEnBE, localeEnGB, localeEnPT, localeEnSE, localeFr, localeFrBE, localeNl, localeNlBE, localePtPT, localeSeSE];
+  supportedLocales = [localeDe, localeDeAT, localeDeBE, localeEn, localeEnBE, localeEnGB, localeEnSE, localeFr, localeFrBE, localeNl, localeNlBE, localePtPT, localeSeSE];
   firstLocale = localeDe;
   secondLocale = localeEnGB;
 
