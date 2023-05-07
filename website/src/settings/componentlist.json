@@ -36,6 +36,11 @@
       "type": "component"
     },
     {
+      "url": "daterangepicker",
+      "text": "Daterangepicker",
+      "type": "component"
+    },
+    {
       "url": "history",
       "text": "History",
       "type": "component"

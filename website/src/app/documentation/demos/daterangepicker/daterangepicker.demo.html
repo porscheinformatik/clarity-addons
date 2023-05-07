@@ -1,0 +1,48 @@
+<clr-doc-wrapper [title]="title">
+  <article>
+    <h5 class="component-summary">Daterangepicker is a popover control for picking a date range value for an input.</h5>
+
+    <div id="design-guidelines">
+      <h3>Usage</h3>
+      <p>
+        Use the daterangepicker whenever you want to select a date range. The default Clarity Date Picker allows
+        selecting only one date. This component used two Clarity Date Pickers to select a start and end date.
+      </p>
+    </div>
+
+    <div id="code-examples">
+      <h3 id="examples">Code &amp; Examples</h3>
+      <h4><code>clrDaterangepicker</code> Directive</h4>
+      <p>
+        To use the daterangepicker, add the <code>clrDaterangepicker</code> directive to an <code>input</code> field.
+        Then, place the input inside the <code>clr-daterangepicker-container</code> container element.
+      </p>
+      <form clrForm>
+        <clr-daterangepicker-container>
+          <label>Basic demo</label>
+          <input clrDaterangepicker type="date" name="daterange" [(ngModel)]="value" />
+        </clr-daterangepicker-container>
+      </form>
+      <clr-code-snippet [clrCode]="basicDemo"></clr-code-snippet>
+
+      <h4>Min/Max attributes</h4>
+      <p>
+        Just like Clarity Date Picker, you can set earliest and latest acceptable dates. Just like the native HTML5 date
+        spec a <code>yyyy-mm-dd</code> string can be used in the value for min or max. If the max value isn't a possible
+        date then that the input has no max value. Similar for min values, if the string used is not a possible date
+        then the input will not have a min value.
+      </p>
+      <p>
+        Only dates inside the min/max range will be selectable for the input when there is a bound placed for the min or
+        max attribute.
+      </p>
+      <form clrForm>
+        <clr-daterangepicker-container>
+          <label>Basic demo</label>
+          <input clrDaterangepicker type="date" name="daterange" min="" max="" [(ngModel)]="value" />
+        </clr-daterangepicker-container>
+      </form>
+      <clr-code-snippet [clrCode]="minMaxDemo"></clr-code-snippet>
+    </div>
+  </article>
+</clr-doc-wrapper>
