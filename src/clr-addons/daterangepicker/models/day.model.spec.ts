@@ -1,58 +1,69 @@
 import { DayModel } from './day.model';
 
 describe('Model: DayModel', function () {
-  const dayModel1: DayModel = new DayModel(2018, 0, 1);
-  const dayModel2: DayModel = new DayModel(2018, 5, 21);
-  const dayModel3: DayModel = new DayModel(new Date(2018, 0, 1));
+  const dayModelNumbers: DayModel = new DayModel(2018, 0, 1);
+  const dayModelJsDate: DayModel = new DayModel(new Date(2018, 0, 1));
+  const dayModelString: DayModel = new DayModel('2018-01-01');
+
+  const dayModelNumbers2: DayModel = new DayModel(2018, 5, 21);
 
   it('checks if 2 DayModels are equal when the date, month and year matches', () => {
-    expect(dayModel1.isEqual(dayModel3)).toBeTrue();
-    expect(dayModel3.isEqual(dayModel1)).toBeTrue();
+    expect(dayModelNumbers.isEqual(dayModelJsDate)).toBeTrue();
+    expect(dayModelJsDate.isEqual(dayModelNumbers)).toBeTrue();
 
-    expect(dayModel1.isEqual(dayModel2)).toBeFalse();
-    expect(dayModel2.isEqual(dayModel1)).toBeFalse();
+    expect(dayModelNumbers.isEqual(dayModelString)).toBeTrue();
+    expect(dayModelString.isEqual(dayModelNumbers)).toBeTrue();
 
-    expect(dayModel3.isEqual(dayModel2)).toBeFalse();
-    expect(dayModel2.isEqual(dayModel3)).toBeFalse();
+    expect(dayModelNumbers.isEqual(dayModelNumbers2)).toBeFalse();
+    expect(dayModelNumbers2.isEqual(dayModelNumbers)).toBeFalse();
 
-    expect(dayModel1.isEqual(null)).toBeFalse();
+    expect(dayModelJsDate.isEqual(dayModelNumbers2)).toBeFalse();
+    expect(dayModelNumbers2.isEqual(dayModelJsDate)).toBeFalse();
+
+    expect(dayModelString.isEqual(dayModelNumbers2)).toBeFalse();
+    expect(dayModelNumbers2.isEqual(dayModelString)).toBeFalse();
+
+    expect(dayModelNumbers.isEqual(null)).toBeFalse();
+    expect(dayModelJsDate.isEqual(null)).toBeFalse();
+    expect(dayModelString.isEqual(null)).toBeFalse();
+    expect(dayModelNumbers2.isEqual(null)).toBeFalse();
   });
 
   it('provides a method to increment or decrement it a DayModel by a number of days', () => {
-    incrementDayModelAndCompare(dayModel2, 20);
-    incrementDayModelAndCompare(dayModel2, -20);
+    incrementDayModelAndCompare(dayModelNumbers2, 20);
+    incrementDayModelAndCompare(dayModelNumbers2, -20);
 
-    incrementDayModelAndCompare(dayModel2, 40);
-    incrementDayModelAndCompare(dayModel2, -40);
+    incrementDayModelAndCompare(dayModelNumbers2, 40);
+    incrementDayModelAndCompare(dayModelNumbers2, -40);
 
-    incrementDayModelAndCompare(dayModel1, 1);
-    incrementDayModelAndCompare(dayModel1, -1);
+    incrementDayModelAndCompare(dayModelNumbers, 1);
+    incrementDayModelAndCompare(dayModelNumbers, -1);
   });
 
   it('checks if one DayModel is after another DayModel', () => {
-    expect(dayModel2.isAfter(dayModel1)).toBeTrue();
-    expect(dayModel1.isAfter(dayModel3)).toBeFalse();
+    expect(dayModelNumbers2.isAfter(dayModelNumbers)).toBeTrue();
+    expect(dayModelNumbers.isAfter(dayModelJsDate)).toBeFalse();
   });
 
   it('checks if one DayModel is before another DayModel', () => {
-    expect(dayModel1.isBefore(dayModel2)).toBeTrue();
-    expect(dayModel1.isBefore(dayModel3)).toBeFalse();
+    expect(dayModelNumbers.isBefore(dayModelNumbers2)).toBeTrue();
+    expect(dayModelNumbers.isBefore(dayModelJsDate)).toBeFalse();
   });
 
   it('returns a clone of the DayModel', () => {
-    let testDayModel: DayModel = dayModel1.clone();
+    let testDayModel: DayModel = dayModelNumbers.clone();
 
-    expect(testDayModel).not.toBe(dayModel1);
+    expect(testDayModel).not.toBe(dayModelNumbers);
 
-    expect(assertEqualDates(testDayModel.toDate(), dayModel1.toDate())).toBeTrue();
+    expect(assertEqualDates(testDayModel.toDate(), dayModelNumbers.toDate())).toBeTrue();
 
-    testDayModel = dayModel2.clone();
-    expect(assertEqualDates(testDayModel.toDate(), dayModel2.toDate())).toBeTrue();
+    testDayModel = dayModelNumbers2.clone();
+    expect(assertEqualDates(testDayModel.toDate(), dayModelNumbers2.toDate())).toBeTrue();
   });
 
   it('converts a DayModel into the javascript date object', () => {
-    const date1: Date = dayModel1.toDate();
-    const date2: Date = dayModel2.toDate();
+    const date1: Date = dayModelNumbers.toDate();
+    const date2: Date = dayModelNumbers2.toDate();
 
     expect(date1).not.toBeNull();
     expect(date2).not.toBeNull();
@@ -61,8 +72,8 @@ describe('Model: DayModel', function () {
     expect(date2.getTime()).toEqual(new Date(2018, 5, 21).getTime());
   });
 
-  it('provides a toHTML5SpecDateString method that returns the aate as HTML5 spec string', () => {
-    const testString = dayModel1.toHTML5SpecDateString();
+  it('provides a toHTML5SpecDateString method that returns the date as HTML5 spec string', () => {
+    const testString = dayModelNumbers.toHTML5SpecDateString();
     expect(testString).toEqual('2018-01-01');
   });
 });

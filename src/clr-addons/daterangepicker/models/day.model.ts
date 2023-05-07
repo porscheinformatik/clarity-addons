@@ -14,22 +14,32 @@ export class DayModel {
 
   /**
    * Creates an day model.
-   * @param date - Javascript Date object.
-   */
-  public constructor(date: Date);
-  /**
-   * Creates an day model.
    * @param year - The full year.
    * @param month - The month as a number between 0 and 11 (January to December).
    * @param date - The date as a number between 1 and 31.
    */
   public constructor(year: number, month: number, date: number);
-  public constructor(...args: Array<number | Date>) {
+  /**
+   * Creates an day model.
+   * @param date - Javascript Date object.
+   */
+  public constructor(date: Date);
+  /**
+   * Creates an day model.
+   * @param date - Date string in `yyyy-mm-dd` format.
+   */
+  public constructor(date: string);
+  public constructor(...args: Array<number | Date | string>) {
     if (args[0] instanceof Date) {
       const date: Date = args[0];
       this.year = date.getFullYear();
       this.month = date.getMonth();
       this.date = date.getDate();
+    } else if (typeof args[0] === 'string') {
+      const [year, month, day] = args[0].split('-').map(n => parseInt(n, 10));
+      this.year = year;
+      this.month = month - 1;
+      this.date = day;
     } else {
       this.year = args[0];
       this.month = args[1] as number;

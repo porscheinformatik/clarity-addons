@@ -33,16 +33,16 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
    * Minimum date that can be selected.
    */
   @Input()
-  public set min(value: Date | undefined | null) {
-    this.daterangeService.minDate = value == null ? null : new DayModel(value);
+  public set min(value: string | undefined | null) {
+    this.daterangeService.minDate = !value ? null : new DayModel(value);
   }
 
   /**
    * Maximum date that can be selected.
    */
   @Input()
-  public set max(value: Date | undefined | null) {
-    this.daterangeService.maxDate = value == null ? null : new DayModel(value);
+  public set max(value: string | undefined | null) {
+    this.daterangeService.maxDate = !value ? null : new DayModel(value);
   }
 
   /**

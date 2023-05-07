@@ -28,8 +28,8 @@ export class DaterangepickerDemo {
     }),
   });
   @ViewChild('validationInput') validationInput!: ElementRef<HTMLInputElement>;
-  minDate = new Date(2023, 0, 1);
-  maxDate = new Date(2024, 11, 31);
+  minDate = '2023-01-01';
+  maxDate = '2024-12-31';
 
   configurationValue: NullableDaterange = null;
 
