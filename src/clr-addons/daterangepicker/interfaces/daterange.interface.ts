@@ -11,4 +11,4 @@ export interface Daterange {
 /**
  * Daterange.
  */
-export type NullableDaterange = Daterange | null | undefined;
+export type NullableDaterange = Daterange | undefined | null;
