@@ -19,7 +19,7 @@
       </p>
       <form clrForm>
         <clr-daterangepicker-container>
-          <label>Basic demo</label>
+          <label>Basic Demo</label>
           <input clrDaterangepicker type="date" name="daterange" [(ngModel)]="value" />
         </clr-daterangepicker-container>
       </form>
@@ -27,22 +27,42 @@
 
       <h4>Min/Max attributes</h4>
       <p>
-        Just like Clarity Date Picker, you can set earliest and latest acceptable dates. Just like the native HTML5 date
-        spec a <code>yyyy-mm-dd</code> string can be used in the value for min or max. If the max value isn't a possible
-        date then that the input has no max value. Similar for min values, if the string used is not a possible date
-        then the input will not have a min value.
+        Just like <a href="https://clarity.design/documentation/datepicker">Clarity Date Picker</a>, you can set
+        earliest and latest acceptable dates. Just like the native HTML5 date spec a <code>yyyy-mm-dd</code> string can
+        be used in the value for min or max. If the max value isn't a possible date then that the input has no max
+        value. Similar for min values, if the string used is not a possible date then the input will not have a min
+        value.
       </p>
       <p>
         Only dates inside the min/max range will be selectable for the input when there is a bound placed for the min or
         max attribute.
       </p>
+      <p>
+        Showing validation errors for min & max attributes work the same as Clarity with <code>clr-control-error</code>.
+        Only one big difference, it requires an different directive. Use <code>*clrIfDaterangeError</code> instead of
+        <code>*clrIfError</code>.
+      </p>
       <form clrForm>
         <clr-daterangepicker-container>
-          <label>Basic demo</label>
-          <input clrDaterangepicker type="date" name="daterange" min="" max="" [(ngModel)]="value" />
+          <label>Min date: 2023-05-03 AND Max date: 2023-06-20</label>
+          <input
+            clrDaterangepicker
+            type="date"
+            name="daterange"
+            [(ngModel)]="value"
+            min="2023-05-03"
+            max="2023-06-20"
+          />
+          <clr-control-error *clrIfDaterangeError="'min'; error as err">
+            Daterange minimum is {{ err.min.toDate() | date }}
+          </clr-control-error>
+          <clr-control-error *clrIfDaterangeError="'max'; error as err">
+            Daterange maximum is {{ err.max.toDate() | date }}
+          </clr-control-error>
         </clr-daterangepicker-container>
       </form>
       <clr-code-snippet [clrCode]="minMaxDemo"></clr-code-snippet>
     </div>
+    <pre>{{value | json}}</pre>
   </article>
 </clr-doc-wrapper>
