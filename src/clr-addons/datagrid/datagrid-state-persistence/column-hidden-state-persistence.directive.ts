@@ -20,7 +20,8 @@ export class ColumnHiddenStatePersistenceDirective implements OnInit, OnDestroy 
   ) {}
 
   ngOnInit() {
-    if (this.statePersistenceKey?.options.key && this.columnDirective?.clrDgField) {
+    const persistenceEnabled = this.statePersistenceKey?.options?.persistHiddenColumns ?? true;
+    if (this.statePersistenceKey?.options.key && this.columnDirective?.clrDgField && persistenceEnabled) {
       /* set hidden states from local storage (if existing) */
       this.initHiddenState();
 

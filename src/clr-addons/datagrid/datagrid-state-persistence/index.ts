@@ -3,3 +3,4 @@ export * from './datagrid-field.directive';
 export * from './datagrid-state-persistence.module';
 export * from './state-persistence-key.directive';
 export * from './datagrid-state-persistence-model.interface';
+export * from './state-persistence-options.interface';

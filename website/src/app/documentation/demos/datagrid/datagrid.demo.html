@@ -199,13 +199,15 @@
     Following settings will be saved:
     <ul>
       <li>Hidden (clrDgHideableColumn) state of column (LocalStorage)</li>
+      <li>Current sort column and sort order (LocalStorage)</li>
       <li>Page size (LocalStorage)</li>
       <li>Current page (SessionStorage)</li>
       <li>Current filter values (SessionStorage)</li>
     </ul>
 
     <p>
-      When specifing <code class="clr-code">[clrUseLocalStoreOnly]="true"</code> everything is persisted to LocalStorage
+      When specifying <code class="clr-code">[clrUseLocalStoreOnly]="true"</code> everything is persisted to
+      LocalStorage
     </p>
 
     <clr-alert [clrAlertType]="'danger'">
@@ -229,6 +231,10 @@
       <code class="clr-code">clrDgField</code> directive for columns.
     </p>
     <p>
+      Special requirement for sort column and sort order: You must use
+      <code class="clr-code">clrDgSortBy</code> directive for columns.
+    </p>
+    <p>
       Special requirement for custom filters to be persisted: It must implement a readable
       <code class="clr-code">state</code> property and every property of the state must have a setter. The state must
       consist of a property called <code class="clr-code">property</code> holding the field name of the datagrid.
@@ -238,6 +244,18 @@
     <ul>
       <li>key: key which is used in LocalStorage or SessionStorage to save data</li>
       <li>serverDriven: Whether your datagrid loads the data asynchronous (true) or synchronous (false)</li>
+    </ul>
+    <p>
+      To turn off the persistence for specific parts of the datagrid, the
+      <code class="clr-code">[clrStatePersistenceKey]</code> offers several optional properties. All of these are
+      opt-out properties and will default to <code class="clr-code">true</code> when not specified.
+    </p>
+    <br />
+    <ul>
+      <li>persistFilters: When set to false, filter values will not be persisted</li>
+      <li>persistPagination: When set to false, current page and page size will not be persisted</li>
+      <li>persistSort: When set to false, sort column and sort order will not be persisted</li>
+      <li>persistHiddenColumns: When set to false, state of each column, hidden or visible, will not be persisted</li>
     </ul>
 
     <br />
