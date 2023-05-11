@@ -37,7 +37,7 @@ export class DaterangepickerDemo {
 
   presetsI18n: Array<DaterangePreset> = [
     {
-      text: 'Laatste 30 days',
+      text: 'Laatste 30 dagen',
       range: () => ({
         from: new DayModel(new Date()).incrementBy(-29),
         to: new DayModel(new Date()),
