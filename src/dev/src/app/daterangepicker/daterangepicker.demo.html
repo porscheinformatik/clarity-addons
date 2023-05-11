@@ -14,7 +14,7 @@
     <label>Input</label>
     <input clrInput type="text" placeholder="Some input" formControlName="otherValue" />
   </clr-input-container>
-  <button type="button" class="btn" (click)="updateReactiveForm()">Pre-fill</button>
+  <button type="button" class="btn" (click)="updateReactiveForm()">Fill</button>
   <pre>{{reactiveForm.value | json}}</pre>
 </form>
 
@@ -24,7 +24,7 @@
     <label>Daterange</label>
     <input clrDaterangepicker type="date" name="daterange" [(ngModel)]="templateDrivenValue" />
   </clr-daterangepicker-container>
-  <button type="button" class="btn" (click)="updateTemplateDriven()">Pre-fill</button>
+  <button type="button" class="btn" (click)="updateTemplateDriven()">Fill</button>
   <pre>{{templateDrivenValue | json}}</pre>
 </form>
 

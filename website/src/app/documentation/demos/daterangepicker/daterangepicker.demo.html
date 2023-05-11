@@ -3,7 +3,7 @@
     <h5 class="component-summary">Daterangepicker is a popover control for picking a date range value for an input.</h5>
 
     <div id="design-guidelines">
-      <h3>Usage</h3>
+      <h2>Usage</h2>
       <p>
         Use the daterangepicker whenever you want to select a date range. The default Clarity Date Picker allows
         selecting only one date. This component used two Clarity Date Pickers to select a start and end date.
@@ -11,19 +11,22 @@
     </div>
 
     <div id="code-examples">
-      <h3 id="examples">Code &amp; Examples</h3>
-      <h4><code>clrDaterangepicker</code> Directive</h4>
+      <h2 id="examples">Code &amp; Examples</h2>
+
+      <h3><code>clrDaterangepicker</code> directive</h3>
       <p>
         To use the daterangepicker, add the <code>clrDaterangepicker</code> directive to an <code>input</code> field.
         Then, place the input inside the <code>clr-daterangepicker-container</code> container element.
       </p>
       <form clrForm>
         <clr-daterangepicker-container>
-          <label>Basic Demo</label>
+          <label>Basic demo</label>
           <input clrDaterangepicker type="date" name="daterange" [(ngModel)]="value" />
         </clr-daterangepicker-container>
       </form>
       <clr-code-snippet [clrCode]="basicDemo"></clr-code-snippet>
+
+      <h3>Configuration</h3>
 
       <h4>Min/Max attributes</h4>
       <p>
@@ -44,7 +47,7 @@
       </p>
       <form clrForm>
         <clr-daterangepicker-container>
-          <label>Min date: 2023-05-03 AND Max date: 2023-06-20</label>
+          <label>Min & max attributes</label>
           <input
             clrDaterangepicker
             type="date"
@@ -53,6 +56,7 @@
             min="2023-05-03"
             max="2023-06-20"
           />
+          <clr-control-helper>Min date: 2023-05-03 AND Max date: 2023-06-20</clr-control-helper>
           <clr-control-error *clrIfDaterangeError="'min'; error as err">
             Daterange minimum is {{ err.min.toDate() | date }}
           </clr-control-error>
@@ -62,7 +66,157 @@
         </clr-daterangepicker-container>
       </form>
       <clr-code-snippet [clrCode]="minMaxDemo"></clr-code-snippet>
+
+      <h4>Presets</h4>
+      <p>TODO</p>
+
+      <h4>Position</h4>
+      <p>TODO</p>
+
+      <h3>Internationalization</h3>
+      <p>
+        As the Date Pickers inside the popover are
+        <a href="https://clarity.design/documentation/datepicker">Clarity Date Pickers</a>, they use the same locale
+        identifiers supported by Angular for getting the date format, first day of the week, month and day names. These
+        values are used to generate the input field placeholder and the calendar.
+      </p>
+
+      <h3>Translation</h3>
+      <p>The following options are available to help with multilingual applications:</p>
+
+      <h4>Labels 'from' and 'to'</h4>
+      <p>TODO</p>
+
+      <h4><code>separatorText</code> attribute</h4>
+      <p>
+        The value between the 'from' and 'to' dates is the separator. By default this is the dash
+        <code>-</code> character. This attribute is used in the input field, the default placeholder and the hover
+        titles.
+      </p>
+      <form clrForm>
+        <clr-daterangepicker-container>
+          <label>Separator</label>
+          <input clrDaterangepicker type="date" name="daterange-separator" [(ngModel)]="value" separatorText=" tot " />
+        </clr-daterangepicker-container>
+      </form>
+      <clr-code-snippet [clrCode]="separatorDemo"></clr-code-snippet>
+
+      <h4><code>placeholder</code> attribute</h4>
+      <p>A whole different placeholder can be set via the `placeholder` attribute.</p>
+      <form clrForm>
+        <clr-daterangepicker-container>
+          <label>Placeholder</label>
+          <input
+            clrDaterangepicker
+            type="date"
+            name="daterange-placeholder"
+            [(ngModel)]="value"
+            placeholder="Custom placeholder"
+          />
+        </clr-daterangepicker-container>
+      </form>
+      <clr-code-snippet [clrCode]="placeholderDemo"></clr-code-snippet>
+
+      <h3>Validation</h3>
+      <p>TODO</p>
+
+      <h3>Summary of Options</h3>
+      <h4><code>clr-daterangepicker-container</code> element</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Input</th>
+            <th class="left clr-hidden-xs-down">Values</th>
+            <th class="clr-hidden-xs-down">Default</th>
+            <th class="left">Effect</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left"><strong>[clrPosition]</strong></td>
+            <td class="left clr-hidden-xs-down">
+              One of the following strings:
+              <ul>
+                <li>'bottom-left'</li>
+                <li>'bottom-right'</li>
+                <li>'left-bottom'</li>
+                <li>'left-top'</li>
+                <li>'right-bottom'</li>
+                <li>'right-top'</li>
+                <li>'top-left'</li>
+                <li>'top-right'</li>
+              </ul>
+            </td>
+            <td class="clr-hidden-xs-down">'bottom-left'</td>
+            <td class="left">
+              Set the position of the popover containing the two Date Pickers relative to the input field.
+            </td>
+          </tr>
+          <tr>
+            <td class="left"><strong>[labelFrom]</strong></td>
+            <td class="left clr-hidden-xs-down">String</td>
+            <td class="clr-hidden-xs-down">'From'</td>
+            <td class="left">Translatable "from" label.</td>
+          </tr>
+          <tr>
+            <td class="left"><strong>[LabelTo]</strong></td>
+            <td class="left clr-hidden-xs-down">String</td>
+            <td class="clr-hidden-xs-down">'To'</td>
+            <td class="left">Translatable "to" label.</td>
+          </tr>
+          <tr>
+            <td class="left"><strong>[presets]</strong></td>
+            <td class="left clr-hidden-xs-down">XXX</td>
+            <td class="clr-hidden-xs-down">XXX</td>
+            <td class="left"></td>
+          </tr>
+        </tbody>
+      </table>
+      <h4><code>clrDaterangepicker</code> directive</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Input</th>
+            <th class="left clr-hidden-xs-down">Values</th>
+            <th class="clr-hidden-xs-down">Default</th>
+            <th class="left">Effect</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left"><strong>[min]</strong></td>
+            <td class="left clr-hidden-xs-down">String</td>
+            <td class="clr-hidden-xs-down">N/A</td>
+            <td class="left">Sets the earliest acceptable date and must be in the YYYY-MM-DD format.</td>
+          </tr>
+          <tr>
+            <td class="left"><strong>[max]</strong></td>
+            <td class="left clr-hidden-xs-down">String</td>
+            <td class="clr-hidden-xs-down">N/A</td>
+            <td class="left">Sets the latest acceptable date and must be in the YYYY-MM-DD format.</td>
+          </tr>
+          <tr>
+            <td class="left"><strong>[separatorText]</strong></td>
+            <td class="left clr-hidden-xs-down">String</td>
+            <td class="clr-hidden-xs-down">XXX</td>
+            <td class="left"></td>
+          </tr>
+          <tr>
+            <td class="left"><strong>[placeholder]</strong></td>
+            <td class="left clr-hidden-xs-down">String</td>
+            <td class="clr-hidden-xs-down">XXX</td>
+            <td class="left"></td>
+          </tr>
+          <tr>
+            <td class="left"><strong>(valueChange)</strong></td>
+            <td class="left clr-hidden-xs-down">XXX</td>
+            <td class="clr-hidden-xs-down">XXX</td>
+            <td class="left"></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+
     <pre>{{value | json}}</pre>
   </article>
 </clr-doc-wrapper>
