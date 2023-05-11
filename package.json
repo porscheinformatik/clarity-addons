@@ -1,6 +1,6 @@
 {
   "name": "clr-addons",
-  "version": "15.0.0",
+  "version": "15.0.1",
   "private": true,
   "scripts": {
     "build:ui:css": "sass --source-map --precision=8 ./src/clr-addons/themes/phs/phs-theme.scss ./dist/clr-addons/styles/clr-addons-phs.css",
@@ -56,7 +56,7 @@
   },
   "devDependencies": {
     "@alasdair/karma-scss-preprocessor": "5.0.0-3",
-    "@angular-devkit/build-angular": "15.2.1",
+    "@angular-devkit/build-angular": "15.2.4",
     "@angular-devkit/core": "15.2.1",
     "@angular-eslint/builder": "15.2.1",
     "@angular/cli": "15.2.1",

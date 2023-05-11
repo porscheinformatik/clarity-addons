@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Directive, ElementRef, OnDestroy, OnInit, Renderer2, AfterViewInit } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, OnDestroy, OnInit, Optional, Renderer2 } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -22,7 +22,7 @@ export class ClrSearchField implements OnInit, OnDestroy, AfterViewInit {
 
   destroyed = new Subject<void>();
 
-  constructor(private renderer: Renderer2, private inputEl: ElementRef, private ngControl: NgControl) {}
+  constructor(private renderer: Renderer2, private inputEl: ElementRef, @Optional() private ngControl: NgControl) {}
 
   ngOnInit(): void {
     this.setHasValueClass(!!this.inputEl.nativeElement.value);
