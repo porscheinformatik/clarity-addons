@@ -20,10 +20,18 @@ const MIN_MAX_DEMO = `
   </clr-daterangepicker-container>
 </form>
 `;
+const POSITIONS_DEMO = `
+<form clrForm>
+  <clr-daterangepicker-container [clrPosition]="'left-top'">
+    <label>Position</label>
+    <input clrDaterangepicker type="date" name="demo" [(ngModel)]="demo" />
+  </clr-daterangepicker-container>
+</form>
+`;
 const LABELS_TRANSLATION_DEMO = `
 <form clrForm>
   <clr-daterangepicker-container fromLabel="Van" toLabel="Tot">
-    <label>Separator</label>
+    <label>Labels "from" and "to"</label>
     <input clrDaterangepicker type="date" name="demo" [(ngModel)]="demo" />
   </clr-daterangepicker-container>
 </form>
@@ -57,6 +65,7 @@ export class DaterangepickerDemo extends ClarityDocComponent {
   value: NullableDaterange;
   basicDemo = BASIC_DEMO;
   minMaxDemo = MIN_MAX_DEMO;
+  positionsDemo = POSITIONS_DEMO;
   labelsTranslationDemo = LABELS_TRANSLATION_DEMO;
   separatorDemo = SEPARATOR_DEMO;
   placeholderDemo = PLACEHOLDER_DEMO;

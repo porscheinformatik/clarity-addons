@@ -6,7 +6,7 @@
       <h2>Usage</h2>
       <p>
         Use the daterangepicker whenever you want to select a date range. The default Clarity Date Picker allows
-        selecting only one date. This component used two Clarity Date Pickers to select a start and end date.
+        selecting only one date. This component uses two Clarity Date Pickers to select a start and end date.
       </p>
 
       <div class="clrweb-DoxMedia">
@@ -85,7 +85,29 @@
       <p>TODO</p>
 
       <h4>Position</h4>
-      <p>TODO</p>
+      <p>
+        It is possible to change the position of the popover, which contains the two Date Pickers. This works the same
+        as the <a href="https://clarity.design/documentation/datepicker">Clarity Date Pickers</a>, aldo this option is
+        not documented.
+      </p>
+      <p>The <code>clrPosition</code> attribute accepts one of the following strings:</p>
+      <ul>
+        <li><code>'bottom-left'</code></li>
+        <li><code>'bottom-right'</code></li>
+        <li><code>'left-bottom'</code></li>
+        <li><code>'left-top'</code></li>
+        <li><code>'right-bottom'</code></li>
+        <li><code>'right-top'</code></li>
+        <li><code>'top-left'</code></li>
+        <li><code>'top-right'</code></li>
+      </ul>
+      <form clrForm>
+        <clr-daterangepicker-container [clrPosition]="'left-top'">
+          <label>Position</label>
+          <input clrDaterangepicker type="date" name="daterange-position" [(ngModel)]="value" />
+        </clr-daterangepicker-container>
+      </form>
+      <clr-code-snippet [clrCode]="positionsDemo"></clr-code-snippet>
 
       <h3>Internationalization</h3>
       <p>
@@ -106,7 +128,7 @@
       <form clrForm>
         <clr-daterangepicker-container fromLabel="Van" toLabel="Tot">
           <label>Labels "from" and "to"</label>
-          <input clrDaterangepicker type="date" name="daterange-separator" [(ngModel)]="value" />
+          <input clrDaterangepicker type="date" name="daterange-labels" [(ngModel)]="value" />
         </clr-daterangepicker-container>
       </form>
       <clr-code-snippet [clrCode]="labelsTranslationDemo"></clr-code-snippet>
