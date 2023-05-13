@@ -98,12 +98,22 @@
       <h3>Translation</h3>
       <p>The following options are available to help with multilingual applications:</p>
 
-      <h4>Labels 'from' and 'to'</h4>
-      <p>TODO</p>
+      <h4>Labels "from" and "to"</h4>
+      <p>
+        Both the "from" and "to" input labels inside the modal are translatable via respectively
+        <code>fromLabel</code> and <code>toLabel</code> attributes.
+      </p>
+      <form clrForm>
+        <clr-daterangepicker-container fromLabel="Van" toLabel="Tot">
+          <label>Labels "from" and "to"</label>
+          <input clrDaterangepicker type="date" name="daterange-separator" [(ngModel)]="value" />
+        </clr-daterangepicker-container>
+      </form>
+      <clr-code-snippet [clrCode]="labelsTranslationDemo"></clr-code-snippet>
 
       <h4><code>separatorText</code> attribute</h4>
       <p>
-        The value between the 'from' and 'to' dates is the separator. By default this is the dash
+        The value between the "from" and "to" dates is the separator. By default it uses a dash
         <code>-</code> character. This attribute is used in the input field, the default placeholder and the hover
         titles.
       </p>
@@ -116,7 +126,7 @@
       <clr-code-snippet [clrCode]="separatorDemo"></clr-code-snippet>
 
       <h4><code>placeholder</code> attribute</h4>
-      <p>A whole different placeholder can be set via the `placeholder` attribute.</p>
+      <p>A whole different placeholder can be set via the <code>placeholder</code> attribute.</p>
       <form clrForm>
         <clr-daterangepicker-container>
           <label>Placeholder</label>
