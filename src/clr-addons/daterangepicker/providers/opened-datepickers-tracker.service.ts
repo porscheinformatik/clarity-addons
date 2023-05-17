@@ -23,6 +23,10 @@ export class OpenedDatepickersTrackerService {
     } else {
       this.openedDatepickersCount--;
     }
+    console.log('OpenedDatepickersTrackerService.track', {
+      opened,
+      openedDatePickersCount: this.openedDatepickersCount,
+    });
     this.openedDatepickersCount = Math.max(0, this.openedDatepickersCount);
     this.valueChange.emit(this.openedDatepickersCount !== 0);
   }

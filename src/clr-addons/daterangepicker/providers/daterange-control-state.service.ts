@@ -43,6 +43,13 @@ export class DaterangeControlStateService {
    * @param control
    */
   public updateStatus(control: AbstractControl) {
+    console.log('DaterangeControlStateService.updateStatus', {
+      status: control.status,
+      errors: control.errors,
+      invalid: control.invalid,
+      control,
+    });
+
     this._touched = control.touched;
 
     // We only care about valid & invalid status changes.

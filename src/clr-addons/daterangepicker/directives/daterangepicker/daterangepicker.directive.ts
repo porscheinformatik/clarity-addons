@@ -124,6 +124,8 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
     private readonly daterangeService: DaterangeService,
     private readonly daterangeParsingService: DaterangeParsingService
   ) {
+    console.log('ClrDaterangepickerDirective.ctor', this.control);
+
     // To get access to the NgControl, we had to remove the `NG_VALUE_ACCESSOR`
     // provider and set them manually, while still keeping the interfaces.
     this.control.valueAccessor = this;
@@ -144,6 +146,9 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
   private listenForDaterangeValueChanges(): void {
     this.subscriptions.push(
       this.daterangeService.valueChange.subscribe((_daterange: NullableDaterange) => {
+        console.log('ClrDaterangepickerDirective.listenForDaterangeValueChanges.valueChange', {
+          _daterange,
+        });
         this.triggerChange();
       })
     );
@@ -154,7 +159,12 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
    */
   private listenForControlStatusChanges(): void {
     this.subscriptions.push(
-      this.control.statusChanges.subscribe((_status: unknown) => {
+      this.control.statusChanges.subscribe((status: unknown) => {
+        console.log('ClrDaterangepickerDirective.listenForControlStatusChanges.statusChanges', {
+          status,
+          invalid: this.control.invalid,
+          errors: this.control.errors,
+        });
         this.daterangeControlStateService.updateStatus(this.control.control);
       })
     );
@@ -166,6 +176,11 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
    */
   @HostListener('change', ['$event.target'])
   public onChangeEvent(target: HTMLInputElement): void {
+    console.log('ClrDaterangepickerDirective.onChangeEvent', {
+      value: target.value,
+      errors: this.control.control.errors,
+    });
+
     // Remove 'invalid' error.
     if (this.control.control.hasError('invalid')) {
       delete this.control.control.errors.invalid;
@@ -179,6 +194,8 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
 
     const daterange = this.daterangeParsingService.parse(target.value, this.separatorText);
     const invalidDaterange: boolean = daterange == null || daterange.from == null || daterange.to == null;
+
+    console.log('ClrDaterangepickerDirective.onChangeEvent.2', { daterange, invalidDaterange });
 
     // Invalid manual daterange specified.
     if (invalidDaterange) {
@@ -219,6 +236,7 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
    */
   private triggerChange(): void {
     let daterange = this.daterangeService.selectedDaterange;
+    console.log('ClrDaterangepickerDirective.triggerChange', { daterange });
 
     // When `from` or `to` properties are not set, return null.
     // This will trigger the `required` validator (if present).
@@ -240,6 +258,9 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
    * Update input with friendly daterange text.
    */
   private updateInput(): void {
+    console.log('ClrDaterangepickerDirective.updateInput', {
+      value: this.daterangeService.selectedDaterange,
+    });
     const dateString = this.daterangeParsingService.toLocaleString(
       this.daterangeService.selectedDaterange,
       this.separatorText
@@ -252,6 +273,7 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
    * @param value - Daterange value.
    */
   public writeValue(value: NullableDaterange) {
+    console.log('ClrDaterangepickerDirective.writeValue', { value });
     this.daterangeService.updateSelectedDaterange(value);
   }
 
@@ -260,6 +282,7 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
    * @param fn - Change event.
    */
   public registerOnChange(fn: (value: NullableDaterange) => void): void {
+    console.log('ClrDaterangepickerDirective.registerOnChange', { fn });
     this.onChanged = fn;
   }
   private onChanged = (_value: NullableDaterange): void => undefined;
@@ -269,6 +292,7 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
    * @param fn - Touch event.
    */
   public registerOnTouched(fn: (value: NullableDaterange) => void): void {
+    console.log('ClrDaterangepickerDirective.registerOnTouched', { fn });
     this.onTouched = fn;
   }
   private onTouched = (_value: NullableDaterange): void => undefined;
@@ -278,6 +302,7 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
    * @param disabled - Disabled state.
    */
   public setDisabledState(disabled: boolean): void {
+    console.log('ClrDaterangepickerDirective.setDisabledState', { disabled });
     this.daterangeControlStateService.disabled = disabled;
   }
 }
