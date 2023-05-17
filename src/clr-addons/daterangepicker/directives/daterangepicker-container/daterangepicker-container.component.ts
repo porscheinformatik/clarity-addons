@@ -190,10 +190,6 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
   private listenForDaterangeValueChanges(): void {
     this.subscriptions.push(
       this.daterangeService.valueChange.subscribe((daterange: NullableDaterange) => {
-        console.log('ClrDaterangepickerContainerComponent.listenForDaterangeValueChanges.valueChange', {
-          daterange,
-        });
-
         this._friendlyDaterange = this.daterangeParsingService.toLocaleString(
           daterange,
           this.daterangepickerDirective.separatorText
@@ -208,12 +204,6 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
   private listenForOpenedDatepickersTrackerChanges(): void {
     this.subscriptions.push(
       this.openedDatepickersTrackerService.valueChange.subscribe(hasOpenDatePickers => {
-        console.log('ClrDaterangepickerContainerComponent.listenForOpenedDatepickersTrackerChanges.valueChange', {
-          hasOpenDatePickers,
-          outsideClickClose: this.clrPopoverEventsService.outsideClickClose,
-          outsideClickCloseNEW: !hasOpenDatePickers,
-        });
-
         // When choosing an date in the DatePicker calender, all popovers are closed. Even our own popover.
         // Therefor we have to remove the ability to close our own popover.
         // Simply changing the `outsideClickClose` property after initialization does nothing.
@@ -239,14 +229,6 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
   private listenForPopoverToggleChanges(): void {
     this.subscriptions.push(
       this.clrPopoverToggleService.openChange.subscribe(opened => {
-        console.log('ClrDaterangepickerContainerComponent.listenForPopoverToggleChanges.openChange', {
-          opened,
-          outsideClickClose: this.clrPopoverEventsService.outsideClickClose,
-          datepickerComponents: this.datepickerComponents,
-          datepickerComponents1: this.datepickerComponents?.first,
-          daterangepickerDirective: this.daterangepickerDirective,
-        });
-
         // Focus first datepicker when popover opens.
         // Focus back to input when popover is closed.
         if (opened) {
@@ -271,9 +253,6 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
    * @param value - Date from.
    */
   protected onDateFromChange(value: NullableDayModel): void {
-    console.log('ClrDaterangepickerContainerComponent.onDateFromChange', {
-      value,
-    });
     this.daterangeService.updateSelectedDaterange({
       from: value,
       to: this.dateTo,
@@ -285,9 +264,6 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
    * @param value - Date to.
    */
   protected onDateToChange(value: NullableDayModel): void {
-    console.log('ClrDaterangepickerContainerComponent.onDateToChange', {
-      value,
-    });
     this.daterangeService.updateSelectedDaterange({
       from: this.dateFrom,
       to: value,
@@ -300,10 +276,6 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
    */
   protected applyPreset(preset: DaterangePreset): void {
     const range = preset.range();
-    console.log('ClrDaterangepickerContainerComponent.applyPreset', {
-      preset,
-      range,
-    });
     this.daterangeService.updateSelectedDaterange(range);
 
     // Close popover here, because it's not possible to conditionally

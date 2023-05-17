@@ -42,11 +42,6 @@ export class DaterangeParsingService {
     const localeFormat = getLocaleDateFormat(this.locale, FormatWidth.Short);
     const format: string = localeFormat.toLocaleLowerCase();
 
-    console.log('DaterangeParsingService.getLocaleDisplayFormat', {
-      localeFormat,
-      format,
-    });
-
     if (LITTLE_ENDIAN_REGEX.test(format)) {
       this.localeDisplayFormat = LITTLE_ENDIAN;
     } else if (MIDDLE_ENDIAN_REGEX.test(format)) {
@@ -68,12 +63,6 @@ export class DaterangeParsingService {
    * @returns Friendly daterange text.
    */
   public toLocaleString(daterange: NullableDaterange, separator: string = SEPARATOR_TEXT_DEFAULT): string {
-    console.log('DaterangeParsingService.toLocaleString', {
-      daterange,
-      separator,
-      locale: this.locale,
-    });
-
     if (daterange == null) {
       return '';
     }
@@ -133,11 +122,6 @@ export class DaterangeParsingService {
    * @returns Daterange object.
    */
   public parse(daterangeString: string, separator: string = SEPARATOR_TEXT_DEFAULT): NullableDaterange {
-    console.log('DaterangeParsingService.parse', {
-      daterangeString,
-      separator,
-      locale: this.locale,
-    });
     if (daterangeString == null || daterangeString === '') {
       return null;
     }
@@ -145,13 +129,6 @@ export class DaterangeParsingService {
     const [fromString, toString] = daterangeString.split(separator);
     const from = this.getDayModelFromDateString(fromString);
     const to = this.getDayModelFromDateString(toString);
-
-    console.log('DaterangeParsingService.parse.2', {
-      fromString,
-      toString,
-      to,
-      from,
-    });
 
     if (from == null && to == null) {
       return null;
@@ -166,11 +143,6 @@ export class DaterangeParsingService {
    * @returns DayModel.
    */
   private getDayModelFromDateString(dateString: string): NullableDayModel {
-    console.log('DaterangeParsingService.getDayModelFromDateString', {
-      dateString,
-      match: dateString?.match(USER_INPUT_REGEX),
-    });
-
     if (dateString == null || dateString === '') {
       return null;
     }
@@ -201,12 +173,6 @@ export class DaterangeParsingService {
    * @returns DayModel.
    */
   private getDayModelFromDateParts(yearString: string, monthString: string, dateString: string): NullableDayModel {
-    console.log('DaterangeParsingService.validateAndGetDate', {
-      yearString,
-      monthString,
-      dateString,
-    });
-
     // Check for valid date part strings.
     let year: number = parseInt(yearString);
     if (isNaN(year)) {
@@ -223,9 +189,6 @@ export class DaterangeParsingService {
 
     // Convert year to 4 digit year.
     year = this.parseToFourDigitYear(year);
-    console.log('DaterangeParsingService.validateAndGetDate.2', {
-      year,
-    });
     if (year == null) {
       return null;
     }
@@ -251,10 +214,6 @@ export class DaterangeParsingService {
    * @returns Four-digit year.
    */
   private parseToFourDigitYear(year: number): number | null {
-    console.log('DaterangeParsingService.validateAndGetDate', {
-      year,
-    });
-
     // Impossible years.
     if (year > 9999 || (year > 100 && year < 999) || year < 10) {
       return null;

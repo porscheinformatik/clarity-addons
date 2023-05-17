@@ -37,10 +37,6 @@ export class ClrDaterangeMaxValidator implements Validator {
    */
   @Input('clrDaterangeMax')
   public set active(active: boolean | string | undefined | null) {
-    console.log('ClrDaterangeMaxValidator.active', {
-      active,
-      _active: active == null || (active !== false && `${active}` !== 'false'),
-    });
     this._active = active == null || (active !== false && `${active}` !== 'false');
   }
 
@@ -50,12 +46,6 @@ export class ClrDaterangeMaxValidator implements Validator {
    * @returns A map of validation errors if validation fails, otherwise null.
    */
   public validate(control: AbstractControl<NullableDaterange, any>): ValidationErrors | null {
-    console.log('ClrDaterangeMaxValidator.validate', {
-      value: control.value,
-      _active: this._active,
-      control,
-    });
-
     if (!this._active) {
       return null;
     }
@@ -65,11 +55,6 @@ export class ClrDaterangeMaxValidator implements Validator {
     }
 
     const max: NullableDayModel = this.daterangeService.maxDate;
-
-    console.log('ClrDaterangeMaxValidator.validate.2', {
-      max,
-    });
-
     if (max == null) {
       return null;
     }
