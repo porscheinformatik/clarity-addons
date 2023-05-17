@@ -122,6 +122,21 @@ const PLACEHOLDER_DEMO = `
   </clr-daterangepicker-container>
 </form>
 `;
+const VALIDATION_DEMO = `
+<form clrForm>
+  <clr-daterangepicker-container>
+    <label>Validation</label>
+    <input clrDaterangepicker type="date" name="demo" [(ngModel)]="demo" min="2023-05-03" max="2023-06-20" required />
+    <clr-control-helper>Helper text.</clr-control-helper>
+    <clr-control-error *clrIfDaterangeError="'required'">Daterange is mandatory!</clr-control-error>
+    <clr-control-error *clrIfDaterangeError="'fromIsAfterTo'">Date "from" must be before date "to"!</clr-control-error>
+    <clr-control-error *clrIfDaterangeError="'min'; error as err">Daterange minimum is {{ err.min.toDate() | date }}</clr-control-error>
+    <clr-control-error *clrIfDaterangeError="'max'; error as err">Daterange maximum is {{ err.max.toDate() | date }}</clr-control-error>
+    <clr-control-error *clrIfDaterangeError="'invalid'">No valid daterange value!</clr-control-error>
+    <clr-control-success>✅ Valid.</clr-control-success>
+  </clr-daterangepicker-container>
+</form>
+`;
 
 @Component({
   selector: 'clr-daterangepicker-demo',
@@ -142,6 +157,7 @@ export class DaterangepickerDemo extends ClarityDocComponent {
   labelsTranslationDemo = LABELS_TRANSLATION_DEMO;
   separatorDemo = SEPARATOR_DEMO;
   placeholderDemo = PLACEHOLDER_DEMO;
+  validationDemo = VALIDATION_DEMO;
 
   constructor() {
     super('daterangepicker');

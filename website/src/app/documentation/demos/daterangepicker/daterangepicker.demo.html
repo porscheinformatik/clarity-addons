@@ -200,7 +200,77 @@
       <clr-code-snippet [clrCode]="placeholderDemo"></clr-code-snippet>
 
       <h3>Validation</h3>
-      <p>TODO</p>
+      <p>
+        The daterangepicker has multiple validations. Each validation is enabled by default (if conditions are met), but
+        can individually disabled.
+      </p>
+      <p>The following validations are present:</p>
+      <ul>
+        <li>
+          Daterange is required. Key <code>required</code>. When the <code>input</code> element contains the
+          <code>required</code> attribute, this validation is enabled. When the control is touched and no value is
+          present, this validation is activated.
+          <br />
+          This validation is also activated when the model receives an partial daterange.
+          <br />
+          This validation can be disabled with <code>[clrDaterangeRequired]="false"</code>.
+        </li>
+        <li>
+          Date "from" is after "to" date. Key <code>fromIsAfterTo</code>. This validation is always enabled, and
+          triggered when the "from" is not after the "to" date.
+          <br />
+          This validation can be disabled with <code>[clrDaterangeOrder]="false"</code>.
+        </li>
+        <li>
+          Daterange cannot start before minium date. Key <code>min</code>. This validation is enabled when the
+          <code>min</code> property is set.
+          <br />
+          This validation can be disabled with <code>[clrDaterangeMin]="false"</code>.
+        </li>
+        <li>
+          Daterange cannot end after maximum date. Key <code>max</code>. This validation is enabled when the
+          <code>max</code> property is set.
+          <br />
+          This validation can be disabled with <code>[clrDaterangeMax]="false"</code>.
+        </li>
+        <li>
+          Invalid daterange. Key <code>invalid</code>. When the manually entered daterange in the
+          <code>input</code> element is invalid, this validation is activated.
+        </li>
+      </ul>
+      <p>
+        Showing validation errors work the same as Clarity with <code>clr-control-error</code>. Only one big difference,
+        it requires an different directive. Use <code>*clrIfDaterangeError</code> instead of <code>*clrIfError</code>.
+      </p>
+      <p>The <code>clr-control-helper</code> and <code>clr-control-success</code> are also supported.</p>
+      <form clrForm>
+        <clr-daterangepicker-container>
+          <label>Validation</label>
+          <input
+            clrDaterangepicker
+            type="date"
+            name="daterange-validation"
+            [(ngModel)]="value"
+            min="2023-05-03"
+            max="2023-06-20"
+            required
+          />
+          <clr-control-helper>Helper text.</clr-control-helper>
+          <clr-control-error *clrIfDaterangeError="'required'">Daterange is mandatory!</clr-control-error>
+          <clr-control-error *clrIfDaterangeError="'fromIsAfterTo'">
+            Date "from" must be before date "to"!
+          </clr-control-error>
+          <clr-control-error *clrIfDaterangeError="'min'; error as err">
+            Daterange minimum is {{ err.min.toDate() | date }}
+          </clr-control-error>
+          <clr-control-error *clrIfDaterangeError="'max'; error as err">
+            Daterange maximum is {{ err.max.toDate() | date }}
+          </clr-control-error>
+          <clr-control-error *clrIfDaterangeError="'invalid'">No valid daterange value!</clr-control-error>
+          <clr-control-success>✅ Valid.</clr-control-success>
+        </clr-daterangepicker-container>
+      </form>
+      <clr-code-snippet [clrCode]="validationDemo"></clr-code-snippet>
 
       <h3>Summary of Options</h3>
       <h4><code>clr-daterangepicker-container</code> element</h4>
