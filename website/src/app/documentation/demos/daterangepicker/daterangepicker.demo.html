@@ -12,14 +12,11 @@
       <div class="clrweb-DoxMedia">
         <div class="clrweb-DoxMedia-block">
           <div class="clrweb-DoxMedia-img">
-            <img
-              src="assets/images/documentation/daterangepicker-screenshot.png"
-              alt="Screenshot of daterangepicker with presets option"
-            />
+            <img src="assets/images/documentation/daterangepicker-screenshot.png" alt="Screenshot of daterangepicker" />
           </div>
         </div>
         <div class="clrweb-DoxMedia-text">
-          <p>Screenshot of daterangepicker with presets option.</p>
+          <p>Screenshot of a basic daterangepicker.</p>
         </div>
       </div>
     </div>
@@ -82,13 +79,52 @@
       <clr-code-snippet [clrCode]="minMaxDemo"></clr-code-snippet>
 
       <h4>Presets</h4>
-      <p>TODO</p>
+      <div class="clr-row">
+        <div class="clr-col-12 clr-col-md-6">
+          <p>
+            To quicker set fixed dateranges, it is possible to set a list of presets. Any preset will create an button
+            in the popover next to the Date Pickers. Once pressed, the preset will fill the "from" and "to" Date Pickers
+            with an hard-coded or dynamic date. You can choose to fill both dates, for example with the last 30 days. Or
+            you can set only one date of the daterange, for example if you want today to be pre-filled. Only when both
+            values are present, the popover will close and update the model. You can set as many presets as you want,
+            but an maximum of 4 is advised.
+          </p>
+        </div>
+        <div class="clr-col-12 clr-col-md-6">
+          <div class="clrweb-DoxMedia">
+            <div class="clrweb-DoxMedia-block">
+              <div class="clrweb-DoxMedia-img">
+                <img
+                  src="assets/images/documentation/daterangepicker-presets-screenshot.png"
+                  alt="Screenshot of daterangepicker with presets option"
+                />
+              </div>
+            </div>
+            <div class="clrweb-DoxMedia-text">
+              <p>Screenshot of daterangepicker with presets option.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p>
+        To add presets, you can use the <code>DaterangePreset</code> interface. It contains an property for text of the
+        button: <code>text</code>. And it contains an function that returns an <code>Daterange</code>, which will be
+        called once the preset button is clicked.
+      </p>
+      <form clrForm>
+        <clr-daterangepicker-container [presets]="presets">
+          <label>Presets</label>
+          <input clrDaterangepicker type="date" name="daterange-preset" [(ngModel)]="value" />
+        </clr-daterangepicker-container>
+      </form>
+      <clr-code-snippet [clrCode]="presetsDemo"></clr-code-snippet>
+      <clr-code-snippet [clrCode]="presetsTypescriptDemo" clrLanguage="typescript"></clr-code-snippet>
 
       <h4>Position</h4>
       <p>
         It is possible to change the position of the popover, which contains the two Date Pickers. This works the same
-        as the <a href="https://clarity.design/documentation/datepicker">Clarity Date Pickers</a>, aldo this option is
-        not documented.
+        as the <a href="https://clarity.design/documentation/datepicker">Clarity Date Pickers</a>, although this option
+        is not documented.
       </p>
       <p>The <code>clrPosition</code> attribute accepts one of the following strings:</p>
       <ul>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
-import { NullableDaterange } from '@porscheinformatik/clr-addons';
+import { DaterangePreset, DayModel, NullableDaterange } from '@porscheinformatik/clr-addons';
 
 const BASIC_DEMO = `
 <form clrForm>
@@ -20,6 +20,76 @@ const MIN_MAX_DEMO = `
   </clr-daterangepicker-container>
 </form>
 `;
+const PRESETS_DEMO = `
+<form clrForm>
+  <clr-daterangepicker-container [presets]="presets">
+    <label>Presets</label>
+    <input clrDaterangepicker type="date" name="demo" [(ngModel)]="demo" />
+  </clr-daterangepicker-container>
+</form>
+`;
+const PRESETS_TYPESCRIPT_DEMO = `
+presets: Array<DaterangePreset> = [
+  {
+    text: 'Last 30 days',
+    range: () => ({
+      from: new DayModel(new Date()).incrementBy(-29),
+      to: new DayModel(new Date()),
+    }),
+  },
+  {
+    text: 'From today',
+    range: () => ({
+      from: new DayModel(new Date()),
+      to: null,
+    }),
+  },
+  {
+    text: 'Until today',
+    range: () => ({
+      from: null,
+      to: new DayModel(new Date()),
+    }),
+  },
+  {
+    text: 'Clear',
+    range: () => ({
+      from: null,
+      to: null,
+    }),
+  },
+];
+`;
+const PRESETS: Array<DaterangePreset> = [
+  {
+    text: 'Last 30 days',
+    range: () => ({
+      from: new DayModel(new Date()).incrementBy(-29),
+      to: new DayModel(new Date()),
+    }),
+  },
+  {
+    text: 'From today',
+    range: () => ({
+      from: new DayModel(new Date()),
+      to: null,
+    }),
+  },
+  {
+    text: 'Until today',
+    range: () => ({
+      from: null,
+      to: new DayModel(new Date()),
+    }),
+  },
+  {
+    text: 'Clear',
+    range: () => ({
+      from: null,
+      to: null,
+    }),
+  },
+];
 const POSITIONS_DEMO = `
 <form clrForm>
   <clr-daterangepicker-container [clrPosition]="'left-top'">
@@ -65,6 +135,9 @@ export class DaterangepickerDemo extends ClarityDocComponent {
   value: NullableDaterange;
   basicDemo = BASIC_DEMO;
   minMaxDemo = MIN_MAX_DEMO;
+  presets = PRESETS;
+  presetsDemo = PRESETS_DEMO;
+  presetsTypescriptDemo = PRESETS_TYPESCRIPT_DEMO;
   positionsDemo = POSITIONS_DEMO;
   labelsTranslationDemo = LABELS_TRANSLATION_DEMO;
   separatorDemo = SEPARATOR_DEMO;
