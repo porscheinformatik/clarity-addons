@@ -57,7 +57,6 @@ export class ClrDatepickerComponent implements AfterViewInit, OnDestroy {
    * @returns JavaScript Date object.
    */
   protected get date(): Date | undefined | null {
-    //console.log('ClrDatepickerComponent.date.get', { value: this.value, date: this.value?.date });
     return this.value?.toDate();
   }
 
@@ -65,7 +64,6 @@ export class ClrDatepickerComponent implements AfterViewInit, OnDestroy {
    * Set date.
    */
   protected set date(val: Date | undefined | null) {
-    //console.log('ClrDatepickerComponent.date.set', { val, date: val?.getDate() });
     this.value = val == null ? null : new DayModel(val);
     this.valueChange.emit(this.value);
   }
@@ -96,7 +94,6 @@ export class ClrDatepickerComponent implements AfterViewInit, OnDestroy {
     const toggleService = this.clrDateContainer['toggleService'] as ClrPopoverToggleService;
     this.subscriptions.push(
       toggleService.openChange.subscribe(openState => {
-        console.log('ClrDatepickerComponent.toggleService.openChange', { openState });
         this.openedDatepickersTrackerService.track(openState);
       })
     );

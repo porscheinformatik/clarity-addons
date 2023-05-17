@@ -31,11 +31,6 @@ export class DaterangeService {
    * @param triggerEvent - Trigger change event (default true).
    */
   public updateSelectedDaterange(value: NullableDaterange, triggerEvent = true): void {
-    console.log('DaterangeService.updateSelectedDaterange', {
-      value,
-      oldValue: this._selectedDaterange,
-      condition: this._selectedDaterange === value,
-    });
     this._selectedDaterange = value;
 
     if (triggerEvent) {

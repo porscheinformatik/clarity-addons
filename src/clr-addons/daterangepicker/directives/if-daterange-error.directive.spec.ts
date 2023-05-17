@@ -155,7 +155,6 @@ describe('Directive: ClrIfDaterangeErrorDirective', () => {
       fixture.detectChanges();
 
       // Assert.
-      console.log('TEST', fixture.nativeElement);
       expect(fixture.nativeElement.innerHTML).toContain(`${maxLengthMessage}-5-6`);
     }));
 

@@ -33,10 +33,6 @@ export class ClrDaterangeRequiredValidator implements Validator {
    */
   @Input('clrDaterangeRequired')
   public set active(active: boolean | string | undefined | null) {
-    console.log('ClrDaterangeRequiredValidator.active', {
-      active,
-      _active: active == null || (active !== false && `${active}` !== 'false'),
-    });
     this._active = active == null || (active !== false && `${active}` !== 'false');
   }
 
@@ -46,12 +42,6 @@ export class ClrDaterangeRequiredValidator implements Validator {
    * @returns A map of validation errors if validation fails, otherwise null.
    */
   public validate(control: AbstractControl<NullableDaterange, any>): ValidationErrors | null {
-    console.log('ClrDaterangeRequiredValidator.validate', {
-      value: control.value,
-      _active: this._active,
-      control,
-    });
-
     if (!this._active) {
       return null;
     }

@@ -37,10 +37,6 @@ export class ClrDaterangeMinValidator implements Validator {
    */
   @Input('clrDaterangeMin')
   public set active(active: boolean | string | undefined | null) {
-    console.log('ClrDaterangeMinValidator.active', {
-      active,
-      _active: active == null || (active !== false && `${active}` !== 'false'),
-    });
     this._active = active == null || (active !== false && `${active}` !== 'false');
   }
 
@@ -50,12 +46,6 @@ export class ClrDaterangeMinValidator implements Validator {
    * @returns A map of validation errors if validation fails, otherwise null.
    */
   public validate(control: AbstractControl<NullableDaterange, any>): ValidationErrors | null {
-    console.log('ClrDaterangeMinValidator.validate', {
-      value: control.value,
-      _active: this._active,
-      control,
-    });
-
     if (!this._active) {
       return null;
     }
@@ -65,11 +55,6 @@ export class ClrDaterangeMinValidator implements Validator {
     }
 
     const min: NullableDayModel = this.daterangeService.minDate;
-
-    console.log('ClrDaterangeMinValidator.validate.2', {
-      min,
-    });
-
     if (min == null) {
       return null;
     }
