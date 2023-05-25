@@ -90,7 +90,7 @@
             <td class="left clr-hidden-xs-down"><code class="clr-code">String</code></td>
             <td class="clr-hidden-xs-down">N/A</td>
             <td class="left">
-              Sets the earliest acceptable date and must be in the <code class="clr-code">YYYY-MM-DD format</code>.
+              Sets the earliest acceptable date and must be in the <code class="clr-code">YYYY-MM-DD</code> format.
             </td>
           </tr>
           <tr>
@@ -278,8 +278,10 @@
       <h4><code class="clr-code">separatorText</code> attribute</h4>
       <p>
         The value between the "from" and "to" dates is the separator. By default it uses a dash
-        <code class="clr-code">-</code> character. This attribute is used in the input field, the default placeholder
-        and the hover titles.
+        <code class="clr-code">-</code> character, surrounded by a whitespace. This attribute is used in the input
+        field, the default placeholder and the hover titles. Any whitespace between the dates you'll need to add to this
+        separator option.<br />
+        The example below uses the Dutch word for "until" between the "from" and "to" dates.
       </p>
       <form clrForm>
         <clr-daterangepicker-container>
