@@ -19,6 +19,111 @@
           <p>Screenshot of a basic daterangepicker.</p>
         </div>
       </div>
+
+      <h3>Summary of Options</h3>
+      <h4><code class="clr-code">clr-daterangepicker-container</code> element</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Input</th>
+            <th class="left clr-hidden-xs-down">Values</th>
+            <th class="clr-hidden-xs-down">Default</th>
+            <th class="left">Effect</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left"><strong>[clrPosition]</strong></td>
+            <td class="left clr-hidden-xs-down">
+              One of the following strings:
+              <ul>
+                <li><code class="clr-code">'bottom-left'</code></li>
+                <li><code class="clr-code">'bottom-right'</code></li>
+                <li><code class="clr-code">'left-bottom'</code></li>
+                <li><code class="clr-code">'left-top'</code></li>
+                <li><code class="clr-code">'right-bottom'</code></li>
+                <li><code class="clr-code">'right-top'</code></li>
+                <li><code class="clr-code">'top-left'</code></li>
+                <li><code class="clr-code">'top-right'</code></li>
+              </ul>
+            </td>
+            <td class="clr-hidden-xs-down"><code class="clr-code">'bottom-left'</code></td>
+            <td class="left">
+              Set the position of the popover containing the two Date Pickers relative to the input field.
+            </td>
+          </tr>
+          <tr>
+            <td class="left"><strong>[labelFrom]</strong></td>
+            <td class="left clr-hidden-xs-down"><code class="clr-code">String</code></td>
+            <td class="clr-hidden-xs-down"><code class="clr-code">'From'</code></td>
+            <td class="left">Translatable "from" label.</td>
+          </tr>
+          <tr>
+            <td class="left"><strong>[LabelTo]</strong></td>
+            <td class="left clr-hidden-xs-down"><code class="clr-code">String</code></td>
+            <td class="clr-hidden-xs-down"><code class="clr-code">'To'</code></td>
+            <td class="left">Translatable "to" label.</td>
+          </tr>
+          <tr>
+            <td class="left"><strong>[presets]</strong></td>
+            <td class="left clr-hidden-xs-down"><code class="clr-code">Array&lt;DaterangePreset&gt;</code></td>
+            <td class="clr-hidden-xs-down"><code class="clr-code">[]</code></td>
+            <td class="left">
+              List of presets. By default this list is empty, which hides the presets section in the UI.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h4><code class="clr-code">clrDaterangepicker</code> directive</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Input</th>
+            <th class="left clr-hidden-xs-down">Values</th>
+            <th class="clr-hidden-xs-down">Default</th>
+            <th class="left">Effect</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left"><strong>[min]</strong></td>
+            <td class="left clr-hidden-xs-down"><code class="clr-code">String</code></td>
+            <td class="clr-hidden-xs-down">N/A</td>
+            <td class="left">
+              Sets the earliest acceptable date and must be in the <code class="clr-code">YYYY-MM-DD format</code>.
+            </td>
+          </tr>
+          <tr>
+            <td class="left"><strong>[max]</strong></td>
+            <td class="left clr-hidden-xs-down"><code class="clr-code">String</code></td>
+            <td class="clr-hidden-xs-down">N/A</td>
+            <td class="left">
+              Sets the latest acceptable date and must be in the <code class="clr-code">YYYY-MM-DD</code> format.
+            </td>
+          </tr>
+          <tr>
+            <td class="left"><strong>[separatorText]</strong></td>
+            <td class="left clr-hidden-xs-down"><code class="clr-code">String</code></td>
+            <td class="clr-hidden-xs-down"><code class="clr-code">' - '</code></td>
+            <td class="left">The value between the "from" and "to" dates is the separator.</td>
+          </tr>
+          <tr>
+            <td class="left"><strong>[placeholder]</strong></td>
+            <td class="left clr-hidden-xs-down"><code class="clr-code">String</code></td>
+            <td class="clr-hidden-xs-down">
+              Concat of "from" format, plus separator, plus "to" format.<br />
+              E.g. <code class="clr-code">MM/DD/YYYY - MM/DD/YYYY</code>
+            </td>
+            <td class="left">Placeholder attribute for the input.</td>
+          </tr>
+          <tr>
+            <td class="left"><strong>(valueChange)</strong></td>
+            <td class="left clr-hidden-xs-down"><code class="clr-code">NullableDaterange</code></td>
+            <td class="clr-hidden-xs-down">N/A</td>
+            <td class="left">Event triggered when the input value changes.</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <div id="code-examples">
@@ -276,111 +381,6 @@
         </clr-daterangepicker-container>
       </form>
       <clr-code-snippet [clrCode]="validationDemo"></clr-code-snippet>
-
-      <h3>Summary of Options</h3>
-      <h4><code class="clr-code">clr-daterangepicker-container</code> element</h4>
-      <table class="table">
-        <thead>
-          <tr>
-            <th class="left">Input</th>
-            <th class="left clr-hidden-xs-down">Values</th>
-            <th class="clr-hidden-xs-down">Default</th>
-            <th class="left">Effect</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="left"><strong>[clrPosition]</strong></td>
-            <td class="left clr-hidden-xs-down">
-              One of the following strings:
-              <ul>
-                <li><code class="clr-code">'bottom-left'</code></li>
-                <li><code class="clr-code">'bottom-right'</code></li>
-                <li><code class="clr-code">'left-bottom'</code></li>
-                <li><code class="clr-code">'left-top'</code></li>
-                <li><code class="clr-code">'right-bottom'</code></li>
-                <li><code class="clr-code">'right-top'</code></li>
-                <li><code class="clr-code">'top-left'</code></li>
-                <li><code class="clr-code">'top-right'</code></li>
-              </ul>
-            </td>
-            <td class="clr-hidden-xs-down"><code class="clr-code">'bottom-left'</code></td>
-            <td class="left">
-              Set the position of the popover containing the two Date Pickers relative to the input field.
-            </td>
-          </tr>
-          <tr>
-            <td class="left"><strong>[labelFrom]</strong></td>
-            <td class="left clr-hidden-xs-down"><code class="clr-code">String</code></td>
-            <td class="clr-hidden-xs-down"><code class="clr-code">'From'</code></td>
-            <td class="left">Translatable "from" label.</td>
-          </tr>
-          <tr>
-            <td class="left"><strong>[LabelTo]</strong></td>
-            <td class="left clr-hidden-xs-down"><code class="clr-code">String</code></td>
-            <td class="clr-hidden-xs-down"><code class="clr-code">'To'</code></td>
-            <td class="left">Translatable "to" label.</td>
-          </tr>
-          <tr>
-            <td class="left"><strong>[presets]</strong></td>
-            <td class="left clr-hidden-xs-down"><code class="clr-code">Array&lt;DaterangePreset&gt;</code></td>
-            <td class="clr-hidden-xs-down"><code class="clr-code">[]</code></td>
-            <td class="left">
-              List of presets. By default this list is empty, which hides the presets section in the UI.
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <h4><code class="clr-code">clrDaterangepicker</code> directive</h4>
-      <table class="table">
-        <thead>
-          <tr>
-            <th class="left">Input</th>
-            <th class="left clr-hidden-xs-down">Values</th>
-            <th class="clr-hidden-xs-down">Default</th>
-            <th class="left">Effect</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="left"><strong>[min]</strong></td>
-            <td class="left clr-hidden-xs-down"><code class="clr-code">String</code></td>
-            <td class="clr-hidden-xs-down">N/A</td>
-            <td class="left">
-              Sets the earliest acceptable date and must be in the <code class="clr-code">YYYY-MM-DD format</code>.
-            </td>
-          </tr>
-          <tr>
-            <td class="left"><strong>[max]</strong></td>
-            <td class="left clr-hidden-xs-down"><code class="clr-code">String</code></td>
-            <td class="clr-hidden-xs-down">N/A</td>
-            <td class="left">
-              Sets the latest acceptable date and must be in the <code class="clr-code">YYYY-MM-DD</code> format.
-            </td>
-          </tr>
-          <tr>
-            <td class="left"><strong>[separatorText]</strong></td>
-            <td class="left clr-hidden-xs-down"><code class="clr-code">String</code></td>
-            <td class="clr-hidden-xs-down"><code class="clr-code">' - '</code></td>
-            <td class="left">The value between the "from" and "to" dates is the separator.</td>
-          </tr>
-          <tr>
-            <td class="left"><strong>[placeholder]</strong></td>
-            <td class="left clr-hidden-xs-down"><code class="clr-code">String</code></td>
-            <td class="clr-hidden-xs-down">
-              Concat of "from" format, plus separator, plus "to" format.<br />
-              E.g. <code class="clr-code">MM/DD/YYYY - MM/DD/YYYY</code>
-            </td>
-            <td class="left">Placeholder attribute for the input.</td>
-          </tr>
-          <tr>
-            <td class="left"><strong>(valueChange)</strong></td>
-            <td class="left clr-hidden-xs-down"><code class="clr-code">NullableDaterange</code></td>
-            <td class="clr-hidden-xs-down">N/A</td>
-            <td class="left">Event triggered when the input value changes.</td>
-          </tr>
-        </tbody>
-      </table>
     </div>
   </article>
 </clr-doc-wrapper>
