@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -34,6 +34,7 @@ import { ClrFormModule } from './abstract-form-component/form.module';
 import { ClrDropdownOverflowModule } from './dropdown';
 import { ClrDatagridStatePersistenceModule, ClrEnumFilterModule } from './datagrid';
 import { ClrDateFilterModule } from './datagrid/date-filter/date-filter.module';
+import { ClrDaterangepickerModule } from './daterangepicker/daterangepicker.module';
 
 @NgModule({
   exports: [
@@ -67,6 +68,7 @@ import { ClrDateFilterModule } from './datagrid/date-filter/date-filter.module';
     ClrDatagridStatePersistenceModule,
     ClrEnumFilterModule,
     ClrDateFilterModule,
+    ClrDaterangepickerModule,
   ],
 })
 export class ClrAddonsModule {}

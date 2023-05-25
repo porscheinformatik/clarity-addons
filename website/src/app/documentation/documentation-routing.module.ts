@@ -197,6 +197,14 @@ const documentationRoutes: Routes = [
           browserTitle: 'Responsiveness',
         },
       },
+      {
+        path: 'daterangepicker',
+        loadChildren: () =>
+          import('./demos/daterangepicker/daterangepicker.demo.module').then(m => m.DaterangepickerDemoModule),
+        data: {
+          browserTitle: 'Daterangepicker',
+        },
+      },
     ],
   },
 ];
