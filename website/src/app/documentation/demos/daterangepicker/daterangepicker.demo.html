@@ -1,0 +1,386 @@
+<clr-doc-wrapper [title]="title">
+  <article>
+    <h5 class="component-summary">Daterangepicker is a popover control for picking a date range value for an input.</h5>
+
+    <div id="design-guidelines">
+      <h2>Usage</h2>
+      <p>
+        Use the daterangepicker whenever you want to select a date range. The default Clarity Date Picker allows
+        selecting only one date. This component uses two Clarity Date Pickers to select a start and end date.
+      </p>
+
+      <div class="clrweb-DoxMedia">
+        <div class="clrweb-DoxMedia-block">
+          <div class="clrweb-DoxMedia-img">
+            <img src="assets/images/documentation/daterangepicker-screenshot.png" alt="Screenshot of daterangepicker" />
+          </div>
+        </div>
+        <div class="clrweb-DoxMedia-text">
+          <p>Screenshot of a basic daterangepicker.</p>
+        </div>
+      </div>
+
+      <h3>Summary of Options</h3>
+      <h4><code class="clr-code">clr-daterangepicker-container</code> element</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Input</th>
+            <th class="left clr-hidden-xs-down">Values</th>
+            <th class="clr-hidden-xs-down">Default</th>
+            <th class="left">Effect</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left"><strong>[clrPosition]</strong></td>
+            <td class="left clr-hidden-xs-down">
+              One of the following strings:
+              <ul>
+                <li><code class="clr-code">'bottom-left'</code></li>
+                <li><code class="clr-code">'bottom-right'</code></li>
+                <li><code class="clr-code">'left-bottom'</code></li>
+                <li><code class="clr-code">'left-top'</code></li>
+                <li><code class="clr-code">'right-bottom'</code></li>
+                <li><code class="clr-code">'right-top'</code></li>
+                <li><code class="clr-code">'top-left'</code></li>
+                <li><code class="clr-code">'top-right'</code></li>
+              </ul>
+            </td>
+            <td class="clr-hidden-xs-down"><code class="clr-code">'bottom-left'</code></td>
+            <td class="left">
+              Set the position of the popover containing the two Date Pickers relative to the input field.
+            </td>
+          </tr>
+          <tr>
+            <td class="left"><strong>[labelFrom]</strong></td>
+            <td class="left clr-hidden-xs-down"><code class="clr-code">String</code></td>
+            <td class="clr-hidden-xs-down"><code class="clr-code">'From'</code></td>
+            <td class="left">Translatable "from" label.</td>
+          </tr>
+          <tr>
+            <td class="left"><strong>[LabelTo]</strong></td>
+            <td class="left clr-hidden-xs-down"><code class="clr-code">String</code></td>
+            <td class="clr-hidden-xs-down"><code class="clr-code">'To'</code></td>
+            <td class="left">Translatable "to" label.</td>
+          </tr>
+          <tr>
+            <td class="left"><strong>[presets]</strong></td>
+            <td class="left clr-hidden-xs-down"><code class="clr-code">Array&lt;DaterangePreset&gt;</code></td>
+            <td class="clr-hidden-xs-down"><code class="clr-code">[]</code></td>
+            <td class="left">
+              List of presets. By default this list is empty, which hides the presets section in the UI.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h4><code class="clr-code">clrDaterangepicker</code> directive</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Input</th>
+            <th class="left clr-hidden-xs-down">Values</th>
+            <th class="clr-hidden-xs-down">Default</th>
+            <th class="left">Effect</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left"><strong>[min]</strong></td>
+            <td class="left clr-hidden-xs-down"><code class="clr-code">String</code></td>
+            <td class="clr-hidden-xs-down">N/A</td>
+            <td class="left">
+              Sets the earliest acceptable date and must be in the <code class="clr-code">YYYY-MM-DD format</code>.
+            </td>
+          </tr>
+          <tr>
+            <td class="left"><strong>[max]</strong></td>
+            <td class="left clr-hidden-xs-down"><code class="clr-code">String</code></td>
+            <td class="clr-hidden-xs-down">N/A</td>
+            <td class="left">
+              Sets the latest acceptable date and must be in the <code class="clr-code">YYYY-MM-DD</code> format.
+            </td>
+          </tr>
+          <tr>
+            <td class="left"><strong>[separatorText]</strong></td>
+            <td class="left clr-hidden-xs-down"><code class="clr-code">String</code></td>
+            <td class="clr-hidden-xs-down"><code class="clr-code">' - '</code></td>
+            <td class="left">The value between the "from" and "to" dates is the separator.</td>
+          </tr>
+          <tr>
+            <td class="left"><strong>[placeholder]</strong></td>
+            <td class="left clr-hidden-xs-down"><code class="clr-code">String</code></td>
+            <td class="clr-hidden-xs-down">
+              Concat of "from" format, plus separator, plus "to" format.<br />
+              E.g. <code class="clr-code">MM/DD/YYYY - MM/DD/YYYY</code>
+            </td>
+            <td class="left">Placeholder attribute for the input.</td>
+          </tr>
+          <tr>
+            <td class="left"><strong>(valueChange)</strong></td>
+            <td class="left clr-hidden-xs-down"><code class="clr-code">NullableDaterange</code></td>
+            <td class="clr-hidden-xs-down">N/A</td>
+            <td class="left">Event triggered when the input value changes.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="code-examples">
+      <h2 id="examples">Code &amp; Examples</h2>
+
+      <h3><code class="clr-code">clrDaterangepicker</code> directive</h3>
+      <p>
+        To use the daterangepicker, add the <code class="clr-code">clrDaterangepicker</code> directive to an
+        <code class="clr-code">input</code> field. Then, place the input inside the
+        <code class="clr-code">clr-daterangepicker-container</code> container element.
+      </p>
+      <form clrForm>
+        <clr-daterangepicker-container>
+          <label>Basic demo</label>
+          <input clrDaterangepicker type="date" name="daterange" [(ngModel)]="value" />
+        </clr-daterangepicker-container>
+      </form>
+      <clr-code-snippet [clrCode]="basicDemo"></clr-code-snippet>
+
+      <h3>Configuration</h3>
+
+      <h4>Min/Max attributes</h4>
+      <p>
+        Just like <a href="https://clarity.design/documentation/datepicker">Clarity Date Picker</a>, you can set
+        earliest and latest acceptable dates. Just like the native HTML5 date spec a
+        <code class="clr-code">yyyy-mm-dd</code> string can be used in the value for min or max. If the max value isn't
+        a possible date then that the input has no max value. Similar for min values, if the string used is not a
+        possible date then the input will not have a min value.
+      </p>
+      <p>
+        Only dates inside the min/max range will be selectable for the input when there is a bound placed for the min or
+        max attribute.
+      </p>
+      <p>
+        Showing validation errors for min & max attributes work the same as Clarity with
+        <code class="clr-code">clr-control-error</code>. Only one big difference, it requires an different directive.
+        Use <code class="clr-code">*clrIfDaterangeError</code> instead of <code class="clr-code">*clrIfError</code>.
+      </p>
+      <form clrForm>
+        <clr-daterangepicker-container>
+          <label>Min & max attributes</label>
+          <input
+            clrDaterangepicker
+            type="date"
+            name="daterange"
+            [(ngModel)]="value"
+            min="2023-05-03"
+            max="2023-06-20"
+          />
+          <clr-control-helper>Min date: 2023-05-03 AND Max date: 2023-06-20</clr-control-helper>
+          <clr-control-error *clrIfDaterangeError="'min'; error as err">
+            Daterange minimum is {{ err.min.toDate() | date }}
+          </clr-control-error>
+          <clr-control-error *clrIfDaterangeError="'max'; error as err">
+            Daterange maximum is {{ err.max.toDate() | date }}
+          </clr-control-error>
+        </clr-daterangepicker-container>
+      </form>
+      <clr-code-snippet [clrCode]="minMaxDemo"></clr-code-snippet>
+
+      <h4>Presets</h4>
+      <div class="clr-row">
+        <div class="clr-col-12 clr-col-md-6">
+          <p>
+            To quicker set fixed dateranges, it is possible to set a list of presets. Any preset will create an button
+            in the popover next to the Date Pickers. Once pressed, the preset will fill the "from" and "to" Date Pickers
+            with an hard-coded or dynamic date. You can choose to fill both dates, for example with the last 30 days. Or
+            you can set only one date of the daterange, for example if you want today to be pre-filled. Only when both
+            values are present, the popover will close and update the model. You can set as many presets as you want,
+            but an maximum of 4 is advised.
+          </p>
+        </div>
+        <div class="clr-col-12 clr-col-md-6">
+          <div class="clrweb-DoxMedia">
+            <div class="clrweb-DoxMedia-block">
+              <div class="clrweb-DoxMedia-img">
+                <img
+                  src="assets/images/documentation/daterangepicker-presets-screenshot.png"
+                  alt="Screenshot of daterangepicker with presets option"
+                />
+              </div>
+            </div>
+            <div class="clrweb-DoxMedia-text">
+              <p>Screenshot of daterangepicker with presets option.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p>
+        To add presets, you can use the <code class="clr-code">DaterangePreset</code> interface. It contains an property
+        for text of the button: <code class="clr-code">text</code>. And it contains an function that returns an
+        <code class="clr-code">Daterange</code>, which will be called once the preset button is clicked.
+      </p>
+      <form clrForm>
+        <clr-daterangepicker-container [presets]="presets">
+          <label>Presets</label>
+          <input clrDaterangepicker type="date" name="daterange-preset" [(ngModel)]="value" />
+        </clr-daterangepicker-container>
+      </form>
+      <clr-code-snippet [clrCode]="presetsDemo"></clr-code-snippet>
+      <clr-code-snippet [clrCode]="presetsTypescriptDemo" clrLanguage="typescript"></clr-code-snippet>
+
+      <h4>Position</h4>
+      <p>
+        It is possible to change the position of the popover, which contains the two Date Pickers. This works the same
+        as the <a href="https://clarity.design/documentation/datepicker">Clarity Date Pickers</a>, although this option
+        is not documented.
+      </p>
+      <p>The <code class="clr-code">clrPosition</code> attribute accepts one of the following strings:</p>
+      <ul>
+        <li><code class="clr-code">'bottom-left'</code></li>
+        <li><code class="clr-code">'bottom-right'</code></li>
+        <li><code class="clr-code">'left-bottom'</code></li>
+        <li><code class="clr-code">'left-top'</code></li>
+        <li><code class="clr-code">'right-bottom'</code></li>
+        <li><code class="clr-code">'right-top'</code></li>
+        <li><code class="clr-code">'top-left'</code></li>
+        <li><code class="clr-code">'top-right'</code></li>
+      </ul>
+      <form clrForm>
+        <clr-daterangepicker-container [clrPosition]="'left-top'">
+          <label>Position</label>
+          <input clrDaterangepicker type="date" name="daterange-position" [(ngModel)]="value" />
+        </clr-daterangepicker-container>
+      </form>
+      <clr-code-snippet [clrCode]="positionsDemo"></clr-code-snippet>
+
+      <h3>Internationalization</h3>
+      <p>
+        As the Date Pickers inside the popover are
+        <a href="https://clarity.design/documentation/datepicker">Clarity Date Pickers</a>, they use the same locale
+        identifiers supported by Angular for getting the date format, first day of the week, month and day names. These
+        values are used to generate the input field placeholder and the calendar.
+      </p>
+
+      <h3>Translation</h3>
+      <p>The following options are available to help with multilingual applications:</p>
+
+      <h4>Labels "from" and "to"</h4>
+      <p>
+        Both the "from" and "to" input labels inside the modal are translatable via respectively
+        <code class="clr-code">fromLabel</code> and <code class="clr-code">toLabel</code> attributes.
+      </p>
+      <form clrForm>
+        <clr-daterangepicker-container fromLabel="Van" toLabel="Tot">
+          <label>Labels "from" and "to"</label>
+          <input clrDaterangepicker type="date" name="daterange-labels" [(ngModel)]="value" />
+        </clr-daterangepicker-container>
+      </form>
+      <clr-code-snippet [clrCode]="labelsTranslationDemo"></clr-code-snippet>
+
+      <h4><code class="clr-code">separatorText</code> attribute</h4>
+      <p>
+        The value between the "from" and "to" dates is the separator. By default it uses a dash
+        <code class="clr-code">-</code> character. This attribute is used in the input field, the default placeholder
+        and the hover titles.
+      </p>
+      <form clrForm>
+        <clr-daterangepicker-container>
+          <label>Separator</label>
+          <input clrDaterangepicker type="date" name="daterange-separator" [(ngModel)]="value" separatorText=" tot " />
+        </clr-daterangepicker-container>
+      </form>
+      <clr-code-snippet [clrCode]="separatorDemo"></clr-code-snippet>
+
+      <h4><code class="clr-code">placeholder</code> attribute</h4>
+      <p>A whole different placeholder can be set via the <code class="clr-code">placeholder</code> attribute.</p>
+      <form clrForm>
+        <clr-daterangepicker-container>
+          <label>Placeholder</label>
+          <input
+            clrDaterangepicker
+            type="date"
+            name="daterange-placeholder"
+            [(ngModel)]="value"
+            placeholder="Custom placeholder"
+          />
+        </clr-daterangepicker-container>
+      </form>
+      <clr-code-snippet [clrCode]="placeholderDemo"></clr-code-snippet>
+
+      <h3>Validation</h3>
+      <p>
+        The daterangepicker has multiple validations. Each validation is enabled by default (if conditions are met), but
+        can individually disabled.
+      </p>
+      <p>The following validations are present:</p>
+      <ul>
+        <li>
+          Daterange is required. Key <code class="clr-code">required</code>. When the
+          <code class="clr-code">input</code> element contains the <code class="clr-code">required</code> attribute,
+          this validation is enabled. When the control is touched and no value is present, this validation is activated.
+          <br />
+          This validation is also activated when the model receives an partial daterange.
+          <br />
+          This validation can be disabled with <code class="clr-code">[clrDaterangeRequired]="false"</code>.
+        </li>
+        <li>
+          Date "from" is after "to" date. Key <code class="clr-code">fromIsAfterTo</code>. This validation is always
+          enabled, and triggered when the "from" is not after the "to" date.
+          <br />
+          This validation can be disabled with <code class="clr-code">[clrDaterangeOrder]="false"</code>.
+        </li>
+        <li>
+          Daterange cannot start before minium date. Key <code class="clr-code">min</code>. This validation is enabled
+          when the <code class="clr-code">min</code> property is set.
+          <br />
+          This validation can be disabled with <code class="clr-code">[clrDaterangeMin]="false"</code>.
+        </li>
+        <li>
+          Daterange cannot end after maximum date. Key <code class="clr-code">max</code>. This validation is enabled
+          when the <code class="clr-code">max</code> property is set.
+          <br />
+          This validation can be disabled with <code class="clr-code">[clrDaterangeMax]="false"</code>.
+        </li>
+        <li>
+          Invalid daterange. Key <code class="clr-code">invalid</code>. When the manually entered daterange in the
+          <code class="clr-code">input</code> element is invalid, this validation is activated.
+        </li>
+      </ul>
+      <p>
+        Showing validation errors work the same as Clarity with <code class="clr-code">clr-control-error</code>. Only
+        one big difference, it requires an different directive. Use
+        <code class="clr-code">*clrIfDaterangeError</code> instead of <code class="clr-code">*clrIfError</code>.
+      </p>
+      <p>
+        The <code class="clr-code">clr-control-helper</code> and <code class="clr-code">clr-control-success</code> are
+        also supported.
+      </p>
+      <form clrForm>
+        <clr-daterangepicker-container>
+          <label>Validation</label>
+          <input
+            clrDaterangepicker
+            type="date"
+            name="daterange-validation"
+            [(ngModel)]="value"
+            min="2023-05-03"
+            max="2023-06-20"
+            required
+          />
+          <clr-control-helper>Helper text.</clr-control-helper>
+          <clr-control-error *clrIfDaterangeError="'required'">Daterange is mandatory!</clr-control-error>
+          <clr-control-error *clrIfDaterangeError="'fromIsAfterTo'">
+            Date "from" must be before date "to"!
+          </clr-control-error>
+          <clr-control-error *clrIfDaterangeError="'min'; error as err">
+            Daterange minimum is {{ err.min.toDate() | date }}
+          </clr-control-error>
+          <clr-control-error *clrIfDaterangeError="'max'; error as err">
+            Daterange maximum is {{ err.max.toDate() | date }}
+          </clr-control-error>
+          <clr-control-error *clrIfDaterangeError="'invalid'">No valid daterange value!</clr-control-error>
+          <clr-control-success>✅ Valid.</clr-control-success>
+        </clr-daterangepicker-container>
+      </form>
+      <clr-code-snippet [clrCode]="validationDemo"></clr-code-snippet>
+    </div>
+  </article>
+</clr-doc-wrapper>

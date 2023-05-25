@@ -20,6 +20,7 @@ module.exports = {
   plugins: ['@typescript-eslint', 'jasmine'],
   // Only adding rules that override the defaults or enforce new standards
   rules: {
+    'curly': 'error',
     '@typescript-eslint/no-explicit-any': 'off', // Would LOVE to turn this on
     '@typescript-eslint/no-unused-vars': 'off', // TypeScript is catching this
     '@typescript-eslint/no-use-before-define': 'off', // Lots of complaints in tests.

@@ -20,12 +20,13 @@
     "strictNullChecks": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es2020",
+    "target": "es2022",
     "typeRoots": ["node_modules/@types"],
     "paths": {
       "@porscheinformatik/clr-addons": ["src/clr-addons"]
     },
-    "lib": ["es2018", "dom"]
+    "lib": ["es2018", "dom"],
+    "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

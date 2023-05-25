@@ -1,0 +1,165 @@
+<h2>Daterangepicker</h2>
+
+<h3>Reactive Forms</h3>
+<form clrForm [formGroup]="reactiveForm">
+  <clr-daterangepicker-container>
+    <label>Daterange</label>
+    <input clrDaterangepicker type="date" formControlName="daterange" />
+  </clr-daterangepicker-container>
+  <clr-date-container>
+    <label>Date</label>
+    <input clrDate type="date" formControlName="date" />
+  </clr-date-container>
+  <clr-input-container>
+    <label>Input</label>
+    <input clrInput type="text" placeholder="Some input" formControlName="otherValue" />
+  </clr-input-container>
+  <button type="button" class="btn" (click)="updateReactiveForm()">Fill</button>
+  <pre>{{reactiveForm.value | json}}</pre>
+</form>
+
+<h3>Template Driven</h3>
+<form clrForm>
+  <clr-daterangepicker-container>
+    <label>Daterange</label>
+    <input clrDaterangepicker type="date" name="daterange" [(ngModel)]="templateDrivenValue" />
+  </clr-daterangepicker-container>
+  <button type="button" class="btn" (click)="updateTemplateDriven()">Fill</button>
+  <pre>{{templateDrivenValue | json}}</pre>
+</form>
+
+<h3>Vertical Form</h3>
+<form clrForm [clrLayout]="'vertical'" [formGroup]="reactiveForm">
+  <clr-daterangepicker-container>
+    <label>Daterange</label>
+    <input clrDaterangepicker type="date" formControlName="daterange" />
+  </clr-daterangepicker-container>
+  <clr-date-container>
+    <label>Date</label>
+    <input clrDate type="date" formControlName="date" />
+  </clr-date-container>
+  <clr-input-container>
+    <label>Input</label>
+    <input clrInput type="text" formControlName="otherValue" />
+  </clr-input-container>
+  <pre>{{reactiveForm.value | json}}</pre>
+</form>
+
+<h3>Horizontal Form</h3>
+<form clrForm [clrLayout]="'horizontal'" [formGroup]="reactiveForm">
+  <clr-daterangepicker-container>
+    <label>Daterange</label>
+    <input clrDaterangepicker type="date" formControlName="daterange" />
+  </clr-daterangepicker-container>
+  <clr-date-container>
+    <label>Date</label>
+    <input clrDate type="date" formControlName="date" />
+  </clr-date-container>
+  <clr-input-container>
+    <label>Input</label>
+    <input clrInput type="text" formControlName="otherValue" />
+  </clr-input-container>
+  <pre>{{reactiveForm.value | json}}</pre>
+</form>
+
+<h3>Validation</h3>
+<form clrForm [clrLayout]="'horizontal'" [formGroup]="validationForm">
+  <ul>
+    <li>Daterange is required. When absent or partial.</li>
+    <li>Daterange "from" cannot be after "to".</li>
+    <li>Daterange cannot start before min date: {{minDate | date}}.</li>
+    <li>Daterange cannot end after max date: {{maxDate | date}}.</li>
+    <li>Daterange is invalid.</li>
+  </ul>
+  <clr-daterangepicker-container>
+    <label>Daterange</label>
+    <input
+      #validationInput
+      clrDaterangepicker
+      type="date"
+      [min]="minDate"
+      [max]="maxDate"
+      formControlName="daterange"
+      required
+    />
+    <clr-control-helper>Helper text.</clr-control-helper>
+    <clr-control-error *clrIfDaterangeError="'required'">Daterange is mandatory!</clr-control-error>
+    <clr-control-error *clrIfDaterangeError="'fromIsAfterTo'">
+      Date "from" must be before date "to"!
+    </clr-control-error>
+    <clr-control-error *clrIfDaterangeError="'min'; error as err">
+      Daterange minimum is {{ err.min.toDate() | date }}
+    </clr-control-error>
+    <clr-control-error *clrIfDaterangeError="'max'; error as err">
+      Daterange maximum is {{ err.max.toDate() | date }}
+    </clr-control-error>
+    <clr-control-error *clrIfDaterangeError="'invalid'">No valid daterange value!</clr-control-error>
+    <clr-control-success>✅ Valid.</clr-control-success>
+  </clr-daterangepicker-container>
+  <button type="button" class="btn btn-danger-outline" (click)="triggerRequiredValidation()">
+    Trigger required validation
+  </button>
+  <button type="button" class="btn btn-danger-outline" (click)="triggerPartialRequiredValidation()">
+    Trigger partial required validation
+  </button>
+  <button type="button" class="btn btn-danger-outline" (click)="triggerFromIsAfterToValidation()">
+    Trigger fromIsAfterTo validation
+  </button>
+  <button type="button" class="btn btn-danger-outline" (click)="triggerMinMaxValidation()">
+    Trigger min/max validation
+  </button>
+  <button type="button" class="btn btn-danger-outline" (click)="triggerInvalidValidation()">
+    Trigger invalid validation
+  </button>
+  <button type="button" class="btn btn-success-outline" (click)="triggerSuccess()">Trigger success</button>
+  <pre>{{ validationForm.value | json}}</pre>
+  <pre>
+{{ {
+      touched: validationForm.controls.daterange.touched,
+      errors: validationForm.controls.daterange.errors
+    } | json}}
+  </pre>
+</form>
+
+<h3>Configuration</h3>
+<form clrForm>
+  <clr-daterangepicker-container [presets]="presets">
+    <label>Presets</label>
+    <input clrDaterangepicker type="date" name="daterange-presets" [(ngModel)]="configurationValue" />
+    <clr-control-helper>Open picker to see the presets.</clr-control-helper>
+  </clr-daterangepicker-container>
+  <clr-daterangepicker-container [clrPosition]="position">
+    <label>Position</label>
+    <input clrDaterangepicker type="date" name="daterange-position" [(ngModel)]="configurationValue" />
+    <clr-control-helper>Change the position of the picker.</clr-control-helper>
+  </clr-daterangepicker-container>
+  <clr-select-container>
+    <select clrSelect name="daterange-positions" [(ngModel)]="position">
+      <option *ngFor="let option of positions" [value]="option">{{option}}</option>
+    </select>
+  </clr-select-container>
+  <clr-daterangepicker-container>
+    <label>Placeholder</label>
+    <input
+      clrDaterangepicker
+      type="date"
+      name="daterange-placeholder"
+      placeholder="Custom placeholder"
+      [(ngModel)]="configurationValue"
+    />
+    <clr-control-helper>Custom placeholder text.</clr-control-helper>
+  </clr-daterangepicker-container>
+  <clr-daterangepicker-container [presets]="presetsI18n" [labelFrom]="'Van'" [labelTo]="'Tot'">
+    <label>Translation</label>
+    <input
+      clrDaterangepicker
+      type="date"
+      name="daterange-translation"
+      [(ngModel)]="configurationValue"
+      [separatorText]="' tot '"
+    />
+    <clr-control-helper>Dutch translation for 'from' and 'to' labels, separator text and presets.</clr-control-helper>
+    <clr-control-helper>Date format is still depended on culture locale.</clr-control-helper>
+  </clr-daterangepicker-container>
+  <pre>{{configurationValue | json}}</pre>
+</form>
