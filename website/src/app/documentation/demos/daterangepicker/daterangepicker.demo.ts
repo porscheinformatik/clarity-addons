@@ -100,7 +100,7 @@ const POSITIONS_DEMO = `
 `;
 const LABELS_TRANSLATION_DEMO = `
 <form clrForm>
-  <clr-daterangepicker-container fromLabel="Van" toLabel="Tot">
+  <clr-daterangepicker-container labelFrom="Van" labelTo="Tot">
     <label>Labels "from" and "to"</label>
     <input clrDaterangepicker type="date" name="demo" [(ngModel)]="demo" />
   </clr-daterangepicker-container>
