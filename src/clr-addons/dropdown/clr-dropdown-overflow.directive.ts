@@ -1,16 +1,24 @@
 /*
- * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { AfterContentInit, ContentChildren, Directive, ElementRef, Input, OnDestroy, QueryList } from '@angular/core';
+import {
+  AfterContentChecked,
+  ContentChildren,
+  Directive,
+  ElementRef,
+  Input,
+  OnDestroy,
+  QueryList,
+} from '@angular/core';
 import { ClrDropdown } from '@clr/angular';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 @Directive({ selector: 'clr-dropdown-menu' })
-export class ClrDropdownOverflowDirective implements AfterContentInit, OnDestroy {
+export class ClrDropdownOverflowDirective implements AfterContentChecked, OnDestroy {
   @Input() clrDropdownMenuMaxHeight: string | number; // can be of px, rem, vh, or a number (which then is considered as px value)
   @Input() clrDropdownMenuItemMinHeight: string | number; // can be of px, rem, vh, or a number (which then is considered as px value)
 
@@ -20,10 +28,11 @@ export class ClrDropdownOverflowDirective implements AfterContentInit, OnDestroy
   public readonly marginBottomRem = 0.1;
 
   private destroy$ = new Subject<void>();
+  private alreadyChecked = false;
 
   public constructor(private elRef: ElementRef) {}
 
-  ngAfterContentInit(): void {
+  ngAfterContentChecked(): void {
     // first trigger manually because the subscription lower only triggers after first change
     if (!this.nestedDropdownChildren?.length) {
       this.applyDropdownOverflowStyles();
@@ -47,19 +56,20 @@ export class ClrDropdownOverflowDirective implements AfterContentInit, OnDestroy
   private applyDropdownOverflowStyles(): void {
     // the vertical position of our element in the current window
     const y = this.elRef.nativeElement.getBoundingClientRect().y;
-
-    const itemMinHeightPx = this.getItemMinHeight(this.clrDropdownMenuItemMinHeight);
-    // see https://stackoverflow.com/questions/22754315/for-loop-for-htmlcollection-elements
-    for (const item of this.getAllChildDropdownMenuItems()) {
-      item.style.minHeight = itemMinHeightPx + 'px';
+    if (y !== 0 && !this.alreadyChecked) {
+      const itemMinHeightPx = this.getItemMinHeight(this.clrDropdownMenuItemMinHeight);
+      // see https://stackoverflow.com/questions/22754315/for-loop-for-htmlcollection-elements
+      for (const item of this.getAllChildDropdownMenuItems()) {
+        item.style.minHeight = itemMinHeightPx + 'px';
+      }
+      this.elRef.nativeElement.style.maxHeight =
+        this.getMenuMaxHeight(
+          this.clrDropdownMenuMaxHeight,
+          window.innerHeight - y - this.convertRemToPixels(this.marginBottomRem)
+        ) + 'px';
+      this.elRef.nativeElement.style.overflowY = 'auto';
+      this.alreadyChecked = true;
     }
-
-    this.elRef.nativeElement.style.maxHeight =
-      this.getMenuMaxHeight(
-        this.clrDropdownMenuMaxHeight,
-        window.innerHeight - y - this.convertRemToPixels(this.marginBottomRem)
-      ) + 'px';
-    this.elRef.nativeElement.style.overflowY = 'auto';
   }
 
   private removeDropdownOverflowStyles(): void {
