@@ -5,36 +5,36 @@
  */
 
 import { NgModule } from '@angular/core';
-import { ClrBackButtonModule } from './back-button/back-button.module';
-import { ClrBreadcrumbModule } from './breadcrumb/breadcrumb.module';
-import { ClrCollapseExpandSectionModule } from './collapse-expand-section/collapse-expand-section.module';
-import { ClrContentPanelModule } from './content-panel/content-panel.module';
-import { ClrDataListValidatorModule } from './data-list-validator/data-list-validator.module';
-import { ClrDateTimeModule } from './date-time-container/date-time-module';
-import { ClrDotPagerModule } from './dot-pager/dot-pager.module';
-import { ClrFlowBarModule } from './flow-bar/flow-bar.module';
-import { ClrGenericQuickListModule } from './generic-quick-list/generic-quick-list.module';
-import { ClrLetterAvatarModule } from './letter-avatar/letter-avatar.module';
-import { ClrMainNavGroupModule } from './main-nav-group/main-nav-group.module';
-import { ClrMultilingualModule } from './multilingual/multilingual.module';
-import { ClrNotificationModule } from './notification/notification.module';
-import { ClrNumericFieldModule } from './numericfield/numeric-field.module';
-import { ClrPagedSearchResultListModule } from './paged-search-result-list/paged-search-result-list.module';
-import { ClrPagerModule } from './pager/pager.module';
-import { ClrProgressSpinnerModule } from './progress-spinner/progress-spinner.module';
-import { ClrQuickListModule } from './quick-list/quick-list.module';
-import { ClrSearchFieldModule } from './searchfield/search-field.module';
-import { ClrTreetableModule } from './treetable/treetable.module';
-import { ClrViewEditSectionModule } from './view-edit-section/view-edit-section.module';
-import { ClrHistoryModule } from './history/history.module';
-import { ClrAutocompleteOffModule } from './autocomplete-off/autocomplete-off.module';
-import { ClrBrandAvatarModule } from './brand-avatar/brand-avatar.module';
-import { ClrLocationBarModule } from './location-bar/location-bar.module';
-import { ClrFormModule } from './abstract-form-component/form.module';
+import { ClrBackButtonModule } from './back-button';
+import { ClrBreadcrumbModule } from './breadcrumb';
+import { ClrCollapseExpandSectionModule } from './collapse-expand-section';
+import { ClrContentPanelModule } from './content-panel';
+import { ClrDataListValidatorModule } from './data-list-validator';
+import { ClrDateTimeModule } from './date-time-container';
+import { ClrDotPagerModule } from './dot-pager';
+import { ClrFlowBarModule } from './flow-bar';
+import { ClrGenericQuickListModule } from './generic-quick-list';
+import { ClrLetterAvatarModule } from './letter-avatar';
+import { ClrMainNavGroupModule } from './main-nav-group';
+import { ClrMultilingualModule } from './multilingual';
+import { ClrNotificationModule } from './notification';
+import { ClrNumericFieldModule } from './numericfield';
+import { ClrPagedSearchResultListModule } from './paged-search-result-list';
+import { ClrPagerModule } from './pager';
+import { ClrProgressSpinnerModule } from './progress-spinner';
+import { ClrQuickListModule } from './quick-list';
+import { ClrSearchFieldModule } from './searchfield';
+import { ClrTreetableModule } from './treetable';
+import { ClrViewEditSectionModule } from './view-edit-section';
+import { ClrHistoryModule } from './history';
+import { ClrAutocompleteOffModule } from './autocomplete-off';
+import { ClrBrandAvatarModule } from './brand-avatar';
+import { ClrLocationBarModule } from './location-bar';
+import { ClrFormModule } from './abstract-form-component';
 import { ClrDropdownOverflowModule } from './dropdown';
-import { ClrDatagridStatePersistenceModule, ClrEnumFilterModule } from './datagrid';
-import { ClrDateFilterModule } from './datagrid/date-filter/date-filter.module';
-import { ClrDaterangepickerModule } from './daterangepicker/daterangepicker.module';
+import { ClrDatagridStatePersistenceModule, ClrDateFilterModule, ClrEnumFilterModule } from './datagrid';
+import { ClrDaterangepickerModule } from './daterangepicker';
+import { ClrHtmlEditorModule } from './html-editor';
 
 @NgModule({
   exports: [
@@ -69,6 +69,7 @@ import { ClrDaterangepickerModule } from './daterangepicker/daterangepicker.modu
     ClrEnumFilterModule,
     ClrDateFilterModule,
     ClrDaterangepickerModule,
+    ClrHtmlEditorModule,
   ],
 })
 export class ClrAddonsModule {}
