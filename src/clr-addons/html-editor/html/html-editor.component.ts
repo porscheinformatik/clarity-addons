@@ -8,9 +8,9 @@ import { AngularEditorComponent, AngularEditorConfig } from '@kolkov/angular-edi
 })
 export class HtmlEditorComponent {
   @Input()
-  htmlContent: string;
+  public htmlContent: string;
   @Input()
-  config = {
+  public config = {
     toolbarHiddenButtons: [['insertImage', 'insertVideo', 'fontName']],
     placeholder: '',
     sanitize: false,

@@ -41,6 +41,11 @@
       "type": "component"
     },
     {
+      "url": "html-editor",
+      "text": "Html Editor",
+      "type": "component"
+    },
+    {
       "url": "history",
       "text": "History",
       "type": "component"
