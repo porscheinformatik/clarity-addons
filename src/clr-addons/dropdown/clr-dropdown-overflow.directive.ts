@@ -29,6 +29,7 @@ export class ClrDropdownOverflowDirective implements AfterContentChecked, OnDest
 
   private destroy$ = new Subject<void>();
   private alreadyChecked = false;
+  private heightFix = 27;
 
   public constructor(private elRef: ElementRef) {}
 
@@ -62,11 +63,17 @@ export class ClrDropdownOverflowDirective implements AfterContentChecked, OnDest
       for (const item of this.getAllChildDropdownMenuItems()) {
         item.style.minHeight = itemMinHeightPx + 'px';
       }
+      let height = 0;
+      if (y + this.heightFix < window.innerHeight - y) {
+        height = window.innerHeight - y - this.heightFix;
+      } else {
+        height = window.innerHeight - y;
+      }
+
       this.elRef.nativeElement.style.maxHeight =
-        this.getMenuMaxHeight(
-          this.clrDropdownMenuMaxHeight,
-          window.innerHeight - y - this.convertRemToPixels(this.marginBottomRem)
-        ) + 'px';
+        this.getMenuMaxHeight(this.clrDropdownMenuMaxHeight, height - this.convertRemToPixels(this.marginBottomRem)) +
+        'px';
+
       this.elRef.nativeElement.style.overflowY = 'auto';
       this.alreadyChecked = true;
     }
