@@ -30,13 +30,13 @@
         </thead>
         <tbody>
           <tr>
-            <td class="left"><strong>[htmlContent]</strong></td>
+            <td class="left"><strong>[clrHtmlContent]</strong></td>
             <td class="left clr-hidden-xs-down"><code class="clr-code">String</code></td>
             <td class="clr-hidden-xs-down"><code class="clr-code">''</code></td>
             <td class="left">Provide the HTML Editor with an initial HTML template.</td>
           </tr>
           <tr>
-            <td class="left"><strong>[config]</strong></td>
+            <td class="left"><strong>[clrConfig]</strong></td>
             <td class="left clr-hidden-xs-down">
               <code class="clr-code"
                 ><a href="https://github.com/kolkov/angular-editor#configuration">AngularEditorConfig</a></code
@@ -46,7 +46,7 @@
             <td class="left">Config for the html editor</td>
           </tr>
           <tr>
-            <td class="left"><strong>(htmlChanged)</strong></td>
+            <td class="left"><strong>(clrHtmlChanged)</strong></td>
             <td class="left clr-hidden-xs-down"><code class="clr-code">String</code></td>
             <td class="clr-hidden-xs-down"><code class="clr-code"></code></td>
             <td class="left">Emits when the value changes.</td>
@@ -61,7 +61,7 @@
       <h3><code class="clr-code">clr-html-editor</code> component</h3>
       <p>
         To use the HTML Editor, use the <code class="clr-code">clr-html-editor</code> component and provide it with a
-        default template. Then, listen to it's <code class="clr-code">(htmlChanged)</code> event.
+        default template. Then, listen to it's <code class="clr-code">(clrHtmlChanged)</code> event.
       </p>
       <label>Basic demo</label>
       <clr-html-editor [clrHtmlContent]="value"></clr-html-editor>
