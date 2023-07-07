@@ -4,24 +4,26 @@ import { AngularEditorComponent, AngularEditorConfig } from '@kolkov/angular-edi
 @Component({
   selector: 'clr-html-editor',
   templateUrl: './html-editor.component.html',
-  styleUrls: ['./html-editor.component.scss'],
+  host: {
+    '[class.html-editor]': 'true',
+  },
 })
-export class HtmlEditorComponent {
+export class ClrHtmlEditorComponent {
   @Input()
-  public htmlContent: string;
+  public clrHtmlContent: string;
   @Input()
-  public config = {
+  public clrConfig = {
     toolbarHiddenButtons: [['insertImage', 'insertVideo', 'fontName']],
     placeholder: '',
     sanitize: false,
     editable: true,
   } as AngularEditorConfig;
 
-  @Output() public htmlChanged = new EventEmitter<string>();
+  @Output() public clrHtmlChanged = new EventEmitter<string>();
 
   @ViewChild(AngularEditorComponent) angularEditor: AngularEditorComponent;
 
   onChange(event: string) {
-    this.htmlChanged.emit(event);
+    this.clrHtmlChanged.emit(event);
   }
 }

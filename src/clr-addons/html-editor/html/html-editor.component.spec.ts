@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HtmlEditorComponent } from './html-editor.component';
+import { ClrHtmlEditorComponent } from './html-editor.component';
 
 describe('HtmlComponent', () => {
-  let component: HtmlEditorComponent;
-  let fixture: ComponentFixture<HtmlEditorComponent>;
+  let component: ClrHtmlEditorComponent;
+  let fixture: ComponentFixture<ClrHtmlEditorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [HtmlEditorComponent],
+      declarations: [ClrHtmlEditorComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(HtmlEditorComponent);
+    fixture = TestBed.createComponent(ClrHtmlEditorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

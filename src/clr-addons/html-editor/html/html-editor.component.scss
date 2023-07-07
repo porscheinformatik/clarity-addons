@@ -1,36 +1,40 @@
-.dropdown-menu {
-  min-width: 2rem;
-}
+@include exports('html-editor.clr-addons') {
+  .html-editor {
+    .dropdown-menu {
+      min-width: 2rem;
+    }
 
-.editor:not(.readonly) .angular-editor-textarea {
-  background-color: white !important;
-}
+    .editor:not(.readonly) .angular-editor-textarea {
+      background-color: white !important;
+    }
 
-.angular-editor-textarea {
-  color: var(--clr-forms-text-color, black);
-}
+    .angular-editor-textarea {
+      color: var(--clr-forms-text-color, black);
+    }
 
-.angular-editor-button.active {
-  background-color: var(--clr-color-action-200) !important;
-}
+    .angular-editor-button.active {
+      background-color: var(--clr-color-action-200) !important;
+    }
 
-.fa {
-  color: var(--clr-btn-default-color);
+    .fa {
+      color: var(--clr-btn-default-color);
 
-  &::after {
-    background-color: var(--clr-btn-default-color) !important;
-  }
-}
+      &::after {
+        background-color: var(--clr-btn-default-color) !important;
+      }
+    }
 
-.ae-stroke {
-  stroke: var(--clr-btn-default-color) !important;
-}
+    .ae-stroke {
+      stroke: var(--clr-btn-default-color) !important;
+    }
 
-.ae-picker-item {
-  color: inherit !important;
+    .ae-picker-item {
+      color: inherit !important;
 
-  &:hover,
-  &.focused {
-    background-color: var(--clr-global-selection-color) !important;
+      &:hover,
+      &.focused {
+        background-color: var(--clr-global-selection-color) !important;
+      }
+    }
   }
 }
