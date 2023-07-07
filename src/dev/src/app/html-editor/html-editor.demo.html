@@ -1,0 +1,13 @@
+<!--
+  ~ Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
+  ~ This software is released under MIT license.
+  ~ The full license information can be found in LICENSE in the root directory of this project.
+  -->
+<div class="clr-control-container clr-col-sm-9 clr-col-md-9 clr-col-lg-8">
+  <br /><br />
+  <div class="main-container" style="border: 1px solid black">
+    <clr-html-editor [clrConfig]="config" [clrHtmlContent]="htmlContent" (clrHtmlChanged)="onChange($event)">
+    </clr-html-editor>
+    <p class="html">HTML Output: {{ output}}</p>
+  </div>
+</div>

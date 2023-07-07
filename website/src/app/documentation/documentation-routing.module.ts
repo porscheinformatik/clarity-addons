@@ -205,6 +205,13 @@ const documentationRoutes: Routes = [
           browserTitle: 'Daterangepicker',
         },
       },
+      {
+        path: 'html-editor',
+        loadChildren: () => import('./demos/html-editor/html-editor.demo.module').then(m => m.HtmlEditorDemoModule),
+        data: {
+          browserTitle: 'Html-Editor',
+        },
+      },
     ],
   },
 ];

@@ -24,6 +24,7 @@
 @import './generic-quick-list/generic-quick-list';
 @import './history/history.scss';
 @import './location-bar/location-bar-node/location-bar-node.component.scss';
+@import './html-editor/html/html-editor.component.scss';
 
 html,
 body,
@@ -359,6 +360,7 @@ clr-date-container .clr-control-container {
 // Set the width of all inputs except time and date to 100%
 .clr-input-wrapper {
   max-width: none;
+
   input:not([type='time']):not([clrdate]) {
     width: 100%;
   }
@@ -404,5 +406,6 @@ clr-date-container .clr-control-container {
 .clr-max-width {
   max-width: $clr-max-width;
 }
+
 // Has to be at the bottom to override the styles from the above properly
 @import './mobile';

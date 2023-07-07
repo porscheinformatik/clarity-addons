@@ -135,6 +135,10 @@ export const APP_ROUTES: Routes = [
     path: 'daterangepicker',
     loadChildren: () => import('./daterangepicker/daterangepicker.demo.module').then(m => m.DaterangepickerDemoModule),
   },
+  {
+    path: 'html-editor',
+    loadChildren: () => import('./html-editor/html-editor.demo.module').then(m => m.HtmlEditorDemoModule),
+  },
 ];
 
 export const ROUTING: ModuleWithProviders<RouterModule> = RouterModule.forRoot(APP_ROUTES);

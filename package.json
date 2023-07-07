@@ -1,6 +1,6 @@
 {
   "name": "clr-addons",
-  "version": "15.2.2",
+  "version": "15.3.0",
   "private": true,
   "scripts": {
     "build:ui:css": "sass --source-map --precision=8 ./src/clr-addons/themes/phs/phs-theme.scss ./dist/clr-addons/styles/clr-addons-phs.css",
@@ -49,6 +49,7 @@
     "@clr/ui": "^15.0.0",
     "@webcomponents/custom-elements": "1.5.1",
     "@webcomponents/webcomponentsjs": "2.7.0",
+    "@kolkov/angular-editor": "2.1.0",
     "core-js": "3.27.2",
     "rxjs": "7.8.0",
     "tslib": "2.4.1",
