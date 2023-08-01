@@ -7,6 +7,7 @@
     .treetable-cell:first-of-type {
       padding-left: $base-cell-indentation + $level * $indentation-increment;
     }
+
     .treetable-expandable-caret {
       @if ($level > 0) {
         margin-left: $level * $indentation-increment;
@@ -241,7 +242,7 @@
         width: auto;
 
         .treetable-row:hover {
-          background-color: var(--clr-datagrid-row-hover);
+          background-color: $clr-highlight-neutral-200;
         }
 
         .treetable-row-wrapper {

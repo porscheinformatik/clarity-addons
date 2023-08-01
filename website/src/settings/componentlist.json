@@ -119,6 +119,11 @@
       "url": "responsiveness",
       "text": "Responsiveness",
       "type": "layout"
+    },
+    {
+      "url": "colors",
+      "text": "Colors",
+      "type": "layout"
     }
   ]
 }

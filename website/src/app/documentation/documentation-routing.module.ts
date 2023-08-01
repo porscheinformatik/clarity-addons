@@ -212,6 +212,13 @@ const documentationRoutes: Routes = [
           browserTitle: 'Html-Editor',
         },
       },
+      {
+        path: 'colors',
+        loadChildren: () => import('./demos/colors/colors.demo.module').then(m => m.ColorsDemoModule),
+        data: {
+          browserTitle: 'Colors',
+        },
+      },
     ],
   },
 ];

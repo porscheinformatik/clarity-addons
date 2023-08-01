@@ -7,6 +7,13 @@ import { Component } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import {
+  ClarityIcons,
+  errorStandardIcon,
+  infoStandardIcon,
+  successStandardIcon,
+  warningStandardIcon,
+} from '@cds/core/icon';
 
 const NO_SELECT_ALL_HTML = `
 <clr-datagrid class="datagrid-no-select-all" [(clrDgSelected)]="selected">
@@ -159,6 +166,7 @@ const DATE_FILTER_PRESELECT = `
 const today = new Date(Date.now());
 const yesterday = new Date(Date.now() - 24 * 1000 * 60 * 60);
 const tomorrow = new Date(Date.now() + 24 * 1000 * 60 * 60);
+ClarityIcons.addIcons(errorStandardIcon, warningStandardIcon, successStandardIcon, infoStandardIcon);
 
 @Component({
   selector: 'clr-datagrid-demo-docu',
@@ -189,6 +197,19 @@ export class DatagridDemo extends ClarityDocComponent {
     }))
   ).pipe(delay(0));
 
+  dataHighlighting = [
+    { name: 'Cell', text: 'Cell', status: 'Cell' },
+    { name: 'Cell', text: 'Cell', status: 'Cell' },
+    { name: 'Cell', text: 'Cell', status: 'Cell' },
+    { name: 'success', text: 'Cell', status: 'success' },
+    { name: 'error', text: 'Cell', status: 'error' },
+    { name: 'warning', text: 'Cell', status: 'warning' },
+    { name: 'info', text: 'Cell', status: 'info' },
+    { name: 'Cell', text: 'Cell', status: 'Cell' },
+    { name: 'row-hover', text: 'Cell', status: 'Cell' },
+    { name: 'row-select', text: 'Cell', status: 'selected' },
+  ];
+
   currentPage = 1;
   totalItems = 5;
 
@@ -203,5 +224,47 @@ export class DatagridDemo extends ClarityDocComponent {
 
   constructor() {
     super('datagrid');
+  }
+
+  getColoring(state: string) {
+    switch (state) {
+      case 'error':
+        return 'datagrid-highlight-error';
+      case 'success':
+        return 'datagrid-highlight-success';
+      case 'info':
+        return 'datagrid-highlight-info';
+      case 'warning':
+        return 'datagrid-highlight-warning';
+    }
+    return '';
+  }
+
+  getTextColoring(state: string) {
+    switch (state) {
+      case 'error':
+        return 'highlight-text-error';
+      case 'success':
+        return 'highlight-text-success';
+      case 'info':
+        return 'highlight-text-info';
+      case 'warning':
+        return 'highlight-text-warning';
+    }
+    return '';
+  }
+
+  getIcon(state: string) {
+    switch (state) {
+      case 'error':
+        return 'error-standard';
+      case 'success':
+        return 'success-standard';
+      case 'info':
+        return 'info-standard';
+      case 'warning':
+        return 'warning-standard';
+    }
+    return '';
   }
 }

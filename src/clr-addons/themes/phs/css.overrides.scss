@@ -63,6 +63,84 @@
     }
   }
 
+  .datagrid-row:not(
+      .datagrid-selected,
+      .datagrid-highlight-error,
+      .datagrid-highlight-success,
+      .datagrid-highlight-info,
+      .datagrid-highlight-warning
+    ) {
+    background-color: $clr-highlight-neutral-50;
+
+    .datagrid-select {
+      background-color: $clr-highlight-neutral-50;
+    }
+  }
+
+  .datagrid-row:not(
+      .datagrid-selected,
+      .datagrid-highlight-error,
+      .datagrid-highlight-success,
+      .datagrid-highlight-info,
+      .datagrid-highlight-warning
+    ):hover {
+    background-color: $clr-highlight-neutral-200;
+
+    .datagrid-select {
+      background-color: $clr-highlight-neutral-200;
+    }
+  }
+
+  .btn-success {
+    background-color: $clr-highlight-success-700;
+  }
+
+  .btn-success:hover {
+    background-color: $clr-highlight-success-800;
+  }
+
+  .btn-danger {
+    background-color: $clr-highlight-error-800;
+  }
+
+  .btn-danger:hover {
+    background-color: $clr-highlight-error-900;
+  }
+
+  .btn-warning {
+    background-color: $clr-highlight-warning-800;
+  }
+
+  .btn-warning:hover {
+    background-color: $clr-highlight-warning-900;
+  }
+
+  .btn-info {
+    background-color: $clr-highlight-info-700;
+    color: white;
+  }
+
+  .btn-info:hover {
+    background-color: $clr-highlight-info-800;
+    color: white;
+  }
+
+  .alert-info {
+    background: $clr-highlight-info-700;
+  }
+
+  .alert-warning {
+    background: $clr-highlight-warning-800;
+  }
+
+  .alert-success {
+    background: $clr-highlight-success-700;
+  }
+
+  .alert-danger {
+    background: $clr-highlight-error-800;
+  }
+
   .datagrid-footer .column-switch-wrapper .column-toggle--action:hover cds-icon {
     --color: var(--turquoise);
   }
