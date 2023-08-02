@@ -63,6 +63,10 @@ export class ClrBrandAvatar {
     this.renderer.setStyle(this.avatarElement.nativeElement, 'height', this.size + 'px');
   }
 
+  ngAfterContentInit(): void {
+    this.defaultIcon = this.getShape() === ClrBrandAvatar.DEFAULT_ICON_SHAPE;
+  }
+
   getShape(): string {
     const brandName = ClrBrandAvatar.getCleanBrandName(this.brand);
     if (brandName in AcceptedBrands) {
