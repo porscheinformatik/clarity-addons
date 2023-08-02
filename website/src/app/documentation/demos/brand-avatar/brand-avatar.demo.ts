@@ -23,6 +23,23 @@ const HTML_EXAMPLE = `
 }
 `;
 
+const HTML_EXAMPLE_LARGER = `
+<div class="parent">
+    <clr-brand-avatar class="demo-avatar" [clrSize]="48" [clrBrand]="'Volkswagen'"></clr-brand-avatar>
+    <a href="#">Volkswagen</a>
+</div>
+
+.parent {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.demo-avatar {
+    margin-right: .5rem;
+}
+`;
+
 const HTML_EXAMPLE2 = `
 <div class="parent">
     <clr-brand-avatar class="demo-avatar"></clr-brand-avatar>
@@ -41,6 +58,7 @@ const HTML_EXAMPLE2 = `
 })
 export class BrandAvatarDemo extends ClarityDocComponent {
   htmlExample = HTML_EXAMPLE;
+  htmlExampleLarger = HTML_EXAMPLE_LARGER;
   htmlExample2 = HTML_EXAMPLE2;
 
   constructor() {

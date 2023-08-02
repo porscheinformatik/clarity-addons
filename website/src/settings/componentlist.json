@@ -16,6 +16,11 @@
       "type": "layout"
     },
     {
+      "url": "brand-avatar",
+      "text": "Brand avatar",
+      "type": "component"
+    },
+    {
       "url": "breadcrumb",
       "text": "Breadcrumb",
       "type": "component"
@@ -58,11 +63,6 @@
     {
       "url": "location-bar",
       "text": "Location Bar",
-      "type": "component"
-    },
-    {
-      "url": "brand-avatar",
-      "text": "Brand avatar",
       "type": "component"
     },
     {
