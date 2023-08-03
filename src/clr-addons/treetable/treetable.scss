@@ -242,7 +242,7 @@
         width: auto;
 
         .treetable-row:hover {
-          background-color: $clr-highlight-neutral-200;
+          background-color: var(--clr-datagrid-row-hover);
         }
 
         .treetable-row-wrapper {
