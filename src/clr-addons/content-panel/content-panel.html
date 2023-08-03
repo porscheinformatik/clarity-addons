@@ -2,7 +2,7 @@
   <div [@slideIn] class="content-panel-content-wrapper" (@slideIn.done)="resizeWindow()">
     <h3 class="content-panel-title">
       <button type="button" class="close content-panel-close-btn" (click)="close()">
-        <clr-icon class="content-panel-close-icon" shape="close" size="36"></clr-icon>
+        <cds-icon class="content-panel-close-icon" shape="times" size="36"></cds-icon>
       </button>
       <ng-content select="[clr-content-panel-title]"></ng-content>
     </h3>

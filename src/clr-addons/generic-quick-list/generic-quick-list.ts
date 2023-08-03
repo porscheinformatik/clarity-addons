@@ -5,19 +5,22 @@
  */
 
 import {
-  Component,
-  Input,
-  TemplateRef,
-  Output,
-  EventEmitter,
-  ViewChildren,
-  QueryList,
   AfterViewInit,
-  OnInit,
-  ElementRef,
+  Component,
   ContentChildren,
+  ElementRef,
+  EventEmitter,
+  Input,
   OnDestroy,
+  OnInit,
+  Output,
+  QueryList,
+  TemplateRef,
+  ViewChildren,
 } from '@angular/core';
+import { ClarityIcons, trashIcon } from '@cds/core/icon';
+
+ClarityIcons.addIcons(trashIcon);
 
 export interface ClrGenericQuickListItem {
   id: any;

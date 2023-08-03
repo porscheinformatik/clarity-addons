@@ -5,6 +5,9 @@
  */
 import { Component } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
+import { ClarityIcons, displayIcon } from '@cds/core/icon';
+
+ClarityIcons.addIcons(displayIcon);
 
 const CONTENTPANEL_CODE_EXAMPLE = `
 <div class="btn-group">

@@ -5,6 +5,7 @@
  */
 import { Component } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
+import { ClarityIcons, ellipsisVerticalIcon } from '@cds/core/icon';
 
 const HTML_EXAMPLE = `
 <div class="clr-row">
@@ -61,7 +62,7 @@ const HTML_EXAMPLE_CUSTOM_ACTIONS = `
         Card header with custom actions
         <clr-dropdown class="card-actions">
             <button type="button" class="btn btn-icon btn-link card-action dropdown-toggle" clrDropdownTrigger>
-                <clr-icon shape="ellipsis-vertical"></clr-icon>
+                <cds-icon shape="ellipsis-vertical"></cds-icon>
             </button>
             <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
                 ...
@@ -73,6 +74,9 @@ const HTML_EXAMPLE_CUSTOM_ACTIONS = `
     </div>
 </div>
 `;
+
+ClarityIcons.addIcons(ellipsisVerticalIcon);
+
 interface Card {
   title: string;
   active: boolean;

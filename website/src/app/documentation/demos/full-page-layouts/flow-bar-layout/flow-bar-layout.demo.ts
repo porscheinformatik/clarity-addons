@@ -6,6 +6,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { ClrFlowBar, ClrFlowBarStep } from '@porscheinformatik/clr-addons';
 import { of } from 'rxjs';
+import { angleIcon, ClarityIcons } from '@cds/core/icon';
+
+ClarityIcons.addIcons(angleIcon);
 
 @Component({
   selector: 'clr-flow-bar-layout-demo',

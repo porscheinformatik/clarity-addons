@@ -13,7 +13,6 @@ readFile('./package.json', 'utf-8', (err, data) => {
   const packageJson = JSON.parse(data);
   const addonsVersion = packageJson.version;
   const clarityVersion = packageJson.dependencies['@clr/angular'];
-  const clarityIconsVersion = packageJson.dependencies['@clr/icons'];
   const cdsCoreVersion = packageJson.dependencies['@cds/core'];
 
   const envFile = './src/clr-addons/package.json';
@@ -21,7 +20,6 @@ readFile('./package.json', 'utf-8', (err, data) => {
     handleError(err);
     data = data.replaceAll('@VERSION', addonsVersion);
     data = data.replaceAll('@CLARITY_VERSION', clarityVersion);
-    data = data.replaceAll('@CLARITY_ICONS_VERSION', clarityIconsVersion);
     data = data.replaceAll('@CDS_CORE_VERSION', cdsCoreVersion);
     writeFile(envFile, data, 'utf-8', handleError);
   });

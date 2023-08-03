@@ -6,16 +6,16 @@
   header,
   .header {
     .header-actions {
-      > .dropdown > .nav-icon > clr-icon {
+      > .dropdown > .nav-icon > cds-icon {
         color: var(--turquoise-darkest);
       }
 
-      .nav-icon > clr-icon {
+      .nav-icon > cds-icon {
         color: var(--turquoise-darkest);
       }
     }
 
-    .settings .nav-icon > clr-icon {
+    .settings .nav-icon > cds-icon {
       color: var(--turquoise-darkest);
     }
 
@@ -75,11 +75,11 @@
     }
   }
 
-  clr-tooltip clr-icon {
+  clr-tooltip cds-icon {
     color: var(--turquoise);
   }
 
-  clr-icon {
+  cds-icon {
     &.is-green,
     &.is-success {
       fill: var(--clr-icon-color-success);
@@ -131,10 +131,8 @@
 
   .header .header-actions > .dropdown .dropdown-toggle.nav-icon,
   .dropdown .dropdown-toggle {
-    clr-icon[shape^='caret'] {
+    cds-icon[shape^='angle'] {
       position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
       height: 0.5rem;
       width: 0.5rem;
       right: 0.6rem;

@@ -1,7 +1,10 @@
-import { Component, ElementRef, OnInit, InjectionToken, Inject, PLATFORM_ID, Renderer2 } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Component, ElementRef, Inject, InjectionToken, OnInit, PLATFORM_ID, Renderer2 } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { ClarityIcons, cogIcon } from '@cds/core/icon';
+
+ClarityIcons.addIcons(cogIcon);
 
 export const PLATFORM_TOKEN = new InjectionToken<string>('clarity');
 

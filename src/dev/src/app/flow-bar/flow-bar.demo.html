@@ -1,10 +1,10 @@
 <!--
-  ~ Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
+  ~ Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
 
-<div class="main-container" style="border: 1px solid black;">
+<div class="main-container" style="border: 1px solid black">
   <clr-header class="header-6">
     <div class="branding">
       <a href="#" class="nav-link">
@@ -25,7 +25,7 @@
     <div class="header-actions">
       <clr-dropdown>
         <button type="button" class="nav-icon dropdown-toggle" clrDropdownTrigger>
-          <clr-icon shape="cog"></clr-icon>
+          <cds-icon shape="cog"></cds-icon>
         </button>
       </clr-dropdown>
     </div>
@@ -63,9 +63,7 @@
     </div>
     <div class="content-area-footer">
       <div class="clr-row clr-flex-fill clr-justify-content-between clr-align-items-center">
-        <div class="clr-col">
-          Current Step Info
-        </div>
+        <div class="clr-col">Current Step Info</div>
         <div class="clr-col-auto">
           <button type="button" class="btn btn-link" (click)="flowBar.previous()" *ngIf="flowBar.isPreviousAvailable()">
             Previous
@@ -73,7 +71,7 @@
           <clr-dropdown *ngIf="activeStep?.subSteps?.length > 0">
             <button type="button" class="btn btn-outline-primary" clrDropdownTrigger>
               {{activeStep?.activeSubStep?.title | async}}
-              <clr-icon shape="caret down"></clr-icon>
+              <cds-icon shape="angle" direction="down"></cds-icon>
             </button>
             <clr-dropdown-menu clrPosition="top-left" *clrIfOpen>
               <button

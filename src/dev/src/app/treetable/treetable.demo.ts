@@ -1,10 +1,13 @@
 /*
- * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
 import { Component, OnInit } from '@angular/core';
+import { ClarityIcons, infoStandardIcon } from '@cds/core/icon';
+
+ClarityIcons.addIcons(infoStandardIcon);
 
 @Component({
   selector: 'treetable-demo',

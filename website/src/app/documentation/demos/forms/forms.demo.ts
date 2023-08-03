@@ -5,6 +5,9 @@
  */
 import { Component } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
+import { ClarityIcons, displayIcon } from '@cds/core/icon';
+
+ClarityIcons.addIcons(displayIcon);
 
 const CODE_EXAMPLE_FULL_FORM = `
 <form clrForm clrLayout="horizontal" class="clr-row">

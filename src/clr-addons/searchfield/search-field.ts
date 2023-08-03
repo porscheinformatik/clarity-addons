@@ -8,6 +8,9 @@ import { AfterViewInit, Directive, ElementRef, OnDestroy, OnInit, Optional, Rend
 import { NgControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { ClarityIcons, searchIcon, timesIcon } from '@cds/core/icon';
+
+ClarityIcons.addIcons(timesIcon, searchIcon);
 
 @Directive({
   selector: '[clrSearch]',
@@ -78,7 +81,7 @@ export class ClrSearchField implements OnInit, OnDestroy, AfterViewInit {
       this.renderer.addClass(this.deleteButton, 'delete-button');
       this.deleteButton.addEventListener('click', () => this.clearSearchInput());
 
-      this.deleteSymbol = this.renderer.createElement('clr-icon');
+      this.deleteSymbol = this.renderer.createElement('cds-icon');
       this.renderer.setAttribute(this.deleteSymbol, 'shape', 'times');
       this.renderer.appendChild(this.deleteButton, this.deleteSymbol);
       this.renderer.appendChild(inputWrapper, this.deleteButton);
@@ -90,7 +93,7 @@ export class ClrSearchField implements OnInit, OnDestroy, AfterViewInit {
 
     // Create the icon and apply necessary styles
     if (!this.searchSymbol) {
-      this.searchSymbol = this.renderer.createElement('clr-icon');
+      this.searchSymbol = this.renderer.createElement('cds-icon');
       this.renderer.addClass(this.searchSymbol, 'search-symbol');
       this.renderer.setAttribute(this.searchSymbol, 'shape', 'search');
       this.renderer.insertBefore(inputWrapper, this.searchSymbol, this.inputEl.nativeElement);

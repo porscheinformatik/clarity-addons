@@ -8,7 +8,7 @@
         class="btn btn-icon btn-link ces-caret-btn"
         *ngIf="_isCollapsible && !editMode"
       >
-        <clr-icon shape="caret up" size="20" class="ces-caret-icon" [@rotateIcon]="_isCollapsed"></clr-icon>
+        <cds-icon shape="angle" direction="up" size="20" class="ces-caret-icon" [@rotateIcon]="_isCollapsed"></cds-icon>
       </button>
       <div class="ves-actions">
         <button
@@ -17,7 +17,7 @@
           class="btn btn-icon btn-link ves-action"
           *ngIf="_editable && !editMode && actionBlock.children.length == 0"
         >
-          <clr-icon class="ves-edit-icon" [attr.shape]="_editIcon" size="20"></clr-icon>
+          <cds-icon class="ves-edit-icon" [attr.shape]="_editIcon" size="20"></cds-icon>
         </button>
         <div #actionBlock>
           <ng-content select="[action-block]"></ng-content>

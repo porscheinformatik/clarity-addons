@@ -1,10 +1,8 @@
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClarityModule } from '@clr/angular';
-import { ClarityIcons } from '@clr/icons';
-import { AllShapes } from '@clr/icons/shapes/all-shapes';
-import { ClrAddonsModule, ClrAddonsIconShapes } from '@porscheinformatik/clr-addons';
+import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FullPageLayoutsRoutingModule } from './documentation/demos/full-page-layouts/full-page-layouts-routing.module';
@@ -18,14 +16,6 @@ import 'prismjs/components/prism-typescript';
 import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-scss';
 
-export function loadIcons() {
-  return (): void => {
-    // All shapes are added currently, could be reduced to only the shape categories needed
-    ClarityIcons.add(AllShapes);
-    ClarityIcons.add(ClrAddonsIconShapes);
-  };
-}
-
 @NgModule({
   declarations: [AppComponent, HomeComponent, PageNotFoundComponent],
   imports: [
@@ -37,14 +27,7 @@ export function loadIcons() {
     FullPageLayoutsRoutingModule,
     AppRoutingModule,
   ],
-  providers: [
-    Title,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: loadIcons,
-      multi: true,
-    },
-  ],
+  providers: [Title],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

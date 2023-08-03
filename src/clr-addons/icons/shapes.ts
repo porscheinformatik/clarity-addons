@@ -7,6 +7,7 @@
  */
 
 import { clrIconSVG } from './svg-tag-generator';
+import { ClarityIcons } from '@cds/core/icon';
 
 // To support badges, alerts or the is-solid, the SVGs would need to be extended.
 
@@ -613,3 +614,8 @@ export const ClrAddonsIconShapes: any = {
   'campaign-outdated': CampaignOutdatedShape,
   campaign: CampaignShape,
 };
+
+// initialize all custom icons
+for (const element of Object.entries(ClrAddonsIconShapes)) {
+  ClarityIcons.addIcons([element[0], element[1]]);
+}

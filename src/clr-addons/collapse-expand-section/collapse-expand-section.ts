@@ -1,11 +1,14 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { angleIcon, ClarityIcons } from '@cds/core/icon';
+
+ClarityIcons.addIcons(angleIcon);
 
 @Component({
   selector: 'clr-collapse-expand-section',

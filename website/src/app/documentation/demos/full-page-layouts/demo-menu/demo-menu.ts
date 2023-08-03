@@ -5,6 +5,9 @@
  */
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { angleIcon, applicationsIcon, ClarityIcons, cogIcon, userIcon } from '@cds/core/icon';
+
+ClarityIcons.addIcons(cogIcon, applicationsIcon, angleIcon, userIcon);
 
 @Component({
   selector: 'clr-demo-menu',
