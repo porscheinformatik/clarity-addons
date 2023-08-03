@@ -54,8 +54,6 @@ export class ClrBrandAvatar {
 
   static DEFAULT_ICON_SHAPE = 'new-car-private';
 
-  defaultIcon = false;
-
   constructor(private renderer: Renderer2) {}
 
   ngAfterViewInit(): void {
@@ -63,16 +61,15 @@ export class ClrBrandAvatar {
     this.renderer.setStyle(this.avatarElement.nativeElement, 'height', this.size + 'px');
   }
 
-  ngAfterContentInit(): void {
-    this.defaultIcon = this.getShape() === ClrBrandAvatar.DEFAULT_ICON_SHAPE;
-  }
-
   getShape(): string {
     const brandName = ClrBrandAvatar.getCleanBrandName(this.brand);
     if (brandName in AcceptedBrands) {
       return 'brand-' + brandName.toLowerCase();
     }
-    this.defaultIcon = true;
+    return this.getDefaultIcon();
+  }
+
+  getDefaultIcon() {
     return ClrBrandAvatar.DEFAULT_ICON_SHAPE;
   }
 
