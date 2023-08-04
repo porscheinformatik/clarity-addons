@@ -17,8 +17,17 @@
   *ngIf="!(readonly || readonly === '')"
   type="button"
   class="btn btn-icon btn-link quick-list-trash"
+  [ngClass]="{'quick-list-trash-ext': !showAddButton}"
   [disabled]="trashDisabled() || disabled"
   (click)="remove.emit()"
 >
   <cds-icon shape="trash"></cds-icon>
+</button>
+<button
+  *ngIf="!(readonly || readonly === '') && showAddButton"
+  type="button"
+  class="btn btn-icon btn-link quick-list-addcompact"
+  (click)="add.emit()"
+>
+  <clr-icon shape="add"></clr-icon>
 </button>

@@ -22,9 +22,11 @@ export class ClrAddOption<T> {
   @Input() excludedValues: Array<ClrQuickListValue<T>> = [];
   @Input() readonly: string;
   @Input() disabled = false;
+  @Input() showAddButton = false;
 
   @Output() valueChanged = new EventEmitter<ClrQuickListValue<T>>();
   @Output() remove = new EventEmitter<void>();
+  @Output() add = new EventEmitter<void>();
 
   @ViewChild('select', { static: false }) select: ElementRef;
 

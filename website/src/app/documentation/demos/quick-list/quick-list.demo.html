@@ -155,6 +155,16 @@
               should be preferred!
             </td>
           </tr>
+          <tr>
+            <td class="left">
+              <b>[compactMode]</b>
+              <div class="clr-hidden-sm-up">Type: boolean</div>
+              <div class="clr-hidden-sm-up">Default: false</div>
+            </td>
+            <td class="left clr-hidden-xs-down">boolean</td>
+            <td class="clr-hidden-xs-down">false</td>
+            <td class="left">Decides whether the quick list should be displayed in compact mode.</td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -174,6 +184,37 @@
           clrControlClasses="clr-col-lg-3 clr-col-md-4 clr-col-sm-5"
         >
           <label class="clr-control-label clr-col-md-2 clr-col-sm-3 required">Mandatory list</label>
+        </clr-quick-list>
+      </form>
+
+      <h4>Compact Mode</h4>
+
+      <form clrForm>
+        <clr-quick-list
+          [clrAddLabel]="getAddLabel()"
+          [clrAllValues]="possibleOptions"
+          [clrBlankOption]="BLANK_OPTION"
+          [clrValues]="selectedOptionsCompact"
+          [compactMode]="true"
+          class="clr-form-control clr-row"
+          clrControlClasses="clr-col-lg-3 clr-col-md-4 clr-col-sm-5"
+        >
+          <label class="clr-control-label clr-col-md-2 clr-col-sm-3">Empty mode</label>
+        </clr-quick-list>
+      </form>
+
+      <form clrForm>
+        <clr-quick-list
+          [clrAddLabel]="getAddLabel()"
+          [clrAllValues]="possibleOptions"
+          [clrBlankOption]="BLANK_OPTION"
+          [clrValues]="selectedOptionsCompactMandatory"
+          [compactMode]="true"
+          [clrMandatory]="true"
+          class="clr-form-control clr-row"
+          clrControlClasses="clr-col-lg-3 clr-col-md-4 clr-col-sm-5"
+        >
+          <label class="clr-control-label clr-col-md-2 clr-col-sm-3 required">Mandatory mode</label>
         </clr-quick-list>
       </form>
 
@@ -318,6 +359,16 @@
             <td class="clr-hidden-xs-down"></td>
             <td class="left">Event which returns the removed item</td>
           </tr>
+          <tr>
+            <td class="left">
+              <b>[compactMode]</b>
+              <div class="clr-hidden-sm-up">Type: boolean</div>
+              <div class="clr-hidden-sm-up">Default: false</div>
+            </td>
+            <td class="left clr-hidden-xs-down">boolean</td>
+            <td class="clr-hidden-xs-down">false</td>
+            <td class="left">Decides whether the quick list should be displayed in compact mode.</td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -339,6 +390,91 @@
           <div class="header-container">
             <div class="required">Salutation</div>
             <div class="required">Name</div>
+          </div>
+          <ng-template let-item>
+            <!-- Custom content below -->
+            <clr-select-container>
+              <label [hidden]="true"></label>
+              <select
+                required
+                clrSelect
+                class="clr-col-12"
+                [name]="'salutation' + item.id"
+                [(ngModel)]="item.salutation"
+              >
+                <option value="mr">Mr.</option>
+                <option value="mrs">Mrs.</option>
+                <option value="ms">Ms.</option>
+              </select>
+              <clr-control-error *clrIfError="'required'">Please select a value</clr-control-error>
+            </clr-select-container>
+            <clr-input-container>
+              <label [hidden]="true"></label>
+              <input class="clr-col-12" clrInput [(ngModel)]="item.name" required [name]="'last' + item.id" />
+              <clr-control-error *clrIfError="'required'">Please enter a value</clr-control-error>
+            </clr-input-container>
+            <!-- Custom content above -->
+          </ng-template>
+        </clr-generic-quick-list>
+      </form>
+
+      <h4>Compact mode mandatory use-case</h4>
+      <form clrForm #form="ngForm">
+        <clr-generic-quick-list
+          [clrAddLabel]="'ADD'"
+          [clrAddPossible]="form.valid"
+          [clrAllItems]="allItemsGenericCMMandatory"
+          [clrMandatory]="'true'"
+          [compactMode]="true"
+          class="clr-row"
+          clrControlClasses="clr-col-md-6 clr-col-xl-4"
+        >
+          <label class="clr-control-label clr-col-md-2 required">Generic Quick List</label>
+          <div class="header-container">
+            <div class="required">Salutation</div>
+            <div class="required">Name</div>
+          </div>
+          <ng-template let-item>
+            <!-- Custom content below -->
+            <clr-select-container>
+              <label [hidden]="true"></label>
+              <select
+                required
+                clrSelect
+                class="clr-col-12"
+                [name]="'salutation' + item.id"
+                [(ngModel)]="item.salutation"
+              >
+                <option value="mr">Mr.</option>
+                <option value="mrs">Mrs.</option>
+                <option value="ms">Ms.</option>
+              </select>
+              <clr-control-error *clrIfError="'required'">Please select a value</clr-control-error>
+            </clr-select-container>
+            <clr-input-container>
+              <label [hidden]="true"></label>
+              <input class="clr-col-12" clrInput [(ngModel)]="item.name" required [name]="'last' + item.id" />
+              <clr-control-error *clrIfError="'required'">Please enter a value</clr-control-error>
+            </clr-input-container>
+            <!-- Custom content above -->
+          </ng-template>
+        </clr-generic-quick-list>
+      </form>
+
+      <h4>Compact mode not mandatory use-case</h4>
+      <form clrForm #form="ngForm">
+        <clr-generic-quick-list
+          [clrAddLabel]="'ADD'"
+          [clrAddPossible]="form.valid"
+          [clrAllItems]="allItemsGenericCM"
+          [compactMode]="true"
+          class="clr-row"
+          clrControlClasses="clr-col-md-6 clr-col-xl-4"
+        >
+          <label class="clr-control-label clr-col-md-2">Generic Quick List</label>
+          <div class="header-container">
+            <div>Salutation</div>
+            <div>Name</div>
           </div>
           <ng-template let-item>
             <!-- Custom content below -->

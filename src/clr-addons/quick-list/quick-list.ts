@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, EventEmitter, Input, OnInit, Output, ViewChildren, QueryList, forwardRef } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
 import { CLR_BLANK_OPTION, ClrQuickListValue } from './add-option.service';
 import { ClrAddOption } from './add-option';
 import { ClrAbstractFormComponent } from '../abstract-form-component/abstract-form-component';
@@ -30,6 +30,7 @@ export class ClrQuickList<T> extends ClrAbstractFormComponent implements OnInit 
   @Input('clrAddLabel') addLabel = 'ADD';
   @Input('clrControlClasses') controlClasses = 'clr-col-md-10';
   @Input() readonly: string;
+  @Input() compactMode = false;
   @Output('clrValuesChanged') valuesChanged = new EventEmitter<ClrQuickListValue<T>[]>();
   @Output('clrEmptyOptionAdded') emptyOptionAdded = new EventEmitter<void>();
 
