@@ -5,17 +5,28 @@
       [allValues]="allValues"
       [excludedValues]="values"
       (remove)="onRemoveValue(i)"
+      (add)="addBlankOption()"
       [value]="value"
       (valueChanged)="onValueChanged($event, i)"
       [blankOption]="blankOption"
       [mandatory]="mandatory"
       [readonly]="readonly"
       [disabled]="disabled"
+      [showAddButton]="compactMode && !addNotPossible() && i === values.length - 1"
     >
     </clr-add-option>
   </ng-container>
   <button
-    *ngIf="!(readonly || readonly === '')"
+    *ngIf="!(readonly || readonly === '') && values.length === 0 && compactMode"
+    type="button"
+    class="btn btn-icon btn-link quick-list-addcompact"
+    (click)="addBlankOption()"
+    [disabled]="addNotPossible() || disabled"
+  >
+    <clr-icon shape="add"></clr-icon>
+  </button>
+  <button
+    *ngIf="!(readonly || readonly === '') && !compactMode"
     type="button"
     class="btn btn-link btn-sm quick-list-add"
     (click)="addBlankOption()"

@@ -3,10 +3,17 @@
     .quick-list-option {
       display: flex;
       margin-bottom: 0.25rem;
+
       .quick-list-trash {
         margin-top: -0.25rem;
+        padding-right: 2px;
+      }
+
+      .quick-list-trash-ext {
+        padding-right: 24px;
       }
     }
+
     .quick-list-input {
       flex: 1;
     }
@@ -19,5 +26,10 @@
       padding: 0;
       text-align: left;
     }
+  }
+  .quick-list-addcompact {
+    margin-top: -5px;
+    padding-left: 2px;
+    padding-right: 2px;
   }
 }

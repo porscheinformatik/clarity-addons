@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
-import { ClrQuickListValue, ClrGenericQuickListItem } from '@porscheinformatik/clr-addons';
+import { ClrGenericQuickListItem, ClrQuickListValue } from '@porscheinformatik/clr-addons';
 
 const HTML_EXAMPLE1 = `
 <clr-quick-list
@@ -114,8 +114,12 @@ export class QuickListDemo extends ClarityDocComponent {
 
   selectedOptionsMandatory: Array<ClrQuickListValue<string>> = [];
   selectedOptionsNotMandatory: Array<ClrQuickListValue<string>> = [];
+  selectedOptionsCompact: Array<ClrQuickListValue<string>> = [];
+  selectedOptionsCompactMandatory: Array<ClrQuickListValue<string>> = [];
 
   allItemsGeneric = [<ClrNameQuickListItem>{ id: 1 }];
+  allItemsGenericCM = [<ClrNameQuickListItem>{ id: 1 }];
+  allItemsGenericCMMandatory = [<ClrNameQuickListItem>{ id: 1 }];
 
   constructor() {
     super('quick-list');

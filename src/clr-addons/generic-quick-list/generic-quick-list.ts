@@ -5,18 +5,18 @@
  */
 
 import {
-  Component,
-  Input,
-  TemplateRef,
-  Output,
-  EventEmitter,
-  ViewChildren,
-  QueryList,
   AfterViewInit,
-  OnInit,
-  ElementRef,
+  Component,
   ContentChildren,
+  ElementRef,
+  EventEmitter,
+  Input,
   OnDestroy,
+  OnInit,
+  Output,
+  QueryList,
+  TemplateRef,
+  ViewChildren,
 } from '@angular/core';
 
 export interface ClrGenericQuickListItem {
@@ -36,6 +36,7 @@ export class ClrGenericQuickList<T extends ClrGenericQuickListItem> implements O
   @Input('clrControlClasses') controlClasses: string;
   @Input('clrMandatory') required = false;
   @Input() readonly: string;
+  @Input() compactMode = false;
 
   @Output('clrAdded') added = new EventEmitter();
   @Output('clrRemoved') removed = new EventEmitter();
