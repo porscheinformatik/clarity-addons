@@ -63,6 +63,54 @@
     }
   }
 
+  .datagrid-row:not(
+      .datagrid-selected,
+      .datagrid-highlight-error,
+      .datagrid-highlight-success,
+      .datagrid-highlight-info,
+      .datagrid-highlight-warning
+    ) {
+    background-color: $clr-highlight-neutral-50;
+
+    .datagrid-select {
+      background-color: $clr-highlight-neutral-50;
+    }
+  }
+
+  .datagrid-row:not(
+      .datagrid-selected,
+      .datagrid-highlight-error,
+      .datagrid-highlight-success,
+      .datagrid-highlight-info,
+      .datagrid-highlight-warning
+    ):hover {
+    background-color: $clr-highlight-neutral-200;
+
+    .datagrid-select {
+      background-color: $clr-highlight-neutral-200;
+    }
+  }
+
+  .btn-warning {
+    background-color: $clr-highlight-warning-800;
+    border-color: $clr-highlight-warning-800;
+  }
+
+  .btn-warning:hover {
+    background-color: $clr-highlight-warning-900;
+    border-color: $clr-highlight-warning-900;
+  }
+
+  .btn-info {
+    background-color: $clr-highlight-info-700;
+    color: white;
+  }
+
+  .btn-info:hover {
+    background-color: $clr-highlight-info-800;
+    color: white;
+  }
+
   .datagrid-footer .column-switch-wrapper .column-toggle--action:hover cds-icon {
     --color: var(--turquoise);
   }

@@ -407,5 +407,110 @@ clr-date-container .clr-control-container {
   max-width: $clr-max-width;
 }
 
+.datagrid-highlight-error {
+  background-color: $clr-highlight-error-100;
+  .datagrid-select {
+    background-color: $clr-highlight-error-100;
+  }
+}
+
+.datagrid-highlight-error:hover {
+  background-color: $clr-highlight-error-200;
+  .datagrid-select {
+    background-color: $clr-highlight-error-200;
+  }
+}
+
+.datagrid-highlight-success {
+  background-color: $clr-highlight-success-50;
+  .datagrid-select {
+    background-color: $clr-highlight-success-50;
+  }
+}
+
+.datagrid-highlight-success:hover {
+  background-color: $clr-highlight-success-100;
+  .datagrid-select {
+    background-color: $clr-highlight-success-100;
+  }
+}
+
+.datagrid-highlight-warning {
+  background-color: $clr-highlight-warning-100;
+  .datagrid-select {
+    background-color: $clr-highlight-warning-100;
+  }
+}
+
+.datagrid-highlight-warning:hover {
+  background-color: $clr-highlight-warning-200;
+  .datagrid-select {
+    background-color: $clr-highlight-warning-200;
+  }
+}
+
+.datagrid-highlight-info {
+  background-color: $clr-highlight-info-50;
+  .datagrid-select {
+    background-color: $clr-highlight-info-50;
+  }
+}
+
+.datagrid-highlight-info:hover {
+  background-color: $clr-highlight-info-100;
+  .datagrid-select {
+    background-color: $clr-highlight-info-100;
+  }
+}
+
+.highlight-text-error {
+  color: $clr-highlight-error-800;
+  cds-icon {
+    fill: $clr-highlight-error-800;
+  }
+}
+.highlight-text-error:hover {
+  color: $clr-highlight-error-900;
+  cds-icon {
+    fill: $clr-highlight-error-900;
+  }
+}
+.highlight-text-success {
+  color: $clr-highlight-success-700;
+  cds-icon {
+    fill: $clr-highlight-success-700;
+  }
+}
+.highlight-text-success:hover {
+  color: $clr-highlight-success-800;
+  cds-icon {
+    fill: $clr-highlight-success-800;
+  }
+}
+.highlight-text-warning {
+  color: $clr-highlight-warning-800;
+  cds-icon {
+    fill: $clr-highlight-warning-800;
+  }
+}
+.highlight-text-warning:hover {
+  color: $clr-highlight-warning-900;
+  cds-icon {
+    fill: $clr-highlight-warning-900;
+  }
+}
+.highlight-text-info {
+  color: $clr-highlight-info-700;
+  cds-icon {
+    fill: $clr-highlight-info-700;
+  }
+}
+.highlight-text-info:hover {
+  color: $clr-highlight-info-800;
+  cds-icon {
+    fill: $clr-highlight-info-800;
+  }
+}
+
 // Has to be at the bottom to override the styles from the above properly
 @import './mobile';

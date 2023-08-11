@@ -1,4 +1,4 @@
-// Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
+// Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
 // This software is released under MIT license.
 // The full license information can be found in LICENSE in the root directory of this project.
 
@@ -30,20 +30,28 @@
   --clr-btn-primary-box-shadow-color: var(--turquoise);
 
   // Success button
-  --clr-btn-success-bg-color: var(--green);
-  --clr-btn-success-hover-bg-color: var(--green-dark);
-  --clr-btn-success-box-shadow-color: var(--green);
+  --clr-btn-success-bg-color: var($clr-highlight-success-700);
+  --clr-btn-success-hover-bg-color: var($clr-highlight-success-800);
+  --clr-btn-success-border-color: var($clr-highlight-success-700);
+  --clr-btn-success-box-shadow-color: var($clr-highlight-success-700);
   --clr-btn-success-checked-bg-color: var(--clr-btn-success-hover-bg-color);
 
   // Success button outline
-  --clr-btn-success-outline-color: var(--green);
-  --clr-btn-success-outline-hover-bg-color: var(--green-lighter);
-  --clr-btn-success-outline-border-color: var(--green);
-  --clr-btn-success-outline-hover-color: var(--green-dark);
-  --clr-btn-success-outline-box-shadow-color: var(--green-dark);
+  --clr-btn-success-outline-color: var($clr-highlight-success-700);
+  --clr-btn-success-outline-hover-bg-color: var($clr-highlight-success-800);
+  --clr-btn-success-outline-border-color: var($clr-highlight-success-700);
+  --clr-btn-success-outline-hover-color: var($clr-highlight-success-800);
+  --clr-btn-success-outline-box-shadow-color: var($clr-highlight-success-800);
 
   // Danger button
-  --clr-btn-danger-hover-bg-color: var(--red-dark);
+  --clr-btn-danger-bg-color: var($clr-highlight-error-800);
+  --clr-btn-danger-border-color: var($clr-highlight-error-800);
+  --clr-btn-danger-hover-bg-color: var($clr-highlight-error-900);
+
+  // Warning button
+  --clr-btn-warning-bg-color: var($clr-highlight-warning-800);
+  --clr-btn-warning-border-color: var($clr-highlight-warning-800);
+  --clr-btn-warning-hover-bg-color: var($clr-highlight-warning-900);
 
   // Danger button outline
   --clr-btn-danger-outline-hover-bg-color: var(--red-lighter);
@@ -53,23 +61,24 @@
   --clr-btn-link-hover-color: var(--turquoise-darkest); // hover-color
 
   // Alert
-  --clr-alert-success-bg-color: var(--green-light);
-  --clr-alert-success-border-color: var(--green-light-mid);
+  --clr-alert-success-bg-color: var($clr-highlight-success-700);
+  --clr-alert-success-border-color: var($clr-highlight-success-700);
   --clr-alert-success-icon-color: var(--green-turquiose);
 
-  --clr-alert-info-bg-color: var(--blue-light);
-  --clr-alert-info-border-color: var(--blue-mid);
+  --clr-alert-info-bg-color: var($clr-highlight-info-700);
+  --clr-alert-info-border-color: var($clr-highlight-info-700);
   --clr-alert-info-icon-color: var(--turquoise);
 
-  --clr-alert-warning-border-color: var(--yellow-light);
+  --clr-alert-warning-bg-color: var($clr-highlight-warning-800);
+  --clr-alert-warning-border-color: var($clr-highlight-warning-800);
 
-  --clr-alert-danger-bg-color: var(--red-light);
-  --clr-alert-danger-icon-color: var(--red-darker);
+  --clr-alert-danger-bg-color: var($clr-highlight-error-800);
+  --clr-alert-danger-icon-color: var($clr-highlight-error-900);
 
-  --clr-app-alert-success-bg-color: var(--green-light-mid);
-  --clr-app-alert-info-bg-color: var(--blue-dark);
-  --clr-app-alert-warning-bg-color: var(--orange-dark);
-  --clr-app-alert-danger-bg-color: var(--red-darker);
+  --clr-app-alert-success-bg-color: var($clr-highlight-success-700);
+  --clr-app-alert-info-bg-color: var($clr-highlight-info-700);
+  --clr-app-alert-warning-bg-color: var($clr-highlight-warning-800);
+  --clr-app-alert-danger-bg-color: var($clr-highlight-error-800);
 
   // Badge
   --clr-badge-info-bg-color: var(--turquoise);
@@ -91,8 +100,8 @@
   --clr-forms-checkbox-indeterminate-border-color: var(--turquoise);
 
   // Datagrid
-  --clr-datagrid-row-hover: var(--clr-global-selection-color);
-  --clr-datagrid-action-popover-hover-color: var(--clr-global-selection-color);
+  --clr-datagrid-row-hover-color: var($clr-highlight-neutral-200);
+  --clr-datagrid-action-popover-hover-color: var($clr-highlight-neutral-200);
   --clr-datagrid-detail-caret-icon-open-bg-color: var(--turquoise);
 
   // Datepicker
@@ -216,9 +225,11 @@
     &[status='info'] {
       --cds-alias-status-info: var(--blue-mid);
     }
+
     &[status='success'] {
       --cds-alias-status-success: var(--green-light-mid);
     }
+
     &[type='banner'] {
       &[status='info'] {
         --cds-alias-status-info: var(--blue-dark);
@@ -226,6 +237,7 @@
 
       &[status='warning'] {
         --cds-alias-status-warning: var(--orange-dark);
+
         cds-alert {
           --color: var(--white);
         }
@@ -237,6 +249,7 @@
     &[color='light-blue'] {
       --background: var(--blue-mid);
     }
+
     &[color='orange'] {
       --background: var(--orange-dark);
       --color: var(--white);
@@ -247,6 +260,7 @@
     &[color='light-blue'] {
       --border-color: var(--blue-mid);
     }
+
     &[color='orange'] {
       --border-color: var(--orange-dark);
     }

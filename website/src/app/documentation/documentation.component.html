@@ -1,7 +1,7 @@
 <router-outlet></router-outlet>
-<clr-vertical-nav [clrVerticalNavCollapsible]="true" [clrVerticalNavCollapsed]="false">
-  <div style="margin-left: 1rem">Addons Version {{ environment.addons_version }}</div>
-  <div style="margin-left: 1rem">Clarity Version {{ environment.clarity_version }}</div>
+<clr-vertical-nav [clrVerticalNavCollapsible]="false" [clrVerticalNavCollapsed]="false">
+  <div class="version">ADDONS VERSION {{ environment.addons_version }}</div>
+  <div class="version">CLARITY VERSION {{ environment.clarity_version }}</div>
   <a
     class="nav-link"
     clrVerticalNavLink
@@ -9,6 +9,7 @@
     routerLinkActive="active"
     [routerLinkActiveOptions]="{ exact: true }"
   >
+    <cds-icon clrVerticalNavIcon shape="help-info"></cds-icon>
     Get Started
   </a>
   <a
@@ -18,15 +19,18 @@
     routerLinkActive="active"
     [routerLinkActiveOptions]="{ exact: true }"
   >
+    <cds-icon clrVerticalNavIcon shape="world"></cds-icon>
     Internationalization
   </a>
-  <clr-vertical-nav-group routerLinkActive="active">
+  <clr-vertical-nav-group routerLinkActive="active" clrVerticalNavGroupExpanded="true">
+    <cds-icon clrVerticalNavIcon shape="grid-chart"></cds-icon>
     Layout
     <clr-vertical-nav-group-children>
       <documentation-nav-links type="layout"></documentation-nav-links>
     </clr-vertical-nav-group-children>
   </clr-vertical-nav-group>
-  <clr-vertical-nav-group routerLinkActive="active">
+  <clr-vertical-nav-group routerLinkActive="active" clrVerticalNavGroupExpanded="true">
+    <cds-icon clrVerticalNavIcon shape="library"></cds-icon>
     Components
     <clr-vertical-nav-group-children>
       <documentation-nav-links type="component"></documentation-nav-links>

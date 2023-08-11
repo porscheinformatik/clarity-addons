@@ -17,6 +17,7 @@
       <li><a routerLink="." fragment="selection" skipLocationChange>Selection</a></li>
       <li><a routerLink="." fragment="full-height" skipLocationChange>Full-Height</a></li>
       <li><a routerLink="." fragment="state-persistence" skipLocationChange>State persistence</a></li>
+      <li><a routerLink="." fragment="highlighting" skipLocationChange>Highlighting</a></li>
     </ul>
 
     <!-- ENUM FILTER -->
@@ -318,5 +319,93 @@
     </clr-datagrid>
 
     <clr-code-snippet [clrCode]="persistedStateExample"></clr-code-snippet>
+
+    <!-- State persistence -->
+    <h3 id="highlighting">Highlighting</h3>
+    <h4>Important status highlighting</h4>
+    <p>The following css classes can be set to <code class="clr-code">clr-dg-row</code></p>
+    <ul>
+      <li><code class="clr-code">datagrid-highlight-error</code> for the red error state</li>
+      <li><code class="clr-code">datagrid-highlight-success</code> for the green success state</li>
+      <li><code class="clr-code">datagrid-highlight-info</code> for the blue info state</li>
+      <li><code class="clr-code">datagrid-highlight-warning</code> for the yellow warning state</li>
+    </ul>
+    <p>
+      When the status is very important, for example an error or warning state need to grab the users attention, the
+      following pattern should be used:
+    </p>
+    <clr-datagrid [(clrDgSelected)]="selected">
+      <clr-dg-column [clrDgField]="'name'">Name </clr-dg-column>
+      <clr-dg-column [clrDgField]="'text'">Description</clr-dg-column>
+      <clr-dg-column [clrDgField]="'status'"> Status </clr-dg-column>
+
+      <clr-dg-row
+        *clrDgItems="let item of dataHighlighting"
+        [ngClass]="getColoring(item.status)"
+        [clrDgItem]="item"
+        [clrDgSelected]="item.status === 'selected'"
+      >
+        <clr-dg-cell>{{item.name}}</clr-dg-cell>
+        <clr-dg-cell>{{item.text}}</clr-dg-cell>
+        <clr-dg-cell [ngClass]="getTextColoring(item.status)">
+          <cds-icon
+            status="info"
+            shape="{{getIcon(item.status)}}"
+            *ngIf="item.status !== 'selected' && item.status !== 'Cell'"
+          ></cds-icon>
+          {{item.status}}</clr-dg-cell
+        >
+      </clr-dg-row>
+
+      <clr-dg-footer>
+        <clr-dg-pagination [clrDgPageSize]="10">
+          <clr-dg-page-size [clrPageSizeOptions]="[5,10,15,50,100]">Entries per page</clr-dg-page-size>
+        </clr-dg-pagination>
+      </clr-dg-footer>
+    </clr-datagrid>
+
+    <h4>Minor important status highlighting</h4>
+    <p>
+      When the status in minor important, but still some emphasis is necessary, the following pattern is sufficient:
+    </p>
+    <p>
+      The following css classes can be set to every element! If you are unsing a
+      <code class="clr-code">cds-icon</code> this also gets colored with the correct color.
+    </p>
+    <ul>
+      <li><code class="clr-code">highlight-text-error</code> for the red error state</li>
+      <li><code class="clr-code">highlight-text-success</code> for the green success state</li>
+      <li><code class="clr-code">highlight-text-info</code> for the blue info state</li>
+      <li><code class="clr-code">highlight-text-warning</code> for the yellow warning state</li>
+    </ul>
+
+    <clr-datagrid [(clrDgSelected)]="selected">
+      <clr-dg-column [clrDgField]="'name'">Name </clr-dg-column>
+      <clr-dg-column [clrDgField]="'text'">Description</clr-dg-column>
+      <clr-dg-column [clrDgField]="'status'"> Status </clr-dg-column>
+
+      <clr-dg-row
+        *clrDgItems="let item of dataHighlighting"
+        [clrDgItem]="item"
+        [clrDgSelected]="item.status === 'selected'"
+      >
+        <clr-dg-cell>{{item.name}}</clr-dg-cell>
+        <clr-dg-cell>{{item.text}}</clr-dg-cell>
+        <clr-dg-cell [ngClass]="getTextColoring(item.status)">
+          <cds-icon
+            status="info"
+            shape="{{getIcon(item.status)}}"
+            *ngIf="item.status !== 'selected' && item.status !== 'Cell'"
+          ></cds-icon>
+          {{item.status}}</clr-dg-cell
+        >
+      </clr-dg-row>
+
+      <clr-dg-footer>
+        <clr-dg-pagination [clrDgPageSize]="10">
+          <clr-dg-page-size [clrPageSizeOptions]="[5,10,15,50,100]">Entries per page</clr-dg-page-size>
+        </clr-dg-pagination>
+      </clr-dg-footer>
+    </clr-datagrid>
   </article>
 </clr-doc-wrapper>
