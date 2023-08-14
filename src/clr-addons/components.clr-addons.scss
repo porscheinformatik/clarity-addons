@@ -395,6 +395,10 @@ clr-date-container .clr-control-container {
   white-space: nowrap;
 }
 
+.btn clr-icon {
+  transform: translate3d(0, -0.1rem, 0);
+}
+
 .clr-treenode-link:hover:visited {
   color: inherit;
 }

@@ -13,9 +13,21 @@
       .nav-icon > cds-icon {
         color: var(--turquoise-darkest);
       }
+
+      > .dropdown > .nav-icon > clr-icon {
+        color: var(--turquoise-darkest);
+      }
+
+      .nav-icon > clr-icon {
+        color: var(--turquoise-darkest);
+      }
     }
 
     .settings .nav-icon > cds-icon {
+      color: var(--turquoise-darkest);
+    }
+
+    .settings .nav-icon > clr-icon {
       color: var(--turquoise-darkest);
     }
 
@@ -55,6 +67,10 @@
         cds-icon {
           --color: var(--turquoise);
         }
+
+        clr-icon {
+          --color: var(--turquoise);
+        }
       }
     }
 
@@ -64,6 +80,10 @@
   }
 
   .datagrid-footer .column-switch-wrapper .column-toggle--action:hover cds-icon {
+    --color: var(--turquoise);
+  }
+
+  .datagrid-footer .column-switch-wrapper .column-toggle--action:hover clr-icon {
     --color: var(--turquoise);
   }
 
@@ -79,7 +99,12 @@
     color: var(--turquoise);
   }
 
-  cds-icon {
+  clr-tooltip clr-icon {
+    color: var(--turquoise);
+  }
+
+  cds-icon,
+  clr-icon {
     &.is-green,
     &.is-success {
       fill: var(--clr-icon-color-success);
@@ -132,6 +157,13 @@
   .header .header-actions > .dropdown .dropdown-toggle.nav-icon,
   .dropdown .dropdown-toggle {
     cds-icon[shape^='angle'] {
+      position: absolute;
+      height: 0.5rem;
+      width: 0.5rem;
+      right: 0.6rem;
+    }
+
+    clr-icon[shape^='caret'] {
       position: absolute;
       height: 0.5rem;
       width: 0.5rem;

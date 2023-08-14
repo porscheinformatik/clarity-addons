@@ -38,6 +38,15 @@
           width: 0.5rem;
           height: 0.5rem;
         }
+
+        & clr-icon {
+          position: relative;
+          transform: unset;
+          top: 0;
+          left: 0.2rem;
+          width: 0.5rem;
+          height: 0.5rem;
+        }
       }
 
       .nav-list {
@@ -109,12 +118,26 @@
         height: 0.666667rem;
       }
 
+      clr-icon {
+        position: absolute;
+        top: 0.4rem;
+        right: 0.5rem;
+        left: unset;
+        transform: rotate(-90deg);
+        width: 0.666667rem;
+        height: 0.666667rem;
+      }
+
       .nav-list {
         display: none;
       }
 
       input[type='checkbox']:checked {
         ~ label cds-icon {
+          transform: unset;
+        }
+
+        ~ label clr-icon {
           transform: unset;
         }
 
