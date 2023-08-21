@@ -38,6 +38,11 @@
   }
 }
 
+.header-actions > .dropdown .dropdown-toggle.nav-icon clr-icon:not([shape^='caret']) {
+  height: 1.1rem;
+  width: 1.1rem;
+}
+
 .header-actions > .dropdown .dropdown-toggle.nav-icon cds-icon:not([shape^='angle']) {
   height: 1.1rem;
   width: 1.1rem;
