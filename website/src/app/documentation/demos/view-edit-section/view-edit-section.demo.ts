@@ -6,6 +6,9 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ClarityDocComponent } from '../clarity-doc';
+import { ClarityIcons, ellipsisVerticalIcon } from '@cds/core/icon';
+
+ClarityIcons.addIcons(ellipsisVerticalIcon);
 
 const HTML_EXAMPLE_SIDE_BY_SIDE = `
 <div class="clr-col-12 clr-col-lg-6">
@@ -77,7 +80,7 @@ const HTML_EXAMPLE_CUSTOM_ACTIONS = `
     <div action-block>
         <clr-dropdown *ngIf="!editMode">
           <button type="button" class="btn btn-icon btn-link ves-action dropdown-toggle" clrDropdownTrigger>
-            <clr-icon shape="ellipsis-vertical"></clr-icon>
+            <cds-icon shape="ellipsis-vertical"></cds-icon>
           </button>
           <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
             <button type="button" (click)="onEdit()" clrDropdownItem>

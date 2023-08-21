@@ -1,7 +1,7 @@
 <section class="icons-header">
   <div class="icons-background">
     <div class="icon-bg-wrapper" *ngFor="let shape of backgroundIcons">
-      <clr-icon [attr.shape]="shape" size="24"></clr-icon>
+      <cds-icon [attr.shape]="shape" size="24"></cds-icon>
     </div>
   </div>
 
@@ -10,7 +10,7 @@
     <p class="icons-header-message">Over 70 additional beautiful and easy to use SVG icons</p>
     <div>
       <a [routerLink]="['get-started']" class="btn btn-primary">GET STARTED</a>
-      <a [routerLink]="['icon-sets']" class="btn btn-primary">SEE ICON SETS</a>
+      <a [routerLink]="['icon-sets']" class="btn btn-primary">SEE ICONS</a>
     </div>
   </div>
 </section>
@@ -18,20 +18,14 @@
 <div class="icons-content">
   <div class="content-container">
     <clr-vertical-nav>
-      <clr-vertical-nav-group>
-        Overview
-        <clr-vertical-nav-group-children>
-          <a clrVerticalNavLink [routerLink]="['./get-started']" routerLinkActive="active" class="nav-link">
-            Get Started
-          </a>
-        </clr-vertical-nav-group-children>
-      </clr-vertical-nav-group>
-      <clr-vertical-nav-group>
-        Icon Sets
-        <clr-vertical-nav-group-children>
-          <a clrVerticalNavLink [routerLink]="['./icon-sets']" routerLinkActive="active" class="nav-link"> All </a>
-        </clr-vertical-nav-group-children>
-      </clr-vertical-nav-group>
+      <clr-vertical-nav-group-children>
+        <a clrVerticalNavLink [routerLink]="['./get-started']" routerLinkActive="active" class="nav-link"
+          >Get Started</a
+        >
+      </clr-vertical-nav-group-children>
+      <clr-vertical-nav-group-children>
+        <a clrVerticalNavLink [routerLink]="['./icon-sets']" routerLinkActive="active" class="nav-link">Icons</a>
+      </clr-vertical-nav-group-children>
     </clr-vertical-nav>
     <div class="content-area">
       <router-outlet></router-outlet>

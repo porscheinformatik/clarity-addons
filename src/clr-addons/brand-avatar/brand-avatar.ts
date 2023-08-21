@@ -7,15 +7,15 @@
 import { Component, ElementRef, HostBinding, Input, Renderer2, ViewChild } from '@angular/core';
 import { ClarityIcons } from '@cds/core/icon';
 import {
-  AudiBrandShape,
-  CupraBrandShape,
-  DWABrandShape,
-  NewCarPrivateShape,
-  PorscheBrandShape,
-  SeatShape,
-  SkodaBrandShape,
-  VWNBrandShape,
-  VWShape,
+  audiBrandIcon,
+  cupraBrandIcon,
+  dwaBrandIcon,
+  newCarPrivateIcon,
+  porscheBrandIcon,
+  seatIcon,
+  skodaBrandIcon,
+  vwBrandIcon,
+  vwnBrandIcon,
 } from '../icons';
 
 export enum AcceptedBrands {
@@ -30,15 +30,17 @@ export enum AcceptedBrands {
 }
 
 // import car brands to be used for cds-icon
-ClarityIcons.addIcons(['brand-audi', AudiBrandShape]);
-ClarityIcons.addIcons(['brand-cupra', CupraBrandShape]);
-ClarityIcons.addIcons(['brand-dwa', DWABrandShape]);
-ClarityIcons.addIcons(['brand-porsche', PorscheBrandShape]);
-ClarityIcons.addIcons(['brand-seat', SeatShape]);
-ClarityIcons.addIcons(['brand-skoda', SkodaBrandShape]);
-ClarityIcons.addIcons(['brand-vw', VWShape]);
-ClarityIcons.addIcons(['brand-vwn', VWNBrandShape]);
-ClarityIcons.addIcons(['new-car-private', NewCarPrivateShape]);
+ClarityIcons.addIcons(
+  audiBrandIcon,
+  cupraBrandIcon,
+  dwaBrandIcon,
+  porscheBrandIcon,
+  seatIcon,
+  skodaBrandIcon,
+  vwnBrandIcon,
+  vwBrandIcon,
+  newCarPrivateIcon
+);
 
 @Component({
   selector: 'clr-brand-avatar',

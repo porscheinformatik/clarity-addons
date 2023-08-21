@@ -1,11 +1,14 @@
 /*
- * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
 import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { angleIcon, ClarityIcons, pencilIcon } from '@cds/core/icon';
+
+ClarityIcons.addIcons(angleIcon, pencilIcon);
 
 @Component({
   selector: 'clr-view-edit-section',

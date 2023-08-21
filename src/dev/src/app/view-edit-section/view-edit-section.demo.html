@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+  ~ Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
@@ -87,18 +87,12 @@
         <div action-block>
           <clr-dropdown *ngIf="!editMode">
             <button type="button" class="btn btn-icon btn-link ves-action dropdown-toggle" clrDropdownTrigger>
-              <clr-icon shape="ellipsis-vertical"></clr-icon>
+              <cds-icon shape="ellipsis-vertical"></cds-icon>
             </button>
             <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
-              <button type="button" (click)="onEdit()" clrDropdownItem>
-                Edit
-              </button>
-              <button type="button" clrDropdownItem>
-                Duplicate
-              </button>
-              <button type="button" clrDropdownItem>
-                Delete
-              </button>
+              <button type="button" (click)="onEdit()" clrDropdownItem>Edit</button>
+              <button type="button" clrDropdownItem>Duplicate</button>
+              <button type="button" clrDropdownItem>Delete</button>
             </clr-dropdown-menu>
           </clr-dropdown>
         </div>

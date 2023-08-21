@@ -1,6 +1,6 @@
 <div class="btn-group" *ngIf="last > 1">
   <button class="btn pagination-previous" (click)="previous()" [disabled]="page == 1">
-    <clr-icon shape="angle left"></clr-icon>
+    <cds-icon shape="angle" direction="left"></cds-icon>
   </button>
   <button *ngIf="page > 2" class="btn" (click)="page = 1">1</button>
   <button *ngIf="page > 3" class="btn" disabled>...</button>
@@ -15,6 +15,6 @@
   <button *ngIf="page < last - 2" class="btn" disabled>...</button>
   <button *ngIf="page < last - 1" class="btn" (click)="page = last">{{last}}</button>
   <button class="btn pagination-next" (click)="next()" [disabled]="page == last">
-    <clr-icon shape="angle right"></clr-icon>
+    <cds-icon shape="angle" direction="right"></cds-icon>
   </button>
 </div>

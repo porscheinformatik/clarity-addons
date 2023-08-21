@@ -7,6 +7,7 @@
  */
 
 import { clrIconSVG } from './svg-tag-generator';
+import { IconShapeTuple } from '@cds/core/icon/interfaces/icon.interfaces';
 
 // To support badges, alerts or the is-solid, the SVGs would need to be extended.
 
@@ -613,3 +614,114 @@ export const ClrAddonsIconShapes: any = {
   'campaign-outdated': CampaignOutdatedShape,
   campaign: CampaignShape,
 };
+
+export const airConditionerIcon: IconShapeTuple = ['air-conditioner', ACShape];
+export const accessoriesIcon: IconShapeTuple = ['accessories', AccessoriesShape];
+export const accessoryPartsIcon: IconShapeTuple = ['accessory-parts', AccessoryPartsShape];
+export const awardWinnerPremiumIcon: IconShapeTuple = ['award-winner-premium', AwardWinnerPremiumShape];
+export const brochureIcon: IconShapeTuple = ['brochure', BrochureShape];
+export const businessCustomersCommercialIcon: IconShapeTuple = [
+  'business-customers-commercial',
+  BusinessCustomersCommercialShape,
+];
+export const businessCustomersPrivateIcon: IconShapeTuple = [
+  'business-customers-private',
+  BusinessCustomersPrivateShape,
+];
+export const californiaServiceIcon: IconShapeTuple = ['california-service', CaliforniaServiceShape];
+export const californiaSpecialistIcon: IconShapeTuple = ['california-specialist', CaliforniaSpecialistShape];
+export const carPickupServiceIcon: IconShapeTuple = ['car-pickup-service', CarPickupServiceShape];
+export const carWashIcon: IconShapeTuple = ['car-wash', CarWashShape];
+export const certifiedRepairIcon: IconShapeTuple = ['certified-repair', CertifiedRepairShape];
+export const certifiedRetailerIcon: IconShapeTuple = ['certified-retailer', CertifiedRetailerShape];
+export const configuratorCommercialIcon: IconShapeTuple = ['configurator-commercial', ConfiguratorCommercialShape];
+export const configuratorPrivateIcon: IconShapeTuple = ['configurator-private', ConfiguratorPrivateShape];
+export const consumptionIcon: IconShapeTuple = ['consumption', ConsumptionShape];
+export const contactDealerIcon: IconShapeTuple = ['contact-dealer', ContactDealerShape];
+export const customersCenterIcon: IconShapeTuple = ['customers-center', CustomersCenterShape];
+export const dieselIcon: IconShapeTuple = ['diesel', DieselShape];
+export const driversAssistanceIcon: IconShapeTuple = ['drivers-assistance', DriversAssistanceShape];
+export const efficiencyIcon: IconShapeTuple = ['efficiency', EfficiencyShape];
+export const electricCarsIcon: IconShapeTuple = ['electric-cars', ElectricCarsShape];
+export const electricCarsServiceIcon: IconShapeTuple = ['electric-cars-service', ElectricCarsServiceShape];
+export const electricityIcon: IconShapeTuple = ['electricity', ElectricityShape];
+export const emissionIcon: IconShapeTuple = ['emission', EmissionShape];
+export const energyIcon: IconShapeTuple = ['energy', EnergyShape];
+export const engineIcon: IconShapeTuple = ['engine', EngineShape];
+export const expressServiceIcon: IconShapeTuple = ['express-service', ExpressServiceShape];
+export const exteriorIcon: IconShapeTuple = ['exterior', ExteriorShape];
+export const findACarIcon: IconShapeTuple = ['find-a-car', FindACarShape];
+export const fleetServiceCommercialIcon: IconShapeTuple = ['fleet-service-commercial', FleetServiceCommercialShape];
+export const fleetServicePrivateIcon: IconShapeTuple = ['fleet-service-private', FleetServicePrivateShape];
+export const gasIcon: IconShapeTuple = ['gas', GasShape];
+export const gasCarsServiceIcon: IconShapeTuple = ['gas-cars-service', GasCarsServiceShape];
+export const hybridIcon: IconShapeTuple = ['hybrid', HybridShape];
+export const loadingVolumeIcon: IconShapeTuple = ['loading-volume', LoadingVolumeShape];
+export const locateIcon: IconShapeTuple = ['locate', LocateShape];
+export const newCarCommercialIcon: IconShapeTuple = ['new-car-commercial', NewCarCommercialShape];
+export const newCarPrivateIcon: IconShapeTuple = ['new-car-private', NewCarPrivateShape];
+export const newCarUtilityVehicleIcon: IconShapeTuple = ['new-car-utility-vehicle', NewCarUtilityVehicleShape];
+export const nightServiceIcon: IconShapeTuple = ['night-service', NightServiceShape];
+export const offersIcon: IconShapeTuple = ['offers', OffersShape];
+export const onCallDutyIcon: IconShapeTuple = ['on-call-duty', OnCallDutyShape];
+export const openSatIcon: IconShapeTuple = ['open-sat', OpenSatShape];
+export const paintShopIcon: IconShapeTuple = ['paint-shop', PaintShopShape];
+export const payloadIcon: IconShapeTuple = ['payload', PayloadShape];
+export const performanceIcon: IconShapeTuple = ['performance', PerformanceShape];
+export const petrolIcon: IconShapeTuple = ['petrol', PetrolShape];
+export const plusServiceIcon: IconShapeTuple = ['plus-service', PlusServiceShape];
+export const powerIcon: IconShapeTuple = ['power', PowerShape];
+export const powerTrainIcon: IconShapeTuple = ['power-train', PowerTrainShape];
+export const priceTypeSwitchIcon: IconShapeTuple = ['price-type-switch', PriceTypeSwitchShape];
+export const qualifiedWorkshopIcon: IconShapeTuple = ['qualified-workshop', QualifiedWorkshopShape];
+export const roadsideAssistanceIcon: IconShapeTuple = ['roadside-assistance', RoadsideAssistanceShape];
+export const routeIcon: IconShapeTuple = ['route', RouteShape];
+export const seatIcon: IconShapeTuple = ['seat', SeatShape];
+export const seatAirIcon: IconShapeTuple = ['seat-air', SeatAirShape];
+export const sizeIcon: IconShapeTuple = ['size', SizeShape];
+export const serviceIcon: IconShapeTuple = ['service', ServiceShape];
+export const serviceBellIcon: IconShapeTuple = ['service-bell', ServiceBellShape];
+export const stockLocatorCommercialIcon: IconShapeTuple = ['stock-locator-commercial', StockLocatorCommercialShape];
+export const stockLocatorPrivateIcon: IconShapeTuple = ['stock-locator-private', StockLocatorPrivateShape];
+export const taxiDealerIcon: IconShapeTuple = ['taxi-dealer', TaxiDealerShape];
+export const transmissionAutomaticIcon: IconShapeTuple = ['transmission-automatic', TransmissionAutomaticShape];
+export const transmissionManualIcon: IconShapeTuple = ['transmission-manual', TransmissionManualShape];
+export const touaregServiceIcon: IconShapeTuple = ['touareg-service', TouaregServiceShape];
+export const usedCarCommercialIcon: IconShapeTuple = ['used-car-commercial', UsedCarCommercialShape];
+export const usedCarPrivateIcon: IconShapeTuple = ['used-car-private', UsedCarPrivateShape];
+export const vehicleConversionIcon: IconShapeTuple = ['vehicle-conversion', VehicleConversionShape];
+export const virtualRealityIcon: IconShapeTuple = ['virtual-reality', VirtualRealityShape];
+export const volkswagenIcon: IconShapeTuple = ['volkswagen', VWShape];
+export const audiBrandIcon: IconShapeTuple = ['brand-audi', AudiBrandShape];
+export const cupraBrandIcon: IconShapeTuple = ['brand-cupra', CupraBrandShape];
+export const dwaBrandIcon: IconShapeTuple = ['brand-dwa', DWABrandShape];
+export const porscheBrandIcon: IconShapeTuple = ['brand-porsche', PorscheBrandShape];
+export const seatBrandIcon: IconShapeTuple = ['brand-seat', SeatBrandShape];
+export const skodaBrandIcon: IconShapeTuple = ['brand-skoda', SkodaBrandShape];
+export const vwBrandIcon: IconShapeTuple = ['brand-vw', VWBrandShape];
+export const vwnBrandIcon: IconShapeTuple = ['brand-vwn', VWNBrandShape];
+export const view360Icon: IconShapeTuple = ['view-360', View360Shape];
+export const wheelToWheelIcon: IconShapeTuple = ['wheel-to-wheel', WheelToWheelShape];
+export const windscreenWashIcon: IconShapeTuple = ['windscreen-wash', WindscreenWashShape];
+export const wrenchForwardIcon: IconShapeTuple = ['wrench-fwd', WrenchForward];
+export const topcardIcon: IconShapeTuple = ['topcard', TopcardShape];
+export const taskAndAppointmentIcon: IconShapeTuple = ['task-appointment', TaskAndAppointment];
+export const partsIcon: IconShapeTuple = ['parts', PartsShape];
+export const partsForwardIcon: IconShapeTuple = ['parts-fwd', PartsForwardShape];
+export const partsNonStockIcon: IconShapeTuple = ['parts-nonstock', PartsNonStockShape];
+export const partsNonStockForwardIcon: IconShapeTuple = ['parts-nonstock-fwd', PartNonStockForwardShape];
+export const paintMaterialIcon: IconShapeTuple = ['paint-material', PaintMaterialShape];
+export const paintMaterialForwardIcon: IconShapeTuple = ['paint-material-fwd', PaintMaterialForwardShape];
+export const itemsRecieveIcon: IconShapeTuple = ['items-receive', ItemsRecieveShape];
+export const itemsForwardIcon: IconShapeTuple = ['items-forward', ItemsForwardShape];
+export const dollarBillPartialIcon: IconShapeTuple = ['money-partial', DollarBillPartialShape];
+export const dollarBillForwardIcon: IconShapeTuple = ['money-fwd', DollarBillForwardShape];
+export const blocksGroupForwardIcon: IconShapeTuple = ['blocksgroup-fwd', BlocksGroupForwardShape];
+export const textForwardIcon: IconShapeTuple = ['text-fwd', TextForward];
+export const calculatorForwardIcon: IconShapeTuple = ['calculator-fwd', CalculatorForwardShape];
+export const bundleForwardIcon: IconShapeTuple = ['bundle-fwd', BundleForwardShape];
+export const internalPartForwardIcon: IconShapeTuple = ['part-return', InternalPartForwardShape];
+export const externalPartForwardIcon: IconShapeTuple = ['part-return-fwd', ExternalPartForwardShape];
+export const businessPartnerWithCarIcon: IconShapeTuple = ['bp-with-car', BusinessPartnerWithCar];
+export const campaignOutdatedIcon: IconShapeTuple = ['campaign-outdated', CampaignOutdatedShape];
+export const campaignIcon: IconShapeTuple = ['campaign', CampaignShape];

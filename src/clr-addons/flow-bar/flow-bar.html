@@ -9,14 +9,14 @@
       >
         {{index + 1}}. {{(step.title | async)}}
       </button>
-      <clr-icon shape="caret right" *ngIf="!last"></clr-icon>
+      <cds-icon shape="angle" direction="right" *ngIf="!last"></cds-icon>
     </div>
   </ng-container>
 </div>
 <clr-dropdown class="flow-bar-dropdown clr-flex-fill">
   <button type="button" class="btn btn-outline-primary" clrDropdownTrigger>
     {{_steps.indexOf(_activeStep) + 1}}. {{_activeStep?.title | async}}
-    <clr-icon shape="caret down"></clr-icon>
+    <cds-icon shape="angle" direction="down"></cds-icon>
   </button>
   <clr-dropdown-menu>
     <ng-container *ngFor="let step of _steps; let index = index; let last = last">

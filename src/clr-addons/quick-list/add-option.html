@@ -21,7 +21,7 @@
   [disabled]="trashDisabled() || disabled"
   (click)="remove.emit()"
 >
-  <clr-icon shape="trash"></clr-icon>
+  <cds-icon shape="trash"></cds-icon>
 </button>
 <button
   *ngIf="!(readonly || readonly === '') && showAddButton"

@@ -1,11 +1,11 @@
 /*
- * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
 import { Component, ViewChild } from '@angular/core';
-import { ComponentFixture, TestBed, tick, fakeAsync, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { ClarityModule } from '@clr/angular';
 
 import { ClrViewEditSectionModule } from './view-edit-section.module';
@@ -50,14 +50,14 @@ class EditModeComponent {
 }
 
 @Component({
-  template: ` <clr-view-edit-section [clrEditIcon]="editIcon"> </clr-view-edit-section> `,
+  template: ` <clr-view-edit-section [clrEditIcon]="editIcon"></clr-view-edit-section> `,
 })
 class EditIconComponent {
   editIcon = 'cog';
 }
 
 @Component({
-  template: ` <clr-view-edit-section [clrEditable]="false"> </clr-view-edit-section> `,
+  template: ` <clr-view-edit-section [clrEditable]="false"></clr-view-edit-section> `,
 })
 class NotEditableComponent {}
 
@@ -158,7 +158,7 @@ describe('ViewEditSectionComponent', () => {
     const editFixture: ComponentFixture<EditIconComponent> = TestBed.createComponent(EditIconComponent);
     editFixture.detectChanges();
 
-    expect(editFixture.nativeElement.querySelector('clr-icon').getAttribute('shape')).toMatch(
+    expect(editFixture.nativeElement.querySelector('cds-icon').getAttribute('shape')).toMatch(
       editFixture.componentInstance.editIcon
     );
     editFixture.destroy();

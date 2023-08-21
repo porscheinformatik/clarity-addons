@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -9,6 +9,9 @@ import { ClrHistoryModel } from './history-model.interface';
 import { ClrHistoryService } from './history.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { angleIcon, ClarityIcons, historyIcon } from '@cds/core/icon';
+
+ClarityIcons.addIcons(historyIcon, angleIcon);
 
 @Component({
   selector: 'clr-history',

@@ -5,6 +5,9 @@
  */
 import { Component } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
+import { ClarityIcons, displayIcon } from '@cds/core/icon';
+
+ClarityIcons.addIcons(displayIcon);
 
 const BASEPAGE_CODE_EXAMPLE = `
 <clr-main-container>
@@ -105,7 +108,7 @@ const FLOWBAR_CODE_EXAMPLE = `
                     <clr-dropdown *ngIf="activeStep?.subSteps?.length > 0">
                         <button type="button" class="btn btn-outline-primary" clrDropdownTrigger>
                             {{activeStep.activeSubStep?.title}}
-                            <clr-icon shape="caret down"></clr-icon>
+                            <cds-icon shape="angle" direction="down"></cds-icon>
                         </button>
                         <clr-dropdown-menu clrPosition="top-left" *clrIfOpen>
                             <button class="btn" clrDropdownItem *ngFor="let subStep of activeStep?.subSteps"

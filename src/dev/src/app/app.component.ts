@@ -1,13 +1,16 @@
 /*
- * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, PLATFORM_ID, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { Route } from '@angular/router';
 import { APP_ROUTES } from './app.routing';
-import { isPlatformBrowser, DOCUMENT } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { RouteHistoryService } from './route-history.service';
+import { angleIcon, ClarityIcons, cogIcon, userIcon } from '@cds/core/icon';
+
+ClarityIcons.addIcons(angleIcon, cogIcon, userIcon);
 
 @Component({
   selector: 'app-root',

@@ -22,7 +22,7 @@
         [rows]="rows || 1"
         #input
       ></textarea>
-      <clr-icon *ngIf="showError" class="clr-validate-icon" shape="exclamation-circle" aria-hidden="true"></clr-icon>
+      <cds-icon *ngIf="showError" class="clr-validate-icon" shape="exclamation-circle" aria-hidden="true"></cds-icon>
     </div>
     <ng-content select="clr-control-helper" *ngIf="!showError"></ng-content>
     <ng-content select="clr-control-error" *ngIf="showError"></ng-content>

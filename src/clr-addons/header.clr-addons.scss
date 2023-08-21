@@ -43,6 +43,11 @@
   width: 1.1rem;
 }
 
+.header-actions > .dropdown .dropdown-toggle.nav-icon cds-icon:not([shape^='angle']) {
+  height: 1.1rem;
+  width: 1.1rem;
+}
+
 @media screen and (max-width: map-get($clr-grid-breakpoints, lg)) and (min-width: map-get($clr-grid-breakpoints, md)) {
   .main-container {
     .header-hamburger-trigger,
@@ -352,6 +357,7 @@
   span::before {
     background-color: white;
   }
+
   span::after {
     background-color: white;
   }
