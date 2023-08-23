@@ -5,9 +5,9 @@
  */
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { ClrQuickListValue } from './add-option.service';
-import { ClarityIcons, trashIcon } from '@cds/core/icon';
+import { ClarityIcons, trashIcon, plusIcon } from '@cds/core/icon';
 
-ClarityIcons.addIcons(trashIcon);
+ClarityIcons.addIcons(trashIcon, plusIcon);
 
 @Component({
   selector: 'clr-add-option',
