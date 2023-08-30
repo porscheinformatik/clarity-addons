@@ -9,7 +9,7 @@ export class EnumFilterDemo {
 
   customPossibleValues = ['TestValue2', 'TestValue1', 'TestValue3'];
 
-  preSelectedValues = ['TestValue2'];
+  preSelectedValues = ['TestValue2', 'TestValueNotPresent'];
 
   currentFilter = this.preSelectedValues;
 

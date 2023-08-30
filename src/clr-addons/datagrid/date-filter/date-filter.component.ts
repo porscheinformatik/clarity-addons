@@ -7,6 +7,9 @@ import {
 } from '@clr/angular';
 import { Observable, Subject } from 'rxjs';
 import { NestedProperty } from './nested-property';
+import { ClarityIcons, trashIcon } from '@cds/core/icon';
+
+ClarityIcons.addIcons(trashIcon);
 
 @Component({
   selector: 'clr-date-filter',
@@ -150,6 +153,13 @@ export class ClrDateFilterComponent<T extends { [key: string]: any }>
       from: this._from,
       to: this._to,
     };
+  }
+
+  public clearFilter() {
+    this._from = null;
+    this._to = null;
+    this._changes.next([this._from, this._to]);
+    this.filterValueChange.emit([this._from, this._to]);
   }
 
   public equals(other: ClrDatagridFilterInterface<T, any>): boolean {
