@@ -7,6 +7,9 @@ import {
 } from '@clr/angular';
 import { Observable, Subject } from 'rxjs';
 import { NestedProperty } from './nested-property';
+import { ClarityIcons, trashIcon } from '@cds/core/icon';
+
+ClarityIcons.addIcons(trashIcon);
 
 @Component({
   selector: 'clr-date-filter',
