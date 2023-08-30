@@ -1,6 +1,9 @@
 import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 import { ClrDatagrid, ClrDatagridFilter, ClrDatagridFilterInterface } from '@clr/angular';
 import { Subject, takeUntil } from 'rxjs';
+import { ClarityIcons, trashIcon } from '@cds/core/icon';
+
+ClarityIcons.addIcons(trashIcon);
 
 @Component({
   selector: 'clr-enum-filter',
@@ -14,7 +17,12 @@ export class ClrEnumFilterComponent<T extends { [key: string]: any }>
 
   @Input('clrFilterValues')
   public set value(values: string[]) {
-    this.filteredValues = values;
+    if (this.possibleValues?.length) {
+      this.filteredValues = values.filter(filtered => this.possibleValues.includes(filtered));
+      this.clrFilterValuesChange.emit(this.filteredValues);
+    } else {
+      this.filteredValues = values;
+    }
     this.changes.emit(true);
   }
 
@@ -46,6 +54,9 @@ export class ClrEnumFilterComponent<T extends { [key: string]: any }>
   setPossibleValues(values: string[]) {
     this.possibleValues = values;
     this.possibleValues.sort();
+    this.filteredValues = this.filteredValues.filter(filtered => this.possibleValues.includes(filtered));
+
+    this.emitFilterChanged();
   }
 
   onChange(selectedValue: string, checkboxState: boolean) {
@@ -55,8 +66,7 @@ export class ClrEnumFilterComponent<T extends { [key: string]: any }>
       this.filteredValues = this.filteredValues.filter(filteredState => filteredState !== selectedValue);
     }
 
-    this.clrFilterValuesChange.emit(this.filteredValues);
-    this.changes.emit(true);
+    this.emitFilterChanged();
   }
 
   isActive(): boolean {
@@ -72,6 +82,16 @@ export class ClrEnumFilterComponent<T extends { [key: string]: any }>
       property: this.property,
       value: this.filteredValues,
     };
+  }
+
+  clearFilters() {
+    this.filteredValues = [];
+    this.emitFilterChanged();
+  }
+
+  private emitFilterChanged() {
+    this.clrFilterValuesChange.emit(this.filteredValues);
+    this.changes.emit(true);
   }
 
   ngOnDestroy() {

@@ -152,6 +152,13 @@ export class ClrDateFilterComponent<T extends { [key: string]: any }>
     };
   }
 
+  public clearFilter() {
+    this._from = null;
+    this._to = null;
+    this._changes.next([this._from, this._to]);
+    this.filterValueChange.emit([this._from, this._to]);
+  }
+
   public equals(other: ClrDatagridFilterInterface<T, any>): boolean {
     return other === this;
   }
