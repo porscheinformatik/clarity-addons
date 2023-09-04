@@ -187,6 +187,7 @@ export class DatagridDemo extends ClarityDocComponent {
   dateFilterPreselectExample = DATE_FILTER_PRESELECT;
 
   selected: any[] = [];
+  selectedMinor: any[] = [];
 
   data$ = of(
     [...Array(15).keys()].map(i => ({
@@ -211,7 +212,6 @@ export class DatagridDemo extends ClarityDocComponent {
   ];
 
   currentPage = 1;
-  totalItems = 5;
 
   dataList = [
     { name: 'TestValue1', date: today },
