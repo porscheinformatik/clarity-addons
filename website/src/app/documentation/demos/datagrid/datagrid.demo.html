@@ -348,11 +348,7 @@
         <clr-dg-cell>{{item.name}}</clr-dg-cell>
         <clr-dg-cell>{{item.text}}</clr-dg-cell>
         <clr-dg-cell [ngClass]="getTextColoring(item.status)">
-          <cds-icon
-            status="info"
-            shape="{{getIcon(item.status)}}"
-            *ngIf="item.status !== 'selected' && item.status !== 'Cell'"
-          ></cds-icon>
+          <cds-icon status="info" shape="{{getIcon(item.status)}}"></cds-icon>
           {{item.status}}</clr-dg-cell
         >
       </clr-dg-row>
@@ -392,11 +388,7 @@
         <clr-dg-cell>{{item.name}}</clr-dg-cell>
         <clr-dg-cell>{{item.text}}</clr-dg-cell>
         <clr-dg-cell [ngClass]="getTextColoring(item.status)">
-          <cds-icon
-            status="info"
-            shape="{{getIcon(item.status)}}"
-            *ngIf="item.status !== 'selected' && item.status !== 'Cell'"
-          ></cds-icon>
+          <cds-icon status="info" shape="{{getIcon(item.status)}}"></cds-icon>
           {{item.status}}</clr-dg-cell
         >
       </clr-dg-row>

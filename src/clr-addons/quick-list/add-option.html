@@ -28,6 +28,7 @@
   type="button"
   class="btn btn-icon btn-link quick-list-addcompact"
   (click)="add.emit()"
+  [disabled]="disableAddButton"
 >
-  <cds-icon shape="plus"></cds-icon>
+  <cds-icon shape="plus-circle"></cds-icon>
 </button>
