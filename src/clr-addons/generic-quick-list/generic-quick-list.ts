@@ -18,9 +18,9 @@ import {
   TemplateRef,
   ViewChildren,
 } from '@angular/core';
-import { ClarityIcons, plusIcon, trashIcon } from '@cds/core/icon';
+import { ClarityIcons, plusCircleIcon, trashIcon } from '@cds/core/icon';
 
-ClarityIcons.addIcons(trashIcon, plusIcon);
+ClarityIcons.addIcons(trashIcon, plusCircleIcon);
 
 export interface ClrGenericQuickListItem {
   id: any;

@@ -11,6 +11,7 @@ import {
   ClarityIcons,
   errorStandardIcon,
   infoStandardIcon,
+  minusIcon,
   successStandardIcon,
   warningStandardIcon,
 } from '@cds/core/icon';
@@ -166,7 +167,7 @@ const DATE_FILTER_PRESELECT = `
 const today = new Date(Date.now());
 const yesterday = new Date(Date.now() - 24 * 1000 * 60 * 60);
 const tomorrow = new Date(Date.now() + 24 * 1000 * 60 * 60);
-ClarityIcons.addIcons(errorStandardIcon, warningStandardIcon, successStandardIcon, infoStandardIcon);
+ClarityIcons.addIcons(errorStandardIcon, warningStandardIcon, successStandardIcon, infoStandardIcon, minusIcon);
 
 @Component({
   selector: 'clr-datagrid-demo-docu',
@@ -264,7 +265,8 @@ export class DatagridDemo extends ClarityDocComponent {
         return 'info-standard';
       case 'warning':
         return 'warning-standard';
+      default:
+        return 'minus';
     }
-    return '';
   }
 }

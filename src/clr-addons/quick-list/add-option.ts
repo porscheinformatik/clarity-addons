@@ -5,9 +5,9 @@
  */
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { ClrQuickListValue } from './add-option.service';
-import { ClarityIcons, trashIcon, plusIcon } from '@cds/core/icon';
+import { ClarityIcons, plusCircleIcon, trashIcon } from '@cds/core/icon';
 
-ClarityIcons.addIcons(trashIcon, plusIcon);
+ClarityIcons.addIcons(trashIcon, plusCircleIcon);
 
 @Component({
   selector: 'clr-add-option',
@@ -22,6 +22,7 @@ export class ClrAddOption<T> {
   @Input() excludedValues: Array<ClrQuickListValue<T>> = [];
   @Input() readonly: string;
   @Input() disabled = false;
+  @Input() disableAddButton = true;
   @Input() showAddButton = false;
 
   @Output() valueChanged = new EventEmitter<ClrQuickListValue<T>>();
