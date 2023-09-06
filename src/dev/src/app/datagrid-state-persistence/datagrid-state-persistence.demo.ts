@@ -11,14 +11,14 @@ export class DatagridStatePersistenceDemo {
   now = new Date();
 
   data$ = of(
-    [...Array(15).keys()].map(i => ({
+    [...Array(30).keys()].map(i => ({
       hideableCol: 'item' + i,
       numericCol: i,
       dateCol: new Date(),
       enumCol: 'Enum ' + i,
     }))
   ).pipe(
-    delay(0),
+    delay(200),
     tap(() => (this.total = 100))
   );
 
