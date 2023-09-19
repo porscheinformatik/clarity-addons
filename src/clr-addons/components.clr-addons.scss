@@ -406,9 +406,14 @@ clr-date-container .clr-control-container {
 .clr-max-width {
   max-width: $clr-max-width;
 }
-
+.datagrid-row-master {
+  background-color: inherit !important;
+}
 .datagrid-row-sticky {
   background-color: inherit !important;
+}
+.datagrid-row {
+  background-color: $white;
 }
 
 .datagrid-highlight-error {
