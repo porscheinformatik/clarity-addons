@@ -68,7 +68,7 @@
     "@types/node": "18.11.18",
     "@typescript-eslint/eslint-plugin": "6.7.2",
     "@typescript-eslint/parser": "6.7.2",
-    "autoprefixer": "10.4.13",
+    "autoprefixer": "10.4.15",
     "cpy-cli": "4.0.0",
     "csso-cli": "4.0.1",
     "del-cli": "5.1.0",
