@@ -35,7 +35,7 @@
     "@webcomponents/custom-elements": "1.5.1",
     "@webcomponents/webcomponentsjs": "2.8.0",
     "@kolkov/angular-editor": "2.1.0",
-    "core-js": "3.27.2",
+    "core-js": "3.32.2",
     "intl": "1.2.5",
     "jump.js": "1.0.2",
     "prismjs": "1.29.0",
