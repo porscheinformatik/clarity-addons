@@ -5,6 +5,11 @@ import { ClarityIcons, trashIcon } from '@cds/core/icon';
 
 ClarityIcons.addIcons(trashIcon);
 
+interface FilterValue {
+  value: string;
+  displayValue: string;
+}
+
 @Component({
   selector: 'clr-enum-filter',
   templateUrl: './enum-filter.component.html',
@@ -17,25 +22,26 @@ export class ClrEnumFilterComponent<T extends { [key: string]: any }>
 
   @Input('clrFilterValues')
   public set value(values: string[]) {
+    const converted = values.map(filtered => ({ value: filtered, displayValue: filtered }));
     if (this.possibleValues?.length) {
-      this.filteredValues = values.filter(filtered => this.possibleValues.includes(filtered));
-      this.clrFilterValuesChange.emit(this.filteredValues);
+      this.filteredValues = converted.filter(filtered => this.possibleValues.includes(filtered));
+      this.clrFilterValuesChange.emit(this.getDisplayValues(this.filteredValues));
     } else {
-      this.filteredValues = values;
+      this.filteredValues = converted;
     }
     this.changes.emit(true);
   }
 
   @Output() clrFilterValuesChange = new EventEmitter<string[]>();
 
-  possibleValues: string[] = [];
+  possibleValues: FilterValue[] = [];
   customPossibleValues = false;
-  filteredValues: string[] = [];
+  filteredValues: FilterValue[] = [];
   changes = new EventEmitter<boolean>(false);
 
   destroyed$ = new Subject<void>();
 
-  @Input() set clrPossibleValues(values: string[]) {
+  @Input() set clrPossibleValues(values: (string | FilterValue)[]) {
     this.setPossibleValues(values);
     this.customPossibleValues = true;
   }
@@ -51,19 +57,21 @@ export class ClrEnumFilterComponent<T extends { [key: string]: any }>
     });
   }
 
-  setPossibleValues(values: string[]) {
-    this.possibleValues = values;
-    this.possibleValues.sort();
-    this.filteredValues = this.filteredValues.filter(filtered => this.possibleValues.includes(filtered));
+  setPossibleValues(values: (string | FilterValue)[]) {
+    this.possibleValues = values.map(v => (v instanceof Object ? v : { value: v, displayValue: v }));
+    this.possibleValues.sort((v1, v2) => v1.displayValue.localeCompare(v2.displayValue));
+    this.filteredValues = this.filteredValues.filter(filtered =>
+      this.containsFilterValue(this.possibleValues, filtered)
+    );
 
     this.emitFilterChanged();
   }
 
-  onChange(selectedValue: string, checkboxState: boolean) {
+  onChange(selectedValue: FilterValue, checkboxState: boolean) {
     if (checkboxState) {
       this.filteredValues.push(selectedValue);
     } else {
-      this.filteredValues = this.filteredValues.filter(filteredState => filteredState !== selectedValue);
+      this.filteredValues = this.filteredValues.filter(filtered => filtered.value !== selectedValue.value);
     }
 
     this.emitFilterChanged();
@@ -74,13 +82,13 @@ export class ClrEnumFilterComponent<T extends { [key: string]: any }>
   }
 
   accepts(item: T): boolean {
-    return this.filteredValues.includes(item[this.property]);
+    return this.getDisplayValues(this.filteredValues).includes(item[this.property]);
   }
 
   public get state(): any {
     return {
       property: this.property,
-      value: this.filteredValues,
+      value: this.getValues(this.filteredValues),
     };
   }
 
@@ -90,12 +98,24 @@ export class ClrEnumFilterComponent<T extends { [key: string]: any }>
   }
 
   private emitFilterChanged() {
-    this.clrFilterValuesChange.emit(this.filteredValues);
+    this.clrFilterValuesChange.emit(this.getDisplayValues(this.filteredValues));
     this.changes.emit(true);
   }
 
   ngOnDestroy() {
     this.destroyed$.next();
     this.destroyed$.complete();
+  }
+
+  protected containsFilterValue(entries: FilterValue[], filtered: FilterValue): boolean {
+    return entries.some(v => v.value === filtered.value);
+  }
+
+  private getDisplayValues(entries: FilterValue[]): string[] {
+    return entries.map(entry => entry.displayValue);
+  }
+
+  private getValues(entries: FilterValue[]): string[] {
+    return entries.map(entry => entry.value);
   }
 }
