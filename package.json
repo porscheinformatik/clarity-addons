@@ -12,6 +12,7 @@
     "build:angular:package:cpyreadme": "cp-cli npm/clr-addons/README.md src/clr-addons/README.md",
     "build:angular:package:version": "node ./replace-versions.js",
     "build:angular:ngpackagr": "ng build clr-addons --configuration production",
+    "build:watch:angular:ngpackagr:dev": "ng build --watch clr-addons --configuration dev",
     "build:angular": "npm-run-all build:angular:package build:angular:ngpackagr",
     "build": "npm-run-all clean build:ui build:angular",
     "clean": "shx rm -rf dist",

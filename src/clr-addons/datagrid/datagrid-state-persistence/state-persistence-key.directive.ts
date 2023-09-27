@@ -129,10 +129,15 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
       Object.keys(savedState.columns).forEach(prop => {
         const filter = this.getFilter(prop);
         if (filter) {
-          const savedFilterValue = savedState.columns[prop].filterValue || {};
-          Object.keys(savedFilterValue)
-            .filter(valueKey => valueKey !== 'property')
-            .forEach(valueKey => ((filter as any)[valueKey] = this.parseFilterValue(savedFilterValue[valueKey])));
+          /* if the saved value is empty filter send null */
+          const savedFilterValue = savedState.columns[prop].filterValue;
+          if (savedFilterValue == null) {
+            (filter as any)['value'] = null;
+          } else {
+            Object.keys(savedFilterValue)
+              .filter(valueKey => valueKey !== 'property')
+              .forEach(valueKey => ((filter as any)[valueKey] = this.parseFilterValue(savedFilterValue[valueKey])));
+          }
         }
       });
     }
