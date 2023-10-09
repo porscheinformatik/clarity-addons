@@ -101,6 +101,9 @@
             "project": "src/clr-addons/ng-package.json"
           },
           "configurations": {
+            "dev": {
+              "tsConfig": "src/clr-addons/tsconfig.lib.json"
+            },
             "production": {
               "tsConfig": "src/clr-addons/tsconfig.lib.prod.json"
             }

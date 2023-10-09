@@ -171,7 +171,8 @@
 
     <div id="code-examples">
       <h3 id="examples">Code &amp; Examples</h3>
-      <h4>Mandatory use-case</h4>
+      <h4>Behavior</h4>
+      <p>The Quick List can be used in optional or mandatory usecases.</p>
 
       <form clrForm>
         <clr-quick-list
@@ -183,25 +184,25 @@
           class="clr-form-control clr-row"
           clrControlClasses="clr-col-lg-3 clr-col-md-4 clr-col-sm-5"
         >
-          <label class="clr-control-label clr-col-md-2 clr-col-sm-3 required">Mandatory list</label>
+          <label class="clr-control-label clr-col-md-2 clr-col-sm-3 required">Mandatory use case</label>
         </clr-quick-list>
       </form>
-
-      <h4>Compact Mode</h4>
 
       <form clrForm>
         <clr-quick-list
           [clrAddLabel]="getAddLabel()"
           [clrAllValues]="possibleOptions"
           [clrBlankOption]="BLANK_OPTION"
-          [clrValues]="selectedOptionsCompact"
-          [compactMode]="true"
+          [clrValues]="selectedOptionsNotMandatory"
           class="clr-form-control clr-row"
           clrControlClasses="clr-col-lg-3 clr-col-md-4 clr-col-sm-5"
         >
-          <label class="clr-control-label clr-col-md-2 clr-col-sm-3">Empty mode</label>
+          <label class="clr-control-label clr-col-md-2 clr-col-sm-3">Optional use case</label>
         </clr-quick-list>
       </form>
+
+      <h4>Compact layout</h4>
+      <p>The Quick List is also available in compact layout.</p>
 
       <form clrForm>
         <clr-quick-list
@@ -214,21 +215,7 @@
           class="clr-form-control clr-row"
           clrControlClasses="clr-col-lg-3 clr-col-md-4 clr-col-sm-5"
         >
-          <label class="clr-control-label clr-col-md-2 clr-col-sm-3 required">Mandatory mode</label>
-        </clr-quick-list>
-      </form>
-
-      <h4>Optional use-case</h4>
-      <form clrForm>
-        <clr-quick-list
-          [clrAddLabel]="getAddLabel()"
-          [clrAllValues]="possibleOptions"
-          [clrBlankOption]="BLANK_OPTION"
-          [clrValues]="selectedOptionsNotMandatory"
-          class="clr-form-control clr-row"
-          clrControlClasses="clr-col-lg-3 clr-col-md-4 clr-col-sm-5"
-        >
-          <label class="clr-control-label clr-col-md-2 clr-col-sm-3">Optional list</label>
+          <label class="clr-control-label clr-col-md-2 clr-col-sm-3 required">Compact</label>
         </clr-quick-list>
       </form>
 
@@ -419,10 +406,10 @@
       </form>
 
       <h4>Compact mode mandatory use-case</h4>
-      <form clrForm #form="ngForm">
+      <form clrForm #formCompact="ngForm">
         <clr-generic-quick-list
           [clrAddLabel]="'ADD'"
-          [clrAddPossible]="form.valid"
+          [clrAddPossible]="formCompact.valid"
           [clrAllItems]="allItemsGenericCMMandatory"
           [clrMandatory]="'true'"
           [compactMode]="true"
@@ -461,11 +448,11 @@
         </clr-generic-quick-list>
       </form>
 
-      <h4>Compact mode not mandatory use-case</h4>
-      <form clrForm #form="ngForm">
+      <h4>Compact mode optional use-case</h4>
+      <form clrForm #formCompact2="ngForm">
         <clr-generic-quick-list
           [clrAddLabel]="'ADD'"
-          [clrAddPossible]="form.valid"
+          [clrAddPossible]="formCompact2.valid"
           [clrAllItems]="allItemsGenericCM"
           [compactMode]="true"
           class="clr-row"

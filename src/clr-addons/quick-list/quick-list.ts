@@ -9,9 +9,9 @@ import { CLR_BLANK_OPTION, ClrQuickListValue } from './add-option.service';
 import { ClrAddOption } from './add-option';
 import { ClrAbstractFormComponent } from '../abstract-form-component/abstract-form-component';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { ClarityIcons, plusIcon } from '@cds/core/icon';
+import { ClarityIcons, plusCircleIcon } from '@cds/core/icon';
 
-ClarityIcons.addIcons(plusIcon);
+ClarityIcons.addIcons(plusCircleIcon);
 
 @Component({
   selector: 'clr-quick-list',

@@ -106,7 +106,7 @@ export class QuickListDemo extends ClarityDocComponent {
   possibleOptions: Array<ClrQuickListValue<string>> = this.options.map(
     op =>
       new (class implements ClrQuickListValue<string> {
-        id = op.substr(0, 3);
+        id = op.substring(0, 3);
         label = op;
         value = op;
       })()
@@ -114,12 +114,11 @@ export class QuickListDemo extends ClarityDocComponent {
 
   selectedOptionsMandatory: Array<ClrQuickListValue<string>> = [];
   selectedOptionsNotMandatory: Array<ClrQuickListValue<string>> = [];
-  selectedOptionsCompact: Array<ClrQuickListValue<string>> = [];
   selectedOptionsCompactMandatory: Array<ClrQuickListValue<string>> = [];
 
-  allItemsGeneric = [<ClrNameQuickListItem>{ id: 1 }];
-  allItemsGenericCM = [<ClrNameQuickListItem>{ id: 1 }];
-  allItemsGenericCMMandatory = [<ClrNameQuickListItem>{ id: 1 }];
+  allItemsGeneric = [];
+  allItemsGenericCM = [];
+  allItemsGenericCMMandatory = [];
 
   constructor() {
     super('quick-list');

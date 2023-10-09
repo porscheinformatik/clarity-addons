@@ -7,7 +7,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
       - name: Use Node.js 16.x
         uses: actions/setup-node@v3
         with:
@@ -22,7 +22,7 @@ jobs:
           npm ci
           npm run deploy:ci
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4.4.1
+        uses: JamesIves/github-pages-deploy-action@v4.4.3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: gh-pages # The branch the action should deploy to.

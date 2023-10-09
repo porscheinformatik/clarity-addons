@@ -20,7 +20,7 @@ import {
 } from '@clr/angular';
 import { ClrDatagridStatePersistenceModel } from './datagrid-state-persistence-model.interface';
 import { delay, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { take, takeUntil } from 'rxjs/operators';
 import { StatePersistenceOptions } from './state-persistence-options.interface';
 
 const DATE_TYPE = 'date';
@@ -119,7 +119,7 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
   private initCurrentPage(savedState: ClrDatagridStatePersistenceModel) {
     /* init current page of datagrid if already persisted */
     if (savedState?.currentPage) {
-      this.pagination.page.current = savedState.currentPage;
+      this.datagrid.items.change.pipe(take(1)).subscribe(() => (this.pagination.page.current = savedState.currentPage));
     }
   }
 
@@ -129,10 +129,15 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
       Object.keys(savedState.columns).forEach(prop => {
         const filter = this.getFilter(prop);
         if (filter) {
-          const savedFilterValue = savedState.columns[prop].filterValue || {};
-          Object.keys(savedFilterValue)
-            .filter(valueKey => valueKey !== 'property')
-            .forEach(valueKey => ((filter as any)[valueKey] = this.parseFilterValue(savedFilterValue[valueKey])));
+          /* if the saved value is empty filter send null */
+          const savedFilterValue = savedState.columns[prop].filterValue;
+          if (savedFilterValue == null) {
+            (filter as any)['value'] = null;
+          } else {
+            Object.keys(savedFilterValue)
+              .filter(valueKey => valueKey !== 'property')
+              .forEach(valueKey => ((filter as any)[valueKey] = this.parseFilterValue(savedFilterValue[valueKey])));
+          }
         }
       });
     }

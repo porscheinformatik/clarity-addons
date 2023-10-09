@@ -12,7 +12,8 @@
       [mandatory]="mandatory"
       [readonly]="readonly"
       [disabled]="disabled"
-      [showAddButton]="compactMode && !addNotPossible() && i === values.length - 1"
+      [disableAddButton]="addNotPossible() || disabled"
+      [showAddButton]="compactMode && i === values.length - 1"
     >
     </clr-add-option>
   </ng-container>
@@ -23,7 +24,7 @@
     (click)="addBlankOption()"
     [disabled]="addNotPossible() || disabled"
   >
-    <cds-icon shape="plus"></cds-icon>
+    <cds-icon shape="plus-circle"></cds-icon>
   </button>
   <button
     *ngIf="!(readonly || readonly === '') && !compactMode"

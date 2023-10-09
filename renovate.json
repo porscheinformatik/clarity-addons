@@ -12,7 +12,9 @@
     {
       "matchSourceUrlPrefixes": [
         "https://github.com/angular/angular",
-        "https://github.com/angular/angular-cli"
+        "https://github.com/angular/angular-cli",
+        "https://github.com/angular/components",
+        "https://github.com/ng-packagr/ng-packagr"
       ],
       "groupName": "angular+cli monorepo"
     }

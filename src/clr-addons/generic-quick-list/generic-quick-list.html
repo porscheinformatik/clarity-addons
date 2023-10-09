@@ -22,8 +22,9 @@
         type="button"
         class="btn btn-icon btn-link quick-list-addcompact"
         (click)="addItem()"
+        [disabled]="!addPossible"
       >
-        <cds-icon shape="plus"></cds-icon>
+        <cds-icon shape="plus-circle"></cds-icon>
       </button>
     </div>
   </ng-container>
@@ -32,8 +33,9 @@
     type="button"
     class="btn btn-icon btn-link quick-list-addcompact"
     (click)="addItem()"
+    [disabled]="!addPossible"
   >
-    <cds-icon shape="plus"></cds-icon>
+    <cds-icon shape="plus-circle"></cds-icon>
   </button>
   <button
     *ngIf="!(readonly || readonly === '') && !compactMode"
