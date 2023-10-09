@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -16,12 +16,14 @@ export class LocationBarDemo implements OnInit {
   roots2: LocationBarNode<DemoLocationBarNodeId>[];
   rootsLazy: LocationBarNode<DemoLocationBarNodeId>[];
   rootsLongTexts: LocationBarNode<DemoLocationBarNodeId>[];
+  rootsManyItems: LocationBarNode<DemoLocationBarNodeId>[];
 
   ngOnInit() {
     this.buildRoots1();
     this.buildRoots2();
     this.buildRootsLazy();
     this.buildRootsLongTexts();
+    this.buildRootsManyItems();
   }
 
   private buildRoots1() {
@@ -89,5 +91,27 @@ export class LocationBarDemo implements OnInit {
     l1.setChildren([l11, l12]);
 
     this.rootsLongTexts = [l1];
+  }
+
+  private buildRootsManyItems() {
+    const l1 = new LocationBarNode<DemoLocationBarNodeId>(
+      new DemoLocationBarNodeId('long1'),
+      'L1 This one has a LOT of sub-items',
+      false,
+      true
+    );
+
+    const children: LocationBarNode<DemoLocationBarNodeId>[] = [...Array(50).keys()].map(v => {
+      const id = v + 1;
+      return new LocationBarNode<DemoLocationBarNodeId>(
+        new DemoLocationBarNodeId(`id${id}`),
+        `L1.${id} Sub-item ${id}`,
+        true,
+        false
+      );
+    });
+    l1.setChildren(children);
+
+    this.rootsManyItems = [l1];
   }
 }
