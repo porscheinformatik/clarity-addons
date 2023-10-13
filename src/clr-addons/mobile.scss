@@ -11,12 +11,15 @@
     left: 0;
   }
 
-  .content-header {
-    padding: 0 0.5rem;
+  .main-container,
+  .u-main-container {
+    .content-header {
+      padding: 0.5rem 0.5rem 0 0.5rem;
 
-    .command-bar {
-      margin-right: 0;
-      align-items: center;
+      .command-bar {
+        margin-right: 0;
+        align-items: center;
+      }
     }
   }
 
