@@ -6,11 +6,11 @@
     <input
       type="checkbox"
       clrCheckbox
-      value="{{ possibleValue }}"
+      value="{{ possibleValue.displayValue ?? possibleValue }}"
       name="possibleValue"
-      [ngModel]="filteredValues.includes(possibleValue)"
+      [ngModel]="containsFilterValue(filteredValues, possibleValue)"
       (ngModelChange)="onChange(possibleValue, $event)"
     />
-    <label>{{ possibleValue }}</label>
+    <label>{{ possibleValue.displayValue ?? possibleValue }}</label>
   </clr-checkbox-wrapper>
 </clr-checkbox-container>

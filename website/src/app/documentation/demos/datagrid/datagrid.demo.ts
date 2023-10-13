@@ -112,6 +112,19 @@ const ENUM_FILTER_CUSTOM = `
 </clr-datagrid>
 `;
 
+const ENUM_FILTER_CUSTOM_TS = `
+customPossibleValues = ['TestValue1', 'TestValue2', 'TestValue3', 'TestValue4'];
+`;
+
+const ENUM_FILTER_CUSTOM_DISPLAYNAME_TS = `
+customPossibleValues = [
+  { value: 'ENUM_VALUE_1', displayValue: 'TestValue1' },
+  { value: 'ENUM_VALUE_2', displayValue: 'TestValue2' },
+  { value: 'ENUM_VALUE_3', displayValue: 'TestValue3' },
+  { value: 'ENUM_VALUE_4', displayValue: 'TestValue4' },
+];
+`;
+
 const ENUM_FILTER_PRESELECT = `
 <clr-datagrid>
   <clr-dg-column [clrDgField]="'name'"
@@ -183,6 +196,8 @@ export class DatagridDemo extends ClarityDocComponent {
   persistedStateExample = PERSISTED_STATE;
   enumFilterExample = ENUM_FILTER;
   enumFilterCustomExample = ENUM_FILTER_CUSTOM;
+  enumFilterCustomExampleTs = ENUM_FILTER_CUSTOM_TS;
+  enumFilterCustomDisplayNameExampleTs = ENUM_FILTER_CUSTOM_DISPLAYNAME_TS;
   enumFilterPreselectExample = ENUM_FILTER_PRESELECT;
   dateFilterExample = DATE_FILTER;
   dateFilterPreselectExample = DATE_FILTER_PRESELECT;

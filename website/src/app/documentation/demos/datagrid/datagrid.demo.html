@@ -66,6 +66,24 @@
     </clr-datagrid>
 
     <clr-code-snippet [clrCode]="enumFilterCustomExample"></clr-code-snippet>
+    <clr-code-snippet [clrCode]="enumFilterCustomExampleTs"></clr-code-snippet>
+
+    <h5>Filter display value differs from enum value</h5>
+    <p>
+      In some cases - mostly using server driven datasources - it might be necessary to define seperate display names
+      for enums (e.g. internationalization). Therefore, it is possible to additionally define custom display values for
+      the filter overlay. The <code class="clr-code">value</code> porperty itself is only provided to the filter state
+      and is therefore present in the state retrieved via the (<code class="clr-code">clrDgRefresh</code>) output of
+      <code class="clr-code">clr-datagrid</code>.
+    </p>
+    <p>
+      From a UX perspective, it is important that the values in the datagrid match the
+      <code class="clr-code">displayValue</code> values (=label in the filter overlay), when providing the display names
+      manually. Generally, overriding the display values should only be used, if the default approach is not sufficient.
+    </p>
+
+    <clr-code-snippet [clrCode]="enumFilterCustomExample"></clr-code-snippet>
+    <clr-code-snippet [clrCode]="enumFilterCustomDisplayNameExampleTs"></clr-code-snippet>
 
     <h4>Preselect filter values</h4>
     <p>

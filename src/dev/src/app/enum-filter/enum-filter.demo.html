@@ -28,6 +28,25 @@
   </clr-dg-row>
 </clr-datagrid>
 
+<h3>Custom values with dedicated display values</h3>
+<span
+  >For server-driven datasources it might be necessary to define a seperate display name for enums (e.g.
+  internationalization).</span
+>
+<clr-datagrid (clrDgRefresh)="onClrDgRefresh($event)">
+  <clr-dg-column [clrDgField]="'name'"
+    >Name
+    <clr-dg-filter>
+      <clr-enum-filter clrProperty="name" [clrPossibleValues]="customPossibleValuesWithDisplayNames"></clr-enum-filter>
+    </clr-dg-filter>
+  </clr-dg-column>
+
+  <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
+    <clr-dg-cell>{{data.name}}</clr-dg-cell>
+  </clr-dg-row>
+</clr-datagrid>
+Current Filters: {{currentFilterDisplayValue}}
+
 <h3>Preselected filter</h3>
 <clr-datagrid>
   <clr-dg-column [clrDgField]="'name'"
