@@ -22,12 +22,11 @@ export class ClrEnumFilterComponent<T extends { [key: string]: any }>
 
   @Input('clrFilterValues')
   public set value(values: string[]) {
-    const converted = values.map(filtered => ({ value: filtered, displayValue: filtered }));
     if (this.possibleValues?.length) {
-      this.filteredValues = converted.filter(filtered => this.possibleValues.includes(filtered));
+      this.filteredValues = this.possibleValues.filter(possibleValue => values?.includes(possibleValue.value));
       this.clrFilterValuesChange.emit(this.getDisplayValues(this.filteredValues));
     } else {
-      this.filteredValues = converted;
+      this.filteredValues = values.map(filtered => ({ value: filtered, displayValue: filtered }));
     }
     this.changes.emit(true);
   }
