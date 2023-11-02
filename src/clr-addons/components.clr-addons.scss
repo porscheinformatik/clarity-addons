@@ -409,7 +409,8 @@ clr-date-container .clr-control-container {
 .datagrid-row-master {
   background-color: inherit !important;
 }
-.datagrid-row-sticky {
+.datagrid-row-sticky,
+clr-expandable-animation {
   background-color: inherit !important;
 }
 .datagrid-row {
