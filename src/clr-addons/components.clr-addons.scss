@@ -518,7 +518,7 @@ clr-expandable-animation {
 }
 
 clr-dropdown-menu .dropdown-header {
-  overflow: unset !important;
+  min-height: 0.9rem;
 }
 
 // Has to be at the bottom to override the styles from the above properly
