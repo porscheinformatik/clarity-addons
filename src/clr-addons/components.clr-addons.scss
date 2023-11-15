@@ -517,5 +517,9 @@ clr-expandable-animation {
   }
 }
 
+clr-dropdown-menu .dropdown-header {
+  overflow: unset !important;
+}
+
 // Has to be at the bottom to override the styles from the above properly
 @import './mobile';

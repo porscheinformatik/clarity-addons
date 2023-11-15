@@ -28,6 +28,8 @@
   --clr-btn-primary-border-color: var(--turquoise); // border-color
   --clr-btn-primary-hover-bg-color: var(--turquoise-darkest); // hover-background-color
   --clr-btn-primary-box-shadow-color: var(--turquoise);
+  --clr-btn-primary-outline-color: var(--turquoise); // border-color, color, checked-background-color
+  --clr-btn-primary-outline-hover-color: var(--turquoise-darkest); // hover-color
 
   // Success button
   --clr-btn-success-bg-color: var($clr-highlight-success-700);
