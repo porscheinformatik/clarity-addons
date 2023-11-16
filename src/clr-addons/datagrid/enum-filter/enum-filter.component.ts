@@ -57,6 +57,9 @@ export class ClrEnumFilterComponent<T extends { [key: string]: any }>
   }
 
   setPossibleValues(values: (string | FilterValue)[]) {
+    if (values === null) {
+      values = [];
+    }
     this.possibleValues = values.map(v => (v instanceof Object ? v : { value: v, displayValue: v }));
     this.possibleValues.sort((v1, v2) => v1.displayValue.localeCompare(v2.displayValue));
     this.filteredValues = this.filteredValues.filter(filtered =>
