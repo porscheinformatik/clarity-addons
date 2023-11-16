@@ -22,6 +22,9 @@ export class ClrEnumFilterComponent<T extends { [key: string]: any }>
 
   @Input('clrFilterValues')
   public set value(values: string[]) {
+    if (values === null) {
+      values = [];
+    }
     if (this.possibleValues?.length) {
       this.filteredValues = this.possibleValues.filter(possibleValue => values?.includes(possibleValue.value));
       this.clrFilterValuesChange.emit(this.getDisplayValues(this.filteredValues));
