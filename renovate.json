@@ -17,6 +17,10 @@
         "https://github.com/ng-packagr/ng-packagr"
       ],
       "groupName": "angular+cli monorepo"
+    },
+    {
+      "matchPackageNames": ["@types/node"]
+      "automerge": true
     }
   ],
   "baseBranches": ["master"],
