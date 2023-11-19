@@ -19,7 +19,11 @@
       "groupName": "angular+cli monorepo"
     },
     {
-      "matchPackageNames": ["@types/node"],
+      "matchPackageNames": [
+        "@types/node",
+        "eslint",
+        "gh-pages"
+      ],
       "automerge": true
     }
   ],
