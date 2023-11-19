@@ -21,6 +21,7 @@
     {
       "matchPackageNames": [
         "@types/node",
+        "core-js",
         "eslint",
         "gh-pages"
       ],
