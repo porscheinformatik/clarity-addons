@@ -108,9 +108,17 @@
   }
 
   .spinner:not(.spinner-check) {
+    color: transparent;
     background: generateSpinnerIcon($black, $turquoise);
 
+    &::before,
+    &::after {
+      border-color: transparent;
+    }
+
     &.spinner-inverse {
+      color: transparent;
+      border-color: transparent;
       background: generateSpinnerIcon($white, $turquoise);
     }
   }

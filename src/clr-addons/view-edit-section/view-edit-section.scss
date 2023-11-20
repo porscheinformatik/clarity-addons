@@ -23,6 +23,15 @@
     .button-bar {
       margin-top: 1rem;
     }
+
+    .card-block .btn,
+    .card-block .btn.btn-link,
+    .card-block .card-link,
+    .card-footer .btn,
+    .card-footer .btn.btn-link,
+    .card-footer .card-link {
+      margin: 0 0.6rem 0 0;
+    }
   }
 
   .ves-action,
