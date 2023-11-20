@@ -23,7 +23,9 @@
         "@types/node",
         "core-js",
         "eslint",
-        "gh-pages"
+        "gh-pages",
+        "@typescript-eslint/eslint-plugin",
+        "@typescript-eslint/parser"
       ],
       "automerge": true
     }
