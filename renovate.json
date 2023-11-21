@@ -20,12 +20,13 @@
     },
     {
       "matchPackageNames": [
+        "@types/jasmine",
         "@types/node",
+        "@typescript-eslint/eslint-plugin",
+        "@typescript-eslint/parser",
         "core-js",
         "eslint",
-        "gh-pages",
-        "@typescript-eslint/eslint-plugin",
-        "@typescript-eslint/parser"
+        "gh-pages"
       ],
       "automerge": true
     }
