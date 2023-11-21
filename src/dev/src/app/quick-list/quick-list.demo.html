@@ -87,6 +87,25 @@
   </clr-quick-list>
 </form>
 
+<h2>Quick List vertical compact</h2>
+<form clrForm clrLayout="vertical">
+  <clr-input-container>
+    <label>First name </label>
+    <input clrInput type="text" />
+  </clr-input-container>
+
+  <clr-quick-list
+    [compactMode]="true"
+    [clrAddLabel]="getAddLabel()"
+    [clrAllValues]="possibleActivityResults"
+    [clrBlankOption]="BLANK_OPTION"
+    [clrValues]="selectedVActivityResults"
+    class="clr-form-control clr-row"
+  >
+    <label class="clr-control-label clr-col-md-2">Option list</label>
+  </clr-quick-list>
+</form>
+
 <h3>Selected Options (vertical)</h3>
 <table class="table">
   <thead>

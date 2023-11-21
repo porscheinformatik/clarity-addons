@@ -5,7 +5,8 @@
       margin-bottom: 0.25rem;
 
       .quick-list-trash {
-        margin-top: -0.25rem;
+        margin-top: -0.25rem !important;
+        margin-right: 0 !important;
         padding-right: 2px;
       }
 
@@ -26,15 +27,11 @@
       padding: 0;
       text-align: left;
     }
-  }
-  .quick-list-addcompact {
-    margin-top: -5px;
-    padding-left: 2px;
-    padding-right: 2px;
-  }
-  .btn.btn-link.quick-list-addcompact {
-    margin-top: -5px;
-    padding-left: 2px;
-    padding-right: 2px;
+    .quick-list-addcompact {
+      margin-top: -5px !important;
+      margin-right: 0 !important;
+      padding-left: 2px;
+      padding-right: 2px;
+    }
   }
 }
