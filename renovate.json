@@ -26,7 +26,8 @@
         "@typescript-eslint/parser",
         "core-js",
         "eslint",
-        "gh-pages"
+        "gh-pages",
+        "JamesIves/github-pages-deploy-action"
       ],
       "automerge": true
     }
