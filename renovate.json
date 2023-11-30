@@ -20,6 +20,7 @@
     },
     {
       "matchPackageNames": [
+        "@​angular-eslint/builder",
         "@types/jasmine",
         "@types/node",
         "@typescript-eslint/eslint-plugin",
