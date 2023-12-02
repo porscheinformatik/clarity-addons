@@ -28,7 +28,8 @@
         "core-js",
         "eslint",
         "gh-pages",
-        "JamesIves/github-pages-deploy-action"
+        "JamesIves/github-pages-deploy-action",
+        "postcss"
       ],
       "automerge": true
     }
