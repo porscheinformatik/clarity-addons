@@ -27,6 +27,7 @@
         "@typescript-eslint/parser",
         "core-js",
         "eslint",
+        "eslint-config-prettier",
         "gh-pages",
         "JamesIves/github-pages-deploy-action",
         "postcss"
