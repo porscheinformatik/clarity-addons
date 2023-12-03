@@ -75,7 +75,7 @@
     "csso-cli": "4.0.2",
     "del-cli": "5.1.0",
     "eslint": "8.55.0",
-    "eslint-config-prettier": "9.0.0",
+    "eslint-config-prettier": "9.1.0",
     "eslint-plugin-jasmine": "4.1.3",
     "husky": "8.0.3",
     "jasmine-core": "5.1.1",
