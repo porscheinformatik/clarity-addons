@@ -11,6 +11,38 @@ import { IconShapeTuple } from '@cds/core/icon/interfaces/icon.interfaces';
 
 // To support badges, alerts or the is-solid, the SVGs would need to be extended.
 
+export const CarOffSite = clrIconSVG(
+  `
+  <polygon
+        points="18 4.195 5 13.285 5 29.805 6.3 29.805 6.3 13.965 18 5.775 29.7 13.965 29.7 29.805 31 29.805 31 13.285 18 4.195"/>
+    <path
+        d="M27.4688,14.0205l-1.1744.794a.65.65,0,0,0,.3648,1.1884.6427.6427,0,0,0,.3637-.1123l1.1744-.7939a.65.65,0,1,0-.7285-1.0762Z"/>
+    <path d="M13.8433,23.23l-2.49,1.6826a.65.65,0,1,0,.7276,1.0781l2.49-1.6826a.65.65,0,0,0-.7275-1.0781Z"/>
+    <path
+        d="M19.7266,20.0371a.65.65,0,0,0-.9029-.1738l-.8811.5957-.8811-.5957A.65.65,0,1,0,16.333,20.94l.45.3038-.449.3036a.65.65,0,1,0,.7285,1.0761l.8806-.5953.8806.5953a.6433.6433,0,0,0,.3638.1124.65.65,0,0,0,.3648-1.1885l-.449-.3036.4494-.3038A.65.65,0,0,0,19.7266,20.0371Z"/>
+    <path
+        d="M23.8042,16.4971l-2.49,1.6836a.65.65,0,0,0,.3647,1.1884.643.643,0,0,0,.3638-.1123l2.49-1.6836a.65.65,0,1,0-.7285-1.0761Z"/>
+    <path
+        d="M8.8623,26.5967l-1.1743.7939a.65.65,0,0,0,.3647,1.1885.643.643,0,0,0,.3638-.1123l1.1743-.7939a.65.65,0,1,0-.7285-1.0762Z"/>
+    <path
+        d="M8.4165,14.0205a.65.65,0,1,0-.7285,1.0762l1.1743.7939a.643.643,0,0,0,.3638.1123.65.65,0,0,0,.3647-1.1884Z"/>
+    <path
+        d="M12.0811,16.4971a.65.65,0,1,0-.7286,1.0761l2.49,1.6836a.6429.6429,0,0,0,.3637.1123.65.65,0,0,0,.3648-1.1884Z"/>
+    <path d="M22.042,23.23a.65.65,0,0,0-.7275,1.0781l2.49,1.6826a.65.65,0,0,0,.7275-1.0781Z"/>
+    <path
+        d="M27.0229,26.5967a.65.65,0,1,0-.7285,1.0762l1.1744.7939a.6427.6427,0,0,0,.3637.1123.65.65,0,0,0,.3648-1.1885Z"/>`,
+  '0 0 36 36'
+);
+export const CarOnSite = clrIconSVG(
+  `
+<path d="M18,22.605a.86.86,0,0,0-.8.8.8515.8515,0,0,0,1.7.1A.8963.8963,0,0,0,18,22.605Z"/>
+ <path
+        d="M27.8,16.405a16.9577,16.9577,0,0,1-2.2.4l-1.1-2.6a2.9653,2.9653,0,0,0-2.2-1.4H13.7a2.5336,2.5336,0,0,0-2.1,1.5l-1.2,2.6a16.9577,16.9577,0,0,0-2.2-.4l-.2,1.3c.7.1,1.3.2,2,.3l-.6,1a6.0075,6.0075,0,0,0-.7,2.7v5.5a1.43,1.43,0,0,0,1.4,1.4h1.6a1.3671,1.3671,0,0,0,1.4-1.4v-.4h9.7v.4a1.43,1.43,0,0,0,1.4,1.4h1.7a1.3671,1.3671,0,0,0,1.4-1.4v-5.5a5.1892,5.1892,0,0,0-.7-2.7l-.5-1.1c.6-.1,1.3-.2,1.9-.3Zm-15-1.6a1.4454,1.4454,0,0,1,1-.7h8.4a1.4425,1.4425,0,0,1,1.1.7l.9,2.2a50.6175,50.6175,0,0,1-12.3,0Zm13.1,12.6v.1H24.2v-1.9H11.8v1.8H10.1v-5c1.2.2,2.5.3,3.8.4v-1.3c-1.3-.1-2.6-.2-3.8-.4a5.0234,5.0234,0,0,1,.5-1.3l.8-1.6a48.7229,48.7229,0,0,0,6.6.4,51.7006,51.7006,0,0,0,6.8-.4l.6207,1.4462A8.2376,8.2376,0,0,1,25.9,21.105c-1.2.2-2.4.3-3.7.4l.1,1.3c1.3-.1,2.5-.2,3.7-.4Z"/>
+ <polygon
+        points="18 4.195 5 13.285 5 29.805 6.3 29.805 6.3 13.965 18 5.775 29.7 13.965 29.7 29.805 31 29.805 31 13.285 18 4.195"/>`,
+  '0 0 36 36'
+);
+
 export const CampaignOutdatedShape = clrIconSVG(
   ` <path
   d="m 24.664062,20.947266 a 0.85000002,0.85000002 0 0 0 -0.857421,0.84375 l -0.03516,4.699218 a 0.85000002,0.85000002 0 0 0 0.84375,0.857422 0.85000002,0.85000002 0 0 0 0.857422,-0.84375 l 0.03516,-4.701172 a 0.85000002,0.85000002 0 0 0 -0.84375,-0.855468 z"
@@ -518,6 +550,8 @@ export const ClrAddonsIconShapes: any = {
   'business-customers-private': BusinessCustomersPrivateShape,
   'california-service': CaliforniaServiceShape,
   'california-specialist': CaliforniaSpecialistShape,
+  'car-off-site': CarOffSite,
+  'car-on-site': CarOnSite,
   'car-pickup-service': CarPickupServiceShape,
   'car-wash': CarWashShape,
   'certified-repair': CertifiedRepairShape,
@@ -630,6 +664,8 @@ export const businessCustomersPrivateIcon: IconShapeTuple = [
 ];
 export const californiaServiceIcon: IconShapeTuple = ['california-service', CaliforniaServiceShape];
 export const californiaSpecialistIcon: IconShapeTuple = ['california-specialist', CaliforniaSpecialistShape];
+export const carOffSite: IconShapeTuple = ['car-off-site', CarOffSite];
+export const carOnSite: IconShapeTuple = ['car-on-site', CarOnSite];
 export const carPickupServiceIcon: IconShapeTuple = ['car-pickup-service', CarPickupServiceShape];
 export const carWashIcon: IconShapeTuple = ['car-wash', CarWashShape];
 export const certifiedRepairIcon: IconShapeTuple = ['certified-repair', CertifiedRepairShape];
