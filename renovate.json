@@ -30,7 +30,8 @@
         "eslint-config-prettier",
         "gh-pages",
         "JamesIves/github-pages-deploy-action",
-        "postcss"
+        "postcss",
+        "postcss-cli"
       ],
       "automerge": true
     }
