@@ -1,6 +1,11 @@
 {
   "list": [
     {
+      "url": "angular-calendar",
+      "text": "Angular Calendar",
+      "type": "component"
+    },
+    {
       "url": "forms",
       "text": "Forms",
       "type": "layout"

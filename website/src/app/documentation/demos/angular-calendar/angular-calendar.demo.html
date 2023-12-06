@@ -1,0 +1,138 @@
+<clr-doc-wrapper [title]="title">
+  <article>
+    <h5 class="component-summary">
+      A <a href="https://github.com/mattlewis92/angular-calendar#readme">calendar component</a> that can display events
+      on a month, week or day view.
+    </h5>
+    <!-- <p>
+      Source:
+      <a href="https://github.com/mattlewis92/angular-calendar">https://github.com/mattlewis92/angular-calendar</a>
+    </p> -->
+    <h2>Installation</h2>
+    <p>
+      Clarity Addons provides clarity specific custom styles for the angular calendar component. The component itself is
+      not included itself in the clarity addons.
+    </p>
+    <br />
+    <ol>
+      <li>
+        First install through npm:
+        <clr-code-snippet clrCode="ng add angular-calendar"></clr-code-snippet>
+        or
+        <clr-code-snippet clrCode="npm install --save angular-calendar date-fns"></clr-code-snippet>
+      </li>
+      <li>
+        Next include the CSS file in the global styles of your app or in the angular.json.
+        <clr-code-snippet
+          clrCode='@import "../node_modules/angular-calendar/css/angular-calendar.css"'
+        ></clr-code-snippet>
+      </li>
+      <li>
+        Verify that the 'clarity-addons' style imports come after the 'angular-calendar' style imports in your project.
+        This sequence is crucial as it allows 'clarity-addons' styles to effectively override the 'angular-calendar'
+        styles.
+        <clr-code-snippet [clrCode]="stylesImport"></clr-code-snippet>
+      </li>
+    </ol>
+
+    <div id="code-examples">
+      <h2 id="examples">Code &amp; Examples</h2>
+
+      <h3><code class="clr-code">mwl-calendar-week-view</code> component</h3>
+      <p>
+        To use the weekly view of the calendar, use the <code class="clr-code">mwl-calendar-week-view</code> component.
+        Provide a <code class="clr-code">[viewDate]</code> and <code class="clr-code">[events]</code> data to get
+        started.
+      </p>
+
+      <clr-code-snippet
+        [clrCode]='&apos;&lt;mwl-calendar-week-view [viewDate]="viewDate" [events]="events"&gt;&lt;/mwl-calendar-week-view&gt;&apos;'
+      ></clr-code-snippet>
+
+      <clr-code-snippet [clrCode]="weekViewExampleCode"></clr-code-snippet>
+
+      <mwl-calendar-week-view [viewDate]="viewDate" [events]="events" style="width: 100%"> </mwl-calendar-week-view>
+
+      <p>
+        To customize for example the style and the format of day and time, utilize custom templates. For instance, if
+        you want to display the day and date in a unique format in the header:
+      </p>
+      <clr-code-snippet [clrCode]="weekViewFormatExampleCode"></clr-code-snippet>
+
+      <mwl-calendar-week-view
+        [viewDate]="viewDate"
+        [events]="events"
+        style="width: 100%"
+        [headerTemplate]="customHeaderTemplate"
+      >
+      </mwl-calendar-week-view>
+
+      <ng-template
+        #customHeaderTemplate
+        let-days="days"
+        let-locale="locale"
+        let-dayHeaderClicked="dayHeaderClicked"
+        let-eventDropped="eventDropped"
+        let-trackByWeekDayHeaderDate="trackByWeekDayHeaderDate"
+        let-dragEnter="dragEnter"
+      >
+        <div class="cal-day-headers" role="row">
+          <div
+            class="cal-header"
+            *ngFor="let day of days; trackBy: trackByWeekDayHeaderDate"
+            [class.cal-past]="day.isPast"
+            [class.cal-today]="day.isToday"
+            [class.cal-future]="day.isFuture"
+            [class.cal-weekend]="day.isWeekend"
+            [ngClass]="day.cssClass"
+            (mwlClick)="dayHeaderClicked.emit({ day: day, sourceEvent: $event })"
+            mwlDroppable
+            dragOverClass="cal-drag-over"
+            (drop)="
+        eventDropped.emit({
+          event: $event.dropData.event,
+          newStart: day.date
+        })
+      "
+            (dragEnter)="dragEnter.emit({ date: day.date })"
+            tabindex="0"
+            role="columnheader"
+          >
+            <b>{{ day.date | date : "EEE" }}</b>
+            <br />
+            <span>{{ day.date | date : "dd" }}</span>
+          </div>
+        </div>
+      </ng-template>
+
+      <h3><code class="clr-code">mwl-calendar-month-view</code> component</h3>
+      <p>
+        To use the monthly view of the calendar, use the
+        <code class="clr-code">mwl-calendar-month-view</code> component.
+      </p>
+      <clr-code-snippet
+        [clrCode]='&apos;&lt;mwl-calendar-month-view [viewDate]="viewDate" [events]="events"&gt;&lt;/mwl-calendar-month-view&gt;&apos;'
+      ></clr-code-snippet>
+      <br />
+
+      <mwl-calendar-month-view [viewDate]="viewDate" [events]="events" style="width: 100%"> </mwl-calendar-month-view>
+
+      <h3><code class="clr-code">mwl-calendar-day-view</code> component</h3>
+      <p>
+        To use the daily view of the calendar, use the
+        <code class="clr-code">mwl-calendar-day-view</code> component.
+      </p>
+      <clr-code-snippet
+        [clrCode]='&apos;&lt;mwl-calendar-day-view [viewDate]="viewDate" [events]="events"&gt;&lt;/mwl-calendar-day-view&gt;&apos;'
+      ></clr-code-snippet>
+
+      <br />
+      <mwl-calendar-day-view [viewDate]="viewDate" [events]="events" style="width: 100%"> </mwl-calendar-day-view>
+
+      <p>
+        For more information and examples, visit the official
+        <a href="https://mattlewis-github.com/angular-calendar/docs/">documentation</a>.
+      </p>
+    </div>
+  </article>
+</clr-doc-wrapper>
