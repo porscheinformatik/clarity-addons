@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
-import { endOfDay, endOfYesterday, startOfDay, startOfYesterday } from 'date-fns';
+import { endOfDay, endOfYesterday, startOfDay, startOfYesterday, subHours } from 'date-fns';
 import { CalendarEvent } from 'angular-calendar';
+import { addHours } from 'date-fns/esm';
 
 @Component({
   selector: 'clr-angular-calendar-demo',
@@ -17,21 +18,25 @@ export class AngularCalendarDemo extends ClarityDocComponent {
     "node_modules/@porscheinformatik/clr-addons/styles/clr-addons-phs.min.css",
   ],`;
 
-  weekViewExampleCode = `
-  events: CalendarEvent[] = [
+  weekViewExampleCode = `  events: CalendarEvent[] = [
     {
-      start: startOfDay(new Date()),
-      end: endOfDay(new Date()),
+      start: addHours(startOfDay(new Date()),8),
+      end: subHours(endOfDay(new Date()),4),
       title: 'Lorem Ipsum',
     },
     {
-      start: startOfDay(new Date()),
-      end: endOfDay(new Date()),
+      start: addHours(startOfDay(new Date()),9),
+      end: subHours(endOfDay(new Date()),6),
       title: 'Lorem Ipsum',
     },
     {
-      start: startOfYesterday(),
-      end: endOfYesterday(),
+      start: addHours(startOfYesterday(),10),
+      end: addHours(startOfYesterday(),11),
+      title: 'Lorem Ipsum',
+    },
+    {
+      start: addHours(startOfYesterday(),12),
+      end: subHours(startOfYesterday(),14),
       title: 'Lorem Ipsum',
     },
   ];`;
@@ -96,18 +101,23 @@ export class AngularCalendarDemo extends ClarityDocComponent {
 
   events: CalendarEvent[] = [
     {
-      start: startOfDay(new Date()),
-      end: endOfDay(new Date()),
+      start: addHours(startOfDay(new Date()), 8),
+      end: subHours(endOfDay(new Date()), 4),
       title: 'Lorem Ipsum',
     },
     {
-      start: startOfDay(new Date()),
-      end: endOfDay(new Date()),
+      start: addHours(startOfDay(new Date()), 9),
+      end: subHours(endOfDay(new Date()), 6),
       title: 'Lorem Ipsum',
     },
     {
-      start: startOfYesterday(),
-      end: endOfYesterday(),
+      start: addHours(startOfYesterday(), 10),
+      end: addHours(startOfYesterday(), 11),
+      title: 'Lorem Ipsum',
+    },
+    {
+      start: addHours(startOfYesterday(), 12),
+      end: subHours(startOfYesterday(), 14),
       title: 'Lorem Ipsum',
     },
   ];

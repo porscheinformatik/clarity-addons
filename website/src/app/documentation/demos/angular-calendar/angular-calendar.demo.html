@@ -46,12 +46,19 @@
       </p>
 
       <clr-code-snippet
-        [clrCode]='&apos;&lt;mwl-calendar-week-view [viewDate]="viewDate" [events]="events"&gt;&lt;/mwl-calendar-week-view&gt;&apos;'
+        [clrCode]='&apos;&lt;mwl-calendar-week-view [viewDate]="viewDate" [events]="events" [dayStartHour]="6" [dayEndHour]="20"&gt;&lt;/mwl-calendar-week-view&gt;&apos;'
       ></clr-code-snippet>
 
       <clr-code-snippet [clrCode]="weekViewExampleCode"></clr-code-snippet>
 
-      <mwl-calendar-week-view [viewDate]="viewDate" [events]="events" style="width: 100%"> </mwl-calendar-week-view>
+      <mwl-calendar-week-view
+        [viewDate]="viewDate"
+        [dayStartHour]="6"
+        [dayEndHour]="20"
+        [events]="events"
+        style="width: 100%"
+      >
+      </mwl-calendar-week-view>
 
       <p>
         To customize for example the style and the format of day and time, utilize custom templates. For instance, if
@@ -62,6 +69,8 @@
       <mwl-calendar-week-view
         [viewDate]="viewDate"
         [events]="events"
+        [dayStartHour]="6"
+        [dayEndHour]="20"
         style="width: 100%"
         [headerTemplate]="customHeaderTemplate"
       >
@@ -123,11 +132,18 @@
         <code class="clr-code">mwl-calendar-day-view</code> component.
       </p>
       <clr-code-snippet
-        [clrCode]='&apos;&lt;mwl-calendar-day-view [viewDate]="viewDate" [events]="events"&gt;&lt;/mwl-calendar-day-view&gt;&apos;'
+        [clrCode]='&apos;&lt;mwl-calendar-day-view [viewDate]="viewDate" [dayStartHour]="6" [dayEndHour]="20" [events]="events"&gt;&lt;/mwl-calendar-day-view&gt;&apos;'
       ></clr-code-snippet>
 
       <br />
-      <mwl-calendar-day-view [viewDate]="viewDate" [events]="events" style="width: 100%"> </mwl-calendar-day-view>
+      <mwl-calendar-day-view
+        [viewDate]="viewDate"
+        [dayStartHour]="6"
+        [dayEndHour]="20"
+        [events]="events"
+        style="width: 100%"
+      >
+      </mwl-calendar-day-view>
 
       <p>
         For more information and examples, visit the official
