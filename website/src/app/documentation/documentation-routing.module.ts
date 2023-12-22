@@ -219,6 +219,14 @@ const documentationRoutes: Routes = [
           browserTitle: 'Colors',
         },
       },
+      {
+        path: 'angular-calendar',
+        loadChildren: () =>
+          import('./demos/angular-calendar/angular-calendar.demo.module').then(m => m.AngularCalendarDemoModule),
+        data: {
+          browserTitle: 'Angular Calendar',
+        },
+      },
     ],
   },
 ];

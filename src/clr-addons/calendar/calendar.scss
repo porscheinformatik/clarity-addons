@@ -1,0 +1,197 @@
+:root {
+  --clr-angular-calendar-primary-color: var(--turquoise);
+  --clr-angular-calendar-highlight-neutral: var(--clr-highlight-neutral-200);
+  --clr-angular-calendar-border-color-neutral: #cfcfcf;
+  --clr-angular-calendar-border-color-dark: #828282;
+  --clr-angular-calendar-highlight-light: #bbe4e6;
+  --clr-angular-calendar-highlight-info: var(--clr-highlight-info-50);
+  --clr-angular-calendar-highlight-info-hover: var(--clr-highlight-info-100);
+  --clr-angular-calendar-font-color: var(---clr-global-font-color);
+}
+
+/* week */
+
+.cal-week-view {
+  background-color: #fff;
+  border-top: 0;
+}
+
+.cal-week-view .cal-day-headers {
+  border-color: var(--clr-angular-calendar-primary-color);
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  border-width: thin;
+}
+
+.cal-week-view .cal-day-headers .cal-header:not(:last-child) {
+  border-right-color: var(--clr-angular-calendar-primary-color);
+}
+
+[dir='rtl'] .cal-week-view .cal-day-headers .cal-header:not(:last-child) {
+  border-right-color: initial;
+  border-left: solid 1px var(--clr-angular-calendar-primary-color) !important;
+}
+.cal-week-view .cal-day-headers .cal-header:first-child {
+  border-left-color: var(--clr-angular-calendar-primary-color);
+}
+[dir='rtl'] .cal-week-view .cal-day-headers .cal-header:first-child {
+  border-left-color: initial;
+  border-right-color: var(--clr-angular-calendar-primary-color);
+}
+.cal-week-view .cal-day-headers .cal-header:hover,
+.cal-week-view .cal-day-headers .cal-drag-over {
+  background-color: #ededed;
+}
+.cal-week-view .cal-day-column {
+  border-left-color: var(--clr-angular-calendar-primary-color);
+}
+[dir='rtl'] .cal-week-view .cal-day-column {
+  border-left-color: initial;
+  border-right-color: var(--clr-angular-calendar-primary-color);
+}
+.cal-week-view .cal-event {
+  background-color: var(--clr-angular-calendar-highlight-info);
+  border-color: var(--clr-angular-calendar-highlight-info-hover);
+  color: var(--clr-angular-calendar-font-color);
+}
+.cal-week-view .cal-all-day-events {
+  border-color: #e1e1e1;
+}
+.cal-week-view .cal-header.cal-today {
+  background: var(--clr-angular-calendar-highlight-light);
+}
+.cal-week-view .cal-header.cal-today:hover {
+  background: var(--clr-angular-calendar-highlight-light);
+}
+.cal-week-view .cal-header.cal-weekend span {
+  color: inherit;
+}
+.cal-week-view .cal-time-events {
+  border-color: var(--clr-angular-calendar-primary-color);
+}
+.cal-week-view .cal-time-events .cal-day-columns:not(.cal-resize-active) .cal-hour-segment:hover {
+  background-color: var(--clr-angular-calendar-highlight-neutral);
+}
+.cal-week-view .cal-time {
+  font-weight: normal;
+  padding-top: 5px;
+  width: 70px;
+  text-align: center;
+  font-size: smaller;
+}
+.cal-week-view .cal-hour-odd {
+  background-color: #fff;
+}
+.cal-week-view .cal-drag-over .cal-hour-segment {
+  background-color: #ededed;
+}
+.cal-week-view .cal-hour:not(:last-child) .cal-hour-segment,
+.cal-week-view .cal-hour:last-child :not(:last-child) .cal-hour-segment {
+  border-bottom-color: var(--clr-angular-calendar-border-color-neutral);
+}
+
+.cal-week-view .cal-hour .cal-hour-segment.cal-after-hour-start {
+  border-bottom: solid;
+  border-bottom-color: var(--clr-angular-calendar-border-color-neutral);
+  border-width: thin;
+}
+.cal-week-view .cal-current-time-marker {
+  background-color: #ea4334;
+}
+.cal-week-view .cal-day-headers .cal-header {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  text-align: left;
+  padding: 5px;
+}
+.cal-week-view .cal-day-headers .cal-header span {
+  opacity: 1;
+  font-size: large;
+}
+.cal-week-view .cal-day-headers .cal-header b {
+  font-weight: 400 !important;
+}
+
+/* month */
+
+.cal-month-view .cal-day-cell.cal-today {
+  background: none;
+}
+.cal-month-view .cal-day-cell {
+  min-height: 140px;
+}
+.cal-month-view .cal-day-cell.cal-today .cal-day-number {
+  font-size: inherit;
+  background-color: var(--clr-angular-calendar-highlight-light);
+  border-radius: 50%;
+  height: 26px;
+  width: 26px;
+  line-height: 26px;
+  display: inline-block;
+  text-align: center;
+}
+.cal-month-view .cal-days {
+  border: 1px solid;
+  border-bottom: 1px;
+  border-color: var(--clr-angular-calendar-border-color-neutral);
+  border-top-color: var(--clr-angular-calendar-primary-color);
+}
+.cal-month-view .cal-header .cal-cell {
+  font-size: large;
+  font-weight: 400;
+  border-right: 1px solid;
+  border-color: var(--clr-angular-calendar-border-color-neutral);
+}
+.cal-month-view .cal-header .cal-cell:first-child {
+  border-left: 1px solid;
+  border-color: var(--clr-angular-calendar-border-color-neutral);
+}
+.cal-month-view .cal-day-cell.cal-weekend .cal-day-number {
+  color: inherit;
+}
+.cal-month-view .cal-cell-row:hover {
+  background-color: #fafafa;
+}
+.cal-month-view .cal-cell-row .cal-cell:hover,
+.cal-month-view .cal-cell.cal-has-events.cal-open {
+  background-color: var(--clr-angular-calendar-highlight-neutral);
+}
+.cal-month-view .cal-day-cell.cal-out-month .cal-day-number {
+  opacity: 1;
+  cursor: default;
+}
+.cal-month-view .cal-day-number {
+  font-size: 1.2em;
+  font-weight: 400;
+  opacity: 1;
+  margin-top: 15px;
+  margin-left: 15px;
+  float: left;
+  margin-bottom: 10px;
+}
+.cal-month-view .cal-day-badge {
+  margin-top: 18px;
+  margin-right: 10px;
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  border-radius: 10px;
+  float: right;
+}
+.cal-month-view .cal-event {
+  background-color: var(--clr-angular-calendar-highlight-info-hover);
+  border-color: var(--clr-angular-calendar-highlight-info-hover);
+  color: #fff;
+}
+.cal-month-view .cal-day-badge {
+  background-color: #c21d00;
+  color: #fff;
+}
