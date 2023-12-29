@@ -37,7 +37,7 @@
     "@webcomponents/custom-elements": "1.6.0",
     "@webcomponents/webcomponentsjs": "2.8.0",
     "angular-calendar": "0.31.0",
-    "core-js": "3.34.0",
+    "core-js": "3.35.0",
     "date-fns": "2.30.0",
     "intl": "1.2.5",
     "jump.js": "1.0.2",
