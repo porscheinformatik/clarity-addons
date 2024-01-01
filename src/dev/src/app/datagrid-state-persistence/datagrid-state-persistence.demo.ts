@@ -13,6 +13,7 @@ export class DatagridStatePersistenceDemo {
   data$ = of(
     [...Array(30).keys()].map(i => ({
       hideableCol: 'item' + i,
+      hideableCol2: 'item' + i,
       numericCol: i,
       dateCol: new Date(),
       enumCol: 'Enum ' + i,

@@ -38,6 +38,9 @@ const PERSISTENCE_KEY = 'ColumnHiddenStatePersistenceDirective';
       <clr-dg-column id="column6" [clrDgField]="'column6'">
         <ng-template clrDgHideableColumn [clrDgHidden]="true"><span>column5</span></ng-template>
       </clr-dg-column>
+      <clr-dg-column id="column7" [clrDgFieldKey]="'column7'">
+        <ng-template clrDgHideableColumn><span>column7</span></ng-template>
+      </clr-dg-column>
     </clr-datagrid>
   `,
 })
@@ -75,11 +78,12 @@ describe('ColumnHiddenStatePersistenceDirective', () => {
     expect(fixture.debugElement.query(By.css('#column3')).nativeElement).not.toHaveClass('datagrid-hidden-column');
     expect(fixture.debugElement.query(By.css('#column4')).nativeElement).not.toHaveClass('datagrid-hidden-column');
     expect(fixture.debugElement.query(By.css('#column5')).nativeElement).toHaveClass('datagrid-hidden-column');
+    expect(fixture.debugElement.query(By.css('#column7')).nativeElement).not.toHaveClass('datagrid-hidden-column');
   });
 
   it('Loaded from storage', () => {
     const storageModel =
-      '{"columns":{"column1": {"hidden":true}, "column2": {"hidden":false}, "column6": {"hidden":false}}}';
+      '{"columns":{"column1": {"hidden":true}, "column2": {"hidden":false}, "column6": {"hidden":false}, "column7": {"hidden":true}}}';
     localStorage.setItem(PERSISTENCE_KEY, storageModel);
 
     fixture.detectChanges();
@@ -90,6 +94,7 @@ describe('ColumnHiddenStatePersistenceDirective', () => {
     expect(fixture.debugElement.query(By.css('#column4')).nativeElement).not.toHaveClass('datagrid-hidden-column');
     expect(fixture.debugElement.query(By.css('#column5')).nativeElement).toHaveClass('datagrid-hidden-column');
     expect(fixture.debugElement.query(By.css('#column6')).nativeElement).not.toHaveClass('datagrid-hidden-column');
+    expect(fixture.debugElement.query(By.css('#column7')).nativeElement).toHaveClass('datagrid-hidden-column');
   });
 
   it('Persisted to storage', () => {
@@ -98,15 +103,19 @@ describe('ColumnHiddenStatePersistenceDirective', () => {
     fixture.componentInstance.hideableColumnDirectives.get(0).clrDgHidden = true;
     fixture.componentInstance.hideableColumnDirectives.get(2).clrDgHidden = true;
     fixture.componentInstance.hideableColumnDirectives.get(3).clrDgHidden = false;
+    fixture.componentInstance.hideableColumnDirectives.get(5).clrDgHidden = true;
 
     expect(fixture.debugElement.query(By.css('#column1')).nativeElement).toHaveClass('datagrid-hidden-column');
     expect(fixture.debugElement.query(By.css('#column2')).nativeElement).not.toHaveClass('datagrid-hidden-column');
     expect(fixture.debugElement.query(By.css('#column3')).nativeElement).toHaveClass('datagrid-hidden-column');
     expect(fixture.debugElement.query(By.css('#column4')).nativeElement).not.toHaveClass('datagrid-hidden-column');
     expect(fixture.debugElement.query(By.css('#column5')).nativeElement).not.toHaveClass('datagrid-hidden-column');
+    expect(fixture.debugElement.query(By.css('#column7')).nativeElement).toHaveClass('datagrid-hidden-column');
 
     const storageModel = localStorage.getItem(PERSISTENCE_KEY);
-    expect(storageModel).toBe('{"columns":{"column1":{"hidden":true},"column5":{"hidden":false}}}');
+    expect(storageModel).toBe(
+      '{"columns":{"column1":{"hidden":true},"column5":{"hidden":false},"column7":{"hidden":true}}}'
+    );
   });
 
   it("doesn't load from storage when 'persistHiddenColumns' is set to false", () => {

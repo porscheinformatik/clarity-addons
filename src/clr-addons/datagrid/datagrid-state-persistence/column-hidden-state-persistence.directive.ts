@@ -21,7 +21,7 @@ export class ColumnHiddenStatePersistenceDirective implements OnInit, OnDestroy 
 
   ngOnInit() {
     const persistenceEnabled = this.statePersistenceKey?.options?.persistHiddenColumns ?? true;
-    if (this.statePersistenceKey?.options.key && this.columnDirective?.clrDgField && persistenceEnabled) {
+    if (this.statePersistenceKey?.options.key && this.columnDirective?.persistenceKey && persistenceEnabled) {
       /* set hidden states from local storage (if existing) */
       this.initHiddenState();
 
@@ -37,9 +37,9 @@ export class ColumnHiddenStatePersistenceDirective implements OnInit, OnDestroy 
     const persistedGridState = this.readStoredState();
 
     /* read column state if existing */
-    if (persistedGridState?.columns?.[this.columnDirective.clrDgField]) {
+    if (persistedGridState?.columns?.[this.columnDirective.persistenceKey]) {
       /* read column hidden state if existing */
-      const persistedColumnHiddenState = persistedGridState.columns[this.columnDirective.clrDgField].hidden;
+      const persistedColumnHiddenState = persistedGridState.columns[this.columnDirective.persistenceKey].hidden;
       if (persistedColumnHiddenState !== undefined) {
         this.hideableColumnDirective.clrDgHidden = persistedColumnHiddenState === true;
       }
@@ -55,10 +55,10 @@ export class ColumnHiddenStatePersistenceDirective implements OnInit, OnDestroy 
       if (!persistedGridState.columns) {
         persistedGridState.columns = {};
       }
-      let persistedColumnState = persistedGridState.columns[this.columnDirective.clrDgField];
+      let persistedColumnState = persistedGridState.columns[this.columnDirective.persistenceKey];
       if (!persistedColumnState) {
         persistedColumnState = {};
-        persistedGridState.columns[this.columnDirective.clrDgField] = persistedColumnState;
+        persistedGridState.columns[this.columnDirective.persistenceKey] = persistedColumnState;
       }
 
       /* set column hidden state and persist in local storage */
