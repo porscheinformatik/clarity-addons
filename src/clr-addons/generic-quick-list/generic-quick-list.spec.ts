@@ -48,14 +48,13 @@ class TestComponent {
 describe('GenericQuickListComponent', () => {
   let fixture: ComponentFixture<TestComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [TestComponent],
-        imports: [CommonModule, ClarityModule, FormsModule, ClrGenericQuickListModule],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [TestComponent],
+      imports: [CommonModule, ClarityModule, FormsModule, ClrGenericQuickListModule],
+      teardown: { destroyAfterEach: false },
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TestComponent);

@@ -1,0 +1,44 @@
+.clr-input-wrapper > .clr-input-group {
+  max-width: fit-content;
+  padding-right: 1.5rem;
+
+  ::ng-deep > .clr-input {
+    width: 100%;
+    padding: 0 0.3rem;
+  }
+}
+
+// The `.datepicker` class contains all styling for the popover.
+.clr-daterangepicker-container-popup.datepicker {
+  padding: 0;
+  width: auto;
+  height: auto;
+  display: block;
+
+  .clr-smart-close-button {
+    min-width: 1.2rem;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 0;
+  }
+
+  .clr-daterangepicker-container-popup-content {
+    padding: 0.6rem;
+    display: flex;
+    flex-direction: row;
+
+    .clr-form ::ng-deep clr-datepicker:first-of-type ::ng-deep clr-date-container {
+      margin-top: 0;
+    }
+
+    .clr-daterangepicker-container-popup-content-presets {
+      margin-left: 0.6rem;
+      padding: 0.3rem;
+
+      .btn {
+        margin-right: 0;
+      }
+    }
+  }
+}

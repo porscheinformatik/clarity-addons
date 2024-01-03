@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -59,6 +59,10 @@ export const APP_ROUTES: Routes = [
       import('./progress-spinner/progress-spinner.demo.module').then(m => m.ProgressSpinnerDemoModule),
   },
   {
+    path: 'location-bar',
+    loadChildren: () => import('./location-bar/location-bar.demo.module').then(m => m.LocationBarDemoModule),
+  },
+  {
     path: 'notification',
     loadChildren: () => import('./notification/notification.demo.module').then(m => m.NotificationDemoModule),
   },
@@ -105,6 +109,35 @@ export const APP_ROUTES: Routes = [
   {
     path: 'icons',
     loadChildren: () => import('./icons/icons.demo.module').then(m => m.IconsDemoModule),
+  },
+  {
+    path: 'kitchen-sink',
+    loadChildren: () => import('./kitchen-sink/kitchen-sink.module').then(m => m.KitchenSinkModule),
+  },
+  { path: 'dropdown', loadChildren: () => import('./dropdown/dropdown.demo.module').then(m => m.DropdownDemoModule) },
+  {
+    path: 'datagrid-filters',
+    loadChildren: () =>
+      import('./datagrid-filters/datagrid-filters.demo.module').then(m => m.DatagridFiltersDemoModule),
+  },
+  {
+    path: 'datagrid-state-persistence',
+    loadChildren: () =>
+      import('./datagrid-state-persistence/datagrid-state-persistence.demo.module').then(
+        m => m.DatagridStatePersistenceDemoModule
+      ),
+  },
+  {
+    path: 'enum-filter',
+    loadChildren: () => import('./enum-filter/enum-filter.demo.module').then(m => m.EnumFilterDemoModule),
+  },
+  {
+    path: 'daterangepicker',
+    loadChildren: () => import('./daterangepicker/daterangepicker.demo.module').then(m => m.DaterangepickerDemoModule),
+  },
+  {
+    path: 'html-editor',
+    loadChildren: () => import('./html-editor/html-editor.demo.module').then(m => m.HtmlEditorDemoModule),
   },
 ];
 

@@ -1,0 +1,86 @@
+<clr-doc-wrapper [title]="title">
+  <article>
+    <h5 class="component-summary">The brand avatar is used to display logo of a brand.</h5>
+
+    <div id="design-guidelines">
+      <h3>Summary of Options</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Input</th>
+            <th class="left clr-hidden-xs-down">Values</th>
+            <th class="clr-hidden-xs-down">Default</th>
+            <th class="left">Effect</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left">
+              <b>clrBrand</b>
+              <div class="clr-hidden-sm-up">Type: string</div>
+              <div class="clr-hidden-sm-up">Default: undefined</div>
+            </td>
+            <td class="left clr-hidden-xs-down">String</td>
+            <td class="clr-hidden-xs-down">undefined</td>
+            <td class="left">
+              The brand of the logo that should be displayed. (Case insensitive, spaces, dashes & underscores will be
+              ignored)
+            </td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>clrSize</b>
+              <div class="clr-hidden-sm-up">Type: Number</div>
+              <div class="clr-hidden-sm-up">Default: 24</div>
+            </td>
+            <td class="left clr-hidden-xs-down">Number</td>
+            <td class="clr-hidden-xs-down">24</td>
+            <td class="left">Defines the size of the brand avatar in px</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="code-examples">
+      <h3 id="examples">Code &amp; Examples</h3>
+      <h4>Standard behaviour</h4>
+      <p>
+        The brand avatar gets a hover effect when hovering over anything inside his direct parent. See it in action by
+        hovering over the name.
+      </p>
+      <div style="display: flex">
+        <div class="parent">
+          <clr-brand-avatar class="demo-avatar" [clrBrand]="'Volkswagen'"></clr-brand-avatar>
+          <a href="#">Volkswagen</a>
+        </div>
+      </div>
+
+      <clr-code-snippet [clrCode]="htmlExample"></clr-code-snippet>
+
+      <h4>Larger behaviour</h4>
+      <p>
+        The brand avatar gets a hover effect when hovering over anything inside his direct parent. See it in action by
+        hovering over the name.
+      </p>
+      <div style="display: flex">
+        <div class="parent">
+          <clr-brand-avatar class="demo-avatar" [clrSize]="48" [clrBrand]="'Volkswagen'"></clr-brand-avatar>
+          <a href="#">Volkswagen</a>
+        </div>
+      </div>
+
+      <clr-code-snippet [clrCode]="htmlExampleLarger"></clr-code-snippet>
+
+      <h4>No brand or unknown brand</h4>
+      <p>If clrBrand is not set or an unknown brand is set, a car icon will be displayed instead of the brand logo</p>
+      <div style="display: flex">
+        <div class="parent">
+          <clr-brand-avatar class="demo-avatar"></clr-brand-avatar>
+          <a href="#">No brand set</a>
+        </div>
+      </div>
+
+      <clr-code-snippet [clrCode]="htmlExample2"></clr-code-snippet>
+    </div>
+  </article>
+</clr-doc-wrapper>

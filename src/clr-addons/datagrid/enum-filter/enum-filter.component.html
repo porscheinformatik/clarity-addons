@@ -1,0 +1,16 @@
+<button class="btn btn-sm btn-icon btn-link btn-trash" (click)="clearFilters()">
+  <cds-icon shape="trash"></cds-icon>
+</button>
+<clr-checkbox-container class="filter-selection">
+  <clr-checkbox-wrapper *ngFor="let possibleValue of possibleValues">
+    <input
+      type="checkbox"
+      clrCheckbox
+      value="{{ possibleValue.displayValue ?? possibleValue }}"
+      name="possibleValue"
+      [ngModel]="containsFilterValue(filteredValues, possibleValue)"
+      (ngModelChange)="onChange(possibleValue, $event)"
+    />
+    <label>{{ possibleValue.displayValue ?? possibleValue }}</label>
+  </clr-checkbox-wrapper>
+</clr-checkbox-container>

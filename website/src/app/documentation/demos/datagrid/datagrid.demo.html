@@ -1,0 +1,421 @@
+<clr-doc-wrapper [title]="title">
+  <article>
+    <h5 class="component-summary">
+      Datagrids are for organizing large volumes of data that users can scan, compare and perform actions on.
+    </h5>
+    <p>
+      Please find the main documentation here:
+      <a href="https://angular.clarity.design/documentation/datagrid/structure">Clarity Datagrid</a> <br />In the
+      following only additional features are documented
+    </p>
+
+    <br />
+
+    <ul>
+      <li><a routerLink="." fragment="enum-filter" skipLocationChange>Enum Filter</a></li>
+      <li><a routerLink="." fragment="date-filter" skipLocationChange>Date Filter</a></li>
+      <li><a routerLink="." fragment="selection" skipLocationChange>Selection</a></li>
+      <li><a routerLink="." fragment="full-height" skipLocationChange>Full-Height</a></li>
+      <li><a routerLink="." fragment="state-persistence" skipLocationChange>State persistence</a></li>
+      <li><a routerLink="." fragment="highlighting" skipLocationChange>Highlighting</a></li>
+    </ul>
+
+    <!-- ENUM FILTER -->
+    <h3 id="enum-filter">Enum Filter</h3>
+    <p>
+      When you need a filter with checkboxes based on grid data or custom values use the custom
+      <code class="clr-code">clr-enum-filter</code>.
+    </p>
+
+    <h4>Filter values derived from datagrid data</h4>
+    <p>
+      Just provide the <code class="clr-code">clrProperty</code> input which defines the name of the attribute in
+      datagrid data to derive the values from. This filter will then show distinct values of this attribute.
+    </p>
+    <clr-datagrid>
+      <clr-dg-column [clrDgField]="'name'"
+        >Name
+        <clr-dg-filter>
+          <clr-enum-filter clrProperty="name"></clr-enum-filter>
+        </clr-dg-filter>
+      </clr-dg-column>
+
+      <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
+        <clr-dg-cell>{{data.name}}</clr-dg-cell>
+      </clr-dg-row>
+    </clr-datagrid>
+
+    <clr-code-snippet [clrCode]="enumFilterExample"></clr-code-snippet>
+
+    <h4>Filter values provided explicitly</h4>
+    <p>
+      In some cases you want to specify the filter values explicitly (e.g. server driven datagrid). In this case just
+      provide all possible values with <code class="clr-code">clrPossibleValues</code> input parameter.
+    </p>
+    <clr-datagrid>
+      <clr-dg-column [clrDgField]="'name'"
+        >Name
+        <clr-dg-filter>
+          <clr-enum-filter clrProperty="name" [clrPossibleValues]="customPossibleValues"></clr-enum-filter>
+        </clr-dg-filter>
+      </clr-dg-column>
+
+      <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
+        <clr-dg-cell>{{data.name}}</clr-dg-cell>
+      </clr-dg-row>
+    </clr-datagrid>
+
+    <clr-code-snippet [clrCode]="enumFilterCustomExample"></clr-code-snippet>
+    <clr-code-snippet [clrCode]="enumFilterCustomExampleTs"></clr-code-snippet>
+
+    <h5>Filter display value differs from enum value</h5>
+    <p>
+      In some cases - mostly using server driven datasources - it might be necessary to define seperate display names
+      for enums (e.g. internationalization). Therefore, it is possible to additionally define custom display values for
+      the filter overlay. The <code class="clr-code">value</code> porperty itself is only provided to the filter state
+      and is therefore present in the state retrieved via the (<code class="clr-code">clrDgRefresh</code>) output of
+      <code class="clr-code">clr-datagrid</code>.
+    </p>
+    <p>
+      From a UX perspective, it is important that the values in the datagrid match the
+      <code class="clr-code">displayValue</code> values (=label in the filter overlay), when providing the display names
+      manually. Generally, overriding the display values should only be used, if the default approach is not sufficient.
+    </p>
+
+    <clr-code-snippet [clrCode]="enumFilterCustomExample"></clr-code-snippet>
+    <clr-code-snippet [clrCode]="enumFilterCustomDisplayNameExampleTs"></clr-code-snippet>
+
+    <h4>Preselect filter values</h4>
+    <p>
+      In some cases you want to preselect some filter values. In this case just provide the filter values with
+      <code class="clr-code">clrFilterValues</code> input parameter. There is also a output parameter (<code
+        class="clr-code"
+        >clrFilterValuesChange</code
+      >) for this, when the filter changes.
+    </p>
+    <clr-datagrid>
+      <clr-dg-column [clrDgField]="'name'"
+        >Name
+        <clr-dg-filter>
+          <clr-enum-filter clrProperty="name" [clrFilterValues]="preselectedValues"></clr-enum-filter>
+        </clr-dg-filter>
+      </clr-dg-column>
+
+      <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
+        <clr-dg-cell>{{data.name}}</clr-dg-cell>
+      </clr-dg-row>
+    </clr-datagrid>
+
+    <clr-code-snippet [clrCode]="enumFilterPreselectExample"></clr-code-snippet>
+
+    <!-- DATE FILTER -->
+    <h3 id="date-filter">Date filter</h3>
+    <p>
+      When you need a filter for dates and timestamps in the data grid use the custom
+      <code class="clr-code">clr-date-filter</code>.
+    </p>
+    <clr-datagrid>
+      <clr-dg-column> Name</clr-dg-column>
+      <clr-dg-column [clrDgField]="'date'">
+        Date
+        <clr-dg-filter>
+          <clr-date-filter clrProperty="date"></clr-date-filter>
+        </clr-dg-filter>
+      </clr-dg-column>
+
+      <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
+        <clr-dg-cell>{{data.name}}</clr-dg-cell>
+        <clr-dg-cell>{{data.date|date}}</clr-dg-cell>
+      </clr-dg-row>
+    </clr-datagrid>
+
+    <clr-code-snippet [clrCode]="dateFilterExample"></clr-code-snippet>
+
+    <h4>Preselect filter values</h4>
+    <clr-datagrid>
+      <clr-dg-column> Name</clr-dg-column>
+      <clr-dg-column [clrDgField]="'date'">
+        Date
+        <clr-dg-filter>
+          <clr-date-filter clrProperty="date" [(clrFilterValue)]="dateFilterValue"></clr-date-filter>
+        </clr-dg-filter>
+      </clr-dg-column>
+
+      <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
+        <clr-dg-cell>{{data.name}}</clr-dg-cell>
+        <clr-dg-cell>{{data.date|date}}</clr-dg-cell>
+      </clr-dg-row>
+    </clr-datagrid>
+
+    <clr-code-snippet [clrCode]="dateFilterPreselectExample"></clr-code-snippet>
+
+    <!-- SELECTION -->
+    <h3 id="selection">Selection</h3>
+    <h4>Omit "select-all" in datagrid header</h4>
+    <p>
+      Use class <code class="clr-code">datagrid-no-select-all</code> to prevent rendering of the select-all checkbox in
+      datagrid header.
+    </p>
+
+    <clr-datagrid class="datagrid-no-select-all" [(clrDgSelected)]="selected">
+      <clr-dg-column>Description</clr-dg-column>
+      <clr-dg-row clrDgItem="1">
+        <clr-dg-cell>Item 1</clr-dg-cell>
+      </clr-dg-row>
+      <clr-dg-row clrDgItem="2">
+        <clr-dg-cell>Item 2</clr-dg-cell>
+      </clr-dg-row>
+      <clr-dg-row clrDgItem="3">
+        <clr-dg-cell>Item 3</clr-dg-cell>
+      </clr-dg-row>
+      <clr-dg-row clrDgItem="4">
+        <clr-dg-cell>Item 4</clr-dg-cell>
+      </clr-dg-row>
+      <clr-dg-row clrDgItem="5">
+        <clr-dg-cell>Item 5</clr-dg-cell>
+      </clr-dg-row>
+    </clr-datagrid>
+
+    <clr-code-snippet [clrCode]="noSelectAllExample"></clr-code-snippet>
+
+    <!-- FULL HEIGHT -->
+    <h3 id="full-height">Full Height</h3>
+    <h4>Datagrid should use at maximum 100% of its available space</h4>
+    <p>
+      Use class <code class="clr-code">datagrid-full-height</code> to prevent the datagrid from overflowing its
+      container.
+    </p>
+
+    <div [ngStyle]="{height: '150px'}">
+      <clr-datagrid class="datagrid-full-height">
+        <clr-dg-column>Description</clr-dg-column>
+        <clr-dg-row>
+          <clr-dg-cell>Item 1</clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>Item 2</clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>Item 3</clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>Item 4</clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>Item 5</clr-dg-cell>
+        </clr-dg-row>
+      </clr-datagrid>
+    </div>
+
+    <clr-code-snippet [clrCode]="fullHeightExample"></clr-code-snippet>
+
+    <!-- State persistence -->
+    <h3 id="state-persistence">State persistence</h3>
+    <p>
+      Add <code class="clr-code">[clrStatePersistenceKey]</code> directive to datagrid to save the user defined state to
+      browser storage.
+    </p>
+    Following settings will be saved:
+    <ul>
+      <li>Hidden (clrDgHideableColumn) state of column (LocalStorage)</li>
+      <li>Current sort column and sort order (LocalStorage)</li>
+      <li>Page size (LocalStorage)</li>
+      <li>Current page (SessionStorage)</li>
+      <li>Current filter values (SessionStorage)</li>
+    </ul>
+
+    <p>
+      When specifying <code class="clr-code">[clrUseLocalStoreOnly]="true"</code> everything is persisted to
+      LocalStorage
+    </p>
+
+    <clr-alert [clrAlertType]="'danger'">
+      <clr-alert-item>
+        <div class="alert-text">
+          To display pagination description you must not insert the content directly into the pagination component, but
+          use
+          <code class="clr-code">[clrPaginationDescription]</code>. You can use following placeholders inside the
+          message:
+          <ul ngNonBindable>
+            <li>{{first}} : First item of page</li>
+            <li>{{last}} : Last item of page</li>
+            <li>{{total}} : Total number of items</li>
+          </ul>
+        </div>
+      </clr-alert-item>
+    </clr-alert>
+
+    <p>
+      Special requirement for hidden state and current filters: You must use
+      <code class="clr-code">clrDgField</code> directive for columns.
+    </p>
+    <p>
+      Special requirement for sort column and sort order: You must use
+      <code class="clr-code">clrDgSortBy</code> directive for columns.
+    </p>
+    <p>
+      Special requirement for custom filters to be persisted: It must implement a readable
+      <code class="clr-code">state</code> property and every property of the state must have a setter. The state must
+      consist of a property called <code class="clr-code">property</code> holding the field name of the datagrid.
+    </p>
+    <br />
+    <code class="clr-code">[clrStatePersistenceKey]</code> must consist of following properties:
+    <ul>
+      <li>key: key which is used in LocalStorage or SessionStorage to save data</li>
+      <li>serverDriven: Whether your datagrid loads the data asynchronous (true) or synchronous (false)</li>
+    </ul>
+    <p>
+      To turn off the persistence for specific parts of the datagrid, the
+      <code class="clr-code">[clrStatePersistenceKey]</code> offers several optional properties. All of these are
+      opt-out properties and will default to <code class="clr-code">true</code> when not specified.
+    </p>
+    <br />
+    <ul>
+      <li>persistFilters: When set to false, filter values will not be persisted</li>
+      <li>persistPagination: When set to false, current page and page size will not be persisted</li>
+      <li>persistSort: When set to false, sort column and sort order will not be persisted</li>
+      <li>persistHiddenColumns: When set to false, state of each column, hidden or visible, will not be persisted</li>
+    </ul>
+
+    <br />
+    <p>
+      When existing column filters should be cleared on page visit (will be loaded automatically from storage) the
+      method
+      <code class="clr-code">StatePersistenceKeyDirective.clearFilters(key: string, useLocalStoreOnly: boolean)</code>
+      can be called to clear existing filter settings from storage.
+    </p>
+
+    <h4>Drawbacks</h4>
+    <p>
+      When using <code class="clr-code">serverDriven=false</code> the persisted datagrid state gets set asynchronously,
+      which triggers <code class="clr-code">clrDgRefresh</code> multiple times and the filter icons of clarity standard
+      filters are not set to filtered state. Custom filters work as expected.
+    </p>
+    <p>
+      When using <code class="clr-code">serverDriven=true</code> the persisted datagrid state gets set synchronous,
+      which throws exceptions when the datasource is not asynchronously delivered. A simple
+      <code class="clr-code">.pipe(delay(0))</code> would make a synchronous datasource async.
+    </p>
+    <p>
+      So to make this directive fully working you need to set <code class="clr-code">serverDriven=true</code> and have
+      an asynchronous data source.
+    </p>
+
+    <clr-datagrid
+      [clrStatePersistenceKey]="{key: 'datagrid.demo.statePersistence', serverDriven: true}"
+      [clrPaginationDescription]="'{{first}} - {{last}} of {{total}} entries'"
+    >
+      <clr-dg-column [clrDgField]="'hideableCol'">
+        <ng-template clrDgHideableColumn>Hideable String</ng-template>
+      </clr-dg-column>
+      <clr-dg-column [clrDgField]="'numericCol'" clrDgColType="number">Numeric</clr-dg-column>
+      <clr-dg-column [clrDgField]="'dateCol'"
+        >Date
+        <clr-dg-filter>
+          <clr-date-filter clrProperty="dateCol"></clr-date-filter>
+        </clr-dg-filter>
+      </clr-dg-column>
+      <clr-dg-column [clrDgField]="'enumCol'">
+        Enum
+        <clr-dg-filter>
+          <clr-enum-filter clrProperty="enumCol"></clr-enum-filter>
+        </clr-dg-filter>
+      </clr-dg-column>
+
+      <clr-dg-row *clrDgItems="let item of data$ | async" [clrDgItem]="item">
+        <clr-dg-cell>{{item.hideableCol}}</clr-dg-cell>
+        <clr-dg-cell>{{item.numericCol}}</clr-dg-cell>
+        <clr-dg-cell>{{item.dateCol | date}}</clr-dg-cell>
+        <clr-dg-cell>{{item.enumCol}}</clr-dg-cell>
+      </clr-dg-row>
+
+      <clr-dg-footer>
+        <clr-dg-pagination [clrDgPageSize]="5">
+          <clr-dg-page-size [clrPageSizeOptions]="[5,10,15,50,100]">Entries per page</clr-dg-page-size>
+        </clr-dg-pagination>
+      </clr-dg-footer>
+    </clr-datagrid>
+
+    <clr-code-snippet [clrCode]="persistedStateExample"></clr-code-snippet>
+
+    <!-- State persistence -->
+    <h3 id="highlighting">Highlighting</h3>
+    <h4>Important status highlighting</h4>
+    <p>The following css classes can be set to <code class="clr-code">clr-dg-row</code></p>
+    <ul>
+      <li><code class="clr-code">datagrid-highlight-error</code> for the red error state</li>
+      <li><code class="clr-code">datagrid-highlight-success</code> for the green success state</li>
+      <li><code class="clr-code">datagrid-highlight-info</code> for the blue info state</li>
+      <li><code class="clr-code">datagrid-highlight-warning</code> for the yellow warning state</li>
+    </ul>
+    <p>
+      When the status is very important, for example an error or warning state need to grab the users attention, the
+      following pattern should be used:
+    </p>
+    <clr-datagrid [(clrDgSelected)]="selected">
+      <clr-dg-column [clrDgField]="'name'">Name</clr-dg-column>
+      <clr-dg-column [clrDgField]="'text'">Description</clr-dg-column>
+      <clr-dg-column [clrDgField]="'status'"> Status</clr-dg-column>
+
+      <clr-dg-row
+        *clrDgItems="let item of dataHighlighting"
+        [ngClass]="getColoring(item.status)"
+        [clrDgItem]="item"
+        [clrDgSelected]="item.status === 'selected'"
+      >
+        <clr-dg-cell>{{item.name}}</clr-dg-cell>
+        <clr-dg-cell>{{item.text}}</clr-dg-cell>
+        <clr-dg-cell [ngClass]="getTextColoring(item.status)">
+          <cds-icon status="info" shape="{{getIcon(item.status)}}"></cds-icon>
+          {{item.status}}</clr-dg-cell
+        >
+      </clr-dg-row>
+
+      <clr-dg-footer>
+        <clr-dg-pagination [clrDgPageSize]="10">
+          <clr-dg-page-size [clrPageSizeOptions]="[5,10,15,50,100]">Entries per page</clr-dg-page-size>
+        </clr-dg-pagination>
+      </clr-dg-footer>
+    </clr-datagrid>
+
+    <h4>Minor important status highlighting</h4>
+    <p>
+      When the status in minor important, but still some emphasis is necessary, the following pattern is sufficient:
+    </p>
+    <p>
+      The following css classes can be set to every element! If you are unsing a
+      <code class="clr-code">cds-icon</code> this also gets colored with the correct color.
+    </p>
+    <ul>
+      <li><code class="clr-code">highlight-text-error</code> for the red error state</li>
+      <li><code class="clr-code">highlight-text-success</code> for the green success state</li>
+      <li><code class="clr-code">highlight-text-info</code> for the blue info state</li>
+      <li><code class="clr-code">highlight-text-warning</code> for the yellow warning state</li>
+    </ul>
+
+    <clr-datagrid [(clrDgSelected)]="selectedMinor">
+      <clr-dg-column [clrDgField]="'name'">Name</clr-dg-column>
+      <clr-dg-column [clrDgField]="'text'">Description</clr-dg-column>
+      <clr-dg-column [clrDgField]="'status'"> Status</clr-dg-column>
+
+      <clr-dg-row
+        *clrDgItems="let item of dataHighlighting"
+        [clrDgItem]="item"
+        [clrDgSelected]="item.status === 'selected'"
+      >
+        <clr-dg-cell>{{item.name}}</clr-dg-cell>
+        <clr-dg-cell>{{item.text}}</clr-dg-cell>
+        <clr-dg-cell [ngClass]="getTextColoring(item.status)">
+          <cds-icon status="info" shape="{{getIcon(item.status)}}"></cds-icon>
+          {{item.status}}</clr-dg-cell
+        >
+      </clr-dg-row>
+
+      <clr-dg-footer>
+        <clr-dg-pagination [clrDgPageSize]="10">
+          <clr-dg-page-size [clrPageSizeOptions]="[5,10,15,50,100]">Entries per page</clr-dg-page-size>
+        </clr-dg-pagination>
+      </clr-dg-footer>
+    </clr-datagrid>
+  </article>
+</clr-doc-wrapper>

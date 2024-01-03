@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -26,14 +26,13 @@ describe('CustomCSS', () => {
   describe('Datagrid', () => {
     let fixture: ComponentFixture<DataGridComponent>;
 
-    beforeEach(
-      waitForAsync(() => {
-        TestBed.configureTestingModule({
-          declarations: [DataGridComponent],
-          imports: [ClarityModule],
-        }).compileComponents();
-      })
-    );
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [DataGridComponent],
+        imports: [ClarityModule],
+        teardown: { destroyAfterEach: false },
+      }).compileComponents();
+    }));
 
     beforeEach(() => {
       fixture = TestBed.createComponent(DataGridComponent);

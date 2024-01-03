@@ -1,0 +1,56 @@
+@include exports('location-bar-node.clr-addons') {
+  .location-bar-node {
+    .btn {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    .dropdown {
+      .dropdown-menu {
+        max-width: 12.5rem;
+      }
+    }
+
+    .unselectable-node {
+      display: inline-block;
+      line-height: 1rem;
+      padding: 0 0.5rem;
+      text-transform: uppercase;
+      font-size: 0.4rem;
+      font-weight: 500;
+      letter-spacing: 0.073em;
+      vertical-align: middle;
+      max-width: 18rem;
+    }
+
+    .last-level {
+      font-weight: 700;
+    }
+
+    .btn {
+      min-width: unset;
+
+      &:focus {
+        outline: none;
+        font-weight: 700;
+        color: var(--clr-btn-default-hover-color);
+
+        .unselected {
+          color: var(--clr-btn-default-hover-color);
+        }
+      }
+    }
+
+    .dropdown .dropdown-toggle .caret-icon {
+      top: 30%;
+    }
+
+    .unselected {
+      margin-top: -0.14rem;
+    }
+
+    .selected-child {
+      background: var(--clr-global-selection-color);
+    }
+  }
+}

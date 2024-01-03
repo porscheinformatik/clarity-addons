@@ -1,16 +1,19 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-
+import { angleIcon, ClarityIcons } from '@cds/core/icon';
 /**
  * Custom pager component because clarity's pager component can only be used inside a data grid.
  * Currently a requested feature, see here: https://github.com/vmware/clarity/issues/2268
  * In this issue it is mentioned that a button group is a suitable replacement until the pager component is released.
  */
+
+ClarityIcons.addIcons(angleIcon);
+
 @Component({
   selector: 'clr-pager',
   templateUrl: './pager.html',

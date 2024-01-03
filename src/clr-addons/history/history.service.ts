@@ -131,9 +131,9 @@ export class ClrHistoryService {
 
   private checkEqualContext(entry: ClrHistoryModel, toCompare: { [key: string]: string }): boolean {
     let equal = false;
-    if (entry && toCompare) {
+    if (entry && entry.context && toCompare) {
       Object.keys(toCompare).forEach(key => {
-        equal = entry.context[key] === toCompare[key];
+        equal = key in entry.context && entry.context[key] === toCompare[key];
       });
     }
     return equal;
@@ -144,6 +144,10 @@ export class ClrHistoryService {
     if (!historySettings || historySettings.length === 0) {
       this.setHistoryPinned(username, false, domain);
       historySettings = [{ username: username, historyPinned: false }];
+    }
+    if (!historySettings.find(hSetting => hSetting.username === username)) {
+      this.setHistoryPinned(username, false, domain);
+      historySettings.push({ username: username, historyPinned: false });
     }
     this.cookieSettings$.next(historySettings);
   }

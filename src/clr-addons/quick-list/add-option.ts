@@ -1,10 +1,13 @@
 /*
- * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { ClrQuickListValue } from './add-option.service';
+import { ClarityIcons, plusCircleIcon, trashIcon } from '@cds/core/icon';
+
+ClarityIcons.addIcons(trashIcon, plusCircleIcon);
 
 @Component({
   selector: 'clr-add-option',
@@ -18,9 +21,13 @@ export class ClrAddOption<T> {
   @Input() allValues: Array<ClrQuickListValue<T>> = [];
   @Input() excludedValues: Array<ClrQuickListValue<T>> = [];
   @Input() readonly: string;
+  @Input() disabled = false;
+  @Input() disableAddButton = true;
+  @Input() showAddButton = false;
 
   @Output() valueChanged = new EventEmitter<ClrQuickListValue<T>>();
   @Output() remove = new EventEmitter<void>();
+  @Output() add = new EventEmitter<void>();
 
   @ViewChild('select', { static: false }) select: ElementRef;
 

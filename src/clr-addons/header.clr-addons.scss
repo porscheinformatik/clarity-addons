@@ -43,6 +43,11 @@
   width: 1.1rem;
 }
 
+.header-actions > .dropdown .dropdown-toggle.nav-icon cds-icon:not([shape^='angle']) {
+  height: 1.1rem;
+  width: 1.1rem;
+}
+
 @media screen and (max-width: map-get($clr-grid-breakpoints, lg)) and (min-width: map-get($clr-grid-breakpoints, md)) {
   .main-container {
     .header-hamburger-trigger,
@@ -74,7 +79,6 @@
     .header-nav.clr-nav-level-1,
     .subnav.clr-nav-level-1,
     .sub-nav.clr-nav-level-1,
-    .sidenav.clr-nav-level-1,
     .clr-vertical-nav.clr-nav-level-1 {
       @include sliding-nav-positioning();
       transform: translateX(-1 * $clr-sliding-panel-width);
@@ -84,7 +88,6 @@
     .header-nav.clr-nav-level-2,
     .subnav.clr-nav-level-2,
     .sub-nav.clr-nav-level-2,
-    .sidenav.clr-nav-level-2,
     .clr-vertical-nav.clr-nav-level-2 {
       @include sliding-nav-positioning(0, 0, 0, auto);
       transform: translateX($clr-sliding-panel-width);
@@ -135,21 +138,6 @@
       }
     }
 
-    .sidenav.clr-nav-level-1,
-    .sidenav.clr-nav-level-2 {
-      .nav-link {
-        &:hover,
-        &.active {
-          color: inherit;
-          background: var(
-            --clr-responsive-nav-hover-bg
-          ); // Is the menu that showsup when the viewport is narrow (x-axis)
-        }
-      }
-    }
-
-    .sidenav.clr-nav-level-1,
-    .sidenav.clr-nav-level-2,
     .clr-vertical-nav.clr-nav-level-1,
     .clr-vertical-nav.clr-nav-level-2 {
       border-right: none;
@@ -204,7 +192,8 @@
           bottom: 0;
           left: 0;
           right: 0;
-          background: rgba(var(--black), 0.85);
+          background: var(--clr-responsive-nav-header-backdrop-bg-color, black);
+          opacity: var(--clr-responsive-nav-header-backdrop-opacity, 0.85);
           cursor: pointer;
           z-index: $clr-sliding-panel-backdrop-z-index;
         }
@@ -305,7 +294,6 @@
       .header-nav.clr-nav-level-1,
       .subnav.clr-nav-level-1,
       .sub-nav.clr-nav-level-1,
-      .sidenav.clr-nav-level-1,
       .clr-vertical-nav.clr-nav-level-1 {
         padding-top: calc(var(--clr-header-height) + 1rem);
         transform: translateX(0);
@@ -323,7 +311,6 @@
       .header-nav.clr-nav-level-2,
       .subnav.clr-nav-level-2,
       .sub-nav.clr-nav-level-2,
-      .sidenav.clr-nav-level-2,
       .clr-vertical-nav.clr-nav-level-2 {
         transform: translateX(0);
         transition: $clr-sliding-panel-animation;
@@ -362,5 +349,16 @@
         }
       }
     }
+  }
+}
+
+.open-hamburger-menu .header-hamburger-trigger,
+.open-overflow-menu .header-overflow-trigger {
+  span::before {
+    background-color: white;
+  }
+
+  span::after {
+    background-color: white;
   }
 }

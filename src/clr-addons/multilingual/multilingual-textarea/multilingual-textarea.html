@@ -3,7 +3,7 @@
   <clr-multilingual-selector
     *ngIf="showLanguageSelector()"
     [disabled]="disabled"
-    [texts]="texts"
+    [texts]="shownTexts"
     [selectedLang]="selectedLang"
     (selectedLangChange)="changeLanguage($event)"
   >
@@ -13,15 +13,16 @@
       <textarea
         class="clr-textarea"
         [id]="inputId"
-        [ngModel]="!!texts && !!selectedLang ? texts.get(selectedLang) : ''"
+        [ngModel]="!!shownTexts && !!selectedLang ? shownTexts.get(selectedLang) : ''"
         (ngModelChange)="setText(selectedLang, $event)"
         (blur)="onTouch()"
         [disabled]="disabled"
         [readonly]="readonly || readonly === ''"
         [maxlength]="maxlength || null"
+        [rows]="rows || 1"
         #input
       ></textarea>
-      <clr-icon *ngIf="showError" class="clr-validate-icon" shape="exclamation-circle" aria-hidden="true"></clr-icon>
+      <cds-icon *ngIf="showError" class="clr-validate-icon" shape="exclamation-circle" aria-hidden="true"></cds-icon>
     </div>
     <ng-content select="clr-control-helper" *ngIf="!showError"></ng-content>
     <ng-content select="clr-control-error" *ngIf="showError"></ng-content>

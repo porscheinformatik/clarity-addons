@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -15,14 +15,13 @@ describe('CollapseExpandSectionComponent', () => {
   let component: ClrCollapseExpandSection;
   let fixture: ComponentFixture<ClrCollapseExpandSection>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [ClrCollapseExpandSection],
-        imports: [ClarityModule, FormsModule, BrowserAnimationsModule],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [ClrCollapseExpandSection],
+      imports: [ClarityModule, FormsModule, BrowserAnimationsModule],
+      teardown: { destroyAfterEach: false },
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ClrCollapseExpandSection);

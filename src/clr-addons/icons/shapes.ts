@@ -7,8 +7,83 @@
  */
 
 import { clrIconSVG } from './svg-tag-generator';
+import { IconShapeTuple } from '@cds/core/icon/interfaces/icon.interfaces';
 
 // To support badges, alerts or the is-solid, the SVGs would need to be extended.
+
+export const CarOffSite = clrIconSVG(
+  `
+  <polygon
+        points="18 4.195 5 13.285 5 29.805 6.3 29.805 6.3 13.965 18 5.775 29.7 13.965 29.7 29.805 31 29.805 31 13.285 18 4.195"/>
+    <path
+        d="M27.4688,14.0205l-1.1744.794a.65.65,0,0,0,.3648,1.1884.6427.6427,0,0,0,.3637-.1123l1.1744-.7939a.65.65,0,1,0-.7285-1.0762Z"/>
+    <path d="M13.8433,23.23l-2.49,1.6826a.65.65,0,1,0,.7276,1.0781l2.49-1.6826a.65.65,0,0,0-.7275-1.0781Z"/>
+    <path
+        d="M19.7266,20.0371a.65.65,0,0,0-.9029-.1738l-.8811.5957-.8811-.5957A.65.65,0,1,0,16.333,20.94l.45.3038-.449.3036a.65.65,0,1,0,.7285,1.0761l.8806-.5953.8806.5953a.6433.6433,0,0,0,.3638.1124.65.65,0,0,0,.3648-1.1885l-.449-.3036.4494-.3038A.65.65,0,0,0,19.7266,20.0371Z"/>
+    <path
+        d="M23.8042,16.4971l-2.49,1.6836a.65.65,0,0,0,.3647,1.1884.643.643,0,0,0,.3638-.1123l2.49-1.6836a.65.65,0,1,0-.7285-1.0761Z"/>
+    <path
+        d="M8.8623,26.5967l-1.1743.7939a.65.65,0,0,0,.3647,1.1885.643.643,0,0,0,.3638-.1123l1.1743-.7939a.65.65,0,1,0-.7285-1.0762Z"/>
+    <path
+        d="M8.4165,14.0205a.65.65,0,1,0-.7285,1.0762l1.1743.7939a.643.643,0,0,0,.3638.1123.65.65,0,0,0,.3647-1.1884Z"/>
+    <path
+        d="M12.0811,16.4971a.65.65,0,1,0-.7286,1.0761l2.49,1.6836a.6429.6429,0,0,0,.3637.1123.65.65,0,0,0,.3648-1.1884Z"/>
+    <path d="M22.042,23.23a.65.65,0,0,0-.7275,1.0781l2.49,1.6826a.65.65,0,0,0,.7275-1.0781Z"/>
+    <path
+        d="M27.0229,26.5967a.65.65,0,1,0-.7285,1.0762l1.1744.7939a.6427.6427,0,0,0,.3637.1123.65.65,0,0,0,.3648-1.1885Z"/>`,
+  '0 0 36 36'
+);
+export const CarOnSite = clrIconSVG(
+  `
+<path d="M18,22.605a.86.86,0,0,0-.8.8.8515.8515,0,0,0,1.7.1A.8963.8963,0,0,0,18,22.605Z"/>
+ <path
+        d="M27.8,16.405a16.9577,16.9577,0,0,1-2.2.4l-1.1-2.6a2.9653,2.9653,0,0,0-2.2-1.4H13.7a2.5336,2.5336,0,0,0-2.1,1.5l-1.2,2.6a16.9577,16.9577,0,0,0-2.2-.4l-.2,1.3c.7.1,1.3.2,2,.3l-.6,1a6.0075,6.0075,0,0,0-.7,2.7v5.5a1.43,1.43,0,0,0,1.4,1.4h1.6a1.3671,1.3671,0,0,0,1.4-1.4v-.4h9.7v.4a1.43,1.43,0,0,0,1.4,1.4h1.7a1.3671,1.3671,0,0,0,1.4-1.4v-5.5a5.1892,5.1892,0,0,0-.7-2.7l-.5-1.1c.6-.1,1.3-.2,1.9-.3Zm-15-1.6a1.4454,1.4454,0,0,1,1-.7h8.4a1.4425,1.4425,0,0,1,1.1.7l.9,2.2a50.6175,50.6175,0,0,1-12.3,0Zm13.1,12.6v.1H24.2v-1.9H11.8v1.8H10.1v-5c1.2.2,2.5.3,3.8.4v-1.3c-1.3-.1-2.6-.2-3.8-.4a5.0234,5.0234,0,0,1,.5-1.3l.8-1.6a48.7229,48.7229,0,0,0,6.6.4,51.7006,51.7006,0,0,0,6.8-.4l.6207,1.4462A8.2376,8.2376,0,0,1,25.9,21.105c-1.2.2-2.4.3-3.7.4l.1,1.3c1.3-.1,2.5-.2,3.7-.4Z"/>
+ <polygon
+        points="18 4.195 5 13.285 5 29.805 6.3 29.805 6.3 13.965 18 5.775 29.7 13.965 29.7 29.805 31 29.805 31 13.285 18 4.195"/>`,
+  '0 0 36 36'
+);
+
+export const CampaignOutdatedShape = clrIconSVG(
+  ` <path
+  d="m 24.664062,20.947266 a 0.85000002,0.85000002 0 0 0 -0.857421,0.84375 l -0.03516,4.699218 a 0.85000002,0.85000002 0 0 0 0.84375,0.857422 0.85000002,0.85000002 0 0 0 0.857422,-0.84375 l 0.03516,-4.701172 a 0.85000002,0.85000002 0 0 0 -0.84375,-0.855468 z"
+  id="path1534" />
+<path
+  d="m 24.622114,26.496917 0.03513,-4.700373"
+  id="path1536" />
+<path
+  d="m 24.617187,25.621094 a 0.85693002,0.85693002 0 0 0 -0.859375,0.855468 0.85693002,0.85693002 0 0 0 0.857422,0.857422 l 2.841797,0.0039 A 0.85693002,0.85693002 0 0 0 28.314453,26.482422 0.85693002,0.85693002 0 0 0 27.458984,25.625 Z"
+  id="path1540" />
+<path
+  d="m 27.457296,26.481217 -2.84178,-0.0041"
+  id="path1542" />
+<path
+  d="m 24.644531,18.515625 c -4.317261,0 -7.878906,3.472391 -7.878906,7.751953 1e-6,4.279562 3.561646,7.75 7.878906,7.75 1.185221,0 2.354902,-0.262058 3.423828,-0.769531 A 1.5,1.5 0 0 0 28.779297,31.25 1.5,1.5 0 0 0 26.78125,30.537109 c -0.664871,0.315648 -1.395409,0.480469 -2.136719,0.480469 -2.728368,0 -4.878906,-2.124845 -4.878906,-4.75 0,-2.625155 2.150538,-4.751953 4.878906,-4.751953 0.740568,0 1.470412,0.165426 2.134766,0.480469 a 1.5,1.5 0 0 0 1.998047,-0.712891 1.5,1.5 0 0 0 -0.712891,-1.998047 c -1.068084,-0.506494 -2.235887,-0.769531 -3.419922,-0.769531 z"
+  id="path12594" />
+<path
+  d="m 11.355469,1.9824219 c -4.3172613,0 -7.8789065,3.4704378 -7.8789065,7.75 0,4.2795621 3.5616452,7.7519531 7.8789065,7.7519531 4.317261,0 7.878906,-3.472391 7.878906,-7.7519531 0,-4.2795622 -3.561645,-7.75 -7.878906,-7.75 z m 0,3 c 2.728368,0 4.878906,2.1248446 4.878906,4.75 0,2.6251551 -2.150538,4.7519531 -4.878906,4.7519531 -2.7283688,0 -4.8789065,-2.126798 -4.8789065,-4.7519531 0,-2.6251554 2.1505377,-4.75 4.8789065,-4.75 z"
+  id="path1679-7" />
+<path
+  d="M 29.140625,4.5566406 A 1.5,1.5 0 0 0 28.095703,5.03125 L 5.7148437,28.919922 a 1.5,1.5 0 0 0 0.068359,2.11914 1.5,1.5 0 0 0 2.1210938,-0.06836 L 30.285156,7.0820312 A 1.5,1.5 0 0 0 30.214844,4.9609375 1.5,1.5 0 0 0 29.140625,4.5566406 Z"
+  id="path1554" />
+<path
+style="fill:#000000"
+  d="m 30.658139,28.609324 h 1.551362 l 0.53559,-8.532493 H 30.12255 Z m 0.775681,4.377058 c 0.775681,0 1.422082,-0.664869 1.422082,-1.477488 0,-0.757212 -0.646401,-1.422082 -1.422082,-1.422082 -0.849555,0 -1.477488,0.66487 -1.477488,1.422082 0,0.812619 0.627933,1.477488 1.477488,1.477488 z"
+  id="path27260" />`,
+  '0 0 36 36'
+);
+
+export const CampaignShape = clrIconSVG(
+  `  <path
+  d="m 24.644531,18.515625 c -4.317261,0 -7.878906,3.472391 -7.878906,7.751953 1e-6,4.279562 3.561646,7.75 7.878906,7.75 4.317261,0 7.878906,-3.470438 7.878906,-7.75 10e-7,-4.279562 -3.561645,-7.751952 -7.878906,-7.751953 z m 0,3 c 2.728369,0 4.878907,2.126798 4.878906,4.751953 0,2.625155 -2.150538,4.75 -4.878906,4.75 -2.728368,0 -4.878906,-2.124845 -4.878906,-4.75 0,-2.625155 2.150538,-4.751953 4.878906,-4.751953 z"
+  id="path1679" />
+<path
+  d="m 11.355469,1.9824219 c -4.3172613,-1e-7 -7.8789064,3.4704378 -7.8789065,7.75 -10e-8,4.2795621 3.5616451,7.7519531 7.8789065,7.7519531 4.317261,0 7.878906,-3.472391 7.878906,-7.7519531 0,-4.2795622 -3.561645,-7.7500002 -7.878906,-7.75 z m 0,3 c 2.728368,-1e-7 4.878906,2.1248445 4.878906,4.75 0,2.6251551 -2.150538,4.7519531 -4.878906,4.7519531 -2.7283689,0 -4.8789066,-2.126798 -4.8789065,-4.7519531 0,-2.6251554 2.1505377,-4.7500001 4.8789065,-4.75 z"
+  id="path1679-7" />
+<path
+  d="m 30.214844,4.9609375 a 1.5,1.5 0 0 0 -2.119141,0.068359 L 5.7148437,28.917969 a 1.5,1.5 0 0 0 0.070312,2.121093 1.5,1.5 0 0 0 2.1191407,-0.06836 L 30.285156,7.0820312 a 1.5,1.5 0 0 0 -0.07031,-2.1210937 z"
+  id="path432" />`,
+  '0 0 36 36'
+);
 
 export const NewCarCommercialShape = clrIconSVG(
   `<path d='M17.18,22a1.638,1.638,0,0,1-1.61-1.62v-.5H8.01v.481A1.645,1.645,0,0,1,6.39,22h-3a1.624,1.624,0,0,1-1.61-1.62V10.1l.27-1.69L0,8.25v-.67L.07,6.92H.13l2.13.16L2.5,5.54A6.75,6.75,0,0,1,3.91,2.361L5.42.461A1.245,1.245,0,0,1,6.39,0H17.14a1.259,1.259,0,0,1,1,.5l1.64,2.24a6.811,6.811,0,0,1,1.27,2.92l.229,1.4,2.16-.18.121,1.33L21.5,8.37l.28,1.731v10.28A1.626,1.626,0,0,1,20.18,22ZM6.671,18.551H16.85v1.83a.29.29,0,0,0,.29.29h3a.289.289,0,0,0,.28-.29v-5.94c-1.558.216-3.126.384-4.66.5l-.1-1.319c1.529-.113,3.131-.288,4.76-.52v-2.89l-.26-1.74c-2.946.186-5.829.28-8.57.28-2.718,0-5.48-.087-8.21-.26L3.1,10.211v2.91c1.633.23,3.269.406,4.86.52l-.09,1.32c-1.6-.108-3.209-.277-4.77-.5v5.92a.289.289,0,0,0,.281.29h3a.311.311,0,0,0,.29-.31V18.552h0ZM4.95,3.2A5.376,5.376,0,0,0,3.78,5.75l-.15,1.4c2.705.167,5.459.251,8.18.251s5.469-.085,8.18-.251l-.21-1.27a5.487,5.487,0,0,0-1-2.35L17.1,1.33H6.46Zm5.83,11.41a1,1,0,1,1,1,1A1,1,0,0,1,10.78,14.611Z'/>`
@@ -357,6 +432,114 @@ export const WindscreenWashShape = clrIconSVG(
   `<path d="M22.782 10.49c-.997-1.453-3.855-4.537-10.117-4.75V4.013a.96.96 0 01.959-.96.947.947 0 01.96.944h1.33A2.288 2.288 0 0012 2.402 2.288 2.288 0 008.085 4h1.33a.95.95 0 01.96-.946.96.96 0 01.96.96V5.74c-6.28.205-9.128 3.299-10.12 4.754a1.027 1.027 0 00.13 1.307L11.27 21.7a1.032 1.032 0 001.457 0l9.927-9.9a1.027 1.027 0 00.127-1.31zm-10.79 5.333h.002a8.226 8.226 0 013.697.902l-3.565 3.556a.179.179 0 01-.253 0l-3.567-3.557a8.162 8.162 0 013.685-.901zm4.772-.026a9.576 9.576 0 00-4.1-1.265v-2.525h-1.33v2.525a9.504 9.504 0 00-4.099 1.264l-4.774-4.76c.956-1.295 3.492-3.778 8.873-3.968v2.944h1.33V7.069c5.369.196 7.912 2.674 8.874 3.967z"/>`
 );
 
+export const WrenchForward = clrIconSVG(
+  `<path d="M33.18 26.11L20.35 13.28A9.28 9.28 0 007.54 2.79l-1.34.59 5.38 5.38-2.82 2.83-5.38-5.38-.59 1.33a9.27 9.27 0 0010.49 12.81l12.83 12.83a2 2 0 002.83 0l4.24-4.24a2 2 0 000-2.83zm-5.66 5.66L13.88 18.12l-.57.16a7.27 7.27 0 01-9-4.94A7.54 7.54 0 014 11.28a7.36 7.36 0 01.15-1.48l4.61 4.61 5.66-5.66-4.61-4.6a7.27 7.27 0 018.47 9.16l-.16.57 13.65 13.65z"/><circle cx="27.13" cy="27.09" r="1.3"/><path d="M18.06 28.94l-4-4a1.5 1.5 0 00-2.12 2.12l1.44 1.44H3a1.5 1.5 0 000 3h10.38l-1.44 1.44a1.49 1.49 0 000 2.12 1.5 1.5 0 002.12 0l4-4a1.49 1.49 0 000-2.12z"/><path fill="none" d="M0 0h36v36H0z"/>`,
+  '0 0 36 36'
+);
+
+export const TopcardShape = clrIconSVG(
+  `<path fill="none" d="M0 0h36v36H0z"/><path d="M32 6H4a2 2 0 00-2 2v20a2 2 0 002 2h28a2 2 0 002-2V8a2 2 0 00-2-2zm0 2v12H4V8zM4 28v-4h28v4z"/><path d="M12.09 11.24h-1.9v6.24a1.16 1.16 0 01-.24.8.82.82 0 01-.62.26.8.8 0 01-.63-.27 1.13 1.13 0 01-.24-.79v-6.24h-1.9A1 1 0 015.9 11a.65.65 0 01-.22-.52.67.67 0 01.23-.48 1 1 0 01.65-.19h5.53a1 1 0 01.67.2.66.66 0 01.22.52.65.65 0 01-.22.52 1 1 0 01-.67.19zM17.63 9.65a4.53 4.53 0 012.3.55 3.49 3.49 0 011.45 1.54 5.2 5.2 0 01.49 2.34 5.69 5.69 0 01-.27 1.81 3.9 3.9 0 01-.81 1.42 3.51 3.51 0 01-1.32.91 4.85 4.85 0 01-1.8.32 4.75 4.75 0 01-1.81-.33 3.49 3.49 0 01-1.33-.92 3.86 3.86 0 01-.8-1.42 5.76 5.76 0 01-.27-1.8 5.5 5.5 0 01.28-1.81 3.94 3.94 0 01.82-1.41 3.58 3.58 0 011.32-.85 4.79 4.79 0 011.75-.35zm2.48 4.42a4 4 0 00-.31-1.63 2.27 2.27 0 00-.87-1 2.46 2.46 0 00-1.3-.35 2.35 2.35 0 00-1 .19 2.12 2.12 0 00-.76.57 2.9 2.9 0 00-.51 1 4.46 4.46 0 00-.18 1.31 4.6 4.6 0 00.18 1.33 2.78 2.78 0 00.53 1 2.15 2.15 0 00.77.58 2.32 2.32 0 001 .19 2.27 2.27 0 002.12-1.36 4 4 0 00.33-1.83zM26.69 15H25.1v2.44a1.12 1.12 0 01-.25.79.86.86 0 01-1.25 0 1.14 1.14 0 01-.24-.78v-6.58a1.09 1.09 0 01.26-.82 1.19 1.19 0 01.84-.25h2.23a6 6 0 011.53.15 2.3 2.3 0 01.91.49 2.22 2.22 0 01.58.83 3 3 0 01.2 1.11 2.45 2.45 0 01-.81 2 3.69 3.69 0 01-2.41.62zm-.42-3.93H25.1v2.62h1.17a3.4 3.4 0 001-.13 1.18 1.18 0 00.63-.42 1.28 1.28 0 00.22-.77 1.32 1.32 0 00-.34-.92 2.19 2.19 0 00-1.51-.34z"/>`,
+  '0 0 36 36'
+);
+
+export const TaskAndAppointment = clrIconSVG(
+  `<path fill="none" d="M0 0h36v36H0z"/><path d="M7.38 21.42h6v1.27H7.22a1.13 1.13 0 01-1.11-1.15V7.24a1.14 1.14 0 011.12-1.16H9.3v1.28H7.38zM26.55 7.24v6.47h-1.28V7.36h-1.91V6.08h2.07a1.14 1.14 0 011.12 1.16z"/><path d="M9.94 11.19h1.28v1.28H9.94zM13.77 11.19h1.28v1.28h-1.28zM17.61 11.19h1.27v1.28h-1.27zM9.94 14.39h1.28v1.28H9.94zM9.94 17.58h1.28v1.28H9.94zM11.86 4.17V8a.64.64 0 11-1.28 0V4.17a.64.64 0 111.28 0zM22.08 4.17V8a.64.64 0 11-1.28 0V4.17a.64.64 0 111.28 0zM13.13 6.08h6.39v1.28h-6.39z"/><path d="M9.94 11.19v1.28h1.28v-1.28zm0 3.2v1.28h1.28v-1.28zm0 3.19v1.28h1.28v-1.28zm1.28-14a.64.64 0 00-.64.64V8a.64.64 0 101.28 0V4.17a.64.64 0 00-.64-.64zm2.55 7.66v1.28h1.28v-1.33zm3.84 0v1.28h1.27v-1.33zm-4.48-5.16v1.28h6.39V6.08zm8.31-2.55a.64.64 0 00-.64.64V8a.64.64 0 101.28 0V4.17a.64.64 0 00-.64-.64zm4 2.55h-2.08v1.28h1.91v6.35h1.28V7.24a1.14 1.14 0 00-1.12-1.16zm-18 1.28H9.3V6.08H7.23a1.14 1.14 0 00-1.12 1.16v14.3a1.13 1.13 0 001.11 1.15h6.18v-1.27h-6z" fill="none"/><g><path d="M29.94 33.75H13.72a1.22 1.22 0 01-1.23-1.21V14.13a1.25 1.25 0 011.29-1.23h1.58v1.44h-1.43v18h15.8v-18H28.3v-1.43h1.61a1.22 1.22 0 011.26 1.19v18.44a1.22 1.22 0 01-1.23 1.21z"/><path d="M20.87 27.83L17 24a.71.71 0 01.08-1 .73.73 0 01.92 0l2.83 2.83 6.2-6.21a.74.74 0 011 .08.73.73 0 010 .94zM27.58 17.22h-11.5v-2.63a1.68 1.68 0 011.68-1.68H19a2.88 2.88 0 015.57 0h1.33a1.69 1.69 0 011.68 1.68zm-10.06-1.43h8.62v-1.2a.24.24 0 00-.24-.24h-2.63v-.72a1.44 1.44 0 10-2.88 0v.72h-2.63a.24.24 0 00-.24.24z"/></g>`,
+  '0 0 36 36'
+);
+
+export const PartsShape = clrIconSVG(
+  `<path data-name="Path 177" d="M6.6 10l-3.39 6.2 3.39 6.16h6.78l3.39-6.16-3.39-6.2zm5.81 10.68H7.57L5.08 16.2l2.49-4.53h4.84l2.49 4.53zM10 13.43a2.77 2.77 0 102.78 2.77A2.77 2.77 0 0010 13.43zm0 3.9a1.13 1.13 0 111.13-1.13A1.12 1.12 0 0110 17.33zM32.79 5.42H18v6.16h4.11v18.16h6.56l.12-18.16h4zM27.13 15v2.14l-3.37-1.07v-2.16zm0 3.85v2l-3.34-1.06v-2.02zm0 3.76v2.19l-3.32-1.06v-2.2zm-3.33 5.5v-2.66l3.31 1.05v1.6zm3.4-14.83l-3.4-1.08v-.61h3.41zm4-3.33H19.64V7.06h11.51zM3.21 29.76h13.56v-4.93H3.21zm1.64-3.29h10.28v1.65H4.85z"/><path fill="none" d="M0 0h36v36H0z"/>`,
+  '0 0 36 36'
+);
+
+export const PartsForwardShape = clrIconSVG(
+  `<path data-name="Path 177" d="M32.79 5.42H18v6.16h4.11v18.16h6.56l.12-18.16h4zM27.13 15v2.14l-3.37-1.07v-2.16zm0 3.85v2l-3.34-1.06v-2.02zm0 3.76v2.19l-3.32-1.06v-2.2zm-3.33 5.5v-2.66l3.31 1.05v1.6zm3.4-14.83l-3.4-1.08v-.61h3.41zm4-3.33H19.64V7.06h11.51z"/><path d="M13.38 10H6.6l-3.39 6.2 3.39 6.16h6.78l3.39-6.16zm-1 10.68H7.57L5.08 16.2l2.49-4.53h4.84l2.49 4.53z"/><path d="M10 13.43a2.77 2.77 0 102.78 2.77A2.77 2.77 0 0010 13.43zm1.12 2.77A1.13 1.13 0 0110 17.33a1.13 1.13 0 111.13-1.13zM16.08 24.83l.69.69v-.69zm-12.86 0V27h1.64v-.53H10a2.42 2.42 0 010-.47 2.92 2.92 0 01.24-1.17zm14.84 6.23l-4 4a1.5 1.5 0 01-2.12 0 1.49 1.49 0 010-2.12l1.44-1.44H3a1.5 1.5 0 010-3h10.38l-1.44-1.44a1.5 1.5 0 012.12-2.12l4 4a1.49 1.49 0 010 2.12z"/><path fill="none" d="M0 0h36v36H0z"/>`,
+  '0 0 36 36'
+);
+
+export const PartsNonStockShape = clrIconSVG(
+  `<path d="M6.61 14.07l-3.39 6.15 3.39 6.16h6.77l3.39-6.16-3.39-6.15zm5.8 10.67H7.58l-2.49-4.52 2.49-4.52h4.83l2.49 4.52zM10 17.45A2.77 2.77 0 0010 23a2.77 2.77 0 000-5.55zm0 3.9a1.13 1.13 0 111.14-1.13A1.13 1.13 0 0110 21.35zm22.78-15.9H18v6.15h4.11v18.16h6.56l.12-18.16h4zM27.13 15v2.14l-3.37-1.07v-2.13zm0 3.86v2l-3.34-1.06v-2zm0 3.75v2.18l-3.31-1.05v-2.18zm-3.33 5.5v-2.64l3.3 1.05v1.6zm3.4-14.82l-3.4-1.08v-.61h3.4zm4-3.33H19.65V7.09h11.5zM10.5 13.5v-3h-8v-4h8v-3l6 5z"/><path fill="none" d="M0 0h36v36H0z"/>`,
+  '0 0 36 36'
+);
+
+export const PartNonStockForwardShape = clrIconSVG(
+  `<path d="M10.5 13.5v-3h-8v-4h8v-3l6 5zM10 26.38a2.33 2.33 0 010-.38 3 3 0 01.29-1.26H7.57l-2.48-4.51 2.48-4.53h4.84l2.49 4.52L13.35 23a2.87 2.87 0 011.52.64l1.9-3.45-3.39-6.16H6.61l-3.39 6.2 3.39 6.15zm2.73-6.16A2.77 2.77 0 1110 17.45a2.77 2.77 0 012.76 2.77zm-1.63 0a1.14 1.14 0 10-1.1 1.13 1.13 1.13 0 001.13-1.13zm6.92 8.72l-4-4a1.49 1.49 0 00-2.12 0 1.51 1.51 0 000 2.12l1.44 1.44H3a1.5 1.5 0 000 3h10.37l-1.44 1.44a1.51 1.51 0 000 2.12 1.53 1.53 0 001.07.44 1.49 1.49 0 001.06-.44l4-4a1.49 1.49 0 00-.01-2.12zM32.79 5.42H18v6.16h4.11v18.16h6.56l.12-18.16h4zM27.13 15v2.14l-3.37-1.07v-2.16zm0 3.85v2l-3.34-1.06v-2.02zm0 3.76v2.19l-3.32-1.06v-2.2zm-3.33 5.5v-2.66l3.31 1.05v1.6zm3.4-14.83l-3.4-1.08v-.61h3.41zm4-3.33H19.64V7.06h11.51z"/><path fill="none" d="M0 0h36v36H0z"/>`,
+  '0 0 36 36'
+);
+
+export const PaintMaterialShape = clrIconSVG(
+  `<path data-name="Path 345" d="M24.34 11.7c0 1.12-1.73 2-6.34 2s-6.34-.91-6.34-2 1.73-2 6.34-2 6.34.87 6.34 2zM27 10v16c0 1.66-2.92 3-9 3s-9-1.34-9-3V10c0-1.66 2.92-3 9-3s9 1.34 9 3zm-1.33 0c0-.22-1.43-1.67-7.67-1.67S10.33 9.78 10.33 10v16c0 .22 1.43 1.67 7.67 1.67s7.67-1.45 7.67-1.67zm-4.81 4.91l-2 2.89a2.48 2.48 0 104.08 0z"/><path fill="none" d="M0 0h36v36H0z"/>`,
+  '0 0 36 36'
+);
+
+export const PaintMaterialForwardShape = clrIconSVG(
+  `<path d="M18.86 17.8a2.48 2.48 0 104.08 0l-2.08-2.89z"/><ellipse cx="18" cy="11.7" rx="6.34" ry="2"/><path d="M18 7c-6.08 0-9 1.34-9 3v16a1.61 1.61 0 00.45 1.06h.72a3.09 3.09 0 01-.17-1 3 3 0 01.33-1.35V10c0-.22 1.43-1.67 7.67-1.67s7.67 1.45 7.67 1.67v16c0 .21-1.31 1.53-6.83 1.66l.28.27a3.06 3.06 0 01.67 1C24.65 28.71 27 27.49 27 26V10c0-1.66-2.92-3-9-3z"/><path d="M18.06 29l-4-4a1.5 1.5 0 00-2.12 2.12l1.44 1.44H3a1.5 1.5 0 000 3h10.38L11.94 33a1.49 1.49 0 000 2.12 1.5 1.5 0 002.12 0l4-4a1.49 1.49 0 000-2.12z"/><path fill="none" d="M0 0h36v36H0z"/>`,
+  '0 0 36 36'
+);
+
+export const ItemsRecieveShape = clrIconSVG(
+  `<defs><style>.prefix__cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-miterlimit:10;stroke-width:2px}</style></defs><g id="prefix__items-rcv"><path d="M32 8.2H4a2 2 0 00-2 2v5.4a2.93 2.93 0 011.5-.41H4v-5h28v16H4v-5h-.5a2.94 2.94 0 01-1.5-.42v5.4a2 2 0 002 2h28a2 2 0 002-2v-16a2 2 0 00-2-1.97z"/><path d="M18.56 17.12l-4-4a1.5 1.5 0 10-2.12 2.13l1.44 1.44H3.5a1.5 1.5 0 000 3h10.38l-1.44 1.43a1.5 1.5 0 102.12 2.13l4-4a1.5 1.5 0 000-2.13z"/><path class="prefix__cls-1" d="M21.99 22.19h4M21.99 18.19h6.5M21.99 14.19h6"/></g><path fill="none" d="M0 0h36v36H0z"/>`,
+  '0 0 36 36'
+);
+
+export const ItemsForwardShape = clrIconSVG(
+  `<defs><style>.prefix__cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-miterlimit:10;stroke-width:2px}</style></defs><g id="prefix__items-fwd"><g id="prefix__fwd-template"><path d="M32 22.93v3.24H4v-16h28v3.24l2 2V10.2a2 2 0 00-2-2H4a2 2 0 00-2 2v16a2 2 0 002 2h28a2 2 0 002-2v-5.27z"/><path d="M33.56 17.12l-4-4a1.5 1.5 0 10-2.12 2.13l1.44 1.44H18.5a1.5 1.5 0 000 3h10.38l-1.44 1.43a1.5 1.5 0 102.12 2.13l4-4a1.5 1.5 0 000-2.13z"/></g><path class="prefix__cls-1" d="M7.68 22.19h4M7.68 18.19h6.5M7.68 14.19h6"/></g><path fill="none" d="M0 0h36v36H0z"/>`,
+  '0 0 36 36'
+);
+
+export const DollarBillPartialShape = clrIconSVG(
+  `<path d="M18 24.55h-.16a5.52 5.52 0 01-1.07-.15 1 1 0 01-.77-1.23 1 1 0 011.22-.72 6.48 6.48 0 00.86.1 3.2 3.2 0 00.62-.09 1 1 0 11.5 1.93 4.74 4.74 0 01-1.2.16zM14.67 22.9a1 1 0 01-.76-.35 6.84 6.84 0 01-1.44-3 1 1 0 012-.43 4.79 4.79 0 001 2.1 1 1 0 01-.12 1.41 1 1 0 01-.68.27zm-1.21-5.33a.78.78 0 01-.22 0 1 1 0 01-.76-1.19 6.87 6.87 0 011.45-3 1 1 0 111.52 1.3 4.87 4.87 0 00-1 2.09 1 1 0 01-.99.8zM21.35 22.88a1 1 0 01-.64-.23 1 1 0 01-.13-1.41 4.88 4.88 0 001-2.1 1 1 0 011.19-.76 1 1 0 01.76 1.18 6.79 6.79 0 01-1.41 3 1 1 0 01-.77.32zm1.19-5.34a1 1 0 01-1-.77 4.85 4.85 0 00-1-2.08 1 1 0 011.52-1.31 6.85 6.85 0 011.46 2.94 1 1 0 01-.75 1.2.82.82 0 01-.23.02zm-5.48-4a1 1 0 01-.23-2 5 5 0 012.34 0 1 1 0 11-.47 1.94 3 3 0 00-1.4 0z"/><path d="M21.57 26H9.49A5.87 5.87 0 004 20.44V15.6A5.87 5.87 0 009.51 10h17A5.87 5.87 0 0032 15.6v3.93l2-1.25V10a2 2 0 00-2-2H4a2 2 0 00-2 2v16a2 2 0 002 2h14.35zM32 10v4a4.25 4.25 0 01-3.9-4zM4 10h3.9A4.25 4.25 0 014 14zm0 16v-3.94A4.25 4.25 0 017.9 26z"/><path fill="none" d="M0 0h36v36H0z"/>`,
+  '0 0 36 36'
+);
+
+export const DollarBillForwardShape = clrIconSVG(
+  `<path d="M24.3 18c0-3.94-2.83-7.15-6.3-7.15s-6.3 3.21-6.3 7.15a7.63 7.63 0 001.85 5.05 3 3 0 011.57.83l.91.9a5.43 5.43 0 002 .37c3.44 0 6.27-3.21 6.27-7.15zm-11 0c0-3.06 2.11-5.55 4.7-5.55s4.7 2.49 4.7 5.55-2.11 5.56-4.7 5.56c-2.59-.02-4.7-2.51-4.7-5.56z"/><path d="M32 8H4a2 2 0 00-2 2v16a2 2 0 00.32 1.08A3.08 3.08 0 013 27h7.17a3 3 0 01-.17-1h-.51A5.87 5.87 0 004 20.44V15.6A5.87 5.87 0 009.51 10h17A5.87 5.87 0 0032 15.6v4.85A5.88 5.88 0 0026.49 26h-9.25l1.88 1.88.1.12H32a2 2 0 002-2V10a2 2 0 00-2-2zM7.9 26H4v-3.94A4.25 4.25 0 017.9 26zM4 14v-4h3.9A4.25 4.25 0 014 14zm28 12h-3.9a4.25 4.25 0 013.9-3.94zm0-12a4.25 4.25 0 01-3.9-4H32z"/><path d="M18.06 28.94l-4-4a1.5 1.5 0 00-2.12 2.12l1.44 1.44H3a1.5 1.5 0 000 3h10.38l-1.44 1.44a1.49 1.49 0 000 2.12 1.5 1.5 0 002.12 0l4-4a1.49 1.49 0 000-2.12z"/><path fill="none" d="M0 0h36v36H0z"/>`,
+  '0 0 36 36'
+);
+
+export const BlocksGroupForwardShape = clrIconSVG(
+  `<path d="M10.17 33H8.42l1.6.74a3 3 0 01.15-.74zM33.53 18.76l-6.93-3.19V6.43a1 1 0 00-.6-.9l-7.5-3.45a1 1 0 00-.84 0l-7.5 3.45a1 1 0 00-.58.91v9.14l-6.9 3.18a1 1 0 00-.58.91v7.48A3 3 0 013 27h1.1v-5.77L10.18 24a1 1 0 00.55.06 1.3 1.3 0 01.15-.18A3 3 0 0113 23h.14l3.94-1.81v4.65l2 2v-6.62L25.19 24a1 1 0 00.81 0l6.08-2.8v7.61l-6.5 3-5.74-2.65A3 3 0 0120 30a3 3 0 01-.3 1.29l5.48 2.52a1 1 0 00.84 0l7.5-3.45a1 1 0 00.58-.91v-9.78a1 1 0 00-.57-.91zM18.1 4.08l5.11 2.35-5.11 2.35L13 6.43zM10.6 22l-5.11-2.33 5.11-2.36 5.11 2.35zm7.5-3.42l-6.5-3V8l6.08 2.8a1 1 0 00.84 0L24.6 8v7.58zM25.61 22l-5.11-2.33 5.11-2.35 5.11 2.35z"/><path d="M18.06 28.94l-4-4a1.5 1.5 0 00-2.12 2.12l1.44 1.44H3a1.5 1.5 0 000 3h10.38l-1.44 1.44a1.49 1.49 0 000 2.12 1.5 1.5 0 002.12 0l4-4a1.49 1.49 0 000-2.12z"/><path fill="none" d="M0 0h36v36H0z"/>`,
+  '0 0 36 36'
+);
+
+export const TextForward = clrIconSVG(
+  `<path d="M26 16.5a1 1 0 01-1 1H11a1 1 0 010-2h14a1 1 0 011 1zm-4.25 4h-7.5a1 1 0 000 2h7.5a1 1 0 000-2zm-10.47-8h13.44a1 1 0 000-2H11.28a1 1 0 000 2zM18 2.5c-8.82 0-16 6.28-16 14A13.31 13.31 0 007.45 27h2.73a3 3 0 01-.15-.64A11.62 11.62 0 014 16.5c0-6.62 6.28-12 14-12s14 5.38 14 12a11.09 11.09 0 01-3.71 8.11 1 1 0 00-.32.73v5.34l-4.38-2.79a1 1 0 00-.83-.11 16.11 16.11 0 01-3.22.64 3 3 0 01.42 2 18.13 18.13 0 002.92-.56l5.53 3.52a1 1 0 001.38-.3 1 1 0 00.21-.58v-6.73a13 13 0 004-9.27c0-7.72-7.18-14-16-14zm.06 26.44l-4-4a1.5 1.5 0 00-2.12 2.12l1.44 1.44H3a1.5 1.5 0 000 3h10.38l-1.44 1.44a1.49 1.49 0 000 2.12 1.5 1.5 0 002.12 0l4-4a1.49 1.49 0 000-2.12z"/><path fill="none" d="M0 0h36v36H0z"/>`,
+  '0 0 36 36'
+);
+
+export const CalculatorForwardShape = clrIconSVG(
+  `<path d="M22 28v2h4v-4h-2v2h-2zM26 20h-2v2h-2v2h4v-4zM13 23a3.05 3.05 0 011 .18V20h-2v2h-2v2h.78l.1-.12A3 3 0 0113 23zM26 14h-2v2h-2v2h4v-4zM6.28 33A2 2 0 008 34h2a3 3 0 01.17-1zM18 26v.76l1.12 1.12A3 3 0 0120 30v-4z"/><path d="M28 2H8a2 2 0 00-2 2v23h2V4h20v28h-8.78l-.1.12L17.24 34H28a2 2 0 002-2V4a2 2 0 00-2-2z"/><path d="M10 7v4.67h2V8h13.67V6H11a1 1 0 00-1 1zM10 18h4v-4h-2v2h-2v2zM20 20h-2v2h-2v2h4v-4zM20 14h-2v2h-2v2h4v-4zM18.06 28.94l-4-4a1.5 1.5 0 00-2.12 2.12l1.44 1.44H3a1.5 1.5 0 000 3h10.38l-1.44 1.44a1.49 1.49 0 000 2.12 1.5 1.5 0 002.12 0l4-4a1.49 1.49 0 000-2.12z"/><path fill="none" d="M0 0h36v36H0z"/>`,
+  '0 0 36 36'
+);
+
+export const BundleForwardShape = clrIconSVG(
+  `<path d="M32.43 8.35l-13-6.21a1 1 0 00-.87 0l-15 7.24a1 1 0 00-.57.9v16.55A1 1 0 003 27h3.67L5 26.2V12.13l11 5.27v7.36l2 2v-9.4l13-6.29v14.1l-11 5.34a2.88 2.88 0 01-.83 1.61L17.26 34a1.46 1.46 0 00.2-.05l15-7.24a1 1 0 00.57-.9V9.25a1 1 0 00-.6-.9zM17 15.64L6 10.41l5.9-2.85 10.7 5.35zm7.88-3.83L14.21 6.46 19 4.15l10.93 5.22z"/><path d="M18.06 28.94l-4-4a1.5 1.5 0 00-2.12 2.12l1.44 1.44H3a1.5 1.5 0 000 3h10.38l-1.44 1.44a1.49 1.49 0 000 2.12 1.5 1.5 0 002.12 0l4-4a1.49 1.49 0 000-2.12z"/><path fill="none" d="M0 0h36v36H0z"/>`,
+  '0 0 36 36'
+);
+
+export const InternalPartForwardShape = clrIconSVG(
+  `<path d="M9.9945,18.971a2.7725,2.7725,0,0,0,.001-5.545h-.004l.003.001a2.772,2.772,0,0,0,0,5.544Zm-.008-3.906a1.134,1.134,0,0,1,1.138,1.13v.004a1.134,1.134,0,1,1-1.138-1.134Z"/><path d="M18.0005,5.42v6.161H22.11V29.739h6.561l.123-18.158h3.992V5.42Zm9.044,22.679-3.296-.002v-2.65l3.307,1.052Zm.023-3.312-3.319-1.056V21.535l3.334,1.062Zm.026-3.906-3.345-1.065V17.774l3.36,1.071Zm.025-3.753-3.371-1.072V13.9109l3.387,1.0771Zm.03-3.86-3.4-1.081v-.61h3.409Zm-7.51-3.327V7.059h11.509l.001,2.882Z"/><path d="M13.38,22.36l3.388-6.161L13.38,10.038H6.6025l-3.388,6.161,3.388,6.161ZM7.5715,11.674h4.843l2.486,4.522-2.486,4.525H7.5715l-2.487-4.522Z"/><path d="M3.2145,29.76h13.554V24.831H3.2145Zm1.639-3.2859H15.13v1.651H4.8535Z"/><path d="M8.6811,8.8945a.4812.4812,0,0,0,.7819-.3758v-1.74L12.2255,8.9A.4813.4813,0,0,0,13,8.5187V2.4813A.4814.4814,0,0,0,12.2255,2.1L9.463,4.2216v-1.74a.4813.4813,0,0,0-.7819-.3759L4.9077,5.1242a.4812.4812,0,0,0,0,.7515Z"/><path fill="none" d="M0 0h36v36H0z"/>`,
+  '0 0 36 36'
+);
+
+export const ExternalPartForwardShape = clrIconSVG(
+  `<path d="M18.0005,5.42v6.161H22.11V29.739h6.561l.123-18.158h3.992V5.42Zm9.044,22.679-3.296-.002v-2.65l3.307,1.052Zm.023-3.312-3.319-1.056V21.535l3.334,1.062Zm.026-3.906-3.345-1.065V17.774l3.36,1.071Zm.025-3.753-3.371-1.072V13.9109l3.387,1.0771Zm.03-3.86-3.4-1.081v-.61h3.409Zm-7.51-3.327V7.059h11.509l.001,2.882Z"/><path d="M13.38,22.36l3.388-6.161L13.38,10.038H6.6026l-3.388,6.161,3.388,6.161ZM7.5716,11.674h4.8429l2.486,4.522-2.486,4.525H7.5716l-2.487-4.522Z"/><path d="M9.9945,18.971a2.7725,2.7725,0,0,0,.0011-5.545H9.9915l.003.001a2.772,2.772,0,0,0,0,5.544Zm-.008-3.906a1.134,1.134,0,0,1,1.138,1.13v.004a1.1337,1.1337,0,0,1-1.132,1.1336l.002,0H9.9906l.0019,0a1.1338,1.1338,0,0,1-.006-2.2676Z"/><polygon points="16.766 24.83 16.076 24.83 16.766 25.52 16.766 24.83"/><path d="M14.0606,24.94A1.5,1.5,0,0,0,11.94,27.0613l1.4394,1.44H3a1.5,1.5,0,1,0,0,3H13.3789L11.94,32.94a1.5,1.5,0,1,0,2.1211,2.1211l4-4a1.5,1.5,0,0,0,0-2.1211Z"/><path d="M3.2161,24.83V27h1.64v-.53h5.18a2.41,2.41,0,0,1-.04-.47,2.9166,2.9166,0,0,1,.24-1.17Z"/><path d="M8.6811,8.8945a.4812.4812,0,0,0,.7819-.3758v-1.74L12.2255,8.9A.4812.4812,0,0,0,13,8.5187V2.4813A.4814.4814,0,0,0,12.2255,2.1L9.463,4.2216v-1.74a.4813.4813,0,0,0-.7819-.3759L4.9077,5.1242a.4812.4812,0,0,0,0,.7515Z"/><path fill="none" d="M0 0h36v36H0z"/>`,
+  '0 0 36 36'
+);
+
+export const BusinessPartnerWithCar = clrIconSVG(
+  '<g clip-path="url(#clip0_10808_12864)">' +
+    '<path d="M30.2941 20H23.6801C22.8807 20.0774 22.162 20.5351 21.7623 21.2313L21.7526 21.2506L21.7429 21.2699L20.9887 23.1007C20.5278 23.033 20.0604 22.9557 19.5737 22.8687L19.5447 22.8622H19.1869L19.1515 23.1426L19.0387 23.9871L19 24.2901L19.303 24.3449C19.6479 24.4061 20.0056 24.4674 20.3892 24.5254L20.1797 25.0314C19.7832 25.7051 19.577 26.4754 19.5802 27.2587V31.4746C19.5608 32.2288 20.1668 32.8703 20.9307 32.8928H22.2297C23.0064 32.8703 23.6156 32.2288 23.5963 31.4617H30.3973V31.4746C30.3876 31.8388 30.5262 32.1934 30.7808 32.4609C31.0387 32.7317 31.3836 32.8832 31.7542 32.8928H33.05C33.8203 32.867 34.423 32.2256 34.4037 31.4682V27.2587C34.4037 26.4786 34.2006 25.7083 33.8106 25.0314L33.5915 24.5028C33.9525 24.448 34.3199 24.39 34.6873 24.3191L35 24.2579L34.942 23.9452L34.7873 23.1072L34.7292 22.7913L34.4134 22.8493C33.9492 22.9331 33.4915 23.0073 32.9952 23.0814L32.2409 21.2699L32.2345 21.2506L32.2248 21.2345C31.8251 20.5351 31.1096 20.0741 30.3102 20H30.2941ZM23.7897 21.502H30.1942C30.4714 21.5439 30.7131 21.7019 30.8646 21.9371L31.4448 23.2748C29.9686 23.4359 28.473 23.5165 26.9903 23.5165C25.5077 23.5165 24.0121 23.4359 22.5359 23.2716L23.1096 21.9339C23.2643 21.6954 23.5093 21.5375 23.7897 21.4988V21.502ZM26.8582 25.0411C28.5729 25.0379 30.3038 24.9283 32.0056 24.7188C32.0056 24.7188 32.6696 26.1821 32.7341 26.4174C31.8735 26.5431 30.9839 26.6398 30.0814 26.7107L29.7623 26.7365L29.7881 27.0556L29.8525 27.9065L29.8783 28.2288L30.2006 28.2063C31.0322 28.145 31.9025 28.0483 32.8598 27.9162V31.394H31.9122V29.9629H22.0846V31.394H21.0725V27.9807C22.0588 28.116 22.9549 28.2127 23.8026 28.274L24.1249 28.2965L24.1475 27.9742L24.2119 27.1168L24.2377 26.7945L23.9154 26.772C23.0032 26.7043 22.0846 26.6076 21.1853 26.4819C21.2498 26.2337 21.8622 24.7381 21.8622 24.7381C23.5157 24.9412 25.1918 25.0443 26.855 25.0443L26.8582 25.0411ZM26.9936 26.7043C26.4617 26.7043 26.0266 27.1555 26.0266 27.7099C26.0266 28.2643 26.4617 28.7156 26.9936 28.7156C27.5254 28.7156 27.9605 28.2643 27.9605 27.7099C27.9605 27.1555 27.5254 26.7043 26.9936 26.7043Z"/>' +
+    '</g>' +
+    '<path fill-rule="evenodd" clip-rule="evenodd" d="M18 17C19.3845 17 20.7378 16.5895 21.889 15.8203C23.0401 15.0511 23.9373 13.9579 24.4672 12.6788C24.997 11.3997 25.1356 9.99224 24.8655 8.63437C24.5954 7.2765 23.9287 6.02922 22.9497 5.05026C21.9708 4.07129 20.7235 3.4046 19.3656 3.13451C18.0078 2.86441 16.6003 3.00303 15.3212 3.53285C14.0421 4.06266 12.9489 4.95987 12.1797 6.11101C11.4105 7.26216 11 8.61553 11 10C11 11.8565 11.7375 13.637 13.0503 14.9497C14.363 16.2625 16.1435 17 18 17ZM18 5C18.9889 5 19.9556 5.29325 20.7779 5.84265C21.6001 6.39206 22.241 7.17296 22.6194 8.08659C22.9978 9.00022 23.0969 10.0055 22.9039 10.9755C22.711 11.9454 22.2348 12.8363 21.5355 13.5355C20.8363 14.2348 19.9454 14.711 18.9755 14.9039C18.0055 15.0969 17.0002 14.9978 16.0866 14.6194C15.173 14.241 14.3921 13.6001 13.8427 12.7779C13.2932 11.9556 13 10.9889 13 10C13 8.67392 13.5268 7.40215 14.4645 6.46447C15.4021 5.52679 16.6739 5 18 5ZM7 31H17.0275C17.0093 31.1642 17 31.331 17 31.5C17 32.026 17.0902 32.5308 17.2561 33H7C6.46957 33 5.96086 32.7893 5.58579 32.4142C5.21072 32.0391 5 31.5304 5 31V25.74C4.99921 25.2313 5.19231 24.7414 5.54 24.37C7.14369 22.675 9.07623 21.3249 11.2195 20.4022C13.3627 19.4795 15.6716 19.0036 18.005 19.0036C18.7916 19.0036 19.5754 19.0577 20.3511 19.1647C19.7711 19.65 19.3467 20.2816 19.1404 21.0494C18.7615 21.0208 18.3811 21.0065 18 21.0065C15.942 21.0065 13.9054 21.4252 12.0144 22.2373C10.1233 23.0493 8.41723 24.2377 7 25.73V31Z"/>\n' +
+    '<defs>' +
+    '<clipPath id="clip0_10808_12864">' +
+    '<rect width="16" height="12.8928" transform="translate(19 20)"/>' +
+    '</clipPath>' +
+    '</defs>',
+  '0 0 36 36'
+);
+
 export const ClrAddonsIconShapes: any = {
   'air-conditioner': ACShape,
   accessories: AccessoriesShape,
@@ -367,6 +550,8 @@ export const ClrAddonsIconShapes: any = {
   'business-customers-private': BusinessCustomersPrivateShape,
   'california-service': CaliforniaServiceShape,
   'california-specialist': CaliforniaSpecialistShape,
+  'car-off-site': CarOffSite,
+  'car-on-site': CarOnSite,
   'car-pickup-service': CarPickupServiceShape,
   'car-wash': CarWashShape,
   'certified-repair': CertifiedRepairShape,
@@ -440,4 +625,139 @@ export const ClrAddonsIconShapes: any = {
   'view-360': View360Shape,
   'wheel-to-wheel': WheelToWheelShape,
   'windscreen-wash': WindscreenWashShape,
+  'wrench-fwd': WrenchForward,
+  topcard: TopcardShape,
+  'task-appointment': TaskAndAppointment,
+  parts: PartsShape,
+  'parts-fwd': PartsForwardShape,
+  'parts-nonstock': PartsNonStockShape,
+  'parts-nonstock-fwd': PartNonStockForwardShape,
+  'paint-material': PaintMaterialShape,
+  'paint-material-fwd': PaintMaterialForwardShape,
+  'items-receive': ItemsRecieveShape,
+  'items-forward': ItemsForwardShape,
+  'money-partial': DollarBillPartialShape,
+  'money-fwd': DollarBillForwardShape,
+  'blocksgroup-fwd': BlocksGroupForwardShape,
+  'text-fwd': TextForward,
+  'calculator-fwd': CalculatorForwardShape,
+  'bundle-fwd': BundleForwardShape,
+  'part-return': InternalPartForwardShape,
+  'part-return-fwd': ExternalPartForwardShape,
+  'bp-with-car': BusinessPartnerWithCar,
+  'campaign-outdated': CampaignOutdatedShape,
+  campaign: CampaignShape,
 };
+
+export const airConditionerIcon: IconShapeTuple = ['air-conditioner', ACShape];
+export const accessoriesIcon: IconShapeTuple = ['accessories', AccessoriesShape];
+export const accessoryPartsIcon: IconShapeTuple = ['accessory-parts', AccessoryPartsShape];
+export const awardWinnerPremiumIcon: IconShapeTuple = ['award-winner-premium', AwardWinnerPremiumShape];
+export const brochureIcon: IconShapeTuple = ['brochure', BrochureShape];
+export const businessCustomersCommercialIcon: IconShapeTuple = [
+  'business-customers-commercial',
+  BusinessCustomersCommercialShape,
+];
+export const businessCustomersPrivateIcon: IconShapeTuple = [
+  'business-customers-private',
+  BusinessCustomersPrivateShape,
+];
+export const californiaServiceIcon: IconShapeTuple = ['california-service', CaliforniaServiceShape];
+export const californiaSpecialistIcon: IconShapeTuple = ['california-specialist', CaliforniaSpecialistShape];
+export const carOffSite: IconShapeTuple = ['car-off-site', CarOffSite];
+export const carOnSite: IconShapeTuple = ['car-on-site', CarOnSite];
+export const carPickupServiceIcon: IconShapeTuple = ['car-pickup-service', CarPickupServiceShape];
+export const carWashIcon: IconShapeTuple = ['car-wash', CarWashShape];
+export const certifiedRepairIcon: IconShapeTuple = ['certified-repair', CertifiedRepairShape];
+export const certifiedRetailerIcon: IconShapeTuple = ['certified-retailer', CertifiedRetailerShape];
+export const configuratorCommercialIcon: IconShapeTuple = ['configurator-commercial', ConfiguratorCommercialShape];
+export const configuratorPrivateIcon: IconShapeTuple = ['configurator-private', ConfiguratorPrivateShape];
+export const consumptionIcon: IconShapeTuple = ['consumption', ConsumptionShape];
+export const contactDealerIcon: IconShapeTuple = ['contact-dealer', ContactDealerShape];
+export const customersCenterIcon: IconShapeTuple = ['customers-center', CustomersCenterShape];
+export const dieselIcon: IconShapeTuple = ['diesel', DieselShape];
+export const driversAssistanceIcon: IconShapeTuple = ['drivers-assistance', DriversAssistanceShape];
+export const efficiencyIcon: IconShapeTuple = ['efficiency', EfficiencyShape];
+export const electricCarsIcon: IconShapeTuple = ['electric-cars', ElectricCarsShape];
+export const electricCarsServiceIcon: IconShapeTuple = ['electric-cars-service', ElectricCarsServiceShape];
+export const electricityIcon: IconShapeTuple = ['electricity', ElectricityShape];
+export const emissionIcon: IconShapeTuple = ['emission', EmissionShape];
+export const energyIcon: IconShapeTuple = ['energy', EnergyShape];
+export const engineIcon: IconShapeTuple = ['engine', EngineShape];
+export const expressServiceIcon: IconShapeTuple = ['express-service', ExpressServiceShape];
+export const exteriorIcon: IconShapeTuple = ['exterior', ExteriorShape];
+export const findACarIcon: IconShapeTuple = ['find-a-car', FindACarShape];
+export const fleetServiceCommercialIcon: IconShapeTuple = ['fleet-service-commercial', FleetServiceCommercialShape];
+export const fleetServicePrivateIcon: IconShapeTuple = ['fleet-service-private', FleetServicePrivateShape];
+export const gasIcon: IconShapeTuple = ['gas', GasShape];
+export const gasCarsServiceIcon: IconShapeTuple = ['gas-cars-service', GasCarsServiceShape];
+export const hybridIcon: IconShapeTuple = ['hybrid', HybridShape];
+export const loadingVolumeIcon: IconShapeTuple = ['loading-volume', LoadingVolumeShape];
+export const locateIcon: IconShapeTuple = ['locate', LocateShape];
+export const newCarCommercialIcon: IconShapeTuple = ['new-car-commercial', NewCarCommercialShape];
+export const newCarPrivateIcon: IconShapeTuple = ['new-car-private', NewCarPrivateShape];
+export const newCarUtilityVehicleIcon: IconShapeTuple = ['new-car-utility-vehicle', NewCarUtilityVehicleShape];
+export const nightServiceIcon: IconShapeTuple = ['night-service', NightServiceShape];
+export const offersIcon: IconShapeTuple = ['offers', OffersShape];
+export const onCallDutyIcon: IconShapeTuple = ['on-call-duty', OnCallDutyShape];
+export const openSatIcon: IconShapeTuple = ['open-sat', OpenSatShape];
+export const paintShopIcon: IconShapeTuple = ['paint-shop', PaintShopShape];
+export const payloadIcon: IconShapeTuple = ['payload', PayloadShape];
+export const performanceIcon: IconShapeTuple = ['performance', PerformanceShape];
+export const petrolIcon: IconShapeTuple = ['petrol', PetrolShape];
+export const plusServiceIcon: IconShapeTuple = ['plus-service', PlusServiceShape];
+export const powerIcon: IconShapeTuple = ['power', PowerShape];
+export const powerTrainIcon: IconShapeTuple = ['power-train', PowerTrainShape];
+export const priceTypeSwitchIcon: IconShapeTuple = ['price-type-switch', PriceTypeSwitchShape];
+export const qualifiedWorkshopIcon: IconShapeTuple = ['qualified-workshop', QualifiedWorkshopShape];
+export const roadsideAssistanceIcon: IconShapeTuple = ['roadside-assistance', RoadsideAssistanceShape];
+export const routeIcon: IconShapeTuple = ['route', RouteShape];
+export const seatIcon: IconShapeTuple = ['seat', SeatShape];
+export const seatAirIcon: IconShapeTuple = ['seat-air', SeatAirShape];
+export const sizeIcon: IconShapeTuple = ['size', SizeShape];
+export const serviceIcon: IconShapeTuple = ['service', ServiceShape];
+export const serviceBellIcon: IconShapeTuple = ['service-bell', ServiceBellShape];
+export const stockLocatorCommercialIcon: IconShapeTuple = ['stock-locator-commercial', StockLocatorCommercialShape];
+export const stockLocatorPrivateIcon: IconShapeTuple = ['stock-locator-private', StockLocatorPrivateShape];
+export const taxiDealerIcon: IconShapeTuple = ['taxi-dealer', TaxiDealerShape];
+export const transmissionAutomaticIcon: IconShapeTuple = ['transmission-automatic', TransmissionAutomaticShape];
+export const transmissionManualIcon: IconShapeTuple = ['transmission-manual', TransmissionManualShape];
+export const touaregServiceIcon: IconShapeTuple = ['touareg-service', TouaregServiceShape];
+export const usedCarCommercialIcon: IconShapeTuple = ['used-car-commercial', UsedCarCommercialShape];
+export const usedCarPrivateIcon: IconShapeTuple = ['used-car-private', UsedCarPrivateShape];
+export const vehicleConversionIcon: IconShapeTuple = ['vehicle-conversion', VehicleConversionShape];
+export const virtualRealityIcon: IconShapeTuple = ['virtual-reality', VirtualRealityShape];
+export const volkswagenIcon: IconShapeTuple = ['volkswagen', VWShape];
+export const audiBrandIcon: IconShapeTuple = ['brand-audi', AudiBrandShape];
+export const cupraBrandIcon: IconShapeTuple = ['brand-cupra', CupraBrandShape];
+export const dwaBrandIcon: IconShapeTuple = ['brand-dwa', DWABrandShape];
+export const porscheBrandIcon: IconShapeTuple = ['brand-porsche', PorscheBrandShape];
+export const seatBrandIcon: IconShapeTuple = ['brand-seat', SeatBrandShape];
+export const skodaBrandIcon: IconShapeTuple = ['brand-skoda', SkodaBrandShape];
+export const vwBrandIcon: IconShapeTuple = ['brand-vw', VWBrandShape];
+export const vwnBrandIcon: IconShapeTuple = ['brand-vwn', VWNBrandShape];
+export const view360Icon: IconShapeTuple = ['view-360', View360Shape];
+export const wheelToWheelIcon: IconShapeTuple = ['wheel-to-wheel', WheelToWheelShape];
+export const windscreenWashIcon: IconShapeTuple = ['windscreen-wash', WindscreenWashShape];
+export const wrenchForwardIcon: IconShapeTuple = ['wrench-fwd', WrenchForward];
+export const topcardIcon: IconShapeTuple = ['topcard', TopcardShape];
+export const taskAndAppointmentIcon: IconShapeTuple = ['task-appointment', TaskAndAppointment];
+export const partsIcon: IconShapeTuple = ['parts', PartsShape];
+export const partsForwardIcon: IconShapeTuple = ['parts-fwd', PartsForwardShape];
+export const partsNonStockIcon: IconShapeTuple = ['parts-nonstock', PartsNonStockShape];
+export const partsNonStockForwardIcon: IconShapeTuple = ['parts-nonstock-fwd', PartNonStockForwardShape];
+export const paintMaterialIcon: IconShapeTuple = ['paint-material', PaintMaterialShape];
+export const paintMaterialForwardIcon: IconShapeTuple = ['paint-material-fwd', PaintMaterialForwardShape];
+export const itemsRecieveIcon: IconShapeTuple = ['items-receive', ItemsRecieveShape];
+export const itemsForwardIcon: IconShapeTuple = ['items-forward', ItemsForwardShape];
+export const dollarBillPartialIcon: IconShapeTuple = ['money-partial', DollarBillPartialShape];
+export const dollarBillForwardIcon: IconShapeTuple = ['money-fwd', DollarBillForwardShape];
+export const blocksGroupForwardIcon: IconShapeTuple = ['blocksgroup-fwd', BlocksGroupForwardShape];
+export const textForwardIcon: IconShapeTuple = ['text-fwd', TextForward];
+export const calculatorForwardIcon: IconShapeTuple = ['calculator-fwd', CalculatorForwardShape];
+export const bundleForwardIcon: IconShapeTuple = ['bundle-fwd', BundleForwardShape];
+export const internalPartForwardIcon: IconShapeTuple = ['part-return', InternalPartForwardShape];
+export const externalPartForwardIcon: IconShapeTuple = ['part-return-fwd', ExternalPartForwardShape];
+export const businessPartnerWithCarIcon: IconShapeTuple = ['bp-with-car', BusinessPartnerWithCar];
+export const campaignOutdatedIcon: IconShapeTuple = ['campaign-outdated', CampaignOutdatedShape];
+export const campaignIcon: IconShapeTuple = ['campaign', CampaignShape];

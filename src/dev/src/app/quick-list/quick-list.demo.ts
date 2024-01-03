@@ -1,21 +1,18 @@
 /*
- * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ClrQuickListValue } from '@porscheinformatik/clr-addons';
 
 @Component({
   selector: 'app-quick-list-demo',
   templateUrl: './quick-list.demo.html',
 })
-export class QuickListDemo implements OnInit {
-  BLANK_OPTION: ClrQuickListValue<string> = { id: '-BLANK-', label: '- Select an option -', value: null };
-  selectedHActivityResults: Array<ClrQuickListValue<string>> = [];
-  selectedVActivityResults: Array<ClrQuickListValue<string>> = [];
-  possibleActivityResults: Array<ClrQuickListValue<string>> = [];
+export class QuickListDemo {
   options: Array<string> = [
     'First contact established',
     'Acquisition done',
@@ -25,10 +22,14 @@ export class QuickListDemo implements OnInit {
     'Offer handed out',
   ];
 
-  ngOnInit(): void {
-    this.possibleActivityResults = this.options.map(op => this.map(op));
-    this.selectedHActivityResults = this.possibleActivityResults.filter((_val, i) => i < 2);
-  }
+  BLANK_OPTION: ClrQuickListValue<string> = { id: '-BLANK-', label: '- Select an option -', value: null };
+  possibleActivityResults = this.options.map(op => this.map(op));
+  selectedHActivityResults = this.possibleActivityResults.filter((_val, i) => i < 2);
+  selectedVActivityResults: Array<ClrQuickListValue<string>> = [];
+
+  form = new FormGroup({
+    option: new FormControl(this.possibleActivityResults.filter((_val, i) => i < 1)),
+  });
 
   private map(op: string): ClrQuickListValue<string> {
     return new (class implements ClrQuickListValue<string> {

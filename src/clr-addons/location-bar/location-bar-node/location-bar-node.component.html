@@ -1,0 +1,73 @@
+<ng-container *ngIf="parentNode">
+  <ng-content *ngIf="parentNode.getChildren()?.length > 0"></ng-content>
+
+  <ng-container
+    *ngIf="
+      (selectableChilds.length > 0 && !parentNode.getSelectedChild()) || selectableChilds.length > 1;
+      else singleSelected
+    "
+  >
+    <clr-dropdown>
+      <button class="btn btn-link btn-sm" (blur)="focus = false" (focus)="focus = true" clrDropdownTrigger>
+        <ng-container *ngIf="parentNode.getSelectedChild() as node; else unselected">
+          <span
+            class="text-truncate"
+            [class.last-level]="!parentNode.getSelectedChild().getSelectedChild()"
+            title="{{ node.label }}"
+          >
+            {{ node.label }}
+          </span>
+          <cds-icon shape="angle" direction="down" size="xs" class="caret-icon"></cds-icon>
+        </ng-container>
+        <ng-template #unselected>
+          <cds-icon class="unselected" size="18" [attr.solid]="focus" shape="tree-view"></cds-icon>&nbsp;...
+        </ng-template>
+      </button>
+      <clr-dropdown-menu [clrPosition]="'bottom-left'" *clrIfOpen>
+        <button
+          *ngFor="let item of selectableChilds"
+          type="button"
+          clrDropdownItem
+          class="text-truncate"
+          [class.selected-child]="item.id === parentNode.getSelectedChild()?.id"
+          (click)="selectNode(item)"
+          title="{{ item.label }}"
+        >
+          {{ item.label }}
+        </button>
+      </clr-dropdown-menu>
+    </clr-dropdown>
+  </ng-container>
+
+  <ng-template #singleSelected>
+    <ng-container *ngIf="parentNode.getSelectedChild()">
+      <ng-container *ngIf="parentNode.getSelectedChild().selectable; else unselectable">
+        <button
+          class="btn btn-link btn-sm"
+          (click)="selectNode(parentNode.getSelectedChild())"
+          [class.last-level]="!parentNode.getSelectedChild().getSelectedChild()"
+          title="{{ parentNode.getSelectedChild().label }}"
+        >
+          {{ parentNode.getSelectedChild().label }}
+        </button>
+      </ng-container>
+      <ng-template #unselectable>
+        <span
+          class="unselectable-node text-truncate"
+          [class.last-level]="!parentNode.getSelectedChild().getSelectedChild()"
+          title="{{ parentNode.getSelectedChild().label }}"
+        >
+          {{ parentNode.getSelectedChild().label }}
+        </span>
+      </ng-template>
+    </ng-container>
+  </ng-template>
+
+  <clr-location-bar-node
+    *ngIf="parentNode.getSelectedChild() && parentNode.getChildren().length > 0"
+    [parentNode]="parentNode.getSelectedChild()"
+    (selectionChanged)="onSelectionChanged($event)"
+  >
+    <span>/</span>
+  </clr-location-bar-node>
+</ng-container>

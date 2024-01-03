@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -16,6 +16,9 @@ import {
 } from '@clr/angular';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { ClarityIcons, ellipsisVerticalIcon } from '@cds/core/icon';
+
+ClarityIcons.addIcons(ellipsisVerticalIcon);
 
 @Component({
   selector: 'clr-tt-action-overflow',
@@ -23,7 +26,7 @@ import { takeUntil } from 'rxjs/operators';
   template: `
     <ng-container *ngIf="!empty">
       <button class="treetable-action-trigger" clrPopoverAnchor clrPopoverOpenCloseButton>
-        <clr-icon shape="ellipsis-vertical"></clr-icon>
+        <cds-icon shape="ellipsis-vertical"></cds-icon>
       </button>
       <div
         class="datagrid-action-overflow"
@@ -51,7 +54,7 @@ export class ClrTreetableActionOverflow implements OnDestroy {
     content: ClrAlignment.CENTER,
   };
 
-  destroyed$ = new Subject();
+  destroyed$ = new Subject<void>();
 
   constructor(private smartToggleService: ClrPopoverToggleService, private zone: NgZone) {
     this.smartToggleService.openChange.pipe(takeUntil(this.destroyed$.asObservable())).subscribe(openState => {

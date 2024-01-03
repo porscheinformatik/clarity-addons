@@ -6,6 +6,14 @@
   header,
   .header {
     .header-actions {
+      > .dropdown > .nav-icon > cds-icon {
+        color: var(--turquoise-darkest);
+      }
+
+      .nav-icon > cds-icon {
+        color: var(--turquoise-darkest);
+      }
+
       > .dropdown > .nav-icon > clr-icon {
         color: var(--turquoise-darkest);
       }
@@ -13,6 +21,10 @@
       .nav-icon > clr-icon {
         color: var(--turquoise-darkest);
       }
+    }
+
+    .settings .nav-icon > cds-icon {
+      color: var(--turquoise-darkest);
     }
 
     .settings .nav-icon > clr-icon {
@@ -55,6 +67,10 @@
         cds-icon {
           --color: var(--turquoise);
         }
+
+        clr-icon {
+          --color: var(--turquoise);
+        }
       }
     }
 
@@ -63,22 +79,59 @@
     }
   }
 
+  .btn-warning {
+    background-color: $clr-highlight-warning-800;
+    border-color: $clr-highlight-warning-800;
+  }
+
+  .btn-warning:hover {
+    background-color: $clr-highlight-warning-900;
+    border-color: $clr-highlight-warning-900;
+  }
+
+  .btn-info {
+    background-color: $clr-highlight-info-700;
+    color: white;
+  }
+
+  .btn-info:hover {
+    background-color: $clr-highlight-info-800;
+    color: white;
+  }
+
   .datagrid-footer .column-switch-wrapper .column-toggle--action:hover cds-icon {
     --color: var(--turquoise);
   }
 
-  .spinner {
+  .datagrid-footer .column-switch-wrapper .column-toggle--action:hover clr-icon {
+    --color: var(--turquoise);
+  }
+
+  .spinner:not(.spinner-check) {
+    color: transparent;
     background: generateSpinnerIcon($black, $turquoise);
 
+    &::before,
+    &::after {
+      border-color: transparent;
+    }
+
     &.spinner-inverse {
+      color: transparent;
+      border-color: transparent;
       background: generateSpinnerIcon($white, $turquoise);
     }
+  }
+
+  clr-tooltip cds-icon {
+    color: var(--turquoise);
   }
 
   clr-tooltip clr-icon {
     color: var(--turquoise);
   }
 
+  cds-icon,
   clr-icon {
     &.is-green,
     &.is-success {
@@ -131,13 +184,23 @@
 
   .header .header-actions > .dropdown .dropdown-toggle.nav-icon,
   .dropdown .dropdown-toggle {
-    clr-icon[shape^='caret'] {
+    cds-icon[shape^='angle'] {
       position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
       height: 0.5rem;
       width: 0.5rem;
       right: 0.6rem;
     }
+
+    clr-icon[shape^='caret'] {
+      position: absolute;
+      height: 0.5rem;
+      width: 0.5rem;
+      right: 0.6rem;
+    }
+  }
+
+  .clr-combobox-wrapper,
+  .clr-combobox-input {
+    width: 100%;
   }
 }

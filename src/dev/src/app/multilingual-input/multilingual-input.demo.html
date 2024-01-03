@@ -158,3 +158,62 @@
     </tr>
   </table>
 </form>
+
+<h3>NA Handling</h3>
+<form clrForm>
+  <clr-multilingual-input
+    class="clr-col-12 clr-row"
+    clrSelectedLang="en"
+    clrMissingPrefix="<na> "
+    [clrLanguages]="['en', 'de', 'ww']"
+    [(ngModel)]="templateNA"
+    clrControlClasses="clr-col-md-9 clr-col-lg-10"
+    name="templateNA"
+  >
+    <label class="clr-col-md-3 clr-col-lg-2">Test1</label>
+    <clr-control-error>Error</clr-control-error>
+    <clr-control-helper>Helper</clr-control-helper>
+  </clr-multilingual-input>
+  <clr-multilingual-textarea
+    class="clr-col-12 clr-row"
+    clrSelectedLang="en"
+    clrMissingPrefix="<na> "
+    [clrLanguages]="['en', 'de', 'ww']"
+    [(ngModel)]="templateNA"
+    clrControlClasses="clr-col-md-9 clr-col-lg-10"
+    name="templateNAText"
+  >
+    <label class="clr-col-md-3 clr-col-lg-2">Test1</label>
+    <clr-control-error>Error</clr-control-error>
+    <clr-control-helper>Helper</clr-control-helper>
+  </clr-multilingual-textarea>
+</form>
+
+<form clrForm>
+  <clr-multilingual-input
+    class="clr-col-12 clr-row"
+    clrSelectedLang="en"
+    clrMissingPrefix="<na> "
+    [clrLanguages]="['en', 'de', 'ww']"
+    [(ngModel)]="templateNAEmpty"
+    clrControlClasses="clr-col-md-9 clr-col-lg-10"
+    name="templateNAEmpty"
+  >
+    <label class="clr-col-md-3 clr-col-lg-2">Test1</label>
+    <clr-control-error>Error</clr-control-error>
+    <clr-control-helper>Helper</clr-control-helper>
+  </clr-multilingual-input>
+  <clr-multilingual-textarea
+    class="clr-col-12 clr-row"
+    clrSelectedLang="en"
+    clrMissingPrefix="<na> "
+    [clrLanguages]="['en', 'de', 'ww']"
+    [(ngModel)]="templateNAEmpty"
+    clrControlClasses="clr-col-md-9 clr-col-lg-10"
+    name="templateNAEmptyText"
+  >
+    <label class="clr-col-md-3 clr-col-lg-2">Test1</label>
+    <clr-control-error>Error</clr-control-error>
+    <clr-control-helper>Helper</clr-control-helper>
+  </clr-multilingual-textarea>
+</form>

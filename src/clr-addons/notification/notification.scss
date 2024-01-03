@@ -38,10 +38,10 @@
       position: absolute;
       z-index: 1;
 
-      @include progress-color('info', var(--clr-notification-progress-info-bar-color));
-      @include progress-color('success', var(--clr-progress-alt-color-1));
-      @include progress-color('warning', var(--clr-progress-alt-color-3));
-      @include progress-color('danger', var(--clr-progress-alt-color-2));
+      @include progress-color('info', $clr-highlight-info-700);
+      @include progress-color('success', $clr-highlight-success-700);
+      @include progress-color('warning', $clr-highlight-warning-800);
+      @include progress-color('danger', $clr-highlight-error-800);
     }
 
     .alert-items {
@@ -83,7 +83,7 @@
           box-shadow: none;
         }
 
-        clr-icon {
+        cds-icon {
           margin: auto 0;
           height: calc(1.3rem - 1px);
           width: calc(1.3rem - 1px);

@@ -1,0 +1,151 @@
+<!--
+  ~ Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
+  ~ This software is released under MIT license.
+  ~ The full license information can be found in LICENSE in the root directory of this project.
+  -->
+
+<h2>Dropdown</h2>
+
+<div class="clr-row">
+  <div class="clr-col-4">
+    <div class="card card-active selectable">
+      <div class="card-header">
+        Few items and no scrollbar
+        <clr-dropdown class="card-actions">
+          <button type="button" class="btn btn-icon btn-link card-action dropdown-toggle" clrDropdownTrigger>
+            Drop me
+          </button>
+          <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
+            <div *ngFor="let number of getDemoArrayWithSize(10)" clrDropdownItem>{{number}}</div>
+          </clr-dropdown-menu>
+        </clr-dropdown>
+      </div>
+    </div>
+  </div>
+
+  <div class="clr-col-4">
+    <div class="card card-active selectable">
+      <div class="card-header">
+        Bigger than window height, add scrollbar
+        <clr-dropdown class="card-actions">
+          <button type="button" class="btn btn-icon btn-link card-action dropdown-toggle" clrDropdownTrigger>
+            Drop me
+          </button>
+          <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
+            <div *ngFor="let number of getDemoArrayWithSize(100)" clrDropdownItem>{{number}}</div>
+          </clr-dropdown-menu>
+        </clr-dropdown>
+      </div>
+    </div>
+  </div>
+
+  <div class="clr-col-4">
+    <div class="card card-active selectable">
+      <div class="card-header">
+        Input max-size too high and custom item height
+        <clr-dropdown class="card-actions">
+          <button type="button" class="btn btn-icon btn-link card-action dropdown-toggle" clrDropdownTrigger>
+            Drop me
+          </button>
+          <clr-dropdown-menu
+            clrPosition="bottom-right"
+            *clrIfOpen
+            [clrDropdownMenuMaxHeight]="'5000px'"
+            [clrDropdownMenuItemMinHeight]="'1rem'"
+          >
+            <div *ngFor="let number of getDemoArrayWithSize(100)" clrDropdownItem>{{number}}</div>
+          </clr-dropdown-menu>
+        </clr-dropdown>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="clr-row">
+  <div class="clr-col-4">
+    <div class="card card-active selectable">
+      <div class="card-header">
+        Fixed height but many elements
+        <clr-dropdown class="card-actions">
+          <button type="button" class="btn btn-icon btn-link card-action dropdown-toggle" clrDropdownTrigger>
+            Drop me
+          </button>
+          <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen [clrDropdownMenuMaxHeight]="'500px'">
+            <div *ngFor="let number of getDemoArrayWithSize(100)" clrDropdownItem>{{number}}</div>
+          </clr-dropdown-menu>
+        </clr-dropdown>
+      </div>
+    </div>
+  </div>
+
+  <div class="clr-col-4">
+    <div class="card card-active selectable">
+      <div class="card-header">
+        Fixed height but few elements
+        <clr-dropdown class="card-actions">
+          <button type="button" class="btn btn-icon btn-link card-action dropdown-toggle" clrDropdownTrigger>
+            Drop me
+          </button>
+          <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen [clrDropdownMenuMaxHeight]="'750px'">
+            <div *ngFor="let number of getDemoArrayWithSize(10)" clrDropdownItem>{{number}}</div>
+          </clr-dropdown-menu>
+        </clr-dropdown>
+      </div>
+    </div>
+  </div>
+
+  <div class="clr-col-4">
+    <div class="card card-active selectable">
+      <div class="card-header">
+        Bigger than window height, but with nested dropdown
+        <clr-dropdown class="card-actions">
+          <button type="button" class="btn btn-icon btn-link card-action dropdown-toggle" clrDropdownTrigger>
+            Drop me
+          </button>
+          <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
+            <clr-dropdown>
+              <button type="button" class="btn btn-icon btn-link card-action dropdown-toggle" clrDropdownTrigger>
+                Drop me again
+              </button>
+              <clr-dropdown-menu clrPosition="left-top" *clrIfOpen>
+                <div *ngFor="let number of getDemoArrayWithSize(5)" clrDropdownItem>{{number}}</div>
+              </clr-dropdown-menu>
+            </clr-dropdown>
+            <div *ngFor="let number of getDemoArrayWithSize(100)" clrDropdownItem>{{number}}</div>
+          </clr-dropdown-menu>
+        </clr-dropdown>
+      </div>
+    </div>
+  </div>
+
+  <div class="clr-col-4">
+    <div class="card card-active selectable">
+      <div class="card-header">
+        Asynchronously resolved nested dropdown
+        <clr-dropdown class="card-actions">
+          <button type="button" class="btn btn-icon btn-link card-action dropdown-toggle" clrDropdownTrigger>
+            Drop me
+          </button>
+          <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen [clrDropdownMenuMaxHeight]="'300px'">
+            <div>
+              <ng-container *ngIf="asyncProducer$ | async; else loadingText">
+                <clr-dropdown>
+                  <button type="button" class="btn btn-icon btn-link card-action dropdown-toggle" clrDropdownTrigger>
+                    Drop me again
+                  </button>
+                  <clr-dropdown-menu clrPosition="left-top" *clrIfOpen>
+                    <div *ngFor="let number of getDemoArrayWithSize(5)" clrDropdownItem>{{number}}</div>
+                  </clr-dropdown-menu>
+                </clr-dropdown>
+              </ng-container>
+              <ng-template #loadingText>
+                <div clrDropdownItem>Loading...</div>
+              </ng-template>
+            </div>
+            <div *ngFor="let number of getDemoArrayWithSize(100)" clrDropdownItem>{{number}}</div>
+          </clr-dropdown-menu>
+        </clr-dropdown>
+      </div>
+    </div>
+  </div>
+</div>

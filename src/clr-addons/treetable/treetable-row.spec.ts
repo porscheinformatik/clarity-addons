@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -47,22 +47,21 @@ describe('ClrTreetableRow', () => {
   let rowClickableTestComponentFixture: ComponentFixture<RowClickableTestComponent>;
   let emptyTestComponentFixture: ComponentFixture<EmptyTestComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [EmptyTestComponent, RowClickableTestComponent],
-        imports: [ClarityModule, FormsModule, ClrTreetableModule, BrowserAnimationsModule],
-      }).compileComponents();
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [EmptyTestComponent, RowClickableTestComponent],
+      imports: [ClarityModule, FormsModule, ClrTreetableModule, BrowserAnimationsModule],
+      teardown: { destroyAfterEach: false },
+    }).compileComponents();
 
-      rowClickableTestComponentFixture = TestBed.createComponent(RowClickableTestComponent);
-      rowClickableTestComponent = rowClickableTestComponentFixture.componentInstance;
-      rowClickableTestComponentFixture.detectChanges();
+    rowClickableTestComponentFixture = TestBed.createComponent(RowClickableTestComponent);
+    rowClickableTestComponent = rowClickableTestComponentFixture.componentInstance;
+    rowClickableTestComponentFixture.detectChanges();
 
-      emptyTestComponentFixture = TestBed.createComponent(EmptyTestComponent);
-      emptyTestComponent = emptyTestComponentFixture.componentInstance;
-      emptyTestComponentFixture.detectChanges();
-    })
-  );
+    emptyTestComponentFixture = TestBed.createComponent(EmptyTestComponent);
+    emptyTestComponent = emptyTestComponentFixture.componentInstance;
+    emptyTestComponentFixture.detectChanges();
+  }));
 
   it('should create', () => {
     expect(emptyTestComponent).toBeTruthy();

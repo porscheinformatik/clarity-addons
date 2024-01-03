@@ -1,5 +1,5 @@
 <div *ngIf="!(readonly || readonly === ''); else readonlyView" class="clr-select-wrapper quick-list-input">
-  <select #select clr-select class="quick-list-select" name="options" [(ngModel)]="selectedValue">
+  <select #select clr-select class="quick-list-select" name="options" [(ngModel)]="selectedValue" [disabled]="disabled">
     <option *ngIf="blankOption.id === selectedValue" [selected]="true" [disabled]="true" [ngValue]="blankOption.id">
       {{blankOption.label}}
     </option>
@@ -17,8 +17,18 @@
   *ngIf="!(readonly || readonly === '')"
   type="button"
   class="btn btn-icon btn-link quick-list-trash"
-  [disabled]="trashDisabled()"
+  [ngClass]="{'quick-list-trash-ext': !showAddButton}"
+  [disabled]="trashDisabled() || disabled"
   (click)="remove.emit()"
 >
-  <clr-icon shape="trash"></clr-icon>
+  <cds-icon shape="trash"></cds-icon>
+</button>
+<button
+  *ngIf="!(readonly || readonly === '') && showAddButton"
+  type="button"
+  class="btn btn-icon btn-link quick-list-addcompact"
+  (click)="add.emit()"
+  [disabled]="disableAddButton"
+>
+  <cds-icon shape="plus-circle"></cds-icon>
 </button>

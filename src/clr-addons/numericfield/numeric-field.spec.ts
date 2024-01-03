@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -48,6 +48,7 @@ describe('NumericComponent', () => {
     TestBed.configureTestingModule({
       imports: [ClarityModule, FormsModule, BrowserAnimationsModule, ClrNumericFieldModule],
       declarations: [TestComponent],
+      teardown: { destroyAfterEach: false },
     }).compileComponents();
 
     fixture = TestBed.createComponent(TestComponent);
@@ -278,6 +279,34 @@ describe('NumericComponent', () => {
     expect(inputEl.nativeElement.value).toBe('124,0');
     expect(fixture.componentInstance.component.displayValue).toBe('124,0');
     expect(fixture.componentInstance.input).toBe(124);
+  }));
+
+  it('Fix rounding error in case of 4.1 input', fakeAsync(() => {
+    fixture.componentInstance.decimalPlaces = 2;
+    fixture.componentInstance.input = 4.1;
+    fixture.componentInstance.rounded = false;
+    fixture.componentInstance.autofill = true;
+    fixture.detectChanges();
+
+    tick(10);
+
+    expect(inputEl.nativeElement.value).toBe('4,10');
+    expect(fixture.componentInstance.component.displayValue).toBe('4,10');
+    expect(fixture.componentInstance.input).toBe(4.1);
+  }));
+
+  it('Fix rounding error in case of 5.1 input', fakeAsync(() => {
+    fixture.componentInstance.decimalPlaces = 2;
+    fixture.componentInstance.input = 5.1;
+    fixture.componentInstance.rounded = false;
+    fixture.componentInstance.autofill = true;
+    fixture.detectChanges();
+
+    tick(10);
+
+    expect(inputEl.nativeElement.value).toBe('5,10');
+    expect(fixture.componentInstance.component.displayValue).toBe('5,10');
+    expect(fixture.componentInstance.input).toBe(5.1);
   }));
 
   it('Issue #1378', fakeAsync(() => {

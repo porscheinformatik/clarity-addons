@@ -30,6 +30,7 @@ node_modules/
 # !.vscode/extensions.json
 
 # misc
+/.angular/cache
 .awcache
 /.sass-cache
 /connect.lock

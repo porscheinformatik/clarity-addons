@@ -6,17 +6,20 @@
   .header {
     position: fixed;
     width: 100%;
-    z-index: map-get($clr-layers, column-switch);
+    z-index: map-get($clr-layers, sidepanel);
     top: 0;
     left: 0;
   }
 
-  .content-header {
-    padding: 0 0.5rem;
+  .main-container,
+  .u-main-container {
+    .content-header {
+      padding: 0.5rem 0.5rem 0 0.5rem;
 
-    .command-bar {
-      margin-right: 0;
-      align-items: center;
+      .command-bar {
+        margin-right: 0;
+        align-items: center;
+      }
     }
   }
 
@@ -92,6 +95,11 @@
       .signpost-action.close {
         width: 1rem;
         height: 1rem;
+
+        cds-icon {
+          width: 20px;
+          height: 20px;
+        }
 
         clr-icon {
           width: 20px;

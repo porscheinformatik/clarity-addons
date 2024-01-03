@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { ClarityModule, ɵbc as ControlIdService } from '@clr/angular';
+import { ClarityModule } from '@clr/angular';
 import { ClrMultilingualModule } from '../multilingual.module';
 
 @Component({
@@ -48,6 +48,34 @@ class TestComponentOneValid implements OnInit {
   }
 }
 
+@Component({
+  template: `
+    <clr-multilingual-input
+      [clrSelectedLang]="selectedLang"
+      [clrLanguages]="languages"
+      clrMissingPrefix="<na> "
+      clrFallbackLang="FR"
+      [(ngModel)]="data"
+      name="test"
+    >
+      <label>Test</label>
+      <clr-control-error>Error</clr-control-error>
+      <clr-control-helper>Helper</clr-control-helper>
+    </clr-multilingual-input>
+  `,
+})
+class TestComponentComplex implements OnInit {
+  selectedLang = 'EN';
+  languages = ['EN', 'DE', 'PT'];
+  data = new Map();
+
+  ngOnInit(): void {
+    this.data.set('EN', 'english text');
+    this.data.set('DE', 'deutscher text');
+    this.data.set('FR', 'texte français');
+  }
+}
+
 describe('Multilingual Input', () => {
   describe('Basic + all required', () => {
     let fixture: ComponentFixture<TestComponentAllValid>;
@@ -57,6 +85,7 @@ describe('Multilingual Input', () => {
       TestBed.configureTestingModule({
         imports: [ClarityModule, FormsModule, ClrMultilingualModule],
         declarations: [TestComponentAllValid],
+        teardown: { destroyAfterEach: false },
       }).compileComponents();
 
       fixture = TestBed.createComponent(TestComponentAllValid);
@@ -64,12 +93,10 @@ describe('Multilingual Input', () => {
       inputEl = fixture.debugElement.query(By.css('input')).nativeElement;
     });
 
-    beforeEach(
-      waitForAsync(() => {
-        fixture.detectChanges();
-        fixture.whenStable();
-      })
-    );
+    beforeEach(waitForAsync(() => {
+      fixture.detectChanges();
+      fixture.whenStable().then();
+    }));
 
     it('should create', () => {
       expect(fixture.componentInstance).toBeTruthy();
@@ -78,6 +105,7 @@ describe('Multilingual Input', () => {
     it('change text', () => {
       sendInput(inputEl, fixture, 'different english text');
       expect(fixture.componentInstance.data.get('EN')).toBe('different english text');
+      expect(fixture.componentInstance.data.get('DE')).toBe('deutscher text');
     });
 
     it('change text of different lang', () => {
@@ -86,6 +114,7 @@ describe('Multilingual Input', () => {
 
       sendInput(inputEl, fixture, 'anderer deutscher text');
       expect(fixture.componentInstance.data.get('DE')).toBe('anderer deutscher text');
+      expect(fixture.componentInstance.data.get('EN')).toBe('english text');
     });
 
     it('show validation error on touched', () => {
@@ -108,6 +137,7 @@ describe('Multilingual Input', () => {
       TestBed.configureTestingModule({
         imports: [ClarityModule, FormsModule, ClrMultilingualModule],
         declarations: [TestComponentOneValid],
+        teardown: { destroyAfterEach: false },
       }).compileComponents();
 
       fixture = TestBed.createComponent(TestComponentOneValid);
@@ -115,12 +145,10 @@ describe('Multilingual Input', () => {
       inputEl = fixture.debugElement.query(By.css('input')).nativeElement;
     });
 
-    beforeEach(
-      waitForAsync(() => {
-        fixture.detectChanges();
-        fixture.whenStable();
-      })
-    );
+    beforeEach(waitForAsync(() => {
+      fixture.detectChanges();
+      fixture.whenStable().then();
+    }));
 
     it('show validation error on touched', () => {
       validationShown(false, fixture);
@@ -136,8 +164,89 @@ describe('Multilingual Input', () => {
     });
   });
 
-  it('check correct obfuscated imports', () => {
-    expect(new ControlIdService().constructor.name).toBe('ControlIdService');
+  describe('Complex tests', () => {
+    let fixture: ComponentFixture<TestComponentComplex>;
+    let inputEl: HTMLInputElement;
+    let langSelector: HTMLButtonElement;
+
+    beforeEach(() => {
+      TestBed.configureTestingModule({
+        imports: [ClarityModule, FormsModule, ClrMultilingualModule],
+        declarations: [TestComponentComplex],
+        teardown: { destroyAfterEach: false },
+      }).compileComponents();
+
+      fixture = TestBed.createComponent(TestComponentComplex);
+      fixture.detectChanges();
+      inputEl = fixture.debugElement.query(By.css('input')).nativeElement;
+    });
+
+    beforeEach(waitForAsync(() => {
+      fixture.whenStable().then(() => {
+        fixture.detectChanges();
+        langSelector = fixture.debugElement.query(By.css('.clr-multilingual-button')).nativeElement;
+      });
+    }));
+
+    it('show missing prefix -> fallback lang not present', () => {
+      fixture.componentInstance.data.delete('FR');
+      fixture.componentInstance.data = new Map(fixture.componentInstance.data);
+      fixture.detectChanges();
+
+      fixture.whenStable().then(() => {
+        expect(fixture.componentInstance.data.size).toBe(2);
+        expect(fixture.componentInstance.data.get('EN')).toBe('english text');
+        expect(fixture.componentInstance.data.get('DE')).toBe('deutscher text');
+
+        langSelector.click();
+        fixture.detectChanges();
+
+        const langSelectorElements = getLanguageSelectorElements(fixture);
+        expect(langSelectorElements.size).toBe(2);
+        expect(langSelectorElements.get('DE')).toBe('deutscher text');
+        expect(langSelectorElements.get('PT')).toBe('<na> deutscher text');
+
+        inputEl.value = '';
+      });
+    });
+
+    it('show missing prefix -> hidden language', () => {
+      expect(fixture.componentInstance.data.size).toBe(3);
+      expect(fixture.componentInstance.data.get('EN')).toBe('english text');
+      expect(fixture.componentInstance.data.get('DE')).toBe('deutscher text');
+      expect(fixture.componentInstance.data.get('FR')).toBe('texte français');
+
+      langSelector.click();
+      fixture.detectChanges();
+
+      const langSelectorElements = getLanguageSelectorElements(fixture);
+      expect(langSelectorElements.size).toBe(2);
+      expect(langSelectorElements.get('DE')).toBe('deutscher text');
+      expect(langSelectorElements.get('PT')).toBe('<na> texte français');
+
+      inputEl.value = '';
+    });
+
+    it('leave hidden languages untouched', () => {
+      expect(fixture.componentInstance.data.size).toBe(3);
+      expect(fixture.componentInstance.data.get('EN')).toBe('english text');
+      expect(fixture.componentInstance.data.get('DE')).toBe('deutscher text');
+      expect(fixture.componentInstance.data.get('FR')).toBe('texte français');
+
+      langSelector.click();
+      fixture.detectChanges();
+
+      const langSelectorElements = getLanguageSelectorElements(fixture);
+      expect(langSelectorElements.size).toBe(2);
+      expect(langSelectorElements.get('DE')).toBe('deutscher text');
+      expect(langSelectorElements.get('PT')).toBe('<na> texte français');
+
+      sendInput(inputEl, fixture, 'different english text');
+      expect(fixture.componentInstance.data.size).toBe(3);
+      expect(fixture.componentInstance.data.get('EN')).toBe('different english text');
+      expect(fixture.componentInstance.data.get('DE')).toBe('deutscher text');
+      expect(fixture.componentInstance.data.get('FR')).toBe('texte français');
+    });
   });
 
   function validationShown(shouldBeVisible: boolean, fixture: ComponentFixture<any>): void {
@@ -156,5 +265,14 @@ describe('Multilingual Input', () => {
     inputEl.value = text;
     inputEl.dispatchEvent(new Event('input'));
     fixture.detectChanges();
+  }
+
+  function getLanguageSelectorElements(fixture: ComponentFixture<any>): Map<string, string> {
+    return new Map(
+      fixture.debugElement.queryAll(By.css('.clr-multilingual-dd-entry')).map(elem => {
+        const lang = (elem.children[0].nativeElement as HTMLSpanElement).innerText;
+        return [lang, (elem.nativeElement as HTMLElement).innerText.substring(lang.length)];
+      })
+    );
   }
 });

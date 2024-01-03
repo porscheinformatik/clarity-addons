@@ -12,11 +12,31 @@
     {
       "matchSourceUrlPrefixes": [
         "https://github.com/angular/angular",
-        "https://github.com/angular/angular-cli"
+        "https://github.com/angular/angular-cli",
+        "https://github.com/angular/components",
+        "https://github.com/ng-packagr/ng-packagr"
       ],
       "groupName": "angular+cli monorepo"
+    },
+    {
+      "matchPackageNames": [
+        "@​angular-eslint/builder",
+        "@types/jasmine",
+        "@types/node",
+        "@typescript-eslint/eslint-plugin",
+        "@typescript-eslint/parser",
+        "core-js",
+        "eslint",
+        "eslint-config-prettier",
+        "gh-pages",
+        "JamesIves/github-pages-deploy-action",
+        "postcss",
+        "postcss-cli"
+      ],
+      "automerge": true
     }
   ],
-  "baseBranches": ["master", "website"],
-  "prHourlyLimit": 5
+  "baseBranches": ["master"],
+  "prHourlyLimit": 5,
+  "prConcurrentLimit": 0
 }

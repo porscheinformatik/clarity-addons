@@ -1,4 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { angleIcon, ClarityIcons } from '@cds/core/icon';
+
+ClarityIcons.addIcons(angleIcon);
 
 @Component({
   selector: 'clr-multilingual-selector',
@@ -12,7 +15,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
           [disabled]="disabled"
         >
           {{ selectedLang }}
-          <clr-icon shape="caret down"></clr-icon>
+          <cds-icon shape="angle" direction="down"></cds-icon>
         </button>
         <clr-dropdown-menu *clrIfOpen>
           <ng-container *ngFor="let text of texts | keyvalue">

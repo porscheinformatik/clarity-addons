@@ -23,6 +23,9 @@
 @import './multilingual/multilingual';
 @import './generic-quick-list/generic-quick-list';
 @import './history/history.scss';
+@import './location-bar/location-bar-node/location-bar-node.component.scss';
+@import './html-editor/html/html-editor.component.scss';
+@import './calendar/calendar.scss';
 
 html,
 body,
@@ -188,6 +191,16 @@ body,
   display: none;
 }
 
+.datagrid-full-height {
+  max-height: 100%;
+}
+
+.datagrid-filter {
+  .datagrid-date-filter-input {
+    width: 7rem;
+  }
+}
+
 // Enable highlighting of rows in a table by adding a new class 'highlight'
 .table {
   tbody {
@@ -332,19 +345,24 @@ clr-date-container .clr-control-container {
   width: 100%;
   max-width: 100%;
 
+  &.clr-focus {
+    width: 100%;
+  }
+
   // Set all input widths inside a clr-input-group to 100% minus the icons width
   > .clr-input {
-    // Except for the Clr Data List Input, because this one just looks terrible otherwise (clarity using diff icon here)
-    &:not([clrdatalistinput]) {
+    // Except for the ClrDataListInput and ClrDate, because this one just looks terrible otherwise (clarity using diff icon here)
+    &:not([clrdatalistinput]):not([clrdate]) {
       width: calc(100% - 1.5rem);
     }
   }
 }
 
-// Set the width of all inputs except time to 100%
+// Set the width of all inputs except time and date to 100%
 .clr-input-wrapper {
   max-width: none;
-  input:not([type='time']) {
+
+  input:not([type='time']):not([clrdate]) {
     width: 100%;
   }
 }
@@ -380,6 +398,128 @@ clr-date-container .clr-control-container {
 
 .btn clr-icon {
   transform: translate3d(0, -0.1rem, 0);
+}
+
+.clr-treenode-link:hover:visited {
+  color: inherit;
+}
+
+.clr-max-width {
+  max-width: $clr-max-width;
+}
+.datagrid-row-master {
+  background-color: inherit !important;
+}
+.datagrid-row-sticky,
+clr-expandable-animation {
+  background-color: inherit !important;
+}
+.datagrid-row {
+  background-color: $white;
+}
+
+.datagrid-highlight-error {
+  background-color: $clr-highlight-error-100;
+
+  &:hover,
+  &.datagrid-selected {
+    background-color: $clr-highlight-error-200 !important;
+  }
+}
+
+.datagrid-highlight-success {
+  background-color: $clr-highlight-success-50;
+
+  &:hover,
+  &.datagrid-selected {
+    background-color: $clr-highlight-success-100;
+  }
+}
+
+.datagrid-highlight-warning {
+  background-color: $clr-highlight-warning-100;
+
+  &:hover,
+  &.datagrid-selected {
+    background-color: $clr-highlight-warning-200;
+  }
+}
+
+.datagrid-highlight-info {
+  background-color: $clr-highlight-info-50;
+
+  &:hover,
+  &.datagrid-selected {
+    background-color: $clr-highlight-info-100;
+  }
+}
+
+.highlight-text-error {
+  color: $clr-highlight-error-800;
+
+  cds-icon {
+    fill: $clr-highlight-error-800;
+  }
+
+  &:hover {
+    color: $clr-highlight-error-900;
+
+    cds-icon {
+      fill: $clr-highlight-error-900;
+    }
+  }
+}
+
+.highlight-text-success {
+  color: $clr-highlight-success-700;
+
+  cds-icon {
+    fill: $clr-highlight-success-700;
+  }
+
+  &:hover {
+    color: $clr-highlight-success-800;
+
+    cds-icon {
+      fill: $clr-highlight-success-800;
+    }
+  }
+}
+
+.highlight-text-warning {
+  color: $clr-highlight-warning-800;
+
+  cds-icon {
+    fill: $clr-highlight-warning-800;
+  }
+
+  &:hover {
+    color: $clr-highlight-warning-900;
+
+    cds-icon {
+      fill: $clr-highlight-warning-900;
+    }
+  }
+}
+
+.highlight-text-info {
+  color: $clr-highlight-info-700;
+
+  cds-icon {
+    fill: $clr-highlight-info-700;
+  }
+
+  &:hover {
+    color: $clr-highlight-info-800;
+
+    cds-icon {
+      fill: $clr-highlight-info-800;
+    }
+  }
+}
+
+clr-dropdown-menu .dropdown-header {
+  min-height: 0.9rem;
 }
 
 // Has to be at the bottom to override the styles from the above properly

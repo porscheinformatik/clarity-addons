@@ -3,13 +3,8 @@
   "dest": "../../dist/clr-addons",
   "deleteDestPath": false,
   "lib": {
-    "entryFile": "./public_api.ts",
-    "flatModuleFile": "clr-addons",
-    "umdModuleIds": {
-      "rxjs": "rxjs",
-      "@clr/angular": "@clr/angular",
-      "util": "util"
-    }
+    "entryFile": "./index.ts",
+    "flatModuleFile": "clr-addons"
   },
   "allowedNonPeerDependencies": ["@angular-devkit/core"]
 }

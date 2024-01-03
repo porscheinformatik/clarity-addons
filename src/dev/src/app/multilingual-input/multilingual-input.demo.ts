@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -16,8 +16,10 @@ export class MultilingualInputDemo implements OnInit {
   template1 = new Map();
   template2 = new Map();
   template3 = new Map();
-  reactive1 = new Map();
-  reactive2 = new Map();
+  templateNA = new Map();
+  templateNAEmpty = new Map();
+  reactive1 = new Map<string, string>();
+  reactive2 = new Map<string, string>();
   templateML = new Map();
   showSingleLanguage = false;
 
@@ -37,17 +39,25 @@ export class MultilingualInputDemo implements OnInit {
     this.template1.set('en', 'english text');
     this.template1.set('de', 'deutscher text');
     this.template1.set('fr', 'texte français');
+
     this.template2.set('en', 'english text');
     this.template2.set('de', 'deutscher text');
     this.template2.set('fr', 'texte français');
+
     this.template3.set('en', 'english text');
+
     this.reactive1.set('en', 'english text');
     this.reactive1.set('de', 'deutscher text');
     this.reactive1.set('fr', 'texte français');
+
     this.reactive2.set('en', 'english text');
     this.reactive2.set('de', 'deutscher text');
     this.reactive2.set('fr', 'texte français');
+
     this.templateML.set('ww', 'Test');
     this.templateML.set('en', 'Test');
+
+    this.templateNA.set('en', 'Test');
+    this.templateNA.set('na', 'Dont show this');
   }
 }

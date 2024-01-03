@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -71,14 +71,13 @@ describe('ClrTreetable', () => {
   let emptyTestComponentFixture: ComponentFixture<EmptyTestComponent>;
   let actionTestComponentFixture: ComponentFixture<ActionTestComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [EmptyTestComponent, RowClickableTestComponent, ActionTestComponent],
-        imports: [ClarityModule, FormsModule, ClrTreetableModule, BrowserAnimationsModule],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [EmptyTestComponent, RowClickableTestComponent, ActionTestComponent],
+      imports: [ClarityModule, FormsModule, ClrTreetableModule, BrowserAnimationsModule],
+      teardown: { destroyAfterEach: false },
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     rowClickableTestComponentFixture = TestBed.createComponent(RowClickableTestComponent);
@@ -114,15 +113,21 @@ describe('ClrTreetable', () => {
     expect(noOfClickableRows).toBe(0);
   });
 
-  it('should have action column', () => {
-    const noOfActionCellsWHeader = actionTestComponentFixture.debugElement.queryAll(
-      By.css('.treetable-row-actions')
-    ).length;
-    expect(noOfActionCellsWHeader).toBe(4);
+  it('should have action column', done => {
+    setTimeout(() => {
+      actionTestComponentFixture.whenStable().then(() => {
+        actionTestComponentFixture.detectChanges();
+        const noOfActionCellsWHeader = actionTestComponentFixture.debugElement.queryAll(
+          By.css('.treetable-row-actions')
+        ).length;
+        expect(noOfActionCellsWHeader).toBe(4);
 
-    const noOfActionButtons = actionTestComponentFixture.debugElement.queryAll(
-      By.css('.treetable-action-trigger')
-    ).length;
-    expect(noOfActionButtons).toBe(1);
+        const noOfActionButtons = actionTestComponentFixture.debugElement.queryAll(
+          By.css('.treetable-action-trigger')
+        ).length;
+        expect(noOfActionButtons).toBe(1);
+        done();
+      });
+    }, 100);
   });
 });

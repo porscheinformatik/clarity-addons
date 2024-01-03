@@ -7,7 +7,10 @@
   tabindex="0"
 >
   <input id="{{prefix}}{{id}}" type="checkbox" [checked]="isChecked()" />
-  <label class="nav-text nav-trigger" for="{{prefix}}{{id}}">{{title}}<clr-icon shape="caret down"></clr-icon></label>
+  <label class="nav-text nav-trigger" for="{{prefix}}{{id}}"
+    >{{title}}
+    <cds-icon shape="angle" direction="down"></cds-icon>
+  </label>
   <div class="nav-list dropdown-menu">
     <ng-content></ng-content>
   </div>

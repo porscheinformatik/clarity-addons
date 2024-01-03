@@ -1,12 +1,3 @@
-:root {
-  --clr-border-color: var(--clr-color-neutral-400);
-  --clr-card-default-border-color: rgba(215, 215, 215, 1);
-  --clr-card-active-border-color: rgba(0, 148, 210, 1);
-  --clr-header-height: 3rem;
-  --clr-footer-height: 2.5rem;
-  --clr-notification-progress-info-bar-color: var(--clr-progress-default-color);
-}
-
 $clr-grid-breakpoints: (
   xs: 0,
   sm: 576px,
@@ -40,3 +31,51 @@ $clr-sliding-panel-animation: transform 0.3s ease;
 $clr-trigger-animation: transform 0.6s ease;
 $clr-sliding-panel-z-index: map-get($clr-layers, sidepanel);
 $clr-sliding-panel-backdrop-z-index: map-get($clr-layers, sidepanel-bg);
+$clr-max-width: 65rem;
+
+// datagrid/notification color highlighting
+$clr-highlight-success-50: #dff0d0;
+$clr-highlight-success-100: #bce49a;
+$clr-highlight-success-700: #3c8500;
+$clr-highlight-success-800: #306b00;
+$clr-highlight-error-100: #feddd7;
+$clr-highlight-error-200: #fcc5bb;
+$clr-highlight-error-800: #c21d00;
+$clr-highlight-error-900: #991700;
+$clr-highlight-warning-100: #fff4c7;
+$clr-highlight-warning-200: #ffeea8;
+$clr-highlight-warning-800: #ad7600;
+$clr-highlight-warning-900: #8f5a00;
+$clr-highlight-info-50: #e3f5fc;
+$clr-highlight-info-100: #c8eaf9;
+$clr-highlight-info-700: #00648f;
+$clr-highlight-info-800: #00567a;
+$clr-highlight-neutral-50: #fafafa;
+$clr-highlight-neutral-200: #e8e8e8;
+
+:root {
+  --clr-border-color: var(--clr-color-neutral-400);
+  --clr-card-default-border-color: rgba(215, 215, 215, 1);
+  --clr-card-active-border-color: rgba(0, 148, 210, 1);
+  --clr-header-height: 3rem;
+  --clr-footer-height: 2.5rem;
+  --clr-notification-progress-info-bar-color: var(--clr-progress-default-color);
+  --clr-highlight-success-50: #{$clr-highlight-success-50};
+  --clr-highlight-success-100: #{$clr-highlight-success-100};
+  --clr-highlight-success-700: #{$clr-highlight-success-700};
+  --clr-highlight-success-800: #{$clr-highlight-success-800};
+  --clr-highlight-error-100: #{$clr-highlight-error-100};
+  --clr-highlight-error-200: #{$clr-highlight-error-200};
+  --clr-highlight-error-800: #{$clr-highlight-error-800};
+  --clr-highlight-error-900: #{$clr-highlight-error-900};
+  --clr-highlight-warning-100: #{$clr-highlight-warning-100};
+  --clr-highlight-warning-200: #{$clr-highlight-warning-200};
+  --clr-highlight-warning-800: #{$clr-highlight-warning-800};
+  --clr-highlight-warning-900: #{$clr-highlight-warning-900};
+  --clr-highlight-info-50: #{$clr-highlight-info-50};
+  --clr-highlight-info-100: #{$clr-highlight-info-100};
+  --clr-highlight-info-700: #{$clr-highlight-info-700};
+  --clr-highlight-info-800: #{$clr-highlight-info-800};
+  --clr-highlight-neutral-50: #{$clr-highlight-neutral-50};
+  --clr-highlight-neutral-200: #{$clr-highlight-neutral-200};
+}

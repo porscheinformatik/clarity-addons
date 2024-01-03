@@ -15,8 +15,26 @@ You can submit an issue or a bug to our GitHub repository. You must provide:
 
 Start by [forking](https://help.github.com/articles/fork-a-repo/) the repository. Make your changes locally and be sure to run all tests, check the format and run the build with:
 
-    npm run test:travis
+    npm run test:ci
 
 Before submitting the pull request please rebase to the current master (or release branch) and check/test your code again.
 
+Also provide some demo/documentation code in the website folder for the deployed documentation.
+
 Next, create the pull request and provide a description of the changes. Reference any issue numbers when the code change fixes a bug or implements an enhancement.
+
+### Testing the library locally
+
+To test the clarity-addons library locally you can start a dev environment via "npm run start", which starts the application located in /src/dev. Feel free to add demo pages to test your component. This will be seen by developers only so it's for functional testing and doesn't have to meet any styling standards.
+
+### Testing the documentation locally
+
+To test the documentation which will be visible on the documentation page, execute the command "npm run start" inside the /website folder. Make sure to always add documentation when developing components.
+
+## Versioning schema
+
+A new version will be created whenever an important breaking change happens (e.g. massive refactoring), a new component is ready or a bugfix needs to be published
+
+- MAJOR: following the respective Angular version
+- MINOR: on every new component/feature
+- PATCH: for bugfix only releases

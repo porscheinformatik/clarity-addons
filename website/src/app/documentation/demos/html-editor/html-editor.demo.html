@@ -1,0 +1,70 @@
+<clr-doc-wrapper [title]="title">
+  <article>
+    <h5 class="component-summary">Html-Editor is a tool for creating and editing HTML/Rich Text.</h5>
+
+    <div id="design-guidelines">
+      <h2>Usage</h2>
+      <p>Use the html-editor whenever you want to let the user compose rich formatted text in HTML form.</p>
+
+      <div class="clrweb-DoxMedia">
+        <div class="clrweb-DoxMedia-block">
+          <div class="clrweb-DoxMedia-img">
+            <img src="assets/images/documentation/html-editor-screenshot.png" alt="Screenshot of html-editor" />
+          </div>
+        </div>
+        <div class="clrweb-DoxMedia-text">
+          <p>Screenshot of the html-editor with some text.</p>
+        </div>
+      </div>
+
+      <h3>Summary of Options</h3>
+      <h4><code class="clr-code">clr-html-editor</code> component</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Input</th>
+            <th class="left clr-hidden-xs-down">Values</th>
+            <th class="clr-hidden-xs-down">Default</th>
+            <th class="left">Effect</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left"><strong>[clrHtmlContent]</strong></td>
+            <td class="left clr-hidden-xs-down"><code class="clr-code">String</code></td>
+            <td class="clr-hidden-xs-down"><code class="clr-code">''</code></td>
+            <td class="left">Provide the HTML Editor with an initial HTML template.</td>
+          </tr>
+          <tr>
+            <td class="left"><strong>[clrConfig]</strong></td>
+            <td class="left clr-hidden-xs-down">
+              <code class="clr-code"
+                ><a href="https://github.com/kolkov/angular-editor#configuration">AngularEditorConfig</a></code
+              >
+            </td>
+            <td class="clr-hidden-xs-down">Default Config</td>
+            <td class="left">Config for the html editor</td>
+          </tr>
+          <tr>
+            <td class="left"><strong>(clrHtmlChanged)</strong></td>
+            <td class="left clr-hidden-xs-down"><code class="clr-code">String</code></td>
+            <td class="clr-hidden-xs-down"><code class="clr-code"></code></td>
+            <td class="left">Emits when the value changes.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="code-examples">
+      <h2 id="examples">Code &amp; Examples</h2>
+
+      <h3><code class="clr-code">clr-html-editor</code> component</h3>
+      <p>
+        To use the HTML Editor, use the <code class="clr-code">clr-html-editor</code> component and provide it with a
+        default template. Then, listen to it's <code class="clr-code">(clrHtmlChanged)</code> event.
+      </p>
+      <label>Basic demo</label>
+      <clr-html-editor [clrHtmlContent]="value"></clr-html-editor>
+    </div>
+  </article>
+</clr-doc-wrapper>

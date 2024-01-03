@@ -1,6 +1,6 @@
 @include exports('view-edit-section.clr-addons') {
   .view-edit-section {
-    max-width: 1300px;
+    max-width: $clr-max-width;
 
     .card-block {
       display: flex;
@@ -23,14 +23,21 @@
     .button-bar {
       margin-top: 1rem;
     }
+
+    .card-block .btn,
+    .card-block .btn.btn-link,
+    .card-block .card-link,
+    .card-footer .btn,
+    .card-footer .btn.btn-link,
+    .card-footer .card-link {
+      margin: 0 0.6rem 0 0;
+    }
   }
 
   .ves-action,
   .card-action {
     margin-right: 0 !important;
     padding-right: 0 !important;
-    line-height: 1rem;
-    height: 1rem;
   }
 
   .ves-actions,

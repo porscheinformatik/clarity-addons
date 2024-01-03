@@ -2,7 +2,7 @@
 <div class="clr-control-container" [ngClass]="controlClasses">
   <ng-content select=".header-container"></ng-content>
 
-  <ng-container *ngFor="let item of allItems">
+  <ng-container *ngFor="let item of allItems; index as i">
     <div class="controls-wrapper">
       <div class="controls-container" *ngIf="itemTemplate" #row>
         <ng-container *ngTemplateOutlet="itemTemplate.get(0); context: {$implicit:item}"></ng-container>
@@ -11,16 +11,34 @@
         *ngIf="!(readonly || readonly === '')"
         type="button"
         class="btn btn-icon btn-link btn-trash"
+        [ngClass]="{'btn-trash-ext': !(compactMode && i === allItems.length - 1)}"
         [disabled]="required && allItems.length === 1"
         (click)="removeItem(item)"
       >
-        <clr-icon shape="trash"></clr-icon>
+        <cds-icon shape="trash"></cds-icon>
+      </button>
+      <button
+        *ngIf="!(readonly || readonly === '') && compactMode && i === allItems.length - 1"
+        type="button"
+        class="btn btn-icon btn-link quick-list-addcompact"
+        (click)="addItem()"
+        [disabled]="!addPossible"
+      >
+        <cds-icon shape="plus-circle"></cds-icon>
       </button>
     </div>
   </ng-container>
-
   <button
-    *ngIf="!(readonly || readonly === '')"
+    *ngIf="!(readonly || readonly === '') && allItems.length === 0 && compactMode"
+    type="button"
+    class="btn btn-icon btn-link quick-list-addcompact"
+    (click)="addItem()"
+    [disabled]="!addPossible"
+  >
+    <cds-icon shape="plus-circle"></cds-icon>
+  </button>
+  <button
+    *ngIf="!(readonly || readonly === '') && !compactMode"
     type="button"
     class="btn btn-link btn-sm btn-add"
     (click)="addItem()"

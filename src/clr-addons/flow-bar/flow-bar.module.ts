@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -10,9 +10,10 @@ import { FormsModule } from '@angular/forms';
 import { ClarityModule } from '@clr/angular';
 
 import { ClrFlowBar } from './flow-bar';
+import { ClrDropdownOverflowModule } from '../dropdown';
 
 @NgModule({
-  imports: [CommonModule, ClarityModule, FormsModule],
+  imports: [CommonModule, ClarityModule, FormsModule, ClrDropdownOverflowModule],
   declarations: [ClrFlowBar],
   exports: [ClrFlowBar],
 })
