@@ -1,10 +1,33 @@
 @include exports('paged-search-result-list.clr-addons') {
   .pager-top,
-  .pager-bottom {
+  .pager-bottom,
+  .results-per-page {
     margin: auto;
   }
 
   .pager-bottom {
     margin-top: 1rem;
+  }
+
+  .btn-no-capitalized {
+    text-transform: none;
+  }
+
+  .results-per-page {
+    margin-top: 0.3rem;
+  }
+
+  .options-icon-button {
+    display: none !important;
+  }
+
+  @media screen and (max-width: map-get($clr-grid-breakpoints, sm)) {
+    .options-text-button {
+      display: none !important;
+    }
+
+    .options-icon-button {
+      display: inline-flex !important;
+    }
   }
 }
