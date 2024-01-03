@@ -34,7 +34,7 @@
       </button>
       <clr-dropdown-menu class="spinner-in-front" clrPosition="top-right">
         <ng-container *ngFor="let sizeOption of pageSizeOptions">
-          <button type="button" clrDropdownItem (click)="pageSizeChange?.emit(sizeOption)">{{sizeOption}}</button>
+          <button type="button" clrDropdownItem (click)="pageSizeChange.emit(sizeOption)">{{sizeOption}}</button>
         </ng-container>
       </clr-dropdown-menu>
     </clr-dropdown>

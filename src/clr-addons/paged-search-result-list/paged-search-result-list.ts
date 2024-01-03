@@ -60,5 +60,5 @@ export class ClrPagedSearchResultList {
   /**
    * Triggered whenever a page size change occurs.
    */
-  @Output('clrPageSizeChange') pageSizeChange?: EventEmitter<number> = new EventEmitter();
+  @Output('clrPageSizeChange') pageSizeChange: EventEmitter<number> = new EventEmitter();
 }
