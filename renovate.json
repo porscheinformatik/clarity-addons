@@ -20,7 +20,7 @@
     },
     {
       "matchPackageNames": [
-        "@​angular-eslint/builder",
+        "@angular-eslint/builder",
         "@types/jasmine",
         "@types/node",
         "@typescript-eslint/eslint-plugin",
@@ -31,7 +31,8 @@
         "gh-pages",
         "JamesIves/github-pages-deploy-action",
         "postcss",
-        "postcss-cli"
+        "postcss-cli",
+        "sass"
       ],
       "automerge": true
     }
