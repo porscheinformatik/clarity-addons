@@ -1,8 +1,8 @@
 @include exports('paged-search-result-list.clr-addons') {
   .pager-top,
-  .pager-bottom,
-  .results-per-page {
+  .pager-bottom {
     margin: auto;
+    display: flex;
   }
 
   .pager-bottom {
@@ -11,10 +11,6 @@
 
   .btn-no-capitalized {
     text-transform: none;
-  }
-
-  .results-per-page {
-    margin-top: 0.3rem;
   }
 
   .options-icon-button {

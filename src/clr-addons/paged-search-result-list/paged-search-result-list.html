@@ -1,29 +1,31 @@
 <div *ngIf="clrPagerPosition === 'top' || clrPagerPosition === 'both'">
   <ng-container *ngTemplateOutlet="pager"></ng-container>
-  <ng-container *ngTemplateOutlet="pageSizeDropdown"></ng-container>
 </div>
 <ng-container *ngFor="let item of items" [ngTemplateOutlet]="itemTemplate" [ngTemplateOutletContext]="{item: item}">
   <div *ngIf="!itemTemplate">Item template input is undefined!</div>
 </ng-container>
 <div *ngIf="clrPagerPosition === 'bottom' || clrPagerPosition === 'both'">
   <ng-container *ngTemplateOutlet="pager"></ng-container>
-  <ng-container *ngTemplateOutlet="pageSizeDropdown"></ng-container>
 </div>
 <ng-template #pager>
   <div class="clr-row">
-    <clr-pager
+    <div
       [class.pager-top]="clrPagerPosition === 'top' || clrPagerPosition === 'both'"
       [class.pager-bottom]="clrPagerPosition === 'bottom' || clrPagerPosition === 'both'"
-      [clrPage]="currentPage"
-      [clrPageSize]="pageSize"
-      [clrTotalItems]="totalItems"
-      (clrPageChange)="pageChange.emit($event)"
-    ></clr-pager>
+    >
+      <ng-container *ngTemplateOutlet="pageSizeDropdown"></ng-container>
+      <clr-pager
+        [clrPage]="currentPage"
+        [clrPageSize]="pageSize"
+        [clrTotalItems]="totalItems"
+        (clrPageChange)="pageChange.emit($event)"
+      ></clr-pager>
+    </div>
   </div>
 </ng-template>
 <ng-template #pageSizeDropdown>
-  <div *ngIf="pageSizeOptions?.length > 1" class="clr-row">
-    <clr-dropdown *ngIf="pageSizeOptions?.length > 1" class="results-per-page">
+  <div *ngIf="pageSizeOptions?.length > 1">
+    <clr-dropdown>
       <button type="button" class="btn btn-link options-text-button btn-no-capitalized" clrDropdownTrigger>
         {{pageSizeLabel}}: {{pageSize}}
         <cds-icon shape="angle" direction="down"></cds-icon>
