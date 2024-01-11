@@ -1,17 +1,17 @@
 <div *ngIf="clrPagerPosition === 'top' || clrPagerPosition === 'both'">
-  <ng-container *ngTemplateOutlet="pager"></ng-container>
+  <ng-container [ngTemplateOutlet]="pager" [ngTemplateOutletContext]="{ $implicit:'top' }"></ng-container>
 </div>
 <ng-container *ngFor="let item of items" [ngTemplateOutlet]="itemTemplate" [ngTemplateOutletContext]="{item: item}">
   <div *ngIf="!itemTemplate">Item template input is undefined!</div>
 </ng-container>
 <div *ngIf="clrPagerPosition === 'bottom' || clrPagerPosition === 'both'">
-  <ng-container *ngTemplateOutlet="pager"></ng-container>
+  <ng-container [ngTemplateOutlet]="pager" [ngTemplateOutletContext]="{ $implicit:'bottom' }"></ng-container>
 </div>
-<ng-template #pager>
+<ng-template #pager let-position>
   <div class="clr-row">
     <div
-      [class.pager-top]="clrPagerPosition === 'top' || clrPagerPosition === 'both'"
-      [class.pager-bottom]="clrPagerPosition === 'bottom' || clrPagerPosition === 'both'"
+      [class.pager-top]="position === 'top' && (clrPagerPosition === 'top' || clrPagerPosition === 'both')"
+      [class.pager-bottom]="position === 'bottom' && (clrPagerPosition === 'bottom' || clrPagerPosition === 'both')"
     >
       <ng-container *ngTemplateOutlet="pageSizeDropdown"></ng-container>
       <clr-pager
