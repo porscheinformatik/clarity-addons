@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -43,6 +43,7 @@ export class PagedSearchResultListDemo {
     'Genoveva',
   ];
   pageSize = 5;
+  pageSizeOptions = [5, 10, 20];
   pagedItems: string[] = [];
   currentPage = 1;
 
@@ -52,5 +53,9 @@ export class PagedSearchResultListDemo {
     const endIndex = Math.min(startIndex + this.pageSize - 1, this.allItems.length - 1);
 
     setTimeout(() => (this.pagedItems = this.allItems.slice(startIndex, endIndex + 1)), 0);
+  }
+
+  onPageSizeChanged(pageSize: number): void {
+    this.pageSize = pageSize;
   }
 }
