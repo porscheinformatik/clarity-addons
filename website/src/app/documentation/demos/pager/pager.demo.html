@@ -225,6 +225,16 @@
         </tr>
         <tr>
           <td class="left">
+            <b>[clrPageSizeOptions]</b>
+            <div class="clr-hidden-sm-up">Type: Array of Number</div>
+            <div class="clr-hidden-sm-up">Default: undefined</div>
+          </td>
+          <td class="left clr-hidden-xs-down">Array of Number</td>
+          <td class="clr-hidden-xs-down">undefined</td>
+          <td class="left">Sets the page size options</td>
+        </tr>
+        <tr>
+          <td class="left">
             <b>[clrTotalItems]</b>
             <div class="clr-hidden-sm-up">Type: Number</div>
             <div class="clr-hidden-sm-up">Default: undefined</div>
@@ -245,6 +255,18 @@
         </tr>
         <tr>
           <td class="left">
+            <b>[clrPageSizeLabel]</b>
+            <div class="clr-hidden-sm-up">Type: String</div>
+            <div class="clr-hidden-sm-up">Default: 'Results per page (Translate me)'</div>
+          </td>
+          <td class="left clr-hidden-xs-down">String</td>
+          <td class="clr-hidden-xs-down">'Results per page (Translate me)'</td>
+          <td class="left">
+            Sets the label next to the page size options dropdown. Only visible if clrPageSizeOptions is set.
+          </td>
+        </tr>
+        <tr>
+          <td class="left">
             <b>(clrPageChange)</b>
             <div class="clr-hidden-sm-up">Type: Function</div>
             <div class="clr-hidden-sm-up">N/A</div>
@@ -252,6 +274,16 @@
           <td class="left clr-hidden-xs-down">Function</td>
           <td class="clr-hidden-xs-down">N/A</td>
           <td class="left">Fired every time the page changes</td>
+        </tr>
+        <tr>
+          <td class="left">
+            <b>(clrPageSizeChange)</b>
+            <div class="clr-hidden-sm-up">Type: Function</div>
+            <div class="clr-hidden-sm-up">N/A</div>
+          </td>
+          <td class="left clr-hidden-xs-down">Function</td>
+          <td class="clr-hidden-xs-down">N/A</td>
+          <td class="left">Fired every time the page size changes</td>
         </tr>
       </tbody>
     </table>
@@ -264,8 +296,11 @@
           [clrItems]="pagedItems"
           [clrPage]="currentPage"
           [clrPageSize]="pageSize"
+          [clrPageSizeOptions]="pageSizeOptions"
           [clrTotalItems]="allItems.length"
+          [clrPageSizeLabel]="'Entries per page'"
           (clrPageChange)="onPageChanged($event)"
+          (clrPageSizeChange)="onPageSizeChanged($event)"
         >
           <ng-template let-item="item">
             <div class="col-xs-12">

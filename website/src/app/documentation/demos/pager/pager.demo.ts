@@ -52,8 +52,11 @@ const PAGEDSEARCH_HTML_EXAMPLE = `
 <clr-paged-search-result-list [clrItems]="pagedItems"
                               [clrPage]="currentPage"
                               [clrPageSize]="pageSize"
+                              [clrPageSizeOptions]="pageSizeOptions"
                               [clrTotalItems]="allItems.length"
-                              (clrPageChange)="onPageChanged($event)">
+                              [clrPageSizeLabel]="'Entries per page'"
+                              (clrPageChange)="onPageChanged($event)"
+                              (clrPageSizeChange)="onPageSizeChanged($event)">
     <ng-template let-item="item">
         <div class="col-xs-12">
             <div class="card">
@@ -88,6 +91,7 @@ export class PagerDemo extends ClarityDocComponent implements OnInit {
   pagedItems: string[] = [];
   totalItems: number = 30;
   pageSize: number = 3;
+  pageSizeOptions: number[] = [3, 10, 20];
   currentPage: number = 1;
   pages: number = 10;
 
@@ -97,6 +101,10 @@ export class PagerDemo extends ClarityDocComponent implements OnInit {
     const endIndex = Math.min(startIndex + this.pageSize - 1, this.allItems.length - 1);
 
     setTimeout(() => (this.pagedItems = this.allItems.slice(startIndex, endIndex + 1)), 0);
+  }
+
+  onPageSizeChanged(pageSize: number): void {
+    this.pageSize = pageSize;
   }
 
   createItems() {

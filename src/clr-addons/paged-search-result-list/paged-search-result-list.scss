@@ -2,9 +2,28 @@
   .pager-top,
   .pager-bottom {
     margin: auto;
+    display: flex;
   }
 
   .pager-bottom {
     margin-top: 1rem;
+  }
+
+  .btn-no-capitalized {
+    text-transform: none;
+  }
+
+  .options-icon-button {
+    display: none !important;
+  }
+
+  @media screen and (max-width: map-get($clr-grid-breakpoints, sm)) {
+    .options-text-button {
+      display: none !important;
+    }
+
+    .options-icon-button {
+      display: inline-flex !important;
+    }
   }
 }

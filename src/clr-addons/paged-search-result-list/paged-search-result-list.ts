@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -15,6 +15,16 @@ export class ClrPagedSearchResultList {
    * The page size, used for pagination.
    */
   @Input('clrPageSize') pageSize: number;
+
+  /**
+   * The page size options, used for changing the size of the page.
+   */
+  @Input('clrPageSizeOptions') pageSizeOptions?: number[];
+
+  /**
+   * Page size label.
+   */
+  @Input('clrPageSizeLabel') pageSizeLabel: string = 'Results per page (Translate me)';
 
   /**
    * The current page, used for pagination.
@@ -46,4 +56,9 @@ export class ClrPagedSearchResultList {
    * Triggered whenever a page change occurs.
    */
   @Output('clrPageChange') pageChange: EventEmitter<any> = new EventEmitter();
+
+  /**
+   * Triggered whenever a page size change occurs.
+   */
+  @Output('clrPageSizeChange') pageSizeChange: EventEmitter<number> = new EventEmitter();
 }
