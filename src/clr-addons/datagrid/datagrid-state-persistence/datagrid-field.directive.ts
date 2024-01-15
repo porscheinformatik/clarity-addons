@@ -9,7 +9,7 @@ export class DatagridFieldDirective {
   @Input()
   clrDgFieldKey: string;
 
-  get persistenceKey(): string {
+  getFieldName(): string {
     return this.clrDgField ?? this.clrDgFieldKey;
   }
 }

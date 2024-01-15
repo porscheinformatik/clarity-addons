@@ -21,7 +21,7 @@ export class ColumnHiddenStatePersistenceDirective implements OnInit, OnDestroy 
 
   ngOnInit() {
     const persistenceEnabled = this.statePersistenceKey?.options?.persistHiddenColumns ?? true;
-    if (this.statePersistenceKey?.options.key && this.columnDirective?.persistenceKey && persistenceEnabled) {
+    if (this.statePersistenceKey?.options.key && this.columnDirective?.getFieldName() && persistenceEnabled) {
       /* set hidden states from local storage (if existing) */
       this.initHiddenState();
 
@@ -37,9 +37,9 @@ export class ColumnHiddenStatePersistenceDirective implements OnInit, OnDestroy 
     const persistedGridState = this.readStoredState();
 
     /* read column state if existing */
-    if (persistedGridState?.columns?.[this.columnDirective.persistenceKey]) {
+    if (persistedGridState?.columns?.[this.columnDirective.getFieldName()]) {
       /* read column hidden state if existing */
-      const persistedColumnHiddenState = persistedGridState.columns[this.columnDirective.persistenceKey].hidden;
+      const persistedColumnHiddenState = persistedGridState.columns[this.columnDirective.getFieldName()].hidden;
       if (persistedColumnHiddenState !== undefined) {
         this.hideableColumnDirective.clrDgHidden = persistedColumnHiddenState === true;
       }
@@ -55,10 +55,10 @@ export class ColumnHiddenStatePersistenceDirective implements OnInit, OnDestroy 
       if (!persistedGridState.columns) {
         persistedGridState.columns = {};
       }
-      let persistedColumnState = persistedGridState.columns[this.columnDirective.persistenceKey];
+      let persistedColumnState = persistedGridState.columns[this.columnDirective.getFieldName()];
       if (!persistedColumnState) {
         persistedColumnState = {};
-        persistedGridState.columns[this.columnDirective.persistenceKey] = persistedColumnState;
+        persistedGridState.columns[this.columnDirective.getFieldName()] = persistedColumnState;
       }
 
       /* set column hidden state and persist in local storage */
