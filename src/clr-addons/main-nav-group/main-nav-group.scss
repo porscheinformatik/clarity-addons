@@ -116,6 +116,8 @@
         left: unset;
         width: 0.666667rem;
         height: 0.666667rem;
+        transform: translate(-50%, 50%) rotate(90deg);
+        transition: 200ms ease-in-out;
       }
 
       clr-icon {
@@ -134,11 +136,11 @@
 
       input[type='checkbox']:checked {
         ~ label cds-icon {
-          transform: unset;
+          transform: translate(-50%, 50%) rotate(180deg);
         }
 
         ~ label clr-icon {
-          transform: unset;
+          transform: translate(-50%, 50%) rotate(180deg);
         }
 
         ~ .nav-list {
