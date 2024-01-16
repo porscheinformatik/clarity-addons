@@ -32,6 +32,7 @@
         "JamesIves/github-pages-deploy-action",
         "postcss",
         "postcss-cli",
+        "pretty-quick",
         "sass"
       ],
       "automerge": true
