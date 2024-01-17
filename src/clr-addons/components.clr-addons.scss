@@ -527,8 +527,8 @@ clr-dropdown-menu .dropdown-header {
   position: absolute;
   top: -7px;
   right: -13px;
-  background-color: $clr-badge-info-bg-color;
-  color: $clr-badge-info-color;
+  background-color: var(--clr-badge-info-bg-color);
+  color: var(--clr-badge-info-color);
   z-index: 1;
 }
 
