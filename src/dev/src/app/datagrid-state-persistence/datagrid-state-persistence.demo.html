@@ -11,6 +11,9 @@
       <clr-dg-column [clrDgField]="'hideableCol'">
         <ng-template clrDgHideableColumn>Hideable String</ng-template>
       </clr-dg-column>
+      <clr-dg-column [clrDgFieldKey]="'hideableCol2'">
+        <ng-template clrDgHideableColumn>Hideable /wo filter</ng-template>
+      </clr-dg-column>
       <clr-dg-column [clrDgField]="'numericCol'" clrDgColType="number">Numeric</clr-dg-column>
       <clr-dg-column [clrDgField]="'dateCol'"
         >Date
@@ -27,6 +30,7 @@
 
       <clr-dg-row *clrDgItems="let item of data$ | async" [clrDgItem]="item">
         <clr-dg-cell>{{item.hideableCol}}</clr-dg-cell>
+        <clr-dg-cell>{{item.hideableCol2}}</clr-dg-cell>
         <clr-dg-cell>{{item.numericCol}}</clr-dg-cell>
         <clr-dg-cell>{{item.dateCol | date}}</clr-dg-cell>
         <clr-dg-cell>{{item.enumCol}}</clr-dg-cell>
