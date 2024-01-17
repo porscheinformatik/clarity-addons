@@ -522,5 +522,15 @@ clr-dropdown-menu .dropdown-header {
   min-height: 0.9rem;
 }
 
+//custom alignment of the badge counter on filter
+.clr-custom-filter-counter-badge {
+  position: absolute;
+  top: -7px;
+  right: -13px;
+  background-color: $turquoise;
+  color: $white;
+  z-index: 1;
+}
+
 // Has to be at the bottom to override the styles from the above properly
 @import './mobile';
