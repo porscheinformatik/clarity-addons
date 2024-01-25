@@ -21,39 +21,46 @@
     <clr-tt-cell></clr-tt-cell>
     <clr-tt-cell></clr-tt-cell>
     <clr-tt-cell></clr-tt-cell>
-    <clr-tt-row *ngFor="let data of data$ | async" [clrExpanded]="true" [clrExpandable]="true">
-      <clr-tt-cell>{{data.col1}}</clr-tt-cell>
-      <clr-tt-cell>{{data.col2}}</clr-tt-cell>
-      <clr-tt-cell>{{data.col3}}</clr-tt-cell>
-      <clr-tt-cell>{{data.col4}}</clr-tt-cell>
-      <clr-tt-cell>{{data.col5}}</clr-tt-cell>
-      <clr-tt-cell>{{data.col6}}</clr-tt-cell>
-      <clr-tt-row *ngFor="let child1 of data.child">
-        <clr-tt-cell>{{child1.col1}}</clr-tt-cell>
-        <clr-tt-cell>{{child1.col2}}</clr-tt-cell>
-        <clr-tt-cell>{{child1.col3}}</clr-tt-cell>
-        <clr-tt-cell>{{child1.col4}}</clr-tt-cell>
-        <clr-tt-cell>{{child1.col5}}</clr-tt-cell>
-        <clr-tt-cell>{{child1.col6}}</clr-tt-cell>
-      </clr-tt-row>
-      <clr-tt-row [clrExpanded]="true" [clrExpandable]="true">
-        <clr-tt-cell>Extras</clr-tt-cell>
-        <clr-tt-cell></clr-tt-cell>
-        <clr-tt-cell></clr-tt-cell>
-        <clr-tt-cell></clr-tt-cell>
-        <clr-tt-cell></clr-tt-cell>
-        <clr-tt-cell></clr-tt-cell>
-        <clr-tt-row *ngFor="let extra of data.extras">
-          <clr-tt-cell>{{extra.col1}}</clr-tt-cell>
-          <clr-tt-cell>{{extra.col2}}</clr-tt-cell>
-          <clr-tt-cell>{{extra.col3}}</clr-tt-cell>
-          <clr-tt-cell>{{extra.col4}}</clr-tt-cell>
-          <clr-tt-cell>{{extra.col5}}</clr-tt-cell>
-          <clr-tt-cell>{{extra.col6}}</clr-tt-cell>
+
+    <ng-container ngProjectAs="clr-tt-row" *ngFor="let data of data$ | async">
+      <ng-container *ngTemplateOutlet="singleNode; context: { $implicit: data }"></ng-container>
+    </ng-container>
+
+    <ng-template #singleNode let-data>
+      <clr-tt-row [clrExpandable]="isExpandable(data)" [clrExpanded]="true">
+        <clr-tt-cell>{{data.col1}}</clr-tt-cell>
+        <clr-tt-cell>{{data.col2}}</clr-tt-cell>
+        <clr-tt-cell>{{data.col3}}</clr-tt-cell>
+        <clr-tt-cell>{{data.col4}}</clr-tt-cell>
+        <clr-tt-cell>{{data.col5}}</clr-tt-cell>
+        <clr-tt-cell>{{data.col6}}</clr-tt-cell>
+        <clr-tt-row *ngFor="let child1 of data.child">
+          <clr-tt-cell>{{child1.col1}}</clr-tt-cell>
+          <clr-tt-cell>{{child1.col2}}</clr-tt-cell>
+          <clr-tt-cell>{{child1.col3}}</clr-tt-cell>
+          <clr-tt-cell>{{child1.col4}}</clr-tt-cell>
+          <clr-tt-cell>{{child1.col5}}</clr-tt-cell>
+          <clr-tt-cell>{{child1.col6}}</clr-tt-cell>
+        </clr-tt-row>
+        <clr-tt-row [clrExpanded]="true" [clrExpandable]="true">
+          <clr-tt-cell>Extras</clr-tt-cell>
+          <clr-tt-cell></clr-tt-cell>
+          <clr-tt-cell></clr-tt-cell>
+          <clr-tt-cell></clr-tt-cell>
+          <clr-tt-cell></clr-tt-cell>
+          <clr-tt-cell></clr-tt-cell>
+          <clr-tt-row *ngFor="let extra of data.extras">
+            <clr-tt-cell>{{extra.col1}}</clr-tt-cell>
+            <clr-tt-cell>{{extra.col2}}</clr-tt-cell>
+            <clr-tt-cell>{{extra.col3}}</clr-tt-cell>
+            <clr-tt-cell>{{extra.col4}}</clr-tt-cell>
+            <clr-tt-cell>{{extra.col5}}</clr-tt-cell>
+            <clr-tt-cell>{{extra.col6}}</clr-tt-cell>
+          </clr-tt-row>
         </clr-tt-row>
       </clr-tt-row>
-    </clr-tt-row>
-  </clr-tt-row>
+    </ng-template> </clr-tt-row
+  >>
 </clr-treetable>
 
 <h4>Treetable with large amount of data</h4>
