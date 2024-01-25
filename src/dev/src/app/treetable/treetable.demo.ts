@@ -112,7 +112,7 @@ export class TreetableDemo implements OnInit {
 
   isExpandable(node: any): boolean {
     let expandable = false;
-    node.child.forEach((child: any) => {
+    node.child?.forEach((child: any) => {
       if (child) {
         expandable = true;
       }
