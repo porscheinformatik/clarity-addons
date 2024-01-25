@@ -1,10 +1,149 @@
 <!--
-  ~ Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
+  ~ Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
 
 <h2>Treetable</h2>
+
+<h4>Treetable wit large amount of data</h4>
+<clr-treetable>
+  <clr-tt-column>Col1</clr-tt-column>
+  <clr-tt-column>Col2</clr-tt-column>
+  <clr-tt-column>Col3</clr-tt-column>
+  <clr-tt-column>Col4</clr-tt-column>
+  <clr-tt-column>Col5</clr-tt-column>
+  <clr-tt-column>Col6</clr-tt-column>
+  <clr-tt-row *ngFor="let _ of [].constructor(200)" [clrExpanded]="true" [clrExpandable]="true">
+    <clr-tt-cell>Vehicle configuration</clr-tt-cell>
+    <clr-tt-cell></clr-tt-cell>
+    <clr-tt-cell>18,519.99EUR</clr-tt-cell>
+    <clr-tt-cell>20%</clr-tt-cell>
+    <clr-tt-cell>19.99EUR</clr-tt-cell>
+    <clr-tt-cell>-519.99EUR</clr-tt-cell>
+
+    <clr-tt-row>
+      <clr-tt-cell>Audi A1 3-Türer Attraction 1.2 TFSI 63(86) kW(PS) 5-Gang</clr-tt-cell>
+      <clr-tt-cell>EUR 16,750.00</clr-tt-cell>
+      <clr-tt-cell></clr-tt-cell>
+      <clr-tt-cell>20%</clr-tt-cell>
+      <clr-tt-cell>19.99EUR</clr-tt-cell>
+      <clr-tt-cell>-519.99EUR</clr-tt-cell>
+    </clr-tt-row>
+
+    <clr-tt-row>
+      <clr-tt-cell
+        >Florettsilber Metallic Brillantschwarz / granatrot-schwarz-granatrot / schwarz- schwarz / schwarz / titangrau
+      </clr-tt-cell>
+      <clr-tt-cell>EUR 480.00</clr-tt-cell>
+      <clr-tt-cell></clr-tt-cell>
+      <clr-tt-cell>20%</clr-tt-cell>
+      <clr-tt-cell>19.99EUR</clr-tt-cell>
+      <clr-tt-cell>-519.99EUR</clr-tt-cell>
+    </clr-tt-row>
+
+    <clr-tt-row [clrExpanded]="true" [clrExpandable]="true">
+      <clr-tt-cell>Extra</clr-tt-cell>
+      <clr-tt-cell>EUR 1,289.99</clr-tt-cell>
+      <clr-tt-cell></clr-tt-cell>
+      <clr-tt-cell>20%</clr-tt-cell>
+      <clr-tt-cell>19.99EUR</clr-tt-cell>
+      <clr-tt-cell>-519.99EUR</clr-tt-cell>
+
+      <clr-tt-row>
+        <clr-tt-cell>Sitzpaket (PV2)</clr-tt-cell>
+        <clr-tt-cell>EUR 0.00</clr-tt-cell>
+        <clr-tt-cell></clr-tt-cell>
+        <clr-tt-cell>20%</clr-tt-cell>
+        <clr-tt-cell>19.99EUR</clr-tt-cell>
+        <clr-tt-cell>-519.99EUR</clr-tt-cell>
+
+        <clr-tt-row>
+          <clr-tt-cell>Vehicle configuration</clr-tt-cell>
+          <clr-tt-cell></clr-tt-cell>
+          <clr-tt-cell>18,519.99EUR</clr-tt-cell>
+          <clr-tt-cell>20%</clr-tt-cell>
+          <clr-tt-cell>19.99EUR</clr-tt-cell>
+          <clr-tt-cell>-519.99EUR</clr-tt-cell>
+
+          <clr-tt-row>
+            <clr-tt-cell>Audi A1 3-Türer Attraction 1.2 TFSI 63(86) kW(PS) 5-Gang</clr-tt-cell>
+            <clr-tt-cell>EUR 16,750.00</clr-tt-cell>
+            <clr-tt-cell></clr-tt-cell>
+            <clr-tt-cell>20%</clr-tt-cell>
+            <clr-tt-cell>19.99EUR</clr-tt-cell>
+            <clr-tt-cell>-519.99EUR</clr-tt-cell>
+          </clr-tt-row>
+
+          <clr-tt-row>
+            <clr-tt-cell
+              >Florettsilber Metallic Brillantschwarz / granatrot-schwarz-granatrot/schwarz- schwarz/schwarz/titangrau
+            </clr-tt-cell>
+            <clr-tt-cell>EUR 480.00</clr-tt-cell>
+            <clr-tt-cell></clr-tt-cell>
+            <clr-tt-cell>20%</clr-tt-cell>
+            <clr-tt-cell>19.99EUR</clr-tt-cell>
+            <clr-tt-cell>-519.99EUR</clr-tt-cell>
+          </clr-tt-row>
+
+          <clr-tt-row [clrExpandable]="true">
+            <clr-tt-cell>Extra</clr-tt-cell>
+            <clr-tt-cell>EUR 1,289.99</clr-tt-cell>
+            <clr-tt-cell></clr-tt-cell>
+            <clr-tt-cell>20%</clr-tt-cell>
+            <clr-tt-cell>19.99EUR</clr-tt-cell>
+            <clr-tt-cell>-519.99EUR</clr-tt-cell>
+
+            <clr-tt-row>
+              <clr-tt-cell>Sitzpaket (PV2)</clr-tt-cell>
+              <clr-tt-cell>EUR 0.00</clr-tt-cell>
+              <clr-tt-cell></clr-tt-cell>
+              <clr-tt-cell>20%</clr-tt-cell>
+              <clr-tt-cell>19.99EUR</clr-tt-cell>
+              <clr-tt-cell>-519.99EUR</clr-tt-cell>
+            </clr-tt-row>
+
+            <clr-tt-row>
+              <clr-tt-cell>style Paket (WMV)</clr-tt-cell>
+              <clr-tt-cell>EUR 950.00</clr-tt-cell>
+              <clr-tt-cell></clr-tt-cell>
+              <clr-tt-cell>20%</clr-tt-cell>
+              <clr-tt-cell>19.99EUR</clr-tt-cell>
+              <clr-tt-cell>-519.99EUR</clr-tt-cell>
+            </clr-tt-row>
+
+            <clr-tt-row>
+              <clr-tt-cell>Sportsitze vorn (PS1)</clr-tt-cell>
+              <clr-tt-cell>EUR 339.99</clr-tt-cell>
+              <clr-tt-cell></clr-tt-cell>
+              <clr-tt-cell>20%</clr-tt-cell>
+              <clr-tt-cell>19.99EUR</clr-tt-cell>
+              <clr-tt-cell>-519.99EUR</clr-tt-cell>
+            </clr-tt-row>
+          </clr-tt-row>
+        </clr-tt-row>
+      </clr-tt-row>
+
+      <clr-tt-row>
+        <clr-tt-cell>style Paket (WMV)</clr-tt-cell>
+        <clr-tt-cell>EUR 950.00</clr-tt-cell>
+        <clr-tt-cell></clr-tt-cell>
+        <clr-tt-cell>20%</clr-tt-cell>
+        <clr-tt-cell>19.99EUR</clr-tt-cell>
+        <clr-tt-cell>-519.99EUR</clr-tt-cell>
+      </clr-tt-row>
+
+      <clr-tt-row>
+        <clr-tt-cell>Sportsitze vorn (PS1)</clr-tt-cell>
+        <clr-tt-cell>EUR 339.99</clr-tt-cell>
+        <clr-tt-cell></clr-tt-cell>
+        <clr-tt-cell>20%</clr-tt-cell>
+        <clr-tt-cell>19.99EUR</clr-tt-cell>
+        <clr-tt-cell>-519.99EUR</clr-tt-cell>
+      </clr-tt-row>
+    </clr-tt-row>
+  </clr-tt-row>
+</clr-treetable>
 
 <h4>Treetable with whole clickable rows</h4>
 <clr-treetable>
@@ -372,7 +511,7 @@
   </ng-container>
 
   <ng-template #singleNode let-node>
-    <clr-tt-row [clrExpandable]="node.children?.length > 0" [clrExpanded]="true">
+    <clr-tt-row [clrExpandable]="node.children?.length > 0" [clrExpanded]="false">
       <clr-tt-action-overflow>
         <button class="action-item">Test</button>
       </clr-tt-action-overflow>
@@ -397,7 +536,7 @@
   </ng-container>
 
   <ng-template #truncateNode let-node>
-    <clr-tt-row [clrExpandable]="node.children?.length > 0" [clrExpanded]="true">
+    <clr-tt-row [clrExpandable]="node.children?.length > 0" [clrExpanded]="false">
       <clr-tt-action-overflow>
         <button class="action-item">Test</button>
       </clr-tt-action-overflow>
@@ -422,7 +561,7 @@
   </ng-container>
 
   <ng-template #signpostNode let-node>
-    <clr-tt-row [clrExpandable]="node.children?.length > 0" [clrExpanded]="true">
+    <clr-tt-row [clrExpandable]="node.children?.length > 0" [clrExpanded]="false">
       <clr-tt-action-overflow>
         <button class="action-item">Test</button>
       </clr-tt-action-overflow>
