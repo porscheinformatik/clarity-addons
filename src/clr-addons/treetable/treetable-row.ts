@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { ChangeDetectorRef, Component, ContentChild, EventEmitter, Input, Output } from '@angular/core';
+import { Component, ContentChild, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ClrTreetableActionOverflow } from './treetable-action-overflow';
 import { angleIcon, ClarityIcons } from '@cds/core/icon';
@@ -30,24 +30,17 @@ ClarityIcons.addIcons(angleIcon);
     ]),
   ],
 })
-export class ClrTreetableRow {
+export class ClrTreetableRow implements OnInit {
   @Input('clrExpanded') expanded = false;
   @Input('clrClickable') clickable = true;
-
-  @Input('clrExpandable')
-  set clrExpandable(expandable: boolean) {
-    setTimeout(() => {
-      this.expandable = expandable;
-      this.changeDetectorRef.markForCheck();
-    });
-  }
+  @Input('clrExpandable') expandable = false;
 
   @Output() hasActionOverflow = new EventEmitter<boolean>();
   @Output('clrExpandedChange') expandedChange = new EventEmitter<boolean>();
 
   showActionOverflow = false;
   showEmptyActionOverflow = false;
-  expandable = false;
+  showClickClass = false;
 
   @ContentChild(ClrTreetableActionOverflow)
   set actionOverflow(actionOverflow: ClrTreetableActionOverflow) {
@@ -56,7 +49,11 @@ export class ClrTreetableRow {
     this.hasActionOverflow.emit(this.showActionOverflow);
   }
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) {}
+  constructor() {}
+
+  ngOnInit(): void {
+    this.showClickClass = this.expandable && this.clickable;
+  }
 
   private toggleExpand(): void {
     if (this.expandable) {
@@ -75,9 +72,5 @@ export class ClrTreetableRow {
     if (!this.clickable) {
       this.toggleExpand();
     }
-  }
-
-  isExpandable(): boolean {
-    return this.expandable;
   }
 }
