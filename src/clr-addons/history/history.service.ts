@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -99,12 +99,10 @@ export class ClrHistoryService {
 
   reduceSize(entries: ClrHistoryModel[]): ClrHistoryModel[] {
     if (JSON.stringify(entries).length > this.maxSize) {
-      const reduced: ClrHistoryModel[] = [];
+      const reduced: ClrHistoryModel[] = [...entries];
       do {
-        for (let i = 0; i < entries.length; i++) {
-          reduced.push(entries[i]);
-        }
-      } while (JSON.stringify(reduced).length < this.maxSize);
+        reduced.shift();
+      } while (JSON.stringify(reduced).length > this.maxSize);
       return reduced;
     } else {
       return entries;
