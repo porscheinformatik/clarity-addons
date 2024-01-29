@@ -25,6 +25,7 @@
         "@types/node",
         "@typescript-eslint/eslint-plugin",
         "@typescript-eslint/parser",
+        "autoprefixer",
         "core-js",
         "eslint",
         "eslint-config-prettier",
