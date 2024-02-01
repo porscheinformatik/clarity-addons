@@ -75,7 +75,7 @@
   }
 
   .signpost {
-    .signpost-content {
+    .signpost-content.not(.default) {
       width: max-content;
       min-width: 5rem;
       max-width: calc(100% - 2rem);
