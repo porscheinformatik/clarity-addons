@@ -509,7 +509,7 @@ export const PaintMaterialForwardShape = clrIconSVG(
   '0 0 36 36'
 );
 
-export const ItemsReceiveIcon = clrIconSVG(
+export const ItemsReceiveShape = clrIconSVG(
   `<path d="M31.995,8.1968H4.0049A2.005,2.005,0,0,0,2,10.2018v5.4008a2.9662,2.9662,0,0,1,1.5-.4172h.5034l.0015-4.9886h27.99l.005.005L31.995,26.174,4,26.169l.0015-4.9836H3.5A2.9662,2.9662,0,0,1,2,20.7682V26.169a2.005,2.005,0,0,0,2.0049,2.005h27.99A2.005,2.005,0,0,0,34,26.169V10.2018A2.005,2.005,0,0,0,31.995,8.1968Z"/><path d="M18.5605,17.1248l-4-4a1.5,1.5,0,1,0-2.1211,2.1211l1.44,1.44H3.5a1.5,1.5,0,0,0,0,3H13.8789l-1.44,1.4394a1.5,1.5,0,1,0,2.1211,2.1211l4-4A1.4993,1.4993,0,0,0,18.5605,17.1248Z"/><path d="M25.9893,23.1855h-4a1,1,0,0,1,0-2h4a1,1,0,0,1,0,2Z"/><path d="M28.4893,19.1855h-6.5a1,1,0,0,1,0-2h6.5a1,1,0,0,1,0,2Z"/><path d="M27.9893,15.1855h-6a1,1,0,0,1,0-2h6a1,1,0,0,1,0,2Z"/>`,
   '0 0 36 36'
 );
@@ -685,7 +685,7 @@ export const ClrAddonsIconShapes: any = {
   'parts-nonstock-fwd': PartNonStockForwardShape,
   'paint-material': PaintMaterialShape,
   'paint-material-fwd': PaintMaterialForwardShape,
-  'items-receive': ItemsReceiveIcon,
+  'items-receive': ItemsReceiveShape,
   'items-forward': ItemsForwardShape,
   'money-partial': DollarBillPartialShape,
   'money-fwd': DollarBillForwardShape,
@@ -807,7 +807,7 @@ export const partsNonStockIcon: IconShapeTuple = ['parts-nonstock', PartsNonStoc
 export const partsNonStockForwardIcon: IconShapeTuple = ['parts-nonstock-fwd', PartNonStockForwardShape];
 export const paintMaterialIcon: IconShapeTuple = ['paint-material', PaintMaterialShape];
 export const paintMaterialForwardIcon: IconShapeTuple = ['paint-material-fwd', PaintMaterialForwardShape];
-export const itemsReceiveIcon: IconShapeTuple = ['items-receive', ItemsReceiveIcon];
+export const itemsReceiveIcon: IconShapeTuple = ['items-receive', ItemsReceiveShape];
 export const itemsForwardIcon: IconShapeTuple = ['items-forward', ItemsForwardShape];
 export const dollarBillPartialIcon: IconShapeTuple = ['money-partial', DollarBillPartialShape];
 export const dollarBillForwardIcon: IconShapeTuple = ['money-fwd', DollarBillForwardShape];
