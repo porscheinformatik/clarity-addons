@@ -11,6 +11,11 @@ import { IconShapeTuple } from '@cds/core/icon/interfaces/icon.interfaces';
 
 // To support badges, alerts or the is-solid, the SVGs would need to be extended.
 
+export const AcceptanceDateShape = clrIconSVG(
+  `<rect x="13" y="7" width="10" height="2"/><path d="M4,16.89V9H7V7H4A2.0059,2.0059,0,0,0,2,9v8.29a2.9516,2.9516,0,0,1,1.5-.4Z"/><path d="M10,11a1.0029,1.0029,0,0,0,1-1V4A1,1,0,0,0,9,4v6A1.0029,1.0029,0,0,0,10,11Z"/><path d="M26,11a1.0029,1.0029,0,0,0,1-1V4a1,1,0,0,0-2,0v6A1.0029,1.0029,0,0,0,26,11Z"/><path d="M32,7H29V9h3v7.89h.49A2.9688,2.9688,0,0,1,34,17.3V9A2.0059,2.0059,0,0,0,32,7Z"/><path d="M32,22.89V31H4V22.89H3.5a3.0545,3.0545,0,0,1-1.5-.4V31a2.0059,2.0059,0,0,0,2,2H32a2.0059,2.0059,0,0,0,2-2V22.48a2.9688,2.9688,0,0,1-1.51.41Z"/><path d="M3.5,21.3888H13.8789L12.44,22.8282a1.5,1.5,0,1,0,2.121,2.1211l4-4a1.4993,1.4993,0,0,0,0-2.1211l-4-4a1.5,1.5,0,0,0-2.121,2.1211l1.4394,1.4395H3.5a1.5,1.5,0,0,0,0,3Z"/><circle cx="27.3403" cy="19.8896" r="1.5"/><circle cx="22.1899" cy="19.8896" r="1.5"/><circle cx="32.4897" cy="19.8896" r="1.5"/>`,
+  '0 0 36 36'
+);
+
 export const CarOffSite = clrIconSVG(
   `
   <polygon points="24 8.39 24 24 22.7 24 22.7 9.07 12 1.58 1.3 9.07 1.3 24 0 24 0 8.39 12 0 24 8.39"/>
@@ -32,44 +37,69 @@ export const CarOnSite = clrIconSVG(
 );
 
 export const CampaignOutdatedShape = clrIconSVG(
-  ` <path
-  d="m 24.664062,20.947266 a 0.85000002,0.85000002 0 0 0 -0.857421,0.84375 l -0.03516,4.699218 a 0.85000002,0.85000002 0 0 0 0.84375,0.857422 0.85000002,0.85000002 0 0 0 0.857422,-0.84375 l 0.03516,-4.701172 a 0.85000002,0.85000002 0 0 0 -0.84375,-0.855468 z"
-  id="path1534" />
-<path
-  d="m 24.622114,26.496917 0.03513,-4.700373"
-  id="path1536" />
-<path
-  d="m 24.617187,25.621094 a 0.85693002,0.85693002 0 0 0 -0.859375,0.855468 0.85693002,0.85693002 0 0 0 0.857422,0.857422 l 2.841797,0.0039 A 0.85693002,0.85693002 0 0 0 28.314453,26.482422 0.85693002,0.85693002 0 0 0 27.458984,25.625 Z"
-  id="path1540" />
-<path
-  d="m 27.457296,26.481217 -2.84178,-0.0041"
-  id="path1542" />
-<path
-  d="m 24.644531,18.515625 c -4.317261,0 -7.878906,3.472391 -7.878906,7.751953 1e-6,4.279562 3.561646,7.75 7.878906,7.75 1.185221,0 2.354902,-0.262058 3.423828,-0.769531 A 1.5,1.5 0 0 0 28.779297,31.25 1.5,1.5 0 0 0 26.78125,30.537109 c -0.664871,0.315648 -1.395409,0.480469 -2.136719,0.480469 -2.728368,0 -4.878906,-2.124845 -4.878906,-4.75 0,-2.625155 2.150538,-4.751953 4.878906,-4.751953 0.740568,0 1.470412,0.165426 2.134766,0.480469 a 1.5,1.5 0 0 0 1.998047,-0.712891 1.5,1.5 0 0 0 -0.712891,-1.998047 c -1.068084,-0.506494 -2.235887,-0.769531 -3.419922,-0.769531 z"
-  id="path12594" />
-<path
-  d="m 11.355469,1.9824219 c -4.3172613,0 -7.8789065,3.4704378 -7.8789065,7.75 0,4.2795621 3.5616452,7.7519531 7.8789065,7.7519531 4.317261,0 7.878906,-3.472391 7.878906,-7.7519531 0,-4.2795622 -3.561645,-7.75 -7.878906,-7.75 z m 0,3 c 2.728368,0 4.878906,2.1248446 4.878906,4.75 0,2.6251551 -2.150538,4.7519531 -4.878906,4.7519531 -2.7283688,0 -4.8789065,-2.126798 -4.8789065,-4.7519531 0,-2.6251554 2.1505377,-4.75 4.8789065,-4.75 z"
-  id="path1679-7" />
-<path
-  d="M 29.140625,4.5566406 A 1.5,1.5 0 0 0 28.095703,5.03125 L 5.7148437,28.919922 a 1.5,1.5 0 0 0 0.068359,2.11914 1.5,1.5 0 0 0 2.1210938,-0.06836 L 30.285156,7.0820312 A 1.5,1.5 0 0 0 30.214844,4.9609375 1.5,1.5 0 0 0 29.140625,4.5566406 Z"
-  id="path1554" />
-<path
-style="fill:#000000"
-  d="m 30.658139,28.609324 h 1.551362 l 0.53559,-8.532493 H 30.12255 Z m 0.775681,4.377058 c 0.775681,0 1.422082,-0.664869 1.422082,-1.477488 0,-0.757212 -0.646401,-1.422082 -1.422082,-1.422082 -0.849555,0 -1.477488,0.66487 -1.477488,1.422082 0,0.812619 0.627933,1.477488 1.477488,1.477488 z"
-  id="path27260" />`,
-  '0 0 36 36'
+  ` <defs
+     id="defs6" />
+  <sodipodi:namedview
+     id="namedview4"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1" />
+  <g
+     id="g8"
+     inkscape:groupmode="layer"
+     inkscape:label="ink_ext_XXXXXX"
+     transform="matrix(1.3333333,0,0,-1.3333333,0,48)">
+    <g
+       id="g10"
+       transform="scale(0.1)">
+      <path
+         d="m 301.379,66.1523 h -33.524 c 1.333,4.8711 4.59,8.9805 9.176,11.2813 3.157,1.5977 5.739,3.9531 7.567,6.8398 1.84,-2.8632 4.441,-5.2421 7.625,-6.8515 4.566,-2.2891 7.82,-6.3985 9.156,-11.2696 z m 0.672,80.7697 v -18.074 c 0,-4.844 -1.824,-9.407 -5.145,-12.832 -1.379,-1.411 -2.929,-2.571 -4.621,-3.426 -3.195,-1.613 -5.808,-4 -7.66,-6.863 -1.84,2.863 -4.434,5.242 -7.617,6.851 -6.067,3.043 -9.828,9.285 -9.828,16.27 v 18.074 z M 324.613,43.0781 v 18.0742 c 0,13.7579 -6.472,26.254 -17.218,33.8477 1.972,1.4063 3.824,3.0078 5.535,4.7773 7.539,7.7737 11.683,18.0977 11.683,29.0707 V 146.922 170 h -80 v -23.078 -18.074 c 0,-13.758 6.477,-26.254 17.219,-33.848 -10.75,-7.6055 -17.219,-20.1016 -17.219,-33.8477 V 43.0781 20 h 80 v 23.0781"
+         style="fill:#050301;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="path12" />
+      <path
+         d="m 261.102,266.602 c -4,3.699 -10.301,3.5 -14.102,-0.5 L 98.3984,107.5 c -3.6992,-4 -3.5,-10.3008 0.5,-14.1016 1.9026,-1.7968 4.3006,-2.5976 6.8006,-2.5976 2.602,0 5.301,1 7.301,3.0976 L 261.602,252.5 c 3.699,4 3.5,10.301 -0.5,14.102 z M 135.898,203.301 c -18.097,0 -32.398,14.199 -32.398,31.597 0,17.403 14.301,31.5 32.398,31.5 18.102,0 32.403,-14.097 32.403,-31.5 0,-17.398 -14.301,-31.597 -32.403,-31.597 z m 0,83.097 c -28.699,0 -52.2964,-23.097 -52.2964,-51.5 0,-28.398 23.5974,-51.5 52.2964,-51.5 28.602,0 52.301,23.102 52.301,51.5 0,28.403 -23.699,51.5 -52.301,51.5 z M 234.5,95.1992 c -3.199,-1 -6.699,-1.5976 -10.398,-1.5976 -18.102,0 -32.403,14.0974 -32.403,31.5004 0,17.398 14.301,31.597 32.403,31.597 h 0.5 v 19.903 h -0.5 c -28.602,0 -52.301,-23.102 -52.301,-51.5 0,-28.4028 23.699,-51.5004 52.301,-51.5004 0.597,0 1.199,0 1.796,0.0976 1.5,7.6016 4.5,14.8008 8.704,21.3008 0,0.1016 -0.102,0.1016 -0.102,0.1992"
+         style="fill:#050301;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="path14" />
+    </g>
+  </g>`,
+  '0 0 48 48'
 );
 
 export const CampaignShape = clrIconSVG(
-  `  <path
-  d="m 24.644531,18.515625 c -4.317261,0 -7.878906,3.472391 -7.878906,7.751953 1e-6,4.279562 3.561646,7.75 7.878906,7.75 4.317261,0 7.878906,-3.470438 7.878906,-7.75 10e-7,-4.279562 -3.561645,-7.751952 -7.878906,-7.751953 z m 0,3 c 2.728369,0 4.878907,2.126798 4.878906,4.751953 0,2.625155 -2.150538,4.75 -4.878906,4.75 -2.728368,0 -4.878906,-2.124845 -4.878906,-4.75 0,-2.625155 2.150538,-4.751953 4.878906,-4.751953 z"
-  id="path1679" />
-<path
-  d="m 11.355469,1.9824219 c -4.3172613,-1e-7 -7.8789064,3.4704378 -7.8789065,7.75 -10e-8,4.2795621 3.5616451,7.7519531 7.8789065,7.7519531 4.317261,0 7.878906,-3.472391 7.878906,-7.7519531 0,-4.2795622 -3.561645,-7.7500002 -7.878906,-7.75 z m 0,3 c 2.728368,-1e-7 4.878906,2.1248445 4.878906,4.75 0,2.6251551 -2.150538,4.7519531 -4.878906,4.7519531 -2.7283689,0 -4.8789066,-2.126798 -4.8789065,-4.7519531 0,-2.6251554 2.1505377,-4.7500001 4.8789065,-4.75 z"
-  id="path1679-7" />
-<path
-  d="m 30.214844,4.9609375 a 1.5,1.5 0 0 0 -2.119141,0.068359 L 5.7148437,28.917969 a 1.5,1.5 0 0 0 0.070312,2.121093 1.5,1.5 0 0 0 2.1191407,-0.06836 L 30.285156,7.0820312 a 1.5,1.5 0 0 0 -0.07031,-2.1210937 z"
-  id="path432" />`,
+  `  <defs
+     id="defs6" />
+  <sodipodi:namedview
+     id="namedview4"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1" />
+  <g
+     id="g8"
+     inkscape:groupmode="layer"
+     inkscape:label="ink_ext_XXXXXX"
+     transform="matrix(1.3333333,0,0,-1.3333333,0,48)">
+    <g
+       id="g10"
+       transform="scale(0.1)">
+      <path
+         d="m 261.109,266.59 c -4.015,3.758 -10.316,3.551 -14.074,-0.465 L 98.4297,107.508 c -3.7617,-4.016 -3.5547,-10.3166 0.4609,-14.0783 0,-0.0039 0.0039,-0.0039 0.0039,-0.0039 4.0115,-3.7656 10.3165,-3.5625 14.0785,0.4492 l 148.609,158.629 c 3.762,4.016 3.555,10.32 -0.461,14.082 0,0 0,0 -0.004,0.004 z m -125.234,-0.149 c 18.121,0 32.406,-14.109 32.406,-31.539 0,-17.437 -14.285,-31.554 -32.406,-31.554 -18.113,0 -32.391,14.117 -32.391,31.554 0,17.43 14.278,31.539 32.391,31.539 z m 0,19.922 c -28.664,0 -52.3125,-23.039 -52.3125,-51.461 0,-28.422 23.6485,-51.476 52.3125,-51.476 28.672,0 52.324,23.054 52.324,51.476 0,28.422 -23.652,51.461 -52.324,51.461 z m 88.25,-129.711 c 18.113,0 32.391,-14.117 32.391,-31.554 0,-17.43 -14.278,-31.5394 -32.391,-31.5394 -18.121,0 -32.406,14.1094 -32.406,31.5394 0,17.437 14.285,31.554 32.406,31.554 z m 0,19.922 c -28.672,0 -52.324,-23.054 -52.324,-51.476 0,-28.4183 23.652,-51.4613 52.324,-51.4613 28.664,0 52.313,23.043 52.313,51.4613 0,28.422 -23.649,51.476 -52.313,51.476"
+         style="fill:#050301;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="path12" />
+    </g>
+  </g>`,
+  '0 0 48 48'
+);
+
+export const CompletedByDateShape = clrIconSVG(
+  `<rect x="13" y="7" width="10" height="2"/><path d="M4,16.89V9H7V7H4A2.0059,2.0059,0,0,0,2,9v8.29a2.9516,2.9516,0,0,1,1.5-.4Z"/><path d="M26,11a1.0029,1.0029,0,0,0,1-1V4a1,1,0,0,0-2,0v6A1.0029,1.0029,0,0,0,26,11Z"/><path d="M10,11a1.0029,1.0029,0,0,0,1-1V4A1,1,0,0,0,9,4v6A1.0029,1.0029,0,0,0,10,11Z"/><path d="M32,22.89V31H4V22.89H3.5a3.0545,3.0545,0,0,1-1.5-.4V31a2.0059,2.0059,0,0,0,2,2H32a2.0059,2.0059,0,0,0,2-2V22.48a2.9688,2.9688,0,0,1-1.51.41Z"/><path d="M32,7H29V9h3v7.89h.49A2.9688,2.9688,0,0,1,34,17.3V9A2.0059,2.0059,0,0,0,32,7Z"/><circle cx="8.6602" cy="19.8896" r="1.5"/><path d="M16.64,15.8887v8a1.5,1.5,0,0,0,3,0v-8a1.5,1.5,0,0,0-3,0Z"/><circle cx="3.5098" cy="19.8896" r="1.5"/><circle cx="13.8096" cy="19.8896" r="1.5"/><circle cx="27.3403" cy="19.8896" r="1.5"/><circle cx="22.1899" cy="19.8896" r="1.5"/><circle cx="32.4897" cy="19.8896" r="1.5"/>`,
   '0 0 36 36'
 );
 
@@ -129,6 +159,11 @@ export const SeatShape = clrIconSVG(
 
 export const SeatAirShape = clrIconSVG(
   `<path d="M15.1,21.02H1.664L.094,16.411a1.724,1.724,0,0,1,.08-1.31,1.619,1.619,0,0,1,1-.81,18.785,18.785,0,0,1,4.171,0c1.314.057,2.7.112,3.945.112.694,0,1.272-.017,1.765-.051a2.855,2.855,0,0,1,.61-1.94,12.337,12.337,0,0,0,2.68-5.11,18.506,18.506,0,0,0,.869-5.61A1.64,1.64,0,0,1,16.854,0h4.389V.63a34.926,34.926,0,0,1-1,10,25.307,25.307,0,0,1-5,10.181l-.14.21ZM1.5,15.58a.249.249,0,0,0-.16.14.338.338,0,0,0,0,.28l1.23,3.69h11.89A24.034,24.034,0,0,0,19,10.3a34.617,34.617,0,0,0,1-9H16.885a.322.322,0,0,0-.221.091.375.375,0,0,0-.09.25,19.959,19.959,0,0,1-.92,6,13.669,13.669,0,0,1-2.99,5.63c-.243.293-.35.538-.35,1.65v.59l-.589.069c-1.076.073-2.167.11-3.245.11s-2.17-.037-3.245-.11c-.617-.043-1.245-.065-1.865-.065S2.122,15.537,1.5,15.58ZM7.4,11.1a3,3,0,0,0,1.53-2.3c0-.64-.32-1-.9-1.65A4.442,4.442,0,0,1,6.564,3.92,3.45,3.45,0,0,1,8.664.98l.57,1.2A2.148,2.148,0,0,0,7.884,3.97,3.194,3.194,0,0,0,9.014,6.251a3.616,3.616,0,0,1,1.25,2.55,4.17,4.17,0,0,1-2.129,3.41Zm-5.11,0a2.933,2.933,0,0,0,1.53-2.3c0-.64-.32-1-.9-1.65A4.442,4.442,0,0,1,1.454,3.92,3.45,3.45,0,0,1,3.514.98l.571,1.2A2.149,2.149,0,0,0,2.774,3.97,3.191,3.191,0,0,0,3.9,6.251,3.623,3.623,0,0,1,5.154,8.8a4.17,4.17,0,0,1-2.13,3.41Z" transform="translate(0.336 0.49)"/>`
+);
+
+export const ReturnDateShape = clrIconSVG(
+  `<path d="M26,11a1.0029,1.0029,0,0,0,1-1V4a1,1,0,0,0-2,0v6A1.0029,1.0029,0,0,0,26,11Z"/><path d="M10,11a1.0029,1.0029,0,0,0,1-1V4A1,1,0,0,0,9,4v6A1.0029,1.0029,0,0,0,10,11Z"/><path d="M4,16.89V9H7V7H4A2.0059,2.0059,0,0,0,2,9v8.29a2.9516,2.9516,0,0,1,1.5-.4Z"/><rect x="13" y="7" width="10" height="2"/><path d="M32,31H4V22.89H3.5a3.0545,3.0545,0,0,1-1.5-.4V31a2.0059,2.0059,0,0,0,2,2H32a2.0059,2.0059,0,0,0,2-2V22.44l-2,2Z"/><path d="M32,7H29V9h3v6.34l2,2V9A2.0059,2.0059,0,0,0,32,7Z"/><path d="M27.2446,16.9493l1.44,1.4395H18.3052a1.5,1.5,0,0,0,0,3H28.6841l-1.44,1.4394a1.5,1.5,0,1,0,2.1211,2.1211l4-4a1.4993,1.4993,0,0,0,0-2.1211l-4-4a1.5,1.5,0,1,0-2.1211,2.1211Z"/><circle cx="8.6602" cy="19.8896" r="1.5"/><circle cx="3.5098" cy="19.8896" r="1.5"/><circle cx="13.8096" cy="19.8896" r="1.5"/>`,
+  '0 0 36 36'
 );
 
 export const RepeatRepairShape = clrIconSVG(
@@ -435,7 +470,12 @@ export const TopcardShape = clrIconSVG(
 );
 
 export const TaskAndAppointment = clrIconSVG(
-  `<path fill="none" d="M0 0h36v36H0z"/><path d="M7.38 21.42h6v1.27H7.22a1.13 1.13 0 01-1.11-1.15V7.24a1.14 1.14 0 011.12-1.16H9.3v1.28H7.38zM26.55 7.24v6.47h-1.28V7.36h-1.91V6.08h2.07a1.14 1.14 0 011.12 1.16z"/><path d="M9.94 11.19h1.28v1.28H9.94zM13.77 11.19h1.28v1.28h-1.28zM17.61 11.19h1.27v1.28h-1.27zM9.94 14.39h1.28v1.28H9.94zM9.94 17.58h1.28v1.28H9.94zM11.86 4.17V8a.64.64 0 11-1.28 0V4.17a.64.64 0 111.28 0zM22.08 4.17V8a.64.64 0 11-1.28 0V4.17a.64.64 0 111.28 0zM13.13 6.08h6.39v1.28h-6.39z"/><path d="M9.94 11.19v1.28h1.28v-1.28zm0 3.2v1.28h1.28v-1.28zm0 3.19v1.28h1.28v-1.28zm1.28-14a.64.64 0 00-.64.64V8a.64.64 0 101.28 0V4.17a.64.64 0 00-.64-.64zm2.55 7.66v1.28h1.28v-1.33zm3.84 0v1.28h1.27v-1.33zm-4.48-5.16v1.28h6.39V6.08zm8.31-2.55a.64.64 0 00-.64.64V8a.64.64 0 101.28 0V4.17a.64.64 0 00-.64-.64zm4 2.55h-2.08v1.28h1.91v6.35h1.28V7.24a1.14 1.14 0 00-1.12-1.16zm-18 1.28H9.3V6.08H7.23a1.14 1.14 0 00-1.12 1.16v14.3a1.13 1.13 0 001.11 1.15h6.18v-1.27h-6z" fill="none"/><g><path d="M29.94 33.75H13.72a1.22 1.22 0 01-1.23-1.21V14.13a1.25 1.25 0 011.29-1.23h1.58v1.44h-1.43v18h15.8v-18H28.3v-1.43h1.61a1.22 1.22 0 011.26 1.19v18.44a1.22 1.22 0 01-1.23 1.21z"/><path d="M20.87 27.83L17 24a.71.71 0 01.08-1 .73.73 0 01.92 0l2.83 2.83 6.2-6.21a.74.74 0 011 .08.73.73 0 010 .94zM27.58 17.22h-11.5v-2.63a1.68 1.68 0 011.68-1.68H19a2.88 2.88 0 015.57 0h1.33a1.69 1.69 0 011.68 1.68zm-10.06-1.43h8.62v-1.2a.24.24 0 00-.24-.24h-2.63v-.72a1.44 1.44 0 10-2.88 0v.72h-2.63a.24.24 0 00-.24.24z"/></g>`,
+  `<path d="M11.59,5.12v2h8.24v-2ZM5,23.85V7.12H7.34v-2H4.58a1.6079,1.6079,0,0,0-1.13.49A1.5847,1.5847,0,0,0,3,6.75l.01,17.56a1.7838,1.7838,0,0,0,.03.28c.02.08.09.28.09.28a1.4509,1.4509,0,0,0,.12.22l.07.1a1.1511,1.1511,0,0,0,.14.17l.09.09.12.1a1.0634,1.0634,0,0,0,.19.11l.11.05c.05.02.1.04.16.06a.6468.6468,0,0,0,.13.04,1.5682,1.5682,0,0,0,.33.04h5.69v-2ZM26.83,5.12H24.07V6.77a4.6661,4.6661,0,0,1,.9.35h1.44V8.14a4.97,4.97,0,0,1,.65.79h1.35V6.72A1.6138,1.6138,0,0,0,26.83,5.12ZM21.95,2a1.0029,1.0029,0,0,0-1,1V6.86c.11-.04.24-.08.36-.11a5.0565,5.0565,0,0,1,1.33-.17c.1,0,.2,0,.31.01V3A1.0029,1.0029,0,0,0,21.95,2ZM9.46,2a1.0029,1.0029,0,0,0-1,1V7.68a1,1,0,0,0,2,0V3A.9965.9965,0,0,0,9.46,2ZM7.68,19.17v2h2v-2Zm0-3.9v2h2v-2Zm0-3.91v2h2v-2Z"/><path d="M17.5626,24.0412a1,1,0,0,1,1.3984-1.4229L21.62,25.2765l5.1353-5.1357a.9994.9994,0,0,1,1.4228.0976.9945.9945,0,0,1,0,1.3l-6.5581,6.56ZM16.1769,16.047V12.963a2.05,2.05,0,0,1,2.0366-2.0371h1.2319a3.3415,3.3415,0,0,1,2.3608-2.2431,3.3794,3.3794,0,0,1,.8316-.1055,3.3389,3.3389,0,0,1,3.1875,2.3486h1.2388a2.0508,2.0508,0,0,1,2.0376,2.0362V16.047Zm10.9248-2V12.963L23.98,12.9259v-1a1.3409,1.3409,0,0,0-2.6817,0v1h-3.084a.0374.0374,0,0,0-.0375.0371v1.084ZM31.45,10.93H31V32H14.28V10.93h-.22a1.6292,1.6292,0,0,0-1.77,1.34,1.21,1.21,0,0,0-.01.19v20A1.5429,1.5429,0,0,0,13.83,34H31.46A1.5407,1.5407,0,0,0,33,32.46v-20A1.5408,1.5408,0,0,0,31.45,10.93Z"/>`,
+  '0 0 36 36'
+);
+
+export const ParkingLocation = clrIconSVG(
+  `<path d="M28,8V28H8V8H28m0-2H8A2,2,0,0,0,6,8V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V8a2,2,0,0,0-2-2Z"/><path d="M16,25H14V11h4.5a4.5,4.5,0,0,1,0,9H16Zm0-7h2.5a2.5,2.5,0,0,0,0-5H16Z"/>`,
   '0 0 36 36'
 );
 
@@ -460,22 +500,22 @@ export const PartNonStockForwardShape = clrIconSVG(
 );
 
 export const PaintMaterialShape = clrIconSVG(
-  `<path data-name="Path 345" d="M24.34 11.7c0 1.12-1.73 2-6.34 2s-6.34-.91-6.34-2 1.73-2 6.34-2 6.34.87 6.34 2zM27 10v16c0 1.66-2.92 3-9 3s-9-1.34-9-3V10c0-1.66 2.92-3 9-3s9 1.34 9 3zm-1.33 0c0-.22-1.43-1.67-7.67-1.67S10.33 9.78 10.33 10v16c0 .22 1.43 1.67 7.67 1.67s7.67-1.45 7.67-1.67zm-4.81 4.91l-2 2.89a2.48 2.48 0 104.08 0z"/><path fill="none" d="M0 0h36v36H0z"/>`,
+  `<path d="M18,5.65C11.63,5.65,7.83,7,7.83,9.27V26.73c0,2.27,3.8,3.62,10.17,3.62S28.17,29,28.17,26.73V9.27C28.17,7,24.37,5.65,18,5.65ZM9.98,9.35c.19-.2,1.69-1.55,8.02-1.55s7.83,1.35,8.02,1.55v17.3c-.19.2-1.69,1.55-8.02,1.55s-7.83-1.35-8.02-1.55Z"/></g><ellipse cx="18" cy="10.7" rx="6.34" ry="2"/><path d="M20.86,13.91l-2,2.89a2.482,2.482,0,1,0,4.08,0Z"/>`,
   '0 0 36 36'
 );
 
 export const PaintMaterialForwardShape = clrIconSVG(
-  `<path d="M18.86 17.8a2.48 2.48 0 104.08 0l-2.08-2.89z"/><ellipse cx="18" cy="11.7" rx="6.34" ry="2"/><path d="M18 7c-6.08 0-9 1.34-9 3v16a1.61 1.61 0 00.45 1.06h.72a3.09 3.09 0 01-.17-1 3 3 0 01.33-1.35V10c0-.22 1.43-1.67 7.67-1.67s7.67 1.45 7.67 1.67v16c0 .21-1.31 1.53-6.83 1.66l.28.27a3.06 3.06 0 01.67 1C24.65 28.71 27 27.49 27 26V10c0-1.66-2.92-3-9-3z"/><path d="M18.06 29l-4-4a1.5 1.5 0 00-2.12 2.12l1.44 1.44H3a1.5 1.5 0 000 3h10.38L11.94 33a1.49 1.49 0 000 2.12 1.5 1.5 0 002.12 0l4-4a1.49 1.49 0 000-2.12z"/><path fill="none" d="M0 0h36v36H0z"/>`,
+  `<path d="M18.86,16.8a2.482,2.482,0,1,0,4.08,0l-2.08-2.89Z"/><ellipse cx="18" cy="10.7" rx="6.34" ry="2"/><path d="M28.17,9.27V26.73c0,1.94-2.79,3.22-7.68,3.54a1.4769,1.4769,0,0,0,.01-.21,3.3752,3.3752,0,0,0-.57-1.91c4.72-.24,5.92-1.31,6.09-1.5V9.35C25.83,9.14,24.33,7.8,18,7.8S10.17,9.14,9.98,9.35V24.29a3.4091,3.4091,0,0,0-.48,1.77,2.8858,2.8858,0,0,0,.04.5H7.83V9.27C7.83,7,11.63,5.65,18,5.65S28.17,7,28.17,9.27Z"/><path d="M18.0605,28.9952l-4-4a1.5,1.5,0,0,0-2.121,2.1211l1.4394,1.44H3a1.5,1.5,0,0,0,0,3H13.3789L11.94,32.9952a1.5,1.5,0,1,0,2.121,2.1211l4-4A1.4993,1.4993,0,0,0,18.0605,28.9952Z"/><path d="M18.0605,28.9952l-4-4a1.5,1.5,0,0,0-2.121,2.1211l1.4394,1.44H3a1.5,1.5,0,0,0,0,3H13.3789L11.94,32.9952a1.5,1.5,0,1,0,2.121,2.1211l4-4A1.4993,1.4993,0,0,0,18.0605,28.9952Z"/>`,
   '0 0 36 36'
 );
 
-export const ItemsRecieveShape = clrIconSVG(
-  `<defs><style>.prefix__cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-miterlimit:10;stroke-width:2px}</style></defs><g id="prefix__items-rcv"><path d="M32 8.2H4a2 2 0 00-2 2v5.4a2.93 2.93 0 011.5-.41H4v-5h28v16H4v-5h-.5a2.94 2.94 0 01-1.5-.42v5.4a2 2 0 002 2h28a2 2 0 002-2v-16a2 2 0 00-2-1.97z"/><path d="M18.56 17.12l-4-4a1.5 1.5 0 10-2.12 2.13l1.44 1.44H3.5a1.5 1.5 0 000 3h10.38l-1.44 1.43a1.5 1.5 0 102.12 2.13l4-4a1.5 1.5 0 000-2.13z"/><path class="prefix__cls-1" d="M21.99 22.19h4M21.99 18.19h6.5M21.99 14.19h6"/></g><path fill="none" d="M0 0h36v36H0z"/>`,
+export const ItemsReceiveShape = clrIconSVG(
+  `<path d="M31.995,8.1968H4.0049A2.005,2.005,0,0,0,2,10.2018v5.4008a2.9662,2.9662,0,0,1,1.5-.4172h.5034l.0015-4.9886h27.99l.005.005L31.995,26.174,4,26.169l.0015-4.9836H3.5A2.9662,2.9662,0,0,1,2,20.7682V26.169a2.005,2.005,0,0,0,2.0049,2.005h27.99A2.005,2.005,0,0,0,34,26.169V10.2018A2.005,2.005,0,0,0,31.995,8.1968Z"/><path d="M18.5605,17.1248l-4-4a1.5,1.5,0,1,0-2.1211,2.1211l1.44,1.44H3.5a1.5,1.5,0,0,0,0,3H13.8789l-1.44,1.4394a1.5,1.5,0,1,0,2.1211,2.1211l4-4A1.4993,1.4993,0,0,0,18.5605,17.1248Z"/><path d="M25.9893,23.1855h-4a1,1,0,0,1,0-2h4a1,1,0,0,1,0,2Z"/><path d="M28.4893,19.1855h-6.5a1,1,0,0,1,0-2h6.5a1,1,0,0,1,0,2Z"/><path d="M27.9893,15.1855h-6a1,1,0,0,1,0-2h6a1,1,0,0,1,0,2Z"/>`,
   '0 0 36 36'
 );
 
 export const ItemsForwardShape = clrIconSVG(
-  `<defs><style>.prefix__cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-miterlimit:10;stroke-width:2px}</style></defs><g id="prefix__items-fwd"><g id="prefix__fwd-template"><path d="M32 22.93v3.24H4v-16h28v3.24l2 2V10.2a2 2 0 00-2-2H4a2 2 0 00-2 2v16a2 2 0 002 2h28a2 2 0 002-2v-5.27z"/><path d="M33.56 17.12l-4-4a1.5 1.5 0 10-2.12 2.13l1.44 1.44H18.5a1.5 1.5 0 000 3h10.38l-1.44 1.43a1.5 1.5 0 102.12 2.13l4-4a1.5 1.5 0 000-2.13z"/></g><path class="prefix__cls-1" d="M7.68 22.19h4M7.68 18.19h6.5M7.68 14.19h6"/></g><path fill="none" d="M0 0h36v36H0z"/>`,
+  `<path d="M31.996,22.9315l-.001,3.2425L4,26.169l.0049-15.9722h27.99l.005.005-.001,3.24L34,15.4432V10.2018a2.005,2.005,0,0,0-2.005-2.005H4.0049A2.005,2.005,0,0,0,2,10.2018V26.169a2.005,2.005,0,0,0,2.0049,2.005h27.99A2.005,2.005,0,0,0,34,26.169V20.9276Z"/><path d="M33.5605,17.1248l-4-4a1.5,1.5,0,1,0-2.1211,2.1211l1.44,1.44H18.5a1.5,1.5,0,0,0,0,3H28.8789l-1.44,1.4394a1.5,1.5,0,1,0,2.1211,2.1211l4-4A1.4993,1.4993,0,0,0,33.5605,17.1248Z"/></g><path d="M11.6836,23.1855h-4a1,1,0,0,1,0-2h4a1,1,0,1,1,0,2Z"/><path d="M14.1836,19.1855h-6.5a1,1,0,0,1,0-2h6.5a1,1,0,1,1,0,2Z"/><path d="M13.6836,15.1855h-6a1,1,0,0,1,0-2h6a1,1,0,0,1,0,2Z"/>`,
   '0 0 36 36'
 );
 
@@ -514,6 +554,15 @@ export const InternalPartForwardShape = clrIconSVG(
   '0 0 36 36'
 );
 
+export const InvoiceShape = clrIconSVG(
+  `<path d="M16.2139,15.3164a2.8144,2.8144,0,0,0,.93-.708l1.0683.9834a4.2774,4.2774,0,0,1-3.12,1.3437,4.2121,4.2121,0,0,1-1.7822-.39,4.4426,4.4426,0,0,1-1.4639-1.08,4.23,4.23,0,0,1-.8936-1.5537H9.9434V13.06h.8408c-.0166-.1758-.0244-.3076-.0244-.3955a4.1283,4.1283,0,0,1,.0361-.5645H9.9434V11.248h1.0683a4.2052,4.2052,0,0,1,.918-1.4638A4.49,4.49,0,0,1,13.37,8.77a4.2483,4.2483,0,0,1,3.42-.0117,4.4989,4.4989,0,0,1,1.4219.9785l-1.0683.9961a2.9612,2.9612,0,0,0-.93-.7021,2.5521,2.5521,0,0,0-1.1221-.2578,2.65,2.65,0,0,0-1.41.4013,2.873,2.873,0,0,0-1.0254,1.0742H15.752V12.1H12.3438a2.8811,2.8811,0,0,0-.06.5645q0,.1319.0234.3955H15.752v.8525H12.56a2.9781,2.9781,0,0,0,1.0439,1.2,2.6326,2.6326,0,0,0,1.4883.4561A2.6012,2.6012,0,0,0,16.2139,15.3164Z"/><path d="M21.89,4H7.83A1.88,1.88,0,0,0,6,5.91V30.09A1.88,1.88,0,0,0,7.83,32H28.17A1.88,1.88,0,0,0,30,30.09V11.92Zm-.3,2.49,6,5.9h-6ZM8,30V6H20v8h8V30Z"/><path d="M19,25.833H10.61a1,1,0,1,1,0-2H19a1,1,0,0,1,0,2Z"/><path d="M23,21.833H10.61a1,1,0,1,1,0-2H23a1,1,0,0,1,0,2Z"/>`,
+  '0 0 36 36'
+);
+export const InvoiceReadyShape = clrIconSVG(
+  `<path d="M13.6816,10.1738a2.65,2.65,0,0,1,1.41-.4013,2.5521,2.5521,0,0,1,1.1221.2578,2.9612,2.9612,0,0,1,.93.7021l1.0683-.9961A4.4989,4.4989,0,0,0,16.79,8.7578a4.2483,4.2483,0,0,0-3.42.0117,4.49,4.49,0,0,0-1.44,1.0147,4.2052,4.2052,0,0,0-.918,1.4638H9.9434V12.1h.8525a4.1283,4.1283,0,0,0-.0361.5645c0,.0879.0078.22.0244.3955H9.9434v.8525h1.0087a4.23,4.23,0,0,0,.8936,1.5537,4.4426,4.4426,0,0,0,1.4639,1.08,4.2913,4.2913,0,0,0,3.4922.0361,4.2643,4.2643,0,0,0,1.41-.99l-1.0683-.9834a2.8144,2.8144,0,0,1-.93.708,2.6012,2.6012,0,0,1-1.1221.252,2.6326,2.6326,0,0,1-1.4883-.4561,2.9781,2.9781,0,0,1-1.0439-1.2H15.752V13.06H12.3076q-.0234-.2637-.0234-.3955a2.8811,2.8811,0,0,1,.06-.5645H15.752V11.248H12.6562A2.873,2.873,0,0,1,13.6816,10.1738Z"/><path d="M18.08,25.83a9.0156,9.0156,0,0,1,.5-2H10.61a1,1,0,0,0,0,2Z"/><path d="M21.57,19.83H10.61a1,1,0,0,0,0,2h9.03A9.1583,9.1583,0,0,1,21.57,19.83Z"/><path d="M8,30V6H20v8h8v4.06a8.4307,8.4307,0,0,1,2,.46v-6.6L21.89,4H7.83A1.88,1.88,0,0,0,6,5.91V30.09A1.88,1.88,0,0,0,7.83,32H19.52a9.124,9.124,0,0,1-1-2ZM21.59,6.49l6,5.9h-6Z"/><path d="M26.9373,19.9375A7.0625,7.0625,0,1,0,34,27,7.0625,7.0625,0,0,0,26.9373,19.9375ZM27,32a5,5,0,1,1,5-5A5.0018,5.0018,0,0,1,27,32Z"/><path d="M30.8672,24.4834a1,1,0,0,0-1.4141,0l-3.3017,3.3027-1.6045-1.6045a1,1,0,1,0-1.4141,1.4141l3.0186,3.0186,4.7158-4.7168A1,1,0,0,0,30.8672,24.4834Z"/>`,
+  '0 0 36 36'
+);
+
 export const ExternalPartForwardShape = clrIconSVG(
   `<path d="M18.0005,5.42v6.161H22.11V29.739h6.561l.123-18.158h3.992V5.42Zm9.044,22.679-3.296-.002v-2.65l3.307,1.052Zm.023-3.312-3.319-1.056V21.535l3.334,1.062Zm.026-3.906-3.345-1.065V17.774l3.36,1.071Zm.025-3.753-3.371-1.072V13.9109l3.387,1.0771Zm.03-3.86-3.4-1.081v-.61h3.409Zm-7.51-3.327V7.059h11.509l.001,2.882Z"/><path d="M13.38,22.36l3.388-6.161L13.38,10.038H6.6026l-3.388,6.161,3.388,6.161ZM7.5716,11.674h4.8429l2.486,4.522-2.486,4.525H7.5716l-2.487-4.522Z"/><path d="M9.9945,18.971a2.7725,2.7725,0,0,0,.0011-5.545H9.9915l.003.001a2.772,2.772,0,0,0,0,5.544Zm-.008-3.906a1.134,1.134,0,0,1,1.138,1.13v.004a1.1337,1.1337,0,0,1-1.132,1.1336l.002,0H9.9906l.0019,0a1.1338,1.1338,0,0,1-.006-2.2676Z"/><polygon points="16.766 24.83 16.076 24.83 16.766 25.52 16.766 24.83"/><path d="M14.0606,24.94A1.5,1.5,0,0,0,11.94,27.0613l1.4394,1.44H3a1.5,1.5,0,1,0,0,3H13.3789L11.94,32.94a1.5,1.5,0,1,0,2.1211,2.1211l4-4a1.5,1.5,0,0,0,0-2.1211Z"/><path d="M3.2161,24.83V27h1.64v-.53h5.18a2.41,2.41,0,0,1-.04-.47,2.9166,2.9166,0,0,1,.24-1.17Z"/><path d="M8.6811,8.8945a.4812.4812,0,0,0,.7819-.3758v-1.74L12.2255,8.9A.4812.4812,0,0,0,13,8.5187V2.4813A.4814.4814,0,0,0,12.2255,2.1L9.463,4.2216v-1.74a.4813.4813,0,0,0-.7819-.3759L4.9077,5.1242a.4812.4812,0,0,0,0,.7515Z"/><path fill="none" d="M0 0h36v36H0z"/>`,
   '0 0 36 36'
@@ -532,10 +581,16 @@ export const BusinessPartnerWithCar = clrIconSVG(
   '0 0 36 36'
 );
 
+export const VinShape = clrIconSVG(
+  '<path d="M31,11V25H5V11H31m0-2H5a2,2,0,0,0-2,2V25a2,2,0,0,0,2,2H31a2,2,0,0,0,2-2V11a2,2,0,0,0-2-2Z"/><path d="M15.5884,13.5479,12.144,21.792H10.4761L7.0322,13.5479H8.688L11.3164,19.8l2.6157-6.2519Z"/><path d="M17.0405,13.5479h1.4878V21.792H17.0405Z"/><path d="M20.8086,13.5479h1.4878l4.3559,5.7959V13.5479h1.4883V21.792H26.6523l-4.3559-5.7959V21.792H20.8086Z"/>',
+  '0 0 36 36'
+);
+
 export const ClrAddonsIconShapes: any = {
   'air-conditioner': ACShape,
   accessories: AccessoriesShape,
   'accessory-parts': AccessoryPartsShape,
+  'accpetance-date': AcceptanceDateShape,
   'award-winner-premium': AwardWinnerPremiumShape,
   brochure: BrochureShape,
   'business-customers-commercial': BusinessCustomersCommercialShape,
@@ -548,6 +603,7 @@ export const ClrAddonsIconShapes: any = {
   'car-wash': CarWashShape,
   'certified-repair': CertifiedRepairShape,
   'certified-retailer': CertifiedRetailerShape,
+  'completed-by-date': CompletedByDateShape,
   'configurator-commercial': ConfiguratorCommercialShape,
   'configurator-private': ConfiguratorPrivateShape,
   consumption: ConsumptionShape,
@@ -588,6 +644,7 @@ export const ClrAddonsIconShapes: any = {
   'power-train': PowerTrainShape,
   'price-type-switch': PriceTypeSwitchShape,
   'qualified-workshop': QualifiedWorkshopShape,
+  'return-date': ReturnDateShape,
   'repeat-repair': RepeatRepairShape,
   'roadside-assistance': RoadsideAssistanceShape,
   route: RouteShape,
@@ -621,13 +678,14 @@ export const ClrAddonsIconShapes: any = {
   'wrench-fwd': WrenchForward,
   topcard: TopcardShape,
   'task-appointment': TaskAndAppointment,
+  'parking-location': ParkingLocation,
   parts: PartsShape,
   'parts-fwd': PartsForwardShape,
   'parts-nonstock': PartsNonStockShape,
   'parts-nonstock-fwd': PartNonStockForwardShape,
   'paint-material': PaintMaterialShape,
   'paint-material-fwd': PaintMaterialForwardShape,
-  'items-receive': ItemsRecieveShape,
+  'items-receive': ItemsReceiveShape,
   'items-forward': ItemsForwardShape,
   'money-partial': DollarBillPartialShape,
   'money-fwd': DollarBillForwardShape,
@@ -636,15 +694,19 @@ export const ClrAddonsIconShapes: any = {
   'calculator-fwd': CalculatorForwardShape,
   'bundle-fwd': BundleForwardShape,
   'part-return': InternalPartForwardShape,
+  invoice: InvoiceShape,
+  'invoice-ready': InvoiceReadyShape,
   'part-return-fwd': ExternalPartForwardShape,
   'bp-with-car': BusinessPartnerWithCar,
   'campaign-outdated': CampaignOutdatedShape,
   campaign: CampaignShape,
+  vin: VinShape,
 };
 
 export const airConditionerIcon: IconShapeTuple = ['air-conditioner', ACShape];
 export const accessoriesIcon: IconShapeTuple = ['accessories', AccessoriesShape];
 export const accessoryPartsIcon: IconShapeTuple = ['accessory-parts', AccessoryPartsShape];
+export const acceptanceDateIcon: IconShapeTuple = ['acceptance-date', AcceptanceDateShape];
 export const awardWinnerPremiumIcon: IconShapeTuple = ['award-winner-premium', AwardWinnerPremiumShape];
 export const brochureIcon: IconShapeTuple = ['brochure', BrochureShape];
 export const businessCustomersCommercialIcon: IconShapeTuple = [
@@ -663,6 +725,7 @@ export const carPickupServiceIcon: IconShapeTuple = ['car-pickup-service', CarPi
 export const carWashIcon: IconShapeTuple = ['car-wash', CarWashShape];
 export const certifiedRepairIcon: IconShapeTuple = ['certified-repair', CertifiedRepairShape];
 export const certifiedRetailerIcon: IconShapeTuple = ['certified-retailer', CertifiedRetailerShape];
+export const completedByDateIcon: IconShapeTuple = ['completed-by-date', CompletedByDateShape];
 export const configuratorCommercialIcon: IconShapeTuple = ['configurator-commercial', ConfiguratorCommercialShape];
 export const configuratorPrivateIcon: IconShapeTuple = ['configurator-private', ConfiguratorPrivateShape];
 export const consumptionIcon: IconShapeTuple = ['consumption', ConsumptionShape];
@@ -703,6 +766,7 @@ export const powerIcon: IconShapeTuple = ['power', PowerShape];
 export const powerTrainIcon: IconShapeTuple = ['power-train', PowerTrainShape];
 export const priceTypeSwitchIcon: IconShapeTuple = ['price-type-switch', PriceTypeSwitchShape];
 export const qualifiedWorkshopIcon: IconShapeTuple = ['qualified-workshop', QualifiedWorkshopShape];
+export const returnDateIcon: IconShapeTuple = ['return-date', ReturnDateShape];
 export const repeatRepairIcon: IconShapeTuple = ['repeat-repair', RepeatRepairShape];
 export const roadsideAssistanceIcon: IconShapeTuple = ['roadside-assistance', RoadsideAssistanceShape];
 export const routeIcon: IconShapeTuple = ['route', RouteShape];
@@ -736,13 +800,14 @@ export const windscreenWashIcon: IconShapeTuple = ['windscreen-wash', Windscreen
 export const wrenchForwardIcon: IconShapeTuple = ['wrench-fwd', WrenchForward];
 export const topcardIcon: IconShapeTuple = ['topcard', TopcardShape];
 export const taskAndAppointmentIcon: IconShapeTuple = ['task-appointment', TaskAndAppointment];
+export const parkingLocationIcon: IconShapeTuple = ['parking-location', ParkingLocation];
 export const partsIcon: IconShapeTuple = ['parts', PartsShape];
 export const partsForwardIcon: IconShapeTuple = ['parts-fwd', PartsForwardShape];
 export const partsNonStockIcon: IconShapeTuple = ['parts-nonstock', PartsNonStockShape];
 export const partsNonStockForwardIcon: IconShapeTuple = ['parts-nonstock-fwd', PartNonStockForwardShape];
 export const paintMaterialIcon: IconShapeTuple = ['paint-material', PaintMaterialShape];
 export const paintMaterialForwardIcon: IconShapeTuple = ['paint-material-fwd', PaintMaterialForwardShape];
-export const itemsRecieveIcon: IconShapeTuple = ['items-receive', ItemsRecieveShape];
+export const itemsRecieveIcon: IconShapeTuple = ['items-receive', ItemsReceiveShape];
 export const itemsForwardIcon: IconShapeTuple = ['items-forward', ItemsForwardShape];
 export const dollarBillPartialIcon: IconShapeTuple = ['money-partial', DollarBillPartialShape];
 export const dollarBillForwardIcon: IconShapeTuple = ['money-fwd', DollarBillForwardShape];
@@ -751,7 +816,10 @@ export const textForwardIcon: IconShapeTuple = ['text-fwd', TextForward];
 export const calculatorForwardIcon: IconShapeTuple = ['calculator-fwd', CalculatorForwardShape];
 export const bundleForwardIcon: IconShapeTuple = ['bundle-fwd', BundleForwardShape];
 export const internalPartForwardIcon: IconShapeTuple = ['part-return', InternalPartForwardShape];
+export const invoiceIcon: IconShapeTuple = ['invoice', InvoiceShape];
+export const invoiceReadyIcon: IconShapeTuple = ['invoice-ready', InvoiceReadyShape];
 export const externalPartForwardIcon: IconShapeTuple = ['part-return-fwd', ExternalPartForwardShape];
 export const businessPartnerWithCarIcon: IconShapeTuple = ['bp-with-car', BusinessPartnerWithCar];
 export const campaignOutdatedIcon: IconShapeTuple = ['campaign-outdated', CampaignOutdatedShape];
 export const campaignIcon: IconShapeTuple = ['campaign', CampaignShape];
+export const vinIcon: IconShapeTuple = ['vin', VinShape];
