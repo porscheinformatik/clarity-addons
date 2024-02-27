@@ -31,6 +31,8 @@
         "eslint-config-prettier",
         "gh-pages",
         "JamesIves/github-pages-deploy-action",
+        "jasmine-core",
+        "karma",
         "npm-run-all2",
         "postcss",
         "postcss-cli",
