@@ -102,8 +102,8 @@
     "typescript": "4.9.5"
   },
   "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=7.10.0"
+    "node": ">=18.0.0",
+    "npm": ">=9.8.0"
   },
   "postcss": {
     "plugins": {
