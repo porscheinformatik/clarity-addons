@@ -98,7 +98,6 @@
       }
     }
   },
-  "defaultProject": "clarity",
   "schematics": {
     "@schematics/angular:class": {
       "skipTests": true
