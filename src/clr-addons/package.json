@@ -18,11 +18,12 @@
     "url": "git@github.com:porscheinformatik/clarity-addons.git"
   },
   "peerDependencies": {
-    "@angular/common": "16",
-    "@angular/core": "16",
-    "@clr/angular": "^16.0.0",
+    "@angular/common": "^17.0.0",
+    "@angular/core": "^17.0.0",
+    "@angular/compiler": "^17.0.0",
+    "@clr/angular": "^17.0.0",
     "@cds/core": "^6.0.0",
-    "@clr/ui": "^16.0.0"
+    "@clr/ui": "^17.0.0"
   },
   "author": "porscheinformatik",
   "license": "MIT",
