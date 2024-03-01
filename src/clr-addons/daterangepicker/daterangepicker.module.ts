@@ -24,7 +24,6 @@ import { ClrDaterangeRequiredValidator } from './validators/daterange-required.v
     ClrDaterangeRequiredValidator,
     ClrIfDaterangeErrorDirective,
   ],
-  entryComponents: [ClrDatepickerComponent],
   exports: [
     ClrDaterangeMaxValidator,
     ClrDaterangeMinValidator,

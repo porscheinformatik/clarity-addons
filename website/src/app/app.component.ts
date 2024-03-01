@@ -1,7 +1,7 @@
 import { Component, ElementRef, Inject, InjectionToken, OnInit, PLATFORM_ID, Renderer2 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import { ClarityIcons, cogIcon } from '@cds/core/icon';
 
 ClarityIcons.addIcons(cogIcon);
@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
   themes = [
     { name: 'PHS', cdsTheme: 'phs' },
     { name: 'Clarity (light)', cdsTheme: 'light' },
-    { name: 'Clarity (dark)', href: 'assets/styles/clr-ui-dark.css' },
+    { name: 'Clarity (dark)', cdsTheme: 'dark' },
   ];
 
   constructor(
@@ -31,17 +31,8 @@ export class AppComponent implements OnInit {
     private el: ElementRef,
     private router: Router,
     private titleService: Title,
-    @Inject(DOCUMENT) private document: Document,
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) {
-    if (isPlatformBrowser(this.platformId)) {
-      this.linkRef = this.document.createElement('link');
-      this.linkRef.id = 'theme';
-      this.linkRef.rel = 'stylesheet';
-      this.linkRef.href = this.themes[0].href;
-      this.document.querySelector('head').appendChild(this.linkRef);
-    }
-  }
+    @Inject(DOCUMENT) private document: Document
+  ) {}
 
   ngOnInit() {
     this.router.events.subscribe((change: any) => {
@@ -76,15 +67,15 @@ export class AppComponent implements OnInit {
   }
 
   public updateBrowserTitle() {
-    let browserTitles = this.collectRouteData('browserTitle');
+    const browserTitles = this.collectRouteData('browserTitle');
 
     browserTitles.unshift(this.defaultBrowserTitle);
 
     // some weirdness with routing was giving us duplicate titles
     // like "Clarity Design System - Releases - Releases"
-    let dupes = new Set();
+    const dupes = new Set();
 
-    let filteredTitles = browserTitles.filter(function (ttl) {
+    const filteredTitles = browserTitles.filter(function (ttl) {
       if (!dupes.has(ttl)) {
         dupes.add(ttl);
         return true;
@@ -99,7 +90,7 @@ export class AppComponent implements OnInit {
 
   private collectRouteData(key: string) {
     let route = this.router.routerState.snapshot.root;
-    let returnArray = [];
+    const returnArray = [];
 
     while (route) {
       if (route.data && route.data[key]) {
@@ -112,7 +103,7 @@ export class AppComponent implements OnInit {
   }
 
   setTheme(theme: { cdsTheme: string; href: string }): void {
-    this.document.documentElement.setAttribute('cds-theme', theme.cdsTheme);
+    this.document.body.setAttribute('cds-theme', theme.cdsTheme);
     this.linkRef.href = theme.href;
   }
 }

@@ -1,12 +1,12 @@
 /*
- * Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Route } from '@angular/router';
 import { APP_ROUTES } from './app.routing';
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import { RouteHistoryService } from './route-history.service';
 import { angleIcon, ClarityIcons, cogIcon, userIcon } from '@cds/core/icon';
 
@@ -23,28 +23,17 @@ export class AppComponent implements OnInit {
   themes = [
     { name: 'PHS', cdsTheme: 'phs' },
     { name: 'Clarity (light)', cdsTheme: 'light' },
-    { name: 'Clarity (dark)', href: 'assets/styles/clr-ui-dark.css' },
+    { name: 'Clarity (dark)', cdsTheme: 'dark' },
   ];
 
-  constructor(
-    @Inject(DOCUMENT) private document: Document,
-    @Inject(PLATFORM_ID) private platformId: Record<string, any>,
-    private routeHistoryService: RouteHistoryService
-  ) {
-    if (isPlatformBrowser(this.platformId)) {
-      this.linkRef = this.document.createElement('link');
-      this.linkRef.rel = 'stylesheet';
-      this.linkRef.href = this.themes[0].href;
-      this.document.querySelector('head').appendChild(this.linkRef);
-    }
-  }
+  constructor(@Inject(DOCUMENT) private document: Document, private routeHistoryService: RouteHistoryService) {}
 
   ngOnInit(): void {
     this.routeHistoryService.init();
   }
 
   setTheme(theme: { cdsTheme: string; href: string }): void {
-    this.document.documentElement.setAttribute('cds-theme', theme.cdsTheme);
+    this.document.body.setAttribute('cds-theme', theme.cdsTheme);
     this.linkRef.href = theme.href;
   }
 }

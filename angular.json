@@ -27,11 +27,6 @@
                 "glob": "**/*",
                 "input": "src/dev/src/assets",
                 "output": "/assets"
-              },
-              {
-                "glob": "clr-ui-dark.css",
-                "input": "node_modules/@clr/ui/",
-                "output": "/assets/styles"
               }
             ],
             "styles": [
