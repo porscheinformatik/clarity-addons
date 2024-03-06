@@ -51,7 +51,7 @@
     "@angular/cli": "16.2.12",
     "@angular/compiler-cli": "16.2.12",
     "@angular/language-service": "16.2.12",
-    "@types/node": "20.11.24",
+    "@types/node": "20.11.25",
     "codelyzer": "6.0.2",
     "cp-cli": "2.0.0",
     "gh-pages": "6.1.1",
