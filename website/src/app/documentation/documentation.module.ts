@@ -2,7 +2,7 @@ import { CommonModule, DatePipe, CurrencyPipe, DecimalPipe } from '@angular/comm
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { ClarityModule } from '@clr/angular';
+import { ClarityModule, ClrAlertModule, ClrFormsModule } from '@clr/angular';
 
 import { UtilsModule } from '../utils/utils.module';
 import { DocumentationRoutingModule } from './documentation-routing.module';

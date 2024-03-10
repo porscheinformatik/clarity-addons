@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
+  ~ Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
@@ -7,6 +7,7 @@
   <clr-header class="header-6">
     <div class="branding">
       <a href="#" class="nav-link">
+        <cds-icon shape="cog"></cds-icon>
         <span class="title">Clarity Addons</span>
       </a>
     </div>
@@ -55,6 +56,20 @@
     </div>
   </clr-header>
 
+  <nav class="subnav">
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link">Submenu 1</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">Submenu 2</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">Submenu 3</a>
+      </li>
+    </ul>
+  </nav>
+
   <clr-history-pinned [clrUsername]="'me'" [clrContext]="{ tenantId: '1' }"></clr-history-pinned>
   <div class="content-header">
     <clr-back-button></clr-back-button>
@@ -63,7 +78,8 @@
       <clr-history [clrUsername]="'me'" [clrContext]="{ tenantId: '1' }"></clr-history>
       <clr-button-group [clrMenuPosition]="'bottom-right'">
         <clr-button>Command 1</clr-button>
-        <clr-button [clrInMenu]="true">Command2</clr-button>
+        <clr-button [clrInMenu]="true">Command 2</clr-button>
+        <clr-button [clrInMenu]="true">Longer Command 3</clr-button>
       </clr-button-group>
     </div>
   </div>

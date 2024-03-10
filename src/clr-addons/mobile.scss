@@ -14,7 +14,7 @@
   .main-container,
   .u-main-container {
     .content-header {
-      padding: 0.5rem 0.5rem 0 0.5rem;
+      padding: 0.15rem 0.5rem 0.15rem 0.5rem;
 
       .command-bar {
         margin-right: 0;
@@ -27,11 +27,6 @@
   .content-container .content-area-footer,
   .content-panel-content-wrapper {
     padding: 0.5rem;
-  }
-
-  //prevents the upper body part from being hidden by the fixed header
-  body {
-    padding-top: var(--clr-header-height);
   }
 
   //main-container needs the display:block property in order to work properly on safari

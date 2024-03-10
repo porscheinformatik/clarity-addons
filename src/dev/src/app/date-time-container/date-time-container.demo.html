@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
+  ~ Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
@@ -254,6 +254,19 @@
     </clr-date-container>
     <input clrTime type="time" />
   </clr-date-time-container>
+</form>
+
+<h3>Readonly</h3>
+<form clrForm [clrLayout]="'horizontal'" class="clr-row">
+  <div class="clr-col-12 clr-form-control clr-row">
+    <label class="clr-control-label clr-col-xs-12 clr-col-sm-3 clr-col-lg-2">First name</label>
+    <span class="clr-col-xs-12 clr-col-sm-9 clr-col-lg-10">John</span>
+  </div>
+
+  <div class="clr-col-12 clr-form-control clr-row">
+    <label class="clr-control-label clr-col-xs-12 clr-col-sm-3 clr-col-lg-2">Lastname</label>
+    <span class="clr-col-xs-12 clr-col-sm-9 clr-col-lg-10">Doe</span>
+  </div>
 </form>
 
 <clr-view-edit-section clrTitle="View Edit Section" [clrEditRef]="editBlock" [clrViewRef]="viewBlock">

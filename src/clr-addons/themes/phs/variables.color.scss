@@ -1,41 +1,151 @@
 $clr-color-hue: 183.2;
 
-$turquoise: #14a1a9;
-$white: #fff;
-$black: #000;
+$phs-default-font-family: Metropolis, 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
 
-[cds-theme~='phs'] {
+$phs-global-color-white: #fff;
+$phs-global-color-black: #000;
+
+// node gradient turquoise 14a1a9@700 19888d@800 e8f3f3@50
+$phs-global-color-turquoise-25: hsl(180, 30%, 95%); // #eff7f7
+$phs-global-color-turquoise-50: hsl(180, 31%, 93%); // #e8f3f3
+$phs-global-color-turquoise-75: hsl(180, 33%, 91%); // #e0f0f0
+$phs-global-color-turquoise-100: hsl(180, 35%, 89%); // #d9ecec
+$phs-global-color-turquoise-200: hsl(181, 42%, 80%); // #b7e1e2
+$phs-global-color-turquoise-300: hsl(181, 49%, 72%); // #93d9da
+$phs-global-color-turquoise-400: hsl(182, 56%, 63%); // #6cd3d6
+$phs-global-color-turquoise-500: hsl(182, 63%, 55%); // #43cfd4
+$phs-global-color-turquoise-600: hsl(183, 69%, 46%); // #25c1c8
+$phs-global-color-turquoise-700: hsl(183, 75%, 38%); // #19a3aa
+$phs-global-color-turquoise-800: hsl(183, 70%, 33%); // #19888d
+$phs-global-color-turquoise-900: hsl(182, 61%, 28%); // #1c7073
+$phs-global-color-turquoise-1000: hsl(181, 52%, 24%); // #1d5a5b
+
+// node gradient green 3c8500@700 dff0d0@50 266900@900
+$phs-global-color-green-25: hsl(92, 50%, 90%); // #e5f2da
+$phs-global-color-green-50: hsl(92, 52%, 88%); // #dff0d0
+$phs-global-color-green-75: hsl(92, 53%, 85%); // #d9eec6
+$phs-global-color-green-100: hsl(92, 55%, 83%); // #d2ecbc
+$phs-global-color-green-200: hsl(92, 63%, 74%); // #b9e692
+$phs-global-color-green-300: hsl(92, 70%, 64%); // #9fe465
+$phs-global-color-green-400: hsl(93, 77%, 55%); // #85e535
+$phs-global-color-green-500: hsl(93, 84%, 46%); // #6cd913
+$phs-global-color-green-600: hsl(93, 91%, 37%); // #55b609
+$phs-global-color-green-700: hsl(94, 97%, 29%); // #409102
+$phs-global-color-green-800: hsl(96, 99%, 24%); // #327b01
+$phs-global-color-green-900: hsl(98, 100%, 21%); // #266900
+$phs-global-color-green-1000: hsl(101, 100%, 18%); // #1d5b00
+
+// node gradient red db2100@700 feddd7@100 a8150d@800 991700@900
+$phs-global-color-red-25: hsl(9, 95%, 98%); // #fff7f5
+$phs-global-color-red-50: hsl(9, 95%, 96%); // #feeeeb
+$phs-global-color-red-75: hsl(9, 95%, 94%); // #fee5e1
+$phs-global-color-red-100: hsl(9, 95%, 92%); // #feddd7
+$phs-global-color-red-200: hsl(9, 96%, 84%); // #fdbaae
+$phs-global-color-red-300: hsl(9, 97%, 76%); // #fd9785
+$phs-global-color-red-400: hsl(9, 97%, 67%); // #fc745c
+$phs-global-color-red-500: hsl(9, 97%, 59%); // #fc5033
+$phs-global-color-red-600: hsl(8, 97%, 51%); // #fb2b0a
+$phs-global-color-red-700: hsl(7, 95%, 42%); // #d31e06
+$phs-global-color-red-800: hsl(5, 89%, 36%); // #ac160a
+$phs-global-color-red-900: hsl(9, 98%, 30%); // #981801
+$phs-global-color-red-1000: hsl(15, 100%, 25%); // #7d1f00
+
+// node gradient ochre 805500@900 ffba0a@500 fff4c7@50
+$phs-global-color-ochre-25: hsl(48, 100%, 91%); // #fff6d2
+$phs-global-color-ochre-50: hsl(48, 100%, 89%); // #fff4c7
+$phs-global-color-ochre-75: hsl(48, 100%, 87%); // #fff2bd
+$phs-global-color-ochre-100: hsl(48, 100%, 85%); // #ffefb2
+$phs-global-color-ochre-200: hsl(47, 100%, 77%); // #ffe488
+$phs-global-color-ochre-300: hsl(45, 100%, 69%); // #ffd85f
+$phs-global-color-ochre-400: hsl(44, 100%, 61%); // #ffcb36
+$phs-global-color-ochre-500: hsl(43, 100%, 53%); // #ffbc0e
+$phs-global-color-ochre-600: hsl(42, 100%, 46%); // #e9a500
+$phs-global-color-ochre-700: hsl(42, 100%, 39%); // #c68900
+$phs-global-color-ochre-800: hsl(41, 100%, 32%); // #a36e00
+$phs-global-color-ochre-900: hsl(40, 100%, 25%); // #805500
+$phs-global-color-ochre-1000: hsl(39, 100%, 18%); // #5e3d00
+
+// node gradient construction e8e8e8@300 454545@700
+$phs-global-color-construction-25: hsl(0, 0%, 99%); // #fdfdfd
+$phs-global-color-construction-50: hsl(0, 0%, 98%); // #fbfbfb
+$phs-global-color-construction-75: hsl(0, 0%, 97%); // #f8f8f8
+$phs-global-color-construction-100: hsl(0, 0%, 96%); // #f6f6f6
+$phs-global-color-construction-200: hsl(0, 0%, 91%); // #e9e9e9
+$phs-global-color-construction-300: hsl(0, 0%, 85%); // #dadada
+$phs-global-color-construction-400: hsl(0, 0%, 72%); // #b8b8b8
+$phs-global-color-construction-500: hsl(0, 0%, 58%); // #959595
+$phs-global-color-construction-600: hsl(0, 0%, 44%); // #717171
+$phs-global-color-construction-700: hsl(0, 0%, 30%); // #4d4d4d
+$phs-global-color-construction-800: hsl(0, 0%, 19%); // #323232
+$phs-global-color-construction-900: hsl(0, 0%, 9%); // #181818
+$phs-global-color-construction-1000: hsl(0, 0%, 0%); // #000000
+
+// deprecated, use $phs-global-color-turquoise-700 instead
+$turquoise: #{$phs-global-color-turquoise-700};
+// deprecated, use $phs-global-color-white instead
+$white: #{$phs-global-color-white};
+// deprecated, use $phs-global-color-black instead
+$black: #{$phs-global-color-black};
+
+:root:has([cds-theme~='phs']) {
+  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
   --blue-light: #e6f3f8;
+  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
   --blue-mid: #85c3df;
+  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
   --blue-dark: #0d88c0;
+  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
   --blue-darker: #0c75a6;
 
-  --turquoise: #{$turquoise};
-  --turquoise-lighter: #e8f3f3;
-  --turquoise-light: #e7f5f6;
-  --turquoise-darkest: #19888d;
+  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
+  --turquoise: #{$phs-global-color-turquoise-700};
+  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
+  --turquoise-lighter: #{$phs-global-color-turquoise-50};
+  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
+  --turquoise-light: #{$phs-global-color-turquoise-100};
+  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
+  --turquoise-darkest: #{$phs-global-color-turquoise-800};
 
+  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
   --green-turquiose: #1f9c70;
-  --green-lighter: #e8f2e9;
-  --green-light: #b7e8d7;
-  --green-light-mid: #29cf95;
-  --green-mid: #24b582;
-  --green: #14a91e;
-  --green-dark: #208427;
-  --green-darkest: #266900;
+  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
+  --green-lighter: #{$phs-global-color-green-50};
+  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
+  --green-light: #{$phs-global-color-green-100};
+  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
+  --green-light-mid: #{$phs-global-color-green-300};
+  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
+  --green-mid: #{$phs-global-color-green-500};
+  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
+  --green: #{$phs-global-color-green-700};
+  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
+  --green-dark: #{$phs-global-color-green-800};
+  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
+  --green-darkest: #{$phs-global-color-green-900};
 
-  --red-lighter: #f7eae7;
-  --red-light: #ffdddb;
-  --red-dark: #b12d12;
-  --red-darker: #c11810;
-  --red-darkest: #a8150d;
+  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
+  --red-lighter: #{$phs-global-color-red-50};
+  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
+  --red-light: #{$phs-global-color-red-100};
+  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
+  --red-dark: #{$phs-global-color-red-700};
+  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
+  --red-darker: #{$phs-global-color-red-800};
+  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
+  --red-darkest: #{$phs-global-color-red-900};
 
+  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
   --orange-dark: #d25617;
+  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
   --orange-darker: #b84b14;
+  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
   --orange-light: #ffae42;
 
+  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
   --yellow-light: #efd603;
 
-  --black: #{$black};
-  --white: #{$white};
+  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
+  --black: #{$phs-global-color-black};
+  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
+  --white: #{$phs-global-color-white};
 }

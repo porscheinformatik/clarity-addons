@@ -36,6 +36,7 @@
               "node_modules/prismjs/themes/prism-solarizedlight.css",
               "node_modules/modern-normalize/modern-normalize.css",
               "node_modules/@cds/core/global.min.css",
+              "node_modules/@cds/core/styles/theme.dark.min.css",
               "node_modules/@clr/ui/clr-ui.min.css",
               "node_modules/angular-calendar/css/angular-calendar.css",
               "node_modules/@porscheinformatik/clr-addons/styles/clr-addons-phs.min.css",

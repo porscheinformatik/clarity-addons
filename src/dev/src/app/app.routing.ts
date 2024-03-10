@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -20,6 +20,7 @@ export const APP_ROUTES: Routes = [
     loadChildren: () =>
       import('./view-edit-section/view-edit-section.demo.module').then(m => m.ViewEditSectionDemoModule),
   },
+  { path: 'clarity', loadChildren: () => import('./clarity/clarity.demo.module').then(m => m.ClarityDemoModule) },
   { path: 'pager', loadChildren: () => import('./pager/pager.demo.module').then(m => m.PagerDemoModule) },
   {
     path: 'dot-pager',

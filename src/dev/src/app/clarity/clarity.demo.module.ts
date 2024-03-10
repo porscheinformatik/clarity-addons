@@ -9,10 +9,8 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ClarityModule, ClrFormsModule } from '@clr/angular';
 import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
-import { UtilsModule } from '../../../utils/utils.module';
-import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
 
-import { ColorsDemo } from './colors.demo';
+import { ClarityDemo } from './calrity.demo';
 
 @NgModule({
   imports: [
@@ -21,11 +19,9 @@ import { ColorsDemo } from './colors.demo';
     ClarityModule,
     ClrFormsModule,
     ClrAddonsModule,
-    UtilsModule,
-    DocWrapperModule,
-    RouterModule.forChild([{ path: '', component: ColorsDemo }]),
+    RouterModule.forChild([{ path: '', component: ClarityDemo }]),
   ],
-  declarations: [ColorsDemo],
-  exports: [ColorsDemo],
+  declarations: [ClarityDemo],
+  exports: [ClarityDemo],
 })
-export class ColorsDemoModule {}
+export class ClarityDemoModule {}

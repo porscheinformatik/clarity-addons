@@ -2,6 +2,7 @@
 <clr-vertical-nav [clrVerticalNavCollapsible]="false" [clrVerticalNavCollapsed]="false">
   <div class="versions">
     <div class="version p7">Addons Version {{ environment.addons_version }}</div>
+    <div class="version p7">Angular Version {{ environment.angular_version }}</div>
     <div class="version p7">Clarity Version {{ environment.clarity_version }}</div>
   </div>
   <a
@@ -13,6 +14,16 @@
   >
     <cds-icon clrVerticalNavIcon shape="help-info"></cds-icon>
     Get Started
+  </a>
+  <a
+    class="nav-link"
+    clrVerticalNavLink
+    routerLink="change-log"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    <cds-icon clrVerticalNavIcon shape="update"></cds-icon>
+    Change Log
   </a>
   <a
     class="nav-link"

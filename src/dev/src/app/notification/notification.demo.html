@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
+  ~ Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
@@ -24,24 +24,32 @@
 <ng-template #info>
   <ng-container clr-notification-message>
     Some Information<br />very<br />very<br />very<br />long information
-    <button class="btn" (click)="showAlert()">Show Alert</button>
+    <div class="alert-actions">
+      <button class="btn alert-action" (click)="showAlert()">Show Alert</button>
+    </div>
   </ng-container>
 </ng-template>
 <ng-template #warning let-variable1="variable1" let-variable2="variable2">
   <ng-container clr-notification-message>
     Warning {{variable1}} {{variable2}}
-    <button class="btn" (click)="showAlert()">Show Alert</button>
+    <div class="alert-actions">
+      <button class="btn alert-action" (click)="showAlert()">Show Alert</button>
+    </div>
   </ng-container>
 </ng-template>
 <ng-template #success>
   <ng-container clr-notification-message>
     Success
-    <button class="btn" (click)="showAlert()">Show Alert</button>
+    <div class="alert-actions">
+      <button class="btn alert-action" (click)="showAlert()">Show Alert</button>
+    </div>
   </ng-container>
 </ng-template>
 <ng-template #danger>
   <ng-container clr-notification-message>
     Danger
-    <button class="btn" (click)="showAlert()">Show Alert</button>
+    <div class="alert-actions">
+      <button class="btn alert-action" (click)="showAlert()">Show Alert</button>
+    </div>
   </ng-container>
 </ng-template>
