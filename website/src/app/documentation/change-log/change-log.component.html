@@ -11,7 +11,7 @@
     <clr-alert-item>
       <span class="alert-text">
         The upgrade will convert all <code>&#64;</code> signs to <code>&amp;#64;</code> in the HTML templates. If you
-        don't use the automatic upgrade, you have to do this manually. <b>This is breaking change!</b>
+        don't use the automatic upgrade, you have to do this manually. <b>This is a breaking change!</b>
       </span>
     </clr-alert-item>
   </clr-alert>
@@ -42,7 +42,7 @@
   <clr-alert [clrAlertType]="'warning'" [clrAlertClosable]="false">
     <clr-alert-item>
       <span class="alert-text">
-        <b>This is breaking change!</b> The <code>body</code> elements must contain the tag:
+        <b>This is a breaking change!</b> The <code>body</code> elements must contain the tag:
         <code>cds-theme="phs"</code> (or <code>cds-theme="light"</code>).
       </span>
     </clr-alert-item>
@@ -95,7 +95,7 @@
   <clr-alert [clrAlertType]="'warning'" [clrAlertClosable]="false">
     <clr-alert-item>
       <span class="alert-text">
-        <b>This is breaking change!</b> In order to override the color settings, follow the instructions of the
+        <b>This is a breaking change!</b> In order to override the color settings, follow the instructions of the
         <a href="https://clarity.design/documentation/color">Clarity Color documentation</a>. All our components follow
         these default settings, now, and by overriding them, you can adjust the colors of both, Clarity and PHS
         components to your needs.
@@ -111,8 +111,8 @@
   <clr-alert [clrAlertType]="'warning'" [clrAlertClosable]="false">
     <clr-alert-item>
       <span class="alert-text">
-        <b>This is breaking change!</b> Make sure, that your buttons inside a notification do have the class
-        <code>alert-action</code> assigned and reside with a <code>&lt;div class="alert-action"&gt;</code>. Otherwise,
+        <b>This is a breaking change!</b> Make sure, that your buttons inside a notification do have the class
+        <code>alert-action</code> assigned and reside within a <code>&lt;div class="alert-action"&gt;</code>. Otherwise,
         the buttons will have the wrong color.
       </span>
     </clr-alert-item>
@@ -123,9 +123,24 @@
   <clr-alert [clrAlertType]="'warning'" [clrAlertClosable]="false">
     <clr-alert-item>
       <span class="alert-text">
-        <b>This is breaking change!</b> Like with Notifications, make sure, that the buttons inside an alert do have the
-        class <code>alert-action</code> assigned and reside with a <code>&lt;div class="alert-action"&gt;</code>.
+        <b>This is a breaking change!</b> Like with Notifications, make sure, that the buttons inside an alert do have
+        the class <code>alert-action</code> assigned and reside within a <code>&lt;div class="alert-action"&gt;</code>.
         Otherwise, the buttons will have the wrong color.
+      </span>
+    </clr-alert-item>
+  </clr-alert>
+
+  <h4>Required Fields</h4>
+  <p>
+    The class "<code>required</code>" has been deprecated in favor of the class "<code>clr-required-mark</code>" by
+    Clarity. Usually, this class is used in combination with the <code>&lt;label&gt;</code> element, but it may be used
+    on other type of elements, too.
+  </p>
+  <clr-alert [clrAlertType]="'warning'" [clrAlertClosable]="false">
+    <clr-alert-item>
+      <span class="alert-text">
+        <b>This is (soon) a breaking change!</b> Replace the <code>class="… required …"</code> with
+        <code>class="… clr-required-mark …"</code> in your templates.
       </span>
     </clr-alert-item>
   </clr-alert>

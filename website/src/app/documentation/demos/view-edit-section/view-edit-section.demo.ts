@@ -34,12 +34,12 @@ const HTML_EXAMPLE_SIDE_BY_SIDE = `
         <ng-template #editBlock1>
             <form clrForm clrLayout="horizontal" [formGroup]="exampleForm" (submit)="onFormSubmit()">
               <clr-input-container>
-                  <label class="clr-col-md-4 required">First name</label>
+                  <label class="clr-col-md-4 clr-required-mark">First name</label>
                   <input class="clr-col-md-8" clrInput type="text" formControlName="editFirst" name="first"/>
                   <clr-control-error>You must enter a first name.</clr-control-error>
               </clr-input-container>
               <clr-input-container>
-                  <label class="clr-col-md-4 required">Last name</label>
+                  <label class="clr-col-md-4 clr-required-mark">Last name</label>
                   <input class="clr-col-md-8" clrInput type="text" formControlName="editLast" name="last"/>
                   <clr-control-error>You must enter a last name.</clr-control-error>
               </clr-input-container>

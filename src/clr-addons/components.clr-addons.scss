@@ -213,6 +213,7 @@ body,
   }
 }
 
+// Deprecated with Clarity 17 in favor or "clr-required-mark"
 @mixin required-asterisk($color: var(--cds-alias-status-danger)) {
   position: relative;
 
@@ -227,6 +228,7 @@ body,
   }
 }
 
+// Deprecated with Clarity 17 in favor or "clr-required-mark"
 form {
   .required {
     @include required-asterisk();

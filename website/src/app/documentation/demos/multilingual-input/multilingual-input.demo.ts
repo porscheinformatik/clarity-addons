@@ -11,13 +11,13 @@ import { ClarityDocComponent } from '../clarity-doc';
 const TEMPLATE_EXAMPLE = `
 <clr-multilingual-input class="clr-col-12 clr-row" clrSelectedLang="EN" [(ngModel)]="data1"
     [ngModelOptions]="{ updateOn: 'blur' }" clrRequiredAllMultilang clrControlClasses="clr-col-md-5" name="template1">
-    <label class="clr-col-md-2 required">Template</label>
+    <label class="clr-col-md-2 clr-required-mark">Template</label>
     <clr-control-error>Please translate in every language!</clr-control-error>
     <clr-control-helper>Helper text</clr-control-helper>
 </clr-multilingual-input>
 <clr-multilingual-textarea class="clr-col-12 clr-row" clrSelectedLang="EN" [(ngModel)]="data2"
     [ngModelOptions]="{ updateOn: 'blur' }" clrRequiredAllMultilang clrControlClasses="clr-col-md-5" name="template2">
-    <label class="clr-col-md-2 required">Template</label>
+    <label class="clr-col-md-2 clr-required-mark">Template</label>
     <clr-control-error>Please translate in every language!</clr-control-error>
     <clr-control-helper>Helper text</clr-control-helper>
 </clr-multilingual-textarea>
@@ -35,14 +35,14 @@ const REACTIVE_EXAMPLE = `
     <clr-multilingual-input class="clr-col-12 clr-row" clrSelectedLang="EN" formControlName="sample1"
         clrControlClasses="clr-col-md-5" name="reactive1">
 
-        <label class="clr-col-md-2 required">Reactive</label>
+        <label class="clr-col-md-2 clr-required-mark">Reactive</label>
         <clr-control-helper>Helper text</clr-control-helper>
         <clr-control-error>Please translate in every language!</clr-control-error>
     </clr-multilingual-input>
     <clr-multilingual-textarea class="clr-col-12 clr-row" clrSelectedLang="EN" formControlName="sample2"
         clrControlClasses="clr-col-md-5" name="reactive2">
 
-        <label class="clr-col-md-2 required">Reactive</label>
+        <label class="clr-col-md-2 clr-required-mark">Reactive</label>
         <clr-control-helper>Helper text</clr-control-helper>
         <clr-control-error>Please translate in every language!</clr-control-error>
     </clr-multilingual-textarea>
