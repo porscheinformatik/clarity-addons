@@ -2,6 +2,70 @@
 // This software is released under MIT license.
 // The full license information can be found in LICENSE in the root directory of this project.
 
+// The PHS theme does distinguish between primary and info colors. This is not standard in Clarity.
+// We define the necessary colors and styles for all themes. By the default, the info colors will be used
+// with the light and dark theme, but the PHS theme may override the definitions with a primary color.
+:root [cds-theme] {
+  --cds-alias-status-primary: var(--cds-alias-status-info);
+  --cds-alias-status-primary-shade: var(--cds-alias-status-info-shade);
+  --cds-alias-status-primary-tint: var(--cds-alias-status-info-tint);
+
+  --cds-alias-object-interaction-primary-hover: var(--cds-alias-object-interaction-info-hover);
+  --cds-alias-object-interaction-primary-click: var(--cds-alias-object-interaction-info-click);
+  --cds-alias-object-interaction-primary-secondary-hover: var(--cds-alias-object-interaction-info-secondary-hover);
+
+  --cds-alias-typography-primary-hover: var(--cds-alias-typography-info-hover);
+
+  --clr-badge-primary-bg-color: var(--cds-alias-status-primary);
+  --clr-badge-primary-color: var(--clr-badge-info-color);
+
+  --clr-btn-primary-bg-color: var(--cds-alias-status-primary);
+  --clr-btn-primary-border-color: var(--cds-alias-status-primary);
+  --clr-btn-primary-hover-bg-color: var(--cds-alias-object-interaction-primary-hover);
+  --clr-btn-primary-active-bg-color: var(--cds-alias-object-interaction-primary-click);
+  --clr-btn-primary-checked-bg-color: var(--cds-alias-status-primary);
+  --clr-btn-primary-outline-color: var(--cds-alias-status-primary);
+  --clr-btn-primary-outline-hover-bg-color: var(--cds-alias-object-interaction-primary-secondary-hover);
+  --clr-btn-primary-outline-hover-color: var(--cds-alias-typography-primary-hover);
+
+  --clr-btn-info-color: var(--clr-btn-primary-color);
+  --clr-btn-info-hover-color: var(--clr-btn-primary-hover-color);
+  --clr-btn-info-bg-color: var(--cds-alias-status-info);
+  --clr-btn-info-border-color: var(--cds-alias-status-info);
+  --clr-btn-info-hover-bg-color: var(--cds-alias-object-interaction-info-hover);
+  --clr-btn-info-active-bg-color: var(--cds-alias-object-interaction-info-click);
+  --clr-btn-info-checked-bg-color: var(--cds-alias-status-info);
+  --clr-btn-info-outline-color: var(--cds-alias-status-info);
+  --clr-btn-info-outline-hover-bg-color: var(--cds-alias-object-interaction-info-secondary-hover);
+  --clr-btn-info-outline-hover-color: var(--cds-alias-typography-info-hover);
+
+  --clr-btn-link-color: var(--cds-alias-status-primary);
+  --clr-btn-link-hover-color: var(--cds-alias-typography-primary-hover);
+
+  --clr-label-primary-bg-color: var(--cds-alias-status-primary-tint);
+  --clr-label-primary-border-color: var(--cds-alias-status-primary);
+
+  --clr-progress-default-color: var(--cds-alias-status-primary);
+
+  --clr-nav-link-color: var(--cds-alias-typography-color-450);
+  --clr-nav-link-active-color: var(--cds-alias-typography-color-300);
+  --clr-nav-background-color: var(--clr-btn-transparent-bg-color);
+  --clr-nav-box-shadow-color: var(--cds-alias-object-border-color);
+  --clr-nav-active-box-shadow-color: var(--cds-alias-status-primary);
+  --clr-nav-hover-box-shadow-color: var(--cds-alias-status-primary-shade);
+}
+
+// The following definitions are not strictly linked to the PHS theme but are used throughout the clarity-addons.
+// They should work, even if the PHS theme is not used.
+:root [cds-theme] {
+  --clr-text-color-primary: var(--cds-alias-status-primary);
+  --clr-text-color-info: var(--cds-alias-status-info);
+  --clr-text-color-success: var(--cds-alias-status-success);
+  --clr-text-color-warning: var(--cds-alias-status-warning);
+  --clr-text-color-danger: var(--cds-alias-status-danger);
+}
+
+// Specific definitions for the PHS theme
 :root [cds-theme~='phs'] {
   // Global overrides
   --clr-metropolis-font-family: #{$phs-default-font-family};
@@ -20,9 +84,9 @@
   --clr-h6-font-weight: var(--cds-global-typography-font-weight-light);
 
   // Color overrides as defined by https://clarity.design/documentation/color
-  --cds-alias-status-info: #{$phs-global-color-turquoise-700};
-  --cds-alias-status-info-shade: #{$phs-global-color-turquoise-800};
-  --cds-alias-status-info-tint: #{$phs-global-color-turquoise-50};
+  --cds-alias-status-info: #{$phs-global-color-blue-700};
+  --cds-alias-status-info-shade: #{$phs-global-color-blue-800};
+  --cds-alias-status-info-tint: #{$phs-global-color-blue-50};
 
   --cds-alias-status-success: #{$phs-global-color-green-700};
   --cds-alias-status-success-shade: #{$phs-global-color-green-800};
@@ -42,9 +106,9 @@
   --cds-alias-status-disabled-shade: #{$phs-global-color-construction-300};
   --cds-alias-status-disabled-tint: #{$phs-global-color-construction-400};
 
-  --cds-alias-object-interaction-info-hover: #{$phs-global-color-turquoise-800};
-  --cds-alias-object-interaction-info-click: #{$phs-global-color-turquoise-900};
-  --cds-alias-object-interaction-info-secondary-hover: #{$phs-global-color-turquoise-50};
+  --cds-alias-object-interaction-info-hover: #{$phs-global-color-blue-800};
+  --cds-alias-object-interaction-info-click: #{$phs-global-color-blue-900};
+  --cds-alias-object-interaction-info-secondary-hover: #{$phs-global-color-blue-50};
 
   --cds-alias-object-interaction-success-hover: #{$phs-global-color-green-800};
   --cds-alias-object-interaction-success-click: #{$phs-global-color-green-900};
@@ -84,7 +148,7 @@
   --cds-alias-typography-color-450: #{$phs-global-color-construction-700};
   --cds-alias-typography-color-500: #{$phs-global-color-construction-700};
 
-  --cds-alias-typography-info-hover: #{$phs-global-color-turquoise-800};
+  --cds-alias-typography-info-hover: #{$phs-global-color-blue-800};
   --cds-alias-typography-success-hover: #{$phs-global-color-green-800};
   --cds-alias-typography-warning-hover: #{$phs-global-color-ochre-900};
   --cds-alias-typography-danger-hover: #{$phs-global-color-red-800};
@@ -98,6 +162,18 @@
 
   --cds-alias-typography-disabled: var(--cds-global-color-construction-300);
   --cds-alias-typography-disabled-button: var(--cds-global-color-construction-300);
+
+  // Additional colors to distinguish between primary and info colors
+  // This is not standard in Clarity, but is used in PHS
+  --cds-alias-status-primary: #{$phs-global-color-turquoise-700};
+  --cds-alias-status-primary-shade: #{$phs-global-color-turquoise-800};
+  --cds-alias-status-primary-tint: #{$phs-global-color-turquoise-50};
+
+  --cds-alias-object-interaction-primary-hover: #{$phs-global-color-turquoise-800};
+  --cds-alias-object-interaction-primary-click: #{$phs-global-color-turquoise-900};
+  --cds-alias-object-interaction-primary-secondary-hover: #{$phs-global-color-turquoise-50};
+
+  --cds-alias-typography-primary-hover: #{$phs-global-color-turquoise-800};
 
   // Bugfix as of Clarity 17.0.1 - in contrast to all other alerts, the warning has a direct color assignment
   --clr-alert-warning-font-color: var(--cds-alias-typography-color-500);
@@ -114,8 +190,18 @@
   --clr-badge-success-bg-color: var(--cds-alias-status-success);
   --clr-badge-warning-bg-color: var(--cds-alias-status-warning);
   --clr-badge-danger-bg-color: var(--cds-alias-status-danger);
+  // Fix the dark text color of the badges
+  --clr-badge-warning-color: var(--clr-badge-info-color);
 
   // Button
+  --clr-btn-default-color: var(--cds-alias-status-primary);
+  --clr-btn-default-hover-bg-color: var(--cds-alias-object-interaction-primary-secondary-hover);
+  --clr-btn-default-hover-color: var(--cds-alias-typography-primary-hover);
+  --clr-btn-default-checked-hover-bg-color: var(--cds-alias-object-interaction-primary-hover);
+  --clr-btn-default-outline-color: var(--cds-alias-status-primary);
+  --clr-btn-default-outline-hover-bg-color: var(--cds-alias-object-interaction-primary-secondary-hover);
+  --clr-btn-default-outline-hover-color: var(--cds-alias-typography-primary-hover);
+  // Fix the dark text color of warning buttons
   --clr-btn-warning-color: var(--cds-global-color-white);
 
   // Card
@@ -150,15 +236,9 @@
   --clr-label-danger-bg-color: var(--cds-alias-status-danger-tint);
   --clr-label-danger-border-color: var(--cds-alias-status-danger);
 
-  // Subnav
-  --clr-nav-active-box-shadow-color: var(--cds-alias-status-info);
-
-  // Text
-  --clr-text-color-primary: var(--cds-alias-status-info);
-  --clr-text-color-success: var(--cds-alias-status-success);
-  --clr-text-color-info: var(--cds-alias-status-info);
-  --clr-text-color-warning: var(--cds-alias-status-warning);
-  --clr-text-color-danger: var(--cds-alias-status-danger);
+  // Spinner
+  --clr-spinner-fill-color: var(--cds-alias-status-primary);
+  --clr-spinner-fill-inverse-color: var(--cds-alias-status-primary-tint);
 
   // Vertical Nav
   --clr-vertical-nav-hover-bg-color: #{$phs-global-color-construction-300};
@@ -208,7 +288,7 @@
   header .search input[type='text']:focus,
   .header .search-box input[type='text']:focus,
   .header .search input[type='text']:focus {
-    border-color: var(--cds-alias-status-info);
+    border-color: var(--cds-alias-status-primary);
   }
 
   // *************************

@@ -4,7 +4,34 @@
   <a href="https://clarity.design/documentation/color">Clarity Colors</a>
 </p>
 <div class="clr-row clr-mt-24px">
-  <div class="clr-col-3">
+  <div class="clr-col-2">
+    <h5>Primary</h5>
+    <div class="color-example">
+      <button
+        class="btn color-example-item"
+        (click)="copyColorCode($event, '--cds-alias-status-primary')"
+        style="--color: var(--cds-alias-status-primary)"
+      ></button>
+      <div class="color-example-item-text">primary</div>
+    </div>
+    <div class="color-example">
+      <button
+        class="btn color-example-item"
+        (click)="copyColorCode($event, '--cds-alias-status-primary-shade')"
+        style="--color: var(--cds-alias-status-primary-shade)"
+      ></button>
+      <div class="color-example-item-text">primary-shade</div>
+    </div>
+    <div class="color-example">
+      <button
+        class="btn color-example-item"
+        (click)="copyColorCode($event, '--cds-alias-status-primary-tint')"
+        style="--color: var(--cds-alias-status-primary-tint)"
+      ></button>
+      <div class="color-example-item-text">primary-tint</div>
+    </div>
+  </div>
+  <div class="clr-col-2">
     <h5>Info</h5>
     <div class="color-example">
       <button
@@ -31,7 +58,7 @@
       <div class="color-example-item-text">info-tint</div>
     </div>
   </div>
-  <div class="clr-col-3">
+  <div class="clr-col-2">
     <h5>Success</h5>
     <div class="color-example">
       <button
@@ -58,7 +85,7 @@
       <div class="color-example-item-text">success-tint</div>
     </div>
   </div>
-  <div class="clr-col-3">
+  <div class="clr-col-2">
     <h5>Warning</h5>
     <div class="color-example">
       <button
@@ -93,7 +120,7 @@
       <div class="color-example-item-text">warning-tint</div>
     </div>
   </div>
-  <div class="clr-col-3">
+  <div class="clr-col-2">
     <h5>Danger</h5>
     <div class="color-example">
       <button
@@ -130,7 +157,7 @@
   </div>
 </div>
 <div class="clr-row clr-mt-24px">
-  <div class="clr-col-3">
+  <div class="clr-col-2">
     <h5>Neutral</h5>
     <div class="color-example">
       <button
@@ -157,7 +184,7 @@
       <div class="color-example-item-text">neutral-tint</div>
     </div>
   </div>
-  <div class="clr-col-3">
+  <div class="clr-col-2">
     <h5>Alt</h5>
     <div class="color-example">
       <button
@@ -185,7 +212,7 @@
     </div>
   </div>
   <div>
-    <div class="clr-col-3">
+    <div class="clr-col-2">
       <h5>Disabled</h5>
       <div class="color-example">
         <button
@@ -218,7 +245,7 @@
 <h4>Interactive Colors</h4>
 <h5 class="clr-mt-16px">Objects - Hover / Active / Selected</h5>
 <div class="clr-row">
-  <div class="clr-col-3 ng-star-inserted">
+  <div class="clr-col-2 ng-star-inserted">
     <div class="color-example">
       <button
         class="btn color-example-item"
@@ -228,7 +255,7 @@
       <div class="color-example-item-text">color</div>
     </div>
   </div>
-  <div class="clr-col-3 ng-star-inserted">
+  <div class="clr-col-2 ng-star-inserted">
     <div class="color-example">
       <button
         class="btn color-example-item"
@@ -238,7 +265,7 @@
       <div class="color-example-item-text">color-hover</div>
     </div>
   </div>
-  <div class="clr-col-3 ng-star-inserted">
+  <div class="clr-col-2 ng-star-inserted">
     <div class="color-example">
       <button
         class="btn color-example-item"
@@ -248,7 +275,7 @@
       <div class="color-example-item-text">color-active</div>
     </div>
   </div>
-  <div class="clr-col-3 ng-star-inserted">
+  <div class="clr-col-2 ng-star-inserted">
     <div class="color-example">
       <button
         class="btn color-example-item"
@@ -258,7 +285,7 @@
       <div class="color-example-item-text">color-selected</div>
     </div>
   </div>
-  <div class="clr-col-3 ng-star-inserted">
+  <div class="clr-col-2 ng-star-inserted">
     <div class="color-example">
       <button
         class="btn color-example-item"
@@ -268,7 +295,7 @@
       <div class="color-example-item-text">color-disabled</div>
     </div>
   </div>
-  <div class="clr-col-3 ng-star-inserted">
+  <div class="clr-col-2 ng-star-inserted">
     <div class="color-example">
       <button
         class="btn color-example-item"
@@ -281,7 +308,33 @@
 </div>
 <h5 class="clr-mt-16px">Buttons - Hover / Active / Selected</h5>
 <div class="clr-row">
-  <div class="clr-col-3 clr-mb-24px ng-star-inserted">
+  <div class="clr-col-2 clr-mb-24px ng-star-inserted">
+    <div class="color-example">
+      <button
+        class="btn color-example-item"
+        (click)="copyColorCode($event, '--cds-alias-object-interaction-primary-hover')"
+        style="--color: var(--cds-alias-object-interaction-primary-hover)"
+      ></button>
+      <div class="color-example-item-text">primary-hover</div>
+    </div>
+    <div class="color-example">
+      <button
+        class="btn color-example-item"
+        (click)="copyColorCode($event, '--cds-alias-object-interaction-primary-click')"
+        style="--color: var(--cds-alias-object-interaction-primary-click)"
+      ></button>
+      <div class="color-example-item-text">primary-click</div>
+    </div>
+    <div class="color-example">
+      <button
+        class="btn color-example-item"
+        (click)="copyColorCode($event, '--cds-alias-object-interaction-primary-secondary-hover')"
+        style="--color: var(--cds-alias-object-interaction-primary-secondary-hover)"
+      ></button>
+      <div class="color-example-item-text">primary-secondary-hover</div>
+    </div>
+  </div>
+  <div class="clr-col-2 clr-mb-24px ng-star-inserted">
     <div class="color-example">
       <button
         class="btn color-example-item"
@@ -307,7 +360,7 @@
       <div class="color-example-item-text">info-secondary-hover</div>
     </div>
   </div>
-  <div class="clr-col-3 clr-mb-24px ng-star-inserted">
+  <div class="clr-col-2 clr-mb-24px ng-star-inserted">
     <div class="color-example">
       <button
         class="btn color-example-item"
@@ -333,7 +386,7 @@
       <div class="color-example-item-text">success-secondary-hover</div>
     </div>
   </div>
-  <div class="clr-col-3 clr-mb-24px ng-star-inserted">
+  <div class="clr-col-2 clr-mb-24px ng-star-inserted">
     <div class="color-example">
       <button
         class="btn color-example-item"
@@ -359,7 +412,7 @@
       <div class="color-example-item-text">warning-secondary-hover</div>
     </div>
   </div>
-  <div class="clr-col-3 clr-mb-24px ng-star-inserted">
+  <div class="clr-col-2 clr-mb-24px ng-star-inserted">
     <div class="color-example">
       <button
         class="btn color-example-item"
@@ -385,7 +438,7 @@
       <div class="color-example-item-text">danger-secondary-hover</div>
     </div>
   </div>
-  <div class="clr-col-3 clr-mb-24px ng-star-inserted">
+  <div class="clr-col-2 clr-mb-24px ng-star-inserted">
     <div class="color-example">
       <button
         class="btn color-example-item"
@@ -411,7 +464,7 @@
       <div class="color-example-item-text">neutral-secondary-hover</div>
     </div>
   </div>
-  <div class="clr-col-3 clr-mb-24px ng-star-inserted">
+  <div class="clr-col-2 clr-mb-24px ng-star-inserted">
     <div class="color-example">
       <button
         class="btn color-example-item"
@@ -433,7 +486,7 @@
 
 <h4 id="color-system-objects-borders">Object and Border Colors</h4>
 <div class="clr-row clr-mt-24px">
-  <div class="clr-col-3">
+  <div class="clr-col-2">
     <h5 class="clr-mt-16px">Application Background</h5>
     <div class="color-example">
       <button
@@ -469,7 +522,7 @@
       <div class="color-example-item-text">border-color-shade</div>
     </div>
   </div>
-  <div class="clr-col-3">
+  <div class="clr-col-2">
     <h5 class="clr-mt-16px">Hover / Active / Selected</h5>
     <div class="color-example">
       <button
@@ -512,7 +565,7 @@
       <div class="color-example-item-text">interaction-background-highlight</div>
     </div>
   </div>
-  <div class="clr-col-3">
+  <div class="clr-col-2">
     <h5 class="clr-mt-16px">Containers</h5>
     <div class="color-example">
       <button
@@ -547,7 +600,7 @@
       <div class="color-example-item-text">border-color</div>
     </div>
   </div>
-  <div class="clr-col-3">
+  <div class="clr-col-2">
     <h5 class="clr-mt-16px">Black / White</h5>
     <div class="color-example">
       <button
@@ -570,7 +623,7 @@
 
 <h4>Type</h4>
 <div class="clr-row">
-  <div class="clr-col-3">
+  <div class="clr-col-2">
     <h5 class="clr-mt-16px">Basic Type</h5>
     <div class="color-example">
       <button
@@ -621,8 +674,16 @@
       <div class="color-example-item-text">Typography 500</div>
     </div>
   </div>
-  <div class="clr-col-3">
+  <div class="clr-col-2">
     <h5 class="clr-mt-16px">Outline Button Text</h5>
+    <div class="color-example">
+      <button
+        class="btn color-example-item"
+        (click)="copyColorCode($event, '--cds-alias-typography-primary-hover')"
+        style="--color: var(--cds-alias-typography-primary-hover)"
+      ></button>
+      <div class="color-example-item-text">primary-hover</div>
+    </div>
     <div class="color-example">
       <button
         class="btn color-example-item"
@@ -664,7 +725,7 @@
       <div class="color-example-item-text">neutral-hover</div>
     </div>
   </div>
-  <div class="clr-col-3">
+  <div class="clr-col-2">
     <h5 class="clr-mt-16px">Links</h5>
     <div class="color-example">
       <button
@@ -711,7 +772,7 @@
 
 <h4>Utility Colors</h4>
 <div class="clr-row">
-  <div class="clr-col-3 clr-mt-24px ng-star-inserted">
+  <div class="clr-col-2 clr-mt-24px ng-star-inserted">
     <div class="color-example">
       <button
         class="btn color-example-item"
@@ -737,7 +798,7 @@
       <div class="color-example-item-text">utility-gray-tint</div>
     </div>
   </div>
-  <div class="clr-col-3 clr-mt-24px ng-star-inserted">
+  <div class="clr-col-2 clr-mt-24px ng-star-inserted">
     <div class="color-example">
       <button
         class="btn color-example-item"
@@ -763,7 +824,7 @@
       <div class="color-example-item-text">utility-blue-tint</div>
     </div>
   </div>
-  <div class="clr-col-3 clr-mt-24px ng-star-inserted">
+  <div class="clr-col-2 clr-mt-24px ng-star-inserted">
     <div class="color-example">
       <button
         class="btn color-example-item"
@@ -789,7 +850,7 @@
       <div class="color-example-item-text">utility-light-blue-tint</div>
     </div>
   </div>
-  <div class="clr-col-3 clr-mt-24px ng-star-inserted">
+  <div class="clr-col-2 clr-mt-24px ng-star-inserted">
     <div class="color-example">
       <button
         class="btn color-example-item"
@@ -815,7 +876,7 @@
       <div class="color-example-item-text">utility-dark-blue-tint</div>
     </div>
   </div>
-  <div class="clr-col-3 clr-mt-24px ng-star-inserted">
+  <div class="clr-col-2 clr-mt-24px ng-star-inserted">
     <div class="color-example">
       <button
         class="btn color-example-item"
@@ -841,7 +902,7 @@
       <div class="color-example-item-text">utility-green-tint</div>
     </div>
   </div>
-  <div class="clr-col-3 clr-mt-24px ng-star-inserted">
+  <div class="clr-col-2 clr-mt-24px ng-star-inserted">
     <div class="color-example">
       <button
         class="btn color-example-item"
@@ -867,7 +928,7 @@
       <div class="color-example-item-text">utility-yellow-tint</div>
     </div>
   </div>
-  <div class="clr-col-3 clr-mt-24px ng-star-inserted">
+  <div class="clr-col-2 clr-mt-24px ng-star-inserted">
     <div class="color-example">
       <button
         class="btn color-example-item"
@@ -893,7 +954,7 @@
       <div class="color-example-item-text">utility-tangerine-tint</div>
     </div>
   </div>
-  <div class="clr-col-3 clr-mt-24px ng-star-inserted">
+  <div class="clr-col-2 clr-mt-24px ng-star-inserted">
     <div class="color-example">
       <button
         class="btn color-example-item"
@@ -919,7 +980,7 @@
       <div class="color-example-item-text">utility-red-tint</div>
     </div>
   </div>
-  <div class="clr-col-3 clr-mt-24px ng-star-inserted">
+  <div class="clr-col-2 clr-mt-24px ng-star-inserted">
     <div class="color-example">
       <button
         class="btn color-example-item"
@@ -1019,25 +1080,55 @@
   </clr-alert>
 </div>
 
-<!-- Badges -->
-<h4>Badges</h4>
+<!-- Labels and Badges -->
+<h4>Labels and Badges</h4>
+<p>
+  <a href="https://clarity.design/documentation/label">Clarity Labels</a> and
+  <a href="https://clarity.design/documentation/badge">Clarity Badges</a>
+</p>
 <div class="section">
-  <span class="badge badge-info">
-    2
-    <span class="clr-sr-only">items in an info badge</span>
-  </span>
-  <span class="badge badge-success">
-    3
-    <span class="clr-sr-only">items in a sucess badge</span>
-  </span>
-  <span class="badge badge-warning">
-    12
-    <span class="clr-sr-only">items in a warning badge</span>
-  </span>
-  <span class="badge badge-danger">
-    15
-    <span class="clr-sr-only">items in a danger badge</span>
-  </span>
+  <span class="label">
+    default
+    <span class="badge">
+      2
+      <span class="clr-sr-only">items in default badge</span>
+    </span></span
+  >
+  <span class="label label-primary">
+    primary
+    <span class="badge badge-primary">
+      4
+      <span class="clr-sr-only">items in a primary badge</span>
+    </span></span
+  >
+  <span class="label label-info">
+    info
+    <span class="badge badge-info">
+      8
+      <span class="clr-sr-only">items in an info badge</span>
+    </span></span
+  >
+  <span class="label label-success">
+    success
+    <span class="badge badge-success">
+      16
+      <span class="clr-sr-only">items in a sucess badge</span>
+    </span></span
+  >
+  <span class="label label-warning">
+    warning
+    <span class="badge badge-warning">
+      32
+      <span class="clr-sr-only">items in a warning badge</span>
+    </span></span
+  >
+  <span class="label label-danger">
+    danger
+    <span class="badge badge-danger">
+      64
+      <span class="clr-sr-only">items in a danger badge</span>
+    </span></span
+  >
 </div>
 
 <!-- Buttons -->
@@ -1048,6 +1139,7 @@
 <h5>Solid Buttons</h5>
 <div class="section">
   <button class="btn btn-primary">Primary</button>
+  <button class="btn btn-info">Info</button>
   <button class="btn btn-success">Success</button>
   <button class="btn btn-warning">Warning</button>
   <button class="btn btn-danger">Danger</button>
@@ -1055,9 +1147,10 @@
 </div>
 <h5>Outline Buttons</h5>
 <div class="section">
+  <button class="btn">Default</button>
   <button class="btn btn-outline">Regular</button>
-  <button class="btn btn-success-outline">Success</button>
   <button class="btn btn-info-outline">Info</button>
+  <button class="btn btn-success-outline">Success</button>
   <button class="btn btn-warning-outline">Warning</button>
   <button class="btn btn-danger-outline">Danger</button>
   <button class="btn btn-outline" disabled>Disabled</button>
@@ -1069,15 +1162,6 @@
   <button class="btn btn-sm btn-link">Regular</button>
   <button class="btn btn-sm btn-link" disabled>Disabled</button>
 </div>
-<h5>Info, Success and Danger Buttons</h5>
-<div class="section">
-  <button class="btn btn-info-outline">Info</button>
-  <button class="btn btn-success-outline">Success</button>
-  <button class="btn btn-danger-outline">Danger</button>
-
-  <button class="btn btn-success">Success</button>
-  <button class="btn btn-danger">Danger</button>
-</div>
 <h5>Icon Buttons</h5>
 <div class="section">
   <button type="button" class="btn btn-icon" aria-label="home">
@@ -1085,6 +1169,9 @@
   </button>
   <button type="button" class="btn btn-icon btn-primary" aria-label="settings">
     <cds-icon shape="cog"></cds-icon>
+  </button>
+  <button type="button" class="btn btn-icon btn-info" aria-label="settings">
+    <cds-icon shape="info-circle"></cds-icon>
   </button>
   <button type="button" class="btn btn-icon btn-warning" aria-label="warning">
     <cds-icon shape="warning-standard"></cds-icon>
@@ -1110,29 +1197,11 @@
   <cds-icon shape="info-circle" size="lg" status="danger"></cds-icon>
 </div>
 
-<!-- Label -->
-<h4>Labels</h4>
-<div class="section">
-  <span class="label">Regular</span>
-  <span class="label label-info">Info</span>
-  <span class="label label-success">Success</span>
-  <span class="label label-warning">Warning</span>
-  <span class="label label-danger">Error</span>
-</div>
-
 <!-- Progress -->
 <h4>Progress</h4>
 <div class="section">
   <h5>Standard</h5>
   <clr-progress-bar clrValue="25"></clr-progress-bar>
-  <h5>Info</h5>
-  <clr-progress-bar clrColor="info" clrValue="33"></clr-progress-bar>
-  <h5>Success</h5>
-  <clr-progress-bar clrColor="success" clrValue="50"></clr-progress-bar>
-  <h5>Warning</h5>
-  <clr-progress-bar clrColor="warning" clrValue="66"></clr-progress-bar>
-  <h5>Danger</h5>
-  <clr-progress-bar clrColor="danger" clrValue="75"></clr-progress-bar>
 </div>
 
 <!-- Stack View -->

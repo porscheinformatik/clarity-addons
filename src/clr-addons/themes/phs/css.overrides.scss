@@ -1,3 +1,114 @@
+// The PHS theme does distinguish between primary and info colors. This is not standard in Clarity.
+// We define the necessary colors and styles for all themes. By the default, the info colors will be used
+// with the light and dark theme, but the PHS theme may override the definitions with a primary color.
+:root [cds-theme] {
+  .badge.badge-primary {
+    background: var(--clr-badge-primary-bg-color);
+    color: var(--clr-badge-primary-color);
+  }
+
+  // The info buttons fall back to the primary color. Since we distinghish between these two colors, we need to
+  // override the info color.
+  .btn.btn-info,
+  .alert-app-level .alert-item .btn-info.btn,
+  .btn-info .btn {
+    border-color: var(--clr-btn-info-border-color);
+    background-color: var(--clr-btn-info-bg-color);
+    color: var(--clr-btn-info-color);
+  }
+
+  .btn-info .alert-app-level .alert-item .btn,
+  .alert-app-level .alert-item .btn-info .btn {
+    border-color: var(--clr-app-alert-info-action-color);
+    color: var(--clr-app-alert-info-action-color);
+  }
+
+  .btn.btn-info:hover,
+  .btn-info .btn:hover {
+    background-color: var(--clr-btn-info-hover-bg-color);
+    color: var(--clr-btn-info-hover-color);
+  }
+
+  .btn.btn-info:active,
+  .btn-info .btn:active {
+    background-color: var(--clr-btn-info-active-bg-color);
+    color: var(--clr-btn-info-active-color);
+  }
+
+  .btn-outline-info .btn,
+  .btn-info-outline .btn,
+  .btn.btn-outline-info,
+  .btn.btn-info-outline,
+  .btn.btn-info-outline {
+    border-color: var(--clr-btn-info-outline-border-color);
+    background-color: var(--clr-btn-info-outline-bg-color);
+    color: var(--clr-btn-info-outline-color);
+  }
+
+  .btn-outline-info .alert-app-level .alert-item .btn,
+  .alert-app-level .alert-item .btn-outline-info .btn,
+  .btn-info-outline .alert-app-level .alert-item .btn,
+  .alert-app-level .alert-item .btn-info-outline .btn,
+  .alert-app-level .alert-item .btn-outline-info.btn,
+  .alert-app-level .alert-item .btn-info-outline.btn,
+  .alert-app-level.alert-info .alert-item .btn {
+    border-color: var(--clr-app-alert-info-action-color);
+    color: var(--clr-app-alert-info-action-color);
+  }
+
+  .btn-outline-info .btn:hover,
+  .btn-info-outline .btn:hover,
+  .btn.btn-outline-info:hover,
+  .btn.btn-info-outline:hover,
+  .alert-app-level.alert-info .alert-item .btn:hover,
+  .btn.btn-info-outline:hover {
+    background-color: var(--clr-btn-info-outline-hover-bg-color);
+    color: var(--clr-btn-info-outline-hover-color);
+  }
+
+  .btn-outline-info .btn:active,
+  .btn-info-outline .btn:active,
+  .btn.btn-outline-info:active,
+  .btn.btn-info-outline:active,
+  .alert-app-level.alert-info .alert-item .btn:active,
+  .btn.btn-info-outline:active {
+    background-color: var(--clr-btn-info-outline-active-bg-color);
+    color: var(--clr-btn-info-outline-active-color);
+  }
+
+  .label.label-primary,
+  a.label.label-primary {
+    background: var(--clr-label-primary-bg-color);
+    color: var(--clr-label-primary-font-color);
+    border: var(--clr-label-border-width) solid var(--clr-label-primary-border-color);
+  }
+}
+
+// The following overrides are not strictly linked to the PHS theme.
+// They should work, even if the PHS theme is not used.
+:root [cds-theme] {
+  .text-primary {
+    color: var(--clr-text-color-primary) !important;
+  }
+
+  .text-success {
+    color: var(--clr-text-color-success) !important;
+  }
+
+  .text-info {
+    color: var(--clr-text-color-info) !important;
+  }
+
+  .text-warning {
+    color: var(--clr-text-color-warning) !important;
+  }
+
+  .text-danger {
+    color: var(--clr-text-color-danger) !important;
+  }
+}
+
+// Specific overrides for the PHS theme
 :root [cds-theme~='phs'] {
   .header .header-nav .nav-link.active {
     background: var(--clr-global-selection-color);
@@ -7,28 +118,28 @@
   .header {
     .header-actions {
       > .dropdown > .nav-icon > cds-icon {
-        color: var(--cds-alias-status-info);
+        color: var(--cds-alias-status-primary);
       }
 
       .nav-icon > cds-icon {
-        color: var(--cds-alias-status-info);
+        color: var(--cds-alias-status-primary);
       }
 
       > .dropdown > .nav-icon > clr-icon {
-        color: var(--cds-alias-status-info);
+        color: var(--cds-alias-status-primary);
       }
 
       .nav-icon > clr-icon {
-        color: var(--cds-alias-status-info);
+        color: var(--cds-alias-status-primary);
       }
     }
 
     .settings .nav-icon > cds-icon {
-      color: var(--cds-alias-status-info);
+      color: var(--cds-alias-status-primary);
     }
 
     .settings .nav-icon > clr-icon {
-      color: var(--cds-alias-status-info);
+      color: var(--cds-alias-status-primary);
     }
 
     .branding {
@@ -65,34 +176,34 @@
       &:hover,
       &.datagrid-filter-open {
         cds-icon {
-          --color: var(--cds-alias-status-info);
+          --color: var(--cds-alias-status-primary);
         }
 
         clr-icon {
-          --color: var(--cds-alias-status-info);
+          --color: var(--cds-alias-status-primary);
         }
       }
     }
 
     .datagrid-column-title .sort-icon {
-      --color: var(--cds-alias-status-info);
+      --color: var(--cds-alias-status-primary);
     }
   }
 
   .datagrid-footer .column-switch-wrapper .column-toggle--action:hover cds-icon {
-    --color: var(--cds-alias-status-info);
+    --color: var(--cds-alias-status-primary);
   }
 
   .datagrid-footer .column-switch-wrapper .column-toggle--action:hover clr-icon {
-    --color: var(--cds-alias-status-info);
+    --color: var(--cds-alias-status-primary);
   }
 
   clr-tooltip cds-icon {
-    color: var(--cds-alias-status-info);
+    color: var(--cds-alias-status-primary);
   }
 
   clr-tooltip clr-icon {
-    color: var(--cds-alias-status-info);
+    color: var(--cds-alias-status-primary);
   }
 
   cds-icon,
@@ -123,27 +234,6 @@
     &.is-highlight {
       fill: var(--clr-icon-color-highlight);
     }
-  }
-
-  // Bootstrap text color overrides
-  .text-primary {
-    color: var(--clr-text-color-primary) !important;
-  }
-
-  .text-success {
-    color: var(--clr-text-color-success) !important;
-  }
-
-  .text-info {
-    color: var(--clr-text-color-info) !important;
-  }
-
-  .text-warning {
-    color: var(--clr-text-color-warning) !important;
-  }
-
-  .text-danger {
-    color: var(--clr-text-color-danger) !important;
   }
 
   .clr-combobox-wrapper,
