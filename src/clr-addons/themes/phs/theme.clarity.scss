@@ -38,9 +38,9 @@
   --cds-alias-status-danger-dark: #{$phs-global-color-red-900};
   --cds-alias-status-danger-tint: #{$phs-global-color-red-50};
 
-  --cds-alias-status-disabled: #{$phs-global-color-construction-400};
-  --cds-alias-status-disabled-shade: #{$phs-global-color-construction-500};
-  --cds-alias-status-disabled-tint: #{$phs-global-color-construction-700};
+  --cds-alias-status-disabled: #{$phs-global-color-construction-200};
+  --cds-alias-status-disabled-shade: #{$phs-global-color-construction-300};
+  --cds-alias-status-disabled-tint: #{$phs-global-color-construction-400};
 
   --cds-alias-object-interaction-info-hover: #{$phs-global-color-turquoise-800};
   --cds-alias-object-interaction-info-click: #{$phs-global-color-turquoise-900};
@@ -65,7 +65,7 @@
   --cds-alias-object-border-color-shade: #{$phs-global-color-construction-400};
 
   --cds-alias-object-interaction-background: #{$phs-global-color-white};
-  --cds-alias-object-interaction-background-hover: #{$phs-global-color-turquoise-100};
+  --cds-alias-object-interaction-background-hover: #{$phs-global-color-turquoise-50};
   --cds-alias-object-interaction-background-active: #{$phs-global-color-turquoise-200};
   --cds-alias-object-interaction-background-selected: #{$phs-global-color-turquoise-100};
   --cds-alias-object-interaction-background-highlight: #{$phs-global-color-turquoise-800};
@@ -96,6 +96,9 @@
   --cds-alias-typography-link-color-visited: #{$phs-global-color-turquoise-800};
   --cds-alias-typography-link-color-visited-hover: #{$phs-global-color-turquoise-900};
 
+  --cds-alias-typography-disabled: var(--cds-global-color-construction-300);
+  --cds-alias-typography-disabled-button: var(--cds-global-color-construction-300);
+
   // Bugfix as of Clarity 17.0.1 - in contrast to all other alerts, the warning has a direct color assignment
   --clr-alert-warning-font-color: var(--cds-alias-typography-color-500);
 
@@ -119,24 +122,6 @@
   --clr-card-active-border-color: var(--cds-alias-status-info);
   --clr-card-clickable-box-shadow-color: var(--cds-alias-status-info);
   --clr-card-clickable-border-color: var(--cds-alias-status-info);
-
-  // Checkbox
-  //  --clr-forms-checkbox-background-color: var(--cds-alias-status-info); // checked-background-color
-  //  --clr-forms-checkbox-checked-shadow: inset 0 0 0 0.25rem var(--clr-forms-checkbox-background-color);
-  //  --clr-forms-checkbox-indeterminate-border-color: var(--cds-alias-status-info);
-
-  // Datagrid
-  //  --clr-datagrid-row-hover-color: var($clr-highlight-neutral-200);
-  //  --clr-datagrid-action-popover-hover-color: var($clr-highlight-neutral-200);
-  //  --clr-datagrid-detail-caret-icon-open-bg-color: var(--cds-alias-status-info);
-
-  // Datepicker
-  // --clr-datepicker-trigger-color: var(--cds-alias-status-info);
-  // --clr-datepicker-trigger-hover-color: var(--cds-alias-status-info-shade);
-  // --clr-calendar-btn-color: var(--cds-alias-status-info);
-  // --clr-calendar-active-cell-background-color: var(--clr-global-selection-color);
-  // --clr-calendar-btn-hover-focus-color: var(--clr-global-selection-color);
-  // --clr-calendar-active-focus-cell-background-color: var(--clr-global-selection-color);
 
   // Header
   --clr-header-font-color: var(--cds-alias-typography-color-400);
@@ -165,12 +150,8 @@
   --clr-label-danger-bg-color: var(--cds-alias-status-danger-tint);
   --clr-label-danger-border-color: var(--cds-alias-status-danger);
 
-  // Sidenav
-  // --clr-sidenav-link-hover-color: #{$phs-global-color-construction-300};
-
-  // Signposts
-  // --clr-signpost-action-hover-color: var(--cds-alias-status-info-tint);
-  // --clr-signpost-action-active-color: var(--cds-alias-status-info-tint);
+  // Subnav
+  --clr-nav-active-box-shadow-color: var(--cds-alias-status-info);
 
   // Text
   --clr-text-color-primary: var(--cds-alias-status-info);
@@ -179,11 +160,9 @@
   --clr-text-color-warning: var(--cds-alias-status-warning);
   --clr-text-color-danger: var(--cds-alias-status-danger);
 
-  // Wizard
-  // --clr-wizard-stepnav-active-bgcolor: var(--clr-global-selection-color);
-
   // Vertical Nav
   --clr-vertical-nav-hover-bg-color: #{$phs-global-color-construction-300};
+  --clr-vertical-nav-active-bg-color: #{$phs-global-color-construction-400};
 
   // *************************
   // Override and Fixes

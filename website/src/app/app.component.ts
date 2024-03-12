@@ -17,7 +17,6 @@ const PRODUCT_TITLE = require('../settings/global.json').alt_title;
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
-  linkRef: HTMLLinkElement;
   noHeader: boolean = false;
 
   themes = [
@@ -104,6 +103,5 @@ export class AppComponent implements OnInit {
 
   setTheme(theme: { cdsTheme: string; href: string }): void {
     this.document.body.setAttribute('cds-theme', theme.cdsTheme);
-    this.linkRef.href = theme.href;
   }
 }

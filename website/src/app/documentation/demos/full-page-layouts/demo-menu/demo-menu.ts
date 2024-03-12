@@ -3,9 +3,9 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { angleIcon, applicationsIcon, ClarityIcons, cogIcon, userIcon } from '@cds/core/icon';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject } from '@angular/core';
+import { ClarityIcons, angleIcon, applicationsIcon, cogIcon, userIcon } from '@cds/core/icon';
 
 ClarityIcons.addIcons(cogIcon, applicationsIcon, angleIcon, userIcon);
 
@@ -14,21 +14,15 @@ ClarityIcons.addIcons(cogIcon, applicationsIcon, angleIcon, userIcon);
   templateUrl: './demo-menu.html',
 })
 export class DemoMenu {
-  linkRef: HTMLLinkElement;
-
   themes = [
-    { name: 'PHS', href: 'styles/clr-addons-phs.min.css' },
-    { name: 'Clarity (light)', href: 'styles/clr-ui.min.css' },
-    { name: 'Clarity (dark)', href: 'styles/clr-ui-dark.min.css' },
+    { name: 'PHS', cdsTheme: 'phs' },
+    { name: 'Clarity (light)', cdsTheme: 'light' },
+    { name: 'Clarity (dark)', cdsTheme: 'dark' },
   ];
 
-  constructor(@Inject(DOCUMENT) private document: Document, @Inject(PLATFORM_ID) private platformId: Object) {
-    if (isPlatformBrowser(this.platformId)) {
-      this.linkRef = <HTMLLinkElement>this.document.getElementById('theme');
-    }
-  }
+  constructor(@Inject(DOCUMENT) private document: Document) {}
 
-  setTheme(theme) {
-    this.linkRef.href = theme.href;
+  setTheme(theme: { cdsTheme: string; href: string }): void {
+    this.document.body.setAttribute('cds-theme', theme.cdsTheme);
   }
 }

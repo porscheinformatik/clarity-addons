@@ -10,7 +10,7 @@
       </button>
     </ng-template>
   </div>
-  <div class="ces-subtitle">
+  <div class="ces-subtitle" *ngIf="!disableSubtitle">
     <h4 *ngIf="!disableHeaderStyles; else subtitle">
       <ng-container *ngTemplateOutlet="subtitle"></ng-container>
     </h4>

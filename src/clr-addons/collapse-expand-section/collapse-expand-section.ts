@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -35,6 +35,10 @@ ClarityIcons.addIcons(angleIcon);
 export class ClrCollapseExpandSection {
   @Input('clrIsCollapsed') isCollapsed = true;
   @Input('clrDisableHeaderStyles') disableHeaderStyles = false;
+
+  // there is no suitable option to detect, if the the subtitle is available or not
+  // see https://github.com/angular/angular/issues/26083
+  @Input('clrDisableSubtitle') disableSubtitle = false;
 
   @Output('clrCollapsed') collapsed = new EventEmitter();
   @Output('clrExpanded') expanded = new EventEmitter();
