@@ -4,7 +4,6 @@ import { environment } from '../../environments/environment';
 
 import { DocumentationComponent } from './documentation.component';
 import { InternationalizationComponent } from './internationalization/internationalization.component';
-import { ChangeLogComponent } from './change-log/change-log.component';
 
 const documentationRoutes: Routes = [
   {
@@ -28,13 +27,6 @@ const documentationRoutes: Routes = [
       {
         path: 'get-started',
         loadChildren: () => import('./get-started/get-started.module').then(m => m.GetStartedModule),
-      },
-      {
-        path: 'change-log',
-        loadChildren: () => import('./change-log/change-log.module').then(m => m.ChangeLogModule),
-        data: {
-          browserTitle: 'Change Log',
-        },
       },
       {
         path: 'internationalization',
