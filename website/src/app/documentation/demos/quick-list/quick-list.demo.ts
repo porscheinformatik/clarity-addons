@@ -11,7 +11,7 @@ const HTML_EXAMPLE1 = `
     [clrValues]="selectedOptionsMandatory"
     class="clr-form-control clr-row"
     clrControlClasses="clr-col-lg-3 clr-col-md-4 clr-col-sm-5">
-  <label class="clr-control-label clr-col-md-2 clr-col-sm-3 required">Option list</label>
+  <label class="clr-control-label clr-col-md-2 clr-col-sm-3 clr-required-mark">Option list</label>
 </clr-quick-list>
 `;
 
@@ -41,12 +41,12 @@ const HTML_EXAMPLE_GENERIC = `
     [clrMandatory]="'true'" class="clr-row" clrControlClasses="clr-col-md-6 clr-col-xl-4">
 
     <!-- Label in front of the control -->
-    <label class="clr-control-label clr-col-md-2 required">Generic Quick List</label>
+    <label class="clr-control-label clr-col-md-2 clr-required-mark">Generic Quick List</label>
 
     <!-- Optional header row -->
     <div class="header-container">
-        <div class="required">Salutation</div>
-        <div class="required">Name</div>
+        <div class="clr-required-mark">Salutation</div>
+        <div class="clr-required-mark">Name</div>
     </div>
 
     <!-- Custom row template -->

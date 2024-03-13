@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -271,7 +271,7 @@ describe('Multilingual Input', () => {
     return new Map(
       fixture.debugElement.queryAll(By.css('.clr-multilingual-dd-entry')).map(elem => {
         const lang = (elem.children[0].nativeElement as HTMLSpanElement).innerText;
-        return [lang, (elem.nativeElement as HTMLElement).innerText.substring(lang.length)];
+        return [lang, (elem.nativeElement as HTMLElement).innerText.substring(lang.length).trim()];
       })
     );
   }

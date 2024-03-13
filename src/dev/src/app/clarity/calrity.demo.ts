@@ -3,8 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, TemplateRef, ViewChild } from '@angular/core';
-import { ClarityDocComponent } from '../clarity-doc';
+import { Component } from '@angular/core';
 import {
   ClarityIcons,
   calendarIcon,
@@ -21,7 +20,6 @@ import {
   mapIcon,
   warningStandardIcon,
 } from '@cds/core/icon';
-import { ClrNotificationService } from '@porscheinformatik/clr-addons';
 
 ClarityIcons.addIcons(
   homeIcon,
@@ -40,15 +38,15 @@ ClarityIcons.addIcons(
 );
 
 @Component({
-  selector: 'clr-colors-demo',
-  templateUrl: './colors.demo.html',
-  styleUrl: './colors.demo.scss',
+  selector: 'clr-clarity-demo',
+  templateUrl: './clarity.demo.html',
+  styleUrl: './clarity.demo.scss',
   host: {
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
 })
-export class ColorsDemo extends ClarityDocComponent {
+export class ClarityDemo {
   readonly rootDirectory: readonly any[] = [
     {
       name: 'Applications',
@@ -102,10 +100,6 @@ export class ColorsDemo extends ClarityDocComponent {
       ],
     },
   ];
-
-  constructor() {
-    super('colors');
-  }
 
   async copyColorCode(event: Event, colorCode: string) {
     event.preventDefault();

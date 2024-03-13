@@ -12,7 +12,7 @@ ClarityIcons.addIcons(displayIcon);
 const CODE_EXAMPLE_FULL_FORM = `
 <form clrForm clrLayout="horizontal" class="clr-row">
     <clr-input-container class="clr-col-12">
-        <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2 required">Input label</label>
+        <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2 clr-required-mark">Input label</label>
         <input clrInput class="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-3" type="text"
                [(ngModel)]="inputText" [ngModelOptions]="{ updateOn: 'blur' }"
                name="inputName" required minlength="5"/>
@@ -22,7 +22,7 @@ const CODE_EXAMPLE_FULL_FORM = `
         </clr-control-error>
     </clr-input-container>
     <clr-textarea-container class="clr-col-12">
-        <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2 required">Textarea label</label>
+        <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2 clr-required-mark">Textarea label</label>
         <textarea clrTextarea class="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-3"
                   [(ngModel)]="textareaText" [ngModelOptions]="{ updateOn: 'blur' }"
                   name="description" required></textarea>
@@ -35,7 +35,7 @@ const CODE_EXAMPLE_FULL_FORM = `
                [(ngModel)]="passwordText" [ngModelOptions]="{ updateOn: 'blur' }" name="passwordName"/>
     </clr-password-container>
     <clr-select-container class="clr-col-12">
-        <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2 required">Select label</label>
+        <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2 clr-required-mark">Select label</label>
         <select clrSelect class="clr-col-6 clr-col-sm-3 clr-col-md-2" name="options"
                 [(ngModel)]="selectOption">
             <option value="one">One</option>
@@ -54,9 +54,9 @@ const CODE_EXAMPLE_FULL_FORM = `
         </clr-combobox>
     </clr-combobox-container>
     <clr-radio-container class="clr-col-12">
-        <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2 required">Radio label</label>
+        <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2 clr-required-mark">Radio label</label>
         <clr-radio-wrapper>
-            <input type="radio" class="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-3" 
+            <input type="radio" class="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-3"
                 clrRadio name="options" value="1" required [(ngModel)]="radioOption"/>
             <label>Option 1</label>
         </clr-radio-wrapper>
@@ -111,7 +111,7 @@ const CODE_EXAMPLE_FULL_FORM = `
                             clrRequiredAllMultilang
                             clrControlClasses="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-3"
                             name="template">
-        <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2 required">Multilingual Input</label>
+        <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2 clr-required-mark">Multilingual Input</label>
         <clr-control-error>Please translate in every language!</clr-control-error>
         <clr-control-helper>Helper text</clr-control-helper>
     </clr-multilingual-input>
@@ -120,7 +120,7 @@ const CODE_EXAMPLE_FULL_FORM = `
                                clrRequiredAllMultilang
                                clrControlClasses="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-3"
                                name="template2">
-        <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2 required">Multilingual Input</label>
+        <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2 clr-required-mark">Multilingual Input</label>
         <clr-control-error>Please translate in every language!</clr-control-error>
         <clr-control-helper>Helper text</clr-control-helper>
     </clr-multilingual-textarea>

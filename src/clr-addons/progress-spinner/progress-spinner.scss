@@ -1,6 +1,6 @@
 @include exports('spinner.clr-addons') {
   .progress-spinner-overlay {
-    background-color: var(--white);
+    background-color: var(--cds-global-color-white);
     opacity: 0.8;
     position: absolute;
     top: 0;

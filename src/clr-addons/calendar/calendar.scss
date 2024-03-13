@@ -1,12 +1,13 @@
-:root {
-  --clr-angular-calendar-primary-color: var(--turquoise);
-  --clr-angular-calendar-highlight-neutral: var(--clr-highlight-neutral-200);
-  --clr-angular-calendar-border-color-neutral: #cfcfcf;
-  --clr-angular-calendar-border-color-dark: #828282;
-  --clr-angular-calendar-highlight-light: #bbe4e6;
-  --clr-angular-calendar-highlight-info: var(--clr-highlight-info-50);
-  --clr-angular-calendar-highlight-info-hover: var(--clr-highlight-info-100);
-  --clr-angular-calendar-font-color: var(---clr-global-font-color);
+:root [cds-theme] {
+  --clr-angular-calendar-primary-color: var(--cds-alias-status-primary);
+  --clr-angular-calendar-highlight-neutral: var(--cds-alias-object-interaction-background-hover);
+  --clr-angular-calendar-border-color-neutral: var(--cds-alias-object-border-color);
+  --clr-angular-calendar-border-color-dark: var(--cds-alias-object-border-color-shade);
+  --clr-angular-calendar-highlight-border-color: var(--cds-alias-object-interaction-background-highlight);
+  --clr-angular-calendar-highlight-light: var(--cds-alias-object-interaction-background-selected);
+  --clr-angular-calendar-highlight-info: var(--cds-alias-object-interaction-background-active);
+  --clr-angular-calendar-highlight-info-hover: var(--cds-alias-object-interaction-background-hover);
+  --clr-angular-calendar-font-color: var(--clr-global-font-color);
 }
 
 /* week */
@@ -18,8 +19,8 @@
 
 .cal-week-view .cal-day-headers {
   border-color: var(--clr-angular-calendar-primary-color);
-  border-left: 0;
-  border-right: 0;
+  border-left-color: transparent;
+  border-right-color: transparent;
   border-top: 0;
   border-width: thin;
 }
@@ -41,7 +42,7 @@
 }
 .cal-week-view .cal-day-headers .cal-header:hover,
 .cal-week-view .cal-day-headers .cal-drag-over {
-  background-color: #ededed;
+  background-color: var(--clr-angular-calendar-highlight-info-hover);
 }
 .cal-week-view .cal-day-column {
   border-left-color: var(--clr-angular-calendar-primary-color);
@@ -52,8 +53,11 @@
 }
 .cal-week-view .cal-event {
   background-color: var(--clr-angular-calendar-highlight-info);
-  border-color: var(--clr-angular-calendar-highlight-info-hover);
+  border-color: var(--clr-angular-calendar-highlight-border-color);
   color: var(--clr-angular-calendar-font-color);
+}
+.cal-week-view .cal-event:hover {
+  background-color: var(--clr-angular-calendar-highlight-info-hover);
 }
 .cal-week-view .cal-all-day-events {
   border-color: #e1e1e1;
@@ -188,7 +192,7 @@
 }
 .cal-month-view .cal-event {
   background-color: var(--clr-angular-calendar-highlight-info-hover);
-  border-color: var(--clr-angular-calendar-highlight-info-hover);
+  border-color: var(--clr-angular-calendar-highlight-border-color);
   color: #fff;
 }
 .cal-month-view .cal-day-badge {

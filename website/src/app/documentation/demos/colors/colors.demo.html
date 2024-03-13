@@ -1,106 +1,1277 @@
 <clr-doc-wrapper [title]="title">
   <article>
-    <div id="design-guidelines">
-      <h3>DataGrid Row/notification Highlight</h3>
-      <p>The following functional colors can be used to set the states:</p>
-      <div class="clr-row">
-        <div class="clr-col-md-3">
-          <h4>default</h4>
-          <ul>
-            <li style="background-color: #dff0d0">
-              <div class="color-name">clr-highlight-success-50</div>
-              <div>#DFF0D0</div>
-            </li>
-            <li style="background-color: #feddd7">
-              <div class="color-name">clr-highlight-error-100</div>
-              <div>#FEDDD7</div>
-            </li>
-            <li style="background-color: #fff4c7">
-              <div class="color-name">clr-highlight-warning-100</div>
-              <div>#FFF4C7</div>
-            </li>
-            <li style="background-color: #e3f5fc">
-              <div class="color-name">clr-highlight-info-50</div>
-              <div>#E3F5FC</div>
-            </li>
-            <li style="background-color: #fafafa">
-              <div class="color-name">clr-highlight-neutral-50</div>
-              <div>#FAFAFA</div>
-            </li>
-          </ul>
+    <h5 class="component-summary">
+      This shows the colors of common Clarity components with the updated layout in order to compare them to the default
+      layout. In contrast to Clarity, the PHS Theme does distinguish between primary and info colors.
+    </h5>
+    <p>
+      <a href="https://clarity.design/pages/introduction">Clarity Layout documentation</a>
+    </p>
+
+    <!-- Colors -->
+    <h4>Status Colors</h4>
+    <p>
+      <a href="https://clarity.design/documentation/color">Clarity Colors</a>
+    </p>
+    <div class="clr-row clr-mt-24px">
+      <div class="clr-col-2">
+        <h5>Primary</h5>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-status-primary')"
+            style="--color: var(--cds-alias-status-primary)"
+          ></button>
+          <div class="color-example-item-text">primary</div>
         </div>
-        <div class="clr-col-md-3">
-          <h4>hover</h4>
-          <ul>
-            <li style="background-color: #bce49a">
-              <div class="color-name">clr-highlight-success-100</div>
-              <div>#BCE49A</div>
-            </li>
-            <li style="background-color: #fcc5bb">
-              <div class="color-name">clr-highlight-error-200</div>
-              <div>#FCC5BB</div>
-            </li>
-            <li style="background-color: #ffeea8">
-              <div class="color-name">clr-highlight-warning-200</div>
-              <div>#FFEEA8</div>
-            </li>
-            <li style="background-color: #c8eaf9">
-              <div class="color-name">clr-highlight-info-100</div>
-              <div>#C8EAF9</div>
-            </li>
-            <li style="background-color: #e8e8e8">
-              <div class="color-name">clr-highlight-neutral-200</div>
-              <div>#E8E8E8</div>
-            </li>
-          </ul>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-status-primary-shade')"
+            style="--color: var(--cds-alias-status-primary-shade)"
+          ></button>
+          <div class="color-example-item-text">primary-shade</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-status-primary-tint')"
+            style="--color: var(--cds-alias-status-primary-tint)"
+          ></button>
+          <div class="color-example-item-text">primary-tint</div>
         </div>
       </div>
-      <h3>DataGrid Text/notification Highlight</h3>
-      <p>The following functional colors can be used to set the text or/and icon states:</p>
-      <div class="clr-row">
-        <div class="clr-col-md-3">
-          <h4>default</h4>
-          <ul class="white-color">
-            <li style="background-color: #3c8500">
-              <div class="color-name">clr-highlight-success-700</div>
-              <div>#3C8500</div>
-            </li>
-            <li style="background-color: #c21d00">
-              <div class="color-name">clr-highlight-error-800</div>
-              <div>#C21D00</div>
-            </li>
-            <li style="background-color: #ad7600">
-              <div class="color-name">clr-highlight-warning-800</div>
-              <div>#AD7600</div>
-            </li>
-            <li style="background-color: #00648f">
-              <div class="color-name">clr-highlight-info-700</div>
-              <div>#00648F</div>
-            </li>
-          </ul>
+      <div class="clr-col-2">
+        <h5>Info</h5>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-status-info')"
+            style="--color: var(--cds-alias-status-info)"
+          ></button>
+          <div class="color-example-item-text">info</div>
         </div>
-        <div class="clr-col-md-3">
-          <h4>hover</h4>
-          <ul class="white-color">
-            <li style="background-color: #306b00">
-              <div class="color-name">clr-highlight-success-800</div>
-              <div>#306B00</div>
-            </li>
-            <li style="background-color: #991700">
-              <div class="color-name">clr-highlight-error-900</div>
-              <div>#991700</div>
-            </li>
-            <li style="background-color: #8f5a00">
-              <div class="color-name">clr-highlight-warning-900</div>
-              <div>#8F5A00</div>
-            </li>
-            <li style="background-color: #00567a">
-              <div class="color-name">clr-highlight-info-800</div>
-              <div>#00567A</div>
-            </li>
-          </ul>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-status-info-shade')"
+            style="--color: var(--cds-alias-status-info-shade)"
+          ></button>
+          <div class="color-example-item-text">info-shade</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-status-info-tint')"
+            style="--color: var(--cds-alias-status-info-tint)"
+          ></button>
+          <div class="color-example-item-text">info-tint</div>
         </div>
       </div>
+      <div class="clr-col-2">
+        <h5>Success</h5>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-status-success')"
+            style="--color: var(--cds-alias-status-success)"
+          ></button>
+          <div class="color-example-item-text">success</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-status-success-shade')"
+            style="--color: var(--cds-alias-status-success-shade)"
+          ></button>
+          <div class="color-example-item-text">success-shade</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-status-success-tint')"
+            style="--color: var(--cds-alias-status-success-tint)"
+          ></button>
+          <div class="color-example-item-text">success-tint</div>
+        </div>
+      </div>
+      <div class="clr-col-2">
+        <h5>Warning</h5>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-status-warning')"
+            style="--color: var(--cds-alias-status-warning)"
+          ></button>
+          <div class="color-example-item-text">warning</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-status-warning-shade')"
+            style="--color: var(--cds-alias-status-warning-shade)"
+          ></button>
+          <div class="color-example-item-text">warning-shade</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-status-warning-dark')"
+            style="--color: var(--cds-alias-status-warning-dark)"
+          ></button>
+          <div class="color-example-item-text">warning-dark</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-status-warning-tint')"
+            style="--color: var(--cds-alias-status-warning-tint)"
+          ></button>
+          <div class="color-example-item-text">warning-tint</div>
+        </div>
+      </div>
+      <div class="clr-col-2">
+        <h5>Danger</h5>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-status-danger')"
+            style="--color: var(--cds-alias-status-danger)"
+          ></button>
+          <div class="color-example-item-text">danger</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-status-danger-shade')"
+            style="--color: var(--cds-alias-status-danger-shade)"
+          ></button>
+          <div class="color-example-item-text">danger-shade</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-status-danger-dark')"
+            style="--color: var(--cds-alias-status-danger-dark)"
+          ></button>
+          <div class="color-example-item-text">danger-dark</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-status-danger-tint')"
+            style="--color: var(--cds-alias-status-danger-tint)"
+          ></button>
+          <div class="color-example-item-text">danger-tint</div>
+        </div>
+      </div>
+    </div>
+    <div class="clr-row clr-mt-24px">
+      <div class="clr-col-2">
+        <h5>Neutral</h5>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-status-neutral')"
+            style="--color: var(--cds-alias-status-neutral)"
+          ></button>
+          <div class="color-example-item-text">neutral</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-status-neutral-shade')"
+            style="--color: var(--cds-alias-status-neutral-shade)"
+          ></button>
+          <div class="color-example-item-text">neutral-shade</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-status-neutral-tint')"
+            style="--color: var(--cds-alias-status-neutral-tint)"
+          ></button>
+          <div class="color-example-item-text">neutral-tint</div>
+        </div>
+      </div>
+      <div class="clr-col-2">
+        <h5>Alt</h5>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-status-alt')"
+            style="--color: var(--cds-alias-status-alt)"
+          ></button>
+          <div class="color-example-item-text">alt</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-status-alt-shade')"
+            style="--color: var(--cds-alias-status-alt-shade)"
+          ></button>
+          <div class="color-example-item-text">alt-shade</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-status-alt-tint')"
+            style="--color: var(--cds-alias-status-alt-tint)"
+          ></button>
+          <div class="color-example-item-text">alt-tint</div>
+        </div>
+      </div>
+      <div>
+        <div class="clr-col-2">
+          <h5>Disabled</h5>
+          <div class="color-example">
+            <button
+              class="btn color-example-item"
+              (click)="copyColorCode($event, '--cds-alias-status-disabled')"
+              style="--color: var(--cds-alias-status-disabled)"
+            ></button>
+            <div class="color-example-item-text">disabled</div>
+          </div>
+          <div class="color-example">
+            <button
+              class="btn color-example-item"
+              (click)="copyColorCode($event, '--cds-alias-status-disabled-shade')"
+              style="--color: var(--cds-alias-status-disabled-shade)"
+            ></button>
+            <div class="color-example-item-text">disabled-shade</div>
+          </div>
+          <div class="color-example">
+            <button
+              class="btn color-example-item"
+              (click)="copyColorCode($event, '--cds-alias-status-disabled-tint')"
+              style="--color: var(--cds-alias-status-disabled-tint)"
+            ></button>
+            <div class="color-example-item-text">disabled-tint</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h4>Interactive Colors</h4>
+    <h5 class="clr-mt-16px">Objects - Hover / Active / Selected</h5>
+    <div class="clr-row">
+      <div class="clr-col-2 ng-star-inserted">
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-interaction-color')"
+            style="--color: var(--cds-alias-object-interaction-color)"
+          ></button>
+          <div class="color-example-item-text">color</div>
+        </div>
+      </div>
+      <div class="clr-col-2 ng-star-inserted">
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-interaction-color-hover')"
+            style="--color: var(--cds-alias-object-interaction-color-hover)"
+          ></button>
+          <div class="color-example-item-text">color-hover</div>
+        </div>
+      </div>
+      <div class="clr-col-2 ng-star-inserted">
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-interaction-color-active')"
+            style="--color: var(--cds-alias-object-interaction-color-active)"
+          ></button>
+          <div class="color-example-item-text">color-active</div>
+        </div>
+      </div>
+      <div class="clr-col-2 ng-star-inserted">
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-interaction-color-selected')"
+            style="--color: var(--cds-alias-object-interaction-color-selected)"
+          ></button>
+          <div class="color-example-item-text">color-selected</div>
+        </div>
+      </div>
+      <div class="clr-col-2 ng-star-inserted">
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-interaction-color-disabled')"
+            style="--color: var(--cds-alias-object-interaction-color-disabled)"
+          ></button>
+          <div class="color-example-item-text">color-disabled</div>
+        </div>
+      </div>
+      <div class="clr-col-2 ng-star-inserted">
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-interaction-background-disabled')"
+            style="--color: var(--cds-alias-object-interaction-background-disabled)"
+          ></button>
+          <div class="color-example-item-text">background-disabled</div>
+        </div>
+      </div>
+    </div>
+    <h5 class="clr-mt-16px">Buttons - Hover / Active / Selected</h5>
+    <div class="clr-row">
+      <div class="clr-col-2 clr-mb-24px ng-star-inserted">
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-interaction-primary-hover')"
+            style="--color: var(--cds-alias-object-interaction-primary-hover)"
+          ></button>
+          <div class="color-example-item-text">primary-hover</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-interaction-primary-click')"
+            style="--color: var(--cds-alias-object-interaction-primary-click)"
+          ></button>
+          <div class="color-example-item-text">primary-click</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-interaction-primary-secondary-hover')"
+            style="--color: var(--cds-alias-object-interaction-primary-secondary-hover)"
+          ></button>
+          <div class="color-example-item-text">primary-secondary-hover</div>
+        </div>
+      </div>
+      <div class="clr-col-2 clr-mb-24px ng-star-inserted">
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-interaction-info-hover')"
+            style="--color: var(--cds-alias-object-interaction-info-hover)"
+          ></button>
+          <div class="color-example-item-text">info-hover</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-interaction-info-click')"
+            style="--color: var(--cds-alias-object-interaction-info-click)"
+          ></button>
+          <div class="color-example-item-text">info-click</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-interaction-info-secondary-hover')"
+            style="--color: var(--cds-alias-object-interaction-info-secondary-hover)"
+          ></button>
+          <div class="color-example-item-text">info-secondary-hover</div>
+        </div>
+      </div>
+      <div class="clr-col-2 clr-mb-24px ng-star-inserted">
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-interaction-success-hover')"
+            style="--color: var(--cds-alias-object-interaction-success-hover)"
+          ></button>
+          <div class="color-example-item-text">success-hover</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-interaction-success-click')"
+            style="--color: var(--cds-alias-object-interaction-success-click)"
+          ></button>
+          <div class="color-example-item-text">success-click</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-interaction-success-secondary-hover')"
+            style="--color: var(--cds-alias-object-interaction-success-secondary-hover)"
+          ></button>
+          <div class="color-example-item-text">success-secondary-hover</div>
+        </div>
+      </div>
+      <div class="clr-col-2 clr-mb-24px ng-star-inserted">
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-interaction-warning-hover')"
+            style="--color: var(--cds-alias-object-interaction-warning-hover)"
+          ></button>
+          <div class="color-example-item-text">warning-hover</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-interaction-warning-click')"
+            style="--color: var(--cds-alias-object-interaction-warning-click)"
+          ></button>
+          <div class="color-example-item-text">warning-click</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-interaction-warning-secondary-hover')"
+            style="--color: var(--cds-alias-object-interaction-warning-secondary-hover)"
+          ></button>
+          <div class="color-example-item-text">warning-secondary-hover</div>
+        </div>
+      </div>
+      <div class="clr-col-2 clr-mb-24px ng-star-inserted">
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-interaction-danger-hover')"
+            style="--color: var(--cds-alias-object-interaction-danger-hover)"
+          ></button>
+          <div class="color-example-item-text">danger-hover</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-interaction-danger-click')"
+            style="--color: var(--cds-alias-object-interaction-danger-click)"
+          ></button>
+          <div class="color-example-item-text">danger-click</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-interaction-danger-secondary-hover')"
+            style="--color: var(--cds-alias-object-interaction-danger-secondary-hover)"
+          ></button>
+          <div class="color-example-item-text">danger-secondary-hover</div>
+        </div>
+      </div>
+      <div class="clr-col-2 clr-mb-24px ng-star-inserted">
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-interaction-neutral-hover')"
+            style="--color: var(--cds-alias-object-interaction-neutral-hover)"
+          ></button>
+          <div class="color-example-item-text">neutral-hover</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-interaction-neutral-click')"
+            style="--color: var(--cds-alias-object-interaction-neutral-click)"
+          ></button>
+          <div class="color-example-item-text">neutral-click</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-interaction-neutral-secondary-hover')"
+            style="--color: var(--cds-alias-object-interaction-neutral-secondary-hover)"
+          ></button>
+          <div class="color-example-item-text">neutral-secondary-hover</div>
+        </div>
+      </div>
+      <div class="clr-col-2 clr-mb-24px ng-star-inserted">
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-interaction-inverse-hover')"
+            style="--color: var(--cds-alias-object-interaction-inverse-hover)"
+          ></button>
+          <div class="color-example-item-text">inverse-hover</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-interaction-inverse-click')"
+            style="--color: var(--cds-alias-object-interaction-inverse-click)"
+          ></button>
+          <div class="color-example-item-text">inverse-click</div>
+        </div>
+      </div>
+    </div>
+
+    <h4 id="color-system-objects-borders">Object and Border Colors</h4>
+    <div class="clr-row clr-mt-24px">
+      <div class="clr-col-2">
+        <h5 class="clr-mt-16px">Application Background</h5>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-app-background')"
+            style="--color: var(--cds-alias-object-app-background)"
+          ></button>
+          <div class="color-example-item-text">app-background</div>
+        </div>
+        <h5 class="clr-mt-16px">Object Borders</h5>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-border-color')"
+            style="--color: var(--cds-alias-object-border-color)"
+          ></button>
+          <div class="color-example-item-text">border-color</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-border-color-tint')"
+            style="--color: var(--cds-alias-object-border-color-tint)"
+          ></button>
+          <div class="color-example-item-text">border-color-tint</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-border-color-shade')"
+            style="--color: var(--cds-alias-object-border-color-shade)"
+          ></button>
+          <div class="color-example-item-text">border-color-shade</div>
+        </div>
+      </div>
+      <div class="clr-col-2">
+        <h5 class="clr-mt-16px">Hover / Active / Selected</h5>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-interaction-background')"
+            style="--color: var(--cds-alias-object-interaction-background)"
+          ></button>
+          <div class="color-example-item-text">interaction-background</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-interaction-background-hover')"
+            style="--color: var(--cds-alias-object-interaction-background-hover)"
+          ></button>
+          <div class="color-example-item-text">interaction-background-hover</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-interaction-background-active')"
+            style="--color: var(--cds-alias-object-interaction-background-active)"
+          ></button>
+          <div class="color-example-item-text">interaction-background-active</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-interaction-background-selected')"
+            style="--color: var(--cds-alias-object-interaction-background-selected)"
+          ></button>
+          <div class="color-example-item-text">interaction-background-selected</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-interaction-background-highlight')"
+            style="--color: var(--cds-alias-object-interaction-background-highlight)"
+          ></button>
+          <div class="color-example-item-text">interaction-background-highlight</div>
+        </div>
+      </div>
+      <div class="clr-col-2">
+        <h5 class="clr-mt-16px">Containers</h5>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-container-background')"
+            style="--color: var(--cds-alias-object-container-background)"
+          ></button>
+          <div class="color-example-item-text">background</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-container-background-tint')"
+            style="--color: var(--cds-alias-object-container-background-tint)"
+          ></button>
+          <div class="color-example-item-text">background-tint</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-container-background-shade')"
+            style="--color: var(--cds-alias-object-container-background-shade)"
+          ></button>
+          <div class="color-example-item-text">background-shade</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-object-border-color')"
+            style="--color: var(--cds-alias-object-border-color)"
+          ></button>
+          <div class="color-example-item-text">border-color</div>
+        </div>
+      </div>
+      <div class="clr-col-2">
+        <h5 class="clr-mt-16px">Black / White</h5>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-global-color-white')"
+            style="--color: var(--cds-global-color-white)"
+          ></button>
+          <div class="color-example-item-text">global-color-white</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-global-color-black')"
+            style="--color: var(--cds-global-color-black)"
+          ></button>
+          <div class="color-example-item-text">global-color-black</div>
+        </div>
+      </div>
+    </div>
+
+    <h4>Type</h4>
+    <div class="clr-row">
+      <div class="clr-col-2">
+        <h5 class="clr-mt-16px">Basic Type</h5>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-typography-color-100')"
+            style="--color: var(--cds-alias-typography-color-100)"
+          ></button>
+          <div class="color-example-item-text">Typography 100</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-typography-color-200')"
+            style="--color: var(--cds-alias-typography-color-200)"
+          ></button>
+          <div class="color-example-item-text">Typography 200</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-typography-color-300')"
+            style="--color: var(--cds-alias-typography-color-300)"
+          ></button>
+          <div class="color-example-item-text">Typography 300</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-typography-color-400')"
+            style="--color: var(--cds-alias-typography-color-400)"
+          ></button>
+          <div class="color-example-item-text">Typography 400</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-typography-color-450')"
+            style="--color: var(--cds-alias-typography-color-450)"
+          ></button>
+          <div class="color-example-item-text">Typography 450</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-typography-color-500')"
+            style="--color: var(--cds-alias-typography-color-500)"
+          ></button>
+          <div class="color-example-item-text">Typography 500</div>
+        </div>
+      </div>
+      <div class="clr-col-2">
+        <h5 class="clr-mt-16px">Outline Button Text</h5>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-typography-primary-hover')"
+            style="--color: var(--cds-alias-typography-primary-hover)"
+          ></button>
+          <div class="color-example-item-text">primary-hover</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-typography-info-hover')"
+            style="--color: var(--cds-alias-typography-info-hover)"
+          ></button>
+          <div class="color-example-item-text">info-hover</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-typography-success-hover')"
+            style="--color: var(--cds-alias-typography-success-hover)"
+          ></button>
+          <div class="color-example-item-text">success-hover</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-typography-warning-hover')"
+            style="--color: var(--cds-alias-typography-warning-hover)"
+          ></button>
+          <div class="color-example-item-text">warning-hover</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-typography-danger-hover')"
+            style="--color: var(--cds-alias-typography-danger-hover)"
+          ></button>
+          <div class="color-example-item-text">danger-hover</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-typography-neutral-hover')"
+            style="--color: var(--cds-alias-typography-neutral-hover)"
+          ></button>
+          <div class="color-example-item-text">neutral-hover</div>
+        </div>
+      </div>
+      <div class="clr-col-2">
+        <h5 class="clr-mt-16px">Links</h5>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-typography-link-on-colorbg')"
+            style="--color: var(--cds-alias-typography-link-on-colorbg)"
+          ></button>
+          <div class="color-example-item-text">link-on-colorbg</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-typography-link-color')"
+            style="--color: var(--cds-alias-typography-link-color)"
+          ></button>
+          <div class="color-example-item-text">link-color</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-typography-link-color-hover')"
+            style="--color: var(--cds-alias-typography-link-color-hover)"
+          ></button>
+          <div class="color-example-item-text">link-color-hover</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-typography-link-color-visited')"
+            style="--color: var(--cds-alias-typography-link-color-visited)"
+          ></button>
+          <div class="color-example-item-text">link-color-visited</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-typography-link-color-visited-hover')"
+            style="--color: var(--cds-alias-typography-link-color-visited-hover)"
+          ></button>
+          <div class="color-example-item-text">link-color-visited-hover</div>
+        </div>
+      </div>
+    </div>
+
+    <h4>Utility Colors</h4>
+    <div class="clr-row">
+      <div class="clr-col-2 clr-mt-24px ng-star-inserted">
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-utility-gray')"
+            style="--color: var(--cds-alias-utility-gray)"
+          ></button>
+          <div class="color-example-item-text">utility-gray</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-utility-gray-shade')"
+            style="--color: var(--cds-alias-utility-gray-shade)"
+          ></button>
+          <div class="color-example-item-text">utility-gray-shade</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-utility-gray-tint')"
+            style="--color: var(--cds-alias-utility-gray-tint)"
+          ></button>
+          <div class="color-example-item-text">utility-gray-tint</div>
+        </div>
+      </div>
+      <div class="clr-col-2 clr-mt-24px ng-star-inserted">
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-utility-blue')"
+            style="--color: var(--cds-alias-utility-blue)"
+          ></button>
+          <div class="color-example-item-text">utility-blue</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-utility-blue-shade')"
+            style="--color: var(--cds-alias-utility-blue-shade)"
+          ></button>
+          <div class="color-example-item-text">utility-blue-shade</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-utility-blue-tint')"
+            style="--color: var(--cds-alias-utility-blue-tint)"
+          ></button>
+          <div class="color-example-item-text">utility-blue-tint</div>
+        </div>
+      </div>
+      <div class="clr-col-2 clr-mt-24px ng-star-inserted">
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-utility-light-blue')"
+            style="--color: var(--cds-alias-utility-light-blue)"
+          ></button>
+          <div class="color-example-item-text">utility-light-blue</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-utility-light-blue-shade')"
+            style="--color: var(--cds-alias-utility-light-blue-shade)"
+          ></button>
+          <div class="color-example-item-text">utility-light-blue-shade</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-utility-light-blue-tint')"
+            style="--color: var(--cds-alias-utility-light-blue-tint)"
+          ></button>
+          <div class="color-example-item-text">utility-light-blue-tint</div>
+        </div>
+      </div>
+      <div class="clr-col-2 clr-mt-24px ng-star-inserted">
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-utility-dark-blue')"
+            style="--color: var(--cds-alias-utility-dark-blue)"
+          ></button>
+          <div class="color-example-item-text">utility-dark-blue</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-utility-dark-blue-shade')"
+            style="--color: var(--cds-alias-utility-dark-blue-shade)"
+          ></button>
+          <div class="color-example-item-text">utility-dark-blue-shade</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-utility-dark-blue-tint')"
+            style="--color: var(--cds-alias-utility-dark-blue-tint)"
+          ></button>
+          <div class="color-example-item-text">utility-dark-blue-tint</div>
+        </div>
+      </div>
+      <div class="clr-col-2 clr-mt-24px ng-star-inserted">
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-utility-green')"
+            style="--color: var(--cds-alias-utility-green)"
+          ></button>
+          <div class="color-example-item-text">utility-green</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-utility-green-shade')"
+            style="--color: var(--cds-alias-utility-green-shade)"
+          ></button>
+          <div class="color-example-item-text">utility-green-shade</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-utility-green-tint')"
+            style="--color: var(--cds-alias-utility-green-tint)"
+          ></button>
+          <div class="color-example-item-text">utility-green-tint</div>
+        </div>
+      </div>
+      <div class="clr-col-2 clr-mt-24px ng-star-inserted">
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-utility-yellow')"
+            style="--color: var(--cds-alias-utility-yellow)"
+          ></button>
+          <div class="color-example-item-text">utility-yellow</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-utility-yellow-shade')"
+            style="--color: var(--cds-alias-utility-yellow-shade)"
+          ></button>
+          <div class="color-example-item-text">utility-yellow-shade</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-utility-yellow-tint')"
+            style="--color: var(--cds-alias-utility-yellow-tint)"
+          ></button>
+          <div class="color-example-item-text">utility-yellow-tint</div>
+        </div>
+      </div>
+      <div class="clr-col-2 clr-mt-24px ng-star-inserted">
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-utility-tangerine')"
+            style="--color: var(--cds-alias-utility-tangerine)"
+          ></button>
+          <div class="color-example-item-text">utility-tangerine</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-utility-tangerine-shade')"
+            style="--color: var(--cds-alias-utility-tangerine-shade)"
+          ></button>
+          <div class="color-example-item-text">utility-tangerine-shade</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-utility-tangerine-tint')"
+            style="--color: var(--cds-alias-utility-tangerine-tint)"
+          ></button>
+          <div class="color-example-item-text">utility-tangerine-tint</div>
+        </div>
+      </div>
+      <div class="clr-col-2 clr-mt-24px ng-star-inserted">
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-utility-red')"
+            style="--color: var(--cds-alias-utility-red)"
+          ></button>
+          <div class="color-example-item-text">utility-red</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-utility-red-shade')"
+            style="--color: var(--cds-alias-utility-red-shade)"
+          ></button>
+          <div class="color-example-item-text">utility-red-shade</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-utility-red-tint')"
+            style="--color: var(--cds-alias-utility-red-tint)"
+          ></button>
+          <div class="color-example-item-text">utility-red-tint</div>
+        </div>
+      </div>
+      <div class="clr-col-2 clr-mt-24px ng-star-inserted">
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-utility-violet')"
+            style="--color: var(--cds-alias-utility-violet)"
+          ></button>
+          <div class="color-example-item-text">utility-violet</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-utility-violet-shade')"
+            style="--color: var(--cds-alias-utility-violet-shade)"
+          ></button>
+          <div class="color-example-item-text">utility-violet-shade</div>
+        </div>
+        <div class="color-example">
+          <button
+            class="btn color-example-item"
+            (click)="copyColorCode($event, '--cds-alias-utility-violet-tint')"
+            style="--color: var(--cds-alias-utility-violet-tint)"
+          ></button>
+          <div class="color-example-item-text">utility-violet-tint</div>
+        </div>
+      </div>
+      <!---->
+    </div>
+
+    <!-- Alerts -->
+    <h4>Alerts</h4>
+    <p>
+      <a href="https://clarity.design/documentation/alerts">Clarity Alerts</a>
+    </p>
+    <h5>Standard Alerts</h5>
+    <div class="section">
+      <clr-alert [clrAlertType]="'danger'">
+        <clr-alert-item>
+          <span class="alert-text">This alert represents danger.</span>
+        </clr-alert-item>
+      </clr-alert>
+
+      <clr-alert [clrAlertType]="'warning'">
+        <clr-alert-item>
+          <span class="alert-text">This alert represents a warning.</span>
+        </clr-alert-item>
+      </clr-alert>
+
+      <clr-alert [clrAlertType]="'info'">
+        <clr-alert-item>
+          <span class="alert-text">This alert represents an info.</span>
+        </clr-alert-item>
+      </clr-alert>
+
+      <clr-alert [clrAlertType]="'success'">
+        <clr-alert-item>
+          <span class="alert-text">This alert represents success.</span>
+        </clr-alert-item>
+      </clr-alert>
+    </div>
+
+    <h5>App Level</h5>
+    <div class="section">
+      <clr-alert [clrAlertType]="'danger'" [clrAlertAppLevel]="true">
+        <clr-alert-item>
+          <span class="alert-text">This is an app level alert.</span>
+          <div class="alert-actions">
+            <button class="btn alert-action">Fix</button>
+          </div>
+        </clr-alert-item>
+      </clr-alert>
+
+      <clr-alert [clrAlertType]="'warning'" [clrAlertAppLevel]="true">
+        <clr-alert-item>
+          <span class="alert-text">This is an app level warning.</span>
+          <div class="alert-actions">
+            <button class="btn alert-action">Check</button>
+          </div>
+        </clr-alert-item>
+      </clr-alert>
+
+      <clr-alert [clrAlertType]="'info'" [clrAlertAppLevel]="true">
+        <clr-alert-item>
+          <span class="alert-text">This is an app level info.</span>
+          <div class="alert-actions">
+            <button class="btn alert-action">Thanks</button>
+          </div>
+        </clr-alert-item>
+      </clr-alert>
+
+      <clr-alert [clrAlertType]="'success'" [clrAlertAppLevel]="true">
+        <clr-alert-item>
+          <span class="alert-text">This is an app level success.</span>
+          <div class="alert-actions">
+            <button class="btn alert-action">Great</button>
+          </div>
+        </clr-alert-item>
+      </clr-alert>
+    </div>
+
+    <!-- Labels and Badges -->
+    <h4>Labels and Badges</h4>
+    <p>
+      <a href="https://clarity.design/documentation/label">Clarity Labels</a> and
+      <a href="https://clarity.design/documentation/badge">Clarity Badges</a>
+    </p>
+    <div class="section">
+      <span class="label">
+        default
+        <span class="badge">
+          2
+          <span class="clr-sr-only">items in default badge</span>
+        </span></span
+      >
+      <span class="label label-primary">
+        primary
+        <span class="badge badge-primary">
+          4
+          <span class="clr-sr-only">items in a primary badge</span>
+        </span></span
+      >
+      <span class="label label-info">
+        info
+        <span class="badge badge-info">
+          8
+          <span class="clr-sr-only">items in an info badge</span>
+        </span></span
+      >
+      <span class="label label-success">
+        success
+        <span class="badge badge-success">
+          16
+          <span class="clr-sr-only">items in a sucess badge</span>
+        </span></span
+      >
+      <span class="label label-warning">
+        warning
+        <span class="badge badge-warning">
+          32
+          <span class="clr-sr-only">items in a warning badge</span>
+        </span></span
+      >
+      <span class="label label-danger">
+        danger
+        <span class="badge badge-danger">
+          64
+          <span class="clr-sr-only">items in a danger badge</span>
+        </span></span
+      >
+    </div>
+
+    <!-- Buttons -->
+    <h4>Buttons</h4>
+    <p>
+      <a href="https://clarity.design/documentation/button">Clarity Buttons</a>
+    </p>
+    <h5>Solid Buttons</h5>
+    <div class="section">
+      <button class="btn btn-primary">Primary</button>
+      <button class="btn btn-info">Info</button>
+      <button class="btn btn-success">Success</button>
+      <button class="btn btn-warning">Warning</button>
+      <button class="btn btn-danger">Danger</button>
+      <button class="btn btn-danger" disabled>Disabled</button>
+    </div>
+    <h5>Outline Buttons</h5>
+    <div class="section">
+      <button class="btn">Default</button>
+      <button class="btn btn-outline">Regular</button>
+      <button class="btn btn-info-outline">Info</button>
+      <button class="btn btn-success-outline">Success</button>
+      <button class="btn btn-warning-outline">Warning</button>
+      <button class="btn btn-danger-outline">Danger</button>
+      <button class="btn btn-outline" disabled>Disabled</button>
+    </div>
+    <h5>Flat Buttons</h5>
+    <div class="section">
+      <button class="btn btn-link">Regular</button>
+      <button class="btn btn-link" disabled>Disabled</button>
+      <button class="btn btn-sm btn-link">Regular</button>
+      <button class="btn btn-sm btn-link" disabled>Disabled</button>
+    </div>
+    <h5>Icon Buttons</h5>
+    <div class="section">
+      <button type="button" class="btn btn-icon" aria-label="home">
+        <cds-icon shape="home"></cds-icon>
+      </button>
+      <button type="button" class="btn btn-icon btn-primary" aria-label="settings">
+        <cds-icon shape="cog"></cds-icon>
+      </button>
+      <button type="button" class="btn btn-icon btn-info" aria-label="settings">
+        <cds-icon shape="info-circle"></cds-icon>
+      </button>
+      <button type="button" class="btn btn-icon btn-warning" aria-label="warning">
+        <cds-icon shape="warning-standard"></cds-icon>
+      </button>
+      <button type="button" class="btn btn-icon btn-danger" aria-label="error">
+        <cds-icon shape="error-standard"></cds-icon>
+      </button>
+      <button type="button" class="btn btn-icon btn-success" aria-label="done">
+        <cds-icon shape="check"></cds-icon>
+      </button>
+      <button type="button" class="btn btn-icon" disabled aria-label="home">
+        <cds-icon shape="home"></cds-icon>
+      </button>
+    </div>
+
+    <!-- Icons -->
+    <h4>Icons</h4>
+    <div class="section">
+      <cds-icon shape="info-circle" size="lg"></cds-icon>
+      <cds-icon shape="info-circle" size="lg" status="info"></cds-icon>
+      <cds-icon shape="info-circle" size="lg" status="success"></cds-icon>
+      <cds-icon shape="info-circle" size="lg" status="warning"></cds-icon>
+      <cds-icon shape="info-circle" size="lg" status="danger"></cds-icon>
+    </div>
+
+    <!-- Progress -->
+    <h4>Progress</h4>
+    <div class="section">
+      <h5>Standard</h5>
+      <clr-progress-bar clrValue="25"></clr-progress-bar>
+    </div>
+
+    <!-- Stack View -->
+    <h4>Stack View</h4>
+    <div class="section">
+      <clr-stack-view>
+        <clr-stack-header>Angular stack view</clr-stack-header>
+
+        <clr-stack-block [clrStackViewLevel]="1">
+          <clr-stack-label>Label 1</clr-stack-label>
+          <clr-stack-content>Content 1</clr-stack-content>
+        </clr-stack-block>
+
+        <clr-stack-block [clrStackViewLevel]="1">
+          <clr-stack-label>Label 2</clr-stack-label>
+          <clr-stack-content>Content 2</clr-stack-content>
+          <clr-stack-block [clrStackViewLevel]="2">
+            <clr-stack-label>Sub-label 1</clr-stack-label>
+            <clr-stack-content>Sub-content 1</clr-stack-content>
+          </clr-stack-block>
+          <clr-stack-block [clrStackViewLevel]="2">
+            <clr-stack-label>Sub-label 2</clr-stack-label>
+            <clr-stack-content>Sub-content 2</clr-stack-content>
+          </clr-stack-block>
+          <clr-stack-block [clrStackViewLevel]="2">
+            <clr-stack-label>Sub-label 3</clr-stack-label>
+            <clr-stack-content>Sub-content 3</clr-stack-content>
+          </clr-stack-block>
+        </clr-stack-block>
+
+        <clr-stack-block [clrStackViewLevel]="1">
+          <clr-stack-label>Label 3</clr-stack-label>
+          <clr-stack-content>Content 3</clr-stack-content>
+          <clr-stack-block>
+            <clr-stack-label>Sub-label 4</clr-stack-label>
+            <clr-stack-content>Sub-content 4</clr-stack-content>
+          </clr-stack-block>
+          <clr-stack-block>
+            <clr-stack-label>Sub-label 5</clr-stack-label>
+            <clr-stack-content>Sub-content 5</clr-stack-content>
+          </clr-stack-block>
+        </clr-stack-block>
+      </clr-stack-view>
+    </div>
+
+    <!-- Tree View -->
+    <h4>Tree View</h4>
+    <div class="section">
+      <clr-tree>
+        <clr-tree-node *ngFor="let directory of rootDirectory" [(clrExpanded)]="directory.expanded">
+          <cds-icon [attr.shape]="directory.icon"></cds-icon>
+          {{ directory.name }}
+          <clr-tree-node *ngFor="let file of directory.files">
+            <button class="clr-treenode-link" [class.active]="file.active">
+              <cds-icon [attr.shape]="file.icon"></cds-icon>
+              {{ file.name }}
+            </button>
+          </clr-tree-node>
+        </clr-tree-node>
+      </clr-tree>
     </div>
   </article>
 </clr-doc-wrapper>

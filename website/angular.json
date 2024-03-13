@@ -36,6 +36,7 @@
               "node_modules/prismjs/themes/prism-solarizedlight.css",
               "node_modules/modern-normalize/modern-normalize.css",
               "node_modules/@cds/core/global.min.css",
+              "node_modules/@cds/core/styles/theme.dark.min.css",
               "node_modules/@clr/ui/clr-ui.min.css",
               "node_modules/angular-calendar/css/angular-calendar.css",
               "node_modules/@porscheinformatik/clr-addons/styles/clr-addons-phs.min.css",
@@ -81,18 +82,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "clarity:build"
+            "buildTarget": "clarity:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "clarity:build:production"
+              "buildTarget": "clarity:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "clarity:build"
+            "buildTarget": "clarity:build"
           }
         }
       }

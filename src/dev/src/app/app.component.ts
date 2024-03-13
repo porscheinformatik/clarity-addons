@@ -18,7 +18,6 @@ ClarityIcons.addIcons(angleIcon, cogIcon, userIcon);
 })
 export class AppComponent implements OnInit {
   public routes: Route[] = APP_ROUTES;
-  linkRef: HTMLLinkElement;
 
   themes = [
     { name: 'PHS', cdsTheme: 'phs' },
@@ -34,6 +33,5 @@ export class AppComponent implements OnInit {
 
   setTheme(theme: { cdsTheme: string; href: string }): void {
     this.document.body.setAttribute('cds-theme', theme.cdsTheme);
-    this.linkRef.href = theme.href;
   }
 }

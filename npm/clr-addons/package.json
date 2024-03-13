@@ -18,8 +18,9 @@
     "url": "git@github.com:porscheinformatik/clarity-addons.git"
   },
   "peerDependencies": {
-    "@angular/common": "15 || 16",
-    "@angular/core": "15 || 16",
+    "@angular/common": "@ANGULAR_VERSION",
+    "@angular/core": "@ANGULAR_VERSION",
+    "@angular/compiler": "@ANGULAR_VERSION",
     "@clr/angular": "@CLARITY_VERSION",
     "@cds/core": "@CDS_CORE_VERSION",
     "@clr/ui": "@CLARITY_VERSION"

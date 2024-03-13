@@ -40,8 +40,9 @@ body,
   }
 
   .content-header {
-    padding: 0.5rem 0.5rem 0 1rem;
+    padding: 0.15rem 0.5rem 0.15rem 1rem;
     display: flex;
+    align-items: center;
     flex: 0 0 auto;
 
     h2 {
@@ -212,7 +213,8 @@ body,
   }
 }
 
-@mixin required-asterisk($color: var(--red-dark)) {
+// Deprecated with Clarity 17 in favor or "clr-required-mark"
+@mixin required-asterisk($color: var(--cds-alias-status-danger)) {
   position: relative;
 
   &:after {
@@ -226,13 +228,14 @@ body,
   }
 }
 
+// Deprecated with Clarity 17 in favor or "clr-required-mark"
 form {
   .required {
     @include required-asterisk();
   }
 
   .required-multiple {
-    @include required-asterisk(var(--orange-light));
+    @include required-asterisk(var(--cds-alias-status-warning));
   }
 }
 
@@ -323,11 +326,6 @@ form,
   h4:not(:first-child) {
     margin-top: 2rem;
   }
-
-  // Fix alignment of label & values
-  .clr-control-label {
-    line-height: inherit;
-  }
 }
 
 // Set max width for the date picker - Only needs to be as wide as the displayed date
@@ -415,7 +413,7 @@ clr-expandable-animation {
   background-color: inherit !important;
 }
 .datagrid-row {
-  background-color: $white;
+  background-color: $phs-global-color-white;
 }
 
 .datagrid-highlight-error {
