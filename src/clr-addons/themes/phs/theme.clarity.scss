@@ -283,12 +283,31 @@
     background-image: url(data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2036%2036%22%3E%3Cdefs%3E%3C%2Fdefs%3E%3Ctitle%3ESearch%3C%2Ftitle%3E%3Cg%20id%3D%22icons%22%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M15%2C4.05A10.95%2C10.95%2C0%2C1%2C1%2C4.05%2C15%2C11%2C11%2C0%2C0%2C1%2C15%2C4.05M15%2C2A13%2C13%2C0%2C1%2C0%2C28%2C15%2C13%2C13%2C0%2C0%2C0%2C15%2C2Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20%20d%3D%22M33.71%2C32.29l-7.37-7.42-1.42%2C1.41%2C7.37%2C7.42a1%2C1%2C0%2C1%2C0%2C1.42-1.41Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E);
   }
 
-  // Fix the color of the focussed search field, as it does not respect the theme settings
+  // Make search box in white header more visible
+  header .search-box input[type='text'],
+  header .search input[type='text'],
+  .header .search-box input[type='text'],
+  .header .search input[type='text'] {
+    border-bottom: var(--cds-alias-object-border-width-100) solid var(--cds-alias-object-border-color-tint);
+    border-radius: 0;
+  }
+
+  // Just underline the the search box
+  header .search-box input[type='text']:hover,
+  header .search input[type='text']:hover,
+  .header .search-box input[type='text']:hover,
+  .header .search input[type='text']:hover {
+    border: none;
+    border-bottom: var(--cds-alias-object-border-width-100) solid var(--clr-forms-focused-color);
+  }
+
+  // Just underline the the search box and fix the color of the focussed search field, as it does not respect the theme settings
   header .search-box input[type='text']:focus,
   header .search input[type='text']:focus,
   .header .search-box input[type='text']:focus,
   .header .search input[type='text']:focus {
-    border-color: var(--cds-alias-status-primary);
+    border: none;
+    border-bottom: var(--cds-alias-object-border-width-200) solid var(--clr-forms-focused-color);
   }
 
   // *************************
