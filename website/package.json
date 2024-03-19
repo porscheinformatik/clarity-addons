@@ -8,8 +8,8 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "start:dev": "ng serve --port 4300",
+    "start": "ng serve --ssl",
+    "start:dev": "ng serve --port 4300 --ssl",
     "build": "ng build",
     "deploy:ci": "npm run update:versions && ng build --configuration production --output-path=./dist/deploy && npm run generate:404",
     "generate:404": "cp-cli ./dist/deploy/index.html ./dist/deploy/404.html",
