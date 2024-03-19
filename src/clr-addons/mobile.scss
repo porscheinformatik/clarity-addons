@@ -3,6 +3,11 @@
     overflow: hidden;
   }
 
+  body {
+    // content must avoid the fixed header
+    padding-top: 60px;
+  }
+
   .header {
     position: fixed;
     width: 100%;

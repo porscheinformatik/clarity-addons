@@ -193,8 +193,7 @@
           bottom: 0;
           left: 0;
           right: 0;
-          background: var(--clr-responsive-nav-header-backdrop-bg-color, black);
-          opacity: var(--clr-responsive-nav-header-backdrop-opacity, 0.85);
+          background: var(--cds-alias-object-overlay-backdrop-background);
           cursor: pointer;
           z-index: $clr-sliding-panel-backdrop-z-index;
         }
