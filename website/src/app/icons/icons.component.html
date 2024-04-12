@@ -11,6 +11,7 @@
     <div>
       <a [routerLink]="['get-started']" class="btn btn-primary">GET STARTED</a>
       <a [routerLink]="['icon-sets']" class="btn btn-primary">SEE ICONS</a>
+      <a [routerLink]="['icons-logos']" class="btn btn-primary">LOGOS</a>
     </div>
   </div>
 </section>
@@ -25,6 +26,9 @@
       </clr-vertical-nav-group-children>
       <clr-vertical-nav-group-children>
         <a clrVerticalNavLink [routerLink]="['./icon-sets']" routerLinkActive="active" class="nav-link">Icons</a>
+      </clr-vertical-nav-group-children>
+      <clr-vertical-nav-group-children>
+        <a clrVerticalNavLink [routerLink]="['./icons-logos']" routerLinkActive="active" class="nav-link">Logos</a>
       </clr-vertical-nav-group-children>
     </clr-vertical-nav>
     <div class="content-area">
