@@ -533,13 +533,63 @@ clr-dropdown-menu .dropdown-header {
   z-index: 1;
 }
 
-.clr-control-warning {
-  background: linear-gradient(to bottom, transparent 95%, var(--cds-alias-status-warning, hsl(41, 100%, 32%)) 95%)
-    no-repeat !important;
+@mixin input-border-bottom-animation($border-color: var(--cds-alias-status-warning, hsl(41, 100%, 32%))) {
+  // Border-bottom animation on focus
+  background: linear-gradient(to bottom, transparent 95%, #{$border-color} 95%) no-repeat;
 
-  &:not([readonly]):focus {
+  background-size: 0 100%;
+  transition: background-size 0.2s ease;
+
+  &:focus,
+  &.clr-focus {
+    border-bottom-color: $border-color;
+    background-size: 100% 100%;
+  }
+}
+
+.clr-warning {
+  &.clr-combobox-wrapper {
+    &:not(.invalid) {
+      border-bottom-color: var(--cds-alias-status-warning);
+    }
+  }
+
+  &.clr-focus-indicator {
+    background-color: var(--cds-alias-status-warning);
+  }
+
+  &.clr-input:not([readonly]) {
     border-bottom-color: var(--cds-alias-status-warning, hsl(41, 100%, 32%));
     background-size: 100% 100%;
+    @include input-border-bottom-animation();
+  }
+
+  &.clr-input-group {
+    border-bottom-color: var(--cds-alias-status-warning, hsl(41, 100%, 32%));
+    @include input-border-bottom-animation();
+  }
+
+  &.clr-textarea {
+    border-color: var(--cds-alias-status-warning);
+    outline-color: var(--cds-alias-status-warning);
+  }
+}
+
+//Select needs to be a separate style for some reason
+
+select {
+  &.clr-warning {
+    &:not([multiple]) {
+      &.clr-select-wrapper {
+        @include input-border-bottom-animation();
+      }
+
+      border-bottom-color: var(--cds-alias-status-warning, hsl(41, 100%, 32%)) !important;
+    }
+
+    &[multiple] {
+      border-color: var(--cds-alias-status-warning, hsl(41, 100%, 32%)) !important;
+    }
   }
 }
 

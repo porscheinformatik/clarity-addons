@@ -20,11 +20,11 @@
   <button class="btn btn-primary" (click)="toggleValidation()">{{ isValidating ? 'Validate' : 'Reset' }} form</button>
 </div>
 <form clrForm [formGroup]="exampleForm">
-  <clr-collapse-expand-section>
+  <!--<clr-collapse-expand-section>
     <h3>Text Inputs</h3>
   </clr-collapse-expand-section>
 
-  <!--<clr-input-container class="clr-col-12">
+  <clr-input-container class="clr-col-12">
     <label class="clr-required-mark">Input label</label>
     <input clrInput formControlName="input" class="clr-col-2" type="text" name="inputName" required minlength="5" />
     <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
@@ -60,7 +60,7 @@
            formControlName="money" />
     <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>
     <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
-  </clr-input-container>
+  </clr-input-container>-->
 
   <h4>Date & Time</h4>
   <clr-date-container class="clr-col-12">
@@ -70,13 +70,13 @@
     <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
   </clr-date-container>
 
-  <clr-input-container class="clr-col-12">
-    <label class="clr-required-mark">Time label</label>
-    <input type="time" name="time" clrInput required formControlName="time" />
-    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>
-    <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
+  <!--  <clr-input-container class="clr-col-12">-->
+  <!--    <label class="clr-required-mark">Time label</label>-->
+  <!--    <input type="time" name="time" clrInput required formControlName="time" />-->
+  <!--    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>-->
+  <!--    <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>-->
 
-  </clr-input-container>
+  <!--  </clr-input-container>-->
 
   <clr-date-time-container class="clr-col-12 clr-row">
     <clr-date-container>
@@ -84,7 +84,6 @@
       <input clrDate type="text" name="date" />
     </clr-date-container>
     <input type="time" name="time" clrTime required formControlName="dateTime" />
-
   </clr-date-time-container>
 
   <h3>Select Inputs</h3>
@@ -97,10 +96,9 @@
     </select>
     <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>
     <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
-
   </clr-select-container>
 
-  <clr-datalist-container class="clr-col-12">
+  <!--  <clr-datalist-container class="clr-col-12">
     <label>Template Datalist</label>
     <input class="clr-col-2" minlength="4" name="Option" required clrDatalistInput formControlName="dataList" />
     <datalist>
@@ -109,7 +107,6 @@
     <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
     <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>
   </clr-datalist-container>
--->
   <clr-combobox-container class="clr-col-12">
     <label>Single Select Combobox</label>
     <clr-combobox required formControlName="comboSingle" name="combobox">
@@ -131,7 +128,7 @@
     </clr-combobox>
     <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>
     <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
-  </clr-combobox-container>
+  </clr-combobox-container>-->
   <!--
 
     <h3>Toggle & Checkbox Inputs</h3>
