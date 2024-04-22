@@ -55,8 +55,10 @@ export class ClrIfWarning implements AfterViewInit {
       const parent = this.renderer.parentNode(this.hostElement);
       this.comboboxWrapper = this.hasComboBox(parent);
       this.focusIndicator = this.hasFocusIndicator(parent);
-      this.inputElement = this.hasInput(parent?.querySelector('[class^="clr-"][class$="-wrapper"]'));
-      this.inputGroup = this.hasGroup(parent?.querySelector('[class^="clr-"][class$="-wrapper"]'));
+      this.inputGroup = this.hasGroup(parent?.querySelector('[class^="clr-"][class*="-wrapper"]'));
+      if (!this.inputGroup && !this.comboboxWrapper) {
+        this.inputElement = this.hasInput(parent?.querySelector('[class^="clr-"][class$="-wrapper"]'));
+      }
       this.textArea = this.hasTextArea(parent?.querySelector('[class^="clr-"][class$="-wrapper"]'));
     }
   }
@@ -71,6 +73,7 @@ export class ClrIfWarning implements AfterViewInit {
   hasComboBox(element: Element) {
     return element?.querySelector('[class*="clr-combobox-wrapper"]');
   }
+
   hasTextArea(element: Element) {
     return element?.querySelector('[class*="clr-textarea"]');
   }

@@ -533,7 +533,7 @@ clr-dropdown-menu .dropdown-header {
   z-index: 1;
 }
 
-@mixin input-border-bottom-animation($border-color: var(--cds-alias-status-warning, hsl(41, 100%, 32%))) {
+@mixin input-border-bottom-animation($border-color: var(--cds-alias-status-warning, hsl(41, 100%, 39%))) {
   // Border-bottom animation on focus
   background: linear-gradient(to bottom, transparent 95%, #{$border-color} 95%) no-repeat;
 
@@ -548,53 +548,53 @@ clr-dropdown-menu .dropdown-header {
 }
 
 .clr-warning {
-  &.clr-combobox-wrapper {
-    &:not(.invalid) {
-      border-bottom-color: var(--cds-alias-status-warning);
+  &:not(.clr-error) {
+    &.clr-combobox-wrapper {
+      &:not(.invalid) {
+        border-bottom-color: var(--cds-alias-status-warning);
+      }
     }
-  }
 
-  &.clr-focus-indicator {
-    background-color: var(--cds-alias-status-warning);
-  }
+    &.clr-focus-indicator {
+      background-color: var(--cds-alias-status-warning);
+    }
 
-  &.clr-input:not([readonly]) {
-    border-bottom-color: var(--cds-alias-status-warning, hsl(41, 100%, 32%));
-    background-size: 100% 100%;
-    @include input-border-bottom-animation();
-  }
+    &.clr-input:not([readonly]) {
+      border-bottom-color: var(--cds-alias-status-warning, hsl(41, 100%, 39%));
+      background-size: 0 100%;
+      @include input-border-bottom-animation();
+    }
 
-  &.clr-input-group {
-    border-bottom-color: var(--cds-alias-status-warning, hsl(41, 100%, 32%));
-    @include input-border-bottom-animation();
-  }
+    &.clr-input-group {
+      &:not(.clr-error) {
+        border-bottom-color: var(--cds-alias-status-warning, hsl(41, 100%, 39%));
+        @include input-border-bottom-animation();
+      }
+    }
 
-  &.clr-textarea {
-    border-color: var(--cds-alias-status-warning);
-    outline-color: var(--cds-alias-status-warning);
+    &.clr-textarea {
+      border-color: var(--cds-alias-status-warning);
+      outline-color: var(--cds-alias-status-warning);
+    }
   }
 }
 
-//Select needs to be a separate style for some reason
+//Select needs to be styled separately for some reason
 
 select {
   &.clr-warning {
     &:not([multiple]) {
-      &.clr-select-wrapper {
-        @include input-border-bottom-animation();
-      }
-
-      border-bottom-color: var(--cds-alias-status-warning, hsl(41, 100%, 32%)) !important;
+      border-bottom-color: var(--cds-alias-status-warning, hsl(41, 100%, 39%)) !important;
     }
 
     &[multiple] {
-      border-color: var(--cds-alias-status-warning, hsl(41, 100%, 32%)) !important;
+      border-color: var(--cds-alias-status-warning, hsl(41, 100%, 39%)) !important;
     }
   }
 }
 
 .clr-control-warning-icon {
-  color: var(--cds-alias-status-warning, hsl(41, 100%, 32%));
+  color: var(--cds-alias-status-warning, hsl(41, 100%, 39%));
   margin-left: -2px;
   height: 1.2rem;
   width: 1.2rem;
