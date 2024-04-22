@@ -548,6 +548,10 @@ clr-dropdown-menu .dropdown-header {
 }
 
 .clr-warning {
+  &.clr-subtext {
+    color: var(--cds-alias-status-warning);
+  }
+
   &:not(.clr-error) {
     &.clr-combobox-wrapper {
       &:not(.invalid) {

@@ -4,13 +4,13 @@ import { AfterViewInit, Directive, ElementRef, Input, Renderer2, TemplateRef, Vi
   selector: '[clrIfWarning]',
 })
 export class ClrIfWarning implements AfterViewInit {
-  icon = this.renderer.createElement('cds-icon');
-  hostElement: Element;
-  inputElement: Element;
-  inputGroup: Element;
-  comboboxWrapper: Element;
-  focusIndicator: Element;
+  private hostElement: Element;
+  private inputElement: Element;
+  private inputGroup: Element;
+  private comboboxWrapper: Element;
+  private focusIndicator: Element;
   private textArea: Element;
+  private icon = this.renderer.createElement('cds-icon');
 
   constructor(
     private container: ViewContainerRef,
@@ -30,7 +30,7 @@ export class ClrIfWarning implements AfterViewInit {
       setTimeout(() => {
         this.hostElement = this.host.nativeElement?.previousElementSibling;
         const wrapper = this.hostElement?.previousElementSibling;
-        this.setInputComponents();
+        this.setComponents();
         //Radio buttons have no wrapper
         if (!wrapper) {
           this.renderer.insertBefore(this.hostElement?.parentElement, this.icon, this.hostElement);
@@ -50,7 +50,7 @@ export class ClrIfWarning implements AfterViewInit {
     }
   }
 
-  setInputComponents() {
+  setComponents() {
     if (this.hostElement) {
       const parent = this.renderer.parentNode(this.hostElement);
       this.comboboxWrapper = this.hasComboBox(parent);
@@ -87,6 +87,7 @@ export class ClrIfWarning implements AfterViewInit {
   }
 
   resetControlStyles() {
+    this.hostElement ? this.renderer.removeClass(this.hostElement, 'clr-warning') : null;
     this.focusIndicator ? this.renderer.removeClass(this.focusIndicator, 'clr-warning') : null;
     this.comboboxWrapper ? this.renderer.removeClass(this.comboboxWrapper, 'clr-warning') : null;
     this.inputElement ? this.renderer.removeClass(this.inputElement, 'clr-warning') : null;
@@ -95,6 +96,7 @@ export class ClrIfWarning implements AfterViewInit {
   }
 
   setControlStyles() {
+    this.hostElement ? this.renderer.addClass(this.hostElement, 'clr-warning') : null;
     this.focusIndicator ? this.renderer.addClass(this.focusIndicator, 'clr-warning') : null;
     this.comboboxWrapper ? this.renderer.addClass(this.comboboxWrapper, 'clr-warning') : null;
     this.inputElement ? this.renderer.addClass(this.inputElement, 'clr-warning') : null;
