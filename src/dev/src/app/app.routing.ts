@@ -14,6 +14,10 @@ export const APP_ROUTES: Routes = [
     path: 'back-button',
     loadChildren: () => import('./back-button/back-button.demo.module').then(m => m.BackButtonDemoModule),
   },
+  {
+    path: 'control-warning',
+    loadChildren: () => import('./control-warning/control-warning.demo.module').then(m => m.ControlWarningDemoModule),
+  },
   { path: 'cards', loadChildren: () => import('./cards/cards.demo.module').then(m => m.CardsDemoModule) },
   {
     path: 'view-edit-section',
