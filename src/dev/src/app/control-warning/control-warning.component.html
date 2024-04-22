@@ -4,30 +4,6 @@
 </div>
 <button class="btn btn-primary" (click)="showWarning()">{{ showWarnings ? 'Hide' : 'Show' }} all warnings</button>
 <form #form="ngForm" clrForm clrLayout="'horizontal" class="clr-row">
-  <clr-date-container class="clr-col-12">
-    <label>Date label</label>
-    <input type="text" [(ngModel)]="date" name="date" clrDate />
-    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>
-  </clr-date-container>
-
-  <clr-toggle-container class="clr-col-12">
-    <label>Toggle label</label>
-    <clr-toggle-wrapper>
-      <input type="checkbox" id="toggle" name="toggle" [(ngModel)]="toggleValue" clrToggle />
-      <label for="toggle" class="clr-col-none"></label>
-    </clr-toggle-wrapper>
-    <!--       <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>-->
-  </clr-toggle-container>
-
-  <clr-date-time-container class="clr-col-12 clr-row">
-    <clr-date-container>
-      <label>Date & time label</label>
-      <input clrDate type="text" [(ngModel)]="date" name="date" />
-    </clr-date-container>
-    <input type="time" [(ngModel)]="time" name="time" clrTime />
-    <!--       <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>-->
-  </clr-date-time-container>
-
   <clr-combobox-container class="clr-col-12">
     <label>Single Select Combobox</label>
     <clr-combobox [(ngModel)]="comboboxOption" name="combobox" required>
@@ -35,8 +11,7 @@
         <clr-option *clrOptionItems="let option of values$ | async" [clrValue]="option">{{ option }}</clr-option>
       </clr-options>
     </clr-combobox>
-    <!--       <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>-->
-
+    <!--    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>-->
     <clr-control-error>Select a value</clr-control-error>
   </clr-combobox-container>
 
@@ -53,6 +28,15 @@
     <clr-control-error>Select 2 values</clr-control-error>
   </clr-combobox-container>
 
+  <clr-date-time-container class="clr-col-12 clr-row">
+    <clr-date-container>
+      <label>Date & time label</label>
+      <input clrDate type="text" [(ngModel)]="date" name="date" />
+    </clr-date-container>
+    <input type="time" [(ngModel)]="time" name="time" clrTime />
+    <!--    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>-->
+  </clr-date-time-container>
+
   <!-- THESE ONES ARE PRETTY MUCH WORKING -->
 
   <clr-input-container class="clr-col-12">
@@ -60,7 +44,7 @@
     <input clrInput class="clr-col-2" type="text" [(ngModel)]="inputText" name="inputName" required minlength="5" />
     <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
     <clr-control-error *clrIfError="'minlength'">Error message about requiring 5 characters</clr-control-error>
-    <!--       <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>-->
+    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>
   </clr-input-container>
 
   <clr-textarea-container class="clr-col-12">
@@ -140,4 +124,19 @@
     <clr-control-error *clrIfError="'required'">This is required</clr-control-error>
     <!--    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>-->
   </clr-checkbox-container>
+
+  <clr-toggle-container required class="clr-col-12">
+    <label>Toggle label</label>
+    <clr-toggle-wrapper>
+      <input type="checkbox" id="toggle" name="toggle" [(ngModel)]="toggleValue" clrToggle />
+      <label for="toggle" class="clr-col-none"></label>
+    </clr-toggle-wrapper>
+    <!--    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>-->
+  </clr-toggle-container>
+
+  <clr-date-container class="clr-col-12">
+    <label>Date label</label>
+    <input type="text" [(ngModel)]="date" name="date" clrDate />
+    <!--    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>-->
+  </clr-date-container>
 </form>
