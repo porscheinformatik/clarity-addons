@@ -1,1 +1,1 @@
-export * from './if-warning.directive';
+export * from './if-warning.module';
