@@ -1,16 +1,12 @@
 import { AfterViewInit, Directive, ElementRef, Input, Renderer2, TemplateRef, ViewContainerRef } from '@angular/core';
-enum IconInsertPosition {
-  BEFORE_NEXT = 'beforeNext',
-  BEFORE_PREV = 'beforePrev',
-  APPEND = 'append',
-}
 
 @Directive({
   selector: '[clrIfWarning]',
 })
 export class ClrIfWarning implements AfterViewInit {
   icon = this.renderer.createElement('cds-icon');
-  component: any;
+  hostElement: Element;
+  inputElement: Element;
 
   constructor(
     private container: ViewContainerRef,
@@ -19,107 +15,65 @@ export class ClrIfWarning implements AfterViewInit {
     private host: ElementRef
   ) {}
 
-  setIconStyles() {
-    this.icon.style.color = 'var(--cds-alias-status-warning-dark)';
-    this.icon.style.marginLeft = '-2px';
-    this.icon.style.height = '1.2rem';
-    this.icon.style.width = '1.2rem';
-    this.icon.style.minHeight = '1.2rem';
-    this.icon.style.minWidth = '1.2rem';
-  }
-
   ngAfterViewInit(): void {
     this.icon.setAttribute('shape', 'exclamation-triangle');
-    this.renderer.addClass(this.icon, 'icon');
-    this.setIconStyles();
+    this.renderer.addClass(this.icon, 'clr-control-warning-icon');
   }
 
   @Input() set clrIfWarning(clrIfWarning: boolean) {
     if (clrIfWarning) {
       this.container.createEmbeddedView(this.template);
       setTimeout(() => {
-        const elem = this.host.nativeElement;
-        if (this.findExistingIcons(elem)) {
-          this.renderer.insertBefore(
-            this.findExistingIcons(elem).parentNode,
-            this.icon,
-            this.findExistingIcons(elem).previousSibling
-          );
+        this.hostElement = this.host.nativeElement?.previousElementSibling;
+        const wrapper = this.hostElement?.previousElementSibling;
+        this.setInputElement();
+        //Radio buttons have no wrapper
+        if (!wrapper) {
+          this.renderer.insertBefore(this.hostElement?.parentElement, this.icon, this.hostElement);
         }
-        /*this.setIconStyles();
-        const iconPosition =  this.determineIconPosition(elem);
-        console.log(iconPosition);
-        this.insertIcon(iconPosition.elem, this.icon, iconPosition.position);
-
-        const parent = this.renderer.parentNode(elem);
-        const container = parent?.parentNode?.querySelector('[class^="clr-control-container"]');
-        let wrapper = container?.querySelector('[class^="clr-"][class$="-wrapper"]');
-        if (wrapper) {
-          console.log('appending wrapper');
-          this.renderer.appendChild(wrapper, this.icon);
+        //if an error icon is already present, place the icon in the parent
+        if (wrapper?.classList?.contains('clr-validate-icon')) {
+          this.renderer.insertBefore(wrapper.parentElement, this.icon, wrapper?.nextSibling);
         } else {
-          if (container) {
-            const innerWrapper = container.querySelector('[class^="clr-"][class*="-wrapper"]');
-            const group = innerWrapper.querySelector('[class$="-group"]');
-            this.renderer.insertBefore(group.parentNode, this.icon, group.nextSibling);
-          } else {
-            this.renderer.insertBefore(elem.parentNode, this.icon, elem.previousSibling);
-          }
+          this.renderer.insertBefore(wrapper, this.icon, wrapper?.previousElementSibling);
         }
-        this.renderer.setStyle(elem?.previousSibling, 'color', 'var(--cds-alias-status-warning-dark)');*/
+        this.setControlStyles();
       });
     } else {
+      this.resetControlStyles();
       this.icon.remove();
       this.container.clear();
     }
   }
 
-  findExistingIcons(element: ElementRef): Element {
-    const parent = this.renderer.parentNode(element);
-    return parent?.querySelectorAll('cds-icon')[0];
+  setInputElement() {
+    if (this.hostElement) {
+      const parent = this.renderer.parentNode(this.hostElement);
+      console.log(this.hasFocusIndicator(parent));
+      const container = parent?.querySelector('[class^="clr-"][class$="-wrapper"]');
+
+      this.inputElement = container?.querySelectorAll('input, select')[0];
+    }
   }
 
-  determineIconPosition(hostElement: Element) {
-    const parent = this.renderer.parentNode(hostElement);
-    const container = parent?.parentNode?.querySelector('[class^="clr-control-container"]');
-    if (!container) {
-      return {
-        elem: hostElement,
-        position: IconInsertPosition.BEFORE_NEXT,
-      };
-    }
-    let wrapper = container?.querySelector('[class^="clr-"][class$="-wrapper"]');
-    if (!wrapper) {
-      const innerWrapper = container?.querySelector('[class^="clr-"][class*="-wrapper"]');
-      if (innerWrapper) {
-        return {
-          elem: innerWrapper.querySelector('[class$="-group"]'),
-          position: IconInsertPosition.BEFORE_NEXT,
-        };
-      }
-    }
-    return {
-      elem: wrapper,
-      position: IconInsertPosition.APPEND,
-    };
+  hasGroup(element: Element) {
+    return element?.querySelector('[class*="-group"]') !== null;
   }
 
-  insertIcon(parent: ElementRef, newElem: ElementRef, position: IconInsertPosition) {
-    const parentNode = parent.nativeElement;
-    const elem = newElem.nativeElement;
+  hasFocusIndicator(element: Element) {
+    console.log(element?.querySelector('[class*="clr-focus-indicator"]'));
+    return element?.querySelector('[class*="clr-focus-indicator"]') !== null;
+  }
 
-    switch (position) {
-      case 'append':
-        this.renderer.appendChild(parentNode, elem);
-        break;
-      case 'beforeNext':
-        this.renderer.insertBefore(parentNode, elem, parentNode.nextSibling);
-        break;
-      case 'beforePrev':
-        this.renderer.insertBefore(parentNode, elem, elem.previousSibling);
-        break;
-      default:
-        console.error('Invalid position specified');
+  resetControlStyles() {
+    if (this.inputElement) {
+      this.renderer.removeClass(this.inputElement, 'clr-control-warning');
+    }
+  }
+
+  setControlStyles() {
+    if (this.inputElement) {
+      this.renderer.addClass(this.inputElement, 'clr-control-warning');
     }
   }
 }

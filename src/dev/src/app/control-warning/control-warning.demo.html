@@ -1,17 +1,172 @@
-<h2>Control Warning</h2>
-<h3>Vertical Form</h3>
-<form clrForm [clrLayout]="'vertical'" [formGroup]="form">
-  <clr-input-container>
-    <label>Input</label>
-    <input clrInput required />
+<h1>Control Warning</h1>
+<p>
+  The <code><i style="color: #853fb3">*clrIfWarning</i> </code> directive can be used with a
+  <code><i style="color: #0c75a6">clr-control-helper</i> </code> container to include a warning icon next to the form
+  control and sets the color of the warning text accordingly. It can be used on all control types where the
+  <code><i style="color: #0c75a6">clr-control-error</i> </code> can be used.
+</p>
+<h3>Known Issues</h3>
+<li>
+  Currently, the Clarity Addons <code><i style="color: #0c75a6">clr-date-time-container</i></code> is not supported.
+</li>
+<li>
+  When using in combination with <code><i style="color: #0c75a6">clr-combobox-container</i> </code>, the order of the
+  warning and error icons changes depending on which is displayed first.
+</li>
+
+<h2>Examples</h2>
+<div>
+  <button class="btn btn-primary" (click)="showWarning()">{{ showWarnings ? 'Hide' : 'Show' }} all warnings</button>
+  <button class="btn btn-primary" (click)="toggleValidation()">{{ isValidating ? 'Validate' : 'Reset' }} form</button>
+</div>
+<form clrForm [formGroup]="exampleForm">
+  <clr-collapse-expand-section>
+    <h3>Text Inputs</h3>
+  </clr-collapse-expand-section>
+
+  <!--<clr-input-container class="clr-col-12">
+    <label class="clr-required-mark">Input label</label>
+    <input clrInput formControlName="input" class="clr-col-2" type="text" name="inputName" required minlength="5" />
+    <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
+    <clr-control-error *clrIfError="'minlength'">Error message about requiring 5 characters</clr-control-error>
+    <clr-control-helper id="inputWarning" *clrIfWarning="showWarnings">This is a warning</clr-control-helper>
   </clr-input-container>
-  <clr-control-warning *clrIfWarning="shouldShowWarning" warning="test"></clr-control-warning>
-  <clr-select-container>
-    <label>Select</label>
-    <select clrSelect name="select">
-      <option>Option 1</option>
-      <option>Option 2</option>
+
+  <clr-password-container class="clr-col-12">
+    <label class="clr-required-mark">Password label</label>
+    <input
+      required
+      clrPassword
+      class="clr-col-2"
+      placeholder="Password please!"
+      type="text"
+      name="passwordName"
+      formControlName="password"
+    />
+    <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
+    <clr-control-helper id="passwordWarning" *clrIfWarning="showWarnings">This is a warning</clr-control-helper>
+  </clr-password-container>
+
+  <clr-textarea-container class="clr-col-12">
+    <label class="clr-required-mark">Textarea label</label>
+    <textarea clrTextarea class="clr-col-2" name="description" required formControlName="textArea"></textarea>
+    <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
+    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>
+  </clr-textarea-container>
+
+  <clr-input-container class="clr-col-12">
+    <label class="clr-required-mark">Money label</label>
+    <input required clrInput clrNumeric class="clr-col-2" type="text" [(clrNumericValue)]="money" clrUnit="€"
+           formControlName="money" />
+    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>
+    <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
+  </clr-input-container>
+
+  <h4>Date & Time</h4>
+  <clr-date-container class="clr-col-12">
+    <label class="clr-required-mark">Date label</label>
+    <input type="text" name="date" clrDate required formControlName="date" />
+    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>
+    <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
+  </clr-date-container>
+
+  <clr-input-container class="clr-col-12">
+    <label class="clr-required-mark">Time label</label>
+    <input type="time" name="time" clrInput required formControlName="time" />
+    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>
+    <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
+
+  </clr-input-container>
+
+  <clr-date-time-container class="clr-col-12 clr-row">
+    <clr-date-container>
+      <label class="clr-required-mark">Date & time label</label>
+      <input clrDate type="text" name="date" />
+    </clr-date-container>
+    <input type="time" name="time" clrTime required formControlName="dateTime" />
+
+  </clr-date-time-container>
+
+  <h3>Select Inputs</h3>
+  <clr-select-container class="clr-col-12">
+    <label class="clr-required-mark">Select label</label>
+    <select formControlName="select" required clrSelect class="clr-col-2" name="options">
+      <option value="one">One</option>
+      <option value="two">Two</option>
+      <option value="three">Three</option>
     </select>
+    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>
+    <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
+
   </clr-select-container>
+
+  <clr-datalist-container class="clr-col-12">
+    <label>Template Datalist</label>
+    <input class="clr-col-2" minlength="4" name="Option" required clrDatalistInput formControlName="dataList" />
+    <datalist>
+      <option *ngFor="let item of values$ | async" [value]="item"></option>
+    </datalist>
+    <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
+    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>
+  </clr-datalist-container>
+-->
+  <clr-combobox-container class="clr-col-12">
+    <label>Single Select Combobox</label>
+    <clr-combobox required formControlName="comboSingle" name="combobox">
+      <clr-options>
+        <clr-option *clrOptionItems="let option of values$ | async" [clrValue]="option">{{ option }}</clr-option>
+      </clr-options>
+    </clr-combobox>
+    <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
+    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>
+  </clr-combobox-container>
+
+  <clr-combobox-container class="clr-col-12">
+    <label>Multi Select Combobox</label>
+    <clr-combobox required formControlName="comboMulti" name="combobox" [clrMulti]="true">
+      <ng-container *clrOptionSelected="let selected"> {{ selected }}</ng-container>
+      <clr-options>
+        <clr-option *clrOptionItems="let option of values2$ | async" [clrValue]="option"> {{ option }}</clr-option>
+      </clr-options>
+    </clr-combobox>
+    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>
+    <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
+  </clr-combobox-container>
+  <!--
+
+    <h3>Toggle & Checkbox Inputs</h3>
+    <clr-radio-container class="clr-col-12">
+      <label class="clr-required-mark">Radio label</label>
+      <clr-radio-wrapper>
+        <input type="radio" clrRadio name="radio" formControlName="radio" value="1" required />
+        <label>Option 1</label>
+      </clr-radio-wrapper>
+      <clr-radio-wrapper>
+        <input type="radio" clrRadio name="radio" value="2" />
+        <label>Option 2</label>
+      </clr-radio-wrapper>
+      <clr-control-error *clrIfError="'required'">This field is required!</clr-control-error>
+      <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>
+    </clr-radio-container>
+
+    <clr-checkbox-container class="clr-col-12">
+      <label>Checkbox label</label>
+      <clr-checkbox-wrapper>
+        <label class="clr-col-12">Option</label>
+        <input formControlName="checkbox" clrCheckbox required type="checkbox" name="checkboxName" />
+      </clr-checkbox-wrapper>
+      <clr-control-error *clrIfError="'required'">This is required</clr-control-error>
+      <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>
+    </clr-checkbox-container>
+
+    <clr-toggle-container class="clr-col-12">
+      <label>Toggle label</label>
+      <clr-toggle-wrapper>
+        <input formControlName="toggle" required type="checkbox" id="toggle" name="toggle" clrToggle />
+        <label for="toggle" class="clr-col-none"></label>
+      </clr-toggle-wrapper>
+      <clr-control-error *clrIfError="'required'">This is required</clr-control-error>
+      <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>
+    </clr-toggle-container>
+  -->
 </form>
-<button (click)="toggleWarning()">Show warning = {{shouldShowWarning}}</button>

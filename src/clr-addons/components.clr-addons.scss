@@ -405,13 +405,16 @@ clr-date-container .clr-control-container {
 .clr-max-width {
   max-width: $clr-max-width;
 }
+
 .datagrid-row-master {
   background-color: inherit !important;
 }
+
 .datagrid-row-sticky,
 clr-expandable-animation {
   background-color: inherit !important;
 }
+
 .datagrid-row {
   background-color: $phs-global-color-white;
 }
@@ -528,6 +531,25 @@ clr-dropdown-menu .dropdown-header {
   background-color: var(--clr-badge-info-bg-color);
   color: var(--clr-badge-info-color);
   z-index: 1;
+}
+
+.clr-control-warning {
+  background: linear-gradient(to bottom, transparent 95%, var(--cds-alias-status-warning, hsl(41, 100%, 32%)) 95%)
+    no-repeat !important;
+
+  &:not([readonly]):focus {
+    border-bottom-color: var(--cds-alias-status-warning, hsl(41, 100%, 32%));
+    background-size: 100% 100%;
+  }
+}
+
+.clr-control-warning-icon {
+  color: var(--cds-alias-status-warning, hsl(41, 100%, 32%));
+  margin-left: -2px;
+  height: 1.2rem;
+  width: 1.2rem;
+  min-height: 1.2rem;
+  min-width: 1.2rem;
 }
 
 // Has to be at the bottom to override the styles from the above properly
