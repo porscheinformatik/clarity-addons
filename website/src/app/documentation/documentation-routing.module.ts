@@ -227,6 +227,14 @@ const documentationRoutes: Routes = [
           browserTitle: 'Angular Calendar',
         },
       },
+      {
+        path: 'control-warning',
+        loadChildren: () =>
+          import('./demos/control-warning/control-warning.demo.module').then(m => m.ControlWarningDemoModule),
+        data: {
+          browserTitle: 'Control Warning',
+        },
+      },
     ],
   },
 ];

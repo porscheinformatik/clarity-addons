@@ -5,7 +5,7 @@
  */
 import { ModuleWithProviders } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LandingComponent } from './landing.component';
+import { LandingComponent } from './landing.component'; /* eslint-disable @typescript-eslint/explicit-function-return-type */
 
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 export const APP_ROUTES: Routes = [
@@ -13,10 +13,6 @@ export const APP_ROUTES: Routes = [
   {
     path: 'back-button',
     loadChildren: () => import('./back-button/back-button.demo.module').then(m => m.BackButtonDemoModule),
-  },
-  {
-    path: 'control-warning',
-    loadChildren: () => import('./control-warning/control-warning.demo.module').then(m => m.ControlWarningDemoModule),
   },
   { path: 'cards', loadChildren: () => import('./cards/cards.demo.module').then(m => m.CardsDemoModule) },
   {
@@ -67,6 +63,7 @@ export const APP_ROUTES: Routes = [
     path: 'location-bar',
     loadChildren: () => import('./location-bar/location-bar.demo.module').then(m => m.LocationBarDemoModule),
   },
+
   {
     path: 'notification',
     loadChildren: () => import('./notification/notification.demo.module').then(m => m.NotificationDemoModule),
