@@ -1,0 +1,17 @@
+<h2>Control Warning</h2>
+<h3>Vertical Form</h3>
+<form clrForm [clrLayout]="'vertical'" [formGroup]="form">
+  <clr-input-container>
+    <label>Input</label>
+    <input clrInput required />
+  </clr-input-container>
+  <clr-control-warning *clrIfWarning="shouldShowWarning" warning="test"></clr-control-warning>
+  <clr-select-container>
+    <label>Select</label>
+    <select clrSelect name="select">
+      <option>Option 1</option>
+      <option>Option 2</option>
+    </select>
+  </clr-select-container>
+</form>
+<button (click)="toggleWarning()">Show warning = {{shouldShowWarning}}</button>

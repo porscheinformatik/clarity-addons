@@ -49,6 +49,7 @@
     "@clr/icons": "13.0.2",
     "@clr/ui": "^17.0.0",
     "@kolkov/angular-editor": "2.1.0",
+    "@ngx-translate/core": "15.0.0",
     "@webcomponents/custom-elements": "1.6.0",
     "@webcomponents/webcomponentsjs": "2.8.0",
     "core-js": "3.37.0",

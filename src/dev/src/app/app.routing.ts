@@ -20,6 +20,10 @@ export const APP_ROUTES: Routes = [
     loadChildren: () =>
       import('./view-edit-section/view-edit-section.demo.module').then(m => m.ViewEditSectionDemoModule),
   },
+  {
+    path: 'control-warning',
+    loadChildren: () => import('./control-warning/control-warning.demo.module').then(m => m.ControlWarningDemoModule),
+  },
   { path: 'clarity', loadChildren: () => import('./clarity/clarity.demo.module').then(m => m.ClarityDemoModule) },
   { path: 'pager', loadChildren: () => import('./pager/pager.demo.module').then(m => m.PagerDemoModule) },
   {
