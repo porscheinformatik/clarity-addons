@@ -4,31 +4,6 @@
 </div>
 <button class="btn btn-primary" (click)="showWarning()">{{ showWarnings ? 'Hide' : 'Show' }} all warnings</button>
 <form #form="ngForm" clrForm clrLayout="'horizontal" class="clr-row">
-  <clr-radio-container class="clr-col-12">
-    <label class="clr-required-mark">Radio label</label>
-    <clr-radio-wrapper>
-      <input type="radio" clrRadio name="options" value="1" required [(ngModel)]="radioOption" />
-      <label>Option 1</label>
-    </clr-radio-wrapper>
-    <clr-radio-wrapper>
-      <input type="radio" clrRadio name="options" value="2" required [(ngModel)]="radioOption" />
-      <label>Option 2</label>
-    </clr-radio-wrapper>
-    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>
-    <clr-control-helper>Helper text</clr-control-helper>
-    <clr-control-error>This field is required!</clr-control-error>
-  </clr-radio-container>
-
-  <clr-checkbox-container class="clr-col-12">
-    <label>Checkbox label</label>
-    <clr-checkbox-wrapper>
-      <label class="clr-col-12">Option</label>
-      <input clrCheckbox required type="checkbox" [(ngModel)]="checkboxValue" name="checkboxName" />
-    </clr-checkbox-wrapper>
-    <clr-control-error *clrIfError="'required'">This is required</clr-control-error>
-    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>
-  </clr-checkbox-container>
-
   <clr-date-container class="clr-col-12">
     <label>Date label</label>
     <input type="text" [(ngModel)]="date" name="date" clrDate />
@@ -41,7 +16,7 @@
       <input type="checkbox" id="toggle" name="toggle" [(ngModel)]="toggleValue" clrToggle />
       <label for="toggle" class="clr-col-none"></label>
     </clr-toggle-wrapper>
-    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>
+    <!--       <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>-->
   </clr-toggle-container>
 
   <clr-date-time-container class="clr-col-12 clr-row">
@@ -50,7 +25,7 @@
       <input clrDate type="text" [(ngModel)]="date" name="date" />
     </clr-date-container>
     <input type="time" [(ngModel)]="time" name="time" clrTime />
-    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>
+    <!--       <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>-->
   </clr-date-time-container>
 
   <clr-combobox-container class="clr-col-12">
@@ -60,7 +35,8 @@
         <clr-option *clrOptionItems="let option of values$ | async" [clrValue]="option">{{ option }}</clr-option>
       </clr-options>
     </clr-combobox>
-    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>
+    <!--       <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>-->
+
     <clr-control-error>Select a value</clr-control-error>
   </clr-combobox-container>
 
@@ -72,7 +48,7 @@
         <clr-option *clrOptionItems="let option of values2$ | async" [clrValue]="option"> {{ option }} </clr-option>
       </clr-options>
     </clr-combobox>
-    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>
+    <!--    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>-->
 
     <clr-control-error>Select 2 values</clr-control-error>
   </clr-combobox-container>
@@ -84,14 +60,14 @@
     <input clrInput class="clr-col-2" type="text" [(ngModel)]="inputText" name="inputName" required minlength="5" />
     <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
     <clr-control-error *clrIfError="'minlength'">Error message about requiring 5 characters</clr-control-error>
-    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>
+    <!--       <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>-->
   </clr-input-container>
 
   <clr-textarea-container class="clr-col-12">
     <label class="clr-required-mark">Textarea label</label>
     <textarea clrTextarea class="clr-col-2" [(ngModel)]="textareaText" name="description" required></textarea>
     <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
-    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>
+    <!--       <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>-->
   </clr-textarea-container>
 
   <clr-password-container class="clr-col-12">
@@ -105,7 +81,7 @@
       [(ngModel)]="passwordText"
       name="passwordName"
     />
-    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>
+    <!--    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>-->
   </clr-password-container>
 
   <clr-select-container class="clr-col-12">
@@ -115,19 +91,19 @@
       <option value="two">Two</option>
       <option value="three">Three</option>
     </select>
-    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>
+    <!--    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>-->
   </clr-select-container>
 
   <clr-input-container class="clr-col-12">
     <label>Time label</label>
     <input type="time" [(ngModel)]="time" name="time" clrInput />
-    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>
+    <!--    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>-->
   </clr-input-container>
 
   <clr-input-container class="clr-col-12">
     <label>Money label</label>
     <input clrInput clrNumeric class="clr-col-2" type="text" [(clrNumericValue)]="money" clrUnit="€" />
-    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>
+    <!--    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>-->
   </clr-input-container>
 
   <clr-datalist-container class="clr-col-12">
@@ -136,7 +112,32 @@
     <datalist>
       <option *ngFor="let item of values$ | async" [value]="item"></option>
     </datalist>
-    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>
+    <!--    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>-->
+
     <clr-control-error>There was an error</clr-control-error>
   </clr-datalist-container>
+
+  <clr-radio-container class="clr-col-12">
+    <label class="clr-required-mark">Radio label</label>
+    <clr-radio-wrapper>
+      <input type="radio" clrRadio name="options" value="1" required [(ngModel)]="radioOption" />
+      <label>Option 1</label>
+    </clr-radio-wrapper>
+    <clr-radio-wrapper>
+      <input type="radio" clrRadio name="options" value="2" required [(ngModel)]="radioOption" />
+      <label>Option 2</label>
+    </clr-radio-wrapper>
+    <!--    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>-->
+    <clr-control-error>This field is required!</clr-control-error>
+  </clr-radio-container>
+
+  <clr-checkbox-container class="clr-col-12">
+    <label>Checkbox label</label>
+    <clr-checkbox-wrapper>
+      <label class="clr-col-12">Option</label>
+      <input clrCheckbox required type="checkbox" [(ngModel)]="checkboxValue" name="checkboxName" />
+    </clr-checkbox-wrapper>
+    <clr-control-error *clrIfError="'required'">This is required</clr-control-error>
+    <!--    <clr-control-helper *clrIfWarning="showWarnings">This is a warning</clr-control-helper>-->
+  </clr-checkbox-container>
 </form>

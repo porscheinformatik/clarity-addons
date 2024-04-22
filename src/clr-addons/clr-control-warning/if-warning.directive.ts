@@ -34,22 +34,28 @@ export class ClrIfWarning implements AfterViewInit {
 
       setTimeout(() => {
         const elem = this.host.nativeElement;
-
         this.setIconStyles();
         const parent = this.renderer.parentNode(elem);
+        console.log(parent);
         const container = parent?.parentNode?.querySelector('[class^="clr-control-container"]');
         let wrapper = container?.querySelector('[class^="clr-"][class$="-wrapper"]');
         if (wrapper) {
+          console.log('has wrapper');
           this.renderer.appendChild(wrapper, this.icon);
-          this.renderer.setStyle(elem?.previousSibling, 'color', 'var(--cds-alias-status-warning-dark)');
         } else {
+          console.log('no wrapper');
           if (container) {
+            console.log('has container', container);
+            const innerWrapper = container.querySelector('[class^="clr-"][class*="-wrapper"]');
+            const group = innerWrapper.querySelector('[class$="-group"]');
+            console.log(group);
+            this.renderer.insertBefore(group.parentNode, this.icon, group.nextSibling);
           } else {
+            console.log('no container', parent);
+            this.renderer.insertBefore(elem.parentNode, this.icon, elem.previousSibling);
           }
         }
-        if (elem) {
-        } else {
-        }
+        this.renderer.setStyle(elem?.previousSibling, 'color', 'var(--cds-alias-status-warning-dark)');
       });
     } else {
       this.icon.remove();
