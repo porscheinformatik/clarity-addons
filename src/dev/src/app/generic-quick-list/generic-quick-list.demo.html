@@ -82,22 +82,22 @@ Form valid: {{form.valid}}
     </div>
 
     <ng-template let-item>
-      <clr-input-container class="clr-col-2">
+      <clr-input-container class="clr-col-2 clr-row">
         <label [hidden]="true"></label>
         <input class="clr-col-12" clrInput [(ngModel)]="item.firstname" required [name]="'first' + item.id" />
         <clr-control-error *clrIfError="'required'">Please enter a value</clr-control-error>
       </clr-input-container>
-      <clr-input-container class="clr-col-3">
+      <clr-input-container class="clr-col-3 clr-row">
         <label [hidden]="true"></label>
         <input class="clr-col-12" clrInput [(ngModel)]="item.lastname" required [name]="'last' + item.id" />
         <clr-control-error *clrIfError="'required'">Please enter a value</clr-control-error>
       </clr-input-container>
-      <clr-input-container class="clr-col-4">
+      <clr-input-container class="clr-col-4 clr-row">
         <label [hidden]="true"></label>
         <input class="clr-col-12" clrInput [(ngModel)]="item.lastname" required [name]="'last' + item.id" />
         <clr-control-error *clrIfError="'required'">Please enter a value</clr-control-error>
       </clr-input-container>
-      <clr-input-container class="clr-col-3">
+      <clr-input-container class="clr-col-3 clr-row">
         <label [hidden]="true"></label>
         <input class="clr-col-12" clrInput [(ngModel)]="item.lastname" required [name]="'last' + item.id" />
         <clr-control-error *clrIfError="'required'">Please enter a value</clr-control-error>
