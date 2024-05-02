@@ -5,11 +5,12 @@ import { AfterViewInit, Directive, ElementRef, Input, Renderer2, TemplateRef, Vi
 })
 export class ClrIfWarning implements AfterViewInit {
   private hostElement: Element;
-  private inputElement: Element;
-  private inputGroup: Element;
-  private comboboxWrapper: Element;
-  private focusIndicator: Element;
-  private textArea: Element;
+  /*  private inputElement: Element;
+    private inputGroup: Element;
+    private comboboxWrapper: Element;
+    private focusIndicator: Element;
+    private textArea: Element;*/
+  private formContainer: Element;
   private icon = this.renderer.createElement('cds-icon');
 
   constructor(
@@ -19,20 +20,16 @@ export class ClrIfWarning implements AfterViewInit {
     private host: ElementRef
   ) {}
 
-  ngAfterViewInit(): void {
-    this.icon.setAttribute('shape', 'exclamation-triangle');
-    this.renderer.addClass(this.icon, 'clr-control-warning-icon');
-  }
-
   @Input() set clrIfWarning(clrIfWarning: boolean) {
     if (clrIfWarning) {
       this.container.createEmbeddedView(this.template);
       setTimeout(() => {
         this.hostElement = this.host.nativeElement?.previousElementSibling;
         const wrapper = this.hostElement?.previousElementSibling;
-        this.setComponents();
+        this.formContainer = this.getFormContainer(wrapper);
         //Radio buttons have no wrapper
         if (!wrapper) {
+          this.formContainer = this.getFormContainer(this.hostElement?.parentElement);
           this.renderer.insertBefore(this.hostElement?.parentElement, this.icon, this.hostElement);
         }
         //if an error icon is already present, place the icon in the parent
@@ -50,57 +47,22 @@ export class ClrIfWarning implements AfterViewInit {
     }
   }
 
-  setComponents() {
-    if (this.hostElement) {
-      const parent = this.renderer.parentNode(this.hostElement);
-      this.comboboxWrapper = this.hasComboBox(parent);
-      this.focusIndicator = this.hasFocusIndicator(parent);
-      this.inputGroup = this.hasGroup(parent?.querySelector('[class^="clr-"][class*="-wrapper"]'));
-      if (!this.inputGroup && !this.comboboxWrapper) {
-        this.inputElement = this.hasInput(parent?.querySelector('[class^="clr-"][class$="-wrapper"]'));
-      }
-      this.textArea = this.hasTextArea(parent?.querySelector('[class^="clr-"][class$="-wrapper"]'));
-    }
+  getFormContainer(element: Element) {
+    return element?.parentElement;
   }
 
-  hasInput(element: Element) {
-    if (element && element?.querySelectorAll('input, select').length >= 1) {
-      return element?.querySelectorAll('input, select')[0];
-    }
-    return null;
-  }
-
-  hasComboBox(element: Element) {
-    return element?.querySelector('[class*="clr-combobox-wrapper"]');
-  }
-
-  hasTextArea(element: Element) {
-    return element?.querySelector('[class*="clr-textarea"]');
-  }
-
-  hasGroup(element: Element) {
-    return element?.querySelector('[class*="-group"]');
-  }
-
-  hasFocusIndicator(element: Element) {
-    return element?.querySelector('[class*="clr-focus-indicator"]');
+  ngAfterViewInit(): void {
+    this.icon.setAttribute('shape', 'exclamation-triangle');
+    this.renderer.addClass(this.icon, 'clr-control-warning-icon');
   }
 
   resetControlStyles() {
     this.hostElement ? this.renderer.removeClass(this.hostElement, 'clr-warning') : null;
-    this.focusIndicator ? this.renderer.removeClass(this.focusIndicator, 'clr-warning') : null;
-    this.comboboxWrapper ? this.renderer.removeClass(this.comboboxWrapper, 'clr-warning') : null;
-    this.inputElement ? this.renderer.removeClass(this.inputElement, 'clr-warning') : null;
-    this.inputGroup ? this.renderer.removeClass(this.inputGroup, 'clr-warning') : null;
-    this.textArea ? this.renderer.removeClass(this.textArea, 'clr-warning') : null;
+    this.formContainer ? this.renderer.removeClass(this.formContainer, 'clr-warning') : null;
   }
 
   setControlStyles() {
     this.hostElement ? this.renderer.addClass(this.hostElement, 'clr-warning') : null;
-    this.focusIndicator ? this.renderer.addClass(this.focusIndicator, 'clr-warning') : null;
-    this.comboboxWrapper ? this.renderer.addClass(this.comboboxWrapper, 'clr-warning') : null;
-    this.inputElement ? this.renderer.addClass(this.inputElement, 'clr-warning') : null;
-    this.inputGroup ? this.renderer.addClass(this.inputGroup, 'clr-warning') : null;
-    this.textArea ? this.renderer.addClass(this.textArea, 'clr-warning') : null;
+    this.formContainer ? this.renderer.addClass(this.formContainer, 'clr-warning') : null;
   }
 }

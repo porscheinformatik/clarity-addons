@@ -547,53 +547,36 @@ clr-dropdown-menu .dropdown-header {
   }
 }
 
-.clr-warning {
-  &.clr-subtext {
-    color: var(--cds-alias-status-warning);
+.clr-warning:not(.clr-error):not(.invalid) {
+  .clr-input-group,
+  .clr-input:not(.clr-combobox-wrapper .clr-input):not([readonly]) {
+    border-bottom-color: var(--cds-alias-status-warning, hsl(41, 100%, 39%));
+    @include input-border-bottom-animation();
   }
 
-  &:not(.clr-error) {
-    &.clr-combobox-wrapper {
-      &:not(.invalid) {
-        border-bottom-color: var(--cds-alias-status-warning);
-      }
-    }
+  .clr-radio-wrapper input[type='radio'] + .clr-control-label::before,
+  .clr-checkbox-wrapper input[type='checkbox'] + .clr-control-label::before {
+    border-color: var(--cds-alias-status-warning, hsl(41, 100%, 39%));
+  }
 
-    &.clr-focus-indicator {
-      background-color: var(--cds-alias-status-warning);
-    }
-
-    &.clr-input:not([readonly]) {
+  select {
+    &:not([multiple]) {
       border-bottom-color: var(--cds-alias-status-warning, hsl(41, 100%, 39%));
-      background-size: 0 100%;
       @include input-border-bottom-animation();
     }
 
-    &.clr-input-group {
-      &:not(.clr-error) {
-        border-bottom-color: var(--cds-alias-status-warning, hsl(41, 100%, 39%));
-        @include input-border-bottom-animation();
-      }
-    }
-
-    &.clr-textarea {
-      border-color: var(--cds-alias-status-warning);
-      outline-color: var(--cds-alias-status-warning);
+    &[multiple] {
+      border-color: var(--cds-alias-status-warning, hsl(41, 100%, 39%));
     }
   }
-}
 
-//Select needs to be styled separately for some reason
+  .clr-textarea {
+    border-color: var(--cds-alias-status-warning, hsl(41, 100%, 39%));
+    outline-color: var(--cds-alias-status-warning, hsl(41, 100%, 39%));
+  }
 
-select {
-  &.clr-warning {
-    &:not([multiple]) {
-      border-bottom-color: var(--cds-alias-status-warning, hsl(41, 100%, 39%)) !important;
-    }
-
-    &[multiple] {
-      border-color: var(--cds-alias-status-warning, hsl(41, 100%, 39%)) !important;
-    }
+  .clr-focus-indicator:not(.invalid) {
+    background-color: var(--cds-alias-status-warning, hsl(41, 100%, 39%));
   }
 }
 
