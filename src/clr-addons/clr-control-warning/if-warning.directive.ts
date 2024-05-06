@@ -5,11 +5,6 @@ import { AfterViewInit, Directive, ElementRef, Input, Renderer2, TemplateRef, Vi
 })
 export class ClrIfWarning implements AfterViewInit {
   private hostElement: Element;
-  /*  private inputElement: Element;
-    private inputGroup: Element;
-    private comboboxWrapper: Element;
-    private focusIndicator: Element;
-    private textArea: Element;*/
   private formContainer: Element;
   private icon = this.renderer.createElement('cds-icon');
 
