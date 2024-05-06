@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -38,3 +38,4 @@ export * from './dropdown/index';
 export * from './datagrid/index';
 export * from './daterangepicker/index';
 export * from './html-editor/index';
+export * from './clr-control-warning/index';

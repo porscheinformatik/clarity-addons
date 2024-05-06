@@ -5,7 +5,7 @@
  */
 import { ModuleWithProviders } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LandingComponent } from './landing.component';
+import { LandingComponent } from './landing.component'; /* eslint-disable @typescript-eslint/explicit-function-return-type */
 
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 export const APP_ROUTES: Routes = [
@@ -63,6 +63,7 @@ export const APP_ROUTES: Routes = [
     path: 'location-bar',
     loadChildren: () => import('./location-bar/location-bar.demo.module').then(m => m.LocationBarDemoModule),
   },
+
   {
     path: 'notification',
     loadChildren: () => import('./notification/notification.demo.module').then(m => m.NotificationDemoModule),
