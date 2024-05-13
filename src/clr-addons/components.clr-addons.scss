@@ -535,7 +535,7 @@ clr-dropdown-menu .dropdown-header {
   z-index: 1;
 }
 
-@mixin input-border-bottom-animation($border-color: var(--cds-alias-status-warning, hsl(41, 100%, 39%))) {
+@mixin input-border-bottom-animation($border-color: $clr-highlight-warning-800) {
   // Border-bottom animation on focus
   background: linear-gradient(to bottom, transparent 95%, #{$border-color} 95%) no-repeat;
 
@@ -549,41 +549,47 @@ clr-dropdown-menu .dropdown-header {
   }
 }
 
+.clr-warning {
+  &clr-control-helper {
+    color: $clr-highlight-warning-800;
+  }
+}
+
 .clr-warning:not(.clr-error):not(.invalid) {
   .clr-input-group,
   .clr-input:not(.clr-combobox-wrapper .clr-input):not([readonly]) {
-    border-bottom-color: var(--cds-alias-status-warning, hsl(41, 100%, 39%));
+    border-bottom-color: $clr-highlight-warning-800;
     @include input-border-bottom-animation();
   }
 
   .clr-radio-wrapper input[type='radio'] + .clr-control-label::before,
   .clr-checkbox-wrapper input[type='checkbox'] + .clr-control-label::before {
-    border-color: var(--cds-alias-status-warning, hsl(41, 100%, 39%));
+    border-color: $clr-highlight-warning-800;
   }
 
   select {
     &:not([multiple]) {
-      border-bottom-color: var(--cds-alias-status-warning, hsl(41, 100%, 39%));
+      border-bottom-color: $clr-highlight-warning-800;
       @include input-border-bottom-animation();
     }
 
     &[multiple] {
-      border-color: var(--cds-alias-status-warning, hsl(41, 100%, 39%));
+      border-color: $clr-highlight-warning-800;
     }
   }
 
   .clr-textarea {
-    border-color: var(--cds-alias-status-warning, hsl(41, 100%, 39%));
-    outline-color: var(--cds-alias-status-warning, hsl(41, 100%, 39%));
+    border-color: $clr-highlight-warning-800;
+    outline-color: $clr-highlight-warning-800;
   }
 
   .clr-focus-indicator:not(.invalid) {
-    background-color: var(--cds-alias-status-warning, hsl(41, 100%, 39%));
+    background-color: $clr-highlight-warning-800;
   }
 }
 
 .clr-control-warning-icon {
-  color: var(--cds-alias-status-warning, hsl(41, 100%, 39%));
+  color: $clr-highlight-warning-800;
   margin-left: -2px;
   height: 1.2rem;
   width: 1.2rem;
