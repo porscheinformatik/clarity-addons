@@ -547,10 +547,8 @@ clr-dropdown-menu .dropdown-header {
   }
 }
 
-.clr-warning {
-  &clr-control-helper {
-    color: $clr-highlight-warning-800;
-  }
+clr-control-helper.clr-warning {
+  color: $clr-highlight-warning-800;
 }
 
 .clr-warning:not(.clr-error):not(.invalid) {
@@ -588,7 +586,6 @@ clr-dropdown-menu .dropdown-header {
 
 .clr-control-warning-icon {
   color: $clr-highlight-warning-800;
-  margin-left: -2px;
   height: 1.2rem;
   width: 1.2rem;
   min-height: 1.2rem;
