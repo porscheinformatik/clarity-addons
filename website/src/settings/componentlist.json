@@ -129,6 +129,11 @@
       "url": "colors",
       "text": "Colors",
       "type": "layout"
+    },
+    {
+      "url": "control-warning",
+      "text": "Control Warning",
+      "type": "component"
     }
   ]
 }

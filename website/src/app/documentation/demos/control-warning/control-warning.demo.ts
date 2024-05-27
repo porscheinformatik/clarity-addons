@@ -10,13 +10,7 @@ import { ClrForm } from '@clr/angular';
   styleUrl: './control-warning.demo.css',
 })
 export class ControlWarningDemo implements AfterViewInit {
-  ngAfterViewInit(): void {
-    this.isValidating = true;
-    this.exampleForm.reset();
-  }
-
   @ViewChild(ClrForm) form: ClrForm;
-
   exampleForm: FormGroup = new FormGroup({
     input: new FormControl(),
     password: new FormControl(),
@@ -57,12 +51,16 @@ export class ControlWarningDemo implements AfterViewInit {
     'Option 63 (test)',
     'Option 73',
   ]).pipe(delay(500));
-
   date: any;
   time: any;
   money: any;
   showWarnings = false;
   isValidating = false;
+
+  ngAfterViewInit(): void {
+    this.isValidating = true;
+    this.exampleForm.reset();
+  }
 
   showWarning() {
     this.showWarnings = !this.showWarnings;
