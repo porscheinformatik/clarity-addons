@@ -1,81 +1,83 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { ClrForm } from '@clr/angular';
+import { ClarityDocComponent } from '../clarity-doc';
+
+const INPUT_EXAMPLE = `
+<form [formGroup]="inputForm">
+  <clr-input-container class="clr-col-12">
+    <label class="clr-required-mark">Input label</label>
+    <input class="clr-col-2" clrInput formControlName="input" minlength="5" name="inputName" required type="text"/>
+    <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
+    <clr-control-helper *clrIfWarning="showingInputWarnings" id="inputWarning">This is a warning
+    </clr-control-helper>
+  </clr-input-container>
+</form>
+`;
 
 @Component({
   selector: 'app-control-warning',
   templateUrl: './control-warning.demo.html',
   styleUrl: './control-warning.demo.css',
+  host: {
+    '[class.content-area]': 'true',
+    '[class.dox-content-panel]': 'true',
+  },
 })
-export class ControlWarningDemo implements AfterViewInit {
-  @ViewChild(ClrForm) form: ClrForm;
-  exampleForm: FormGroup = new FormGroup({
-    input: new FormControl(),
-    password: new FormControl(),
-    textArea: new FormControl(),
-    money: new FormControl(),
-    date: new FormControl(),
-    time: new FormControl(),
-    dateTime: new FormControl(),
-    select: new FormControl(),
-    dataList: new FormControl(),
-    comboSingle: new FormControl(),
-    comboMulti: new FormControl(),
-    radio: new FormControl(),
-    checkbox: new FormControl(),
-    toggle: new FormControl(),
-  });
+export class ControlWarningDemo extends ClarityDocComponent implements AfterViewInit {
+  inputExample = INPUT_EXAMPLE;
+
   values$ = of([
     'Option 4',
     '<na> Option 5',
     'Option 6 (test)Option 6 (test)Option 6 (test)Option 6 (test)',
     'Option 7',
   ]).pipe(delay(500));
-  values2$ = of([
-    'Option 4',
-    '<na> Option 5',
-    'Option 6 (test)Option 6 (test)Option 6 (test)Option 6 (test)',
-    'Option 7',
-    'Option 41',
-    '<na> Option 51',
-    'Option 61 (test)',
-    'Option 71',
-    'Option 42',
-    '<na> Option 52',
-    'Option 62 (test)',
-    'Option 72',
-    'Option 43',
-    '<na> Option 53',
-    'Option 63 (test)',
-    'Option 73',
-  ]).pipe(delay(500));
   date: any;
   time: any;
-  money: any;
-  showWarnings = false;
-  isValidating = false;
+  showingInputWarnings = false;
+  isInputFormValidating = false;
+  comboBoxWarningString = ' This warning icon was displayed before the error';
+
+  inputForm: FormGroup = new FormGroup<any>({
+    input: new FormControl(),
+    textArea: new FormControl(),
+    select: new FormControl(),
+    date: new FormControl(),
+    time: new FormControl(),
+    comboSingle: new FormControl(),
+    checkbox: new FormControl(),
+  });
+
+  constructor() {
+    super('control-warning');
+  }
 
   ngAfterViewInit(): void {
-    this.isValidating = true;
-    this.exampleForm.reset();
+    this.isInputFormValidating = true;
+    this.inputForm.reset();
   }
 
-  showWarning() {
-    this.showWarnings = !this.showWarnings;
+  validateInputForm() {
+    this.inputForm.markAllAsTouched();
   }
 
-  toggleValidation() {
-    this.isValidating = !this.isValidating;
-    if (!this.isValidating) {
-      this.validateForm();
+  toggleInputFormValidation() {
+    this.isInputFormValidating = !this.isInputFormValidating;
+    if (!this.isInputFormValidating) {
+      if (!this.showingInputWarnings) {
+        this.comboBoxWarningString = ' This warning icon was displayed after the error';
+      }
+      this.validateInputForm();
     } else {
-      this.exampleForm.reset();
+      this.comboBoxWarningString = ' This warning icon was displayed before the error';
+
+      this.inputForm.reset();
     }
   }
 
-  validateForm() {
-    this.form.markAsTouched();
+  showTextInputWarnings() {
+    this.showingInputWarnings = !this.showingInputWarnings;
   }
 }
