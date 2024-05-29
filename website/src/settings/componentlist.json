@@ -41,6 +41,11 @@
       "type": "component"
     },
     {
+      "url": "control-warning",
+      "text": "Control Warning",
+      "type": "component"
+    },
+    {
       "url": "datagrid",
       "text": "Datagrid",
       "type": "component"
