@@ -269,8 +269,6 @@
       }
 
       .header-hamburger-trigger {
-        @include menu-trigger();
-
         > span {
           background: transparent;
 
