@@ -142,6 +142,7 @@
         min-height: 3rem; // Includes header and space for a single (non existing) row
         position: relative;
         height: 100%;
+        overflow: auto;
       }
 
       .treetable-action-trigger {
