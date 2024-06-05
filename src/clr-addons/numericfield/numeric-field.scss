@@ -1,6 +1,7 @@
 @include exports('numericfield.clr-addons') {
   .numeric-input-wrapper {
     position: relative;
+    line-height: calc(4 * var(--clr-forms-baseline));
 
     .unit {
       position: absolute;

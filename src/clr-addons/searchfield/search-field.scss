@@ -13,7 +13,7 @@
         position: absolute;
         right: 0;
         top: 0;
-        height: 16px;
+        height: calc(4 * var(--clr-forms-baseline));
         line-height: 1rem;
         margin: 0;
         padding: 0;
