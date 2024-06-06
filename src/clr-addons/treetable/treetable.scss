@@ -220,6 +220,14 @@
             padding-right: 1rem;
           }
         }
+
+        .btn-icon {
+          padding-left: var(--cds-global-space-6);
+
+          :first-child {
+            padding-left: revert;
+          }
+        }
       }
 
       .treetable-header {
