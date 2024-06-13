@@ -48,7 +48,6 @@
     "@clr/angular": "17.2.1",
     "@clr/icons": "13.0.2",
     "@clr/ui": "^17.2.1",
-    "@kolkov/angular-editor": "2.1.0",
     "@webcomponents/custom-elements": "1.6.0",
     "@webcomponents/webcomponentsjs": "2.8.0",
     "core-js": "3.37.1",

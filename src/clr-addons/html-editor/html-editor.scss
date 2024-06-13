@@ -1,0 +1,46 @@
+:root {
+  --clr-html-editor-primary-color: var(--turquoise);
+  --clr-html-editor-item-hover-color: var(--turquoise-light);
+  --clr-html-editor-button-active-color: var(--clr-color-action-200);
+  --clr-html-editor-text-color: var(--clr-forms-text-color, black);
+  --clr-html-editor-background-color: white;
+}
+
+.clr-html-editor {
+  .dropdown-menu {
+    min-width: 2rem;
+  }
+
+  .editor:not(.readonly) .angular-editor-textarea {
+    background-color: var(--clr-html-editor-background-color) !important;
+  }
+
+  .angular-editor-textarea {
+    color: var(--clr-html-editor-text-color);
+  }
+
+  .angular-editor-button.active {
+    background-color: var(--clr-html-editor-button-active-color) !important;
+  }
+
+  .fa {
+    color: var(--clr-html-editor-primary-color);
+
+    &::after {
+      background-color: var(--clr-html-editor-primary-color) !important;
+    }
+  }
+
+  .ae-stroke {
+    stroke: var(--clr-html-editor-primary-color) !important;
+  }
+
+  .ae-picker-item {
+    color: inherit !important;
+
+    &:hover,
+    &.focused {
+      background-color: var(--clr-html-editor-item-hover-color) !important;
+    }
+  }
+}

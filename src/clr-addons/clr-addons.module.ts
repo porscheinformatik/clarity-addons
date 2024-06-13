@@ -34,7 +34,6 @@ import { ClrFormModule } from './abstract-form-component';
 import { ClrDropdownOverflowModule } from './dropdown';
 import { ClrDatagridStatePersistenceModule, ClrDateFilterModule, ClrEnumFilterModule } from './datagrid';
 import { ClrDaterangepickerModule } from './daterangepicker';
-import { ClrHtmlEditorModule } from './html-editor';
 import { ClrIfWarningModule } from './clr-control-warning/if-warning.module';
 
 @NgModule({
@@ -70,7 +69,6 @@ import { ClrIfWarningModule } from './clr-control-warning/if-warning.module';
     ClrEnumFilterModule,
     ClrDateFilterModule,
     ClrDaterangepickerModule,
-    ClrHtmlEditorModule,
     ClrIfWarningModule,
   ],
 })
