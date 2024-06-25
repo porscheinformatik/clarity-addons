@@ -119,6 +119,7 @@ import {
   windscreenWashIcon,
   wrenchForwardIcon,
   vinIcon,
+  vsfSearchIcon,
 } from '@porscheinformatik/clr-addons';
 import { ClarityIcons } from '@cds/core/icon';
 
@@ -243,6 +244,7 @@ export class IconsDemo {
     paintShopIcon,
     customersCenterIcon,
     vinIcon,
+    vsfSearchIcon,
   ];
   shapes: string[] = this.icons.map(item => item[0]).sort();
 
