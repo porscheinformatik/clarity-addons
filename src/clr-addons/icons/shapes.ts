@@ -657,6 +657,21 @@ export const WCPShape = clrIconSVG(
   '0 0 48 48'
 );
 
+export const VsfSearchShape = clrIconSVG(
+  `
+  <svg id="Icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <path d="M4,7.98H21.99V21.99H2.01V2.01H6.87L8.8,4.8a.521.521,0,0,0,.41.21H23A1.212,1.212,0,0,0,21.81,4H9.47L7.75,1.49A1.213,1.213,0,0,0,6.77,
+  1H2.21C1.54,1,1,1.35,1,2.01V22.27a.777.777,0,0,0,.8.73H22a1,1,0,0,0,1-1V7.01H4Z"/>
+  <path d="M12,16.164a.54.54,0,0,0-.5.5.535.535,0,0,0,1.069.063A.564.564,0,0,0,12,16.164Z"/>
+  <path d="M18.164,12.264a10.685,10.685,0,0,1-1.384.252l-.692-1.636A1.865,1.865,0,0,0,14.7,10H9.3a1.593,1.593,0,0,0-1.321.943L7.22,12.579a10.624,
+  10.624,0,0,0-1.384-.252l-.125.818c.44.063.817.125,1.258.188l-.378.629a3.784,3.784,0,0,0-.44,1.7v3.46a.9.9,0,0,0,.88.88H8.038a.859.859,0,0,0,
+  .88-.88v-.252h6.1v.252a.9.9,0,0,0,.88.88h1.07a.859.859,0,0,0,.88-.88V15.66a3.267,3.267,0,0,0-.44-1.7l-.315-.692c.378-.062.818-.125,1.2-.188ZM8.73,
+  11.258a.9.9,0,0,1,.628-.44h5.284a.9.9,0,0,1,.691.44l.566,1.384a31.875,31.875,0,0,1-7.735,0Zm8.239,7.924v.063H15.9v-1.2H8.1v1.132H7.031V16.038c.755.126,
+  1.573.188,2.39.251v-.817c-.817-.063-1.635-.126-2.39-.252a3.15,3.15,0,0,1,.315-.817l.5-1.007A30.593,30.593,0,0,0,12,13.648a32.466,32.466,0,0,0,
+  4.277-.252l.39.91a5.173,5.173,0,0,1,.3.914c-.755.126-1.51.189-2.327.252l.062.817c.818-.063,1.573-.125,2.327-.251Z"/></svg>`,
+  '0 0 24 24'
+);
+
 export const ClrAddonsIconShapes: any = {
   'air-conditioner': ACShape,
   accessories: AccessoriesShape,
@@ -896,3 +911,4 @@ export const campaignOutdatedIcon: IconShapeTuple = ['campaign-outdated', Campai
 export const campaignIcon: IconShapeTuple = ['campaign', CampaignShape];
 export const vinIcon: IconShapeTuple = ['vin', VinShape];
 export const wcpIcon: IconShapeTuple = ['wcp', WCPShape];
+export const vsfSearchIcon: IconShapeTuple = ['vsf-search', VsfSearchShape];
