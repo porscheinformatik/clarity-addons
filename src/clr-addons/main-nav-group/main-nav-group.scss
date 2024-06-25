@@ -19,15 +19,9 @@
     }
 
     .collapsible {
-      opacity: 1;
       cursor: pointer;
 
-      &:hover .nav-text {
-        opacity: 1;
-      }
-
       .nav-text {
-        opacity: 0.65;
         cursor: pointer;
 
         & cds-icon {
