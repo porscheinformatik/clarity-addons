@@ -8,6 +8,7 @@ import { UtilsModule } from '../../../utils/utils.module';
 import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
 import { HtmlEditorDemo } from './html-editor.demo';
 import { HttpClientModule } from '@angular/common/http';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
     DocWrapperModule,
     RouterModule.forChild([{ path: '', component: HtmlEditorDemo }]),
     ClrAddonsModule,
+    AngularEditorModule,
   ],
   declarations: [HtmlEditorDemo],
   exports: [HtmlEditorDemo],

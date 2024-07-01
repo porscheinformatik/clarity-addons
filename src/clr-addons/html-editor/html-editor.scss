@@ -1,4 +1,4 @@
-:root {
+:root [cds-theme] {
   --clr-html-editor-primary-color: var(--turquoise);
   --clr-html-editor-item-hover-color: var(--turquoise-light);
   --clr-html-editor-button-active-color: var(--clr-color-action-200);
@@ -6,7 +6,7 @@
   --clr-html-editor-background-color: white;
 }
 
-.clr-html-editor {
+angular-editor {
   .dropdown-menu {
     min-width: 2rem;
   }
