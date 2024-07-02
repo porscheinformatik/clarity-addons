@@ -1,0 +1,38 @@
+angular-editor {
+  .dropdown-menu {
+    min-width: 2rem;
+  }
+
+  .editor:not(.readonly) .angular-editor-textarea {
+    background-color: var(--cds-alias-object-container-background) !important;
+  }
+
+  .angular-editor-textarea {
+    color: var(--cds-alias-typography-color-400);
+  }
+
+  .angular-editor-button.active {
+    background-color: var(--cds-alias-object-interaction-background-selected) !important;
+  }
+
+  .fa {
+    color: var(--cds-alias-status-primary);
+
+    &::after {
+      background-color: var(--cds-alias-status-primary) !important;
+    }
+  }
+
+  .ae-stroke {
+    stroke: var(--cds-alias-status-primary) !important;
+  }
+
+  .ae-picker-item {
+    color: inherit !important;
+
+    &:hover,
+    &.focused {
+      background-color: var(--cds-alias-object-interaction-primary-secondary-hover) !important;
+    }
+  }
+}

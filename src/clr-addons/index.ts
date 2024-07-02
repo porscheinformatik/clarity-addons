@@ -37,5 +37,4 @@ export * from './abstract-form-component/index';
 export * from './dropdown/index';
 export * from './datagrid/index';
 export * from './daterangepicker/index';
-export * from './html-editor/index';
 export * from './clr-control-warning/index';
