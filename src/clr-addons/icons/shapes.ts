@@ -1028,5 +1028,5 @@ export const allIcons: IconShapeTuple[] = [
   campaignIcon,
   vinIcon,
   wcpIcon,
-  vsfSearchIcon
+  vsfSearchIcon,
 ];
