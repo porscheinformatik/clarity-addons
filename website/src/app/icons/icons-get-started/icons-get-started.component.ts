@@ -8,6 +8,14 @@ import {
 ClarityIcons.addIcons(airConditionerIcon);
 `;
 
+const IMPORT_ALL_ADDONS_ICONS = `
+import {
+  allIcons
+} from '@porscheinformatik/clr-addons';
+
+ClarityIcons.addIcons(...allIcons);
+`;
+
 const USAGE_ADDONS_ICONS = `
 <cds-icon shape="air-conditioner"></cds-icon>
 `;
@@ -18,5 +26,6 @@ const USAGE_ADDONS_ICONS = `
 })
 export class IconsGetStartedComponent {
   importAddonsIcons = IMPORT_ADDONS_ICONS;
+  importAllAddonsIcons = IMPORT_ALL_ADDONS_ICONS;
   usageAddonsIcons = USAGE_ADDONS_ICONS;
 }
