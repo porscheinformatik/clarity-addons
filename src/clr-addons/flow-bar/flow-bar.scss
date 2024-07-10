@@ -62,17 +62,20 @@
         .flow-bar-btn {
           border: none;
           padding: 0 1rem;
-          color: var(--clr-nav-link-color);
           text-transform: none;
           font-size: 0.7rem;
           font-weight: 400;
           letter-spacing: normal;
           min-width: 0;
 
-          &:hover,
-          &.active {
-            background-color: transparent;
-            color: var(--clr-nav-link-active-color);
+          &:not(:disabled) {
+            color: var(--clr-nav-link-color);
+
+            &:hover,
+            &.active {
+              background-color: transparent;
+              color: var(--clr-nav-link-active-color);
+            }
           }
 
           &:focus {
