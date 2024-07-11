@@ -30,7 +30,7 @@ export class FlowBarLayoutDemo {
     },
     {
       title: of('Step'),
-      enabled: true,
+      enabled: false,
       subSteps: [
         { title: of('Sub Step 1/2'), enabled: true },
         { title: of('Sub Step 2/2'), enabled: true },
@@ -39,7 +39,7 @@ export class FlowBarLayoutDemo {
     { title: of('Step'), enabled: true },
     {
       title: of('Step'),
-      enabled: true,
+      enabled: false,
       subSteps: [
         { title: of('Sub Step 1/2'), enabled: true },
         { title: of('Sub Step 2/2'), enabled: true },
