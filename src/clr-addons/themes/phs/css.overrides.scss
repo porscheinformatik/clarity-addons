@@ -19,8 +19,8 @@
 
   .btn-info .alert-app-level .alert-item .btn,
   .alert-app-level .alert-item .btn-info .btn {
-    border-color: var(--clr-app-alert-info-action-color);
-    color: var(--clr-app-alert-info-action-color);
+    border-color: var(--cds-alias-typography-color-100);
+    color: var(--cds-alias-typography-color-100);
   }
 
   .btn.btn-info:hover,
@@ -52,8 +52,8 @@
   .alert-app-level .alert-item .btn-outline-info.btn,
   .alert-app-level .alert-item .btn-info-outline.btn,
   .alert-app-level.alert-info .alert-item .btn {
-    border-color: var(--clr-app-alert-info-action-color);
-    color: var(--clr-app-alert-info-action-color);
+    border-color: var(--cds-alias-typography-color-100);
+    color: var(--cds-alias-typography-color-100);
   }
 
   .btn-outline-info .btn:hover,
@@ -156,18 +156,18 @@
 
   .card-img {
     &:first-child > img {
-      border-radius: var(--clr-card-border-radius) var(--clr-card-border-radius) 0 0;
+      border-radius: var(--clr-global-borderradius) var(--clr-global-borderradius) 0 0;
     }
 
     &:last-child > img {
-      border-radius: 0 0 var(--clr-card-border-radius) var(--clr-card-border-radius);
+      border-radius: 0 0 var(--clr-global-borderradius) var(--clr-global-borderradius);
     }
   }
 
   .card.card-img,
   .card > .card-img:first-child:last-child {
     & > img {
-      border-radius: var(--clr-card-border-radius);
+      border-radius: var(--clr-global-borderradius);
     }
   }
 
@@ -210,29 +210,29 @@
   clr-icon {
     &.is-green,
     &.is-success {
-      fill: var(--clr-icon-color-success);
+      fill: var(--cds-alias-status-success);
     }
 
     &.is-danger {
-      fill: var(--clr-icon-color-danger);
+      fill: var(--cds-alias-status-danger);
     }
 
     &.is-red,
     &.is-error {
-      fill: var(--clr-icon-color-error);
+      fill: var(--cds-alias-status-danger);
     }
 
     &.is-warning {
-      fill: var(--clr-icon-color-warning);
+      fill: var(--cds-alias-status-warning);
     }
 
     &.is-blue,
     &.is-info {
-      fill: var(--clr-icon-color-info);
+      fill: var(--cds-alias-status-info);
     }
 
     &.is-highlight {
-      fill: var(--clr-icon-color-highlight);
+      fill: var(--cds-alias-status-info);
     }
   }
 
