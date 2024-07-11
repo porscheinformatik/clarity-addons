@@ -13,7 +13,7 @@ const HTML_IMPORTS = `
 `;
 
 const PHS_THEME = `
-<html cds-theme="phs">
+<body cds-theme="phs">
 `;
 
 const NG_MODULE_EXAMPLE = `
