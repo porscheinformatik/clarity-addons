@@ -5,7 +5,7 @@
  */
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { ClrContentPanel, ClrHistoryService, ClrHistoryModel } from '@porscheinformatik/clr-addons';
+import { ClrContentPanel, ClrHistoryModel, ClrHistoryService } from '@porscheinformatik/clr-addons';
 
 @Component({
   selector: 'clr-basepage-layout-demo',
@@ -37,6 +37,7 @@ export class BasepageLayoutDemo implements OnInit {
         title: 'DocPage',
         context: {
           applicationName: 'ADDONS',
+          tenantid: '1',
         },
       };
       this.historyService.addHistoryEntry(historyEntry1, 'porscheinformatik.github.io');
@@ -47,6 +48,7 @@ export class BasepageLayoutDemo implements OnInit {
         title: 'SourcePage',
         context: {
           applicationName: 'ADDONS',
+          tenantid: '1',
         },
       };
       this.historyService.addHistoryEntry(historyEntry2, 'porscheinformatik.github.io');
@@ -57,6 +59,7 @@ export class BasepageLayoutDemo implements OnInit {
         title: 'GitHub',
         context: {
           applicationName: 'ADDONS',
+          tenantid: '1',
         },
       };
       this.historyService.addHistoryEntry(historyEntry3, 'porscheinformatik.github.io');
@@ -70,7 +73,7 @@ export class BasepageLayoutDemo implements OnInit {
 
   private collectRouteData(key: string) {
     let route = this.router.routerState.snapshot.root;
-    let returnArray = [];
+    const returnArray = [];
 
     while (route) {
       if (route.data && route.data[key]) {
