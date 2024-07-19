@@ -22,7 +22,7 @@
     "@angular/core": "^17.0.0",
     "@angular/compiler": "^17.0.0",
     "@clr/angular": "17.2.1",
-    "@cds/core": "6.9.2",
+    "@cds/core": "6.12.0",
     "@clr/ui": "17.2.1"
   },
   "author": "porscheinformatik",
