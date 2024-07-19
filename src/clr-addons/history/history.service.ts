@@ -4,9 +4,15 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Injectable } from '@angular/core';
-import { ClrHistoryModel, ClrHistorySettingsModel } from './history-model.interface';
+import { Inject, Injectable, Optional } from '@angular/core';
+import {
+  ClrHistoryModel,
+  ClrHistoryNotificationModel,
+  ClrHistorySettingsModel,
+  HISTORY_NOTIFICATION_URL_PROVIDER,
+} from './history-model.interface';
 import { BehaviorSubject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class ClrHistoryService {
@@ -20,7 +26,10 @@ export class ClrHistoryService {
   // maximum url length for usage in history
   private maxUrlSize = 256;
 
-  constructor() {
+  constructor(
+    @Inject(HISTORY_NOTIFICATION_URL_PROVIDER) @Optional() private historyNotificationUrl: string,
+    @Optional() private httpClient: HttpClient
+  ) {
     this.expiryDate = new Date();
     this.expiryDate.setTime(this.expiryDate.getTime() + 365 * 24 * 60 * 60 * 1000);
   }
@@ -32,6 +41,7 @@ export class ClrHistoryService {
    * @returns true when entry added, otherwise false is returned
    */
   addHistoryEntry(historyEntry: ClrHistoryModel, domain?: string): boolean {
+    this.notifyExternalUrl(historyEntry);
     this.removeFromHistory(historyEntry);
     let history = this.getHistory(historyEntry.username, historyEntry.context);
 
@@ -223,5 +233,23 @@ export class ClrHistoryService {
     }
     domain.shift();
     return domain.join('.');
+  }
+
+  private notifyExternalUrl(historyEntry: ClrHistoryModel) {
+    if (!this.historyNotificationUrl || !this.httpClient) {
+      return;
+    }
+
+    const body: ClrHistoryNotificationModel = {
+      username: historyEntry.username,
+      pageName: historyEntry.pageName,
+      applicationName: historyEntry.context.applicationName,
+      tenantId: historyEntry.context.tenantid,
+      title: historyEntry.title,
+      url: historyEntry.url,
+      context: historyEntry.context.context,
+    };
+
+    this.httpClient.post(this.historyNotificationUrl, body).subscribe();
   }
 }

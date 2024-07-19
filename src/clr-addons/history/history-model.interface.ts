@@ -1,8 +1,12 @@
 /*
- * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
+
+import { InjectionToken } from '@angular/core';
+
+export const HISTORY_NOTIFICATION_URL_PROVIDER = new InjectionToken<string>('HISTORY_NOTIFICATION_URL_PROVIDER');
 
 export interface ClrHistoryModel {
   /**
@@ -18,7 +22,12 @@ export interface ClrHistoryModel {
   /**
    * The context of the page
    */
-  context: { [key: string]: string };
+  context: {
+    applicationName?: string;
+    tenantid: string;
+    context?: string;
+    [key: string]: string;
+  };
 
   /**
    * The title to be displayed.
@@ -41,4 +50,14 @@ export interface ClrHistorySettingsModel {
    * The username
    */
   username: string;
+}
+
+export interface ClrHistoryNotificationModel {
+  username: string;
+  pageName: string;
+  applicationName?: string;
+  tenantId: string;
+  title: string;
+  url: string;
+  context?: string;
 }
