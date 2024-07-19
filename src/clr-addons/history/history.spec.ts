@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -43,26 +43,26 @@ describe('ClrHistory', () => {
   it('should add', () => {
     const historyEntry: ClrHistoryModel = {
       username: 'admin',
-      context: { ['applicationName']: 'TEST' },
+      context: { applicationName: 'TEST', tenantid: '1' },
       pageName: 'test1',
       title: 'test1',
       url: 'url1',
     };
     historyService.addHistoryEntry(historyEntry);
-    expect(historyService.getHistory('admin', { ['applicationName']: 'TEST' }).length).toEqual(1);
+    expect(historyService.getHistory('admin', { applicationName: 'TEST' }).length).toEqual(1);
   });
 
   it('reset', () => {
     const historyEntry: ClrHistoryModel = {
       username: 'admin',
-      context: { ['applicationName']: 'TEST' },
+      context: { applicationName: 'TEST', tenantid: '1' },
       pageName: 'test2',
       title: 'test1',
       url: 'url1',
     };
     historyService.addHistoryEntry(historyEntry);
     historyService.resetHistory();
-    expect(historyService.getHistory('admin', { ['applicationName']: 'TEST' }).length).toEqual(0);
+    expect(historyService.getHistory('admin', { applicationName: 'TEST' }).length).toEqual(0);
   });
 
   it('encodeUTF8', () => {
@@ -70,16 +70,16 @@ describe('ClrHistory', () => {
     const chinese = '斯柯达👾';
     const historyEntry: ClrHistoryModel = {
       username: 'utf8',
-      context: { ['applicationName']: 'TEST' },
+      context: { applicationName: 'TEST', tenantid: '1' },
       pageName: czech,
       title: chinese,
       url: 'url1',
     };
     historyService.resetHistory();
-    expect(historyService.getHistory('utf8', { ['applicationName']: 'TEST' }).length).toEqual(0);
+    expect(historyService.getHistory('utf8', { applicationName: 'TEST' }).length).toEqual(0);
     historyService.addHistoryEntry(historyEntry);
-    expect(historyService.getHistory('utf8', { ['applicationName']: 'TEST' }).length).toEqual(1);
-    const lastHistoryEntry = historyService.getHistory('utf8', { ['applicationName']: 'TEST' }).pop();
+    expect(historyService.getHistory('utf8', { applicationName: 'TEST' }).length).toEqual(1);
+    const lastHistoryEntry = historyService.getHistory('utf8', { applicationName: 'TEST' }).pop();
     expect(lastHistoryEntry.pageName).toEqual(czech);
     expect(lastHistoryEntry.title).toEqual(chinese);
   });

@@ -28,7 +28,7 @@ export class ClrHistoryService {
 
   constructor(
     @Inject(HISTORY_NOTIFICATION_URL_PROVIDER) @Optional() private historyNotificationUrl: string,
-    private httpClient: HttpClient
+    @Optional() private httpClient: HttpClient
   ) {
     this.expiryDate = new Date();
     this.expiryDate.setTime(this.expiryDate.getTime() + 365 * 24 * 60 * 60 * 1000);
@@ -236,7 +236,7 @@ export class ClrHistoryService {
   }
 
   private notifyExternalUrl(historyEntry: ClrHistoryModel) {
-    if (!this.historyNotificationUrl) {
+    if (!this.historyNotificationUrl || !this.httpClient) {
       return;
     }
 

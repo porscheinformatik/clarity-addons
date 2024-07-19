@@ -3,9 +3,9 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
-import { ClrHistoryService, ClrHistoryModel } from '@porscheinformatik/clr-addons';
+import { ClrHistoryModel, ClrHistoryService } from '@porscheinformatik/clr-addons';
 
 const HTML_EXAMPLE = `
 <clr-history [clrUsername]=""admin"" [clrContext]="context"></clr-history>
@@ -19,18 +19,20 @@ const ANGULAR_EXAMPLE = `
 const historyEntry1: ClrHistoryModel = {username: "admin", pageName: "DocPage",
 url: "https://porscheinformatik.github.io/clarity-addons/documentation/latest/get-started", title: "DocPage",
 context: {
-    applicationName: "ADDONS"
+    applicationName: "ADDONS",
+    tenantid: '1'
 }};
 this.historyService.addHistoryEntry(historyEntry1);
 const historyEntry2: ClrHistoryModel = {username: "admin", pageName: "SourcePage",
 url: "https://porscheinformatik.github.io/clarity-addons/documentation/latest/get-started", title: "SourcePage",
 context: {
-    applicationName: "ADDONS"
+    applicationName: "ADDONS",
+    tenantid: '1'
 }};
 this.historyService.addHistoryEntry(historyEntry2);`;
 
 const ANGULAR_EXAMPLE_CONTEXT = `
-context = {["applicationName"] : "ADDONS"};
+context = {applicationName : "ADDONS", tenantid: '1'};
 `;
 
 @Component({
@@ -48,7 +50,7 @@ export class HistoryDemo extends ClarityDocComponent implements OnInit {
   htmlExamplePinned = HTML_EXAMPLE_PINNED;
   angularExample = ANGULAR_EXAMPLE;
   angularExampleContext = ANGULAR_EXAMPLE_CONTEXT;
-  context = { ['applicationName']: 'ADDONS' };
+  context = { applicationName: 'ADDONS', tenantid: '1' };
   domain = 'porscheinformatik.github.io';
 
   constructor(private historyService: ClrHistoryService) {
@@ -64,6 +66,7 @@ export class HistoryDemo extends ClarityDocComponent implements OnInit {
       title: 'DocPage',
       context: {
         applicationName: 'ADDONS',
+        tenantid: '1',
       },
     };
     this.historyService.addHistoryEntry(historyEntry1, this.domain);
@@ -74,6 +77,7 @@ export class HistoryDemo extends ClarityDocComponent implements OnInit {
       title: 'SourcePage',
       context: {
         applicationName: 'ADDONS',
+        tenantid: '1',
       },
     };
     this.historyService.addHistoryEntry(historyEntry2, this.domain);
@@ -84,6 +88,7 @@ export class HistoryDemo extends ClarityDocComponent implements OnInit {
       title: 'GitHub',
       context: {
         applicationName: 'ADDONS',
+        tenantid: '1',
       },
     };
     this.historyService.addHistoryEntry(historyEntry3, this.domain);
