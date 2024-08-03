@@ -68,7 +68,7 @@
     "@types/node": "20.14.14",
     "@typescript-eslint/eslint-plugin": "7.2.0",
     "@typescript-eslint/parser": "7.2.0",
-    "autoprefixer": "10.4.19",
+    "autoprefixer": "10.4.20",
     "cp-cli": "2.0.0",
     "csso-cli": "4.0.2",
     "del-cli": "5.1.0",
