@@ -49,8 +49,7 @@
 :not(pre) > code[class*='language-'],
 pre[class*='language-'],
 pre {
-  background: transparent;
-  padding: 0 0 $bl-1_0 $bl-1_0;
+  background: var(--clr-forms-textarea-background-color);
 }
 
 // Fixes specific prism issue only for labels with badges (#1700: https://github.com/vmware/clarity/issues/1700)
