@@ -30,10 +30,19 @@
                 "glob": "clr-ui-dark.css",
                 "input": "node_modules/@clr/ui/",
                 "output": "/assets/styles"
+              },
+              {
+                "glob": "prism-solarizedlight.css",
+                "input": "node_modules/prismjs/themes",
+                "output": "/assets/styles"
+              },
+              {
+                "glob": "prism-tomorrow.css",
+                "input": "node_modules/prismjs/themes",
+                "output": "/assets/styles"
               }
             ],
             "styles": [
-              "node_modules/prismjs/themes/prism-solarizedlight.css",
               "node_modules/modern-normalize/modern-normalize.css",
               "node_modules/@cds/core/global.min.css",
               "node_modules/@cds/core/styles/theme.dark.min.css",

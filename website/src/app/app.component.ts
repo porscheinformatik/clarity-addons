@@ -12,6 +12,12 @@ declare let ga: Function;
 
 const PRODUCT_TITLE = require('../settings/global.json').alt_title;
 
+const PRISM_THEMES_PER_CDS_THEME = new Map([
+  ['phs', 'solarizedlight'],
+  ['light', 'solarizedlight'],
+  ['dark', 'tomorrow'],
+]);
+
 @Component({
   selector: 'root',
   templateUrl: './app.component.html',
@@ -101,7 +107,9 @@ export class AppComponent implements OnInit {
     return returnArray;
   }
 
-  setTheme(theme: { cdsTheme: string; href: string }): void {
+  setTheme(theme: { cdsTheme: string; name: string }): void {
     this.document.body.setAttribute('cds-theme', theme.cdsTheme);
+    const newTheme = PRISM_THEMES_PER_CDS_THEME.get(theme.cdsTheme) ?? 'solarizedlight';
+    this.document.querySelector('#prism-theme-style')?.setAttribute('href', `/assets/styles/prism-${newTheme}.css`);
   }
 }
