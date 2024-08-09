@@ -12,7 +12,7 @@ export class RouteHistoryService {
       .pipe(filter((event): event is NavigationStart => event instanceof NavigationStart))
       .subscribe((event: RouterEvent) =>
         this.historyService.addHistoryEntry({
-          context: { tenantId: '1' },
+          context: { tenantid: '1' },
           pageName: event.url.substr(1),
           title: event.url.substr(1),
           url: event.url,
