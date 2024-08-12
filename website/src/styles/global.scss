@@ -75,16 +75,6 @@ h6.indent + p.indent {
   }
 }
 
-//Overriding PrismJS styles. This is in code.scss and not in code.clarity.scss because
-//we don't want to override the background in case someone chooses to use
-//another PrismJS theme.
-:not(pre) > code[class*='language-'],
-pre[class*='language-'],
-pre,
-code[class*='language-'] {
-  background: transparent;
-}
-
 @media (max-width: 991px) {
   .layout-components {
     .content-area > section {
@@ -174,7 +164,6 @@ a.btn-primary {
   }
 
   h5 {
-    color: #000;
     margin-top: 1rem;
   }
 
@@ -199,12 +188,6 @@ a.btn-primary {
 
   h6 + p {
     margin-top: $bl-0_25;
-  }
-
-  pre {
-    // TODO: move this into the background style of the code-highlight
-    // component...
-    background: #fff !important;
   }
 }
 
