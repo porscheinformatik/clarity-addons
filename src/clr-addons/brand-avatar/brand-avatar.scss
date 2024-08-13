@@ -1,4 +1,11 @@
 @include exports('brand-avatar.clr-addons') {
+  :root [cds-theme] {
+    --clr-brand-avatar-color: var(--cds-alias-typography-color-100);
+    --clr-brand-avatar-container-background: var(--cds-alias-utility-gray);
+    --clr-brand-avatar-container-background-hover: var(--cds-alias-utility-gray-shade);
+    --clr-brand-avatar-border-radius: var(--cds-alias-object-border-radius-100);
+  }
+
   .clr-brand-avatar {
     .brand-avatar-rectangle {
       display: flex;
@@ -8,11 +15,13 @@
       display: flex;
       justify-content: center;
       align-items: center;
+
+      // this is affected by the clrSize input, doesn't need to be a property
       width: 26px;
       height: 26px;
-      border-radius: 2.5px;
-      background-color: #707070;
-      color: #fff;
+      border-radius: var(--clr-brand-avatar-border-radius);
+      background-color: var(--clr-brand-avatar-container-background);
+      color: var(--clr-brand-avatar-color);
     }
 
     cds-icon {
@@ -27,7 +36,7 @@
   :hover,
   :focus-within {
     > .clr-brand-avatar .brand-avatar-icon-container {
-      background-color: var(--clr-btn-link-color) !important;
+      background-color: var(--clr-brand-avatar-container-background-hover) !important;
       cursor: default;
     }
   }

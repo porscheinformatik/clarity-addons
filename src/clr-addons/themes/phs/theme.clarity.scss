@@ -250,6 +250,11 @@
   --clr-vertical-nav-selected-bg-color: #{$phs-global-color-construction-25};
   --clr-vertical-nav-selected-hover-bg-color: #{$phs-global-color-construction-300};
 
+  // Brand Avatar
+  --clr-brand-avatar-color: var(--cds-global-color-white);
+  --clr-brand-avatar-container-background: #{$phs-global-color-construction-600};
+  --clr-brand-avatar-container-background-hover: var(--cds-alias-typography-link-color);
+
   // *************************
   // Override and Fixes
   // *************************
