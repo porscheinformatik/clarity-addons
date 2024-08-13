@@ -110,6 +110,6 @@ export class AppComponent implements OnInit {
   setTheme(theme: { cdsTheme: string; name: string }): void {
     this.document.body.setAttribute('cds-theme', theme.cdsTheme);
     const newTheme = PRISM_THEMES_PER_CDS_THEME.get(theme.cdsTheme) ?? 'solarizedlight';
-    this.document.querySelector('#prism-theme-style')?.setAttribute('href', `/assets/styles/prism-${newTheme}.css`);
+    this.document.querySelector('#prism-theme-style')?.setAttribute('href', `assets/styles/prism-${newTheme}.css`);
   }
 }
