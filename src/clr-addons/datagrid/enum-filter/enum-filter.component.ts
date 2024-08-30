@@ -20,16 +20,21 @@ export class ClrEnumFilterComponent<T extends { [key: string]: any }>
 {
   @Input('clrProperty') property = '';
 
+  @Input('clrEmptyValuesTranslation')
+  public set setEmptyValuesTranslation(translatedValue: string) {
+    if (translatedValue) {
+      this.emptyValue = translatedValue;
+    }
+  }
+
   @Input('clrFilterValues')
   public set value(values: string[]) {
-    if (values === null) {
-      values = [];
-    }
+    const mappedValues = this.mapValues(values);
     if (this.possibleValues?.length) {
-      this.filteredValues = this.possibleValues.filter(possibleValue => values?.includes(possibleValue.value));
+      this.filteredValues = this.possibleValues.filter(possibleValue => mappedValues?.includes(possibleValue.value));
       this.clrFilterValuesChange.emit(this.getDisplayValues(this.filteredValues));
     } else {
-      this.filteredValues = values.map(filtered => ({ value: filtered, displayValue: filtered }));
+      this.filteredValues = mappedValues.map(filtered => ({ value: filtered, displayValue: filtered }));
     }
     this.changes.emit(true);
   }
@@ -39,6 +44,7 @@ export class ClrEnumFilterComponent<T extends { [key: string]: any }>
   possibleValues: FilterValue[] = [];
   customPossibleValues = false;
   filteredValues: FilterValue[] = [];
+  emptyValue: string = '(Empty)';
   changes = new EventEmitter<boolean>(false);
 
   destroyed$ = new Subject<void>();
@@ -63,7 +69,12 @@ export class ClrEnumFilterComponent<T extends { [key: string]: any }>
     if (values === null) {
       values = [];
     }
-    this.possibleValues = values.map(v => (v instanceof Object ? v : { value: v, displayValue: v }));
+    this.possibleValues = values.map(value => {
+      if (!value) {
+        return { value: this.emptyValue, displayValue: this.emptyValue };
+      }
+      return value instanceof Object ? value : { value: value, displayValue: value };
+    });
     this.possibleValues.sort((v1, v2) => v1.displayValue.localeCompare(v2.displayValue));
     this.filteredValues = this.filteredValues.filter(filtered =>
       this.containsFilterValue(this.possibleValues, filtered)
@@ -87,7 +98,15 @@ export class ClrEnumFilterComponent<T extends { [key: string]: any }>
   }
 
   accepts(item: T): boolean {
-    return this.getDisplayValues(this.filteredValues).includes(item[this.property]);
+    const displayValues = this.getDisplayValues(this.filteredValues);
+    if (this.acceptEmptyValue(displayValues, item)) {
+      return true;
+    }
+    return displayValues.includes(item[this.property]);
+  }
+
+  private acceptEmptyValue(displayValues: string[], item: T): boolean {
+    return displayValues.some(value => !value) && !item[this.property];
   }
 
   public get state(): any {
@@ -117,10 +136,17 @@ export class ClrEnumFilterComponent<T extends { [key: string]: any }>
   }
 
   private getDisplayValues(entries: FilterValue[]): string[] {
-    return entries.map(entry => entry.displayValue);
+    return entries.map(entry => (entry.displayValue === this.emptyValue ? '' : entry.displayValue));
   }
 
   private getValues(entries: FilterValue[]): string[] {
-    return entries.map(entry => entry.value);
+    return entries.map(entry => (entry.value === this.emptyValue ? '' : entry.value));
+  }
+
+  private mapValues(values: string[]): string[] {
+    if (values === null || values.length === 0) {
+      return [];
+    }
+    return values.map(value => (value ? value : this.emptyValue));
   }
 }

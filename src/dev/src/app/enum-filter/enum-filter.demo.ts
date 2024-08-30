@@ -7,6 +7,7 @@ import { ClrDatagridStateInterface } from '@clr/angular';
 })
 export class EnumFilterDemo {
   dataList = [{ name: 'TestValue2' }, { name: 'TestValue1' }];
+  dataListWithEmpty = [{ name: 'TestValue2' }, { name: 'TestValue1' }, { name: '' }];
 
   customPossibleValues = ['TestValue2', 'TestValue1', 'TestValue3'];
   customPossibleValuesWithDisplayNames = [
@@ -19,6 +20,8 @@ export class EnumFilterDemo {
 
   currentFilter = this.preSelectedValues;
   currentFilterDisplayValue: string[] = [];
+
+  possibleValuesWithEmpty = ['TestValue1', ''];
 
   filterChanged(value: string[]) {
     this.currentFilter = [...value];
