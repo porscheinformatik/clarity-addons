@@ -74,8 +74,9 @@ Current Filters: {{currentFilter}}
     <clr-dg-filter>
       <clr-enum-filter
         clrProperty="name"
-        [clrEmptyValuesTranslation]="'(Leere)'"
+        [clrFilterValues]="preSelectedValuesWithEmpty"
         [clrPossibleValues]="possibleValuesWithEmpty"
+        [clrEmptyValuesTranslation]="'(Leere)'"
       ></clr-enum-filter>
     </clr-dg-filter>
   </clr-dg-column>

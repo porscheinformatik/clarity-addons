@@ -17,6 +17,7 @@ export class EnumFilterDemo {
   ];
 
   preSelectedValues = ['TestValue2', 'TestValueNotPresent'];
+  preSelectedValuesWithEmpty = ['TestValue2', ''];
 
   currentFilter = this.preSelectedValues;
   currentFilterDisplayValue: string[] = [];
