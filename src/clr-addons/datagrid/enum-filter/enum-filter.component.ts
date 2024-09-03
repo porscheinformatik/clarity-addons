@@ -144,11 +144,11 @@ export class ClrEnumFilterComponent<T extends { [key: string]: any }>
   }
 
   private getDisplayValues(entries: FilterValue[]): string[] {
-    return entries.map(entry => (entry.displayValue === this.emptyValue ? '' : entry.displayValue));
+    return entries.map(entry => (!entry.value ? entry.value : entry.displayValue));
   }
 
   private getValues(entries: FilterValue[]): string[] {
-    return entries.map(entry => (entry.value === this.emptyValue ? '' : entry.value));
+    return entries.map(entry => entry.value);
   }
 
   private mapValues(values: (string | FilterValue)[]): FilterValue[] {
@@ -160,9 +160,9 @@ export class ClrEnumFilterComponent<T extends { [key: string]: any }>
 
   private mapValue(value: string | FilterValue): FilterValue {
     if (value instanceof Object) {
-      return value.value === this.emptyDefaultValue ? { value: this.emptyValue, displayValue: this.emptyValue } : value;
+      return !value.value ? { value: '', displayValue: this.emptyValue } : value;
     }
 
-    return value ? { value: value, displayValue: value } : { value: this.emptyValue, displayValue: this.emptyValue };
+    return value ? { value: value, displayValue: value } : { value: '', displayValue: this.emptyValue };
   }
 }
