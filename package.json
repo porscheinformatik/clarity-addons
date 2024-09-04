@@ -90,7 +90,7 @@
     "lite-server": "2.6.1",
     "ng-packagr": "17.3.0",
     "npm-run-all2": "6.2.2",
-    "postcss": "8.4.44",
+    "postcss": "8.4.45",
     "postcss-cli": "11.0.0",
     "prettier": "2.8.8",
     "pretty-quick": "3.3.1",
