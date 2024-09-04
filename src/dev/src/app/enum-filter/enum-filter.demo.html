@@ -66,3 +66,21 @@ Current Filters: {{currentFilterDisplayValue}}
   </clr-dg-row>
 </clr-datagrid>
 Current Filters: {{currentFilter}}
+
+<h3>Empty values filter</h3>
+<clr-datagrid>
+  <clr-dg-column [clrDgField]="'name'"
+    >Name
+    <clr-dg-filter>
+      <clr-enum-filter
+        clrProperty="name"
+        [clrFilterValues]="preSelectedValuesWithEmpty"
+        [clrEmptyValuesTranslation]="'(Leere)'"
+      ></clr-enum-filter>
+    </clr-dg-filter>
+  </clr-dg-column>
+
+  <clr-dg-row *clrDgItems="let data of dataListWithEmpty" [clrDgItem]="data">
+    <clr-dg-cell>{{data.name}}</clr-dg-cell>
+  </clr-dg-row>
+</clr-datagrid>

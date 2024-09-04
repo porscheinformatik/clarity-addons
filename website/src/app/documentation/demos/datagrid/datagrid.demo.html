@@ -108,6 +108,27 @@
 
     <clr-code-snippet [clrCode]="enumFilterPreselectExample"></clr-code-snippet>
 
+    <h4>Filter with null, undefined or empty string values</h4>
+    <p>
+      The enum filter also supports if the values contain null, undefined or empty strings. By default these values are
+      marked as '(Empty)' in the checkbox. Use <code class="clr-code">clrEmptyValuesTranslation</code> property if you
+      want to use translated text for empty values. In the example below, the empty values are represented as '(Leere)'.
+    </p>
+    <clr-datagrid>
+      <clr-dg-column [clrDgField]="'name'"
+        >Name
+        <clr-dg-filter>
+          <clr-enum-filter clrProperty="name" [clrEmptyValuesTranslation]="'(Leere)'"></clr-enum-filter>
+        </clr-dg-filter>
+      </clr-dg-column>
+
+      <clr-dg-row *clrDgItems="let data of dataListWithEmpty" [clrDgItem]="data">
+        <clr-dg-cell>{{data.name}}</clr-dg-cell>
+      </clr-dg-row>
+    </clr-datagrid>
+
+    <clr-code-snippet [clrCode]="enumFilterEmptyExample"></clr-code-snippet>
+
     <!-- DATE FILTER -->
     <h3 id="date-filter">Date filter</h3>
     <p>

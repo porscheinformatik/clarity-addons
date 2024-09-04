@@ -140,6 +140,21 @@ const ENUM_FILTER_PRESELECT = `
 </clr-datagrid>
 `;
 
+const ENUM_FILTER_EMPTY = `
+<clr-datagrid>
+  <clr-dg-column [clrDgField]="'name'"
+    >Name
+    <clr-dg-filter>
+      <clr-enum-filter clrProperty="name" [clrEmptyValuesTranslation]="'(Leere)'"></clr-enum-filter>
+    </clr-dg-filter>
+  </clr-dg-column>
+
+  <clr-dg-row *clrDgItems="let data of dataListWithEmpty" [clrDgItem]="data">
+    <clr-dg-cell>{{data.name}}</clr-dg-cell>
+  </clr-dg-row>
+</clr-datagrid>
+`;
+
 const DATE_FILTER = `
 <clr-datagrid>
   <clr-dg-column>
@@ -199,6 +214,7 @@ export class DatagridDemo extends ClarityDocComponent {
   enumFilterCustomExampleTs = ENUM_FILTER_CUSTOM_TS;
   enumFilterCustomDisplayNameExampleTs = ENUM_FILTER_CUSTOM_DISPLAYNAME_TS;
   enumFilterPreselectExample = ENUM_FILTER_PRESELECT;
+  enumFilterEmptyExample = ENUM_FILTER_EMPTY;
   dateFilterExample = DATE_FILTER;
   dateFilterPreselectExample = DATE_FILTER_PRESELECT;
 
@@ -234,6 +250,9 @@ export class DatagridDemo extends ClarityDocComponent {
     { name: 'TestValue2', date: yesterday },
     { name: 'TestValue3', date: tomorrow },
   ];
+
+  dataListWithEmpty = [{ name: 'TestValue1' }, { name: 'TestValue2' }, { name: '' }];
+
   customPossibleValues = ['TestValue1', 'TestValue2', 'TestValue3', 'TestValue4'];
   preselectedValues = ['TestValue1', 'TestValue3'];
   dateFilterValue = [null, today];
