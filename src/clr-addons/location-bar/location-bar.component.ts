@@ -1,8 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { ClarityIcons, organizationIcon } from '@cds/core/icon';
 import '@cds/core/icon/register.js';
 import { ReplaySubject } from 'rxjs';
 import { LocationBarNode, NodeId } from './location-bar.model';
+import { SearchRequestModel } from './location-bar-search/model/search-request.model';
+import { SearchResultModel } from './location-bar-search/model/search-result.model';
 
 ClarityIcons.addIcons(organizationIcon);
 
@@ -10,11 +12,13 @@ ClarityIcons.addIcons(organizationIcon);
   selector: 'clr-location-bar',
   templateUrl: './location-bar.component.html',
 })
-export class LocationBarComponent<T extends NodeId> {
+export class LocationBarComponent<T extends NodeId> implements OnChanges {
   root$ = new ReplaySubject<LocationBarNode<T>>();
 
   @Input('clrIconShape') iconShape = 'organization';
   @Input('clrIconTitle') iconTitle = '';
+  @Input('clrSearchRequest') searchRequest: SearchRequestModel;
+  @Input('clrSearchResultItems') searchResultItems: SearchResultModel[] = [];
 
   @Input('clrRoots')
   set roots(roots: LocationBarNode<T>[]) {
@@ -27,6 +31,12 @@ export class LocationBarComponent<T extends NodeId> {
   }
 
   @Output('clrSelectionChanged') selectionChanged = new EventEmitter<T[]>();
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes?.searchResultItems) {
+      this.searchResultItems = changes.searchResultItems.currentValue;
+    }
+  }
 
   onSelectionChanged(selection: T[]) {
     this.selectionChanged.emit(selection);
