@@ -1,6 +1,7 @@
 import { LocationBarNode, NodeId } from './location-bar.model';
 import { Observable } from 'rxjs';
 import { InjectionToken } from '@angular/core';
+import { SearchResponseModel } from './location-bar-search/model/search-response.model';
 
 export const CONTENT_PROVIDER = new InjectionToken<any>('CONTENT_PROVIDER');
 
@@ -17,4 +18,11 @@ export abstract class LocationBarContentProvider<T extends NodeId> {
    * @param node The children of this node should be determined
    */
   abstract getLazyChildren(node: LocationBarNode<T>): Observable<LocationBarNode<T>[]>;
+
+  /**
+   * Notify users that search is performed and that nodes should be filtered.
+   *
+   * @param response Search response
+   */
+  abstract searchPerformed(response: SearchResponseModel<T>): void;
 }

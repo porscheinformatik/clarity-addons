@@ -1,0 +1,16 @@
+<div class="clr-col-md-12 search-wrapper">
+  <form clrForm>
+    <clr-input-container class="input-container">
+      <label hidden></label>
+      <input
+        class="clr-col-md-12"
+        clrInput
+        clrSearch
+        [placeholder]="searchRequest?.placeholder ?? ''"
+        type="text"
+        name="search"
+        [formControl]="searchControl"
+      />
+    </clr-input-container>
+  </form>
+</div>
