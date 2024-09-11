@@ -21,11 +21,7 @@ export class DemoLocationBarContentProvider extends LocationBarContentProvider<D
     return of([]);
   }
 
-  searchPerformed(response: SearchResponseModel<DemoLocationBarNodeId>) {
+  searchPerformed(response: SearchResponseModel<DemoLocationBarNodeId>): void {
     this.searchPerformed$.next(response);
-  }
-
-  getSearchPerformed(): Observable<SearchResponseModel<DemoLocationBarNodeId>> {
-    return this.searchPerformed$.asObservable();
   }
 }
