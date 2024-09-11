@@ -4,7 +4,7 @@ import '@cds/core/icon/register.js';
 import { of } from 'rxjs';
 import { LocationBarNode, NodeId } from '../location-bar.model';
 import { CONTENT_PROVIDER, LocationBarContentProvider } from '../location-bar.provider';
-import { SearchRequestModel, SearchResultModel } from '@porscheinformatik/clr-addons';
+import { SearchRequestModel, SearchResultModel } from '../location-bar.search.model';
 
 ClarityIcons.addIcons(treeViewIcon, angleIcon);
 

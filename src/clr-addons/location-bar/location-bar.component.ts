@@ -3,8 +3,8 @@ import { ClarityIcons, organizationIcon } from '@cds/core/icon';
 import '@cds/core/icon/register.js';
 import { ReplaySubject } from 'rxjs';
 import { LocationBarNode, NodeId } from './location-bar.model';
-import { SearchRequestModel } from './location-bar-search/model/search-request.model';
-import { SearchResultModel } from './location-bar-search/model/search-result.model';
+import { SearchRequestModel } from './location-bar.search.model';
+import { SearchResultModel } from './location-bar.search.model';
 
 ClarityIcons.addIcons(organizationIcon);
 

@@ -1,7 +1,7 @@
 import { LocationBarNode, NodeId } from './location-bar.model';
 import { Observable } from 'rxjs';
 import { InjectionToken } from '@angular/core';
-import { SearchResponseModel } from './location-bar-search/model/search-response.model';
+import { SearchResponseModel } from './location-bar.search.model';
 
 export const CONTENT_PROVIDER = new InjectionToken<any>('CONTENT_PROVIDER');
 

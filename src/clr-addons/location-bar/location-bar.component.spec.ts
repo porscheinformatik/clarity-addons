@@ -6,7 +6,7 @@ import { LocationBarNodeComponent } from './location-bar-node/location-bar-node.
 import { LocationBarComponent } from './location-bar.component';
 import { LocationBarNode, NodeId } from './location-bar.model';
 import { CONTENT_PROVIDER, LocationBarContentProvider } from './location-bar.provider';
-import { SearchResponseModel } from '@porscheinformatik/clr-addons';
+import { SearchResponseModel } from './location-bar.search.model';
 
 class TestNodeId extends NodeId {
   constructor(public id: string) {

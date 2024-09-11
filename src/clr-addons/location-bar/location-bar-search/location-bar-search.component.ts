@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { SearchRequestModel } from './model/search-request.model';
+import { SearchRequestModel } from '../location-bar.search.model';
 import { FormControl } from '@angular/forms';
 
 @Component({
