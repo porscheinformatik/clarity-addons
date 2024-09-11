@@ -9,6 +9,7 @@
         [placeholder]="searchRequest?.placeholder ?? ''"
         type="text"
         name="search"
+        (keydown.Space)="preventDropdownActions($event)"
         [formControl]="searchControl"
       />
     </clr-input-container>

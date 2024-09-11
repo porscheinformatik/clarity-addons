@@ -46,4 +46,8 @@ export class LocationBarSearchComponent implements OnInit {
       ? this.searchRequest.minSearchText
       : this.MIN_SEARCH_TEXT_DEFAULT;
   }
+
+  preventDropdownActions(event: KeyboardEvent) {
+    event.stopPropagation();
+  }
 }
