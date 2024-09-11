@@ -8,7 +8,13 @@
     "
   >
     <clr-dropdown>
-      <button class="btn btn-link btn-sm" (blur)="focus = false" (focus)="focus = true" clrDropdownTrigger>
+      <button
+        class="btn btn-link btn-sm"
+        (blur)="focus = false"
+        (focus)="focus = true"
+        (click)="resetSearch()"
+        clrDropdownTrigger
+      >
         <ng-container *ngIf="parentNode.getSelectedChild() as node; else unselected">
           <span
             (click)="resetSearch()"

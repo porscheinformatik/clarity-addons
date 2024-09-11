@@ -1,11 +1,12 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ClrDropdownModule, ClrIconModule } from '@clr/angular';
-import { Observable, of } from 'rxjs';
+import { Observable, of, ReplaySubject } from 'rxjs';
 import { LocationBarNodeComponent } from './location-bar-node/location-bar-node.component';
 import { LocationBarComponent } from './location-bar.component';
 import { LocationBarNode, NodeId } from './location-bar.model';
 import { CONTENT_PROVIDER, LocationBarContentProvider } from './location-bar.provider';
+import { SearchResponseModel } from '@porscheinformatik/clr-addons';
 
 class TestNodeId extends NodeId {
   constructor(public id: string) {
@@ -18,11 +19,17 @@ class TestNodeId extends NodeId {
 }
 
 class TestContentProvider extends LocationBarContentProvider<TestNodeId> {
+  searchPerformed$ = new ReplaySubject<SearchResponseModel<TestNodeId>>(1);
+
   getLazyChildren(node: LocationBarNode<TestNodeId>): Observable<LocationBarNode<TestNodeId>[]> {
     if (node.id.id === 'lazy') {
       return of([new LocationBarNode(new TestNodeId('lazyChild'), 'Lazy child')]);
     }
     return of([]);
+  }
+
+  searchPerformed(response: SearchResponseModel<TestNodeId>): void {
+    this.searchPerformed$.next(response);
   }
 }
 
