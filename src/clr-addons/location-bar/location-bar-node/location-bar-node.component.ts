@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Inject, Input, Optional, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnChanges, Optional, Output, SimpleChanges } from '@angular/core';
 import { angleIcon, ClarityIcons, treeViewIcon } from '@cds/core/icon';
 import '@cds/core/icon/register.js';
 import { of } from 'rxjs';
 import { LocationBarNode, NodeId } from '../location-bar.model';
 import { CONTENT_PROVIDER, LocationBarContentProvider } from '../location-bar.provider';
+import { SearchRequestModel, SearchResultModel } from '../location-bar.search.model';
 
 ClarityIcons.addIcons(treeViewIcon, angleIcon);
 
@@ -15,26 +16,22 @@ ClarityIcons.addIcons(treeViewIcon, angleIcon);
   templateUrl: './location-bar-node.component.html',
   host: { '[class.location-bar-node]': 'true' },
 })
-export class LocationBarNodeComponent<T extends NodeId> {
+export class LocationBarNodeComponent<T extends NodeId> implements OnChanges {
   /**
    * The parent node of this component
    */
   private _parentNode: LocationBarNode<T>;
-
-  constructor(@Inject(CONTENT_PROVIDER) @Optional() private contentProvider: LocationBarContentProvider<T>) {}
-
-  /**
-   * Emits selection changes
-   */
-  @Output() selectionChanged = new EventEmitter<T[]>();
 
   /**
    * The selectable nodes
    */
   selectableChilds: LocationBarNode<T>[] = [];
 
+  searchText: string;
+
   focus: boolean;
 
+  /* inputs */
   @Input()
   set parentNode(parentNode: LocationBarNode<T>) {
     this._parentNode = parentNode;
@@ -42,6 +39,23 @@ export class LocationBarNodeComponent<T extends NodeId> {
       const children$ = this._parentNode.getChildren() ? of(this._parentNode.getChildren()) : this.getLazyChildren();
 
       children$.toPromise().then(nodes => this.prepareChildren(nodes || []));
+    }
+  }
+
+  @Input('clrSearchResultItems') searchResultItems: SearchResultModel[] = [];
+  @Input('clrSearchRequest') searchRequest: SearchRequestModel;
+
+  /* outputs */
+  /**
+   * Emits selection changes
+   */
+  @Output() selectionChanged = new EventEmitter<T[]>();
+
+  constructor(@Inject(CONTENT_PROVIDER) @Optional() public contentProvider: LocationBarContentProvider<T>) {}
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes?.searchResultItems) {
+      this.searchResultItems = changes.searchResultItems.currentValue;
     }
   }
 
@@ -79,7 +93,6 @@ export class LocationBarNodeComponent<T extends NodeId> {
 
   /**
    * Selects the given node
-   * node
    * @param selectedNode The selected child node.
    */
   selectNode(selectedNode: LocationBarNode<T>) {
@@ -96,5 +109,19 @@ export class LocationBarNodeComponent<T extends NodeId> {
    */
   private notifySelectionChanged(selectedNode: LocationBarNode<T>) {
     this.selectionChanged.emit([selectedNode.id]);
+  }
+
+  onSearch(text: string) {
+    this.searchText = text;
+    this.contentProvider.searchPerformed({ text: text, searchableNodes: this._parentNode.getChildren() });
+  }
+
+  displaySearchResult(): boolean {
+    return this.searchResultItems.length !== 0 || !!this.searchText;
+  }
+
+  resetSearch(): void {
+    this.searchResultItems = [];
+    this.searchText = '';
   }
 }
