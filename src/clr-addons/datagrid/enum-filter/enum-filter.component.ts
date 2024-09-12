@@ -26,7 +26,7 @@ export class ClrEnumFilterComponent<T extends { [key: string]: any }>
       this.emptyValue = translatedValue;
       /* update values if translation set */
       this.setFilteredValues(this.filteredValues);
-      if (this.possibleValues.length !== 0) {
+      if (this.possibleValues?.length !== 0) {
         this.setPossibleValues(this.possibleValues);
       }
     }
@@ -152,7 +152,7 @@ export class ClrEnumFilterComponent<T extends { [key: string]: any }>
   }
 
   private mapValues(values: (string | FilterValue)[]): FilterValue[] {
-    if (values === null || values.length === 0) {
+    if (!values) {
       return [];
     }
     return values.map(value => this.mapValue(value));
