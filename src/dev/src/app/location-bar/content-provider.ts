@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { LocationBarContentProvider, LocationBarNode } from '@porscheinformatik/clr-addons';
-import { Observable, of } from 'rxjs';
+import { LocationBarContentProvider, LocationBarNode, SearchResponseModel } from '@porscheinformatik/clr-addons';
+import { Observable, of, ReplaySubject } from 'rxjs';
 import { DemoLocationBarNodeId } from './model';
 
 /**
@@ -8,6 +8,8 @@ import { DemoLocationBarNodeId } from './model';
  */
 @Injectable({ providedIn: 'root' })
 export class DemoLocationBarContentProvider extends LocationBarContentProvider<DemoLocationBarNodeId> {
+  searchPerformed$ = new ReplaySubject<SearchResponseModel<DemoLocationBarNodeId>>(1);
+
   constructor() {
     super();
   }
@@ -17,5 +19,9 @@ export class DemoLocationBarContentProvider extends LocationBarContentProvider<D
       return of([new LocationBarNode(new DemoLocationBarNodeId('lazyChild'), 'Lazy child')]);
     }
     return of([]);
+  }
+
+  searchPerformed(response: SearchResponseModel<DemoLocationBarNodeId>): void {
+    this.searchPerformed$.next(response);
   }
 }
