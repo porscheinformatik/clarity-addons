@@ -21,7 +21,7 @@ export class DemoLocationBarContentProvider extends LocationBarContentProvider<D
     return of([]);
   }
 
-  searchPerformed(response: SearchResponseModel<DemoLocationBarNodeId>): void {
+  override searchPerformed(response: SearchResponseModel<DemoLocationBarNodeId>): void {
     this.searchPerformed$.next(response);
   }
 }
