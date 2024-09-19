@@ -1,0 +1,21 @@
+<div class="clr-col-md-12 search-wrapper">
+  <form clrForm>
+    <clr-input-container class="input-container">
+      <label hidden></label>
+      <input
+        #searchInput
+        class="clr-col-md-12"
+        clrInput
+        clrSearch
+        [placeholder]="searchRequest?.placeholder ?? ''"
+        type="text"
+        name="search"
+        (keydown.Space)="preventDropdownActions($event)"
+        [formControl]="searchControl"
+      />
+      <clr-control-helper *ngIf="displayWarning" class="min-text-warning">{{
+        searchRequest?.minCharacterText ?? MIM_CHARACTERS_TEXT_DEFAULT
+      }}</clr-control-helper>
+    </clr-input-container>
+  </form>
+</div>
