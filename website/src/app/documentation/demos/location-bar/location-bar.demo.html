@@ -19,6 +19,16 @@
         <code class="clr-code">LocationBarContentProvider</code>, which needs to be provided via injection token
         <code class="clr-code">CONTENT_PROVIDER</code>. See example below for implementation details.
       </p>
+      <h6>Search</h6>
+      <p>
+        Location bar offers node search. In order to enable search,
+        <code class="clr-code">SearchRequestModel</code> need to be defined. When the search is performed,
+        <code class="clr-code">LocationBarContentProvider</code>, offers the method
+        <code class="clr-code">searchPerformed</code> to notify client that search if performed.
+        <code class="clr-code">SearchResponseModel</code> is returned as a result of a user search. Client need to
+        implement own search functionality and pass <code class="clr-code">SearchResultModel</code> to the location-bar
+        again.
+      </p>
 
       <h3>Usage</h3>
       <p>
@@ -80,6 +90,109 @@
         </tbody>
       </table>
 
+      <h4>SearchRequestModel description</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">attribute</th>
+            <th class="left clr-hidden-xs-down">Values</th>
+            <th class="left">Effect</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left">
+              <b>placeholder</b>
+              <div class="clr-hidden-sm-up">Type: string</div>
+            </td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="left">Placeholder for input field</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>noResultsText</b>
+              <div class="clr-hidden-sm-up">Type: string</div>
+            </td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="left">Text displays that no search result found</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>minCharacters</b>
+              <div class="clr-hidden-sm-up">Type: number</div>
+            </td>
+            <td class="left clr-hidden-xs-down">number</td>
+            <td class="left">How many characters is needed to start search</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>minCharacterText</b>
+              <div class="clr-hidden-sm-up">Type: string</div>
+            </td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="left">Warning that search not performed because minCharacters not satisfied</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>searchResultItemRef</b>
+              <div class="clr-hidden-sm-up">Type: TemplateRef</div>
+            </td>
+            <td class="left clr-hidden-xs-down">TemplateRef</td>
+            <td class="left">Custom display for search result</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4>SearchResponseModel description</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">attribute</th>
+            <th class="left clr-hidden-xs-down">Values</th>
+            <th class="left">Effect</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left">
+              <b>text</b>
+              <div class="clr-hidden-sm-up">Type: string</div>
+            </td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="left">Search text</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>searchableNodes</b>
+              <div class="clr-hidden-sm-up">Type: LocationBarNode[]</div>
+            </td>
+            <td class="left clr-hidden-xs-down">LocationBarNode[]</td>
+            <td class="left">Which nodes should be filtered based on search text</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4>SearchResultModel description</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">attribute</th>
+            <th class="left clr-hidden-xs-down">Values</th>
+            <th class="left">Effect</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left">
+              <b>[key: string]</b>
+              <div class="clr-hidden-sm-up">Type: [key: string]</div>
+            </td>
+            <td class="left clr-hidden-xs-down">[key: string]</td>
+            <td class="left">Attributes for display after search is performed</td>
+          </tr>
+        </tbody>
+      </table>
+
       <h3>Summary of Options</h3>
       <table class="table">
         <thead>
@@ -121,6 +234,36 @@
             <td class="clr-hidden-xs-down">""</td>
             <td class="left">Title attribute of the icon displayed before the location bar.</td>
           </tr>
+          <tr>
+            <td class="left">
+              <b>[clrSearchRequest]</b>
+              <div class="clr-hidden-sm-up">Type: SearchRequestModel</div>
+              <div class="clr-hidden-sm-up">Default: undefined</div>
+            </td>
+            <td class="left clr-hidden-xs-down">SearchRequestModel</td>
+            <td class="clr-hidden-xs-down">undefined</td>
+            <td class="left">Request attributes for search.</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[clrSearchRequest]</b>
+              <div class="clr-hidden-sm-up">Type: SearchRequestModel</div>
+              <div class="clr-hidden-sm-up">Default: undefined</div>
+            </td>
+            <td class="left clr-hidden-xs-down">SearchRequestModel</td>
+            <td class="clr-hidden-xs-down">undefined</td>
+            <td class="left">Request attributes for search.</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[clrSearchResultItems]</b>
+              <div class="clr-hidden-sm-up">Type: SearchResultModel</div>
+              <div class="clr-hidden-sm-up">Default: []</div>
+            </td>
+            <td class="left clr-hidden-xs-down">SearchResultModel</td>
+            <td class="clr-hidden-xs-down">[]</td>
+            <td class="left">Result of the performed search</td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -150,7 +293,29 @@
       <clr-code-snippet [clrCode]="lazyExample"></clr-code-snippet>
       <clr-code-snippet [clrCode]="lazyTSExample" clrLanguage="typescript"></clr-code-snippet>
       <clr-code-snippet [clrCode]="lazyContentProvider" clrLanguage="typescript"></clr-code-snippet>
-      <clr-code-snippet [clrCode]="lazyProviderModule" clrLanguage="typescript"></clr-code-snippet>
+      <clr-code-snippet [clrCode]="providerModule" clrLanguage="typescript"></clr-code-snippet>
+
+      <h4>Search</h4>
+      <div>
+        <clr-location-bar
+          [clrRoots]="searchableRoot"
+          [clrSearchRequest]="{ minCharacters: 3,
+                          searchResultItemRef: searchResultItemRef,
+                          placeholder: 'My demo placeholder'}"
+          [clrSearchResultItems]="searchResultItems"
+          (clrSearchItemChanged)="searchChanged($event)"
+        >
+          <ng-template #searchResultItemRef let-searchResultItem>
+            {{searchResultItem.name}}
+            <span *ngIf="searchResultItem.label" class="label label-light-blue"> {{searchResultItem.label}}</span>
+          </ng-template>
+        </clr-location-bar>
+      </div>
+      <clr-code-snippet [clrCode]="searchExample"></clr-code-snippet>
+      <clr-code-snippet [clrCode]="searchTSExample" clrLanguage="typescript"></clr-code-snippet>
+      <clr-code-snippet [clrCode]="searchAlgExample" clrLanguage="typescript"></clr-code-snippet>
+      <clr-code-snippet [clrCode]="searchContentProvider" clrLanguage="typescript"></clr-code-snippet>
+      <clr-code-snippet [clrCode]="providerModule" clrLanguage="typescript"></clr-code-snippet>
     </div>
   </article>
 </clr-doc-wrapper>

@@ -8,9 +8,16 @@
     "
   >
     <clr-dropdown>
-      <button class="btn btn-link btn-sm" (blur)="focus = false" (focus)="focus = true" clrDropdownTrigger>
+      <button
+        class="btn btn-link btn-sm"
+        (blur)="focus = false"
+        (focus)="focus = true"
+        (click)="resetSearch()"
+        clrDropdownTrigger
+      >
         <ng-container *ngIf="parentNode.getSelectedChild() as node; else unselected">
           <span
+            (click)="resetSearch()"
             class="text-truncate"
             [class.last-level]="!parentNode.getSelectedChild().getSelectedChild()"
             title="{{ node.label }}"
@@ -24,17 +31,46 @@
         </ng-template>
       </button>
       <clr-dropdown-menu [clrPosition]="'bottom-left'" *clrIfOpen>
-        <button
-          *ngFor="let item of selectableChilds"
-          type="button"
-          clrDropdownItem
-          class="text-truncate"
-          [class.selected-child]="item.id === parentNode.getSelectedChild()?.id"
-          (click)="selectNode(item)"
-          title="{{ item.label }}"
-        >
-          {{ item.label }}
-        </button>
+        <clr-location-bar-search
+          *ngIf="searchRequest"
+          [clrSearchRequest]="searchRequest"
+          (searchPerformed)="onSearch($event)"
+        ></clr-location-bar-search>
+        <span *ngIf="displaySearchResult(); else displaySelectableChilds">
+          <span *ngIf="searchResultItems.length !== 0; else displayNotFound">
+            <span *ngFor="let searchResultItem of searchResultItems">
+              <button
+                type="button"
+                clrDropdownItem
+                class="text-truncate"
+                (click)="onSearchItemChanged(searchResultItem)"
+              >
+                <ng-container
+                  *ngTemplateOutlet="searchRequest?.searchResultItemRef; context: { $implicit: searchResultItem }"
+                ></ng-container>
+              </button>
+            </span>
+          </span>
+          <ng-template #displayNotFound>
+            <span class="no-result-text">
+              {{ searchRequest?.noResultsText ?? 'No search result found.' }}
+            </span>
+          </ng-template>
+        </span>
+
+        <ng-template #displaySelectableChilds>
+          <button
+            *ngFor="let item of selectableChilds"
+            type="button"
+            clrDropdownItem
+            class="text-truncate"
+            [class.selected-child]="item.id === parentNode.getSelectedChild()?.id"
+            (click)="selectNode(item)"
+            title="{{ item.label }}"
+          >
+            {{ item.label }}
+          </button>
+        </ng-template>
       </clr-dropdown-menu>
     </clr-dropdown>
   </ng-container>
@@ -66,7 +102,10 @@
   <clr-location-bar-node
     *ngIf="parentNode.getSelectedChild() && parentNode.getChildren().length > 0"
     [parentNode]="parentNode.getSelectedChild()"
+    [clrSearchRequest]="searchRequest"
+    [clrSearchResultItems]="searchResultItems"
     (selectionChanged)="onSelectionChanged($event)"
+    (searchItemChanged)="onSearchItemChanged(null)"
   >
     <span>/</span>
   </clr-location-bar-node>
