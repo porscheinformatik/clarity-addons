@@ -22,7 +22,9 @@ export abstract class LocationBarContentProvider<T extends NodeId> {
   /**
    * Notify users that search is performed and that nodes should be filtered.
    *
-   * @param response Search response
+   * @param _response Search response
    */
-  abstract searchPerformed(response: SearchResponseModel<T>): void;
+  searchPerformed(_response: SearchResponseModel<T>): void {
+    // no implementation if search not enabled
+  }
 }
