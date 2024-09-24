@@ -19,17 +19,11 @@ class TestNodeId extends NodeId {
 }
 
 class TestContentProvider extends LocationBarContentProvider<TestNodeId> {
-  searchPerformed$ = new ReplaySubject<SearchResponseModel<TestNodeId>>(1);
-
   getLazyChildren(node: LocationBarNode<TestNodeId>): Observable<LocationBarNode<TestNodeId>[]> {
     if (node.id.id === 'lazy') {
       return of([new LocationBarNode(new TestNodeId('lazyChild'), 'Lazy child')]);
     }
     return of([]);
-  }
-
-  searchPerformed(response: SearchResponseModel<TestNodeId>): void {
-    this.searchPerformed$.next(response);
   }
 }
 

@@ -55,7 +55,7 @@ export class LocationBarSearchComponent implements OnInit {
   }
 
   private keepSearchFieldFocused(text: string): void {
-    if (text.length === 0) {
+    if (!text) {
       setTimeout(() => {
         this.searchInput.nativeElement.focus();
       });
