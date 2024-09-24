@@ -18,6 +18,7 @@ export class DemoLocationBarContentProvider extends LocationBarContentProvider<D
     if (node.id.id === 'lazy') {
       return of([new LocationBarNode(new DemoLocationBarNodeId('lazyChild'), 'Lazy child')]);
     }
+
     return of([]);
   }
 
