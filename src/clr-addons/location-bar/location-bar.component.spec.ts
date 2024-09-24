@@ -1,12 +1,11 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ClrDropdownModule, ClrIconModule } from '@clr/angular';
-import { Observable, of, ReplaySubject } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { LocationBarNodeComponent } from './location-bar-node/location-bar-node.component';
 import { LocationBarComponent } from './location-bar.component';
 import { LocationBarNode, NodeId } from './location-bar.model';
 import { CONTENT_PROVIDER, LocationBarContentProvider } from './location-bar.provider';
-import { SearchResponseModel } from './location-bar.search.model';
 
 class TestNodeId extends NodeId {
   constructor(public id: string) {
