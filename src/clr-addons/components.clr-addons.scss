@@ -188,8 +188,12 @@ body,
   }
 }
 
-.datagrid-no-select-all .datagrid-header .datagrid-select .clr-checkbox-wrapper {
-  display: none;
+.datagrid-no-select-all .datagrid-header .datagrid-select {
+  pointer-events: none;
+
+  .clr-checkbox-wrapper {
+    display: none;
+  }
 }
 
 .datagrid-full-height {
