@@ -52,12 +52,20 @@ export class ClrIfWarning implements AfterViewInit {
   }
 
   resetControlStyles() {
-    this.hostElement ? this.renderer.removeClass(this.hostElement, 'clr-warning') : null;
-    this.formContainer ? this.renderer.removeClass(this.formContainer, 'clr-warning') : null;
+    if (this.hostElement) {
+      this.renderer.removeClass(this.hostElement, 'clr-warning');
+    }
+    if (this.formContainer) {
+      this.renderer.removeClass(this.formContainer, 'clr-warning');
+    }
   }
 
   setControlStyles() {
-    this.hostElement ? this.renderer.addClass(this.hostElement, 'clr-warning') : null;
-    this.formContainer ? this.renderer.addClass(this.formContainer, 'clr-warning') : null;
+    if (this.hostElement) {
+      this.renderer.addClass(this.hostElement, 'clr-warning');
+    }
+    if (this.formContainer) {
+      this.renderer.addClass(this.formContainer, 'clr-warning');
+    }
   }
 }
