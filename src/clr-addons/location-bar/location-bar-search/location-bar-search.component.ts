@@ -37,7 +37,6 @@ export class LocationBarSearchComponent implements OnInit {
 
   private onSearch(text: string) {
     const validatedText = this.validateSearchText(text);
-    this.keepSearchFieldFocused(validatedText);
     if (validatedText !== null) {
       this.searchPerformed.emit(validatedText);
       this.displayWarning = false;
@@ -54,12 +53,10 @@ export class LocationBarSearchComponent implements OnInit {
     }
   }
 
-  private keepSearchFieldFocused(text: string): void {
-    if (!text) {
-      setTimeout(() => {
-        this.searchInput.nativeElement.focus();
-      });
-    }
+  public focusInput(): void {
+    setTimeout(() => {
+      this.searchInput.nativeElement.focus();
+    });
   }
 
   private isTextDeletion(text: string): boolean {
