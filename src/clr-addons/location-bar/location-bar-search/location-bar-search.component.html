@@ -14,7 +14,7 @@
         [formControl]="searchControl"
       />
       <clr-control-helper *ngIf="displayWarning" class="min-text-warning">{{
-        searchRequest?.minCharacterText ?? MIM_CHARACTERS_TEXT_DEFAULT
+        searchRequest?.minCharacterText ?? displayMinCharactersText()
       }}</clr-control-helper>
     </clr-input-container>
   </form>
