@@ -23,7 +23,6 @@ export class LocationBarSearchComponent implements OnInit {
   displayWarning: boolean = false;
 
   readonly MIN_CHARACTERS_DEFAULT: number = 3;
-  readonly MIM_CHARACTERS_TEXT_DEFAULT: string = 'Type 3+ characters to search.';
 
   @Input('clrSearchRequest') searchRequest: SearchRequestModel;
 
@@ -73,5 +72,9 @@ export class LocationBarSearchComponent implements OnInit {
 
   preventDropdownActions(event: Event) {
     event.stopPropagation();
+  }
+
+  displayMinCharactersText(): string {
+    return `Type ${this.searchRequest?.minCharacters ?? this.MIN_CHARACTERS_DEFAULT}+ characters to search.`;
   }
 }
