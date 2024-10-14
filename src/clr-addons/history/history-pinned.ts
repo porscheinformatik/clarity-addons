@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -26,9 +26,10 @@ export class ClrHistoryPinned implements OnInit, OnDestroy {
   active = false;
   private settingsSubscription: Subscription;
 
-  constructor(private historyService: ClrHistoryService,
-              @Inject(HISTORY_PROVIDER) @Optional() private historyProvider: HistoryProvider) {
-  }
+  constructor(
+    private historyService: ClrHistoryService,
+    @Inject(HISTORY_PROVIDER) @Optional() private historyProvider: HistoryProvider
+  ) {}
 
   ngOnInit(): void {
     this.historyElements = this.historyService.getHistoryDisplay(this.username, this.context);
