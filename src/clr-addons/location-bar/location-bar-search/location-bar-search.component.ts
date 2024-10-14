@@ -23,7 +23,6 @@ export class LocationBarSearchComponent implements OnInit {
   displayWarning: boolean = false;
 
   readonly MIN_CHARACTERS_DEFAULT: number = 3;
-  readonly MIM_CHARACTERS_TEXT_DEFAULT: string = 'Type 3+ characters to search.';
 
   @Input('clrSearchRequest') searchRequest: SearchRequestModel;
 
@@ -39,13 +38,12 @@ export class LocationBarSearchComponent implements OnInit {
     const validatedText = this.validateSearchText(text);
     if (validatedText !== null) {
       this.searchPerformed.emit(validatedText);
-      this.displayWarning = false;
     }
   }
 
   private validateSearchText(text: string): string {
     const isDeletion = this.isTextDeletion(text);
-    this.displayWarning = text.length < this.getMinSearchTextLength();
+    this.displayWarning = text.length < this.getMinSearchTextLength() && text.length !== 0;
     if (isDeletion) {
       return text.length >= this.getMinSearchTextLength() ? text : '';
     } else {
@@ -73,5 +71,9 @@ export class LocationBarSearchComponent implements OnInit {
 
   preventDropdownActions(event: Event) {
     event.stopPropagation();
+  }
+
+  getMinCharactersText(): string {
+    return `Type ${this.searchRequest?.minCharacters ?? this.MIN_CHARACTERS_DEFAULT}+ characters to search.`;
   }
 }

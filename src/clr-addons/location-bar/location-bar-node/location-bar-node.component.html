@@ -30,7 +30,7 @@
           <cds-icon class="unselected" size="18" [attr.solid]="focus" shape="tree-view"></cds-icon>&nbsp;...
         </ng-template>
       </button>
-      <clr-dropdown-menu [clrPosition]="'bottom-left'" *clrIfOpen>
+      <clr-dropdown-menu [clrPosition]="'bottom-left'" [clrDropdownMenuItemMinHeight]="'24px'" *clrIfOpen>
         <clr-location-bar-search
           #locationBarSearch
           *ngIf="searchRequest"
@@ -42,7 +42,7 @@
             <button
               type="button"
               clrDropdownItem
-              class="text-truncate display-result"
+              class="text-truncate"
               *ngFor="let searchResultItem of searchResultItems"
               (click)="onSearchItemChanged(searchResultItem)"
             >
@@ -63,7 +63,7 @@
             *ngFor="let item of selectableChilds"
             type="button"
             clrDropdownItem
-            class="text-truncate display-result"
+            class="text-truncate"
             [class.selected-child]="item.id === parentNode.getSelectedChild()?.id"
             (click)="selectNode(item)"
             title="{{ item.label }}"
