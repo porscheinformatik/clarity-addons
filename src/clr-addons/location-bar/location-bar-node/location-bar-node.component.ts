@@ -1,10 +1,21 @@
-import { Component, EventEmitter, Inject, Input, OnChanges, Optional, Output, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Inject,
+  Input,
+  OnChanges,
+  Optional,
+  Output,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import { angleIcon, ClarityIcons, treeViewIcon } from '@cds/core/icon';
 import '@cds/core/icon/register.js';
 import { of } from 'rxjs';
 import { LocationBarNode, NodeId } from '../location-bar.model';
 import { CONTENT_PROVIDER, LocationBarContentProvider } from '../location-bar.provider';
 import { SearchRequestModel, SearchResultModel } from '../location-bar.search.model';
+import { LocationBarSearchComponent } from '../location-bar-search/location-bar-search.component';
 
 ClarityIcons.addIcons(treeViewIcon, angleIcon);
 
@@ -43,7 +54,6 @@ export class LocationBarNodeComponent<T extends NodeId> implements OnChanges {
       children$.toPromise().then(nodes => this.prepareChildren(nodes || []));
     }
   }
-
   @Input('clrSearchResultItems') searchResultItems: SearchResultModel[] = [];
   @Input('clrSearchRequest') searchRequest: SearchRequestModel;
 
@@ -53,6 +63,12 @@ export class LocationBarNodeComponent<T extends NodeId> implements OnChanges {
    */
   @Output() selectionChanged = new EventEmitter<T[]>();
   @Output() searchItemChanged = new EventEmitter<SearchResultModel>();
+
+  @ViewChild('locationBarSearch') set locationBarSearch(search: LocationBarSearchComponent) {
+    if (search) {
+      search.focusInput();
+    }
+  }
 
   constructor(@Inject(CONTENT_PROVIDER) @Optional() public contentProvider: LocationBarContentProvider<T>) {}
 

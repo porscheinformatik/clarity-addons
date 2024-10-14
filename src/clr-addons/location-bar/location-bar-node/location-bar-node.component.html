@@ -32,38 +32,38 @@
       </button>
       <clr-dropdown-menu [clrPosition]="'bottom-left'" *clrIfOpen>
         <clr-location-bar-search
+          #locationBarSearch
           *ngIf="searchRequest"
           [clrSearchRequest]="searchRequest"
           (searchPerformed)="onSearch($event)"
         ></clr-location-bar-search>
-        <span *ngIf="displaySearchResult(); else displaySelectableChilds">
-          <span *ngIf="searchResultItems.length !== 0; else displayNotFound">
-            <span *ngFor="let searchResultItem of searchResultItems">
-              <button
-                type="button"
-                clrDropdownItem
-                class="text-truncate"
-                (click)="onSearchItemChanged(searchResultItem)"
-              >
-                <ng-container
-                  *ngTemplateOutlet="searchRequest?.searchResultItemRef; context: { $implicit: searchResultItem }"
-                ></ng-container>
-              </button>
-            </span>
-          </span>
+        <ng-container *ngIf="displaySearchResult(); else displaySelectableChilds">
+          <ng-container *ngIf="searchResultItems.length !== 0; else displayNotFound">
+            <button
+              type="button"
+              clrDropdownItem
+              class="text-truncate display-result"
+              *ngFor="let searchResultItem of searchResultItems"
+              (click)="onSearchItemChanged(searchResultItem)"
+            >
+              <ng-container
+                *ngTemplateOutlet="searchRequest?.searchResultItemRef; context: { $implicit: searchResultItem }"
+              ></ng-container>
+            </button>
+          </ng-container>
           <ng-template #displayNotFound>
             <span class="no-result-text">
               {{ searchRequest?.noResultsText ?? 'No search result found.' }}
             </span>
           </ng-template>
-        </span>
+        </ng-container>
 
         <ng-template #displaySelectableChilds>
           <button
             *ngFor="let item of selectableChilds"
             type="button"
             clrDropdownItem
-            class="text-truncate"
+            class="text-truncate display-result"
             [class.selected-child]="item.id === parentNode.getSelectedChild()?.id"
             (click)="selectNode(item)"
             title="{{ item.label }}"
