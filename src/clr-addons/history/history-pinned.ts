@@ -32,10 +32,10 @@ export class ClrHistoryPinned implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.historyElements = this.historyService.getHistoryDisplay(this.username, this.context);
-    if (this.historyProvider) {
-      this.historyProvider.modifyHistoryEntries(this.historyElements);
-    }
+    const historyElements = this.historyService.getHistoryDisplay(this.username, this.context);
+    this.historyElements = this.historyProvider
+      ? this.historyProvider.getModifiedHistoryEntries(historyElements)
+      : historyElements;
 
     this.historyService.initializeCookieSettings(this.username, this.domain);
     this.settingsSubscription = this.historyService.cookieSettings$.subscribe(settings => {
