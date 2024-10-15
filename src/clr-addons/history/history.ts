@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnDestroy, OnInit, Optional } from '@angular/core';
 import { ClrHistoryModel } from './history-model.interface';
 import { ClrHistoryService } from './history.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { angleIcon, ClarityIcons, historyIcon } from '@cds/core/icon';
+import { HISTORY_PROVIDER, HistoryProvider } from './history.provider';
 
 ClarityIcons.addIcons(historyIcon, angleIcon);
 
@@ -34,10 +35,16 @@ export class ClrHistory implements OnInit, OnDestroy {
   pinActivated = false;
   private onDestroy$ = new Subject<void>();
 
-  constructor(private historyService: ClrHistoryService) {}
+  constructor(
+    private historyService: ClrHistoryService,
+    @Inject(HISTORY_PROVIDER) @Optional() private historyProvider: HistoryProvider
+  ) {}
 
   ngOnInit(): void {
-    this.historyElements = this.historyService.getHistoryDisplay(this.username, this.context);
+    const historyElements = this.historyService.getHistoryDisplay(this.username, this.context);
+    this.historyElements = this.historyProvider
+      ? this.historyProvider.getModifiedHistoryEntries(historyElements)
+      : historyElements;
 
     this.historyService.initializeCookieSettings(this.username, this.domain);
     this.historyService.cookieSettings$.pipe(takeUntil(this.onDestroy$)).subscribe(settings => {

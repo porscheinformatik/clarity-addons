@@ -9,3 +9,4 @@ export * from './history-pinned';
 export * from './history.module';
 export * from './history-model.interface';
 export * from './history.service';
+export * from './history.provider';
