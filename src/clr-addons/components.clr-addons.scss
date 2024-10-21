@@ -414,7 +414,15 @@ clr-date-container .clr-control-container {
   background-color: inherit !important;
 }
 
-.datagrid-row-sticky,
+.datagrid-highlight-error,
+.datagrid-highlight-warning,
+.datagrid-highlight-info,
+.datagrid-highlight-success {
+  .datagrid-row-sticky {
+    background-color: inherit !important;
+  }
+}
+
 clr-expandable-animation {
   background-color: inherit !important;
 }
