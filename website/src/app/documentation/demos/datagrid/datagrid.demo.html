@@ -397,6 +397,13 @@
         >
       </clr-dg-row>
 
+      <clr-dg-detail *clrIfDetail="let detail">
+        <clr-dg-detail-header>Datagrid detail</clr-dg-detail-header>
+        <clr-dg-detail-body>
+          <span>Datagrid detail text</span>
+        </clr-dg-detail-body>
+      </clr-dg-detail>
+
       <clr-dg-footer>
         <clr-dg-pagination [clrDgPageSize]="10">
           <clr-dg-page-size [clrPageSizeOptions]="[5,10,15,50,100]">Entries per page</clr-dg-page-size>
