@@ -128,7 +128,6 @@ export class IconsComponent {
     certifiedRetailerIcon,
     configuratorCommercialIcon,
     configuratorPrivateIcon,
-    consumptionIcon,
     contactDealerIcon,
     consumptionIcon,
     dieselIcon,
