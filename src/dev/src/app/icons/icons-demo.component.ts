@@ -5,9 +5,9 @@
  */
 import { Component } from '@angular/core';
 import {
+  acceptanceDateIcon,
   accessoriesIcon,
   accessoryPartsIcon,
-  acceptanceDateIcon,
   airConditionerIcon,
   audiBrandIcon,
   awardWinnerPremiumIcon,
@@ -73,8 +73,8 @@ import {
   paintMaterialForwardIcon,
   paintMaterialIcon,
   paintShopIcon,
-  partsForwardIcon,
   parkingLocationIcon,
+  partsForwardIcon,
   partsIcon,
   partsNonStockForwardIcon,
   partsNonStockIcon,
@@ -87,8 +87,8 @@ import {
   powerTrainIcon,
   priceTypeSwitchIcon,
   qualifiedWorkshopIcon,
-  returnDateIcon,
   repeatRepairIcon,
+  returnDateIcon,
   roadsideAssistanceIcon,
   routeIcon,
   seatAirIcon,
@@ -111,15 +111,15 @@ import {
   usedCarPrivateIcon,
   vehicleConversionIcon,
   view360Icon,
+  vinIcon,
   virtualRealityIcon,
   volkswagenIcon,
+  vsfSearchIcon,
   vwBrandIcon,
   vwnBrandIcon,
   wheelToWheelIcon,
   windscreenWashIcon,
   wrenchForwardIcon,
-  vinIcon,
-  vsfSearchIcon,
 } from '@porscheinformatik/clr-addons';
 import { ClarityIcons } from '@cds/core/icon';
 
@@ -148,7 +148,6 @@ export class IconsDemo {
     completedByDateIcon,
     configuratorCommercialIcon,
     configuratorPrivateIcon,
-    consumptionIcon,
     contactDealerIcon,
     consumptionIcon,
     dieselIcon,
