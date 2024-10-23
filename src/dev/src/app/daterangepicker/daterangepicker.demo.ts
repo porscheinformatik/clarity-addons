@@ -7,6 +7,8 @@ import {
   PopoverPosition,
   PopoverPositions,
 } from '../../../../clr-addons/daterangepicker';
+import { NullableTimerange } from '../../../../clr-addons/daterangepicker/interfaces/timerange.interface';
+import { TimeModel } from '../../../../clr-addons/daterangepicker/models/time.model';
 
 @Component({
   selector: 'clr-daterangepicker-demo',
@@ -21,6 +23,7 @@ export class DaterangepickerDemo {
   });
 
   templateDrivenValue: NullableDaterange = null;
+  templateDrivenValueTime: NullableTimerange = null;
 
   validationForm = new FormGroup({
     daterange: new FormControl(null, {
@@ -61,6 +64,15 @@ export class DaterangepickerDemo {
     this.templateDrivenValue = {
       from: new DayModel(new Date()),
       to: new DayModel(new Date()).incrementBy(7),
+    };
+  }
+
+  public updateTemplateDrivenTime(): void {
+    this.templateDrivenValueTime = {
+      from: new DayModel(new Date()),
+      to: new DayModel(new Date()).incrementBy(7),
+      toTime: new TimeModel('10:00'),
+      fromTime: new TimeModel('11:00'),
     };
   }
 

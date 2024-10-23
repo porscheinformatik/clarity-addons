@@ -1,81 +1,106 @@
 <ng-content select="label"></ng-content>
 <label *ngIf="!this.labelComponent && this.addLayoutGrid"></label>
 <div
-  class="clr-control-container"
-  [class.clr-error]="this.isInvalid"
   [class.clr-col-12]="this.addLayoutGrid"
   [class.clr-col-md-10]="this.addLayoutGrid"
+  [class.clr-error]="this.isInvalid"
+  class="clr-control-container"
 >
   <div class="clr-input-wrapper" clrPopoverAnchor>
-    <div class="clr-input-group" [class.clr-focus]="this.focus">
+    <div [class.clr-focus]="this.focus" class="clr-input-group">
       <ng-content select="[clrDaterangepicker]"></ng-content>
       <button
-        type="button"
-        class="clr-input-group-icon-action"
+        [attr.aria-label]="this.friendlyDaterange"
         [disabled]="this.disabled"
         [title]="this.friendlyDaterange"
-        [attr.aria-label]="this.friendlyDaterange"
+        class="clr-input-group-icon-action"
         clrPopoverOpenCloseButton
+        type="button"
       >
-        <cds-icon status="info" shape="calendar"></cds-icon>
+        <cds-icon shape="calendar" status="info"></cds-icon>
       </button>
     </div>
     <cds-icon
       *ngIf="this.isInvalid"
+      aria-hidden="true"
       class="clr-validate-icon"
       shape="exclamation-circle"
       status="danger"
-      aria-hidden="true"
     ></cds-icon>
     <cds-icon
       *ngIf="!this.isInvalid"
+      aria-hidden="true"
       class="clr-validate-icon"
       shape="check-circle"
       status="success"
-      aria-hidden="true"
     ></cds-icon>
   </div>
-  <ng-content select="clr-control-helper" *ngIf="this.showHelper"></ng-content>
-  <ng-content select="clr-control-error" *ngIf="this.showInvalid"></ng-content>
-  <ng-content select="clr-control-success" *ngIf="this.showValid"></ng-content>
+  <ng-content *ngIf="this.showHelper" select="clr-control-helper"></ng-content>
+  <ng-content *ngIf="this.showInvalid" select="clr-control-error"></ng-content>
+  <ng-content *ngIf="this.showValid" select="clr-control-success"></ng-content>
 
   <div
-    class="clr-daterangepicker-container-popup datepicker"
     *clrPopoverContent="this.open; at: this.popoverPosition; outsideClickToClose: true; scrollToClose: true"
+    class="clr-daterangepicker-container-popup datepicker"
   >
     <button
+      [attr.aria-label]="this.commonStrings.close"
       class="btn btn-sm btn-link close"
       clrPopoverCloseButton
       type="button"
-      [attr.aria-label]="this.commonStrings.close"
     >
-      <cds-icon shape="window-close" aria-hidden="true" [attr.title]="this.commonStrings.close"></cds-icon>
+      <cds-icon [attr.title]="this.commonStrings.close" aria-hidden="true" shape="window-close"></cds-icon>
       <span class="clr-sr-only">{{ this.commonStrings.close }}</span>
     </button>
     <div class="clr-daterangepicker-container-popup-content">
-      <form clrForm [clrLayout]="'vertical'">
-        <clr-datepicker
-          class="clr-datepicker"
-          [label]="this.labelFrom"
-          [value]="this.dateFrom"
-          [minDate]="this.minDate"
-          [maxDate]="this.maxDate"
-          (valueChange)="this.onDateFromChange($event)"
-        >
-        </clr-datepicker>
-        <clr-datepicker
-          class="clr-datepicker"
-          [label]="this.labelTo"
-          [value]="this.dateTo"
-          [minDate]="this.minDate"
-          [maxDate]="this.maxDate"
-          (valueChange)="this.onDateToChange($event)"
-        >
-        </clr-datepicker>
+      <form [clrLayout]="'vertical'" clrForm>
+        <div class="datetime-container">
+          <clr-datepicker
+            (valueChange)="this.onDateFromChange($event)"
+            [label]="this.labelFrom"
+            [maxDate]="this.maxDate"
+            [minDate]="this.minDate"
+            [value]="this.dateFrom"
+            class="clr-datepicker"
+          >
+          </clr-datepicker>
+          <clr-timepicker
+            *ngIf="timeSelection"
+            class="timepicker"
+            (valueChange)="this.onTimeFromChange($event)"
+            [value]="this.timeFrom"
+          >
+          </clr-timepicker>
+        </div>
+        <div class="datetime-container">
+          <clr-datepicker
+            (valueChange)="this.onDateToChange($event)"
+            [label]="this.labelTo"
+            [maxDate]="this.maxDate"
+            [minDate]="this.minDate"
+            [value]="this.dateTo"
+            class="clr-datepicker"
+          >
+          </clr-datepicker>
+          <clr-timepicker
+            *ngIf="timeSelection"
+            class="timepicker"
+            (valueChange)="this.onTimeToChange($event)"
+            [value]="this.timeTo"
+          >
+          </clr-timepicker>
+        </div>
       </form>
-      <div class="clr-daterangepicker-container-popup-content-presets" *ngIf="this.presets?.length > 0">
+      <div *ngIf="this.presets?.length > 0" class="clr-daterangepicker-container-popup-content-presets">
         <ng-container *ngFor="let preset of this.presets">
-          <button class="btn btn-outline btn-sm btn-block" type="button" (click)="this.applyPreset(preset)">
+          <button (click)="this.applyPreset(preset)" class="btn btn-outline btn-sm btn-block" type="button">
+            {{ preset.text }}
+          </button>
+        </ng-container>
+      </div>
+      <div *ngIf="this.presetsTime?.length > 0" class="clr-daterangepicker-container-popup-content-presets">
+        <ng-container *ngFor="let preset of this.presetsTime">
+          <button (click)="this.applyPresetTime(preset)" class="btn btn-outline btn-sm btn-block" type="button">
             {{ preset.text }}
           </button>
         </ng-container>

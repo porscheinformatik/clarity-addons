@@ -21,6 +21,7 @@ import { DaterangeService } from '../../providers/daterange.service';
 import { DaterangeParsingService } from '../../providers/daterange-parsing.service';
 import { DaterangeControlStateService } from '../../providers/daterange-control-state.service';
 import { ControlIdService } from '../../../abstract-form-component/control-id.service';
+import { NullableTimerange } from '../../interfaces/timerange.interface';
 
 /**
  * Daterangepicker.
@@ -58,8 +59,19 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
    * Adding an incorrect placeholder will create confusion while entering the daterange in the input.
    */
   @Input() public placeholder: string;
+
   @HostBinding('attr.placeholder')
   public get placeholderText(): string {
+    if (this.daterangeService.timeActive) {
+      return (
+        this.placeholder ??
+        this.daterangeParsingService.localeFormat +
+          ' hh:mm' +
+          this.separatorText +
+          this.daterangeParsingService.localeFormat +
+          ' hh:mm'
+      );
+    }
     return (
       this.placeholder ??
       this.daterangeParsingService.localeFormat + this.separatorText + this.daterangeParsingService.localeFormat
@@ -74,6 +86,7 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
   public get id() {
     return this.controlIdService.id;
   }
+
   /**
    * Id-attribute.
    * @returns Id-attribute.
@@ -90,6 +103,7 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
   public set disabled(value: boolean) {
     this.daterangeControlStateService.disabled = value;
   }
+
   /**
    * Disabled state.
    * @returns Disabled state.
@@ -144,6 +158,11 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
   private listenForDaterangeValueChanges(): void {
     this.subscriptions.push(
       this.daterangeService.valueChange.subscribe((_daterange: NullableDaterange) => {
+        this.triggerChange();
+      })
+    );
+    this.subscriptions.push(
+      this.daterangeService.valueChangeTime.subscribe((_timerange: NullableTimerange) => {
         this.triggerChange();
       })
     );
@@ -240,10 +259,19 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
    * Update input with friendly daterange text.
    */
   private updateInput(): void {
-    const dateString = this.daterangeParsingService.toLocaleString(
-      this.daterangeService.selectedDaterange,
-      this.separatorText
-    );
+    let dateString;
+    if (this.daterangeService.timeActive) {
+      dateString = this.daterangeParsingService.toLocaleStringWithTime(
+        this.daterangeService.selectedDaterange,
+        this.daterangeService.selectedTimerange,
+        this.separatorText
+      );
+    } else {
+      dateString = this.daterangeParsingService.toLocaleString(
+        this.daterangeService.selectedDaterange,
+        this.separatorText
+      );
+    }
     this.renderer.setProperty(this.element.nativeElement, 'value', dateString);
   }
 
@@ -262,6 +290,7 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
   public registerOnChange(fn: (value: NullableDaterange) => void): void {
     this.onChanged = fn;
   }
+
   private onChanged = (_value: NullableDaterange): void => undefined;
 
   /**
@@ -271,6 +300,7 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
   public registerOnTouched(fn: (value: NullableDaterange) => void): void {
     this.onTouched = fn;
   }
+
   private onTouched = (_value: NullableDaterange): void => undefined;
 
   /**
