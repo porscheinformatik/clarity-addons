@@ -2,6 +2,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 
 import { NullableDaterange } from '../interfaces/daterange.interface';
 import { NullableDayModel } from '../models/day.model';
+import { NullableTimerange } from '../interfaces/timerange.interface';
 
 /**
  * Daterange service.
@@ -16,6 +17,9 @@ export class DaterangeService {
   public maxDate: NullableDayModel = null;
 
   private _selectedDaterange: NullableDaterange = null;
+  private _selectedTimerange: NullableTimerange = null;
+
+  public timeActive = false;
 
   /**
    * Selected daterange value.
@@ -23,6 +27,14 @@ export class DaterangeService {
    */
   public get selectedDaterange(): NullableDaterange {
     return this._selectedDaterange;
+  }
+
+  /**
+   * Selected Timerange value.
+   * @returns Selected Timerange value.
+   */
+  public get selectedTimerange(): NullableTimerange {
+    return this._selectedTimerange;
   }
 
   /**
@@ -39,9 +51,23 @@ export class DaterangeService {
   }
 
   /**
+   * Set selected Timerange value.
+   * @param value - New selected Timerange value.
+   * @param triggerEvent - Trigger change event (default true).
+   */
+  public updateSelectedTimerange(value: NullableTimerange, triggerEvent = true): void {
+    this._selectedTimerange = value;
+
+    if (triggerEvent) {
+      this.valueChangeTime.emit(value);
+    }
+  }
+
+  /**
    * Event triggered when value changes.
    */
   public valueChange = new EventEmitter<NullableDaterange>();
+  public valueChangeTime = new EventEmitter<NullableTimerange>();
 
   /**
    * Checks if daterange is valid.

@@ -14,6 +14,7 @@ import {
 } from '../daterange.constants';
 import { NullableDaterange } from '../interfaces/daterange.interface';
 import { DayModel, NullableDayModel } from '../models/day.model';
+import { NullableTimerange } from '../interfaces/timerange.interface';
 
 /**
  * Daterange parsing service.
@@ -79,6 +80,29 @@ export class DaterangeParsingService {
     const toDateStr = this.toLocaleDisplayFormatString(toDate);
 
     return fromDateStr + separator + toDateStr;
+  }
+
+  public toLocaleStringWithTime(
+    daterange: NullableDaterange,
+    timerange: NullableTimerange,
+    separator: string = SEPARATOR_TEXT_DEFAULT
+  ): string {
+    if (daterange == null) {
+      return '';
+    }
+
+    const { from, to } = daterange;
+    if (from == null || to == null) {
+      return '';
+    }
+
+    const fromDate = from.toDate();
+    const toDate = to.toDate();
+
+    const fromDateStr = this.toLocaleDisplayFormatString(fromDate);
+    const toDateStr = this.toLocaleDisplayFormatString(toDate);
+
+    return fromDateStr + ' ' + timerange?.fromTime + separator + toDateStr + ' ' + timerange?.toTime;
   }
 
   /**
