@@ -41,7 +41,7 @@
       </clr-dg-column>
 
       <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
-        <clr-dg-cell>{{data.name}}</clr-dg-cell>
+        <clr-dg-cell>{{ data.name }}</clr-dg-cell>
       </clr-dg-row>
     </clr-datagrid>
 
@@ -61,7 +61,7 @@
       </clr-dg-column>
 
       <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
-        <clr-dg-cell>{{data.name}}</clr-dg-cell>
+        <clr-dg-cell>{{ data.name }}</clr-dg-cell>
       </clr-dg-row>
     </clr-datagrid>
 
@@ -102,7 +102,7 @@
       </clr-dg-column>
 
       <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
-        <clr-dg-cell>{{data.name}}</clr-dg-cell>
+        <clr-dg-cell>{{ data.name }}</clr-dg-cell>
       </clr-dg-row>
     </clr-datagrid>
 
@@ -123,7 +123,7 @@
       </clr-dg-column>
 
       <clr-dg-row *clrDgItems="let data of dataListWithEmpty" [clrDgItem]="data">
-        <clr-dg-cell>{{data.name}}</clr-dg-cell>
+        <clr-dg-cell>{{ data.name }}</clr-dg-cell>
       </clr-dg-row>
     </clr-datagrid>
 
@@ -145,8 +145,36 @@
       </clr-dg-column>
 
       <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
-        <clr-dg-cell>{{data.name}}</clr-dg-cell>
-        <clr-dg-cell>{{data.date|date}}</clr-dg-cell>
+        <clr-dg-cell>{{ data.name }}</clr-dg-cell>
+        <clr-dg-cell>{{ data.date|date }}</clr-dg-cell>
+      </clr-dg-row>
+    </clr-datagrid>
+
+    <clr-code-snippet [clrCode]="dateFilterExample"></clr-code-snippet>
+
+    <p>
+      When you need a filter for dates and timestamps in the data grid use the custom with time selection
+      <code class="clr-code">clr-date-filter</code>.
+    </p>
+    <clr-datagrid>
+      <clr-dg-column> Name</clr-dg-column>
+      <clr-dg-column [clrDgField]="'date'">
+        Date
+        <clr-dg-filter>
+          <clr-date-filter clrProperty="date"></clr-date-filter>
+        </clr-dg-filter>
+      </clr-dg-column>
+      <clr-dg-column [clrDgField]="'dateTime'">
+        DateTime
+        <clr-dg-filter>
+          <clr-date-filter [timeActive]="true" clrProperty="dateTime"></clr-date-filter>
+        </clr-dg-filter>
+      </clr-dg-column>
+
+      <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
+        <clr-dg-cell>{{ data.name }}</clr-dg-cell>
+        <clr-dg-cell>{{ data.date|date }}</clr-dg-cell>
+        <clr-dg-cell>{{ data.dateTime| date:'medium' }}</clr-dg-cell>
       </clr-dg-row>
     </clr-datagrid>
 
@@ -163,8 +191,8 @@
       </clr-dg-column>
 
       <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
-        <clr-dg-cell>{{data.name}}</clr-dg-cell>
-        <clr-dg-cell>{{data.date|date}}</clr-dg-cell>
+        <clr-dg-cell>{{ data.name }}</clr-dg-cell>
+        <clr-dg-cell>{{ data.date|date }}</clr-dg-cell>
       </clr-dg-row>
     </clr-datagrid>
 
@@ -349,10 +377,10 @@
       </clr-dg-column>
 
       <clr-dg-row *clrDgItems="let item of data$ | async" [clrDgItem]="item">
-        <clr-dg-cell>{{item.hideableCol}}</clr-dg-cell>
-        <clr-dg-cell>{{item.numericCol}}</clr-dg-cell>
-        <clr-dg-cell>{{item.dateCol | date}}</clr-dg-cell>
-        <clr-dg-cell>{{item.enumCol}}</clr-dg-cell>
+        <clr-dg-cell>{{ item.hideableCol }}</clr-dg-cell>
+        <clr-dg-cell>{{ item.numericCol }}</clr-dg-cell>
+        <clr-dg-cell>{{ item.dateCol | date }}</clr-dg-cell>
+        <clr-dg-cell>{{ item.enumCol }}</clr-dg-cell>
       </clr-dg-row>
 
       <clr-dg-footer>
@@ -389,12 +417,12 @@
         [clrDgItem]="item"
         [clrDgSelected]="item.status === 'selected'"
       >
-        <clr-dg-cell>{{item.name}}</clr-dg-cell>
-        <clr-dg-cell>{{item.text}}</clr-dg-cell>
+        <clr-dg-cell>{{ item.name }}</clr-dg-cell>
+        <clr-dg-cell>{{ item.text }}</clr-dg-cell>
         <clr-dg-cell [ngClass]="getTextColoring(item.status)">
           <cds-icon status="info" shape="{{getIcon(item.status)}}"></cds-icon>
-          {{item.status}}</clr-dg-cell
-        >
+          {{ item.status }}
+        </clr-dg-cell>
       </clr-dg-row>
 
       <clr-dg-detail *clrIfDetail="let detail">
@@ -436,12 +464,12 @@
         [clrDgItem]="item"
         [clrDgSelected]="item.status === 'selected'"
       >
-        <clr-dg-cell>{{item.name}}</clr-dg-cell>
-        <clr-dg-cell>{{item.text}}</clr-dg-cell>
+        <clr-dg-cell>{{ item.name }}</clr-dg-cell>
+        <clr-dg-cell>{{ item.text }}</clr-dg-cell>
         <clr-dg-cell [ngClass]="getTextColoring(item.status)">
           <cds-icon status="info" shape="{{getIcon(item.status)}}"></cds-icon>
-          {{item.status}}</clr-dg-cell
-        >
+          {{ item.status }}
+        </clr-dg-cell>
       </clr-dg-row>
 
       <clr-dg-footer>

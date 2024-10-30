@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { TimeModel } from '../../models/time.model';
 
 @Component({
   selector: 'clr-timepicker',
@@ -29,18 +30,23 @@ export class ClrTimepickerComponent implements OnDestroy {
    * Event triggered when value changes.
    */
   @Output()
-  public valueChange = new EventEmitter<string>();
+  public valueChange = new EventEmitter<TimeModel>();
 
-  protected get time(): string | undefined | null {
-    return this.value;
+  protected get time(): any | undefined | null {
+    if (typeof this.value === 'string') {
+      return this.value;
+    }
+    if (this.value) {
+      return (this.value as TimeModel).toHTML5SpecTimeString();
+    }
   }
 
   /**
-   * Set date.
+   * Set time.
    */
   protected set time(val: string | undefined | null) {
-    this.value = val; // == null ? null : new TimeModel(val);
-    this.valueChange.emit(this.value);
+    this.value = val;
+    this.valueChange.emit(new TimeModel(val));
   }
 
   /** List of subscriptions to later destroy. */

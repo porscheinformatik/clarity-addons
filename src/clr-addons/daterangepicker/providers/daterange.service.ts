@@ -17,9 +17,9 @@ export class DaterangeService {
   public maxDate: NullableDayModel = null;
 
   private _selectedDaterange: NullableDaterange = null;
-  private _selectedTimerange: NullableTimerange = null;
 
   public timeActive = false;
+  public timeSecondsActive = false;
 
   /**
    * Selected daterange value.
@@ -30,19 +30,11 @@ export class DaterangeService {
   }
 
   /**
-   * Selected Timerange value.
-   * @returns Selected Timerange value.
-   */
-  public get selectedTimerange(): NullableTimerange {
-    return this._selectedTimerange;
-  }
-
-  /**
    * Set selected daterange value.
    * @param value - New selected daterange value.
    * @param triggerEvent - Trigger change event (default true).
    */
-  public updateSelectedDaterange(value: NullableDaterange, triggerEvent = true): void {
+  public updateSelectedDaterange(value: NullableDaterange | NullableTimerange, triggerEvent = true): void {
     this._selectedDaterange = value;
 
     if (triggerEvent) {
@@ -56,10 +48,10 @@ export class DaterangeService {
    * @param triggerEvent - Trigger change event (default true).
    */
   public updateSelectedTimerange(value: NullableTimerange, triggerEvent = true): void {
-    this._selectedTimerange = value;
+    this._selectedDaterange = value;
 
     if (triggerEvent) {
-      this.valueChangeTime.emit(value);
+      this.valueChange.emit(value);
     }
   }
 
@@ -67,7 +59,6 @@ export class DaterangeService {
    * Event triggered when value changes.
    */
   public valueChange = new EventEmitter<NullableDaterange>();
-  public valueChangeTime = new EventEmitter<NullableTimerange>();
 
   /**
    * Checks if daterange is valid.
@@ -75,9 +66,10 @@ export class DaterangeService {
    * @returns Wether daterange is valid.
    */
   public isValid(): boolean {
-    if (this._selectedDaterange == null || this._selectedDaterange.from == null || this._selectedDaterange.to == null) {
-      return false;
-    }
-    return true;
+    return !(
+      this._selectedDaterange == null ||
+      this._selectedDaterange.from == null ||
+      this._selectedDaterange.to == null
+    );
   }
 }

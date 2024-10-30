@@ -87,7 +87,7 @@ export class TimeModel {
    * @returns Javascript Date object.
    */
   public toDate(): Date {
-    return new Date(this.hours, this.minutes, this.seconds);
+    return new Date(new Date().setHours(this.hours, this.minutes, this.seconds ? this.seconds : 0));
   }
 
   /**
@@ -97,10 +97,14 @@ export class TimeModel {
   public toHTML5SpecTimeString(): string {
     // The clarity time picker uses the format 'hh:mm:ss'.
     if (this.seconds) {
-      `${this.hours}:${this.minutes}:${this.seconds}`;
+      return this.pad(this.hours) + ':' + this.pad(this.minutes) + ':' + this.pad(this.seconds);
     }
     // The clarity time picker uses the format 'hh:mm'.
-    return `${this.hours}:${this.minutes}`;
+    return this.pad(this.hours) + ':' + this.pad(this.minutes);
+  }
+
+  private pad(num: number): string {
+    return num < 10 ? `0${num}` : `${num}`;
   }
 }
 

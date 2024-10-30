@@ -44,6 +44,13 @@
     class="clr-daterangepicker-container-popup datepicker"
   >
     <button
+      class="btn btn-sm btn-link close clr-smart-close-button btn-trash"
+      type="button"
+      (click)="daterangeService.updateSelectedDaterange(null)"
+    >
+      <cds-icon shape="trash"></cds-icon>
+    </button>
+    <button
       [attr.aria-label]="this.commonStrings.close"
       class="btn btn-sm btn-link close"
       clrPopoverCloseButton
@@ -69,10 +76,11 @@
             class="timepicker"
             (valueChange)="this.onTimeFromChange($event)"
             [value]="this.timeFrom"
+            [activateSeconds]="activateSeconds"
           >
           </clr-timepicker>
         </div>
-        <div class="datetime-container">
+        <div class="datetime-container datetime-container-to">
           <clr-datepicker
             (valueChange)="this.onDateToChange($event)"
             [label]="this.labelTo"
@@ -87,6 +95,7 @@
             class="timepicker"
             (valueChange)="this.onTimeToChange($event)"
             [value]="this.timeTo"
+            [activateSeconds]="activateSeconds"
           >
           </clr-timepicker>
         </div>

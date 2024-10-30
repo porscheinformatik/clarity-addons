@@ -9,7 +9,14 @@ import {
   QueryList,
   ViewChildren,
 } from '@angular/core';
-import { calendarIcon, checkCircleIcon, ClarityIcons, exclamationCircleIcon, windowCloseIcon } from '@cds/core/icon';
+import {
+  calendarIcon,
+  checkCircleIcon,
+  ClarityIcons,
+  exclamationCircleIcon,
+  trashIcon,
+  windowCloseIcon,
+} from '@cds/core/icon';
 import '@cds/core/icon/register.js';
 import {
   ClrCommonStrings,
@@ -37,8 +44,9 @@ import { ClrDatepickerComponent } from '../datepicker/datepicker.component';
 import { ClrDaterangepickerDirective } from '../daterangepicker/daterangepicker.directive';
 import { TimerangePreset } from '../../interfaces/timerange-preset.interface';
 import { NullableTimeModel } from '../../models/time.model';
+import { NullableTimerange } from '../../interfaces/timerange.interface';
 
-ClarityIcons.addIcons(calendarIcon, exclamationCircleIcon, checkCircleIcon, windowCloseIcon);
+ClarityIcons.addIcons(calendarIcon, exclamationCircleIcon, checkCircleIcon, windowCloseIcon, trashIcon);
 
 /**
  * Daterangepicker container.
@@ -72,6 +80,9 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
 
   @Input()
   public timeSelection = false;
+
+  @Input()
+  public activateSeconds = false;
 
   /**
    * Set popover position.
@@ -126,7 +137,9 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
   }
 
   protected get timeFrom() {
-    return this.daterangeService.selectedTimerange?.fromTime;
+    return this.daterangeService.selectedDaterange
+      ? (this.daterangeService.selectedDaterange as NullableTimerange).fromTime
+      : null;
   }
 
   /**
@@ -138,7 +151,9 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
   }
 
   protected get timeTo() {
-    return this.daterangeService.selectedTimerange?.toTime;
+    return this.daterangeService.selectedDaterange
+      ? (this.daterangeService.selectedDaterange as NullableTimerange).toTime
+      : null;
   }
 
   /**
@@ -183,7 +198,7 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
     @Optional() protected readonly clrLayout: ClrLayout,
     protected readonly daterangeControlStateService: DaterangeControlStateService,
     private readonly openedDatepickersTrackerService: OpenedDatepickersTrackerService,
-    private readonly daterangeService: DaterangeService,
+    protected readonly daterangeService: DaterangeService,
     private readonly daterangeParsingService: DaterangeParsingService
   ) {
     super(clrLayout, daterangeControlStateService);
@@ -195,6 +210,7 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
     }
 
     this.daterangeService.timeActive = this.timeSelection;
+    this.daterangeService.timeSecondsActive = this.activateSeconds;
     this.listenForDaterangeValueChanges();
     this.listenForOpenedDatepickersTrackerChanges();
     this.listenForPopoverToggleChanges();
@@ -262,7 +278,6 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
           // When closing popover modal and daterange is not valid, reset model.
           if (!this.daterangeService.isValid()) {
             this.daterangeService.updateSelectedDaterange(null);
-            this.daterangeService.updateSelectedTimerange(null);
           }
         }
       })
@@ -274,10 +289,19 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
    * @param value - Date from.
    */
   protected onDateFromChange(value: NullableDayModel): void {
-    this.daterangeService.updateSelectedDaterange({
-      from: value,
-      to: this.dateTo,
-    });
+    if (this.daterangeService.timeActive) {
+      this.daterangeService.updateSelectedDaterange({
+        from: value,
+        to: this.dateTo,
+        fromTime: this.timeFrom,
+        toTime: this.timeTo,
+      });
+    } else {
+      this.daterangeService.updateSelectedDaterange({
+        from: value,
+        to: this.dateTo,
+      });
+    }
   }
 
   /**
@@ -285,10 +309,19 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
    * @param value - Date to.
    */
   protected onDateToChange(value: NullableDayModel): void {
-    this.daterangeService.updateSelectedDaterange({
-      from: this.dateFrom,
-      to: value,
-    });
+    if (this.daterangeService.timeActive) {
+      this.daterangeService.updateSelectedDaterange({
+        from: this.dateFrom,
+        to: value,
+        fromTime: this.timeFrom,
+        toTime: this.timeTo,
+      });
+    } else {
+      this.daterangeService.updateSelectedDaterange({
+        from: this.dateFrom,
+        to: value,
+      });
+    }
   }
 
   /**
@@ -308,7 +341,7 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
 
   applyPresetTime(preset: TimerangePreset) {
     const range = preset.range();
-    this.daterangeService.updateSelectedTimerange(range);
+    this.daterangeService.updateSelectedDaterange(range);
 
     // Close popover here, because it's not possible to conditionally
     // apply `clrPopoverCloseButton` directive on preset button.
@@ -318,7 +351,7 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
   }
 
   protected onTimeFromChange(value: NullableTimeModel) {
-    this.daterangeService.updateSelectedTimerange({
+    this.daterangeService.updateSelectedDaterange({
       from: this.dateFrom,
       to: this.dateTo,
       fromTime: value,
@@ -327,7 +360,7 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
   }
 
   protected onTimeToChange(value: NullableTimeModel) {
-    this.daterangeService.updateSelectedTimerange({
+    this.daterangeService.updateSelectedDaterange({
       from: this.dateFrom,
       to: this.dateTo,
       fromTime: this.timeFrom,
