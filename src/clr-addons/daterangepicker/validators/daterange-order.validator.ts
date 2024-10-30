@@ -2,6 +2,7 @@ import { Directive, forwardRef, Input } from '@angular/core';
 import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator } from '@angular/forms';
 
 import { NullableDaterange } from '../interfaces/daterange.interface';
+import { NullableTimerange } from '../interfaces/timerange.interface';
 
 /**
  * Validator for daterangepicker to validate that 'from' date is before 'to' date.
@@ -41,7 +42,7 @@ export class ClrDaterangeOrderValidator implements Validator {
    * @param control - The control to validate against.
    * @returns A map of validation errors if validation fails, otherwise null.
    */
-  public validate(control: AbstractControl<NullableDaterange, any>): ValidationErrors | null {
+  public validate(control: AbstractControl<NullableDaterange | NullableTimerange, any>): ValidationErrors | null {
     if (!this._active) {
       return null;
     }
@@ -51,11 +52,19 @@ export class ClrDaterangeOrderValidator implements Validator {
       return null;
     }
 
-    const { from, to } = control.value;
+    const { from, to, fromTime, toTime } = control.value as NullableTimerange;
 
     // Validation with `null` values from 'from' & 'to' is done with the ClrDaterangeRequiredValidator.
     if (from == null || to == null) {
       return null;
+    }
+
+    if ((from.isAfter(to) || from.isEqual(to)) && fromTime && toTime) {
+      if (fromTime.isAfter(toTime)) {
+        return {
+          [ClrDaterangeOrderValidator.validationErrorName]: control.value,
+        };
+      }
     }
 
     if (from.isAfter(to)) {
