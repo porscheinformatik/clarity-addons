@@ -6,8 +6,7 @@
       <h2>Usage</h2>
       <p>
         Use the daterangepicker whenever you want to select a date range. The default Clarity Date Picker allows
-        selecting only one date. This component uses two Clarity Date Pickers to select a start and end date. As an
-        addition, the time selection can be activated. See options for details.
+        selecting only one date. This component uses two Clarity Date Pickers to select a start and end date.
       </p>
 
       <div class="clrweb-DoxMedia">
@@ -73,26 +72,6 @@
               List of presets. By default this list is empty, which hides the presets section in the UI.
             </td>
           </tr>
-          <tr>
-            <td class="left"><strong>[timeSelection]</strong></td>
-            <td class="left clr-hidden-xs-down"><code class="clr-code">Boolean</code></td>
-            <td class="clr-hidden-xs-down"><code class="clr-code"></code></td>
-            <td class="left">Set to true, if time selection should be activated.</td>
-          </tr>
-          <tr>
-            <td class="left"><strong>[activateSeconds]</strong></td>
-            <td class="left clr-hidden-xs-down"><code class="clr-code">Boolean</code></td>
-            <td class="clr-hidden-xs-down"><code class="clr-code"></code></td>
-            <td class="left">Set to true, if seconds should be shown on timeselection.</td>
-          </tr>
-          <tr>
-            <td class="left"><strong>[presetsTime]</strong></td>
-            <td class="left clr-hidden-xs-down"><code class="clr-code">Array&lt;TimerangePreset&gt;</code></td>
-            <td class="clr-hidden-xs-down"><code class="clr-code">[]</code></td>
-            <td class="left">
-              List of time/date presets. By default this list is empty, which hides the presets section in the UI.
-            </td>
-          </tr>
         </tbody>
       </table>
       <h4><code class="clr-code">clrDaterangepicker</code> directive</h4>
@@ -139,7 +118,7 @@
           </tr>
           <tr>
             <td class="left"><strong>(valueChange)</strong></td>
-            <td class="left clr-hidden-xs-down"><code class="clr-code">NullableDaterange | NullableTimerange</code></td>
+            <td class="left clr-hidden-xs-down"><code class="clr-code">NullableDaterange</code></td>
             <td class="clr-hidden-xs-down">N/A</td>
             <td class="left">Event triggered when the input value changes.</td>
           </tr>
@@ -163,23 +142,6 @@
         </clr-daterangepicker-container>
       </form>
       <clr-code-snippet [clrCode]="basicDemo"></clr-code-snippet>
-
-      <h3>TimeSelection</h3>
-
-      <p>
-        To use the daterangepicker, add the <code class="clr-code">clrDaterangepicker</code> directive to an
-        <code class="clr-code">input</code> field. Then, place the input inside the
-        <code class="clr-code">clr-daterangepicker-container</code> container element. If you want to active the
-        selection of time, just set <code class="clr-code">[timeSelection]="true"</code>. The value will be returned as
-        a NullableTimerange containing time information.
-      </p>
-      <form clrForm>
-        <clr-daterangepicker-container [timeSelection]="true">
-          <label>Basic time demo</label>
-          <input clrDaterangepicker type="date" name="daterange" [(ngModel)]="valueTime" />
-        </clr-daterangepicker-container>
-      </form>
-      <clr-code-snippet [clrCode]="basicTimeDemo"></clr-code-snippet>
 
       <h3>Configuration</h3>
 

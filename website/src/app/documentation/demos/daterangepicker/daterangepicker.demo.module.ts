@@ -19,7 +19,6 @@ import { DaterangepickerDemo } from './daterangepicker.demo';
     DocWrapperModule,
     RouterModule.forChild([{ path: '', component: DaterangepickerDemo }]),
     ClrAddonsModule,
-    ClrDaterangepickerModule,
   ],
   declarations: [DaterangepickerDemo],
   exports: [DaterangepickerDemo],

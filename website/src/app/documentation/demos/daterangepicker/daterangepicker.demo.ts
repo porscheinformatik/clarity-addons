@@ -10,14 +10,6 @@ const BASIC_DEMO = `
   </clr-daterangepicker-container>
 </form>
 `;
-const BASIC_TIME_DEMO = `
-<form clrForm>
-  <clr-daterangepicker-container [timeSelection]="true" [activateSeconds]="true">
-    <label>Basic demo</label>
-    <input clrDaterangepicker type="date" name="demo" [(ngModel)]="demo" />
-  </clr-daterangepicker-container>
-</form>
-`;
 const MIN_MAX_DEMO = `
 <form clrForm>
   <clr-daterangepicker-container>
@@ -156,9 +148,7 @@ const VALIDATION_DEMO = `
 })
 export class DaterangepickerDemo extends ClarityDocComponent {
   value: NullableDaterange;
-  valueTime: NullableTimerange;
   basicDemo = BASIC_DEMO;
-  basicTimeDemo = BASIC_TIME_DEMO;
   minMaxDemo = MIN_MAX_DEMO;
   presets = PRESETS;
   presetsDemo = PRESETS_DEMO;

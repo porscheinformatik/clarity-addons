@@ -42,7 +42,7 @@ export class ClrTimepickerComponent implements OnDestroy {
   }
 
   /**
-   * Set time.
+   * Set time value.
    */
   protected set time(val: string | undefined | null) {
     this.value = val;

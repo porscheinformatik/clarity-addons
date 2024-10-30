@@ -173,31 +173,6 @@ const DATE_FILTER = `
   </clr-dg-row>
 </clr-datagrid>`;
 
-const DATETIME_FILTER = `
-<clr-datagrid>
-  <clr-dg-column>
-    Name
-  </clr-dg-column>
-  <clr-dg-column [clrDgField]="'date'">
-    Date
-    <clr-dg-filter>
-      <clr-date-filter clrProperty="date"></clr-date-filter>
-    </clr-dg-filter>
-  </clr-dg-column>
-  <clr-dg-column [clrDgField]="'dateTime'">
-    DateTime
-     <clr-dg-filter>
-       <clr-date-filter [timeActive]="true" clrProperty="dateTime"></clr-date-filter>
-     </clr-dg-filter>
-  </clr-dg-column>
-
-  <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
-    <clr-dg-cell>{{data.name}}</clr-dg-cell>
-    <clr-dg-cell>{{data.date|date}}</clr-dg-cell>
-    <clr-dg-cell>{{ data.dateTime| date:'medium' }}</clr-dg-cell>
-  </clr-dg-row>
-</clr-datagrid>`;
-
 const DATE_FILTER_PRESELECT = `
 <clr-datagrid>
   <clr-dg-column>
@@ -241,7 +216,6 @@ export class DatagridDemo extends ClarityDocComponent {
   enumFilterPreselectExample = ENUM_FILTER_PRESELECT;
   enumFilterEmptyExample = ENUM_FILTER_EMPTY;
   dateFilterExample = DATE_FILTER;
-  dateFilterTimeExample = DATE_FILTER;
   dateFilterPreselectExample = DATE_FILTER_PRESELECT;
 
   selected: any[] = [];
@@ -272,9 +246,9 @@ export class DatagridDemo extends ClarityDocComponent {
   currentPage = 1;
 
   dataList = [
-    { name: 'TestValue1', date: today, dateTime: today },
-    { name: 'TestValue2', date: yesterday, dateTime: yesterday },
-    { name: 'TestValue3', date: tomorrow, dateTime: tomorrow },
+    { name: 'TestValue1', date: today },
+    { name: 'TestValue2', date: yesterday },
+    { name: 'TestValue3', date: tomorrow },
   ];
 
   dataListWithEmpty = [{ name: 'TestValue1' }, { name: 'TestValue2' }, { name: '' }];

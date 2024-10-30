@@ -20,8 +20,6 @@ export class ClrDateFilterComponent<T extends { [key: string]: any }>
   implements ClrDatagridFilterInterface<T>, AfterViewInit
 {
   private nestedProp: NestedProperty<any>;
-  @Input()
-  timeActive = false;
 
   @Input('clrProperty') set property(value: string) {
     this.nestedProp = new NestedProperty(value);
@@ -84,42 +82,17 @@ export class ClrDateFilterComponent<T extends { [key: string]: any }>
    */
   private _from: Date | null = null;
   private _to: Date | null = null;
-  private _toTime: string | null;
-  private _fromTime: string | null;
 
   public get from() {
     return this._from;
   }
 
-  public get fromTime() {
-    return this._fromTime;
-  }
-
-  public get toTime() {
-    return this._toTime;
-  }
-
   public set from(from: Date) {
     if (typeof from === 'object' && from !== this._from) {
-      console.log(this._from, this.fromTime);
       if (from && typeof from.setHours === 'function') {
         from.setHours(0, 0, 0, 0); // set from-date to start of day
       }
-      if (this.fromTime) {
-        const [hours, minutes, seconds] = this.fromTime.split(':').map(n => parseInt(n));
-        from.setHours(hours, minutes, seconds ? seconds : 0, 0);
-      }
       this._from = from;
-      this._changes.next([this._from, this._to]);
-      this.filterValueChange.emit([this._from, this._to]);
-    }
-  }
-
-  public set fromTime(fromtime: string) {
-    this._fromTime = fromtime;
-    if (this._fromTime && this._from) {
-      const [hours, minutes, seconds] = this._fromTime.split(':').map(n => parseInt(n));
-      this._from.setHours(hours, minutes, seconds ? seconds : 0, 0);
       this._changes.next([this._from, this._to]);
       this.filterValueChange.emit([this._from, this._to]);
     }
@@ -134,21 +107,7 @@ export class ClrDateFilterComponent<T extends { [key: string]: any }>
       if (to && typeof to.setHours === 'function') {
         to.setHours(23, 59, 59, 999); // set to-date to end of day
       }
-      if (this.toTime) {
-        const [hours, minutes, seconds] = this.toTime.split(':').map(n => parseInt(n));
-        to.setHours(hours, minutes, seconds ? seconds : 0, 0);
-      }
       this._to = to;
-      this._changes.next([this._from, this._to]);
-      this.filterValueChange.emit([this._from, this._to]);
-    }
-  }
-
-  public set toTime(totime: string) {
-    this._toTime = totime;
-    if (this._toTime && this._to) {
-      const [hours, minutes, seconds] = this._toTime.split(':').map(n => parseInt(n));
-      this._to.setHours(hours, minutes, seconds ? seconds : 0, 0);
       this._changes.next([this._from, this._to]);
       this.filterValueChange.emit([this._from, this._to]);
     }
@@ -199,8 +158,6 @@ export class ClrDateFilterComponent<T extends { [key: string]: any }>
   public clearFilter() {
     this._from = null;
     this._to = null;
-    this.fromTime = null;
-    this.toTime = null;
     this._changes.next([this._from, this._to]);
     this.filterValueChange.emit([this._from, this._to]);
   }

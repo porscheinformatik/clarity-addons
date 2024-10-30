@@ -12,21 +12,11 @@
       <clr-date-filter [clrProperty]="'created'" [(clrFilterValue)]="createdFilterValue"></clr-date-filter>
     </clr-dg-filter>
   </clr-dg-column>
-  <clr-dg-column [clrDgField]="'updated'">
-    <clr-dg-filter>
-      <clr-date-filter
-        [clrProperty]="'updated'"
-        [(clrFilterValue)]="updatedFilterValue"
-        [timeActive]="true"
-      ></clr-date-filter>
-    </clr-dg-filter>
-  </clr-dg-column>
 
   <clr-dg-row *clrDgItems="let item of items">
-    <clr-dg-cell>{{ item.name }}</clr-dg-cell>
-    <clr-dg-cell>{{ item.amount }}</clr-dg-cell>
-    <clr-dg-cell>{{ item.created | date }}</clr-dg-cell>
-    <clr-dg-cell>{{ item.updated | date:'medium' }}</clr-dg-cell>
+    <clr-dg-cell>{{item.name}}</clr-dg-cell>
+    <clr-dg-cell>{{item.amount}}</clr-dg-cell>
+    <clr-dg-cell>{{item.created | date}}</clr-dg-cell>
   </clr-dg-row>
 
   <clr-dg-footer>

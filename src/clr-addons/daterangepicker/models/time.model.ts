@@ -53,6 +53,7 @@ export class TimeModel {
     if (value) {
       return this.hours === value.hours && this.minutes === value.minutes && this.seconds === value.seconds;
     }
+
     return false;
   }
 

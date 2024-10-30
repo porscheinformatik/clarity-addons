@@ -11,7 +11,6 @@ import { ClrDaterangeMaxValidator } from './validators/daterange-max.validator';
 import { ClrDaterangeMinValidator } from './validators/daterange-min.validator';
 import { ClrDaterangeOrderValidator } from './validators/daterange-order.validator';
 import { ClrDaterangeRequiredValidator } from './validators/daterange-required.validator';
-import { ClrTimepickerComponent } from './directives/timepicker/timepicker.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, ClarityModule, ClrDatepickerModule, ClrIconModule],
@@ -24,7 +23,6 @@ import { ClrTimepickerComponent } from './directives/timepicker/timepicker.compo
     ClrDaterangepickerDirective,
     ClrDaterangeRequiredValidator,
     ClrIfDaterangeErrorDirective,
-    ClrTimepickerComponent,
   ],
   exports: [
     ClrDaterangeMaxValidator,
