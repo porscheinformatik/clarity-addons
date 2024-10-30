@@ -1,5 +1,5 @@
 import { NullableTimeModel } from '../models/time.model';
-import { Daterange } from '@porscheinformatik/clr-addons';
+import { Daterange } from './daterange.interface';
 
 /**
  * Timerange interface.

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
-import { DaterangePreset, DayModel, NullableDaterange } from '@porscheinformatik/clr-addons';
+import { DaterangePreset, DayModel, NullableDaterange, NullableTimerange } from '@porscheinformatik/clr-addons';
 
 const BASIC_DEMO = `
 <form clrForm>
@@ -12,7 +12,7 @@ const BASIC_DEMO = `
 `;
 const BASIC_TIME_DEMO = `
 <form clrForm>
-  <clr-daterangepicker-container [timeSelection]="true" [activateSeconds]="true">
+  <clr-daterangepicker-container [timeSelection]="true">
     <label>Basic demo</label>
     <input clrDaterangepicker type="date" name="demo" [(ngModel)]="demo" />
   </clr-daterangepicker-container>
