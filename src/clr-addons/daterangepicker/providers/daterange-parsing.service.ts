@@ -15,6 +15,7 @@ import {
 import { NullableDaterange } from '../interfaces/daterange.interface';
 import { DayModel, NullableDayModel } from '../models/day.model';
 import { NullableTimerange } from '../interfaces/timerange.interface';
+import { TimeModel } from '../models/time.model';
 
 /**
  * Daterange parsing service.
@@ -83,15 +84,14 @@ export class DaterangeParsingService {
   }
 
   public toLocaleStringWithTime(
-    daterange: NullableDaterange,
-    timerange: NullableTimerange,
+    daterange: NullableDaterange | NullableTimerange,
     separator: string = SEPARATOR_TEXT_DEFAULT
   ): string {
     if (daterange == null) {
       return '';
     }
 
-    const { from, to } = daterange;
+    const { from, to, fromTime, toTime } = daterange as NullableTimerange;
     if (from == null || to == null) {
       return '';
     }
@@ -102,7 +102,14 @@ export class DaterangeParsingService {
     const fromDateStr = this.toLocaleDisplayFormatString(fromDate);
     const toDateStr = this.toLocaleDisplayFormatString(toDate);
 
-    return fromDateStr + ' ' + timerange?.fromTime + separator + toDateStr + ' ' + timerange?.toTime;
+    if (fromTime === null || toTime === null) {
+      return fromDateStr + separator + toDateStr;
+    }
+    return fromDateStr + ' ' + this.toTimeString(fromTime) + separator + toDateStr + ' ' + this.toTimeString(toTime);
+  }
+
+  private toTimeString(time: TimeModel): string {
+    return time?.toHTML5SpecTimeString();
   }
 
   /**

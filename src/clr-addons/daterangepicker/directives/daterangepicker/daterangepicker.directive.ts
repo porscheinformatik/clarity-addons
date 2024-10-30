@@ -22,6 +22,7 @@ import { DaterangeParsingService } from '../../providers/daterange-parsing.servi
 import { DaterangeControlStateService } from '../../providers/daterange-control-state.service';
 import { ControlIdService } from '../../../abstract-form-component/control-id.service';
 import { NullableTimerange } from '../../interfaces/timerange.interface';
+import { TimeModel } from '../../models/time.model';
 
 /**
  * Daterangepicker.
@@ -52,6 +53,12 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
   @Input()
   public separatorText: string = SEPARATOR_TEXT_DEFAULT;
 
+  regex = /^[0-9]+[mhdw]$/;
+  regexW = /^[0-9]+w$/;
+  regexH = /^[0-9]+h$/;
+  regexD = /^[0-9]+d$/;
+  regexM = /^[0-9]+m$/;
+
   /**
    * Placeholder text.
    *
@@ -67,9 +74,11 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
         this.placeholder ??
         this.daterangeParsingService.localeFormat +
           ' hh:mm' +
+          (this.daterangeService.timeSecondsActive ? ':ss' : '') +
           this.separatorText +
           this.daterangeParsingService.localeFormat +
-          ' hh:mm'
+          ' hh:mm' +
+          (this.daterangeService.timeSecondsActive ? ':ss' : '')
       );
     }
     return (
@@ -161,11 +170,6 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
         this.triggerChange();
       })
     );
-    this.subscriptions.push(
-      this.daterangeService.valueChangeTime.subscribe((_timerange: NullableTimerange) => {
-        this.triggerChange();
-      })
-    );
   }
 
   /**
@@ -188,6 +192,12 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
     // Remove 'invalid' error.
     if (this.control.control.hasError('invalid')) {
       delete this.control.control.errors.invalid;
+    }
+
+    if (target.value && this.regex.test(target.value)) {
+      // handle easy access
+      this.handleEasyAccess(target.value);
+      return;
     }
 
     // If there is nothing to parse, `ClrDaterangeRequiredValidator` will take care of this.
@@ -261,9 +271,19 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
   private updateInput(): void {
     let dateString;
     if (this.daterangeService.timeActive) {
+      if (
+        this.daterangeService.selectedDaterange &&
+        Object.prototype.hasOwnProperty.call(this.daterangeService.selectedDaterange, 'fromTime')
+      ) {
+        this.daterangeService.updateSelectedDaterange(
+          this.daterangeService.selectedDaterange
+            ? (this.daterangeService.selectedDaterange as NullableTimerange)
+            : null,
+          false
+        );
+      }
       dateString = this.daterangeParsingService.toLocaleStringWithTime(
         this.daterangeService.selectedDaterange,
-        this.daterangeService.selectedTimerange,
         this.separatorText
       );
     } else {
@@ -309,5 +329,52 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
    */
   public setDisabledState(disabled: boolean): void {
     this.daterangeControlStateService.disabled = disabled;
+  }
+
+  private handleEasyAccess(value: string) {
+    const now = new Date();
+    if (this.regexW.test(value)) {
+      value = value.replace('w', '');
+      now.setDate(now.getDate() - Number(value) * 7);
+      this.daterangeService.updateSelectedDaterange(
+        {
+          from: new DayModel(now),
+          to: new DayModel(new Date()),
+        },
+        true
+      );
+    } else if (this.regexD.test(value)) {
+      value = value.replace('d', '');
+      now.setDate(now.getDate() - Number(value));
+      this.daterangeService.updateSelectedDaterange(
+        {
+          from: new DayModel(now),
+          to: new DayModel(new Date()),
+        },
+        true
+      );
+    } else if (this.regexH.test(value)) {
+      value = value.replace('h', '');
+      this.daterangeService.updateSelectedDaterange(
+        {
+          from: new DayModel(new Date()),
+          to: new DayModel(new Date()),
+          fromTime: new TimeModel(new Date(new Date().getTime() - Number(value) * 3600000)),
+          toTime: new TimeModel(new Date()),
+        },
+        true
+      );
+    } else if (this.regexM.test(value)) {
+      value = value.replace('m', '');
+      this.daterangeService.updateSelectedDaterange(
+        {
+          from: new DayModel(new Date()),
+          to: new DayModel(new Date()),
+          fromTime: new TimeModel(new Date(new Date().getTime() - Number(value) * 60000)),
+          toTime: new TimeModel(new Date()),
+        },
+        true
+      );
+    }
   }
 }
