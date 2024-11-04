@@ -43,14 +43,6 @@ describe('ClrDaterangepickerDirective', () => {
   let controlIdService: jasmine.SpyObj<ControlIdService>;
 
   beforeEach(() => {
-    /* daterangeService = jasmine.createSpyObj('DaterangeService', ['updateSelectedDaterange', 'isValid'], {
-       valueChange: new Subject<NullableDaterange>(),
-       selectedDaterange: null,
-       timeActive: false,
-       timeSecondsActive: false,
-       minDate: null,
-       maxDate: null,
-     });*/
     daterangeParsingService = jasmine.createSpyObj(
       'DaterangeParsingService',
       ['parse', 'toLocaleString', 'toLocaleStringWithTime'],
