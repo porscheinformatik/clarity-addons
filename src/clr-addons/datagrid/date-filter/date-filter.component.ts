@@ -148,7 +148,6 @@ export class ClrDateFilterComponent<T extends { [key: string]: any }>
     if (this._toTime && this._to) {
       const [hours, minutes, seconds] = this._toTime.split(':').map(n => parseInt(n));
       this._to.setHours(hours, minutes, seconds ? seconds : 0, 0);
-      console.log('TOOO' + this._to);
       this._changes.next([this._from, this._to]);
       this.filterValueChange.emit([this._from, this._to]);
     }
