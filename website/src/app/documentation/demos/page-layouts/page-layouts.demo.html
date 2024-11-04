@@ -1,6 +1,14 @@
 <clr-doc-wrapper [title]="title">
+  <ul>
+    <li><a routerLink="." fragment="base-layout" skipLocationChange>Base Pagelayout</a></li>
+    <li><a routerLink="." fragment="flow-layout" skipLocationChange>Flow Bar Layout</a></li>
+    <li><a routerLink="." fragment="sidebar-layout" skipLocationChange>Sidebar Pagelayout</a></li>
+    <li><a routerLink="." fragment="sticky-footer" skipLocationChange>Sticky Footer Layout</a></li>
+    <li><a routerLink="." fragment="ful-screen" skipLocationChange>Full Screen Dialog</a></li>
+  </ul>
+
   <article>
-    <h2>Base Pagelayout</h2>
+    <h2 id="base-layout">Base Pagelayout</h2>
     <h5 class="component-summary" id="generic-pager-header">
       The Base Pagelayout provides the most fundamental navigation and content elements.
     </h5>
@@ -47,6 +55,7 @@
         <li>Command bar</li>
         <li>Sidebar</li>
         <li>Content-Panel</li>
+        <li>Action-Panel</li>
       </ul>
 
       <h4>Command Bar</h4>
@@ -76,6 +85,12 @@
           <span class="nav-text">Command bar</span>
         </a>
       </div>
+      <div>
+        <cds-icon shape="display"></cds-icon>&nbsp;
+        <a class="nav-link" routerLink="/full-page-layouts/action-panel" routerLinkActive="active">
+          <span class="nav-text">Action panel</span>
+        </a>
+      </div>
       <p>
         Following example shows a base page layout without multiple pages. If you have different pages (different
         header, ...) with routing see next example.
@@ -95,7 +110,7 @@
       <clr-code-snippet [clrCode]="basePageRoutingPageTSCodeExample" clrLanguage="typescript"></clr-code-snippet>
     </div>
 
-    <h2>Flow Bar Layout</h2>
+    <h2 id="flow-layout">Flow Bar Layout</h2>
     <h5 class="component-summary">
       The Flow Bar Layout extends the Base Page Layout by adding a wizard-like navigation control.
     </h5>
@@ -167,7 +182,7 @@
       <clr-code-snippet [clrCode]="flowbarHtmlExampleSubmitEnter"></clr-code-snippet>
     </div>
 
-    <h2>Sidebar Pagelayout</h2>
+    <h2 id="sidebar-layout">Sidebar Pagelayout</h2>
     <h5 class="component-summary" id="generic-pager-header">
       The Sidebar Pagelayout enhances the Base Pagelayout with a vertical navigation sidebar.
     </h5>
@@ -213,7 +228,7 @@
       >
     </div>
 
-    <h2>Sticky Footer Layout</h2>
+    <h2 id="sticky-footer">Sticky Footer Layout</h2>
     <h5 class="component-summary">
       The Sticky footer represents a bar at the bottom of your page which is always visible - scrollable content is
       hidden behind the sticky footer.
@@ -282,7 +297,7 @@
       <clr-code-snippet [clrCode]="stickyFooterCodeExample"></clr-code-snippet>
     </div>
 
-    <h2>Full Screen Dialog</h2>
+    <h2 id="full-screen">Full Screen Dialog</h2>
     <h5 class="component-summary" id="generic-pager-header">
       The Full Screen Dialog is an alternative to the default modal dialog.
     </h5>

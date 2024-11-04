@@ -5,7 +5,7 @@
  */
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { ClrContentPanel, ClrHistoryModel, ClrHistoryService } from '@porscheinformatik/clr-addons';
+import { ClrActionPanel, ClrHistoryModel, ClrHistoryService } from '@porscheinformatik/clr-addons';
 
 @Component({
   selector: 'clr-basepage-layout-demo',
@@ -15,18 +15,23 @@ import { ClrContentPanel, ClrHistoryModel, ClrHistoryService } from '@porscheinf
 export class BasepageLayoutDemo implements OnInit {
   withCommandBar = false;
   withContentPanel = false;
+  withActionPanel = false;
   withHistory = false;
   id: string;
   context = { ['applicationName']: 'ADDONS' };
 
   @ViewChild('contentPanel')
-  contentPanel: ClrContentPanel;
+  contentPanel: ClrActionPanel;
+
+  @ViewChild('actionPanel')
+  actionPanel: ClrActionPanel;
 
   constructor(private router: Router, private historyService: ClrHistoryService) {}
 
   ngOnInit(): void {
     this.withCommandBar = this.collectRouteData('withCommand')[0];
     this.withContentPanel = this.collectRouteData('withPanel')[0];
+    this.withActionPanel = this.collectRouteData('withActionPanel')[0];
     this.withHistory = this.collectRouteData('withHistory')[0];
     this.id = this.collectRouteData('id')[0];
     if (this.withHistory) {
@@ -69,6 +74,10 @@ export class BasepageLayoutDemo implements OnInit {
 
   private togglePanel() {
     this.contentPanel.toggle();
+  }
+
+  private toggleActionPanel() {
+    this.actionPanel.toggle();
   }
 
   private collectRouteData(key: string) {
