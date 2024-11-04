@@ -37,7 +37,7 @@ describe('ClrDaterangepickerDirective', () => {
   let fixture: ComponentFixture<TestHostComponent>;
   let inputEl: DebugElement;
   let directive: ClrDaterangepickerDirective;
-  let daterangeService = new DaterangeService();
+  const daterangeService = new DaterangeService();
   let daterangeParsingService: jasmine.SpyObj<DaterangeParsingService>;
   let daterangeControlStateService: jasmine.SpyObj<DaterangeControlStateService>;
   let controlIdService: jasmine.SpyObj<ControlIdService>;
