@@ -86,11 +86,12 @@
             <td class="left">Set to true, if seconds should be shown on timeselection.</td>
           </tr>
           <tr>
-            <td class="left"><strong>[presetsTime]</strong></td>
-            <td class="left clr-hidden-xs-down"><code class="clr-code">Array&lt;TimerangePreset&gt;</code></td>
+            <td class="left"><strong>[presetsDateTime]</strong></td>
+            <td class="left clr-hidden-xs-down"><code class="clr-code">Array&lt;DateTimerangePreset&gt;</code></td>
             <td class="clr-hidden-xs-down"><code class="clr-code">[]</code></td>
             <td class="left">
-              List of time/date presets. By default this list is empty, which hides the presets section in the UI.
+              List of time/date presets. By default this list is empty, which hides the presets section in the UI. If
+              you active timeSelection, please only provide presetsDateTime.
             </td>
           </tr>
         </tbody>
@@ -169,9 +170,9 @@
       <p>
         To use the daterangepicker, add the <code class="clr-code">clrDaterangepicker</code> directive to an
         <code class="clr-code">input</code> field. Then, place the input inside the
-        <code class="clr-code">clr-daterangepicker-container</code> container element. If you want to active the
-        selection of time, just set <code class="clr-code">[timeSelection]="true"</code>. The value will be returned as
-        a NullableTimerange containing time information.
+        <code class="clr-code">clr-daterangepicker-container</code> container element. To use the daterangepicker with
+        time selection, set <code class="clr-code">[timeSelection]="true"</code> additionally. The value will be be
+        returned as a NullableTimerange containing time information.
       </p>
       <form clrForm>
         <clr-daterangepicker-container [timeSelection]="true">

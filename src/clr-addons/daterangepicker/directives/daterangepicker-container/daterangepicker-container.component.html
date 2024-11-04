@@ -107,8 +107,8 @@
           </button>
         </ng-container>
       </div>
-      <div *ngIf="this.presetsTime?.length > 0" class="clr-daterangepicker-container-popup-content-presets">
-        <ng-container *ngFor="let preset of this.presetsTime">
+      <div *ngIf="this.presetsDateTime?.length > 0" class="clr-daterangepicker-container-popup-content-presets">
+        <ng-container *ngFor="let preset of this.presetsDateTime">
           <button (click)="this.applyPresetTime(preset)" class="btn btn-outline btn-sm btn-block" type="button">
             {{ preset.text }}
           </button>

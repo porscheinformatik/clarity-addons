@@ -9,7 +9,7 @@ import {
 } from '../../../../clr-addons/daterangepicker';
 import { NullableTimerange } from '../../../../clr-addons/daterangepicker/interfaces/timerange.interface';
 import { TimeModel } from '../../../../clr-addons/daterangepicker/models/time.model';
-import { TimerangePreset } from '../../../../clr-addons/daterangepicker/interfaces/timerange-preset.interface';
+import { DateTimerangePreset } from '../../../../clr-addons/daterangepicker/interfaces/timerange-preset.interface';
 
 @Component({
   selector: 'clr-daterangepicker-demo',
@@ -153,7 +153,7 @@ const DATERANGEPICKER_PRESETS: Array<DaterangePreset> = [
   },
 ];
 
-const DATERANGETIMEPICKER_PRESETS: Array<TimerangePreset> = [
+const DATERANGETIMEPICKER_PRESETS: Array<DateTimerangePreset> = [
   {
     text: 'Last 5 minute',
     range: () => ({

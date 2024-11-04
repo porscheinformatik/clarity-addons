@@ -3,7 +3,7 @@ import { Timerange } from './timerange.interface';
 /**
  * timerange preset for daterangepicker.
  */
-export interface TimerangePreset {
+export interface DateTimerangePreset {
   text: string;
 
   range(): Timerange;

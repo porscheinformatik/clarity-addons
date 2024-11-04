@@ -241,7 +241,7 @@ export class DatagridDemo extends ClarityDocComponent {
   enumFilterPreselectExample = ENUM_FILTER_PRESELECT;
   enumFilterEmptyExample = ENUM_FILTER_EMPTY;
   dateFilterExample = DATE_FILTER;
-  dateFilterTimeExample = DATE_FILTER;
+  dateFilterTimeExample = DATETIME_FILTER;
   dateFilterPreselectExample = DATE_FILTER_PRESELECT;
 
   selected: any[] = [];

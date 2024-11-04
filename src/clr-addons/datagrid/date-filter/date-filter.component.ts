@@ -101,7 +101,6 @@ export class ClrDateFilterComponent<T extends { [key: string]: any }>
 
   public set from(from: Date) {
     if (typeof from === 'object' && from !== this._from) {
-      console.log(this._from, this.fromTime);
       if (from && typeof from.setHours === 'function') {
         from.setHours(0, 0, 0, 0); // set from-date to start of day
       }

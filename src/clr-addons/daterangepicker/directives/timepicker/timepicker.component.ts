@@ -1,5 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { TimeModel } from '../../models/time.model';
 
 @Component({
@@ -7,7 +6,7 @@ import { TimeModel } from '../../models/time.model';
   templateUrl: './timepicker.component.html',
   styleUrl: './timepicker.component.scss',
 })
-export class ClrTimepickerComponent implements OnDestroy {
+export class ClrTimepickerComponent {
   /**
    * Input value.
    */
@@ -49,14 +48,7 @@ export class ClrTimepickerComponent implements OnDestroy {
     this.valueChange.emit(new TimeModel(val));
   }
 
-  /** List of subscriptions to later destroy. */
-  private subscriptions: Array<Subscription> = [];
-
   public constructor() {}
-
-  public ngOnDestroy(): void {
-    this.subscriptions.forEach(subscription => subscription.unsubscribe());
-  }
 
   /**
    * Focus input.

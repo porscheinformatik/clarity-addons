@@ -6,6 +6,8 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ClrDaterangepickerModule } from '../daterangepicker.module';
 import { NullableDaterange } from '../interfaces/daterange.interface';
 import { DayModel } from '../models/day.model';
+import { TimeModel } from '../models/time.model';
+import { NullableTimerange } from '../interfaces/timerange.interface';
 
 @Component({
   template: `
@@ -122,6 +124,48 @@ describe('Validator: ClrDaterangeOrderValidator', () => {
 
       // Assert.
       expect(fixture.componentInstance.formControl.errors).toBeNull();
+    });
+
+    it('should allow a timerange ', () => {
+      // Arrange.
+      const daterange: NullableTimerange = {
+        from: new DayModel(2022, 11, 31),
+        to: new DayModel(2022, 11, 31),
+        fromTime: new TimeModel(10, 0, 0),
+        toTime: new TimeModel(11, 0, 0),
+      };
+
+      // Act.
+      fixture.componentInstance.formControl.setValue(daterange);
+      fixture.detectChanges();
+
+      // Assert.
+      expect(fixture.componentInstance.formControl.errors).toBeNull();
+    });
+
+    it("should not allow a timerange 'from' to be before the 'to' time", () => {
+      // Arrange.
+      const daterange: NullableTimerange = {
+        from: new DayModel(2022, 11, 31),
+        to: new DayModel(2022, 11, 31),
+        fromTime: new TimeModel(11, 0, 0),
+        toTime: new TimeModel(10, 0, 0),
+      };
+      const expectedErrors = {
+        fromIsAfterTo: {
+          from: new DayModel(2022, 11, 31),
+          to: new DayModel(2022, 11, 31),
+          fromTime: new TimeModel(11, 0, 0),
+          toTime: new TimeModel(10, 0, 0),
+        },
+      };
+
+      // Act.
+      fixture.componentInstance.formControl.setValue(daterange);
+      fixture.detectChanges();
+
+      // Assert.
+      expect(fixture.componentInstance.formControl.errors).toEqual(expectedErrors);
     });
   });
 

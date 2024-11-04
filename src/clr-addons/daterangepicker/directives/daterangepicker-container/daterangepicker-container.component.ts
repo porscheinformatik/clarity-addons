@@ -42,7 +42,7 @@ import { OpenedDatepickersTrackerService } from '../../providers/opened-datepick
 import { ClrAbstractContainer } from '../abstract-container.component';
 import { ClrDatepickerComponent } from '../datepicker/datepicker.component';
 import { ClrDaterangepickerDirective } from '../daterangepicker/daterangepicker.directive';
-import { TimerangePreset } from '../../interfaces/timerange-preset.interface';
+import { DateTimerangePreset } from '../../interfaces/timerange-preset.interface';
 import { NullableTimeModel } from '../../models/time.model';
 import { NullableTimerange } from '../../interfaces/timerange.interface';
 
@@ -76,7 +76,7 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
    * List of time presets.
    */
   @Input()
-  public presetsTime: Array<TimerangePreset> = [];
+  public presetsDateTime: Array<DateTimerangePreset> = [];
 
   @Input()
   public timeSelection = false;
@@ -339,7 +339,7 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
     }
   }
 
-  applyPresetTime(preset: TimerangePreset) {
+  applyPresetTime(preset: DateTimerangePreset) {
     const range = preset.range();
     this.daterangeService.updateSelectedDaterange(range);
 
