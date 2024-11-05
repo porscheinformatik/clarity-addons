@@ -5,7 +5,7 @@
  */
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { ClrActionPanel, ClrHistoryModel, ClrHistoryService } from '@porscheinformatik/clr-addons';
+import { ClrActionPanel, ClrContentPanel, ClrHistoryModel, ClrHistoryService } from '@porscheinformatik/clr-addons';
 
 @Component({
   selector: 'clr-basepage-layout-demo',
@@ -21,7 +21,7 @@ export class BasepageLayoutDemo implements OnInit {
   context = { ['applicationName']: 'ADDONS' };
 
   @ViewChild('contentPanel')
-  contentPanel: ClrActionPanel;
+  contentPanel: ClrContentPanel;
 
   @ViewChild('actionPanel')
   actionPanel: ClrActionPanel;

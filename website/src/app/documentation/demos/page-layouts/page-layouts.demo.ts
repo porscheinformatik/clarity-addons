@@ -30,6 +30,10 @@ const BASEPAGE_CODE_EXAMPLE = `
 </clr-main-container>
 `;
 
+const BUTTON_ORDER_EXAMPLE = `
+<history button> <custom page specific buttons> <action-panel-button>
+`;
+
 const BASEPAGE_ROUTING_CODE_EXAMPLE = `
 <clr-main-container>
     <clr-demo-menu></clr-demo-menu>
@@ -183,6 +187,31 @@ const FULLSCREENDIALOG_HTML_EXAMPLE = `
 </div>
 `;
 
+const ACTION_PANEL_EXAMPLE = `
+  <clr-action-panel-container>
+    <clr-action-panel-container-content>
+      <h1>Action Panel example</h1>
+    </clr-action-panel-container-content>
+    <clr-action-panel #actionPanel>
+      <ng-container clr-action-panel-content>
+        <h1>Heading 1</h1>
+        <p>Lorem <b>ipsum</b> dolor sit amet.</p>
+        <h2>Heading 2</h2>
+        <p>Lorem <b>ipsum</b> dolor sit amet.</p>
+      </ng-container>
+    </clr-action-panel>
+  </clr-action-panel-container>
+`;
+
+const ACTION_PANEL_TOGGLE_EXAMPLE = `
+ @ViewChild('actionPanel')
+ actionPanel: ClrActionPanel;
+
+  private toggleActionPanel() {
+    this.actionPanel.toggle();
+  }
+`;
+
 @Component({
   selector: 'clr-page-layouts-demo-docu',
   templateUrl: './page-layouts.demo.html',
@@ -200,6 +229,9 @@ export class PageLayoutsDemo extends ClarityDocComponent {
   flowbarHtmlExampleSubmitEnter = FLOWBAR_HTML_EXAMPLE_SUBMIT_ENTER;
   stickyFooterCodeExample = STICKYFOOTER_CODE_EXAMPLE;
   fullScreenDialogHtmlExample = FULLSCREENDIALOG_HTML_EXAMPLE;
+  buttonCodeOrderExample = BUTTON_ORDER_EXAMPLE;
+  actionPanelExample = ACTION_PANEL_EXAMPLE;
+  actionPanelToggleExample = ACTION_PANEL_TOGGLE_EXAMPLE;
 
   constructor() {
     super('page-layouts');

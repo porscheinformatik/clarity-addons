@@ -24,7 +24,7 @@ ClarityIcons.addIcons(timesIcon);
     ]),
   ],
   host: {
-    '[class.content-panel]': 'true',
+    '[class.action-panel]': 'true',
   },
 })
 export class ClrActionPanel {

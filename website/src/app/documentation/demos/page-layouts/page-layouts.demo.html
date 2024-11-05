@@ -1,5 +1,6 @@
 <clr-doc-wrapper [title]="title">
   <ul>
+    <li><a routerLink="." fragment="general" skipLocationChange>General layout settings</a></li>
     <li><a routerLink="." fragment="base-layout" skipLocationChange>Base Pagelayout</a></li>
     <li><a routerLink="." fragment="flow-layout" skipLocationChange>Flow Bar Layout</a></li>
     <li><a routerLink="." fragment="sidebar-layout" skipLocationChange>Sidebar Pagelayout</a></li>
@@ -8,6 +9,13 @@
   </ul>
 
   <article>
+    <h2 id="general">General layout settings</h2>
+    <h3>Action buttons</h3>
+    <p>
+      Buttons order guidline, please always use the following order for your buttons:
+      <clr-code-snippet [clrCode]="buttonCodeOrderExample"></clr-code-snippet>
+    </p>
+
     <h2 id="base-layout">Base Pagelayout</h2>
     <h5 class="component-summary" id="generic-pager-header">
       The Base Pagelayout provides the most fundamental navigation and content elements.
@@ -67,6 +75,20 @@
           within the content area.
         </li>
       </ul>
+
+      <h4>Action Panel Example</h4>
+      <ul class="list">
+        <li>Use when lot of actions are required</li>
+        <li>Group similar actions using Captions and Spacer.</li>
+        <li>Don't use when only a few actions are required, consider using Command bar then.</li>
+      </ul>
+      <p>Following example shows how to use the action panel.</p>
+      <clr-code-snippet [clrCode]="actionPanelExample"></clr-code-snippet>
+      <p>
+        Add a button to show/hide the action panel. This can be done by calling the toggle method of the action panel
+        component.
+      </p>
+      <clr-code-snippet [clrCode]="actionPanelToggleExample" clrLanguage="typescript"></clr-code-snippet>
     </div>
 
     <div id="code-examples">
