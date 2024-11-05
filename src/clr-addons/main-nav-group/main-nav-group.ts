@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -93,7 +93,6 @@ export class ClrMainNavGroup implements OnInit, OnDestroy {
   private closeMenus(selector: string): void {
     selector = '.main-container:not(.open-hamburger-menu) ' + selector;
     const hiddenInputs: NodeListOf<HTMLInputElement> = document.querySelectorAll(selector);
-    // tslint:disable-next-line:prefer-for-of
     for (let i = 0; i < hiddenInputs.length; i++) {
       hiddenInputs[i].checked = false;
     }

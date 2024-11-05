@@ -167,9 +167,8 @@ export class InternationalizationComponent {
   // this method gets the currency code for the currency pipe, otherwise it would always use USD.
   getCurrencyCode(locale): string {
     const symbol = locale[LocaleDataIndex.CurrencySymbol];
-    // tslint:disable-next-line:forin
-    for (let curr in CURRENCIES_EN) {
-      let array = CURRENCIES_EN[curr];
+    for (const curr in CURRENCIES_EN) {
+      const array = CURRENCIES_EN[curr];
       if (array[0] === symbol) {
         return curr;
       }
