@@ -81,6 +81,16 @@ const fullPageLayoutsRoutes: Routes = [
         },
       },
       {
+        path: `action-panel`,
+        loadChildren: () =>
+          import('./basepage-layout/basepage-layout.demo.module').then(m => m.BasepageLayoutDemoModule),
+        data: {
+          browserTitle: 'Action Panel Layout',
+          withCommand: true,
+          withActionPanel: true,
+        },
+      },
+      {
         path: `content-with-history`,
         loadChildren: () =>
           import('./basepage-layout/basepage-layout.demo.module').then(m => m.BasepageLayoutDemoModule),

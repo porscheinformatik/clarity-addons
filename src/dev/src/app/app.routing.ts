@@ -11,6 +11,10 @@ import { LandingComponent } from './landing.component'; /* eslint-disable @types
 export const APP_ROUTES: Routes = [
   { path: '', component: LandingComponent },
   {
+    path: 'action-panel',
+    loadChildren: () => import('./action-panel/action-panel.demo.module').then(m => m.ActionPanelDemoModule),
+  },
+  {
     path: 'back-button',
     loadChildren: () => import('./back-button/back-button.demo.module').then(m => m.BackButtonDemoModule),
   },

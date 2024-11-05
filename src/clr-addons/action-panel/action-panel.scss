@@ -1,0 +1,72 @@
+@include exports('action-panel.clr-addons') {
+  :root {
+    --clr-content-panel-width: 456px;
+  }
+
+  .action-panel-container {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .action-panel-outer-wrapper {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+  }
+
+  @media screen and (min-width: map-get($clr-grid-breakpoints, xl)) {
+    .action-panel-outer-wrapper {
+      order: 1;
+    }
+  }
+
+  .action-panel {
+    // Position action-panel to the right of the main action
+    order: 2;
+  }
+
+  .action-panel-action-wrapper {
+    background-color: var(--clr-global-app-background);
+    z-index: map-get($clr-layers, sidepanel-bg) - 1;
+    padding: 1rem;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    border-left: var(--clr-global-borderwidth) solid var(--clr-border-color);
+    overflow: auto;
+
+    @media screen and (min-width: map-get($clr-grid-breakpoints, md)) {
+      width: var(--clr-action-panel-width);
+    }
+
+    @media screen and (min-width: map-get($clr-grid-breakpoints, xl)) {
+      position: relative;
+      height: 100%;
+    }
+
+    @media screen and (max-width: map-get($clr-grid-breakpoints, md)) {
+      width: 100%;
+      border: none;
+    }
+  }
+
+  .action-panel-backdrop {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: var(--clr-color-neutral-900);
+    opacity: 0.85;
+    z-index: map-get($clr-layers, sidepanel-bg) - 2;
+
+    @media screen and (max-width: map-get($clr-grid-breakpoints, md)) {
+      display: none;
+    }
+
+    @media screen and (min-width: map-get($clr-grid-breakpoints, xl)) {
+      display: none;
+    }
+  }
+}

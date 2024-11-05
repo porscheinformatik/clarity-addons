@@ -1,0 +1,6 @@
+<ng-container *ngIf="_open">
+  <div [@slideIn] class="action-panel-action-wrapper" (@slideIn.done)="resizeWindow()">
+    <ng-content select="[clr-action-panel-content]"></ng-content>
+  </div>
+  <div [@fade] class="action-panel-backdrop" (click)="close()" (@fade.done)="resizeWindow()"></div>
+</ng-container>

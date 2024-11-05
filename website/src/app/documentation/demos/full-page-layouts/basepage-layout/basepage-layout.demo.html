@@ -9,9 +9,10 @@
   <div class="content-header">
     <clr-back-button></clr-back-button>
     <h2>
-      <span *ngIf="!withCommandBar && !withContentPanel">Base Pagelayout</span>
-      <span *ngIf="withCommandBar && !withContentPanel">Command bar</span>
+      <span *ngIf="!withCommandBar && !withContentPanel && !withActionPanel">Base Pagelayout</span>
+      <span *ngIf="withCommandBar && !withContentPanel && !withActionPanel">Command bar</span>
       <span *ngIf="withCommandBar && withContentPanel">Content Panel</span>
+      <span *ngIf="withActionPanel">Action Panel</span>
     </h2>
     <div class="command-bar">
       <clr-history
@@ -22,6 +23,7 @@
         [clrDomain]="'porscheinformatik.github.io'"
       ></clr-history>
       <clr-button-group [clrMenuPosition]="'bottom-right'" *ngIf="withCommandBar">
+        <clr-button *ngIf="withActionPanel" (click)="toggleActionPanel()">Show/Hide</clr-button>
         <clr-button *ngIf="!withContentPanel">Command1</clr-button>
         <clr-button *ngIf="!withContentPanel">Command2</clr-button>
         <clr-button *ngIf="withContentPanel" (click)="togglePanel()">Show/Hide</clr-button>
@@ -29,7 +31,7 @@
       </clr-button-group>
     </div>
   </div>
-  <div class="content-container" *ngIf="!withContentPanel">
+  <div class="content-container" *ngIf="!withContentPanel && !withActionPanel">
     <div class="content-area">
       This is the page content<span *ngIf="id"> for submenu {{id}}</span>
 
@@ -98,4 +100,27 @@
       <ng-container clr-content-panel-content>Content</ng-container>
     </clr-content-panel>
   </clr-content-panel-container>
+
+  <clr-action-panel-container *ngIf="withActionPanel">
+    <clr-action-panel-container-content>
+      <h1>Action Panel DEMO</h1>
+      <p>Use when lot of actions are required</p>
+      <p>Group similar actions using Captions and Spacer.</p>
+      <p>Don't use when only a few actions are required, consider using Command bar then.</p>
+    </clr-action-panel-container-content>
+    <clr-action-panel #actionPanel>
+      <ng-container clr-action-panel-content>
+        <h1>Heading 1</h1>
+        <p>Lorem <b>ipsum</b> dolor sit amet.</p>
+        <h2>Heading 2</h2>
+        <p>Lorem <b>ipsum</b> dolor sit amet.</p>
+        <h3>Heading 3</h3>
+        <p>Lorem <b>ipsum</b> dolor sit amet.</p>
+        <h4>Heading 4</h4>
+        <p>Lorem <b>ipsum</b> dolor sit amet.</p>
+        <h5>Heading 5</h5>
+        <p>Lorem <b>ipsum</b> dolor sit amet.</p>
+      </ng-container>
+    </clr-action-panel>
+  </clr-action-panel-container>
 </clr-main-container>

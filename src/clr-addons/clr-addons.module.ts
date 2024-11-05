@@ -35,6 +35,7 @@ import { ClrDropdownOverflowModule } from './dropdown';
 import { ClrDatagridStatePersistenceModule, ClrDateFilterModule, ClrEnumFilterModule } from './datagrid';
 import { ClrDaterangepickerModule } from './daterangepicker';
 import { ClrIfWarningModule } from './clr-control-warning/if-warning.module';
+import { ClrActionPanelModule } from './action-panel';
 
 @NgModule({
   exports: [
@@ -70,6 +71,7 @@ import { ClrIfWarningModule } from './clr-control-warning/if-warning.module';
     ClrDateFilterModule,
     ClrDaterangepickerModule,
     ClrIfWarningModule,
+    ClrActionPanelModule,
   ],
 })
 export class ClrAddonsModule {}
