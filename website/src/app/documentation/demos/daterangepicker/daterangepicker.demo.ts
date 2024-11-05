@@ -1,10 +1,18 @@
 import { Component } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
-import { DaterangePreset, DayModel, NullableDaterange } from '@porscheinformatik/clr-addons';
+import { DaterangePreset, DayModel, NullableDaterange, NullableTimerange } from '@porscheinformatik/clr-addons';
 
 const BASIC_DEMO = `
 <form clrForm>
   <clr-daterangepicker-container>
+    <label>Basic demo</label>
+    <input clrDaterangepicker type="date" name="demo" [(ngModel)]="demo" />
+  </clr-daterangepicker-container>
+</form>
+`;
+const BASIC_TIME_DEMO = `
+<form clrForm>
+  <clr-daterangepicker-container [timeSelection]="true">
     <label>Basic demo</label>
     <input clrDaterangepicker type="date" name="demo" [(ngModel)]="demo" />
   </clr-daterangepicker-container>
@@ -148,7 +156,9 @@ const VALIDATION_DEMO = `
 })
 export class DaterangepickerDemo extends ClarityDocComponent {
   value: NullableDaterange;
+  valueTime: NullableTimerange;
   basicDemo = BASIC_DEMO;
+  basicTimeDemo = BASIC_TIME_DEMO;
   minMaxDemo = MIN_MAX_DEMO;
   presets = PRESETS;
   presetsDemo = PRESETS_DEMO;

@@ -54,6 +54,36 @@ class TestComponentPreselectedValues {
   @ViewChild(ClrDatagrid) datagrid: ClrDatagrid;
 }
 
+@Component({
+  template: `
+    <body>
+      <clr-datagrid>
+        <clr-dg-column [clrDgField]="'dateTime'">
+          <clr-dg-filter>
+            <clr-date-filter
+              clrProperty="dateTime"
+              [timeActive]="true"
+              [(clrFilterValue)]="filterValue"
+            ></clr-date-filter>
+          </clr-dg-filter>
+        </clr-dg-column>
+
+        <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
+          <clr-dg-cell>{{ data.name }}</clr-dg-cell>
+          <clr-dg-cell>{{ data.name }}</clr-dg-cell>
+        </clr-dg-row>
+      </clr-datagrid>
+    </body>
+  `,
+})
+class TestComponentPreselectedTimeValues {
+  dataList = [{ date: yesterday }, { date: today }, { date: tomorrow }];
+  filterValue = [null, today];
+
+  @ViewChild(ClrDateFilterComponent) component: ClrDateFilterComponent<{ date: Date }>;
+  @ViewChild(ClrDatagrid) datagrid: ClrDatagrid;
+}
+
 describe('DateFilterComponent', () => {
   describe('Default', () => {
     let fixture: ComponentFixture<TestComponent>;
@@ -107,6 +137,35 @@ describe('DateFilterComponent', () => {
 
     it('preselected values should be filtered', waitForAsync(() => {
       expect(fixture.componentInstance.datagrid.rows.length).toBe(2);
+    }));
+  });
+
+  describe('Preselected time values', () => {
+    let fixture: ComponentFixture<TestComponentPreselectedTimeValues>;
+
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [ClarityModule],
+        declarations: [TestComponentPreselectedTimeValues, ClrDateFilterComponent],
+        providers: [],
+      }).compileComponents();
+    }));
+
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestComponentPreselectedTimeValues);
+      fixture.detectChanges();
+    });
+
+    it('should create', () => {
+      expect(fixture.componentInstance.component).toBeTruthy();
+    });
+
+    it('time activate', () => {
+      expect(fixture.componentInstance.component.timeActive).toBeTruthy();
+    });
+
+    it('preselected values should be filtered', waitForAsync(() => {
+      expect(fixture.componentInstance.datagrid.rows.length).toBe(0);
     }));
   });
 });

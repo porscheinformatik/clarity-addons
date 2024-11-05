@@ -21,6 +21,8 @@ import { DaterangeService } from '../../providers/daterange.service';
 import { DaterangeParsingService } from '../../providers/daterange-parsing.service';
 import { DaterangeControlStateService } from '../../providers/daterange-control-state.service';
 import { ControlIdService } from '../../../abstract-form-component/control-id.service';
+import { NullableTimerange } from '../../interfaces/timerange.interface';
+import { TimeModel } from '../../models/time.model';
 
 /**
  * Daterangepicker.
@@ -51,6 +53,12 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
   @Input()
   public separatorText: string = SEPARATOR_TEXT_DEFAULT;
 
+  regex = /^[0-9]+[mhdw]$/;
+  regexW = /^[0-9]+w$/;
+  regexH = /^[0-9]+h$/;
+  regexD = /^[0-9]+d$/;
+  regexM = /^[0-9]+m$/;
+
   /**
    * Placeholder text.
    *
@@ -58,8 +66,21 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
    * Adding an incorrect placeholder will create confusion while entering the daterange in the input.
    */
   @Input() public placeholder: string;
+
   @HostBinding('attr.placeholder')
   public get placeholderText(): string {
+    if (this.daterangeService.timeActive) {
+      return (
+        this.placeholder ??
+        this.daterangeParsingService.localeFormat +
+          ' hh:mm' +
+          (this.daterangeService.timeSecondsActive ? ':ss' : '') +
+          this.separatorText +
+          this.daterangeParsingService.localeFormat +
+          ' hh:mm' +
+          (this.daterangeService.timeSecondsActive ? ':ss' : '')
+      );
+    }
     return (
       this.placeholder ??
       this.daterangeParsingService.localeFormat + this.separatorText + this.daterangeParsingService.localeFormat
@@ -74,6 +95,7 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
   public get id() {
     return this.controlIdService.id;
   }
+
   /**
    * Id-attribute.
    * @returns Id-attribute.
@@ -90,6 +112,7 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
   public set disabled(value: boolean) {
     this.daterangeControlStateService.disabled = value;
   }
+
   /**
    * Disabled state.
    * @returns Disabled state.
@@ -170,6 +193,16 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
     if (this.control.control.hasError('invalid')) {
       delete this.control.control.errors.invalid;
     }
+    if (!target) {
+      return;
+    }
+
+    console.log('aaaaa', target, this.regex.test(target.value));
+    if (target.value && this.regex.test(target.value)) {
+      // handle easy access
+      this.handleEasyAccess(target.value);
+      return;
+    }
 
     // If there is nothing to parse, `ClrDaterangeRequiredValidator` will take care of this.
     if (!target.value) {
@@ -240,10 +273,29 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
    * Update input with friendly daterange text.
    */
   private updateInput(): void {
-    const dateString = this.daterangeParsingService.toLocaleString(
-      this.daterangeService.selectedDaterange,
-      this.separatorText
-    );
+    let dateString;
+    if (this.daterangeService.timeActive) {
+      if (
+        this.daterangeService.selectedDaterange &&
+        Object.prototype.hasOwnProperty.call(this.daterangeService.selectedDaterange, 'fromTime')
+      ) {
+        this.daterangeService.updateSelectedDaterange(
+          this.daterangeService.selectedDaterange
+            ? (this.daterangeService.selectedDaterange as NullableTimerange)
+            : null,
+          false
+        );
+      }
+      dateString = this.daterangeParsingService.toLocaleStringWithTime(
+        this.daterangeService.selectedDaterange,
+        this.separatorText
+      );
+    } else {
+      dateString = this.daterangeParsingService.toLocaleString(
+        this.daterangeService.selectedDaterange,
+        this.separatorText
+      );
+    }
     this.renderer.setProperty(this.element.nativeElement, 'value', dateString);
   }
 
@@ -262,6 +314,7 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
   public registerOnChange(fn: (value: NullableDaterange) => void): void {
     this.onChanged = fn;
   }
+
   private onChanged = (_value: NullableDaterange): void => undefined;
 
   /**
@@ -271,6 +324,7 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
   public registerOnTouched(fn: (value: NullableDaterange) => void): void {
     this.onTouched = fn;
   }
+
   private onTouched = (_value: NullableDaterange): void => undefined;
 
   /**
@@ -279,5 +333,52 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
    */
   public setDisabledState(disabled: boolean): void {
     this.daterangeControlStateService.disabled = disabled;
+  }
+
+  private handleEasyAccess(value: string) {
+    const now = new Date();
+    if (this.regexW.test(value)) {
+      value = value.replace('w', '');
+      now.setDate(now.getDate() - Number(value) * 7);
+      this.daterangeService.updateSelectedDaterange(
+        {
+          from: new DayModel(now),
+          to: new DayModel(new Date()),
+        },
+        true
+      );
+    } else if (this.regexD.test(value)) {
+      value = value.replace('d', '');
+      now.setDate(now.getDate() - Number(value));
+      this.daterangeService.updateSelectedDaterange(
+        {
+          from: new DayModel(now),
+          to: new DayModel(new Date()),
+        },
+        true
+      );
+    } else if (this.regexH.test(value)) {
+      value = value.replace('h', '');
+      this.daterangeService.updateSelectedDaterange(
+        {
+          from: new DayModel(new Date()),
+          to: new DayModel(new Date()),
+          fromTime: new TimeModel(new Date(new Date().getTime() - Number(value) * 3600000)),
+          toTime: new TimeModel(new Date()),
+        },
+        true
+      );
+    } else if (this.regexM.test(value)) {
+      value = value.replace('m', '');
+      this.daterangeService.updateSelectedDaterange(
+        {
+          from: new DayModel(new Date()),
+          to: new DayModel(new Date()),
+          fromTime: new TimeModel(new Date(new Date().getTime() - Number(value) * 60000)),
+          toTime: new TimeModel(new Date()),
+        },
+        true
+      );
+    }
   }
 }

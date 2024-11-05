@@ -4,7 +4,9 @@ import localeZh from '@angular/common/locales/zh';
 
 import { NullableDaterange } from '../interfaces/daterange.interface';
 import { DayModel } from '../models/day.model';
+import { TimeModel } from '../models/time.model';
 import { DaterangeParsingService } from './daterange-parsing.service';
+import { NullableTimerange } from '../interfaces/timerange.interface';
 
 const LITTLE_ENDIAN_LOCALE = 'nl';
 const MIDDLE_ENDIAN_LOCALE = 'en-US';
@@ -123,6 +125,39 @@ describe('Service: DaterangeParsingService', () => {
 
       // Assert.
       expect(result).toBe('01-01-2022 tot 31-12-2022');
+    });
+  });
+
+  describe('toLocaleTimeString', () => {
+    it('should return empty string when getting locale string with value `null`', () => {
+      // Arrange.
+      const locale = LITTLE_ENDIAN_LOCALE;
+      const daterange: NullableTimerange = null;
+      const sut = new DaterangeParsingService(locale);
+
+      // Act.
+      const result = sut.toLocaleStringWithTime(daterange);
+
+      // Assert.
+      expect(result).toBe('');
+    });
+
+    it('should return string when getting locale string with valid daterange', () => {
+      // Arrange.
+      const locale = LITTLE_ENDIAN_LOCALE;
+      const daterange: NullableTimerange = {
+        from: new DayModel(2022, 0, 1),
+        to: new DayModel(2022, 11, 31),
+        fromTime: new TimeModel(10, 10, 0),
+        toTime: new TimeModel(10, 10, 0),
+      };
+      const sut = new DaterangeParsingService(locale);
+
+      // Act.
+      const result = sut.toLocaleStringWithTime(daterange);
+
+      // Assert.
+      expect(result).toBe('01-01-2022 10:10 - 31-12-2022 10:10');
     });
   });
 

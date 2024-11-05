@@ -17,10 +17,15 @@
 
   .clr-smart-close-button {
     min-width: 1.2rem;
-    margin: 0;
     padding: 0;
     position: absolute;
     right: 0;
+    margin: 5px;
+  }
+
+  .btn-trash {
+    padding-right: 25px;
+    margin: 5px;
   }
 
   .clr-daterangepicker-container-popup-content {
@@ -40,5 +45,23 @@
         margin-right: 0;
       }
     }
+  }
+}
+
+.datetime-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.datetime-container-to {
+  padding-top: 1rem;
+}
+
+.timepicker {
+  padding-left: 1rem;
+
+  clr-input-container {
+    margin-top: 0.8rem;
   }
 }
