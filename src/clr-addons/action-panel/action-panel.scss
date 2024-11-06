@@ -1,4 +1,7 @@
 @include exports('action-panel.clr-addons') {
+  :root {
+    --clr-action-panel-width: 456px;
+  }
   .action-panel-container {
     position: relative;
     overflow: hidden;
