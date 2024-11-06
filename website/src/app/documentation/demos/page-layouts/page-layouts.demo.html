@@ -1,12 +1,42 @@
 <clr-doc-wrapper [title]="title">
-  <ul>
-    <li><a routerLink="." fragment="general" skipLocationChange>General layout settings</a></li>
-    <li><a routerLink="." fragment="base-layout" skipLocationChange>Base Pagelayout</a></li>
-    <li><a routerLink="." fragment="flow-layout" skipLocationChange>Flow Bar Layout</a></li>
-    <li><a routerLink="." fragment="sidebar-layout" skipLocationChange>Sidebar Pagelayout</a></li>
-    <li><a routerLink="." fragment="sticky-footer" skipLocationChange>Sticky Footer Layout</a></li>
-    <li><a routerLink="." fragment="ful-screen" skipLocationChange>Full Screen Dialog</a></li>
-  </ul>
+  <div class="table-of-contents">
+    <span class="title">Content</span>
+    <ul class="list-unstyled toc-list">
+      <li>
+        <a
+          routerLink="."
+          fragment="general"
+          [class.active]="(activeFragment | async) === 'general' || (activeFragment | async) === null"
+          >General layout settings</a
+        >
+      </li>
+      <li>
+        <a routerLink="." fragment="base-layout" [class.active]="(activeFragment | async) === 'base-layout'"
+          >Base Pagelayout</a
+        >
+      </li>
+      <li>
+        <a routerLink="." fragment="flow-layout" [class.active]="(activeFragment | async) === 'flow-layout'"
+          >Flow Bar Layout</a
+        >
+      </li>
+      <li>
+        <a routerLink="." fragment="sidebar-layout" [class.active]="(activeFragment | async) === 'sidebar-layout'"
+          >Sidebar Pagelayout</a
+        >
+      </li>
+      <li>
+        <a routerLink="." fragment="sticky-footer" [class.active]="(activeFragment | async) === 'sticky-footer'"
+          >Sticky Footer Layout</a
+        >
+      </li>
+      <li>
+        <a routerLink="." fragment="full-screen" [class.active]="(activeFragment | async) === 'full-screen'"
+          >Full Screen Dialog</a
+        >
+      </li>
+    </ul>
+  </div>
 
   <article>
     <h2 id="general">General layout settings</h2>

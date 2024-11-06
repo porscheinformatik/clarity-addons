@@ -6,6 +6,8 @@
 import { Component } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
 import { ClarityIcons, displayIcon } from '@cds/core/icon';
+import { share } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 ClarityIcons.addIcons(displayIcon);
 
@@ -232,8 +234,10 @@ export class PageLayoutsDemo extends ClarityDocComponent {
   buttonCodeOrderExample = BUTTON_ORDER_EXAMPLE;
   actionPanelExample = ACTION_PANEL_EXAMPLE;
   actionPanelToggleExample = ACTION_PANEL_TOGGLE_EXAMPLE;
+  activeFragment;
 
-  constructor() {
+  constructor(public route: ActivatedRoute) {
     super('page-layouts');
+    this.activeFragment = this.route.fragment.pipe(share());
   }
 }

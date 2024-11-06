@@ -9,17 +9,47 @@
       following only additional features are documented
     </p>
 
+    <div class="table-of-contents">
+      <span class="title">Content</span>
+      <ul class="list-unstyled toc-list">
+        <li>
+          <a
+            routerLink="."
+            fragment="enum-filter"
+            [class.active]="(activeFragment | async) === 'enum-filter' || (activeFragment | async) === null"
+            >Enum Filter</a
+          >
+        </li>
+        <li>
+          <a routerLink="." fragment="date-filter" [class.active]="(activeFragment | async) === 'date-filter'"
+            >Date Filter</a
+          >
+        </li>
+        <li>
+          <a routerLink="." fragment="selection" [class.active]="(activeFragment | async) === 'selection'">Selection</a>
+        </li>
+        <li>
+          <a routerLink="." fragment="full-height" [class.active]="(activeFragment | async) === 'full-height'"
+            >Full-Height</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="."
+            fragment="state-persistence"
+            [class.active]="(activeFragment | async) === 'state-persistence'"
+            >State persistence</a
+          >
+        </li>
+        <li>
+          <a routerLink="." fragment="highlighting" [class.active]="(activeFragment | async) === 'highlighting'"
+            >Highlighting</a
+          >
+        </li>
+      </ul>
+    </div>
+
     <br />
-
-    <ul>
-      <li><a routerLink="." fragment="enum-filter" skipLocationChange>Enum Filter</a></li>
-      <li><a routerLink="." fragment="date-filter" skipLocationChange>Date Filter</a></li>
-      <li><a routerLink="." fragment="selection" skipLocationChange>Selection</a></li>
-      <li><a routerLink="." fragment="full-height" skipLocationChange>Full-Height</a></li>
-      <li><a routerLink="." fragment="state-persistence" skipLocationChange>State persistence</a></li>
-      <li><a routerLink="." fragment="highlighting" skipLocationChange>Highlighting</a></li>
-    </ul>
-
     <!-- ENUM FILTER -->
     <h3 id="enum-filter">Enum Filter</h3>
     <p>
