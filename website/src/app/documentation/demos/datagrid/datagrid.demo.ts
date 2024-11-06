@@ -5,7 +5,7 @@
  */
 import { Component } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
-import { of } from 'rxjs';
+import { of, share } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import {
   ClarityIcons,
@@ -15,6 +15,7 @@ import {
   successStandardIcon,
   warningStandardIcon,
 } from '@cds/core/icon';
+import { ActivatedRoute } from '@angular/router';
 
 const NO_SELECT_ALL_HTML = `
 <clr-datagrid class="datagrid-no-select-all" [(clrDgSelected)]="selected">
@@ -243,7 +244,7 @@ export class DatagridDemo extends ClarityDocComponent {
   dateFilterExample = DATE_FILTER;
   dateFilterTimeExample = DATETIME_FILTER;
   dateFilterPreselectExample = DATE_FILTER_PRESELECT;
-
+  activeFragment;
   selected: any[] = [];
   selectedMinor: any[] = [];
 
@@ -283,8 +284,9 @@ export class DatagridDemo extends ClarityDocComponent {
   preselectedValues = ['TestValue1', 'TestValue3'];
   dateFilterValue = [null, today];
 
-  constructor() {
+  constructor(public route: ActivatedRoute) {
     super('datagrid');
+    this.activeFragment = this.route.fragment.pipe(share());
   }
 
   getColoring(state: string) {

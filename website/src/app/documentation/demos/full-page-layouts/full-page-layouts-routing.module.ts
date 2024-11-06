@@ -87,6 +87,7 @@ const fullPageLayoutsRoutes: Routes = [
         data: {
           browserTitle: 'Action Panel Layout',
           withCommand: true,
+          withHistory: true,
           withActionPanel: true,
         },
       },

@@ -235,6 +235,21 @@ const documentationRoutes: Routes = [
           browserTitle: 'Control Warning',
         },
       },
+      {
+        path: 'action-panel',
+        loadChildren: () => import('./demos/action-panel/action-panel.demo.module').then(m => m.ActionPanelDemoModule),
+        data: {
+          browserTitle: 'Action Panel',
+        },
+      },
+      {
+        path: 'content-panel',
+        loadChildren: () =>
+          import('./demos/content-panel/content-panel.demo.module').then(m => m.ContentPanelDemoModule),
+        data: {
+          browserTitle: 'Content Panel',
+        },
+      },
     ],
   },
 ];

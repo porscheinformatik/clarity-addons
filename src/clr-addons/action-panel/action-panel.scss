@@ -1,8 +1,4 @@
 @include exports('action-panel.clr-addons') {
-  :root {
-    --clr-content-panel-width: 456px;
-  }
-
   .action-panel-container {
     position: relative;
     overflow: hidden;
@@ -23,6 +19,7 @@
   .action-panel {
     // Position action-panel to the right of the main action
     order: 2;
+    min-width: 456px;
   }
 
   .action-panel-action-wrapper {
