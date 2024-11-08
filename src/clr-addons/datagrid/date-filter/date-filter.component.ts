@@ -64,13 +64,13 @@ export class ClrDateFilterComponent<T extends { [key: string]: any }>
       if (values && (values[0] !== this._from || values[1] !== this._to)) {
         if (typeof values[0] === 'object') {
           this._from = values[0];
-          this._fromTime = this._from.toLocaleTimeString();
+          this._fromTime = this._from?.toLocaleTimeString();
         } else {
           this._from = null;
         }
         if (typeof values[1] === 'object') {
           this._to = values[1];
-          this._toTime = this._to.toLocaleTimeString();
+          this._toTime = this._to?.toLocaleTimeString();
         } else {
           this._to = null;
         }
