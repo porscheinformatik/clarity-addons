@@ -64,11 +64,13 @@ export class ClrDateFilterComponent<T extends { [key: string]: any }>
       if (values && (values[0] !== this._from || values[1] !== this._to)) {
         if (typeof values[0] === 'object') {
           this._from = values[0];
+          this._fromTime = this._from.toLocaleTimeString();
         } else {
           this._from = null;
         }
         if (typeof values[1] === 'object') {
           this._to = values[1];
+          this._toTime = this._to.toLocaleTimeString();
         } else {
           this._to = null;
         }
@@ -106,7 +108,7 @@ export class ClrDateFilterComponent<T extends { [key: string]: any }>
       }
       if (this.fromTime) {
         const [hours, minutes, seconds] = this.fromTime.split(':').map(n => parseInt(n));
-        from.setHours(hours, minutes, seconds ? seconds : 0, 0);
+        from.setHours(hours, minutes, seconds || 0, 0);
       }
       this._from = from;
       this._changes.next([this._from, this._to]);
@@ -118,7 +120,7 @@ export class ClrDateFilterComponent<T extends { [key: string]: any }>
     this._fromTime = fromtime;
     if (this._fromTime && this._from) {
       const [hours, minutes, seconds] = this._fromTime.split(':').map(n => parseInt(n));
-      this._from.setHours(hours, minutes, seconds ? seconds : 0, 0);
+      this._from.setHours(hours, minutes, seconds || 0, 0);
       this._changes.next([this._from, this._to]);
       this.filterValueChange.emit([this._from, this._to]);
     }
@@ -135,7 +137,7 @@ export class ClrDateFilterComponent<T extends { [key: string]: any }>
       }
       if (this.toTime) {
         const [hours, minutes, seconds] = this.toTime.split(':').map(n => parseInt(n));
-        to.setHours(hours, minutes, seconds ? seconds : 0, 0);
+        to.setHours(hours, minutes, seconds || 0, 0);
       }
       this._to = to;
       this._changes.next([this._from, this._to]);
@@ -147,7 +149,7 @@ export class ClrDateFilterComponent<T extends { [key: string]: any }>
     this._toTime = totime;
     if (this._toTime && this._to) {
       const [hours, minutes, seconds] = this._toTime.split(':').map(n => parseInt(n));
-      this._to.setHours(hours, minutes, seconds ? seconds : 0, 0);
+      this._to.setHours(hours, minutes, seconds || 0, 0);
       this._changes.next([this._from, this._to]);
       this.filterValueChange.emit([this._from, this._to]);
     }
