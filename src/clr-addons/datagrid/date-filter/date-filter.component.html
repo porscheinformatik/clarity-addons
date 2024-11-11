@@ -37,7 +37,7 @@
         [attr.aria-label]="minPlaceholderValue"
       />
     </clr-date-container>
-    <input clrTime type="time" [(ngModel)]="fromTime" />
+    <input clrTime type="time" class="time-filter-input" [(ngModel)]="fromTime" />
   </clr-date-time-container>
   <clr-date-time-container>
     <clr-date-container class="time-filter-active">
@@ -50,6 +50,6 @@
         [attr.aria-label]="maxPlaceholderValue"
       />
     </clr-date-container>
-    <input clrTime type="time" [(ngModel)]="toTime" />
+    <input clrTime type="time" class="time-filter-input" [(ngModel)]="toTime" />
   </clr-date-time-container>
 </ng-container>

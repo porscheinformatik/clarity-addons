@@ -116,6 +116,9 @@ a.btn-primary {
     margin-top: -1 * $bl-0_25;
   }
 }
+.header .branding {
+  padding-left: 0;
+}
 
 .header .branding .clarity-logo {
   background-image: url(../assets/images/clarity-logo.svg);
