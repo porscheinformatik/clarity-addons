@@ -20,8 +20,10 @@ export class BasepageLayoutDemo implements OnInit {
   id: string;
   context = { ['applicationName']: 'ADDONS' };
 
-  @ViewChild('contentPanel')
-  contentPanel: ClrContentPanel;
+  @ViewChild('contentPanelOffer')
+  contentPanelOffer: ClrContentPanel;
+  @ViewChild('contentPanelFinancing')
+  contentPanelFinancing: ClrContentPanel;
 
   @ViewChild('actionPanel')
   actionPanel: ClrActionPanel;
@@ -72,11 +74,21 @@ export class BasepageLayoutDemo implements OnInit {
     }
   }
 
-  private togglePanel() {
-    this.contentPanel.toggle();
+  private togglePanel(toggleOffer: boolean) {
+    if (toggleOffer) {
+      if (this.contentPanelFinancing.isOpen()) {
+        this.contentPanelFinancing.toggle();
+      }
+      this.contentPanelOffer.toggle();
+    } else {
+      if (this.contentPanelOffer.isOpen()) {
+        this.contentPanelOffer.toggle();
+      }
+      this.contentPanelFinancing.toggle();
+    }
   }
 
-  private toggleActionPanel() {
+  toggleActionPanel() {
     this.actionPanel.toggle();
   }
 

@@ -86,7 +86,7 @@ const fullPageLayoutsRoutes: Routes = [
           import('./basepage-layout/basepage-layout.demo.module').then(m => m.BasepageLayoutDemoModule),
         data: {
           browserTitle: 'Action Panel Layout',
-          withCommand: true,
+          withCommand: false,
           withHistory: true,
           withActionPanel: true,
         },

@@ -22,20 +22,31 @@
         [clrContext]="context"
         [clrDomain]="'porscheinformatik.github.io'"
       ></clr-history>
-      <clr-button-group [clrMenuPosition]="'bottom-right'" style="padding-left: 10px" *ngIf="withCommandBar">
+      <clr-button-group [clrMenuPosition]="'bottom-right'" *ngIf="withCommandBar">
         <clr-button *ngIf="!withContentPanel">Command1</clr-button>
         <clr-button *ngIf="!withContentPanel">Command2</clr-button>
-        <clr-button *ngIf="withContentPanel" (click)="togglePanel()">Show/Hide</clr-button>
-        <clr-button [clrInMenu]="true">Command3</clr-button>
+        <clr-button [clrInMenu]="true" *ngIf="!withContentPanel">Command3</clr-button>
       </clr-button-group>
-      <clr-button-group [clrMenuPosition]="'bottom-right'" *ngIf="withActionPanel">
-        <clr-button (click)="toggleActionPanel()"><cds-icon shape="view-columns"></cds-icon></clr-button>
+      <clr-button-group [clrMenuPosition]="'bottom-right'" *ngIf="withContentPanel">
+        <clr-button (click)="togglePanel(true)">Offers</clr-button>
       </clr-button-group>
+      <clr-button-group [clrMenuPosition]="'bottom-right'" *ngIf="withContentPanel">
+        <clr-button (click)="togglePanel(false)">Financing</clr-button>
+      </clr-button-group>
+      <button
+        type="button"
+        class="btn btn-icon btn-outline-primary"
+        (click)="toggleActionPanel()"
+        style="margin-left: 10px; margin-top: 0"
+        *ngIf="withActionPanel"
+      >
+        <cds-icon shape="view-columns"></cds-icon>
+      </button>
     </div>
   </div>
   <div class="content-container" *ngIf="!withContentPanel && !withActionPanel">
     <div class="content-area">
-      This is the page content<span *ngIf="id"> for submenu {{id}}</span>
+      This is the page content<span *ngIf="id"> for submenu {{ id }}</span>
 
       <p>
         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
@@ -96,32 +107,80 @@
     </div>
   </div>
   <clr-content-panel-container *ngIf="withContentPanel">
-    <h2>Content Area</h2>
-    <clr-content-panel #contentPanel>
-      <ng-container clr-content-panel-title>Right Content Panel</ng-container>
-      <ng-container clr-content-panel-content>Content</ng-container>
+    <clr-content-panel-container-content>
+      <h2>Template</h2>
+      <ul>
+        <li>Select the pagelayout and detach it from the main-component to edit the content layer.</li>
+        <li>Add ui elements into the content-area.</li>
+        <li>Using the Autolayout functionality is recommended.</li>
+        <li>
+          See properties of page-title component, toggle the history, command-bar, and action-panel button as required.
+        </li>
+      </ul>
+      <h2>Content Panel</h2>
+      <ul>
+        <li>Use the content panel to provide supplementary content without interrupting the main content</li>
+        <li>If just actions are required use the action-panel instead</li>
+        <li>
+          Multiple content panels might be called from within a page (eg. offers, financing, ... referring to a vehicle
+          in the main content)
+        </li>
+      </ul>
+    </clr-content-panel-container-content>
+    <clr-content-panel #contentPanelOffer>
+      <ng-container clr-content-panel-title>Offers</ng-container>
+      <ng-container clr-content-panel-content>
+        <div class="card" *ngFor="let i of [1,2,3]">
+          <div class="card-block">
+            <div class="card-text">
+              <br />
+              <br />
+              <br />
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </clr-content-panel>
+    <clr-content-panel #contentPanelFinancing>
+      <ng-container clr-content-panel-title>Financing</ng-container>
+      <ng-container clr-content-panel-content>
+        <div class="card" *ngFor="let i of [1,2,3,4,5]">
+          <div class="card-block">
+            <div class="card-text">
+              <br /><br />
+              <br /><br /><br />
+            </div>
+          </div>
+        </div>
+      </ng-container>
     </clr-content-panel>
   </clr-content-panel-container>
 
   <clr-action-panel-container *ngIf="withActionPanel">
     <clr-action-panel-container-content>
       <h1>Action Panel DEMO</h1>
-      <p>Use when lot of actions are required</p>
-      <p>Group similar actions using Captions and Spacer.</p>
-      <p>Don't use when only a few actions are required, consider using Command bar then.</p>
+      <ul>
+        <li>Use when lot of actions are required</li>
+        <li>Group similar actions using Captions and Spacer.</li>
+        <li>Don't use when only a few actions are required, consider using Command bar then.</li>
+        <li>The history-button is the left-most button in the command-bar.</li>
+        <li>The action-panel-button is the right-most button in the command-bar.</li>
+      </ul>
     </clr-action-panel-container-content>
     <clr-action-panel #actionPanel>
       <ng-container clr-action-panel-content>
-        <h1>Heading 1</h1>
-        <p>Lorem <b>ipsum</b> dolor sit amet.</p>
-        <h2>Heading 2</h2>
-        <p>Lorem <b>ipsum</b> dolor sit amet.</p>
-        <h3>Heading 3</h3>
-        <p>Lorem <b>ipsum</b> dolor sit amet.</p>
-        <h4>Heading 4</h4>
-        <p>Lorem <b>ipsum</b> dolor sit amet.</p>
-        <h5>Heading 5</h5>
-        <p>Lorem <b>ipsum</b> dolor sit amet.</p>
+        <h3>Caption 1</h3>
+        <ul class="list">
+          <li><a href=".">Action-Link</a></li>
+          <li><a href=".">Action-Link</a></li>
+          <li><a href=".">Action-Link</a></li>
+        </ul>
+        <h3>Caption 2</h3>
+        <ul class="list">
+          <li><a href=".">Action-Link</a></li>
+          <li><a href=".">Action-Link</a></li>
+          <li><a href=".">Action-Link</a></li>
+        </ul>
       </ng-container>
     </clr-action-panel>
   </clr-action-panel-container>
