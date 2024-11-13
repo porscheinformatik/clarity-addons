@@ -22,6 +22,10 @@ export class ClrDateFilterComponent<T extends { [key: string]: any }>
   private nestedProp: NestedProperty<any>;
   @Input()
   timeActive = false;
+  @Input()
+  dateValidationError: string;
+
+  valError = false;
 
   @Input('clrProperty') set property(value: string) {
     this.nestedProp = new NestedProperty(value);
@@ -64,13 +68,13 @@ export class ClrDateFilterComponent<T extends { [key: string]: any }>
       if (values && (values[0] !== this._from || values[1] !== this._to)) {
         if (typeof values[0] === 'object') {
           this._from = values[0];
-          this._fromTime = this._from?.toLocaleTimeString();
+          this._fromTime = this._from?.toLocaleTimeString().substring(0, 5);
         } else {
           this._from = null;
         }
         if (typeof values[1] === 'object') {
           this._to = values[1];
-          this._toTime = this._to?.toLocaleTimeString();
+          this._toTime = this._to?.toLocaleTimeString().substring(0, 5);
         } else {
           this._to = null;
         }
@@ -103,14 +107,18 @@ export class ClrDateFilterComponent<T extends { [key: string]: any }>
 
   public set from(from: Date) {
     if (typeof from === 'object' && from !== this._from) {
-      if (from && typeof from.setHours === 'function') {
+      if (!this.timeActive && from && typeof from.setHours === 'function') {
         from.setHours(0, 0, 0, 0); // set from-date to start of day
       }
-      if (this.fromTime) {
+      if (!this.fromTime && from && from?.toLocaleTimeString() !== '00:00:00') {
+        this.fromTime = from?.toLocaleTimeString().substring(0, 5);
+      }
+      if (this.fromTime && from) {
         const [hours, minutes, seconds] = this.fromTime.split(':').map(n => parseInt(n));
         from.setHours(hours, minutes, seconds || 0, 0);
       }
       this._from = from;
+      this.validateDates();
       this._changes.next([this._from, this._to]);
       this.filterValueChange.emit([this._from, this._to]);
     }
@@ -121,6 +129,7 @@ export class ClrDateFilterComponent<T extends { [key: string]: any }>
     if (this._fromTime && this._from) {
       const [hours, minutes, seconds] = this._fromTime.split(':').map(n => parseInt(n));
       this._from.setHours(hours, minutes, seconds || 0, 0);
+      this.validateDates();
       this._changes.next([this._from, this._to]);
       this.filterValueChange.emit([this._from, this._to]);
     }
@@ -132,14 +141,18 @@ export class ClrDateFilterComponent<T extends { [key: string]: any }>
 
   public set to(to: Date) {
     if (typeof to === 'object' && to !== this._to) {
-      if (to && typeof to.setHours === 'function') {
+      if (!this.timeActive && to && typeof to.setHours === 'function') {
         to.setHours(23, 59, 59, 999); // set to-date to end of day
+      }
+      if (!this.toTime && to?.toLocaleTimeString() !== '23:59:59' && to?.toLocaleTimeString() !== '00:00:00') {
+        this.toTime = to?.toLocaleTimeString().substring(0, 5);
       }
       if (this.toTime) {
         const [hours, minutes, seconds] = this.toTime.split(':').map(n => parseInt(n));
         to.setHours(hours, minutes, seconds || 0, 0);
       }
       this._to = to;
+      this.validateDates();
       this._changes.next([this._from, this._to]);
       this.filterValueChange.emit([this._from, this._to]);
     }
@@ -150,6 +163,7 @@ export class ClrDateFilterComponent<T extends { [key: string]: any }>
     if (this._toTime && this._to) {
       const [hours, minutes, seconds] = this._toTime.split(':').map(n => parseInt(n));
       this._to.setHours(hours, minutes, seconds || 0, 0);
+      this.validateDates();
       this._changes.next([this._from, this._to]);
       this.filterValueChange.emit([this._from, this._to]);
     }
@@ -208,5 +222,11 @@ export class ClrDateFilterComponent<T extends { [key: string]: any }>
 
   public equals(other: ClrDatagridFilterInterface<T, any>): boolean {
     return other === this;
+  }
+
+  private validateDates() {
+    if (this._from && this._to) {
+      this.valError = this._from > this._to;
+    }
   }
 }

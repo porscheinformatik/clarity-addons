@@ -37,7 +37,7 @@
         [attr.aria-label]="minPlaceholderValue"
       />
     </clr-date-container>
-    <input clrTime type="time" class="time-filter-input" [(ngModel)]="fromTime" />
+    <input clrTime type="time" class="time-filter-input" step="60" [(ngModel)]="fromTime" />
   </clr-date-time-container>
   <clr-date-time-container>
     <clr-date-container class="time-filter-active">
@@ -50,6 +50,9 @@
         [attr.aria-label]="maxPlaceholderValue"
       />
     </clr-date-container>
-    <input clrTime type="time" class="time-filter-input" [(ngModel)]="toTime" />
+    <input clrTime type="time" class="time-filter-input" step="60" [(ngModel)]="toTime" />
   </clr-date-time-container>
+  <clr-control-error *ngIf="valError"
+    >{{ dateValidationError || 'Date "from" must be before date "to"!' }}
+  </clr-control-error>
 </ng-container>
