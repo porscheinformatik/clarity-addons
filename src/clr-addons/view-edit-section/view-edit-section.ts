@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -7,6 +7,7 @@
 import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { angleIcon, ClarityIcons, pencilIcon } from '@cds/core/icon';
+import { ClrLoadingState } from '@clr/angular';
 
 ClarityIcons.addIcons(angleIcon, pencilIcon);
 
@@ -41,6 +42,7 @@ export class ClrViewEditSection {
   @Input('clrEditIcon') _editIcon = 'pencil';
   @Input('clrIsCollapsible') _isCollapsible = false;
   @Input('clrIsCollapsed') _isCollapsed = false;
+  @Input('clrIsLoading') _isLoading = false;
 
   @Input('clrViewRef') viewRef: TemplateRef<any>;
   @Input('clrEditRef') editRef: TemplateRef<any>;
@@ -98,5 +100,9 @@ export class ClrViewEditSection {
     } else {
       this.toggleCollapsed(true);
     }
+  }
+
+  submitButtonState(): ClrLoadingState {
+    return this._isLoading ? ClrLoadingState.LOADING : ClrLoadingState.DEFAULT;
   }
 }

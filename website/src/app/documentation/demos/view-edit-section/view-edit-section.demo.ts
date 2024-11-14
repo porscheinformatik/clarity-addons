@@ -155,6 +155,34 @@ onFormSubmit() {
 }
 `;
 
+const HTML_EXAMPLE_ASYNC = `
+<clr-view-edit-section [(clrEditMode)]="editMode" clrTitle="Async"
+                       [clrViewRef]="viewBlock" [clrEditRef]="editBlock"
+                       [clrPreventModeChangeOnSave]="true"
+                       (clrSectionSubmitted)="sectionSubmitted()" (clrSectionEditCancelled)="sectionCancelled()"
+                       [clrIsLoading]="isLoading">
+    <ng-template #viewBlock1>
+        ...
+    </ng-template>
+    <ng-template #editBlock1>
+        ...
+    </ng-template>
+</clr-view-edit-section>
+`;
+
+const ANGULAR_EXAMPLE_ASYNC = `
+isLoading = false;
+editMode = false;
+
+onFormSubmit() {
+    this.isLoading = true;
+    this.someLongAction.subscribe(() => {
+      this.editMode = false;
+      this.isLoading = false;
+    });
+}
+`;
+
 @Component({
   selector: 'clr-view-edit-section-demo',
   templateUrl: './view-edit-section.demo.html',
@@ -172,6 +200,8 @@ export class ViewEditSectionDemo extends ClarityDocComponent {
   htmlExampleFormSubmit = HTML_EXAMPLE_FORM_SUBMIT;
   htmlExampleCollapsible = HTML_EXAMPLE_COLLAPSIBLE;
   angularExampleFormSubmit = ANGULAR_EXAMPLE_FORM_SUBMIT;
+  htmlExampleAsync = HTML_EXAMPLE_ASYNC;
+  angularExampleAsync = ANGULAR_EXAMPLE_ASYNC;
 
   editMode1 = false;
   editMode2 = false;
@@ -179,6 +209,9 @@ export class ViewEditSectionDemo extends ClarityDocComponent {
   editMode4 = false;
   editMode5 = false;
   editMode6 = false;
+  editMode7 = false;
+
+  isLoading7 = false;
 
   birthdate: string;
   gender: string = 'male';
@@ -257,6 +290,22 @@ export class ViewEditSectionDemo extends ClarityDocComponent {
       this.last = this.exampleForm.value.editLast;
       this.email = this.exampleForm.value.editEmail;
       return true;
+    }
+    return false;
+  }
+
+  sectionSubmittedWithDelay(): boolean {
+    if (this.exampleForm.valid) {
+      this.first = this.exampleForm.value.editFirst;
+      this.last = this.exampleForm.value.editLast;
+      this.email = this.exampleForm.value.editEmail;
+      this.isLoading7 = true;
+      console.log('Loading true');
+      setTimeout(() => {
+        this.isLoading7 = false;
+        this.editMode7 = false;
+        console.log('Loading false');
+      }, 2000);
     }
     return false;
   }
