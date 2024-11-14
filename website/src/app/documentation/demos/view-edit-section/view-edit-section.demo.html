@@ -625,6 +625,72 @@
 
       <clr-code-snippet [clrCode]="htmlExampleCollapsible"></clr-code-snippet>
 
+      <h4>Loading for async operations</h4>
+      <p>With setting</p>
+      <ul>
+        <li>
+          <code class="clr-code">clrPreventModeChangeOnSave</code> to true, the section does not automatically collapse
+          after save. This can then be done manually after the async operation completes.
+        </li>
+      </ul>
+      <p>
+        <code class="clr-code"
+          >&lt;clr-progress-spinner [clrShowSpinner]=&quot;isLoading&quot;&gt;&lt;/clr-progress-spinner&gt;</code
+        >
+        should be used inside the edit template to display the loading state to the user.
+      </p>
+
+      <div class="clr-col-12 clr-col-lg-6">
+        <clr-view-edit-section
+          [(clrEditMode)]="editMode7"
+          clrTitle="Loading for async operations"
+          [clrViewRef]="viewBlock7"
+          [clrEditRef]="editBlock7"
+          [clrPreventModeChangeOnSave]="true"
+          (clrSectionSubmitted)="sectionSubmittedWithDelay()"
+          (clrSectionEditCancelled)="sectionCancelled()"
+        >
+          <ng-template #viewBlock7>
+            <form clrForm clrLayout="horizontal">
+              <div class="clr-form-control clr-row">
+                <label class="clr-col-md-4 clr-control-label">First name</label>
+                <span class="text-truncate clr-col-md-8">{{ first || "&nbsp;" }}</span>
+              </div>
+              <div class="clr-form-control clr-row">
+                <label class="clr-col-md-4 clr-control-label">Last name</label>
+                <span class="text-truncate clr-col-md-8">{{ last || "&nbsp;" }}</span>
+              </div>
+              <div class="clr-form-control clr-row">
+                <label class="clr-col-md-4 clr-control-label">E-mail</label>
+                <span class="text-truncate clr-col-md-8">{{ email || "&nbsp;" }}</span>
+              </div>
+            </form>
+          </ng-template>
+          <ng-template #editBlock7>
+            <clr-progress-spinner [clrShowSpinner]="isLoading7"></clr-progress-spinner>
+            <form clrForm clrLayout="horizontal" [formGroup]="exampleForm" (submit)="onFormSubmit()">
+              <clr-input-container>
+                <label class="clr-col-md-4 clr-required-mark">First name</label>
+                <input class="clr-col-md-8" clrInput type="text" formControlName="editFirst" name="first" />
+                <clr-control-error>You must enter a first name.</clr-control-error>
+              </clr-input-container>
+              <clr-input-container>
+                <label class="clr-col-md-4 clr-required-mark">Last name</label>
+                <input class="clr-col-md-8" clrInput type="text" formControlName="editLast" name="last" />
+                <clr-control-error>You must enter a last name.</clr-control-error>
+              </clr-input-container>
+              <clr-input-container>
+                <label class="clr-col-md-4">E-mail</label>
+                <input class="clr-col-md-8" clrInput type="text" formControlName="editEmail" name="email" />
+              </clr-input-container>
+              <input type="submit" style="display: none" />
+            </form>
+          </ng-template>
+        </clr-view-edit-section>
+      </div>
+      <clr-code-snippet [clrCode]="htmlExampleAsync"></clr-code-snippet>
+      <clr-code-snippet [clrCode]="angularExampleAsync" [clrLanguage]="'typescript'"></clr-code-snippet>
+
       <h4>Tips</h4>
       <ul>
         <li>
