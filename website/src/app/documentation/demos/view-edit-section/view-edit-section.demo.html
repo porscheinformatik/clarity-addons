@@ -175,16 +175,6 @@
           </tr>
           <tr>
             <td class="left">
-              <b>[clrIsLoading]</b>
-              <div class="clr-hidden-sm-up">Type: Boolean</div>
-              <div class="clr-hidden-sm-up">Default: false</div>
-            </td>
-            <td class="left clr-hidden-xs-down">true, false</td>
-            <td class="clr-hidden-xs-down">false</td>
-            <td class="left">Controls whether the component is currently loading</td>
-          </tr>
-          <tr>
-            <td class="left">
               <b>(clrSectionSubmitted)</b>
               <div class="clr-hidden-sm-up">Type: EventEmitter</div>
               <div class="clr-hidden-sm-up"></div>
@@ -227,15 +217,15 @@
               <form clrForm clrLayout="horizontal">
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-4 clr-control-label">First name</label>
-                  <span class="text-truncate clr-col-md-8">{{ first || "&nbsp;" }}</span>
+                  <span class="text-truncate clr-col-md-8">{{first || "&nbsp;"}}</span>
                 </div>
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-4 clr-control-label">Last name</label>
-                  <span class="text-truncate clr-col-md-8">{{ last || "&nbsp;" }}</span>
+                  <span class="text-truncate clr-col-md-8">{{last || "&nbsp;"}}</span>
                 </div>
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-4 clr-control-label">E-mail</label>
-                  <span class="text-truncate clr-col-md-8">{{ email || "&nbsp;" }}</span>
+                  <span class="text-truncate clr-col-md-8">{{email || "&nbsp;"}}</span>
                 </div>
               </form>
             </ng-template>
@@ -273,11 +263,11 @@
               <form clrForm clrLayout="horizontal">
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-4 clr-control-label">Hobby</label>
-                  <span class="text-truncate clr-col-md-8">{{ hobby || "&nbsp;" }}</span>
+                  <span class="text-truncate clr-col-md-8">{{hobby || "&nbsp;"}}</span>
                 </div>
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-4 clr-control-label">Driving licence number</label>
-                  <span class="text-truncate clr-col-md-8">{{ licence || "&nbsp;" }}</span>
+                  <span class="text-truncate clr-col-md-8">{{licence || "&nbsp;"}}</span>
                 </div>
               </form>
             </ng-template>
@@ -348,19 +338,19 @@
               <form clrForm clrLayout="horizontal">
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-2 clr-control-label" for="birthdate">Date of birth</label>
-                  <span class="text-truncate clr-col-md-10">{{ birthdate || "" | date }}</span>
+                  <span class="text-truncate clr-col-md-10">{{birthdate || "" | date}}</span>
                 </div>
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-2 clr-control-label" for="gender">Gender</label>
-                  <span class="text-truncate clr-col-md-10">{{ gender || "&nbsp;" }}</span>
+                  <span class="text-truncate clr-col-md-10">{{gender || "&nbsp;"}}</span>
                 </div>
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-2 clr-control-label" for="status">Status</label>
-                  <span class="text-truncate clr-col-md-10">{{ status || "&nbsp;" }}</span>
+                  <span class="text-truncate clr-col-md-10">{{status || "&nbsp;"}}</span>
                 </div>
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-2 clr-control-label" for="terms">Terms &amp; Conditions</label>
-                  <span class="text-truncate clr-col-md-10">{{ getTermsText() }}</span>
+                  <span class="text-truncate clr-col-md-10">{{getTermsText()}}</span>
                 </div>
               </form>
             </ng-template>
@@ -450,19 +440,19 @@
               <form clrForm clrLayout="horizontal">
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-2 clr-control-label" for="birthdate">Date of birth</label>
-                  <span class="text-truncate clr-col-md-10">{{ birthdate || "" | date }}</span>
+                  <span class="text-truncate clr-col-md-10">{{birthdate || "" | date}}</span>
                 </div>
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-2 clr-control-label" for="gender">Gender</label>
-                  <span class="text-truncate clr-col-md-10">{{ gender || "&nbsp;" }}</span>
+                  <span class="text-truncate clr-col-md-10">{{gender || "&nbsp;"}}</span>
                 </div>
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-2 clr-control-label" for="status">Status</label>
-                  <span class="text-truncate clr-col-md-10">{{ status || "&nbsp;" }}</span>
+                  <span class="text-truncate clr-col-md-10">{{status || "&nbsp;"}}</span>
                 </div>
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-2 clr-control-label" for="terms">Terms &amp; Conditions</label>
-                  <span class="text-truncate clr-col-md-10">{{ getTermsText() }}</span>
+                  <span class="text-truncate clr-col-md-10">{{getTermsText()}}</span>
                 </div>
               </form>
             </ng-template>
@@ -549,15 +539,15 @@
               <form clrForm clrLayout="horizontal">
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-4 clr-control-label">First name</label>
-                  <span class="text-truncate clr-col-md-8">{{ first || "&nbsp;" }}</span>
+                  <span class="text-truncate clr-col-md-8">{{first || "&nbsp;"}}</span>
                 </div>
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-4 clr-control-label">Last name</label>
-                  <span class="text-truncate clr-col-md-8">{{ last || "&nbsp;" }}</span>
+                  <span class="text-truncate clr-col-md-8">{{last || "&nbsp;"}}</span>
                 </div>
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-4 clr-control-label">E-mail</label>
-                  <span class="text-truncate clr-col-md-8">{{ email || "&nbsp;" }}</span>
+                  <span class="text-truncate clr-col-md-8">{{email || "&nbsp;"}}</span>
                 </div>
               </form>
             </ng-template>
@@ -598,15 +588,15 @@
               <form clrForm clrLayout="horizontal">
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-4 clr-control-label">First name</label>
-                  <span class="text-truncate clr-col-md-8">{{ first || "&nbsp;" }}</span>
+                  <span class="text-truncate clr-col-md-8">{{first || "&nbsp;"}}</span>
                 </div>
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-4 clr-control-label">Last name</label>
-                  <span class="text-truncate clr-col-md-8">{{ last || "&nbsp;" }}</span>
+                  <span class="text-truncate clr-col-md-8">{{last || "&nbsp;"}}</span>
                 </div>
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-4 clr-control-label">E-mail</label>
-                  <span class="text-truncate clr-col-md-8">{{ email || "&nbsp;" }}</span>
+                  <span class="text-truncate clr-col-md-8">{{email || "&nbsp;"}}</span>
                 </div>
               </form>
             </ng-template>
@@ -634,71 +624,6 @@
       </div>
 
       <clr-code-snippet [clrCode]="htmlExampleCollapsible"></clr-code-snippet>
-
-      <h4>Loading for async operations</h4>
-      <p>For displaying a loading state to the user while waiting for an async form submit.</p>
-      <p>With setting</p>
-      <ul>
-        <li>
-          <code class="clr-code">clrIsLoading</code> to true, the section disables the Save and Cancel buttons and
-          displays a loading indicator.
-        </li>
-      </ul>
-      <p>
-        It's also recommended to set <code class="clr-code">clrPreventModeChangeOnSave</code> to true, as our async
-        operation should control when the mode is changed.
-      </p>
-
-      <div class="clr-col-12 clr-col-lg-6">
-        <clr-view-edit-section
-          [(clrEditMode)]="editMode7"
-          [clrIsLoading]="isLoading7"
-          clrTitle="Loading for async operations"
-          [clrViewRef]="viewBlock1"
-          [clrEditRef]="editBlock1"
-          [clrPreventModeChangeOnSave]="true"
-          (clrSectionSubmitted)="sectionSubmittedWithDelay()"
-          (clrSectionEditCancelled)="sectionCancelled()"
-        >
-          <ng-template #viewBlock1>
-            <form clrForm clrLayout="horizontal">
-              <div class="clr-form-control clr-row">
-                <label class="clr-col-md-4 clr-control-label">First name</label>
-                <span class="text-truncate clr-col-md-8">{{ first || "&nbsp;" }}</span>
-              </div>
-              <div class="clr-form-control clr-row">
-                <label class="clr-col-md-4 clr-control-label">Last name</label>
-                <span class="text-truncate clr-col-md-8">{{ last || "&nbsp;" }}</span>
-              </div>
-              <div class="clr-form-control clr-row">
-                <label class="clr-col-md-4 clr-control-label">E-mail</label>
-                <span class="text-truncate clr-col-md-8">{{ email || "&nbsp;" }}</span>
-              </div>
-            </form>
-          </ng-template>
-          <ng-template #editBlock1>
-            <form clrForm clrLayout="horizontal" [formGroup]="exampleForm" (submit)="onFormSubmit()">
-              <clr-input-container>
-                <label class="clr-col-md-4 clr-required-mark">First name</label>
-                <input class="clr-col-md-8" clrInput type="text" formControlName="editFirst" name="first" />
-                <clr-control-error>You must enter a first name.</clr-control-error>
-              </clr-input-container>
-              <clr-input-container>
-                <label class="clr-col-md-4 clr-required-mark">Last name</label>
-                <input class="clr-col-md-8" clrInput type="text" formControlName="editLast" name="last" />
-                <clr-control-error>You must enter a last name.</clr-control-error>
-              </clr-input-container>
-              <clr-input-container>
-                <label class="clr-col-md-4">E-mail</label>
-                <input class="clr-col-md-8" clrInput type="text" formControlName="editEmail" name="email" />
-              </clr-input-container>
-              <input type="submit" style="display: none" />
-            </form>
-          </ng-template>
-        </clr-view-edit-section>
-      </div>
-      <clr-code-snippet [clrCode]="htmlExampleAsync"></clr-code-snippet>
-      <clr-code-snippet [clrCode]="angularExampleAsync" [clrLanguage]="'typescript'"></clr-code-snippet>
 
       <h4>Tips</h4>
       <ul>

@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
+  ~ Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
@@ -184,31 +184,3 @@
     </div>
   </div>
 </div>
-
-<h2>Async saving with loading indicator</h2>
-<clr-view-edit-section
-  [clrTitle]="'Async saving with loading'"
-  (clrSectionSubmitted)="asyncSectionSubmitted()"
-  [clrPreventModeChangeOnSave]="true"
-  [clrEditRef]="editBlock5"
-  [clrViewRef]="viewBlock5"
-  [clrIsLoading]="asyncSectionLoading"
-  [(clrEditMode)]="asyncSectionEditMode"
->
-  <ng-template #viewBlock5>
-    <form clrForm clrLayout="horizontal">
-      <div class="clr-form-control clr-row">
-        <label class="clr-col-md-2 clr-control-label" for="birthdate">Date of birth</label>
-        <span class="text-truncate clr-col-md-10">{{editBirthdate || "" | date}}</span>
-      </div>
-    </form>
-  </ng-template>
-  <ng-template #editBlock5>
-    <form clrForm clrLayout="horizontal">
-      <clr-date-container class="clr-row">
-        <label>Date of birth</label>
-        <input type="text" [(ngModel)]="editBirthdate" name="birthdate" clrDate />
-      </clr-date-container>
-    </form>
-  </ng-template>
-</clr-view-edit-section>
