@@ -101,8 +101,4 @@ export class ClrViewEditSection {
       this.toggleCollapsed(true);
     }
   }
-
-  getSubmitButtonLoadingState(): ClrLoadingState {
-    return this._isLoading ? ClrLoadingState.LOADING : ClrLoadingState.DEFAULT;
-  }
 }

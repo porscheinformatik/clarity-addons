@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -10,9 +10,10 @@ import { FormsModule } from '@angular/forms';
 import { ClarityModule, ClrFormsModule } from '@clr/angular';
 
 import { ClrViewEditSection } from './view-edit-section';
+import { ClrProgressSpinnerModule } from '../progress-spinner';
 
 @NgModule({
-  imports: [CommonModule, ClarityModule, FormsModule, ClrFormsModule],
+  imports: [CommonModule, ClarityModule, FormsModule, ClrFormsModule, ClrProgressSpinnerModule],
   declarations: [ClrViewEditSection],
   exports: [ClrViewEditSection],
 })
