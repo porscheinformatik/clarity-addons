@@ -14,4 +14,15 @@ export class ReadonlyDemo {
   checkValue1 = true;
   checkValue2: boolean;
   checkValue3 = true;
+  readonly = true;
+  myState = {name: 'California'};
+  states = [{name: 'California'}, {name: 'Texas'}, {name: 'New York'}]
+  value = '';
+  selectedOption: any;
+
+  toggleReadonly() {
+    this.readonly = !this.readonly;
+  }
+
+  protected readonly Object = Object;
 }

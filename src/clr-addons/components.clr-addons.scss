@@ -602,5 +602,71 @@ clr-control-helper.clr-warning {
   min-width: 1.2rem;
 }
 
+clr-combobox-container[readonly] {
+  .clr-combobox {
+    pointer-events: none;
+  }
+
+  .clr-combobox-trigger {
+    display: none;
+  }
+
+  .clr-combobox-wrapper {
+    background-color: transparent;
+    border: none;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  label {
+    color: var(--clr-forms-label-color);
+  }
+
+  input {
+    color: var(--clr-forms-text-color) !important;
+  }
+}
+
+clr-datalist-container[readonly] {
+  .clr-datalist-caret {
+    display: none;
+  }
+
+  .clr-input-group {
+    border-bottom: none;
+  }
+
+  label {
+    color: var(--clr-forms-label-color);
+  }
+
+  input {
+    color: var(--clr-forms-text-color) !important;
+  }
+}
+
+clr-select-container[readonly] {
+  .clr-select-wrapper::after {
+    display: none;
+  }
+
+  label {
+    color: var(--clr-forms-label-color);
+  }
+
+  select {
+    appearance: none;
+    border-bottom: none;
+    color: var(--clr-forms-text-color) !important;
+
+
+  }
+
+  select:disabled {
+    opacity: 1 !important;
+    cursor: default !important;
+  }
+}
+
 // Has to be at the bottom to override the styles from the above properly
 @import './mobile';

@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 import { ClarityModule, ClrFormsModule } from '@clr/angular';
 
 import { ReadonlyDemo } from './readonly.demo';
+import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { ReadonlyDemo } from './readonly.demo';
     FormsModule,
     ClrFormsModule,
     RouterModule.forChild([{ path: '', component: ReadonlyDemo }]),
+    ClrAddonsModule,
   ],
   declarations: [ReadonlyDemo],
   exports: [ReadonlyDemo],
