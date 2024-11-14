@@ -29,17 +29,10 @@
       <ng-template [ngTemplateOutlet]="editRef" *ngIf="editMode"></ng-template>
       <ng-container *ngIf="editMode">
         <form clrForm (ngSubmit)="onSubmit()" class="button-bar">
-          <button
-            class="btn btn-primary ves-save"
-            type="submit"
-            [clrLoading]="submitButtonState()"
-            [disabled]="_isLoading"
-          >
+          <button class="btn btn-primary ves-save" type="submit" [clrLoading]="submitButtonState()">
             {{_saveText}}
           </button>
-          <button class="btn ves-cancel" (click)="onCancel()" type="button" [disabled]="_isLoading">
-            {{_cancelText}}
-          </button>
+          <button class="btn ves-cancel" (click)="onCancel()" type="button">{{_cancelText}}</button>
         </form>
       </ng-container>
     </div>
