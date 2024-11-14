@@ -102,7 +102,7 @@ export class ClrViewEditSection {
     }
   }
 
-  submitButtonState(): ClrLoadingState {
+  getSubmitButtonLoadingState(): ClrLoadingState {
     return this._isLoading ? ClrLoadingState.LOADING : ClrLoadingState.DEFAULT;
   }
 }
