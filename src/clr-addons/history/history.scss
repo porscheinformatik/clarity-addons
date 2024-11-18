@@ -2,6 +2,9 @@
   .history-container {
     padding: 15px;
   }
+  .history-button {
+    padding-left: 11px;
+  }
 
   .history {
     display: flex;
@@ -13,8 +16,10 @@
 
   .history-item {
     cursor: pointer;
+
     + .history-item {
       padding-left: 0.5rem;
+
       &::before {
         content: '/';
         display: inline-block;

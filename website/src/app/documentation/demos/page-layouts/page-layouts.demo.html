@@ -1,7 +1,7 @@
 <clr-doc-wrapper [title]="title">
   <div class="table-of-contents">
     <span class="title">Content</span>
-    <ul class="list-unstyled toc-list">
+    <ul class="list-unstyled toc-list" [scrollspy]="scrollable">
       <li>
         <a
           routerLink="."
@@ -38,7 +38,7 @@
     </ul>
   </div>
 
-  <article>
+  <article hash-listener #scrollable>
     <h2 id="general">General layout settings</h2>
     <h3>Action buttons</h3>
     <p>
