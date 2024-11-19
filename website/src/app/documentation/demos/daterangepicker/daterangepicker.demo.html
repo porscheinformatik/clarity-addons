@@ -264,6 +264,15 @@
       </form>
       <clr-code-snippet [clrCode]="presetsDemo"></clr-code-snippet>
       <clr-code-snippet [clrCode]="presetsTypescriptDemo" clrLanguage="typescript"></clr-code-snippet>
+      <p>Preset are also available for time selection, see example:</p>
+      <form clrForm>
+        <clr-daterangepicker-container [presets]="presetsTime" [timeSelection]="true">
+          <label>Presets Time</label>
+          <input clrDaterangepicker type="date" name="daterange-preset" [(ngModel)]="value" />
+        </clr-daterangepicker-container>
+      </form>
+      <clr-code-snippet [clrCode]="presetsTimeDemo"></clr-code-snippet>
+      <clr-code-snippet [clrCode]="presetsTimeTypescriptDemo" clrLanguage="typescript"></clr-code-snippet>
 
       <h4>Position</h4>
       <p>

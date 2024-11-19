@@ -1,17 +1,17 @@
 <clr-dropdown>
-  <button type="button" class="btn btn-icon btn-outline-primary" clrDropdownTrigger>
+  <button type="button" class="btn btn-icon btn-outline-primary history-button" clrDropdownTrigger>
     <cds-icon shape="history" size="16"></cds-icon>
     <cds-icon shape="angle" direction="down" size="12"></cds-icon>
   </button>
   <clr-dropdown-menu [clrPosition]="position" *clrIfOpen>
-    <label class="dropdown-header" aria-hidden="true">{{dropdownHeader}}</label>
+    <label class="dropdown-header" aria-hidden="true">{{ dropdownHeader }}</label>
     <button type="button" clrDropdownItem *ngFor="let history of historyElements" (click)="select(history)">
-      {{history.title}}
+      {{ history.title }}
     </button>
     <div *ngIf="pinActive" class="dropdown-divider" role="separator" aria-hidden="true"></div>
     <button clrDropdownItem (click)="togglePinHistory()">
-      <span *ngIf="pinActive && !pinActivated">{{dropdownPin}}</span>
-      <span *ngIf="pinActive && pinActivated">{{dropdownUnpin}}</span>
+      <span *ngIf="pinActive && !pinActivated">{{ dropdownPin }}</span>
+      <span *ngIf="pinActive && pinActivated">{{ dropdownUnpin }}</span>
     </button>
   </clr-dropdown-menu>
 </clr-dropdown>
