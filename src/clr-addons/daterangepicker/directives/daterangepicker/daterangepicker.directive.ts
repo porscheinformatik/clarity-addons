@@ -197,7 +197,6 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
       return;
     }
 
-    console.log('aaaaa', target, target.value, this.regex.test(target.value));
     if (target.value && this.regex.test(target.value)) {
       // handle easy access
       this.handleEasyAccess(target.value);
