@@ -13,16 +13,16 @@ readFile('./package.json', 'utf-8', (err, data) => {
   const packageJson = JSON.parse(data);
   const addonsVersion = packageJson.version;
   let angularVersion = packageJson.dependencies['@angular/core'];
-  const clarityVersion = packageJson.dependencies['@clr/angular'];
-  const cdsCoreVersion = packageJson.dependencies['@cds/core'];
+  let clarityVersion = packageJson.dependencies['@clr/angular'];
+  let cdsCoreVersion = packageJson.dependencies['@cds/core'];
 
   if (angularVersion.indexOf('.') > 0) {
     angularVersion = angularVersion.substring(0, angularVersion.indexOf('.')) + '.0.0';
   }
 
-  if (!angularVersion.startsWith('^')) {
-    angularVersion = '^' + angularVersion;
-  }
+  angularVersion = prependCaretIfMissing(angularVersion);
+  clarityVersion = prependCaretIfMissing(clarityVersion);
+  cdsCoreVersion = prependCaretIfMissing(cdsCoreVersion);
 
   const envFile = './src/clr-addons/package.json';
   readFile(envFile, 'utf-8', (err, data) => {
@@ -34,3 +34,7 @@ readFile('./package.json', 'utf-8', (err, data) => {
     writeFile(envFile, data, 'utf-8', handleError);
   });
 });
+
+function prependCaretIfMissing(version) {
+  return version.startsWith('^') ? version : '^' + version;
+}
