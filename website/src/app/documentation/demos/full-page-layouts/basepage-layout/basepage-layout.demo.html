@@ -27,12 +27,24 @@
         <clr-button *ngIf="!withContentPanel">Command2</clr-button>
         <clr-button [clrInMenu]="true" *ngIf="!withContentPanel">Command3</clr-button>
       </clr-button-group>
-      <clr-button-group [clrMenuPosition]="'bottom-right'" *ngIf="withContentPanel">
-        <clr-button (click)="togglePanel(true)">Offers</clr-button>
-      </clr-button-group>
-      <clr-button-group [clrMenuPosition]="'bottom-right'" *ngIf="withContentPanel">
-        <clr-button (click)="togglePanel(false)">Financing</clr-button>
-      </clr-button-group>
+      <button
+        type="button"
+        class="btn btn-outline-primary"
+        (click)="togglePanel(true)"
+        style="margin-right: 0"
+        *ngIf="withContentPanel"
+      >
+        Offers
+      </button>
+      <button
+        type="button"
+        class="btn btn-outline-primary"
+        (click)="togglePanel(false)"
+        style="margin-left: 10px; margin-right: 0"
+        *ngIf="withContentPanel"
+      >
+        Financing
+      </button>
       <button
         type="button"
         class="btn btn-icon btn-outline-primary"
