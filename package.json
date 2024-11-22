@@ -97,7 +97,7 @@
     "replace": "1.2.2",
     "sass": "1.81.0",
     "shx": "0.3.4",
-    "typescript": "5.5.4"
+    "typescript": "5.7.2"
   },
   "engines": {
     "node": ">=18.0.0",
