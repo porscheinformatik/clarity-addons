@@ -26,7 +26,7 @@ export interface ClrHistoryModel {
     applicationName?: string;
     tenantid: string;
     context?: string;
-    [key: string]: string;
+    [key: string]: string | undefined;
   };
 
   /**
