@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+  ~ Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
@@ -151,16 +151,14 @@
 </div>
 
 <div clrForm clrLayout="horizontal">
-  <h2>Read only comboboxes</h2>
-  <button (click)="toggleReadonly()" class="btn btn-primary"> toggle readonly</button>
+  <h2>Read-only comboboxes</h2>
+  <button (click)="toggleReadonly()" class="btn btn-primary">toggle readonly</button>
   <span>{{ readonly }} </span>
   <clr-combobox-container>
     <label>My State</label>
     <clr-combobox [(ngModel)]="myState" class="clr-col-3">
       <clr-options>
-        <clr-option
-          *clrOptionItems="let state of states; field: 'name'"
-          [clrValue]="state">
+        <clr-option *clrOptionItems="let state of states; field: 'name'" [clrValue]="state">
           {{ state.name }}
         </clr-option>
       </clr-options>
@@ -170,9 +168,89 @@
     <label>My State (readonly)</label>
     <clr-combobox [ngModel]="myState" class="clr-col-3">
       <clr-options>
-        <clr-option
-          *clrOptionItems="let state of states; field: 'name'"
-          [clrValue]="state">
+        <clr-option *clrOptionItems="let state of states; field: 'name'" [clrValue]="state">
+          {{ state.name }}
+        </clr-option>
+      </clr-options>
+    </clr-combobox> </clr-combobox-container
+  ><clr-combobox-container>
+    <label>My State</label>
+    <clr-combobox [(ngModel)]="myState" class="clr-col-3">
+      <clr-options>
+        <clr-option *clrOptionItems="let state of states; field: 'name'" [clrValue]="state">
+          {{ state.name }}
+        </clr-option>
+      </clr-options>
+    </clr-combobox>
+  </clr-combobox-container>
+  <clr-combobox-container [readOnly]="readonly">
+    <label>My State (readonly)</label>
+    <clr-combobox [ngModel]="myState" class="clr-col-3">
+      <clr-options>
+        <clr-option *clrOptionItems="let state of states; field: 'name'" [clrValue]="state">
+          {{ state.name }}
+        </clr-option>
+      </clr-options>
+    </clr-combobox>
+  </clr-combobox-container>
+  <div class="clr-form-control clr-row">
+    <label class="clr-control-label">My state (readonly)</label>
+    <span class="clr-col-3">California </span>
+  </div>
+
+  <h2>Read-only datalist</h2>
+  <clr-datalist-container>
+    <label>Choose Item</label>
+    <input clrDatalistInput [(ngModel)]="value" placeholder="No label" name="Option" class="clr-col-3" />
+    <datalist>
+      <option *ngFor="let item of ['Item1', 'Item2', 'Item3']" [value]="item"></option>
+    </datalist>
+  </clr-datalist-container>
+  <clr-datalist-container [readOnly]="readonly">
+    <label>Choose Item (readonly)</label>
+    <input clrDatalistInput [(ngModel)]="value" placeholder="No label" name="Option" class="clr-col-3" />
+    <datalist>
+      <option *ngFor="let item of ['Item1', 'Item2', 'Item3']" [value]="item"></option>
+    </datalist>
+  </clr-datalist-container>
+  <h2>Read-only select</h2>
+  <clr-select-container>
+    <label>I've got some options</label>
+    <select clrSelect name="options" [(ngModel)]="selectedOption" class="clr-col-3">
+      <option value="one">One</option>
+      <option value="two">Two</option>
+      <option value="three">Three</option>
+    </select>
+  </clr-select-container>
+  <clr-select-container [readOnly]="readonly">
+    <label>I've got some options (readonly)</label>
+    <select clrSelect name="options" [(ngModel)]="selectedOption" class="clr-col-3">
+      <option value="one">One</option>
+      <option value="two">Two</option>
+      <option value="three">Three</option>
+    </select>
+  </clr-select-container>
+</div>
+
+<div clrForm clrLayout="horizontal">
+  <h2>Read only comboboxes</h2>
+  <button (click)="toggleReadonly()" class="btn btn-primary">toggle readonly</button>
+  <span>{{ readonly }} </span>
+  <clr-combobox-container>
+    <label>My State</label>
+    <clr-combobox [(ngModel)]="myState" class="clr-col-3">
+      <clr-options>
+        <clr-option *clrOptionItems="let state of states; field: 'name'" [clrValue]="state">
+          {{ state.name }}
+        </clr-option>
+      </clr-options>
+    </clr-combobox>
+  </clr-combobox-container>
+  <clr-combobox-container [readOnly]="readonly">
+    <label>My State (readonly)</label>
+    <clr-combobox [ngModel]="myState" class="clr-col-3">
+      <clr-options>
+        <clr-option *clrOptionItems="let state of states; field: 'name'" [clrValue]="state">
           {{ state.name }}
         </clr-option>
       </clr-options>
@@ -182,14 +260,14 @@
   <h2>Read only datalist</h2>
   <clr-datalist-container>
     <label>Choose Item</label>
-    <input clrDatalistInput [(ngModel)]="value" placeholder="No label" name="Option" class="clr-col-3"/>
+    <input clrDatalistInput [(ngModel)]="value" placeholder="No label" name="Option" class="clr-col-3" />
     <datalist>
       <option *ngFor="let item of ['Item1', 'Item2', 'Item3']" [value]="item"></option>
     </datalist>
   </clr-datalist-container>
   <clr-datalist-container [readOnly]="readonly">
     <label>Choose Item (readonly)</label>
-    <input clrDatalistInput [(ngModel)]="value" placeholder="No label" name="Option" class="clr-col-3"/>
+    <input clrDatalistInput [(ngModel)]="value" placeholder="No label" name="Option" class="clr-col-3" />
     <datalist>
       <option *ngFor="let item of ['Item1', 'Item2', 'Item3']" [value]="item"></option>
     </datalist>

@@ -37,6 +37,25 @@ const HTML_READONLY_CONDITIONAL = `
 ...
 </clr-checkbox-container>
 `;
+
+const HTML_COMBOBOX_EXAMPLE = `
+<clr-combobox-container [readOnly]="readonly">
+...
+</clr-combobox-container>
+`;
+
+const HTML_DATALIST_EXAMPLE = `
+<clr-datalist-container [readOnly]="readonly">
+...
+</clr-datalist-container>
+`;
+
+const HTML_SELECT_EXAMPLE = `
+<clr-select-container [readOnly]="readonly">
+...
+</clr-select-container>
+`;
+
 @Component({
   selector: 'clr-readonly-demo',
   templateUrl: './readonly.demo.html',
@@ -50,11 +69,19 @@ export class ReadonlyDemo extends ClarityDocComponent {
   htmlRadiobuttonExample = HTML_RADIOBUTTON_EXAMPLE;
   htmlRadioExampleDanger = HTML_RADIO_EXAMPLE_DANGER;
   htmlReadonlyConditional = HTML_READONLY_CONDITIONAL;
+  htmlComboboxExample = HTML_COMBOBOX_EXAMPLE;
+  htmlDatalistExample = HTML_DATALIST_EXAMPLE;
+  htmlSelectExample = HTML_SELECT_EXAMPLE;
 
   radioValue: number = 1;
   checkValue1: boolean = true;
   checkValue2: boolean;
   checkValue3: boolean = true;
+  readonly = true;
+  myOption = { name: 'Option1' };
+  options = [{ name: 'Option1' }, { name: 'Option2' }, { name: 'Option3' }];
+  value = '';
+  selectedOption: any;
 
   constructor() {
     super('readonly');

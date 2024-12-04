@@ -658,8 +658,67 @@ clr-select-container[readonly] {
     appearance: none;
     border-bottom: none;
     color: var(--clr-forms-text-color) !important;
+  }
 
+  select:disabled {
+    opacity: 1 !important;
+    cursor: default !important;
+  }
+}
 
+clr-combobox-container[readonly] {
+  .clr-combobox {
+    pointer-events: none;
+  }
+
+  .clr-combobox-trigger {
+    display: none;
+  }
+
+  .clr-combobox-wrapper {
+    background-color: transparent;
+    border: none;
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .clr-combobox-input {
+    color: var(--clr-forms-text-color) !important;
+  }
+}
+
+clr-datalist-container[readonly] {
+  .clr-datalist-caret {
+    display: none;
+  }
+
+  .clr-input-group {
+    border-bottom: none;
+  }
+
+  .clr-input {
+    color: var(--clr-forms-text-color) !important;
+    cursor: default !important;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .clr-input:placeholder-shown {
+    display: none;
+  }
+}
+
+clr-select-container[readonly] {
+  .clr-select-wrapper::after {
+    display: none;
+  }
+
+  .clr-select {
+    appearance: none;
+    border-bottom: none;
+    color: var(--clr-forms-text-color) !important;
+    padding-right: 0;
+    padding-left: 0;
   }
 
   select:disabled {
