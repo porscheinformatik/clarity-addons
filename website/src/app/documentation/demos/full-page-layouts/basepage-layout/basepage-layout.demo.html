@@ -16,7 +16,7 @@
     </h2>
     <div class="command-bar">
       <clr-history
-        class="history-bar"
+        style="margin-top: 6px"
         *ngIf="withHistory"
         [clrUsername]="'admin'"
         [clrContext]="context"
@@ -27,17 +27,29 @@
         <clr-button *ngIf="!withContentPanel">Command2</clr-button>
         <clr-button [clrInMenu]="true" *ngIf="!withContentPanel">Command3</clr-button>
       </clr-button-group>
-      <clr-button-group [clrMenuPosition]="'bottom-right'" *ngIf="withContentPanel">
-        <clr-button (click)="togglePanel(true)">Offers</clr-button>
-      </clr-button-group>
-      <clr-button-group [clrMenuPosition]="'bottom-right'" *ngIf="withContentPanel">
-        <clr-button (click)="togglePanel(false)">Financing</clr-button>
-      </clr-button-group>
+      <button
+        type="button"
+        class="btn btn-outline-primary"
+        (click)="togglePanel(true)"
+        style="margin-right: 0"
+        *ngIf="withContentPanel"
+      >
+        Offers
+      </button>
+      <button
+        type="button"
+        class="btn btn-outline-primary"
+        (click)="togglePanel(false)"
+        style="margin-left: 10px; margin-right: 0"
+        *ngIf="withContentPanel"
+      >
+        Financing
+      </button>
       <button
         type="button"
         class="btn btn-icon btn-outline-primary"
         (click)="toggleActionPanel()"
-        style="margin-left: 10px; margin-top: 0"
+        style="margin-left: 10px; margin-right: 0"
         *ngIf="withActionPanel"
       >
         <cds-icon shape="view-columns"></cds-icon>
@@ -108,16 +120,6 @@
   </div>
   <clr-content-panel-container *ngIf="withContentPanel">
     <clr-content-panel-container-content>
-      <h3>Template</h3>
-      <ul>
-        <li>Select the pagelayout and detach it from the main-component to edit the content layer.</li>
-        <li>Add ui elements into the content-area.</li>
-        <li>Using the Autolayout functionality is recommended.</li>
-        <li>
-          See properties of page-title component, toggle the history, command-bar, and action-panel button as required.
-        </li>
-      </ul>
-      <h3>Content Panel</h3>
       <ul>
         <li>Use the content panel to provide supplementary content without interrupting the main content</li>
         <li>If just actions are required use the action-panel instead</li>
@@ -158,7 +160,6 @@
 
   <clr-action-panel-container *ngIf="withActionPanel">
     <clr-action-panel-container-content>
-      <h3>Action Panel DEMO</h3>
       <ul>
         <li>Use when lot of actions are required</li>
         <li>Group similar actions using Captions and Spacer.</li>
@@ -170,13 +171,13 @@
     <clr-action-panel #actionPanel>
       <ng-container clr-action-panel-content>
         <h3>Caption 1</h3>
-        <ul class="list">
+        <ul class="list action-panel-list">
           <li><a href=".">Action-Link</a></li>
           <li><a href=".">Action-Link</a></li>
           <li><a href=".">Action-Link</a></li>
         </ul>
         <h3>Caption 2</h3>
-        <ul class="list">
+        <ul class="list action-panel-list">
           <li><a href=".">Action-Link</a></li>
           <li><a href=".">Action-Link</a></li>
           <li><a href=".">Action-Link</a></li>

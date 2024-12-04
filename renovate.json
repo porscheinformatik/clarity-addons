@@ -30,6 +30,7 @@
         "eslint",
         "eslint-config-prettier",
         "gh-pages",
+        "husky",
         "JamesIves/github-pages-deploy-action",
         "jasmine-core",
         "karma",

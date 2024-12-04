@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
-import { DaterangePreset, DayModel, NullableDaterange, NullableTimerange } from '@porscheinformatik/clr-addons';
+import {
+  DaterangePreset,
+  DayModel,
+  NullableDaterange,
+  NullableTimerange,
+  TimeModel,
+} from '@porscheinformatik/clr-addons';
 
 const BASIC_DEMO = `
 <form clrForm>
@@ -31,6 +37,14 @@ const MIN_MAX_DEMO = `
 const PRESETS_DEMO = `
 <form clrForm>
   <clr-daterangepicker-container [presets]="presets">
+    <label>Presets</label>
+    <input clrDaterangepicker type="date" name="demo" [(ngModel)]="demo" />
+  </clr-daterangepicker-container>
+</form>
+`;
+const PRESETS_TIME_DEMO = `
+<form clrForm>
+  <clr-daterangepicker-container [presets]="presetsTime" [timeSelection]="true">
     <label>Presets</label>
     <input clrDaterangepicker type="date" name="demo" [(ngModel)]="demo" />
   </clr-daterangepicker-container>
@@ -68,6 +82,28 @@ presets: Array<DaterangePreset> = [
   },
 ];
 `;
+const PRESETS_TIME_TYPESCRIPT_DEMO = `
+presets: Array<DaterangePreset> = [
+  {
+    text: 'Last 5 minute',
+    range: () => ({
+      from: new DayModel(new Date()),
+      to: new DayModel(new Date()),
+      fromTime: new TimeModel(new Date(new Date().getTime() - 5000 * 60)),
+      toTime: new TimeModel(new Date()),
+    }),
+  },
+  {
+    text: 'Last 1 hour',
+    range: () => ({
+      from: new DayModel(new Date()),
+      to: new DayModel(new Date()),
+      fromTime: new TimeModel(new Date(new Date().getTime() - 60000 * 60)),
+      toTime: new TimeModel(new Date()),
+    }),
+  },
+];
+`;
 const PRESETS: Array<DaterangePreset> = [
   {
     text: 'Last 30 days',
@@ -95,6 +131,27 @@ const PRESETS: Array<DaterangePreset> = [
     range: () => ({
       from: null,
       to: null,
+    }),
+  },
+];
+
+const PRESETS_TIME: Array<DaterangePreset> = [
+  {
+    text: 'Last 5 minute',
+    range: () => ({
+      from: new DayModel(new Date()),
+      to: new DayModel(new Date()),
+      fromTime: new TimeModel(new Date(new Date().getTime() - 5000 * 60)),
+      toTime: new TimeModel(new Date()),
+    }),
+  },
+  {
+    text: 'Last 1 hour',
+    range: () => ({
+      from: new DayModel(new Date()),
+      to: new DayModel(new Date()),
+      fromTime: new TimeModel(new Date(new Date().getTime() - 60000 * 60)),
+      toTime: new TimeModel(new Date()),
     }),
   },
 ];
@@ -161,8 +218,11 @@ export class DaterangepickerDemo extends ClarityDocComponent {
   basicTimeDemo = BASIC_TIME_DEMO;
   minMaxDemo = MIN_MAX_DEMO;
   presets = PRESETS;
+  presetsTime = PRESETS_TIME;
   presetsDemo = PRESETS_DEMO;
+  presetsTimeDemo = PRESETS_TIME_DEMO;
   presetsTypescriptDemo = PRESETS_TYPESCRIPT_DEMO;
+  presetsTimeTypescriptDemo = PRESETS_TIME_TYPESCRIPT_DEMO;
   positionsDemo = POSITIONS_DEMO;
   labelsTranslationDemo = LABELS_TRANSLATION_DEMO;
   separatorDemo = SEPARATOR_DEMO;

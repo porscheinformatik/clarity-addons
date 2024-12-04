@@ -116,22 +116,19 @@ a.btn-primary {
     margin-top: -1 * $bl-0_25;
   }
 }
-.header .branding {
+
+.header .branding .title {
   padding-left: 0;
-  margin-right: 13px;
+  padding-right: 2px;
 }
 
 .header .branding .clarity-logo {
   background-image: url(../assets/images/clarity-logo.svg);
   min-width: none;
+  padding-left: 8px;
+  padding-right: 8px;
   height: 36px;
   width: 36px;
-}
-
-@media (min-width: 769px) {
-  .layout-documentation .header .branding {
-    max-width: 11.33rem;
-  }
 }
 
 @media (max-width: 769px) {

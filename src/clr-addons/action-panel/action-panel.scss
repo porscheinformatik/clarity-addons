@@ -27,7 +27,7 @@
   .action-panel-action-wrapper {
     background-color: var(--clr-global-app-background);
     z-index: map-get($clr-layers, sidepanel-bg) - 1;
-    padding: 1rem;
+    padding: 0 1rem 1rem 1rem;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -66,6 +66,15 @@
 
     @media screen and (min-width: map-get($clr-grid-breakpoints, xl)) {
       display: none;
+    }
+  }
+
+  .action-panel-list {
+    padding-left: 0.5rem !important;
+    padding-top: 0.25rem;
+
+    li::marker {
+      color: var(--clr-link-visited-color);
     }
   }
 }

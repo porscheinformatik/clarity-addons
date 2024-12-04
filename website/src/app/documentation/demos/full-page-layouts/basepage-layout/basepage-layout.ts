@@ -70,7 +70,11 @@ export class BasepageLayoutDemo implements OnInit {
         },
       };
       this.historyService.addHistoryEntry(historyEntry3, 'porscheinformatik.github.io');
-      this.historyService.setHistoryPinned('admin', true, 'porscheinformatik.github.io');
+      if (this.withActionPanel) {
+        this.historyService.setHistoryPinned('admin', false, 'porscheinformatik.github.io');
+      } else {
+        this.historyService.setHistoryPinned('admin', true, 'porscheinformatik.github.io');
+      }
     }
   }
 
