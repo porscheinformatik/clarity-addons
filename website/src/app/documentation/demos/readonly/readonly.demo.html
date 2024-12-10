@@ -1,13 +1,19 @@
-<clr-doc-wrapper [title]="title">
+<clr-doc-wrapper [title]="title" xmlns="http://www.w3.org/1999/html">
   <article>
-    <h5 class="component-summary">This page describe readonly checkboxes and radio buttons.<br /></h5>
+    <h5 class="component-summary">
+      This page describe readonly checkboxes, radio buttons, comboboxes, datalists and selects.<br />
+    </h5>
 
     <div id="code-examples">
       <h3 id="examples">Code &amp; Examples</h3>
-      To apply the readonly style, just add <code class="clr-code">readonly</code> to
+      To apply the readonly style for radiobuttons and checkboxes, just add <code class="clr-code">readonly</code> to
       <code class="clr-code">clr-radio-container</code> or <code class="clr-code">clr-checkbox-container</code>.<br />
       To just show checked options also add attribute <code class="clr-code">show-only-selected="true"</code> to the
-      container.
+      container. <br />
+      <br />
+      To apply the readonly style for comboboxes, datalists and selects, just add
+      <code class="clr-code">[readOnly]="readonly"</code> to <code class="clr-code">clr-combobox-container</code>,
+      <code class="clr-code">clr-datalist-container</code> or <code class="clr-code">clr-select-container</code>.<br />
 
       <h4>Radiobuttons</h4>
       <div class="clr-row">
@@ -228,6 +234,71 @@
       </div>
 
       <clr-code-snippet [clrCode]="htmlRadioExampleDanger"></clr-code-snippet>
+
+      <div clrForm clrLayout="horizontal">
+        <h4>Comboboxes</h4>
+        Multiselect is currently not implemented. It only works on solo values.
+        <clr-combobox-container>
+          <label>Choose Option</label>
+          <clr-combobox [(ngModel)]="myOption" class="clr-col-3">
+            <clr-options>
+              <clr-option *clrOptionItems="let option of options; field: 'name'" [clrValue]="option">
+                {{ option.name }}
+              </clr-option>
+            </clr-options>
+          </clr-combobox>
+        </clr-combobox-container>
+        <clr-combobox-container [readOnly]="readonly">
+          <label>Choose Option (readonly)</label>
+          <clr-combobox [ngModel]="myOption" class="clr-col-3">
+            <clr-options>
+              <clr-option *clrOptionItems="let option of options; field: 'name'" [clrValue]="option">
+                {{ option.name }}
+              </clr-option>
+            </clr-options>
+          </clr-combobox>
+        </clr-combobox-container>
+
+        <clr-code-snippet [clrCode]="htmlComboboxExample"></clr-code-snippet>
+
+        <h4>Datalist</h4>
+        The placeholder remains disabled.
+        <clr-datalist-container>
+          <label>Choose Item</label>
+          <input clrDatalistInput [(ngModel)]="value" placeholder="No label" name="Option" class="clr-col-3" />
+          <datalist>
+            <option *ngFor="let item of ['Item1', 'Item2', 'Item3']" [value]="item"></option>
+          </datalist>
+        </clr-datalist-container>
+        <clr-datalist-container [readOnly]="readonly">
+          <label>Choose Item (readonly)</label>
+          <input clrDatalistInput [(ngModel)]="value" placeholder="No label" name="Option" class="clr-col-3" />
+          <datalist>
+            <option *ngFor="let item of ['Item1', 'Item2', 'Item3']" [value]="item"></option>
+          </datalist>
+        </clr-datalist-container>
+
+        <clr-code-snippet [clrCode]="htmlDatalistExample"></clr-code-snippet>
+
+        <h4>Select</h4>
+        <clr-select-container>
+          <label>Choose option</label>
+          <select clrSelect name="options" [(ngModel)]="selectedOption" class="clr-col-3">
+            <option value="one">One</option>
+            <option value="two">Two</option>
+            <option value="three">Three</option>
+          </select>
+        </clr-select-container>
+        <clr-select-container [readOnly]="readonly">
+          <label>Choose option (readonly)</label>
+          <select clrSelect name="options" [(ngModel)]="selectedOption" class="clr-col-3">
+            <option value="one">One</option>
+            <option value="two">Two</option>
+            <option value="three">Three</option>
+          </select>
+        </clr-select-container>
+        <clr-code-snippet [clrCode]="htmlSelectExample"></clr-code-snippet>
+      </div>
     </div>
   </article>
 </clr-doc-wrapper>

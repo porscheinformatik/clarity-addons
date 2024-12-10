@@ -39,3 +39,4 @@ export * from './dropdown/index';
 export * from './datagrid/index';
 export * from './daterangepicker/index';
 export * from './clr-control-warning/index';
+export * from './readonly-combobox/index';
