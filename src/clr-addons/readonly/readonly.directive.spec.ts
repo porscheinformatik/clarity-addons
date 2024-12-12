@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { ClrReadonlyDirective } from './clr-readonly.directive';
+import { ClrReadonlyDirective } from '@porscheinformatik/clr-addons';
 
 @Component({
   template: `
