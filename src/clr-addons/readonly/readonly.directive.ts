@@ -1,5 +1,6 @@
 import { AfterViewChecked, Directive, ElementRef, Injector, Input, Renderer2 } from '@angular/core';
 import { NgControl } from '@angular/forms';
+import { formatNumber } from '../util';
 
 @Directive({
   selector: '[clrReadonly]',
@@ -7,43 +8,42 @@ import { NgControl } from '@angular/forms';
 export class ClrReadonlyDirective implements AfterViewChecked {
   @Input('clrMulti') isMultiSelect: boolean = false;
   @Input('clrUnitPosition') unitPosition: 'left' | 'right' = 'right';
-  @Input('clrReadOnlyProperty') arrayPosition: string | null = null;
+  @Input('clrReadOnlyProperty') property: string | null = null;
   @Input('clrReadonly') clrReadOnly: boolean = true;
+  @Input('clrUnit') unit: string | '' = '';
 
-  private readonly originalElement: HTMLElement;
+  @Input('clrDecimalPlaces') decimalPlaces = 2;
+  @Input('clrRoundDisplayValue') roundValue = false;
+  @Input('clrAutofillDecimals') autofillDecimals = false;
+  @Input('clrDecimalSep') decimalSeparator = ',';
+  @Input('clrGroupingSep') groupingSeparator = '.';
+
   private isInitialized = false;
-  private isList: boolean = false;
-  private isNumeric: boolean = false;
-  private ngControl: NgControl;
 
   constructor(
     private elementRef: ElementRef,
     private readonly renderer: Renderer2,
     private readonly injector: Injector
-  ) {
-    this.originalElement = elementRef.nativeElement;
-  }
+  ) {}
 
   ngAfterViewChecked(): void {
-    this.ngControl = this.injector.get(NgControl, null);
-    if (!this.isInitialized && this.ngControl.value != null) {
+    const ngControl = this.injector.get(NgControl, null);
+    if (!this.isInitialized && ngControl.value != null) {
       this.isInitialized = true;
-      this.renderAsSpan();
+      this.renderAsSpan(ngControl);
     }
   }
 
-  private renderAsSpan(): void {
-    const parentElement = this.originalElement.parentElement;
+  private renderAsSpan(ngControl: NgControl): void {
+    const parentElement = this.elementRef.nativeElement.parentElement;
     if (!parentElement) {
       return;
     }
 
-    this.handleDifferentControlTypes();
-
     // Create a new span element to display the readonly value.
     const span = this.renderer.createElement('span');
 
-    const formattedValue = this.formatControlValue(this.ngControl);
+    const formattedValue = this.formatControlValue(ngControl);
     const textNode = this.renderer.createText(formattedValue);
 
     // Add text and classes to the span element.
@@ -53,7 +53,7 @@ export class ClrReadonlyDirective implements AfterViewChecked {
 
     // Hide all child elements of the parent and append the new span.
     this.hideAllChildren(parentElement);
-    this.renderer.setStyle(this.originalElement, 'display', 'none');
+    this.renderer.setStyle(this.elementRef.nativeElement, 'display', 'none');
     this.renderer.appendChild(parentElement, span);
   }
 
@@ -65,44 +65,46 @@ export class ClrReadonlyDirective implements AfterViewChecked {
     });
   }
 
-  private handleDifferentControlTypes() {
+  private determineControlType() {
     if (this.elementRef.nativeElement.attributes['clrnumeric']) {
-      this.isNumeric = true;
+      return 'numeric';
+    } else if (this.elementRef.nativeElement.tagName.toLowerCase() === 'select') {
+      return 'select';
+    } else {
+      return '';
     }
-
-    this.isList = this.elementRef.nativeElement.tagName.toLowerCase() === 'select';
   }
 
   private formatControlValue(ngControl: NgControl): string {
+    const controlType = this.determineControlType();
+
     const controlValue = ngControl.control.value;
 
-    if (this.isNumeric) {
+    if (controlType === 'numeric') {
       return this.formatNumericValue(controlValue);
-    }
-
-    if (this.isMultiSelect) {
+    } else if (this.isMultiSelect) {
       return this.formatMultiSelectValue(controlValue);
-    }
-
-    if (this.isList) {
+    } else if (controlType === 'select') {
       return this.formatListValue();
     }
 
     return controlValue ?? '';
   }
 
-  private formatNumericValue(controlValue: any): string {
-    let unit = '';
-
-    if (this.elementRef.nativeElement.attributes['clrunit']) {
-      unit = this.elementRef.nativeElement.attributes['clrunit'].value;
-    }
-
-    return this.unitPosition === 'left' ? `${unit} ${controlValue}` : `${controlValue} ${unit}`;
+  private formatNumericValue(controlValue: string): string {
+    const result = formatNumber(
+      controlValue + '',
+      true,
+      this.decimalSeparator,
+      this.groupingSeparator,
+      this.decimalPlaces,
+      this.autofillDecimals
+    );
+    return this.unitPosition === 'left' ? `${this.unit} ${result}` : `${result} ${this.unit}`;
   }
 
   private formatMultiSelectValue(controlValue: any): string {
-    return controlValue.map((item: Record<string, any>) => item[this.arrayPosition!]).join(', ');
+    return controlValue.map((item: Record<string, any>) => item[this.property!]).join(', ');
   }
 
   private formatListValue() {

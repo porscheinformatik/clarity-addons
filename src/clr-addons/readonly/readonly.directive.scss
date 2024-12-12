@@ -7,26 +7,4 @@
     border-bottom: none !important;
     margin: 0 !important;
   }
-
-  span.clr-readonly {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    -ms-appearance: none;
-    -o-appearance: none;
-    margin: 0;
-    padding: 0;
-    border-width: 0;
-    border-bottom: none currentcolor;
-    border-radius: 0;
-    box-shadow: none;
-    background: 0 0;
-    height: calc(4 * var(--clr-forms-baseline));
-    color: var(--clr-forms-text-color);
-    display: inline-block;
-    max-height: calc(4 * var(--clr-forms-baseline));
-    font-size: var(--cds-alias-typography-secondary-font-size);
-    font-weight: var(--cds-alias-typography-secondary-font-weight);
-    line-height: var(--cds-global-space-9);
-    letter-spacing: var(--cds-alias-typography-secondary-letter-spacing);
-  }
 }

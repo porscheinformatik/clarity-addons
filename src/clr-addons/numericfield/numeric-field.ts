@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -17,6 +17,7 @@ import {
   Renderer2,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { formatNumber, strip } from '../util';
 
 const NEGATIVE = '-';
 const BACK_KEYCODE = 8;
@@ -200,7 +201,14 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked, Con
 
   handleInputChanged(): void {
     this.updateInput(
-      this.formatNumber(this._numericValue.toString().replace(new RegExp('[.]', 'g'), this.decimalSeparator), true),
+      formatNumber(
+        this._numericValue.toString().replace(new RegExp('[.]', 'g'), this.decimalSeparator),
+        true,
+        this.decimalSeparator,
+        this.groupingSeparator,
+        this.decimalPlaces,
+        this.autofillDecimals
+      ),
       true
     );
   }
@@ -209,114 +217,31 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked, Con
     const cursorPos = element.selectionStart;
     const length = element.value.length;
     const setCursor = this.displayValue !== element.value;
-    this.updateInput(this.formatNumber(element.value, finalFormatting), false);
+    this.updateInput(
+      formatNumber(
+        element.value,
+        finalFormatting,
+        this.decimalSeparator,
+        this.groupingSeparator,
+        this.decimalPlaces,
+        this.autofillDecimals
+      ),
+      false
+    );
     if (setCursor) {
       element.selectionStart = element.selectionEnd = Math.max(cursorPos + element.value.length - length, 0);
     }
   }
 
-  formatNumber(value: string, finalFormatting: boolean): string {
-    let result = this.strip(value, finalFormatting);
-
-    /* add grouping separator */
-    const decimalIndex = result.indexOf(this.decimalSeparator);
-    const isNegative = result[0] === NEGATIVE;
-    let i = decimalIndex > -1 ? decimalIndex : result.length;
-    while (i > (isNegative ? 4 : 3)) {
-      i -= 3;
-      result = result.substring(0, i) + this.groupingSeparator + result.substring(i, result.length);
-    }
-
-    if (finalFormatting) {
-      if (this.decimalPlaces > 0 && !!result) {
-        /* autofill decimal places */
-        let actualDecimalIndex = result.indexOf(this.decimalSeparator);
-        if (this.autofillDecimals) {
-          if (actualDecimalIndex === -1) {
-            actualDecimalIndex = result.length;
-            result += this.decimalSeparator;
-          }
-
-          result = this.addMissingLeadingZero(result, actualDecimalIndex);
-          actualDecimalIndex = result.indexOf(this.decimalSeparator);
-
-          const actualDecimalPlaces = result.length - actualDecimalIndex - 1;
-          for (let j = 0; j < this.decimalPlaces - actualDecimalPlaces; j++) {
-            result += '0';
-          }
-        } else {
-          result = this.addMissingLeadingZero(result, actualDecimalIndex);
-        }
-      }
-    }
-
-    return result;
-  }
-
-  addMissingLeadingZero(result: string, actualDecimalIndex: number): string {
-    const isNegative = result[0] === NEGATIVE;
-    /* autoadd a zero before decimal separator, when it's missing */
-    if (actualDecimalIndex === 0) {
-      result = '0' + result;
-    }
-    /* autoadd a zero before decimal separator, when it's missing, for negative values */
-    if (actualDecimalIndex === 1 && isNegative) {
-      result = result[0] + '0' + result.substring(1, result.length);
-    }
-    return result;
-  }
-
-  strip(value: string, removeLeadingZeros = false): string {
-    let result = '';
-    let indexDecimalSep = -1;
-    let j = -1;
-    let ignoredChars = 0;
-    for (const char of value) {
-      j++;
-      if (this.allowedKeys.has(char)) {
-        if (char === this.decimalSeparator) {
-          if (this.decimalPlaces === 0) {
-            /* dismiss content after a decimal separator, when no places allowed */
-            break;
-          } else if (indexDecimalSep > -1) {
-            /* ignore subsequent decimal separators */
-            continue;
-          }
-          indexDecimalSep = j;
-        }
-        if (char === '0' && removeLeadingZeros) {
-          /* remove leading zero only if it's not the only zero in the 'value' string */
-          if ((result.length === 0 && j + 1 !== value.length) || result === NEGATIVE) {
-            ignoredChars++;
-            continue;
-          }
-        }
-        if (char === NEGATIVE && j > 0) {
-          /* dismiss content after a negative sign not on first position */
-          break;
-        }
-        if (indexDecimalSep > -1 && result.length + ignoredChars > indexDecimalSep + this.decimalPlaces) {
-          /* dismiss content after maximum decimal places reached */
-          break;
-        }
-        result += char;
-      } else if (char === this.groupingSeparator) {
-        if (indexDecimalSep === -1) {
-          ignoredChars++;
-        }
-      } else {
-        /* dismiss content after a invalid character */
-        break;
-      }
-    }
-
-    return result;
-  }
-
   updateInput(value: string, updateAsync: boolean): void {
     this.displayValue = value;
     this.inputEl.nativeElement.value = value;
-    this._numericValue = parseFloat(this.strip(value).replace(this.decimalSeparator, '.'));
+    this._numericValue = parseFloat(
+      strip(value, false, this.decimalSeparator, this.groupingSeparator, this.decimalPlaces).replace(
+        this.decimalSeparator,
+        '.'
+      )
+    );
     if (this._numericValue !== this.roundOrTruncate(this.originalValue)) {
       this.originalValue = this._numericValue;
       if (updateAsync) {

@@ -44,7 +44,7 @@ export class ReadonlyDemo {
     },
   ];
 
-  date = new Date().toLocaleDateString('en-US');
+  date = new Date().toLocaleDateString('de-DE');
   time = '11:00';
 }
 

@@ -5,3 +5,4 @@
  */
 
 export * from './escape.util';
+export * from './numeric.format.util';
