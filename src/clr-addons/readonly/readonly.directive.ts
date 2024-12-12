@@ -74,32 +74,35 @@ export class ClrReadonlyDirective implements AfterViewChecked {
   }
 
   private formatControlValue(ngControl: NgControl): string {
+    const controlValue = ngControl.control.value;
+
     if (this.isNumeric) {
-      return this.formatNumericValue(ngControl);
+      return this.formatNumericValue(controlValue);
     }
 
     if (this.isMultiSelect) {
-      return this.formatMultiSelectValue(ngControl);
+      return this.formatMultiSelectValue(controlValue);
     }
 
     if (this.isList) {
       return this.formatListValue();
     }
 
-    return ngControl.value ?? '';
+    return controlValue ?? '';
   }
 
-  private formatNumericValue(ngControl: NgControl): string {
+  private formatNumericValue(controlValue: any): string {
     let unit = '';
+
     if (this.elementRef.nativeElement.attributes['clrunit']) {
       unit = this.elementRef.nativeElement.attributes['clrunit'].value;
     }
 
-    return this.unitPosition === 'left' ? `${unit} ${ngControl.value}` : `${ngControl.value} ${unit}`;
+    return this.unitPosition === 'left' ? `${unit} ${controlValue}` : `${controlValue} ${unit}`;
   }
 
-  private formatMultiSelectValue(ngControl: NgControl): string {
-    return ngControl.value.map((item: Record<string, any>) => item[this.arrayPosition!]).join(', ');
+  private formatMultiSelectValue(controlValue: any): string {
+    return controlValue.map((item: Record<string, any>) => item[this.arrayPosition!]).join(', ');
   }
 
   private formatListValue() {
