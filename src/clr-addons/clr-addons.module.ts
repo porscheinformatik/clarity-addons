@@ -36,6 +36,7 @@ import { ClrDatagridStatePersistenceModule, ClrDateFilterModule, ClrEnumFilterMo
 import { ClrDaterangepickerModule } from './daterangepicker';
 import { ClrIfWarningModule } from './clr-control-warning/if-warning.module';
 import { ClrActionPanelModule } from './action-panel';
+import { ClrReadonlyDirectiveModule } from './readonly/readonly.module';
 
 @NgModule({
   exports: [
@@ -72,6 +73,7 @@ import { ClrActionPanelModule } from './action-panel';
     ClrDaterangepickerModule,
     ClrIfWarningModule,
     ClrActionPanelModule,
+    ClrReadonlyDirectiveModule,
   ],
 })
 export class ClrAddonsModule {}

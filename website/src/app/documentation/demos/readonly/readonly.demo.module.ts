@@ -12,7 +12,7 @@ import { ReadonlyDemo } from './readonly.demo';
 import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
 import { RouterModule } from '@angular/router';
 import { UtilsModule } from '../../../utils/utils.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -24,6 +24,7 @@ import { FormsModule } from '@angular/forms';
     ClrFormsModule,
     ClarityModule,
     ClrAddonsModule,
+    ReactiveFormsModule,
   ],
   declarations: [ReadonlyDemo],
   exports: [ReadonlyDemo],
