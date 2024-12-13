@@ -1,8 +1,6 @@
 const NEGATIVE = '-';
 const NUMBERS = new Set(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']);
 
-const allowedKeys = new Set(NUMBERS);
-
 export function formatNumber(
   value: string,
   finalFormatting: boolean,
@@ -68,6 +66,10 @@ export function strip(
   groupingSeparator: string,
   decimalPlaces: number
 ): string {
+  const allowedKeys = new Set(NUMBERS);
+  allowedKeys.add(NEGATIVE);
+  allowedKeys.add(decimalSeparator);
+
   let result = '';
   let indexDecimalSep = -1;
   let j = -1;
