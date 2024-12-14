@@ -5,7 +5,7 @@
  */
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { ClarityModule, ClrFormsModule } from '@clr/angular';
@@ -21,6 +21,7 @@ import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
     ClrFormsModule,
     ClrAddonsModule,
     RouterModule.forChild([{ path: '', component: ReadonlyDemo }]),
+    ReactiveFormsModule,
   ],
   declarations: [ReadonlyDemo],
   exports: [ReadonlyDemo],

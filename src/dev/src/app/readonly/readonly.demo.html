@@ -160,7 +160,7 @@
     <div class="clr-col-6">
       <clr-input-container>
         <label>Input label (readOnly)</label>
-        <input clrInput type="text" [(ngModel)]="inputValue" clrReadonly name="inputReadonlyTrue" />
+        <input clrInput type="text" [(ngModel)]="inputValue" [clrReadonly]="false" name="inputReadonlyTrue" />
       </clr-input-container>
     </div>
   </div>
@@ -170,7 +170,7 @@
     <div class="clr-col-6">
       <clr-input-container>
         <label>Money label</label>
-        <input clrInput clrNumeric type="text" [(clrNumericValue)]="numericValue" clrUnit="€" />
+        <input clrInput clrNumeric type="text" clrUnitPosition="left" [(clrNumericValue)]="numericValue" clrUnit="€" />
       </clr-input-container>
     </div>
     <div class="clr-col-6">
@@ -181,9 +181,10 @@
           clrNumeric
           type="text"
           name="number"
+          clrUnitPosition="left"
           [(ngModel)]="numericValue"
           [(clrNumericValue)]="numericValue"
-          clrReadonly
+          [clrReadonly]="true"
           clrUnit="€"
         />
       </clr-input-container>
@@ -205,7 +206,7 @@
     <div class="clr-col-6">
       <clr-select-container>
         <label>Select label (readOnly)</label>
-        <select clrSelect name="options" clrReadonly [(ngModel)]="selectValue">
+        <select clrSelect name="options" [clrReadonly]="true" [(ngModel)]="selectValue">
           <option value="one">One</option>
           <option value="two">Two</option>
           <option value="three">Three</option>
@@ -231,7 +232,7 @@
     <div class="clr-col-6">
       <clr-combobox-container>
         <label>Combobox label (readOnly)</label>
-        <clr-combobox clrReadonly [(ngModel)]="comboBoxValue">
+        <clr-combobox [clrReadonly]="true" [(ngModel)]="comboBoxValue">
           <clr-options>
             <clr-option [clrValue]="'Option 1'">Option 1</clr-option>
             <clr-option [clrValue]="'Option 2'">Option 2</clr-option>
@@ -248,7 +249,7 @@
       <clr-combobox-container>
         <label>ComboBox MultiSelect</label>
         <clr-combobox [(ngModel)]="selection" name="multiSelect" clrMulti="true">
-          <ng-container *clrOptionSelected="let selected"> {{ selected?.name }} </ng-container>
+          <ng-container *clrOptionSelected="let selected"> {{ selected?.name }}</ng-container>
           <clr-options>
             <clr-option *clrOptionItems="let state of states; field: 'name'" [clrValue]="state">
               {{ state.name }}
@@ -264,10 +265,10 @@
           [(ngModel)]="selectionReadOnly"
           name="test"
           clrMulti="true"
-          clrReadonly
+          [clrReadonly]="true"
           [clrReadOnlyProperty]="'name'"
         >
-          <ng-container *clrOptionSelected="let selected"> {{ selected?.name }} </ng-container>
+          <ng-container *clrOptionSelected="let selected"> {{ selected?.name }}</ng-container>
           <clr-options>
             <clr-option *clrOptionItems="let state of states; field: 'name'" [clrValue]="state">
               {{ state.name }}
@@ -290,7 +291,7 @@
     <div class="clr-col-6">
       <clr-textarea-container>
         <label>Textarea label (readOnly)</label>
-        <textarea clrTextarea [(ngModel)]="textareaText" clrReadonly name="description"></textarea>
+        <textarea clrTextarea [(ngModel)]="textareaText" [clrReadonly]="true" name="description"></textarea>
       </clr-textarea-container>
     </div>
   </div>
@@ -306,7 +307,7 @@
     <div class="clr-col-6">
       <clr-date-container>
         <label>Date label (readOnly)</label>
-        <input clrDate type="text" [(ngModel)]="date" clrReadonly name="date" />
+        <input clrDate type="text" [(ngModel)]="date" [clrReadonly]="true" name="date" />
       </clr-date-container>
     </div>
   </div>
@@ -320,7 +321,7 @@
     <div class="clr-col-6">
       <clr-input-container>
         <label>Time label (readOnly)</label>
-        <input type="time" [(ngModel)]="time" name="time" clrReadonly clrInput />
+        <input type="time" [(ngModel)]="time" name="time" [clrReadonly]="true" clrInput />
       </clr-input-container>
     </div>
   </div>

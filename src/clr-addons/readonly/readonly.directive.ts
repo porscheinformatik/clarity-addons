@@ -1,13 +1,13 @@
-import { AfterViewChecked, Directive, ElementRef, Injector, Input, Renderer2 } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, Injector, Input, OnChanges, OnInit, Renderer2 } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { formatNumber } from '../util';
 
 @Directive({
   selector: '[clrReadonly]',
 })
-export class ClrReadonlyDirective implements AfterViewChecked {
+export class ClrReadonlyDirective implements OnChanges, OnInit, AfterViewInit {
   @Input('clrMulti') isMultiSelect: boolean = false;
-  @Input('clrUnitPosition') unitPosition: 'left' | 'right' = 'right';
+  @Input('clrUnitPosition') unitPosition = 'right';
   @Input('clrReadOnlyProperty') property: string | null = null;
   @Input('clrReadonly') clrReadOnly: boolean = true;
   @Input('clrUnit') unit: string | '' = '';
@@ -18,19 +18,43 @@ export class ClrReadonlyDirective implements AfterViewChecked {
   @Input('clrDecimalSep') decimalSeparator = ',';
   @Input('clrGroupingSep') groupingSeparator = '.';
 
-  private isInitialized = false;
-
   constructor(
     private elementRef: ElementRef,
     private readonly renderer: Renderer2,
     private readonly injector: Injector
   ) {}
 
-  ngAfterViewChecked(): void {
+  private isInitialized = false;
+
+  ngOnInit(): void {
     const ngControl = this.injector.get(NgControl, null);
-    if (!this.isInitialized && ngControl.value != null) {
-      this.isInitialized = true;
+    if (this.clrReadOnly) {
       this.renderAsSpan(ngControl);
+    }
+  }
+
+  ngOnChanges(): void {
+    if (this.isInitialized) {
+      const ngControl = this.injector.get(NgControl, null);
+      if (this.clrReadOnly) {
+        this.renderAsSpan(ngControl);
+      } else {
+        this.resetReadonly();
+      }
+    }
+  }
+
+  ngAfterViewInit(): void {
+    this.isInitialized = true;
+  }
+
+  private resetReadonly() {
+    this.renderer.setStyle(this.elementRef.nativeElement, 'display', 'block');
+    const parentElement = this.elementRef.nativeElement.parentElement;
+    this.renderer.removeClass(parentElement, 'clr-readonly-parent');
+    const spanElement = this.elementRef.nativeElement.parentElement.querySelector('span.clr-readonly');
+    if (spanElement != null) {
+      this.renderer.removeChild(parentElement, spanElement);
     }
   }
 
@@ -75,17 +99,20 @@ export class ClrReadonlyDirective implements AfterViewChecked {
     }
   }
 
-  private formatControlValue(ngControl: NgControl): string {
+  private formatControlValue(ngControl: any): string {
     const controlType = this.determineControlType();
+    const controlValue = ngControl.model ?? ngControl.control?.value;
 
-    const controlValue = ngControl.control.value;
+    if (controlValue == null || controlValue === '') {
+      return '';
+    }
 
     if (controlType === 'numeric') {
       return this.formatNumericValue(controlValue);
     } else if (this.isMultiSelect) {
       return this.formatMultiSelectValue(controlValue);
     } else if (controlType === 'select') {
-      return this.formatListValue();
+      return this.formatListValue(controlValue);
     }
 
     return controlValue ?? '';
@@ -107,8 +134,13 @@ export class ClrReadonlyDirective implements AfterViewChecked {
     return controlValue.map((item: Record<string, any>) => item[this.property!]).join(', ');
   }
 
-  private formatListValue() {
-    const selectedOption = this.elementRef.nativeElement.options[this.elementRef.nativeElement.selectedIndex];
-    return selectedOption ? selectedOption.textContent || selectedOption.innerText : null;
+  private formatListValue(controlValue: any) {
+    const options: HTMLOptionElement[] = this.elementRef.nativeElement.querySelectorAll('option');
+    const matchingOption = Array.from(options).find(option => option.value === controlValue);
+    if (matchingOption) {
+      return matchingOption.innerHTML;
+    } else {
+      return '';
+    }
   }
 }

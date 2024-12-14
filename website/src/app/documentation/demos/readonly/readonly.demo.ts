@@ -42,7 +42,7 @@ const HTML_READONLY_CONDITIONAL = `
 `;
 
 const HTML_READONLY_ELEMENT = `
-<element clrReadonly></element>
+<element [clrReadonly]="true"></element>
 `;
 
 const HTML_READONLY_READONLYPROPERTY = `
