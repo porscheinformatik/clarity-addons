@@ -19,7 +19,7 @@ export class ReadonlyDemo {
   selectValue = 'one';
   textareaText = 'Test Text for Textarea';
   comboBoxValue = 'Option 1';
-  numericValue = 1234;
+  numericValue = 1234456456;
 
   states = states;
   selection: State[] = [

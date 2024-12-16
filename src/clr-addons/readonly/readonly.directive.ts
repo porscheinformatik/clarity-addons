@@ -10,7 +10,7 @@ export class ClrReadonlyDirective implements OnChanges, OnInit, AfterViewInit {
   @Input('clrUnitPosition') unitPosition = 'right';
   @Input('clrReadOnlyProperty') property: string | null = null;
   @Input('clrReadonly') clrReadOnly: boolean = true;
-  @Input('clrUnit') unit: string | '' = '';
+  @Input('clrUnit') unit: string = '';
 
   @Input('clrDecimalPlaces') decimalPlaces = 2;
   @Input('clrRoundDisplayValue') roundValue = false;
@@ -75,18 +75,8 @@ export class ClrReadonlyDirective implements OnChanges, OnInit, AfterViewInit {
     this.renderer.setAttribute(span, 'class', 'clr-readonly');
     this.renderer.addClass(parentElement, 'clr-readonly-parent');
 
-    // Hide all child elements of the parent and append the new span.
-    this.hideAllChildren(parentElement);
     this.renderer.setStyle(this.elementRef.nativeElement, 'display', 'none');
     this.renderer.appendChild(parentElement, span);
-  }
-
-  private hideAllChildren(parentElement: HTMLElement): void {
-    Array.from(parentElement.childNodes).forEach(childNode => {
-      if (childNode instanceof HTMLElement) {
-        this.renderer.setStyle(childNode, 'display', 'none');
-      }
-    });
   }
 
   private determineControlType() {
