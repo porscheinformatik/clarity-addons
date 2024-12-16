@@ -86,7 +86,7 @@ export class ClrReadonlyDirective implements OnChanges, OnInit, AfterViewInit {
     }
   }
 
-  private formatControlValue(ngControl: any): string {
+  private formatControlValue(ngControl: NgControl): string {
     const controlType = this.determineControlType();
     const controlValue = ngControl instanceof NgModel ? ngControl.model : ngControl.control?.value;
 
