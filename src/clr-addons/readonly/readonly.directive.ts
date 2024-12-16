@@ -1,5 +1,5 @@
 import { AfterViewInit, Directive, ElementRef, Injector, Input, OnChanges, OnInit, Renderer2 } from '@angular/core';
-import { NgControl } from '@angular/forms';
+import { NgControl, NgModel } from '@angular/forms';
 import { formatNumber } from '../util';
 
 @Directive({
@@ -49,7 +49,6 @@ export class ClrReadonlyDirective implements OnChanges, OnInit, AfterViewInit {
   }
 
   private resetReadonly() {
-    this.renderer.setStyle(this.elementRef.nativeElement, 'display', 'block');
     const parentElement = this.elementRef.nativeElement.parentElement;
     this.renderer.removeClass(parentElement, 'clr-readonly-parent');
     const spanElement = this.elementRef.nativeElement.parentElement.querySelector('span.clr-readonly');
@@ -74,8 +73,6 @@ export class ClrReadonlyDirective implements OnChanges, OnInit, AfterViewInit {
     this.renderer.appendChild(span, textNode);
     this.renderer.setAttribute(span, 'class', 'clr-readonly');
     this.renderer.addClass(parentElement, 'clr-readonly-parent');
-
-    this.renderer.setStyle(this.elementRef.nativeElement, 'display', 'none');
     this.renderer.appendChild(parentElement, span);
   }
 
@@ -91,7 +88,7 @@ export class ClrReadonlyDirective implements OnChanges, OnInit, AfterViewInit {
 
   private formatControlValue(ngControl: any): string {
     const controlType = this.determineControlType();
-    const controlValue = ngControl.model ?? ngControl.control?.value;
+    const controlValue = ngControl instanceof NgModel ? ngControl.model : ngControl.control?.value;
 
     if (controlValue == null || controlValue === '') {
       return '';
