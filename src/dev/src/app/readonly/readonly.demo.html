@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+  ~ Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
@@ -146,6 +146,183 @@
           <label>Option 3</label>
         </clr-checkbox-wrapper>
       </clr-checkbox-container>
+    </div>
+  </div>
+
+  <h4>Input</h4>
+  <div class="clr-row">
+    <div class="clr-col-6">
+      <clr-input-container>
+        <label>Field 1 label</label>
+        <input clrInput type="text" [(ngModel)]="inputValue" name="inputReadonlyFalse" />
+      </clr-input-container>
+    </div>
+    <div class="clr-col-6">
+      <clr-input-container>
+        <label>Input label (readOnly)</label>
+        <input clrInput type="text" [(ngModel)]="inputValue" [clrReadonly]="false" name="inputReadonlyTrue" />
+      </clr-input-container>
+    </div>
+  </div>
+
+  <h4>Numeric</h4>
+  <div class="clr-row">
+    <div class="clr-col-6">
+      <clr-input-container>
+        <label>Money label</label>
+        <input clrInput clrNumeric type="text" clrUnitPosition="left" [(clrNumericValue)]="numericValue" clrUnit="€" />
+      </clr-input-container>
+    </div>
+    <div class="clr-col-6">
+      <clr-input-container>
+        <label>Money label (readOnly)</label>
+        <input
+          clrInput
+          clrNumeric
+          type="text"
+          name="number"
+          clrUnitPosition="left"
+          [(ngModel)]="numericValue"
+          [(clrNumericValue)]="numericValue"
+          [clrReadonly]="true"
+          clrUnit="€"
+        />
+      </clr-input-container>
+    </div>
+  </div>
+
+  <h4>Select</h4>
+  <div class="clr-row">
+    <div class="clr-col-6">
+      <clr-select-container>
+        <label>Select label</label>
+        <select clrSelect name="options" [(ngModel)]="selectValue">
+          <option value="one">One</option>
+          <option value="two">Two</option>
+          <option value="three">Three</option>
+        </select>
+      </clr-select-container>
+    </div>
+    <div class="clr-col-6">
+      <clr-select-container>
+        <label>Select label (readOnly)</label>
+        <select clrSelect name="options" [clrReadonly]="true" [(ngModel)]="selectValue">
+          <option value="one">One</option>
+          <option value="two">Two</option>
+          <option value="three">Three</option>
+        </select>
+      </clr-select-container>
+    </div>
+  </div>
+
+  <h4>Combobox Single</h4>
+  <div class="clr-row">
+    <div class="clr-col-6">
+      <clr-combobox-container>
+        <label>Combobox label</label>
+        <clr-combobox [(ngModel)]="comboBoxValue">
+          <clr-options>
+            <clr-option [clrValue]="'Option 1'">Option 1</clr-option>
+            <clr-option [clrValue]="'Option 2'">Option 2</clr-option>
+            <clr-option [clrValue]="'Option 3'">Option 3</clr-option>
+          </clr-options>
+        </clr-combobox>
+      </clr-combobox-container>
+    </div>
+    <div class="clr-col-6">
+      <clr-combobox-container>
+        <label>Combobox label (readOnly)</label>
+        <clr-combobox [clrReadonly]="true" [(ngModel)]="comboBoxValue">
+          <clr-options>
+            <clr-option [clrValue]="'Option 1'">Option 1</clr-option>
+            <clr-option [clrValue]="'Option 2'">Option 2</clr-option>
+            <clr-option [clrValue]="'Option 3'">Option 3</clr-option>
+          </clr-options>
+        </clr-combobox>
+      </clr-combobox-container>
+    </div>
+  </div>
+
+  <h4>Combobox Multiselect</h4>
+  <div class="clr-row">
+    <div class="clr-col-6">
+      <clr-combobox-container>
+        <label>ComboBox MultiSelect</label>
+        <clr-combobox [(ngModel)]="selection" name="multiSelect" clrMulti="true">
+          <ng-container *clrOptionSelected="let selected"> {{ selected?.name }}</ng-container>
+          <clr-options>
+            <clr-option *clrOptionItems="let state of states; field: 'name'" [clrValue]="state">
+              {{ state.name }}
+            </clr-option>
+          </clr-options>
+        </clr-combobox>
+      </clr-combobox-container>
+    </div>
+    <div class="clr-col-6">
+      <clr-combobox-container>
+        <label>ComboBox MultiSelect (Readonly)</label>
+        <clr-combobox
+          [(ngModel)]="selectionReadOnly"
+          name="test"
+          clrMulti="true"
+          [clrReadonly]="true"
+          [clrReadOnlyProperty]="'name'"
+        >
+          <ng-container *clrOptionSelected="let selected"> {{ selected?.name }}</ng-container>
+          <clr-options>
+            <clr-option *clrOptionItems="let state of states; field: 'name'" [clrValue]="state">
+              {{ state.name }}
+            </clr-option>
+          </clr-options>
+        </clr-combobox>
+      </clr-combobox-container>
+    </div>
+  </div>
+  <div class="clr-row">
+    <h3>Textarea</h3>
+  </div>
+  <div class="clr-row">
+    <div class="clr-col-6">
+      <clr-textarea-container>
+        <label>Textarea label</label>
+        <textarea clrTextarea [(ngModel)]="textareaText" name="description"></textarea>
+      </clr-textarea-container>
+    </div>
+    <div class="clr-col-6">
+      <clr-textarea-container>
+        <label>Textarea label (readOnly)</label>
+        <textarea clrTextarea [(ngModel)]="textareaText" [clrReadonly]="true" name="description"></textarea>
+      </clr-textarea-container>
+    </div>
+  </div>
+
+  <h4>Date & Time</h4>
+  <div class="clr-row">
+    <div class="clr-col-6">
+      <clr-date-container>
+        <label>Date label</label>
+        <input clrDate type="text" [(ngModel)]="date" name="date" />
+      </clr-date-container>
+    </div>
+    <div class="clr-col-6">
+      <clr-date-container>
+        <label>Date label (readOnly)</label>
+        <input clrDate type="text" [(ngModel)]="date" [clrReadonly]="true" name="date" />
+      </clr-date-container>
+    </div>
+  </div>
+  <div class="clr-row">
+    <div class="clr-col-6">
+      <clr-input-container>
+        <label>Time label</label>
+        <input type="time" [(ngModel)]="time" name="time" clrInput />
+      </clr-input-container>
+    </div>
+    <div class="clr-col-6">
+      <clr-input-container>
+        <label>Time label (readOnly)</label>
+        <input type="time" [(ngModel)]="time" name="time" [clrReadonly]="true" clrInput />
+      </clr-input-container>
     </div>
   </div>
 </div>

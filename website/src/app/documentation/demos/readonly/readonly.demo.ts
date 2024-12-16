@@ -5,6 +5,9 @@
  */
 import { Component } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { share } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 const HTML_CHECKBOX_EXAMPLE = `
 <clr-checkbox-container readonly>
@@ -37,9 +40,23 @@ const HTML_READONLY_CONDITIONAL = `
 ...
 </clr-checkbox-container>
 `;
+
+const HTML_READONLY_ELEMENT = `
+<element [clrReadonly]="true"></element>
+`;
+
+const HTML_READONLY_READONLYPROPERTY = `
+<clr-combobox-container>
+   <label>ComboBox MultiSelect (Readonly)</label>
+   <clr-combobox [(ngModel)]="selectionReadOnly" name="multiSelect" clrMulti="true" clrReadonly [clrReadOnlyProperty]="'name'">
+      ...
+   </clr-combobox>
+</clr-combobox-container>`;
+
 @Component({
   selector: 'clr-readonly-demo',
   templateUrl: './readonly.demo.html',
+  styleUrls: ['./readonly.demo.scss'],
   host: {
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
@@ -50,13 +67,137 @@ export class ReadonlyDemo extends ClarityDocComponent {
   htmlRadiobuttonExample = HTML_RADIOBUTTON_EXAMPLE;
   htmlRadioExampleDanger = HTML_RADIO_EXAMPLE_DANGER;
   htmlReadonlyConditional = HTML_READONLY_CONDITIONAL;
+  htmlReadonlyElement = HTML_READONLY_ELEMENT;
+  htmlReadonlyReadonlyProperty = HTML_READONLY_READONLYPROPERTY;
+  activeFragment;
+
+  //View-Edit
+  editMode1 = false;
+
+  sectionTitle: string = 'View/Edit Section';
+  input: string = 'Value';
+  select: string = 'Option 1';
+  combobox: string = 'Option 2';
+  comboboxMulti: State[] = [
+    {
+      name: 'Alabama',
+      abbreviation: 'AL',
+    },
+    {
+      name: 'Alaska',
+      abbreviation: 'AK',
+    },
+  ];
+  numeric = 1030;
+  date = new Date().toLocaleDateString('en-US');
+  time = '11:00';
+
+  sectionSubmitted(): boolean {
+    if (this.exampleForm.valid) {
+      this.input = this.exampleForm.value.editInput;
+      this.select = this.exampleForm.value.editSelect;
+      this.combobox = this.exampleForm.value.editCombobox;
+      this.comboboxMulti = this.exampleForm.value.editComboboxMulti;
+      this.numeric = this.exampleForm.value.editNumeric;
+      this.date = this.exampleForm.value.editDate;
+      this.time = this.exampleForm.value.editTime;
+      return true;
+    }
+    return false;
+  }
+
+  sectionCancelled() {
+    this.exampleForm.reset({
+      editInput: this.input,
+      editSelect: this.select,
+      editCombobox: this.combobox,
+      editComboboxMulti: this.comboboxMulti,
+      editNumeric: this.numeric,
+      editDate: this.date,
+      editTime: this.time,
+    });
+  }
+
+  onFormSubmit() {
+    (<HTMLElement>document.activeElement).blur();
+    this.editMode1 = !this.sectionSubmitted();
+  }
+
+  exampleForm = new FormGroup({
+    editInput: new FormControl(this.input, {
+      validators: [Validators.required],
+      updateOn: 'blur',
+    }),
+    editSelect: new FormControl(this.select, {
+      validators: [Validators.required],
+      updateOn: 'blur',
+    }),
+    editCombobox: new FormControl(this.combobox),
+    editComboboxMulti: new FormControl(this.comboboxMulti),
+    editNumeric: new FormControl(this.numeric),
+    editDate: new FormControl(this.date),
+    editTime: new FormControl(this.time),
+  });
+
+  // Value for the demo Page
+  inputControlValue = 'Shelf A21';
+
+  inputValue = 'Test Value 1';
+  selectValue = 'one';
+  textareaText = 'Test Text for Textarea';
+  comboBoxValue = 'Option 1';
+  numericValue = 456456;
+
+  states = states;
+  selection: State[] = [
+    {
+      name: 'Alabama',
+      abbreviation: 'AL',
+    },
+    {
+      name: 'Alaska',
+      abbreviation: 'AK',
+    },
+  ];
+
+  selectionReadOnly: State[] = [
+    {
+      name: 'Alabama',
+      abbreviation: 'AL',
+    },
+    {
+      name: 'Alaska',
+      abbreviation: 'AK',
+    },
+  ];
+
+  dateValue = new Date().toLocaleDateString('en-US');
+
+  timeValue = '11:00';
 
   radioValue: number = 1;
   checkValue1: boolean = true;
   checkValue2: boolean;
   checkValue3: boolean = true;
 
-  constructor() {
+  constructor(public route: ActivatedRoute) {
     super('readonly');
+    this.activeFragment = this.route.fragment.pipe(share());
   }
 }
+
+export interface State {
+  name: string;
+  abbreviation: string;
+}
+
+export const states: State[] = [
+  {
+    name: 'Alabama',
+    abbreviation: 'AL',
+  },
+  {
+    name: 'Alaska',
+    abbreviation: 'AK',
+  },
+];

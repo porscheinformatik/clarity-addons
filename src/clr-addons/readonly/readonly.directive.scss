@@ -1,0 +1,14 @@
+@include exports('readonly.clr-addons') {
+  .clr-readonly-parent.clr-select-wrapper::after {
+    content: none !important;
+  }
+
+  .clr-readonly-parent {
+    border-bottom: none !important;
+    margin: 0 !important;
+  }
+
+  .clr-readonly-parent > *:not(.clr-readonly) {
+    display: none;
+  }
+}

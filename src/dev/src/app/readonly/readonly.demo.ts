@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -14,4 +14,52 @@ export class ReadonlyDemo {
   checkValue1 = true;
   checkValue2: boolean;
   checkValue3 = true;
+
+  inputValue = 'Test Value 1';
+  selectValue = 'one';
+  textareaText = 'Test Text for Textarea';
+  comboBoxValue = 'Option 1';
+  numericValue = 1234456456;
+
+  states = states;
+  selection: State[] = [
+    {
+      name: 'Alabama',
+      abbreviation: 'AL',
+    },
+    {
+      name: 'Alaska',
+      abbreviation: 'AK',
+    },
+  ];
+
+  selectionReadOnly: State[] = [
+    {
+      name: 'Alabama',
+      abbreviation: 'AL',
+    },
+    {
+      name: 'Alaska',
+      abbreviation: 'AK',
+    },
+  ];
+
+  date = new Date().toLocaleDateString('de-DE');
+  time = '11:00';
 }
+
+export interface State {
+  name: string;
+  abbreviation: string;
+}
+
+export const states: State[] = [
+  {
+    name: 'Alabama',
+    abbreviation: 'AL',
+  },
+  {
+    name: 'Alaska',
+    abbreviation: 'AK',
+  },
+];
