@@ -6,6 +6,7 @@
   .clr-readonly-parent {
     border-bottom: none !important;
     margin: 0 !important;
+    white-space: normal;
   }
 
   .clr-readonly-parent > *:not(.clr-readonly) {

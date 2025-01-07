@@ -38,6 +38,7 @@
   </div>
 
   <article>
+    <section class="mt-24px">Readonly state is used to show the value of an input-control as text.</section>
     <section class="mt-24px">
       <h2 id="usage">Usage</h2>
       <ul class="mtb-15px">
@@ -57,15 +58,15 @@
 
     <section class="mt-24px">
       <span class="bold-text">Example<br /></span>
-      <span>The store location of an item<br /></span>
+      <span>The store location of an item.<br /></span>
       <span>It is enabled when the user has the right to edit the store location.<br /></span>
-      <span
-        >It is disabled when the item has been moved to an external storage-space. The previous entered store location
-        is not valid any more.</span
-      >
-      <span
-        >It is readonly when the current user should only be able to find the item, but not after its store location.<br
-      /></span>
+      <span>
+        It is disabled when the item has been moved to an external storage-space. The previous entered store location is
+        not valid any more.
+      </span>
+      <span>
+        It is readonly when the current user should only be able to find the item, but not alter its store location.<br />
+      </span>
     </section>
 
     <section class="mt-24px">
@@ -151,6 +152,9 @@
       </div>
     </section>
     <section class="mt-24px">
+      <h4>View/Edit Section</h4>
+      Example of how this could look in a View/Edit Section.
+
       <clr-view-edit-section
         [(clrEditMode)]="editMode1"
         [clrPreventModeChangeOnSave]="!exampleForm.valid"
@@ -163,20 +167,20 @@
         <ng-template #viewBlock1>
           <form clrForm clrLayout="horizontal">
             <clr-input-container>
-              <label class="clr-col-md-4">Input</label>
-              <input class="clr-col-md-8" clrInput type="text" [(ngModel)]="input" [clrReadonly]="true" name="input" />
+              <label>Input</label>
+              <input clrInput type="text" [(ngModel)]="input" [clrReadonly]="true" name="input" />
             </clr-input-container>
             <clr-select-container>
-              <label class="clr-col-md-4">Select</label>
-              <select class="clr-col-md-8" clrSelect [clrReadonly]="true" [(ngModel)]="select" name="select">
+              <label>Select</label>
+              <select clrSelect [clrReadonly]="true" [(ngModel)]="select" name="select">
                 <option value="Option 1">Option 1</option>
                 <option value="Option 2">Option 2</option>
                 <option value="Option 3">Option 3</option>
               </select>
             </clr-select-container>
             <clr-combobox-container>
-              <label class="clr-col-md-4">Combobox</label>
-              <clr-combobox class="clr-col-md-8" [clrReadonly]="true" [(ngModel)]="combobox" name="combobox">
+              <label>Combobox</label>
+              <clr-combobox [clrReadonly]="true" [(ngModel)]="combobox" name="combobox">
                 <clr-options>
                   <clr-option [clrValue]="'Option 1'">Option 1</clr-option>
                   <clr-option [clrValue]="'Option 2'">Option 2</clr-option>
@@ -185,9 +189,8 @@
               </clr-combobox>
             </clr-combobox-container>
             <clr-combobox-container>
-              <label class="clr-col-md-4">ComboBox MultiSelect</label>
+              <label>ComboBox MultiSelect</label>
               <clr-combobox
-                class="clr-col-md-8"
                 [clrReadonly]="true"
                 [(ngModel)]="comboboxMulti"
                 name="comboboxMulti"
@@ -203,11 +206,10 @@
               </clr-combobox>
             </clr-combobox-container>
             <clr-input-container>
-              <label class="clr-col-md-4">Numeric</label>
+              <label>Numeric field</label>
               <input
                 clrInput
                 clrNumeric
-                class="clr-col-md-8"
                 type="text"
                 [clrReadonly]="true"
                 [(ngModel)]="numeric"
@@ -216,32 +218,64 @@
               />
             </clr-input-container>
             <clr-date-container>
-              <label class="clr-col-md-4">Date</label>
-              <input clrDate class="clr-col-md-8" [(ngModel)]="date" [clrReadonly]="true" type="text" name="date" />
+              <label>Date field</label>
+              <input clrDate [(ngModel)]="date" [clrReadonly]="true" type="text" name="date" />
             </clr-date-container>
             <clr-input-container>
-              <label class="clr-col-md-4">Time</label>
-              <input class="clr-col-md-8" type="time" [(ngModel)]="time" [clrReadonly]="true" name="time" clrInput />
+              <label>Time field</label>
+              <input type="time" [(ngModel)]="time" [clrReadonly]="true" name="time" clrInput />
             </clr-input-container>
+
+            <clr-checkbox-container readonly>
+              <label>Checkboxes</label>
+              <clr-checkbox-wrapper>
+                <input clrCheckbox type="checkbox" [(ngModel)]="checkValue1" name="check4" />
+                <label>Option 1</label>
+              </clr-checkbox-wrapper>
+              <clr-checkbox-wrapper>
+                <input clrCheckbox type="checkbox" [(ngModel)]="checkValue2" name="check5" />
+                <label>Option 2</label>
+              </clr-checkbox-wrapper>
+              <clr-checkbox-wrapper>
+                <input clrCheckbox type="checkbox" [(ngModel)]="checkValue3" name="check6" />
+                <label>Option 3</label>
+              </clr-checkbox-wrapper>
+            </clr-checkbox-container>
+
+            <clr-radio-container readonly show-only-selected="true">
+              <label>Radiobuttons</label>
+              <clr-radio-wrapper>
+                <input clrRadio type="radio" [value]="1" [(ngModel)]="radioValue" name="status1" />
+                <label>Option 1</label>
+              </clr-radio-wrapper>
+              <clr-radio-wrapper>
+                <input clrRadio type="radio" [value]="2" [(ngModel)]="radioValue" name="status1" />
+                <label>Option 2</label>
+              </clr-radio-wrapper>
+              <clr-radio-wrapper>
+                <input clrRadio type="radio" [value]="3" [(ngModel)]="radioValue" name="status1" />
+                <label>Option 3</label>
+              </clr-radio-wrapper>
+            </clr-radio-container>
           </form>
         </ng-template>
         <ng-template #editBlock1>
           <form clrForm clrLayout="horizontal" [formGroup]="exampleForm" (submit)="onFormSubmit()">
             <clr-input-container>
-              <label class="clr-col-md-4 clr-required-mark">Input</label>
-              <input class="clr-col-md-8" clrInput type="text" formControlName="editInput" name="input" />
+              <label class="clr-required-mark">Input</label>
+              <input clrInput type="text" formControlName="editInput" name="input" />
             </clr-input-container>
             <clr-select-container>
-              <label class="clr-col-md-4 clr-required-mark">Select</label>
-              <select class="clr-col-md-8" clrSelect formControlName="editSelect" name="select">
+              <label class="clr-required-mark">Select</label>
+              <select clrSelect formControlName="editSelect" name="select">
                 <option value="Option 1">Option 1</option>
                 <option value="Option 2">Option 2</option>
                 <option value="Option 3">Option 3</option>
               </select>
             </clr-select-container>
             <clr-combobox-container>
-              <label class="clr-col-md-4">Combobox</label>
-              <clr-combobox class="clr-col-md-8" formControlName="editCombobox" name="combobox">
+              <label>Combobox</label>
+              <clr-combobox formControlName="editCombobox" name="combobox">
                 <clr-options>
                   <clr-option [clrValue]="'Option 1'">Option 1</clr-option>
                   <clr-option [clrValue]="'Option 2'">Option 2</clr-option>
@@ -250,13 +284,8 @@
               </clr-combobox>
             </clr-combobox-container>
             <clr-combobox-container>
-              <label class="clr-col-md-4">ComboBox MultiSelect</label>
-              <clr-combobox
-                class="clr-col-md-8"
-                formControlName="editComboboxMulti"
-                name="comboboxMulti"
-                clrMulti="true"
-              >
+              <label>ComboBox MultiSelect</label>
+              <clr-combobox formControlName="editComboboxMulti" name="comboboxMulti" clrMulti="true">
                 <ng-container *clrOptionSelected="let selected"> {{ selected?.name }}</ng-container>
                 <clr-options>
                   <clr-option *clrOptionItems="let state of states; field: 'name'" [clrValue]="state">
@@ -266,11 +295,10 @@
               </clr-combobox>
             </clr-combobox-container>
             <clr-input-container>
-              <label class="clr-col-md-4">Numeric</label>
+              <label>Numeric field</label>
               <input
                 clrInput
                 clrNumeric
-                class="clr-col-md-8"
                 type="text"
                 formControlName="editNumeric"
                 [(clrNumericValue)]="numeric"
@@ -278,13 +306,45 @@
               />
             </clr-input-container>
             <clr-date-container>
-              <label class="clr-col-md-4">Date</label>
-              <input clrDate class="clr-col-md-8" formControlName="editDate" type="text" name="date" />
+              <label>Date field</label>
+              <input clrDate formControlName="editDate" type="text" name="date" />
             </clr-date-container>
             <clr-input-container>
-              <label class="clr-col-md-4">Time</label>
-              <input class="clr-col-md-8" type="time" formControlName="editTime" name="time" clrInput />
+              <label>Time field</label>
+              <input type="time" formControlName="editTime" name="time" clrInput />
             </clr-input-container>
+
+            <clr-checkbox-container>
+              <label>Checkboxes</label>
+              <clr-checkbox-wrapper>
+                <input clrCheckbox type="checkbox" [(ngModel)]="checkValue1" name="check4" />
+                <label>Option 1</label>
+              </clr-checkbox-wrapper>
+              <clr-checkbox-wrapper>
+                <input clrCheckbox type="checkbox" [(ngModel)]="checkValue2" name="check5" />
+                <label>Option 2</label>
+              </clr-checkbox-wrapper>
+              <clr-checkbox-wrapper>
+                <input clrCheckbox type="checkbox" [(ngModel)]="checkValue3" name="check6" />
+                <label>Option 3</label>
+              </clr-checkbox-wrapper>
+            </clr-checkbox-container>
+
+            <clr-radio-container>
+              <label>Radiobuttons</label>
+              <clr-radio-wrapper>
+                <input clrRadio type="radio" [value]="1" [(ngModel)]="radioValue" name="status1" />
+                <label>Option 1</label>
+              </clr-radio-wrapper>
+              <clr-radio-wrapper>
+                <input clrRadio type="radio" [value]="2" [(ngModel)]="radioValue" name="status1" />
+                <label>Option 2</label>
+              </clr-radio-wrapper>
+              <clr-radio-wrapper>
+                <input clrRadio type="radio" [value]="3" [(ngModel)]="radioValue" name="status1" />
+                <label>Option 3</label>
+              </clr-radio-wrapper>
+            </clr-radio-container>
             <input type="submit" style="display: none" />
           </form>
         </ng-template>
@@ -294,33 +354,33 @@
       <clr-code-snippet [clrCode]="htmlReadonlyElement"></clr-code-snippet>
     </section>
     <section class="mt-24px">
-      <h4 id="input">Input</h4>
+      <h4 class="mt-30px" id="input">Input</h4>
       <div class="clr-row">
         <div class="clr-col-6">
           <clr-input-container>
-            <label>Field 1 label</label>
+            <label>Input (enabled)</label>
             <input clrInput type="text" [(ngModel)]="inputValue" name="inputReadonlyFalse" />
           </clr-input-container>
         </div>
         <div class="clr-col-6">
           <clr-input-container>
-            <label>Input label (readOnly)</label>
+            <label>Input (readonly)</label>
             <input clrInput type="text" [(ngModel)]="inputValue" [clrReadonly]="true" name="inputReadonlyTrue" />
           </clr-input-container>
         </div>
       </div>
 
-      <h4 id="numeric">Numeric Field</h4>
+      <h4 class="mt-30px" id="numeric">Numeric Field</h4>
       <div class="clr-row">
         <div class="clr-col-6">
           <clr-input-container>
-            <label>Money label</label>
+            <label>Numeric field (enabled)</label>
             <input clrInput clrNumeric type="text" [(clrNumericValue)]="numericValue" clrUnit="€" />
           </clr-input-container>
         </div>
         <div class="clr-col-6">
           <clr-input-container>
-            <label>Money label (readOnly)</label>
+            <label>Numeric field (readonly)</label>
             <input
               clrInput
               clrNumeric
@@ -335,11 +395,11 @@
         </div>
       </div>
 
-      <h4 id="select">Select</h4>
+      <h4 class="mt-30px" id="select">Select</h4>
       <div class="clr-row">
         <div class="clr-col-6">
           <clr-select-container>
-            <label>Select label</label>
+            <label>Select (enabled)</label>
             <select clrSelect name="options" [(ngModel)]="selectValue">
               <option value="one">One</option>
               <option value="two">Two</option>
@@ -349,7 +409,7 @@
         </div>
         <div class="clr-col-6">
           <clr-select-container>
-            <label>Select label (readOnly)</label>
+            <label>Select (readonly)</label>
             <select clrSelect name="options" [clrReadonly]="true" [(ngModel)]="selectValue">
               <option value="one">One</option>
               <option value="two">Two</option>
@@ -359,11 +419,11 @@
         </div>
       </div>
 
-      <h4 id="combobox">Combobox Single</h4>
+      <h4 class="mt-30px" id="combobox">Combobox</h4>
       <div class="clr-row">
         <div class="clr-col-6">
           <clr-combobox-container>
-            <label>Combobox label</label>
+            <label>Combobox (enabled)</label>
             <clr-combobox [(ngModel)]="comboBoxValue">
               <clr-options>
                 <clr-option [clrValue]="'Option 1'">Option 1</clr-option>
@@ -375,7 +435,7 @@
         </div>
         <div class="clr-col-6">
           <clr-combobox-container>
-            <label>Combobox label (readOnly)</label>
+            <label>Combobox (readonly)</label>
             <clr-combobox [clrReadonly]="true" [(ngModel)]="comboBoxValue">
               <clr-options>
                 <clr-option [clrValue]="'Option 1'">Option 1</clr-option>
@@ -386,13 +446,13 @@
           </clr-combobox-container>
         </div>
       </div>
-
-      <h4>Combobox Multiselect</h4>
-      When using multi-select, provide the property to display via clrReadOnlyProperty.
+      <div class="clr-row mtb-5px">
+        <div class="clr-col-12">When using multi-select, provide the property to display via clrReadOnlyProperty.</div>
+      </div>
       <div class="clr-row">
         <div class="clr-col-6">
           <clr-combobox-container>
-            <label>ComboBox MultiSelect</label>
+            <label>ComboBox MultiSelect (enabled)</label>
             <clr-combobox [(ngModel)]="selection" name="multiSelect" clrMulti="true">
               <ng-container *clrOptionSelected="let selected"> {{ selected?.name }}</ng-container>
               <clr-options>
@@ -405,7 +465,7 @@
         </div>
         <div class="clr-col-6">
           <clr-combobox-container>
-            <label>ComboBox MultiSelect (Readonly)</label>
+            <label>ComboBox MultiSelect (readonly)</label>
             <clr-combobox
               [(ngModel)]="selectionReadOnly"
               name="multiSelect"
@@ -426,33 +486,41 @@
 
       <clr-code-snippet [clrCode]="htmlReadonlyReadonlyProperty"></clr-code-snippet>
 
-      <h4 id="textarea">Textarea</h4>
-      <div class="clr-row">
-        <div class="clr-col-6">
-          <clr-textarea-container>
-            <label>Textarea label</label>
-            <textarea clrTextarea [(ngModel)]="textareaText" name="description"></textarea>
-          </clr-textarea-container>
+      <h4 class="mt-30px" id="textarea">Textarea</h4>
+      <form clrForm>
+        <div class="clr-row">
+          <div class="clr-col-6">
+            <clr-textarea-container>
+              <label class="clr-col-12">Textarea (enabled)</label>
+              <textarea clrTextarea [(ngModel)]="textareaText" name="description" class="clr-col-12"></textarea>
+            </clr-textarea-container>
+          </div>
+          <div class="clr-col-6">
+            <clr-textarea-container>
+              <label class="clr-col-12">Textarea (readonly)</label>
+              <textarea
+                clrTextarea
+                class="clr-col-12"
+                [(ngModel)]="textareaText"
+                [clrReadonly]="true"
+                name="description"
+              ></textarea>
+            </clr-textarea-container>
+          </div>
         </div>
-        <div class="clr-col-6">
-          <clr-textarea-container>
-            <label>Textarea label (readOnly)</label>
-            <textarea clrTextarea [(ngModel)]="textareaText" [clrReadonly]="true" name="description"></textarea>
-          </clr-textarea-container>
-        </div>
-      </div>
+      </form>
 
-      <h4 id="date">Date Time Field</h4>
+      <h4 class="mt-30px" id="date">Date Time Field</h4>
       <div class="clr-row">
         <div class="clr-col-6">
           <clr-date-container>
-            <label>Date label</label>
+            <label>Date (enabled)</label>
             <input clrDate type="text" [(ngModel)]="dateValue" name="date" />
           </clr-date-container>
         </div>
         <div class="clr-col-6">
           <clr-date-container>
-            <label>Date label (readOnly)</label>
+            <label>Date (readonly)</label>
             <input clrDate type="text" [(ngModel)]="dateValue" [clrReadonly]="true" name="date" />
           </clr-date-container>
         </div>
@@ -460,19 +528,19 @@
       <div class="clr-row">
         <div class="clr-col-6">
           <clr-input-container>
-            <label>Time label</label>
+            <label>Time (enabled)</label>
             <input type="time" [(ngModel)]="timeValue" name="time" clrInput />
           </clr-input-container>
         </div>
         <div class="clr-col-6">
           <clr-input-container>
-            <label>Time label (readOnly)</label>
+            <label>Time (readonly)</label>
             <input type="time" [(ngModel)]="timeValue" name="time" [clrReadonly]="true" clrInput />
           </clr-input-container>
         </div>
       </div>
 
-      <h4 id="radioBtn">Radiobuttons</h4>
+      <h4 class="mt-30px" id="radioBtn">Radiobuttons</h4>
       <div class="clr-row">
         <div class="clr-col-3">
           <clr-radio-container>
@@ -529,7 +597,7 @@
 
       <clr-code-snippet [clrCode]="htmlRadiobuttonExample"></clr-code-snippet>
 
-      <h4 id="checkbox">Checkboxes</h4>
+      <h4 class="mt-30px" id="checkbox">Checkboxes</h4>
       <div class="clr-row">
         <div class="clr-col-3">
           <clr-checkbox-container>
@@ -585,82 +653,6 @@
       </div>
 
       <clr-code-snippet [clrCode]="htmlCheckboxExample"></clr-code-snippet>
-
-      <h4>View/Edit Section</h4>
-      Example of how this could look in a View/Edit Section. Radiobuttons in view mode only show selected options.
-      Checkboxes show all options in view mode.
-      <clr-view-edit-section clrTitle="Title" [clrViewRef]="viewBlock" [clrEditRef]="editBlock">
-        <ng-template #viewBlock>
-          <form clrForm clrLayout="horizontal">
-            <clr-checkbox-container readonly>
-              <label>Checkboxes</label>
-              <clr-checkbox-wrapper>
-                <input clrCheckbox type="checkbox" [(ngModel)]="checkValue1" name="check4" />
-                <label>Option 1</label>
-              </clr-checkbox-wrapper>
-              <clr-checkbox-wrapper>
-                <input clrCheckbox type="checkbox" [(ngModel)]="checkValue2" name="check5" />
-                <label>Option 2</label>
-              </clr-checkbox-wrapper>
-              <clr-checkbox-wrapper>
-                <input clrCheckbox type="checkbox" [(ngModel)]="checkValue3" name="check6" />
-                <label>Option 3</label>
-              </clr-checkbox-wrapper>
-            </clr-checkbox-container>
-
-            <clr-radio-container readonly show-only-selected="true">
-              <label>Radiobuttons</label>
-              <clr-radio-wrapper>
-                <input clrRadio type="radio" [value]="1" [(ngModel)]="radioValue" name="status1" />
-                <label>Option 1</label>
-              </clr-radio-wrapper>
-              <clr-radio-wrapper>
-                <input clrRadio type="radio" [value]="2" [(ngModel)]="radioValue" name="status1" />
-                <label>Option 2</label>
-              </clr-radio-wrapper>
-              <clr-radio-wrapper>
-                <input clrRadio type="radio" [value]="3" [(ngModel)]="radioValue" name="status1" />
-                <label>Option 3</label>
-              </clr-radio-wrapper>
-            </clr-radio-container>
-          </form>
-        </ng-template>
-        <ng-template #editBlock>
-          <form clrForm clrLayout="horizontal">
-            <clr-checkbox-container>
-              <label>Checkboxes</label>
-              <clr-checkbox-wrapper>
-                <input clrCheckbox type="checkbox" [(ngModel)]="checkValue1" name="check4" />
-                <label>Option 1</label>
-              </clr-checkbox-wrapper>
-              <clr-checkbox-wrapper>
-                <input clrCheckbox type="checkbox" [(ngModel)]="checkValue2" name="check5" />
-                <label>Option 2</label>
-              </clr-checkbox-wrapper>
-              <clr-checkbox-wrapper>
-                <input clrCheckbox type="checkbox" [(ngModel)]="checkValue3" name="check6" />
-                <label>Option 3</label>
-              </clr-checkbox-wrapper>
-            </clr-checkbox-container>
-
-            <clr-radio-container>
-              <label>Radiobuttons</label>
-              <clr-radio-wrapper>
-                <input clrRadio type="radio" [value]="1" [(ngModel)]="radioValue" name="status1" />
-                <label>Option 1</label>
-              </clr-radio-wrapper>
-              <clr-radio-wrapper>
-                <input clrRadio type="radio" [value]="2" [(ngModel)]="radioValue" name="status1" />
-                <label>Option 2</label>
-              </clr-radio-wrapper>
-              <clr-radio-wrapper>
-                <input clrRadio type="radio" [value]="3" [(ngModel)]="radioValue" name="status1" />
-                <label>Option 3</label>
-              </clr-radio-wrapper>
-            </clr-radio-container>
-          </form>
-        </ng-template>
-      </clr-view-edit-section>
 
       <h4>Conditional readonly</h4>
       Sometimes the readonly mode needs to be conditional. This can be achieved by attribute binding of angular, as null

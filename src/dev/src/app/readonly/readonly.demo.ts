@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -17,7 +17,8 @@ export class ReadonlyDemo {
 
   inputValue = 'Test Value 1';
   selectValue = 'one';
-  textareaText = 'Test Text for Textarea';
+  textareaText =
+    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam volu';
   comboBoxValue = 'Option 1';
   numericValue = 1234456456;
 
