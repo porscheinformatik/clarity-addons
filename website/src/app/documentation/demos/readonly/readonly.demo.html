@@ -48,7 +48,7 @@
     <section class="mt-24px">
       <span class="bold-text">Difference between Enabled, Disabled and Readonly</span>
       <ul>
-        <li>enabled: The value of the input can be edited</li>
+        <li>enabled: The value of the input can be edited.</li>
         <li>
           disabled: The value of the input is invalid in the current context, not applicable and can not be edited.
         </li>
@@ -370,6 +370,30 @@
         </div>
       </div>
 
+      <h4 class="mt-30px" id="textarea">Textarea</h4>
+      <form clrForm class="p-0">
+        <div class="clr-row">
+          <div class="clr-col-6">
+            <clr-textarea-container>
+              <label class="clr-col-12">Textarea (enabled)</label>
+              <textarea clrTextarea [(ngModel)]="textareaText" name="description" class="clr-col-12"></textarea>
+            </clr-textarea-container>
+          </div>
+          <div class="clr-col-6">
+            <clr-textarea-container>
+              <label class="clr-col-12">Textarea (readonly)</label>
+              <textarea
+                clrTextarea
+                class="clr-col-12"
+                [(ngModel)]="textareaText"
+                [clrReadonly]="true"
+                name="description"
+              ></textarea>
+            </clr-textarea-container>
+          </div>
+        </div>
+      </form>
+
       <h4 class="mt-30px" id="numeric">Numeric Field</h4>
       <div class="clr-row">
         <div class="clr-col-6">
@@ -485,30 +509,6 @@
       </div>
 
       <clr-code-snippet [clrCode]="htmlReadonlyReadonlyProperty"></clr-code-snippet>
-
-      <h4 class="mt-30px" id="textarea">Textarea</h4>
-      <form clrForm>
-        <div class="clr-row">
-          <div class="clr-col-6">
-            <clr-textarea-container>
-              <label class="clr-col-12">Textarea (enabled)</label>
-              <textarea clrTextarea [(ngModel)]="textareaText" name="description" class="clr-col-12"></textarea>
-            </clr-textarea-container>
-          </div>
-          <div class="clr-col-6">
-            <clr-textarea-container>
-              <label class="clr-col-12">Textarea (readonly)</label>
-              <textarea
-                clrTextarea
-                class="clr-col-12"
-                [(ngModel)]="textareaText"
-                [clrReadonly]="true"
-                name="description"
-              ></textarea>
-            </clr-textarea-container>
-          </div>
-        </div>
-      </form>
 
       <h4 class="mt-30px" id="date">Date Time Field</h4>
       <div class="clr-row">
