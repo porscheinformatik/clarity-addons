@@ -144,7 +144,8 @@ export class ReadonlyDemo extends ClarityDocComponent {
 
   inputValue = 'Test Value 1';
   selectValue = 'one';
-  textareaText = 'Test Text for Textarea';
+  textareaText =
+    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam volu';
   comboBoxValue = 'Option 1';
   numericValue = 456456;
 
