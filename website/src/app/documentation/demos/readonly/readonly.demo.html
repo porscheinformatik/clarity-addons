@@ -263,11 +263,11 @@
           <form clrForm clrLayout="horizontal" [formGroup]="exampleForm" (submit)="onFormSubmit()">
             <clr-input-container>
               <label class="clr-required-mark">Input</label>
-              <input clrInput type="text" formControlName="editInput" name="input" />
+              <input clrInput type="text" formControlName="editInput" name="input" class="clr-col-5" />
             </clr-input-container>
             <clr-select-container>
               <label class="clr-required-mark">Select</label>
-              <select clrSelect formControlName="editSelect" name="select">
+              <select clrSelect formControlName="editSelect" name="select" class="clr-col-5">
                 <option value="Option 1">Option 1</option>
                 <option value="Option 2">Option 2</option>
                 <option value="Option 3">Option 3</option>
@@ -275,7 +275,7 @@
             </clr-select-container>
             <clr-combobox-container>
               <label>Combobox</label>
-              <clr-combobox formControlName="editCombobox" name="combobox">
+              <clr-combobox formControlName="editCombobox" name="combobox" class="clr-col-5">
                 <clr-options>
                   <clr-option [clrValue]="'Option 1'">Option 1</clr-option>
                   <clr-option [clrValue]="'Option 2'">Option 2</clr-option>
@@ -283,9 +283,9 @@
                 </clr-options>
               </clr-combobox>
             </clr-combobox-container>
-            <clr-combobox-container>
+            <clr-combobox-container class="align-flex-start">
               <label>ComboBox MultiSelect</label>
-              <clr-combobox formControlName="editComboboxMulti" name="comboboxMulti" clrMulti="true">
+              <clr-combobox formControlName="editComboboxMulti" name="comboboxMulti" clrMulti="true" class="clr-col-5">
                 <ng-container *clrOptionSelected="let selected"> {{ selected?.name }}</ng-container>
                 <clr-options>
                   <clr-option *clrOptionItems="let state of states; field: 'name'" [clrValue]="state">
@@ -294,7 +294,7 @@
                 </clr-options>
               </clr-combobox>
             </clr-combobox-container>
-            <clr-input-container>
+            <clr-input-container class="w-7rem">
               <label>Numeric field</label>
               <input
                 clrInput
@@ -317,15 +317,33 @@
             <clr-checkbox-container>
               <label>Checkboxes</label>
               <clr-checkbox-wrapper>
-                <input clrCheckbox type="checkbox" [(ngModel)]="checkValue1" name="check4" />
+                <input
+                  clrCheckbox
+                  type="checkbox"
+                  formControlName="editCheckValue1"
+                  [(ngModel)]="checkValue1"
+                  name="check4"
+                />
                 <label>Option 1</label>
               </clr-checkbox-wrapper>
               <clr-checkbox-wrapper>
-                <input clrCheckbox type="checkbox" [(ngModel)]="checkValue2" name="check5" />
+                <input
+                  clrCheckbox
+                  type="checkbox"
+                  formControlName="editCheckValue2"
+                  [(ngModel)]="checkValue2"
+                  name="check5"
+                />
                 <label>Option 2</label>
               </clr-checkbox-wrapper>
               <clr-checkbox-wrapper>
-                <input clrCheckbox type="checkbox" [(ngModel)]="checkValue3" name="check6" />
+                <input
+                  clrCheckbox
+                  type="checkbox"
+                  formControlName="editCheckValue3"
+                  [(ngModel)]="checkValue3"
+                  name="check6"
+                />
                 <label>Option 3</label>
               </clr-checkbox-wrapper>
             </clr-checkbox-container>
@@ -333,15 +351,36 @@
             <clr-radio-container>
               <label>Radiobuttons</label>
               <clr-radio-wrapper>
-                <input clrRadio type="radio" [value]="1" [(ngModel)]="radioValue" name="status1" />
+                <input
+                  clrRadio
+                  type="radio"
+                  [value]="1"
+                  formControlName="editRadioValue"
+                  [(ngModel)]="radioValue"
+                  name="status1"
+                />
                 <label>Option 1</label>
               </clr-radio-wrapper>
               <clr-radio-wrapper>
-                <input clrRadio type="radio" [value]="2" [(ngModel)]="radioValue" name="status1" />
+                <input
+                  clrRadio
+                  type="radio"
+                  [value]="2"
+                  formControlName="editRadioValue"
+                  [(ngModel)]="radioValue"
+                  name="status1"
+                />
                 <label>Option 2</label>
               </clr-radio-wrapper>
               <clr-radio-wrapper>
-                <input clrRadio type="radio" [value]="3" [(ngModel)]="radioValue" name="status1" />
+                <input
+                  clrRadio
+                  type="radio"
+                  [value]="3"
+                  formControlName="editRadioValue"
+                  [(ngModel)]="radioValue"
+                  name="status1"
+                />
                 <label>Option 3</label>
               </clr-radio-wrapper>
             </clr-radio-container>

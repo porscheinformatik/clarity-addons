@@ -750,3 +750,7 @@ _:-ms-fullscreen,
     border: 1px solid #cccccc;
   }
 }
+
+clr-input-container.w-7rem .clr-input-wrapper {
+  max-width: 7rem !important;
+}
