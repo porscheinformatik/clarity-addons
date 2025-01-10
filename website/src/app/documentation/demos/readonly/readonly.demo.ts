@@ -92,6 +92,11 @@ export class ReadonlyDemo extends ClarityDocComponent {
   date = new Date().toLocaleDateString('en-US');
   time = '11:00';
 
+  radioValue: number = 1;
+  checkValue1: boolean = true;
+  checkValue2: boolean = false;
+  checkValue3: boolean = true;
+
   sectionSubmitted(): boolean {
     if (this.exampleForm.valid) {
       this.input = this.exampleForm.value.editInput;
@@ -101,6 +106,13 @@ export class ReadonlyDemo extends ClarityDocComponent {
       this.numeric = this.exampleForm.value.editNumeric;
       this.date = this.exampleForm.value.editDate;
       this.time = this.exampleForm.value.editTime;
+
+      this.radioValue = this.exampleForm.value.editRadioValue;
+
+      this.checkValue1 = this.exampleForm.value.editCheckValue1;
+      this.checkValue2 = this.exampleForm.value.editCheckValue2;
+      this.checkValue3 = this.exampleForm.value.editCheckValue3;
+
       return true;
     }
     return false;
@@ -115,6 +127,10 @@ export class ReadonlyDemo extends ClarityDocComponent {
       editNumeric: this.numeric,
       editDate: this.date,
       editTime: this.time,
+      editRadioValue: this.radioValue,
+      editCheckValue1: this.checkValue1,
+      editCheckValue2: this.checkValue2,
+      editCheckValue3: this.checkValue3,
     });
   }
 
@@ -137,6 +153,12 @@ export class ReadonlyDemo extends ClarityDocComponent {
     editNumeric: new FormControl(this.numeric),
     editDate: new FormControl(this.date),
     editTime: new FormControl(this.time),
+
+    editRadioValue: new FormControl(this.radioValue),
+
+    editCheckValue1: new FormControl(this.checkValue1),
+    editCheckValue2: new FormControl(this.checkValue2),
+    editCheckValue3: new FormControl(this.checkValue3),
   });
 
   // Value for the demo Page
@@ -173,13 +195,7 @@ export class ReadonlyDemo extends ClarityDocComponent {
   ];
 
   dateValue = new Date().toLocaleDateString('en-US');
-
   timeValue = '11:00';
-
-  radioValue: number = 1;
-  checkValue1: boolean = true;
-  checkValue2: boolean;
-  checkValue3: boolean = true;
 
   constructor(public route: ActivatedRoute) {
     super('readonly');
