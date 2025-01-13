@@ -301,6 +301,7 @@
       <li>Page size (LocalStorage)</li>
       <li>Current page (SessionStorage)</li>
       <li>Current filter values (SessionStorage)</li>
+      <li>Column width (LocalStorage)</li>
     </ul>
 
     <p>
@@ -350,7 +351,7 @@
     </ul>
     <p>
       To turn off the persistence for specific parts of the datagrid, the
-      <code class="clr-code">[clrStatePersistenceKey]</code> offers several optional properties. All of these are
+      <code class="clr-code">[clrStatePersistenceKey]</code> offers several optional properties. The following ones are
       opt-out properties and will default to <code class="clr-code">true</code> when not specified.
     </p>
     <br />
@@ -360,6 +361,10 @@
       <li>persistSort: When set to false, sort column and sort order will not be persisted</li>
       <li>persistHiddenColumns: When set to false, state of each column, hidden or visible, will not be persisted</li>
     </ul>
+    <p>
+      Last but not least, you can specify the "persistColumnWidths" property, in order to store the width of each
+      column. This is an opt-in behavior, and will default to <code class="clr-code">false</code> when not specified.
+    </p>
 
     <br />
     <p>

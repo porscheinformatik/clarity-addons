@@ -4,12 +4,14 @@ import {
   ContentChildren,
   Directive,
   ElementRef,
+  HostListener,
   Input,
   OnDestroy,
   QueryList,
 } from '@angular/core';
 import {
   ClrDatagrid,
+  ClrDatagridColumn,
   ClrDatagridComparatorInterface,
   ClrDatagridFilter,
   ClrDatagridFilterInterface,
@@ -59,6 +61,12 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
   @ContentChildren(ClrDatagridFilter, { descendants: true })
   customFilters: QueryList<ClrDatagridFilter>;
 
+  @ContentChildren(ClrDatagridColumn, { read: ElementRef })
+  gridColumnRefs: QueryList<ElementRef>;
+
+  @ContentChildren(ClrDatagridColumn)
+  gridColumns: QueryList<ClrDatagridColumn>;
+
   canShowPaginationDescription = false;
   warnedAboutCustomDescription = false;
   destroy$ = new Subject<void>();
@@ -82,6 +90,11 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
     this.initFilter(volatileDataState);
     this.initSorting(localStorageState);
     this.initDatagridPersister();
+
+    const columnWidthPersistenceEnabled = this.options.persistColumnWidths ?? false;
+    if (columnWidthPersistenceEnabled) {
+      this.initColumnWidths(localStorageState);
+    }
 
     const paginationPersistenceEnabled = this.options.persistPagination ?? true;
     if (this.pagination?.page && paginationPersistenceEnabled) {
@@ -107,7 +120,7 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
     this.pagination.page.sizeChange.pipe(takeUntil(this.destroy$)).subscribe(pageSize => {
       const state = this.getLocalStorageState();
       state.pageSize = pageSize;
-      localStorage.setItem(this.options.key, JSON.stringify(state));
+      this.saveLocalStorageState(state);
     });
 
     /* init page size of datagrid if already persisted in local storage */
@@ -156,6 +169,23 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
     }
   }
 
+  private initColumnWidths(savedState: ClrDatagridStatePersistenceModel): void {
+    const columnWidthsByField: Record<string, string> | undefined = savedState?.columns
+      ? Object.fromEntries(Object.entries(savedState.columns).map(([key, value]) => [key, value.width]))
+      : undefined;
+
+    if (this.gridColumns && this.gridColumnRefs && columnWidthsByField !== undefined) {
+      for (let i = 0; i < this.gridColumns.length; i++) {
+        const col = this.gridColumns.get(i);
+        const el = this.gridColumnRefs.get(i)?.nativeElement;
+
+        if ((col?.field && columnWidthsByField[col.field]) || el) {
+          el.style.width = columnWidthsByField[col.field];
+        }
+      }
+    }
+  }
+
   private initDatagridPersister() {
     // delay is needed, as onDestroy the filters emit empty values.
     // So delay it to the end of the current cycle, so the directive is also destroyed before it gets the next values
@@ -193,7 +223,7 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
       });
     }
 
-    (this.useLocalStoreOnly ? localStorage : sessionStorage).setItem(this.options.key, JSON.stringify(state));
+    this.saveVolatileDataState(state);
   }
 
   private persistSorting(dgState: ClrDatagridStateInterface<unknown>): void {
@@ -203,7 +233,28 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
       state.sortBy = this.getSortProperty(dgState.sort?.by);
       state.sortReverse = dgState.sort?.reverse;
 
-      localStorage.setItem(this.options.key, JSON.stringify(state));
+      this.saveLocalStorageState(state);
+    }
+  }
+
+  @HostListener('window:beforeunload')
+  private persistColumnWidths(): void {
+    const columnWidthPersistenceEnabled = this.options?.persistColumnWidths ?? false;
+    if (columnWidthPersistenceEnabled) {
+      const state = this.getLocalStorageState();
+      state.columns = state.columns || {};
+
+      for (let i = 0; i < this.gridColumns.length; i++) {
+        const col = this.gridColumns.get(i);
+        const el = this.gridColumnRefs.get(i)?.nativeElement;
+
+        if (el?.style?.width && el.style.width !== '0px' && col?.field) {
+          state.columns[col.field] ||= {};
+          state.columns[col.field].width = el.style.width;
+        }
+      }
+
+      this.saveLocalStorageState(state);
     }
   }
 
@@ -239,11 +290,26 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
    * Gets the state of volatile data. This can be influenced by clrUseLocalStoreOnly.
    */
   getVolatileDataState(): ClrDatagridStatePersistenceModel {
-    return JSON.parse((this.useLocalStoreOnly ? localStorage : sessionStorage).getItem(this.options.key)) || {};
+    return JSON.parse(this.getStorageBasedOnInputFlag().getItem(this.options.key)) || {};
   }
 
   getLocalStorageState(): ClrDatagridStatePersistenceModel {
     return JSON.parse(localStorage.getItem(this.options.key)) || {};
+  }
+
+  /**
+   * Save the state of volatile data. This can be influenced by clrUseLocalStoreOnly.
+   */
+  saveVolatileDataState(state: ClrDatagridStatePersistenceModel): void {
+    this.getStorageBasedOnInputFlag().setItem(this.options.key, JSON.stringify(state));
+  }
+
+  saveLocalStorageState(state: ClrDatagridStatePersistenceModel): void {
+    localStorage.setItem(this.options.key, JSON.stringify(state));
+  }
+
+  private getStorageBasedOnInputFlag(): Storage {
+    return this.useLocalStoreOnly ? localStorage : sessionStorage;
   }
 
   /**
@@ -303,6 +369,7 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
   }
 
   ngOnDestroy() {
+    this.persistColumnWidths();
     this.destroy$.next();
     this.destroy$.complete();
   }

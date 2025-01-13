@@ -21,7 +21,8 @@ import { BehaviorSubject } from 'rxjs';
         serverDriven: true,
         persistFilters,
         persistPagination,
-        persistSort
+        persistSort,
+        persistColumnWidths
       }"
       [clrPaginationDescription]="'{{first}} - {{last}} of {{total}} entries'"
       (clrDgRefresh)="refreshHandler.next($event)"
@@ -37,6 +38,9 @@ import { BehaviorSubject } from 'rxjs';
       </clr-dg-column>
       <clr-dg-column id="column4" [clrDgField]="'column4'" [clrDgSortBy]="PROPERTY_COMPARATOR">
         <ng-template clrDgHideableColumn><span>column4</span></ng-template>
+      </clr-dg-column>
+      <clr-dg-column id="hidden" [clrDgField]="'hidden'">
+        <ng-template [clrDgHideableColumn]="{ hidden: true }"><span>hidden</span></ng-template>
       </clr-dg-column>
 
       <clr-dg-footer>
@@ -63,6 +67,7 @@ class TestComponent {
   persistFilters: boolean | undefined = false;
   persistPagination: boolean | undefined = false;
   persistSort: boolean | undefined = false;
+  persistColumnWidths: boolean | undefined = false;
 }
 
 const DEFAULT_PAGE_SIZE = 15;
@@ -238,5 +243,90 @@ describe('StatePersistenceKeyDirective', () => {
       const storageModel = localStorage.getItem(PERSISTENCE_KEY);
       expect(storageModel).toBeNull();
     }));
+  });
+
+  describe('column width persistence', () => {
+    it('should apply column widths from local storage', () => {
+      localStorage.setItem(
+        PERSISTENCE_KEY,
+        JSON.stringify({
+          columns: {
+            column1: { width: '100px' },
+            hidden: { width: '200px' },
+          },
+        })
+      );
+
+      fixture.componentInstance.persistColumnWidths = true;
+      fixture.detectChanges();
+
+      const firstColumn = fixture.nativeElement.querySelector('#column1');
+      const hiddenColumn = fixture.nativeElement.querySelector('#hidden');
+
+      expect(firstColumn.style.width).toBe('100px');
+      expect(hiddenColumn.style.width).toBe('200px');
+    });
+
+    it('should save column width to local storage', () => {
+      fixture.componentInstance.persistColumnWidths = true;
+      fixture.detectChanges();
+
+      const firstColumn = fixture.nativeElement.querySelector('#column1');
+      const hiddenColumn = fixture.nativeElement.querySelector('#hidden');
+
+      firstColumn.style.width = '100px';
+      hiddenColumn.style.width = '200px';
+      fixture.detectChanges();
+
+      fixture.destroy();
+
+      const storageContent = JSON.parse(localStorage.getItem(PERSISTENCE_KEY));
+      expect(storageContent.columns).toEqual({
+        column1: { width: '100px' },
+        hidden: { width: '200px' },
+      });
+    });
+
+    [false, undefined].forEach(value => {
+      it('should not load from local storage if "persistColumnWidths" is ' + value, () => {
+        localStorage.setItem(
+          PERSISTENCE_KEY,
+          JSON.stringify({
+            columns: {
+              column1: { width: '100px' },
+              hidden: { width: '200px' },
+            },
+          })
+        );
+
+        fixture.componentInstance.persistColumnWidths = value;
+        fixture.detectChanges();
+
+        const firstColumn = fixture.nativeElement.querySelector('#column1');
+        const hiddenColumn = fixture.nativeElement.querySelector('#hidden');
+
+        expect(firstColumn.style.width).not.toBe('100px');
+        expect(hiddenColumn.style.width).not.toBe('200px');
+      });
+    });
+
+    [false, undefined].forEach(value => {
+      it('should not persist to local storage if "persistColumnWidths" is ' + value, () => {
+        fixture.componentInstance.persistColumnWidths = value;
+        fixture.detectChanges();
+
+        const firstColumn = fixture.nativeElement.querySelector('#column1');
+        const hiddenColumn = fixture.nativeElement.querySelector('#hidden');
+
+        firstColumn.style.width = '100px';
+        hiddenColumn.style.width = '200px';
+        fixture.detectChanges();
+
+        fixture.destroy();
+
+        const storageContent = JSON.parse(localStorage.getItem(PERSISTENCE_KEY));
+        expect(storageContent).toBeNull();
+      });
+    });
   });
 });
