@@ -204,6 +204,9 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
   private persistFiltersAndCurrentPage(dgState: ClrDatagridStateInterface<unknown>): void {
     const filterPersistenceEnabled = this.options.persistFilters ?? true;
     const paginationPersistenceEnabled = this.options.persistPagination ?? true;
+    if (!filterPersistenceEnabled && !paginationPersistenceEnabled) {
+      return;
+    }
 
     const state = this.getVolatileDataState();
     state.columns = state.columns || {};
