@@ -5,4 +5,5 @@ export interface StatePersistenceOptions {
   persistPagination?: boolean;
   persistSort?: boolean;
   persistHiddenColumns?: boolean;
+  persistColumnWidths?: boolean;
 }

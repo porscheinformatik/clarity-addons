@@ -9,4 +9,5 @@ export interface ClrDatagridStatePersistenceModel {
 export interface ClrColumnStatePersistenceModel {
   hidden?: boolean;
   filterValue?: any;
+  width?: string;
 }
