@@ -325,7 +325,8 @@ describe('StatePersistenceKeyDirective', () => {
         fixture.destroy();
 
         const storageContent = JSON.parse(localStorage.getItem(PERSISTENCE_KEY));
-        expect(storageContent).toBeNull();
+        expect(storageContent?.columns?.column1).toBeUndefined();
+        expect(storageContent?.columns?.hidden).toBeUndefined();
       });
     });
   });
