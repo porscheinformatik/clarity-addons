@@ -2,6 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ClarityModule, ClrDatagrid } from '@clr/angular';
 import { ClrDateFilterComponent } from './date-filter.component';
+import { ClrDateTimeModule } from '@porscheinformatik/clr-addons';
+import { FormsModule } from '@angular/forms';
 
 const today = new Date(Date.now());
 const yesterday = new Date(Date.now() - 24 * 1000 * 60 * 60);
@@ -90,7 +92,7 @@ describe('DateFilterComponent', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [ClarityModule],
+        imports: [ClarityModule, ClrDateTimeModule, FormsModule],
         declarations: [TestComponent, ClrDateFilterComponent],
         providers: [],
       }).compileComponents();
@@ -120,7 +122,7 @@ describe('DateFilterComponent', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [ClarityModule],
+        imports: [ClarityModule, ClrDateTimeModule, FormsModule],
         declarations: [TestComponentPreselectedValues, ClrDateFilterComponent],
         providers: [],
       }).compileComponents();
@@ -145,7 +147,7 @@ describe('DateFilterComponent', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [ClarityModule],
+        imports: [ClarityModule, ClrDateTimeModule, FormsModule],
         declarations: [TestComponentPreselectedTimeValues, ClrDateFilterComponent],
         providers: [],
       }).compileComponents();

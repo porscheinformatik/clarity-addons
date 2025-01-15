@@ -17,7 +17,7 @@ import { BehaviorSubject } from 'rxjs';
   template: `
     <clr-datagrid
       [clrStatePersistenceKey]="{
-        key: PERSISTENCE_KEY,
+        key: storageKey,
         serverDriven: true,
         persistFilters,
         persistPagination,
@@ -60,10 +60,10 @@ class TestComponent {
 
   refreshHandler = new BehaviorSubject<ClrDatagridStateInterface>(undefined);
 
-  readonly PERSISTENCE_KEY = PERSISTENCE_KEY;
   readonly DEFAULT_PAGE_SIZE = DEFAULT_PAGE_SIZE;
   readonly PROPERTY_COMPARATOR = new DatagridPropertyComparator('column4');
 
+  storageKey: string = PERSISTENCE_KEY;
   persistFilters: boolean | undefined = false;
   persistPagination: boolean | undefined = false;
   persistSort: boolean | undefined = false;
@@ -312,6 +312,8 @@ describe('StatePersistenceKeyDirective', () => {
 
     [false, undefined].forEach(value => {
       it('should not persist to local storage if "persistColumnWidths" is ' + value, () => {
+        const localStorageKey = PERSISTENCE_KEY + '-should-not-persist-width-' + value;
+        fixture.componentInstance.storageKey = localStorageKey;
         fixture.componentInstance.persistColumnWidths = value;
         fixture.detectChanges();
 
@@ -324,7 +326,7 @@ describe('StatePersistenceKeyDirective', () => {
 
         fixture.destroy();
 
-        const storageContent = JSON.parse(localStorage.getItem(PERSISTENCE_KEY));
+        const storageContent = JSON.parse(localStorage.getItem(localStorageKey));
         expect(storageContent?.columns?.column1).toBeUndefined();
         expect(storageContent?.columns?.hidden).toBeUndefined();
       });
