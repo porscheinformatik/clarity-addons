@@ -13,10 +13,6 @@ const appRoutes: Routes = [
     },
   },
   {
-    path: 'news',
-    loadChildren: () => import('./news/news.module').then(m => m.NewsModule),
-  },
-  {
     path: 'icons',
     loadChildren: () => import('./icons/icons.module').then(m => m.IconsModule),
   },
