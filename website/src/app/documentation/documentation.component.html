@@ -1,7 +1,12 @@
 <router-outlet></router-outlet>
 <clr-vertical-nav [clrVerticalNavCollapsible]="false" [clrVerticalNavCollapsed]="false">
   <div class="versions">
-    <div class="version p7">Addons Version {{ environment.addons_version }}</div>
+    <div class="version p7">
+      Addons Version
+      <a href="https://github.com/porscheinformatik/clarity-addons/releases" target="_blank">{{
+        environment.addons_version
+      }}</a>
+    </div>
     <div class="version p7">Clarity Version {{ environment.clarity_version }}</div>
     <div class="version p7">Angular Version {{ environment.angular_version }}</div>
   </div>

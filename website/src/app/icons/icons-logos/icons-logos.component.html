@@ -1,11 +1,73 @@
 <h2>Application Logos</h2>
+<form clrForm>
+  <clr-input-container>
+    <input
+      class="clr-col-md-12"
+      clrInput
+      clrSearch
+      placeholder="Search"
+      autocomplete="false"
+      type="text"
+      name="search"
+      ngModel
+      (ngModelChange)="changeSearchText($event)"
+    />
+  </clr-input-container>
+</form>
 <section class="icon-sets-container">
-  <div class="clr-row cds-icon-collection" *ngIf="shapes.length > 0">
-    <div class="cds-icon-item clr-col-12 clr-col-sm-6 clr-col-md-4" *ngFor="let shape of shapes">
-      <button class="visible-icon">
-        <cds-icon [attr.shape]="shape" size="48" class="icon-shape"></cds-icon>
+  <div *ngIf="shapes.length > 0" class="cds-icon-collection">
+    <div *ngFor="let shape of shapes; let i = index" class="icon-collection">
+      <button
+        class="visible-icon"
+        (click)="selectedShape = shape"
+        [ngClass]="{
+          'button-selected': selectedShape === shape,
+          'darker-bg-neg': selectedShape === shape && shape.endsWith('-negative')
+        }"
+      >
+        <cds-icon [attr.shape]="shape" size="{{ shape.endsWith('favicon') ? 48 : 96 }}" class="icon-shape" />
         <span class="icon-shape-name">{{ shape }}</span>
       </button>
+      <div *ngIf="shape.endsWith('-negative')" class="darker-bg"></div>
+      <div *ngIf="selectedShape == shape" class="spacer"></div>
+      <div [ngClass]="{ second: i % 2 === 1 }">
+        <ng-container *ngTemplateOutlet="title; context: { $implicit: shape }"></ng-container>
+      </div>
     </div>
   </div>
 </section>
+<section class="icon-sets-footer">
+  <p>Clarity Addons Icons, © Volkswagen 2025</p>
+  <p>
+    When using Clarity Addons the icons, copyrights, name and trademark rights as well as other property rights of
+    Volkswagen AG must be observed. The icons (POI Custom-, D6-, Brand-icons as well as Application logos) and the
+    brands are protected. No licence or other right of use is granted by the availability of the icons.
+  </p>
+</section>
+
+<ng-template #title let-shape>
+  <div class="icon-detail-section" *ngIf="selectedShape == shape">
+    <div class="clr-col-12">
+      <div class="card">
+        <div class="card-block">
+          <div class="card-title">{{ selectedShape }}</div>
+          <div class="card-text">
+            <p>
+              <clr-code-snippet
+                clrCode="{{ getCode() }}"
+                class="code-snippet"
+                [clrLanguage]="'html'"
+              ></clr-code-snippet>
+            </p>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-outline btn-sm" (click)="download(shape)">
+            <cds-icon shape="download" class="download-svg-icon"></cds-icon>
+            SVG ICON
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

@@ -315,8 +315,9 @@ a.btn-primary {
     text-align: center;
 
     .content-container {
-      margin: 0 auto;
       text-align: left;
+      width: 100%;
+      max-width: 60rem;
     }
   }
 
