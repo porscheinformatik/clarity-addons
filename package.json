@@ -100,8 +100,8 @@
     "typescript": "5.5.4"
   },
   "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=8.6.0"
+    "node": ">=20.0.0",
+    "npm": ">=10.8.0"
   },
   "postcss": {
     "plugins": {
