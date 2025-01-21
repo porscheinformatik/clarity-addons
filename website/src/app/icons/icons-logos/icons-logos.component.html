@@ -1,8 +1,7 @@
-<h2>Application Logos</h2>
-<form clrForm>
+<form clrForm [clrLayout]="'vertical'">
   <clr-input-container>
     <input
-      class="clr-col-md-12"
+      class="clr-col-md-6"
       clrInput
       clrSearch
       placeholder="Search"
@@ -22,13 +21,15 @@
         (click)="selectedShape = shape"
         [ngClass]="{
           'button-selected': selectedShape === shape,
-          'darker-bg-neg': selectedShape === shape && shape.endsWith('-negative')
+          'darker-bg-neg':
+            selectedShape === shape && (shape.endsWith('-negative') || shape.endsWith('-negative-favicon'))
         }"
       >
         <cds-icon [attr.shape]="shape" size="{{ shape.endsWith('favicon') ? 48 : 96 }}" class="icon-shape" />
         <span class="icon-shape-name">{{ shape }}</span>
       </button>
       <div *ngIf="shape.endsWith('-negative')" class="darker-bg"></div>
+      <div *ngIf="shape.endsWith('-negative-favicon')" class="darker-bg-smaller"></div>
       <div *ngIf="selectedShape == shape" class="spacer"></div>
       <div [ngClass]="{ second: i % 2 === 1 }">
         <ng-container *ngTemplateOutlet="title; context: { $implicit: shape }"></ng-container>
