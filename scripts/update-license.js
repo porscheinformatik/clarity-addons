@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -31,4 +31,9 @@ files.forEach(file => {
 
 console.log('Updated license headers');
 
-exec(`git add ${files.join(' ')}`);
+// batching to avoid error where command is too long
+const batchSize = 20;
+for (let i = 0; i < files.length; i += batchSize) {
+  const batch = files.slice(i, i + batchSize);
+  exec(`git add ${batch.join(' ')}`);
+}
