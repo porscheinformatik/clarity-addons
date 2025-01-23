@@ -110,6 +110,7 @@ import { ClarityIcons } from '@cds/core/icon';
 @Component({
   selector: 'icons',
   templateUrl: 'icons.component.html',
+  standalone: false,
 })
 export class IconsComponent {
   icons = [

@@ -121,6 +121,7 @@ exampleForm = new FormGroup({
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
+  standalone: false,
 })
 export class NumericFieldDemo extends ClarityDocComponent {
   htmlExample = HTML_EXAMPLE;

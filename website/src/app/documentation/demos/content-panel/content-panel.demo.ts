@@ -38,6 +38,7 @@ const HTML_EXAMPLE = `
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
+  standalone: false,
 })
 export class ContentPanelDemo extends ClarityDocComponent {
   value: string;

@@ -23,6 +23,7 @@ const USAGE_ADDONS_ICONS = `
 @Component({
   selector: 'icons-get-started',
   templateUrl: './icons-get-started.component.html',
+  standalone: false,
 })
 export class IconsGetStartedComponent {
   importAddonsIcons = IMPORT_ADDONS_ICONS;

@@ -68,6 +68,7 @@ import { debounceTime, Subject, takeUntil } from 'rxjs';
   selector: 'clr-icons-logos',
   templateUrl: './icons-logos.component.html',
   styleUrl: 'icons-logos.component.scss',
+  standalone: false,
 })
 export class IconsLogosComponent {
   icons = [

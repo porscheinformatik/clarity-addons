@@ -32,6 +32,7 @@ this.breadcrumbService.updateBreadcrumb([
     '.breadcrumb-demo-long > * { margin-top: -12px; }',
     '.clrweb-DoxMedia-block { min-height: 60px; }',
   ],
+  standalone: false,
 })
 export class BreadcrumbDemo extends ClarityDocComponent implements OnInit {
   htmlExample = HTML_EXAMPLE;

@@ -11,6 +11,7 @@ import { ClrActionPanel, ClrContentPanel, ClrHistoryModel, ClrHistoryService } f
   selector: 'clr-basepage-layout-demo',
   templateUrl: './basepage-layout.demo.html',
   providers: [ClrHistoryService],
+  standalone: false,
 })
 export class BasepageLayoutDemo implements OnInit {
   withCommandBar = false;

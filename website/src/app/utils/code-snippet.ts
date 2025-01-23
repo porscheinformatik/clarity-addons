@@ -16,6 +16,7 @@ import { CodeHighlight } from './code-highlight';
       <pre><code class="clr-code">{{code.trim()}}</code></pre>
     </ng-container>
   `,
+  standalone: false,
 })
 export class CodeSnippet implements AfterViewInit {
   @ViewChild(CodeHighlight) codeHighlight: CodeHighlight;

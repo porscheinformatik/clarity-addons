@@ -99,6 +99,7 @@ this.templateNa2.set("FR", "texte français");
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
+  standalone: false,
 })
 export class MultilingualInputDemo extends ClarityDocComponent implements OnInit {
   templateExample = TEMPLATE_EXAMPLE;

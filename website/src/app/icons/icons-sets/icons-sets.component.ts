@@ -456,6 +456,7 @@ import { IconShapeTuple } from '@cds/core/icon/interfaces/icon.interfaces';
   selector: 'icons-sets',
   templateUrl: './icons-sets.component.html',
   styleUrl: './icons-sets.component.scss',
+  standalone: false,
 })
 export class IconsSetsComponent {
   icons = [

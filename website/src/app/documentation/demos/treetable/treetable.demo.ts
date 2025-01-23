@@ -88,6 +88,7 @@ const HTML_EXAMPLE_SINGLE_ROW_ACTION = `
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
+  standalone: false,
 })
 export class TreetableDemo extends ClarityDocComponent {
   htmlExampleClickableRows = HTML_EXAMPLE_CLICKABLE_ROWS;

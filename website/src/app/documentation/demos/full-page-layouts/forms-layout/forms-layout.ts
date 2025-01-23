@@ -95,6 +95,7 @@ const CODE_EXAMPLE = `
 @Component({
   selector: 'clr-forms-layout-demo',
   templateUrl: './forms-layout.demo.html',
+  standalone: false,
 })
 export class FormsLayout {
   codeExample = CODE_EXAMPLE;
