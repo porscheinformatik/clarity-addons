@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -30,6 +30,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       </ng-template>
     </clr-view-edit-section>
   `,
+  standalone: false,
 })
 class TestComponent {
   @ViewChild(ClrViewEditSection, { static: true }) vesInstance: ClrViewEditSection;
@@ -44,6 +45,7 @@ class TestComponent {
       <div action-block>Test</div>
     </clr-view-edit-section>
   `,
+  standalone: false,
 })
 class EditModeComponent {
   editMode = false;
@@ -51,6 +53,7 @@ class EditModeComponent {
 
 @Component({
   template: ` <clr-view-edit-section [clrEditIcon]="editIcon"></clr-view-edit-section> `,
+  standalone: false,
 })
 class EditIconComponent {
   editIcon = 'cog';
@@ -58,6 +61,7 @@ class EditIconComponent {
 
 @Component({
   template: ` <clr-view-edit-section [clrEditable]="false"></clr-view-edit-section> `,
+  standalone: false,
 })
 class NotEditableComponent {}
 

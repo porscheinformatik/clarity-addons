@@ -33,6 +33,7 @@ ClarityIcons.addIcons(angleIcon);
       </clr-dropdown>
     </div>
   `,
+  standalone: false,
 })
 export class ClrMultilingualSelector {
   @Input() disabled: boolean;

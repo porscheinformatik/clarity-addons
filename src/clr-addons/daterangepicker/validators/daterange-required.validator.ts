@@ -21,6 +21,7 @@ import { NullableDaterange } from '../interfaces/daterange.interface';
       multi: true,
     },
   ],
+  standalone: false,
 })
 export class ClrDaterangeRequiredValidator implements Validator {
   /** Validation error name. */

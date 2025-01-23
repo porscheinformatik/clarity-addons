@@ -30,6 +30,7 @@ export interface ClrGenericQuickListItem {
   selector: 'clr-generic-quick-list',
   host: { '[class.generic-quick-list]': 'true', '[class.clr-form-control]': 'true' },
   templateUrl: './generic-quick-list.html',
+  standalone: false,
 })
 export class ClrGenericQuickList<T extends ClrGenericQuickListItem> implements OnInit, AfterViewInit, OnDestroy {
   @Input('clrAllItems') allItems = [] as T[];

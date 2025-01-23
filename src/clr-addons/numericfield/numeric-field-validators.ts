@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -91,6 +91,7 @@ export class ClrNumericFieldValidators {
 @Directive({
   selector: '[clrMaxNumeric]',
   providers: [{ provide: NG_VALIDATORS, useExisting: ClrMaxNumeric, multi: true }],
+  standalone: false,
 })
 export class ClrMaxNumeric implements Validator {
   @Input('clrMaxNumeric') _max: number;
@@ -105,6 +106,7 @@ export class ClrMaxNumeric implements Validator {
 @Directive({
   selector: '[clrMinNumeric]',
   providers: [{ provide: NG_VALIDATORS, useExisting: ClrMinNumeric, multi: true }],
+  standalone: false,
 })
 export class ClrMinNumeric implements Validator {
   @Input('clrMinNumeric') _min: number;

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -13,6 +13,7 @@ import { ClrTreetableRow } from './treetable-row';
   selector: 'clr-treetable',
   templateUrl: './treetable.html',
   host: { '[class.empty]': 'empty', '[class.treetable-host]': 'true' },
+  standalone: false,
 })
 export class ClrTreetable implements OnDestroy {
   @Input() clrClickableRows = true;

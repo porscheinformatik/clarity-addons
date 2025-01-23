@@ -11,6 +11,7 @@ interface Item {
 @Component({
   selector: 'clr-datagrid-filters-demo',
   templateUrl: './clr-datagrid-filters-demo.html',
+  standalone: false,
 })
 export class DatagridFiltersDemo {
   items: Item[] = [

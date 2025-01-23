@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -11,6 +11,7 @@ import { TreetableRowRenderer } from './row-renderer';
 
 @Directive({
   selector: 'clr-treetable',
+  standalone: false,
 })
 export class TreetableMainRenderer implements AfterViewChecked, AfterContentInit {
   @ContentChildren(TreetableHeaderRenderer) headers: QueryList<TreetableHeaderRenderer>;

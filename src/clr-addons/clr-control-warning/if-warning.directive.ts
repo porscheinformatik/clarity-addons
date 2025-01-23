@@ -2,6 +2,7 @@ import { AfterViewInit, Directive, ElementRef, Input, Renderer2, TemplateRef, Vi
 
 @Directive({
   selector: '[clrIfWarning]',
+  standalone: false,
 })
 export class ClrIfWarning implements AfterViewInit {
   private hostElement: Element;

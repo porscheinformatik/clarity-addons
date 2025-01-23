@@ -15,6 +15,7 @@ const maxLengthMessage = 'MAX_LENGTH_MESSAGE';
 
 @Component({
   template: `<div *clrIfDaterangeError></div>`,
+  standalone: false,
 })
 class InvalidUseTestComponent {}
 
@@ -27,6 +28,7 @@ class InvalidUseTestComponent {}
     DaterangeControlStateService,
     DaterangeService,
   ],
+  standalone: false,
 })
 class GeneralErrorTestComponent {}
 
@@ -45,6 +47,7 @@ class GeneralErrorTestComponent {}
     DaterangeControlStateService,
     DaterangeService,
   ],
+  standalone: false,
 })
 class SpecificErrorTestComponent {}
 

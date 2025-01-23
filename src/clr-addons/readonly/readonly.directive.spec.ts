@@ -39,6 +39,7 @@ import { ClarityModule } from '@clr/angular';
       </div>
     </form>
   `,
+  standalone: false,
 })
 class TestComponent {
   form: FormGroup;

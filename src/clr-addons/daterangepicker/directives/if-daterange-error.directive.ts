@@ -15,6 +15,7 @@ import { ClrDaterangepickerContainerComponent } from './daterangepicker-containe
  */
 @Directive({
   selector: '[clrIfDaterangeError]',
+  standalone: false,
 })
 export class ClrIfDaterangeErrorDirective implements OnDestroy {
   /** Error name. */

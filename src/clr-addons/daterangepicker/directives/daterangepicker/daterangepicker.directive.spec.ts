@@ -21,6 +21,7 @@ import { NullableTimerange, TimeModel } from '@porscheinformatik/clr-addons';
     (valueChange)="onValueChange($event)"
     type="date"
   />`,
+  standalone: false,
 })
 class TestHostComponent {
   control = new FormControl();

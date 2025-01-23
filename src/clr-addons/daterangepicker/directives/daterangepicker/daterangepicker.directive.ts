@@ -29,6 +29,7 @@ import { TimeModel } from '../../models/time.model';
  */
 @Directive({
   selector: '[clrDaterangepicker]',
+  standalone: false,
 })
 export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlValueAccessor {
   /**

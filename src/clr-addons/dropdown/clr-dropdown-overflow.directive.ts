@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -8,7 +8,10 @@ import { AfterViewChecked, ContentChildren, Directive, ElementRef, Input, OnDest
 import { ClrDropdown } from '@clr/angular';
 import { Subscription } from 'rxjs';
 
-@Directive({ selector: 'clr-dropdown-menu' })
+@Directive({
+  selector: 'clr-dropdown-menu',
+  standalone: false,
+})
 export class ClrDropdownOverflowDirective implements AfterViewChecked, OnDestroy {
   @Input() clrDropdownMenuMaxHeight: string | number; // can be of px, rem, vh, or a number (which then is considered as px value)
   @Input() clrDropdownMenuItemMinHeight: string | number; // can be of px, rem, vh, or a number (which then is considered as px value)

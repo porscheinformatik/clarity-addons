@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -14,6 +14,7 @@ import { ClrDataListValidators } from './data-list.validator';
 @Directive({
   selector: '[clrDataListPredefined]',
   providers: [{ provide: NG_VALIDATORS, useExisting: ClrDataListPredefinedValidatorDirective, multi: true }],
+  standalone: false,
 })
 export class ClrDataListPredefinedValidatorDirective implements Validator {
   @Input() clrDataListPredefined: string[] = [];

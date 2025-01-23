@@ -4,6 +4,7 @@ import { ClrDatagridStateInterface } from '@clr/angular';
 @Component({
   selector: 'clr-enum-filter-demo',
   templateUrl: './enum-filter.demo.html',
+  standalone: false,
 })
 export class EnumFilterDemo {
   dataList = [{ name: 'TestValue2' }, { name: 'TestValue1' }];

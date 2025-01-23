@@ -15,6 +15,7 @@ import { NullableTimerange } from '../interfaces/timerange.interface';
       <input type="date" clrDaterangepicker [formControl]="this.formControl" />
     </clr-daterangepicker-container>
   `,
+  standalone: false,
 })
 class TestComponent {
   public readonly formControl = new FormControl<NullableDaterange>(null);
@@ -31,6 +32,7 @@ class TestComponent {
       />
     </clr-daterangepicker-container>
   `,
+  standalone: false,
 })
 class TestWithToggleableValidationComponent {
   public validationState: unknown;

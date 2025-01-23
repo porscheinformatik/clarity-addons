@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -24,6 +24,7 @@ ClarityIcons.addIcons(plusCircleIcon);
       multi: true,
     },
   ],
+  standalone: false,
 })
 export class ClrQuickList<T> extends ClrAbstractFormComponent implements OnInit {
   @Input('clrBlankOption') blankOption: ClrQuickListValue<T> = CLR_BLANK_OPTION;
