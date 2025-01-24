@@ -3927,8 +3927,7 @@ export const LogoDigitalServiceReceptionNegative = clrIconSVG(
   '0 0 48 48'
 );
 export const LogoDigitalServiceReceptionFavIcon = clrIconSVG(
-  `<?xml version="1.0" encoding="UTF-8"?>
-<svg id="Ebene_2" data-name="Ebene 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 623.4 553">
+  `<svg id="Ebene_2" data-name="Ebene 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 623.4 553">
   <defs>
     <style>
       .cls-1 {
@@ -6195,7 +6194,7 @@ export const LogoWorkshopOrderTrackerFavIcon = clrIconSVG(
   '0 0 48 48'
 );
 export const LogoWorkshopOrderTrackerNegativeFavIcon = clrIconSVG(
-  `<?xml version="1.0" encoding="UTF-8"?>
+  `
 <svg id="Ebene_2" data-name="Ebene 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 624.6 509">
   <defs>
     <style>
@@ -6480,14 +6479,17 @@ export const logoCostApprovalNegativeFavIcon: IconShapeTuple = [
   'logo-cost-approval-negative-favicon',
   LogoCostApprovalNegativeFavIcon,
 ];
-export const logoCostControllingIcon: IconShapeTuple = ['logo-cost-controlling', LogoCostControlling];
-export const logoCostControllingNegativeIcon: IconShapeTuple = [
-  'logo-cost-controlling-negative',
+export const logoCrossControllingIcon: IconShapeTuple = ['logo-cross-controlling', LogoCostControlling];
+export const logoCrossControllingNegativeIcon: IconShapeTuple = [
+  'logo-cross-controlling-negative',
   LogoCostControllingNegative,
 ];
-export const logoCostControllingFavIcon: IconShapeTuple = ['logo-cost-controlling-favicon', LogoCostControllingFavIcon];
-export const logoCostControllingNegativeFavIcon: IconShapeTuple = [
-  'logo-cost-controlling-negative-favicon',
+export const logoCrossControllingFavIcon: IconShapeTuple = [
+  'logo-cross-controlling-favicon',
+  LogoCostControllingFavIcon,
+];
+export const logoCrossControllingNegativeFavIcon: IconShapeTuple = [
+  'logo-cross-controlling-negative-favicon',
   LogoCostControllingNegativeFavIcon,
 ];
 export const logoDocFlowIcon: IconShapeTuple = ['logo-doc-flow', LogoDocFlow];
@@ -6536,19 +6538,19 @@ export const logoMobilityPlannerNegativeFavIcon: IconShapeTuple = [
   LogoMobilityPlannerNegativeFavIcon,
 ];
 export const logoDigitalServiceReceptionIcon: IconShapeTuple = [
-  'logo-mobile-service-reception',
+  'logo-digital-service-reception',
   LogoDigitalServiceReception,
 ];
 export const logoDigitalServiceReceptionNegativeIcon: IconShapeTuple = [
-  'logo-mobile-service-reception-negative',
+  'logo-digital-service-reception-negative',
   LogoDigitalServiceReceptionNegative,
 ];
 export const logoDigitalServiceReceptionFavIcon: IconShapeTuple = [
-  'logo-mobile-service-reception-favicon',
+  'logo-digital-service-reception-favicon',
   LogoDigitalServiceReceptionFavIcon,
 ];
 export const logoDigitalServiceReceptionNegativeFavIcon: IconShapeTuple = [
-  'logo-mobile-service-reception-negative-favicon',
+  'logo-digital-service-reception-negative-favicon',
   LogoDigitalServiceReceptionNegativeFavIcon,
 ];
 export const logoPartsMobileIcon: IconShapeTuple = ['logo-parts-mobile', LogoPartsMobile];
@@ -6830,7 +6832,7 @@ export const menuIcon: IconShapeTuple = ['menu', menu];
 export const microphoneAppIcon: IconShapeTuple = ['microphone-app', microphone_app];
 export const mobileIcon: IconShapeTuple = ['mobile', mobile];
 export const moreAppIcon: IconShapeTuple = ['more-app', more_app];
-export const more_appbarAppIcon: IconShapeTuple = ['more-appbar-app', more_appbar_app];
+export const moreAppbarAppIcon: IconShapeTuple = ['more-appbar-app', more_appbar_app];
 export const motabilityIcon: IconShapeTuple = ['motability', motability];
 export const navigateIcon: IconShapeTuple = ['navigate', navigate];
 export const newCarCommercialIcon: IconShapeTuple = ['new-car-commercial', new_car_commercial];
@@ -7122,10 +7124,10 @@ export const allIcons: IconShapeTuple[] = [
   logoCostApprovalNegativeIcon,
   logoCostApprovalFavIcon,
   logoCostApprovalNegativeFavIcon,
-  logoCostControllingIcon,
-  logoCostControllingNegativeIcon,
-  logoCostControllingFavIcon,
-  logoCostControllingNegativeFavIcon,
+  logoCrossControllingIcon,
+  logoCrossControllingNegativeIcon,
+  logoCrossControllingFavIcon,
+  logoCrossControllingNegativeFavIcon,
   logoDocFlowIcon,
   logoDocFlowNegativeIcon,
   logoDocFlowFavIcon,
@@ -7397,7 +7399,7 @@ export const allIcons: IconShapeTuple[] = [
   microphoneAppIcon,
   mobileIcon,
   moreAppIcon,
-  more_appbarAppIcon,
+  moreAppbarAppIcon,
   motabilityIcon,
   navigateIcon,
   newCarCommercialIcon,
