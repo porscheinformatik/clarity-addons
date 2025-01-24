@@ -9,10 +9,10 @@ import {
   logoCostApprovalIcon,
   logoCostApprovalNegativeFavIcon,
   logoCostApprovalNegativeIcon,
-  logoCostControllingFavIcon,
-  logoCostControllingIcon,
-  logoCostControllingNegativeFavIcon,
-  logoCostControllingNegativeIcon,
+  logoCrossControllingFavIcon,
+  logoCrossControllingIcon,
+  logoCrossControllingNegativeFavIcon,
+  logoCrossControllingNegativeIcon,
   logoDigitalServiceReceptionFavIcon,
   logoDigitalServiceReceptionIcon,
   logoDigitalServiceReceptionNegativeFavIcon,
@@ -79,10 +79,10 @@ export class IconsLogosComponent {
     logoCostApprovalNegativeIcon,
     logoCostApprovalFavIcon,
     logoCostApprovalNegativeFavIcon,
-    logoCostControllingIcon,
-    logoCostControllingNegativeIcon,
-    logoCostControllingFavIcon,
-    logoCostControllingNegativeFavIcon,
+    logoCrossControllingIcon,
+    logoCrossControllingNegativeIcon,
+    logoCrossControllingFavIcon,
+    logoCrossControllingNegativeFavIcon,
     logoDocFlowIcon,
     logoDocFlowNegativeIcon,
     logoDocFlowFavIcon,
@@ -168,6 +168,7 @@ export class IconsLogosComponent {
 
   download(filename: string) {
     let svgData = this.icons.find(item => (item[0] as string) === filename);
+    console.log(filename, this.icons, svgData[1]);
     const data = this.encode(String(svgData[1]));
 
     const blob = new Blob([data]);
