@@ -96,6 +96,13 @@ export class ClrHistoryService {
       this.setCookie(this.cookieName, this.encode([]), domain);
     } else {
       entries = this.reduceSize(entries);
+       // encode title & pagename to be cookie saving save
+       if (entries && entries.length > 0) {
+        entries.forEach(entry => {
+          entry.title = encodeURI(entry.title);
+          entry.pageName = encodeURI(entry.pageName);
+        });
+      }
       this.setCookie(this.cookieName, this.encode(entries), domain);
     }
   }
@@ -193,7 +200,7 @@ export class ClrHistoryService {
   }
 
   private encode(content: ClrHistoryModel[]): string {
-    const jsonString = btoa(JSON.stringify(content));
+    const jsonString = btoa(encodeURIComponent(JSON.stringify(content)));
     return jsonString.replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '!');
   }
 
