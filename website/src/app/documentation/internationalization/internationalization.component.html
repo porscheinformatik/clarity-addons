@@ -483,12 +483,12 @@
         </td>
         <td>
           <span>{{
-            posNumber | currency : getCurrencyCode(firstLocale) : 'symbol' : '' : getLocaleId(firstLocale)
+            posNumber | currency : getCurrencySymbol(firstLocale) : 'symbol' : '' : getLocaleId(firstLocale)
           }}</span>
         </td>
         <td>
           <span>{{
-            posNumber | currency : getCurrencyCode(secondLocale) : 'symbol' : '' : getLocaleId(secondLocale)
+            posNumber | currency : getCurrencySymbol(secondLocale) : 'symbol' : '' : getLocaleId(secondLocale)
           }}</span>
         </td>
       </tr>
@@ -498,12 +498,12 @@
         </td>
         <td>
           <span>{{
-            negNumber | currency : getCurrencyCode(firstLocale) : 'symbol' : '' : getLocaleId(firstLocale)
+            negNumber | currency : getCurrencySymbol(firstLocale) : 'symbol' : '' : getLocaleId(firstLocale)
           }}</span>
         </td>
         <td>
           <span>{{
-            negNumber | currency : getCurrencyCode(secondLocale) : 'symbol' : '' : getLocaleId(secondLocale)
+            negNumber | currency : getCurrencySymbol(secondLocale) : 'symbol' : '' : getLocaleId(secondLocale)
           }}</span>
         </td>
       </tr>

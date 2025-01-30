@@ -16,7 +16,6 @@ import localePtPT from '@angular/common/locales/pt-PT';
 import localeSeSE from '@angular/common/locales/se-SE';
 
 import { registerLocaleData } from '@angular/common';
-import { CURRENCIES_EN } from './currencies';
 import { ClarityIcons, infoCircleIcon } from '@cds/core/icon';
 
 registerLocaleData(localeDe);
@@ -163,17 +162,5 @@ export class InternationalizationComponent {
 
   getCurrencyName(locale): string {
     return locale[LocaleDataIndex.CurrencyName];
-  }
-
-  // this method gets the currency code for the currency pipe, otherwise it would always use USD.
-  getCurrencyCode(locale): string {
-    const symbol = locale[LocaleDataIndex.CurrencySymbol];
-    for (const curr in CURRENCIES_EN) {
-      const array = CURRENCIES_EN[curr];
-      if (array[0] === symbol) {
-        return curr;
-      }
-    }
-    return '';
   }
 }
