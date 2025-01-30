@@ -24,6 +24,7 @@ const INPUT_EXAMPLE = `
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
+  standalone: false,
 })
 export class ControlWarningDemo extends ClarityDocComponent implements AfterViewInit {
   inputExample = INPUT_EXAMPLE;

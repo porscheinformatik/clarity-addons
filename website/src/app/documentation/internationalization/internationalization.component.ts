@@ -64,6 +64,7 @@ enum LocaleDataIndex {
   host: {
     '[class.content-area]': 'true',
   },
+  standalone: false,
 })
 export class InternationalizationComponent {
   // If you want to extend this to more locales, simply import the locale file, call registerLocaleData()

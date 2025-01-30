@@ -213,6 +213,7 @@ const CODE_EXAMPLE = `
 @Component({
   selector: 'clr-view-edit-section-layout-demo',
   templateUrl: './view-edit-section-layout.demo.html',
+  standalone: false,
 })
 export class ViewEditSectionLayout {
   codeExample = CODE_EXAMPLE;

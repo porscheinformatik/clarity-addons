@@ -19,6 +19,7 @@ const COMPONENTS = require('../../settings/componentlist.json');
       </a>
     </ng-container>
   `,
+  standalone: false,
 })
 export class DocumentationNavLinksComponent {
   components = COMPONENTS.list;

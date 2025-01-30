@@ -10,6 +10,7 @@ ClarityIcons.addIcons(helpInfoIcon, worldIcon, gridChartIcon, libraryIcon, updat
   host: {
     '[class.content-container]': 'true',
   },
+  standalone: false,
 })
 export class DocumentationComponent {
   environment = environment;

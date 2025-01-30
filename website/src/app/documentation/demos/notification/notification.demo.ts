@@ -48,6 +48,7 @@ openString(): void {
   },
   providers: [ClrNotificationService],
   styleUrls: ['./notification.demo.scss'],
+  standalone: false,
 })
 export class NotificationDemo extends ClarityDocComponent {
   codeExample = CODE_EXAMPLE;

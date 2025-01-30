@@ -4,6 +4,7 @@ import { formatNumber } from '../util';
 
 @Directive({
   selector: '[clrReadonly]',
+  standalone: false,
 })
 export class ClrReadonlyDirective implements OnChanges, OnInit, AfterViewInit {
   @Input('clrMulti') isMultiSelect: boolean = false;

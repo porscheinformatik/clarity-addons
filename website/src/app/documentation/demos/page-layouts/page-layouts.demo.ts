@@ -221,6 +221,7 @@ const ACTION_PANEL_TOGGLE_EXAMPLE = `
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
+  standalone: false,
 })
 export class PageLayoutsDemo extends ClarityDocComponent {
   basePageCodeExample = BASEPAGE_CODE_EXAMPLE;

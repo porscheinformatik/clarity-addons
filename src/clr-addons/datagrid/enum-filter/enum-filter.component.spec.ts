@@ -18,6 +18,7 @@ import { ClrEnumFilterComponent } from './enum-filter.component';
       </clr-dg-row>
     </clr-datagrid>
   `,
+  standalone: false,
 })
 class TestComponent {
   dataList = [{ name: 'TestValue1' }, { name: 'TestValue2' }];
@@ -40,6 +41,7 @@ class TestComponent {
       </clr-dg-row>
     </clr-datagrid>
   `,
+  standalone: false,
 })
 class TestComponentCustomValues {
   dataList = [{ name: 'TestValue1' }, { name: 'TestValue2' }];
@@ -64,6 +66,7 @@ class TestComponentCustomValues {
       </clr-dg-row>
     </clr-datagrid>
   `,
+  standalone: false,
 })
 class TestComponentCustomValuesWithDisplayValues {
   dataList = [{ name: 'TestValue1' }, { name: 'TestValue2' }];
@@ -94,6 +97,7 @@ class TestComponentCustomValuesWithDisplayValues {
       </clr-datagrid>
     </body>
   `,
+  standalone: false,
 })
 class TestComponentPreselectedValues {
   dataList = [{ name: 'TestValue1' }, { name: 'TestValue2' }, { name: 'TestValue3' }];

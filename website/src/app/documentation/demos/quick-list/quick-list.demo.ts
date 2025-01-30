@@ -94,6 +94,7 @@ interface ClrNameQuickListItem extends ClrGenericQuickListItem {
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
+  standalone: false,
 })
 export class QuickListDemo extends ClarityDocComponent {
   htmlExample1 = HTML_EXAMPLE1;

@@ -13,6 +13,7 @@ ClarityIcons.addIcons(angleIcon);
 @Component({
   selector: 'clr-flow-bar-layout-demo',
   templateUrl: './flow-bar-layout.demo.html',
+  standalone: false,
 })
 export class FlowBarLayoutDemo {
   @ViewChild('flowBar', { static: true }) flowBar: ClrFlowBar;

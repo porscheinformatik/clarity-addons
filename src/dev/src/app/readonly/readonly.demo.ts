@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'clr-readonly-demo',
   templateUrl: './readonly.demo.html',
+  standalone: false,
 })
 export class ReadonlyDemo {
   radioValue = 1;

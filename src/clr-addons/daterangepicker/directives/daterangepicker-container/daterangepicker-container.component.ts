@@ -64,6 +64,7 @@ ClarityIcons.addIcons(calendarIcon, exclamationCircleIcon, checkCircleIcon, wind
     OpenedDatepickersTrackerService,
     ControlIdService,
   ],
+  standalone: false,
 })
 export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer implements AfterViewInit, OnDestroy {
   /**

@@ -15,6 +15,7 @@ import { DateTimerangePreset } from '../../../../clr-addons/daterangepicker/inte
   selector: 'clr-daterangepicker-demo',
   templateUrl: './daterangepicker.demo.html',
   styleUrls: ['./daterangepicker.demo.scss'],
+  standalone: false,
 })
 export class DaterangepickerDemo {
   reactiveForm = new FormGroup({

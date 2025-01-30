@@ -2,7 +2,10 @@ import { Directive, ElementRef, OnDestroy, OnInit, Optional, Renderer2 } from '@
 import { Subject, takeUntil } from 'rxjs';
 import { ControlIdService } from './control-id.service';
 
-@Directive({ selector: 'label' })
+@Directive({
+  selector: 'label',
+  standalone: false,
+})
 export class ClrAddonsLabel implements OnInit, OnDestroy {
   destroyed$ = new Subject<void>();
 

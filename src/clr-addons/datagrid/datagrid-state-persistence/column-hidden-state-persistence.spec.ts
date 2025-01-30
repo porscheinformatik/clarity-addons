@@ -43,6 +43,7 @@ const PERSISTENCE_KEY = 'ColumnHiddenStatePersistenceDirective';
       </clr-dg-column>
     </clr-datagrid>
   `,
+  standalone: false,
 })
 class TestComponent {
   @ViewChildren(ClrDatagridHideableColumn)

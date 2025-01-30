@@ -23,6 +23,7 @@ import { DaterangeService } from '../providers/daterange.service';
       multi: true,
     },
   ],
+  standalone: false,
 })
 export class ClrDaterangeMaxValidator implements Validator {
   /** Validation error name. */

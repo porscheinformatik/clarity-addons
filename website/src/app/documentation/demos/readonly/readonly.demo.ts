@@ -61,6 +61,7 @@ const HTML_READONLY_READONLYPROPERTY = `
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
+  standalone: false,
 })
 export class ReadonlyDemo extends ClarityDocComponent {
   htmlCheckboxExample = HTML_CHECKBOX_EXAMPLE;

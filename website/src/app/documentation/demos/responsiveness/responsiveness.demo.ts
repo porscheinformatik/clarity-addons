@@ -34,6 +34,7 @@ const CODE_EXAMPLE = `
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
+  standalone: false,
 })
 export class ResponsivenessDemo extends ClarityDocComponent {
   codeExample = CODE_EXAMPLE;

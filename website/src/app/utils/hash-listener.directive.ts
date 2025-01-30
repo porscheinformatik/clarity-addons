@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
   host: {
     // "[style.position]": "'relative'"
   },
+  standalone: false,
 })
 export class HashListener implements OnDestroy, OnInit {
   constructor(private route: ActivatedRoute, @Inject(PLATFORM_ID) private platformId: Object) {

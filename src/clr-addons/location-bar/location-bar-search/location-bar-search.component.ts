@@ -16,6 +16,7 @@ import { FormControl } from '@angular/forms';
   templateUrl: './location-bar-search.component.html',
   styleUrls: ['location-bar-search.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class LocationBarSearchComponent implements OnInit {
   searchControl = new FormControl('');

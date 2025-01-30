@@ -12,6 +12,7 @@ ClarityIcons.addIcons(cogIcon, applicationsIcon, angleIcon, userIcon);
 @Component({
   selector: 'clr-demo-menu',
   templateUrl: './demo-menu.html',
+  standalone: false,
 })
 export class DemoMenu {
   themes = [

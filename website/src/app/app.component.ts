@@ -21,6 +21,7 @@ const PRISM_THEMES_PER_CDS_THEME = new Map([
 @Component({
   selector: 'root',
   templateUrl: './app.component.html',
+  standalone: false,
 })
 export class AppComponent implements OnInit {
   noHeader: boolean = false;

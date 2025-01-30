@@ -18,6 +18,7 @@ ClarityIcons.addIcons(historyIcon, angleIcon);
   selector: 'clr-history',
   templateUrl: './history.html',
   host: { class: 'clr-history' },
+  standalone: false,
 })
 export class ClrHistory implements OnInit, OnDestroy {
   @Input('clrUsername') username: string;

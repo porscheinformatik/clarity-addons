@@ -15,6 +15,7 @@ const MAX_DATE = new Date(2022, 11, 31);
       <input type="date" clrDaterangepicker [max]="this.maxDate" [formControl]="this.formControl" />
     </clr-daterangepicker-container>
   `,
+  standalone: false,
 })
 class TestComponent {
   public readonly maxDate = MAX_DATE;
@@ -33,6 +34,7 @@ class TestComponent {
       />
     </clr-daterangepicker-container>
   `,
+  standalone: false,
 })
 class TestWithToggleableValidationComponent {
   public readonly maxDate = MAX_DATE;

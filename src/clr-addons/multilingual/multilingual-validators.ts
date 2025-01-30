@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -72,6 +72,7 @@ export class ClrMultilingualInputValidators {
 @Directive({
   selector: '[clrRequiredOneMultilang]',
   providers: [{ provide: NG_VALIDATORS, useExisting: ClrRequiredOneMultilang, multi: true }],
+  standalone: false,
 })
 export class ClrRequiredOneMultilang implements Validator {
   _active: boolean;
@@ -89,6 +90,7 @@ export class ClrRequiredOneMultilang implements Validator {
 @Directive({
   selector: '[clrRequiredAllMultilang]',
   providers: [{ provide: NG_VALIDATORS, useExisting: ClrRequiredAllMultilang, multi: true }],
+  standalone: false,
 })
 export class ClrRequiredAllMultilang implements Validator {
   _active: boolean;

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -10,6 +10,7 @@ import { delay } from 'rxjs/operators';
 @Component({
   selector: 'clr-pager-demo',
   templateUrl: './date-time-container.demo.html',
+  standalone: false,
 })
 export class DateTimeContainerDemo {
   values$ = of([

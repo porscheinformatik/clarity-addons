@@ -9,6 +9,7 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
+  standalone: false,
 })
 export class HtmlEditorDemo extends ClarityDocComponent {
   config: AngularEditorConfig = {

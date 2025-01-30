@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -41,6 +41,7 @@ const NUMBERS = new Set(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']);
       multi: true,
     },
   ],
+  standalone: false,
 })
 export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked, ControlValueAccessor {
   @Input('clrTextAlign') textAlign = 'right';

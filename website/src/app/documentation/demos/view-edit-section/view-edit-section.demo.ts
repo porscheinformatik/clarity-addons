@@ -190,6 +190,7 @@ onFormSubmit() {
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
+  standalone: false,
 })
 export class ViewEditSectionDemo extends ClarityDocComponent {
   htmlExampleSideBySide = HTML_EXAMPLE_SIDE_BY_SIDE;

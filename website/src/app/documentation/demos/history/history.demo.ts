@@ -44,6 +44,7 @@ context = {applicationName : "ADDONS", tenantid: '1'};
   },
   providers: [ClrHistoryService],
   styles: ['.history-demo > * { display: block; margin-top: -12px; }', '.clrweb-DoxMedia-block { min-height: 60px; }'],
+  standalone: false,
 })
 export class HistoryDemo extends ClarityDocComponent implements OnInit {
   htmlExample = HTML_EXAMPLE;

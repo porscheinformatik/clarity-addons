@@ -8,5 +8,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'clr-sticky-footer-layout-demo',
   templateUrl: './sticky-footer-layout.demo.html',
+  standalone: false,
 })
 export class StickyFooterLayoutDemo {}

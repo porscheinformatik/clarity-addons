@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'clr-sidebarpage-layout-demo',
   templateUrl: './sidebarpage-layout.demo.html',
+  standalone: false,
 })
 export class SidebarpageLayoutDemo implements OnInit {
   id: number;

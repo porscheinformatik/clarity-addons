@@ -47,6 +47,7 @@ ClarityIcons.addIcons(
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
+  standalone: false,
 })
 export class ColorsDemo extends ClarityDocComponent {
   readonly rootDirectory: readonly any[] = [

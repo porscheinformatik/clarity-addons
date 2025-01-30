@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -42,6 +42,7 @@ import { takeUntil } from 'rxjs/operators';
         </clr-vertical-nav-group>
     </clr-vertical-nav>-->
   `,
+  standalone: false,
 })
 export class AppContentContainerComponent implements OnDestroy {
   private static readonly ROOT_BREADCRUMB_ELEMENT = { label: 'Home', url: '/' };
