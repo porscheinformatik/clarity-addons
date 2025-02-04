@@ -77,7 +77,7 @@ $contentTopMargin: calc(2 * var(tokens.$cds-global-space-15));
       font-weight: tokens.$cds-alias-typography-font-weight-regular;
       border-left: $activeBorderWidth solid transparent;
       padding: tokens.$cds-global-space-3 tokens.$cds-global-space-7;
-      padding-left: calc(var(tokens.$cds-global-space-7) - var(tokens.$activeBorderWidth));
+      padding-left: calc(var(tokens.$cds-global-space-7) - $activeBorderWidth);
       transition: border-left-color 200ms ease-in;
       text-decoration: none;
 
