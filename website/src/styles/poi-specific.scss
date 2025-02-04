@@ -1,6 +1,6 @@
 @use '../../node_modules/@cds/core/tokens/tokens';
 @use '../../node_modules/@clr/ui/src/utils/mixins';
-@use '../../node_modules/@clr/ui/src/utils/variables.clarity';
+@use '../../node_modules/@clr/ui/src/utils/variables/variables.global';
 
 .align-values-right {
   clr-select-container {
@@ -16,7 +16,7 @@ $contentTopMargin: calc(2 * var(tokens.$cds-global-space-15));
 .table-of-contents {
   position: fixed;
   top: $contentTopMargin;
-  left: calc($clr_baselineRem_2_66 + $clr_baselineRem_48);
+  left: calc(var(variables.$clr_baselineRem_2_66) + var(variables.$clr_baselineRem_48));
   border-left: 1px solid tokens.$cds-alias-object-border-color;
   z-index: 100000;
   .scroll-to-top {
