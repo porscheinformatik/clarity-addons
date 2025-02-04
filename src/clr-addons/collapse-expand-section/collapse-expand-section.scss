@@ -1,4 +1,6 @@
-@include exports('collapse-expand-section.clr-addons') {
+@use '../mixins';
+
+@include mixins.exports('collapse-expand-section.clr-addons') {
   .ces-title,
   .ces-subtitle {
     h1,

@@ -1,13 +1,13 @@
-@import './variables.color';
+@use 'variables.color';
 
 // Component variables
-@import '../../components.variables.clr-addons';
+@use '../../components.variables.clr-addons';
 
 // Clarity Addons Component
-@import '../../components.clr-addons';
+@use '../../components.clr-addons' as components2;
 
 // Custom theme
-@import './theme.clarity';
+@use 'theme.clarity';
 
 // Custom CSS overrides
-@import './css.overrides';
+@use 'css.overrides';

@@ -1,4 +1,6 @@
-@include exports('location-bar-node.clr-addons') {
+@use '../../mixins';
+
+@include mixins.exports('location-bar-node.clr-addons') {
   .location-bar-node {
     .btn {
       margin-top: 0;

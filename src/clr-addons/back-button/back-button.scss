@@ -1,4 +1,6 @@
-@include exports('back-button.clr-addons') {
+@use '../mixins';
+
+@include mixins.exports('back-button.clr-addons') {
   .btn.back-button {
     padding: 0;
     margin-right: 0.25rem;

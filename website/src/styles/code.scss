@@ -1,22 +1,24 @@
+@use 'variables';
+
 //Styles for Clarity Demos
 .clr-example {
-  margin-top: baselineRem(1);
+  margin-top: variables.baselineRem(1);
   .main-container {
     height: auto;
     padding-top: 0;
-    background: $clr-color-neutral-50;
+    background: variables.$clr-color-neutral-50;
     .content-area {
       overflow-y: hidden;
     }
   }
   &.squeeze {
-    padding: $bl-2_0;
+    padding: variables.$bl-2_0;
   }
 }
 
 .modal.static {
   position: relative;
-  padding: $bl-3_0;
+  padding: variables.$bl-3_0;
 }
 
 .modal-backdrop.static {
@@ -29,18 +31,18 @@
 
 .modal-icon {
   float: left;
-  color: $clr-color-success-400;
+  color: variables.$clr-color-success-400;
   font-size: rem-calc(3);
-  margin-right: $bl-0_5;
+  margin-right: variables.$bl-0_5;
 }
 
 .backdrop-example-container {
   position: relative;
-  padding: $bl-1_0;
+  padding: variables.$bl-1_0;
 }
 
 .bump-down {
-  margin-top: $bl-1_0 !important;
+  margin-top: variables.$bl-1_0 !important;
 }
 
 //Overriding PrismJS styles. This is in code.scss and not in code.clarity.scss because

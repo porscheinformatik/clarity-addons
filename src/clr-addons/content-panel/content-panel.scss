@@ -1,4 +1,8 @@
-@include exports('content-panel.clr-addons') {
+@use 'sass:map';
+@use '../mixins';
+@use '../components.variables.clr-addons' as variables;
+
+@include mixins.exports('content-panel.clr-addons') {
   :root {
     --clr-content-panel-width: 456px;
   }
@@ -14,7 +18,7 @@
     flex-direction: column;
   }
 
-  @media screen and (min-width: map-get($clr-grid-breakpoints, xl)) {
+  @media screen and (min-width: map.get(variables.$clr-grid-breakpoints, xl)) {
     .content-panel-outer-wrapper {
       order: 1;
     }
@@ -27,7 +31,7 @@
 
   .content-panel-content-wrapper {
     background-color: var(--clr-global-app-background);
-    z-index: map-get($clr-layers, sidepanel-bg) - 1;
+    z-index: map.get(variables.$clr-layers, sidepanel-bg) - 1;
     padding: 1rem;
     position: absolute;
     top: 0;
@@ -36,16 +40,16 @@
     border-left: var(--clr-global-borderwidth) solid var(--clr-border-color);
     overflow: auto;
 
-    @media screen and (min-width: map-get($clr-grid-breakpoints, md)) {
+    @media screen and (min-width: map.get(variables.$clr-grid-breakpoints, md)) {
       width: var(--clr-content-panel-width);
     }
 
-    @media screen and (min-width: map-get($clr-grid-breakpoints, xl)) {
+    @media screen and (min-width: map.get(variables.$clr-grid-breakpoints, xl)) {
       position: relative;
       height: 100%;
     }
 
-    @media screen and (max-width: map-get($clr-grid-breakpoints, md)) {
+    @media screen and (max-width: map.get(variables.$clr-grid-breakpoints, md)) {
       width: 100%;
       border: none;
     }
@@ -65,13 +69,13 @@
     left: 0;
     background-color: var(--clr-color-neutral-900);
     opacity: 0.85;
-    z-index: map-get($clr-layers, sidepanel-bg) - 2;
+    z-index: map.get(variables.$clr-layers, sidepanel-bg) - 2;
 
-    @media screen and (max-width: map-get($clr-grid-breakpoints, md)) {
+    @media screen and (max-width: map.get(variables.$clr-grid-breakpoints, md)) {
       display: none;
     }
 
-    @media screen and (min-width: map-get($clr-grid-breakpoints, xl)) {
+    @media screen and (min-width: map.get(variables.$clr-grid-breakpoints, xl)) {
       display: none;
     }
   }

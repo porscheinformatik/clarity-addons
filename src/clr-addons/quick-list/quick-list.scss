@@ -1,4 +1,6 @@
-@include exports('quick-list.clr-addons') {
+@use '../mixins';
+
+@include mixins.exports('quick-list.clr-addons') {
   .quick-list {
     .quick-list-option {
       display: flex;

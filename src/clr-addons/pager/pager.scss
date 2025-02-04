@@ -1,4 +1,6 @@
-@include exports('pager.clr-addons') {
+@use '../mixins';
+
+@include mixins.exports('pager.clr-addons') {
   .pager {
     .btn {
       min-width: 1.5rem;
