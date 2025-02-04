@@ -1,3 +1,8 @@
+@use '../../node_modules/@cds/core/tokens/tokens';
+@use '../../node_modules/@clr/ui/src/utils/mixins';
+@use '../../node_modules/@clr/ui/src/utils/variables/variables';
+@use '../../node_modules/@clr/ui/src/utils/variables.clarity';
+
 .align-values-right {
   clr-select-container {
     align-items: flex-end;
@@ -6,11 +11,6 @@
 th clr-select-container {
   margin-top: 0 !important;
 }
-
-@use '../../node_modules/@cds/core/tokens/tokens';
-@use '../../node_modules/@clr/ui/src/utils/mixins';
-@use '../../node_modules/@clr/ui/src/utils/variables/variables';
-@use '../../node_modules/@clr/ui/src/utils/variables.clarity';
 
 $contentTopMargin: calc(2 * var(tokens.$cds-global-space-15));
 
