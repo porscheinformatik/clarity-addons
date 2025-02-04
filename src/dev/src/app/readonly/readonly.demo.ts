@@ -21,6 +21,12 @@ export class ReadonlyDemo {
   textareaText =
     'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam volu';
   comboBoxValue = 'Option 1';
+  comboBoxValueObject = { value: 'Option 1', name: 'Option 1' };
+  comboBoxValueObjectList = [
+    { value: 'Option 1', name: 'Option 1' },
+    { value: 'Option 2', name: 'Option 2' },
+    { value: 'Option 3', name: 'Option 3' },
+  ];
   numericValue = 1234456456;
 
   states = states;
