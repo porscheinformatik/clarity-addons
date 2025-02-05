@@ -1,3 +1,4 @@
+@use 'sass:map';
 $clr-grid-breakpoints: (
   xs: 0,
   sm: 576px,
@@ -29,8 +30,8 @@ $clr-layers: (
 $clr-sliding-panel-width: 18rem;
 $clr-sliding-panel-animation: transform 0.3s ease;
 $clr-trigger-animation: transform 0.6s ease;
-$clr-sliding-panel-z-index: map-get($clr-layers, sidepanel);
-$clr-sliding-panel-backdrop-z-index: map-get($clr-layers, sidepanel-bg);
+$clr-sliding-panel-z-index: map.get($clr-layers, sidepanel);
+$clr-sliding-panel-backdrop-z-index: map.get($clr-layers, sidepanel-bg);
 $clr-max-width: 65rem;
 
 // datagrid/notification color highlighting

@@ -1,4 +1,6 @@
-@include exports('multilingual.clr-addons') {
+@use '../mixins';
+
+@include mixins.exports('multilingual.clr-addons') {
   .clr-multilingual {
     .clr-control-container {
       display: flex;

@@ -1,8 +1,8 @@
-@import '../../styles/variables';
-@import '../../styles/mixins';
+@use '../../styles/variables';
+@use '../../styles/mixins';
 
 .layout-home {
-  background-color: $clr-color-neutral-50;
+  background-color: variables.$clr-color-neutral-50;
   height: 100vh;
 
   .main-container {
@@ -14,7 +14,7 @@
     }
   }
 
-  $clrweb-home-sectionPadding: $bl-4_0;
+  $clrweb-home-sectionPadding: variables.$bl-4_0;
 
   section {
     padding-top: $clrweb-home-sectionPadding;
@@ -53,32 +53,32 @@
   h1 {
     font-weight: 200;
     letter-spacing: -0.02em;
-    line-height: $bl-3_0;
+    line-height: variables.$bl-3_0;
     font-size: 64px;
-    margin-bottom: $bl-0_5;
-    margin-top: $bl-0_5;
+    margin-bottom: variables.$bl-0_5;
+    margin-top: variables.$bl-0_5;
   }
 
   p.head {
-    font-size: $bl-0_75;
+    font-size: variables.$bl-0_75;
     font-weight: 200;
-    line-height: $bl-1_5;
-    margin: $bl-0_25 5px;
+    line-height: variables.$bl-1_5;
+    margin: variables.$bl-0_25 5px;
     color: #000;
     max-width: 624px;
   }
 
   .home-hero-btn {
-    margin: $bl-1_5 0 $bl-1_0;
+    margin: variables.$bl-1_5 0 variables.$bl-1_0;
     padding-left: 5px;
   }
 
   .btn {
-    width: baselineRem(7);
-    height: $bl-2_0;
-    line-height: $bl-2_0 - 1;
+    width: variables.baselineRem(7);
+    height: variables.$bl-2_0;
+    line-height: variables.$bl-2_0 - 1;
     margin: 0;
-    margin-right: $bl-0_75;
+    margin-right: variables.$bl-0_75;
     font-weight: 400;
   }
 
@@ -96,7 +96,7 @@
       &:hover,
       &:active,
       &:focus {
-        color: $clr-color-neutral-900;
+        color: variables.$clr-color-neutral-900;
         text-decoration: underline;
       }
     }

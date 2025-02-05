@@ -1,23 +1,25 @@
+@use 'sass:list';
+@use 'sass:string';
 $imported-modules: () !default;
 @mixin exports($name) {
   //check if they have been imported
-  @if (index($imported-modules, $name) == null) {
-    $imported-modules: append($imported-modules, $name) !global;
+  @if (list.index($imported-modules, $name) == null) {
+    $imported-modules: list.append($imported-modules, $name) !global;
     @content;
   }
 }
 
 @function deHexColorString($colorStr) {
-  @if str-index($colorStr, 'white') != null {
+  @if string.index($colorStr, 'white') != null {
     @return 'ffffff';
   }
-  @if str-index($colorStr, 'black') != null {
+  @if string.index($colorStr, 'black') != null {
     @return '000000';
   }
-  @if str-index($colorStr, '#') == null {
+  @if string.index($colorStr, '#') == null {
     @return $colorStr;
   }
-  @return str-slice($colorStr, 2);
+  @return string.slice($colorStr, 2);
 }
 
 $svg_data: 'data:image/svg+xml;charset=utf8';

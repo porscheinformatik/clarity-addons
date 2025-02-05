@@ -1,4 +1,8 @@
-@include exports('flow-bar.clr-addons') {
+@use 'sass:map';
+@use '../mixins';
+@use '../components.variables.clr-addons' as variables;
+
+@include mixins.exports('flow-bar.clr-addons') {
   .flow-bar {
     display: flex;
     flex: 0 0 auto;
@@ -6,7 +10,7 @@
     .flow-bar-dropdown {
       display: none;
 
-      @media screen and (max-width: map-get($clr-grid-breakpoints, sm)) {
+      @media screen and (max-width: map.get(variables.$clr-grid-breakpoints, sm)) {
         display: block;
       }
 
@@ -30,7 +34,7 @@
       overflow-x: auto;
       overflow-y: hidden;
 
-      @media screen and (max-width: map-get($clr-grid-breakpoints, sm)) {
+      @media screen and (max-width: map.get(variables.$clr-grid-breakpoints, sm)) {
         display: none;
       }
 

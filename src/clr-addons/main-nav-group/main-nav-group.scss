@@ -1,4 +1,8 @@
-@include exports('main-nav-group.clr-addons') {
+@use 'sass:map';
+@use '../mixins';
+@use '../components.variables.clr-addons' as variables;
+
+@include mixins.exports('main-nav-group.clr-addons') {
   header,
   .header {
     .header-nav .nav-link {
@@ -12,7 +16,7 @@
   }
 
   .main-container:not(.open-hamburger-menu) .header-nav {
-    @media screen and (max-width: map-get($clr-grid-breakpoints, lg)) {
+    @media screen and (max-width: map.get(variables.$clr-grid-breakpoints, lg)) {
       .header-overflow {
         display: none;
       }

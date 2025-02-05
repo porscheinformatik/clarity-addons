@@ -1,4 +1,6 @@
-@include exports('date-time-container.clr-addons') {
+@use '../mixins';
+
+@include mixins.exports('date-time-container.clr-addons') {
   .date-time-container {
     clr-date-container {
       flex: 1 1 auto;

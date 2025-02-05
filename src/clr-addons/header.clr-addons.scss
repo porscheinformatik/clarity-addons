@@ -1,3 +1,6 @@
+@use 'sass:map';
+@use 'components.variables.clr-addons' as variables;
+
 @mixin sliding-nav-positioning($top: 0, $right: auto, $bottom: 0, $left: 0) {
   display: flex;
   flex-direction: column;
@@ -7,7 +10,7 @@
   bottom: $bottom;
   left: $left;
   background: var(--clr-nav-background-color);
-  z-index: $clr-sliding-panel-z-index;
+  z-index: variables.$clr-sliding-panel-z-index;
   height: 100vh;
 }
 
@@ -24,14 +27,14 @@
   }
 }
 
-@mixin menu-trigger($right: auto, $left: 0, $transformX: $clr-sliding-panel-width + 0.5rem) {
+@mixin menu-trigger($right: auto, $left: 0, $transformX: variables.$clr-sliding-panel-width + 0.5rem) {
   position: fixed;
   top: 0;
   right: $right;
   left: $left;
-  z-index: $clr-sliding-panel-z-index;
+  z-index: variables.$clr-sliding-panel-z-index;
   transform: translateX($transformX);
-  transition: $clr-trigger-animation;
+  transition: variables.$clr-trigger-animation;
 
   &::after {
     content: none;
@@ -48,7 +51,7 @@
   width: 1.1rem;
 }
 
-@media screen and (max-width: map-get($clr-grid-breakpoints, lg)) and (min-width: map-get($clr-grid-breakpoints, md)) {
+@media screen and (max-width: map.get(variables.$clr-grid-breakpoints, lg)) and (min-width: map.get(variables.$clr-grid-breakpoints, md)) {
   .main-container {
     .header-hamburger-trigger,
     .header-overflow-trigger {
@@ -81,8 +84,8 @@
     .sub-nav.clr-nav-level-1,
     .clr-vertical-nav.clr-nav-level-1 {
       @include sliding-nav-positioning();
-      transform: translateX(-1 * $clr-sliding-panel-width);
-      transition: $clr-sliding-panel-animation;
+      transform: translateX(-1 * variables.$clr-sliding-panel-width);
+      transition: variables.$clr-sliding-panel-animation;
     }
 
     .header-nav.clr-nav-level-2,
@@ -90,8 +93,8 @@
     .sub-nav.clr-nav-level-2,
     .clr-vertical-nav.clr-nav-level-2 {
       @include sliding-nav-positioning(0, 0, 0, auto);
-      transform: translateX($clr-sliding-panel-width);
-      transition: $clr-sliding-panel-animation;
+      transform: translateX(variables.$clr-sliding-panel-width);
+      transition: variables.$clr-sliding-panel-animation;
     }
 
     .subnav.clr-nav-level-1,
@@ -195,7 +198,7 @@
           right: 0;
           background: var(--cds-alias-object-overlay-backdrop-background);
           cursor: pointer;
-          z-index: $clr-sliding-panel-backdrop-z-index;
+          z-index: variables.$clr-sliding-panel-backdrop-z-index;
         }
 
         .header-nav.clr-nav-level-1,
@@ -244,9 +247,9 @@
           top: 0;
           left: 0;
           overflow: hidden;
-          width: $clr-sliding-panel-width;
-          max-width: $clr-sliding-panel-width;
-          z-index: $clr-sliding-panel-z-index + 1;
+          width: variables.$clr-sliding-panel-width;
+          max-width: variables.$clr-sliding-panel-width;
+          z-index: variables.$clr-sliding-panel-z-index + 1;
           padding-left: 1rem;
 
           & > .nav-link {
@@ -276,7 +279,7 @@
           &::after {
             left: 0.15rem;
             transform-origin: 9%;
-            transition: $clr-trigger-animation;
+            transition: variables.$clr-trigger-animation;
           }
 
           &::before {
@@ -295,9 +298,9 @@
       .clr-vertical-nav.clr-nav-level-1 {
         padding-top: calc(var(--clr-header-height) + 1rem);
         transform: translateX(0);
-        transition: $clr-sliding-panel-animation;
-        width: $clr-sliding-panel-width;
-        max-width: $clr-sliding-panel-width;
+        transition: variables.$clr-sliding-panel-animation;
+        width: variables.$clr-sliding-panel-width;
+        max-width: variables.$clr-sliding-panel-width;
 
         .sidenav-content {
           padding-bottom: 1rem;
@@ -311,9 +314,9 @@
       .sub-nav.clr-nav-level-2,
       .clr-vertical-nav.clr-nav-level-2 {
         transform: translateX(0);
-        transition: $clr-sliding-panel-animation;
-        width: $clr-sliding-panel-width;
-        max-width: $clr-sliding-panel-width;
+        transition: variables.$clr-sliding-panel-animation;
+        width: variables.$clr-sliding-panel-width;
+        max-width: variables.$clr-sliding-panel-width;
       }
 
       .header-nav.clr-nav-level-2,
@@ -323,7 +326,7 @@
       }
 
       .header-overflow-trigger {
-        @include menu-trigger(0, auto, (-1 * ($clr-sliding-panel-width + 0.5rem)));
+        @include menu-trigger(0, auto, (-1 * (variables.$clr-sliding-panel-width + 0.5rem)));
 
         > span {
           background: transparent;
@@ -334,7 +337,7 @@
             width: 1.2rem;
             left: -0.3rem;
             transform-origin: -3%;
-            transition: $clr-trigger-animation;
+            transition: variables.$clr-trigger-animation;
           }
 
           &::before {

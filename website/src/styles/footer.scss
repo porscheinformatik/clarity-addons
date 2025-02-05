@@ -1,11 +1,13 @@
+@use 'variables';
+
 footer {
-  padding: $bl-1_0 0;
+  padding: variables.$bl-1_0 0;
 
   .vmware-weblogo {
-    margin: $bl-0_5 0;
+    margin: variables.$bl-0_5 0;
   }
 
   .copyright {
-    margin-top: $bl-0_25;
+    margin-top: variables.$bl-0_25;
   }
 }

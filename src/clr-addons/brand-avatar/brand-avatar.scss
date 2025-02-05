@@ -1,4 +1,6 @@
-@include exports('brand-avatar.clr-addons') {
+@use '../mixins';
+
+@include mixins.exports('brand-avatar.clr-addons') {
   .clr-brand-avatar {
     .brand-avatar-rectangle {
       display: flex;

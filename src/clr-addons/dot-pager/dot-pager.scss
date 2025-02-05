@@ -1,4 +1,6 @@
-@include exports('dot-pager.clr-addons') {
+@use '../mixins';
+
+@include mixins.exports('dot-pager.clr-addons') {
   .dot-pager {
     .clr-control-container {
       margin: auto;

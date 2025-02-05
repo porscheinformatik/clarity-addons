@@ -1,3 +1,7 @@
+@use 'sass:map';
+@use '../mixins';
+@use '../components.variables.clr-addons' as variables;
+
 @mixin progress-color($alertLevel, $color) {
   &.#{$alertLevel} {
     progress {
@@ -14,11 +18,11 @@
   }
 }
 
-@include exports('notification.clr-addons') {
+@include mixins.exports('notification.clr-addons') {
   .notification {
     &__wrapper {
       position: fixed;
-      z-index: map-get($clr-layers, tooltips) + 1;
+      z-index: map.get(variables.$clr-layers, tooltips) + 1;
       top: 36px;
       width: 400px;
       left: 0;
@@ -27,7 +31,7 @@
       margin: 0 auto;
       overflow: hidden;
 
-      @media screen and (max-width: map-get($clr-grid-breakpoints, sm)) {
+      @media screen and (max-width: map.get(variables.$clr-grid-breakpoints, sm)) {
         width: calc(100% - 2rem);
         margin: 0 1rem;
       }
@@ -38,10 +42,10 @@
       position: absolute;
       z-index: 1;
 
-      @include progress-color('info', $clr-highlight-info-700);
-      @include progress-color('success', $clr-highlight-success-700);
-      @include progress-color('warning', $clr-highlight-warning-800);
-      @include progress-color('danger', $clr-highlight-error-800);
+      @include progress-color('info', variables.$clr-highlight-info-700);
+      @include progress-color('success', variables.$clr-highlight-success-700);
+      @include progress-color('warning', variables.$clr-highlight-warning-800);
+      @include progress-color('danger', variables.$clr-highlight-error-800);
     }
 
     .alert-items {

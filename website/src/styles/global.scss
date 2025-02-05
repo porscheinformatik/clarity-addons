@@ -1,13 +1,16 @@
+@use 'sass:map';
+@use 'variables';
+
 .spacious {
-  margin-top: $bl-2_0;
+  margin-top: variables.$bl-2_0;
 }
 
 .cozy {
-  margin-top: $bl-1_5;
+  margin-top: variables.$bl-1_5;
 }
 
 .cozy-sm {
-  margin-top: $bl-0_5;
+  margin-top: variables.$bl-0_5;
 }
 
 p.cozy + p {
@@ -19,11 +22,11 @@ p.squish {
 }
 
 ol.indent {
-  padding-left: $bl-2_0;
-  margin-top: $bl-1_0;
+  padding-left: variables.$bl-2_0;
+  margin-top: variables.$bl-1_0;
 
   & li {
-    padding-bottom: $bl-0_5;
+    padding-bottom: variables.$bl-0_5;
   }
 }
 
@@ -32,7 +35,7 @@ h6.indent + p.indent {
 }
 
 .fully-wide {
-  padding: $bl-2_0 0;
+  padding: variables.$bl-2_0 0;
   text-align: center;
 }
 
@@ -61,8 +64,8 @@ h6.indent + p.indent {
 .slider-nav .nav-group label > a {
   display: block;
   width: auto;
-  margin-left: -1 * $bl-0_5;
-  margin-right: -1 * $bl-0_5;
+  margin-left: -1 * variables.$bl-0_5;
+  margin-right: -1 * variables.$bl-0_5;
   border-radius: 3px 0 0 3px;
 }
 
@@ -98,7 +101,7 @@ a.btn-primary {
 @media (min-width: 577px) {
   ul#content_tabs {
     .nav .nav-item {
-      margin-right: $bl-0_25;
+      margin-right: variables.$bl-0_25;
     }
   }
 }
@@ -113,7 +116,7 @@ a.btn-primary {
 
 :not(.layout-home) {
   .content-area section:first-of-type h1 {
-    margin-top: -1 * $bl-0_25;
+    margin-top: -1 * variables.$bl-0_25;
   }
 }
 
@@ -147,8 +150,8 @@ a.btn-primary {
 .layout-documentation,
 .layout-news {
   .main-container .content-container .content-area {
-    padding-left: $bl-1_5;
-    padding-top: $bl-0_75;
+    padding-left: variables.$bl-1_5;
+    padding-top: variables.$bl-0_75;
   }
 }
 
@@ -161,7 +164,7 @@ a.btn-primary {
   }
 
   h2 + h3 {
-    margin-top: $bl-1_5;
+    margin-top: variables.$bl-1_5;
   }
 
   h5 {
@@ -184,11 +187,11 @@ a.btn-primary {
   h2 + h5,
   h3 + h4,
   h1 + h5 {
-    margin-top: $bl-1_0;
+    margin-top: variables.$bl-1_0;
   }
 
   h6 + p {
-    margin-top: $bl-0_25;
+    margin-top: variables.$bl-0_25;
   }
 }
 
@@ -237,7 +240,7 @@ a.btn-primary {
             so it should be set to none when the screen is small.   */
 
     transform: translate3d(0, 0, 0);
-    z-index: map-get($clr-layers, sidepanel);
+    z-index: map.get(variables.$clr-layers, sidepanel);
   }
 
   .main-container {

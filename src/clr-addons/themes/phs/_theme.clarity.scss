@@ -1,4 +1,6 @@
-// Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
+@use 'variables.color';
+
+// Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
 // This software is released under MIT license.
 // The full license information can be found in LICENSE in the root directory of this project.
 
@@ -71,7 +73,7 @@
 // Specific definitions for the PHS theme
 :root [cds-theme~='phs'] {
   // Global overrides
-  --clr-metropolis-font-family: #{$phs-default-font-family};
+  --clr-metropolis-font-family: #{variables.$phs-default-font-family};
 
   // Solves a bug in Clarity 17.0.1, that uses "Clarity City" at various occasions beside the fact,
   // that Metropolis is the default.
@@ -87,96 +89,96 @@
   --clr-h6-font-weight: var(--cds-global-typography-font-weight-light);
 
   // Color overrides as defined by https://clarity.design/documentation/color
-  --cds-alias-status-info: #{$phs-global-color-blue-700};
-  --cds-alias-status-info-shade: #{$phs-global-color-blue-800};
-  --cds-alias-status-info-tint: #{$phs-global-color-blue-50};
+  --cds-alias-status-info: #{variables.$phs-global-color-blue-700};
+  --cds-alias-status-info-shade: #{variables.$phs-global-color-blue-800};
+  --cds-alias-status-info-tint: #{variables.$phs-global-color-blue-50};
 
-  --cds-alias-status-success: #{$phs-global-color-green-700};
-  --cds-alias-status-success-shade: #{$phs-global-color-green-800};
-  --cds-alias-status-success-tint: #{$phs-global-color-green-50};
+  --cds-alias-status-success: #{variables.$phs-global-color-green-700};
+  --cds-alias-status-success-shade: #{variables.$phs-global-color-green-800};
+  --cds-alias-status-success-tint: #{variables.$phs-global-color-green-50};
 
-  --cds-alias-status-warning: #{$phs-global-color-ochre-700};
-  --cds-alias-status-warning-shade: #{$phs-global-color-ochre-800};
-  --cds-alias-status-warning-dark: #{$phs-global-color-ochre-800};
-  --cds-alias-status-warning-tint: #{$phs-global-color-ochre-50};
+  --cds-alias-status-warning: #{variables.$phs-global-color-ochre-700};
+  --cds-alias-status-warning-shade: #{variables.$phs-global-color-ochre-800};
+  --cds-alias-status-warning-dark: #{variables.$phs-global-color-ochre-800};
+  --cds-alias-status-warning-tint: #{variables.$phs-global-color-ochre-50};
 
-  --cds-alias-status-danger: #{$phs-global-color-red-700};
-  --cds-alias-status-danger-shade: #{$phs-global-color-red-800};
-  --cds-alias-status-danger-dark: #{$phs-global-color-red-900};
-  --cds-alias-status-danger-tint: #{$phs-global-color-red-50};
+  --cds-alias-status-danger: #{variables.$phs-global-color-red-700};
+  --cds-alias-status-danger-shade: #{variables.$phs-global-color-red-800};
+  --cds-alias-status-danger-dark: #{variables.$phs-global-color-red-900};
+  --cds-alias-status-danger-tint: #{variables.$phs-global-color-red-50};
 
-  --cds-alias-status-disabled: #{$phs-global-color-construction-200};
-  --cds-alias-status-disabled-shade: #{$phs-global-color-construction-300};
-  --cds-alias-status-disabled-tint: #{$phs-global-color-construction-400};
+  --cds-alias-status-disabled: #{variables.$phs-global-color-construction-200};
+  --cds-alias-status-disabled-shade: #{variables.$phs-global-color-construction-300};
+  --cds-alias-status-disabled-tint: #{variables.$phs-global-color-construction-400};
 
-  --cds-alias-object-interaction-info-hover: #{$phs-global-color-blue-800};
-  --cds-alias-object-interaction-info-click: #{$phs-global-color-blue-900};
-  --cds-alias-object-interaction-info-secondary-hover: #{$phs-global-color-blue-50};
+  --cds-alias-object-interaction-info-hover: #{variables.$phs-global-color-blue-800};
+  --cds-alias-object-interaction-info-click: #{variables.$phs-global-color-blue-900};
+  --cds-alias-object-interaction-info-secondary-hover: #{variables.$phs-global-color-blue-50};
 
-  --cds-alias-object-interaction-success-hover: #{$phs-global-color-green-800};
-  --cds-alias-object-interaction-success-click: #{$phs-global-color-green-900};
-  --cds-alias-object-interaction-success-secondary-hover: #{$phs-global-color-green-50};
+  --cds-alias-object-interaction-success-hover: #{variables.$phs-global-color-green-800};
+  --cds-alias-object-interaction-success-click: #{variables.$phs-global-color-green-900};
+  --cds-alias-object-interaction-success-secondary-hover: #{variables.$phs-global-color-green-50};
 
-  --cds-alias-object-interaction-warning-hover: #{$phs-global-color-ochre-800};
-  --cds-alias-object-interaction-warning-click: #{$phs-global-color-ochre-900};
-  --cds-alias-object-interaction-warning-secondary-hover: #{$phs-global-color-ochre-50};
+  --cds-alias-object-interaction-warning-hover: #{variables.$phs-global-color-ochre-800};
+  --cds-alias-object-interaction-warning-click: #{variables.$phs-global-color-ochre-900};
+  --cds-alias-object-interaction-warning-secondary-hover: #{variables.$phs-global-color-ochre-50};
 
-  --cds-alias-object-interaction-danger-hover: #{$phs-global-color-red-800};
-  --cds-alias-object-interaction-danger-click: #{$phs-global-color-red-900};
-  --cds-alias-object-interaction-danger-secondary-hover: #{$phs-global-color-red-50};
+  --cds-alias-object-interaction-danger-hover: #{variables.$phs-global-color-red-800};
+  --cds-alias-object-interaction-danger-click: #{variables.$phs-global-color-red-900};
+  --cds-alias-object-interaction-danger-secondary-hover: #{variables.$phs-global-color-red-50};
 
-  --cds-alias-object-app-background: #{$phs-global-color-construction-25};
+  --cds-alias-object-app-background: #{variables.$phs-global-color-construction-25};
 
-  --cds-alias-object-border-color: #{$phs-global-color-construction-300};
-  --cds-alias-object-border-color-tint: #{$phs-global-color-construction-200};
-  --cds-alias-object-border-color-shade: #{$phs-global-color-construction-400};
+  --cds-alias-object-border-color: #{variables.$phs-global-color-construction-300};
+  --cds-alias-object-border-color-tint: #{variables.$phs-global-color-construction-200};
+  --cds-alias-object-border-color-shade: #{variables.$phs-global-color-construction-400};
 
-  --cds-alias-object-interaction-background: #{$phs-global-color-white};
-  --cds-alias-object-interaction-background-hover: #{$phs-global-color-turquoise-50};
-  --cds-alias-object-interaction-background-active: #{$phs-global-color-turquoise-200};
-  --cds-alias-object-interaction-background-selected: #{$phs-global-color-turquoise-100};
-  --cds-alias-object-interaction-background-highlight: #{$phs-global-color-turquoise-800};
+  --cds-alias-object-interaction-background: #{variables.$phs-global-color-white};
+  --cds-alias-object-interaction-background-hover: #{variables.$phs-global-color-turquoise-50};
+  --cds-alias-object-interaction-background-active: #{variables.$phs-global-color-turquoise-200};
+  --cds-alias-object-interaction-background-selected: #{variables.$phs-global-color-turquoise-100};
+  --cds-alias-object-interaction-background-highlight: #{variables.$phs-global-color-turquoise-800};
 
-  --cds-alias-object-container-background: #{$phs-global-color-white};
-  --cds-alias-object-container-background-tint: #{$phs-global-color-construction-100};
-  --cds-alias-object-container-background-shade: #{$phs-global-color-construction-200};
+  --cds-alias-object-container-background: #{variables.$phs-global-color-white};
+  --cds-alias-object-container-background-tint: #{variables.$phs-global-color-construction-100};
+  --cds-alias-object-container-background-shade: #{variables.$phs-global-color-construction-200};
 
-  --cds-global-color-white: #{$phs-global-color-white};
-  --cds-global-color-black: #{$phs-global-color-black};
+  --cds-global-color-white: #{variables.$phs-global-color-white};
+  --cds-global-color-black: #{variables.$phs-global-color-black};
 
-  --cds-alias-typography-color-100: #{$phs-global-color-white};
-  --cds-alias-typography-color-200: #{$phs-global-color-construction-600};
-  --cds-alias-typography-color-300: #{$phs-global-color-black};
-  --cds-alias-typography-color-400: #{$phs-global-color-construction-800};
-  --cds-alias-typography-color-450: #{$phs-global-color-construction-700};
-  --cds-alias-typography-color-500: #{$phs-global-color-construction-700};
+  --cds-alias-typography-color-100: #{variables.$phs-global-color-white};
+  --cds-alias-typography-color-200: #{variables.$phs-global-color-construction-600};
+  --cds-alias-typography-color-300: #{variables.$phs-global-color-black};
+  --cds-alias-typography-color-400: #{variables.$phs-global-color-construction-800};
+  --cds-alias-typography-color-450: #{variables.$phs-global-color-construction-700};
+  --cds-alias-typography-color-500: #{variables.$phs-global-color-construction-700};
 
-  --cds-alias-typography-info-hover: #{$phs-global-color-blue-800};
-  --cds-alias-typography-success-hover: #{$phs-global-color-green-800};
-  --cds-alias-typography-warning-hover: #{$phs-global-color-ochre-900};
-  --cds-alias-typography-danger-hover: #{$phs-global-color-red-800};
-  --cds-alias-typography-neutral-hover: #{$phs-global-color-construction-700};
+  --cds-alias-typography-info-hover: #{variables.$phs-global-color-blue-800};
+  --cds-alias-typography-success-hover: #{variables.$phs-global-color-green-800};
+  --cds-alias-typography-warning-hover: #{variables.$phs-global-color-ochre-900};
+  --cds-alias-typography-danger-hover: #{variables.$phs-global-color-red-800};
+  --cds-alias-typography-neutral-hover: #{variables.$phs-global-color-construction-700};
 
-  --cds-alias-typography-link-on-colorbg: #{$phs-global-color-construction-1000};
-  --cds-alias-typography-link-color: #{$phs-global-color-turquoise-800};
-  --cds-alias-typography-link-color-hover: #{$phs-global-color-turquoise-900};
-  --cds-alias-typography-link-color-visited: #{$phs-global-color-turquoise-800};
-  --cds-alias-typography-link-color-visited-hover: #{$phs-global-color-turquoise-900};
+  --cds-alias-typography-link-on-colorbg: #{variables.$phs-global-color-construction-1000};
+  --cds-alias-typography-link-color: #{variables.$phs-global-color-turquoise-800};
+  --cds-alias-typography-link-color-hover: #{variables.$phs-global-color-turquoise-900};
+  --cds-alias-typography-link-color-visited: #{variables.$phs-global-color-turquoise-800};
+  --cds-alias-typography-link-color-visited-hover: #{variables.$phs-global-color-turquoise-900};
 
   --cds-alias-typography-disabled: var(--cds-global-color-construction-300);
   --cds-alias-typography-disabled-button: var(--cds-global-color-construction-300);
 
   // Additional colors to distinguish between primary and info colors
   // This is not standard in Clarity, but is used in PHS
-  --cds-alias-status-primary: #{$phs-global-color-turquoise-700};
-  --cds-alias-status-primary-shade: #{$phs-global-color-turquoise-800};
-  --cds-alias-status-primary-tint: #{$phs-global-color-turquoise-50};
+  --cds-alias-status-primary: #{variables.$phs-global-color-turquoise-700};
+  --cds-alias-status-primary-shade: #{variables.$phs-global-color-turquoise-800};
+  --cds-alias-status-primary-tint: #{variables.$phs-global-color-turquoise-50};
 
-  --cds-alias-object-interaction-primary-hover: #{$phs-global-color-turquoise-800};
-  --cds-alias-object-interaction-primary-click: #{$phs-global-color-turquoise-900};
-  --cds-alias-object-interaction-primary-secondary-hover: #{$phs-global-color-turquoise-50};
+  --cds-alias-object-interaction-primary-hover: #{variables.$phs-global-color-turquoise-800};
+  --cds-alias-object-interaction-primary-click: #{variables.$phs-global-color-turquoise-900};
+  --cds-alias-object-interaction-primary-secondary-hover: #{variables.$phs-global-color-turquoise-50};
 
-  --cds-alias-typography-primary-hover: #{$phs-global-color-turquoise-800};
+  --cds-alias-typography-primary-hover: #{variables.$phs-global-color-turquoise-800};
 
   // Bugfix as of Clarity 17.0.1 - in contrast to all other alerts, the warning has a direct color assignment
   --clr-alert-warning-font-color: var(--cds-alias-typography-color-500);
@@ -244,11 +246,11 @@
   --clr-spinner-fill-inverse-color: var(--cds-alias-status-primary-tint);
 
   // Vertical Nav
-  --clr-vertical-nav-hover-bg-color: #{$phs-global-color-construction-300};
-  --clr-vertical-nav-active-bg-color: #{$phs-global-color-construction-400};
+  --clr-vertical-nav-hover-bg-color: #{variables.$phs-global-color-construction-300};
+  --clr-vertical-nav-active-bg-color: #{variables.$phs-global-color-construction-400};
 
-  --clr-vertical-nav-selected-bg-color: #{$phs-global-color-construction-25};
-  --clr-vertical-nav-selected-hover-bg-color: #{$phs-global-color-construction-300};
+  --clr-vertical-nav-selected-bg-color: #{variables.$phs-global-color-construction-25};
+  --clr-vertical-nav-selected-hover-bg-color: #{variables.$phs-global-color-construction-300};
 
   // *************************
   // Override and Fixes

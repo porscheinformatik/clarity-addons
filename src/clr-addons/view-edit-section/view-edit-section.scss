@@ -1,6 +1,9 @@
-@include exports('view-edit-section.clr-addons') {
+@use '../mixins';
+@use '../components.variables.clr-addons' as variables;
+
+@include mixins.exports('view-edit-section.clr-addons') {
   .view-edit-section {
-    max-width: $clr-max-width;
+    max-width: variables.$clr-max-width;
 
     .card-block {
       display: flex;

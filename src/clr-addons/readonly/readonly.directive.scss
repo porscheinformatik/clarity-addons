@@ -1,4 +1,6 @@
-@include exports('readonly.clr-addons') {
+@use '../mixins';
+
+@include mixins.exports('readonly.clr-addons') {
   .clr-readonly-parent.clr-select-wrapper::after {
     content: none !important;
   }
