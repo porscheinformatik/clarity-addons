@@ -1,3 +1,7 @@
+@use 'sass:map';
+@use '../mixins';
+@use '../components.variables.clr-addons' as variables;
+
 @mixin row-indentation($level) {
   $base-cell-indentation: 2rem;
   $base-caret-indentation: 0.1rem;
@@ -99,7 +103,7 @@
   }
 }
 
-@include exports('treetable.clr-addons') {
+@include mixins.exports('treetable.clr-addons') {
   @include basic-table(
     '.treetable',
     '.treetable-header',
@@ -157,7 +161,7 @@
         padding: 0.1rem 0.2rem 0.15rem;
         text-align: center;
         position: absolute;
-        z-index: map-get($clr-layers, datagrid-header) - 1;
+        z-index: map.get(variables.$clr-layers, datagrid-header) - 1;
         overflow: hidden;
 
         .treetable-expandable-caret-button {
@@ -235,7 +239,7 @@
         top: 0;
         // bug(popover): prevents action-overflow from being on top (first row).
         // Needed to keep select/radio and expand svgs underneath header on scrolling
-        z-index: map-get($clr-layers, datagrid-header);
+        z-index: map.get(variables.$clr-layers, datagrid-header);
         display: flex;
         flex-flow: row nowrap;
         flex: 1 1 auto;
@@ -341,7 +345,7 @@
         background-repeat: no-repeat;
         background-size: contain;
         background-position: center;
-        background-image: generateEmptyTreetablePlaceholder();
+        background-image: mixins.generateEmptyTreetablePlaceholder();
       }
     }
   }

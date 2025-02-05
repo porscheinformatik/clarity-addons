@@ -1,4 +1,6 @@
-@include exports('spinner.clr-addons') {
+@use '../mixins';
+
+@include mixins.exports('spinner.clr-addons') {
   .progress-spinner-overlay {
     background-color: var(--cds-global-color-white);
     opacity: 0.8;

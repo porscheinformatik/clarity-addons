@@ -1,4 +1,6 @@
-@include exports('generic-quick-list.clr-addons') {
+@use '../mixins';
+
+@include mixins.exports('generic-quick-list.clr-addons') {
   .generic-quick-list {
     .clr-form-control {
       margin-top: 0;

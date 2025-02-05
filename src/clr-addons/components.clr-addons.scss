@@ -1,33 +1,36 @@
-@import './mixins';
+@use 'components.variables.clr-addons' as components;
 
-@import './header.clr-addons';
-@import './collapse-expand-section/collapse-expand-section';
-@import './main-nav-group/main-nav-group';
-@import './paged-search-result-list/paged-search-result-list';
-@import './pager/pager';
-@import './dot-pager/dot-pager';
-@import './view-edit-section/view-edit-section';
-@import './content-panel/content-panel';
-@import './action-panel/action-panel';
-@import './breadcrumb/breadcrumb';
-@import './notification/notification';
-@import './flow-bar/flow-bar';
-@import './back-button/back-button';
-@import './treetable/treetable';
-@import './progress-spinner/progress-spinner';
-@import './numericfield/numeric-field';
-@import './date-time-container/date-time-container';
-@import './searchfield/search-field';
-@import './quick-list/quick-list';
-@import './letter-avatar/letter-avatar';
-@import './brand-avatar/brand-avatar';
-@import './multilingual/multilingual';
-@import './generic-quick-list/generic-quick-list';
-@import './history/history.scss';
-@import './location-bar/location-bar-node/location-bar-node.component.scss';
-@import './html-editor/html-editor.scss';
-@import './calendar/calendar.scss';
-@import './readonly/readonly.directive.scss';
+@use 'sass:meta';
+@use 'mixins';
+
+@use 'header.clr-addons';
+@use 'collapse-expand-section/collapse-expand-section';
+@use 'main-nav-group/main-nav-group';
+@use 'paged-search-result-list/paged-search-result-list';
+@use 'pager/pager';
+@use 'dot-pager/dot-pager';
+@use 'view-edit-section/view-edit-section';
+@use 'content-panel/content-panel';
+@use 'action-panel/action-panel';
+@use 'breadcrumb/breadcrumb';
+@use 'notification/notification';
+@use 'flow-bar/flow-bar';
+@use 'back-button/back-button';
+@use 'treetable/treetable';
+@use 'progress-spinner/progress-spinner';
+@use 'numericfield/numeric-field';
+@use 'date-time-container/date-time-container';
+@use 'searchfield/search-field';
+@use 'quick-list/quick-list';
+@use 'letter-avatar/letter-avatar';
+@use 'brand-avatar/brand-avatar';
+@use 'multilingual/multilingual';
+@use 'generic-quick-list/generic-quick-list';
+@use 'history/history.scss';
+@use 'location-bar/location-bar-node/location-bar-node.component.scss';
+@use 'html-editor/html-editor.scss';
+@use 'calendar/calendar.scss';
+@use 'readonly/readonly.directive.scss';
 
 html,
 body,
@@ -410,7 +413,7 @@ clr-date-container .clr-control-container {
 }
 
 .clr-max-width {
-  max-width: $clr-max-width;
+  max-width: components.$clr-max-width;
 }
 
 .datagrid-row-master {
@@ -431,101 +434,101 @@ clr-expandable-animation {
 }
 
 .datagrid-highlight-error {
-  background-color: $clr-highlight-error-100;
+  background-color: components.$clr-highlight-error-100;
 
   &:hover,
   &.datagrid-selected {
-    background-color: $clr-highlight-error-200 !important;
+    background-color: components.$clr-highlight-error-200 !important;
   }
 }
 
 .datagrid-highlight-success {
-  background-color: $clr-highlight-success-50;
+  background-color: components.$clr-highlight-success-50;
 
   &:hover,
   &.datagrid-selected {
-    background-color: $clr-highlight-success-100;
+    background-color: components.$clr-highlight-success-100;
   }
 }
 
 .datagrid-highlight-warning {
-  background-color: $clr-highlight-warning-100;
+  background-color: components.$clr-highlight-warning-100;
 
   &:hover,
   &.datagrid-selected {
-    background-color: $clr-highlight-warning-200;
+    background-color: components.$clr-highlight-warning-200;
   }
 }
 
 .datagrid-highlight-info {
-  background-color: $clr-highlight-info-50;
+  background-color: components.$clr-highlight-info-50;
 
   &:hover,
   &.datagrid-selected {
-    background-color: $clr-highlight-info-100;
+    background-color: components.$clr-highlight-info-100;
   }
 }
 
 .highlight-text-error {
-  color: $clr-highlight-error-800;
+  color: components.$clr-highlight-error-800;
 
   cds-icon {
-    fill: $clr-highlight-error-800;
+    fill: components.$clr-highlight-error-800;
   }
 
   &:hover {
-    color: $clr-highlight-error-900;
+    color: components.$clr-highlight-error-900;
 
     cds-icon {
-      fill: $clr-highlight-error-900;
+      fill: components.$clr-highlight-error-900;
     }
   }
 }
 
 .highlight-text-success {
-  color: $clr-highlight-success-700;
+  color: components.$clr-highlight-success-700;
 
   cds-icon {
-    fill: $clr-highlight-success-700;
+    fill: components.$clr-highlight-success-700;
   }
 
   &:hover {
-    color: $clr-highlight-success-800;
+    color: components.$clr-highlight-success-800;
 
     cds-icon {
-      fill: $clr-highlight-success-800;
+      fill: components.$clr-highlight-success-800;
     }
   }
 }
 
 .highlight-text-warning {
-  color: $clr-highlight-warning-800;
+  color: components.$clr-highlight-warning-800;
 
   cds-icon {
-    fill: $clr-highlight-warning-800;
+    fill: components.$clr-highlight-warning-800;
   }
 
   &:hover {
-    color: $clr-highlight-warning-900;
+    color: components.$clr-highlight-warning-900;
 
     cds-icon {
-      fill: $clr-highlight-warning-900;
+      fill: components.$clr-highlight-warning-900;
     }
   }
 }
 
 .highlight-text-info {
-  color: $clr-highlight-info-700;
+  color: components.$clr-highlight-info-700;
 
   cds-icon {
-    fill: $clr-highlight-info-700;
+    fill: components.$clr-highlight-info-700;
   }
 
   &:hover {
-    color: $clr-highlight-info-800;
+    color: components.$clr-highlight-info-800;
 
     cds-icon {
-      fill: $clr-highlight-info-800;
+      fill: components.$clr-highlight-info-800;
     }
   }
 }
@@ -544,7 +547,7 @@ clr-dropdown-menu .dropdown-header {
   z-index: 1;
 }
 
-@mixin input-border-bottom-animation($border-color: $clr-highlight-warning-800) {
+@mixin input-border-bottom-animation($border-color: components.$clr-highlight-warning-800) {
   // Border-bottom animation on focus
   background: linear-gradient(to bottom, transparent 95%, #{$border-color} 95%) no-repeat;
 
@@ -559,44 +562,44 @@ clr-dropdown-menu .dropdown-header {
 }
 
 clr-control-helper.clr-warning {
-  color: $clr-highlight-warning-800;
+  color: components.$clr-highlight-warning-800;
 }
 
 .clr-warning:not(.clr-error):not(.invalid) {
   .clr-input-group,
   .clr-input:not(.clr-combobox-wrapper .clr-input):not([readonly]) {
-    border-bottom-color: $clr-highlight-warning-800;
+    border-bottom-color: components.$clr-highlight-warning-800;
     @include input-border-bottom-animation();
   }
 
   .clr-radio-wrapper input[type='radio'] + .clr-control-label::before,
   .clr-checkbox-wrapper input[type='checkbox'] + .clr-control-label::before {
-    border-color: $clr-highlight-warning-800;
+    border-color: components.$clr-highlight-warning-800;
   }
 
   select {
     &:not([multiple]) {
-      border-bottom-color: $clr-highlight-warning-800;
+      border-bottom-color: components.$clr-highlight-warning-800;
       @include input-border-bottom-animation();
     }
 
     &[multiple] {
-      border-color: $clr-highlight-warning-800;
+      border-color: components.$clr-highlight-warning-800;
     }
   }
 
   .clr-textarea {
-    border-color: $clr-highlight-warning-800;
-    outline-color: $clr-highlight-warning-800;
+    border-color: components.$clr-highlight-warning-800;
+    outline-color: components.$clr-highlight-warning-800;
   }
 
   .clr-focus-indicator:not(.invalid) {
-    background-color: $clr-highlight-warning-800;
+    background-color: components.$clr-highlight-warning-800;
   }
 }
 
 .clr-control-warning-icon {
-  color: $clr-highlight-warning-800;
+  color: components.$clr-highlight-warning-800;
   height: 1.2rem;
   width: 1.2rem;
   min-height: 1.2rem;
@@ -604,4 +607,4 @@ clr-control-helper.clr-warning {
 }
 
 // Has to be at the bottom to override the styles from the above properly
-@import './mobile';
+@include meta.load-css('mobile');

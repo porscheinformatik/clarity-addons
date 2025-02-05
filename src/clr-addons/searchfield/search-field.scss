@@ -1,4 +1,6 @@
-@include exports('searchfield.clr-addons') {
+@use '../mixins';
+
+@include mixins.exports('searchfield.clr-addons') {
   .search-input-wrapper {
     position: relative;
 

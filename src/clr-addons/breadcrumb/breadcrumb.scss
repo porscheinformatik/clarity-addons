@@ -1,4 +1,6 @@
-@include exports('breadcrumb.clr-addons') {
+@use '../mixins';
+
+@include mixins.exports('breadcrumb.clr-addons') {
   .breadcrumb {
     display: flex;
     flex-wrap: wrap;

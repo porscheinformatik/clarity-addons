@@ -1,4 +1,7 @@
-@media screen and (max-width: map-get($clr-grid-breakpoints, sm)) {
+@use 'sass:map';
+@use 'components.variables.clr-addons' as variables;
+
+@media screen and (max-width: map.get(variables.$clr-grid-breakpoints, sm)) {
   .open-overflow-menu {
     overflow: hidden;
   }
@@ -11,7 +14,7 @@
   .header {
     position: fixed;
     width: 100%;
-    z-index: map-get($clr-layers, sidepanel);
+    z-index: map.get(variables.$clr-layers, sidepanel);
     top: 0;
     left: 0;
   }
@@ -57,7 +60,7 @@
       width: 100%;
       height: var(--clr-footer-height);
       // Sticky footer should be shown above datagrid-host but below column-switch
-      z-index: map-get($clr-layers, datagrid-host) + 5;
+      z-index: map.get(variables.$clr-layers, datagrid-host) + 5;
       bottom: 0;
       left: 0;
     }

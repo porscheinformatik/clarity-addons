@@ -1,4 +1,6 @@
-@include exports('letter-avatar.clr-addons') {
+@use '../mixins';
+
+@include mixins.exports('letter-avatar.clr-addons') {
   .avatar-circle {
     display: flex;
   }
