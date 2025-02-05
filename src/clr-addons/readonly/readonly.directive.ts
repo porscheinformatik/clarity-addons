@@ -7,7 +7,6 @@ import { formatNumber } from '../util';
   standalone: false,
 })
 export class ClrReadonlyDirective implements OnChanges, OnInit, AfterViewInit {
-  @Input('clrMulti') isMultiSelect: boolean = false;
   @Input('clrUnitPosition') unitPosition = 'right';
   @Input('clrReadOnlyProperty') property: string | null = null;
   @Input('clrReadonly') clrReadOnly: boolean = true;
@@ -97,8 +96,8 @@ export class ClrReadonlyDirective implements OnChanges, OnInit, AfterViewInit {
 
     if (controlType === 'numeric') {
       return this.formatNumericValue(controlValue);
-    } else if (this.isMultiSelect) {
-      return this.formatMultiSelectValue(controlValue);
+    } else if (this.property) {
+      return this.formatValueForObjectValue(controlValue);
     } else if (controlType === 'select') {
       return this.formatListValue(controlValue);
     }
@@ -118,8 +117,12 @@ export class ClrReadonlyDirective implements OnChanges, OnInit, AfterViewInit {
     return this.unitPosition === 'left' ? `${this.unit} ${result}` : `${result} ${this.unit}`;
   }
 
-  private formatMultiSelectValue(controlValue: any): string {
-    return controlValue.map((item: Record<string, any>) => item[this.property!]).join(', ');
+  private formatValueForObjectValue(controlValue: any): string {
+    if (Array.isArray(controlValue)) {
+      return controlValue.map((item: Record<string, any>) => item[this.property!]).join(', ');
+    } else {
+      return controlValue[this.property!];
+    }
   }
 
   private formatListValue(controlValue: any) {
