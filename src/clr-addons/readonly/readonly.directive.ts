@@ -7,7 +7,6 @@ import { formatNumber } from '../util';
   standalone: false,
 })
 export class ClrReadonlyDirective implements OnChanges, OnInit, AfterViewInit {
-  @Input('clrMulti') isMultiSelect: boolean = false;
   @Input('clrUnitPosition') unitPosition = 'right';
   @Input('clrReadOnlyProperty') property: string | null = null;
   @Input('clrReadonly') clrReadOnly: boolean = true;
