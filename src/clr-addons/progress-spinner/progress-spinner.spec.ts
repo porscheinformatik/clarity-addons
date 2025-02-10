@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -20,6 +20,7 @@ import { CommonModule } from '@angular/common';
       k
     </clr-progress-spinner>
   `,
+  standalone: false,
 })
 class TestComponent {
   public loadingState = false;

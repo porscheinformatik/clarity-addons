@@ -16,12 +16,14 @@ import { ClrDatepickerComponent } from './datepicker.component';
 @Component({
   template: `<clr-datepicker></clr-datepicker>`,
   providers: [OpenedDatepickersTrackerService],
+  standalone: false,
 })
 class ClrDaterangeTestComponent {}
 
 @Component({
   template: `<clr-date-container><input clrDate /></clr-date-container>`,
   providers: [ClrPopoverEventsService, ClrPopoverPositionService],
+  standalone: false,
 })
 class ClrDateTestComponent {
   @ViewChild(ClrDateContainer)

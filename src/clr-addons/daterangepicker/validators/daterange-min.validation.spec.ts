@@ -15,6 +15,7 @@ const MIN_DATE = new Date(2022, 0, 1);
       <input type="date" clrDaterangepicker [min]="this.minDate" [formControl]="this.formControl" />
     </clr-daterangepicker-container>
   `,
+  standalone: false,
 })
 class TestComponent {
   public readonly minDate = MIN_DATE;
@@ -33,6 +34,7 @@ class TestComponent {
       />
     </clr-daterangepicker-container>
   `,
+  standalone: false,
 })
 class TestWithToggleableValidationComponent {
   public readonly minDate = MIN_DATE;

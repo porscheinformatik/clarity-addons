@@ -33,6 +33,7 @@ import { ClrGenericQuickListModule } from './generic-quick-list.module';
       </clr-generic-quick-list>
     </form>
   `,
+  standalone: false,
 })
 class TestComponent {
   @ViewChild(ClrGenericQuickList, { static: true }) quickList: ClrGenericQuickList<any>;

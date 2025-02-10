@@ -5,6 +5,7 @@ import { TimeModel } from '../../models/time.model';
   selector: 'clr-timepicker',
   templateUrl: './timepicker.component.html',
   styleUrl: './timepicker.component.scss',
+  standalone: false,
 })
 export class ClrTimepickerComponent {
   /**

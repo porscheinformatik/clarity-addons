@@ -230,6 +230,7 @@ ClarityIcons.addIcons(errorStandardIcon, warningStandardIcon, successStandardIco
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
+  standalone: false,
 })
 export class DatagridDemo extends ClarityDocComponent {
   noSelectAllExample = NO_SELECT_ALL_HTML;

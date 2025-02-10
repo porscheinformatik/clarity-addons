@@ -8,6 +8,7 @@ import { takeUntil } from 'rxjs/operators';
 
 @Directive({
   selector: '[clrDgHideableColumn]',
+  standalone: false,
 })
 export class ColumnHiddenStatePersistenceDirective implements OnInit, OnDestroy {
   destroy$ = new Subject<void>();

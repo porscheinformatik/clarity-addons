@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -9,6 +9,7 @@ import { Component, Input, HostBinding, ViewChild, AfterViewInit, Renderer2, Ele
 @Component({
   selector: 'clr-letter-avatar',
   templateUrl: './letter-avatar.html',
+  standalone: false,
 })
 export class ClrLetterAvatar implements AfterViewInit {
   @HostBinding('class.clr-avatar') avatar = true;

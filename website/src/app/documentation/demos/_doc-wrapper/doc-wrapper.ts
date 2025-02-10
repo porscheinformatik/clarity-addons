@@ -11,6 +11,7 @@ import { Component, Input } from '@angular/core';
   host: {
     '[class.dox-wrapper]': 'true',
   },
+  standalone: false,
 })
 export class DocWrapper {
   @Input() title: string = '';

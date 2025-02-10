@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -18,6 +18,7 @@ import { ClrMultilingualModule } from '../multilingual.module';
       <clr-control-helper>Helper</clr-control-helper>
     </clr-multilingual-textarea>
   `,
+  standalone: false,
 })
 class TestComponentAllValid implements OnInit {
   selectedLang = 'EN';
@@ -37,6 +38,7 @@ class TestComponentAllValid implements OnInit {
       <clr-control-helper>Helper</clr-control-helper>
     </clr-multilingual-textarea>
   `,
+  standalone: false,
 })
 class TestComponentOneValid implements OnInit {
   selectedLang = 'EN';
@@ -63,6 +65,7 @@ class TestComponentOneValid implements OnInit {
       <clr-control-helper>Helper</clr-control-helper>
     </clr-multilingual-textarea>
   `,
+  standalone: false,
 })
 class TestComponentComplex implements OnInit {
   selectedLang = 'EN';
@@ -91,6 +94,7 @@ class TestComponentComplex implements OnInit {
       <clr-control-helper>Helper</clr-control-helper>
     </clr-multilingual-textarea>
   `,
+  standalone: false,
 })
 class TestComponentPrefix implements OnInit {
   selectedLang = 'EN';

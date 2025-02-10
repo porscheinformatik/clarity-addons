@@ -11,6 +11,7 @@ ClarityIcons.addIcons(organizationIcon);
 @Component({
   selector: 'clr-location-bar',
   templateUrl: './location-bar.component.html',
+  standalone: false,
 })
 export class LocationBarComponent<T extends NodeId> implements OnChanges {
   root$ = new ReplaySubject<LocationBarNode<T>>();

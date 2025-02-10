@@ -16,6 +16,7 @@ interface QuickListItem extends ClrGenericQuickListItem {
 @Component({
   selector: 'app-generic-quick-list-demo',
   templateUrl: './generic-quick-list.demo.html',
+  standalone: false,
 })
 export class GenericQuickListDemo {
   allItems = [

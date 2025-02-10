@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_ID, NgModule } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClarityModule } from '@clr/angular';
@@ -19,7 +19,7 @@ import 'prismjs/components/prism-scss';
 @NgModule({
   declarations: [AppComponent, HomeComponent, PageNotFoundComponent],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'clarity' }),
+    BrowserModule,
     BrowserAnimationsModule,
     ClarityModule,
     ClrAddonsModule,
@@ -27,7 +27,13 @@ import 'prismjs/components/prism-scss';
     FullPageLayoutsRoutingModule,
     AppRoutingModule,
   ],
-  providers: [Title],
+  providers: [
+    Title,
+    {
+      provide: APP_ID,
+      useValue: 'clarity',
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

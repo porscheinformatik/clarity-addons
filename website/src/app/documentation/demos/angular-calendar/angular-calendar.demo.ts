@@ -11,6 +11,7 @@ import { addHours } from 'date-fns/esm';
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
+  standalone: false,
 })
 export class AngularCalendarDemo extends ClarityDocComponent {
   stylesImport = `"styles": [

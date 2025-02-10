@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 
 @Directive({
   selector: '[scrollspy]',
+  standalone: false,
 })
 export class ScrollSpy implements OnDestroy, OnInit {
   constructor(private renderer: Renderer2) {}

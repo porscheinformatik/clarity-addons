@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
       <input clrInput clrSearch type="text" name="search" [(ngModel)]="value" />
     </clr-input-container>
   `,
+  standalone: false,
 })
 class TestComponent {
   value: string;
@@ -25,6 +26,7 @@ class TestComponent {
 
 @Component({
   template: `<div><input clrInput clrSearch type="text" [value]="value" (input)="onInput($event)" /></div>`,
+  standalone: false,
 })
 class TestWithoutModelComponent {
   value = '';

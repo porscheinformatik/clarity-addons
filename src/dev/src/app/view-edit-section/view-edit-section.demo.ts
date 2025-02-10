@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -11,6 +11,7 @@ ClarityIcons.addIcons(ellipsisVerticalIcon);
 @Component({
   selector: 'clr-view-edit-section-demo',
   templateUrl: './view-edit-section.demo.html',
+  standalone: false,
 })
 export class ViewEditSectionDemo {
   birthdate: string;

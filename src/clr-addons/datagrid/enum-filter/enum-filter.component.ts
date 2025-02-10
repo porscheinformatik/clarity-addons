@@ -14,6 +14,7 @@ interface FilterValue {
   selector: 'clr-enum-filter',
   templateUrl: './enum-filter.component.html',
   styleUrls: ['./enum-filter.component.scss'],
+  standalone: false,
 })
 export class ClrEnumFilterComponent<T extends { [key: string]: any }>
   implements ClrDatagridFilterInterface<T>, OnDestroy

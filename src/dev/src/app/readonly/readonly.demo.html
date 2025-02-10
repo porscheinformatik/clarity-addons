@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
+  ~ Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
@@ -237,6 +237,34 @@
             <clr-option [clrValue]="'Option 1'">Option 1</clr-option>
             <clr-option [clrValue]="'Option 2'">Option 2</clr-option>
             <clr-option [clrValue]="'Option 3'">Option 3</clr-option>
+          </clr-options>
+        </clr-combobox>
+      </clr-combobox-container>
+    </div>
+  </div>
+
+  <h4>Combobox Single Object Value</h4>
+  <div class="clr-row">
+    <div class="clr-col-6">
+      <clr-combobox-container>
+        <label>Combobox label</label>
+        <clr-combobox [(ngModel)]="comboBoxValueObject">
+          <clr-options>
+            <clr-option *clrOptionItems="let item of comboBoxValueObjectList; field: 'name'" [clrValue]="item.value">
+              {{ item.name }}
+            </clr-option>
+          </clr-options>
+        </clr-combobox>
+      </clr-combobox-container>
+    </div>
+    <div class="clr-col-6">
+      <clr-combobox-container>
+        <label>Combobox label (readOnly)</label>
+        <clr-combobox [clrReadonly]="true" [(ngModel)]="comboBoxValueObject" [clrReadOnlyProperty]="'name'">
+          <clr-options>
+            <clr-option *clrOptionItems="let item of comboBoxValueObjectList; field: 'name'" [clrValue]="item.value">
+              {{ item.name }}
+            </clr-option>
           </clr-options>
         </clr-combobox>
       </clr-combobox-container>

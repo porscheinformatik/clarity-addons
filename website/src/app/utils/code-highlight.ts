@@ -8,7 +8,10 @@ import { Directive, ElementRef, Inject, Input, PLATFORM_ID, Renderer2, AfterCont
 
 declare var Prism: any;
 
-@Directive({ selector: 'code[clr-code-highlight]' })
+@Directive({
+  selector: 'code[clr-code-highlight]',
+  standalone: false,
+})
 export class CodeHighlight implements AfterContentInit {
   private _highlight: string = '';
 

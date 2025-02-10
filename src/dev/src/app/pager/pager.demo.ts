@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -9,6 +9,7 @@ import { Component } from '@angular/core';
   selector: 'clr-pager-demo',
   styleUrls: ['./pager.demo.scss'],
   templateUrl: './pager.demo.html',
+  standalone: false,
 })
 export class PagerDemo {
   allItems: string[] = [

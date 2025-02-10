@@ -38,6 +38,7 @@ export class AppModule { }
   host: {
     '[class.content-area]': 'true',
   },
+  standalone: false,
 })
 export class GetStartedComponent {
   public nodeImports = NODE_IMPORTS;

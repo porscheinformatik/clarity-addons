@@ -232,6 +232,7 @@ const CODE_EXAMPLE_RO_VERTICAL2 = `
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
+  standalone: false,
 })
 export class FormsDemo extends ClarityDocComponent {
   codeExampleFullForm = CODE_EXAMPLE_FULL_FORM;

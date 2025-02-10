@@ -23,6 +23,7 @@ const tomorrow = new Date(Date.now() + 24 * 1000 * 60 * 60);
       </clr-dg-row>
     </clr-datagrid>
   `,
+  standalone: false,
 })
 class TestComponent {
   dataList = [{ date: today }, { date: tomorrow }];
@@ -47,6 +48,7 @@ class TestComponent {
       </clr-datagrid>
     </body>
   `,
+  standalone: false,
 })
 class TestComponentPreselectedValues {
   dataList = [{ date: yesterday }, { date: today }, { date: tomorrow }];
@@ -77,6 +79,7 @@ class TestComponentPreselectedValues {
       </clr-datagrid>
     </body>
   `,
+  standalone: false,
 })
 class TestComponentPreselectedTimeValues {
   dataList = [{ date: yesterday }, { date: today }, { date: tomorrow }];

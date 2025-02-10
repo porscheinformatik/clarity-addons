@@ -6,6 +6,7 @@ import { delay } from 'rxjs/operators';
 @Component({
   selector: 'clr-datagrid-state-persistence-demo',
   templateUrl: './datagrid-state-persistence.demo.html',
+  standalone: false,
 })
 export class DatagridStatePersistenceDemo {
   now = new Date();

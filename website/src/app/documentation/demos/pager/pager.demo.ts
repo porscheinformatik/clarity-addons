@@ -81,6 +81,7 @@ const PAGEDSEARCH_HTML_EXAMPLE = `
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
+  standalone: false,
 })
 export class PagerDemo extends ClarityDocComponent implements OnInit {
   dotPagerHtmlExample = DOTPAGER_HTML_EXAMPLE;

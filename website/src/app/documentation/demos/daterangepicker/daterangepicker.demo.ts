@@ -210,6 +210,7 @@ const VALIDATION_DEMO = `
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
+  standalone: false,
 })
 export class DaterangepickerDemo extends ClarityDocComponent {
   value: NullableDaterange;

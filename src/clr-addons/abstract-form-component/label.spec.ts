@@ -5,10 +5,16 @@ import { By } from '@angular/platform-browser';
 import { ClrAddonsLabel } from './label';
 import { ControlIdService } from './control-id.service';
 
-@Component({ template: `<label></label>` })
+@Component({
+  template: `<label></label>`,
+  standalone: false,
+})
 class NoForTest {}
 
-@Component({ template: `<label [for]="forValue"></label>` })
+@Component({
+  template: `<label [for]="forValue"></label>`,
+  standalone: false,
+})
 class ExplicitForTest {
   forValue = 'hello';
 }
@@ -16,6 +22,7 @@ class ExplicitForTest {
 @Component({
   template: `<div><label for="hello"></label></div>`,
   providers: [ControlIdService],
+  standalone: false,
 })
 class ContainerizedTest {
   @ViewChild(ClrAddonsLabel, { static: true }) label: ClrAddonsLabel;

@@ -26,6 +26,7 @@ ClarityIcons.addIcons(treeViewIcon, angleIcon);
   selector: 'clr-location-bar-node',
   templateUrl: './location-bar-node.component.html',
   host: { '[class.location-bar-node]': 'true' },
+  standalone: false,
 })
 export class LocationBarNodeComponent<T extends NodeId> implements OnChanges {
   /**

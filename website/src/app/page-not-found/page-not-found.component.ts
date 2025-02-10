@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
   host: {
     '[class.content-container]': 'true',
   },
+  standalone: false,
 })
 export class PageNotFoundComponent {
   constructor() {}

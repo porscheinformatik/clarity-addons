@@ -1,11 +1,14 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Directive, ElementRef, Renderer2 } from '@angular/core';
 
-@Directive({ selector: 'clr-tt-column' })
+@Directive({
+  selector: 'clr-tt-column',
+  standalone: false,
+})
 export class TreetableHeaderRenderer {
   constructor(private el: ElementRef, private renderer: Renderer2) {}
 

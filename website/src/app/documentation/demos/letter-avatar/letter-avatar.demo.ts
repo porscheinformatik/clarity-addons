@@ -41,6 +41,7 @@ const HTML_EXAMPLE2 = `
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
+  standalone: false,
 })
 export class LetterAvatarDemo extends ClarityDocComponent {
   htmlExample = HTML_EXAMPLE;

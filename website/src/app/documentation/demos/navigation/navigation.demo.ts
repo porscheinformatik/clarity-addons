@@ -39,6 +39,7 @@ const MAINNAV_HTML_EXAMPLE = `
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
+  standalone: false,
 })
 export class NavigationDemo extends ClarityDocComponent {
   contentPanelCodeExample = CONTENTPANEL_CODE_EXAMPLE;

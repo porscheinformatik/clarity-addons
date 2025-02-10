@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -30,6 +30,7 @@ ClarityIcons.addIcons(angleIcon);
   selector: 'clr-main-nav-group',
   templateUrl: './main-nav-group.html',
   host: { '[class.main-nav-group]': 'true' },
+  standalone: false,
 })
 export class ClrMainNavGroup implements OnInit, OnDestroy {
   @Input('clrTitle') title: string;

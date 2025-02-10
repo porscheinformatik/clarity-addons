@@ -50,6 +50,7 @@ import { BehaviorSubject } from 'rxjs';
       </clr-dg-footer>
     </clr-datagrid>
   `,
+  standalone: false,
 })
 class TestComponent {
   @ViewChild(ClrDatagridPagination)
