@@ -38,7 +38,8 @@
         "postcss",
         "postcss-cli",
         "pretty-quick",
-        "sass"
+        "sass",
+        "ts-loader"
       ],
       "automerge": true
     }
