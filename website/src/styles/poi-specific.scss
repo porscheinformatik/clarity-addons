@@ -1,12 +1,13 @@
 @use '../../node_modules/@cds/core/tokens/tokens';
 @use '../../node_modules/@clr/ui/src/utils/mixins';
-@use '../../node_modules/@clr/ui/src/utils/variables/variables.global';
+@use '../../node_modules/@clr/ui/src/utils/variables/variables.global' as variables;
 
 .align-values-right {
   clr-select-container {
     align-items: flex-end;
   }
 }
+
 th clr-select-container {
   margin-top: 0 !important;
 }
@@ -16,9 +17,10 @@ $contentTopMargin: calc(2 * var(tokens.$cds-global-space-15));
 .table-of-contents {
   position: fixed;
   top: $contentTopMargin;
-  left: calc(var(variables.$clr_baselineRem_2_66) + var(variables.$clr_baselineRem_48));
+  left: calc(variables.$clr_baselineRem_2_66 + variables.$clr_baselineRem_48);
   border-left: 1px solid tokens.$cds-alias-object-border-color;
   z-index: 100000;
+
   .scroll-to-top {
     display: none;
     position: absolute;
@@ -46,6 +48,7 @@ $contentTopMargin: calc(2 * var(tokens.$cds-global-space-15));
   .table-of-contents {
     position: initial;
     margin-top: tokens.$cds-global-space-10;
+
     .scroll-to-top {
       display: flex;
     }
@@ -71,6 +74,7 @@ $contentTopMargin: calc(2 * var(tokens.$cds-global-space-15));
 
   li {
     $activeBorderWidth: tokens.$cds-alias-object-border-width-300;
+
     a {
       display: block;
       color: tokens.$cds-alias-object-interaction-color;
@@ -91,6 +95,7 @@ $contentTopMargin: calc(2 * var(tokens.$cds-global-space-15));
         background-color: tokens.$cds-alias-object-interaction-background-hover;
       }
     }
+
     ul > li > a {
       padding-left: calc(var(tokens.$cds-global-space-11) - $activeBorderWidth);
     }
