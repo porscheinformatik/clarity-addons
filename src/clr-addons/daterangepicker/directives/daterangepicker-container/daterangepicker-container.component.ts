@@ -5,6 +5,7 @@ import {
   HostBinding,
   Input,
   OnDestroy,
+  OnInit,
   Optional,
   QueryList,
   ViewChildren,
@@ -66,7 +67,10 @@ ClarityIcons.addIcons(calendarIcon, exclamationCircleIcon, checkCircleIcon, wind
   ],
   standalone: false,
 })
-export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer implements AfterViewInit, OnDestroy {
+export class ClrDaterangepickerContainerComponent
+  extends ClrAbstractContainer
+  implements OnInit, AfterViewInit, OnDestroy
+{
   /**
    * List of presets.
    */
@@ -205,13 +209,15 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
     super(clrLayout, daterangeControlStateService);
   }
 
+  ngOnInit(): void {
+    this.daterangeService.timeActive = this.timeSelection;
+    this.daterangeService.timeSecondsActive = this.activateSeconds;
+  }
+
   public ngAfterViewInit(): void {
     if (this.daterangepickerDirective == null) {
       throw new Error('`ClrDaterangepickerContainerComponent` requires an child `ClrDaterangepickerDirective`');
     }
-
-    this.daterangeService.timeActive = this.timeSelection;
-    this.daterangeService.timeSecondsActive = this.activateSeconds;
     this.listenForDaterangeValueChanges();
     this.listenForOpenedDatepickersTrackerChanges();
     this.listenForPopoverToggleChanges();

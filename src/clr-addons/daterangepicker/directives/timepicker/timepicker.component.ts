@@ -46,7 +46,7 @@ export class ClrTimepickerComponent {
    */
   protected set time(val: string | undefined | null) {
     this.value = val;
-    this.valueChange.emit(new TimeModel(val));
+    this.valueChange.emit(!val ? null : new TimeModel(val));
   }
 
   public constructor() {}
