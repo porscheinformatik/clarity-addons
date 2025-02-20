@@ -34,7 +34,7 @@
     <label>Daterange</label>
     <input clrDaterangepicker type="date" name="daterange" [(ngModel)]="templateDrivenValueTimeAndSeconds" />
   </clr-daterangepicker-container>
-  <button type="button" class="btn" (click)="updateTemplateDrivenTime()">Fill</button>
+  <button type="button" class="btn" (click)="updateTemplateDrivenTimeSeconds()">Fill</button>
   <pre>{{ templateDrivenValueTimeAndSeconds | json }}</pre>
 </form>
 

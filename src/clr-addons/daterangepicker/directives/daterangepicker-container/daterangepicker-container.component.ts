@@ -79,11 +79,23 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
   @Input()
   public presetsDateTime: Array<DateTimerangePreset> = [];
 
+  _timeSelection = false;
   @Input()
-  public timeSelection = false;
+  public set timeSelection(value: boolean) {
+    if (value) {
+      this._timeSelection = value;
+      this.daterangeService.timeActive = value;
+    }
+  }
 
+  _activateSeconds = false;
   @Input()
-  public activateSeconds = false;
+  public set activateSeconds(value: boolean) {
+    if (value) {
+      this._activateSeconds = value;
+      this.daterangeService.timeSecondsActive = value;
+    }
+  }
 
   /**
    * Set popover position.
@@ -209,9 +221,6 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
     if (this.daterangepickerDirective == null) {
       throw new Error('`ClrDaterangepickerContainerComponent` requires an child `ClrDaterangepickerDirective`');
     }
-
-    this.daterangeService.timeActive = this.timeSelection;
-    this.daterangeService.timeSecondsActive = this.activateSeconds;
     this.listenForDaterangeValueChanges();
     this.listenForOpenedDatepickersTrackerChanges();
     this.listenForPopoverToggleChanges();

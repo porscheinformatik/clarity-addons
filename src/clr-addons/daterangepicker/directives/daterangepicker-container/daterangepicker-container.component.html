@@ -72,11 +72,11 @@
           >
           </clr-datepicker>
           <clr-timepicker
-            *ngIf="timeSelection"
+            *ngIf="_timeSelection"
             class="timepicker"
             (valueChange)="this.onTimeFromChange($event)"
             [value]="this.timeFrom"
-            [activateSeconds]="activateSeconds"
+            [activateSeconds]="_activateSeconds"
           >
           </clr-timepicker>
         </div>
@@ -91,11 +91,11 @@
           >
           </clr-datepicker>
           <clr-timepicker
-            *ngIf="timeSelection"
+            *ngIf="_timeSelection"
             class="timepicker"
             (valueChange)="this.onTimeToChange($event)"
             [value]="this.timeTo"
-            [activateSeconds]="activateSeconds"
+            [activateSeconds]="_activateSeconds"
           >
           </clr-timepicker>
         </div>

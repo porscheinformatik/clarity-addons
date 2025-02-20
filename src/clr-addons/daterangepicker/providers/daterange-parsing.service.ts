@@ -109,7 +109,10 @@ export class DaterangeParsingService {
   }
 
   private toTimeString(time: TimeModel): string {
-    return time?.toHTML5SpecTimeString();
+    if (time) {
+      return time.toHTML5SpecTimeString();
+    }
+    return '';
   }
 
   /**
