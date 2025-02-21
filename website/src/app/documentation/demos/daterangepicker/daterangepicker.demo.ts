@@ -24,6 +24,37 @@ const BASIC_TIME_DEMO = `
   </clr-daterangepicker-container>
 </form>
 `;
+const MODELCHANGE_DEMO_USAGE_HTML = `
+    <clr-daterangepicker-container class="inline" [timeSelection]="true" [activateSeconds]="true">
+      <input clrDaterangepicker type="date" [(ngModel)]="absolute" (ngModelChange)="emitModelChange()"/>
+    </clr-daterangepicker-container>
+`;
+const MODELCHANGE_DEMO_USAGE_TS = `
+  absolute = <NullableTimerange>{
+        from: fromDate ? new DayModel(fromDate) : null,
+        fromTime: fromDate ? new TimeModel(fromDate) : null,
+        to: toDate ? new DayModel(toDate) : null,
+        toTime: toDate ? new TimeModel(toDate) : null
+      };
+
+  public emitModelChange(): void {
+    const fromDate = this.absolute?.from ? new Date(this.absolute.from.toDate()) : new Date();
+    const fromTime = this.absolute?.fromTime ? this.absolute.fromTime.toDate() : null;
+    if (fromTime) {
+      fromDate.setHours(fromTime.getHours(), fromTime.getMinutes(), fromTime.getSeconds(), 0);
+    } else {
+      fromDate.setHours(0, 0, 0, 0);
+    }
+
+    const toDate = this.absolute?.to ? new Date(this.absolute.to.toDate()) : new Date();
+    const toTime = this.absolute?.toTime ? this.absolute.toTime.toDate() : null;
+    if (toTime) {
+      toDate.setHours(toTime.getHours(), toTime.getMinutes(), toTime.getSeconds(), 999);
+    } else {
+      toDate.setHours(23, 59, 59, 99);
+    }
+  }
+`;
 const MIN_MAX_DEMO = `
 <form clrForm>
   <clr-daterangepicker-container>
@@ -229,6 +260,8 @@ export class DaterangepickerDemo extends ClarityDocComponent {
   separatorDemo = SEPARATOR_DEMO;
   placeholderDemo = PLACEHOLDER_DEMO;
   validationDemo = VALIDATION_DEMO;
+  modelChangeDemoUsageHtml = MODELCHANGE_DEMO_USAGE_HTML;
+  modelChangeDemoUsageTs = MODELCHANGE_DEMO_USAGE_TS;
 
   constructor() {
     super('daterangepicker');

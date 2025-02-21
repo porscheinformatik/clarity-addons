@@ -81,6 +81,15 @@ export class DaterangepickerDemo {
     };
   }
 
+  public updateTemplateDrivenTimeSeconds(): void {
+    this.templateDrivenValueTimeAndSeconds = {
+      from: new DayModel(new Date()),
+      to: new DayModel(new Date()).incrementBy(7),
+      toTime: new TimeModel(new Date()),
+      fromTime: new TimeModel(new Date()),
+    };
+  }
+
   public triggerRequiredValidation(): void {
     this.validationForm.patchValue({ daterange: null });
   }
