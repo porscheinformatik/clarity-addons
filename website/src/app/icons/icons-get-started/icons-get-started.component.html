@@ -15,3 +15,24 @@
   Usage of clarity addons icons is as easy as use the <code class="clr-code">cds-icons</code> tag with the desired shape
   <clr-code-snippet [clrCode]="usageAddonsIcons" [clrLanguage]="'typescript'"></clr-code-snippet>
 </p>
+<h3>Information about support of icon badges</h3>
+<p>Support for the badge property in clarity addons icons is currently only available to:</p>
+<ul>
+  <li>customer-vip</li>
+  <li>repeat-repair</li>
+  <li>customer-waiting</li>
+  <li>replacement-vehicle</li>
+</ul>
+<p>
+  and is used as follows:
+  <clr-code-snippet [clrCode]="usageAddonsIconsBadged" [clrLanguage]="'typescript'"></clr-code-snippet>
+  The badge property is from the Clarity Design documentation's Icons-API. For Further reading, visit the official
+  documentation.
+</p>
+<p>
+  To add badge support for other icons, the icons in question need to be extended from IconSvgString into
+  IconShapeCollection in the shapes.ts file of this library.
+  <br />
+  For more details on how to implement it, either compare the currently supported icons with the non-supported icons or
+  look into the official Clarity Design source code.
+</p>

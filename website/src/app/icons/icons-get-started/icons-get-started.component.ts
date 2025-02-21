@@ -20,6 +20,10 @@ const USAGE_ADDONS_ICONS = `
 <cds-icon shape="air-conditioner"></cds-icon>
 `;
 
+const USAGE_ADDONS_ICONS_BADGED = `
+<cds-icon shape="customer-vip" badge="danger"></cds-icon>
+`;
+
 @Component({
   selector: 'icons-get-started',
   templateUrl: './icons-get-started.component.html',
@@ -29,4 +33,5 @@ export class IconsGetStartedComponent {
   importAddonsIcons = IMPORT_ADDONS_ICONS;
   importAllAddonsIcons = IMPORT_ALL_ADDONS_ICONS;
   usageAddonsIcons = USAGE_ADDONS_ICONS;
+  usageAddonsIconsBadged = USAGE_ADDONS_ICONS_BADGED;
 }
