@@ -82,19 +82,15 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
   _timeSelection = false;
   @Input()
   public set timeSelection(value: boolean) {
-    if (value) {
-      this._timeSelection = value;
-      this.daterangeService.timeActive = value;
-    }
+    this._timeSelection = !!value;
+    this.daterangeService.timeActive = this._timeSelection;
   }
 
   _activateSeconds = false;
   @Input()
   public set activateSeconds(value: boolean) {
-    if (value) {
-      this._activateSeconds = value;
-      this.daterangeService.timeSecondsActive = value;
-    }
+    this._activateSeconds = !!value;
+    this.daterangeService.timeSecondsActive = this._activateSeconds;
   }
 
   /**
