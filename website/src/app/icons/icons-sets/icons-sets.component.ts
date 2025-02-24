@@ -269,6 +269,8 @@ import {
   oilTemperatureAppIcon,
   onCallDutyIcon,
   openSatIcon,
+  orderIcon,
+  orderStatusIcon,
   paintMaterialForwardIcon,
   paintMaterialIcon,
   paintShopIcon,
@@ -280,6 +282,15 @@ import {
   parkingLocationIcon,
   parkingRouteAppIcon,
   parkingValetAppIcon,
+  partAvailabilityInfoIcon,
+  partAvailabilityNoIcon,
+  partAvailabilityUnknownIcon,
+  partAvailabilityWarningIcon,
+  partAvailabilityYesIcon,
+  partIdenticalIcon,
+  partIdenticalPredecessorIcon,
+  partIdenticalSuccessorIcon,
+  partIdenticalSuccpredecessorIcon,
   partsChangelocationIcon,
   partsForwardIcon,
   partsIcon,
@@ -334,6 +345,7 @@ import {
   removeIcon,
   repeatIcon,
   repeatRepairIcon,
+  replacementVehicleIcon,
   returnDateIcon,
   rewindIcon,
   roadsideAssistanceIcon,
@@ -482,7 +494,17 @@ export class IconsSetsComponent {
     partsPickingIcon,
     partsPickingPlusIcon,
     partsReceivingIcon,
+    partAvailabilityInfoIcon,
+    partAvailabilityNoIcon,
+    partAvailabilityUnknownIcon,
+    partAvailabilityWarningIcon,
+    partAvailabilityYesIcon,
+    partIdenticalIcon,
+    partIdenticalPredecessorIcon,
+    partIdenticalSuccessorIcon,
+    partIdenticalSuccpredecessorIcon,
     repeatRepairIcon,
+    replacementVehicleIcon,
     returnDateIcon,
     internalPartForwardIcon,
     externalPartForwardIcon,
@@ -524,6 +546,8 @@ export class IconsSetsComponent {
     number18Icon,
     number19Icon,
     number20Icon,
+    orderIcon,
+    orderStatusIcon,
     historyIcon,
     invoiceRecipientIcon,
   ];
@@ -965,8 +989,8 @@ export class IconsSetsComponent {
   }
 
   download(filename: string) {
-    let all = [...this.icons, ...this.d6icons, ...this.brandshapes];
-    let svgData = all.find(item => (item[0] as string) === filename);
+    const all = [...this.icons, ...this.d6icons, ...this.brandIcons];
+    const svgData = all.find(item => (item[0] as string) === filename);
     const data = this.encode(String(svgData[1]));
 
     const blob = new Blob([data]);

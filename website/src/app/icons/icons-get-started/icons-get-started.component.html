@@ -1,10 +1,11 @@
-<h2>Getting started with Clarity Addons Icons</h2>
+<h2>Clarity Addons Icons</h2>
+<h3>Import</h3>
 <p>
-  To include clarity icons follow the instructions from the
-  <a href="https://core.clarity.design/foundation/icons/" target="_blank">Clarity Icons - Get Started Guide</a>.
+  To include the Clarity icons follow the instructions from the
+  <a href="https://clarity.design/documentation/icons" target="_blank">Clarity Icons - Get Started Guide</a>.
 </p>
 <p>
-  Before you can use an icon, you must import if in your current component.ts file
+  Before you can use an icon, you must import if in your current <code class="clr-code">component.ts</code> file
   <clr-code-snippet [clrCode]="importAddonsIcons" [clrLanguage]="'typescript'"></clr-code-snippet>
 </p>
 <p>
@@ -14,4 +15,24 @@
 <p>
   Usage of clarity addons icons is as easy as use the <code class="clr-code">cds-icons</code> tag with the desired shape
   <clr-code-snippet [clrCode]="usageAddonsIcons" [clrLanguage]="'typescript'"></clr-code-snippet>
+</p>
+<h3>Badges</h3>
+<p>The following clarity addons icons support badges:</p>
+<ul>
+  <li>customer-vip</li>
+  <li>repeat-repair</li>
+  <li>customer-waiting</li>
+  <li>replacement-vehicle</li>
+</ul>
+<p>
+  <strong>Usage:</strong> <br />
+  <clr-code-snippet [clrCode]="usageAddonsIconsBadged" [clrLanguage]="'typescript'"></clr-code-snippet>
+  For details on how to use the badge property see <a href="https://clarity.design/documentation/icons/api" target="_blank">Clarity Design - Icons</a>.
+</p>
+<p>
+  <strong>Add badges to further icons:</strong> <br />
+  To add badge support for a Clarity Addons icon, the icon need to be extended from <code class="clr-code">IconSvgString</code> into
+  <code class="clr-code">IconShapeCollection</code> in the <code class="clr-code">shapes.ts</code> file.
+  For more details on how to implement it, either compare the currently supported icons with the non-supported icons or
+  look into the Clarity Design source code.
 </p>
