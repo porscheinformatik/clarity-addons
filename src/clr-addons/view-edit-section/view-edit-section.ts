@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { angleIcon, ClarityIcons, pencilIcon } from '@cds/core/icon';
 
@@ -33,7 +33,7 @@ ClarityIcons.addIcons(angleIcon, pencilIcon);
   ],
   standalone: false,
 })
-export class ClrViewEditSection {
+export class ClrViewEditSection implements AfterViewInit {
   @Input('clrTitle') _title: string;
   @Input('clrSaveText') _saveText = 'Save';
   @Input('clrPreventModeChangeOnSave') _preventSave = false;
@@ -65,6 +65,11 @@ export class ClrViewEditSection {
   }
 
   private _editMode = false;
+  initialized = false;
+
+  ngAfterViewInit() {
+    this.initialized = true;
+  }
 
   public onSubmit(): void {
     this._submitted.emit();

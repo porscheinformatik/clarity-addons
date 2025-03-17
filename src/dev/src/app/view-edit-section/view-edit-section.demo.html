@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
+  ~ Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
@@ -169,6 +169,28 @@
     <div class="clr-col-12">
       <clr-view-edit-section clrTitle="Not Editable" [clrEditable]="false" [clrViewRef]="viewBlock4">
         <ng-template #viewBlock4>
+          <form clrForm clrLayout="horizontal">
+            <div class="clr-form-control clr-row">
+              <label class="clr-col-md-2 clr-control-label">Hobby</label>
+              <span class="text-truncate clr-col-md-10">Computer</span>
+            </div>
+            <div class="clr-form-control clr-row">
+              <label class="clr-col-md-2 clr-control-label">Driving licence number</label>
+              <span class="text-truncate clr-col-md-10">12345</span>
+            </div>
+          </form>
+        </ng-template>
+      </clr-view-edit-section>
+    </div>
+
+    <div class="clr-col-12">
+      <clr-view-edit-section
+        clrTitle="Collapsible"
+        [clrEditable]="false"
+        [clrViewRef]="viewBlock5"
+        [clrIsCollapsible]="true"
+      >
+        <ng-template #viewBlock5>
           <form clrForm clrLayout="horizontal">
             <div class="clr-form-control clr-row">
               <label class="clr-col-md-2 clr-control-label">Hobby</label>
