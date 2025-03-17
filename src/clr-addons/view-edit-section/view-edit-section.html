@@ -1,7 +1,7 @@
 <div class="card view-edit-section" (keyup.escape)="onCancel()">
   <div class="card-block">
     <div class="card-title">
-      {{_title}}
+      {{ _title }}
       <button
         type="button"
         (click)="onCollapseExpand()"
@@ -24,13 +24,13 @@
         </div>
       </div>
     </div>
-    <div class="card-text" [@collapseExpandAnimation] *ngIf="!(_isCollapsed && _isCollapsible)">
+    <div class="card-text" [@collapseExpandAnimation]="initialized" *ngIf="!(_isCollapsed && _isCollapsible)">
       <ng-template [ngTemplateOutlet]="viewRef" *ngIf="!editMode"></ng-template>
       <ng-template [ngTemplateOutlet]="editRef" *ngIf="editMode"></ng-template>
       <ng-container *ngIf="editMode">
         <form clrForm (ngSubmit)="onSubmit()" class="button-bar">
-          <button class="btn btn-primary ves-save" type="submit">{{_saveText}}</button>
-          <button class="btn ves-cancel" (click)="onCancel()" type="button">{{_cancelText}}</button>
+          <button class="btn btn-primary ves-save" type="submit">{{ _saveText }}</button>
+          <button class="btn ves-cancel" (click)="onCancel()" type="button">{{ _cancelText }}</button>
         </form>
       </ng-container>
     </div>
