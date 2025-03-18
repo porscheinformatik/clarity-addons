@@ -89,7 +89,7 @@ const CODE_EXAMPLE_FULL_FORM = `
         <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2 ">Money label</label>
         <input class="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-3" clrInput clrNumeric
                class="clr-col-2" type="text" [(clrNumericValue)]="money" />
-        <span clrInputSuffix>kg</span>
+        <span clrInputSuffix>€</span>
     </clr-input-container>
     <clr-checkbox-container class="clr-col-12">
         <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2 ">Checkbox label</label>
