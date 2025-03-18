@@ -1,14 +1,12 @@
 <!--
-  ~ Copyright (c) 2018-2020 Porsche Informatik. All Rights Reserved.
+  ~ Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
 <h2>Numeric Field</h2>
 
 <div class="clr-example">
-  <button type="button" class="btn btn-primary" (click)="input = 10.1213456">
-    Change input
-  </button>
+  <button type="button" class="btn btn-primary" (click)="input = 10.1213456">Change input</button>
 
   <h3>Vertical Form</h3>
   <form clrForm [clrLayout]="'vertical'" [formGroup]="exampleForm">
@@ -18,11 +16,11 @@
         clrInput
         clrNumeric
         type="text"
-        [clrUnit]="'€'"
         [clrTextAlign]="'right'"
         [clrAutofillDecimals]="true"
         formControlName="sample"
       />
+      <span clrInputSuffix>€</span>
       <clr-control-error *clrIfError="'required'">Please enter a value</clr-control-error>
       <clr-control-error *clrIfError="'min'">Please enter a value above 0</clr-control-error>
       <clr-control-error *clrIfError="'max'">Please enter a value below 100</clr-control-error>
@@ -40,38 +38,26 @@
         clrNumeric
         type="text"
         [(clrNumericValue)]="input"
-        [clrUnit]="'€'"
         [clrTextAlign]="'right'"
         [clrAutofillDecimals]="true"
       />
+      <span clrInputSuffix>€</span>
     </clr-input-container>
     <clr-input-container>
       <label>Speed</label>
-      <input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrUnit]="'km/h'" />
+      <input clrInput clrNumeric type="text" [(clrNumericValue)]="input" />
+      <span clrInputSuffix>km/h</span>
     </clr-input-container>
 
     <clr-input-container>
       <label>Amount</label>
-      <input
-        clrInput
-        clrNumeric
-        type="text"
-        [(clrNumericValue)]="input"
-        [clrUnit]="'€'"
-        [clrUnitPosition]="'left'"
-        [clrAutofillDecimals]="true"
-      />
+      <input clrInput clrNumeric type="text" [(clrNumericValue)]="input" [clrAutofillDecimals]="true" />
+      <span clrInputPrefix>€</span>
     </clr-input-container>
     <clr-input-container>
       <label>Speed</label>
-      <input
-        clrInput
-        clrNumeric
-        type="text"
-        [(clrNumericValue)]="input"
-        [clrUnit]="'km/h'"
-        [clrUnitPosition]="'left'"
-      />
+      <input clrInput clrNumeric type="text" [(clrNumericValue)]="input" />
+      <span clrInputPrefix>km/h</span>
     </clr-input-container>
   </form>
   <h3>Value</h3>
@@ -88,12 +74,12 @@
         [(ngModel)]="input"
         [ngModelOptions]="{ updateOn: 'blur' }"
         name="amount"
-        [clrUnit]="'€'"
         [clrTextAlign]="'right'"
         [clrAutofillDecimals]="true"
         [clrMinNumeric]="1"
         [clrMaxNumeric]="100"
       />
+      <span clrInputSuffix>€</span>
       <clr-control-error>Between 1 and 100</clr-control-error>
     </clr-input-container>
     <clr-input-container>
@@ -104,18 +90,16 @@
         type="text"
         [(ngModel)]="input"
         [ngModelOptions]="{ updateOn: 'blur' }"
-        [clrUnit]="'km/h'"
         name="speed"
         [clrMinNumeric]="5"
         [clrMaxNumeric]="10"
       />
+      <span clrInputSuffix>km/h</span>
       <clr-control-error>Between 5 and 10</clr-control-error>
     </clr-input-container>
   </form>
 
-  <button type="button" class="btn btn-primary" (click)="modalOpen = true">
-    Open Modal
-  </button>
+  <button type="button" class="btn btn-primary" (click)="modalOpen = true">Open Modal</button>
   <clr-modal [(clrModalOpen)]="modalOpen">
     <h3 class="modal-title">Vertical Form</h3>
     <div class="modal-body">
@@ -127,11 +111,11 @@
             clrNumeric
             type="text"
             [(clrNumericValue)]="input"
-            [clrUnit]="'€'"
             [clrTextAlign]="'right'"
             [clrAutofillDecimals]="true"
             formControlName="sample"
           />
+          <span clrInputSuffix>€</span>
           <clr-control-error>Please enter a value between 0 and 100</clr-control-error>
         </clr-input-container>
       </form>

@@ -214,8 +214,8 @@
                 [clrReadonly]="true"
                 [(ngModel)]="numeric"
                 [(clrNumericValue)]="numeric"
-                clrUnit="kg"
               />
+              <span clrInputSuffix>kg</span>
             </clr-input-container>
             <clr-date-container>
               <label>Date field</label>
@@ -296,14 +296,8 @@
             </clr-combobox-container>
             <clr-input-container class="w-7rem">
               <label>Numeric field</label>
-              <input
-                clrInput
-                clrNumeric
-                type="text"
-                formControlName="editNumeric"
-                [(clrNumericValue)]="numeric"
-                clrUnit="kg"
-              />
+              <input clrInput clrNumeric type="text" formControlName="editNumeric" [(clrNumericValue)]="numeric" />
+              <span clrInputSuffix>kg</span>
             </clr-input-container>
             <clr-date-container>
               <label>Date field</label>
@@ -438,7 +432,8 @@
         <div class="clr-col-6">
           <clr-input-container>
             <label>Numeric field (enabled)</label>
-            <input clrInput clrNumeric type="text" [(clrNumericValue)]="numericValue" clrUnit="€" />
+            <input clrInput clrNumeric type="text" [(clrNumericValue)]="numericValue" />
+            <span clrInputSuffix>€</span>
           </clr-input-container>
         </div>
         <div class="clr-col-6">
@@ -452,8 +447,8 @@
               [(ngModel)]="numericValue"
               [(clrNumericValue)]="numericValue"
               [clrReadonly]="true"
-              clrUnit="€"
             />
+            <span clrInputSuffix>€</span>
           </clr-input-container>
         </div>
       </div>
