@@ -12,6 +12,7 @@ import {
   errorStandardIcon,
   infoStandardIcon,
   minusIcon,
+  plusIcon,
   successStandardIcon,
   warningStandardIcon,
 } from '@cds/core/icon';
@@ -221,7 +222,14 @@ const DATE_FILTER_PRESELECT = `
 const today = new Date(Date.now());
 const yesterday = new Date(Date.now() - 24 * 1000 * 60 * 60);
 const tomorrow = new Date(Date.now() + 24 * 1000 * 60 * 60);
-ClarityIcons.addIcons(errorStandardIcon, warningStandardIcon, successStandardIcon, infoStandardIcon, minusIcon);
+ClarityIcons.addIcons(
+  errorStandardIcon,
+  warningStandardIcon,
+  successStandardIcon,
+  infoStandardIcon,
+  minusIcon,
+  plusIcon
+);
 
 @Component({
   selector: 'clr-datagrid-demo-docu',
