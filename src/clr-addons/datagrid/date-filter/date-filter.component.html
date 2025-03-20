@@ -2,7 +2,7 @@
   <cds-icon shape="trash"></cds-icon>
 </button>
 <ng-container *ngIf="!timeActive">
-  <clr-date-container>
+  <clr-date-container class="filter-selection">
     <input
       #input_from
       type="date"
@@ -13,7 +13,7 @@
       [attr.aria-label]="minPlaceholderValue"
     />
   </clr-date-container>
-  <clr-date-container>
+  <clr-date-container class="filter-selection">
     <input
       type="date"
       name="to"
@@ -25,7 +25,7 @@
   </clr-date-container>
 </ng-container>
 <ng-container *ngIf="timeActive">
-  <clr-date-time-container>
+  <clr-date-time-container class="filter-selection">
     <clr-date-container class="time-filter-active">
       <input
         #input_from

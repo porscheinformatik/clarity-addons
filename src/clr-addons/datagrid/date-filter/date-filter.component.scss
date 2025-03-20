@@ -1,12 +1,13 @@
 .btn-trash {
   position: absolute;
-  top: 15px;
+  top: 10px;
   right: 40px;
   padding: 0;
 }
 
 .time-filter-active {
   width: 12rem;
+  margin-top: 0.5rem;
 }
 
 .time-filter-active-input {
@@ -15,4 +16,8 @@
 
 .time-filter-input {
   width: 4.5rem !important;
+}
+
+.filter-selection {
+  margin-top: 0.5rem;
 }
