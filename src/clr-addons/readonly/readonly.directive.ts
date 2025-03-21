@@ -7,9 +7,16 @@ import { formatNumber } from '../util';
   standalone: false,
 })
 export class ClrReadonlyDirective implements OnChanges, OnInit, AfterViewInit {
+  /**
+   * @deprecated Use {@link clrInputSuffix} or {@link clrInputPrefix} from Clarity instead.
+   */
   @Input('clrUnitPosition') unitPosition = 'right';
   @Input('clrReadOnlyProperty') property: string | null = null;
   @Input('clrReadonly') clrReadOnly: boolean = true;
+
+  /**
+   * @deprecated Use {@link clrInputSuffix} or {@link clrInputPrefix} from Clarity instead.
+   */
   @Input('clrUnit') unit: string = '';
 
   @Input('clrDecimalPlaces') decimalPlaces = 2;
@@ -94,15 +101,18 @@ export class ClrReadonlyDirective implements OnChanges, OnInit, AfterViewInit {
       return '';
     }
 
+    let formattedValue = controlValue ?? '';
     if (controlType === 'numeric') {
-      return this.formatNumericValue(controlValue);
+      formattedValue = this.formatNumericValue(controlValue);
     } else if (this.property) {
-      return this.formatValueForObjectValue(controlValue);
+      formattedValue = this.formatValueForObjectValue(controlValue);
     } else if (controlType === 'select') {
-      return this.formatListValue(controlValue);
+      formattedValue = this.formatListValue(controlValue);
     }
 
-    return controlValue ?? '';
+    formattedValue = this.addTextPrefixSuffixToValue(formattedValue);
+
+    return formattedValue;
   }
 
   private formatNumericValue(controlValue: string): string {
@@ -114,6 +124,11 @@ export class ClrReadonlyDirective implements OnChanges, OnInit, AfterViewInit {
       this.decimalPlaces,
       this.autofillDecimals
     );
+
+    if (this.unit == null || this.unit === '') {
+      return result;
+    }
+
     return this.unitPosition === 'left' ? `${this.unit} ${result}` : `${result} ${this.unit}`;
   }
 
@@ -133,5 +148,20 @@ export class ClrReadonlyDirective implements OnChanges, OnInit, AfterViewInit {
     } else {
       return '';
     }
+  }
+
+  private addTextPrefixSuffixToValue(formattedValue: string): string {
+    const parentElement = this.elementRef.nativeElement.parentElement;
+    const prefixElement = parentElement.querySelector('[clrInputPrefix]');
+    const suffixElement = parentElement.querySelector('[clrInputSuffix]');
+
+    if (prefixElement?.textContent) {
+      formattedValue = `${prefixElement.textContent} ${formattedValue}`;
+    }
+    if (suffixElement?.textContent) {
+      formattedValue = `${formattedValue} ${suffixElement.textContent}`;
+    }
+
+    return formattedValue;
   }
 }

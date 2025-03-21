@@ -25,9 +25,31 @@ import { ClarityModule } from '@clr/angular';
             clrNumeric
             [formControl]="controlNumeric"
             [clrReadonly]="isReadOnly"
-            clrUnitPosition="left"
+            [clrReadOnlyProperty]="property"
+          />
+        </clr-input-container>
+        <clr-input-container>
+          <input
+            id="numeric-unit-left"
+            clrInput
+            clrNumeric
+            [formControl]="controlNumericUnitLeft"
+            [clrReadonly]="isReadOnly"
             [clrReadOnlyProperty]="property"
             [clrUnit]="'$'"
+            clrUnitPosition="left"
+          />
+        </clr-input-container>
+        <clr-input-container>
+          <input
+            id="numeric-unit-right"
+            clrInput
+            clrNumeric
+            [formControl]="controlNumericUnitRight"
+            [clrReadonly]="isReadOnly"
+            [clrReadOnlyProperty]="property"
+            [clrUnit]="'€'"
+            clrUnitPosition="right"
           />
         </clr-input-container>
         <clr-select-container>
@@ -36,6 +58,49 @@ import { ClarityModule } from '@clr/angular';
             <option value="2">Option 2</option>
           </select>
         </clr-select-container>
+
+        <clr-input-container>
+          <input
+            id="with-prefix"
+            clrInput
+            [formControl]="controlWithPrefix"
+            [clrReadonly]="isReadOnly"
+            [clrReadOnlyProperty]="property"
+          />
+          <span clrInputPrefix>Prefix</span>
+        </clr-input-container>
+        <clr-input-container>
+          <input
+            id="with-suffix"
+            clrInput
+            [formControl]="controlWithSuffix"
+            [clrReadonly]="isReadOnly"
+            [clrReadOnlyProperty]="property"
+          />
+          <span clrInputSuffix>Suffix</span>
+        </clr-input-container>
+        <clr-input-container>
+          <input
+            id="with-prefix-suffix"
+            clrInput
+            [formControl]="controlWithPrefixSuffix"
+            [clrReadonly]="isReadOnly"
+            [clrReadOnlyProperty]="property"
+          />
+          <span clrInputPrefix>Prefix</span>
+          <span clrInputSuffix>Suffix</span>
+        </clr-input-container>
+        <clr-input-container>
+          <input
+            id="non-text-prefix-suffix"
+            clrInput
+            [formControl]="controlNonTextPrefixSuffix"
+            [clrReadonly]="isReadOnly"
+            [clrReadOnlyProperty]="property"
+          />
+          <span clrInputPrefix><cds-icon shape="arrow"></cds-icon></span>
+          <span clrInputSuffix><cds-icon shape="trash"></cds-icon></span>
+        </clr-input-container>
       </div>
     </form>
   `,
@@ -45,6 +110,12 @@ class TestComponent {
   form: FormGroup;
   control = new FormControl('Test Value');
   controlNumeric = new FormControl('100');
+  controlNumericUnitLeft = new FormControl('200');
+  controlNumericUnitRight = new FormControl('300');
+  controlWithPrefix = new FormControl('Text');
+  controlWithSuffix = new FormControl('Text');
+  controlWithPrefixSuffix = new FormControl('Text');
+  controlNonTextPrefixSuffix = new FormControl('Text');
   isReadOnly = true;
   property: string | null = null;
 
@@ -76,7 +147,7 @@ describe('ClrReadonlyDirective', () => {
 
     fixture.detectChanges(); // Trigger change detection for the directive.
 
-    const span = parent.querySelector('span');
+    const span = parent.querySelector('span.clr-readonly');
     expect(span).toBeTruthy();
     expect(span.textContent).toBe('Test Value');
     expect(span.classList).toContain('clr-readonly');
@@ -84,11 +155,25 @@ describe('ClrReadonlyDirective', () => {
     expect(getComputedStyle(input.nativeElement).display).toBe('none');
   });
 
-  it('should format numeric values based on the unit position', () => {
+  it('should format numeric values', () => {
     const input = fixture.debugElement.query(By.css('#numeric'));
 
-    const span = input.nativeElement.parentElement.querySelector('span');
-    expect(span.textContent).toBe('$ 100');
+    const span = input.nativeElement.parentElement.querySelector('span.clr-readonly');
+    expect(span.textContent).toBe('100');
+  });
+
+  it('should format numeric values with unit on the left side', () => {
+    const input = fixture.debugElement.query(By.css('#numeric-unit-left'));
+
+    const span = input.nativeElement.parentElement.querySelector('span.clr-readonly');
+    expect(span.textContent).toBe('$ 200');
+  });
+
+  it('should format numeric values with unit on the right side', () => {
+    const input = fixture.debugElement.query(By.css('#numeric-unit-right'));
+
+    const span = input.nativeElement.parentElement.querySelector('span.clr-readonly');
+    expect(span.textContent).toBe('300 €');
   });
 
   it('should display selected option text for a select element', () => {
@@ -97,7 +182,7 @@ describe('ClrReadonlyDirective', () => {
     fixture.componentInstance.control.setValue('1');
     fixture.detectChanges();
 
-    const span = select.nativeElement.parentElement.querySelector('span');
+    const span = select.nativeElement.parentElement.querySelector('span.clr-readonly');
     expect(span.textContent).toBe('Option 1');
   });
 
@@ -106,8 +191,36 @@ describe('ClrReadonlyDirective', () => {
     fixture.detectChanges();
 
     const input = fixture.debugElement.query(By.css('#input'));
-    const span = input.nativeElement.parentElement.querySelector('span');
+    const span = input.nativeElement.parentElement.querySelector('span.clr-readonly');
     expect(span).toBeNull(); // No span should be created.
     expect(getComputedStyle(input.nativeElement).display).not.toBe('none');
+  });
+
+  it('should include input prefix', () => {
+    const input = fixture.debugElement.query(By.css('#with-prefix'));
+
+    const span = input.nativeElement.parentElement.querySelector('span.clr-readonly');
+    expect(span.textContent).toBe('Prefix Text');
+  });
+
+  it('should include input suffix', () => {
+    const input = fixture.debugElement.query(By.css('#with-suffix'));
+
+    const span = input.nativeElement.parentElement.querySelector('span.clr-readonly');
+    expect(span.textContent).toBe('Text Suffix');
+  });
+
+  it('should include both input prefix and suffix', () => {
+    const input = fixture.debugElement.query(By.css('#with-prefix-suffix'));
+
+    const span = input.nativeElement.parentElement.querySelector('span.clr-readonly');
+    expect(span.textContent).toBe('Prefix Text Suffix');
+  });
+
+  it('should include nothing for non-text prefix and suffix', () => {
+    const input = fixture.debugElement.query(By.css('#non-text-prefix-suffix'));
+
+    const span = input.nativeElement.parentElement.querySelector('span.clr-readonly');
+    expect(span.textContent).toBe('Text');
   });
 });

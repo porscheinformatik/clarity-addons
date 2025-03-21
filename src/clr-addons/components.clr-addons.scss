@@ -357,12 +357,14 @@ clr-date-container .clr-control-container {
     width: 100%;
   }
 
-  // Set all input widths inside a clr-input-group to 100% minus the icons width
-  > .clr-input {
-    // Except for the ClrDataListInput and ClrDate, because this one just looks terrible otherwise (clarity using diff icon here)
-    &:not([clrdatalistinput]):not([clrdate]) {
-      width: calc(100% - 1.5rem);
-    }
+  [clrinputprefix] {
+    // Clarity only exports the padding as two values, so this is actually 0 0 0 XX
+    padding: 0 0 var(--clr-forms-input-padding);
+  }
+
+  [clrinputsuffix] {
+    // Clarity only exports the padding as two values, so this is actually 0 XX 0 0
+    padding: var(--clr-forms-input-padding) 0 0;
   }
 }
 

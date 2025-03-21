@@ -15,8 +15,8 @@ const HTML_EXAMPLE = `
         <input clrInput clrNumeric
                type="text"
                formControlName="money"
-               [clrUnit]="'€'"
                [clrAutofillDecimals]="true"/>
+        <span clrInputSuffix>€</span>
         <clr-control-error>Please enter a value between 0 and 10.000</clr-control-error>
     </clr-input-container>
     <clr-input-container>
@@ -24,8 +24,8 @@ const HTML_EXAMPLE = `
         <input clrInput clrNumeric
                type="text"
                formControlName="percentage"
-               [clrUnit]="'%'"
                [clrDecimalPlaces]="0"/>
+        <span clrInputSuffix>%</span>
         <clr-control-error>Please enter a value between 0 and 100</clr-control-error>
     </clr-input-container>
 </form>
@@ -38,9 +38,9 @@ const HTML_EXAMPLE2 = `
         <input clrInput clrNumeric
                class="clr-col-xl-2 clr-col-md-3 clr-col-sm-12"
                type="text"
-               [clrUnit]="'€'"
                [(ngModel)]="money"
                [clrAutofillDecimals]="true"/>
+        <span clrInputSuffix>€</span>
         <clr-control-error>Please enter a value between 0 and 10.000</clr-control-error>
     </clr-input-container>
     <clr-input-container>
@@ -48,25 +48,10 @@ const HTML_EXAMPLE2 = `
         <input clrInput clrNumeric
                class="clr-col-xl-2 clr-col-md-3 clr-col-sm-12"
                type="text"
-               [clrUnit]="'%'"
                [(ngModel)]="percentage"
                [clrDecimalPlaces]="0"/>
+        <span clrInputSuffix>%</span>
         <clr-control-error>Please enter a value between 0 and 100</clr-control-error>
-    </clr-input-container>
-</form>
-`;
-
-const HTML_EXAMPLE3 = `
-<form clrForm>
-    <clr-input-container>
-        <label>Money</label>
-        <input clrInput clrNumeric
-               class="clr-col-xl-2 clr-col-md-3 clr-col-sm-12"
-               type="text"
-               [clrUnit]="'€'"
-               [clrUnitPosition]="'left'"
-               [clrAutofillDecimals]="true"/>
-        <clr-control-error>Please enter a value between 0 and 10.000</clr-control-error>
     </clr-input-container>
 </form>
 `;
@@ -79,9 +64,9 @@ const HTML_EXAMPLE4 = `
                class="clr-col-xl-2 clr-col-md-3 clr-col-sm-12"
                type="text"
                formControlName="money1"
-               [clrUnit]="'€'"
                [clrRoundDisplayValue]="true"
                [clrAutofillDecimals]="true"/>
+        <span clrInputSuffix>€</span>
         <clr-control-error>Please enter a value between 0 and 100</clr-control-error>
     </clr-input-container>
     <clr-input-container>
@@ -90,9 +75,9 @@ const HTML_EXAMPLE4 = `
                class="clr-col-xl-2 clr-col-md-3 clr-col-sm-12"
                type="text"
                formControlName="money2"
-               [clrUnit]="'€'"
                [clrDecimalPlaces]="5"
                [clrAutofillDecimals]="true"/>
+        <span clrInputSuffix>€</span>
         <clr-control-error>Please enter a value between 0 and 100</clr-control-error>
     </clr-input-container>
 </form>
@@ -126,7 +111,6 @@ exampleForm = new FormGroup({
 export class NumericFieldDemo extends ClarityDocComponent {
   htmlExample = HTML_EXAMPLE;
   htmlExample2 = HTML_EXAMPLE2;
-  htmlExample3 = HTML_EXAMPLE3;
   htmlExample4 = HTML_EXAMPLE4;
   tsExample = TS_EXAMPLE;
 

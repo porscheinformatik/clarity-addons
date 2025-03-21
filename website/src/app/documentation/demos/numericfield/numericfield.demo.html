@@ -24,9 +24,9 @@
           clrNumeric
           type="text"
           [clrAutofillDecimals]="true"
-          clrUnit="€"
           formControlName="money"
         />
+        <span clrInputSuffix>€</span>
         <clr-control-error>Please enter a value greater than or equal to 0</clr-control-error>
       </clr-input-container>
       <clr-input-container>
@@ -36,9 +36,9 @@
           clrInput
           clrNumeric
           type="text"
-          clrUnit="kg"
           formControlName="weight"
         />
+        <span clrInputSuffix>kg</span>
         <clr-control-error>Please enter a value greater than or equal to 0</clr-control-error>
       </clr-input-container>
       <clr-input-container>
@@ -48,10 +48,10 @@
           clrInput
           clrNumeric
           type="text"
-          clrUnit="g/km"
           [clrDecimalPlaces]="0"
           formControlName="emission"
         />
+        <span clrInputSuffix>g/km</span>
         <clr-control-error>Please enter a value greater than or equal to 0</clr-control-error>
       </clr-input-container>
       <clr-input-container>
@@ -61,10 +61,10 @@
           clrInput
           clrNumeric
           type="text"
-          clrUnit="km"
           [clrDecimalPlaces]="0"
           formControlName="kilometres"
         />
+        <span clrInputSuffix>km</span>
         <clr-control-error>Please enter a value greater than or equal to 0</clr-control-error>
       </clr-input-container>
       <clr-input-container>
@@ -74,10 +74,10 @@
           clrInput
           clrNumeric
           type="text"
-          clrUnit="cc"
           [clrDecimalPlaces]="0"
           formControlName="cubic"
         />
+        <span clrInputSuffix>cc</span>
         <clr-control-error>Please enter a value greater than or equal to 0</clr-control-error>
       </clr-input-container>
       <clr-input-container>
@@ -87,10 +87,10 @@
           clrInput
           clrNumeric
           type="text"
-          clrUnit="mm"
           [clrDecimalPlaces]="0"
           formControlName="millimetres"
         />
+        <span clrInputSuffix>mm</span>
         <clr-control-error>Please enter a value greater than or equal to 0</clr-control-error>
       </clr-input-container>
       <clr-input-container>
@@ -100,10 +100,10 @@
           clrInput
           clrNumeric
           type="text"
-          clrUnit="kW"
           [clrDecimalPlaces]="0"
           formControlName="kilowatt"
         />
+        <span clrInputSuffix>kW</span>
         <clr-control-error>Please enter a value greater than or equal to 0</clr-control-error>
       </clr-input-container>
       <clr-input-container>
@@ -113,9 +113,9 @@
           clrInput
           clrNumeric
           type="text"
-          clrUnit="TU"
           formControlName="timeunit"
         />
+        <span clrInputSuffix>TU</span>
         <clr-control-error>Please enter a value greater than or equal to 0</clr-control-error>
       </clr-input-container>
       <clr-input-container>
@@ -125,10 +125,10 @@
           clrInput
           clrNumeric
           type="text"
-          clrUnit="hp"
           [clrDecimalPlaces]="0"
           formControlName="horsepower"
         />
+        <span clrInputSuffix>hp</span>
         <clr-control-error>Please enter a value greater than or equal to 0</clr-control-error>
       </clr-input-container>
       <clr-input-container>
@@ -138,10 +138,10 @@
           clrInput
           clrNumeric
           type="text"
-          clrUnit="%"
           [clrDecimalPlaces]="0"
           formControlName="percentage"
         />
+        <span clrInputSuffix>%</span>
         <clr-control-error>Please enter a value between 0 and 100 (including).</clr-control-error>
       </clr-input-container>
     </form>
@@ -158,9 +158,9 @@
                   clrInput
                   clrNumeric
                   type="text"
-                  clrUnit="€"
                   [clrAutofillDecimals]="true"
                 />
+                <span clrInputSuffix>€</span>
                 <clr-control-error>Please enter a value greater than 0</clr-control-error>
               </clr-input-container>
               <clr-input-container>
@@ -170,9 +170,9 @@
                   clrInput
                   clrNumeric
                   type="text"
-                  clrUnit="€"
                   [clrAutofillDecimals]="true"
                 />
+                <span clrInputSuffix>€</span>
                 <clr-control-error>Please enter a value greater than 0</clr-control-error>
               </clr-input-container>
             </form>
@@ -200,8 +200,8 @@
                   clrNumeric
                   type="text"
                   [clrAutofillDecimals]="true"
-                  clrUnit="€"
                 />
+                <span clrInputSuffix>€</span>
                 <clr-control-error>Please enter a value greater than 0</clr-control-error>
               </clr-input-container>
             </form>
@@ -306,7 +306,17 @@
             </td>
             <td class="left clr-hidden-xs-down">Javascript String</td>
             <td class="clr-hidden-xs-down">""</td>
-            <td class="left">The unit to be displayed on top of the input field.</td>
+            <td class="left">
+              The unit to be displayed on top of the input field.
+              <clr-alert [clrAlertType]="'warning'" [clrAlertClosable]="false">
+                <clr-alert-item>
+                  <span class="alert-text">
+                    Deprecated: Use Clarity directives <code class="clr-code">clrInputPrefix</code> or
+                    <code class="clr-code">clrInputSuffix</code> instead.
+                  </span>
+                </clr-alert-item>
+              </clr-alert>
+            </td>
           </tr>
           <tr>
             <td class="left">
@@ -316,7 +326,17 @@
             </td>
             <td class="left clr-hidden-xs-down">"left", "right"</td>
             <td class="clr-hidden-xs-down">"right"</td>
-            <td class="left">Determines whether the unit is shown on the right or left side of the value.</td>
+            <td class="left">
+              Determines whether the unit is shown on the right or left side of the value.
+              <clr-alert [clrAlertType]="'warning'" [clrAlertClosable]="false">
+                <clr-alert-item>
+                  <span class="alert-text">
+                    Deprecated: Use Clarity directive <code class="clr-code">clrInputPrefix</code> to replace 'left' or
+                    <code class="clr-code">clrInputSuffix</code> to replace 'right'.
+                  </span>
+                </clr-alert-item>
+              </clr-alert>
+            </td>
           </tr>
           <tr>
             <td class="left">
@@ -335,12 +355,14 @@
       <form clrForm clrLayout="vertical" [formGroup]="exampleForm">
         <clr-input-container>
           <label>Money</label>
-          <input clrInput clrNumeric type="text" formControlName="money" [clrUnit]="'€'" [clrAutofillDecimals]="true" />
+          <input clrInput clrNumeric type="text" formControlName="money" [clrAutofillDecimals]="true" />
+          <span clrInputSuffix>€</span>
           <clr-control-error>Please enter a value between 0 and 10.000</clr-control-error>
         </clr-input-container>
         <clr-input-container>
           <label>Percentage</label>
-          <input clrInput clrNumeric type="text" formControlName="percentage" [clrUnit]="'%'" [clrDecimalPlaces]="0" />
+          <input clrInput clrNumeric type="text" formControlName="percentage" [clrDecimalPlaces]="0" />
+          <span clrInputSuffix>%</span>
           <clr-control-error>Please enter a value between 0 and 100</clr-control-error>
         </clr-input-container>
       </form>
@@ -358,10 +380,10 @@
             class="clr-col-xl-2 clr-col-md-3 clr-col-sm-12"
             type="text"
             name="money"
-            [clrUnit]="'€'"
             [(ngModel)]="moneyTemplate"
             [clrAutofillDecimals]="true"
           />
+          <span clrInputSuffix>€</span>
           <clr-control-error>Please enter a value between 0 and 10.000</clr-control-error>
         </clr-input-container>
         <clr-input-container>
@@ -372,33 +394,14 @@
             class="clr-col-xl-2 clr-col-md-3 clr-col-sm-12"
             type="text"
             name="percentage"
-            [clrUnit]="'%'"
             [(ngModel)]="percentageTemplate"
             [clrDecimalPlaces]="0"
           />
+          <span clrInputSuffix>%</span>
           <clr-control-error>Please enter a value between 0 and 100</clr-control-error>
         </clr-input-container>
       </form>
       <clr-code-snippet [clrCode]="htmlExample2"></clr-code-snippet>
-
-      <h4>Alignment</h4>
-      <p>For special usecases, if necessary the Unit and Value alignment can be defined independently.</p>
-      <form clrForm>
-        <clr-input-container>
-          <label>Money</label>
-          <input
-            clrInput
-            clrNumeric
-            class="clr-col-xl-2 clr-col-md-3 clr-col-sm-12"
-            type="text"
-            [clrUnit]="'€'"
-            [clrUnitPosition]="'left'"
-            [clrAutofillDecimals]="true"
-          />
-          <clr-control-error>Please enter a value between 0 and 10.000</clr-control-error>
-        </clr-input-container>
-      </form>
-      <clr-code-snippet [clrCode]="htmlExample3"></clr-code-snippet>
 
       <h4>Rounding</h4>
       <p>
@@ -414,10 +417,10 @@
             class="clr-col-xl-2 clr-col-md-3 clr-col-sm-12"
             type="text"
             formControlName="money1"
-            [clrUnit]="'€'"
             [clrRoundDisplayValue]="true"
             [clrAutofillDecimals]="true"
           />
+          <span clrInputSuffix>€</span>
           <clr-control-error>Please enter a value between 0 and 100</clr-control-error>
         </clr-input-container>
         <clr-input-container>
@@ -428,10 +431,10 @@
             class="clr-col-xl-2 clr-col-md-3 clr-col-sm-12"
             type="text"
             formControlName="money2"
-            [clrUnit]="'€'"
             [clrDecimalPlaces]="5"
             [clrAutofillDecimals]="true"
           />
+          <span clrInputSuffix>€</span>
           <clr-control-error>Please enter a value between 0 and 100</clr-control-error>
         </clr-input-container>
       </form>

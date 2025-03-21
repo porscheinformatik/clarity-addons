@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
+  ~ Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
@@ -68,7 +68,8 @@
   </clr-date-time-container>
   <clr-input-container class="clr-col-12">
     <label>Money label</label>
-    <input clrInput clrNumeric class="clr-col-2" type="text" [(clrNumericValue)]="money" clrUnit="€" />
+    <input clrInput clrNumeric class="clr-col-2" type="text" [(clrNumericValue)]="money" />
+    <span clrInputSuffix>€</span>
   </clr-input-container>
   <clr-checkbox-container class="clr-col-12">
     <label>Checkbox label</label>
@@ -183,7 +184,8 @@
   </clr-input-container>
   <clr-input-container class="clr-col-12 clr-col-lg-6">
     <label class="clr-col-12 clr-col-sm-2 clr-col-lg-3">Daily Donation</label>
-    <input clrInput clrNumeric [clrUnit]="'€'" type="text" class="clr-col-12 clr-col-sm-3 clr-col-lg-5" />
+    <input clrInput clrNumeric type="text" class="clr-col-12 clr-col-sm-3 clr-col-lg-5" />
+    <span clrInputSuffix>€</span>
   </clr-input-container>
   <clr-checkbox-container class="clr-col-12 clr-col-lg-6">
     <label class="clr-col-12 clr-col-sm-2 clr-col-lg-3">Newsletter Subscriptions</label>

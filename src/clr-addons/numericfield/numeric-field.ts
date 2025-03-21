@@ -50,6 +50,10 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked, Con
   @Input('clrAutofillDecimals') autofillDecimals = false;
   @Input('clrDecimalSep') decimalSeparator = ',';
   @Input('clrGroupingSep') groupingSeparator = '.';
+
+  /**
+   * @deprecated Use {@link clrInputSuffix} or {@link clrInputPrefix} from Clarity instead.
+   */
   @Input('clrUnitPosition') unitPosition = 'right';
   @Output('clrNumericValueChange') numericValueChanged = new EventEmitter<number>();
 
@@ -70,6 +74,9 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked, Con
     }
   }
 
+  /**
+   * @deprecated Use {@link clrInputSuffix} or {@link clrInputPrefix} from Clarity instead.
+   */
   @Input('clrUnit')
   set unit(value: string) {
     if (value != this._unit) {
