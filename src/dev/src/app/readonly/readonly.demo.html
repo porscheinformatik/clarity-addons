@@ -169,24 +169,48 @@
   <div class="clr-row">
     <div class="clr-col-6">
       <clr-input-container>
-        <label>Money label</label>
-        <input clrInput clrNumeric type="text" clrUnitPosition="left" [(clrNumericValue)]="numericValue" clrUnit="€" />
+        <label>Money label (left) </label>
+        <input clrInput clrNumeric type="text" [(clrNumericValue)]="numericValue" />
+        <span clrInputPrefix>€</span>
       </clr-input-container>
     </div>
     <div class="clr-col-6">
       <clr-input-container>
-        <label>Money label (readOnly)</label>
+        <label>Money label (left, readOnly)</label>
         <input
           clrInput
           clrNumeric
           type="text"
           name="number"
-          clrUnitPosition="left"
           [(ngModel)]="numericValue"
           [(clrNumericValue)]="numericValue"
           [clrReadonly]="true"
-          clrUnit="€"
         />
+        <span clrInputPrefix>€</span>
+      </clr-input-container>
+    </div>
+  </div>
+  <div class="clr-row">
+    <div class="clr-col-6">
+      <clr-input-container>
+        <label>Money label (right)</label>
+        <input clrInput clrNumeric type="text" [(clrNumericValue)]="numericValue" />
+        <span clrInputSuffix>€</span>
+      </clr-input-container>
+    </div>
+    <div class="clr-col-6">
+      <clr-input-container>
+        <label>Money label (right, readOnly)</label>
+        <input
+          clrInput
+          clrNumeric
+          type="text"
+          name="number"
+          [(ngModel)]="numericValue"
+          [(clrNumericValue)]="numericValue"
+          [clrReadonly]="true"
+        />
+        <span clrInputSuffix>€</span>
       </clr-input-container>
     </div>
   </div>

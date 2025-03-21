@@ -357,9 +357,14 @@ clr-date-container .clr-control-container {
     width: 100%;
   }
 
-  [clrinputprefix],
+  [clrinputprefix] {
+    // Clarity only exports the padding as two values, so this is actually 0 0 0 XX
+    padding: 0 0 var(--clr-forms-input-padding);
+  }
+
   [clrinputsuffix] {
-    padding: var(--clr-forms-input-padding);
+    // Clarity only exports the padding as two values, so this is actually 0 XX 0 0
+    padding: var(--clr-forms-input-padding) 0 0;
   }
 }
 
