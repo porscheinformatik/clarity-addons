@@ -23,6 +23,9 @@
       [attr.aria-label]="maxPlaceholderValue"
     />
   </clr-date-container>
+  <clr-control-error *ngIf="valError"
+    >{{ dateValidationError || 'Date "from" must be before date "to"!' }}
+  </clr-control-error>
 </ng-container>
 <ng-container *ngIf="timeActive">
   <clr-date-time-container class="filter-selection">
