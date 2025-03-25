@@ -120,8 +120,10 @@ export class ClrDateFilterComponent<T extends { [key: string]: any }>
       }
       this._from = from;
       this.validateDates();
-      this._changes.next([this._from, this._to]);
-      this.filterValueChange.emit([this._from, this._to]);
+      if (!this.valError) {
+        this._changes.next([this._from, this._to]);
+        this.filterValueChange.emit([this._from, this._to]);
+      }
     }
   }
 
@@ -154,8 +156,10 @@ export class ClrDateFilterComponent<T extends { [key: string]: any }>
       }
       this._to = to;
       this.validateDates();
-      this._changes.next([this._from, this._to]);
-      this.filterValueChange.emit([this._from, this._to]);
+      if (!this.valError) {
+        this._changes.next([this._from, this._to]);
+        this.filterValueChange.emit([this._from, this._to]);
+      }
     }
   }
 
