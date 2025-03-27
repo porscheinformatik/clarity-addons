@@ -245,6 +245,11 @@
     width: 100%;
   }
 
+  .clr-combobox-vertical .clr-combobox-wrapper {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
   .clr-form-horizontal .clr-form-control {
     align-items: baseline;
   }

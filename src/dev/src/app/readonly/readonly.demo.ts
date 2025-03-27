@@ -30,27 +30,8 @@ export class ReadonlyDemo {
   numericValue = 1234456456;
 
   states = states;
-  selection: State[] = [
-    {
-      name: 'Alabama',
-      abbreviation: 'AL',
-    },
-    {
-      name: 'Alaska',
-      abbreviation: 'AK',
-    },
-  ];
-
-  selectionReadOnly: State[] = [
-    {
-      name: 'Alabama',
-      abbreviation: 'AL',
-    },
-    {
-      name: 'Alaska',
-      abbreviation: 'AK',
-    },
-  ];
+  selection: State[] = [states[0], states[1]];
+  selectionReadOnly: State[] = [states[0], states[1]];
 
   date = new Date().toLocaleDateString('de-DE');
   time = '11:00';
@@ -69,5 +50,21 @@ export const states: State[] = [
   {
     name: 'Alaska',
     abbreviation: 'AK',
+  },
+  {
+    name: 'Arizona',
+    abbreviation: 'AZ',
+  },
+  {
+    name: 'Arkansas',
+    abbreviation: 'Ar',
+  },
+  {
+    name: 'California',
+    abbreviation: 'CA',
+  },
+  {
+    name: 'Colorado',
+    abbreviation: 'CO',
   },
 ];
