@@ -100,10 +100,12 @@ describe('StatePersistenceKeyDirective', () => {
     });
 
     it('should load from local storage', waitForAsync(() => {
-      fixture.componentInstance.persistPagination = true;
+      const localStorageKey = PERSISTENCE_KEY + '-should-load-pagination';
       const storageModel = '{"pageSize":50,"columns":{"column1": {"hidden":true}}}';
-      localStorage.setItem(PERSISTENCE_KEY, storageModel);
+      localStorage.setItem(localStorageKey, storageModel);
 
+      fixture.componentInstance.storageKey = localStorageKey;
+      fixture.componentInstance.persistPagination = true;
       fixture.detectChanges();
 
       expect(fixture.componentInstance.pagination).toBeTruthy();
@@ -113,6 +115,8 @@ describe('StatePersistenceKeyDirective', () => {
     }));
 
     it('should persist to local storage', () => {
+      const localStorageKey = PERSISTENCE_KEY + '-should-persist-pagination';
+      fixture.componentInstance.storageKey = localStorageKey;
       fixture.componentInstance.persistPagination = true;
       fixture.detectChanges();
       fixture.componentInstance.pagination.pageSize = 100;
@@ -120,14 +124,16 @@ describe('StatePersistenceKeyDirective', () => {
       expect(fixture.componentInstance.pagination).toBeTruthy();
       expect(fixture.componentInstance.pagination.page.size).toBe(100);
 
-      const storageModel = localStorage.getItem(PERSISTENCE_KEY);
+      const storageModel = localStorage.getItem(localStorageKey);
       expect(storageModel).toBe('{"pageSize":100}');
     });
 
     it("should not load from local storage when 'persistPagination' is false", fakeAsync(() => {
+      const localStorageKey = PERSISTENCE_KEY + '-should-not-load-pagination';
       const storageModel = '{"pageSize":50,"columns":{}}';
-      localStorage.setItem(PERSISTENCE_KEY, storageModel);
+      localStorage.setItem(localStorageKey, storageModel);
 
+      fixture.componentInstance.storageKey = localStorageKey;
       fixture.componentInstance.persistPagination = false;
       fixture.detectChanges();
       tick();
@@ -136,13 +142,15 @@ describe('StatePersistenceKeyDirective', () => {
     }));
 
     it("should not persist to local storage when 'persistPagination' is false", () => {
+      const localStorageKey = PERSISTENCE_KEY + '-should-not-persist-pagination';
+      fixture.componentInstance.storageKey = localStorageKey;
       fixture.componentInstance.persistPagination = false;
       fixture.detectChanges();
       fixture.componentInstance.pagination.pageSize = 100;
 
       expect(fixture.componentInstance.pagination.page.size).toBe(100);
 
-      const storageModel = localStorage.getItem(PERSISTENCE_KEY);
+      const storageModel = localStorage.getItem(localStorageKey);
       expect(storageModel).toBeNull();
     });
   });
@@ -175,9 +183,12 @@ describe('StatePersistenceKeyDirective', () => {
     }));
 
     it('should load from local storage', fakeAsync(() => {
-      fixture.componentInstance.persistSort = true;
+      const localStorageKey = PERSISTENCE_KEY + '-should-load-sort';
       const storageModel = '{"sortBy":"column1","sortReverse":false,"columns":{}}';
-      localStorage.setItem(PERSISTENCE_KEY, storageModel);
+      localStorage.setItem(localStorageKey, storageModel);
+
+      fixture.componentInstance.storageKey = localStorageKey;
+      fixture.componentInstance.persistSort = true;
       fixture.detectChanges();
 
       tick();
@@ -187,24 +198,29 @@ describe('StatePersistenceKeyDirective', () => {
     }));
 
     it('should persist to local storage', fakeAsync(() => {
+      const localStorageKey = PERSISTENCE_KEY + '-should-persist-sort';
+      fixture.componentInstance.storageKey = localStorageKey;
       fixture.componentInstance.persistSort = true;
       fixture.detectChanges();
 
       fixture.debugElement.query(By.css('#column2 button')).nativeElement.click();
       tick();
-      let storageModel = localStorage.getItem(PERSISTENCE_KEY);
+      let storageModel = localStorage.getItem(localStorageKey);
       expect(storageModel).toBe('{"sortBy":"column2","sortReverse":false}');
 
       fixture.debugElement.query(By.css('#column2 button')).nativeElement.click();
       tick();
-      storageModel = localStorage.getItem(PERSISTENCE_KEY);
+      storageModel = localStorage.getItem(localStorageKey);
       expect(storageModel).toBe('{"sortBy":"column2","sortReverse":true}');
     }));
 
     it('should load from local storage when clrDgSortBy is a comparator', fakeAsync(() => {
-      fixture.componentInstance.persistSort = true;
+      const localStorageKey = PERSISTENCE_KEY + '-should-load-sorting-comparator';
       const storageModel = '{"sortBy":"column4","sortReverse":true,"columns":{}}';
-      localStorage.setItem(PERSISTENCE_KEY, storageModel);
+      localStorage.setItem(localStorageKey, storageModel);
+
+      fixture.componentInstance.storageKey = localStorageKey;
+      fixture.componentInstance.persistSort = true;
       fixture.detectChanges();
 
       tick();
@@ -214,19 +230,24 @@ describe('StatePersistenceKeyDirective', () => {
     }));
 
     it('should persist to local storage when clrDgSortBy is a comparator', fakeAsync(() => {
+      const localStorageKey = PERSISTENCE_KEY + '-should-persist-sort-comparator';
+      fixture.componentInstance.storageKey = localStorageKey;
       fixture.componentInstance.persistSort = true;
       fixture.detectChanges();
 
       fixture.debugElement.query(By.css('#column4 button')).nativeElement.click();
       tick();
-      const storageModel = localStorage.getItem(PERSISTENCE_KEY);
+      const storageModel = localStorage.getItem(localStorageKey);
       expect(storageModel).toBe('{"sortBy":"column4","sortReverse":false}');
     }));
 
     it("should not load from local storage when 'persistSort' is false", fakeAsync(() => {
-      fixture.componentInstance.persistSort = false;
+      const localStorageKey = PERSISTENCE_KEY + '-should-not-load-sorting';
       const storageModel = '{"sortBy":"column1","sortReverse":false,"columns":{}}';
-      localStorage.setItem(PERSISTENCE_KEY, storageModel);
+      localStorage.setItem(localStorageKey, storageModel);
+
+      fixture.componentInstance.storageKey = localStorageKey;
+      fixture.componentInstance.persistSort = false;
       fixture.detectChanges();
 
       tick();
@@ -236,20 +257,23 @@ describe('StatePersistenceKeyDirective', () => {
     }));
 
     it("should not persist to local storage when 'persistSort' is false", fakeAsync(() => {
+      const localStorageKey = PERSISTENCE_KEY + '-should-not-persist-sort';
+      fixture.componentInstance.storageKey = localStorageKey;
       fixture.componentInstance.persistSort = false;
       fixture.detectChanges();
 
       fixture.debugElement.query(By.css('#column2 button')).nativeElement.click();
       tick();
-      const storageModel = localStorage.getItem(PERSISTENCE_KEY);
+      const storageModel = localStorage.getItem(localStorageKey);
       expect(storageModel).toBeNull();
     }));
   });
 
   describe('column width persistence', () => {
     it('should apply column widths from local storage', () => {
+      const localStorageKey = PERSISTENCE_KEY + '-should-apply-column-widths';
       localStorage.setItem(
-        PERSISTENCE_KEY,
+        localStorageKey,
         JSON.stringify({
           columns: {
             column1: { width: '100px' },
@@ -258,6 +282,7 @@ describe('StatePersistenceKeyDirective', () => {
         })
       );
 
+      fixture.componentInstance.storageKey = localStorageKey;
       fixture.componentInstance.persistColumnWidths = true;
       fixture.detectChanges();
 
@@ -269,6 +294,8 @@ describe('StatePersistenceKeyDirective', () => {
     });
 
     it('should save column width to local storage', () => {
+      const localStorageKey = PERSISTENCE_KEY + '-should-save-column-width';
+      fixture.componentInstance.storageKey = localStorageKey;
       fixture.componentInstance.persistColumnWidths = true;
       fixture.detectChanges();
 
@@ -281,7 +308,7 @@ describe('StatePersistenceKeyDirective', () => {
 
       fixture.destroy();
 
-      const storageContent = JSON.parse(localStorage.getItem(PERSISTENCE_KEY));
+      const storageContent = JSON.parse(localStorage.getItem(localStorageKey));
       expect(storageContent.columns).toEqual({
         column1: { width: '100px' },
         hidden: { width: '200px' },
@@ -290,8 +317,9 @@ describe('StatePersistenceKeyDirective', () => {
 
     [false, undefined].forEach(value => {
       it('should not load from local storage if "persistColumnWidths" is ' + value, () => {
+        const localStorageKey = PERSISTENCE_KEY + '-should-not-load-column-widths-' + value;
         localStorage.setItem(
-          PERSISTENCE_KEY,
+          localStorageKey,
           JSON.stringify({
             columns: {
               column1: { width: '100px' },
@@ -300,6 +328,7 @@ describe('StatePersistenceKeyDirective', () => {
           })
         );
 
+        fixture.componentInstance.storageKey = localStorageKey;
         fixture.componentInstance.persistColumnWidths = value;
         fixture.detectChanges();
 
