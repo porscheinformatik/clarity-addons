@@ -300,7 +300,7 @@
     <div class="clr-col-6">
       <clr-combobox-container>
         <label>ComboBox MultiSelect</label>
-        <clr-combobox [(ngModel)]="selection" name="multiSelect" clrMulti="true">
+        <clr-combobox [(ngModel)]="selection" name="multiSelect" clrMulti="true" class="clr-combobox-vertical">
           <ng-container *clrOptionSelected="let selected"> {{ selected?.name }}</ng-container>
           <clr-options>
             <clr-option *clrOptionItems="let state of states; field: 'name'" [clrValue]="state">
