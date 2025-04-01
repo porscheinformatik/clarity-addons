@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
+  ~ Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
@@ -642,4 +642,42 @@
       </ng-container>
     </clr-tt-row>
   </ng-template>
+</clr-treetable>
+
+<h4>Deep nesting</h4>
+<clr-treetable>
+  <clr-tt-column>Column</clr-tt-column>
+  <clr-tt-row [clrExpandable]="true" [clrExpanded]="true">
+    <clr-tt-cell>Layer 0</clr-tt-cell>
+    <clr-tt-row [clrExpandable]="true" [clrExpanded]="true">
+      <clr-tt-cell>Layer 1</clr-tt-cell>
+      <clr-tt-row [clrExpanded]="true" [clrExpandable]="true">
+        <clr-tt-cell>Layer 2</clr-tt-cell>
+        <clr-tt-row [clrExpanded]="true" [clrExpandable]="true">
+          <clr-tt-cell>Layer 3</clr-tt-cell>
+          <clr-tt-row [clrExpanded]="true" [clrExpandable]="true">
+            <clr-tt-cell>Layer 4</clr-tt-cell>
+            <clr-tt-row [clrExpanded]="true" [clrExpandable]="true">
+              <clr-tt-cell>Layer 5</clr-tt-cell>
+              <clr-tt-row [clrExpanded]="true" [clrExpandable]="true">
+                <clr-tt-cell>Layer 6</clr-tt-cell>
+                <clr-tt-row [clrExpanded]="true" [clrExpandable]="true">
+                  <clr-tt-cell>Layer 7</clr-tt-cell>
+                  <clr-tt-row [clrExpanded]="true" [clrExpandable]="true">
+                    <clr-tt-cell>Layer 8</clr-tt-cell>
+                    <clr-tt-row [clrExpanded]="true" [clrExpandable]="true">
+                      <clr-tt-cell>Layer 9</clr-tt-cell>
+                      <clr-tt-row [clrExpanded]="true" [clrExpandable]="true">
+                        <clr-tt-cell>Layer 10</clr-tt-cell>
+                      </clr-tt-row>
+                    </clr-tt-row>
+                  </clr-tt-row>
+                </clr-tt-row>
+              </clr-tt-row>
+            </clr-tt-row>
+          </clr-tt-row>
+        </clr-tt-row>
+      </clr-tt-row>
+    </clr-tt-row>
+  </clr-tt-row>
 </clr-treetable>

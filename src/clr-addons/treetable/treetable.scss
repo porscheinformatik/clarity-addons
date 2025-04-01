@@ -2,11 +2,11 @@
 @use '../mixins';
 @use '../components.variables.clr-addons' as variables;
 
-@mixin row-indentation($level) {
-  $base-cell-indentation: 2rem;
-  $base-caret-indentation: 0.1rem;
-  $indentation-increment: 1rem;
+$base-cell-indentation: 2rem;
+$base-caret-indentation: 0.1rem;
+$indentation-increment: 1rem;
 
+@mixin row-indentation($level) {
   .treetable-scrolling-cells {
     .treetable-cell:first-of-type {
       padding-left: $base-cell-indentation + $level * $indentation-increment;
@@ -18,6 +18,16 @@
       } @else {
         margin-left: $base-caret-indentation;
       }
+    }
+  }
+}
+
+@mixin row-indentation-recursive($level, $max-level) {
+  @if $level <= $max-level {
+    @include row-indentation($level);
+
+    .treetable-row-wrapper {
+      @include row-indentation-recursive($level + 1, $max-level);
     }
   }
 }
@@ -283,31 +293,7 @@
             }
           }
 
-          @include row-indentation(0);
-
-          .treetable-row-wrapper {
-            @include row-indentation(1);
-
-            .treetable-row-wrapper {
-              @include row-indentation(2);
-
-              .treetable-row-wrapper {
-                @include row-indentation(3);
-
-                .treetable-row-wrapper {
-                  @include row-indentation(4);
-
-                  .treetable-row-wrapper {
-                    @include row-indentation(5);
-
-                    .treetable-row-wrapper {
-                      @include row-indentation(6);
-                    }
-                  }
-                }
-              }
-            }
-          }
+          @include row-indentation-recursive(0, 10);
         }
       }
     }
