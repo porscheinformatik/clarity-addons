@@ -240,8 +240,16 @@
   }
 
   .clr-combobox-wrapper,
-  .clr-combobox-input,
-  .clr-combobox-input-wrapper {
+  .clr-combobox-input {
+    width: 100%;
+  }
+
+  // Combobox input wrapper is doing two different things:
+  // - in single selection mode, then it's just like a text input
+  // - in multi selection mode, it's a text input NEXT TO the selected items
+  // If we don't set 100% in single selection mode, the input could be too small and cut off the selected value.
+  // But if we set 100% also in multi selection mode, then we mess up the flex layout of the two columns.
+  .clr-combobox-input-wrapper:not(:has(.label-combobox-pill)) {
     width: 100%;
   }
 

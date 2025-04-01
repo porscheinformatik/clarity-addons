@@ -1,0 +1,49 @@
+<h4>Combobox Single Selection</h4>
+<div class="clr-row">
+  <div class="clr-col-6">
+    <clr-combobox-container>
+      <label>ComboBox SingleSelect</label>
+      <clr-combobox [(ngModel)]="singleSelection" name="singleSelect">
+        <ng-container *clrOptionSelected="let selected"> {{ selected }}</ng-container>
+        <clr-options>
+          <clr-option *clrOptionItems="let item of items" [clrValue]="item"> {{ item }} </clr-option>
+        </clr-options>
+      </clr-combobox>
+    </clr-combobox-container>
+  </div>
+</div>
+
+<h4>Combobox Multi Selection - Default</h4>
+<div class="clr-row">
+  <div class="clr-col-6">
+    <clr-combobox-container>
+      <label>ComboBox MultiSelect</label>
+      <clr-combobox [(ngModel)]="multiSelection" name="multiSelect" clrMulti="true">
+        <ng-container *clrOptionSelected="let selected"> {{ selected }}</ng-container>
+        <clr-options>
+          <clr-option *clrOptionItems="let item of items" [clrValue]="item"> {{ item }} </clr-option>
+        </clr-options>
+      </clr-combobox>
+    </clr-combobox-container>
+  </div>
+</div>
+
+<h4>Combobox Multi Selection - Vertical</h4>
+<div class="clr-row">
+  <div class="clr-col-6">
+    <clr-combobox-container>
+      <label>ComboBox MultiSelect Vertical</label>
+      <clr-combobox
+        [(ngModel)]="multiSelectionVertical"
+        name="multiSelectVertical"
+        clrMulti="true"
+        class="clr-combobox-vertical"
+      >
+        <ng-container *clrOptionSelected="let selected"> {{ selected }}</ng-container>
+        <clr-options>
+          <clr-option *clrOptionItems="let item of items" [clrValue]="item"> {{ item }} </clr-option>
+        </clr-options>
+      </clr-combobox>
+    </clr-combobox-container>
+  </div>
+</div>

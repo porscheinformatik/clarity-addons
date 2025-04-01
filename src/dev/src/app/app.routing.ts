@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -19,6 +19,7 @@ export const APP_ROUTES: Routes = [
     loadChildren: () => import('./back-button/back-button.demo.module').then(m => m.BackButtonDemoModule),
   },
   { path: 'cards', loadChildren: () => import('./cards/cards.demo.module').then(m => m.CardsDemoModule) },
+  { path: 'combobox', loadComponent: () => import('./combobox/combobox.demo').then(m => m.ComboboxDemo) },
   {
     path: 'view-edit-section',
     loadChildren: () =>
