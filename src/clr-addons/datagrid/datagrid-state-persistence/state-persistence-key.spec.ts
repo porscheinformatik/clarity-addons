@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, flushMicrotasks, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
@@ -12,6 +12,7 @@ import {
 import { ClrDatagridStatePersistenceModule } from './datagrid-state-persistence.module';
 import { By } from '@angular/platform-browser';
 import { BehaviorSubject } from 'rxjs';
+import { ClrEnumFilterComponent, ClrEnumFilterModule } from '../enum-filter';
 
 @Component({
   template: `
@@ -39,6 +40,14 @@ import { BehaviorSubject } from 'rxjs';
       <clr-dg-column id="column4" [clrDgField]="'column4'" [clrDgSortBy]="PROPERTY_COMPARATOR">
         <ng-template clrDgHideableColumn><span>column4</span></ng-template>
       </clr-dg-column>
+      <clr-dg-column id="custom-filter-column" [clrDgField]="'custom'" [clrDgSortBy]="'custom'">
+        <ng-template clrDgHideableColumn>
+          <span>custom</span>
+        </ng-template>
+        <clr-dg-filter>
+          <clr-enum-filter clrProperty="custom" [clrPossibleValues]="['a', 'b', 'c']"></clr-enum-filter>
+        </clr-dg-filter>
+      </clr-dg-column>
       <clr-dg-column id="hidden" [clrDgField]="'hidden'">
         <ng-template [clrDgHideableColumn]="{ hidden: true }"><span>hidden</span></ng-template>
       </clr-dg-column>
@@ -57,6 +66,9 @@ class TestComponent {
 
   @ViewChild(ClrDatagrid)
   datagrid: ClrDatagrid;
+
+  @ViewChild(ClrEnumFilterComponent)
+  customFilter: ClrEnumFilterComponent<any>;
 
   refreshHandler = new BehaviorSubject<ClrDatagridStateInterface>(undefined);
 
@@ -78,7 +90,13 @@ describe('StatePersistenceKeyDirective', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ClarityModule, FormsModule, BrowserAnimationsModule, ClrDatagridStatePersistenceModule],
+      imports: [
+        ClarityModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        ClrDatagridStatePersistenceModule,
+        ClrEnumFilterModule,
+      ],
       declarations: [TestComponent],
       teardown: { destroyAfterEach: false },
     }).compileComponents();
@@ -331,5 +349,51 @@ describe('StatePersistenceKeyDirective', () => {
         expect(storageContent?.columns?.hidden).toBeUndefined();
       });
     });
+  });
+
+  describe('filter persistence', () => {
+    it('should apply filter values from session storage', () => {
+      const storageKey = PERSISTENCE_KEY + '-should-apply-filter';
+      sessionStorage.setItem(
+        storageKey,
+        JSON.stringify({
+          columns: {
+            custom: { filterValue: { property: 'custom', value: ['a', 'b'] } },
+            column1: { filterValue: { property: 'column1', value: 'test value' } },
+          },
+        })
+      );
+
+      fixture.componentInstance.storageKey = storageKey;
+      fixture.componentInstance.persistFilters = true;
+      fixture.detectChanges();
+
+      const dgState = fixture.componentInstance.refreshHandler.value;
+      expectFilterValue(dgState, 'custom', ['a', 'b']);
+      expectFilterValue(dgState, 'column1', 'test value');
+    });
+
+    function expectFilterValue(dgState: ClrDatagridStateInterface, field: string, value: unknown): void {
+      const filterValue = dgState.filters.find(f => f.property === field);
+      expect(filterValue).not.toBeUndefined();
+      expect(filterValue.property).toEqual(field);
+      expect(filterValue.value).toEqual(value);
+    }
+
+    it('should persist filter values to session storage', fakeAsync(() => {
+      const storageKey = PERSISTENCE_KEY + '-should-persist-filter';
+      fixture.componentInstance.storageKey = storageKey;
+      fixture.componentInstance.persistFilters = true;
+      fixture.detectChanges();
+
+      fixture.componentInstance.customFilter.onChange({ value: 'a', displayValue: 'a' }, true);
+      fixture.detectChanges();
+
+      tick(1);
+      flushMicrotasks();
+
+      const storageContent = JSON.parse(sessionStorage.getItem(storageKey));
+      expect(storageContent?.columns?.custom).toEqual({ filterValue: { property: 'custom', value: ['a'] } });
+    }));
   });
 });

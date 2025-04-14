@@ -6,8 +6,10 @@ import {
   ElementRef,
   HostListener,
   Input,
+  isSignal,
   OnDestroy,
   QueryList,
+  Signal,
 } from '@angular/core';
 import {
   ClrDatagrid,
@@ -356,7 +358,12 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
   private getFilterPropertyName(filter: ClrDatagridFilterInterface<unknown, unknown>): string {
     // for NestedProperty we need to get the original property
     const filterWithProp = filter as unknown as { property: unknown };
-    return ((filterWithProp.property as Record<string, unknown>)?.prop || filterWithProp.property) as string;
+    return ((filterWithProp.property as Record<string, unknown>)?.prop ||
+      this.resolveSignal(filterWithProp.property)) as string;
+  }
+
+  private resolveSignal<T>(value: T | Signal<T>): T {
+    return isSignal(value) ? value() : value;
   }
 
   private getSortProperty(sortBy: ClrDatagridComparatorInterface<unknown> | string): string | undefined {
