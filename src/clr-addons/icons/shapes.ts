@@ -276,20 +276,32 @@ export const PartAvailabilityYesShape = clrIconSVG(
   '0 0 36 36'
 );
 
-export const partIdenticalShape = clrIconSVG(
+export const PartSuccessorShape = clrIconSVG(
+  `<path d="M18.5,21.5H14.661v8.658h6.472l.056-8.659Zm1.029,6.963-3.251,0V25.719l3.262,1.088Zm.023-3.427-3.274-1.092V21.672l3.288,1.1Z M14.661,14.5h1.616v-.716l2.145.716h2.812l.02-3.126h3.938V5H10.607v6.374h4.054Zm4.97-1.382L16.278,12V11.37H19.64ZM12.223,9.677V6.7H23.576V9.677Z M27.439,12.939a1.5,1.5,0,0,1,2.122,0l4,4a1.5,1.5,0,0,1,0,2.122l-4,4a1.5,1.5,0,0,1-2.122-2.122l1.44-1.439H18.5a1.5,1.5,0,0,1,0-3H28.879l-1.44-1.439A1.5,1.5,0,0,1,27.439,12.939ZM8.855,19.5a1.5,1.5,0,1,0-1.5-1.5A1.5,1.5,0,0,0,8.855,19.5ZM2.205,18a1.5,1.5,0,1,0,1.5-1.5A1.5,1.5,0,0,0,2.205,18ZM14,19.5A1.5,1.5,0,1,0,12.5,18,1.5,1.5,0,0,0,14,19.5Z"/>`,
+  '0 0 36 36'
+);
+export const PartPredecessorShape = clrIconSVG(
+  `<path d="M18.5,21.5H14.661v8.658h6.472l.056-8.659Zm1.029,6.963-3.251,0V25.719l3.262,1.088Zm.023-3.427-3.274-1.092V21.672l3.288,1.1Z M14.661,14.5h1.616v-.716l2.145.716h2.812l.02-3.126h3.938V5H10.607v6.374h4.054Zm4.97-1.382L16.278,12V11.37H19.64ZM12.223,9.677V6.7H23.576V9.677Z M8.765,23.061a1.5,1.5,0,0,1-2.121,0l-4-4a1.5,1.5,0,0,1,0-2.122l4-4a1.5,1.5,0,0,1,2.121,2.122L7.326,16.5H17.7a1.5,1.5,0,0,1,0,3H7.326l1.439,1.439A1.5,1.5,0,0,1,8.765,23.061ZM27.35,16.5a1.5,1.5,0,1,0,1.5,1.5A1.5,1.5,0,0,0,27.35,16.5ZM34,18a1.5,1.5,0,1,0-1.5,1.5A1.5,1.5,0,0,0,34,18ZM22.2,16.5A1.5,1.5,0,1,0,23.7,18,1.5,1.5,0,0,0,22.2,16.5Z"/>`,
+  '0 0 36 36'
+);
+export const PartSuccessorPredecessorShape = clrIconSVG(
+  `<path d="M8.765,23.061a1.5,1.5,0,0,1-2.121,0l-4-4a1.5,1.5,0,0,1,0-2.122l4-4a1.5,1.5,0,0,1,2.121,2.122L7.326,16.5h5.379a1.5,1.5,0,0,1,0,3H7.326l1.439,1.439A1.5,1.5,0,0,1,8.765,23.061Z"/><path d="M27.439,12.939a1.5,1.5,0,0,1,2.122,0l4,4a1.5,1.5,0,0,1,0,2.122l-4,4a1.5,1.5,0,0,1-2.122-2.122l1.44-1.439H23.5a1.5,1.5,0,0,1,0-3h5.379l-1.44-1.439A1.5,1.5,0,0,1,27.439,12.939Z"/><circle cx="18" cy="17.973" r="1.5"/><path d="M18.5,21.5H14.661v8.658h6.472l.056-8.659Zm1.029,6.963-3.251,0V25.719l3.262,1.088Zm.023-3.427-3.274-1.092V21.672l3.288,1.1Z"/><path d="M14.661,14.5h1.616v-.716l2.145.716h2.812l.02-3.126h3.938V5H10.607v6.374h4.054Zm4.97-1.382L16.278,12V11.37H19.64ZM12.223,9.677V6.7H23.576V9.677Z"/>`,
+  '0 0 36 36'
+);
+export const PartIdenticalShape = clrIconSVG(
   `<path d="M19.67,23l-.02,2.04-3.27-1.1V23H14.76v7.16h6.47L21.28,23Zm-.04,5.46H16.38V25.72l3.26,1.09ZM10.71,5v6.37h4.05V13h4.61l-2.99-1v-.63h3.36L19.73,13h1.61l.01-1.63h3.94V5ZM23.68,9.68H12.32V6.7H23.68ZM24,16a1,1,0,0,1-1,1H13a1,1,0,0,1,0-2H23A1,1,0,0,1,24,16Zm0,4a1,1,0,0,1-1,1H13a1,1,0,0,1,0-2H23A1,1,0,0,1,24,20Z"/>`,
   '0 0 36 36'
 );
 
-export const partIdenticalPredecessorShape = clrIconSVG(
+export const PartIdenticalPredecessorShape = clrIconSVG(
   `<path d="M18.5,21.5h-3.8v8.7h6.5l0.1-8.7L18.5,21.5z M19.5,28.5h-3.3v-2.7l3.3,1.1L19.5,28.5z M19.6,25l-3.3-1.1v-2.3l3.3,1.1L19.6,25z M14.7,14.5h1.6v-0.7l2.1,0.7h2.8l0-3.1h3.9V5H10.6v6.4h4.1V14.5z M19.6,13.1L16.3,12v-0.6h3.4L19.6,13.1z M12.2,9.7v-3h11.4v3H12.2z M8.8,23.1c-0.6,0.6-1.5,0.6-2.1,0l-4-4c-0.6-0.6-0.6-1.5,0-2.1c0,0,0,0,0,0l4-4c0.6-0.6,1.5-0.6,2.1,0s0.6,1.5,0,2.1l-1.4,1.4h10.4c0.8,0,1.5,0.7,1.5,1.5s-0.7,1.5-1.5,1.5H7.3l1.4,1.4C9.4,21.5,9.4,22.5,8.8,23.1C8.8,23.1,8.8,23.1,8.8,23.1zM30.2,17h-6c-0.6,0-1-0.4-1-1c0-0.6,0.4-1,1-1h6c0.6,0,1,0.4,1,1C31.2,16.6,30.7,17,30.2,17z M30.2,21h-6c-0.6,0-1-0.4-1-1s0.4-1,1-1h6c0.6,0,1,0.4,1,1S30.7,21,30.2,21z"/>`,
   '0 0 36 36'
 );
-export const partIdenticalSuccessorShape = clrIconSVG(
+export const PartIdenticalSuccessorShape = clrIconSVG(
   `<path d="M18.5,21.5h-3.8v8.7h6.5l0.1-8.7L18.5,21.5z M19.5,28.5h-3.3v-2.7l3.3,1.1L19.5,28.5z M19.6,25l-3.3-1.1v-2.3l3.3,1.1L19.6,25z M14.7,14.5h1.6v-0.7l2.1,0.7h2.8l0-3.1h3.9V5H10.6v6.4h4.1V14.5z M19.6,13.1L16.3,12v-0.6h3.4L19.6,13.1z M12.2,9.7v-3h11.4v3H12.2z M12.2,17h-6c-0.6,0-1-0.4-1-1c0-0.6,0.4-1,1-1h6c0.6,0,1,0.4,1,1C13.2,16.6,12.7,17,12.2,17z M12.2,21h-6c-0.6,0-1-0.4-1-1s0.4-1,1-1h6c0.6,0,1,0.4,1,1S12.7,21,12.2,21z M27.4,12.9c0.6-0.6,1.5-0.6,2.1,0c0,0,0,0,0,0l4,4c0.6,0.6,0.6,1.5,0,2.1c0,0,0,0,0,0l-4,4c-0.6,0.6-1.5,0.6-2.1,0s-0.6-1.5,0-2.1l1.4-1.4H18.5c-0.8,0-1.5-0.7-1.5-1.5s0.7-1.5,1.5-1.5h10.4l-1.4-1.4C26.9,14.5,26.9,13.5,27.4,12.9C27.4,12.9,27.4,12.9,27.4,12.9z"/>`,
   '0 0 36 36'
 );
-export const partIdenticalSuccpredecessorShape = clrIconSVG(
+export const PartIdenticalSuccpredecessorShape = clrIconSVG(
   `<path d="M8.765,23.061a1.5,1.5,0,0,1-2.121,0l-4-4a1.5,1.5,0,0,1,0-2.122l4-4a1.5,1.5,0,0,1,2.121,2.122L7.326,16.5h3.379a1.5,1.5,0,0,1,0,3H7.326l1.439,1.439A1.5,1.5,0,0,1,8.765,23.061ZM27.439,12.939a1.5,1.5,0,0,1,2.122,0l4,4a1.5,1.5,0,0,1,0,2.122l-4,4a1.5,1.5,0,0,1-2.122-2.122l1.44-1.439H25.5a1.5,1.5,0,0,1,0-3h3.379l-1.44-1.439A1.5,1.5,0,0,1,27.439,12.939ZM21,23h-1.44l-.01,2.04-3.27-1.1V23H15c-.11,0-.23-.01-.34-.02v7.18h6.47l.05-7.17A1.087,1.087,0,0,1,21,23Zm-1.47,5.46h-3.25V25.72l3.26,1.09ZM10.612,5v6.37h4.05v1.65c.11-.01.23-.02.34-.02h4.27l-2.99-1v-.63h3.36L19.632,13H21a.974.974,0,0,1,.24.02l.01-1.65h3.94V5Zm1.61,4.68V6.7h11.35l.01,2.98ZM21,15H15a1,1,0,0,0,0,2h6a1,1,0,0,0,0-2Zm0,4H15a1,1,0,0,0,0,2h6a1,1,0,0,0,0-2Z"/>`,
   '0 0 36 36'
 );
@@ -6381,15 +6393,21 @@ export const partAvailabilityNoIcon: IconShapeTuple = ['part-availability-no', P
 export const partAvailabilityUnknownIcon: IconShapeTuple = ['part-availability-unknown', PartAvailabilityUnknownShape];
 export const partAvailabilityWarningIcon: IconShapeTuple = ['part-availability-warning', PartAvailabilityWarningShape];
 export const partAvailabilityYesIcon: IconShapeTuple = ['part-availability-yes', PartAvailabilityYesShape];
-export const partIdenticalIcon: IconShapeTuple = ['part-identical', partIdenticalShape];
+export const partSuccessorIcon: IconShapeTuple = ['part-successor', PartSuccessorShape];
+export const partPredecessorIcon: IconShapeTuple = ['part-predecessor', PartPredecessorShape];
+export const partSuccessorPredecessorIcon: IconShapeTuple = [
+  'part-successorpredecessor',
+  PartSuccessorPredecessorShape,
+];
+export const partIdenticalIcon: IconShapeTuple = ['part-identical', PartIdenticalShape];
 export const partIdenticalPredecessorIcon: IconShapeTuple = [
   'part-identical-predecessor',
-  partIdenticalPredecessorShape,
+  PartIdenticalPredecessorShape,
 ];
-export const partIdenticalSuccessorIcon: IconShapeTuple = ['part-identical-successor', partIdenticalSuccessorShape];
+export const partIdenticalSuccessorIcon: IconShapeTuple = ['part-identical-successor', PartIdenticalSuccessorShape];
 export const partIdenticalSuccpredecessorIcon: IconShapeTuple = [
   'part-identical-succpredecessor',
-  partIdenticalSuccpredecessorShape,
+  PartIdenticalSuccpredecessorShape,
 ];
 export const paintMaterialIcon: IconShapeTuple = ['paint-material', PaintMaterialShape];
 export const paintMaterialForwardIcon: IconShapeTuple = ['paint-material-fwd', PaintMaterialForwardShape];
@@ -7056,6 +7074,9 @@ export const allIcons: IconShapeTuple[] = [
   partAvailabilityUnknownIcon,
   partAvailabilityWarningIcon,
   partAvailabilityYesIcon,
+  partSuccessorIcon,
+  partPredecessorIcon,
+  partSuccessorPredecessorIcon,
   partIdenticalIcon,
   partIdenticalPredecessorIcon,
   partIdenticalSuccessorIcon,
