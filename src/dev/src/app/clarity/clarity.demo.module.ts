@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
 import { ClarityModule, ClrFormsModule } from '@clr/angular';
 import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
 
-import { ClarityDemo } from './calrity.demo';
+import { ClarityDemo } from './clarity.demo';
 
 @NgModule({
   imports: [

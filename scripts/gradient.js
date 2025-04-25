@@ -24,48 +24,33 @@ function interpolate(f, v1, f1, v2, f2) {
   return clamp(k * f + d, 0, 1);
 }
 
-function bezier(f, index, allPs) {
-  if (index <= 0) {
-    return allPs[0].v + (allPs[1].v - allPs[0].v) * ((f - allPs[0].f) / (allPs[1].f - allPs[0].f));
+function monotonicCubicInterpolate(f, allPs) {
+  if (allPs.length < 2) {
+    return allPs[0].v;
   }
 
-  if (index > allPs.length - 2) {
-    return (
-      allPs[allPs.length - 2].v +
-      (allPs[allPs.length - 1].v - allPs[allPs.length - 2].v) *
-        ((f - allPs[allPs.length - 2].f) / (allPs[allPs.length - 1].f - allPs[allPs.length - 2].f))
-    );
-  }
-
-  const p0 = allPs[index - 1];
-  const p1 = allPs[index];
-  const p2 = allPs[index + 1];
-
-  f = clamp((f - p0.f) / (p2.f - p0.f), 0, 1);
-
-  let x1 = (p1.f - p0.f) / (p2.f - p0.f);
-  let t;
-
-  if (x1 === 0.5) {
-    t = f;
-  } else {
-    t = (x1 - Math.sqrt(Math.pow(x1, 2) - 2 * x1 * f + f)) / (2 * x1 - 1);
-  }
-
-  return p0.v * Math.pow(t - 1, 2) + t * (p2.v * t - 2 * p1.v * (t - 1));
-}
-
-function smoothCurve(f, allPs) {
-  let index = 0;
-
+  // Find the surrounding interval
   for (let i = 0; i < allPs.length - 1; i++) {
-    if (f >= allPs[i].f && f < allPs[i + 1].f) {
-      index = i;
-      break;
+    const p0 = allPs[i];
+    const p1 = allPs[i + 1];
+
+    if (f >= p0.f && f <= p1.f) {
+      const t = (f - p0.f) / (p1.f - p0.f);
+      const m0 = i === 0 ? (p1.v - p0.v) / (p1.f - p0.f) : (p1.v - allPs[i - 1].v) / (p1.f - allPs[i - 1].f);
+      const m1 =
+        i === allPs.length - 2 ? (p1.v - p0.v) / (p1.f - p0.f) : (allPs[i + 2].v - p0.v) / (allPs[i + 2].f - p0.f);
+
+      // Hermite cubic interpolation
+      const h00 = 2 * t ** 3 - 3 * t ** 2 + 1;
+      const h10 = t ** 3 - 2 * t ** 2 + t;
+      const h01 = -2 * t ** 3 + 3 * t ** 2;
+      const h11 = t ** 3 - t ** 2;
+
+      return clamp(h00 * p0.v + h10 * (p1.f - p0.f) * m0 + h01 * p1.v + h11 * (p1.f - p0.f) * m1, 0, 1);
     }
   }
 
-  return clamp((bezier(f, index, allPs) + bezier(f, index + 1, allPs)) / 2, 0, 1);
+  return allPs[allPs.length - 1].v;
 }
 
 // credits: https://gist.github.com/xenozauros/f6e185c8de2a04cdfecf
@@ -167,9 +152,9 @@ function computeColor(f, colors) {
   const ls = colors.map(c => ({ f: c.f, v: c.l }));
 
   return {
-    h: smoothCurve(f, hs),
-    s: smoothCurve(f, ss),
-    l: smoothCurve(f, ls),
+    h: monotonicCubicInterpolate(f, hs),
+    s: monotonicCubicInterpolate(f, ss),
+    l: monotonicCubicInterpolate(f, ls),
     f: f,
   };
 }
@@ -181,64 +166,28 @@ for (let i = 3; i < process.argv.length; i++) {
   colors.push(rgbToHsl(process.argv[i]));
 }
 
-if (colors.length < 1) {
-  console.error('At least one color is required');
+if (colors.length < 2) {
+  console.error('At least two colors are required');
   process.exit(1);
 }
 
 colors.sort((a, b) => a.f - b.f);
 
-if (colors.length > 1) {
-  colors.push({
-    h: interpolate(0, colors[0].h, colors[0].f, colors[1].h, colors[1].f),
-    s: interpolate(0, colors[0].s, colors[0].f, colors[1].s, colors[1].f),
-    l: interpolate(0, colors[0].l, colors[0].f, colors[1].l, colors[1].f),
-    f: 0,
-  });
-} else {
-  colors.push({
-    h: colors[0].h,
-    s: colors[0].s,
-    l: minL,
-    f: 0,
-  });
-}
+colors.push({
+  h: interpolate(0, colors[0].h, colors[0].f, colors[1].h, colors[1].f),
+  s: interpolate(0, colors[0].s, colors[0].f, colors[1].s, colors[1].f),
+  l: Math.max(minL, interpolate(0, colors[0].l, colors[0].f, colors[1].l, colors[1].f)), // so it's not too dark
+  f: 0,
+});
 
 colors.sort((a, b) => a.f - b.f);
 
-if (colors.length > 2) {
-  colors.push({
-    h: interpolate(
-      1,
-      colors[colors.length - 2].h,
-      colors[colors.length - 2].f,
-      colors[colors.length - 1].h,
-      colors[colors.length - 1].f
-    ),
-    s: interpolate(
-      1,
-      colors[colors.length - 2].s,
-      colors[colors.length - 2].f,
-      colors[colors.length - 1].s,
-      colors[colors.length - 1].f
-    ),
-    l: interpolate(
-      1,
-      colors[colors.length - 2].l,
-      colors[colors.length - 2].f,
-      colors[colors.length - 1].l,
-      colors[colors.length - 1].f
-    ),
-    f: 1,
-  });
-} else {
-  colors.push({
-    h: colors[colors.length - 1].h,
-    s: colors[colors.length - 1].s,
-    l: maxL,
-    f: 1,
-  });
-}
+colors.push({
+  h: interpolate(1, colors.at(2).h, colors.at(2).f, colors.at(1).h, colors.at(1).f),
+  s: interpolate(1, colors.at(2).s, colors.at(2).f, colors.at(1).s, colors.at(1).f),
+  l: Math.min(maxL, interpolate(1, colors.at(2).l, colors.at(2).f, colors.at(1).l, colors.at(1).f)), // so it's not too light
+  f: 1,
+});
 
 colors.sort((a, b) => a.f - b.f);
 
