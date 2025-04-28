@@ -35,11 +35,16 @@
   --clr-btn-info-bg-color: var(--cds-alias-status-info);
   --clr-btn-info-border-color: var(--cds-alias-status-info);
   --clr-btn-info-hover-bg-color: var(--cds-alias-object-interaction-info-hover);
+  --clr-btn-info-active-color: var(--clr-btn-primary-active-color);
   --clr-btn-info-active-bg-color: var(--cds-alias-object-interaction-info-click);
   --clr-btn-info-checked-bg-color: var(--cds-alias-status-info);
+
   --clr-btn-info-outline-color: var(--cds-alias-status-info);
   --clr-btn-info-outline-hover-bg-color: var(--cds-alias-object-interaction-info-secondary-hover);
   --clr-btn-info-outline-hover-color: var(--cds-alias-typography-info-hover);
+  --clr-btn-info-outline-border-color: var(--cds-alias-status-info);
+  --clr-btn-info-outline-active-color: var(--cds-alias-status-info);
+  --clr-btn-info-outline-active-border-color: var(--cds-alias-status-info);
 
   --clr-btn-link-color: var(--cds-alias-status-primary);
   --clr-btn-link-hover-color: var(--cds-alias-typography-primary-hover);
@@ -177,6 +182,10 @@
   --cds-alias-object-interaction-primary-hover: #{variables.$phs-global-color-turquoise-800};
   --cds-alias-object-interaction-primary-click: #{variables.$phs-global-color-turquoise-900};
   --cds-alias-object-interaction-primary-secondary-hover: #{variables.$phs-global-color-turquoise-50};
+
+  --cds-alias-status-alt: #{variables.$phs-global-color-violet-700};
+  --cds-alias-status-alt-shade: #{variables.$phs-global-color-violet-800};
+  --cds-alias-status-alt-tint: #{variables.$phs-global-color-violet-50};
 
   --cds-alias-typography-primary-hover: #{variables.$phs-global-color-turquoise-800};
 

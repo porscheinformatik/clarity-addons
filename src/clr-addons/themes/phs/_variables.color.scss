@@ -5,162 +5,107 @@ $phs-default-font-family: Metropolis, 'Avenir Next', 'Helvetica Neue', Arial, sa
 $phs-global-color-white: #fff;
 $phs-global-color-black: #000;
 
-// node gradient turquoise 14a1a9@700 19888d@800 e8f3f3@50
-$phs-global-color-turquoise-25: hsl(180, 30%, 95%); // #eff7f7
-$phs-global-color-turquoise-50: hsl(180, 31%, 93%); // #e8f3f3
-$phs-global-color-turquoise-75: hsl(180, 33%, 91%); // #e0f0f0
-$phs-global-color-turquoise-100: hsl(180, 35%, 89%); // #d9ecec
-$phs-global-color-turquoise-200: hsl(181, 42%, 80%); // #b7e1e2
-$phs-global-color-turquoise-300: hsl(181, 49%, 72%); // #93d9da
-$phs-global-color-turquoise-400: hsl(182, 56%, 63%); // #6cd3d6
-$phs-global-color-turquoise-500: hsl(182, 63%, 55%); // #43cfd4
-$phs-global-color-turquoise-600: hsl(183, 69%, 46%); // #25c1c8
-$phs-global-color-turquoise-700: hsl(183, 75%, 38%); // #19a3aa
+// node gradient turquoise 14a1a9@700 e7f5f6@50 19888d@800
+$phs-global-color-turquoise-25: hsl(180, 30%, 95%); // #eff7f7 - modified manually to make sense
+$phs-global-color-turquoise-50: hsl(184, 45%, 94%); // #e7f5f6
+$phs-global-color-turquoise-75: hsl(184, 45%, 92%); // #e3f3f4
+$phs-global-color-turquoise-100: hsl(184, 45%, 91%); // #def1f2
+$phs-global-color-turquoise-200: hsl(183, 46%, 84%); // #c3e7e9
+$phs-global-color-turquoise-300: hsl(183, 52%, 75%); // #a0dde1
+$phs-global-color-turquoise-400: hsl(183, 59%, 66%); // #74d6db
+$phs-global-color-turquoise-500: hsl(183, 67%, 56%); // #42d1da
+$phs-global-color-turquoise-600: hsl(183, 74%, 46%); // #1ec2cc
+$phs-global-color-turquoise-700: hsl(183, 79%, 37%); // #14a1a9
 $phs-global-color-turquoise-800: hsl(183, 70%, 33%); // #19888d
 $phs-global-color-turquoise-900: hsl(182, 61%, 28%); // #1c7073
 $phs-global-color-turquoise-1000: hsl(181, 52%, 24%); // #1d5a5b
 
-// node gradient blue e3f5fc@50 c8eaf9@100 00648f@700 00567a@800
-$phs-global-color-blue-25: hsl(196, 81%, 97%); // #effafd
-$phs-global-color-blue-50: hsl(197, 81%, 94%); // #e3f5fc
-$phs-global-color-blue-75: hsl(197, 81%, 91%); // #d6f0fb
-$phs-global-color-blue-100: hsl(198, 81%, 88%); // #c9ebf9
-$phs-global-color-blue-200: hsl(198, 84%, 78%); // #99daf6
-$phs-global-color-blue-300: hsl(198, 87%, 68%); // #67caf4
-$phs-global-color-blue-400: hsl(198, 90%, 58%); // #35bbf4
-$phs-global-color-blue-500: hsl(198, 93%, 49%); // #08a9ef
-$phs-global-color-blue-600: hsl(198, 96%, 39%); // #0489c3
-$phs-global-color-blue-700: hsl(198, 99%, 30%); // #016996
-$phs-global-color-blue-800: hsl(198, 100%, 24%); // #00567a
-$phs-global-color-blue-900: hsl(197, 100%, 20%); // #004865
-$phs-global-color-blue-1000: hsl(197, 100%, 16%); // #003950
+// node gradient violet 8939ad@700 f5e8f9@50
+$phs-global-color-violet-25: hsl(286, 59%, 95%); // #f6ebfa
+$phs-global-color-violet-50: hsl(286, 59%, 94%); // #f5e8f9
+$phs-global-color-violet-75: hsl(286, 58%, 93%); // #f2e1f7
+$phs-global-color-violet-100: hsl(286, 58%, 91%); // #eedaf5
+$phs-global-color-violet-200: hsl(285, 57%, 83%); // #e0bced
+$phs-global-color-violet-300: hsl(284, 55%, 76%); // #d19fe4
+$phs-global-color-violet-400: hsl(283, 54%, 68%); // #c282da
+$phs-global-color-violet-500: hsl(283, 53%, 60%); // #b165d0
+$phs-global-color-violet-600: hsl(282, 52%, 53%); // #a048c5
+$phs-global-color-violet-700: hsl(281, 50%, 45%); // #8939ad
+$phs-global-color-violet-800: hsl(281, 49%, 38%); // #70318f
+$phs-global-color-violet-900: hsl(280, 48%, 30%); // #592871
+$phs-global-color-violet-1000: hsl(279, 47%, 22%); // #411e54
 
-// node gradient green 3c8500@700 dff0d0@50 266900@900
+// node gradient blue e3f5fc@50 00648f@700
+$phs-global-color-blue-25: hsl(197, 80%, 95%); // #e8f7fc
+$phs-global-color-blue-50: hsl(197, 81%, 94%); // #e3f5fc
+$phs-global-color-blue-75: hsl(197, 81%, 92%); // #d8f1fb
+$phs-global-color-blue-100: hsl(197, 82%, 89%); // #ccedfa
+$phs-global-color-blue-200: hsl(197, 85%, 79%); // #9addf7
+$phs-global-color-blue-300: hsl(197, 89%, 68%); // #65ccf6
+$phs-global-color-blue-400: hsl(197, 92%, 57%); // #2ebcf6
+$phs-global-color-blue-500: hsl(198, 95%, 47%); // #06a6e9
+$phs-global-color-blue-600: hsl(198, 98%, 37%); // #0283ba
+$phs-global-color-blue-700: hsl(198, 100%, 28%); // #00648f
+$phs-global-color-blue-800: hsl(198, 100%, 22%); // #004e70
+$phs-global-color-blue-900: hsl(198, 100%, 18%); // #00415e
+$phs-global-color-blue-1000: hsl(199, 100%, 15%); // #00354d
+
+// node gradient green 3c8500@700 dff0d0@50
 $phs-global-color-green-25: hsl(92, 50%, 90%); // #e5f2da
 $phs-global-color-green-50: hsl(92, 52%, 88%); // #dff0d0
 $phs-global-color-green-75: hsl(92, 53%, 85%); // #d9eec6
 $phs-global-color-green-100: hsl(92, 55%, 83%); // #d2ecbc
-$phs-global-color-green-200: hsl(92, 63%, 74%); // #b9e692
-$phs-global-color-green-300: hsl(92, 70%, 64%); // #9fe465
-$phs-global-color-green-400: hsl(93, 77%, 55%); // #85e535
-$phs-global-color-green-500: hsl(93, 84%, 46%); // #6cd913
-$phs-global-color-green-600: hsl(93, 91%, 37%); // #55b609
-$phs-global-color-green-700: hsl(94, 97%, 29%); // #409102
-$phs-global-color-green-800: hsl(96, 99%, 24%); // #327b01
-$phs-global-color-green-900: hsl(98, 100%, 21%); // #266900
-$phs-global-color-green-1000: hsl(101, 100%, 18%); // #1d5b00
+$phs-global-color-green-200: hsl(92, 63%, 73%); // #b7e68f
+$phs-global-color-green-300: hsl(92, 72%, 63%); // #9ce45d
+$phs-global-color-green-400: hsl(92, 80%, 53%); // #7fe728
+$phs-global-color-green-500: hsl(93, 87%, 43%); // #66cf0e
+$phs-global-color-green-600: hsl(93, 94%, 34%); // #50aa05
+$phs-global-color-green-700: hsl(93, 100%, 26%); // #3c8500
+$phs-global-color-green-800: hsl(93, 100%, 21%); // #2f6900
+$phs-global-color-green-900: hsl(93, 100%, 18%); // #285b00
+$phs-global-color-green-1000: hsl(93, 100%, 15%); // #224d00
 
-// node gradient red db2100@700 feddd7@100 a8150d@800 991700@900
-$phs-global-color-red-25: hsl(9, 95%, 98%); // #fff7f5
-$phs-global-color-red-50: hsl(9, 95%, 96%); // #feeeeb
-$phs-global-color-red-75: hsl(9, 95%, 94%); // #fee5e1
-$phs-global-color-red-100: hsl(9, 95%, 92%); // #feddd7
-$phs-global-color-red-200: hsl(9, 96%, 84%); // #fdbaae
-$phs-global-color-red-300: hsl(9, 97%, 76%); // #fd9785
-$phs-global-color-red-400: hsl(9, 97%, 67%); // #fc745c
-$phs-global-color-red-500: hsl(9, 97%, 59%); // #fc5033
-$phs-global-color-red-600: hsl(8, 97%, 51%); // #fb2b0a
-$phs-global-color-red-700: hsl(7, 95%, 42%); // #d31e06
-$phs-global-color-red-800: hsl(5, 89%, 36%); // #ac160a
-$phs-global-color-red-900: hsl(9, 98%, 30%); // #981801
-$phs-global-color-red-1000: hsl(15, 100%, 25%); // #7d1f00
+// node gradient red c21d00@700 feeeeb@50
+$phs-global-color-red-25: hsl(9, 90%, 96%); // #feefec
+$phs-global-color-red-50: hsl(9, 90%, 96%); // #feeeeb
+$phs-global-color-red-75: hsl(9, 91%, 94%); // #fee5e1
+$phs-global-color-red-100: hsl(9, 91%, 92%); // #fdddd7
+$phs-global-color-red-200: hsl(9, 93%, 83%); // #fcb8ac
+$phs-global-color-red-300: hsl(9, 94%, 74%); // #fb927f
+$phs-global-color-red-400: hsl(9, 96%, 65%); // #fb6a50
+$phs-global-color-red-500: hsl(9, 98%, 56%); // #fc4220
+$phs-global-color-red-600: hsl(9, 99%, 47%); // #ed2501
+$phs-global-color-red-700: hsl(9, 100%, 38%); // #c21d00
+$phs-global-color-red-800: hsl(9, 100%, 30%); // #991700
+$phs-global-color-red-900: hsl(9, 100%, 22%); // #731100
+$phs-global-color-red-1000: hsl(9, 100%, 15%); // #4d0b00
 
-// node gradient ochre 805500@900 ffba0a@500 fff4c7@50
-$phs-global-color-ochre-25: hsl(48, 100%, 91%); // #fff6d2
+// node gradient ochre c78b00@700 fff4c7@50
+$phs-global-color-ochre-25: hsl(48, 100%, 91%); // #fff6d1
 $phs-global-color-ochre-50: hsl(48, 100%, 89%); // #fff4c7
 $phs-global-color-ochre-75: hsl(48, 100%, 87%); // #fff2bd
-$phs-global-color-ochre-100: hsl(48, 100%, 85%); // #ffefb2
-$phs-global-color-ochre-200: hsl(47, 100%, 77%); // #ffe488
-$phs-global-color-ochre-300: hsl(45, 100%, 69%); // #ffd85f
-$phs-global-color-ochre-400: hsl(44, 100%, 61%); // #ffcb36
-$phs-global-color-ochre-500: hsl(43, 100%, 53%); // #ffbc0e
-$phs-global-color-ochre-600: hsl(42, 100%, 46%); // #e9a500
-$phs-global-color-ochre-700: hsl(42, 100%, 39%); // #c68900
-$phs-global-color-ochre-800: hsl(41, 100%, 32%); // #a36e00
-$phs-global-color-ochre-900: hsl(40, 100%, 25%); // #805500
-$phs-global-color-ochre-1000: hsl(39, 100%, 18%); // #5e3d00
+$phs-global-color-ochre-100: hsl(48, 100%, 85%); // #fff0b3
+$phs-global-color-ochre-200: hsl(47, 100%, 77%); // #ffe68c
+$phs-global-color-ochre-300: hsl(46, 100%, 70%); // #ffdb65
+$phs-global-color-ochre-400: hsl(45, 100%, 62%); // #ffce3e
+$phs-global-color-ochre-500: hsl(44, 100%, 54%); // #ffc016
+$phs-global-color-ochre-600: hsl(43, 100%, 47%); // #eeaa00
+$phs-global-color-ochre-700: hsl(42, 100%, 39%); // #c78b00
+$phs-global-color-ochre-800: hsl(41, 100%, 31%); // #a06d00
+$phs-global-color-ochre-900: hsl(40, 100%, 24%); // #795000
+$phs-global-color-ochre-1000: hsl(39, 100%, 16%); // #513500
 
 // node gradient construction e8e8e8@300 454545@700
 $phs-global-color-construction-25: hsl(0, 0%, 99%); // #fdfdfd
-$phs-global-color-construction-50: hsl(0, 0%, 98%); // #fbfbfb
-$phs-global-color-construction-75: hsl(0, 0%, 97%); // #f8f8f8
-$phs-global-color-construction-100: hsl(0, 0%, 96%); // #f6f6f6
-$phs-global-color-construction-200: hsl(0, 0%, 91%); // #e9e9e9
-$phs-global-color-construction-300: hsl(0, 0%, 85%); // #dadada
-$phs-global-color-construction-400: hsl(0, 0%, 72%); // #b8b8b8
-$phs-global-color-construction-500: hsl(0, 0%, 58%); // #959595
-$phs-global-color-construction-600: hsl(0, 0%, 44%); // #717171
-$phs-global-color-construction-700: hsl(0, 0%, 30%); // #4d4d4d
-$phs-global-color-construction-800: hsl(0, 0%, 19%); // #323232
-$phs-global-color-construction-900: hsl(0, 0%, 9%); // #181818
+$phs-global-color-construction-50: hsl(0, 0%, 99%); // #fcfcfc
+$phs-global-color-construction-75: hsl(0, 0%, 99%); // #fcfcfc
+$phs-global-color-construction-100: hsl(0, 0%, 99%); // #fcfcfc
+$phs-global-color-construction-200: hsl(0, 0%, 97%); // #f8f8f8
+$phs-global-color-construction-300: hsl(0, 0%, 91%); // #e8e8e8
+$phs-global-color-construction-400: hsl(0, 0%, 78%); // #c6c6c6
+$phs-global-color-construction-500: hsl(0, 0%, 60%); // #9a9a9a
+$phs-global-color-construction-600: hsl(0, 0%, 42%); // #6c6c6c
+$phs-global-color-construction-700: hsl(0, 0%, 27%); // #454545
+$phs-global-color-construction-800: hsl(0, 0%, 16%); // #292929
+$phs-global-color-construction-900: hsl(0, 0%, 8%); // #151515
 $phs-global-color-construction-1000: hsl(0, 0%, 0%); // #000000
-
-// deprecated, use $phs-global-color-turquoise-700 instead
-$turquoise: #{$phs-global-color-turquoise-700};
-// deprecated, use $phs-global-color-white instead
-$white: #{$phs-global-color-white};
-// deprecated, use $phs-global-color-black instead
-$black: #{$phs-global-color-black};
-
-:root:has([cds-theme~='phs']) {
-  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
-  --blue-light: #e6f3f8;
-  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
-  --blue-mid: #85c3df;
-  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
-  --blue-dark: #0d88c0;
-  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
-  --blue-darker: #0c75a6;
-
-  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
-  --turquoise: #{$phs-global-color-turquoise-700};
-  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
-  --turquoise-lighter: #{$phs-global-color-turquoise-50};
-  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
-  --turquoise-light: #{$phs-global-color-turquoise-100};
-  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
-  --turquoise-darkest: #{$phs-global-color-turquoise-800};
-
-  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
-  --green-turquiose: #1f9c70;
-  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
-  --green-lighter: #{$phs-global-color-green-50};
-  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
-  --green-light: #{$phs-global-color-green-100};
-  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
-  --green-light-mid: #{$phs-global-color-green-300};
-  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
-  --green-mid: #{$phs-global-color-green-500};
-  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
-  --green: #{$phs-global-color-green-700};
-  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
-  --green-dark: #{$phs-global-color-green-800};
-  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
-  --green-darkest: #{$phs-global-color-green-900};
-
-  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
-  --red-lighter: #{$phs-global-color-red-50};
-  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
-  --red-light: #{$phs-global-color-red-100};
-  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
-  --red-dark: #{$phs-global-color-red-700};
-  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
-  --red-darker: #{$phs-global-color-red-800};
-  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
-  --red-darkest: #{$phs-global-color-red-900};
-
-  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
-  --orange-dark: #d25617;
-  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
-  --orange-darker: #b84b14;
-  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
-  --orange-light: #ffae42;
-
-  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
-  --yellow-light: #efd603;
-
-  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
-  --black: #{$phs-global-color-black};
-  // deprecated, use --cds-alias instead, see https://clarity.design/documentation/color
-  --white: #{$phs-global-color-white};
-}
