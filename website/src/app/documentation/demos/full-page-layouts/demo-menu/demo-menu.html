@@ -8,75 +8,82 @@
   <div class="divider"></div>
   <div class="header-nav" [clr-nav-level]="1">
     <div class="header-overflow">
-      <a class="nav-link" routerLink="/full-page-layouts/basepage-layout-command" routerLinkActive="active"
-        ><span class="nav-text">Command bar</span></a
-      >
-      <clr-main-nav-group clrTitle="Layouts" routerLinkActive="active">
+      <a class="nav-link" routerLink="/full-page-layouts/basepage-layout-command" routerLinkActive="active">
+        <span class="nav-text">Command bar</span>
+      </a>
+      <clr-main-nav-group [clrTitle]="'Layouts'" routerLinkActive="active">
         <a
           class="nav-link"
           routerLink="/full-page-layouts/basepage-layout"
           routerLinkActive="active"
           clrMainNavGroupItem
-          >Base Pagelayout</a
         >
+          Base Pagelayout
+        </a>
         <a
           class="nav-link"
           routerLink="/full-page-layouts/sidebarpage-layout"
           routerLinkActive="active"
           clrMainNavGroupItem
-          >Sidebar Pagelayout</a
         >
-        <a class="nav-link" routerLink="/full-page-layouts/content-panel" routerLinkActive="active" clrMainNavGroupItem
-          >Content Panel Layout</a
-        >
-        <a class="nav-link" routerLink="/full-page-layouts/action-panel" routerLinkActive="active" clrMainNavGroupItem
-          >Action Panel Layout</a
-        >
-        <a class="nav-link" routerLink="/full-page-layouts/flow-bar" routerLinkActive="active" clrMainNavGroupItem
-          >Flow Bar Layout</a
-        >
-        <a class="nav-link" routerLink="/full-page-layouts/sticky-footer" routerLinkActive="active" clrMainNavGroupItem
-          >Sticky Footer Layout</a
-        >
+          Sidebar Pagelayout
+        </a>
+        <a class="nav-link" routerLink="/full-page-layouts/content-panel" routerLinkActive="active" clrMainNavGroupItem>
+          Content Panel Layout
+        </a>
+        <a class="nav-link" routerLink="/full-page-layouts/action-panel" routerLinkActive="active" clrMainNavGroupItem>
+          Action Panel Layout
+        </a>
+        <a class="nav-link" routerLink="/full-page-layouts/flow-bar" routerLinkActive="active" clrMainNavGroupItem>
+          Flow Bar Layout
+        </a>
+        <a class="nav-link" routerLink="/full-page-layouts/sticky-footer" routerLinkActive="active" clrMainNavGroupItem>
+          Sticky Footer Layout
+        </a>
         <a
           class="nav-link"
           routerLink="/full-page-layouts/content-with-history"
           routerLinkActive="active"
           clrMainNavGroupItem
-          >Content Panel Layout with History</a
         >
+          Content Panel Layout with History
+        </a>
       </clr-main-nav-group>
-      <clr-main-nav-group clrTitle="Forms" routerLinkActive="active">
+      <clr-main-nav-group [clrTitle]="'Forms'" routerLinkActive="active">
         <a
           class="nav-link"
           routerLink="/full-page-layouts/basepage-layout-sub1/forms"
           routerLinkActive="active"
           clrMainNavGroupItem
-          >Form Layout</a
         >
+          Form Layout
+        </a>
         <a
           class="nav-link"
           routerLink="/full-page-layouts/basepage-layout-sub1/ves"
           routerLinkActive="active"
           clrMainNavGroupItem
-          >View Edit Section</a
         >
+          View Edit Section
+        </a>
       </clr-main-nav-group>
-      <clr-main-nav-group clrTitle="Menu 4" routerLinkActive="active">
+      <clr-main-nav-group [clrTitle]="'Menu with icon'" [clrIcon]="'shopping-cart'" routerLinkActive="active">
         <a
           class="nav-link"
           routerLink="/full-page-layouts/basepage-layout-sub2/five"
           routerLinkActive="active"
           clrMainNavGroupItem
-          >Submenu 5</a
         >
+          Submenu 5
+        </a>
         <a
           class="nav-link"
           routerLink="/full-page-layouts/basepage-layout-sub2/six"
           routerLinkActive="active"
           clrMainNavGroupItem
-          >Submenu 6</a
         >
+          Submenu 6
+        </a>
       </clr-main-nav-group>
     </div>
   </div>

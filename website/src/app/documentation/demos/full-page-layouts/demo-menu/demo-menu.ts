@@ -5,9 +5,9 @@
  */
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject } from '@angular/core';
-import { ClarityIcons, angleIcon, applicationsIcon, cogIcon, userIcon } from '@cds/core/icon';
+import { ClarityIcons, angleIcon, applicationsIcon, cogIcon, userIcon, shoppingCartIcon } from '@cds/core/icon';
 
-ClarityIcons.addIcons(cogIcon, applicationsIcon, angleIcon, userIcon);
+ClarityIcons.addIcons(cogIcon, applicationsIcon, angleIcon, userIcon, shoppingCartIcon);
 
 @Component({
   selector: 'clr-demo-menu',

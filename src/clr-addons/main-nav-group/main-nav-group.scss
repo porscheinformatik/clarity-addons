@@ -3,6 +3,12 @@
 @use '../components.variables.clr-addons' as variables;
 
 @include mixins.exports('main-nav-group.clr-addons') {
+  :root [cds-theme] {
+    --clr-main-nav-group-icon-size: 1rem;
+    --clr-main-nav-group-title-icon-size: var(--clr-main-nav-group-icon-size);
+    --clr-main-nav-group-dropdown-icon-size: var(--clr-main-nav-group-icon-size);
+  }
+
   header,
   .header {
     .header-nav .nav-link {
@@ -28,14 +34,20 @@
       .nav-text {
         cursor: pointer;
 
-        & cds-icon {
+        & cds-icon.title-icon {
+          width: var(--clr-main-nav-group-title-icon-size);
+          height: var(--clr-main-nav-group-title-icon-size);
+        }
+
+        & cds-icon.dropdown-icon {
           position: relative;
           transform: rotate(180deg);
           top: 0;
-          width: 0.5rem;
-          height: 0.5rem;
+          width: var(--clr-main-nav-group-dropdown-icon-size);
+          height: var(--clr-main-nav-group-dropdown-icon-size);
         }
 
+        // deprecated, use cds-icon instead
         & clr-icon {
           position: relative;
           transform: unset;
@@ -107,17 +119,23 @@
         background-color: transparent;
       }
 
-      cds-icon {
+      cds-icon.title-icon {
+        width: var(--clr-main-nav-group-title-icon-size);
+        height: var(--clr-main-nav-group-title-icon-size);
+      }
+
+      cds-icon.dropdown-icon {
         position: absolute;
         top: 0;
         right: 0.5rem;
         left: unset;
-        width: 0.666667rem;
-        height: 0.666667rem;
+        width: var(--clr-main-nav-group-dropdown-icon-size);
+        height: var(--clr-main-nav-group-dropdown-icon-size);
         transform: translate(-50%, 50%) rotate(90deg);
         transition: 200ms ease-in-out;
       }
 
+      // deprecated, use cds-icon instead
       clr-icon {
         position: absolute;
         top: 0.4rem;
@@ -133,10 +151,11 @@
       }
 
       input[type='checkbox']:checked {
-        ~ label cds-icon {
+        ~ label cds-icon.dropdown-icon {
           transform: translate(-50%, 50%) rotate(180deg);
         }
 
+        // deprecated, use cds-icon instead
         ~ label clr-icon {
           transform: translate(-50%, 50%) rotate(180deg);
         }

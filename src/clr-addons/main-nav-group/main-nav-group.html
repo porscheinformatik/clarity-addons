@@ -7,9 +7,11 @@
   tabindex="0"
 >
   <input id="{{prefix}}{{id}}" type="checkbox" [checked]="isChecked()" />
-  <label class="nav-text nav-trigger" for="{{prefix}}{{id}}"
-    >{{title}}
-    <cds-icon shape="angle" direction="down"></cds-icon>
+  <label class="nav-text nav-trigger" for="{{prefix}}{{id}}">
+    @if (icon) {
+    <cds-icon class="title-icon" [attr.shape]="icon"></cds-icon>
+    } {{title}}
+    <cds-icon class="dropdown-icon" shape="angle" direction="down"></cds-icon>
   </label>
   <div class="nav-list dropdown-menu">
     <ng-content></ng-content>
