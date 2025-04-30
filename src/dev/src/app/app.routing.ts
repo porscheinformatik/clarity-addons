@@ -128,6 +128,11 @@ export const APP_ROUTES: Routes = [
       import('./datagrid-filters/datagrid-filters.demo.module').then(m => m.DatagridFiltersDemoModule),
   },
   {
+    path: 'datagrid-highlight',
+    loadChildren: () =>
+      import('./datagrid-highlight/datagrid-highlight.demo.module').then(m => m.DatagridHighlightDemoModule),
+  },
+  {
     path: 'datagrid-state-persistence',
     loadChildren: () =>
       import('./datagrid-state-persistence/datagrid-state-persistence.demo.module').then(
