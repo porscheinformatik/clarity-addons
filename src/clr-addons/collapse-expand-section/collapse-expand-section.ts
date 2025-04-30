@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { angleIcon, ClarityIcons } from '@cds/core/icon';
 
@@ -33,7 +33,7 @@ ClarityIcons.addIcons(angleIcon);
   ],
   standalone: false,
 })
-export class ClrCollapseExpandSection {
+export class ClrCollapseExpandSection implements AfterViewInit {
   @Input('clrIsCollapsed') isCollapsed = true;
   @Input('clrDisableHeaderStyles') disableHeaderStyles = false;
 
@@ -43,6 +43,15 @@ export class ClrCollapseExpandSection {
 
   @Output('clrCollapsed') collapsed = new EventEmitter();
   @Output('clrExpanded') expanded = new EventEmitter();
+
+  public disableAnimation = true;
+
+  ngAfterViewInit() {
+    // do not animate before first change detection cycle
+    setTimeout(() => {
+      this.disableAnimation = false;
+    }, 0);
+  }
 
   onCollapseExpand(): void {
     if (this.isCollapsed) {
