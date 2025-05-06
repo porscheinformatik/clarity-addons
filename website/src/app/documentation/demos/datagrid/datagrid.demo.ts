@@ -277,6 +277,8 @@ export class DatagridDemo extends ClarityDocComponent {
     { name: 'Cell', text: 'Cell', status: 'Cell' },
     { name: 'row-hover', text: 'Cell', status: 'Cell' },
     { name: 'row-select', text: 'Cell', status: 'selected' },
+    { name: 'disabled', text: 'Cell', status: 'Cell', disabled: true },
+    { name: 'selected disabled', text: 'Cell', status: 'selected', disabled: true },
   ];
 
   currentPage = 1;
