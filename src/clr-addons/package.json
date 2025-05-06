@@ -21,9 +21,9 @@
     "@angular/common": "^19.0.0",
     "@angular/core": "^19.0.0",
     "@angular/compiler": "^19.0.0",
-    "@clr/angular": "^17.7.1",
+    "@clr/angular": "^17.8.1",
     "@cds/core": "^6.15.1",
-    "@clr/ui": "^17.7.1"
+    "@clr/ui": "^17.8.1"
   },
   "author": "porscheinformatik",
   "license": "MIT",
