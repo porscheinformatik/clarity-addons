@@ -34,6 +34,7 @@ ClarityIcons.addIcons(angleIcon);
 })
 export class ClrMainNavGroup implements OnInit, OnDestroy {
   @Input('clrTitle') title: string;
+  @Input('clrIcon') icon?: string;
 
   prefix = 'mainNavGroup';
   id: number;

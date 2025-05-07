@@ -8,9 +8,9 @@ import { Route } from '@angular/router';
 import { APP_ROUTES } from './app.routing';
 import { DOCUMENT } from '@angular/common';
 import { RouteHistoryService } from './route-history.service';
-import { angleIcon, ClarityIcons, cogIcon, userIcon } from '@cds/core/icon';
+import { angleIcon, ClarityIcons, cogIcon, shoppingCartIcon, userIcon } from '@cds/core/icon';
 
-ClarityIcons.addIcons(angleIcon, cogIcon, userIcon);
+ClarityIcons.addIcons(angleIcon, cogIcon, userIcon, shoppingCartIcon);
 
 @Component({
   selector: 'app-root',
