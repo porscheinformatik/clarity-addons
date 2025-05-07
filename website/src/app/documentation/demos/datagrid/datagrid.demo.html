@@ -451,6 +451,7 @@
         [ngClass]="getColoring(item.status)"
         [clrDgItem]="item"
         [clrDgSelected]="item.status === 'selected'"
+        [clrDgSelectable]="!item.disabled"
       >
         <clr-dg-cell>{{ item.name }}</clr-dg-cell>
         <clr-dg-cell>{{ item.text }}</clr-dg-cell>
@@ -468,7 +469,7 @@
       </clr-dg-detail>
 
       <clr-dg-footer>
-        <clr-dg-pagination [clrDgPageSize]="10">
+        <clr-dg-pagination [clrDgPageSize]="15">
           <clr-dg-page-size [clrPageSizeOptions]="[5,10,15,50,100]">Entries per page</clr-dg-page-size>
         </clr-dg-pagination>
       </clr-dg-footer>
@@ -498,6 +499,7 @@
         *clrDgItems="let item of dataHighlighting"
         [clrDgItem]="item"
         [clrDgSelected]="item.status === 'selected'"
+        [clrDgSelectable]="!item.disabled"
       >
         <clr-dg-cell>{{ item.name }}</clr-dg-cell>
         <clr-dg-cell>{{ item.text }}</clr-dg-cell>
@@ -508,7 +510,7 @@
       </clr-dg-row>
 
       <clr-dg-footer>
-        <clr-dg-pagination [clrDgPageSize]="10">
+        <clr-dg-pagination [clrDgPageSize]="15">
           <clr-dg-page-size [clrPageSizeOptions]="[5,10,15,50,100]">Entries per page</clr-dg-page-size>
         </clr-dg-pagination>
       </clr-dg-footer>

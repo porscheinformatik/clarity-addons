@@ -15,6 +15,9 @@ export class ReadonlyDemo {
   checkValue1 = true;
   checkValue2: boolean;
   checkValue3 = true;
+  toggleValue1 = true;
+  toggleValue2: boolean;
+  toggleValue3 = true;
 
   inputValue = 'Test Value 1';
   selectValue = 'one';

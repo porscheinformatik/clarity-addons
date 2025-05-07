@@ -112,10 +112,6 @@
   --cds-alias-status-danger-dark: #{variables.$phs-global-color-red-900};
   --cds-alias-status-danger-tint: #{variables.$phs-global-color-red-50};
 
-  --cds-alias-status-disabled: #{variables.$phs-global-color-construction-200};
-  --cds-alias-status-disabled-shade: #{variables.$phs-global-color-construction-300};
-  --cds-alias-status-disabled-tint: #{variables.$phs-global-color-construction-400};
-
   --cds-alias-object-interaction-info-hover: #{variables.$phs-global-color-blue-800};
   --cds-alias-object-interaction-info-click: #{variables.$phs-global-color-blue-900};
   --cds-alias-object-interaction-info-secondary-hover: #{variables.$phs-global-color-blue-50};
@@ -169,9 +165,6 @@
   --cds-alias-typography-link-color-hover: #{variables.$phs-global-color-turquoise-900};
   --cds-alias-typography-link-color-visited: #{variables.$phs-global-color-turquoise-800};
   --cds-alias-typography-link-color-visited-hover: #{variables.$phs-global-color-turquoise-900};
-
-  --cds-alias-typography-disabled: var(--cds-global-color-construction-300);
-  --cds-alias-typography-disabled-button: var(--cds-global-color-construction-300);
 
   // Additional colors to distinguish between primary and info colors
   // This is not standard in Clarity, but is used in PHS
@@ -337,6 +330,6 @@
   --phs-dropdown-toggle-gap: var(--cds-global-space-2);
 
   // Toggle
-  --clr-toggle-bg-color-on: var(--turquoise);
+  --clr-toggle-bg-color-on: var(--cds-alias-status-primary);
   --clr-toggle-bg-color-off: var(--clr-color-neutral-600);
 }
