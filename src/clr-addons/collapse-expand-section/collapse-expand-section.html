@@ -6,7 +6,14 @@
     <ng-template #title>
       <ng-content select="[clr-ces-title]"></ng-content>
       <button type="button" (click)="onCollapseExpand()" class="btn btn-icon btn-link ces-caret-btn">
-        <cds-icon shape="angle" direction="up" size="28" class="ces-caret-icon" [@rotateIcon]="isCollapsed"></cds-icon>
+        <cds-icon
+          shape="angle"
+          direction="up"
+          size="28"
+          class="ces-caret-icon"
+          [@rotateIcon]="isCollapsed"
+          [@.disabled]="disableAnimation"
+        ></cds-icon>
       </button>
     </ng-template>
   </div>
@@ -18,7 +25,7 @@
       <ng-content select="[clr-ces-subtitle]"></ng-content>
     </ng-template>
   </div>
-  <div [@collapseExpandAnimation] *ngIf="!isCollapsed">
+  <div [@collapseExpandAnimation]="isCollapsed" [@.disabled]="disableAnimation" *ngIf="!isCollapsed">
     <ng-content select="[clr-ces-content]"></ng-content>
   </div>
 </div>
