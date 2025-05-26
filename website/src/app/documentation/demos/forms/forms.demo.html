@@ -60,10 +60,11 @@
           <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2 clr-required-mark">Textarea label</label>
           <textarea
             clrTextarea
-            class="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-3"
+            class="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-6"
             [(ngModel)]="textareaText"
             [ngModelOptions]="{ updateOn: 'blur' }"
             name="description"
+            style="height: 100px"
             required
           ></textarea>
           <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
@@ -213,10 +214,13 @@
           [(ngModel)]="data2"
           [ngModelOptions]="{ updateOn: 'blur' }"
           clrRequiredAllMultilang
-          clrControlClasses="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-3"
+          clrControlClasses="clr-col-6 clr-col-md-5 clr-col-lg-4 clr-col-xl-6"
+          [rows]="3"
           name="template2"
         >
-          <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2 clr-required-mark">Multilingual Input</label>
+          <label class="clr-col-12 clr-col-sm-4 clr-col-md-3 clr-col-xl-2 clr-required-mark"
+            >Multilingual Textarea</label
+          >
           <clr-control-error>Please translate in every language!</clr-control-error>
           <clr-control-helper>Helper text</clr-control-helper>
         </clr-multilingual-textarea>
@@ -227,13 +231,13 @@
       <h4>Demo</h4>
       <div>
         <cds-icon shape="display"></cds-icon>&nbsp;
-        <a class="nav-link" routerLink="/full-page-layouts/basepage-layout-sub1/forms" routerLinkActive="active">
+        <a routerLink="/full-page-layouts/basepage-layout-sub1/forms" routerLinkActive="active">
           <span class="nav-text">Full Page Forms Layout</span>
         </a>
       </div>
       <div>
         <cds-icon shape="display"></cds-icon>&nbsp;
-        <a class="nav-link" routerLink="/full-page-layouts/basepage-layout-sub1/ves" routerLinkActive="active">
+        <a routerLink="/full-page-layouts/basepage-layout-sub1/ves" routerLinkActive="active">
           <span class="nav-text">Full Page View Edit Section Layout</span>
         </a>
       </div>
@@ -261,7 +265,7 @@
         </clr-input-container>
         <input type="submit" style="display: none" />
       </form>
-      Submitted text (hit enter to submit): {{submittedText}}
+      Submitted text (hit enter to submit): {{ submittedText }}
       <clr-code-snippet [clrCode]="codeExampleFormSubmit"></clr-code-snippet>
 
       <h5>Special case for updateOn: blur</h5>

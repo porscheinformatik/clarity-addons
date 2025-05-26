@@ -7,7 +7,11 @@
   class="clr-control-container"
 >
   <div class="clr-input-wrapper" clrPopoverAnchor>
-    <div [class.clr-focus]="this.focus" class="clr-input-group">
+    <div
+      [class.clr-focus]="this.focus"
+      class="custom-input-group clr-input-group"
+      [ngClass]="_timeSelection ? 'custom-input-group-time' : 'custom-input-group-date'"
+    >
       <ng-content select="[clrDaterangepicker]"></ng-content>
       <button
         [attr.aria-label]="this.friendlyDaterange"

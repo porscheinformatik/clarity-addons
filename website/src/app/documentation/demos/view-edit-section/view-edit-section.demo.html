@@ -30,7 +30,7 @@
       <h3>Collapse/Expand Section</h3>
       <p>
         Follows the basic principles of:
-        <a class="nav-link" routerLink="../collapse-expand-section">Clarity Addons - Collapse/Expand Section</a>
+        <a routerLink="../collapse-expand-section">Clarity Addons - Collapse/Expand Section</a>
       </p>
       <p>
         The View-Edit section offers the possibility to collapse/expand its content.
@@ -217,15 +217,15 @@
               <form clrForm clrLayout="horizontal">
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-4 clr-control-label">First name</label>
-                  <span class="text-truncate clr-col-md-8">{{first || "&nbsp;"}}</span>
+                  <span class="text-truncate clr-col-md-8">{{ first || "&nbsp;" }}</span>
                 </div>
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-4 clr-control-label">Last name</label>
-                  <span class="text-truncate clr-col-md-8">{{last || "&nbsp;"}}</span>
+                  <span class="text-truncate clr-col-md-8">{{ last || "&nbsp;" }}</span>
                 </div>
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-4 clr-control-label">E-mail</label>
-                  <span class="text-truncate clr-col-md-8">{{email || "&nbsp;"}}</span>
+                  <span class="text-truncate clr-col-md-8">{{ email || "&nbsp;" }}</span>
                 </div>
               </form>
             </ng-template>
@@ -263,11 +263,11 @@
               <form clrForm clrLayout="horizontal">
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-4 clr-control-label">Hobby</label>
-                  <span class="text-truncate clr-col-md-8">{{hobby || "&nbsp;"}}</span>
+                  <span class="text-truncate clr-col-md-8">{{ hobby || "&nbsp;" }}</span>
                 </div>
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-4 clr-control-label">Driving licence number</label>
-                  <span class="text-truncate clr-col-md-8">{{licence || "&nbsp;"}}</span>
+                  <span class="text-truncate clr-col-md-8">{{ licence || "&nbsp;" }}</span>
                 </div>
               </form>
             </ng-template>
@@ -338,19 +338,19 @@
               <form clrForm clrLayout="horizontal">
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-2 clr-control-label" for="birthdate">Date of birth</label>
-                  <span class="text-truncate clr-col-md-10">{{birthdate || "" | date}}</span>
+                  <span class="text-truncate clr-col-md-10">{{ birthdate || "" | date }}</span>
                 </div>
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-2 clr-control-label" for="gender">Gender</label>
-                  <span class="text-truncate clr-col-md-10">{{gender || "&nbsp;"}}</span>
+                  <span class="text-truncate clr-col-md-10">{{ gender || "&nbsp;" }}</span>
                 </div>
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-2 clr-control-label" for="status">Status</label>
-                  <span class="text-truncate clr-col-md-10">{{status || "&nbsp;"}}</span>
+                  <span class="text-truncate clr-col-md-10">{{ status || "&nbsp;" }}</span>
                 </div>
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-2 clr-control-label" for="terms">Terms &amp; Conditions</label>
-                  <span class="text-truncate clr-col-md-10">{{getTermsText()}}</span>
+                  <span class="text-truncate clr-col-md-10">{{ getTermsText() }}</span>
                 </div>
               </form>
             </ng-template>
@@ -440,19 +440,19 @@
               <form clrForm clrLayout="horizontal">
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-2 clr-control-label" for="birthdate">Date of birth</label>
-                  <span class="text-truncate clr-col-md-10">{{birthdate || "" | date}}</span>
+                  <span class="text-truncate clr-col-md-10">{{ birthdate || "" | date }}</span>
                 </div>
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-2 clr-control-label" for="gender">Gender</label>
-                  <span class="text-truncate clr-col-md-10">{{gender || "&nbsp;"}}</span>
+                  <span class="text-truncate clr-col-md-10">{{ gender || "&nbsp;" }}</span>
                 </div>
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-2 clr-control-label" for="status">Status</label>
-                  <span class="text-truncate clr-col-md-10">{{status || "&nbsp;"}}</span>
+                  <span class="text-truncate clr-col-md-10">{{ status || "&nbsp;" }}</span>
                 </div>
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-2 clr-control-label" for="terms">Terms &amp; Conditions</label>
-                  <span class="text-truncate clr-col-md-10">{{getTermsText()}}</span>
+                  <span class="text-truncate clr-col-md-10">{{ getTermsText() }}</span>
                 </div>
               </form>
             </ng-template>
@@ -539,15 +539,15 @@
               <form clrForm clrLayout="horizontal">
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-4 clr-control-label">First name</label>
-                  <span class="text-truncate clr-col-md-8">{{first || "&nbsp;"}}</span>
+                  <span class="text-truncate clr-col-md-8">{{ first || "&nbsp;" }}</span>
                 </div>
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-4 clr-control-label">Last name</label>
-                  <span class="text-truncate clr-col-md-8">{{last || "&nbsp;"}}</span>
+                  <span class="text-truncate clr-col-md-8">{{ last || "&nbsp;" }}</span>
                 </div>
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-4 clr-control-label">E-mail</label>
-                  <span class="text-truncate clr-col-md-8">{{email || "&nbsp;"}}</span>
+                  <span class="text-truncate clr-col-md-8">{{ email || "&nbsp;" }}</span>
                 </div>
               </form>
             </ng-template>
@@ -588,15 +588,15 @@
               <form clrForm clrLayout="horizontal">
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-4 clr-control-label">First name</label>
-                  <span class="text-truncate clr-col-md-8">{{first || "&nbsp;"}}</span>
+                  <span class="text-truncate clr-col-md-8">{{ first || "&nbsp;" }}</span>
                 </div>
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-4 clr-control-label">Last name</label>
-                  <span class="text-truncate clr-col-md-8">{{last || "&nbsp;"}}</span>
+                  <span class="text-truncate clr-col-md-8">{{ last || "&nbsp;" }}</span>
                 </div>
                 <div class="clr-form-control clr-row">
                   <label class="clr-col-md-4 clr-control-label">E-mail</label>
-                  <span class="text-truncate clr-col-md-8">{{email || "&nbsp;"}}</span>
+                  <span class="text-truncate clr-col-md-8">{{ email || "&nbsp;" }}</span>
                 </div>
               </form>
             </ng-template>

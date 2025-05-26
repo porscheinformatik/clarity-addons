@@ -123,7 +123,8 @@
           class="clr-col-12 clr-row"
           clrSelectedLang="EN"
           formControlName="sample2"
-          clrControlClasses="clr-col-md-5"
+          clrControlClasses="clr-col-md-7 clr-col-7"
+          [rows]="3"
           name="reactive2"
         >
           <label class="clr-col-md-2 clr-required-mark">Reactive</label>
@@ -135,15 +136,15 @@
         <div class="clr-row">
           <div class="clr-col-4">
             <b>Input</b><br />
-            EN: {{exampleForm.get('sample1').value.get('EN')}}<br />
-            DE: {{exampleForm.get('sample1').value.get('DE')}}<br />
-            FR: {{exampleForm.get('sample1').value.get('FR')}}
+            EN: {{ exampleForm.get('sample1').value.get('EN') }}<br />
+            DE: {{ exampleForm.get('sample1').value.get('DE') }}<br />
+            FR: {{ exampleForm.get('sample1').value.get('FR') }}
           </div>
           <div class="clr-col-8">
             <b>Textarea</b><br />
-            EN: {{exampleForm.get('sample2').value.get('EN')}}<br />
-            DE: {{exampleForm.get('sample2').value.get('DE')}}<br />
-            FR: {{exampleForm.get('sample2').value.get('FR')}}
+            EN: {{ exampleForm.get('sample2').value.get('EN') }}<br />
+            DE: {{ exampleForm.get('sample2').value.get('DE') }}<br />
+            FR: {{ exampleForm.get('sample2').value.get('FR') }}
           </div>
         </div>
       </form>
@@ -170,9 +171,10 @@
           class="clr-col-12 clr-row"
           clrSelectedLang="EN"
           [(ngModel)]="data2"
+          [rows]="3"
           [ngModelOptions]="{ updateOn: 'blur' }"
           clrRequiredAllMultilang
-          clrControlClasses="clr-col-md-5"
+          clrControlClasses="clr-col-md-7 clr-col-7"
           name="template2"
         >
           <label class="clr-col-md-2 clr-required-mark">Template</label>
@@ -184,15 +186,15 @@
         <div class="clr-row">
           <div class="clr-col-4">
             <b>Input</b><br />
-            EN: {{data1.get('EN')}}<br />
-            DE: {{data1.get('DE')}}<br />
-            FR: {{data1.get('FR')}}
+            EN: {{ data1.get('EN') }}<br />
+            DE: {{ data1.get('DE') }}<br />
+            FR: {{ data1.get('FR') }}
           </div>
           <div class="clr-col-8">
             <b>Textarea</b><br />
-            EN: {{data2.get('EN')}}<br />
-            DE: {{data2.get('DE')}}<br />
-            FR: {{data2.get('FR')}}
+            EN: {{ data2.get('EN') }}<br />
+            DE: {{ data2.get('DE') }}<br />
+            FR: {{ data2.get('FR') }}
           </div>
         </div>
         <h4>Output texts</h4>

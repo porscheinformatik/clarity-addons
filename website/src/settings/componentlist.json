@@ -1,11 +1,6 @@
 {
   "list": [
     {
-      "url": "action-panel",
-      "text": "Action Panel",
-      "type": "component"
-    },
-    {
       "url": "angular-calendar",
       "text": "Angular Calendar",
       "type": "component"
@@ -43,11 +38,6 @@
     {
       "url": "collapse-expand-section",
       "text": "Collapse/Expand Section",
-      "type": "component"
-    },
-    {
-      "url": "content-panel",
-      "text": "Content Panel",
       "type": "component"
     },
     {
