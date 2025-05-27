@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -37,6 +37,7 @@ import { ClrDaterangepickerModule } from './daterangepicker';
 import { ClrIfWarningModule } from './clr-control-warning/if-warning.module';
 import { ClrActionPanelModule } from './action-panel';
 import { ClrReadonlyDirectiveModule } from './readonly/readonly.module';
+import { ClrDataTreeTableModule } from './data-treetable';
 
 @NgModule({
   exports: [
@@ -54,6 +55,7 @@ import { ClrReadonlyDirectiveModule } from './readonly/readonly.module';
     ClrNumericFieldModule,
     ClrSearchFieldModule,
     ClrTreetableModule,
+    ClrDataTreeTableModule,
     ClrProgressSpinnerModule,
     ClrDateTimeModule,
     ClrQuickListModule,

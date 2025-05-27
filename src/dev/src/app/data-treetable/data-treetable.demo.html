@@ -1,0 +1,211 @@
+<!--
+  ~ Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+  ~ This software is released under MIT license.
+  ~ The full license information can be found in LICENSE in the root directory of this project.
+  -->
+
+<h2>DataTreetable</h2>
+
+<h4>DataTreeTable With Recursiv Loops</h4>
+<clr-data-treetable [(clrDtSelected)]="selected">
+  <clr-dt-column [clrDgSortBy]="comperator" [(clrDgSortOrder)]="sortOrder">Name</clr-dt-column>
+  <clr-dt-column>Value</clr-dt-column>
+  <clr-dt-column>Parent</clr-dt-column>
+
+  <ng-container
+    ngProjectAs="clr-dt-row"
+    *ngTemplateOutlet="recursiveRows; context: { $implicit: rootNodes }"
+  ></ng-container>
+
+  <ng-template #recursiveRows let-nodes>
+    <ng-container *clrDataTreetableItems="nodes; let node">
+      <clr-dt-row [clrDtItem]="node" [clrExpandable]="node.children?.length > 0" [clrExpanded]="true">
+        <clr-dt-action-overflow>
+          <button class="action-item">Test Action</button>
+        </clr-dt-action-overflow>
+
+        <clr-dt-cell>{{ node.value.name }}</clr-dt-cell>
+        <clr-dt-cell>{{ node.id }}</clr-dt-cell>
+        <clr-dt-cell>{{ node.parent?.id || 'No Parent' }}</clr-dt-cell>
+
+        <ng-container ngProjectAs="clr-dt-row" *ngIf="node.children?.length > 0">
+          <ng-container
+            ngProjectAs="clr-dt-row"
+            *ngTemplateOutlet="recursiveRows; context: { $implicit: node.children }"
+          ></ng-container>
+        </ng-container>
+      </clr-dt-row>
+    </ng-container>
+  </ng-template>
+</clr-data-treetable>
+
+<div>{{ selected | json }}</div>
+
+<h4>DataTreeTable test</h4>
+<clr-data-treetable>
+  <clr-dt-column>Col1</clr-dt-column>
+  <clr-dt-column>Col2</clr-dt-column>
+  <clr-dt-column>Col3</clr-dt-column>
+  <clr-dt-column>Col4</clr-dt-column>
+  <clr-dt-column>Col5</clr-dt-column>
+  <clr-dt-column>Col6</clr-dt-column>
+
+  <clr-dt-row [clrExpanded]="false" [clrExpandable]="true">
+    <clr-dt-cell>Vehicle configuration</clr-dt-cell>
+    <clr-dt-cell></clr-dt-cell>
+    <clr-dt-cell>18,519.99EUR</clr-dt-cell>
+    <clr-dt-cell>20%</clr-dt-cell>
+    <clr-dt-cell>19.99EUR</clr-dt-cell>
+    <clr-dt-cell>-519.99EUR</clr-dt-cell>
+
+    <clr-dt-row>
+      <clr-dt-action-overflow>
+        <button class="action-item">Test Action</button>
+      </clr-dt-action-overflow>
+      <clr-dt-cell>Audi A1 3-Türer Adtraction 1.2 TFSI 63(86) kW(PS) 5-Gang</clr-dt-cell>
+      <clr-dt-cell>EUR 16,750.00</clr-dt-cell>
+      <clr-dt-cell></clr-dt-cell>
+      <clr-dt-cell>20%</clr-dt-cell>
+      <clr-dt-cell>19.99EUR</clr-dt-cell>
+      <clr-dt-cell>-519.99EUR</clr-dt-cell>
+    </clr-dt-row>
+
+    <clr-dt-row>
+      <clr-dt-cell
+        >Floredtsilber Metallic Brillantschwarz / granatrot-schwarz-granatrot / schwarz- schwarz / schwarz / titangrau
+      </clr-dt-cell>
+      <clr-dt-cell>EUR 480.00</clr-dt-cell>
+      <clr-dt-cell></clr-dt-cell>
+      <clr-dt-cell>20%</clr-dt-cell>
+      <clr-dt-cell>19.99EUR</clr-dt-cell>
+      <clr-dt-cell>-519.99EUR</clr-dt-cell>
+    </clr-dt-row>
+
+    <clr-dt-row [clrExpanded]="true" [clrExpandable]="true">
+      <clr-dt-cell>Extra</clr-dt-cell>
+      <clr-dt-cell>EUR 1,289.99</clr-dt-cell>
+      <clr-dt-cell></clr-dt-cell>
+      <clr-dt-cell>20%</clr-dt-cell>
+      <clr-dt-cell>19.99EUR</clr-dt-cell>
+      <clr-dt-cell>-519.99EUR</clr-dt-cell>
+
+      <clr-dt-row>
+        <clr-dt-cell>Sitzpaket (PV2)</clr-dt-cell>
+        <clr-dt-cell>EUR 0.00</clr-dt-cell>
+        <clr-dt-cell></clr-dt-cell>
+        <clr-dt-cell>20%</clr-dt-cell>
+        <clr-dt-cell>19.99EUR</clr-dt-cell>
+        <clr-dt-cell>-519.99EUR</clr-dt-cell>
+
+        <clr-dt-row>
+          <clr-dt-cell>Vehicle configuration</clr-dt-cell>
+          <clr-dt-cell></clr-dt-cell>
+          <clr-dt-cell>18,519.99EUR</clr-dt-cell>
+          <clr-dt-cell>20%</clr-dt-cell>
+          <clr-dt-cell>19.99EUR</clr-dt-cell>
+          <clr-dt-cell>-519.99EUR</clr-dt-cell>
+
+          <clr-dt-row>
+            <clr-dt-cell>Audi A1 3-Türer Adtraction 1.2 TFSI 63(86) kW(PS) 5-Gang</clr-dt-cell>
+            <clr-dt-cell>EUR 16,750.00</clr-dt-cell>
+            <clr-dt-cell></clr-dt-cell>
+            <clr-dt-cell>20%</clr-dt-cell>
+            <clr-dt-cell>19.99EUR</clr-dt-cell>
+            <clr-dt-cell>-519.99EUR</clr-dt-cell>
+          </clr-dt-row>
+
+          <clr-dt-row>
+            <clr-dt-cell
+              >Floredtsilber Metallic Brillantschwarz / granatrot-schwarz-granatrot/schwarz- schwarz/schwarz/titangrau
+            </clr-dt-cell>
+            <clr-dt-cell>EUR 480.00</clr-dt-cell>
+            <clr-dt-cell></clr-dt-cell>
+            <clr-dt-cell>20%</clr-dt-cell>
+            <clr-dt-cell>19.99EUR</clr-dt-cell>
+            <clr-dt-cell>-519.99EUR</clr-dt-cell>
+          </clr-dt-row>
+
+          <clr-dt-row [clrExpandable]="true">
+            <clr-dt-cell>Extra</clr-dt-cell>
+            <clr-dt-cell>EUR 1,289.99</clr-dt-cell>
+            <clr-dt-cell></clr-dt-cell>
+            <clr-dt-cell>20%</clr-dt-cell>
+            <clr-dt-cell>19.99EUR</clr-dt-cell>
+            <clr-dt-cell>-519.99EUR</clr-dt-cell>
+
+            <clr-dt-row>
+              <clr-dt-cell>Sitzpaket (PV2)</clr-dt-cell>
+              <clr-dt-cell>EUR 0.00</clr-dt-cell>
+              <clr-dt-cell></clr-dt-cell>
+              <clr-dt-cell>20%</clr-dt-cell>
+              <clr-dt-cell>19.99EUR</clr-dt-cell>
+              <clr-dt-cell>-519.99EUR</clr-dt-cell>
+            </clr-dt-row>
+
+            <clr-dt-row>
+              <clr-dt-cell>style Paket (WMV)</clr-dt-cell>
+              <clr-dt-cell>EUR 950.00</clr-dt-cell>
+              <clr-dt-cell></clr-dt-cell>
+              <clr-dt-cell>20%</clr-dt-cell>
+              <clr-dt-cell>19.99EUR</clr-dt-cell>
+              <clr-dt-cell>-519.99EUR</clr-dt-cell>
+            </clr-dt-row>
+
+            <clr-dt-row>
+              <clr-dt-cell>Sportsitze vorn (PS1)</clr-dt-cell>
+              <clr-dt-cell>EUR 339.99</clr-dt-cell>
+              <clr-dt-cell></clr-dt-cell>
+              <clr-dt-cell>20%</clr-dt-cell>
+              <clr-dt-cell>19.99EUR</clr-dt-cell>
+              <clr-dt-cell>-519.99EUR</clr-dt-cell>
+            </clr-dt-row>
+          </clr-dt-row>
+        </clr-dt-row>
+      </clr-dt-row>
+
+      <clr-dt-row>
+        <clr-dt-cell>style Paket (WMV)</clr-dt-cell>
+        <clr-dt-cell>EUR 950.00</clr-dt-cell>
+        <clr-dt-cell></clr-dt-cell>
+        <clr-dt-cell>20%</clr-dt-cell>
+        <clr-dt-cell>19.99EUR</clr-dt-cell>
+        <clr-dt-cell>-519.99EUR</clr-dt-cell>
+      </clr-dt-row>
+
+      <clr-dt-row>
+        <clr-dt-cell>Sportsitze vorn (PS1)</clr-dt-cell>
+        <clr-dt-cell>EUR 339.99</clr-dt-cell>
+        <clr-dt-cell></clr-dt-cell>
+        <clr-dt-cell>20%</clr-dt-cell>
+        <clr-dt-cell>19.99EUR</clr-dt-cell>
+        <clr-dt-cell>-519.99EUR</clr-dt-cell>
+      </clr-dt-row>
+    </clr-dt-row>
+  </clr-dt-row>
+  <clr-dt-row>
+    <clr-dt-cell>Sales add-ons</clr-dt-cell>
+    <clr-dt-cell></clr-dt-cell>
+    <clr-dt-cell></clr-dt-cell>
+    <clr-dt-cell>20%</clr-dt-cell>
+    <clr-dt-cell>19.99EUR</clr-dt-cell>
+    <clr-dt-cell>-519.99EUR</clr-dt-cell>
+  </clr-dt-row>
+
+  <clr-dt-row [clrExpandable]="true">
+    <clr-dt-cell>Additional positions</clr-dt-cell>
+    <clr-dt-cell></clr-dt-cell>
+    <clr-dt-cell>150.00 EUR</clr-dt-cell>
+    <clr-dt-cell>20%</clr-dt-cell>
+    <clr-dt-cell>19.99EUR</clr-dt-cell>
+    <clr-dt-cell>-519.99EUR</clr-dt-cell>
+
+    <clr-dt-row>
+      <clr-dt-cell>Disko Kugel (20 % VAT)</clr-dt-cell>
+      <clr-dt-cell>EUR 150.00</clr-dt-cell>
+      <clr-dt-cell></clr-dt-cell>
+      <clr-dt-cell>20%</clr-dt-cell>
+      <clr-dt-cell>19.99EUR</clr-dt-cell>
+      <clr-dt-cell>-519.99EUR</clr-dt-cell>
+    </clr-dt-row>
+  </clr-dt-row>
+</clr-data-treetable>

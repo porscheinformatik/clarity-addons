@@ -1,0 +1,43 @@
+<!--
+  ~ Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+  ~ This software is released under MIT license.
+  ~ The full license information can be found in LICENSE in the root directory of this project.
+  -->
+
+<div
+  [ngClass]="{'clr-row-clickable': showClickClass}"
+  class="clr-tt-node-content data-treetable-row"
+  (click)="onRowClick($event)"
+>
+  <div class="clr-checkbox-wrapper data-treetable-row-actions data-treetable-cell">
+    <input
+      tabindex="-1"
+      type="checkbox"
+      [ngModel]="selected"
+      (ngModelChange)="toggle($event)"
+      [disabled]="false"
+      [attr.aria-disabled]="false"
+      (click)="$event.stopPropagation()"
+    />
+  </div>
+
+  <ng-content select="clr-dt-action-overflow"></ng-content>
+  <clr-dt-action-overflow *ngIf="showActionOverflow && showEmptyActionOverflow" [empty]="true"></clr-dt-action-overflow>
+
+  <div class="data-treetable-scrolling-cells">
+    <div class="data-treetable-expandable-caret" *ngIf="expandable">
+      <button type="button" class="data-treetable-expandable-caret-button" (click)="onCaretClick()">
+        <cds-icon
+          shape="angle"
+          [attr.direction]="expanded ? 'down' : 'right'"
+          class="data-treetable-expandable-caret-icon"
+        ></cds-icon>
+      </button>
+    </div>
+
+    <ng-content select="clr-dt-cell"></ng-content>
+  </div>
+</div>
+<div [@collapseExpandAnimation]="expanded">
+  <ng-content select="clr-dt-row"></ng-content>
+</div>

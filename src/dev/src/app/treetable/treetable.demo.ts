@@ -22,7 +22,7 @@ export class TreetableDemo implements OnInit {
     ' This is a very long string which should show that text will be truncated properly and not overflow its parent';
 
   data$ = of(
-    [...Array(30).keys()].map(() => ({
+    [...Array(1).keys()].map(() => ({
       col1: 'Vehicle configuration',
       col2: '',
       col3: '18,519.99EUR',
