@@ -36,10 +36,10 @@
         {{ isInputFormValidating ? 'Validate' : 'Reset' }} form
       </button>
     </div>
-    <form [formGroup]="inputForm">
+    <form [formGroup]="inputForm" clrForm clrLayout="horizontal">
       <clr-input-container class="clr-col-12">
         <label class="clr-required-mark">Input label</label>
-        <input class="clr-col-2" clrInput formControlName="input" minlength="5" name="inputName" required type="text" />
+        <input class="clr-col-5" clrInput formControlName="input" minlength="5" name="inputName" required type="text" />
         <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
         <clr-control-helper *clrIfWarning="showingInputWarnings" id="inputWarning"
           >This is a warning
@@ -48,28 +48,28 @@
 
       <clr-textarea-container class="clr-col-12">
         <label class="clr-required-mark">Textarea label</label>
-        <textarea class="clr-col-2" clrTextarea formControlName="textArea" name="description" required></textarea>
+        <textarea class="clr-col-7" clrTextarea formControlName="textArea" name="description" required></textarea>
         <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
         <clr-control-helper *clrIfWarning="showingInputWarnings">This is a warning</clr-control-helper>
       </clr-textarea-container>
 
       <clr-date-container class="clr-col-12">
         <label class="clr-required-mark">Date label</label>
-        <input class="clr-col-2" clrDate formControlName="date" name="date" required type="text" />
+        <input class="clr-col-5" clrDate formControlName="date" name="date" required type="text" />
         <clr-control-helper *clrIfWarning="showingInputWarnings">This is a warning</clr-control-helper>
         <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
       </clr-date-container>
 
       <clr-input-container class="clr-col-12">
         <label class="clr-required-mark">Time label</label>
-        <input class="clr-col-2" clrInput formControlName="time" name="time" required type="time" />
+        <input class="clr-col-5" clrInput formControlName="time" name="time" required type="time" />
         <clr-control-helper *clrIfWarning="showingInputWarnings">This is a warning</clr-control-helper>
         <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
       </clr-input-container>
 
       <clr-select-container class="clr-col-12">
         <label class="clr-required-mark">Select label</label>
-        <select class="clr-col-2" clrSelect formControlName="select" name="options" required>
+        <select class="clr-col-5" clrSelect formControlName="select" name="options" required>
           <option value="one">One</option>
           <option value="two">Two</option>
           <option value="three">Three</option>
@@ -77,15 +77,15 @@
         <clr-control-helper *clrIfWarning="showingInputWarnings">This is a warning</clr-control-helper>
         <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
       </clr-select-container>
-      <clr-combobox-container>
+      <clr-combobox-container class="clr-col-12">
         <label>Single Select Combobox</label>
-        <clr-combobox class="clr-col-2" formControlName="comboSingle" name="combobox" required>
+        <clr-combobox class="clr-col-5" formControlName="comboSingle" name="combobox" required>
           <clr-options>
             <clr-option *clrOptionItems="let option of values$ | async" [clrValue]="option">{{ option }}</clr-option>
           </clr-options>
         </clr-combobox>
         <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
-        <clr-control-helper *clrIfWarning="showingInputWarnings">{{ comboBoxWarningString }} </clr-control-helper>
+        <clr-control-helper *clrIfWarning="showingInputWarnings">{{ comboBoxWarningString }}</clr-control-helper>
       </clr-combobox-container>
 
       <clr-checkbox-container class="clr-col-12">

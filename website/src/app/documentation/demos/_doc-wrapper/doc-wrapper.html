@@ -1,7 +1,7 @@
-<div class="dox-wrapper dox-header new-component-layout">
+<div class="dox-wrapper dox-header new-component-layout" [ngClass]="!showTabs ? 'dox-header-smaller' : ''">
   <section>
     <h1>
-      {{title}}
+      {{ title }}
       <span class="label label-warning clr-align-middle" *ngIf="deprecated">
         Deprecated
         <span class="badge badge-warning">v7.0</span>
@@ -9,7 +9,7 @@
     </h1>
     <h5 *ngIf="description">{{ description }}</h5>
 
-    <div class="dox-tabs">
+    <div class="dox-tabs" *ngIf="showTabs">
       <ul class="list-unstyled" [scrollspy]="scrollable">
         <li>
           <a routerLink="." routerLinkActive="active" fragment="top" id="topTabLink" class="clrweb-tablink">

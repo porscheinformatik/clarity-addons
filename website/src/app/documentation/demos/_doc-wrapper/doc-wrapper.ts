@@ -17,4 +17,5 @@ export class DocWrapper {
   @Input() title: string = '';
   @Input() description: string = '';
   @Input() deprecated = false;
+  @Input() showTabs = true;
 }

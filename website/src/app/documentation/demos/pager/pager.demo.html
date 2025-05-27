@@ -32,10 +32,11 @@
           <label for="totalItems">Total Items</label>
           <input
             clrInput
+            clrNumeric
             type="number"
-            class="clr-col-1"
+            class="clr-col-2"
             id="totalItems"
-            [(ngModel)]="totalItems"
+            [(clrNumericValue)]="totalItems"
             min="0"
             (ngModelChange)="createItems()"
             name="totalItems"
@@ -46,9 +47,10 @@
           <input
             clrInput
             type="number"
-            class="clr-col-1"
+            clrNumeric
+            class="clr-col-2"
             id="pageSize"
-            [(ngModel)]="pageSize"
+            [(clrNumericValue)]="pageSize"
             min="0"
             (ngModelChange)="createItems()"
             name="pageSize"
@@ -57,7 +59,7 @@
       </form>
 
       <div class="card" *ngFor="let item of pagedItems">
-        <div class="card-header">{{item}}</div>
+        <div class="card-header">{{ item }}</div>
         <div class="card-block">
           <div class="card-text">This is an example card.</div>
         </div>
@@ -137,7 +139,7 @@
       <div class="clr-row" *ngFor="let item of pagedItems">
         <div class="clr-col-lg-6 clr-col-md-8 clr-col-12">
           <div class="card">
-            <div class="card-header">{{item}}</div>
+            <div class="card-header">{{ item }}</div>
             <div class="card-block">
               <div class="card-text">This is an example card.</div>
             </div>
@@ -305,7 +307,7 @@
           <ng-template let-item="item">
             <div class="col-xs-12">
               <div class="card">
-                <div class="card-header">{{item}}</div>
+                <div class="card-header">{{ item }}</div>
                 <div class="card-block">
                   <div class="card-text">This is an example card.</div>
                 </div>

@@ -37,8 +37,11 @@
 }
 
 .component-summary {
-  font-size: 16px;
-  font-weight: 200;
+  margin-top: var(--cds-global-layout-space-xl) !important;
+  font-size: var(--cds-global-typography-subsection-font-size) !important;
+  font-weight: var(--cds-global-typography-subsection-font-weight) !important;
+  line-height: var(--cds-global-typography-subsection-line-height) !important;
+  letter-spacing: var(--cds-global-typography-subsection-letter-spacing) !important;
 
   &:not(.no-margin) {
     margin-bottom: variables.$bl-0_5 + 3;
@@ -200,6 +203,11 @@ table.buttons-cmp-table td {
     padding-left: variables.$bl-1_5;
     position: relative;
     border-bottom: 1px solid #ccc;
+  }
+
+  .dox-header-smaller {
+    -ms-flex: 0 0 68px !important;
+    flex: 0 0 68px !important;
   }
 
   .dox-content-panel .dox-content {

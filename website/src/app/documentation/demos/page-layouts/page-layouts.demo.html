@@ -1,4 +1,4 @@
-<clr-doc-wrapper [title]="title">
+<clr-doc-wrapper [title]="title" [showTabs]="false">
   <div class="table-of-contents">
     <span class="title">Content</span>
     <ul class="list-unstyled toc-list">
@@ -35,6 +35,16 @@
           >Full Screen Dialog</a
         >
       </li>
+      <li>
+        <a routerLink="." fragment="action-panel" [class.active]="(activeFragment | async) === 'action-panel'"
+          >Action Panel</a
+        >
+      </li>
+      <li>
+        <a routerLink="." fragment="content-panel" [class.active]="(activeFragment | async) === 'content-panel'"
+          >Content Panel</a
+        >
+      </li>
     </ul>
   </div>
 
@@ -42,7 +52,7 @@
     <h2 id="general">General layout settings</h2>
     <h3>Action buttons</h3>
     <p>
-      Buttons order guidline, please always use the following order for your buttons:
+      Buttons order guideline, please always use the following order for your buttons:
       <clr-code-snippet [clrCode]="buttonCodeOrderExample"></clr-code-snippet>
     </p>
 
@@ -127,19 +137,19 @@
       <h4>Demo</h4>
       <div>
         <cds-icon shape="display"></cds-icon>&nbsp;
-        <a class="nav-link" routerLink="/full-page-layouts/basepage-layout" routerLinkActive="active">
+        <a routerLink="/full-page-layouts/basepage-layout" routerLinkActive="active">
           <span class="nav-text">Base Pagelayout</span>
         </a>
       </div>
       <div>
         <cds-icon shape="display"></cds-icon>&nbsp;
-        <a class="nav-link" routerLink="/full-page-layouts/basepage-layout-command" routerLinkActive="active">
+        <a routerLink="/full-page-layouts/basepage-layout-command" routerLinkActive="active">
           <span class="nav-text">Command bar</span>
         </a>
       </div>
       <div>
         <cds-icon shape="display"></cds-icon>&nbsp;
-        <a class="nav-link" routerLink="/full-page-layouts/action-panel" routerLinkActive="active">
+        <a routerLink="/full-page-layouts/action-panel" routerLinkActive="active">
           <span class="nav-text">Action panel</span>
         </a>
       </div>
@@ -214,7 +224,7 @@
       <h3 id="examples">Code &amp; Examples</h3>
       <h4>Demo</h4>
       <a routerLink="/full-page-layouts/flow-bar" routerLinkActive="active">
-        <cds-icon shape="display"></cds-icon>&nbsp;
+        <cds-icon shape="display"></cds-icon>
         <span>Base Page Layout with a Flow Bar</span>
       </a>
       <clr-code-snippet [clrCode]="flowbarCodeExample"></clr-code-snippet>
@@ -273,7 +283,6 @@
       <h4>Demo</h4>
 
       <cds-icon shape="display"></cds-icon>&nbsp;<a
-        class="nav-link"
         routerLink="/full-page-layouts/sidebarpage-layout"
         routerLinkActive="active"
         ><span class="nav-text">Sidebar Page Layout</span></a
@@ -342,7 +351,7 @@
       <h3 id="examples">Code &amp; Examples</h3>
       <h4>Demo</h4>
       <a routerLink="/full-page-layouts/sticky-footer" routerLinkActive="active">
-        <cds-icon shape="display"></cds-icon>&nbsp;
+        <cds-icon shape="display"></cds-icon>
         <span>Base Page Layout with a Sticky Footer</span>
       </a>
 
@@ -394,6 +403,49 @@
       <h3 id="examples">Code</h3>
 
       <clr-code-snippet [clrCode]="fullScreenDialogHtmlExample"></clr-code-snippet>
+    </div>
+    <h2 id="action-panel">Action Panel</h2>
+    <h5 class="component-summary">Action panel is used if a lot of actions are required on one side.</h5>
+
+    <h3>Best Practices</h3>
+    <ul class="list">
+      <li>Use when lot of actions are required.</li>
+      <li>Group similar actions using Captions and Spacer.</li>
+      <li>Don’t use when only a few actions are required, consider using Command bar then.</li>
+    </ul>
+    Provide a
+    <clr-button-group [clrMenuPosition]="'bottom-right'">
+      <clr-button>
+        <cds-icon shape="view-columns"></cds-icon>
+      </clr-button>
+    </clr-button-group>
+    button which handles the show/hide (toggle) of the panel.
+
+    <div id="code-examples">
+      <h3 id="examples">Code &amp; Examples</h3>
+      <div>
+        For an example usage follow the link:
+        <cds-icon shape="display"></cds-icon>&nbsp;
+        <a routerLink="/full-page-layouts/action-panel" routerLinkActive="active">
+          <span class="nav-text">Action panel</span>
+        </a>
+      </div>
+      <clr-code-snippet [clrCode]="htmlExampleActionPanel"></clr-code-snippet>
+    </div>
+
+    <h2 id="content-panel">Content Panel</h2>
+    <h5 class="component-summary">Content panel is used if some text/action should be placed in a right panel.</h5>
+
+    <div id="code-examples">
+      <h3 id="examples">Code &amp; Examples</h3>
+      <div>
+        For an example usage follow the link:
+        <cds-icon shape="display"></cds-icon>&nbsp;
+        <a routerLink="/full-page-layouts/content-panel" routerLinkActive="active">
+          <span class="nav-text">Content panel</span>
+        </a>
+      </div>
+      <clr-code-snippet [clrCode]="htmlExampleContentPanel"></clr-code-snippet>
     </div>
   </article>
 </clr-doc-wrapper>

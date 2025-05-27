@@ -376,3 +376,19 @@ a.btn-primary {
   margin-left: 1rem;
   margin-top: 0.3rem !important;
 }
+
+.code-addons {
+  display: flex;
+  border-radius: 0 0 var(--cds-global-space-3) var(--cds-global-space-3);
+  border-right: var(--cds-alias-object-border-width-100) solid var(--cds-alias-object-container-border-color);
+  border-bottom: var(--cds-alias-object-border-width-100) solid var(--cds-alias-object-container-border-color);
+  border-left: var(--cds-alias-object-border-width-100) solid var(--cds-alias-object-container-border-color);
+  background: var(--cds-alias-object-container-background);
+  margin-top: -7px;
+}
+
+ul:not(.list-unstyled) {
+  margin-left: var(--cds-global-layout-space-lg) !important;
+  margin-top: var(--cds-global-layout-space-md) !important;
+  list-style-position: outside !important;
+}
