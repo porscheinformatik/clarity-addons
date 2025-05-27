@@ -48,7 +48,7 @@ export class BasepageLayoutDemo implements OnInit {
           tenantid: '1',
         },
       };
-      this.historyService.addHistoryEntry(historyEntry1, 'localhost');
+      this.historyService.addHistoryEntry(historyEntry1, 'porscheinformatik.github.io');
       const historyEntry2: ClrHistoryModel = {
         username: 'admin',
         pageName: 'SourcePage',
@@ -59,7 +59,7 @@ export class BasepageLayoutDemo implements OnInit {
           tenantid: '1',
         },
       };
-      this.historyService.addHistoryEntry(historyEntry2, 'localhost');
+      this.historyService.addHistoryEntry(historyEntry2, 'porscheinformatik.github.io');
       const historyEntry3: ClrHistoryModel = {
         username: 'admin',
         pageName: 'GitHub',
@@ -70,11 +70,11 @@ export class BasepageLayoutDemo implements OnInit {
           tenantid: '1',
         },
       };
-      this.historyService.addHistoryEntry(historyEntry3, 'localhost');
+      this.historyService.addHistoryEntry(historyEntry3, 'porscheinformatik.github.io');
       if (this.withActionPanel) {
-        this.historyService.setHistoryPinned('admin', false, 'localhost');
+        this.historyService.setHistoryPinned('admin', false, 'porscheinformatik.github.io');
       } else {
-        this.historyService.setHistoryPinned('admin', true, 'localhost');
+        this.historyService.setHistoryPinned('admin', true, 'porscheinformatik.github.io');
       }
     }
   }
