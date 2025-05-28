@@ -1,0 +1,355 @@
+@use 'sass:map';
+@use '../mixins';
+@use '../components.variables.clr-addons' as variables;
+
+$base-cell-indentation: 2rem;
+$base-caret-indentation: 0.1rem;
+$indentation-increment: 1rem;
+
+@mixin row-indentation($level) {
+  .data-treetable-scrolling-cells {
+    .data-treetable-cell:first-of-type {
+      padding-left: $base-cell-indentation + $level * $indentation-increment;
+    }
+
+    .data-treetable-expandable-caret {
+      @if ($level > 0) {
+        margin-left: $level * $indentation-increment;
+      } @else {
+        margin-left: $base-caret-indentation;
+      }
+    }
+  }
+}
+
+@mixin row-indentation-recursive($level, $max-level) {
+  @if $level <= $max-level {
+    @include row-indentation($level);
+
+    .data-treetable-row-wrapper {
+      @include row-indentation-recursive($level + 1, $max-level);
+    }
+  }
+}
+
+@mixin basic-table($table, $thead, $tbody, $tr, $th, $td) {
+  #{$table} {
+    border-collapse: separate;
+    border-style: solid;
+    border-width: var(--clr-table-borderwidth);
+    border-color: var(--clr-table-border-color);
+    border-radius: var(--clr-table-border-radius);
+    background-color: var(--clr-table-bgcolor);
+    color: var(--clr-table-font-color);
+    margin: 0;
+    margin-top: 0.5rem;
+    max-width: 100%;
+    width: 100%;
+
+    #{$th},
+    #{$td} {
+      font-size: 0.65rem;
+      line-height: 0.7rem;
+      border-top-style: solid;
+      border-top-width: var(--clr-table-borderwidth);
+      border-top-color: var(--clr-tablerow-bordercolor);
+      padding: 0.55rem 0.6rem;
+      text-align: center;
+      vertical-align: top;
+    }
+
+    #{$th} {
+      color: var(--clr-thead-color);
+      font-size: 0.55rem;
+      font-weight: 600;
+      letter-spacing: 0.03rem;
+      background-color: var(--clr-thead-bgcolor);
+      vertical-align: bottom;
+      border-bottom-style: solid;
+      border-bottom-width: var(--clr-table-borderwidth);
+      border-bottom-color: var(--clr-table-border-color);
+      border-top: 0 none;
+    }
+
+    #{$tbody} #{$tr}:first-child #{$td} {
+      border-top: 0 none;
+    }
+
+    // in the rare event we have more than one tbody element.
+    #{$tbody} + #{$tbody} {
+      border-top-style: solid;
+      border-top-width: var(--clr-table-borderwidth);
+      border-top-color: var(--clr-table-border-color);
+    }
+
+    // Rounded corners on tables are a pain...
+    #{$thead} #{$th} {
+      &:first-child {
+        border-radius: 0;
+        border-top-left-radius: var(--clr-table-cornercellradius);
+      }
+
+      &:last-child {
+        border-radius: 0;
+        border-top-right-radius: var(--clr-table-cornercellradius);
+      }
+    }
+
+    #{$tbody}:last-child {
+      #{$tr}:last-child {
+        #{$td} {
+          &:first-child {
+            border-radius: 0;
+            border-bottom-left-radius: var(--clr-table-cornercellradius);
+          }
+
+          &:last-child {
+            border-radius: 0;
+            border-bottom-right-radius: var(--clr-table-cornercellradius);
+          }
+        }
+      }
+    }
+  }
+}
+
+@include mixins.exports('data-treetable.clr-addons') {
+  @include basic-table(
+    '.data-treetable',
+    '.data-treetable-header',
+    '.data-treetable-body',
+    '.data-treetable-row',
+    '.data-treetable-column',
+    '.data-treetable-cell'
+  );
+
+  .data-treetable-host {
+    display: flex;
+    flex-flow: column nowrap;
+    position: relative;
+
+    .data-treetable-header,
+    .data-treetable-body,
+    .data-treetable-row,
+    .data-treetable-column,
+    .data-treetable-cell {
+      display: block;
+    }
+
+    .clr-row-clickable {
+      cursor: pointer;
+    }
+
+    .data-treetable {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      -ms-overflow-style: -ms-autohiding-scrollbar;
+      overflow: auto;
+      flex: 1 1 auto;
+      margin-top: 0.5rem;
+
+      .data-treetable-grid {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+        align-content: flex-start;
+        min-height: 3rem; // Includes header and space for a single (non existing) row
+        position: relative;
+        height: 100%;
+        overflow: auto;
+      }
+
+      .data-treetable-row-selection {
+        min-width: 1.9rem;
+        max-width: 1.9rem;
+        flex: 0 0 1.9rem;
+        position: relative;
+
+        &:after {
+          content: '';
+          width: 0.05rem;
+          height: calc(100% - 0.5rem);
+          position: absolute;
+          right: 0;
+          top: 0.25rem;
+          background-color: var(--clr-table-border-color, #ccc);
+        }
+      }
+
+      .data-treetable-action-trigger {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        background: none;
+        cursor: pointer;
+      }
+
+      .data-treetable-expandable-caret {
+        padding: 0.1rem 0.2rem 0.15rem;
+        text-align: center;
+        position: absolute;
+        z-index: map.get(variables.$clr-layers, datagrid-header) - 1;
+        overflow: hidden;
+
+        .data-treetable-expandable-caret-button {
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          -ms-appearance: none;
+          -o-appearance: none;
+          margin: 0;
+          padding: 0;
+          border: none;
+          border-radius: 0;
+          box-shadow: none;
+          background: none;
+          cursor: pointer;
+          height: 1.5rem;
+          width: 1.5rem;
+        }
+
+        .data-treetable-expandable-caret-icon {
+          color: var(--clr-color-neutral-700);
+
+          svg {
+            transition: transform 0.2s ease-in-out;
+          }
+        }
+      }
+
+      .data-treetable-row-actions {
+        min-width: 1.9rem;
+        max-width: 1.9rem;
+        flex: 0 0 1.9rem;
+        position: relative;
+
+        &:after {
+          content: '';
+          width: 0.05rem;
+          height: calc(100% - 0.5rem);
+          position: absolute;
+          right: 0;
+          top: 0.25rem;
+          background-color: var(--clr-table-border-color, #ccc);
+        }
+      }
+
+      .data-treetable-row-scrollable {
+        display: flex;
+        flex-flow: row nowrap;
+        flex: 1 1 auto;
+
+        :first-child {
+          /* Add padding of 1.5 rem to account for the expendable icon in the rows below*/
+          padding-left: 1.5rem;
+        }
+
+        .data-treetable-column {
+          text-align: left;
+          min-width: 4rem;
+
+          &:last-of-type {
+            padding-right: 1rem;
+          }
+        }
+
+        .btn-icon {
+          padding-left: var(--cds-global-space-6);
+
+          :first-child {
+            padding-left: revert;
+          }
+        }
+      }
+
+      .data-treetable-header {
+        position: sticky;
+        top: 0;
+        // bug(popover): prevents action-overflow from being on top (first row).
+        // Needed to keep select/radio and expand svgs underneath header on scrolling
+        z-index: map.get(variables.$clr-layers, datagrid-header);
+        display: flex;
+        flex-flow: row nowrap;
+        flex: 1 1 auto;
+
+        &.hide-header {
+          visibility: hidden;
+          min-height: 0;
+          height: 0;
+        }
+      }
+
+      .data-treetable-body {
+        width: auto;
+
+        .data-treetable-row:hover {
+          background-color: var(--clr-datagrid-row-hover-color);
+        }
+
+        .data-treetable-row-wrapper {
+          .clr-tt-node-content.data-treetable-row {
+            border-top: var(--clr-global-borderwidth) solid var(--clr-table-border-color);
+            display: flex;
+            flex: 1 1 auto;
+            flex-flow: row nowrap;
+          }
+
+          .data-treetable-scrolling-cells {
+            display: flex;
+            flex: 1 1 auto;
+            flex-flow: row nowrap;
+            overflow: hidden;
+
+            .data-treetable-cell {
+              text-align: left;
+              min-width: 4rem;
+              border-color: var(--clr-table-border-color);
+
+              &:last-of-type {
+                padding-right: 1rem;
+              }
+            }
+          }
+
+          @include row-indentation-recursive(0, 10);
+        }
+      }
+    }
+
+    &:not(.empty) .data-treetable-placeholder-container {
+      display: none;
+    }
+
+    .data-treetable-placeholder-container {
+      flex: 1 1 auto;
+      display: flex;
+      justify-content: center;
+      border-top: var(--clr-global-borderwidth) solid var(--clr-table-border-color);
+    }
+
+    .data-treetable-placeholder {
+      background: var(--clr-table-bgcolor);
+      width: 100%;
+
+      &.data-treetable-empty {
+        border-top: 0;
+        padding: 0.5rem;
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        justify-content: center;
+        font-size: var(--clr-datagrid-placeholder-font-size);
+        color: var(--clr-dark-midtone-gray);
+      }
+
+      .data-treetable-placeholder-image {
+        width: 2.5rem;
+        height: 2.5rem;
+        margin-bottom: 0.5rem;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        background-image: mixins.generateEmptyDataTreeTablePlaceholder();
+      }
+    }
+  }
+}

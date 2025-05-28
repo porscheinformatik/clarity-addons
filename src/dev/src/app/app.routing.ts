@@ -49,6 +49,10 @@ export const APP_ROUTES: Routes = [
     path: 'content-panel',
     loadChildren: () => import('./content-panel/content-panel.demo.module').then(m => m.ContentPanelDemoModule),
   },
+  {
+    path: 'data-treetable',
+    loadChildren: () => import('./data-treetable/data-treetable.demo.module').then(m => m.DataTreetableDemoModule),
+  },
   { path: 'flow-bar', loadChildren: () => import('./flow-bar/flow-bar.demo.module').then(m => m.FlowBarDemoModule) },
   {
     path: 'flow-bar-content-panel',
