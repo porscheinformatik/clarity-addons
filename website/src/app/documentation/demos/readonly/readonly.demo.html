@@ -34,6 +34,9 @@
       <li>
         <a routerLink="." fragment="checkbox" [class.active]="(activeFragment | async) === 'checkbox'">Checkbox</a>
       </li>
+      <li>
+        <a routerLink="." fragment="toggle" [class.active]="(activeFragment | async) === 'toggle'">Toggle</a>
+      </li>
     </ul>
   </div>
 
@@ -257,6 +260,22 @@
                 <label>Option 3</label>
               </clr-radio-wrapper>
             </clr-radio-container>
+
+            <clr-toggle-container readonly>
+              <label>Toggles</label>
+              <clr-toggle-wrapper>
+                <input clrToggle type="checkbox" [(ngModel)]="toggleValue1" name="toggle1" />
+                <label>Option 1</label>
+              </clr-toggle-wrapper>
+              <clr-toggle-wrapper>
+                <input clrToggle type="checkbox" [(ngModel)]="toggleValue2" name="toggle2" />
+                <label>Option 2</label>
+              </clr-toggle-wrapper>
+              <clr-toggle-wrapper>
+                <input clrToggle type="checkbox" [(ngModel)]="toggleValue3" name="toggle3" />
+                <label>Option 3</label>
+              </clr-toggle-wrapper>
+            </clr-toggle-container>
           </form>
         </ng-template>
         <ng-template #editBlock1>
@@ -378,6 +397,23 @@
                 <label>Option 3</label>
               </clr-radio-wrapper>
             </clr-radio-container>
+
+            <clr-toggle-container>
+              <label>Toggles</label>
+              <clr-toggle-wrapper>
+                <input clrToggle type="checkbox" formControlName="editToggleValue1" name="toggle1" />
+                <label>Option 1</label>
+              </clr-toggle-wrapper>
+              <clr-toggle-wrapper>
+                <input clrToggle type="checkbox" formControlName="editToggleValue2" name="toggle2" />
+                <label>Option 2</label>
+              </clr-toggle-wrapper>
+              <clr-toggle-wrapper>
+                <input clrToggle type="checkbox" formControlName="editToggleValue3" name="toggle3" />
+                <label>Option 3</label>
+              </clr-toggle-wrapper>
+            </clr-toggle-container>
+
             <input type="submit" style="display: none" />
           </form>
         </ng-template>
@@ -687,6 +723,63 @@
       </div>
 
       <clr-code-snippet [clrCode]="htmlCheckboxExample"></clr-code-snippet>
+
+      <h4 class="mt-30px" id="toggle">Toggles</h4>
+      <div class="clr-row">
+        <div class="clr-col-3">
+          <clr-toggle-container>
+            <label>Toggles</label>
+            <clr-toggle-wrapper>
+              <input clrToggle type="checkbox" [(ngModel)]="toggleValue1" name="toggle1" />
+              <label>Option 1</label>
+            </clr-toggle-wrapper>
+            <clr-toggle-wrapper>
+              <input clrToggle type="checkbox" [(ngModel)]="toggleValue2" name="toggle2" />
+              <label>Option 2</label>
+            </clr-toggle-wrapper>
+            <clr-toggle-wrapper>
+              <input clrToggle type="checkbox" [(ngModel)]="toggleValue3" name="toggle3" />
+              <label>Option 3</label>
+            </clr-toggle-wrapper>
+          </clr-toggle-container>
+        </div>
+        <div class="clr-col-4">
+          <clr-toggle-container readonly>
+            <label>Toggles (readonly)</label>
+            <clr-toggle-wrapper>
+              <input clrToggle type="checkbox" [(ngModel)]="toggleValue1" name="toggle4" />
+              <label>Option 1</label>
+            </clr-toggle-wrapper>
+            <clr-toggle-wrapper>
+              <input clrToggle type="checkbox" [(ngModel)]="toggleValue2" name="toggle5" />
+              <label>Option 2</label>
+            </clr-toggle-wrapper>
+            <clr-toggle-wrapper>
+              <input clrToggle type="checkbox" [(ngModel)]="toggleValue3" name="toggle6" />
+              <label>Option 3</label>
+            </clr-toggle-wrapper>
+          </clr-toggle-container>
+        </div>
+        <div class="clr-col-5">
+          <clr-toggle-container readonly show-only-selected="true">
+            <label>Toggles (readonly, show-only-selected="true")</label>
+            <clr-toggle-wrapper>
+              <input clrToggle type="checkbox" [(ngModel)]="toggleValue1" name="toggle7" />
+              <label>Option 1</label>
+            </clr-toggle-wrapper>
+            <clr-toggle-wrapper>
+              <input clrToggle type="checkbox" [(ngModel)]="toggleValue2" name="toggle8" />
+              <label>Option 2</label>
+            </clr-toggle-wrapper>
+            <clr-toggle-wrapper>
+              <input clrToggle type="checkbox" [(ngModel)]="toggleValue3" name="toggle9" />
+              <label>Option 3</label>
+            </clr-toggle-wrapper>
+          </clr-toggle-container>
+        </div>
+      </div>
+
+      <clr-code-snippet [clrCode]="htmlToggleExample"></clr-code-snippet>
 
       <h4>Conditional readonly</h4>
       Sometimes the readonly mode needs to be conditional. This can be achieved by attribute binding of angular, as null
