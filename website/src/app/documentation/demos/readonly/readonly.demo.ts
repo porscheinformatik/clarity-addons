@@ -19,6 +19,16 @@ const HTML_CHECKBOX_EXAMPLE = `
 </clr-checkbox-container>
 `;
 
+const HTML_TOGGLE_EXAMPLE = `
+<clr-toggle-container readonly>
+    ...
+</clr-toggle-container>
+
+<clr-toggle-container readonly show-only-selected="true">
+    ...
+</clr-toggle-container>
+`;
+
 const HTML_RADIOBUTTON_EXAMPLE = `
 <clr-radiobutton-container readonly>
     ...
@@ -65,6 +75,7 @@ const HTML_READONLY_READONLYPROPERTY = `
 })
 export class ReadonlyDemo extends ClarityDocComponent {
   htmlCheckboxExample = HTML_CHECKBOX_EXAMPLE;
+  htmlToggleExample = HTML_TOGGLE_EXAMPLE;
   htmlRadiobuttonExample = HTML_RADIOBUTTON_EXAMPLE;
   htmlRadioExampleDanger = HTML_RADIO_EXAMPLE_DANGER;
   htmlReadonlyConditional = HTML_READONLY_CONDITIONAL;
@@ -97,6 +108,9 @@ export class ReadonlyDemo extends ClarityDocComponent {
   checkValue1: boolean = true;
   checkValue2: boolean = false;
   checkValue3: boolean = true;
+  toggleValue1: boolean = true;
+  toggleValue2: boolean = false;
+  toggleValue3: boolean = true;
 
   sectionSubmitted(): boolean {
     if (this.exampleForm.valid) {
@@ -113,6 +127,10 @@ export class ReadonlyDemo extends ClarityDocComponent {
       this.checkValue1 = this.exampleForm.value.editCheckValue1;
       this.checkValue2 = this.exampleForm.value.editCheckValue2;
       this.checkValue3 = this.exampleForm.value.editCheckValue3;
+
+      this.toggleValue1 = this.exampleForm.value.editToggleValue1;
+      this.toggleValue2 = this.exampleForm.value.editToggleValue2;
+      this.toggleValue3 = this.exampleForm.value.editToggleValue3;
 
       return true;
     }
@@ -160,6 +178,10 @@ export class ReadonlyDemo extends ClarityDocComponent {
     editCheckValue1: new FormControl(this.checkValue1),
     editCheckValue2: new FormControl(this.checkValue2),
     editCheckValue3: new FormControl(this.checkValue3),
+
+    editToggleValue1: new FormControl(this.toggleValue1),
+    editToggleValue2: new FormControl(this.toggleValue2),
+    editToggleValue3: new FormControl(this.toggleValue3),
   });
 
   // Value for the demo Page

@@ -249,9 +249,10 @@ form {
   }
 }
 
-// Readonly checkboxes, radiobuttons
+// Readonly checkboxes, radiobuttons, toggles
 clr-radio-container[readonly][show-only-selected='true'] .clr-radio-wrapper input:not(:checked),
-clr-checkbox-container[readonly][show-only-selected='true'] .clr-checkbox-wrapper input:not(:checked) {
+clr-checkbox-container[readonly][show-only-selected='true'] .clr-checkbox-wrapper input:not(:checked),
+clr-toggle-container[readonly][show-only-selected='true'] .clr-toggle-wrapper input:not(:checked) {
   display: none;
 
   + label {
@@ -260,7 +261,8 @@ clr-checkbox-container[readonly][show-only-selected='true'] .clr-checkbox-wrappe
 }
 
 clr-radio-container[readonly].readonly-danger .clr-radio-wrapper input[type='radio'],
-clr-checkbox-container[readonly].readonly-danger .clr-checkbox-wrapper input[type='checkbox'] {
+clr-checkbox-container[readonly].readonly-danger .clr-checkbox-wrapper input[type='checkbox'],
+clr-toggle-container[readonly].readonly-danger .clr-toggle-wrapper input[type='checkbox'] {
   &:checked {
     + label {
       color: var(--clr-btn-danger-bg-color);
@@ -273,7 +275,8 @@ clr-checkbox-container[readonly].readonly-danger .clr-checkbox-wrapper input[typ
 }
 
 clr-radio-container[readonly] .clr-radio-wrapper input[type='radio'],
-clr-checkbox-container[readonly] .clr-checkbox-wrapper input[type='checkbox'] {
+clr-checkbox-container[readonly] .clr-checkbox-wrapper input[type='checkbox'],
+clr-toggle-container[readonly] .clr-toggle-wrapper input[type='checkbox'] {
   pointer-events: none;
 
   + label {
@@ -323,6 +326,20 @@ clr-checkbox-container[readonly] .clr-checkbox-wrapper input[type='checkbox'] {
 
   &:checked::after {
     content: none;
+  }
+}
+
+clr-toggle-container[readonly] .clr-toggle-wrapper {
+  gap: 0; // radios and checkboxes do not have a gap
+  height: unset; // radios and checkboxes do not have a set height
+
+  input[type='checkbox'] {
+    width: var(--cds-global-space-9); // because Clarity doesn't export this as a "checkbox" or a "toggle" variable
+
+    &::before,
+    &:checked::before {
+      transition: none; // radios and checkboxes are not animated
+    }
   }
 }
 
