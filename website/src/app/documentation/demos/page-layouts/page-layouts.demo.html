@@ -5,13 +5,8 @@
       <li>
         <a
           routerLink="."
-          fragment="general"
-          [class.active]="(activeFragment | async) === 'general' || (activeFragment | async) === null"
-          >General layout settings</a
-        >
-      </li>
-      <li>
-        <a routerLink="." fragment="base-layout" [class.active]="(activeFragment | async) === 'base-layout'"
+          fragment="base-layout"
+          [class.active]="(activeFragment | async) === 'base-layout' || (activeFragment | async) === null"
           >Base Pagelayout</a
         >
       </li>
@@ -49,24 +44,19 @@
   </div>
 
   <article>
-    <h2 id="general">General layout settings</h2>
-    <h3>Action buttons</h3>
-    <p>
-      Buttons order guideline, please always use the following order for your buttons:
-      <clr-code-snippet [clrCode]="buttonCodeOrderExample"></clr-code-snippet>
-    </p>
-
+    <h5 class="component-summary" id="generic-pager-header">
+      All pages in an application should follow a common layout structure to ensure a consistent user experience across
+      applications.
+    </h5>
+    <a href="/full-page-layouts/basepage-layout" target="_blank">
+      <button class="btn btn-outline"><cds-icon shape="display"></cds-icon>&nbsp; Demo application</button>
+    </a>
     <h2 id="base-layout">Base Pagelayout</h2>
     <h5 class="component-summary" id="generic-pager-header">
       The Base Pagelayout provides the most fundamental navigation and content elements.
     </h5>
 
-    <div id="design-guidelines">
-      <h3>Design Guidelines</h3>
-      <p>
-        All pages in an application should follow a common layout structure to ensure a consistent user experience
-        across applications.
-      </p>
+    <div>
       <p>The Base Pagelayout includes the following components:</p>
       <ul class="list">
         <li>Main Navigation</li>
@@ -114,9 +104,16 @@
           Other commands, either less common ones or where the proximity to an ui element is crucial, are provided
           within the content area.
         </li>
+        <li>Consistent button order in command-bar:</li>
+        <ul>
+          <li>The history-button is the left-most button, followed by</li>
+          <li>Action Buttons, and</li>
+          <li>Optional: the action-panel-button is the right-most button in the command-bar</li>
+        </ul>
+        <img src="assets/images/documentation/command-bar.png" width="500px" alt="Command Bar" />
       </ul>
 
-      <h4>Action Panel Example</h4>
+      <h4>Action Panel</h4>
       <ul class="list">
         <li>Use when lot of actions are required</li>
         <li>Group similar actions using Captions and Spacer.</li>
@@ -251,10 +248,6 @@
 
     <div id="design-guidelines">
       <h3>Design Guidelines</h3>
-      <p>
-        All pages in an application should follow a common layout structure to ensure a consistent user experience
-        across applications.
-      </p>
       <p>The Sidebar Pagelayout includes the following components:</p>
       <ul class="list">
         <li>Main Navigation</li>

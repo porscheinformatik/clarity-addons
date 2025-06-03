@@ -9,21 +9,6 @@ import { ClarityIcons, displayIcon } from '@cds/core/icon';
 
 ClarityIcons.addIcons(displayIcon);
 
-const CONTENTPANEL_CODE_EXAMPLE = `
-<div class="btn-group">
-    <button class="btn" (click)="contentPanel.toggle()">Show/Hide</button>
-</div>
-
-<clr-content-panel-container>
-    <h2>This is the page title</h2>
-    <span>This is the page content</span>
-    <clr-content-panel #contentPanel>
-        <ng-container clr-content-panel-title>Content Panel</ng-container>
-        <ng-container clr-content-panel-content>Content</ng-container>
-    </clr-content-panel>
-</clr-content-panel-container>
-`;
-
 const MAINNAV_HTML_EXAMPLE = `
 <clr-main-nav-group clrTitle="Layouts" routerLinkActive="active">
     <a class="nav-link" routerLink="/full-page-layouts/basepage-layout" routerLinkActive="active" clrMainNavGroupItem>Base Pagelayout</a>
@@ -42,7 +27,6 @@ const MAINNAV_HTML_EXAMPLE = `
   standalone: false,
 })
 export class NavigationDemo extends ClarityDocComponent {
-  contentPanelCodeExample = CONTENTPANEL_CODE_EXAMPLE;
   mainNavHtmlExample = MAINNAV_HTML_EXAMPLE;
 
   constructor() {

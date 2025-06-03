@@ -36,7 +36,7 @@
         {{ isInputFormValidating ? 'Validate' : 'Reset' }} form
       </button>
     </div>
-    <form [formGroup]="inputForm" clrForm clrLayout="horizontal">
+    <form [formGroup]="inputForm" clrForm>
       <clr-input-container class="clr-col-12">
         <label class="clr-required-mark">Input label</label>
         <input class="clr-col-5" clrInput formControlName="input" minlength="5" name="inputName" required type="text" />
@@ -62,7 +62,7 @@
 
       <clr-input-container class="clr-col-12">
         <label class="clr-required-mark">Time label</label>
-        <input class="clr-col-5" clrInput formControlName="time" name="time" required type="time" />
+        <input class="time-width" clrInput formControlName="time" name="time" required type="time" />
         <clr-control-helper *clrIfWarning="showingInputWarnings">This is a warning</clr-control-helper>
         <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
       </clr-input-container>
@@ -79,7 +79,7 @@
       </clr-select-container>
       <clr-combobox-container class="clr-col-12">
         <label>Single Select Combobox</label>
-        <clr-combobox class="clr-col-5" formControlName="comboSingle" name="combobox" required>
+        <clr-combobox class="clr-col-5 custom-clrbox" formControlName="comboSingle" name="combobox" required>
           <clr-options>
             <clr-option *clrOptionItems="let option of values$ | async" [clrValue]="option">{{ option }}</clr-option>
           </clr-options>

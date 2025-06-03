@@ -392,3 +392,14 @@ ul:not(.list-unstyled) {
   margin-top: var(--cds-global-layout-space-md) !important;
   list-style-position: outside !important;
 }
+
+.time-width {
+  flex: 0 0 13%;
+  max-width: 13%;
+}
+
+.custom-clrbox {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+}
