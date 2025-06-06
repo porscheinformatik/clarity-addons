@@ -1,6 +1,6 @@
 import { Component, HostListener, ViewChild } from '@angular/core';
 import { ClrDatagrid, ClrDatagridStateInterface } from '@clr/angular';
-import { of, tap } from 'rxjs';
+import { debounceTime, of, Subject } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
 @Component({
@@ -11,22 +11,39 @@ import { delay } from 'rxjs/operators';
 export class DatagridStatePersistenceDemo {
   now = new Date();
 
-  data$ = of(
-    [...Array(30).keys()].map(i => ({
+  data$ = new Subject();
+  frontendData$ = of(
+    [...Array(100).keys()].map(i => ({
       hideableCol: 'item' + i,
       hideableCol2: 'item' + i,
       numericCol: i,
       dateCol: new Date(),
       enumCol: 'Enum ' + i,
     }))
-  ).pipe(
-    delay(200),
-    tap(() => (this.total = 100))
-  );
+  ).pipe(delay(1));
 
+  reload$ = new Subject<void>();
+
+  state: ClrDatagridStateInterface;
   total = 0;
 
   @ViewChild(ClrDatagrid) dataGrid: ClrDatagrid;
+
+  ngOnInit() {
+    this.reload$.pipe(debounceTime(400)).subscribe(() => {
+      console.log('debounced backend reload triggered', JSON.stringify(this.state));
+      this.total = 100;
+      this.data$.next(
+        [...Array(this.state.page.size).keys()].map(i => ({
+          hideableCol: 'item' + i,
+          hideableCol2: 'item' + i,
+          numericCol: i + (this.state.page.current - 1) * this.state.page.size,
+          dateCol: new Date(),
+          enumCol: 'Enum ' + i,
+        }))
+      );
+    });
+  }
 
   @HostListener('window:resize')
   onResize() {
@@ -34,6 +51,8 @@ export class DatagridStatePersistenceDemo {
   }
 
   refresh(state: ClrDatagridStateInterface) {
+    this.state = state;
+    this.reload$.next();
     console.log('data refresh needed', JSON.stringify(state));
   }
 }

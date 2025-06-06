@@ -24,7 +24,7 @@ import {
 } from '@clr/angular';
 import { ClrDatagridStatePersistenceModel } from './datagrid-state-persistence-model.interface';
 import { delay, Subject } from 'rxjs';
-import { take, takeUntil } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 import { StatePersistenceOptions } from './state-persistence-options.interface';
 
 const DATE_TYPE = 'date';
@@ -135,7 +135,7 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
   private initCurrentPage(savedState: ClrDatagridStatePersistenceModel) {
     /* init current page of datagrid if already persisted */
     if (savedState?.currentPage) {
-      this.datagrid.items.change.pipe(take(1)).subscribe(() => (this.pagination.page.current = savedState.currentPage));
+      this.pagination.page.current = savedState.currentPage;
     }
   }
 
