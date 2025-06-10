@@ -80,16 +80,12 @@ export class ClrEnumFilterComponent<T extends { [key: string]: any }>
   }
 
   setPossibleValues(values: (string | FilterValue)[]) {
-    if (values === null) {
-      values = [];
-    }
+    values ??= [];
     this.possibleValues = values.map(value => this.mapValue(value));
     this.possibleValues.sort((v1, v2) => v1.displayValue.localeCompare(v2.displayValue));
     this.filteredValues = this.filteredValues.filter(filtered =>
       this.containsFilterValue(this.possibleValues, filtered)
     );
-
-    this.emitFilterChanged();
   }
 
   onChange(selectedValue: FilterValue, checkboxState: boolean) {
