@@ -396,9 +396,13 @@ clr-date-container .clr-control-container {
 
 // Set the width of text areas and selects to 100%
 .clr-control-container {
-  .clr-textarea-wrapper textarea {
-    width: 100%;
-    flex: 1 0 auto;
+  .clr-textarea-wrapper {
+    margin-top: 0;
+
+    textarea {
+      width: 100%;
+      flex: 1 0 auto;
+    }
   }
 
   .clr-select-wrapper {
