@@ -1,0 +1,69 @@
+import {
+  ChangeDetectorRef,
+  Directive,
+  inject,
+  Input,
+  IterableDiffers,
+  signal,
+  TemplateRef,
+  TrackByFunction,
+  ViewContainerRef,
+} from '@angular/core';
+import { NgForOf, NgForOfContext } from '@angular/common';
+import { Items, Sort } from './providers';
+import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
+
+@Directive({
+  selector: '[clrTtItems]',
+  standalone: false,
+})
+export class TreetableItemsDirective<T> {
+  private readonly _items = inject(Items<T>);
+  private readonly _sort = inject(Sort<T>);
+  private readonly _template = inject(TemplateRef<NgForOfContext<T>>);
+  private readonly _differs = inject(IterableDiffers);
+  private readonly _vcr = inject(ViewContainerRef);
+  private readonly _cdr = inject(ChangeDetectorRef);
+
+  private _iterableProxy: NgForOf<T>;
+
+  ttItems = signal([]);
+  @Input()
+  get clrTtItems(): T[] {
+    return this.ttItems();
+  }
+  set clrTtItems(items: T[]) {
+    if (items == null || items.length === 0) {
+      return;
+    }
+
+    if (this._sort.comparator) {
+      // We need to detach the change detector to avoid unnecessary checks when presorting
+      // since we modify the reference of the _items
+      // TODO: better ideas?
+      this._cdr.detach();
+      items = items.sort((a, b) => this._sort.compare(a, b));
+      this._cdr.reattach();
+    }
+
+    this.ttItems.set(items);
+
+    this._items.addItems(items);
+  }
+
+  @Input('clrTtItemsTrackBy')
+  set trackBy(value: TrackByFunction<T>) {
+    this._iterableProxy.ngForTrackBy = value;
+  }
+
+  constructor() {
+    this._iterableProxy = new NgForOf<T>(this._vcr, this._template, this._differs);
+
+    toObservable(this.ttItems)
+      .pipe(takeUntilDestroyed())
+      .subscribe((newItems: T[]) => {
+        this._iterableProxy.ngForOf = newItems;
+        this._iterableProxy.ngDoCheck();
+      });
+  }
+}

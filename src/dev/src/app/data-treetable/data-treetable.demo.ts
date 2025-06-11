@@ -30,12 +30,11 @@ export class DataTreetableDemo implements OnInit {
   comperator = new TestComparator();
   sortOrder = ClrDatagridSortOrder.DESC;
 
-  root: Elem = { name: 'Root1' };
   myTree: Tree[] = Array.from({ length: 1 }, (_, index) => {
     return JSON.parse(
       JSON.stringify({
         id: `1-${index + 1}`, // Assign unique IDs for each duplicate
-        value: this.root,
+        value: { name: 'Root1' },
         parent: null,
         children: [
           {
