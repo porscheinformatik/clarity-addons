@@ -4,16 +4,15 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'clr-tt-cell',
+  selector: 'clr-dt-cell',
   template: '<ng-content></ng-content>',
   host: {
-    '[class.treetable-cell]': 'true',
+    '[class.data-treetable-cell]': 'true',
     role: 'cell',
   },
   standalone: false,
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ClrTreetableCell {}
+export class ClrDataTreeTableCell {}

@@ -5,7 +5,6 @@
  */
 import {
   AfterViewInit,
-  ChangeDetectionStrategy,
   Component,
   ContentChildren,
   EventEmitter,
@@ -17,48 +16,35 @@ import {
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { ClrTreetableColumn } from './treetable-column';
-import { ClrTreetableRow } from './treetable-row';
+import { ClrDataTreeTableColumn } from './data-treetable-column';
+import { ClrDataTreeTableRow } from './data-treetable-row';
+import { DataTreetableItemsDirective } from './data-treetable-items.directive';
+import { Selection } from './providers/selection';
+import { Items, Sort, StateDebouncer } from './providers';
 import { SelectionType } from './enums/selection-type';
-import { Items, Selection, Sort, StateDebouncer } from './providers';
-import { TreetableItemsDirective } from './treetable-items';
 
 @Component({
-  selector: 'clr-treetable',
-  templateUrl: './treetable.html',
-  host: { '[class.empty]': 'empty', '[class.treetable-host]': 'true' },
+  selector: 'clr-data-treetable',
+  templateUrl: './data-treetable.html',
+  host: { '[class.empty]': 'empty', '[class.data-treetable-host]': 'true' },
   standalone: false,
-  providers: [Selection, Items, Sort, StateDebouncer],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [Selection, Sort, StateDebouncer, Items],
 })
-export class ClrTreetable<T> implements AfterViewInit, OnDestroy {
-  public readonly selection = inject(Selection<T>);
-  private readonly items = inject(Items<T>);
-
+export class ClrDataTreeTable<T = any> implements AfterViewInit, OnDestroy {
   @Input() clrClickableRows = true;
   @Input('clrHideHeader') hideHeader = false;
-  @Input('clrTtSelected')
-  set selected(value: T[] | undefined) {
-    if (value) {
-      this.selection.selectionType = SelectionType.Multi;
-    } else {
-      this.selection.selectionType = SelectionType.None;
-    }
-    this.selection.updateCurrent(value, false);
-  }
-  @Output('clrTtSelectedChange') selectedChanged = new EventEmitter<T[]>(false);
 
-  @ContentChildren(ClrTreetableColumn, { descendants: true })
-  ttColumns: QueryList<ClrTreetableRow<T>>;
+  @ContentChildren(ClrDataTreeTableColumn, { descendants: true })
+  ttColumns: QueryList<ClrDataTreeTableRow>;
 
   empty = true;
   hasActionOverflow = false;
 
-  private _ttRows: QueryList<ClrTreetableRow<T>>;
+  private _ttRows: QueryList<ClrDataTreeTableRow>;
   private destroyed$ = new Subject<void>();
 
-  @ContentChildren(ClrTreetableRow, { descendants: true })
-  set ttRows(items: QueryList<ClrTreetableRow<T>>) {
+  @ContentChildren(ClrDataTreeTableRow, { descendants: true })
+  set ttRows(items: QueryList<ClrDataTreeTableRow>) {
     this._ttRows = items;
     this.hasActionOverflow = false;
     this.initClickableRows();
@@ -66,22 +52,70 @@ export class ClrTreetable<T> implements AfterViewInit, OnDestroy {
     this.initActionOverflow();
   }
 
-  @ContentChildren(TreetableItemsDirective, { descendants: true }) iterator: QueryList<TreetableItemsDirective<T>>;
+  @ContentChildren(DataTreetableItemsDirective, { descendants: true }) iterator: QueryList<
+    DataTreetableItemsDirective<T>
+  >;
+
+  @Output('clrDtSelectedChange') selectedChanged = new EventEmitter<T[]>(false);
+  private readonly selection = inject(Selection<T>);
+  private readonly items = inject(Items<T>);
+  @Input('clrDtSelected')
+  set selected(value: T[] | undefined) {
+    if (value) {
+      this.selection.selectionType = SelectionType.Multi;
+    }
+    this.selection.updateCurrent(value, false);
+  }
 
   ngAfterViewInit() {
     this.selection.change.subscribe(s => {
       this.selectedChanged.emit(s as T[]);
     });
 
+    console.log(this.items);
+    console.log('ITERATOR', this.iterator);
+    /*
+    this.items.change.subscribe((items: T[]) => {
+      if(items == null) {
+        return;
+      }
+
+      items.forEach((itemList: T[], index) => {
+        this.iterator.toArray()[index]._items.set(itemList);
+      })
+    });
+
+
+ */
+
     this.items.change.subscribe((allItems: T[][]) => {
       const directives = this.iterator.toArray(); // Convert QueryList to array
       directives.forEach((directive, index) => {
         if (allItems[index]) {
           const sortedItems = [...allItems[index]];
-          directive.ttItems.set(sortedItems);
+          directive._items.set(sortedItems);
         }
       });
     });
+  }
+
+  @Output('clrDgCustomSelectAll') customSelectAll = new EventEmitter<boolean>();
+  @Input('clrDgCustomSelectAllEnabled') customSelectAllEnabled = false;
+
+  get allSelected() {
+    return this.selection.isAllSelected();
+  }
+  set allSelected(value: boolean) {
+    if (this.customSelectAllEnabled) {
+      this.customSelectAll.emit(value);
+    } else {
+      /**
+       * This is a setter but we ignore the value.
+       * It's strange, but it lets us have an indeterminate state where only
+       * some of the items are selected.
+       */
+      this.selection.toggleAll();
+    }
   }
 
   private initClickableRows(): void {
@@ -117,22 +151,8 @@ export class ClrTreetable<T> implements AfterViewInit, OnDestroy {
     }
   }
 
-  get allSelected() {
-    return this.selection.isAllSelected();
-  }
-  set allSelected(_: boolean) {
-    /**
-     * This is a setter but we ignore the value.
-     * It's strange, but it lets us have an indeterminate state where only
-     * some of the items are selected.
-     */
-    this.selection.toggleAll();
-  }
-
   ngOnDestroy(): void {
     this.destroyed$.next();
     this.destroyed$.complete();
   }
-
-  protected readonly SelectionType = SelectionType;
 }

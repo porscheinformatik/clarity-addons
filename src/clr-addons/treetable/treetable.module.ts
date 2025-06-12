@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -17,6 +17,8 @@ import { TreetableMainRenderer } from './renderer/main-renderer';
 import { TreetableRowRenderer } from './renderer/row-renderer';
 import { TreetableCellRenderer } from './renderer/cell-renderer';
 import { ClrTreetableActionOverflow } from './treetable-action-overflow';
+import { TreetableItemsDirective } from './treetable-items';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const CLR_TREETABLE_DIRECTIVES: Type<any>[] = [
   ClrTreetable,
@@ -29,10 +31,11 @@ const CLR_TREETABLE_DIRECTIVES: Type<any>[] = [
   TreetableHeaderRenderer,
   TreetableRowRenderer,
   TreetableCellRenderer,
+  TreetableItemsDirective,
 ];
 
 @NgModule({
-  imports: [CommonModule, ClarityModule],
+  imports: [CommonModule, ClarityModule, ReactiveFormsModule, FormsModule],
   declarations: [CLR_TREETABLE_DIRECTIVES],
   exports: [CLR_TREETABLE_DIRECTIVES],
 })

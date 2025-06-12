@@ -4,20 +4,9 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  ContentChild,
-  EventEmitter,
-  inject,
-  input,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, ContentChild, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { ClrTreetableActionOverflow } from './treetable-action-overflow';
+import { ClrDataTreeTableActionOverflow } from './data-treetable-action-overflow';
 import { angleIcon, ClarityIcons } from '@cds/core/icon';
 import { Selection } from './providers';
 import { SelectionType } from './enums/selection-type';
@@ -25,9 +14,9 @@ import { SelectionType } from './enums/selection-type';
 ClarityIcons.addIcons(angleIcon);
 
 @Component({
-  selector: 'clr-tt-row',
-  templateUrl: './treetable-row.html',
-  host: { '[class.treetable-row-wrapper]': 'true', '[class.treetable-selected]': 'selected' },
+  selector: 'clr-dt-row',
+  templateUrl: './data-treetable-row.html',
+  host: { '[class.data-treetable-row-wrapper]': 'true' },
   animations: [
     trigger('collapseExpandAnimation', [
       state('false', style({ display: 'none' })),
@@ -43,54 +32,53 @@ ClarityIcons.addIcons(angleIcon);
     ]),
   ],
   standalone: false,
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ClrTreetableRow<T> implements OnInit {
-  readonly selection = inject(Selection);
-  private readonly _cdr = inject(ChangeDetectorRef);
-
-  private _selected = false;
-
+export class ClrDataTreeTableRow implements OnInit {
   @Input('clrExpanded') expanded = false;
   @Input('clrClickable') clickable = true;
   @Input('clrExpandable') expandable = false;
-  clrTtItem = input<T>();
-  @Input('clrTtSelected')
-  get selected() {
-    if (this.selection.selectionType === SelectionType.None) {
-      return this._selected;
-    } else {
-      return this.selection.isSelected(this.clrTtItem());
-    }
-  }
-  set selected(value: boolean | string) {
-    this.selection.setSelected(this.clrTtItem(), value as boolean);
-  }
 
   @Output() hasActionOverflow = new EventEmitter<boolean>();
   @Output('clrExpandedChange') expandedChange = new EventEmitter<boolean>();
-  @Output('clrTtSelectedChange') selectedChanged = new EventEmitter<boolean>(false);
+
+  @Output('clrDtSelectedChange') selectedChanged = new EventEmitter<boolean>(false);
 
   showActionOverflow = false;
   showEmptyActionOverflow = false;
   showClickClass = false;
 
-  @ContentChild(ClrTreetableActionOverflow)
-  set actionOverflow(actionOverflow: ClrTreetableActionOverflow) {
+  @ContentChild(ClrDataTreeTableActionOverflow)
+  set actionOverflow(actionOverflow: ClrDataTreeTableActionOverflow) {
     this.showActionOverflow = !!actionOverflow;
     this.showEmptyActionOverflow = !this.showActionOverflow;
     this.hasActionOverflow.emit(this.showActionOverflow);
   }
 
-  ngOnInit(): void {
-    this.showClickClass = this.expandable && this.clickable;
+  private _item: any;
+  @Input('clrDtItem')
+  get item() {
+    return this._item;
+  }
+  set item(item) {
+    this._item = item;
+    console.log(this._item);
+  }
 
-    //TODO: i don't like that but how else can we trigger change detection
-    // when the checkbox in overall treetable is clicked?
-    // this is only necessary when changeDetection: ChangeDetectionStrategy.OnPush
-    this.selection.allSelectedChange.subscribe(() => {
-      this._cdr.markForCheck();
-    });
+  private readonly selection = inject(Selection);
+
+  private _selected = false;
+
+  @Input('clrDtSelected')
+  get selected() {
+    if (this.selection.selectionType === SelectionType.None) {
+      return this._selected;
+    } else {
+      return this.selection.isSelected(this.item);
+    }
+  }
+  set selected(value: boolean | string) {
+    console.log('set selected', value);
+    this.selection.setSelected(this.item, value as boolean);
   }
 
   toggle(selected = !this.selected) {
@@ -98,6 +86,12 @@ export class ClrTreetableRow<T> implements OnInit {
       this.selected = selected;
       this.selectedChanged.emit(selected);
     }
+  }
+
+  constructor() {}
+
+  ngOnInit(): void {
+    this.showClickClass = this.expandable && this.clickable;
   }
 
   private toggleExpand(): void {
@@ -108,7 +102,7 @@ export class ClrTreetableRow<T> implements OnInit {
   }
 
   onRowClick(event: MouseEvent): void {
-    if (this.clickable && !(event.target as HTMLElement).closest('.treetable-action-trigger')) {
+    if (this.clickable && !(event.target as HTMLElement).closest('.data-treetable-action-trigger')) {
       this.toggleExpand();
     }
   }
@@ -118,6 +112,4 @@ export class ClrTreetableRow<T> implements OnInit {
       this.toggleExpand();
     }
   }
-
-  protected readonly SelectionType = SelectionType;
 }

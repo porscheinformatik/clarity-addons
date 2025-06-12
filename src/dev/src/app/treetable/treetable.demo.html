@@ -6,6 +6,44 @@
 
 <h2>Treetable</h2>
 
+<h4>DataTreeTable With Recursive Loops</h4>
+<clr-treetable [(clrTtSelected)]="selected">
+  <clr-tt-column [clrTtSortBy]="comperator" [(clrTtSortOrder)]="sortOrder">Name</clr-tt-column>
+  <clr-tt-column [clrTtSortBy]="comperator2" [(clrTtSortOrder)]="sortOrder2">ID</clr-tt-column>
+  <clr-tt-column>Parent</clr-tt-column>
+
+  <ng-container
+    ngProjectAs="clr-tt-row"
+    *ngTemplateOutlet="recursiveRows; context: { $implicit: rootNodes }"
+  ></ng-container>
+
+  <ng-template #recursiveRows let-nodes>
+    <ng-container *clrTtItems="nodes; let node; trackBy: trackByFn">
+      <clr-tt-row [clrTtItem]="node" [clrExpandable]="node.children?.length > 0" [clrExpanded]="true">
+        <clr-tt-action-overflow>
+          <button class="action-item">Test Action</button>
+        </clr-tt-action-overflow>
+
+        <clr-tt-cell>{{ node.value.name }}</clr-tt-cell>
+        <clr-tt-cell>{{ node.id }}</clr-tt-cell>
+        <clr-tt-cell>{{ node.parent?.id || 'No Parent' }}</clr-tt-cell>
+
+        <ng-container ngProjectAs="clr-tt-row" *ngIf="node.children?.length > 0">
+          <ng-container
+            ngProjectAs="clr-tt-row"
+            *ngTemplateOutlet="recursiveRows; context: { $implicit: node.children }"
+          ></ng-container>
+        </ng-container>
+      </clr-tt-row>
+    </ng-container>
+  </ng-template>
+
+  <clr-tt-placeholder>No users found</clr-tt-placeholder>
+</clr-treetable>
+
+<div>Selected: {{ selected | json }}</div>
+<div>Sort order col1: {{sortOrder}}</div>
+
 <h4>Treetable with large amount of data async</h4>
 <clr-treetable>
   <clr-tt-column>Col1</clr-tt-column>
@@ -63,6 +101,7 @@
   >>
 </clr-treetable>
 
+<!-- TODO: check if we can hide that, because it makes the ui very buggy
 <h4>Treetable with large amount of data</h4>
 <clr-treetable>
   <clr-tt-column>Col1</clr-tt-column>
@@ -201,6 +240,8 @@
     </clr-tt-row>
   </clr-tt-row>
 </clr-treetable>
+
+-->
 
 <h4>Treetable with whole clickable rows</h4>
 <clr-treetable>
