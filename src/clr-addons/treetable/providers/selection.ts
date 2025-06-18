@@ -55,7 +55,7 @@ export class Selection<T> {
     }
   }
 
-  get change(): Observable<T[] | T> {
+  get change(): Observable<T[]> {
     return this._change.asObservable();
   }
 

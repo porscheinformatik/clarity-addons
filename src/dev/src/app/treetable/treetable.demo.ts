@@ -181,6 +181,8 @@ export class TreetableDemo implements OnInit {
   trackByFn(_: number, item: Tree): string {
     return item.id;
   }
+
+  protected readonly ClrTreetableSortOrder = ClrTreetableSortOrder;
 }
 
 class TestComparator implements ClrTreetableComparatorInterface<Tree> {

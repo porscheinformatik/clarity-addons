@@ -37,7 +37,6 @@ import { ClrDaterangepickerModule } from './daterangepicker';
 import { ClrIfWarningModule } from './clr-control-warning/if-warning.module';
 import { ClrActionPanelModule } from './action-panel';
 import { ClrReadonlyDirectiveModule } from './readonly/readonly.module';
-import { ClrDataTreeTableModule } from './data-treetable';
 
 @NgModule({
   exports: [
@@ -55,7 +54,6 @@ import { ClrDataTreeTableModule } from './data-treetable';
     ClrNumericFieldModule,
     ClrSearchFieldModule,
     ClrTreetableModule,
-    ClrDataTreeTableModule,
     ClrProgressSpinnerModule,
     ClrDateTimeModule,
     ClrQuickListModule,

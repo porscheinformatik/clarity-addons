@@ -112,8 +112,6 @@ export class ClrTreetableColumn<T> {
   }
 
   sort(reverse?: boolean) {
-    console.log('sort clicked');
-
     if (!this.sortable) {
       return;
     }

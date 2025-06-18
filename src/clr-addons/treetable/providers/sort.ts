@@ -31,20 +31,16 @@ export class Sort<T = any> {
     return this._comparator;
   }
   set comparator(value: ClrTreetableComparatorInterface<T>) {
-    //this.stateDebouncer.changeStart();
     this._comparator = value;
     this.emitChange();
-    //this.stateDebouncer.changeDone();
   }
 
   get reverse(): boolean {
     return this._reverse;
   }
   set reverse(value: boolean) {
-    //this.stateDebouncer.changeStart();
     this._reverse = value;
     this.emitChange();
-    //this.stateDebouncer.changeDone();
   }
 
   // We do not want to expose the Subject itself, but the Observable which is read-only
@@ -60,8 +56,6 @@ export class Sort<T = any> {
    * @memberof Sort
    */
   toggle(sortBy: ClrTreetableComparatorInterface<T>, forceReverse?: boolean) {
-    //this.stateDebouncer.changeStart();
-    // We modify private properties directly, to batch the change event
     if (this.comparator === sortBy) {
       this._reverse = typeof forceReverse !== 'undefined' ? forceReverse || !this._reverse : !this._reverse;
     } else {
@@ -69,7 +63,6 @@ export class Sort<T = any> {
       this._reverse = typeof forceReverse !== 'undefined' ? forceReverse : false;
     }
     this.emitChange();
-    //this.stateDebouncer.changeDone();
   }
 
   /**
@@ -87,7 +80,6 @@ export class Sort<T = any> {
   }
 
   private emitChange() {
-    console.log('EMIT CHANGE');
     this._change.next(this);
   }
 }

@@ -19,10 +19,8 @@ export class Items<T = any> {
 
   constructor() {
     this._sort.change.subscribe(() => {
-      // Special case, if the datagrid went from sorted to unsorted, we have to re-filter
-      // to get the original order back
       if (this._sort.comparator) {
-        this._sortItems();
+        this.sortItems();
       }
     });
   }
@@ -39,11 +37,9 @@ export class Items<T = any> {
   }
 
   get displayed(): T[][] {
-    // Ideally we could return an immutable array, but we don't have it in Clarity yet.
     return this._displayed;
   }
 
-  // We do not want to expose the Subject itself, but the Observable which is read-only
   get change(): Observable<T[][]> {
     return this._change.asObservable();
   }
@@ -62,7 +58,7 @@ export class Items<T = any> {
   /**
    * Sorts items in the filtered list
    */
-  private _sortItems() {
+  private sortItems() {
     if (this.uninitialized) {
       return;
     }

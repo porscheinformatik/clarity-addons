@@ -1,6 +1,7 @@
 import {
   ChangeDetectorRef,
   Directive,
+  effect,
   inject,
   Input,
   IterableDiffers,
@@ -11,8 +12,6 @@ import {
 } from '@angular/core';
 import { NgForOf, NgForOfContext } from '@angular/common';
 import { Items, Sort } from './providers';
-import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
-
 @Directive({
   selector: '[clrTtItems]',
   standalone: false,
@@ -40,7 +39,6 @@ export class TreetableItemsDirective<T> {
     if (this._sort.comparator) {
       // We need to detach the change detector to avoid unnecessary checks when presorting
       // since we modify the reference of the _items
-      // TODO: better ideas?
       this._cdr.detach();
       items = items.sort((a, b) => this._sort.compare(a, b));
       this._cdr.reattach();
@@ -59,11 +57,13 @@ export class TreetableItemsDirective<T> {
   constructor() {
     this._iterableProxy = new NgForOf<T>(this._vcr, this._template, this._differs);
 
-    toObservable(this.ttItems)
-      .pipe(takeUntilDestroyed())
-      .subscribe((newItems: T[]) => {
+    effect(() => {
+      const newItems = this.ttItems();
+
+      if (newItems) {
         this._iterableProxy.ngForOf = newItems;
         this._iterableProxy.ngDoCheck();
-      });
+      }
+    });
   }
 }

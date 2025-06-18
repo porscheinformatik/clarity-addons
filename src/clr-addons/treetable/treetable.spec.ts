@@ -12,6 +12,8 @@ import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 
+type Item = { id: number };
+
 @Component({
   template: `
     <clr-treetable [clrClickableRows]="false">
@@ -31,8 +33,8 @@ import { By } from '@angular/platform-browser';
   standalone: false,
 })
 class RowClickableTestComponent {
-  @ViewChild(ClrTreetable, { static: true }) treetable: ClrTreetable;
-  @ViewChildren(ClrTreetableRow) ttRows: QueryList<ClrTreetableRow>;
+  @ViewChild(ClrTreetable, { static: true }) treetable: ClrTreetable<Item>;
+  @ViewChildren(ClrTreetableRow) ttRows: QueryList<ClrTreetableRow<Item>>;
 }
 
 @Component({
@@ -63,7 +65,7 @@ class ActionTestComponent {}
   standalone: false,
 })
 class EmptyTestComponent {
-  @ViewChild(ClrTreetable, { static: true }) treetable: ClrTreetable;
+  @ViewChild(ClrTreetable, { static: true }) treetable: ClrTreetable<Item>;
 }
 
 describe('ClrTreetable', () => {
