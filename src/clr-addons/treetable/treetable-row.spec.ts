@@ -12,6 +12,8 @@ import { Component, ViewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+type Item = { id: number };
+
 @Component({
   template: `
     <clr-treetable>
@@ -27,7 +29,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   standalone: false,
 })
 class RowClickableTestComponent {
-  @ViewChild(ClrTreetableRow, { static: true }) ttRow: ClrTreetableRow;
+  @ViewChild(ClrTreetableRow, { static: true }) ttRow: ClrTreetableRow<Item>;
 }
 
 @Component({
@@ -39,7 +41,7 @@ class RowClickableTestComponent {
   standalone: false,
 })
 class EmptyTestComponent {
-  @ViewChild(ClrTreetableRow, { static: true }) ttRow: ClrTreetableRow;
+  @ViewChild(ClrTreetableRow, { static: true }) ttRow: ClrTreetableRow<Item>;
 }
 
 describe('ClrTreetableRow', () => {

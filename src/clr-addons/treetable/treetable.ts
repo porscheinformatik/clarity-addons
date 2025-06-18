@@ -3,38 +3,85 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, ContentChildren, Input, OnDestroy, QueryList } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  ContentChildren,
+  EventEmitter,
+  inject,
+  Input,
+  OnDestroy,
+  Output,
+  QueryList,
+} from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ClrTreetableColumn } from './treetable-column';
 import { ClrTreetableRow } from './treetable-row';
+import { SelectionType } from './enums/selection-type';
+import { Items, Selection, Sort, StateDebouncer } from './providers';
+import { TreetableItemsDirective } from './treetable-items';
 
 @Component({
   selector: 'clr-treetable',
   templateUrl: './treetable.html',
   host: { '[class.empty]': 'empty', '[class.treetable-host]': 'true' },
   standalone: false,
+  providers: [Selection, Items, Sort, StateDebouncer],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ClrTreetable implements OnDestroy {
+export class ClrTreetable<T> implements AfterViewInit, OnDestroy {
+  public readonly selection = inject(Selection<T>);
+  private readonly items = inject(Items<T>);
+
   @Input() clrClickableRows = true;
   @Input('clrHideHeader') hideHeader = false;
+  @Input('clrTtSelected')
+  set selected(value: T[] | undefined) {
+    if (value) {
+      this.selection.selectionType = SelectionType.Multi;
+    } else {
+      this.selection.selectionType = SelectionType.None;
+    }
+    this.selection.updateCurrent(value, false);
+  }
+  @Output('clrTtSelectedChange') selectedChanged = new EventEmitter<T[]>(false);
 
   @ContentChildren(ClrTreetableColumn, { descendants: true })
-  ttColumns: QueryList<ClrTreetableRow>;
+  ttColumns: QueryList<ClrTreetableRow<T>>;
 
   empty = true;
   hasActionOverflow = false;
 
-  private _ttRows: QueryList<ClrTreetableRow>;
+  private _ttRows: QueryList<ClrTreetableRow<T>>;
   private destroyed$ = new Subject<void>();
 
   @ContentChildren(ClrTreetableRow, { descendants: true })
-  set ttRows(items: QueryList<ClrTreetableRow>) {
+  set ttRows(items: QueryList<ClrTreetableRow<T>>) {
     this._ttRows = items;
     this.hasActionOverflow = false;
     this.initClickableRows();
     this.initEmpty();
     this.initActionOverflow();
+  }
+
+  @ContentChildren(TreetableItemsDirective, { descendants: true }) iterator: QueryList<TreetableItemsDirective<T>>;
+
+  ngAfterViewInit() {
+    this.selection.change.subscribe(s => {
+      this.selectedChanged.emit(s as T[]);
+    });
+
+    this.items.change.subscribe((allItems: T[][]) => {
+      const directives = this.iterator.toArray(); // Convert QueryList to array
+      directives.forEach((directive, index) => {
+        if (allItems[index]) {
+          const sortedItems = [...allItems[index]];
+          directive.ttItems.set(sortedItems);
+        }
+      });
+    });
   }
 
   private initClickableRows(): void {
@@ -70,8 +117,22 @@ export class ClrTreetable implements OnDestroy {
     }
   }
 
+  get allSelected() {
+    return this.selection.isAllSelected();
+  }
+  set allSelected(_: boolean) {
+    /**
+     * This is a setter but we ignore the value.
+     * It's strange, but it lets us have an indeterminate state where only
+     * some of the items are selected.
+     */
+    this.selection.toggleAll();
+  }
+
   ngOnDestroy(): void {
     this.destroyed$.next();
     this.destroyed$.complete();
   }
+
+  protected readonly SelectionType = SelectionType;
 }

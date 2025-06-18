@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
+  ~ Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
@@ -7,6 +7,12 @@
 <div class="treetable">
   <div class="treetable-grid" role="grid">
     <div class="treetable-header" role="rowgroup" [class.hide-header]="hideHeader">
+      @if(selection.selectionType === SelectionType.Multi){
+      <div class="clr-checkbox-wrapper treetable-row-selection treetable-column" role="row">
+        <input type="checkbox" [(ngModel)]="allSelected" />
+      </div>
+      }
+
       <div *ngIf="hasActionOverflow" class="treetable-row-actions treetable-column">&nbsp;</div>
       <div class="treetable-row-scrollable" role="row">
         <ng-content select="clr-tt-column"></ng-content>

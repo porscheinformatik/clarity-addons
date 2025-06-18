@@ -8,8 +8,21 @@ import { Component, OnInit } from '@angular/core';
 import { ClarityIcons, infoStandardIcon } from '@cds/core/icon';
 import { of, tap } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { ClrTreetableComparatorInterface } from '../../../../clr-addons/treetable/interfaces/comparator.interface';
+import { ClrTreetableSortOrder } from '../../../../clr-addons/treetable/enums/sort-order.enum';
 
 ClarityIcons.addIcons(infoStandardIcon);
+
+export type Elem = {
+  name: string;
+};
+
+export type Tree = {
+  id: string;
+  value?: Elem;
+  parent?: Tree | null;
+  children?: Tree[];
+};
 
 @Component({
   selector: 'treetable-demo',
@@ -22,7 +35,7 @@ export class TreetableDemo implements OnInit {
     ' This is a very long string which should show that text will be truncated properly and not overflow its parent';
 
   data$ = of(
-    [...Array(30).keys()].map(() => ({
+    [...Array(1).keys()].map(() => ({
       col1: 'Vehicle configuration',
       col2: '',
       col3: '18,519.99EUR',
@@ -89,6 +102,48 @@ export class TreetableDemo implements OnInit {
 
   total = 0;
 
+  rootNodes: Tree[] = [] as any[];
+  comperator = new TestComparator();
+  comperator2 = new TestComparator2();
+  sortOrder = ClrTreetableSortOrder.ASC;
+  sortOrder2 = ClrTreetableSortOrder.UNSORTED;
+
+  myTree: Tree[] = Array.from({ length: 1 }, (_, index) => {
+    return JSON.parse(
+      JSON.stringify({
+        id: `1.${index + 1}`, // Assign unique IDs for each duplicate
+        value: { name: 'Root1' },
+        parent: null,
+        children: [
+          {
+            id: `1.${index + 1}.1`,
+            value: { name: 'B' },
+            parent: { id: `1.${index + 1}` },
+            children: [
+              {
+                id: `1.${index + 1}.1.1`,
+                value: { name: 'D' },
+                parent: { id: `1.${index + 1}.1` },
+              },
+              {
+                id: `1.${index + 1}.1.2`,
+                value: { name: 'C' },
+                parent: { id: `1.${index + 1}.1` },
+              },
+            ],
+          },
+          {
+            id: `1.${index + 1}.2`,
+            value: { name: 'A' },
+            parent: { id: `1.${index + 1}` },
+          },
+        ],
+      })
+    );
+  });
+
+  selected = this.myTree;
+
   ngOnInit(): void {
     setTimeout(
       () =>
@@ -109,6 +164,8 @@ export class TreetableDemo implements OnInit {
           },
         ])
     );
+
+    this.rootNodes = this.myTree;
   }
 
   isExpandable(node: any): boolean {
@@ -119,5 +176,23 @@ export class TreetableDemo implements OnInit {
       }
     });
     return expandable;
+  }
+
+  trackByFn(_: number, item: Tree): string {
+    return item.id;
+  }
+
+  protected readonly ClrTreetableSortOrder = ClrTreetableSortOrder;
+}
+
+class TestComparator implements ClrTreetableComparatorInterface<Tree> {
+  compare(a: Tree, b: Tree): number {
+    return a.value.name.localeCompare(b.value.name);
+  }
+}
+
+class TestComparator2 implements ClrTreetableComparatorInterface<Tree> {
+  compare(a: Tree, b: Tree): number {
+    return a.id.localeCompare(b.id);
   }
 }
