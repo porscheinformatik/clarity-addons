@@ -67,7 +67,6 @@ export class Selection<T> {
     return this.current.indexOf(item) >= 0;
   }
 
-  // Selects or deselects an item
   setSelected(item: T, selected: boolean) {
     const index = this.current ? this.current.indexOf(item) : -1;
 
@@ -78,7 +77,6 @@ export class Selection<T> {
     }
   }
 
-  // Checks if all currently displayed items are selected
   isAllSelected(): boolean {
     const displayedItems: T[][] = this._items.displayed;
 

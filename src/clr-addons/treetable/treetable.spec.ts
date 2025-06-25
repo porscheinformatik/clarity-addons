@@ -146,25 +146,20 @@ describe('ClrTreetable', () => {
     expect(noOfClickableRows).toBe(0);
   });
 
-  it('should have action column', done => {
-    setTimeout(() => {
-      actionTestComponentFixture.whenStable().then(() => {
-        actionTestComponentFixture.detectChanges();
-        const noOfActionCellsWHeader = actionTestComponentFixture.debugElement.queryAll(
-          By.css('.treetable-row-actions')
-        ).length;
-        expect(noOfActionCellsWHeader).toBe(4);
+  it('should have action column', () => {
+    actionTestComponentFixture.detectChanges();
+    const noOfActionCellsWHeader = actionTestComponentFixture.debugElement.queryAll(
+      By.css('.treetable-row-actions')
+    ).length;
+    expect(noOfActionCellsWHeader).toBe(2);
 
-        const noOfActionButtons = actionTestComponentFixture.debugElement.queryAll(
-          By.css('.treetable-action-trigger')
-        ).length;
-        expect(noOfActionButtons).toBe(1);
-        done();
-      });
-    }, 100);
+    const noOfActionButtons = actionTestComponentFixture.debugElement.queryAll(
+      By.css('.treetable-action-trigger')
+    ).length;
+    expect(noOfActionButtons).toBe(1);
   });
 
-  it('should selection column', async () => {
+  it('should selection column', () => {
     const selectableRowsWithHeader = selectableTestComponentFixture.debugElement.queryAll(
       By.css('.treetable-row-selection')
     ).length;

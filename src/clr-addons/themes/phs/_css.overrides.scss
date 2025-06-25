@@ -1,6 +1,5 @@
 @use 'sass:map';
 @use '../../components.variables.clr-addons' as components;
-ś
 
 // The PHS theme does distinguish between primary and info colors. This is not standard in Clarity.
 // We define the necessary colors and styles for all themes. By the default, the info colors will be used
@@ -187,6 +186,10 @@
           --color: var(--cds-alias-status-primary);
         }
       }
+    }
+
+    .datagrid-column-title .sort-icon {
+      --color: var(--cds-alias-status-primary);
     }
   }
 

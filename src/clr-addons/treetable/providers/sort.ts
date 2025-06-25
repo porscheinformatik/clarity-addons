@@ -3,6 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
+
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs';
@@ -10,19 +11,8 @@ import { ClrTreetableComparatorInterface } from '../interfaces/comparator.interf
 
 @Injectable()
 export class Sort<T = any> {
-  /**
-   * Currently active comparator
-   */
   private _comparator: ClrTreetableComparatorInterface<T>;
-
-  /**
-   * Ascending order if false, descending if true
-   */
   private _reverse = false;
-
-  /**
-   * The Observable that lets other classes subscribe to sort changes
-   */
   private _change = new Subject<Sort<T>>();
 
   constructor() {}
@@ -65,16 +55,10 @@ export class Sort<T = any> {
     this.emitChange();
   }
 
-  /**
-   * Clears the current sorting order
-   */
   clear() {
     this.comparator = null;
   }
 
-  /**
-   * Compares two objects according to the current comparator
-   */
   compare(a: T, b: T): number {
     return (this.reverse ? -1 : 1) * this.comparator.compare(a, b);
   }

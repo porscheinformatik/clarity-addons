@@ -35,7 +35,7 @@ export class TreetableDemo implements OnInit {
     ' This is a very long string which should show that text will be truncated properly and not overflow its parent';
 
   data$ = of(
-    [...Array(1).keys()].map(() => ({
+    [...Array(30).keys()].map(() => ({
       col1: 'Vehicle configuration',
       col2: '',
       col3: '18,519.99EUR',
@@ -108,7 +108,7 @@ export class TreetableDemo implements OnInit {
   sortOrder = ClrTreetableSortOrder.ASC;
   sortOrder2 = ClrTreetableSortOrder.UNSORTED;
 
-  myTree: Tree[] = Array.from({ length: 0 }, (_, index) => {
+  myTree: Tree[] = Array.from({ length: 1 }, (_, index) => {
     return JSON.parse(
       JSON.stringify({
         id: `1.${index + 1}`, // Assign unique IDs for each duplicate

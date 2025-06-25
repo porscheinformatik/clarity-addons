@@ -64,7 +64,7 @@ export class ClrTreetableColumn<T> {
       return;
     }
 
-    // only if the incoming order is different from the current one
+    // nothing to do when incoming sort order is the same
     if (this._sortOrder === value) {
       return;
     }
@@ -76,7 +76,7 @@ export class ClrTreetableColumn<T> {
       case ClrTreetableSortOrder.DESC:
         this.sort(true);
         break;
-      // the Unsorted case happens when the current state is neither Asc or Desc
+      // UNSORTED when neither ASC or DESC
       case ClrTreetableSortOrder.UNSORTED:
       default:
         this._sort.clear();
@@ -105,9 +105,6 @@ export class ClrTreetableColumn<T> {
     }
   }
 
-  /**
-   * Indicates if the column is sortable
-   */
   get sortable(): boolean {
     return !!this._sortBy;
   }

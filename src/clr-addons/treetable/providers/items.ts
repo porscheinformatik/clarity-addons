@@ -30,7 +30,6 @@ export class Items<T = any> {
   }
   addItems(items: T[]) {
     this._all = this._all.concat([items]);
-    //this.emitAllChanges(items);
 
     this._displayed = this._displayed.concat([items]);
     this.emitChange();
@@ -55,9 +54,6 @@ export class Items<T = any> {
     this._change.next(this.displayed);
   }
 
-  /**
-   * Sorts items in the filtered list
-   */
   private sortItems() {
     if (this.uninitialized) {
       return;

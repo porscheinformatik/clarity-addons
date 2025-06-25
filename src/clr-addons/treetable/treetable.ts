@@ -20,7 +20,7 @@ import { takeUntil } from 'rxjs/operators';
 import { ClrTreetableColumn } from './treetable-column';
 import { ClrTreetableRow } from './treetable-row';
 import { SelectionType } from './enums/selection-type';
-import { Items, Selection, Sort, StateDebouncer } from './providers';
+import { Items, Selection, Sort } from './providers';
 import { TreetableItemsDirective } from './treetable-items';
 
 @Component({
@@ -28,7 +28,7 @@ import { TreetableItemsDirective } from './treetable-items';
   templateUrl: './treetable.html',
   host: { '[class.empty]': 'empty', '[class.treetable-host]': 'true' },
   standalone: false,
-  providers: [Selection, Items, Sort, StateDebouncer],
+  providers: [Selection, Items, Sort],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClrTreetable<T> implements AfterViewInit, OnDestroy {
@@ -73,8 +73,10 @@ export class ClrTreetable<T> implements AfterViewInit, OnDestroy {
       this.selectedChanged.emit(s as T[]);
     });
 
+    //items changed, therefore we need to update the items in the directives
+    // in order to display them right again -> e.g when sorting changed
     this.items.change.subscribe((allItems: T[][]) => {
-      const directives = this.iterator.toArray(); // Convert QueryList to array
+      const directives = this.iterator.toArray();
       directives.forEach((directive, index) => {
         if (allItems[index]) {
           const sortedItems = [...allItems[index]];
