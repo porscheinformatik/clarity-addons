@@ -11,6 +11,9 @@ import { ClrTreetable, ClrTreetableModule, ClrTreetableRow } from '@porscheinfor
 import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
+import { SelectionType } from './enums/selection-type';
+
+type Item = { id: number };
 
 @Component({
   template: `
@@ -31,8 +34,8 @@ import { By } from '@angular/platform-browser';
   standalone: false,
 })
 class RowClickableTestComponent {
-  @ViewChild(ClrTreetable, { static: true }) treetable: ClrTreetable;
-  @ViewChildren(ClrTreetableRow) ttRows: QueryList<ClrTreetableRow>;
+  @ViewChild(ClrTreetable, { static: true }) treetable: ClrTreetable<Item>;
+  @ViewChildren(ClrTreetableRow) ttRows: QueryList<ClrTreetableRow<Item>>;
 }
 
 @Component({
@@ -59,11 +62,33 @@ class RowClickableTestComponent {
 class ActionTestComponent {}
 
 @Component({
+  template: `
+    <clr-treetable [(clrTtSelected)]="selected">
+      <clr-tt-row>
+        <clr-tt-cell>1</clr-tt-cell>
+
+        <clr-tt-row>
+          <clr-tt-cell>2</clr-tt-cell>
+        </clr-tt-row>
+      </clr-tt-row>
+
+      <clr-tt-row>
+        <clr-tt-cell>3</clr-tt-cell>
+      </clr-tt-row>
+    </clr-treetable>
+  `,
+  standalone: false,
+})
+class SelectableTestComponent {
+  selected: Item[] = [];
+}
+
+@Component({
   template: ` <clr-treetable> </clr-treetable> `,
   standalone: false,
 })
 class EmptyTestComponent {
-  @ViewChild(ClrTreetable, { static: true }) treetable: ClrTreetable;
+  @ViewChild(ClrTreetable, { static: true }) treetable: ClrTreetable<Item>;
 }
 
 describe('ClrTreetable', () => {
@@ -73,10 +98,11 @@ describe('ClrTreetable', () => {
   let rowClickableTestComponentFixture: ComponentFixture<RowClickableTestComponent>;
   let emptyTestComponentFixture: ComponentFixture<EmptyTestComponent>;
   let actionTestComponentFixture: ComponentFixture<ActionTestComponent>;
+  let selectableTestComponentFixture: ComponentFixture<SelectableTestComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [EmptyTestComponent, RowClickableTestComponent, ActionTestComponent],
+      declarations: [EmptyTestComponent, RowClickableTestComponent, ActionTestComponent, SelectableTestComponent],
       imports: [ClarityModule, FormsModule, ClrTreetableModule, BrowserAnimationsModule],
       teardown: { destroyAfterEach: false },
     }).compileComponents();
@@ -93,6 +119,9 @@ describe('ClrTreetable', () => {
 
     actionTestComponentFixture = TestBed.createComponent(ActionTestComponent);
     actionTestComponentFixture.detectChanges();
+
+    selectableTestComponentFixture = TestBed.createComponent(SelectableTestComponent);
+    selectableTestComponentFixture.detectChanges();
   });
 
   it('should create', () => {
@@ -101,6 +130,7 @@ describe('ClrTreetable', () => {
 
   it('should be empty if there are no rows', () => {
     expect(emptyTestComponent.treetable.empty).toBeTruthy();
+    expect(emptyTestComponent.treetable.selection.selectionType).toBe(SelectionType.None);
     expect(rowClickableTestComponent.treetable.empty).toBeFalsy();
   });
 
@@ -116,21 +146,24 @@ describe('ClrTreetable', () => {
     expect(noOfClickableRows).toBe(0);
   });
 
-  it('should have action column', done => {
-    setTimeout(() => {
-      actionTestComponentFixture.whenStable().then(() => {
-        actionTestComponentFixture.detectChanges();
-        const noOfActionCellsWHeader = actionTestComponentFixture.debugElement.queryAll(
-          By.css('.treetable-row-actions')
-        ).length;
-        expect(noOfActionCellsWHeader).toBe(4);
+  it('should have action column', () => {
+    actionTestComponentFixture.detectChanges();
+    const noOfActionCellsWHeader = actionTestComponentFixture.debugElement.queryAll(
+      By.css('.treetable-row-actions')
+    ).length;
+    expect(noOfActionCellsWHeader).toBe(2);
 
-        const noOfActionButtons = actionTestComponentFixture.debugElement.queryAll(
-          By.css('.treetable-action-trigger')
-        ).length;
-        expect(noOfActionButtons).toBe(1);
-        done();
-      });
-    }, 100);
+    const noOfActionButtons = actionTestComponentFixture.debugElement.queryAll(
+      By.css('.treetable-action-trigger')
+    ).length;
+    expect(noOfActionButtons).toBe(1);
+  });
+
+  it('should selection column', () => {
+    const selectableRowsWithHeader = selectableTestComponentFixture.debugElement.queryAll(
+      By.css('.treetable-row-selection')
+    ).length;
+
+    expect(selectableRowsWithHeader).toBe(4); // 3 rows + header row
   });
 });
