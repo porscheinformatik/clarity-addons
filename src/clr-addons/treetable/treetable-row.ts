@@ -55,17 +55,6 @@ export class ClrTreetableRow<T> implements OnInit {
   @Input('clrClickable') clickable = true;
   @Input('clrExpandable') expandable = false;
   clrTtItem = input<T>();
-  @Input('clrTtSelected')
-  get selected() {
-    if (this.selection.selectionType === SelectionType.None) {
-      return this._selected;
-    } else {
-      return this.selection.isSelected(this.clrTtItem());
-    }
-  }
-  set selected(value: boolean | string) {
-    this.selection.setSelected(this.clrTtItem(), value as boolean);
-  }
 
   @Output() hasActionOverflow = new EventEmitter<boolean>();
   @Output('clrExpandedChange') expandedChange = new EventEmitter<boolean>();
@@ -117,6 +106,17 @@ export class ClrTreetableRow<T> implements OnInit {
     if (!this.clickable) {
       this.toggleExpand();
     }
+  }
+
+  get selected() {
+    if (this.selection.selectionType === SelectionType.None) {
+      return this._selected;
+    } else {
+      return this.selection.isSelected(this.clrTtItem());
+    }
+  }
+  set selected(value: boolean | string) {
+    this.selection.setSelected(this.clrTtItem(), value as boolean);
   }
 
   protected readonly SelectionType = SelectionType;

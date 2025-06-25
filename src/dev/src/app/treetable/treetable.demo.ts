@@ -108,11 +108,11 @@ export class TreetableDemo implements OnInit {
   sortOrder = ClrTreetableSortOrder.ASC;
   sortOrder2 = ClrTreetableSortOrder.UNSORTED;
 
-  myTree: Tree[] = Array.from({ length: 1 }, (_, index) => {
+  myTree: Tree[] = Array.from({ length: 0 }, (_, index) => {
     return JSON.parse(
       JSON.stringify({
         id: `1.${index + 1}`, // Assign unique IDs for each duplicate
-        value: { name: 'Root1' },
+        value: { name: `Group ${index}` },
         parent: null,
         children: [
           {

@@ -113,7 +113,7 @@ export class Selection<T> {
       });
     }
 
-    this._allSelected.next(isAllSelected);
+    this._allSelected.next(!isAllSelected);
   }
 
   private selectItem(item: T): void {

@@ -18,24 +18,27 @@
   ></ng-container>
 
   <ng-template #recursiveRows let-nodes>
-    <ng-container *clrTtItems="nodes; let node; trackBy: trackByFn">
-      <clr-tt-row [clrTtItem]="node" [clrExpandable]="node.children?.length > 0" [clrExpanded]="true">
-        <clr-tt-action-overflow>
-          <button class="action-item">Test Action</button>
-        </clr-tt-action-overflow>
+    <clr-tt-row
+      *clrTtItems="nodes; let node; trackBy: trackByFn"
+      [clrTtItem]="node"
+      [clrExpandable]="node.children?.length > 0"
+      [clrExpanded]="true"
+    >
+      <clr-tt-action-overflow>
+        <button class="action-item">Test Action</button>
+      </clr-tt-action-overflow>
 
-        <clr-tt-cell>{{ node.value.name }}</clr-tt-cell>
-        <clr-tt-cell>{{ node.id }}</clr-tt-cell>
-        <clr-tt-cell>{{ node.parent?.id || 'No Parent' }}</clr-tt-cell>
+      <clr-tt-cell>{{ node.value.name }}</clr-tt-cell>
+      <clr-tt-cell>{{ node.id }}</clr-tt-cell>
+      <clr-tt-cell>{{ node.parent?.id || 'No Parent' }}</clr-tt-cell>
 
-        <ng-container ngProjectAs="clr-tt-row" *ngIf="node.children?.length > 0">
-          <ng-container
-            ngProjectAs="clr-tt-row"
-            *ngTemplateOutlet="recursiveRows; context: { $implicit: node.children }"
-          ></ng-container>
-        </ng-container>
-      </clr-tt-row>
-    </ng-container>
+      <ng-container ngProjectAs="clr-tt-row" *ngIf="node.children?.length > 0">
+        <ng-container
+          ngProjectAs="clr-tt-row"
+          *ngTemplateOutlet="recursiveRows; context: { $implicit: node.children }"
+        ></ng-container>
+      </ng-container>
+    </clr-tt-row>
   </ng-template>
 
   <clr-tt-placeholder>No users found</clr-tt-placeholder>

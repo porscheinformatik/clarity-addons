@@ -11,6 +11,7 @@ import { ClrTreetable, ClrTreetableModule, ClrTreetableRow } from '@porscheinfor
 import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
+import { SelectionType } from './enums/selection-type';
 
 type Item = { id: number };
 
@@ -61,6 +62,28 @@ class RowClickableTestComponent {
 class ActionTestComponent {}
 
 @Component({
+  template: `
+    <clr-treetable [(clrTtSelected)]="selected">
+      <clr-tt-row>
+        <clr-tt-cell>1</clr-tt-cell>
+
+        <clr-tt-row>
+          <clr-tt-cell>2</clr-tt-cell>
+        </clr-tt-row>
+      </clr-tt-row>
+
+      <clr-tt-row>
+        <clr-tt-cell>3</clr-tt-cell>
+      </clr-tt-row>
+    </clr-treetable>
+  `,
+  standalone: false,
+})
+class SelectableTestComponent {
+  selected: Item[] = [];
+}
+
+@Component({
   template: ` <clr-treetable> </clr-treetable> `,
   standalone: false,
 })
@@ -75,10 +98,11 @@ describe('ClrTreetable', () => {
   let rowClickableTestComponentFixture: ComponentFixture<RowClickableTestComponent>;
   let emptyTestComponentFixture: ComponentFixture<EmptyTestComponent>;
   let actionTestComponentFixture: ComponentFixture<ActionTestComponent>;
+  let selectableTestComponentFixture: ComponentFixture<SelectableTestComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [EmptyTestComponent, RowClickableTestComponent, ActionTestComponent],
+      declarations: [EmptyTestComponent, RowClickableTestComponent, ActionTestComponent, SelectableTestComponent],
       imports: [ClarityModule, FormsModule, ClrTreetableModule, BrowserAnimationsModule],
       teardown: { destroyAfterEach: false },
     }).compileComponents();
@@ -95,6 +119,9 @@ describe('ClrTreetable', () => {
 
     actionTestComponentFixture = TestBed.createComponent(ActionTestComponent);
     actionTestComponentFixture.detectChanges();
+
+    selectableTestComponentFixture = TestBed.createComponent(SelectableTestComponent);
+    selectableTestComponentFixture.detectChanges();
   });
 
   it('should create', () => {
@@ -103,6 +130,7 @@ describe('ClrTreetable', () => {
 
   it('should be empty if there are no rows', () => {
     expect(emptyTestComponent.treetable.empty).toBeTruthy();
+    expect(emptyTestComponent.treetable.selection.selectionType).toBe(SelectionType.None);
     expect(rowClickableTestComponent.treetable.empty).toBeFalsy();
   });
 
@@ -134,5 +162,13 @@ describe('ClrTreetable', () => {
         done();
       });
     }, 100);
+  });
+
+  it('should selection column', async () => {
+    const selectableRowsWithHeader = selectableTestComponentFixture.debugElement.queryAll(
+      By.css('.treetable-row-selection')
+    ).length;
+
+    expect(selectableRowsWithHeader).toBe(4); // 3 rows + header row
   });
 });

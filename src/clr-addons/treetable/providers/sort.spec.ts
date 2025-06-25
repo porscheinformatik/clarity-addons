@@ -23,42 +23,42 @@ describe('Sort', () => {
 
     sort.comparator = comparator;
     expect(sort.comparator).toBe(comparator);
+    expect(changeSpy).toHaveBeenCalledWith(sort);
   });
 
-  it('should toggle sorting order', done => {
-    sort.comparator = comparator;
+  it('should toggle sorting order', () => {
+    const changeSpy = jasmine.createSpy('changeSpy');
+    sort.change.subscribe(changeSpy);
 
-    sort.change.subscribe(currentSort => {
-      expect(currentSort.reverse).toBeTrue();
-      done();
-    });
+    sort.comparator = comparator;
 
     sort.toggle(comparator);
     expect(sort.reverse).toBeTrue();
+    expect(changeSpy).toHaveBeenCalledWith(sort);
+
+    sort.toggle(comparator);
+    expect(sort.reverse).toBeFalse();
+    expect(changeSpy).toHaveBeenCalledWith(sort);
   });
 
-  it('should toggle sorting order with forceReverse', done => {
-    sort.comparator = comparator;
+  it('should toggle sorting order with forceReverse', () => {
+    const changeSpy = jasmine.createSpy('changeSpy');
+    sort.change.subscribe(changeSpy);
 
-    sort.change.subscribe(currentSort => {
-      expect(currentSort.reverse).toBeTrue();
-      done();
-    });
+    sort.comparator = comparator;
 
     sort.toggle(comparator, true);
     expect(sort.reverse).toBeTrue();
+    expect(changeSpy).toHaveBeenCalledWith(sort);
   });
 
-  it('should clear sorting and emit change', done => {
-    sort.comparator = comparator;
-
-    sort.change.subscribe(currentSort => {
-      expect(currentSort.comparator).toBeNull();
-      done();
-    });
+  it('should clear sorting and emit change', () => {
+    const changeSpy = jasmine.createSpy('changeSpy');
+    sort.change.subscribe(changeSpy);
 
     sort.clear();
     expect(sort.comparator).toBeNull();
+    expect(changeSpy).toHaveBeenCalledWith(sort);
   });
 
   it('should compare values correctly in ascending order', () => {

@@ -56,7 +56,7 @@ export class ClrTreetableColumn<T> {
   }
 
   @Input('clrTtSortOrder')
-  get sortOrder() {
+  get sortOrder(): ClrTreetableSortOrder {
     return this._sortOrder;
   }
   set sortOrder(value: ClrTreetableSortOrder) {
@@ -86,6 +86,7 @@ export class ClrTreetableColumn<T> {
   get sortDirection(): 'up' | 'down' | null {
     return this._sortDirection;
   }
+
   sortOrderChange = output<ClrTreetableSortOrder>({ alias: 'clrTtSortOrderChange' });
 
   constructor() {

@@ -7,7 +7,7 @@
 <div class="treetable">
   <div class="treetable-grid" role="grid">
     <div class="treetable-header" role="rowgroup" [class.hide-header]="hideHeader">
-      @if(selection.selectionType === SelectionType.Multi){
+      @if(selection.selectionType === SelectionType.Multi && !empty){
       <div class="clr-checkbox-wrapper treetable-row-selection treetable-column" role="row">
         <input type="checkbox" [(ngModel)]="allSelected" />
       </div>
