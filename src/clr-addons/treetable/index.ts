@@ -14,3 +14,5 @@ export * from './treetable.module';
 export * from './renderer';
 export * from './providers';
 export * from './treetable-items';
+export * from './interfaces/comparator.interface';
+export * from './enums/sort-order.enum';

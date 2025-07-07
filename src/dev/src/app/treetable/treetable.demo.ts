@@ -35,7 +35,7 @@ export class TreetableDemo implements OnInit {
     ' This is a very long string which should show that text will be truncated properly and not overflow its parent';
 
   data$ = of(
-    [...Array(30).keys()].map(() => ({
+    [...Array(1).keys()].map(() => ({
       col1: 'Vehicle configuration',
       col2: '',
       col3: '18,519.99EUR',
@@ -105,10 +105,10 @@ export class TreetableDemo implements OnInit {
   rootNodes: Tree[] = [] as any[];
   comperator = new TestComparator();
   comperator2 = new TestComparator2();
-  sortOrder = ClrTreetableSortOrder.ASC;
+  sortOrder = ClrTreetableSortOrder.DESC;
   sortOrder2 = ClrTreetableSortOrder.UNSORTED;
 
-  myTree: Tree[] = Array.from({ length: 1 }, (_, index) => {
+  myTree: Tree[] = Array.from({ length: 2 }, (_, index) => {
     return JSON.parse(
       JSON.stringify({
         id: `1.${index + 1}`, // Assign unique IDs for each duplicate
@@ -122,12 +122,12 @@ export class TreetableDemo implements OnInit {
             children: [
               {
                 id: `1.${index + 1}.1.1`,
-                value: { name: 'D' },
+                value: { name: 'C' },
                 parent: { id: `1.${index + 1}.1` },
               },
               {
                 id: `1.${index + 1}.1.2`,
-                value: { name: 'C' },
+                value: { name: 'D' },
                 parent: { id: `1.${index + 1}.1` },
               },
             ],
@@ -136,13 +136,25 @@ export class TreetableDemo implements OnInit {
             id: `1.${index + 1}.2`,
             value: { name: 'A' },
             parent: { id: `1.${index + 1}` },
+            children: [
+              {
+                id: `1.${index + 1}.2.1`,
+                value: { name: 'C' },
+                parent: { id: `1.${index + 1}.1` },
+              },
+              {
+                id: `1.${index + 1}.2.2`,
+                value: { name: 'D' },
+                parent: { id: `1.${index + 1}.1` },
+              },
+            ],
           },
         ],
       })
     );
   });
 
-  selected = this.myTree;
+  selected: any = [];
 
   ngOnInit(): void {
     setTimeout(

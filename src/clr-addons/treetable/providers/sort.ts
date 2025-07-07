@@ -63,7 +63,7 @@ export class Sort<T = any> {
     return (this.reverse ? -1 : 1) * this.comparator.compare(a, b);
   }
 
-  private emitChange() {
+  emitChange() {
     this._change.next(this);
   }
 }

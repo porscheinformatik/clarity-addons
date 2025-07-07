@@ -86,4 +86,34 @@ describe('Items', () => {
     expect(items.displayed).toEqual([]);
     expect(items.all).toEqual([]);
   });
+
+  it('should sort and unsort items', () => {
+    mockSort.compare.and.callFake((a: number, b: number) => a - b);
+
+    Object.defineProperty(mockSort, 'comparator', {
+      get: () => ({ compare: (a: number, b: number) => a - b }),
+      set: _ => {},
+    });
+
+    items.addItems(unsortedItems1);
+    items.addItems(unsortedItems2);
+
+    sortChangeSubject.next();
+
+    expect(items.displayed).toEqual([
+      [1, 2, 3],
+      [4, 5, 6],
+    ]);
+    expect(items.all).toEqual([unsortedItems1, unsortedItems2]);
+
+    Object.defineProperty(mockSort, 'comparator', {
+      get: () => null,
+      set: _ => {},
+    });
+
+    sortChangeSubject.next();
+
+    expect(items.displayed).toEqual([unsortedItems1, unsortedItems2]);
+    expect(items.all).toEqual([unsortedItems1, unsortedItems2]);
+  });
 });

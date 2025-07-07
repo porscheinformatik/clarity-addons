@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { ClarityModule } from '@clr/angular';
 import { FormsModule } from '@angular/forms';
 import { ClrTreetable, ClrTreetableModule, ClrTreetableRow } from '@porscheinformatik/clr-addons';
@@ -64,22 +64,17 @@ class ActionTestComponent {}
 @Component({
   template: `
     <clr-treetable [(clrTtSelected)]="selected">
-      <clr-tt-row>
-        <clr-tt-cell>1</clr-tt-cell>
-
-        <clr-tt-row>
-          <clr-tt-cell>2</clr-tt-cell>
-        </clr-tt-row>
-      </clr-tt-row>
-
-      <clr-tt-row>
-        <clr-tt-cell>3</clr-tt-cell>
+      <clr-tt-row *clrTtItems="allItems; let item" [clrTtItem]="item">
+        <clr-tt-cell></clr-tt-cell>
       </clr-tt-row>
     </clr-treetable>
   `,
   standalone: false,
 })
 class SelectableTestComponent {
+  @ViewChild(ClrTreetable, { static: true }) treetable: ClrTreetable<Item>;
+
+  allItems: Item[] = [{ id: 1 }, { id: 2 }, { id: 3 }];
   selected: Item[] = [];
 }
 
@@ -98,7 +93,9 @@ describe('ClrTreetable', () => {
   let rowClickableTestComponentFixture: ComponentFixture<RowClickableTestComponent>;
   let emptyTestComponentFixture: ComponentFixture<EmptyTestComponent>;
   let actionTestComponentFixture: ComponentFixture<ActionTestComponent>;
+
   let selectableTestComponentFixture: ComponentFixture<SelectableTestComponent>;
+  let selectableTestComponent: SelectableTestComponent;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -121,6 +118,7 @@ describe('ClrTreetable', () => {
     actionTestComponentFixture.detectChanges();
 
     selectableTestComponentFixture = TestBed.createComponent(SelectableTestComponent);
+    selectableTestComponent = selectableTestComponentFixture.componentInstance;
     selectableTestComponentFixture.detectChanges();
   });
 
@@ -166,4 +164,15 @@ describe('ClrTreetable', () => {
 
     expect(selectableRowsWithHeader).toBe(4); // 3 rows + header row
   });
+
+  it('should emit selected changed', fakeAsync(() => {
+    const spy = jasmine.createSpy('selectedChangedSpy');
+    selectableTestComponent.treetable.selectedChanged.subscribe(spy);
+
+    selectableTestComponent.treetable.allSelected = true;
+
+    tick();
+
+    expect(spy).toHaveBeenCalledWith(selectableTestComponent.allItems);
+  }));
 });

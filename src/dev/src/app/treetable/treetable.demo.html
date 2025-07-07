@@ -7,6 +7,9 @@
 <h2>Treetable</h2>
 
 <h4>DataTreeTable With Recursive Loops</h4>
+
+<button class="btn btn-secondary" (click)="sortOrder = 0" [disabled]="sortOrder === 0">Clear sort</button>
+
 <clr-treetable [(clrTtSelected)]="selected">
   <clr-tt-column [clrTtSortBy]="comperator" [(clrTtSortOrder)]="sortOrder">Name</clr-tt-column>
   <clr-tt-column [clrTtSortBy]="comperator2" [(clrTtSortOrder)]="sortOrder2">ID</clr-tt-column>

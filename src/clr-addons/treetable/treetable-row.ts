@@ -5,6 +5,7 @@
  */
 
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -15,8 +16,8 @@ import {
   Input,
   OnInit,
   Output,
+  signal,
 } from '@angular/core';
-import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ClrTreetableActionOverflow } from './treetable-action-overflow';
 import { angleIcon, ClarityIcons } from '@cds/core/icon';
 import { Selection } from './providers';
@@ -27,29 +28,17 @@ ClarityIcons.addIcons(angleIcon);
 @Component({
   selector: 'clr-tt-row',
   templateUrl: './treetable-row.html',
+  styleUrl: './treetable-row.scss',
   host: { '[class.treetable-row-wrapper]': 'true', '[class.treetable-selected]': 'selected' },
-  animations: [
-    trigger('collapseExpandAnimation', [
-      state('false', style({ display: 'none' })),
-      state('true', style({ display: 'block' })),
-      transition('false => true', [
-        style({ opacity: 0, height: 0, overflow: 'hidden', display: 'block' }),
-        animate('300ms', style({ opacity: 1, height: '*' })),
-      ]),
-      transition('true => false', [
-        style({ opacity: 1, height: '*', overflow: 'hidden' }),
-        animate('300ms', style({ opacity: 0, height: 0 })),
-      ]),
-    ]),
-  ],
   standalone: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ClrTreetableRow<T> implements OnInit {
+export class ClrTreetableRow<T> implements OnInit, AfterViewInit {
   readonly selection = inject(Selection);
   private readonly _cdr = inject(ChangeDetectorRef);
 
   private _selected = false;
+  shouldAnimate = signal<boolean>(false);
 
   @Input('clrExpanded') expanded = false;
   @Input('clrClickable') clickable = true;
@@ -82,6 +71,25 @@ export class ClrTreetableRow<T> implements OnInit {
     });
   }
 
+  onExpandCollapseClick() {
+    // Only animate on user click (not on sorting or initial rendering)
+    this.shouldAnimate.set(true);
+    this.toggleExpand();
+
+    // Remove .animate after animation to prevent unwanted transitions
+    setTimeout(() => {
+      this.shouldAnimate.set(false);
+    }, 350);
+  }
+
+  // display: none cannot be animated in css (its like an on and off switch)
+  // but this workaround makes it almost possible
+  ngAfterViewInit(): void {
+    document.querySelector('.treetable-expandable-caret-button')?.addEventListener('click', () => {
+      document.querySelector('.treetable-row-children')?.classList.toggle('expanded');
+    });
+  }
+
   toggle(selected = !this.selected) {
     if (selected !== this.selected) {
       this.selected = selected;
@@ -98,13 +106,13 @@ export class ClrTreetableRow<T> implements OnInit {
 
   onRowClick(event: MouseEvent): void {
     if (this.clickable && !(event.target as HTMLElement).closest('.treetable-action-trigger')) {
-      this.toggleExpand();
+      this.onExpandCollapseClick();
     }
   }
 
   onCaretClick(): void {
     if (!this.clickable) {
-      this.toggleExpand();
+      this.onExpandCollapseClick();
     }
   }
 

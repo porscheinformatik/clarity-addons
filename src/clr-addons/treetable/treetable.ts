@@ -69,8 +69,8 @@ export class ClrTreetable<T> implements AfterViewInit, OnDestroy {
   @ContentChildren(TreetableItemsDirective, { descendants: true }) iterator: QueryList<TreetableItemsDirective<T>>;
 
   ngAfterViewInit() {
-    this.selection.change.subscribe(s => {
-      this.selectedChanged.emit(s as T[]);
+    this.selection.change.subscribe(items => {
+      this.selectedChanged.emit(items);
     });
 
     //items changed, therefore we need to update the items in the directives

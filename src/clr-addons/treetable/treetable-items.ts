@@ -43,17 +43,15 @@ export class TreetableItemsDirective<T> {
       return;
     }
 
+    this._items.addItems(items);
+
     if (this._sort.comparator) {
-      // We need to detach the change detector to avoid unnecessary checks when presorting
-      // since we modify the reference of the _items
       this._cdr.detach();
-      items = items.sort((a, b) => this._sort.compare(a, b));
+      items.sort((a, b) => this._sort.compare(a, b)); // Sort in place
       this._cdr.reattach();
     }
 
     this.ttItems.set(items);
-
-    this._items.addItems(items);
   }
 
   @Input('clrTtItemsTrackBy')

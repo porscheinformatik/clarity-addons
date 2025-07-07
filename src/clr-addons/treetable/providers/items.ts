@@ -19,9 +19,7 @@ export class Items<T = any> {
 
   constructor() {
     this._sort.change.subscribe(() => {
-      if (this._sort.comparator) {
-        this.sortItems();
-      }
+      this.sortItems();
     });
   }
 
@@ -29,9 +27,9 @@ export class Items<T = any> {
     return this._all;
   }
   addItems(items: T[]) {
-    this._all = this._all.concat([items]);
+    this._all = this._all.concat([items.slice()]);
 
-    this._displayed = this._displayed.concat([items]);
+    this._displayed = this._displayed.concat([items.slice()]);
     this.emitChange();
   }
 
@@ -59,9 +57,11 @@ export class Items<T = any> {
       return;
     }
     if (this._sort.comparator) {
-      this._displayed = this._displayed.map(subArray => {
-        return subArray.sort((a, b) => this._sort.compare(a, b));
+      this._displayed.forEach(subArray => {
+        subArray.sort((a, b) => this._sort.compare(a, b));
       });
+    } else {
+      this._displayed = this._all.map(subArray => subArray.slice());
     }
     this.emitChange();
   }
