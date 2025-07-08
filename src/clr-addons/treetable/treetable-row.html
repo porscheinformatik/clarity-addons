@@ -18,7 +18,7 @@
   <ng-content select="clr-tt-action-overflow"></ng-content>
   <clr-tt-action-overflow *ngIf="showActionOverflow && showEmptyActionOverflow" [empty]="true"></clr-tt-action-overflow>
   <div class="treetable-scrolling-cells">
-    <div class="treetable-expandable-caret" *ngIf="expandable" style="overflow: hidden">
+    <div class="treetable-expandable-caret" *ngIf="expandable">
       <button type="button" class="treetable-expandable-caret-button" (click)="onCaretClick()">
         <cds-icon
           shape="angle"

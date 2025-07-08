@@ -1,9 +1,8 @@
 //css animation only since angular animation wouldn't be working smoothly with sorting or order changes
+// also performance with a large amount of rows is way better
 .treetable-row-animation-container {
-  overflow: hidden;
-  display: grid;
-
   &.expanded {
+    display: grid;
     grid-template-rows: 1fr;
     opacity: 1;
   }
@@ -12,17 +11,22 @@
     display: none;
     grid-template-rows: 0fr;
     opacity: 0;
-    pointer-events: none;
   }
 
   &.animate {
     // allow discrete in order to be able to animate display
-    transition: grid-template-rows 0.3s ease, opacity 0.3s ease-out, display 0.3s ease allow-discrete;
+    transition: grid-template-rows 0.3s ease, opacity 0.3s ease, display 0.3s ease allow-discrete;
 
     &.expanded {
       @starting-style {
         grid-template-rows: 0fr;
         opacity: 0;
+      }
+    }
+    &.collapsed {
+      @starting-style {
+        grid-template-rows: 1fr;
+        opacity: 1;
       }
     }
   }

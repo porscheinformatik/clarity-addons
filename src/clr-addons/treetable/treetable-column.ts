@@ -41,7 +41,7 @@ import { ClrTreetableSortOrder } from './enums/sort-order.enum';
 })
 export class ClrTreetableColumn<T> {
   private readonly _sort = inject(Sort<T>);
-  private readonly _changeDetectorRef = inject(ChangeDetectorRef);
+  private readonly _cdr = inject(ChangeDetectorRef);
 
   private _sortBy: ClrTreetableComparatorInterface<T>;
   private _sortOrder: ClrTreetableSortOrder = ClrTreetableSortOrder.UNSORTED;
@@ -127,7 +127,7 @@ export class ClrTreetableColumn<T> {
     return this._sort.change.subscribe(sort => {
       // Need to manually mark the component to be checked
       // for both activating and deactivating sorting
-      this._changeDetectorRef.markForCheck();
+      this._cdr.markForCheck();
       // We're only listening to make sure we emit an event when the column goes from sorted to unsorted
       if (this.sortOrder !== ClrTreetableSortOrder.UNSORTED && sort.comparator !== this._sortBy) {
         this._sortOrder = ClrTreetableSortOrder.UNSORTED;

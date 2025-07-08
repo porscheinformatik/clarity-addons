@@ -5,7 +5,6 @@
  */
 
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -33,7 +32,7 @@ ClarityIcons.addIcons(angleIcon);
   standalone: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ClrTreetableRow<T> implements OnInit, AfterViewInit {
+export class ClrTreetableRow<T> implements OnInit {
   readonly selection = inject(Selection);
   private readonly _cdr = inject(ChangeDetectorRef);
 
@@ -63,7 +62,7 @@ export class ClrTreetableRow<T> implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.showClickClass = this.expandable && this.clickable;
 
-    //TODO: i don't like that but how else can we trigger change detection
+    //I don't like that but how else can we trigger change detection
     // when the checkbox in overall treetable is clicked?
     // this is only necessary when changeDetection: ChangeDetectionStrategy.OnPush
     this.selection.allSelectedChange.subscribe(() => {
@@ -80,14 +79,6 @@ export class ClrTreetableRow<T> implements OnInit, AfterViewInit {
     setTimeout(() => {
       this.shouldAnimate.set(false);
     }, 350);
-  }
-
-  // display: none cannot be animated in css (its like an on and off switch)
-  // but this workaround makes it almost possible
-  ngAfterViewInit(): void {
-    document.querySelector('.treetable-expandable-caret-button')?.addEventListener('click', () => {
-      document.querySelector('.treetable-row-children')?.classList.toggle('expanded');
-    });
   }
 
   toggle(selected = !this.selected) {

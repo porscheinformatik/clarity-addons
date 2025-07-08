@@ -346,6 +346,7 @@ $indentation-increment: 1rem;
             flex: 1 1 auto;
             flex-flow: row nowrap;
             overflow: hidden;
+            position: relative;
 
             .treetable-cell {
               text-align: left;
