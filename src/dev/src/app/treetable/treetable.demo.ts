@@ -35,7 +35,7 @@ export class TreetableDemo implements OnInit {
     ' This is a very long string which should show that text will be truncated properly and not overflow its parent';
 
   data$ = of(
-    [...Array(1).keys()].map(() => ({
+    [...Array(30).keys()].map(() => ({
       col1: 'Vehicle configuration',
       col2: '',
       col3: '18,519.99EUR',
@@ -129,6 +129,18 @@ export class TreetableDemo implements OnInit {
                 id: `1.${index + 1}.1.2`,
                 value: { name: 'D' },
                 parent: { id: `1.${index + 1}.1` },
+                children: [
+                  {
+                    id: `1.${index + 1}.1.2.1`,
+                    value: { name: 'E' },
+                    parent: { id: `1.${index + 1}.1.2` },
+                  },
+                  {
+                    id: `1.${index + 1}.1.2.2`,
+                    value: { name: 'F' },
+                    parent: { id: `1.${index + 1}.1.2` },
+                  },
+                ],
               },
             ],
           },
@@ -193,8 +205,6 @@ export class TreetableDemo implements OnInit {
   trackByFn(_: number, item: Tree): string {
     return item.id;
   }
-
-  protected readonly ClrTreetableSortOrder = ClrTreetableSortOrder;
 }
 
 class TestComparator implements ClrTreetableComparatorInterface<Tree> {

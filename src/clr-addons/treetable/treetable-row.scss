@@ -1,4 +1,4 @@
-//css animation only since angular animation wouldn't be working smoothly with sorting or order changes
+// css animation only since angular animation wouldn't be working smoothly with sorting or order changes
 // also performance with a large amount of rows is way better
 .treetable-row-animation-container {
   &.expanded {

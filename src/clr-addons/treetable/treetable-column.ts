@@ -13,7 +13,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 @Component({
   selector: 'clr-tt-column',
   template: `
-    <button class="treetable-column-title" *ngIf="sortable" (click)="sort()" type="button">
+    @if(sortable) {
+    <button class="treetable-column-title" (click)="sort()" type="button">
       <ng-container *ngTemplateOutlet="columnTitle" />
       <cds-icon
         *ngIf="sortDirection"
@@ -23,8 +24,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
         class="sort-icon"
       />
     </button>
-
-    @if (!sortable) {
+    } @else {
     <ng-container *ngTemplateOutlet="columnTitle" />
     }
 

@@ -65,9 +65,8 @@ export class ClrTreetableRow<T> implements OnInit {
   ngOnInit(): void {
     this.showClickClass = this.expandable && this.clickable;
 
-    //I don't like that but how else can we trigger change detection
-    // when the checkbox in overall treetable is clicked?
-    // this is only necessary when changeDetection: ChangeDetectionStrategy.OnPush
+    // We need to trigger change detection when the checkbox in overall treetable is clicked
+    // because of ChangeDetectionStrategy.OnPush
     this.selection.allSelectedChange.pipe(takeUntilDestroyed(this._destroyRef)).subscribe(() => {
       this._cdr.markForCheck();
     });

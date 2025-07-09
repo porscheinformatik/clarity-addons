@@ -10,7 +10,7 @@ import { Subject } from 'rxjs';
 import { ClrTreetableComparatorInterface } from '../interfaces/comparator.interface';
 
 @Injectable()
-export class Sort<T = any> {
+export class Sort<T> {
   private _comparator: ClrTreetableComparatorInterface<T>;
   private _reverse = false;
   private _change = new Subject<Sort<T>>();
