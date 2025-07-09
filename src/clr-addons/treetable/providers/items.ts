@@ -8,6 +8,7 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs';
 import { Sort } from './sort';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Injectable()
 export class Items<T = any> {
@@ -18,7 +19,7 @@ export class Items<T = any> {
   private readonly _sort = inject(Sort<T>);
 
   constructor() {
-    this._sort.change.subscribe(() => {
+    this._sort.change.pipe(takeUntilDestroyed()).subscribe(() => {
       this.sortItems();
     });
   }

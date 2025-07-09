@@ -8,6 +8,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, Input, o
 import { ClrTreetableComparatorInterface } from './interfaces/comparator.interface';
 import { Sort } from './providers';
 import { ClrTreetableSortOrder } from './enums/sort-order.enum';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'clr-tt-column',
@@ -124,7 +125,7 @@ export class ClrTreetableColumn<T> {
   }
 
   private listenForSortingChanges() {
-    return this._sort.change.subscribe(sort => {
+    this._sort.change.pipe(takeUntilDestroyed()).subscribe(sort => {
       // Need to manually mark the component to be checked
       // for both activating and deactivating sorting
       this._cdr.markForCheck();

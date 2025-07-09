@@ -8,20 +8,19 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
+  DestroyRef,
   EventEmitter,
   inject,
   Input,
-  OnDestroy,
   Output,
   QueryList,
 } from '@angular/core';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import { ClrTreetableColumn } from './treetable-column';
 import { ClrTreetableRow } from './treetable-row';
 import { SelectionType } from './enums/selection-type';
 import { Items, Selection, Sort } from './providers';
 import { TreetableItemsDirective } from './treetable-items';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'clr-treetable',
@@ -31,9 +30,10 @@ import { TreetableItemsDirective } from './treetable-items';
   providers: [Selection, Items, Sort],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ClrTreetable<T> implements AfterViewInit, OnDestroy {
-  public readonly selection = inject(Selection<T>);
-  private readonly items = inject(Items<T>);
+export class ClrTreetable<T> implements AfterViewInit {
+  readonly selection = inject(Selection<T>);
+  private readonly _items = inject(Items<T>);
+  private readonly _destroyRef = inject(DestroyRef);
 
   @Input() clrClickableRows = true;
   @Input('clrHideHeader') hideHeader = false;
@@ -55,7 +55,6 @@ export class ClrTreetable<T> implements AfterViewInit, OnDestroy {
   hasActionOverflow = false;
 
   private _ttRows: QueryList<ClrTreetableRow<T>>;
-  private destroyed$ = new Subject<void>();
 
   @ContentChildren(ClrTreetableRow, { descendants: true })
   set ttRows(items: QueryList<ClrTreetableRow<T>>) {
@@ -69,13 +68,13 @@ export class ClrTreetable<T> implements AfterViewInit, OnDestroy {
   @ContentChildren(TreetableItemsDirective, { descendants: true }) iterator: QueryList<TreetableItemsDirective<T>>;
 
   ngAfterViewInit() {
-    this.selection.change.subscribe(items => {
+    this.selection.change.pipe(takeUntilDestroyed(this._destroyRef)).subscribe(items => {
       this.selectedChanged.emit(items);
     });
 
-    //items changed, therefore we need to update the items in the directives
+    //_items changed, therefore we need to update the ttItems in the directives
     // in order to display them right again -> e.g when sorting changed
-    this.items.change.subscribe((allItems: T[][]) => {
+    this._items.change.pipe(takeUntilDestroyed(this._destroyRef)).subscribe((allItems: T[][]) => {
       const directives = this.iterator.toArray();
       directives.forEach((directive, index) => {
         if (allItems[index]) {
@@ -101,7 +100,7 @@ export class ClrTreetable<T> implements AfterViewInit, OnDestroy {
   private initActionOverflow() {
     this._ttRows.forEach(row => {
       this.setActionOverflow(row.showActionOverflow);
-      row.hasActionOverflow.pipe(takeUntil(this.destroyed$)).subscribe((hasActionOverflow: boolean) => {
+      row.hasActionOverflow.pipe(takeUntilDestroyed(this._destroyRef)).subscribe((hasActionOverflow: boolean) => {
         this.setActionOverflow(hasActionOverflow);
       });
     });
@@ -126,14 +125,9 @@ export class ClrTreetable<T> implements AfterViewInit, OnDestroy {
     /**
      * This is a setter but we ignore the value.
      * It's strange, but it lets us have an indeterminate state where only
-     * some of the items are selected.
+     * some of the _items are selected.
      */
     this.selection.toggleAll();
-  }
-
-  ngOnDestroy(): void {
-    this.destroyed$.next();
-    this.destroyed$.complete();
   }
 
   protected readonly SelectionType = SelectionType;

@@ -9,6 +9,7 @@ import {
   ChangeDetectorRef,
   Component,
   ContentChild,
+  DestroyRef,
   EventEmitter,
   inject,
   input,
@@ -21,6 +22,7 @@ import { ClrTreetableActionOverflow } from './treetable-action-overflow';
 import { angleIcon, ClarityIcons } from '@cds/core/icon';
 import { Selection } from './providers';
 import { SelectionType } from './enums/selection-type';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 ClarityIcons.addIcons(angleIcon);
 
@@ -35,6 +37,7 @@ ClarityIcons.addIcons(angleIcon);
 export class ClrTreetableRow<T> implements OnInit {
   readonly selection = inject(Selection);
   private readonly _cdr = inject(ChangeDetectorRef);
+  private readonly _destroyRef = inject(DestroyRef);
 
   private _selected = false;
   shouldAnimate = signal<boolean>(false);
@@ -65,7 +68,7 @@ export class ClrTreetableRow<T> implements OnInit {
     //I don't like that but how else can we trigger change detection
     // when the checkbox in overall treetable is clicked?
     // this is only necessary when changeDetection: ChangeDetectionStrategy.OnPush
-    this.selection.allSelectedChange.subscribe(() => {
+    this.selection.allSelectedChange.pipe(takeUntilDestroyed(this._destroyRef)).subscribe(() => {
       this._cdr.markForCheck();
     });
   }
