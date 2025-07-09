@@ -89,17 +89,17 @@ const HTML_EXAMPLE_SMART_ITERATOR = `
   <clr-tt-column>Role</clr-tt-column>
   <clr-tt-column>Supervisor</clr-tt-column>
 
-  <clr-tt-row *clrTtItems="hierachy; let ceo" [clrExpandable]="true" [clrExpanded]="true">
+  <clr-tt-row *clrTtItems="hierachy; let ceo; trackBy: trackByRoleId" [clrExpandable]="true" [clrExpanded]="true">
     <clr-tt-cell>{{ ceo.value.name }}</clr-tt-cell>
     <clr-tt-cell>{{ ceo.value.role }}</clr-tt-cell>
     <clr-tt-cell></clr-tt-cell>
 
-    <clr-tt-row *clrTtItems="ceo.children; let heads" [clrExpandable]="true" [clrExpanded]="true">
+    <clr-tt-row *clrTtItems="ceo.children; let heads; trackBy: trackByRoleId" [clrExpandable]="true" [clrExpanded]="true">
       <clr-tt-cell>{{ heads.value.name }}</clr-tt-cell>
       <clr-tt-cell>{{ heads.value.role }}</clr-tt-cell>
       <clr-tt-cell>{{ heads.parent.name }}</clr-tt-cell>
 
-      <clr-tt-row *clrTtItems="heads.children; let manager">
+      <clr-tt-row *clrTtItems="heads.children; let manager; trackBy: trackByRoleId">
         <clr-tt-cell>{{ manager.value.name }}</clr-tt-cell>
         <clr-tt-cell>{{ manager.value.role }}</clr-tt-cell>
         <clr-tt-cell>{{ manager.parent.name }}</clr-tt-cell>
@@ -275,6 +275,9 @@ export class TreetableDemo extends ClarityDocComponent {
     },
   ];
 
+  trackByRoleId(_: number, item: Tree): string {
+    return item.id;
+  }
   selected = [];
   nameComparator = new NameComparator();
   sortOrder = 0;
