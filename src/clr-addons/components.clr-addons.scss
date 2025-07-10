@@ -439,6 +439,22 @@ clr-date-container .clr-control-container {
   max-width: components.$clr-max-width;
 }
 
+.clr-max-width-50 {
+  max-width: 50rem;
+}
+
+.clr-max-width-65 {
+  max-width: 65rem;
+}
+
+.clr-max-width-80 {
+  max-width: 80rem;
+}
+
+.clr-max-width-95 {
+  max-width: 95rem;
+}
+
 .datagrid-row-master {
   background-color: inherit !important;
 }
