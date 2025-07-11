@@ -1,14 +1,20 @@
 <!--
-  ~ Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
+  ~ Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
 
 <div
-  [ngClass]="{'clr-row-clickable': showClickClass}"
+  [ngClass]="{'clr-row-clickable': showClickClass, 'treetable-selected': selected}"
   class="clr-tt-node-content treetable-row"
   (click)="onRowClick($event)"
 >
+  @if(selection.selectionType === SelectionType.Multi){
+  <div class="clr-checkbox-wrapper treetable-row-selection treetable-cell">
+    <input type="checkbox" [ngModel]="selected" (ngModelChange)="toggle($event)" (click)="$event.stopPropagation()" />
+  </div>
+  }
+
   <ng-content select="clr-tt-action-overflow"></ng-content>
   <clr-tt-action-overflow *ngIf="showActionOverflow && showEmptyActionOverflow" [empty]="true"></clr-tt-action-overflow>
   <div class="treetable-scrolling-cells">
@@ -25,6 +31,14 @@
     <ng-content select="clr-tt-cell"></ng-content>
   </div>
 </div>
-<div [@collapseExpandAnimation]="expanded">
-  <ng-content select="clr-tt-row"></ng-content>
+
+<div
+  class="treetable-row-animation-container"
+  [class.expanded]="expanded"
+  [class.collapsed]="!expanded"
+  [class.animate]="shouldAnimate()"
+>
+  <div class="treetable-row-animation-wrapper">
+    <ng-content select="clr-tt-row"></ng-content>
+  </div>
 </div>

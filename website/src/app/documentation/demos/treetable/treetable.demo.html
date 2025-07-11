@@ -467,6 +467,173 @@
       </clr-treetable>
 
       <clr-code-snippet [clrCode]="htmlExampleCustomSize"></clr-code-snippet>
+
+      <h4>Smart iterator</h4>
+
+      <p>
+        If you want to let us handle all the data processing needed by our various features, you will need to use
+        <code class="clr-code">*clrTtItems</code> instead of <code class="clr-code">*ngFor</code>. They have the exact
+        syntax and behave the same way, but the former lets us have full control what is actually being displayed. As
+        you can see in the following example it doesn't change anything for our simple case, but it will as soon as we
+        start adding features like sorting & selection. Optionally you can also pass a track by function to the
+        directive.
+      </p>
+
+      <clr-treetable>
+        <clr-tt-column>Name</clr-tt-column>
+        <clr-tt-column>Role</clr-tt-column>
+        <clr-tt-column>Supervisor</clr-tt-column>
+
+        <clr-tt-row *clrTtItems="hierachy; let ceo; trackBy: trackByRoleId" [clrExpandable]="true" [clrExpanded]="true">
+          <clr-tt-cell>{{ ceo.value.name }}</clr-tt-cell>
+          <clr-tt-cell>{{ ceo.value.role }}</clr-tt-cell>
+          <clr-tt-cell></clr-tt-cell>
+
+          <clr-tt-row
+            *clrTtItems="ceo.children; let heads; trackBy: trackByRoleId"
+            [clrExpandable]="true"
+            [clrExpanded]="true"
+          >
+            <clr-tt-cell>{{ heads.value.name }}</clr-tt-cell>
+            <clr-tt-cell>{{ heads.value.role }}</clr-tt-cell>
+            <clr-tt-cell>{{ heads.parent.name }}</clr-tt-cell>
+
+            <clr-tt-row *clrTtItems="heads.children; let manager; trackBy: trackByRoleId">
+              <clr-tt-cell>{{ manager.value.name }}</clr-tt-cell>
+              <clr-tt-cell>{{ manager.value.role }}</clr-tt-cell>
+              <clr-tt-cell>{{ manager.parent.name }}</clr-tt-cell>
+            </clr-tt-row>
+          </clr-tt-row>
+        </clr-tt-row>
+      </clr-treetable>
+
+      <clr-code-snippet [clrCode]="htmlExampleSmartIterator"></clr-code-snippet>
+
+      <h4>Selection</h4>
+
+      <p>
+        To allow actions on multiple items at once, we provide the ability for the user to select rows in the treetable.
+        To make rows selectable in your treetable, you need to do the following:
+      </p>
+      <ul>
+        <li>
+          Add a <code class="clr-code">[clrTtItem]</code> input on each <code class="clr-code">&lt;clr-tt-row&gt;</code>
+          component
+        </li>
+        <li>
+          Add a <code class="clr-code">[(clrTtSelected)]</code> two-way binding on the datagrid itself, to have access
+          to the list of currently selected items. Note that by adding items to this list yourself, you can dynamically
+          select elements if you need to.
+        </li>
+      </ul>
+
+      <clr-treetable [(clrTtSelected)]="selected">
+        <clr-tt-column>Name</clr-tt-column>
+        <clr-tt-column>Role</clr-tt-column>
+        <clr-tt-column>Supervisor</clr-tt-column>
+
+        <clr-tt-row *clrTtItems="hierachy; let ceo" [clrTtItem]="ceo" [clrExpandable]="true" [clrExpanded]="true">
+          <clr-tt-cell>{{ ceo.value.name }}</clr-tt-cell>
+          <clr-tt-cell>{{ ceo.value.role }}</clr-tt-cell>
+          <clr-tt-cell></clr-tt-cell>
+
+          <clr-tt-row
+            *clrTtItems="ceo.children; let heads"
+            [clrTtItem]="heads"
+            [clrExpandable]="true"
+            [clrExpanded]="true"
+          >
+            <clr-tt-cell>{{ heads.value.name }}</clr-tt-cell>
+            <clr-tt-cell>{{ heads.value.role }}</clr-tt-cell>
+            <clr-tt-cell>{{ heads.parent.name }}</clr-tt-cell>
+
+            <clr-tt-row *clrTtItems="heads.children; let manager" [clrTtItem]="manager">
+              <clr-tt-cell>{{ manager.value.name }}</clr-tt-cell>
+              <clr-tt-cell>{{ manager.value.role }}</clr-tt-cell>
+              <clr-tt-cell>{{ manager.parent.name }}</clr-tt-cell>
+            </clr-tt-row>
+          </clr-tt-row>
+        </clr-tt-row>
+      </clr-treetable>
+
+      <clr-code-snippet [clrCode]="htmlExampleSelection"></clr-code-snippet>
     </div>
+
+    <h4>Custom Sorting</h4>
+
+    <p>
+      This can be done by providing a comparator, which implements
+      <code class="clr-code"> ClrTreetableComparatorInterface</code>, through the
+      <code class="clr-code">[clrTtSortBy]</code> input.
+    </p>
+
+    <p>
+      <button class="btn btn-secondary" (click)="sortOrder = 1" [disabled]="sortOrder === 1">Sort ascendingly</button>
+      <button class="btn btn-secondary" (click)="sortOrder = -1" [disabled]="sortOrder === -1">
+        Sort descendingly
+      </button>
+      <button class="btn btn-secondary" (click)="sortOrder = 0" [disabled]="sortOrder === 0">Clear sort</button>
+    </p>
+
+    <clr-treetable>
+      <clr-tt-column [clrTtSortBy]="nameComparator" [(clrTtSortOrder)]="sortOrder">Name</clr-tt-column>
+      <clr-tt-column>Role</clr-tt-column>
+      <clr-tt-column>Supervisor</clr-tt-column>
+
+      <clr-tt-row *clrTtItems="hierachy; let ceo" [clrExpandable]="true" [clrExpanded]="true">
+        <clr-tt-cell>{{ ceo.value.name }}</clr-tt-cell>
+        <clr-tt-cell>{{ ceo.value.role }}</clr-tt-cell>
+        <clr-tt-cell></clr-tt-cell>
+
+        <clr-tt-row *clrTtItems="ceo.children; let heads" [clrExpandable]="true" [clrExpanded]="true">
+          <clr-tt-cell>{{ heads.value.name }}</clr-tt-cell>
+          <clr-tt-cell>{{ heads.value.role }}</clr-tt-cell>
+          <clr-tt-cell>{{ heads.parent.name }}</clr-tt-cell>
+
+          <clr-tt-row *clrTtItems="heads.children; let manager">
+            <clr-tt-cell>{{ manager.value.name }}</clr-tt-cell>
+            <clr-tt-cell>{{ manager.value.role }}</clr-tt-cell>
+            <clr-tt-cell>{{ manager.parent.name }}</clr-tt-cell>
+          </clr-tt-row>
+        </clr-tt-row>
+      </clr-tt-row>
+    </clr-treetable>
+
+    <clr-code-snippet [clrCode]="htmlExampleCustomSorting"></clr-code-snippet>
+
+    <h4>Pre-Sorted Columns</h4>
+
+    <p>
+      Columns can be pre-sorted ascending or descending by declaring the
+      <code class="clr-code">[(clrTtSortOrder)]</code> input on <code class="clr-code">clr-tt-column</code>. Use the
+      <code class="clr-code">ClrTreetableSortOrder</code>
+      enum for such a scenario.
+    </p>
+
+    <clr-treetable>
+      <clr-tt-column [clrTtSortBy]="nameComparator" [(clrTtSortOrder)]="descOrder">Name</clr-tt-column>
+      <clr-tt-column>Role</clr-tt-column>
+      <clr-tt-column>Supervisor</clr-tt-column>
+
+      <clr-tt-row *clrTtItems="hierachy; let ceo" [clrExpandable]="true" [clrExpanded]="true">
+        <clr-tt-cell>{{ ceo.value.name }}</clr-tt-cell>
+        <clr-tt-cell>{{ ceo.value.role }}</clr-tt-cell>
+        <clr-tt-cell></clr-tt-cell>
+
+        <clr-tt-row *clrTtItems="ceo.children; let heads" [clrExpandable]="true" [clrExpanded]="true">
+          <clr-tt-cell>{{ heads.value.name }}</clr-tt-cell>
+          <clr-tt-cell>{{ heads.value.role }}</clr-tt-cell>
+          <clr-tt-cell>{{ heads.parent.name }}</clr-tt-cell>
+
+          <clr-tt-row *clrTtItems="heads.children; let manager">
+            <clr-tt-cell>{{ manager.value.name }}</clr-tt-cell>
+            <clr-tt-cell>{{ manager.value.role }}</clr-tt-cell>
+            <clr-tt-cell>{{ manager.parent.name }}</clr-tt-cell>
+          </clr-tt-row>
+        </clr-tt-row>
+      </clr-tt-row>
+    </clr-treetable>
+
+    <clr-code-snippet [clrCode]="htmlExamplePresorting"></clr-code-snippet>
   </article>
 </clr-doc-wrapper>
