@@ -24,7 +24,7 @@ export class ClrHistoryPinned implements OnInit, OnDestroy {
   /**
    * The array of history elements to be displayed.
    */
-  historyElements$: Subject<ClrHistoryModel[]> = new ReplaySubject<ClrHistoryModel[]>();
+  historyElements$: Subject<ClrHistoryModel[]> = new ReplaySubject<ClrHistoryModel[]>(1);
   active$: Subject<boolean> = new ReplaySubject<boolean>(1);
   private settingsSubscription: Subscription;
 

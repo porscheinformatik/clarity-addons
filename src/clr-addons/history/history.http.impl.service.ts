@@ -17,10 +17,6 @@ export class ClrHistoryHttpImplService implements ClrHistoryHttpService {
     private readonly httpClient: HttpClient
   ) {}
 
-  /**
-   * Add a new history entry
-   * @param historyEntry The entry to be added
-   */
   addHistoryEntry(historyEntry: ClrHistoryModel): Observable<void> {
     return this.httpClient.post<void>(this.historyNotificationUrl, historyEntry);
   }

@@ -11,10 +11,6 @@ import { InjectionToken } from '@angular/core';
 export const HISTORY_TOKEN = new InjectionToken<any>('clr.history.http.service');
 
 export interface ClrHistoryHttpService {
-  /**
-   * Add a new history entry
-   * @param historyEntry The entry to be added
-   */
   addHistoryEntry(historyEntry: ClrHistoryModel): Observable<void>;
 
   getHistory(username: string, tenantId: string): Observable<ClrHistoryModel[]>;
