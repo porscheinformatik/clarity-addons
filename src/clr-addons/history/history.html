@@ -5,7 +5,7 @@
   </button>
   <clr-dropdown-menu [clrPosition]="position" *clrIfOpen>
     <label class="dropdown-header" aria-hidden="true">{{ dropdownHeader }}</label>
-    <button type="button" clrDropdownItem *ngFor="let history of historyElements" (click)="select(history)">
+    <button type="button" clrDropdownItem *ngFor="let history of historyElements$ | async" (click)="select(history)">
       {{ history.title }}
     </button>
     <div *ngIf="pinActive" class="dropdown-divider" role="separator" aria-hidden="true"></div>

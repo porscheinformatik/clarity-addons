@@ -7,7 +7,7 @@
 import { Component, Inject, Input, OnDestroy, OnInit, Optional } from '@angular/core';
 import { ClrHistoryModel } from './history-model.interface';
 import { ClrHistoryService } from './history.service';
-import { Subject } from 'rxjs';
+import { ReplaySubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { angleIcon, ClarityIcons, historyIcon } from '@cds/core/icon';
 import { HISTORY_PROVIDER, HistoryProvider } from './history.provider';
@@ -22,7 +22,8 @@ ClarityIcons.addIcons(historyIcon, angleIcon);
 })
 export class ClrHistory implements OnInit, OnDestroy {
   @Input('clrUsername') username: string;
-  @Input('clrContext') context: { [key: string]: string };
+  @Input('clrTenantId') tenantId: string;
+  @Input('clrContext') context: string;
   @Input('clrPinActive') pinActive = true;
   @Input('clrDropdownHeader') dropdownHeader = 'History';
   @Input('clrDropdownPin') dropdownPin = 'Pin History';
@@ -33,25 +34,28 @@ export class ClrHistory implements OnInit, OnDestroy {
   /**
    * The array of history elements to be displayed.
    */
-  historyElements: ClrHistoryModel[] = [];
+  historyElements$: Subject<ClrHistoryModel[]> = new ReplaySubject<ClrHistoryModel[]>(1);
   pinActivated = false;
-  private onDestroy$ = new Subject<void>();
+  private readonly onDestroy$ = new Subject<void>();
 
   constructor(
-    private historyService: ClrHistoryService,
-    @Inject(HISTORY_PROVIDER) @Optional() private historyProvider: HistoryProvider
+    private readonly historyService: ClrHistoryService,
+    @Inject(HISTORY_PROVIDER) @Optional() private readonly historyProvider: HistoryProvider
   ) {}
 
   ngOnInit(): void {
-    const historyElements = this.historyService.getHistoryDisplay(this.username, this.context);
-    this.historyElements = this.historyProvider
-      ? this.historyProvider.getModifiedHistoryEntries(historyElements)
-      : historyElements;
+    this.historyService.getHistory(this.username, this.tenantId).subscribe(elements => {
+      this.historyElements$.next(
+        this.historyProvider ? this.historyProvider.getModifiedHistoryEntries(elements) : elements
+      );
+    });
 
     this.historyService.initializeCookieSettings(this.username, this.domain);
     this.historyService.cookieSettings$.pipe(takeUntil(this.onDestroy$)).subscribe(settings => {
       this.pinActivated = settings.find(setting => setting.username === this.username).historyPinned;
     });
+
+    this.historyService.deleteOldCookie(this.domain);
   }
 
   ngOnDestroy(): void {

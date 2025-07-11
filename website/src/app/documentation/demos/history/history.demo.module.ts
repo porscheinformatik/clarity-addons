@@ -6,12 +6,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ClarityModule } from '@clr/angular';
-import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
+import { ClrAddonsModule, HISTORY_TOKEN } from '@porscheinformatik/clr-addons';
 
 import { HistoryDemo } from './history.demo';
 import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
 import { RouterModule } from '@angular/router';
 import { UtilsModule } from '../../../utils/utils.module';
+import { MockClrHistoryHttpService } from './_mocks/history.http.mock.service';
 
 @NgModule({
   imports: [
@@ -24,5 +25,11 @@ import { UtilsModule } from '../../../utils/utils.module';
   ],
   declarations: [HistoryDemo],
   exports: [HistoryDemo],
+  providers: [
+    {
+      provide: HISTORY_TOKEN,
+      useClass: MockClrHistoryHttpService,
+    },
+  ],
 })
 export class HistoryDemoModule {}

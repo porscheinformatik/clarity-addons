@@ -16,15 +16,33 @@
         to aid your users navigating.
       </p>
       <h4>Features</h4>
+      <h5>Pin</h5>
       <p>
-        Pin - The history provides a pin-feature. If the history is pinned it is shown above the page title as a list of
-        links in the history-bar. If the history is unpinned the last visited pages are shown as a dropdown beneath the
+        The history provides a pin-feature. If the history is pinned it is shown above the page title as a list of links
+        in the history-bar. If the history is unpinned the last visited pages are shown as a dropdown beneath the
         history icon.
       </p>
       <p>
-        If the users pins the history this setting must be stored to the users-settings/browser-storage/cookie. Default
-        behavior, pinned or unpinned, should be decided on the applications target
+        If the user pins the history this setting is stored to a cookie. Default behavior, pinned or unpinned, should be
+        decided on the applications target
       </p>
+      <h5>Storing pages</h5>
+      <p>
+        Pages are stored on a server-side service. The service URL is determined via the Injection token
+        <code class="clr-code">HISTORY_NOTIFICATION_URL_PROVIDER</code>.
+      </p>
+      The service is expected to:
+      <ul>
+        <li>provide a RESTful API to store the pages.</li>
+        <li>provide GET, POST, and DELETE methods to retrieve, store, and delete pages.</li>
+        <li>
+          GET: uses URL parameters <code class="clr-code">username</code>, <code class="clr-code">tenantId</code> and
+          <code class="clr-code">numEntries</code> and expects a list of <code class="clr-code">ClrHistoryModel</code>
+        </li>
+        <li>exclude the most recent page when fetching data. As the most recent page is the current one.</li>
+        <li>POST/DELETE: sends a <code class="clr-code">ClrHistoryModel</code> as body</li>
+      </ul>
+
       <h4>Placement</h4>
       <p>The history icon is placed in the command-bar in the upper right of the page layout.</p>
       <h3>Behavior</h3>
@@ -70,14 +88,13 @@
           <tr>
             <td class="left">
               <b>[clrContext]</b>
-              <div class="clr-hidden-sm-up">List of key:string/value:string</div>
-              <div class="clr-hidden-sm-up"></div>
+              <div class="clr-hidden-sm-up">string</div>
+              <div class="clr-hidden-sm-up">empty</div>
             </td>
-            <td class="left clr-hidden-xs-down">List of key:string/value:string</td>
-            <td class="clr-hidden-xs-down"></td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="clr-hidden-xs-down">empty</td>
             <td class="left">
-              A map of context attributes. You can define any param you want. The history entries are saved/filtered by
-              context.
+              A context string defining the page further. The history entries are saved/filtered by context.
             </td>
           </tr>
           <tr>
@@ -98,7 +115,7 @@
             </td>
             <td class="left clr-hidden-xs-down">string</td>
             <td class="clr-hidden-xs-down">History</td>
-            <td class="left">The header text in the dropdonw. You can provide your own translated text.</td>
+            <td class="left">The header text in the dropdown. You can provide your own translated text.</td>
           </tr>
           <tr>
             <td class="left">
@@ -124,11 +141,11 @@
             <td class="left">
               <b>[clrDomain]</b>
               <div class="clr-hidden-sm-up">string</div>
-              <div class="clr-hidden-sm-up"></div>
+              <div class="clr-hidden-sm-up">empty</div>
             </td>
             <td class="left clr-hidden-xs-down">string</td>
-            <td class="clr-hidden-xs-down"></td>
-            <td class="left">The domain name for storing the coockie values for.</td>
+            <td class="clr-hidden-xs-down">empty</td>
+            <td class="left">The domain name for storing the cookie value.</td>
           </tr>
           <tr>
             <td class="left">
@@ -149,8 +166,8 @@
             <td class="left clr-hidden-xs-down">string</td>
             <td class="clr-hidden-xs-down"></td>
             <td class="left">
-              Injection token which provides a URL to send added pages to. e.g.: 'api/frontend/lrupages'. The sent model
-              is ClrHistoryNotificationModel
+              Injection token which provides a URL to interact with the backend store for pages. e.g.:
+              'api/frontend/lrupages'. The sent model is ClrHistoryModel
             </td>
           </tr>
         </tbody>
@@ -166,13 +183,12 @@
       </p>
 
       <clr-code-snippet [clrCode]="angularExample" [clrLanguage]="'typescript'"></clr-code-snippet>
-      <clr-code-snippet [clrCode]="angularExampleContext" [clrLanguage]="'typescript'"></clr-code-snippet>
       <div class="clrweb-DoxMedia">
         <div class="clrweb-DoxMedia-block">
           <div class="clrweb-DoxMedia-img history-demo">
             <clr-history
               [clrUsername]="'admin'"
-              [clrContext]="context"
+              [clrTenantId]="'1'"
               [clrDomain]="'porscheinformatik.github.io'"
             ></clr-history>
           </div>
@@ -185,7 +201,7 @@
           <div class="clrweb-DoxMedia-img history-demo">
             <clr-history-pinned
               [clrUsername]="'admin'"
-              [clrContext]="context"
+              [clrTenantId]="'1'"
               [clrDomain]="'porscheinformatik.github.io'"
             ></clr-history-pinned>
           </div>

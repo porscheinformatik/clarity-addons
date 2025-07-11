@@ -14,7 +14,6 @@
     "deploy:ci": "npm run update:versions && ng build --configuration production --output-path=./dist/deploy && npm run generate:404",
     "generate:404": "cp-cli ./dist/deploy/index.html ./dist/deploy/404.html",
     "update:versions": "node ./replace-versions.js",
-    "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points",
     "env": "env"
   },
   "private": true,
