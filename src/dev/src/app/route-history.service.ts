@@ -5,19 +5,21 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class RouteHistoryService {
-  constructor(private router: Router, private historyService: ClrHistoryService) {}
+  constructor(private readonly router: Router, private readonly historyService: ClrHistoryService) {}
 
   init(): void {
     this.router.events
       .pipe(filter((event): event is NavigationStart => event instanceof NavigationStart))
       .subscribe((event: RouterEvent) =>
-        this.historyService.addHistoryEntry({
-          context: { tenantid: '1' },
-          pageName: event.url.substr(1),
-          title: event.url.substr(1),
-          url: event.url,
-          username: 'me',
-        })
+        this.historyService
+          .addHistoryEntry({
+            tenantId: '1',
+            pageName: event.url.substring(1),
+            title: event.url.substring(1),
+            url: event.url,
+            username: 'me',
+          })
+          .subscribe()
       );
   }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -20,14 +20,14 @@ export interface ClrHistoryModel {
   pageName: string;
 
   /**
+   * The tenant ID
+   */
+  tenantId: string;
+
+  /**
    * The context of the page
    */
-  context: {
-    applicationName?: string;
-    tenantid: string;
-    context?: string;
-    [key: string]: string | undefined;
-  };
+  context?: string;
 
   /**
    * The title to be displayed.
@@ -50,14 +50,4 @@ export interface ClrHistorySettingsModel {
    * The username
    */
   username: string;
-}
-
-export interface ClrHistoryNotificationModel {
-  username: string;
-  pageName: string;
-  applicationName?: string;
-  tenantId: string;
-  title: string;
-  url: string;
-  context?: string;
 }

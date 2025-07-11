@@ -7,7 +7,7 @@
 import { Component, Inject, Input, OnDestroy, OnInit, Optional } from '@angular/core';
 import { ClrHistoryModel } from './history-model.interface';
 import { ClrHistoryService } from './history.service';
-import { Subscription } from 'rxjs';
+import { ReplaySubject, Subject, Subscription } from 'rxjs';
 import { HISTORY_PROVIDER, HistoryProvider } from './history.provider';
 
 @Component({
@@ -17,34 +17,36 @@ import { HISTORY_PROVIDER, HistoryProvider } from './history.provider';
 })
 export class ClrHistoryPinned implements OnInit, OnDestroy {
   @Input('clrUsername') username: string;
-  @Input('clrContext') context: { [key: string]: string };
+  @Input('clrTenantId') tenantId: string;
+  @Input('clrContext') context: string;
   @Input('clrDomain') domain: string;
 
   /**
    * The array of history elements to be displayed.
    */
-  historyElements: ClrHistoryModel[] = [];
-  active = false;
+  historyElements$: Subject<ClrHistoryModel[]> = new ReplaySubject<ClrHistoryModel[]>(1);
+  active$: Subject<boolean> = new ReplaySubject<boolean>(1);
   private settingsSubscription: Subscription;
 
   constructor(
-    private historyService: ClrHistoryService,
-    @Inject(HISTORY_PROVIDER) @Optional() private historyProvider: HistoryProvider
+    private readonly historyService: ClrHistoryService,
+    @Inject(HISTORY_PROVIDER) @Optional() private readonly historyProvider: HistoryProvider
   ) {}
 
   ngOnInit(): void {
-    const historyElements = this.historyService.getHistoryDisplay(this.username, this.context);
-    this.historyElements = this.historyProvider
-      ? this.historyProvider.getModifiedHistoryEntries(historyElements)
-      : historyElements;
+    this.historyService.getHistory(this.username, this.tenantId).subscribe(elements => {
+      this.historyElements$.next(
+        this.historyProvider ? this.historyProvider.getModifiedHistoryEntries(elements) : elements
+      );
+    });
 
     this.historyService.initializeCookieSettings(this.username, this.domain);
     this.settingsSubscription = this.historyService.cookieSettings$.subscribe(settings => {
       const setting = settings.find(setting => setting.username === this.username);
-      if (setting) {
-        this.active = setting.historyPinned;
-      }
+      this.active$.next(setting?.historyPinned);
     });
+
+    this.historyService.deleteOldCookie(this.domain);
   }
 
   ngOnDestroy(): void {

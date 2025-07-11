@@ -3,7 +3,6 @@
   <clr-history-pinned
     *ngIf="withHistory"
     [clrUsername]="'admin'"
-    [clrContext]="context"
     [clrDomain]="'porscheinformatik.github.io'"
   ></clr-history-pinned>
   <div class="content-header">
@@ -19,7 +18,6 @@
         style="margin-top: 6px"
         *ngIf="withHistory"
         [clrUsername]="'admin'"
-        [clrContext]="context"
         [clrDomain]="'porscheinformatik.github.io'"
       ></clr-history>
       <clr-button-group [clrMenuPosition]="'bottom-right'" *ngIf="withCommandBar">

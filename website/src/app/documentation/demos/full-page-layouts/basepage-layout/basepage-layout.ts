@@ -19,7 +19,6 @@ export class BasepageLayoutDemo implements OnInit {
   withActionPanel = false;
   withHistory = false;
   id: string;
-  context = { ['applicationName']: 'ADDONS' };
 
   @ViewChild('contentPanelOffer')
   contentPanelOffer: ClrContentPanel;
@@ -43,34 +42,25 @@ export class BasepageLayoutDemo implements OnInit {
         pageName: 'DocPage',
         url: 'https://porscheinformatik.github.io/clarity-addons/documentation/latest/get-started',
         title: 'DocPage',
-        context: {
-          applicationName: 'ADDONS',
-          tenantid: '1',
-        },
+        tenantId: '1',
       };
-      this.historyService.addHistoryEntry(historyEntry1, 'porscheinformatik.github.io');
+      this.historyService.addHistoryEntry(historyEntry1).subscribe();
       const historyEntry2: ClrHistoryModel = {
         username: 'admin',
         pageName: 'SourcePage',
         url: 'https://github.com/porscheinformatik/clarity-addons',
         title: 'SourcePage',
-        context: {
-          applicationName: 'ADDONS',
-          tenantid: '1',
-        },
+        tenantId: '1',
       };
-      this.historyService.addHistoryEntry(historyEntry2, 'porscheinformatik.github.io');
+      this.historyService.addHistoryEntry(historyEntry2).subscribe();
       const historyEntry3: ClrHistoryModel = {
         username: 'admin',
         pageName: 'GitHub',
         url: 'https://github.com/porscheinformatik/clarity-addons',
         title: 'GitHub',
-        context: {
-          applicationName: 'ADDONS',
-          tenantid: '1',
-        },
+        tenantId: '1',
       };
-      this.historyService.addHistoryEntry(historyEntry3, 'porscheinformatik.github.io');
+      this.historyService.addHistoryEntry(historyEntry3).subscribe();
       if (this.withActionPanel) {
         this.historyService.setHistoryPinned('admin', false, 'porscheinformatik.github.io');
       } else {
@@ -79,7 +69,7 @@ export class BasepageLayoutDemo implements OnInit {
     }
   }
 
-  private togglePanel(toggleOffer: boolean) {
+  togglePanel(toggleOffer: boolean) {
     if (toggleOffer) {
       if (this.contentPanelFinancing.isOpen()) {
         this.contentPanelFinancing.toggle();

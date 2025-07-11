@@ -8,32 +8,22 @@ import { ClarityDocComponent } from '../clarity-doc';
 import { ClrHistoryModel, ClrHistoryService } from '@porscheinformatik/clr-addons';
 
 const HTML_EXAMPLE = `
-<clr-history [clrUsername]=""admin"" [clrContext]="context"></clr-history>
+<clr-history [clrUsername]="'admin'" [clrTenantId]="'1'"></clr-history>
 `;
 
 const HTML_EXAMPLE_PINNED = `
-<clr-history-pinned [clrUsername]=""admin"" [clrContext]="context"></clr-history-pinned>
+<clr-history-pinned [clrUsername]="'admin'" [clrTenantId]="'1'"></clr-history-pinned>
 `;
 
 const ANGULAR_EXAMPLE = `
 const historyEntry1: ClrHistoryModel = {username: "admin", pageName: "DocPage",
 url: "https://porscheinformatik.github.io/clarity-addons/documentation/latest/get-started", title: "DocPage",
-context: {
-    applicationName: "ADDONS",
-    tenantid: '1'
-}};
-this.historyService.addHistoryEntry(historyEntry1);
+tenantId: '1'};
+this.historyService.addHistoryEntry(historyEntry1).subscribe();
 const historyEntry2: ClrHistoryModel = {username: "admin", pageName: "SourcePage",
 url: "https://porscheinformatik.github.io/clarity-addons/documentation/latest/get-started", title: "SourcePage",
-context: {
-    applicationName: "ADDONS",
-    tenantid: '1'
-}};
-this.historyService.addHistoryEntry(historyEntry2);`;
-
-const ANGULAR_EXAMPLE_CONTEXT = `
-context = {applicationName : "ADDONS", tenantid: '1'};
-`;
+tenantId: '1'};
+this.historyService.addHistoryEntry(historyEntry2).subscribe();`;
 
 @Component({
   selector: 'clr-history-demo',
@@ -50,8 +40,6 @@ export class HistoryDemo extends ClarityDocComponent implements OnInit {
   htmlExample = HTML_EXAMPLE;
   htmlExamplePinned = HTML_EXAMPLE_PINNED;
   angularExample = ANGULAR_EXAMPLE;
-  angularExampleContext = ANGULAR_EXAMPLE_CONTEXT;
-  context = { applicationName: 'ADDONS', tenantid: '1' };
   domain = 'porscheinformatik.github.io';
 
   constructor(private historyService: ClrHistoryService) {
@@ -65,33 +53,24 @@ export class HistoryDemo extends ClarityDocComponent implements OnInit {
       pageName: 'DocPage',
       url: 'https://porscheinformatik.github.io/clarity-addons/documentation/latest/get-started',
       title: 'DocPage',
-      context: {
-        applicationName: 'ADDONS',
-        tenantid: '1',
-      },
+      tenantId: '1',
     };
-    this.historyService.addHistoryEntry(historyEntry1, this.domain);
+    this.historyService.addHistoryEntry(historyEntry1).subscribe();
     const historyEntry2: ClrHistoryModel = {
       username: 'admin',
       pageName: 'SourcePage',
       url: 'https://github.com/porscheinformatik/clarity-addons',
       title: 'SourcePage',
-      context: {
-        applicationName: 'ADDONS',
-        tenantid: '1',
-      },
+      tenantId: '1',
     };
-    this.historyService.addHistoryEntry(historyEntry2, this.domain);
+    this.historyService.addHistoryEntry(historyEntry2).subscribe();
     const historyEntry3: ClrHistoryModel = {
       username: 'admin',
       pageName: 'GitHub',
       url: 'https://github.com/porscheinformatik/clarity-addons',
       title: 'GitHub',
-      context: {
-        applicationName: 'ADDONS',
-        tenantid: '1',
-      },
+      tenantId: '1',
     };
-    this.historyService.addHistoryEntry(historyEntry3, this.domain);
+    this.historyService.addHistoryEntry(historyEntry3).subscribe();
   }
 }
