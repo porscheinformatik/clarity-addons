@@ -7,7 +7,7 @@
 import { Component, Inject, Input, OnDestroy, OnInit, Optional } from '@angular/core';
 import { ClrHistoryModel } from './history-model.interface';
 import { ClrHistoryService } from './history.service';
-import { ReplaySubject, Subject, Subscription } from 'rxjs';
+import { BehaviorSubject, ReplaySubject, Subject, Subscription } from 'rxjs';
 import { HISTORY_PROVIDER, HistoryProvider } from './history.provider';
 
 @Component({
@@ -25,13 +25,17 @@ export class ClrHistoryPinned implements OnInit, OnDestroy {
    * The array of history elements to be displayed.
    */
   historyElements$: Subject<ClrHistoryModel[]> = new ReplaySubject<ClrHistoryModel[]>(1);
-  active = false;
+  active$ = new BehaviorSubject<boolean>(this.initActive());
   private settingsSubscription: Subscription;
 
   constructor(
     private readonly historyService: ClrHistoryService,
     @Inject(HISTORY_PROVIDER) @Optional() private readonly historyProvider: HistoryProvider
   ) {}
+
+  initActive(): boolean {
+    return this.historyService.initializeCookieSettings(this.username, this.domain).historyPinned;
+  }
 
   ngOnInit(): void {
     this.historyService.getHistory(this.username, this.tenantId).subscribe(elements => {
@@ -40,11 +44,9 @@ export class ClrHistoryPinned implements OnInit, OnDestroy {
       );
     });
 
-    this.historyService.initializeCookieSettings(this.username, this.domain);
-    this.active = this.historyService.active;
     this.settingsSubscription = this.historyService.cookieSettings$.subscribe(settings => {
       const setting = settings.find(setting => setting.username === this.username);
-      this.active = setting?.historyPinned || false;
+      this.active$.next(setting?.historyPinned);
     });
 
     this.historyService.deleteOldCookie(this.domain);

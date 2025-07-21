@@ -12,7 +12,6 @@ import { ClrHistoryHttpService, HISTORY_TOKEN } from './history.http.service';
 @Injectable()
 export class ClrHistoryService {
   public cookieSettings$ = new BehaviorSubject<ClrHistorySettingsModel[]>([]);
-  public active = false;
   cookieNameSettings = 'clr.history.settings';
   private readonly expiryDate: Date;
 
@@ -37,21 +36,18 @@ export class ClrHistoryService {
     return this.historyHttpService.removeFromHistory(historyEntry);
   }
 
-  initializeCookieSettings(username: string, domain?: string): void {
+  initializeCookieSettings(username: string, domain?: string): ClrHistorySettingsModel {
     let historySettings: ClrHistorySettingsModel[] = this.getCookieByName(this.cookieNameSettings);
     if (!historySettings || historySettings.length === 0) {
       this.setHistoryPinned(username, false, domain);
       historySettings = [{ username: username, historyPinned: false }];
-      this.active = false;
     }
     if (!historySettings.find(hSetting => hSetting.username === username)) {
       this.setHistoryPinned(username, false, domain);
       historySettings.push({ username: username, historyPinned: false });
-      this.active = false;
-    } else {
-      this.active = historySettings.find(hSetting => hSetting.username === username).historyPinned;
     }
     this.cookieSettings$.next(historySettings);
+    return historySettings.find(hSetting => hSetting.username === username);
   }
 
   setHistoryPinned(username: string, pin: boolean, domain?: string): void {
@@ -62,7 +58,6 @@ export class ClrHistoryService {
     } else {
       historySettings.push({ username: username, historyPinned: pin });
     }
-    this.active = pin;
     this.cookieSettings$.next(historySettings);
     // Set it
     this.setCookie(this.cookieNameSettings, JSON.stringify(historySettings), domain);
