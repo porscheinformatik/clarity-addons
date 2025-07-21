@@ -36,7 +36,7 @@ export class ClrHistoryService {
     return this.historyHttpService.removeFromHistory(historyEntry);
   }
 
-  initializeCookieSettings(username: string, domain?: string): void {
+  initializeCookieSettings(username: string, domain?: string): ClrHistorySettingsModel {
     let historySettings: ClrHistorySettingsModel[] = this.getCookieByName(this.cookieNameSettings);
     if (!historySettings || historySettings.length === 0) {
       this.setHistoryPinned(username, false, domain);
@@ -47,6 +47,7 @@ export class ClrHistoryService {
       historySettings.push({ username: username, historyPinned: false });
     }
     this.cookieSettings$.next(historySettings);
+    return historySettings.find(hSetting => hSetting.username === username);
   }
 
   setHistoryPinned(username: string, pin: boolean, domain?: string): void {

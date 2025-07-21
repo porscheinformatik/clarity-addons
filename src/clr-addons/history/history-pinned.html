@@ -1,4 +1,4 @@
-<div [ngClass]="{'history-container-pinned': active$ | async}"></div>
+<div class="history-container-pinned" *ngIf="(active$ | async)"></div>
 <nav
   aria-label="history"
   class="history-container"
