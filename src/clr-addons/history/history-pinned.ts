@@ -25,7 +25,7 @@ export class ClrHistoryPinned implements OnInit, OnDestroy {
    * The array of history elements to be displayed.
    */
   historyElements$: Subject<ClrHistoryModel[]> = new ReplaySubject<ClrHistoryModel[]>(1);
-  active$: Subject<boolean> = new ReplaySubject<boolean>(1);
+  active = false;
   private settingsSubscription: Subscription;
 
   constructor(
@@ -41,9 +41,10 @@ export class ClrHistoryPinned implements OnInit, OnDestroy {
     });
 
     this.historyService.initializeCookieSettings(this.username, this.domain);
+    this.active = this.historyService.active;
     this.settingsSubscription = this.historyService.cookieSettings$.subscribe(settings => {
       const setting = settings.find(setting => setting.username === this.username);
-      this.active$.next(setting?.historyPinned);
+      this.active = setting?.historyPinned || false;
     });
 
     this.historyService.deleteOldCookie(this.domain);

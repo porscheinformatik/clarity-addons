@@ -12,6 +12,7 @@ import { ClrHistoryHttpService, HISTORY_TOKEN } from './history.http.service';
 @Injectable()
 export class ClrHistoryService {
   public cookieSettings$ = new BehaviorSubject<ClrHistorySettingsModel[]>([]);
+  public active = false;
   cookieNameSettings = 'clr.history.settings';
   private readonly expiryDate: Date;
 
@@ -41,10 +42,14 @@ export class ClrHistoryService {
     if (!historySettings || historySettings.length === 0) {
       this.setHistoryPinned(username, false, domain);
       historySettings = [{ username: username, historyPinned: false }];
+      this.active = false;
     }
     if (!historySettings.find(hSetting => hSetting.username === username)) {
       this.setHistoryPinned(username, false, domain);
       historySettings.push({ username: username, historyPinned: false });
+      this.active = false;
+    } else {
+      this.active = historySettings.find(hSetting => hSetting.username === username).historyPinned;
     }
     this.cookieSettings$.next(historySettings);
   }
@@ -57,6 +62,7 @@ export class ClrHistoryService {
     } else {
       historySettings.push({ username: username, historyPinned: pin });
     }
+    this.active = pin;
     this.cookieSettings$.next(historySettings);
     // Set it
     this.setCookie(this.cookieNameSettings, JSON.stringify(historySettings), domain);

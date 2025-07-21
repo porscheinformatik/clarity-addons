@@ -1,9 +1,5 @@
-<div [ngClass]="{'history-container-pinned': active$ | async}"></div>
-<nav
-  aria-label="history"
-  class="history-container"
-  *ngIf="(active$ | async) && (historyElements$ | async) as historyElements"
->
+<div class="history-container-pinned" *ngIf="active"></div>
+<nav aria-label="history" class="history-container" *ngIf="active && (historyElements$ | async) as historyElements">
   <ol class="history">
     <ng-container *ngFor="let historyItem of historyElements">
       <li *ngIf="historyItem.url" class="history-item">
