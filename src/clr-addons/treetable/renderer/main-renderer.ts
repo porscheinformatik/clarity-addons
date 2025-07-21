@@ -56,17 +56,26 @@ export class TreetableMainRenderer<T> implements OnInit, AfterViewChecked, After
     const rowsArray = this.rows.toArray();
 
     headersArray.forEach((header, headerIndex) => {
-      // set every child cell of the same index to the same class
-      // we do not allow overriding column width on a per cell basis different to the header.
-      const columnClasses = header.getColumnClasses().length === 0 ? ['clr-col'] : header.getColumnClasses();
-      header.setDefaultColumnClass();
-
-      rowsArray.forEach(row => {
-        const cell = row.cells.find((_c, cellIndex) => cellIndex === headerIndex);
-        if (cell) {
-          cell.setColumnClasses(columnClasses);
-        }
-      });
+      const columnClasses = header.getColumnClasses();
+      if (columnClasses.length === 0) {
+        header.setDefaultColumnClass();
+        rowsArray.forEach(row => {
+          // set every child cell of the same index to default class
+          const cell = row.cells.find((_c, cellIndex) => cellIndex === headerIndex);
+          if (cell) {
+            cell.setColumnClasses(['clr-col']);
+          }
+        });
+      } else {
+        // set every child cell of the same index to the same class
+        // we do not allow overriding column width on a per cell basis different to the header.
+        rowsArray.forEach(row => {
+          const cell = row.cells.find((_c, cellIndex) => cellIndex === headerIndex);
+          if (cell) {
+            cell.setColumnClasses(columnClasses);
+          }
+        });
+      }
     });
   }
 
