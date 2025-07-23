@@ -6,7 +6,7 @@
 
 import { Inject, Injectable } from '@angular/core';
 import { ClrHistoryModel, ClrHistorySettingsModel } from './history-model.interface';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, filter, Observable, of, switchMap, tap } from 'rxjs';
 import { ClrHistoryHttpService, HISTORY_TOKEN } from './history.http.service';
 
 @Injectable()
@@ -14,6 +14,8 @@ export class ClrHistoryService {
   public cookieSettings$ = new BehaviorSubject<ClrHistorySettingsModel[]>([]);
   cookieNameSettings = 'clr.history.settings';
   private readonly expiryDate: Date;
+
+  private readonly changingHistory$ = new BehaviorSubject<boolean>(false);
 
   constructor(@Inject(HISTORY_TOKEN) private readonly historyHttpService: ClrHistoryHttpService) {
     this.expiryDate = new Date();
@@ -25,15 +27,26 @@ export class ClrHistoryService {
    * @param historyEntry The entry to be added
    */
   addHistoryEntry(historyEntry: ClrHistoryModel): Observable<void> {
-    return this.historyHttpService.addHistoryEntry(historyEntry);
+    return of(historyEntry).pipe(
+      tap(() => this.changingHistory$.next(true)),
+      switchMap(entry => this.historyHttpService.addHistoryEntry(entry)),
+      tap(() => this.changingHistory$.next(false))
+    );
   }
 
   getHistory(username: string, tenantId: string): Observable<ClrHistoryModel[]> {
-    return this.historyHttpService.getHistory(username, tenantId);
+    return this.changingHistory$.pipe(
+      filter(changing => !changing),
+      switchMap(() => this.historyHttpService.getHistory(username, tenantId))
+    );
   }
 
   removeFromHistory(historyEntry: ClrHistoryModel): Observable<void> {
-    return this.historyHttpService.removeFromHistory(historyEntry);
+    return of(historyEntry).pipe(
+      tap(() => this.changingHistory$.next(true)),
+      switchMap(entry => this.historyHttpService.removeFromHistory(entry)),
+      tap(() => this.changingHistory$.next(false))
+    );
   }
 
   initializeCookieSettings(username: string, domain?: string): ClrHistorySettingsModel {
