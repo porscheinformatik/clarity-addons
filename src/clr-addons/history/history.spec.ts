@@ -11,7 +11,7 @@ import { ClrHistoryService } from './history.service';
 import { ClrHistoryModel } from './history-model.interface';
 import { ClarityModule } from '@clr/angular';
 import { ClrHistoryHttpService, HISTORY_TOKEN } from './history.http.service';
-import { Observable, of, tap } from 'rxjs';
+import { Observable, of, take, tap } from 'rxjs';
 
 class MockClrHistoryHttpService implements ClrHistoryHttpService {
   private readonly history: ClrHistoryModel[] = [];
@@ -79,10 +79,13 @@ describe('ClrHistory', () => {
       url: 'url1',
     };
     historyService.addHistoryEntry(historyEntry).subscribe();
-    historyService.getHistory('admin', '1').subscribe(history => {
-      expect(history.length).toEqual(1);
-      done();
-    });
+    historyService
+      .getHistory('admin', '1')
+      .pipe(take(1))
+      .subscribe(history => {
+        expect(history.length).toEqual(1);
+        done();
+      });
   });
 
   it('should remove', done => {
@@ -94,15 +97,21 @@ describe('ClrHistory', () => {
       url: 'url1',
     };
     historyService.addHistoryEntry(historyEntry).subscribe();
-    historyService.getHistory('admin', '1').subscribe(history => {
-      expect(history.length).toEqual(1);
-      historyService.removeFromHistory(historyEntry).subscribe(() => {
-        historyService.getHistory('admin', '1').subscribe(historyAfter => {
-          expect(historyAfter.length).toEqual(0);
-          done();
+    historyService
+      .getHistory('admin', '1')
+      .pipe(take(1))
+      .subscribe(history => {
+        expect(history.length).toEqual(1);
+        historyService.removeFromHistory(historyEntry).subscribe(() => {
+          historyService
+            .getHistory('admin', '1')
+            .pipe(take(1))
+            .subscribe(historyAfter => {
+              expect(historyAfter.length).toEqual(0);
+              done();
+            });
         });
       });
-    });
   });
 
   it('encodeUTF8', done => {
@@ -115,17 +124,23 @@ describe('ClrHistory', () => {
       title: chinese,
       url: 'url1',
     };
-    historyService.getHistory('utf8', '1').subscribe(historyBefore => {
-      expect(historyBefore.length).toEqual(0);
-      historyService.addHistoryEntry(historyEntry).subscribe();
-      historyService.getHistory('utf8', '1').subscribe(historyAfter => {
-        expect(historyAfter.length).toEqual(1);
-        const lastHistoryEntry = historyAfter[historyAfter.length - 1];
-        expect(lastHistoryEntry.pageName).toEqual(czech);
-        expect(lastHistoryEntry.title).toEqual(chinese);
-        done();
+    historyService
+      .getHistory('utf8', '1')
+      .pipe(take(1))
+      .subscribe(historyBefore => {
+        expect(historyBefore.length).toEqual(0);
+        historyService.addHistoryEntry(historyEntry).subscribe();
+        historyService
+          .getHistory('utf8', '1')
+          .pipe(take(1))
+          .subscribe(historyAfter => {
+            expect(historyAfter.length).toEqual(1);
+            const lastHistoryEntry = historyAfter[historyAfter.length - 1];
+            expect(lastHistoryEntry.pageName).toEqual(czech);
+            expect(lastHistoryEntry.title).toEqual(chinese);
+            done();
+          });
       });
-    });
   });
 
   it('wont update settings after onDestroy is called', fakeAsync(() => {
