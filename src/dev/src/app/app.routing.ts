@@ -133,6 +133,10 @@ export const APP_ROUTES: Routes = [
       import('./datagrid-highlight/datagrid-highlight.demo.module').then(m => m.DatagridHighlightDemoModule),
   },
   {
+    path: 'datagrid-reorder',
+    loadComponent: () => import('./datagrid-reorder/datagrid-reorder.demo').then(m => m.DatagridReorderDemo),
+  },
+  {
     path: 'datagrid-state-persistence',
     loadChildren: () =>
       import('./datagrid-state-persistence/datagrid-state-persistence.demo.module').then(
