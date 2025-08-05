@@ -5,7 +5,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClrDatagridStatePersistenceModule } from '../datagrid-state-persistence/datagrid-state-persistence.module';
-import { DynamicColumn } from '@porscheinformatik/clr-addons';
+import { ClrDatagridColumnReorderModule, DynamicColumn } from '@porscheinformatik/clr-addons';
 
 const PERSISTENCE_KEY = 'ColumnReorderDirective';
 
@@ -63,7 +63,14 @@ describe('ColumnReorderDirective', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ClarityModule, FormsModule, BrowserAnimationsModule, ClrDatagridStatePersistenceModule, CdkDropList],
+      imports: [
+        ClarityModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        ClrDatagridStatePersistenceModule,
+        ClrDatagridColumnReorderModule,
+        CdkDropList,
+      ],
       declarations: [TestComponent],
       teardown: { destroyAfterEach: false },
     }).compileComponents();
@@ -73,10 +80,6 @@ describe('ColumnReorderDirective', () => {
 
   afterEach(() => {
     localStorage.clear();
-  });
-
-  it('should create', () => {
-    expect(fixture).toBeTruthy();
   });
 
   it('should persist column order if enabled', () => {
