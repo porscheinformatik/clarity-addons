@@ -18,6 +18,9 @@ import { ClrDatagridStatePersistenceModel, StatePersistenceKeyDirective } from '
 
 @Directive({
   selector: '[clrDatagridColumnReorder]',
+  host: {
+    '[class.datagrid-column-reorder]': 'true',
+  },
 })
 export class DatagridColumnReorderDirective<T extends { name: string }> implements OnInit, AfterViewInit {
   @Input('clrDatagridColumnReorder') columnDefinitions: T[] = [];
@@ -52,9 +55,9 @@ export class DatagridColumnReorderDirective<T extends { name: string }> implemen
       .subscribe(event => this.updateColumnOrder(event.previousIndex, event.currentIndex));
 
     // do not allow reordering columns when detail view is open (only one column is shown anyways)
-    this.datagrid.detailService.stateChange.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(detailState => {
-      this.cdkDropList.disabled = detailState;
-    });
+    this.datagrid.detailService.stateChange
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(detailState => (this.cdkDropList.disabled = detailState));
   }
 
   public ngAfterViewInit(): void {
@@ -102,37 +105,28 @@ export class DatagridColumnReorderDirective<T extends { name: string }> implemen
   }
 
   private updateColumnOrder(dragPreviousIndex: number, dragCurrentIndex: number): void {
-    if (dragPreviousIndex === dragCurrentIndex) {
+    // we need to divide the indexes by two, because each column has two draggable elements:
+    // - the column itself and the resize handle
+    const from = dragPreviousIndex / 2;
+    const to = Math.floor((dragCurrentIndex + 1) / 2);
+    if (from === to) {
       // no change, do nothing
       return;
     }
 
-    // Below we need to divide the indexes by two, because each column has two draggable elements
-    // - the column itself and the resize handle.
-    let from = 0;
-    let to = 0;
-    if (dragPreviousIndex > dragCurrentIndex) {
-      // moving right-to-left, indexes are fine
-      from = dragPreviousIndex / 2;
-      to = dragCurrentIndex / 2;
-    } else if (dragPreviousIndex < dragCurrentIndex) {
-      // moving left-to-right, current index is off by 1 because of the resize handle
-      from = dragPreviousIndex / 2;
-      to = (dragCurrentIndex + 1) / 2;
-    }
+    const columnDefinitionCopy = [...this.columnDefinitions];
+    moveItemInArray(columnDefinitionCopy, from, to);
+    this.columnOrderChanged.emit({ columns: columnDefinitionCopy, from, to, trigger: 'drag' });
+    this.persistColumnOrder(columnDefinitionCopy);
 
-    moveItemInArray(this.columnDefinitions, from, to);
-    this.columnOrderChanged.emit({ columns: this.columnDefinitions, from, to, trigger: 'drag' });
-    this.persistColumnOrder(this.columnDefinitions);
-    this.updateSeparatorVisibility();
+    // after change detection, columns need to be rerendered first
+    setTimeout(() => this.updateSeparatorVisibility(), 0);
   }
 
   // show separator for all but the last visible column
   private updateSeparatorVisibility(): void {
     const visibleColumns = this.clrColumns.filter(col => !col.isHidden);
-    visibleColumns.forEach((col, index) => {
-      col.showSeparator = index < visibleColumns.length - 1;
-    });
+    visibleColumns.forEach((col, index) => (col.showSeparator = index < visibleColumns.length - 1));
   }
 
   // this makes sure that resize handles do not mess up the layout when dragging

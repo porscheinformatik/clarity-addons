@@ -9,9 +9,11 @@ import { DynamicColumn } from './dynamic-column';
     <ng-container *ngComponentOutlet="col().component; inputs: { item: item() }" />
     } @else if (col().template) {
     <ng-container *ngTemplateOutlet="col().template; context: { $implicit: item() }" />
-    } @else if (col().valueFn) {
-    {{ col().valueFn(item()) }}
-    } @else { - }
+    } @else if (col().formatter) {
+    {{ col().formatter(item()) }}
+    } @else {
+    {{ defaultDisplayValue() }}
+    }
   `,
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -20,4 +22,5 @@ import { DynamicColumn } from './dynamic-column';
 export class DynamicCellContentComponent<T> {
   public readonly col = input<DynamicColumn<T>>();
   public readonly item = input<T>();
+  public readonly defaultDisplayValue = input<string>('');
 }

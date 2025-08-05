@@ -49,16 +49,16 @@ class TestComponent {
   persistColumnOrder: boolean | undefined = undefined;
 
   columns: DynamicColumn<string>[] = [
-    { name: 'column1', title: 'Column1', valueFn: v => v },
-    { name: 'column2', title: 'Column2', valueFn: v => v },
-    { name: 'hidden', title: 'Hidden', valueFn: v => v },
-    { name: 'column4', title: 'Column4', valueFn: v => v },
+    { name: 'column1', title: 'Column1', formatter: v => v },
+    { name: 'column2', title: 'Column2', formatter: v => v },
+    { name: 'hidden', title: 'Hidden', formatter: v => v },
+    { name: 'column4', title: 'Column4', formatter: v => v },
   ];
 
   items: string[] = ['Item 1', 'Item 2', 'Item 3', 'Item 4'];
 }
 
-fdescribe('ColumnReorderDirective', () => {
+describe('ColumnReorderDirective', () => {
   let fixture: ComponentFixture<TestComponent>;
 
   beforeEach(() => {

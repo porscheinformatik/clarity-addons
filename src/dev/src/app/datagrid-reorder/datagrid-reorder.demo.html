@@ -1,6 +1,6 @@
 <h2>Column reordering</h2>
 
-<ng-template #teamTemplate let-rider> Team {{rider.team}} </ng-template>
+<ng-template #teamTemplate let-rider> Team {{ rider.team }}</ng-template>
 
 <p>Drag and drop the headers to reorder datagrid columns</p>
 
@@ -13,7 +13,7 @@
   (clrDatagridColumnOrderChanged)="columns = $event.columns"
 >
   @for (col of columns; track col.name) {
-  <clr-dg-column [clrDgField]="col.name" cdkDrag>
+  <clr-dg-column [clrDgField]="col.name" cdkDrag [cdkDragPreviewContainer]="'parent'">
     <ng-container *clrDgHideableColumn="{ hidden: col.hidden }">{{ col.title }}</ng-container>
   </clr-dg-column>
   }
@@ -21,15 +21,15 @@
   <clr-dg-row *clrDgItems="let item of data" [clrDgItem]="item" [clrDgSelectable]="true">
     @for (col of columns; track col.name) {
     <clr-dg-cell>
-      <clr-dg-dynamic-cell-content [col]="col" [item]="item" />
+      <clr-dg-dynamic-cell-content [col]="col" [item]="item" [defaultDisplayValue]="'-'" />
     </clr-dg-cell>
     }
   </clr-dg-row>
 
   <clr-dg-detail *clrIfDetail="let detail">
-    <clr-dg-detail-header>{{ detail.name }} {{detail.surname}}</clr-dg-detail-header>
+    <clr-dg-detail-header>{{ detail.name }} {{ detail.surname }}</clr-dg-detail-header>
     <clr-dg-detail-body>
-      <span>This pro rides for the team {{detail.team}}</span>
+      <span>This pro rides for the team {{ detail.team }}</span>
     </clr-dg-detail-body>
   </clr-dg-detail>
 
