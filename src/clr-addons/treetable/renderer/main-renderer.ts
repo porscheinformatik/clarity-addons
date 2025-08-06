@@ -3,26 +3,29 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { AfterViewChecked, ContentChildren, Directive, HostListener, QueryList, AfterContentInit } from '@angular/core';
+import { AfterViewChecked, ContentChildren, Directive, QueryList, AfterContentInit, OnInit } from '@angular/core';
 
 import { ClrTreetableColumn } from '../treetable-column';
 import { TreetableHeaderRenderer } from './header-renderer';
 import { TreetableRowRenderer } from './row-renderer';
+import { fromEvent } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 @Directive({
   selector: 'clr-treetable',
   standalone: false,
 })
-export class TreetableMainRenderer implements AfterViewChecked, AfterContentInit {
+export class TreetableMainRenderer<T> implements OnInit, AfterViewChecked, AfterContentInit {
   @ContentChildren(TreetableHeaderRenderer) headers: QueryList<TreetableHeaderRenderer>;
   @ContentChildren(TreetableRowRenderer, { descendants: true })
   rows: QueryList<TreetableRowRenderer>;
-  @ContentChildren(ClrTreetableColumn) columns: QueryList<ClrTreetableColumn>;
+  @ContentChildren(ClrTreetableColumn) columns: QueryList<ClrTreetableColumn<T>>;
   private shouldStabilizeColumn = true;
 
-  @HostListener('window:resize')
-  onResize(): void {
-    this.applyMaxWidth();
+  ngOnInit(): void {
+    fromEvent(window, 'resize')
+      .pipe(debounceTime(200))
+      .subscribe(() => this.applyMaxWidth());
   }
 
   ngAfterContentInit(): void {
@@ -49,11 +52,14 @@ export class TreetableMainRenderer implements AfterViewChecked, AfterContentInit
   private applyColumnClasses(): void {
     this.shouldStabilizeColumn = false;
 
-    this.headers.forEach((header, headerIndex) => {
+    const headersArray = this.headers.toArray();
+    const rowsArray = this.rows.toArray();
+
+    headersArray.forEach((header, headerIndex) => {
       const columnClasses = header.getColumnClasses();
       if (columnClasses.length === 0) {
         header.setDefaultColumnClass();
-        this.rows.forEach(row => {
+        rowsArray.forEach(row => {
           // set every child cell of the same index to default class
           const cell = row.cells.find((_c, cellIndex) => cellIndex === headerIndex);
           if (cell) {
@@ -63,7 +69,7 @@ export class TreetableMainRenderer implements AfterViewChecked, AfterContentInit
       } else {
         // set every child cell of the same index to the same class
         // we do not allow overriding column width on a per cell basis different to the header.
-        this.rows.forEach(row => {
+        rowsArray.forEach(row => {
           const cell = row.cells.find((_c, cellIndex) => cellIndex === headerIndex);
           if (cell) {
             cell.setColumnClasses(columnClasses);
