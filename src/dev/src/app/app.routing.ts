@@ -147,6 +147,11 @@ export const APP_ROUTES: Routes = [
     path: 'daterangepicker',
     loadChildren: () => import('./daterangepicker/daterangepicker.demo.module').then(m => m.DaterangepickerDemoModule),
   },
+  {
+    path: 'exportable-datagrid',
+    loadChildren: () =>
+      import('./exportable-datagrid/exportable-datagrid.module').then(m => m.ExportableDatagridModule),
+  },
 ];
 
 export const ROUTING: ModuleWithProviders<RouterModule> = RouterModule.forRoot(APP_ROUTES);
