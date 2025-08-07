@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ClrDatagrid } from '@clr/angular';
-import { ExportType, ExportTypeEnum } from '../../../../clr-addons/export-datagrid-button';
+import { ExportType, ExportTypeEnum } from '@porscheinformatik/clr-addons';
 
 interface ExportableEntry {
   column1: string;
