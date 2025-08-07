@@ -1,12 +1,12 @@
 <div
   [ngClass]="{
-    'export-btn-right': exportButtonPosition === 'right',
-    'export-btn-left': exportButtonPosition === 'left'
+    'export-btn-right': exportButtonPosition() === 'right',
+    'export-btn-left': exportButtonPosition() === 'left'
   }"
 >
-  <ng-container *ngIf="exportTypesFiltered.length === 1; else exportDropdown">
-    <button class="btn btn-sm btn-outline" type="button" (click)="onExport(exportTypesFiltered[0].type)">
-      {{ exportTypesFiltered[0].title }}
+  <ng-container *ngIf="exportTypesFiltered().length === 1; else exportDropdown">
+    <button class="btn btn-sm btn-outline" type="button" (click)="onExport(exportTypesFiltered()[0].type)">
+      {{ exportTypesFiltered()[0].value }}
     </button>
   </ng-container>
   <ng-template #exportDropdown>
@@ -16,8 +16,8 @@
         <cds-icon shape="angle" direction="down" size="12"></cds-icon>
       </button>
       <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-        <button *ngFor="let exportType of exportTypesFiltered" (click)="onExport(exportType.type)" clrDropdownItem>
-          {{ exportType.title }}
+        <button *ngFor="let exportType of exportTypesFiltered()" (click)="onExport(exportType.type)" clrDropdownItem>
+          {{ exportType.value }}
         </button>
       </clr-dropdown-menu>
     </clr-dropdown>

@@ -1,19 +1,16 @@
 import { NgModule } from '@angular/core';
 import { ExportableDatagridComponent } from './exportable-datagrid.component';
 import { RouterModule } from '@angular/router';
-import { ClrDatagridModule, ClrDropdownModule } from '@clr/angular';
-import { NgForOf } from '@angular/common';
-import { ExportDatagridButtonModule } from '../../../../clr-addons/export-datagrid-button';
+import { ClrDatagridModule } from '@clr/angular';
 import { CommonModule } from '@angular/common';
+import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild([{ path: '', component: ExportableDatagridComponent }]),
     ClrDatagridModule,
-    ClrDropdownModule,
-    NgForOf,
-    ExportDatagridButtonModule,
+    ClrAddonsModule,
   ],
   declarations: [ExportableDatagridComponent],
   exports: [ExportableDatagridComponent],

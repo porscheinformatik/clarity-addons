@@ -1,54 +1,57 @@
-import { Component, ElementRef, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, input, ElementRef, computed } from '@angular/core';
 import { ClrDatagrid } from '@clr/angular';
 import zipcelx, { ZipCelXConfig } from 'zipcelx';
-
-export enum ExportTypeEnum {
-  ALL = 'ALL',
-  FILTERED = 'FILTERED',
-  SELECTED = 'SELECTED',
-}
-
-interface ExportType {
-  type: ExportTypeEnum;
-  title: string;
-}
+import { ClarityModule } from '@clr/angular';
+import { NgIf, NgForOf, NgClass } from '@angular/common';
+import { ExportType, ExportTypeEnum } from './export-type.model';
 
 @Component({
   selector: 'clr-export-datagrid-button',
   templateUrl: './export-datagrid-button.component.html',
   styleUrl: './export-datagrid-button.component.scss',
-  standalone: false,
+  standalone: true,
+  imports: [ClarityModule, NgIf, NgForOf, NgClass],
 })
 export class ExportDatagridButtonComponent {
-  @Input() datagrid: ClrDatagrid | undefined;
-  @Input() datagridRef?: ElementRef;
-  @Input() exportTypesToShow?: ExportTypeEnum[];
-  @Input() isBackendExport: boolean = false;
-  @Input() exportTitlePrefix: string = 'exported-datagrid';
-  @Input() exportButtonPosition: 'left' | 'right' = 'right';
+  /* input signals */
+  datagrid = input<ClrDatagrid | undefined>();
+  datagridRef = input<ElementRef | undefined>();
+  exportTypesToShow = input<ExportType[] | undefined>();
+  isBackendExport = input(false);
+  exportTitlePrefix = input('exported-datagrid');
+  exportButtonPosition = input<'left' | 'right'>('right');
 
-  @Output() backendExport: EventEmitter<ExportTypeEnum> = new EventEmitter<ExportTypeEnum>();
+  /* outputs */
+  @Output() readonly backendExport: EventEmitter<ExportTypeEnum> = new EventEmitter<ExportTypeEnum>();
 
-  exportTypes: ExportType[] = [
-    { type: ExportTypeEnum.ALL, title: 'All entries' },
-    { type: ExportTypeEnum.FILTERED, title: 'Filtered entries' },
-    { type: ExportTypeEnum.SELECTED, title: 'Selected entries' },
+  readonly exportTypes: ExportType[] = [
+    { type: ExportTypeEnum.ALL, value: 'All entries' },
+    { type: ExportTypeEnum.FILTERED, value: 'Filtered entries' },
+    { type: ExportTypeEnum.SELECTED, value: 'Selected entries' },
   ];
 
-  get exportTypesFiltered(): ExportType[] {
-    if (!this.exportTypesToShow || this.exportTypesToShow.length === 0) {
+  readonly exportTypesFiltered = computed(() => {
+    const exportTypesToShowVal = this.exportTypesToShow();
+    if (!exportTypesToShowVal || exportTypesToShowVal.length === 0) {
       return this.exportTypes;
     }
-    return this.exportTypes.filter(et => this.exportTypesToShow.includes(et.type));
-  }
+    // Map to translated value, falling back to default if value is not provided
+    return exportTypesToShowVal.map(showType => {
+      const defaultType = this.exportTypes.find(et => et.type === showType.type);
+      return {
+        type: showType.type,
+        value: showType.value != null ? showType.value : defaultType?.value,
+      };
+    });
+  });
 
-  exportExcel(type: ExportTypeEnum) {
-    if (!this.datagrid || !this.datagridRef) {
+  private exportExcel(type: ExportTypeEnum): void {
+    if (!this.datagrid() || !this.datagridRef()) {
       return;
     }
 
     // Filter visible columns once
-    const visibleColumns = this.datagrid.columns.filter(col => !col.isHidden);
+    const visibleColumns = this.datagrid().columns.filter(col => !col.isHidden);
 
     // Get header titles for visible columns only
     const headerRow = this.getColumnsTitle().map(title => ({
@@ -67,7 +70,7 @@ export class ExportDatagridButtonComponent {
     );
 
     const config: ZipCelXConfig = {
-      filename: this.exportTitlePrefix + '.xlsx',
+      filename: this.exportTitlePrefix() + '.xlsx',
       sheet: {
         data: [headerRow, ...dataRows],
       },
@@ -77,7 +80,7 @@ export class ExportDatagridButtonComponent {
   }
 
   onExport(type: ExportTypeEnum) {
-    if (this.isBackendExport) {
+    if (this.isBackendExport()) {
       this.backendExport.emit(type);
     } else {
       this.exportExcel(type);
@@ -87,18 +90,18 @@ export class ExportDatagridButtonComponent {
   private getRowsToExport(type: ExportTypeEnum): any[] {
     switch (type) {
       case ExportTypeEnum.ALL:
-        return this.datagrid?.items.all ?? [];
+        return this.datagrid()?.items.all ?? [];
       case ExportTypeEnum.FILTERED:
-        return this.datagrid?.items.displayed ?? [];
+        return this.datagrid()?.items.displayed ?? [];
       case ExportTypeEnum.SELECTED:
-        return this.datagrid?.selection.current ?? [];
+        return this.datagrid()?.selection.current ?? [];
       default:
         return [];
     }
   }
 
   private getColumnsTitle(): string[] {
-    const nativeEl = this.datagridRef?.nativeElement as HTMLElement;
+    const nativeEl = this.datagridRef()?.nativeElement as HTMLElement;
     const headerEls: NodeListOf<Element> | any[] =
       nativeEl?.querySelectorAll('clr-dg-column:not(.datagrid-hidden-column)') ?? [];
     const columnTitles: string[] = [];

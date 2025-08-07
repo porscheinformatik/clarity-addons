@@ -1,1 +1,1 @@
-export * from './export-datagrid-button.module';
+export * from './export-type.model';

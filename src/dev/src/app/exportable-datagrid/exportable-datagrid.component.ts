@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ClrDatagrid } from '@clr/angular';
-import { ExportTypeEnum } from '../../../../clr-addons/export-datagrid-button/export-datagrid-button.component';
+import { ExportType, ExportTypeEnum } from '../../../../clr-addons/export-datagrid-button';
 
 interface ExportableEntry {
   column1: string;
@@ -31,7 +31,15 @@ export class ExportableDatagridComponent {
   ];
 
   selected: ExportableEntry[] = [];
-  exportType: ExportTypeEnum[] = [ExportTypeEnum.ALL, ExportTypeEnum.FILTERED];
+  exportType: ExportType[] = [
+    {
+      type: ExportTypeEnum.ALL,
+      value: 'Translated all entries',
+    },
+    {
+      type: ExportTypeEnum.FILTERED,
+    },
+  ];
 
   constructor() {}
 
