@@ -7,36 +7,21 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { CdkDrag, CdkDropList } from '@angular/cdk/drag-drop';
 import { TrophiesComponent } from './trophies.component';
 import { CommonModule } from '@angular/common';
-import { ClarityModule, ClrDatagrid } from '@clr/angular';
-import {
-  ClrAddonsModule,
-  DatagridColumnReorderDirective,
-  DynamicCellContentComponent,
-  DynamicColumn,
-  StatePersistenceOptions,
-} from '@porscheinformatik/clr-addons';
+import { ClrDatagridModule } from '@clr/angular';
+import { ClrAddonsModule, DynamicColumn, StatePersistenceOptions } from '@porscheinformatik/clr-addons';
 import { FormsModule } from '@angular/forms';
 import { Rider } from './model';
+import { delay, Observable, of, tap } from 'rxjs';
 
 @Component({
   selector: 'clr-datagrid-reorder-demo',
   templateUrl: './datagrid-reorder.demo.html',
-  imports: [
-    CommonModule,
-    ClarityModule,
-    ClrAddonsModule,
-    FormsModule,
-    CdkDropList,
-    CdkDrag,
-    DatagridColumnReorderDirective,
-    DynamicCellContentComponent,
-  ],
+  imports: [CommonModule, ClrAddonsModule, FormsModule, CdkDropList, CdkDrag, ClrDatagridModule],
 })
 export class DatagridReorderDemo implements OnInit {
   selected: Rider[] = [];
 
   @ViewChild('teamTemplate', { static: true }) public teamTemplateRef: TemplateRef<unknown>;
-  @ViewChild(ClrDatagrid, { static: true }) public datagrid: ClrDatagrid;
 
   OPTIONS: StatePersistenceOptions = {
     key: 'datagrid.demo.reorder',
@@ -49,12 +34,20 @@ export class DatagridReorderDemo implements OnInit {
     persistColumnOrder: true,
   };
 
+  SERVER_DRIVEN_OPTIONS = {
+    ...this.OPTIONS,
+    key: 'datagrid.demo.reorder.serverDriven',
+    serverDriven: true,
+  };
+
   data: Rider[] = [
     { name: 'Tadej', surname: 'Pogacar', team: 'UAD', trophies: ['crown', 'car'] },
     { name: 'Jonas', surname: 'Vingegaard', team: 'TVL', trophies: ['star'] },
     { name: 'Remco', surname: 'Evenepoel', team: 'SOQ', trophies: ['airplane'] },
     { name: 'Primoz', surname: 'Roglic', team: 'RBH' },
   ];
+
+  data$: Observable<Rider[]>;
 
   columns: DynamicColumn<Rider>[] = [
     { name: 'name', title: 'Name', formatter: rider => `${rider.name} ${rider.surname}` },
@@ -63,7 +56,17 @@ export class DatagridReorderDemo implements OnInit {
     { name: 'trophies', title: 'Trophies', component: TrophiesComponent },
   ];
 
+  loading = false;
+
   ngOnInit() {
     this.columns[1].template = this.teamTemplateRef;
+  }
+
+  getAsyncRiderData(): Observable<Rider[]> {
+    return of(this.data).pipe(
+      tap(() => (this.loading = true)),
+      delay(2000),
+      tap(() => (this.loading = false))
+    );
   }
 }

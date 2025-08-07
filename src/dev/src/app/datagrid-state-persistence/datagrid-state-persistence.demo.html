@@ -3,7 +3,7 @@
 <h3>Backend Filtering</h3>
 <clr-datagrid
   (clrDgRefresh)="refresh($event)"
-  [clrStatePersistenceKey]="{key:'datagrid.demo.statePersistence', serverDriven: true}"
+  [clrStatePersistenceKey]="{key:'datagrid.demo.statePersistence', serverDriven: true, persistColumnWidths: true}"
   [clrPaginationDescription]="'{{first}} - {{last}} of {{total}} entries'"
 >
   <clr-dg-column [clrDgField]="'hideableCol'">
@@ -43,7 +43,7 @@
 
 <h3>Frontend Filtering</h3>
 <clr-datagrid
-  [clrStatePersistenceKey]="{key:'datagrid.demo.statePersistence.frontend', serverDriven: true}"
+  [clrStatePersistenceKey]="{key:'datagrid.demo.statePersistence.frontend', serverDriven: false, persistColumnWidths: true}"
   [clrPaginationDescription]="'{{first}} - {{last}} of {{total}} entries'"
 >
   <clr-dg-column [clrDgField]="'hideableCol'">
