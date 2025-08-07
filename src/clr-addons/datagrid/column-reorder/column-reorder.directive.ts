@@ -21,6 +21,7 @@ import { ClrDatagridStatePersistenceModel, StatePersistenceKeyDirective } from '
   host: {
     '[class.datagrid-column-reorder]': 'true',
   },
+  standalone: false,
 })
 export class DatagridColumnReorderDirective<T extends { name: string }> implements OnInit, AfterViewInit {
   @Input('clrDatagridColumnReorder') columnDefinitions: T[] = [];

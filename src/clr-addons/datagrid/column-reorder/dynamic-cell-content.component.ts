@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { NgComponentOutlet, NgTemplateOutlet } from '@angular/common';
 import { DynamicColumn } from './dynamic-column';
 
 @Component({
@@ -11,13 +10,14 @@ import { DynamicColumn } from './dynamic-column';
     <ng-container *ngTemplateOutlet="col().template; context: { $implicit: item() }" />
     } @else if (col().formatter) {
     {{ col().formatter(item()) }}
+    } @else if (col().displayField) {
+    {{ item()[col().displayField] }}
     } @else {
     {{ defaultDisplayValue() }}
     }
   `,
-  standalone: true,
+  standalone: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [NgComponentOutlet, NgTemplateOutlet],
 })
 export class DynamicCellContentComponent<T> {
   public readonly col = input<DynamicColumn<T>>();

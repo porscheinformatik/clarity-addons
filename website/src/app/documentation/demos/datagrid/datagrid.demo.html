@@ -34,6 +34,11 @@
           >
         </li>
         <li>
+          <a routerLink="." fragment="column-reorder" [class.active]="(activeFragment | async) === 'column-reorder'">
+            Reordering columns
+          </a>
+        </li>
+        <li>
           <a
             routerLink="."
             fragment="state-persistence"
@@ -288,6 +293,52 @@
 
     <clr-code-snippet [clrCode]="fullHeightExample"></clr-code-snippet>
 
+    <!-- Column reordering -->
+    <h3 id="column-reorder">Reordering columns</h3>
+    <p>
+      Add <code class="clr-code">[clrDatagridColumnReorder]</code> directive to a datagrid to enable drag and drop
+      reordering of columns. The directive takes a list of column definitions as input, and outputs the reordered list
+      after dragging, alongside with the "from" and "to" indexes of the action. It can be used on its own, or together
+      with <code class="clr-code">[clrStatePersistenceKey]</code> (see below) to persist the order in LocalStorage.
+    </p>
+
+    <clr-datagrid
+      cdkDropList
+      [clrDatagridColumnReorder]="columnsReorder"
+      (clrDatagridColumnOrderChanged)="columnsReorder = $event.columns"
+    >
+      @for (col of columnsReorder; track col.name) {
+      <clr-dg-column [clrDgField]="col.name" cdkDrag [cdkDragPreviewContainer]="'parent'">
+        {{ col.title }}
+      </clr-dg-column>
+      }
+
+      <clr-dg-row *clrDgItems="let item of dataUsers" [clrDgItem]="item">
+        @for (col of columnsReorder; track col.name) {
+        <clr-dg-cell>
+          <clr-dg-dynamic-cell-content [col]="col" [item]="item" />
+        </clr-dg-cell>
+        }
+      </clr-dg-row>
+    </clr-datagrid>
+
+    <p>
+      The directive expects the list of columns as objects with the <code class="clr-code">name</code> field being the
+      identifier, the rest of the object does not matter if you want to render the columns and cells on your own. There
+      is, however, a helpful <code class="clr-code">clr-dg-dynamic-cell-content</code> component, which removes the
+      repetition of rendering cells from your application. It expects you to pass the column definition as an array of
+      <code class="clr-code">DynamicColumn</code> objects. This lets you specify how to render each cell content:
+    </p>
+    <ul>
+      <li>Field of the item</li>
+      <li>Custom formatter function, taking the item as an argument</li>
+      <li>TemplateRef, taking the item as an implicit input</li>
+      <li>ComponentRef, taking the item as "item" input</li>
+    </ul>
+
+    <clr-code-snippet [clrLanguage]="'typescript'" [clrCode]="columnReorderExampleTs"></clr-code-snippet>
+    <clr-code-snippet [clrCode]="columnReorderExampleHtml"></clr-code-snippet>
+
     <!-- State persistence -->
     <h3 id="state-persistence">State persistence</h3>
     <p>
@@ -302,6 +353,7 @@
       <li>Current page (SessionStorage)</li>
       <li>Current filter values (SessionStorage)</li>
       <li>Column width (LocalStorage)</li>
+      <li>Column order (LocalStorage)</li>
     </ul>
 
     <p>
@@ -360,6 +412,11 @@
       <li>persistPagination: When set to false, current page and page size will not be persisted</li>
       <li>persistSort: When set to false, sort column and sort order will not be persisted</li>
       <li>persistHiddenColumns: When set to false, state of each column, hidden or visible, will not be persisted</li>
+      <li>
+        persistColumnOrder: You can find out more about
+        <a routerLink="." fragment="column-reorder">reordering of columns</a>
+        in the respective section.
+      </li>
     </ul>
     <p>
       Last but not least, you can specify the "persistColumnWidths" property, in order to store the width of each
@@ -427,7 +484,7 @@
 
     <clr-code-snippet [clrCode]="persistedStateExample"></clr-code-snippet>
 
-    <!-- State persistence -->
+    <!-- Highlighting -->
     <h3 id="highlighting">Highlighting</h3>
     <h4>Important status highlighting</h4>
     <p>The following css classes can be set to <code class="clr-code">clr-dg-row</code></p>
