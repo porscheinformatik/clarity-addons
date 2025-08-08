@@ -295,6 +295,7 @@ type UserItem = {
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ClrIconModule],
+  standalone: true,
 })
 class IsSubscribedComponent {
   item = input<UserItem>();
