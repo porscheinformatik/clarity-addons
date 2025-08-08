@@ -18,7 +18,7 @@ export class ExportDatagridButtonComponent {
   datagridRef = input<ElementRef | undefined>();
   exportTypesToShow = input<ExportType[] | undefined>();
   isBackendExport = input(false);
-  exportTitlePrefix = input('exported-datagrid');
+  exportTitlePrefix = input('export-datagrid');
   exportButtonPosition = input<'left' | 'right'>('right');
 
   /* outputs */
@@ -70,7 +70,7 @@ export class ExportDatagridButtonComponent {
     );
 
     const config: ZipCelXConfig = {
-      filename: this.exportTitlePrefix() + '.xlsx',
+      filename: this.exportTitlePrefix(),
       sheet: {
         data: [headerRow, ...dataRows],
       },

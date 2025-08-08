@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
 import { of, share } from 'rxjs';
 import { delay } from 'rxjs/operators';
@@ -17,6 +17,14 @@ import {
   warningStandardIcon,
 } from '@cds/core/icon';
 import { ActivatedRoute } from '@angular/router';
+import { ClrDatagrid } from '@clr/angular';
+
+interface ExportableEntry {
+  column1: string;
+  column2: string;
+  column3: string;
+  column4: string;
+}
 
 const NO_SELECT_ALL_HTML = `
 <clr-datagrid class="datagrid-no-select-all" [(clrDgSelected)]="selected">
@@ -83,6 +91,50 @@ const PERSISTED_STATE = `
     </clr-dg-pagination>
   </clr-dg-footer>
 </clr-datagrid>`;
+
+const EXPORT_BUTTON_EXAMPLE = `
+<clr-export-datagrid-button
+  [datagrid]="datagrid"
+  [datagridRef]="datagridRef"
+  [exportTypesToShow]="exportType"
+  [isBackendExport]="false"
+  [exportTitlePrefix]="'MyExport'"
+  [exportButtonPosition]="'right'"
+  (backendExport)="onBackendExport($event)">
+</clr-export-datagrid-button>
+<clr-datagrid #datagrid class="datagrid-full-width datagrid-full-height" [(clrDgSelected)]="selected">
+  <clr-dg-column [clrDgField]="'column1'">
+    <ng-container *clrDgHideableColumn="{ hidden: false }">Column 1</ng-container>
+  </clr-dg-column>
+  <clr-dg-column [clrDgField]="'column2'">
+    <ng-container *clrDgHideableColumn="{ hidden: false }">Column 2</ng-container>
+  </clr-dg-column>
+  <clr-dg-column [clrDgField]="'column3'">
+    <ng-container *clrDgHideableColumn="{ hidden: false }">Column 3</ng-container>
+  </clr-dg-column>
+  <clr-dg-column [clrDgField]="'column4'">
+    <ng-container *clrDgHideableColumn="{ hidden: true }">Column 4</ng-container>
+  </clr-dg-column>
+  <clr-dg-row *clrDgItems="let entry of exportableEntries" [clrDgItem]="entry">
+    <clr-dg-cell>{{ entry.column1 }}</clr-dg-cell>
+    <clr-dg-cell>{{ entry.column2 }}</clr-dg-cell>
+    <clr-dg-cell>{{ entry.column3 }}</clr-dg-cell>
+    <clr-dg-cell>{{ entry.column4 }}</clr-dg-cell>
+  </clr-dg-row>
+</clr-datagrid>
+`;
+
+const EXPORT_TYPES_DISPLAY = `exportType: ExportType[] = [
+  {
+    type: ExportTypeEnum.ALL,
+    value: 'Translated all entries',
+  },
+  {
+    type: ExportTypeEnum.FILTERED,
+    // No value provided, will use default label
+  }
+];
+`;
 
 const ENUM_FILTER = `
 <clr-datagrid>
@@ -253,6 +305,8 @@ export class DatagridDemo extends ClarityDocComponent {
   dateFilterExample = DATE_FILTER;
   dateFilterTimeExample = DATETIME_FILTER;
   dateFilterPreselectExample = DATE_FILTER_PRESELECT;
+  exportButtonExample = EXPORT_BUTTON_EXAMPLE;
+  exportTypesDisplayExample = EXPORT_TYPES_DISPLAY;
   activeFragment;
   selected: any[] = [];
   selectedMinor: any[] = [];
@@ -294,6 +348,32 @@ export class DatagridDemo extends ClarityDocComponent {
   customPossibleValues = ['TestValue1', 'TestValue2', 'TestValue3', 'TestValue4'];
   preselectedValues = ['TestValue1', 'TestValue3'];
   dateFilterValue = [null, today];
+
+  exportableEntries: ExportableEntry[] = [
+    { column1: 'A1', column2: 'B1', column3: 'C1', column4: 'D1' },
+    { column1: 'A2', column2: 'B2', column3: 'C2', column4: 'D2' },
+    { column1: 'A3', column2: 'B3', column3: 'C3', column4: 'D3' },
+    { column1: 'A4', column2: 'B4', column3: 'C4', column4: 'D4' },
+    { column1: 'A5', column2: 'B5', column3: 'C5', column4: 'D5' },
+    { column1: 'A6', column2: 'B6', column3: 'C6', column4: 'D6' },
+    { column1: 'A7', column2: 'B7', column3: 'C7', column4: 'D7' },
+    { column1: 'A8', column2: 'B8', column3: 'C8', column4: 'D8' },
+    { column1: 'A9', column2: 'B9', column3: 'C9', column4: 'D9' },
+    { column1: 'A10', column2: 'B10', column3: 'C10', column4: 'D10' },
+    { column1: 'A11', column2: 'B11', column3: 'C11', column4: 'D11' },
+    { column1: 'A12', column2: 'B12', column3: 'C12', column4: 'D12' },
+  ];
+
+  selectedEntry: ExportableEntry[] = [];
+
+  onBackendExport(type: any) {
+    console.log(
+      'Backend export triggered with type: ' + type + '. Provide dataset to component in order to execute export.'
+    );
+  }
+
+  @ViewChild('datagrid', { static: false }) datagrid: ClrDatagrid | undefined;
+  @ViewChild('datagrid', { static: false, read: ElementRef }) datagridRef?: ElementRef;
 
   constructor(public route: ActivatedRoute) {
     super('datagrid');
