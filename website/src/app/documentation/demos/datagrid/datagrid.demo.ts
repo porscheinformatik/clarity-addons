@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
 import { of, share } from 'rxjs';
 import { delay } from 'rxjs/operators';
@@ -16,6 +16,8 @@ import {
   warningStandardIcon,
 } from '@cds/core/icon';
 import { ActivatedRoute } from '@angular/router';
+import { DynamicColumn } from '@porscheinformatik/clr-addons';
+import { ClrIconModule } from '@clr/angular';
 
 const NO_SELECT_ALL_HTML = `
 <clr-datagrid class="datagrid-no-select-all" [(clrDgSelected)]="selected">
@@ -218,10 +220,86 @@ const DATE_FILTER_PRESELECT = `
 </clr-datagrid>
 `;
 
+const COLUMN_REORDER_EXAMPLE_HTML = `
+<clr-datagrid
+  cdkDropList
+  [clrDatagridColumnReorder]="columns"
+  (clrDatagridColumnOrderChanged)="columns = $event.columns"
+>
+  @for (col of columns; track col.name) {
+    <clr-dg-column [clrDgField]="col.name" cdkDrag [cdkDragPreviewContainer]="'parent'">
+      {{ col.title }}
+    </clr-dg-column>
+  }
+
+  <clr-dg-row *clrDgItems="let item of dataUsers" [clrDgItem]="item">
+    @for (col of columns; track col.name) {
+      <clr-dg-cell>
+        <clr-dg-dynamic-cell-content [col]="col" [item]="item" />
+      </clr-dg-cell>
+    }
+  </clr-dg-row>
+</clr-datagrid>
+`;
+
+const COLUMN_REORDER_EXAMPLE_TS = `
+@Component({
+  ...
+  template: \`
+    @if (item().subscribed) {
+    <cds-icon shape="success-standard" status="success" />
+    } @else {
+    <cds-icon shape="minus" />
+    }
+  \`,
+})
+class IsSubscribedComponent {
+  item = input<User>();
+}
+
+@Component({ ... })
+class MainComponent {
+  columns: DynamicColumn<User>[] = [
+    { name: 'id', title: 'Id', formatter: (item) => '#' + item.id },
+    { name: 'username', title: 'Username', displayField: 'username' },
+    { name: 'subscribed', title: 'Subscribed', component: IsSubscribedComponent },
+  ];
+
+  data: User[] = [
+    { id: 1, username: 'Admin', subscribed: true },
+    { id: 2, username: 'Subscriber', subscribed: true },
+    { id: 3, username: 'Guest', subscribed: false },
+  ];
+}
+`;
+
 const today = new Date(Date.now());
 const yesterday = new Date(Date.now() - 24 * 1000 * 60 * 60);
 const tomorrow = new Date(Date.now() + 24 * 1000 * 60 * 60);
 ClarityIcons.addIcons(errorStandardIcon, warningStandardIcon, successStandardIcon, infoStandardIcon, minusIcon);
+
+type UserItem = {
+  id: number;
+  username: string;
+  subscribed: boolean;
+};
+
+@Component({
+  selector: 'clr-demo-is-subscribed',
+  template: `
+    @if (item().subscribed) {
+    <cds-icon shape="success-standard" status="success" />
+    } @else {
+    <cds-icon shape="minus" />
+    }
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [ClrIconModule],
+  standalone: true,
+})
+class IsSubscribedComponent {
+  item = input<UserItem>();
+}
 
 @Component({
   selector: 'clr-datagrid-demo-docu',
@@ -234,6 +312,8 @@ ClarityIcons.addIcons(errorStandardIcon, warningStandardIcon, successStandardIco
 export class DatagridDemo extends ClarityDocComponent {
   noSelectAllExample = NO_SELECT_ALL_HTML;
   fullHeightExample = FULL_HEIGHT_HTML;
+  columnReorderExampleHtml = COLUMN_REORDER_EXAMPLE_HTML;
+  columnReorderExampleTs = COLUMN_REORDER_EXAMPLE_TS;
   persistedStateExample = PERSISTED_STATE;
   enumFilterExample = ENUM_FILTER;
   enumFilterCustomExample = ENUM_FILTER_CUSTOM;
@@ -283,6 +363,18 @@ export class DatagridDemo extends ClarityDocComponent {
   customPossibleValues = ['TestValue1', 'TestValue2', 'TestValue3', 'TestValue4'];
   preselectedValues = ['TestValue1', 'TestValue3'];
   dateFilterValue = [null, today];
+
+  columnsReorder: DynamicColumn<UserItem>[] = [
+    { name: 'id', title: 'Id', formatter: item => '#' + item.id },
+    { name: 'username', title: 'Username', displayField: 'username' },
+    { name: 'subscribed', title: 'Subscribed', component: IsSubscribedComponent },
+  ];
+
+  dataUsers: UserItem[] = [
+    { id: 1, username: 'Admin', subscribed: true },
+    { id: 2, username: 'Subscriber', subscribed: true },
+    { id: 3, username: 'Guest', subscribed: false },
+  ];
 
   constructor(public route: ActivatedRoute) {
     super('datagrid');

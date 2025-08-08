@@ -5,6 +5,7 @@ import {
   Directive,
   ElementRef,
   HostListener,
+  inject,
   Input,
   isSignal,
   OnDestroy,
@@ -24,8 +25,9 @@ import {
 } from '@clr/angular';
 import { ClrDatagridStatePersistenceModel } from './datagrid-state-persistence-model.interface';
 import { delay, Subject } from 'rxjs';
-import { take, takeUntil } from 'rxjs/operators';
+import { filter, take, takeUntil } from 'rxjs/operators';
 import { StatePersistenceOptions } from './state-persistence-options.interface';
+import { DatagridColumnReorderDirective } from '../column-reorder';
 
 const DATE_TYPE = 'date';
 
@@ -73,7 +75,8 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
   warnedAboutCustomDescription = false;
   destroy$ = new Subject<void>();
 
-  constructor(private datagrid: ClrDatagrid) {}
+  private readonly datagrid = inject(ClrDatagrid);
+  private readonly reorderDirective = inject(DatagridColumnReorderDirective, { optional: true });
 
   ngAfterContentInit() {
     if (this.options.serverDriven) {
@@ -96,6 +99,12 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
     const columnWidthPersistenceEnabled = this.options.persistColumnWidths ?? false;
     if (columnWidthPersistenceEnabled) {
       this.initColumnWidths(localStorageState);
+    }
+
+    const columnOrderPersistenceEnabled = this.options.persistColumnOrder ?? false;
+    if (columnOrderPersistenceEnabled && !!this.reorderDirective) {
+      this.initColumnOrderPersister(localStorageState);
+      this.initColumnOrder(localStorageState);
     }
 
     const paginationPersistenceEnabled = this.options.persistPagination ?? true;
@@ -203,6 +212,23 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
     this.datagrid.items.change.pipe(takeUntil(this.destroy$)).subscribe(() => this.updatePaginationDescription());
   }
 
+  private initColumnOrderPersister(state: ClrDatagridStatePersistenceModel) {
+    this.reorderDirective.columnOrderChanged
+      .pipe(
+        takeUntil(this.destroy$),
+        // we skip the first value (init), because it's already coming from the local storage, so no need to save it again
+        filter(({ trigger }) => trigger !== 'init')
+      )
+      .subscribe(({ columns }) => this.persistColumnOrder(state, columns));
+  }
+
+  private initColumnOrder(savedState: ClrDatagridStatePersistenceModel): void {
+    if (savedState?.columns) {
+      const entries = Object.entries(savedState.columns).map(([key, value]) => [key, value.order] as const);
+      this.reorderDirective.initializeColumnOrder(Object.fromEntries(entries));
+    }
+  }
+
   private persistFiltersAndCurrentPage(dgState: ClrDatagridStateInterface<unknown>): void {
     const filterPersistenceEnabled = this.options.persistFilters ?? true;
     const paginationPersistenceEnabled = this.options.persistPagination ?? true;
@@ -261,6 +287,17 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
 
       this.saveLocalStorageState(state);
     }
+  }
+
+  private persistColumnOrder(state: ClrDatagridStatePersistenceModel, columns: { name: string }[]): void {
+    state.columns = state.columns || {};
+
+    columns.forEach(({ name }, index) => {
+      state.columns[name] = state.columns[name] || {};
+      state.columns[name].order = index;
+    });
+
+    this.saveLocalStorageState(state);
   }
 
   /**
