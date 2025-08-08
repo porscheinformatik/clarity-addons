@@ -15,6 +15,7 @@ ClarityIcons.addIcons(crownIcon, starIcon, airplaneIcon, carIcon);
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ClrIconModule, ClrDatagridModule],
+  standalone: true,
 })
 export class TrophiesComponent {
   item = input<Rider>();

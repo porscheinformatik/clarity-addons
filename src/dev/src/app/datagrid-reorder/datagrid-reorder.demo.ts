@@ -17,6 +17,7 @@ import { delay, Observable, of, tap } from 'rxjs';
   selector: 'clr-datagrid-reorder-demo',
   templateUrl: './datagrid-reorder.demo.html',
   imports: [CommonModule, ClrAddonsModule, FormsModule, CdkDropList, CdkDrag, ClrDatagridModule],
+  standalone: true,
 })
 export class DatagridReorderDemo implements OnInit {
   selected: Rider[] = [];
