@@ -4,8 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ElementRef, ViewChild, ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
 import { of, share } from 'rxjs';
 import { delay } from 'rxjs/operators';
@@ -430,7 +429,6 @@ export class DatagridDemo extends ClarityDocComponent {
   preselectedValues = ['TestValue1', 'TestValue3'];
   dateFilterValue = [null, today];
 
-
   exportableEntries: ExportableEntry[] = [
     { column1: 'A1', column2: 'B1', column3: 'C1', column4: 'D1' },
     { column1: 'A2', column2: 'B2', column3: 'C2', column4: 'D2' },
@@ -468,7 +466,6 @@ export class DatagridDemo extends ClarityDocComponent {
     { id: 2, username: 'Subscriber', subscribed: true },
     { id: 3, username: 'Guest', subscribed: false },
   ];
-
 
   constructor(public route: ActivatedRoute) {
     super('datagrid');
