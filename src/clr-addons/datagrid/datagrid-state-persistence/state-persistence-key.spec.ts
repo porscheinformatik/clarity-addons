@@ -1,33 +1,45 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ElementRef, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { ComponentFixture, fakeAsync, flushMicrotasks, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   ClarityModule,
   ClrDatagrid,
+  ClrDatagridColumn,
   ClrDatagridPagination,
   ClrDatagridStateInterface,
   DatagridPropertyComparator,
 } from '@clr/angular';
 import { ClrDatagridStatePersistenceModule } from './datagrid-state-persistence.module';
+import { ClrDatagridColumnReorderModule, DynamicColumn } from '../column-reorder';
 import { By } from '@angular/platform-browser';
 import { BehaviorSubject } from 'rxjs';
 import { ClrEnumFilterComponent, ClrEnumFilterModule } from '../enum-filter';
+import { CdkDrag, CdkDragDrop, CdkDropList } from '@angular/cdk/drag-drop';
 
 @Component({
   template: `
     <clr-datagrid
+      cdkDropList
       [clrStatePersistenceKey]="{
         key: storageKey,
         serverDriven: true,
         persistFilters,
         persistPagination,
         persistSort,
-        persistColumnWidths
+        persistColumnWidths,
+        persistColumnOrder
       }"
       [clrPaginationDescription]="'{{first}} - {{last}} of {{total}} entries'"
+      [clrDatagridColumnReorder]="columns"
+      (clrDatagridColumnOrderChanged)="columns = $event.columns"
       (clrDgRefresh)="refreshHandler.next($event)"
     >
+      @for (col of columns; track col.name) {
+      <clr-dg-column [clrDgField]="col.name" cdkDrag>
+        <ng-container *clrDgHideableColumn="{ hidden: col.hidden }">{{ col.title }}</ng-container>
+      </clr-dg-column>
+      }
       <clr-dg-column id="column1" [clrDgField]="'column1'" [clrDgSortBy]="'column1'">
         <ng-template clrDgHideableColumn><span>column1</span></ng-template>
       </clr-dg-column>
@@ -71,16 +83,28 @@ class TestComponent {
   @ViewChild(ClrEnumFilterComponent)
   customFilter: ClrEnumFilterComponent<any>;
 
+  @ViewChild(CdkDropList)
+  dropList: CdkDropList;
+
+  @ViewChildren(ClrDatagridColumn, { read: ElementRef })
+  clrColumnsElRefs: QueryList<ElementRef>;
+
   refreshHandler = new BehaviorSubject<ClrDatagridStateInterface>(undefined);
 
   readonly DEFAULT_PAGE_SIZE = DEFAULT_PAGE_SIZE;
   readonly PROPERTY_COMPARATOR = new DatagridPropertyComparator('column4');
+
+  columns: DynamicColumn<string>[] = [
+    { name: 'dynamic-column-1', title: 'Dynamic Column 1', formatter: v => v },
+    { name: 'dynamic-column-2', title: 'Dynamic Column 2', formatter: v => v },
+  ];
 
   storageKey: string = PERSISTENCE_KEY;
   persistFilters: boolean | undefined = false;
   persistPagination: boolean | undefined = false;
   persistSort: boolean | undefined = false;
   persistColumnWidths: boolean | undefined = false;
+  persistColumnOrder: boolean | undefined = false;
 }
 
 const DEFAULT_PAGE_SIZE = 15;
@@ -96,7 +120,10 @@ describe('StatePersistenceKeyDirective', () => {
         FormsModule,
         BrowserAnimationsModule,
         ClrDatagridStatePersistenceModule,
+        ClrDatagridColumnReorderModule,
         ClrEnumFilterModule,
+        CdkDropList,
+        CdkDrag,
       ],
       declarations: [TestComponent],
       teardown: { destroyAfterEach: false },
@@ -425,5 +452,72 @@ describe('StatePersistenceKeyDirective', () => {
       const storageContent = JSON.parse(sessionStorage.getItem(storageKey));
       expect(storageContent?.columns?.custom).toEqual({ filterValue: { property: 'custom', value: ['a'] } });
     }));
+  });
+
+  describe('column order persistence', () => {
+    it('should persist column order if enabled', () => {
+      const storageKey = PERSISTENCE_KEY + '-should-persist-order';
+      fixture.componentInstance.persistColumnOrder = true;
+      fixture.componentInstance.storageKey = storageKey;
+      fixture.detectChanges();
+
+      fixture.componentInstance.dropList.dropped.emit(createCdkDropEvent(0, 1));
+      fixture.detectChanges();
+
+      let persistedState = localStorage.getItem(storageKey);
+      expect(persistedState).toEqual('{"columns":{"dynamic-column-2":{"order":0},"dynamic-column-1":{"order":1}}}');
+
+      fixture.componentInstance.dropList.dropped.emit(createCdkDropEvent(2, 0));
+      fixture.detectChanges();
+
+      persistedState = localStorage.getItem(storageKey);
+      expect(persistedState).toEqual('{"columns":{"dynamic-column-2":{"order":1},"dynamic-column-1":{"order":0}}}');
+    });
+
+    it('should not persist column order if disabled', () => {
+      const storageKey = PERSISTENCE_KEY + '-should-not-persist-order';
+      fixture.componentInstance.persistColumnOrder = false;
+      fixture.componentInstance.storageKey = storageKey;
+      fixture.detectChanges();
+
+      fixture.componentInstance.dropList.dropped.emit(createCdkDropEvent(0, 1));
+      fixture.detectChanges();
+
+      expect(localStorage.getItem(storageKey)).toBeNull();
+    });
+
+    it('should init column order if enabled', () => {
+      const storageKey = PERSISTENCE_KEY + '-should-init-order';
+      localStorage.setItem(storageKey, '{"columns":{"dynamic-column-2":{"order":0},"dynamic-column-1":{"order":1}}}');
+      fixture.componentInstance.persistColumnOrder = true;
+      fixture.componentInstance.storageKey = storageKey;
+      fixture.detectChanges();
+
+      expect(fixture.componentInstance.columns.map(c => c.name)).toEqual(['dynamic-column-2', 'dynamic-column-1']);
+    });
+
+    it('should not init column order if disabled', () => {
+      const storageKey = PERSISTENCE_KEY + '-should-not-init-order';
+      localStorage.setItem(storageKey, '{"columns":{"dynamic-column-2":{"order":0},"dynamic-column-1":{"order":1}}}');
+      fixture.componentInstance.persistColumnOrder = false;
+      fixture.componentInstance.storageKey = storageKey;
+      fixture.detectChanges();
+
+      expect(fixture.componentInstance.columns.map(c => c.name)).toEqual(['dynamic-column-1', 'dynamic-column-2']);
+    });
+
+    function createCdkDropEvent(previousIndex: number, currentIndex: number): CdkDragDrop<unknown> {
+      return {
+        previousIndex,
+        currentIndex,
+        item: createCdkDrag(),
+      } as CdkDragDrop<unknown>;
+    }
+
+    function createCdkDrag(): CdkDrag<unknown> {
+      return {
+        element: fixture.componentInstance.clrColumnsElRefs.get(0),
+      } as CdkDrag<unknown>;
+    }
   });
 });

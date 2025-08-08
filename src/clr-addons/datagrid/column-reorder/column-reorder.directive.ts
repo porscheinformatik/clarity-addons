@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   ContentChildren,
   DestroyRef,
   Directive,
@@ -14,7 +13,6 @@ import { CdkDrag, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { filter } from 'rxjs/operators';
 import { ClrDatagrid, ClrDatagridColumn } from '@clr/angular';
-import { ClrDatagridStatePersistenceModel, StatePersistenceKeyDirective } from '../datagrid-state-persistence';
 
 @Directive({
   selector: '[clrDatagridColumnReorder]',
@@ -23,7 +21,7 @@ import { ClrDatagridStatePersistenceModel, StatePersistenceKeyDirective } from '
   },
   standalone: false,
 })
-export class DatagridColumnReorderDirective<T extends { name: string }> implements OnInit, AfterViewInit {
+export class DatagridColumnReorderDirective<T extends { name: string }> implements OnInit {
   @Input('clrDatagridColumnReorder') columnDefinitions: T[] = [];
 
   @Output('clrDatagridColumnOrderChanged') columnOrderChanged = new EventEmitter<{
@@ -36,7 +34,6 @@ export class DatagridColumnReorderDirective<T extends { name: string }> implemen
   @ContentChildren(ClrDatagridColumn) public clrColumns: QueryList<ClrDatagridColumn>;
 
   private readonly cdkDropList = inject(CdkDropList);
-  private readonly persistenceKey = inject(StatePersistenceKeyDirective, { optional: true });
   private readonly datagrid = inject(ClrDatagrid);
   private readonly destroyRef = inject(DestroyRef);
 
@@ -61,36 +58,12 @@ export class DatagridColumnReorderDirective<T extends { name: string }> implemen
       .subscribe(detailState => (this.cdkDropList.disabled = detailState));
   }
 
-  public ngAfterViewInit(): void {
-    this.initColumnOrder();
-  }
+  public initializeColumnOrder(storedOrder: Record<string, number>) {
+    const orderedColumns = this.reconcileColumnOrder(this.columnDefinitions, storedOrder);
+    this.columnOrderChanged.emit({ columns: orderedColumns, trigger: 'init' });
 
-  private initColumnOrder(): void {
-    if (this.isColumnOrderPersistenceEnabled()) {
-      const savedState = this.getLocalStorageState();
-      if (savedState?.columns) {
-        const entries = Object.entries(savedState.columns).map(([key, value]) => [key, value.order] as const);
-        const orderedColumns = this.reconcileColumnOrder(this.columnDefinitions, Object.fromEntries(entries));
-        this.columnOrderChanged.emit({ columns: orderedColumns, trigger: 'init' });
-
-        // after change detection, columns need to be rerendered first
-        setTimeout(() => this.updateSeparatorVisibility(), 0);
-      }
-    }
-  }
-
-  private persistColumnOrder(columns: T[]): void {
-    if (this.isColumnOrderPersistenceEnabled()) {
-      const state = this.getLocalStorageState();
-      state.columns = state.columns || {};
-
-      columns.forEach(({ name }, index) => {
-        state.columns[name] = state.columns[name] || {};
-        state.columns[name].order = index;
-      });
-
-      this.saveLocalStorageState(state);
-    }
+    // after change detection, columns need to be rerendered first
+    setTimeout(() => this.updateSeparatorVisibility(), 0);
   }
 
   // This is needed in case there is a new column, which is not stored in the storage.
@@ -118,7 +91,6 @@ export class DatagridColumnReorderDirective<T extends { name: string }> implemen
     const columnDefinitionCopy = [...this.columnDefinitions];
     moveItemInArray(columnDefinitionCopy, from, to);
     this.columnOrderChanged.emit({ columns: columnDefinitionCopy, from, to, trigger: 'drag' });
-    this.persistColumnOrder(columnDefinitionCopy);
 
     // after change detection, columns need to be rerendered first
     setTimeout(() => this.updateSeparatorVisibility(), 0);
@@ -136,17 +108,5 @@ export class DatagridColumnReorderDirective<T extends { name: string }> implemen
 
   private isDragItemDgColumn(item: CdkDrag<unknown>): boolean {
     return item.element.nativeElement.tagName === 'CLR-DG-COLUMN';
-  }
-
-  private getLocalStorageState(): ClrDatagridStatePersistenceModel {
-    return JSON.parse(localStorage.getItem(this.persistenceKey.options.key)) || {};
-  }
-
-  private saveLocalStorageState(state: ClrDatagridStatePersistenceModel): void {
-    localStorage.setItem(this.persistenceKey.options.key, JSON.stringify(state));
-  }
-
-  private isColumnOrderPersistenceEnabled() {
-    return this.persistenceKey?.options.persistColumnOrder ?? false;
   }
 }

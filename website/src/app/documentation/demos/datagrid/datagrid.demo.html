@@ -412,12 +412,13 @@
       <li>persistPagination: When set to false, current page and page size will not be persisted</li>
       <li>persistSort: When set to false, sort column and sort order will not be persisted</li>
       <li>persistHiddenColumns: When set to false, state of each column, hidden or visible, will not be persisted</li>
-      <li>
-        persistColumnOrder: You can find out more about
-        <a routerLink="." fragment="column-reorder">reordering of columns</a>
-        in the respective section.
-      </li>
     </ul>
+    <p>
+      Persisting the custom order of columns (persistColumnOrder) is an opt-in behavior (won't work unless set to true).
+      You can find out more about
+      <a routerLink="." fragment="column-reorder">reordering of columns</a>
+      in the respective section.
+    </p>
     <p>
       Last but not least, you can specify the "persistColumnWidths" property, in order to store the width of each
       column. This is an opt-in behavior, and will default to <code class="clr-code">false</code> when not specified.
