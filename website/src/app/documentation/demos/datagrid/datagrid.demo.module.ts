@@ -12,6 +12,7 @@ import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
 import { RouterModule } from '@angular/router';
 import { UtilsModule } from '../../../utils/utils.module';
 import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
+import { CdkDrag, CdkDropList } from '@angular/cdk/drag-drop';
 
 @NgModule({
   imports: [
@@ -22,6 +23,8 @@ import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
     UtilsModule,
     RouterModule.forChild([{ path: '', component: DatagridDemo }]),
     DatePipe,
+    CdkDropList,
+    CdkDrag,
   ],
   declarations: [DatagridDemo],
   exports: [DatagridDemo],

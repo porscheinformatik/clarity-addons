@@ -10,4 +10,5 @@ export interface ClrColumnStatePersistenceModel {
   hidden?: boolean;
   filterValue?: any;
   width?: string;
+  order?: number;
 }

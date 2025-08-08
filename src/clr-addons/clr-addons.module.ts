@@ -32,7 +32,12 @@ import { ClrBrandAvatarModule } from './brand-avatar';
 import { ClrLocationBarModule } from './location-bar';
 import { ClrFormModule } from './abstract-form-component';
 import { ClrDropdownOverflowModule } from './dropdown';
-import { ClrDatagridStatePersistenceModule, ClrDateFilterModule, ClrEnumFilterModule } from './datagrid';
+import {
+  ClrDatagridColumnReorderModule,
+  ClrDatagridStatePersistenceModule,
+  ClrDateFilterModule,
+  ClrEnumFilterModule,
+} from './datagrid';
 import { ClrDaterangepickerModule } from './daterangepicker';
 import { ClrIfWarningModule } from './clr-control-warning/if-warning.module';
 import { ClrActionPanelModule } from './action-panel';
@@ -76,6 +81,7 @@ import { ExportDatagridButtonComponent } from './export-datagrid-button/export-d
     ClrActionPanelModule,
     ClrReadonlyDirectiveModule,
     ExportDatagridButtonComponent,
+    ClrDatagridColumnReorderModule,
   ],
   imports: [ExportDatagridButtonComponent],
 })
