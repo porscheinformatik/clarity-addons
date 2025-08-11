@@ -5,7 +5,13 @@
 
 <div class="content-container">
   <div class="content-area">
-    <clr-export-datagrid-button [datagrid]="datagrid" [datagridRef]="datagridRef" [exportTypesToShow]="exportType">
+    <clr-export-datagrid-button
+      [datagrid]="datagrid"
+      [datagridRef]="datagridRef"
+      [exportTypesToShow]="exportType"
+      [isBackendExport]="true"
+      (backendExport)="onBackendExport($event)"
+    >
     </clr-export-datagrid-button>
     <clr-datagrid #datagrid class="datagrid-full-width datagrid-full-height" [(clrDgSelected)]="selected">
       <clr-dg-column [clrDgField]="'column1'">

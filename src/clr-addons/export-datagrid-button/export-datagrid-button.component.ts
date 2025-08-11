@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter, input, ElementRef, computed } from '@angular/core';
 import { ClrDatagrid } from '@clr/angular';
-import zipcelx, { ZipCelXConfig } from 'zipcelx';
+import { ExportDatagridService } from './export-datagrid.service';
 import { ClarityModule } from '@clr/angular';
 import { NgIf, NgForOf, NgClass } from '@angular/common';
 import { ExportType, ExportTypeEnum } from './export-type.model';
@@ -45,6 +45,8 @@ export class ExportDatagridButtonComponent {
     });
   });
 
+  constructor(private readonly exportService: ExportDatagridService) {}
+
   private exportExcel(type: ExportTypeEnum): void {
     if (!this.datagrid() || !this.datagridRef()) {
       return;
@@ -69,14 +71,7 @@ export class ExportDatagridButtonComponent {
       }))
     );
 
-    const config: ZipCelXConfig = {
-      filename: this.exportTitlePrefix(),
-      sheet: {
-        data: [headerRow, ...dataRows],
-      },
-    };
-
-    zipcelx(config);
+    this.exportService.exportToExcel(this.exportTitlePrefix(), headerRow, dataRows);
   }
 
   onExport(type: ExportTypeEnum) {

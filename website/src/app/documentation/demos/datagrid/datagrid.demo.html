@@ -631,7 +631,6 @@
         [isBackendExport]="false"
         [exportTitlePrefix]="'MyExport'"
         [exportButtonPosition]="'right'"
-        (backendExport)="onBackendExport($event)"
       >
       </clr-export-datagrid-button>
       <clr-datagrid #datagrid class="datagrid-full-width datagrid-full-height" [(clrDgSelected)]="selectedEntry">
@@ -657,11 +656,17 @@
     </div>
     <!-- Code Example -->
     <clr-code-snippet [clrCode]="exportButtonExample"></clr-code-snippet>
-    <clr-code-snippet [clrCode]="exportTypesDisplayExample"></clr-code-snippet>
     <p>
       You can choose to offer only specific export types to users (e.g., only ALL or FILTERED). For each export type,
       you can define a custom display value (such as a translated label) using the <code>value</code> property. If
       <code>value</code> is not provided, a default label will be used.
     </p>
+    <clr-code-snippet [clrCode]="exportTypesDisplayExample"></clr-code-snippet>
+    <p>
+      The following is an example of how to trigger a backend export. When the export is triggered, you can prepare the
+      data (e.g., fetch from backend, filter, or format as needed). Once the data is ready, call
+      <code>ExportDatagridService</code> to execute the export and download the file.
+    </p>
+    <clr-code-snippet [clrCode]="exportTypeBackend"></clr-code-snippet>
   </article>
 </clr-doc-wrapper>

@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ClrDatagrid } from '@clr/angular';
-import { ExportType, ExportTypeEnum } from '@porscheinformatik/clr-addons';
+import { ExportDatagridService, ExportType, ExportTypeEnum } from '@porscheinformatik/clr-addons';
 
 interface ExportableEntry {
   column1: string;
@@ -41,8 +41,20 @@ export class ExportableDatagridComponent {
     },
   ];
 
-  constructor() {}
+  constructor(private readonly exportService: ExportDatagridService) {}
 
   @ViewChild('datagrid', { static: false }) datagrid: ClrDatagrid | undefined;
   @ViewChild('datagrid', { static: false, read: ElementRef }) datagridRef?: ElementRef;
+
+  onBackendExport(type: ExportTypeEnum): void {
+    console.log('Exporting data for type: ', type);
+    // example on how to provide data for backend export
+    const columns = this.exportableEntries.length > 0 ? Object.keys(this.exportableEntries[0]) : [];
+    const headerRow = columns.map(col => ({ value: col, type: 'string' }));
+    const dataRows = this.exportableEntries.map(entry =>
+      columns.map(col => ({ value: entry[col as keyof ExportableEntry], type: 'string' }))
+    );
+
+    this.exportService.exportToExcel('backend-export', headerRow, dataRows);
+  }
 }

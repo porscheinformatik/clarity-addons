@@ -139,6 +139,18 @@ const EXPORT_TYPES_DISPLAY = `exportType: ExportType[] = [
 ];
 `;
 
+const EXPORT_TYPE_BACKEND = `onBackendExport(type: ExportTypeEnum): void {
+  console.log("Exporting data for type: ", type);
+  // example on how to provide data for backend export
+  const columns = this.exportableEntries.length > 0 ? Object.keys(this.exportableEntries[0]) : [];
+  const headerRow = columns.map(col => ({ value: col, type: 'string' }));
+  const dataRows = this.exportableEntries.map(entry =>
+    columns.map(col => ({ value: entry[col as keyof ExportableEntry], type: 'string' }))
+  );
+
+  this.exportService.exportToExcel('backend-export', headerRow, dataRows);
+}`;
+
 const ENUM_FILTER = `
 <clr-datagrid>
   <clr-dg-column [clrDgField]="'name'"
@@ -387,6 +399,7 @@ export class DatagridDemo extends ClarityDocComponent {
   dateFilterPreselectExample = DATE_FILTER_PRESELECT;
   exportButtonExample = EXPORT_BUTTON_EXAMPLE;
   exportTypesDisplayExample = EXPORT_TYPES_DISPLAY;
+  exportTypeBackend = EXPORT_TYPE_BACKEND;
   activeFragment;
   selected: any[] = [];
   selectedMinor: any[] = [];
@@ -445,12 +458,6 @@ export class DatagridDemo extends ClarityDocComponent {
   ];
 
   selectedEntry: ExportableEntry[] = [];
-
-  onBackendExport(type: any) {
-    console.log(
-      'Backend export triggered with type: ' + type + '. Provide dataset to component in order to execute export.'
-    );
-  }
 
   @ViewChild('datagrid', { static: false }) datagrid: ClrDatagrid | undefined;
   @ViewChild('datagrid', { static: false, read: ElementRef }) datagridRef?: ElementRef;
