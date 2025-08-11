@@ -51,6 +51,14 @@
             >Highlighting</a
           >
         </li>
+        <li>
+          <a
+            routerLink="."
+            fragment="export-datagrid-button"
+            [class.active]="(activeFragment | async) === 'export-datagrid-button'"
+            >Export Datagrid Button</a
+          >
+        </li>
       </ul>
     </div>
 
@@ -573,5 +581,92 @@
         </clr-dg-pagination>
       </clr-dg-footer>
     </clr-datagrid>
+
+    <!-- EXPORT DATAGRID BUTTON -->
+    <h3 id="export-datagrid-button">Export Datagrid Button</h3>
+    <p>
+      The <code class="clr-code">clr-export-datagrid-button</code> component provides an export button for Clarity
+      Datagrid. It allows users to export all, filtered, or selected data. You can configure which export types to show,
+      handle export on the client or backend, and customize the exported file name.
+    </p>
+    <p>
+      Depending on whether the full data set is already prepared on the client or if the backend prepares it for every
+      page (paging, filtering, and sorting), the export button behaves differently. For frontend-side (client) data,
+      export is executed immediately. For backend-side data, the button emits an event with the export type, and the
+      client is responsible for export.
+    </p>
+    <ul>
+      <li>
+        <b>Inputs:</b>
+        <ul>
+          <li><code>datagrid</code>: Reference to the Clarity Datagrid instance.</li>
+          <li><code>datagridRef</code>: Reference to the datagrid DOM element.</li>
+          <li>
+            <code>exportTypesToShow</code>: Array of export types to show (e.g., ALL, FILTERED, SELECTED). For each of
+            these export types, you can provide custom display values (e.g., translated labels).
+          </li>
+          <li>
+            <code>isBackendExport</code>: If true, emits an event for backend export; if false, exports on the client.
+          </li>
+          <li>
+            <code>exportTitlePrefix</code>: Prefix for the exported file name. Default is <code>export-datagrid</code>.
+          </li>
+          <li><code>exportButtonPosition</code>: Position of the export button ('left' or 'right').</li>
+        </ul>
+      </li>
+      <li>
+        <b>Outputs:</b>
+        <ul>
+          <li>
+            <code>backendExport</code>: Emitted when export is triggered and <code>isBackendExport</code> is true. The
+            event provides the type of export requested (e.g., ALL, FILTERED, SELECTED).
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <div style="margin-bottom: 2rem">
+      <clr-export-datagrid-button
+        [datagrid]="datagrid"
+        [datagridRef]="datagridRef"
+        [isBackendExport]="false"
+        [exportTitlePrefix]="'MyExport'"
+        [exportButtonPosition]="'right'"
+      >
+      </clr-export-datagrid-button>
+      <clr-datagrid #datagrid class="datagrid-full-width datagrid-full-height" [(clrDgSelected)]="selectedEntry">
+        <clr-dg-column [clrDgField]="'column1'">
+          <ng-container *clrDgHideableColumn="{ hidden: false }">Column 1</ng-container>
+        </clr-dg-column>
+        <clr-dg-column [clrDgField]="'column2'">
+          <ng-container *clrDgHideableColumn="{ hidden: false }">Column 2</ng-container>
+        </clr-dg-column>
+        <clr-dg-column [clrDgField]="'column3'">
+          <ng-container *clrDgHideableColumn="{ hidden: false }">Column 3</ng-container>
+        </clr-dg-column>
+        <clr-dg-column [clrDgField]="'column4'">
+          <ng-container *clrDgHideableColumn="{ hidden: true }">Column 4</ng-container>
+        </clr-dg-column>
+        <clr-dg-row *clrDgItems="let entry of exportableEntries" [clrDgItem]="entry">
+          <clr-dg-cell>{{ entry.column1 }}</clr-dg-cell>
+          <clr-dg-cell>{{ entry.column2 }}</clr-dg-cell>
+          <clr-dg-cell>{{ entry.column3 }}</clr-dg-cell>
+          <clr-dg-cell>{{ entry.column4 }}</clr-dg-cell>
+        </clr-dg-row>
+      </clr-datagrid>
+    </div>
+    <!-- Code Example -->
+    <clr-code-snippet [clrCode]="exportButtonExample"></clr-code-snippet>
+    <p>
+      You can choose to offer only specific export types to users (e.g., only ALL or FILTERED). For each export type,
+      you can define a custom display value (such as a translated label) using the <code>value</code> property. If
+      <code>value</code> is not provided, a default label will be used.
+    </p>
+    <clr-code-snippet [clrCode]="exportTypesDisplayExample"></clr-code-snippet>
+    <p>
+      The following is an example of how to trigger a backend export. When the export is triggered, you can prepare the
+      data (e.g., fetch from backend, filter, or format as needed). Once the data is ready, call
+      <code>ExportDatagridService</code> to execute the export and download the file.
+    </p>
+    <clr-code-snippet [clrCode]="exportTypeBackend"></clr-code-snippet>
   </article>
 </clr-doc-wrapper>

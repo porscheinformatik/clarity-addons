@@ -42,6 +42,7 @@ import { ClrDaterangepickerModule } from './daterangepicker';
 import { ClrIfWarningModule } from './clr-control-warning/if-warning.module';
 import { ClrActionPanelModule } from './action-panel';
 import { ClrReadonlyDirectiveModule } from './readonly/readonly.module';
+import { ClrExportDatagridButtonModule } from './export-datagrid-button/export-datagrid-button.module';
 
 @NgModule({
   exports: [
@@ -79,6 +80,7 @@ import { ClrReadonlyDirectiveModule } from './readonly/readonly.module';
     ClrIfWarningModule,
     ClrActionPanelModule,
     ClrReadonlyDirectiveModule,
+    ClrExportDatagridButtonModule,
     ClrDatagridColumnReorderModule,
   ],
 })
