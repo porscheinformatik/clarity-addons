@@ -1,6 +1,6 @@
 {
   "name": "clr-addons",
-  "version": "19.8.0",
+  "version": "19.9.0",
   "private": true,
   "scripts": {
     "build:ui:css": "sass --source-map --precision=8 ./src/clr-addons/themes/phs/phs-theme.scss ./dist/clr-addons/styles/clr-addons-phs.css",
@@ -53,6 +53,7 @@
     "core-js": "3.43.0",
     "rxjs": "7.8.2",
     "tslib": "2.8.1",
+    "zipcelx": "1.6.2",
     "zone.js": "0.15.0"
   },
   "devDependencies": {
@@ -66,6 +67,7 @@
     "@types/jasmine-matchers": "0.2.35",
     "@types/jasminewd2": "2.0.13",
     "@types/node": "22.17.1",
+    "@types/zipcelx": "1.5.2",
     "@typescript-eslint/eslint-plugin": "8.35.1",
     "@typescript-eslint/parser": "8.35.1",
     "autoprefixer": "10.4.21",
