@@ -63,7 +63,7 @@
     "@angular-eslint/builder": "20.1.1",
     "@angular/cli": "19.2.7",
     "@angular/compiler-cli": "19.2.6",
-    "@types/jasmine": "5.1.8",
+    "@types/jasmine": "5.1.9",
     "@types/jasmine-matchers": "0.2.35",
     "@types/jasminewd2": "2.0.13",
     "@types/node": "22.17.1",
