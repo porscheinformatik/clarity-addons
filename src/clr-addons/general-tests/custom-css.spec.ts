@@ -8,12 +8,15 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ClarityModule } from '@clr/angular';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
   template: `
     <clr-datagrid [class.datagrid-no-select-all]="selectHidden" [(clrDgSelected)]="selected">
       <clr-dg-column>Col1</clr-dg-column>
-      <clr-dg-row><clr-dg-cell></clr-dg-cell></clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell></clr-dg-cell>
+      </clr-dg-row>
     </clr-datagrid>
   `,
   standalone: false,
@@ -30,6 +33,7 @@ describe('CustomCSS', () => {
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         declarations: [DataGridComponent],
+        providers: [provideAnimations()],
         imports: [ClarityModule],
         teardown: { destroyAfterEach: false },
       }).compileComponents();
