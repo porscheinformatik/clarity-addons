@@ -1,6 +1,6 @@
 {
   "name": "clr-addons",
-  "version": "19.9.1",
+  "version": "19.9.2",
   "private": true,
   "scripts": {
     "build:ui:css": "sass --source-map --precision=8 ./src/clr-addons/themes/phs/phs-theme.scss ./dist/clr-addons/styles/clr-addons-phs.css",
@@ -53,8 +53,15 @@
     "core-js": "3.43.0",
     "rxjs": "7.8.2",
     "tslib": "2.8.1",
-    "zipcelx": "1.6.2",
     "zone.js": "0.15.0"
+  },
+  "peerDependencies": {
+    "zipcelx": "1.6.2"
+  },
+  "peerDependenciesMeta": {
+    "zipcelx": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@alasdair/karma-scss-preprocessor": "5.0.0-3",
