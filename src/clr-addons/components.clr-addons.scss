@@ -253,7 +253,7 @@ form {
 // Readonly checkboxes, radiobuttons, toggles
 clr-radio-container[readonly][show-only-selected='true'] .clr-radio-wrapper input:not(:checked),
 clr-checkbox-container[readonly][show-only-selected='true'] .clr-checkbox-wrapper input:not(:checked),
-clr-toggle-container[readonly][show-only-selected='true'] .clr-toggle-wrapper input:not(:checked) {
+clr-toggle-container[readonly][show-only-selected='true'] .clr-toggle-wrapper:has(input:not(:checked)) {
   display: none;
 
   + label {
@@ -330,16 +330,23 @@ clr-toggle-container[readonly] .clr-toggle-wrapper input[type='checkbox'] {
   }
 }
 
+// Toggle-specific overrides
 clr-toggle-container[readonly] .clr-toggle-wrapper {
-  gap: 0; // radios and checkboxes do not have a gap
-  height: unset; // radios and checkboxes do not have a set height
+  gap: 0;
+  height: unset;
 
   input[type='checkbox'] {
     width: var(--cds-global-space-9); // because Clarity doesn't export this as a "checkbox" or a "toggle" variable
+    background-color: initial;
 
     &::before,
     &:checked::before {
-      transition: none; // radios and checkboxes are not animated
+      transition: none;
+    }
+
+    &::after {
+      visibility: visible;
+      border-bottom: none;
     }
   }
 }
