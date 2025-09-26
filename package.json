@@ -1,6 +1,6 @@
 {
   "name": "clr-addons",
-  "version": "19.9.1",
+  "version": "19.9.3",
   "private": true,
   "scripts": {
     "build:ui:css": "sass --source-map --precision=8 ./src/clr-addons/themes/phs/phs-theme.scss ./dist/clr-addons/styles/clr-addons-phs.css",
@@ -53,20 +53,27 @@
     "core-js": "3.43.0",
     "rxjs": "7.8.2",
     "tslib": "2.8.1",
-    "zipcelx": "1.6.2",
     "zone.js": "0.15.0"
+  },
+  "peerDependencies": {
+    "zipcelx": "1.6.2"
+  },
+  "peerDependenciesMeta": {
+    "zipcelx": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@alasdair/karma-scss-preprocessor": "5.0.0-3",
     "@angular-devkit/build-angular": "19.2.7",
     "@angular-devkit/core": "19.2.7",
-    "@angular-eslint/builder": "20.2.0",
+    "@angular-eslint/builder": "20.3.0",
     "@angular/cli": "19.2.7",
     "@angular/compiler-cli": "19.2.6",
     "@types/jasmine": "5.1.9",
     "@types/jasmine-matchers": "0.2.35",
     "@types/jasminewd2": "2.0.13",
-    "@types/node": "22.18.0",
+    "@types/node": "22.18.6",
     "@types/zipcelx": "1.5.2",
     "@typescript-eslint/eslint-plugin": "8.35.1",
     "@typescript-eslint/parser": "8.35.1",
@@ -78,7 +85,7 @@
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-jasmine": "4.2.2",
     "husky": "9.1.7",
-    "jasmine-core": "5.9.0",
+    "jasmine-core": "5.10.0",
     "jasmine-spec-reporter": "7.0.0",
     "karma": "6.4.4",
     "karma-chrome-launcher": "3.2.0",
@@ -97,7 +104,7 @@
     "prettier": "2.8.8",
     "pretty-quick": "3.3.1",
     "replace": "1.2.2",
-    "sass": "1.91.0",
+    "sass": "1.93.2",
     "shx": "0.4.0",
     "typescript": "5.8.3"
   },
