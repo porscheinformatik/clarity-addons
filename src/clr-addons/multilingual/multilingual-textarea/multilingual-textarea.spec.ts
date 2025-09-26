@@ -327,7 +327,7 @@ describe('Multilingual Textarea', () => {
   function getLanguageSelectorElements(fixture: ComponentFixture<any>): Map<string, string> {
     return new Map(
       fixture.debugElement.queryAll(By.css('.clr-multilingual-dd-entry')).map(elem => {
-        const lang = (elem.children[0].nativeElement as HTMLSpanElement).innerText;
+        const lang = (elem.query(By.css('.label')).nativeElement as HTMLSpanElement).innerText;
         return [lang, (elem.nativeElement as HTMLElement).innerText.substring(lang.length).trim()];
       })
     );

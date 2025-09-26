@@ -8,7 +8,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ClarityModule } from '@clr/angular';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
 
 @Component({
   template: `
@@ -33,8 +33,8 @@ describe('CustomCSS', () => {
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         declarations: [DataGridComponent],
-        providers: [provideAnimations()],
         imports: [ClarityModule],
+        providers: [provideNoopAnimations()],
         teardown: { destroyAfterEach: false },
       }).compileComponents();
     }));
