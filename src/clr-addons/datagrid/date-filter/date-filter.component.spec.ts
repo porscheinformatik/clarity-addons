@@ -4,6 +4,7 @@ import { ClarityModule, ClrDatagrid } from '@clr/angular';
 import { ClrDateFilterComponent } from './date-filter.component';
 import { ClrDateTimeModule } from '@porscheinformatik/clr-addons';
 import { FormsModule } from '@angular/forms';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
 
 const today = new Date(Date.now());
 const yesterday = new Date(Date.now() - 24 * 1000 * 60 * 60);
@@ -97,7 +98,7 @@ describe('DateFilterComponent', () => {
       TestBed.configureTestingModule({
         imports: [ClarityModule, ClrDateTimeModule, FormsModule],
         declarations: [TestComponent, ClrDateFilterComponent],
-        providers: [],
+        providers: [provideNoopAnimations()],
       }).compileComponents();
     }));
 
@@ -127,7 +128,7 @@ describe('DateFilterComponent', () => {
       TestBed.configureTestingModule({
         imports: [ClarityModule, ClrDateTimeModule, FormsModule],
         declarations: [TestComponentPreselectedValues, ClrDateFilterComponent],
-        providers: [],
+        providers: [provideNoopAnimations()],
       }).compileComponents();
     }));
 
@@ -152,7 +153,7 @@ describe('DateFilterComponent', () => {
       TestBed.configureTestingModule({
         imports: [ClarityModule, ClrDateTimeModule, FormsModule],
         declarations: [TestComponentPreselectedTimeValues, ClrDateFilterComponent],
-        providers: [],
+        providers: [provideNoopAnimations()],
       }).compileComponents();
     }));
 
