@@ -6,6 +6,7 @@
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ContentChildren,
   DestroyRef,
@@ -34,9 +35,11 @@ export class ClrTreetable<T> implements AfterViewInit {
   readonly selection = inject(Selection<T>);
   private readonly _items = inject(Items<T>);
   private readonly _destroyRef = inject(DestroyRef);
+  private readonly cdr = inject(ChangeDetectorRef);
 
   @Input() clrClickableRows = true;
   @Input('clrHideHeader') hideHeader = false;
+
   @Input('clrTtSelected')
   set selected(value: T[] | undefined) {
     if (value) {
@@ -46,6 +49,7 @@ export class ClrTreetable<T> implements AfterViewInit {
     }
     this.selection.updateCurrent(value, false);
   }
+
   @Output('clrTtSelectedChange') selectedChanged = new EventEmitter<T[]>(false);
 
   @ContentChildren(ClrTreetableColumn, { descendants: true })
@@ -109,6 +113,7 @@ export class ClrTreetable<T> implements AfterViewInit {
   private setActionOverflow(hasActionOverflow: boolean) {
     if (!this.hasActionOverflow && hasActionOverflow) {
       this.hasActionOverflow = true;
+      this.cdr.markForCheck();
       // setTimeout needed, as this method needs to change data which shouldn't be changed anymore in this cycle
       setTimeout(() => {
         if (this.hasActionOverflow) {
@@ -121,6 +126,7 @@ export class ClrTreetable<T> implements AfterViewInit {
   get allSelected() {
     return this.selection.isAllSelected();
   }
+
   set allSelected(_: boolean) {
     /**
      * This is a setter but we ignore the value.
