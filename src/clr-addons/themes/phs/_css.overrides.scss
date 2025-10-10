@@ -265,8 +265,6 @@
         max-width: 100%;
 
         span[role='gridcell'] {
-          // Clarity does not export a token for the "row gap" in the combobox item, so I have to use a hardcoded value
-          max-width: calc(100% - var(--clr-combobox-caret-icon-size) - var(--cds-global-space-3));
           text-overflow: ellipsis;
           overflow: hidden;
         }
