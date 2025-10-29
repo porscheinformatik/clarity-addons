@@ -59,6 +59,7 @@ export class ClrSearchField implements OnInit, OnDestroy, AfterViewInit {
     const event = document.createEvent('Event');
     event.initEvent('input', false, false);
     this.inputEl.nativeElement.dispatchEvent(event);
+    this.inputEl.nativeElement.focus();
   }
 
   private setHasValueClass(active: boolean): void {
