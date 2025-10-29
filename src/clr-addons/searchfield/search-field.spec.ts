@@ -87,6 +87,7 @@ describe('SearchComponent', () => {
 
       expect(fixture.componentInstance.value).toBe('');
       expect(getComputedStyle(removeIcon).display).toBe('none');
+      expect(document.activeElement).toBe(inputEl.nativeElement);
     });
   });
 
@@ -131,6 +132,7 @@ describe('SearchComponent', () => {
 
       expect(fixture.componentInstance.value).toBe('');
       expect(getComputedStyle(removeIcon).display).toBe('none');
+      expect(document.activeElement).toBe(inputEl.nativeElement);
     });
   });
 });
