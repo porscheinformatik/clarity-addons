@@ -4,13 +4,14 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, Inject, Input, OnDestroy, OnInit, Optional } from '@angular/core';
+import { Component, DestroyRef, inject, Inject, Input, OnDestroy, OnInit, Optional } from '@angular/core';
 import { ClrHistoryModel } from './history-model.interface';
 import { ClrHistoryService } from './history.service';
 import { ReplaySubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { angleIcon, ClarityIcons, historyIcon } from '@cds/core/icon';
 import { HISTORY_PROVIDER, HistoryProvider } from './history.provider';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 ClarityIcons.addIcons(historyIcon, angleIcon);
 
@@ -37,6 +38,7 @@ export class ClrHistory implements OnInit, OnDestroy {
   historyElements$: Subject<ClrHistoryModel[]> = new ReplaySubject<ClrHistoryModel[]>(1);
   pinActivated = false;
   private readonly onDestroy$ = new Subject<void>();
+  private readonly destroyRef = inject(DestroyRef);
 
   constructor(
     private readonly historyService: ClrHistoryService,
@@ -44,11 +46,14 @@ export class ClrHistory implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.historyService.getHistory(this.username, this.tenantId).subscribe(elements => {
-      this.historyElements$.next(
-        this.historyProvider ? this.historyProvider.getModifiedHistoryEntries(elements) : elements
-      );
-    });
+    this.historyService
+      .getHistory(this.username, this.tenantId)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(elements => {
+        this.historyElements$.next(
+          this.historyProvider ? this.historyProvider.getModifiedHistoryEntries(elements) : elements
+        );
+      });
 
     this.historyService.initializeCookieSettings(this.username, this.domain);
     this.historyService.cookieSettings$.pipe(takeUntil(this.onDestroy$)).subscribe(settings => {
