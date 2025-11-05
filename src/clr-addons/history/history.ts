@@ -4,13 +4,13 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, Inject, Input, OnDestroy, OnInit, Optional } from '@angular/core';
+import { Component, DestroyRef, inject, Inject, Input, OnInit, Optional } from '@angular/core';
 import { ClrHistoryModel } from './history-model.interface';
 import { ClrHistoryService } from './history.service';
 import { ReplaySubject, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import { angleIcon, ClarityIcons, historyIcon } from '@cds/core/icon';
 import { HISTORY_PROVIDER, HistoryProvider } from './history.provider';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 ClarityIcons.addIcons(historyIcon, angleIcon);
 
@@ -20,7 +20,7 @@ ClarityIcons.addIcons(historyIcon, angleIcon);
   host: { class: 'clr-history' },
   standalone: false,
 })
-export class ClrHistory implements OnInit, OnDestroy {
+export class ClrHistory implements OnInit {
   @Input('clrUsername') username: string;
   @Input('clrTenantId') tenantId: string;
   @Input('clrContext') context: string;
@@ -36,7 +36,8 @@ export class ClrHistory implements OnInit, OnDestroy {
    */
   historyElements$: Subject<ClrHistoryModel[]> = new ReplaySubject<ClrHistoryModel[]>(1);
   pinActivated = false;
-  private readonly onDestroy$ = new Subject<void>();
+
+  private readonly destroyRef = inject(DestroyRef);
 
   constructor(
     private readonly historyService: ClrHistoryService,
@@ -44,23 +45,21 @@ export class ClrHistory implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.historyService.getHistory(this.username, this.tenantId).subscribe(elements => {
-      this.historyElements$.next(
-        this.historyProvider ? this.historyProvider.getModifiedHistoryEntries(elements) : elements
-      );
-    });
+    this.historyService
+      .getHistory(this.username, this.tenantId)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(elements => {
+        this.historyElements$.next(
+          this.historyProvider ? this.historyProvider.getModifiedHistoryEntries(elements) : elements
+        );
+      });
 
     this.historyService.initializeCookieSettings(this.username, this.domain);
-    this.historyService.cookieSettings$.pipe(takeUntil(this.onDestroy$)).subscribe(settings => {
+    this.historyService.cookieSettings$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(settings => {
       this.pinActivated = settings.find(setting => setting.username === this.username).historyPinned;
     });
 
     this.historyService.deleteOldCookie(this.domain);
-  }
-
-  ngOnDestroy(): void {
-    this.onDestroy$.next();
-    this.onDestroy$.complete();
   }
 
   select(history: ClrHistoryModel): void {
