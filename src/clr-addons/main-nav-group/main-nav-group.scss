@@ -18,6 +18,10 @@
         display: none;
       }
     }
+
+    .header-nav .header-overflow {
+      height: 100%;
+    }
   }
 
   .main-container:not(.open-hamburger-menu) .header-nav {
@@ -181,10 +185,6 @@
   .main-nav-group {
     &.active .collapsible.active .nav-text {
       opacity: 0.99;
-    }
-
-    .collapsible.active {
-      padding: var(--cds-global-space-8) var(--cds-global-space-7);
     }
 
     .collapsible {
