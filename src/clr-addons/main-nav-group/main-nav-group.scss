@@ -183,6 +183,10 @@
       opacity: 0.99;
     }
 
+    .collapsible.active {
+      padding: var(--cds-global-space-8) var(--cds-global-space-7);
+    }
+
     .collapsible {
       &:active,
       &:hover {
