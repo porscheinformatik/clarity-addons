@@ -35,15 +35,15 @@
     "ng": "ng"
   },
   "dependencies": {
-    "@angular/animations": "19.2.6",
-    "@angular/cdk": "19.2.9",
-    "@angular/common": "19.2.6",
-    "@angular/compiler": "19.2.6",
-    "@angular/core": "19.2.6",
-    "@angular/forms": "19.2.6",
-    "@angular/platform-browser": "19.2.6",
-    "@angular/platform-browser-dynamic": "19.2.6",
-    "@angular/router": "19.2.6",
+    "@angular/animations": "19.2.15",
+    "@angular/cdk": "19.2.19",
+    "@angular/common": "19.2.15",
+    "@angular/compiler": "19.2.15",
+    "@angular/core": "19.2.15",
+    "@angular/forms": "19.2.15",
+    "@angular/platform-browser": "19.2.15",
+    "@angular/platform-browser-dynamic": "19.2.15",
+    "@angular/router": "19.2.15",
     "@cds/core": "6.15.1",
     "@clr/angular": "17.11.0",
     "@clr/icons": "13.0.2",
@@ -53,7 +53,7 @@
     "core-js": "3.43.0",
     "rxjs": "7.8.2",
     "tslib": "2.8.1",
-    "zone.js": "0.15.0"
+    "zone.js": "0.15.1"
   },
   "peerDependencies": {
     "zipcelx": "1.6.2"
@@ -65,11 +65,11 @@
   },
   "devDependencies": {
     "@alasdair/karma-scss-preprocessor": "5.0.0-3",
-    "@angular-devkit/build-angular": "19.2.7",
-    "@angular-devkit/core": "19.2.7",
+    "@angular-devkit/build-angular": "19.2.19",
+    "@angular-devkit/core": "19.2.19",
     "@angular-eslint/builder": "20.3.0",
-    "@angular/cli": "19.2.7",
-    "@angular/compiler-cli": "19.2.6",
+    "@angular/cli": "19.2.19",
+    "@angular/compiler-cli": "19.2.15",
     "@types/jasmine": "5.1.9",
     "@types/jasmine-matchers": "0.2.35",
     "@types/jasminewd2": "2.0.13",
