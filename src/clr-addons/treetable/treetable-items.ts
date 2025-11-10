@@ -12,7 +12,7 @@ import { ClrTreetableRecursionService } from './providers/treetable-recursion.se
 export type ClrTreetableItemsContext<T extends object> = {
   $implicit: T;
   isLeaf: boolean;
-  clrTreetableNode: ClrTreetableTreeNode<T>;
+  clrTtNode: ClrTreetableTreeNode<T>;
 };
 
 @Directive({
@@ -42,7 +42,7 @@ export class TreetableItemsDirective<T extends object> {
   }
 
   static ngTemplateContextGuard<C extends object>(
-    // @ts-expect-error This is a valid Angular context guard.
+    // @ts-expect-error This is a valid Angular context guard!
     dir: TreetableItemsDirective<C>,
     // @ts-expect-error This is a valid Angular context guard.
     ctx: any

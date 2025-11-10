@@ -6,13 +6,13 @@
 import { ChangeDetectionStrategy, Component, computed, contentChildren, effect, inject, input } from '@angular/core';
 import { ClrTreetableRow } from './treetable-row';
 import { SelectionType } from './enums/selection-type';
-import { TreetableDataStateService, Selection, Sort } from './providers';
+import { Selection, Sort, TreetableDataStateService } from './providers';
 import { outputFromObservable, toObservable } from '@angular/core/rxjs-interop';
 import { ClrTreetableActionOverflow } from './treetable-action-overflow';
 import { Filters } from './providers/filters';
 import {
-  TREETABLE_RECURSION_SERVICE_PROVIDER,
   ClrTreetableRecursionService,
+  TREETABLE_RECURSION_SERVICE_PROVIDER,
 } from './providers/treetable-recursion.service';
 
 @Component({
@@ -49,6 +49,10 @@ export class ClrTreetable<T extends object> {
   readonly hasActionOverflow = computed(() => this._actionOverflow()?.length > 0);
 
   constructor() {
+    effect(() => {
+      this._dataStateService.setSelectedItems(this.clrTtSelected());
+    });
+
     effect(() => {
       this._dataStateService.setStickyIndeterminate(this.clrTtNoAutoParentSelection());
     });

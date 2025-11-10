@@ -27,6 +27,6 @@ export class ClrTreetableRecursiveRows<T extends object> {
   protected readonly template = computed(() => this._recursionService.recursionTemplate());
 
   protected getContext(node: ClrTreetableTreeNode<T>): ClrTreetableItemsContext<T> {
-    return { $implicit: node.value, isLeaf: node.isLeaf, clrTreetableNode: node };
+    return { $implicit: node.value, isLeaf: node.isLeaf, clrTtNode: node };
   }
 }
