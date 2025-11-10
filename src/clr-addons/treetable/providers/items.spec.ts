@@ -5,7 +5,7 @@
  */
 
 import { TestBed } from '@angular/core/testing';
-import { Items } from './items';
+import { TreetableDataStateService } from './treetable-data-state.service';
 import { Sort } from './sort';
 import { Subject } from 'rxjs';
 
@@ -13,7 +13,7 @@ const unsortedItems1 = [3, 1, 2];
 const unsortedItems2 = [5, 4, 6];
 
 describe('Items', () => {
-  let items: Items<number>;
+  let items: TreetableDataStateService<number>;
   let mockSort: jasmine.SpyObj<Sort<number>>;
   let sortChangeSubject: Subject<void>;
 
@@ -25,10 +25,10 @@ describe('Items', () => {
     });
 
     TestBed.configureTestingModule({
-      providers: [{ provide: Sort, useValue: mockSort }, Items],
+      providers: [{ provide: Sort, useValue: mockSort }, TreetableDataStateService],
     });
 
-    items = TestBed.inject(Items);
+    items = TestBed.inject(TreetableDataStateService);
   });
 
   it('should initialize with empty arrays', () => {

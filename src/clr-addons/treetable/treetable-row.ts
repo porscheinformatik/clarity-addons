@@ -6,73 +6,56 @@
 
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
-  ContentChild,
-  DestroyRef,
-  EventEmitter,
+  computed,
+  contentChild,
   inject,
   input,
-  Input,
-  OnInit,
-  Output,
+  model,
   signal,
 } from '@angular/core';
 import { ClrTreetableActionOverflow } from './treetable-action-overflow';
-import { angleIcon, ClarityIcons } from '@cds/core/icon';
-import { Selection } from './providers';
-import { SelectionType } from './enums/selection-type';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-
-ClarityIcons.addIcons(angleIcon);
+import { ClrTreetableSelectedState, SelectionType } from './enums/selection-type';
+import { ClrTreetable } from './treetable';
+import { ClrTreetableTreeNode } from './interfaces/treetable-model';
+import {
+  TREETABLE_RECURSION_SERVICE_PROVIDER,
+  ClrTreetableRecursionService,
+} from './providers/treetable-recursion.service';
 
 @Component({
   selector: 'clr-tt-row',
   templateUrl: './treetable-row.html',
   styleUrl: './treetable-row.scss',
-  host: { '[class.treetable-row-wrapper]': 'true', '[class.treetable-selected]': 'selected' },
-  standalone: false,
+  providers: [TREETABLE_RECURSION_SERVICE_PROVIDER],
+  host: { '[class.treetable-row-wrapper]': 'true', '[class.treetable-selected]': 'isSelected()' },
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
-export class ClrTreetableRow<T> implements OnInit {
-  readonly selection = inject(Selection);
-  private readonly _cdr = inject(ChangeDetectorRef);
-  private readonly _destroyRef = inject(DestroyRef);
+export class ClrTreetableRow<T extends object> {
+  private readonly _recursionService = inject(ClrTreetableRecursionService);
+  private readonly _treetable = inject(ClrTreetable);
 
-  private _selected = false;
-  shouldAnimate = signal<boolean>(false);
+  readonly clrExpanded = model(false);
+  readonly clrExpandable = input(false);
+  readonly clrClickable = input(true);
+  readonly clrTtItem = input<ClrTreetableTreeNode<T>>(undefined);
 
-  @Input('clrExpanded') expanded = false;
-  @Input('clrClickable') clickable = true;
-  @Input('clrExpandable') expandable = false;
-  clrTtItem = input<T>();
+  private readonly _actionOverflow = contentChild(ClrTreetableActionOverflow);
+  protected readonly shouldAnimate = signal<boolean>(false);
+  protected readonly isRecursionMode = this._recursionService.isRecursionMode;
 
-  @Output() hasActionOverflow = new EventEmitter<boolean>();
-  @Output('clrExpandedChange') expandedChange = new EventEmitter<boolean>();
-  @Output('clrTtSelectedChange') selectedChanged = new EventEmitter<boolean>(false);
+  private readonly isClickable = computed(() => this._treetable.clrClickableRows() && this.clrClickable());
+  protected readonly isSelected = computed(() => this.clrTtItem()?.selected() === ClrTreetableSelectedState.SELECTED);
 
-  showActionOverflow = false;
-  showEmptyActionOverflow = false;
-  showClickClass = false;
+  protected readonly showActionOverflow = computed(
+    () => this._treetable.hasActionOverflow() || !!this._actionOverflow()
+  );
+  protected readonly showEmptyActionOverflow = computed(() => !this._actionOverflow());
+  protected readonly showClickClass = computed(() => this._treetable.clrClickableRows() && this.clrExpandable());
+  protected readonly showSelection = computed(() => this._treetable.selectionType() === SelectionType.Multi);
 
-  @ContentChild(ClrTreetableActionOverflow)
-  set actionOverflow(actionOverflow: ClrTreetableActionOverflow) {
-    this.showActionOverflow = !!actionOverflow;
-    this.showEmptyActionOverflow = !this.showActionOverflow;
-    this.hasActionOverflow.emit(this.showActionOverflow);
-  }
-
-  ngOnInit(): void {
-    this.showClickClass = this.expandable && this.clickable;
-
-    // We need to trigger change detection when the checkbox in overall treetable is clicked
-    // because of ChangeDetectionStrategy.OnPush
-    this.selection.allSelectedChange.pipe(takeUntilDestroyed(this._destroyRef)).subscribe(() => {
-      this._cdr.markForCheck();
-    });
-  }
-
-  onExpandCollapseClick() {
+  private onExpandCollapseClick() {
     // Only animate on user click (not on sorting or initial rendering)
     this.shouldAnimate.set(true);
     this.toggleExpand();
@@ -83,42 +66,25 @@ export class ClrTreetableRow<T> implements OnInit {
     }, 350);
   }
 
-  toggle(selected = !this.selected) {
-    if (selected !== this.selected) {
-      this.selected = selected;
-      this.selectedChanged.emit(selected);
-    }
+  protected toggleSelection(selectionState: ClrTreetableSelectedState) {
+    this.clrTtItem()?.setSelected(selectionState);
   }
 
   private toggleExpand(): void {
-    if (this.expandable) {
-      this.expanded = !this.expanded;
-      this.expandedChange.emit(this.expanded);
+    if (this.clrExpandable()) {
+      this.clrExpanded.update(state => !state);
     }
   }
 
-  onRowClick(event: MouseEvent): void {
-    if (this.clickable && !(event.target as HTMLElement).closest('.treetable-action-trigger')) {
+  protected onRowClick(event: MouseEvent): void {
+    if (this.isClickable() && !(event.target as HTMLElement).closest('.treetable-action-trigger')) {
       this.onExpandCollapseClick();
     }
   }
 
-  onCaretClick(): void {
-    if (!this.clickable) {
+  protected onCaretClick(): void {
+    if (!this.isClickable()) {
       this.onExpandCollapseClick();
     }
   }
-
-  get selected() {
-    if (this.selection.selectionType === SelectionType.None) {
-      return this._selected;
-    } else {
-      return this.selection.isSelected(this.clrTtItem());
-    }
-  }
-  set selected(value: boolean | string) {
-    this.selection.setSelected(this.clrTtItem(), value as boolean);
-  }
-
-  protected readonly SelectionType = SelectionType;
 }

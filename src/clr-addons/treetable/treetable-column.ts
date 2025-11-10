@@ -4,22 +4,31 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, Input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, input, output } from '@angular/core';
 import { ClrTreetableComparatorInterface } from './interfaces/comparator.interface';
 import { Sort } from './providers';
 import { ClrTreetableSortOrder } from './enums/sort-order.enum';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
+import { combineLatest, map } from 'rxjs';
+import { filter } from 'rxjs/operators';
+import {
+  ClrPopoverEventsService,
+  ClrPopoverHostDirective,
+  ClrPopoverPositionService,
+  ClrPopoverToggleService,
+} from '@clr/angular';
 
 @Component({
   selector: 'clr-tt-column',
+  providers: [ClrPopoverToggleService, ClrPopoverEventsService, ClrPopoverPositionService],
   template: `
-    @if(sortable) {
+    @if (isSortable()) {
     <button class="treetable-column-title" (click)="sort()" type="button">
       <ng-container *ngTemplateOutlet="columnTitle" />
       <cds-icon
-        *ngIf="sortDirection"
+        *ngIf="sortDirection()"
         shape="arrow"
-        [attr.direction]="sortDirection"
+        [attr.direction]="sortDirection()"
         aria-hidden="true"
         class="sort-icon"
       />
@@ -28,74 +37,50 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     <ng-container *ngTemplateOutlet="columnTitle" />
     }
 
+    <ng-content select="clr-tt-filter, clr-tt-string-filter" />
+
     <ng-template #columnTitle>
       <ng-content />
     </ng-template>
   `,
+  hostDirectives: [ClrPopoverHostDirective],
   host: {
     '[class.treetable-column]': 'true',
-    '[attr.aria-sort]': 'ariaSort',
+    '[attr.aria-sort]': 'ariaSort()',
     role: 'columnheader',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
-export class ClrTreetableColumn<T> {
+export class ClrTreetableColumn<T extends object> {
   private readonly _sort = inject(Sort<T>);
-  private readonly _cdr = inject(ChangeDetectorRef);
 
-  private _sortBy: ClrTreetableComparatorInterface<T>;
-  private _sortOrder: ClrTreetableSortOrder = ClrTreetableSortOrder.UNSORTED;
-  private _sortDirection: 'up' | 'down' | null;
+  readonly clrTtSortBy = input<ClrTreetableComparatorInterface<T> | null>(null);
+  readonly clrTtSortOrder = input(ClrTreetableSortOrder.UNSORTED);
+  readonly clrTtSortOrderChange = output<ClrTreetableSortOrder>();
 
-  @Input('clrTtSortBy')
-  get sortBy() {
-    return this._sortBy;
-  }
-  set sortBy(comparator: ClrTreetableComparatorInterface<T>) {
-    this._sortBy = comparator;
-  }
+  private readonly _currentSortOrder = computed(() => {
+    const sortState = this._sort.sortState();
+    const sortBy = this.clrTtSortBy();
 
-  @Input('clrTtSortOrder')
-  get sortOrder(): ClrTreetableSortOrder {
-    return this._sortOrder;
-  }
-  set sortOrder(value: ClrTreetableSortOrder) {
-    if (typeof value === 'undefined') {
-      return;
+    if (sortBy == null || sortState.comparator !== sortBy) {
+      return ClrTreetableSortOrder.UNSORTED;
     }
 
-    // nothing to do when incoming sort order is the same
-    if (this._sortOrder === value) {
-      return;
+    return sortState.reverse ? ClrTreetableSortOrder.DESC : ClrTreetableSortOrder.ASC;
+  });
+
+  protected readonly isSortable = computed(() => !!this.clrTtSortBy());
+  protected readonly sortDirection = computed(() => {
+    const order = this._currentSortOrder();
+    if (order === ClrTreetableSortOrder.UNSORTED) {
+      return null;
     }
+    return order === ClrTreetableSortOrder.DESC ? 'down' : 'up';
+  });
 
-    switch (value) {
-      case ClrTreetableSortOrder.ASC:
-        this.sort(false);
-        break;
-      case ClrTreetableSortOrder.DESC:
-        this.sort(true);
-        break;
-      // UNSORTED when neither ASC or DESC
-      case ClrTreetableSortOrder.UNSORTED:
-      default:
-        this._sort.clear();
-        break;
-    }
-  }
-  get sortDirection(): 'up' | 'down' | null {
-    return this._sortDirection;
-  }
-
-  sortOrderChange = output<ClrTreetableSortOrder>({ alias: 'clrTtSortOrderChange' });
-
-  constructor() {
-    this.listenForSortingChanges();
-  }
-
-  get ariaSort() {
-    switch (this._sortOrder) {
+  protected readonly ariaSort = computed(() => {
+    switch (this._currentSortOrder()) {
       case ClrTreetableSortOrder.ASC:
         return 'ascending';
       case ClrTreetableSortOrder.DESC:
@@ -104,37 +89,66 @@ export class ClrTreetableColumn<T> {
       default:
         return 'none';
     }
+  });
+
+  constructor() {
+    // Handle incoming sort order changes
+    const sortOrder$ = toObservable(this.clrTtSortOrder);
+    const sortBy$ = toObservable(this.clrTtSortBy);
+    const handleExternalSortOrderChange$ = combineLatest([sortOrder$, sortBy$]);
+
+    // CombineLatest does not contain sortState, because only external sort changes should trigger this stream.
+    // Only react to external sort order changes, if no current sortState exists, or this column is responsible for it.
+    handleExternalSortOrderChange$
+      .pipe(
+        map(([sortOrder, comparator]) => ({
+          sortOrder,
+          comparator,
+          sortState: this._sort.sortState(),
+        })),
+        filter(
+          ({ comparator, sortState }) =>
+            !!comparator && (sortState.comparator == null || sortState.comparator === comparator)
+        ),
+        map(({ sortOrder, comparator, sortState }) => ({
+          sortOrder: sortOrder,
+          isCurrentActiveComparator: sortState.comparator === comparator,
+          reverse: sortState.reverse,
+        })),
+        takeUntilDestroyed()
+      )
+      .subscribe(({ sortOrder, isCurrentActiveComparator, reverse }) => {
+        switch (sortOrder) {
+          case ClrTreetableSortOrder.ASC:
+            if (!isCurrentActiveComparator || (isCurrentActiveComparator && reverse)) {
+              this.sort(false);
+            }
+            break;
+          case ClrTreetableSortOrder.DESC:
+            if (!isCurrentActiveComparator || (isCurrentActiveComparator && !reverse)) {
+              this.sort(true);
+            }
+            break;
+          case ClrTreetableSortOrder.UNSORTED:
+            if (isCurrentActiveComparator) {
+              this._sort.clear();
+            }
+            break;
+        }
+      });
+
+    // Emit sort order changes when the sort state changes
+    effect(() => {
+      const currentOrder = this._currentSortOrder();
+      this.clrTtSortOrderChange.emit(currentOrder);
+    });
   }
 
-  get sortable(): boolean {
-    return !!this._sortBy;
-  }
-
-  sort(reverse?: boolean) {
-    if (!this.sortable) {
+  protected sort(reverse?: boolean) {
+    const comparator = this.clrTtSortBy();
+    if (!comparator) {
       return;
     }
-
-    this._sort.toggle(this._sortBy, reverse);
-
-    // setting the private variable to not retrigger the setter logic
-    this._sortOrder = this._sort.reverse ? ClrTreetableSortOrder.DESC : ClrTreetableSortOrder.ASC;
-    // Sets the correct icon for current sort order
-    this._sortDirection = this._sortOrder === ClrTreetableSortOrder.DESC ? 'down' : 'up';
-    this.sortOrderChange.emit(this._sortOrder);
-  }
-
-  private listenForSortingChanges() {
-    this._sort.change.pipe(takeUntilDestroyed()).subscribe(sort => {
-      // Need to manually mark the component to be checked
-      // for both activating and deactivating sorting
-      this._cdr.markForCheck();
-      // We're only listening to make sure we emit an event when the column goes from sorted to unsorted
-      if (this.sortOrder !== ClrTreetableSortOrder.UNSORTED && sort.comparator !== this._sortBy) {
-        this._sortOrder = ClrTreetableSortOrder.UNSORTED;
-        this.sortOrderChange.emit(this._sortOrder);
-        this._sortDirection = null;
-      }
-    });
+    this._sort.toggle(comparator, reverse);
   }
 }

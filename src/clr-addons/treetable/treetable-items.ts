@@ -4,71 +4,49 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import {
-  ChangeDetectorRef,
-  Directive,
-  effect,
-  inject,
-  Input,
-  IterableDiffers,
-  signal,
-  TemplateRef,
-  TrackByFunction,
-  ViewContainerRef,
-} from '@angular/core';
-import { NgForOf, NgForOfContext } from '@angular/common';
-import { Items, Sort } from './providers';
+import { Directive, effect, inject, input, TemplateRef } from '@angular/core';
+import { TreetableDataStateService } from './providers';
+import { ClrTreetableChildrenFunction, ClrTreetableTreeNode } from './interfaces/treetable-model';
+import { ClrTreetableRecursionService } from './providers/treetable-recursion.service';
+
+export type ClrTreetableItemsContext<T extends object> = {
+  $implicit: T;
+  isLeaf: boolean;
+  clrTreetableNode: ClrTreetableTreeNode<T>;
+};
 
 @Directive({
-  selector: '[clrTtItems]',
+  selector: '[clrTtItems][clrTtItemsOf]',
   standalone: false,
 })
-export class TreetableItemsDirective<T> {
-  private readonly _items = inject(Items<T>);
-  private readonly _sort = inject(Sort<T>);
-  private readonly _template = inject(TemplateRef<NgForOfContext<T>>);
-  private readonly _differs = inject(IterableDiffers);
-  private readonly _vcr = inject(ViewContainerRef);
-  private readonly _cdr = inject(ChangeDetectorRef);
+export class TreetableItemsDirective<T extends object> {
+  private readonly _dataStateService = inject(TreetableDataStateService<T>);
+  private readonly _recursionService = inject(ClrTreetableRecursionService<T>);
+  private readonly _templateRef = inject(TemplateRef<ClrTreetableItemsContext<T>>);
 
-  private _iterableProxy: NgForOf<T>;
-
-  ttItems = signal([]);
-  @Input()
-  get clrTtItems(): T[] {
-    return this.ttItems();
-  }
-  set clrTtItems(items: T[]) {
-    if (items == null || items.length === 0) {
-      return;
-    }
-
-    this._items.addItems(items);
-
-    if (this._sort.comparator) {
-      this._cdr.detach();
-      items.sort((a, b) => this._sort.compare(a, b)); // Sort in place
-      this._cdr.reattach();
-    }
-
-    this.ttItems.set(items);
-  }
-
-  @Input('clrTtItemsTrackBy')
-  set trackBy(value: TrackByFunction<T>) {
-    this._iterableProxy.ngForTrackBy = value;
-  }
+  readonly clrTtItemsOf = input.required<Array<T>>();
+  readonly clrTtItemsGetChildren = input.required<ClrTreetableChildrenFunction<T>>();
 
   constructor() {
-    this._iterableProxy = new NgForOf<T>(this._vcr, this._template, this._differs);
+    if (this._templateRef) {
+      this._recursionService.setTemplate(this._templateRef);
+    }
 
     effect(() => {
-      const newItems = this.ttItems();
-
-      if (newItems) {
-        this._iterableProxy.ngForOf = newItems;
-        this._iterableProxy.ngDoCheck();
+      const items = this.clrTtItemsOf();
+      const getChildren = this.clrTtItemsGetChildren();
+      if (items) {
+        this._dataStateService.setDataSource(items, getChildren);
       }
     });
+  }
+
+  static ngTemplateContextGuard<C extends object>(
+    // @ts-expect-error This is a valid Angular context guard.
+    dir: TreetableItemsDirective<C>,
+    // @ts-expect-error This is a valid Angular context guard.
+    ctx: any
+  ): ctx is ClrTreetableItemsContext<C> {
+    return true;
   }
 }

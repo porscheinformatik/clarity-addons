@@ -4,14 +4,13 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { debounceTime, Observable, Subject } from 'rxjs';
 import { SelectionType } from '../enums/selection-type';
-import { Items } from './items';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Injectable()
-export class Selection<T> {
+export class Selection<T extends object> {
   private _current: T[];
   private _change = new Subject<T[]>();
   private _allSelected = new Subject<boolean>();
@@ -19,7 +18,7 @@ export class Selection<T> {
   private _valueCollector = new Subject<T[]>();
   private _selectionType: SelectionType = SelectionType.None;
 
-  private _items = inject(Items);
+  // private _items = inject(Items<T>);
 
   constructor() {
     this._valueCollector.pipe(debounceTime(0), takeUntilDestroyed()).subscribe(() => this.emitChange());
@@ -78,40 +77,40 @@ export class Selection<T> {
   }
 
   isAllSelected(): boolean {
-    const displayedItems: T[][] = this._items.displayed;
-
-    const nbDisplayed = displayedItems.length;
-    if (nbDisplayed < 1) {
-      return false;
-    }
-    const flattenedDisplayedItems: T[] = displayedItems.flat();
-    const selectedItems: T[] = flattenedDisplayedItems.filter(item => this.current.indexOf(item) > -1);
-    return selectedItems.length === flattenedDisplayedItems.length;
+    // const displayedItems: T[][] = this._items.displayedNodes();
+    //
+    // const nbDisplayed = displayedItems.length;
+    // if (nbDisplayed < 1) {
+    //   return false;
+    // }
+    // const flattenedDisplayedItems: T[] = displayedItems.flat();
+    // const selectedItems: T[] = flattenedDisplayedItems.filter(item => this.current.indexOf(item) > -1);
+    // return selectedItems.length === flattenedDisplayedItems.length;
+    return false;
   }
 
   toggleAll() {
-    const isAllSelected = this.isAllSelected();
-
-    if (isAllSelected) {
-      this._items.displayed.forEach(items => {
-        items.forEach(item => {
-          const currentIndex = this.current.indexOf(item);
-          if (currentIndex > -1) {
-            this.deselectItem(currentIndex);
-          }
-        });
-      });
-    } else {
-      this._items.displayed.forEach(items => {
-        items.forEach(item => {
-          if (this.current.indexOf(item) < 0) {
-            this.selectItem(item);
-          }
-        });
-      });
-    }
-
-    this._allSelected.next(!isAllSelected);
+    // const isAllSelected = this.isAllSelected();
+    // if (isAllSelected) {
+    //   this._items.displayed.forEach(items => {
+    //     items.forEach(item => {
+    //       const currentIndex = this.current.indexOf(item);
+    //       if (currentIndex > -1) {
+    //         this.deselectItem(currentIndex);
+    //       }
+    //     });
+    //   });
+    // } else {
+    //   this._items.displayed.forEach(items => {
+    //     items.forEach(item => {
+    //       if (this.current.indexOf(item) < 0) {
+    //         this.selectItem(item);
+    //       }
+    //     });
+    //   });
+    // }
+    //
+    // this._allSelected.next(!isAllSelected);
   }
 
   private selectItem(item: T): void {

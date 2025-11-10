@@ -34,40 +34,40 @@ describe('ClrTreetableColumn', () => {
     expect(component.sortBy).toBeUndefined();
     expect(component.sortOrder).toBe(ClrTreetableSortOrder.UNSORTED);
     expect(component.sortDirection).toBeUndefined();
-    expect(component.sortable).toBeFalse();
+    expect(component.isSortable).toBeFalse();
   });
 
   it('should be sortable when sortBy is set', () => {
     component.sortBy = { compare: (a, b) => a - b };
-    expect(component.sortable).toBeTrue();
+    expect(component.isSortable).toBeTrue();
   });
 
   it('should sort in ascending order when sort is called', () => {
     component.sortBy = numberTestComparator;
 
     spyOn(sortProvider, 'toggle').and.callThrough();
-    spyOn(component.sortOrderChange, 'emit');
+    spyOn(component.clrTtSortOrderChange, 'emit');
 
     component.sort(false);
 
     expect(sortProvider.toggle).toHaveBeenCalledWith(numberTestComparator, false);
     expect(component.sortOrder).toBe(ClrTreetableSortOrder.ASC);
     expect(component.sortDirection).toBe('up');
-    expect(component.sortOrderChange.emit).toHaveBeenCalledWith(ClrTreetableSortOrder.ASC);
+    expect(component.clrTtSortOrderChange.emit).toHaveBeenCalledWith(ClrTreetableSortOrder.ASC);
   });
 
   it('should sort in descending order when sort is called with reverse', () => {
     component.sortBy = numberTestComparator;
 
     spyOn(sortProvider, 'toggle').and.callThrough();
-    spyOn(component.sortOrderChange, 'emit');
+    spyOn(component.clrTtSortOrderChange, 'emit');
 
     component.sort(true);
 
     expect(sortProvider.toggle).toHaveBeenCalledWith(numberTestComparator, true);
     expect(component.sortOrder).toBe(ClrTreetableSortOrder.DESC);
     expect(component.sortDirection).toBe('down');
-    expect(component.sortOrderChange.emit).toHaveBeenCalledWith(ClrTreetableSortOrder.DESC);
+    expect(component.clrTtSortOrderChange.emit).toHaveBeenCalledWith(ClrTreetableSortOrder.DESC);
   });
 
   it('should clear sorting when clrTtSortOrder is set to UNSORTED', () => {
@@ -75,14 +75,14 @@ describe('ClrTreetableColumn', () => {
     component.sortOrder = ClrTreetableSortOrder.ASC;
 
     spyOn(sortProvider, 'clear').and.callThrough();
-    spyOn(component.sortOrderChange, 'emit');
+    spyOn(component.clrTtSortOrderChange, 'emit');
 
     component.sortOrder = ClrTreetableSortOrder.UNSORTED;
 
     expect(sortProvider.clear).toHaveBeenCalled();
     expect(component.sortOrder).toBe(ClrTreetableSortOrder.UNSORTED);
     expect(component.sortDirection).toBeNull();
-    expect(component.sortOrderChange.emit).toHaveBeenCalledWith(ClrTreetableSortOrder.UNSORTED);
+    expect(component.clrTtSortOrderChange.emit).toHaveBeenCalledWith(ClrTreetableSortOrder.UNSORTED);
   });
 
   it('should update ariaSort correctly', () => {
@@ -102,12 +102,12 @@ describe('ClrTreetableColumn', () => {
     component.sortBy = numberTestComparator;
     component.sortOrder = ClrTreetableSortOrder.ASC as ClrTreetableSortOrder;
 
-    spyOn(component.sortOrderChange, 'emit');
+    spyOn(component.clrTtSortOrderChange, 'emit');
 
     sortProvider.comparator = null;
 
     expect(component.sortOrder).toBe(ClrTreetableSortOrder.UNSORTED);
     expect(component.sortDirection).toBeNull();
-    expect(component.sortOrderChange.emit).toHaveBeenCalledWith(ClrTreetableSortOrder.UNSORTED);
+    expect(component.clrTtSortOrderChange.emit).toHaveBeenCalledWith(ClrTreetableSortOrder.UNSORTED);
   });
 });

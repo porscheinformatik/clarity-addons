@@ -1,3 +1,3 @@
 export * from './selection';
 export * from './sort';
-export * from './items';
+export * from './treetable-data-state.service';

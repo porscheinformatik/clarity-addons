@@ -4,39 +4,28 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Subject } from 'rxjs';
+import { computed, Injectable, signal } from '@angular/core';
 import { ClrTreetableComparatorInterface } from '../interfaces/comparator.interface';
+import { toObservable } from '@angular/core/rxjs-interop';
+
+export interface TreetableSortState<T extends object> {
+  comparator: ClrTreetableComparatorInterface<T> | null;
+  reverse: boolean;
+}
 
 @Injectable()
-export class Sort<T> {
-  private _comparator: ClrTreetableComparatorInterface<T>;
-  private _reverse = false;
-  private _change = new Subject<Sort<T>>();
+export class Sort<T extends object> {
+  private readonly _comparator = signal<ClrTreetableComparatorInterface<T> | null>(null);
+  private readonly _reverse = signal<boolean>(false);
 
-  constructor() {}
+  readonly comparator = computed(() => this._comparator());
+  readonly reverse = computed(() => this._reverse());
 
-  get comparator(): ClrTreetableComparatorInterface<T> {
-    return this._comparator;
-  }
-  set comparator(value: ClrTreetableComparatorInterface<T>) {
-    this._comparator = value;
-    this.emitChange();
-  }
-
-  get reverse(): boolean {
-    return this._reverse;
-  }
-  set reverse(value: boolean) {
-    this._reverse = value;
-    this.emitChange();
-  }
-
-  // We do not want to expose the Subject itself, but the Observable which is read-only
-  get change(): Observable<Sort<T>> {
-    return this._change.asObservable();
-  }
+  readonly sortState = computed<TreetableSortState<T>>(() => ({
+    comparator: this.comparator(),
+    reverse: this.reverse(),
+  }));
+  readonly changes$ = toObservable(this.sortState);
 
   /**
    * Sets a comparator as the current one, or toggles reverse if the comparator is already used. The
@@ -45,25 +34,32 @@ export class Sort<T> {
    *
    * @memberof Sort
    */
-  toggle(sortBy: ClrTreetableComparatorInterface<T>, forceReverse?: boolean) {
-    if (this.comparator === sortBy) {
-      this._reverse = typeof forceReverse !== 'undefined' ? forceReverse || !this._reverse : !this._reverse;
+  public toggle(sortBy: ClrTreetableComparatorInterface<T>, forceReverse?: boolean): void {
+    if (this._comparator() === sortBy) {
+      const newReverse = typeof forceReverse !== 'undefined' ? forceReverse : !this._reverse();
+      this._reverse.set(newReverse);
     } else {
-      this._comparator = sortBy;
-      this._reverse = typeof forceReverse !== 'undefined' ? forceReverse : false;
+      this._comparator.set(sortBy);
+      this._reverse.set(typeof forceReverse !== 'undefined' ? forceReverse : false);
     }
-    this.emitChange();
   }
 
-  clear() {
-    this.comparator = null;
+  /**
+   * Clears the current comparator
+   */
+  public clear(): void {
+    this._comparator.set(null);
   }
 
-  compare(a: T, b: T): number {
-    return (this.reverse ? -1 : 1) * this.comparator.compare(a, b);
-  }
+  /**
+   * Compares two items using the current comparator and reverse flag
+   */
+  public compare(a: T, b: T): number {
+    const currentComparator = this.comparator();
+    if (!currentComparator) {
+      return 0;
+    }
 
-  emitChange() {
-    this._change.next(this);
+    return (this.reverse() ? -1 : 1) * currentComparator.compare(a, b);
   }
 }

@@ -7,7 +7,13 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ClarityModule } from '@clr/angular';
 import { FormsModule } from '@angular/forms';
-import { ClrTreetableModule, ClrTreetableRow, Items, Selection, Sort } from '@porscheinformatik/clr-addons';
+import {
+  ClrTreetableModule,
+  ClrTreetableRow,
+  TreetableDataStateService,
+  Selection,
+  Sort,
+} from '@porscheinformatik/clr-addons';
 import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -77,7 +83,7 @@ describe('ClrTreetableRow', () => {
     TestBed.configureTestingModule({
       declarations: [EmptyTestComponent, RowClickableTestComponent, SelectableTestComponent],
       imports: [ClarityModule, FormsModule, ClrTreetableModule, BrowserAnimationsModule],
-      providers: [Selection, Items, Sort],
+      providers: [Selection, TreetableDataStateService, Sort],
       teardown: { destroyAfterEach: false },
     }).compileComponents();
 
@@ -100,11 +106,11 @@ describe('ClrTreetableRow', () => {
   });
 
   it('should expand if clicked', () => {
-    expect(rowClickableTestComponent.ttRow.expanded).toBeFalsy();
+    expect(rowClickableTestComponent.ttRow.clrExpanded).toBeFalsy();
     const row = rowClickableTestComponentFixture.debugElement.query(By.css('.treetable-row:first-of-type'));
     row.triggerEventHandler('click', { target: row.nativeElement });
     rowClickableTestComponentFixture.detectChanges();
-    expect(rowClickableTestComponent.ttRow.expanded).toBeTruthy();
+    expect(rowClickableTestComponent.ttRow.clrExpanded).toBeTruthy();
   });
 
   it('should preselect given item', () => {
@@ -121,7 +127,7 @@ describe('ClrTreetableRow', () => {
     selection.selectionType = SelectionType.Multi;
 
     const firstRow = selectableTestComponent.ttRows.toArray()[0];
-    const selectedChangedSpy = spyOn(firstRow.selectedChanged, 'emit');
+    const selectedChangedSpy = spyOn(firstRow.clrSelectedChanged, 'emit');
 
     firstRow.toggle();
     expect(firstRow.selected).toBe(false);

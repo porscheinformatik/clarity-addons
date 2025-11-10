@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { AfterViewChecked, ContentChildren, Directive, QueryList, AfterContentInit, OnInit } from '@angular/core';
+import { AfterContentInit, AfterViewChecked, ContentChildren, Directive, OnInit, QueryList } from '@angular/core';
 
 import { ClrTreetableColumn } from '../treetable-column';
 import { TreetableHeaderRenderer } from './header-renderer';
@@ -15,7 +15,7 @@ import { debounceTime } from 'rxjs/operators';
   selector: 'clr-treetable',
   standalone: false,
 })
-export class TreetableMainRenderer<T> implements OnInit, AfterViewChecked, AfterContentInit {
+export class TreetableMainRenderer<T extends object> implements OnInit, AfterViewChecked, AfterContentInit {
   @ContentChildren(TreetableHeaderRenderer) headers: QueryList<TreetableHeaderRenderer>;
   @ContentChildren(TreetableRowRenderer, { descendants: true })
   rows: QueryList<TreetableRowRenderer>;

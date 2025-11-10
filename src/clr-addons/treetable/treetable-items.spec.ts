@@ -7,7 +7,7 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { Component, ViewChild } from '@angular/core';
 import { TreetableItemsDirective } from './treetable-items';
-import { Items, Sort } from './providers';
+import { TreetableDataStateService, Sort } from './providers';
 
 @Component({
   template: `
@@ -28,7 +28,7 @@ class TreetableItemsDirectiveTest {
 describe('TreetableItemsDirective', () => {
   let component: TreetableItemsDirectiveTest;
   let fixture: ComponentFixture<TreetableItemsDirectiveTest>;
-  let mockItems: jasmine.SpyObj<Items<number>>;
+  let mockItems: jasmine.SpyObj<TreetableDataStateService<number>>;
   let mockSort: jasmine.SpyObj<Sort<number>>;
 
   beforeEach(() => {
@@ -38,7 +38,7 @@ describe('TreetableItemsDirective', () => {
     TestBed.configureTestingModule({
       declarations: [TreetableItemsDirective, TreetableItemsDirectiveTest],
       providers: [
-        { provide: Items, useValue: mockItems },
+        { provide: TreetableDataStateService, useValue: mockItems },
         { provide: Sort, useValue: mockSort },
       ],
     });

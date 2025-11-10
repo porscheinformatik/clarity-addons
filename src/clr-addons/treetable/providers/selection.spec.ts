@@ -6,18 +6,18 @@
 
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { Selection } from './selection';
-import { Items } from './items';
+import { TreetableDataStateService } from './treetable-data-state.service';
 import { SelectionType } from '../enums/selection-type';
 
 describe('Selection', () => {
   let selection: Selection<number>;
-  let mockItems: jasmine.SpyObj<Items<number>>;
+  let mockItems: jasmine.SpyObj<TreetableDataStateService<number>>;
 
   beforeEach(() => {
     mockItems = jasmine.createSpyObj('Items', ['displayed'], { displayed: [] });
 
     TestBed.configureTestingModule({
-      providers: [{ provide: Items, useValue: mockItems }, Selection],
+      providers: [{ provide: TreetableDataStateService, useValue: mockItems }, Selection],
     });
 
     selection = TestBed.inject(Selection);

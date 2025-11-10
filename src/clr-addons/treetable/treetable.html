@@ -6,21 +6,31 @@
 
 <div class="treetable">
   <div class="treetable-grid" role="grid">
-    <div class="treetable-header" role="rowgroup" [class.hide-header]="hideHeader">
-      @if(selection.selectionType === SelectionType.Multi && !empty){
+    <div class="treetable-header" role="rowgroup" [class.hide-header]="clrHideHeader()">
+      @if (showSelection() && !empty()) {
       <div class="clr-checkbox-wrapper treetable-row-selection treetable-column" role="row">
-        <input type="checkbox" [(ngModel)]="allSelected" />
+        <input type="checkbox" [checked]="areAllRowsSelected()" (change)="toggleSelectAll()" />
       </div>
       }
 
-      <div *ngIf="hasActionOverflow" class="treetable-row-actions treetable-column">&nbsp;</div>
+      <div *ngIf="hasActionOverflow()" class="treetable-row-actions treetable-column">&nbsp;</div>
       <div class="treetable-row-scrollable" role="row">
-        <ng-content select="clr-tt-column"></ng-content>
+        <ng-content select="clr-tt-column" />
       </div>
     </div>
     <div class="treetable-body">
-      <ng-content select="clr-tt-row"></ng-content>
-      <ng-content select="clr-tt-placeholder"></ng-content>
+      @if (isRecursionMode()) {
+      <clr-tt-recursive-rows [children]="displayedNodes()" />
+      } @else {
+      <ng-content select="clr-tt-row" />
+      } @if (empty()) {
+      <ng-content select="clr-tt-placeholder" />
+      }
     </div>
   </div>
+  @if (clrTtLoading()) {
+  <div class="treetable-spinner">
+    <clr-spinner clrMedium />
+  </div>
+  }
 </div>

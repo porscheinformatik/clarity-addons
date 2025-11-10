@@ -133,7 +133,7 @@ describe('ClrTreetable', () => {
   });
 
   it('should not have any clickable rows', () => {
-    const noOfClickableRows = rowClickableTestComponent.ttRows.filter(ttRow => ttRow.clickable).length;
+    const noOfClickableRows = rowClickableTestComponent.ttRows.filter(ttRow => ttRow.clrClickable).length;
     expect(noOfClickableRows).toBe(0);
   });
 
