@@ -683,7 +683,12 @@
         </clr-signpost>
       </clr-tt-cell>
       <clr-tt-cell class="text-truncate">{{node.type}}</clr-tt-cell>
-      <clr-tt-cell class="text-truncate">{{node.version}}</clr-tt-cell>
+      <clr-tt-cell class="text-truncate">
+        <clr-tooltip>
+          <span clrTooltipTrigger>{{node.version}}</span>
+          <clr-tooltip-content> This is a test tooltip! </clr-tooltip-content>
+        </clr-tooltip>
+      </clr-tt-cell>
       <ng-container ngProjectAs="clr-tt-row" *ngFor="let childNode of node.children">
         <ng-container *ngTemplateOutlet="signpostNode; context: { $implicit: childNode }"></ng-container>
       </ng-container>
