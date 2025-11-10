@@ -5,7 +5,11 @@
   }"
 >
   <ng-container *ngIf="exportTypesFiltered().length === 1; else exportDropdown">
-    <button class="btn btn-sm btn-outline" type="button" (click)="onExport(exportTypesFiltered()[0].type)">
+    <button
+      class="btn btn-sm btn-outline custom-button-export"
+      type="button"
+      (click)="onExport(exportTypesFiltered()[0].type)"
+    >
       {{ exportTypesFiltered()[0].value }}
     </button>
   </ng-container>
