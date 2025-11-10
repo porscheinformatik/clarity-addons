@@ -281,6 +281,7 @@ $indentation-increment: 1rem;
               &:hover {
                 color: var(--cds-alias-object-interaction-color-hover);
               }
+
               &:active {
                 color: var(--cds-alias-object-interaction-color-active);
               }
@@ -328,6 +329,7 @@ $indentation-increment: 1rem;
           &:hover {
             background-color: var(--clr-datagrid-row-selected-hover-background-color);
           }
+
           &.active {
             background-color: var(--clr-datagrid-row-selected-active-background-color);
           }
@@ -346,7 +348,6 @@ $indentation-increment: 1rem;
             flex: 1 1 auto;
             flex-flow: row nowrap;
             overflow: hidden;
-            position: relative;
 
             .treetable-cell {
               text-align: left;
