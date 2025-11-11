@@ -154,7 +154,6 @@ $indentation-increment: 1rem;
         flex: 1 1 auto;
         align-content: flex-start;
         min-height: 3rem; // Includes header and space for a single (non existing) row
-        position: relative;
         height: 100%;
         overflow: auto;
       }
