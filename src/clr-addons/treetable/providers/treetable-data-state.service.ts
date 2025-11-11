@@ -88,10 +88,10 @@ export class TreetableDataStateService<T extends object> {
     // Externally selected has to be handled as a signal, as it is a synchronous change. Simply using a subject instead
     // of a signal results in errors.
     const externallySelectedItems$ = toObservable(this._itemsExternallySelected).pipe(map(items => new Set(items)));
-    const treetableNodes$ = toObservable(this._treetableNodes);
+    const treetableNodes$ = toObservable(this._treetableNodes).pipe(filter(nodes => nodes.length > 0));
     const handleExternalSelect$ = combineLatest([externallySelectedItems$, treetableNodes$]);
 
-    // This stream handles the external setting of selected nodes. Realistically this will only run once in the
+    // This stream handles the external setting of selected nodes. Typically this will run only once in the
     // beginning, if some nodes need to be selected from the start (e.g. restoring treetable state from local storage).
     // The subscribe function only runs, if the selectedItems differ in length to the currently selectedNodes.
     handleExternalSelect$
@@ -101,17 +101,26 @@ export class TreetableDataStateService<T extends object> {
           nodes: treetableNodes,
           selectedNodes: this.selectedNodes(),
         })),
-        filter(({ externallySelectedItems, nodes }) => externallySelectedItems.size > 0 && nodes.length > 0),
         filter(({ externallySelectedItems, selectedNodes }) => externallySelectedItems.size !== selectedNodes.length),
         takeUntilDestroyed()
       )
       .subscribe(({ externallySelectedItems, nodes }) => {
+        if (externallySelectedItems.size === 0) {
+          this.setSelectionForDisplayedNodes(ClrTreetableSelectedState.UNSELECTED);
+          return;
+        }
+
         this.traverseTreeNodes(
           nodes,
           (node: ClrTreetableTreeNode<T>): void => {
             if (externallySelectedItems.has(node.value)) {
-              externallySelectedItems.delete(node.value);
               node.setSelected(ClrTreetableSelectedState.SELECTED);
+
+              // Remove node and all descendants from set to speed up external selection.
+              externallySelectedItems.delete(node.value);
+              for (const descendant of node.getFlatDescendants() ?? []) {
+                externallySelectedItems.delete(descendant.value);
+              }
             }
           },
           (): boolean => externallySelectedItems.size > 0
@@ -131,13 +140,16 @@ export class TreetableDataStateService<T extends object> {
     this._stickyIndeterminate.set(value);
   }
 
-  toggleSelectForAllDisplayedNodes(): void {
-    const toggleState = this.areAllNodesSelected()
+  toggleSelectionForDisplayedNodes(): void {
+    const nextState = this.areAllNodesSelected()
       ? ClrTreetableSelectedState.UNSELECTED
       : ClrTreetableSelectedState.SELECTED;
+    this.setSelectionForDisplayedNodes(nextState);
+  }
 
+  private setSelectionForDisplayedNodes(state: ClrTreetableSelectedState) {
     for (const node of this.displayedNodes()) {
-      node.setSelected(toggleState);
+      node.setSelected(state);
     }
   }
 

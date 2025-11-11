@@ -4,12 +4,15 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, linkedSignal, OnInit, signal } from '@angular/core';
 import { ClarityIcons, infoStandardIcon } from '@cds/core/icon';
 import { of, tap } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { ClrTreetableComparatorInterface } from '../../../../clr-addons/treetable/interfaces/comparator.interface';
 import { ClrTreetableSortOrder } from '../../../../clr-addons/treetable/enums/sort-order.enum';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { ClrTreetableStringFilterFunction } from '../../../../clr-addons/treetable/interfaces/filter-model';
+import { ClrTreetableState } from '../../../../clr-addons/treetable/interfaces/treetable-state-model';
 
 ClarityIcons.addIcons(infoStandardIcon);
 
@@ -102,71 +105,80 @@ export class TreetableDemo implements OnInit {
 
   total = 0;
 
-  rootNodes: Tree[] = [] as any[];
   comperator = new TestComparator();
   comperator2 = new TestComparator2();
   sortOrder = ClrTreetableSortOrder.DESC;
   sortOrder2 = ClrTreetableSortOrder.UNSORTED;
 
-  myTree: Tree[] = Array.from({ length: 2 }, (_, index) => {
-    return JSON.parse(
-      JSON.stringify({
-        id: `1.${index + 1}`, // Assign unique IDs for each duplicate
-        value: { name: `Group ${index}` },
+  buildTree(groups: number): Tree[] {
+    return Array.from({ length: groups }, (_, idx): Tree => {
+      const rootId = `1.${idx + 1}`;
+      return {
+        id: rootId,
+        value: { name: `Group ${idx}` },
         parent: null,
         children: [
           {
-            id: `1.${index + 1}.1`,
+            id: `${rootId}.1`,
             value: { name: 'B' },
-            parent: { id: `1.${index + 1}` },
+            parent: { id: `1.${idx + 1}` },
             children: [
               {
-                id: `1.${index + 1}.1.1`,
+                id: `${rootId}.1.1`,
                 value: { name: 'C' },
-                parent: { id: `1.${index + 1}.1` },
+                parent: { id: `1.${idx + 1}.1` },
               },
               {
-                id: `1.${index + 1}.1.2`,
+                id: `${rootId}.1.2`,
                 value: { name: 'D' },
-                parent: { id: `1.${index + 1}.1` },
+                parent: { id: `1.${idx + 1}.1` },
                 children: [
                   {
-                    id: `1.${index + 1}.1.2.1`,
+                    id: `${rootId}.1.2.1`,
                     value: { name: 'E' },
-                    parent: { id: `1.${index + 1}.1.2` },
+                    parent: { id: `1.${idx + 1}.1.2` },
                   },
                   {
-                    id: `1.${index + 1}.1.2.2`,
+                    id: `${rootId}.1.2.2`,
                     value: { name: 'F' },
-                    parent: { id: `1.${index + 1}.1.2` },
+                    parent: { id: `1.${idx + 1}.1.2` },
                   },
                 ],
               },
             ],
           },
           {
-            id: `1.${index + 1}.2`,
+            id: `${rootId}.2`,
             value: { name: 'A' },
-            parent: { id: `1.${index + 1}` },
+            parent: { id: `1.${idx + 1}` },
             children: [
-              {
-                id: `1.${index + 1}.2.1`,
-                value: { name: 'C' },
-                parent: { id: `1.${index + 1}.1` },
-              },
-              {
-                id: `1.${index + 1}.2.2`,
-                value: { name: 'D' },
-                parent: { id: `1.${index + 1}.1` },
-              },
+              { id: `${rootId}.2.1`, value: { name: 'C' }, parent: { id: `1.${idx + 1}.1` } },
+              { id: `${rootId}.2.2`, value: { name: 'D' }, parent: { id: `1.${idx + 1}.1` } },
             ],
           },
         ],
-      })
-    );
-  });
+      };
+    });
+  }
 
-  selected: any = [];
+  myTree: Tree[] = this.buildTree(3);
+
+  treeIdFilter: ClrTreetableStringFilterFunction<Tree> = (item: Tree, search: string): boolean => {
+    return item.id.toLowerCase().includes(search.toLowerCase());
+  };
+
+  treeNameFilter: ClrTreetableStringFilterFunction<Tree> = (item: Tree, search: string): boolean => {
+    return item?.value?.name?.toLowerCase().includes(search.toLowerCase());
+  };
+
+  rootNodes = linkedSignal<Tree[]>(toSignal(of(this.myTree).pipe(delay(2000))));
+  selected = signal<Tree[]>([]);
+  loading = signal(false);
+  autoParentSelection = signal(true);
+
+  getChildren(node: Tree): Tree[] {
+    return node?.children || [];
+  }
 
   ngOnInit(): void {
     setTimeout(
@@ -188,8 +200,44 @@ export class TreetableDemo implements OnInit {
           },
         ])
     );
+  }
 
-    this.rootNodes = this.myTree;
+  logState(state: ClrTreetableState<Tree>) {
+    console.log('Treetable | state', state);
+  }
+
+  toggleLoading() {
+    this.loading.update(current => !current);
+  }
+
+  toggleAutoParentSelection() {
+    this.autoParentSelection.update(current => !current);
+  }
+
+  appendRootNode() {
+    this.rootNodes.update(current => [
+      ...current,
+      {
+        id: `${current.length}.0`,
+        value: { name: `Group ${current.length}` },
+        parent: null,
+        children: [],
+      },
+    ]);
+  }
+
+  toggleExternallySelected(): void {
+    const selected = this.selected();
+    if (selected.length === 0) {
+      const nodes = this.rootNodes();
+      this.selected.set(nodes ? [...nodes[0].children[0].children, ...nodes[0].children[0].children[1].children] : []);
+    } else {
+      this.selected.set([]);
+    }
+  }
+
+  testAction() {
+    console.log('TreetableDemo | Test action performed!');
   }
 
   isExpandable(node: any): boolean {
@@ -200,10 +248,6 @@ export class TreetableDemo implements OnInit {
       }
     });
     return expandable;
-  }
-
-  trackByFn(_: number, item: Tree): string {
-    return item.id;
   }
 }
 

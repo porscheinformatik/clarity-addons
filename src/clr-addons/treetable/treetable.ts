@@ -32,7 +32,7 @@ export class ClrTreetable<T extends object> {
   readonly clrHideHeader = input(false);
   readonly clrTtLoading = input(false);
   readonly clrTtSelected = input<T[]>(undefined);
-  readonly clrTtNoAutoParentSelection = input(false);
+  readonly clrTtAutoParentSelection = input(true);
 
   readonly clrTtSelectedChange = outputFromObservable<T[]>(toObservable(this._dataStateService.selectedNodes));
   readonly clrTtRefresh = outputFromObservable<ClrTreetableState<T>>(this._dataStateService.changes$);
@@ -51,15 +51,18 @@ export class ClrTreetable<T extends object> {
 
   constructor() {
     effect(() => {
-      this._dataStateService.setExternallySelectedItems(this.clrTtSelected());
+      const selectedItems = this.clrTtSelected();
+      if (selectedItems) {
+        this._dataStateService.setExternallySelectedItems(selectedItems);
+      }
     });
 
     effect(() => {
-      this._dataStateService.setStickyIndeterminate(this.clrTtNoAutoParentSelection());
+      this._dataStateService.setStickyIndeterminate(!this.clrTtAutoParentSelection());
     });
   }
 
   toggleSelectAll() {
-    this._dataStateService.toggleSelectForAllDisplayedNodes();
+    this._dataStateService.toggleSelectionForDisplayedNodes();
   }
 }

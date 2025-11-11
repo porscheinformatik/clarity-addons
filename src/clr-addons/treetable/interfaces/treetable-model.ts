@@ -1,27 +1,68 @@
 import { ClrTreetableSelectedState } from '../enums/selection-type';
-import { computed, linkedSignal, signal } from '@angular/core';
+import { linkedSignal, signal } from '@angular/core';
 
+/**
+ * Internal counter for generating unique node ids.
+ */
 let treeNodeIdCounter = 0;
+
+/**
+ * Creates a unique id for a tree node instance.
+ */
 function uniqueTreeNodeIdFactory(): string {
   return `clr-treetable-node-${treeNodeIdCounter++}`;
 }
 
+/**
+ * Function type that returns the direct children of a data node.
+ */
 export type ClrTreetableChildrenFunction<T extends object> = (node: T) => Array<T>;
 
+/**
+ * Represents a single tree node inside the treetable.
+ * Maintains derived selection state (SELECTED / UNSELECTED / INDETERMINATE) based on:
+ *  - Manual selection of this node.
+ *  - Aggregated selection states of all descendants.
+ * Selection propagation to descendants happens only on explicit setSelected calls.
+ */
 export class ClrTreetableTreeNode<T extends object> {
-  public id = uniqueTreeNodeIdFactory();
+  public readonly id = uniqueTreeNodeIdFactory();
+  public readonly value: T;
+  public parent: ClrTreetableTreeNode<T> | null = null;
+  public children: ClrTreetableTreeNode<T>[] = [];
 
+  /**
+   * If true, the node will stay INDETERMINATE even when all descendants are selected
+   * unless it was manually selected.
+   */
   private readonly stickyIndeterminate: boolean;
   private readonly manuallySelected = signal(false);
-  private readonly childSelectionStates = computed(() => this.children.map(child => child.selected()));
 
   public selected = linkedSignal<ClrTreetableSelectedState>(() => {
     const isManuallySelected = this.manuallySelected();
-    const childStates = this.childSelectionStates();
-    const allChildrenSelected = childStates.every(state => state === ClrTreetableSelectedState.SELECTED);
-    const anyChildSelected = childStates.some(
-      state => state === ClrTreetableSelectedState.SELECTED || state === ClrTreetableSelectedState.INDETERMINATE
-    );
+
+    let allChildrenSelected = true;
+    let anyChildSelected = false;
+
+    for (const child of this.depthFirstDescendants()) {
+      switch (child.selected()) {
+        case ClrTreetableSelectedState.SELECTED:
+          anyChildSelected = true;
+          break;
+        case ClrTreetableSelectedState.INDETERMINATE:
+          anyChildSelected = true;
+          allChildrenSelected = false;
+          break;
+        case ClrTreetableSelectedState.UNSELECTED:
+        default:
+          allChildrenSelected = false;
+          break;
+      }
+
+      if (!allChildrenSelected && anyChildSelected) {
+        break;
+      }
+    }
 
     if (isManuallySelected && allChildrenSelected) {
       return ClrTreetableSelectedState.SELECTED;
@@ -43,22 +84,35 @@ export class ClrTreetableTreeNode<T extends object> {
   });
 
   constructor(
-    public value: T,
-    public parent: ClrTreetableTreeNode<T> | null = null,
-    public children: ClrTreetableTreeNode<T>[] = [],
-    stickyIndeterminate?: boolean
+    value: T,
+    parent: ClrTreetableTreeNode<T> | null = null,
+    children: ClrTreetableTreeNode<T>[] = [],
+    stickyIndeterminate: boolean = false
   ) {
-    this.stickyIndeterminate = stickyIndeterminate ?? false;
+    this.value = value;
+    this.parent = parent;
+    this.children = children;
+    this.stickyIndeterminate = stickyIndeterminate;
   }
 
+  /**
+   * Depth level in the tree (root = 0).
+   */
   get depth(): number {
     return this.parent ? this.parent.depth + 1 : 0;
   }
 
+  /**
+   * True if this node has no children.
+   */
   get isLeaf(): boolean {
     return this.children?.length === 0;
   }
 
+  /**
+   * Sets the selection state for this node and propagates to all descendants (except INDETERMINATE).
+   * @param state Desired selection state.
+   */
   public setSelected(state: ClrTreetableSelectedState): void {
     switch (state) {
       case ClrTreetableSelectedState.SELECTED:
@@ -78,6 +132,16 @@ export class ClrTreetableTreeNode<T extends object> {
     }
   }
 
+  /**
+   * Returns all descendants as a flat array.
+   */
+  public getFlatDescendants(): ClrTreetableTreeNode<T>[] {
+    return Array.from(this.depthFirstDescendants());
+  }
+
+  /**
+   * Recursively applies a selected/unselected state to all descendants.
+   */
   private propagateToChildren(selected: boolean): void {
     for (const child of this.children) {
       child.setSelected(selected ? ClrTreetableSelectedState.SELECTED : ClrTreetableSelectedState.UNSELECTED);
@@ -86,44 +150,46 @@ export class ClrTreetableTreeNode<T extends object> {
       }
     }
   }
+
+  /**
+   * Internal depth-first traversal generator (pre-order) over descendants.
+   */
+  private *depthFirstDescendants(): Generator<ClrTreetableTreeNode<T>> {
+    for (const child of this.children) {
+      yield child;
+      if (!child.isLeaf) {
+        yield* child.depthFirstDescendants();
+      }
+    }
+  }
 }
 
 /**
- * The internal recursive helper. This is where the magic happens.
- * It's generic over T, and K which is the specific child key we're working with.
+ * Internal recursive helper building the internal tree node structure.
  */
 function mapToInternalTreeRecursive<T extends object>(
-  node: T,
+  value: T,
   getChildren: ClrTreetableChildrenFunction<T>,
   parent: ClrTreetableTreeNode<T> | null,
   stickyIndeterminate: boolean
 ): ClrTreetableTreeNode<T> {
-  const children: T[] = getChildren(node) || [];
-
-  const internalNode = new ClrTreetableTreeNode(node, parent, [], stickyIndeterminate);
-
-  internalNode.children = children.map(child =>
-    mapToInternalTreeRecursive(child, getChildren, internalNode, stickyIndeterminate)
-  );
-
-  return internalNode;
+  const node = new ClrTreetableTreeNode(value, parent, [], stickyIndeterminate);
+  const rawChildren: T[] = getChildren(value) || [];
+  node.children = rawChildren.map(child => mapToInternalTreeRecursive(child, getChildren, node, stickyIndeterminate));
+  return node;
 }
 
 /**
- * Maps a generic, tree-like object to a standardized InternalTreeNode structure in a type-safe way.
+ * Creates an internal tree node hierarchy from a raw data object.
  *
- * @param node The raw data node from the original tree.
- * @returns A new tree structure conforming to the InternalTreeNode interface.
+ * @param value Root raw data object.
+ * @param getChildren Function returning direct children of a node.
+ * @param stickyIndeterminate Whether to keep INDETERMINATE even if all descendants become selected.
  */
 export function mapToInternalTree<T extends object>(
-  node: T,
+  value: T,
   getChildren: ClrTreetableChildrenFunction<T>,
   stickyIndeterminate: boolean
 ): ClrTreetableTreeNode<T> {
-  const children = getChildren(node) || [];
-  if (!(children.length > 0)) {
-    return new ClrTreetableTreeNode(node, null, [], stickyIndeterminate);
-  }
-
-  return mapToInternalTreeRecursive(node, getChildren, null, stickyIndeterminate);
+  return mapToInternalTreeRecursive(value, getChildren, null, stickyIndeterminate);
 }
