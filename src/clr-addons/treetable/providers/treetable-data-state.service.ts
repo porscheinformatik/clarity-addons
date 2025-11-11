@@ -8,10 +8,13 @@ import { computed, inject, Injectable, signal } from '@angular/core';
 import { Sort } from './sort';
 import { ClrTreetableChildrenFunction, ClrTreetableTreeNode, mapToInternalTree } from '../interfaces/treetable-model';
 import { Filters } from './filters';
-import { combineLatest, map, merge } from 'rxjs';
+import { combineLatest, distinctUntilChanged, map, Observable, shareReplay, startWith } from 'rxjs';
 import { ClrTreetableSelectedState } from '../enums/selection-type';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { filter } from 'rxjs/operators';
+import { ClrTreetableFilterInterface } from '../interfaces/filter-model';
+import { ClrTreetableState } from '../interfaces/treetable-state-model';
+import { areTreetableStatesEqual } from '../util/treetable-state-util';
 
 @Injectable()
 export class TreetableDataStateService<T extends object> {
@@ -19,8 +22,8 @@ export class TreetableDataStateService<T extends object> {
   private readonly _sort = inject(Sort<T>);
 
   private readonly _dataSource = signal<{ items: T[]; getChildren: ClrTreetableChildrenFunction<T> }>(undefined);
-  private readonly _selectedItems = signal<T[]>([]);
   private readonly _stickyIndeterminate = signal(false);
+  private readonly _itemsExternallySelected = signal<T[]>([]);
 
   private readonly _treetableNodes = computed(() => {
     const dataSource = this._dataSource();
@@ -39,30 +42,17 @@ export class TreetableDataStateService<T extends object> {
       return treetableNodes;
     }
 
-    const passesAllFilters = (node: ClrTreetableTreeNode<T>) =>
-      activeFilters.every(filter => filter.accepts(node.value));
-
-    const filterTree = (nodes: ClrTreetableTreeNode<T>[]): ClrTreetableTreeNode<T>[] => {
-      const result: ClrTreetableTreeNode<T>[] = [];
-      for (const node of nodes) {
-        const children = filterTree(node.children);
-        if (children.length > 0 || passesAllFilters(node)) {
-          const cloned = Object.assign(Object.create(Object.getPrototypeOf(node)), node, { children });
-          result.push(cloned);
-        }
-      }
-      return result;
-    };
-
-    return filterTree(treetableNodes);
+    return this.filterTreeRecursively(treetableNodes, activeFilters);
   });
 
   readonly displayedNodes = computed(() => {
     const nodes = this._filteredNodes();
     const { comparator } = this._sort.sortState();
+
     if (!comparator) {
       return nodes;
     }
+
     return this.sortTreeRecursively(nodes);
   });
 
@@ -72,24 +62,32 @@ export class TreetableDataStateService<T extends object> {
 
   readonly selectedNodes = computed(() => {
     const result: T[] = [];
-    const traversalFn = (nodes: ClrTreetableTreeNode<T>[]): void => {
-      for (const node of nodes) {
-        if (node.selected() === ClrTreetableSelectedState.SELECTED) {
-          result.push(node.value);
-        }
-        if (!node.isLeaf) {
-          traversalFn(node.children);
-        }
+    this.traverseTreeNodes(this.displayedNodes(), (node: ClrTreetableTreeNode<T>) => {
+      if (node.selected() === ClrTreetableSelectedState.SELECTED) {
+        result.push(node.value);
       }
-    };
-    traversalFn(this.displayedNodes());
+    });
     return result;
   });
 
-  readonly changes$ = merge(this._filters.changes$, this._sort.changes$);
+  readonly changes$: Observable<ClrTreetableState<T>> = combineLatest([
+    this._filters.changes$.pipe(startWith([])),
+    this._sort.changes$.pipe(startWith({ comparator: null, reverse: false })),
+  ]).pipe(
+    map(
+      ([filterValues, sortState]): ClrTreetableState<T> => ({
+        sort: sortState.comparator ? { comparator: sortState.comparator, reverse: sortState.reverse } : null,
+        filters: filterValues,
+      })
+    ),
+    distinctUntilChanged((a, b) => areTreetableStatesEqual(a, b)),
+    shareReplay(1)
+  );
 
   constructor() {
-    const externallySelectedItems$ = toObservable(this._selectedItems).pipe(map(items => new Set(items)));
+    // Externally selected has to be handled as a signal, as it is a synchronous change. Simply using a subject instead
+    // of a signal results in errors.
+    const externallySelectedItems$ = toObservable(this._itemsExternallySelected).pipe(map(items => new Set(items)));
     const treetableNodes$ = toObservable(this._treetableNodes);
     const handleExternalSelect$ = combineLatest([externallySelectedItems$, treetableNodes$]);
 
@@ -98,29 +96,26 @@ export class TreetableDataStateService<T extends object> {
     // The subscribe function only runs, if the selectedItems differ in length to the currently selectedNodes.
     handleExternalSelect$
       .pipe(
-        map(([selectedItems, treetableNodes]) => ({
-          items: selectedItems,
-          ttNodes: treetableNodes,
+        map(([externallySelectedItems, treetableNodes]) => ({
+          externallySelectedItems: externallySelectedItems,
+          nodes: treetableNodes,
           selectedNodes: this.selectedNodes(),
         })),
-        filter(({ items, ttNodes }) => items.size > 0 && ttNodes.length > 0),
-        filter(({ items, selectedNodes }) => items.size !== selectedNodes.length),
+        filter(({ externallySelectedItems, nodes }) => externallySelectedItems.size > 0 && nodes.length > 0),
+        filter(({ externallySelectedItems, selectedNodes }) => externallySelectedItems.size !== selectedNodes.length),
         takeUntilDestroyed()
       )
-      .subscribe(({ items, ttNodes }) => {
-        const traversalFn = (nodes: ClrTreetableTreeNode<T>[]): void => {
-          for (const node of nodes) {
-            if (items.has(node.value)) {
-              items.delete(node.value);
+      .subscribe(({ externallySelectedItems, nodes }) => {
+        this.traverseTreeNodes(
+          nodes,
+          (node: ClrTreetableTreeNode<T>): void => {
+            if (externallySelectedItems.has(node.value)) {
+              externallySelectedItems.delete(node.value);
               node.setSelected(ClrTreetableSelectedState.SELECTED);
             }
-            if (!node.isLeaf && items.size > 0) {
-              traversalFn(node.children);
-            }
-          }
-        };
-
-        traversalFn(ttNodes);
+          },
+          (): boolean => externallySelectedItems.size > 0
+        );
       });
   }
 
@@ -128,8 +123,8 @@ export class TreetableDataStateService<T extends object> {
     this._dataSource.set({ items, getChildren });
   }
 
-  setSelectedItems(items: T[]) {
-    this._selectedItems.set(items);
+  setExternallySelectedItems(items: T[]) {
+    this._itemsExternallySelected.set(items);
   }
 
   setStickyIndeterminate(value: boolean) {
@@ -146,6 +141,24 @@ export class TreetableDataStateService<T extends object> {
     }
   }
 
+  private filterTreeRecursively(
+    nodes: ClrTreetableTreeNode<T>[],
+    activeFilters: ClrTreetableFilterInterface<T>[]
+  ): ClrTreetableTreeNode<T>[] {
+    const passesAllFilters = (node: ClrTreetableTreeNode<T>) =>
+      activeFilters.every(filter => filter.accepts(node.value));
+
+    const result: ClrTreetableTreeNode<T>[] = [];
+    for (const node of nodes) {
+      const children = this.filterTreeRecursively(node.children, activeFilters);
+      if (children.length > 0 || passesAllFilters(node)) {
+        const cloned = Object.assign(Object.create(Object.getPrototypeOf(node)), node, { children });
+        result.push(cloned);
+      }
+    }
+    return result;
+  }
+
   private sortTreeRecursively(nodes: ClrTreetableTreeNode<T>[]): ClrTreetableTreeNode<T>[] {
     const sortedNodes = [...nodes].sort((nodeA, nodeB) => this._sort.compare(nodeA.value, nodeB.value));
 
@@ -157,5 +170,19 @@ export class TreetableDataStateService<T extends object> {
       }
       return node;
     });
+  }
+
+  private traverseTreeNodes(
+    nodes: ClrTreetableTreeNode<T>[],
+    callBackFn: (node: ClrTreetableTreeNode<T>) => void,
+    breakCondition: (node: ClrTreetableTreeNode<T>) => boolean = () => true
+  ): void {
+    for (const node of nodes) {
+      callBackFn(node);
+
+      if (!node.isLeaf && breakCondition(node)) {
+        this.traverseTreeNodes(node.children, callBackFn, breakCondition);
+      }
+    }
   }
 }

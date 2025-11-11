@@ -16,3 +16,4 @@ export * from './providers';
 export * from './treetable-items';
 export * from './interfaces/comparator.interface';
 export * from './enums/sort-order.enum';
+export { areTreetableStatesEqual } from './util/treetable-state-util';

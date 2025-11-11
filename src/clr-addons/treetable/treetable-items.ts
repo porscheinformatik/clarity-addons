@@ -9,6 +9,13 @@ import { TreetableDataStateService } from './providers';
 import { ClrTreetableChildrenFunction, ClrTreetableTreeNode } from './interfaces/treetable-model';
 import { ClrTreetableRecursionService } from './providers/treetable-recursion.service';
 
+/**
+ * Context passed to a TreeTable item template.
+ *
+ * $implicit: The current data item.<br/>
+ * isLeaf: True if the node has no children.<br/>
+ * clrTtNode: Internal tree node metadata object.<br/>
+ */
 export type ClrTreetableItemsContext<T extends object> = {
   $implicit: T;
   isLeaf: boolean;
@@ -42,7 +49,7 @@ export class TreetableItemsDirective<T extends object> {
   }
 
   static ngTemplateContextGuard<C extends object>(
-    // @ts-expect-error This is a valid Angular context guard!
+    // @ts-expect-error This is a valid Angular context guard.
     dir: TreetableItemsDirective<C>,
     // @ts-expect-error This is a valid Angular context guard.
     ctx: any

@@ -14,6 +14,7 @@ import {
   ClrTreetableRecursionService,
   TREETABLE_RECURSION_SERVICE_PROVIDER,
 } from './providers/treetable-recursion.service';
+import { ClrTreetableState } from './interfaces/treetable-state-model';
 
 @Component({
   selector: 'clr-treetable',
@@ -34,7 +35,7 @@ export class ClrTreetable<T extends object> {
   readonly clrTtNoAutoParentSelection = input(false);
 
   readonly clrTtSelectedChange = outputFromObservable<T[]>(toObservable(this._dataStateService.selectedNodes));
-  readonly clrTtRefresh = outputFromObservable(this._dataStateService.changes$);
+  readonly clrTtRefresh = outputFromObservable<ClrTreetableState<T>>(this._dataStateService.changes$);
 
   private readonly _ttRows = contentChildren(ClrTreetableRow, { descendants: true });
   private readonly _actionOverflow = contentChildren(ClrTreetableActionOverflow, { descendants: true });
@@ -50,7 +51,7 @@ export class ClrTreetable<T extends object> {
 
   constructor() {
     effect(() => {
-      this._dataStateService.setSelectedItems(this.clrTtSelected());
+      this._dataStateService.setExternallySelectedItems(this.clrTtSelected());
     });
 
     effect(() => {

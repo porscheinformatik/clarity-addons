@@ -110,7 +110,7 @@ export class ClrTreetableStringFilter<T> implements ClrTreetableFilterInterface<
   }
 
   protected clearFilter() {
-    this.clrTtFilterValue.set('');
+    this._textChange$.next('');
   }
 
   protected inputChanged(value: string) {

@@ -3,6 +3,14 @@ import { ClrTreetableFilterInterface } from '../interfaces/filter-model';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { distinctUntilChanged, map, shareReplay, Subject } from 'rxjs';
 
+/**
+ * Wrapper for a treetable filter instance that holds the filter and its unregister callback.
+ *
+ * @template T The row data type processed by the treetable.
+ * @template F The concrete filter type implementing <code>ClrTreetableFilterInterface</code> for <code>T</code>.
+ * @property filter The concrete filter instance.
+ * @property unregister Callback to remove this filter from the Filters service.
+ */
 export class RegisteredTreetableFilter<T, F extends ClrTreetableFilterInterface<T>> {
   constructor(public filter: F, public unregister: () => void) {}
 }
@@ -10,6 +18,25 @@ export class RegisteredTreetableFilter<T, F extends ClrTreetableFilterInterface<
 type RegisteredFilter<T> = RegisteredTreetableFilter<T, ClrTreetableFilterInterface<T>>;
 type TreetableFilterState<T> = Record<string, { filter: RegisteredFilter<T>; value: unknown | undefined }>;
 type FilterValueUpdate = { filterId: string; value: unknown };
+
+/**
+ * Helper function to check if a primitive filter value is valid. Complex objects will always be valid.
+ * This function is a fallback for primitive values, if a custom filter does not set the isActive method correctly.
+ *
+ * @param value the value to check
+ */
+function isValidFilterValue(value: unknown): boolean {
+  if (value == null || value === false) {
+    return false;
+  }
+  if (typeof value === 'string') {
+    return value.trim().length > 0;
+  }
+  if (typeof value === 'number') {
+    return !Number.isNaN(value);
+  }
+  return true;
+}
 
 @Injectable()
 export class Filters<T> {
@@ -32,7 +59,12 @@ export class Filters<T> {
   readonly hasActiveFilters = computed(() => this.activeFilters().length > 0);
 
   readonly changes$ = toObservable(this._filterState).pipe(
-    map(filterState => Object.values(filterState).map(({ value }) => value)),
+    map(filterState =>
+      Object.values(filterState)
+        .filter(({ filter }) => filter.filter.isActive())
+        .map(({ value }) => value)
+        .filter(value => isValidFilterValue(value))
+    ),
     distinctUntilChanged(),
     shareReplay(1)
   );
