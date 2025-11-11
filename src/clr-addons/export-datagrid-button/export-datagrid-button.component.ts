@@ -1,7 +1,7 @@
 import { Component, computed, ElementRef, EventEmitter, input, Output, signal } from '@angular/core';
 import { ClarityModule, ClrDatagrid, ClrDatagridColumn } from '@clr/angular';
 import { ExportDatagridService } from './export-datagrid.service';
-import { NgClass, NgForOf, NgIf } from '@angular/common';
+import { NgClass, NgForOf } from '@angular/common';
 import { ExportType, ExportTypeEnum } from './export-type.model';
 
 @Component({
@@ -9,7 +9,7 @@ import { ExportType, ExportTypeEnum } from './export-type.model';
   templateUrl: './export-datagrid-button.component.html',
   styleUrl: './export-datagrid-button.component.scss',
   standalone: true,
-  imports: [ClarityModule, NgIf, NgForOf, NgClass],
+  imports: [ClarityModule, NgForOf, NgClass],
 })
 export class ExportDatagridButtonComponent {
   /* input signals */
@@ -20,6 +20,7 @@ export class ExportDatagridButtonComponent {
   exportTitlePrefix = input('export-datagrid');
   exportButtonPosition = input<'left' | 'right'>('right');
   possibleExportTypes = signal<ExportTypeEnum[]>([ExportTypeEnum.ALL]);
+  exportButtonText = input('EXPORT');
 
   /* outputs */
   @Output() readonly backendExport: EventEmitter<ExportTypeEnum> = new EventEmitter<ExportTypeEnum>();
