@@ -95,6 +95,10 @@
       @include sliding-nav-positioning(0, 0, 0, auto);
       transform: translateX(variables.$clr-sliding-panel-width);
       transition: variables.$clr-sliding-panel-animation;
+
+      svg {
+        display: none;
+      }
     }
 
     .subnav.clr-nav-level-1,
@@ -323,31 +327,6 @@
       .subnav.clr-nav-level-2,
       .sub-nav.clr-nav-level-2 {
         padding-top: 1rem;
-      }
-
-      .header-overflow-trigger {
-        @include menu-trigger(0, auto, (-1 * (variables.$clr-sliding-panel-width + 0.5rem)));
-
-        > span {
-          background: transparent;
-
-          &::before,
-          &::after {
-            height: 0.1rem;
-            width: 1.2rem;
-            left: -0.3rem;
-            transform-origin: -3%;
-            transition: variables.$clr-trigger-animation;
-          }
-
-          &::before {
-            transform: rotate(45deg);
-          }
-
-          &::after {
-            transform: rotate(-45deg);
-          }
-        }
       }
     }
   }
