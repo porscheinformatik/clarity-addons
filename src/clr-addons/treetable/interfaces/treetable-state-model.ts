@@ -14,5 +14,5 @@ import { ClrTreetableComparatorInterface } from './comparator.interface';
  */
 export interface ClrTreetableState<T, F = unknown> {
   sort: { comparator: ClrTreetableComparatorInterface<T>; reverse: boolean } | null;
-  filters?: F[];
+  filters: F[];
 }

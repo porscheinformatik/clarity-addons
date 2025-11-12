@@ -8,7 +8,7 @@ import { computed, inject, Injectable, signal } from '@angular/core';
 import { Sort } from './sort';
 import { ClrTreetableChildrenFunction, ClrTreetableTreeNode, mapToInternalTree } from '../interfaces/treetable-model';
 import { Filters } from './filters';
-import { combineLatest, distinctUntilChanged, map, Observable, shareReplay, startWith } from 'rxjs';
+import { auditTime, combineLatest, distinctUntilChanged, map, Observable, shareReplay, skip } from 'rxjs';
 import { ClrTreetableSelectedState } from '../enums/selection-type';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { filter } from 'rxjs/operators';
@@ -71,8 +71,8 @@ export class TreetableDataStateService<T extends object> {
   });
 
   readonly changes$: Observable<ClrTreetableState<T>> = combineLatest([
-    this._filters.changes$.pipe(startWith([])),
-    this._sort.changes$.pipe(startWith({ comparator: null, reverse: false })),
+    this._filters.changes$,
+    this._sort.changes$,
   ]).pipe(
     map(
       ([filterValues, sortState]): ClrTreetableState<T> => ({
@@ -80,6 +80,8 @@ export class TreetableDataStateService<T extends object> {
         filters: filterValues,
       })
     ),
+    skip(1),
+    auditTime(500),
     distinctUntilChanged((a, b) => areTreetableStatesEqual(a, b)),
     shareReplay(1)
   );
@@ -91,7 +93,7 @@ export class TreetableDataStateService<T extends object> {
     const treetableNodes$ = toObservable(this._treetableNodes).pipe(filter(nodes => nodes.length > 0));
     const handleExternalSelect$ = combineLatest([externallySelectedItems$, treetableNodes$]);
 
-    // This stream handles the external setting of selected nodes. Typically this will run only once in the
+    // This stream handles the external setting of selected nodes. Typically, this will run only once in the
     // beginning, if some nodes need to be selected from the start (e.g. restoring treetable state from local storage).
     // The subscribe function only runs, if the selectedItems differ in length to the currently selectedNodes.
     handleExternalSelect$
