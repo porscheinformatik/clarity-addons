@@ -1,37 +1,23 @@
 // css animation only since angular animation wouldn't be working smoothly with sorting or order changes
 // also performance with a large amount of rows is way better
-.treetable-row-animation-container {
+
+.treetable-children-container {
+  max-height: 0;
+  opacity: 0;
+  will-change: max-height, height, opacity;
+
   &.expanded {
-    display: grid;
-    grid-template-rows: 1fr;
+    // Customize the upper bound if needed:
+    max-height: var(--tt-row-max-height, 1000px);
     opacity: 1;
   }
 
   &.collapsed {
-    display: none;
-    grid-template-rows: 0fr;
+    max-height: 0;
     opacity: 0;
   }
 
   &.animate {
-    // allow discrete in order to be able to animate display
-    transition: grid-template-rows 0.3s ease, opacity 0.3s ease, display 0.3s ease allow-discrete;
-
-    &.expanded {
-      @starting-style {
-        grid-template-rows: 0fr;
-        opacity: 0;
-      }
-    }
-    &.collapsed {
-      @starting-style {
-        grid-template-rows: 1fr;
-        opacity: 1;
-      }
-    }
+    transition: max-height 0.2s ease, opacity 0.4s ease;
   }
-}
-
-.treetable-row-animation-wrapper {
-  min-height: 0;
 }

@@ -20,6 +20,7 @@
   }
 
   <ng-content select="clr-tt-action-overflow" />
+
   @if (showActionOverflow() && showEmptyActionOverflow()) {
   <clr-tt-action-overflow [empty]="true" />
   }
@@ -40,16 +41,14 @@
 </div>
 
 <div
-  class="treetable-row-animation-container"
+  class="treetable-children-container"
   [class.expanded]="clrExpanded()"
   [class.collapsed]="!clrExpanded()"
   [class.animate]="shouldAnimate()"
 >
-  <div class="treetable-row-animation-wrapper">
-    @if (isRecursionMode()) {
-    <clr-tt-recursive-rows [parent]="clrTtItem()" />
-    } @else {
-    <ng-content select="clr-tt-row" />
-    }
-  </div>
+  @if (isRecursionMode()) {
+  <clr-tt-recursive-rows [parent]="clrTtItem()" />
+  } @else {
+  <ng-content select="clr-tt-row" />
+  }
 </div>
