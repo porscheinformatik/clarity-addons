@@ -95,10 +95,6 @@
       @include sliding-nav-positioning(0, 0, 0, auto);
       transform: translateX(variables.$clr-sliding-panel-width);
       transition: variables.$clr-sliding-panel-animation;
-
-      svg {
-        display: none;
-      }
     }
 
     .subnav.clr-nav-level-1,
