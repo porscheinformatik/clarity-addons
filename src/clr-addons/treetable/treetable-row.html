@@ -26,8 +26,14 @@
   }
 
   <div class="treetable-scrolling-cells">
-    <div class="treetable-expandable-caret" *ngIf="clrExpandable()">
-      <button type="button" class="treetable-expandable-caret-button" (click)="onCaretClick()">
+    @if (clrExpandable()) {
+    <div class="treetable-expandable-caret">
+      <button
+        type="button"
+        class="treetable-expandable-caret-button"
+        data-testId="clrTtRowCaret"
+        (click)="onCaretClick()"
+      >
         <cds-icon
           shape="angle"
           [attr.direction]="clrExpanded() ? 'down' : 'right'"
@@ -35,6 +41,7 @@
         ></cds-icon>
       </button>
     </div>
+    }
 
     <ng-content select="clr-tt-cell" />
   </div>
@@ -42,6 +49,7 @@
 
 <div
   class="treetable-children-container"
+  data-testId="clrTtRowChildContainer"
   [class.expanded]="clrExpanded()"
   [class.collapsed]="!clrExpanded()"
   [class.animate]="shouldAnimate()"
