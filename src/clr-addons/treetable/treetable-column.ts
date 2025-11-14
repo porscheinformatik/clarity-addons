@@ -23,15 +23,17 @@ import {
   providers: [ClrPopoverToggleService, ClrPopoverEventsService, ClrPopoverPositionService],
   template: `
     @if (isSortable()) {
-    <button class="treetable-column-title" (click)="sort()" type="button">
+    <button type="button" class="treetable-column-title" data-testId="clrTtSortButton" (click)="sort()">
       <ng-container *ngTemplateOutlet="columnTitle" />
+      @if (sortDirection()) {
       <cds-icon
-        *ngIf="sortDirection()"
         shape="arrow"
-        [attr.direction]="sortDirection()"
         aria-hidden="true"
         class="sort-icon"
+        data-testId="clrTtSortIndicator"
+        [attr.direction]="sortDirection()"
       />
+      }
     </button>
     } @else {
     <ng-container *ngTemplateOutlet="columnTitle" />
@@ -59,7 +61,7 @@ export class ClrTreetableColumn<T extends object> {
   readonly clrTtSortOrder = input(ClrTreetableSortOrder.UNSORTED);
   readonly clrTtSortOrderChange = output<ClrTreetableSortOrder>();
 
-  private readonly _currentSortOrder = computed(() => {
+  private readonly _internalSortOrder = computed(() => {
     const sortState = this._sort.sortState();
     const sortBy = this.clrTtSortBy();
 
@@ -72,7 +74,7 @@ export class ClrTreetableColumn<T extends object> {
 
   protected readonly isSortable = computed(() => !!this.clrTtSortBy());
   protected readonly sortDirection = computed(() => {
-    const order = this._currentSortOrder();
+    const order = this._internalSortOrder();
     if (order === ClrTreetableSortOrder.UNSORTED) {
       return null;
     }
@@ -80,7 +82,7 @@ export class ClrTreetableColumn<T extends object> {
   });
 
   protected readonly ariaSort = computed(() => {
-    switch (this._currentSortOrder()) {
+    switch (this._internalSortOrder()) {
       case ClrTreetableSortOrder.ASC:
         return 'ascending';
       case ClrTreetableSortOrder.DESC:
@@ -137,10 +139,10 @@ export class ClrTreetableColumn<T extends object> {
         }
       });
 
-    // Emit sort order changes when the sort state changes
+    // Emit sort order changes of the column
     effect(() => {
-      const currentOrder = this._currentSortOrder();
-      this.clrTtSortOrderChange.emit(currentOrder);
+      const internalSortOrder = this._internalSortOrder();
+      this.clrTtSortOrderChange.emit(internalSortOrder);
     });
   }
 
