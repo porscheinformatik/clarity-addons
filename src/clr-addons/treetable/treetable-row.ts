@@ -45,7 +45,7 @@ export class ClrTreetableRow<T extends object> {
   protected readonly shouldAnimate = signal<boolean>(false);
   protected readonly isRecursionMode = this._recursionService.isRecursionMode;
 
-  private readonly isClickable = computed(() => this._treetable.clrClickableRows() && this.clrClickable());
+  private readonly _isClickable = computed(() => this._treetable.clrClickableRows() && this.clrClickable());
   protected readonly isSelected = computed(() => this.clrTtItem()?.selected() === ClrTreetableSelectedState.SELECTED);
 
   protected readonly showActionOverflow = computed(
@@ -77,13 +77,13 @@ export class ClrTreetableRow<T extends object> {
   }
 
   protected onRowClick(event: MouseEvent): void {
-    if (this.isClickable() && !(event.target as HTMLElement).closest('.treetable-action-trigger')) {
+    if (this._isClickable() && !(event.target as HTMLElement).closest('.treetable-action-trigger')) {
       this.onExpandCollapseClick();
     }
   }
 
   protected onCaretClick(): void {
-    if (!this.isClickable()) {
+    if (!this._isClickable()) {
       this.onExpandCollapseClick();
     }
   }

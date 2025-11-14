@@ -6,7 +6,7 @@
 import { ChangeDetectionStrategy, Component, computed, contentChildren, effect, inject, input } from '@angular/core';
 import { ClrTreetableRow } from './treetable-row';
 import { SelectionType } from './enums/selection-type';
-import { Selection, Sort, TreetableDataStateService } from './providers';
+import { Sort, TreetableDataStateService } from './providers';
 import { outputFromObservable, toObservable } from '@angular/core/rxjs-interop';
 import { ClrTreetableActionOverflow } from './treetable-action-overflow';
 import { Filters } from './providers/filters';
@@ -20,7 +20,7 @@ import { ClrTreetableState } from './interfaces/treetable-state-model';
   selector: 'clr-treetable',
   templateUrl: './treetable.html',
   host: { '[class.empty]': 'empty()', '[class.treetable-host]': 'true' },
-  providers: [TREETABLE_RECURSION_SERVICE_PROVIDER, Selection, TreetableDataStateService, Sort, Filters],
+  providers: [TREETABLE_RECURSION_SERVICE_PROVIDER, TreetableDataStateService, Sort, Filters],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })

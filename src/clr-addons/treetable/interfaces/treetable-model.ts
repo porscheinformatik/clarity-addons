@@ -44,7 +44,7 @@ export class ClrTreetableTreeNode<T extends object> {
     let allChildrenSelected = true;
     let anyChildSelected = false;
 
-    for (const child of this.depthFirstDescendants()) {
+    for (const child of this.children) {
       switch (child.selected()) {
         case ClrTreetableSelectedState.SELECTED:
           anyChildSelected = true;
@@ -133,10 +133,15 @@ export class ClrTreetableTreeNode<T extends object> {
   }
 
   /**
-   * Returns all descendants as a flat array.
+   * Returns all descendants as a flat generator.
    */
-  public getFlatDescendants(): ClrTreetableTreeNode<T>[] {
-    return Array.from(this.depthFirstDescendants());
+  public *getFlatDescendants(): Generator<ClrTreetableTreeNode<T>> {
+    for (const child of this.children) {
+      yield child;
+      if (!child.isLeaf) {
+        yield* child.getFlatDescendants();
+      }
+    }
   }
 
   /**
@@ -147,18 +152,6 @@ export class ClrTreetableTreeNode<T extends object> {
       child.setSelected(selected ? ClrTreetableSelectedState.SELECTED : ClrTreetableSelectedState.UNSELECTED);
       if (!child.isLeaf) {
         child.propagateToChildren(selected);
-      }
-    }
-  }
-
-  /**
-   * Internal depth-first traversal generator (pre-order) over descendants.
-   */
-  private *depthFirstDescendants(): Generator<ClrTreetableTreeNode<T>> {
-    for (const child of this.children) {
-      yield child;
-      if (!child.isLeaf) {
-        yield* child.depthFirstDescendants();
       }
     }
   }

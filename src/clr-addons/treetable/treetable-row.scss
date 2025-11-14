@@ -2,22 +2,20 @@
 // also performance with a large amount of rows is way better
 
 .treetable-children-container {
-  max-height: 0;
   opacity: 0;
-  will-change: max-height, height, opacity;
+  will-change: height, opacity;
 
   &.expanded {
-    // Customize the upper bound if needed:
-    max-height: var(--tt-row-max-height, 1000px);
     opacity: 1;
   }
 
   &.collapsed {
-    max-height: 0;
+    height: 0;
     opacity: 0;
+    overflow: hidden;
   }
 
   &.animate {
-    transition: max-height 0.2s ease, opacity 0.4s ease;
+    transition: height 0.4s ease, opacity 0.4s ease;
   }
 }

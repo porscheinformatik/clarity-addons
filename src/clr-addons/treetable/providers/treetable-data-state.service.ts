@@ -155,19 +155,36 @@ export class TreetableDataStateService<T extends object> {
     }
   }
 
+  /**
+   * Recursively filters the provided <code>ClrTreetableTreeNodes</code>. It returns the lowest depth nodes of the
+   * provided nodes, that pass all the filters and it's ancestors. The method returns a cloned subset of the provided nodes.
+   *
+   * @param nodes The nodes to filter.
+   * @param activeFilters The currently active filters that have to be passed.
+   * @param parent The parent node to set for the recursive filtering.
+   * @private
+   */
   private filterTreeRecursively(
     nodes: ClrTreetableTreeNode<T>[],
-    activeFilters: ClrTreetableFilterInterface<T>[]
+    activeFilters: ClrTreetableFilterInterface<T>[],
+    parent: ClrTreetableTreeNode<T> | null = null
   ): ClrTreetableTreeNode<T>[] {
-    const passesAllFilters = (node: ClrTreetableTreeNode<T>) =>
-      activeFilters.every(filter => filter.accepts(node.value));
+    const passesAllFilters = (node: ClrTreetableTreeNode<T>) => activeFilters.every(f => f.accepts(node.value));
 
     const result: ClrTreetableTreeNode<T>[] = [];
-    for (const node of nodes) {
-      const children = this.filterTreeRecursively(node.children, activeFilters);
-      if (children.length > 0 || passesAllFilters(node)) {
-        const cloned = Object.assign(Object.create(Object.getPrototypeOf(node)), node, { children });
-        result.push(cloned);
+    for (const original of nodes) {
+      const filteredChildren = this.filterTreeRecursively(original.children, activeFilters, null);
+
+      if (filteredChildren.length > 0 || passesAllFilters(original)) {
+        // A new instance is necessary here, for the selection state to still work
+        const newNode = new ClrTreetableTreeNode<T>(original.value, parent, [], this._stickyIndeterminate());
+
+        newNode.children = filteredChildren.map(child => {
+          child.parent = newNode;
+          return child;
+        });
+
+        result.push(newNode);
       }
     }
     return result;

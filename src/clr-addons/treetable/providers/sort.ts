@@ -18,12 +18,9 @@ export class Sort<T extends object> {
   private readonly _comparator = signal<ClrTreetableComparatorInterface<T> | null>(null);
   private readonly _reverse = signal<boolean>(false);
 
-  readonly comparator = computed(() => this._comparator());
-  readonly reverse = computed(() => this._reverse());
-
   readonly sortState = computed<TreetableSortState<T>>(() => ({
-    comparator: this.comparator(),
-    reverse: this.reverse(),
+    comparator: this._comparator(),
+    reverse: this._reverse(),
   }));
   readonly changes$ = toObservable(this.sortState);
 
@@ -31,8 +28,6 @@ export class Sort<T extends object> {
    * Sets a comparator as the current one, or toggles reverse if the comparator is already used. The
    * optional forceReverse input parameter allows to override that toggling behavior by sorting in
    * reverse order if `true`.
-   *
-   * @memberof Sort
    */
   public toggle(sortBy: ClrTreetableComparatorInterface<T>, forceReverse?: boolean): void {
     if (this._comparator() === sortBy) {
@@ -55,11 +50,11 @@ export class Sort<T extends object> {
    * Compares two items using the current comparator and reverse flag
    */
   public compare(a: T, b: T): number {
-    const currentComparator = this.comparator();
+    const currentComparator = this._comparator();
     if (!currentComparator) {
       return 0;
     }
 
-    return (this.reverse() ? -1 : 1) * currentComparator.compare(a, b);
+    return (this._reverse() ? -1 : 1) * currentComparator.compare(a, b);
   }
 }
