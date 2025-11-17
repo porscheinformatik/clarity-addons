@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * This software is released under MIT license.
+ * The full license information can be found in LICENSE in the root directory of this project.
+ */
+
 import { ChangeDetectionStrategy, Component, computed, model } from '@angular/core';
 import { ClrTreetableSelectedState } from './enums/selection-type';
 
@@ -6,7 +12,13 @@ import { ClrTreetableSelectedState } from './enums/selection-type';
   styleUrl: './treetable-row.scss',
   template: `
     <div class="clr-checkbox-wrapper treetable-row-selection treetable-cell">
-      <input type="checkbox" [indeterminate]="isIndeterminate()" [checked]="isSelected()" (change)="toggle()" />
+      <input
+        type="checkbox"
+        data-testId="clrTtRowCheckbox"
+        [indeterminate]="isIndeterminate()"
+        [checked]="isSelected()"
+        (change)="toggle()"
+      />
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

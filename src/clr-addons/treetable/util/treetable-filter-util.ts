@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * This software is released under MIT license.
+ * The full license information can be found in LICENSE in the root directory of this project.
+ */
+
 /**
  * Helper function to check if a primitive filter value is valid. Complex objects will always be valid.
  * This function is a fallback for primitive values, if a custom filter does not set the isActive method correctly.

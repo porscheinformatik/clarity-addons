@@ -9,7 +9,12 @@
     <div class="treetable-header" role="rowgroup" [class.hide-header]="clrHideHeader()">
       @if (showSelection() && !empty()) {
       <div class="clr-checkbox-wrapper treetable-row-selection treetable-column" role="row">
-        <input type="checkbox" [checked]="areAllRowsSelected()" (change)="toggleSelectAll()" />
+        <input
+          type="checkbox"
+          data-testId="clrTtSelectAll"
+          [checked]="areAllRowsSelected()"
+          (change)="toggleSelectAll()"
+        />
       </div>
       }
 

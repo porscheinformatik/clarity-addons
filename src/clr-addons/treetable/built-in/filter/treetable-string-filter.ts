@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * This software is released under MIT license.
+ * The full license information can be found in LICENSE in the root directory of this project.
+ */
+
 import {
   ChangeDetectionStrategy,
   Component,
@@ -20,7 +26,11 @@ const DEBOUNCE_TIME = 300 as const;
   selector: 'clr-tt-string-filter',
   template: `
     <clr-tt-filter [clrTtFilter]="this">
-      <button class="btn btn-sm btn-icon btn-link btn-trash" (click)="clearFilter()">
+      <button
+        class="btn btn-sm btn-icon btn-link btn-trash"
+        data-testId="clrTtStringFilterClearBtn"
+        (click)="clearFilter()"
+      >
         <cds-icon shape="trash"></cds-icon>
       </button>
       <clr-input-container>
@@ -32,6 +42,7 @@ const DEBOUNCE_TIME = 300 as const;
           type="text"
           name="search"
           autocomplete="off"
+          data-testId="clrTtStringFilterInput"
           [placeholder]="clrTtFilterPlaceholder()"
           [ngModel]="clrTtFilterValue()"
           (ngModelChange)="inputChanged($event)"

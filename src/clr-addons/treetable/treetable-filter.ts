@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * This software is released under MIT license.
+ * The full license information can be found in LICENSE in the root directory of this project.
+ */
+
 import { ChangeDetectionStrategy, Component, computed, inject, input, OnDestroy, OnInit, signal } from '@angular/core';
 import { ClrTreetableFilterInterface } from './interfaces/filter-model';
 import {
@@ -19,6 +25,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
       clrPopoverAnchor
       clrPopoverOpenCloseButton
       class="treetable-filter-toggle"
+      data-testId="clrTtToggleFilterButton"
       [class.treetable-filter-open]="open()"
       [class.treetable-filtered]="active()"
       [attr.aria-expanded]="open()"
