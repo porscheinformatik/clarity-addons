@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * This software is released under MIT license.
+ * The full license information can be found in LICENSE in the root directory of this project.
+ */
+
 import { computed, DestroyRef, inject, Injectable, signal } from '@angular/core';
 import { ClrTreetableFilterInterface } from '../interfaces/filter-model';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';

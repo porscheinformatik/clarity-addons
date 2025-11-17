@@ -1,7 +1,14 @@
+/*
+ * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * This software is released under MIT license.
+ * The full license information can be found in LICENSE in the root directory of this project.
+ */
+
 import { ClrTreetableRowCheckbox } from './treetable-row-checkbox';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ClrTreetableColumn } from './treetable-column';
 import { ClrTreetableSelectedState } from './enums/selection-type';
+import { By } from '@angular/platform-browser';
 
 describe('ClrTreetableRowCheckbox', () => {
   let component: ClrTreetableRowCheckbox;
@@ -17,7 +24,7 @@ describe('ClrTreetableRowCheckbox', () => {
     fixture = TestBed.createComponent(ClrTreetableRowCheckbox);
     component = fixture.componentInstance;
 
-    checkboxElement = fixture.nativeElement.querySelector('input[type="checkbox"]');
+    checkboxElement = fixture.debugElement.query(By.css('[data-testId="clrTtRowCheckbox"]')).nativeElement;
   });
 
   it('should create', () => {

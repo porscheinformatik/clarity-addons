@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { ClarityModule } from '@clr/angular';
 import { FormsModule } from '@angular/forms';
 import { ClrTreetableActionOverflow, ClrTreetableModule, ClrTreetableRow } from '@porscheinformatik/clr-addons';
@@ -99,6 +99,7 @@ class SelectableTestComponent {
 describe('ClrTreetableRow', () => {
   const TEST_IDS = {
     rowCaret: '[data-testId="clrTtRowCaret"]',
+    rowCheckbox: '[data-testId="clrTtRowCheckbox"]',
     childContainer: '[data-testId="clrTtRowChildContainer"]',
   } as const;
 
@@ -152,7 +153,7 @@ describe('ClrTreetableRow', () => {
     });
   });
 
-  describe('action overflow content component', () => {
+  describe('action overflow content', () => {
     let component: ActionOverflowTestComponent;
     let fixture: ComponentFixture<ActionOverflowTestComponent>;
 
@@ -199,6 +200,20 @@ describe('ClrTreetableRow', () => {
       actionOverflowDe.nativeElement.click();
 
       expect(testActionDe).toBeDefined();
+    });
+
+    it('should not toggle expand when clicking action overflow trigger', () => {
+      const ttRowDes: DebugElement[] = fixture.debugElement.queryAll(By.directive(ClrTreetableRow));
+      const firstRowDe = ttRowDes[0];
+      const rowComponent: ClrTreetableRow<object> = firstRowDe.componentInstance;
+
+      expect(rowComponent.clrExpanded()).toBeTrue(); // initial expanded in template
+
+      const triggerBtn: HTMLElement = firstRowDe.query(By.css('.treetable-action-trigger')).nativeElement;
+      triggerBtn.click();
+      fixture.detectChanges();
+
+      expect(rowComponent.clrExpanded()).toBeTrue();
     });
   });
 
@@ -271,6 +286,63 @@ describe('ClrTreetableRow', () => {
 
       expect(ttRowComponent.clrExpanded()).toBeTrue();
     });
+
+    it('should collapse again when row clicked twice (toggle)', () => {
+      const row: HTMLElement = fixture.debugElement.query(By.css('.treetable-row:first-of-type')).nativeElement;
+      expect(ttRowComponent.clrExpanded()).toBeFalse();
+
+      row.click();
+      fixture.detectChanges();
+      expect(ttRowComponent.clrExpanded()).toBeTrue();
+
+      row.click();
+      fixture.detectChanges();
+      expect(ttRowComponent.clrExpanded()).toBeFalse();
+    });
+
+    it('should update caret direction attribute on expand/collapse', () => {
+      const caretIcon: HTMLElement = ttRowDe.query(By.css('.treetable-expandable-caret-icon')).nativeElement;
+      expect(caretIcon.getAttribute('direction')).toBe('right');
+
+      const row: HTMLElement = fixture.debugElement.query(By.css('.treetable-row:first-of-type')).nativeElement;
+      row.click();
+      fixture.detectChanges();
+
+      expect(caretIcon.getAttribute('direction')).toBe('down');
+
+      row.click();
+      fixture.detectChanges();
+
+      expect(caretIcon.getAttribute('direction')).toBe('right');
+    });
+
+    it('should toggle expanded/collapsed css classes', () => {
+      const childContainer: HTMLElement = ttRowDe.query(By.css(TEST_IDS.childContainer)).nativeElement;
+      expect(childContainer.classList).toContain('collapsed');
+      expect(childContainer.classList).not.toContain('expanded');
+
+      const row: HTMLElement = fixture.debugElement.query(By.css('.treetable-row:first-of-type')).nativeElement;
+      row.click();
+      fixture.detectChanges();
+
+      expect(childContainer.classList).toContain('expanded');
+      expect(childContainer.classList).not.toContain('collapsed');
+    });
+
+    it('should add animate class temporarily after user click', fakeAsync(() => {
+      const childContainer: HTMLElement = ttRowDe.query(By.css(TEST_IDS.childContainer)).nativeElement;
+      const row: HTMLElement = fixture.debugElement.query(By.css('.treetable-row:first-of-type')).nativeElement;
+
+      expect(childContainer.classList).not.toContain('animate');
+
+      row.click();
+      fixture.detectChanges();
+      expect(childContainer.classList).toContain('animate');
+
+      tick(360);
+      fixture.detectChanges();
+      expect(childContainer.classList).not.toContain('animate');
+    }));
   });
 
   describe('row selection', () => {
@@ -299,7 +371,7 @@ describe('ClrTreetableRow', () => {
     });
 
     it('should preselect given item', async () => {
-      const expectedCheckBoxStates: Record<number, ClrTreetableSelectedState> = {
+      const expectedCheckBoxStates: ExpectedRowSelectionState = {
         0: ClrTreetableSelectedState.SELECTED,
         1: ClrTreetableSelectedState.UNSELECTED,
         2: ClrTreetableSelectedState.UNSELECTED,
@@ -316,7 +388,7 @@ describe('ClrTreetableRow', () => {
     });
 
     it('should toggle selection for a row without children', async () => {
-      const expectedCheckBoxStates: Record<number, ClrTreetableSelectedState> = {
+      const expectedCheckBoxStates: ExpectedRowSelectionState = {
         0: ClrTreetableSelectedState.UNSELECTED,
         1: ClrTreetableSelectedState.UNSELECTED,
         2: ClrTreetableSelectedState.UNSELECTED,
@@ -326,9 +398,7 @@ describe('ClrTreetableRow', () => {
       const ttRowDes: DebugElement[] = fixture.debugElement.queryAll(By.directive(ClrTreetableRow));
       const ttRowToTest = ttRowDes[3];
 
-      const rowCheckBox = ttRowToTest
-        .query(By.directive(ClrTreetableRowCheckbox))
-        .query(By.css('input[type="checkbox"]'));
+      const rowCheckBox = ttRowToTest.query(By.directive(ClrTreetableRowCheckbox)).query(By.css(TEST_IDS.rowCheckbox));
       rowCheckBox.nativeElement.click();
       await fixture.whenStable();
 
@@ -336,7 +406,7 @@ describe('ClrTreetableRow', () => {
     });
 
     it('should toggle selection for a row with children', async () => {
-      const expectedCheckBoxStates: Record<number, ClrTreetableSelectedState> = {
+      const expectedCheckBoxStates: ExpectedRowSelectionState = {
         0: ClrTreetableSelectedState.UNSELECTED,
         1: ClrTreetableSelectedState.SELECTED,
         2: ClrTreetableSelectedState.SELECTED,
@@ -346,9 +416,7 @@ describe('ClrTreetableRow', () => {
       const ttRowDes: DebugElement[] = fixture.debugElement.queryAll(By.directive(ClrTreetableRow));
       const ttRowToTest = ttRowDes[1];
 
-      const rowCheckBox = ttRowToTest
-        .query(By.directive(ClrTreetableRowCheckbox))
-        .query(By.css('input[type="checkbox"]'));
+      const rowCheckBox = ttRowToTest.query(By.directive(ClrTreetableRowCheckbox)).query(By.css(TEST_IDS.rowCheckbox));
       rowCheckBox.nativeElement.click();
       await fixture.whenStable();
 
@@ -356,7 +424,7 @@ describe('ClrTreetableRow', () => {
     });
 
     it('should toggle selection for a parent row if all child rows were selected', async () => {
-      const expectedCheckBoxStates: Record<number, ClrTreetableSelectedState> = {
+      const expectedCheckBoxStates: ExpectedRowSelectionState = {
         0: ClrTreetableSelectedState.UNSELECTED,
         1: ClrTreetableSelectedState.SELECTED,
         2: ClrTreetableSelectedState.SELECTED,
@@ -366,9 +434,7 @@ describe('ClrTreetableRow', () => {
       const ttRowDes: DebugElement[] = fixture.debugElement.queryAll(By.directive(ClrTreetableRow));
       const ttRowToTest = ttRowDes[2];
 
-      const rowCheckBox = ttRowToTest
-        .query(By.directive(ClrTreetableRowCheckbox))
-        .query(By.css('input[type="checkbox"]'));
+      const rowCheckBox = ttRowToTest.query(By.directive(ClrTreetableRowCheckbox)).query(By.css(TEST_IDS.rowCheckbox));
       rowCheckBox.nativeElement.click();
       await fixture.whenStable();
 
@@ -377,7 +443,8 @@ describe('ClrTreetableRow', () => {
   });
 });
 
-function expectRowsToHaveSelectionStates(rows: DebugElement[], expected: Record<number, ClrTreetableSelectedState>) {
+export type ExpectedRowSelectionState = Record<number, ClrTreetableSelectedState>;
+export function expectRowsToHaveSelectionStates(rows: DebugElement[], expected: ExpectedRowSelectionState) {
   for (let i = 0; i < rows.length; i++) {
     const row = rows[i];
     const ttRowComponent: ClrTreetableRow<Item> = row.componentInstance;
