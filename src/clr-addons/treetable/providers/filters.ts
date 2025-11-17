@@ -2,6 +2,7 @@ import { computed, DestroyRef, inject, Injectable, signal } from '@angular/core'
 import { ClrTreetableFilterInterface } from '../interfaces/filter-model';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { distinctUntilChanged, map, shareReplay, Subject } from 'rxjs';
+import { areFiltersDistinct, isValidFilterValue } from '../util/treetable-filter-util';
 
 /**
  * Wrapper for a treetable filter instance that holds the filter and its unregister callback.
@@ -18,25 +19,6 @@ export class RegisteredTreetableFilter<T, F extends ClrTreetableFilterInterface<
 type RegisteredFilter<T> = RegisteredTreetableFilter<T, ClrTreetableFilterInterface<T>>;
 type TreetableFilterState<T> = Record<string, { filter: RegisteredFilter<T>; value: unknown | undefined }>;
 type FilterValueUpdate = { filterId: string; value: unknown };
-
-/**
- * Helper function to check if a primitive filter value is valid. Complex objects will always be valid.
- * This function is a fallback for primitive values, if a custom filter does not set the isActive method correctly.
- *
- * @param value the value to check
- */
-function isValidFilterValue(value: unknown): boolean {
-  if (value == null || value === false) {
-    return false;
-  }
-  if (typeof value === 'string') {
-    return value.trim().length > 0;
-  }
-  if (typeof value === 'number') {
-    return !Number.isNaN(value);
-  }
-  return true;
-}
 
 @Injectable()
 export class Filters<T> {
@@ -65,7 +47,7 @@ export class Filters<T> {
         .map(({ value }) => value)
         .filter(value => isValidFilterValue(value))
     ),
-    distinctUntilChanged(),
+    distinctUntilChanged(areFiltersDistinct),
     shareReplay(1)
   );
 
