@@ -35,6 +35,7 @@ export class ClrTreetable<T extends object> {
   readonly clrTtSelected = input<T[]>(undefined);
   readonly clrTtAutoParentSelection = input(true);
 
+
   readonly clrTtSelectedChange = outputFromObservable<T[]>(toObservable(this._dataStateService.selectedNodes));
   readonly clrTtRefresh = outputFromObservable<ClrTreetableState<T>>(this._dataStateService.changes$);
 

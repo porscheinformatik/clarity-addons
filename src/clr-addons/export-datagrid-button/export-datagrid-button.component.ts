@@ -1,8 +1,7 @@
-import { Component, Output, EventEmitter, input, ElementRef, computed } from '@angular/core';
-import { ClrDatagrid } from '@clr/angular';
+import { Component, computed, ElementRef, EventEmitter, input, Output, signal } from '@angular/core';
+import { ClarityModule, ClrDatagrid, ClrDatagridColumn } from '@clr/angular';
 import { ExportDatagridService } from './export-datagrid.service';
-import { ClarityModule } from '@clr/angular';
-import { NgIf, NgForOf, NgClass } from '@angular/common';
+import { NgClass, NgForOf } from '@angular/common';
 import { ExportType, ExportTypeEnum } from './export-type.model';
 
 @Component({
@@ -10,7 +9,7 @@ import { ExportType, ExportTypeEnum } from './export-type.model';
   templateUrl: './export-datagrid-button.component.html',
   styleUrl: './export-datagrid-button.component.scss',
   standalone: true,
-  imports: [ClarityModule, NgIf, NgForOf, NgClass],
+  imports: [ClarityModule, NgForOf, NgClass],
 })
 export class ExportDatagridButtonComponent {
   /* input signals */
@@ -20,6 +19,8 @@ export class ExportDatagridButtonComponent {
   isBackendExport = input(false);
   exportTitlePrefix = input('export-datagrid');
   exportButtonPosition = input<'left' | 'right'>('right');
+  possibleExportTypes = signal<ExportTypeEnum[]>([ExportTypeEnum.ALL]);
+  exportButtonText = input('EXPORT');
 
   /* outputs */
   @Output() readonly backendExport: EventEmitter<ExportTypeEnum> = new EventEmitter<ExportTypeEnum>();
@@ -31,18 +32,34 @@ export class ExportDatagridButtonComponent {
   ];
 
   readonly exportTypesFiltered = computed(() => {
-    const exportTypesToShowVal = this.exportTypesToShow();
+    this.possibleExportTypes();
+    let exportTypesToShowVal = this.exportTypesToShow();
     if (!exportTypesToShowVal || exportTypesToShowVal.length === 0) {
-      return this.exportTypes;
+      exportTypesToShowVal = this.exportTypes;
     }
-    // Map to translated value, falling back to default if value is not provided
-    return exportTypesToShowVal.map(showType => {
-      const defaultType = this.exportTypes.find(et => et.type === showType.type);
-      return {
-        type: showType.type,
-        value: showType.value != null ? showType.value : defaultType?.value,
-      };
+    for (const column of this.datagrid().columns) {
+      // if a column filter is applied, show the FILTERED export type
+      column.filterValueChange.subscribe((col: ClrDatagridColumn) => {
+        this.updateExportType(ExportTypeEnum.FILTERED, !!col, exportTypesToShowVal);
+      });
+    }
+
+    this.datagrid().selectedChanged.subscribe(() => {
+      const hasSelection = this.datagrid().selection.current.length > 0;
+      // if a row is selected, show the SELECTED export type
+      this.updateExportType(ExportTypeEnum.SELECTED, hasSelection, exportTypesToShowVal);
     });
+
+    // Map to translated value, falling back to default if value is not provided
+    return exportTypesToShowVal
+      .filter(showType => this.possibleExportTypes().some(et => et === showType.type))
+      .map(showType => {
+        const defaultType = this.exportTypes.find(et => et.type === showType.type);
+        return {
+          type: showType.type,
+          value: showType.value != null ? showType.value : defaultType?.value,
+        };
+      });
   });
 
   constructor(private readonly exportService: ExportDatagridService) {}
@@ -79,6 +96,23 @@ export class ExportDatagridButtonComponent {
       this.backendExport.emit(type);
     } else {
       this.exportExcel(type);
+    }
+  }
+
+  /**
+   * Updates the possible export types based on the current datagrid state and allowed export types.
+   * @param type the export type to update
+   * @param shouldExist whether the export type should exist in the possible export types
+   * @param exportTypesToShowVal the allowed export types to show
+   */
+  private updateExportType(type: ExportTypeEnum, shouldExist: boolean, exportTypesToShowVal: ExportType[]) {
+    const index = this.possibleExportTypes().findIndex(et => et === type);
+    const allowed =
+      !exportTypesToShowVal || exportTypesToShowVal.length === 0 || exportTypesToShowVal.some(et => et.type === type);
+    if (index === -1 && allowed && shouldExist) {
+      this.possibleExportTypes.update(prev => [...prev, type]);
+    } else if (allowed && !shouldExist && index !== -1) {
+      this.possibleExportTypes.update(prev => prev.filter(et => et !== type));
     }
   }
 

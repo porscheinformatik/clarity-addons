@@ -4,22 +4,15 @@
     'export-btn-left': exportButtonPosition() === 'left'
   }"
 >
-  <ng-container *ngIf="exportTypesFiltered().length === 1; else exportDropdown">
-    <button class="btn btn-sm btn-outline" type="button" (click)="onExport(exportTypesFiltered()[0].type)">
-      {{ exportTypesFiltered()[0].value }}
+  <clr-dropdown>
+    <button class="btn btn-sm btn-outline" clrDropdownTrigger type="button">
+      {{ exportButtonText() }}
+      <cds-icon shape="angle" direction="down" size="12"></cds-icon>
     </button>
-  </ng-container>
-  <ng-template #exportDropdown>
-    <clr-dropdown>
-      <button class="btn btn-sm btn-outline" clrDropdownTrigger type="button">
-        Export
-        <cds-icon shape="angle" direction="down" size="12"></cds-icon>
+    <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+      <button *ngFor="let exportType of exportTypesFiltered()" (click)="onExport(exportType.type)" clrDropdownItem>
+        {{ exportType.value }}
       </button>
-      <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-        <button *ngFor="let exportType of exportTypesFiltered()" (click)="onExport(exportType.type)" clrDropdownItem>
-          {{ exportType.value }}
-        </button>
-      </clr-dropdown-menu>
-    </clr-dropdown>
-  </ng-template>
+    </clr-dropdown-menu>
+  </clr-dropdown>
 </div>

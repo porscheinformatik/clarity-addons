@@ -4,11 +4,12 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, Inject, Input, OnDestroy, OnInit, Optional } from '@angular/core';
+import { Component, DestroyRef, inject, Inject, Input, OnDestroy, OnInit, Optional } from '@angular/core';
 import { ClrHistoryModel } from './history-model.interface';
 import { ClrHistoryService } from './history.service';
 import { BehaviorSubject, ReplaySubject, Subject, Subscription } from 'rxjs';
 import { HISTORY_PROVIDER, HistoryProvider } from './history.provider';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'clr-history-pinned',
@@ -28,6 +29,8 @@ export class ClrHistoryPinned implements OnInit, OnDestroy {
   active$ = new BehaviorSubject<boolean>(this.initActive());
   private settingsSubscription: Subscription;
 
+  private readonly destroyRef = inject(DestroyRef);
+
   constructor(
     private readonly historyService: ClrHistoryService,
     @Inject(HISTORY_PROVIDER) @Optional() private readonly historyProvider: HistoryProvider
@@ -38,11 +41,14 @@ export class ClrHistoryPinned implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.historyService.getHistory(this.username, this.tenantId).subscribe(elements => {
-      this.historyElements$.next(
-        this.historyProvider ? this.historyProvider.getModifiedHistoryEntries(elements) : elements
-      );
-    });
+    this.historyService
+      .getHistory(this.username, this.tenantId)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(elements => {
+        this.historyElements$.next(
+          this.historyProvider ? this.historyProvider.getModifiedHistoryEntries(elements) : elements
+        );
+      });
 
     this.settingsSubscription = this.historyService.cookieSettings$.subscribe(settings => {
       const setting = settings.find(setting => setting.username === this.username);

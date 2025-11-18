@@ -18,6 +18,10 @@
         display: none;
       }
     }
+
+    .header-nav .header-overflow {
+      height: 100%;
+    }
   }
 
   .main-container:not(.open-hamburger-menu) .header-nav {
