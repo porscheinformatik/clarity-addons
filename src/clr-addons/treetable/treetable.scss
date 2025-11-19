@@ -286,11 +286,6 @@ $indentation-increment: 1rem;
             display: flex;
             width: 100%;
 
-            &:hover {
-              text-decoration: underline;
-              cursor: pointer;
-            }
-
             .sort-icon {
               color: var(--cds-alias-object-interaction-color);
               margin-left: auto;
@@ -310,6 +305,11 @@ $indentation-increment: 1rem;
               height: inherit;
               line-height: inherit;
             }
+          }
+
+          button.treetable-column-title:hover {
+            text-decoration: underline;
+            cursor: pointer;
           }
 
           clr-tt-filter {

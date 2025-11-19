@@ -36,7 +36,9 @@ import {
       }
     </button>
     } @else {
-    <ng-container *ngTemplateOutlet="columnTitle" />
+    <div class="treetable-column-title">
+      <ng-container *ngTemplateOutlet="columnTitle" />
+    </div>
     }
 
     <ng-content select="clr-tt-filter, clr-tt-string-filter" />
