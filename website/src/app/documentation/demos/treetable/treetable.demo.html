@@ -6,7 +6,7 @@
       <h3>Use When</h3>
 
       <p>
-        Use this component when you need to display a hierarchichal data structure with multiple columns per entry. Make
+        Use this component when you need to display a hierarchical data structure with multiple columns per entry. Make
         sure all entries use the same columns. E.g. the parent has a name and a description column, the child cannot
         have a name and a date column.
       </p>
@@ -27,15 +27,25 @@
 
       <h3>Behavior</h3>
       <p>
-        Each entry can have none, one or multiple descendants. The first column of a descendant-row is indentend to
+        Each entry can have none, one or multiple descendants. The first column of a descendant-row is indented to
         visualize the hierarchy. Parent rows are collapsed, i.e. all children rows are hidden initially. To display the
         children the user can either click on the leading caret-icon or the whole parent row, depending on the
         row-selection mode. Avoid the row-selection mode when the row contains individually clickable items.
       </p>
 
       <h4>Sorting</h4>
-      The treetable cannot be sorted by the user. Display the entries in alphabetical order. Consider collapsing either
-      all or none of the parent nodes.
+      <p>
+        You can enable custom sorting by using recursive rendering. A treetable can have multiple root rows (top level).
+        Sorting only occurs within the same level under the same parent: root rows are sorted among themselves and
+        siblings are only sorted against each other.
+      </p>
+
+      <h4>Filtering</h4>
+      <p>
+        You can enable filtering by using recursive rendering. A filter or multiple filters will be applied to all
+        nodes. The lowest level node clearing the filters is relevant in this case, because it and all its' ancestors
+        will be displayed in the treetable. Descendents will be cut off.
+      </p>
 
       <h3>Technical limitations</h3>
       <p>Note that up to 6 levels of nesting are supported.</p>
@@ -72,6 +82,50 @@
             <td class="clr-hidden-xs-down">false</td>
             <td class="left">Hides the header row</td>
           </tr>
+          <tr>
+            <td class="left">
+              <b>[clrTtLoading]</b>
+              <div class="clr-hidden-sm-up">Type: boolean</div>
+              <div class="clr-hidden-sm-up">Default: false</div>
+            </td>
+            <td class="left clr-hidden-xs-down">boolean</td>
+            <td class="clr-hidden-xs-down">false</td>
+            <td class="left">Displays a loading spinner/state</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[(clrTtSelected)]</b>
+              <div class="clr-hidden-sm-up">Type: T[]</div>
+              <div class="clr-hidden-sm-up">Default: undefined</div>
+            </td>
+            <td class="left clr-hidden-xs-down">T[]</td>
+            <td class="clr-hidden-xs-down">undefined</td>
+            <td class="left">An array of all selected items</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[clrTtAutoParentSelection]</b>
+              <div class="clr-hidden-sm-up">Type: boolean</div>
+              <div class="clr-hidden-sm-up">Default: true</div>
+            </td>
+            <td class="left clr-hidden-xs-down">boolean</td>
+            <td class="clr-hidden-xs-down">true</td>
+            <td class="left">
+              Set false to disable automatic selection of parent row, if all child rows where manually selected
+            </td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>(clrTtRefresh)</b>
+              <div class="clr-hidden-sm-up">Type: ClrTreetableState&lt;T&gt;</div>
+              <div class="clr-hidden-sm-up">Default: n/a</div>
+            </td>
+            <td class="left clr-hidden-xs-down">ClrTreetableState&lt;T&gt;</td>
+            <td class="clr-hidden-xs-down">n/a</td>
+            <td class="left">
+              Output emitted whenever the data needs to be refreshed, based on user action or external ones
+            </td>
+          </tr>
         </tbody>
       </table>
 
@@ -88,13 +142,23 @@
         <tbody>
           <tr>
             <td class="left">
-              <b>[clrExpanded]</b>
+              <b>[(clrExpanded)]</b>
               <div class="clr-hidden-sm-up">Type: boolean</div>
               <div class="clr-hidden-sm-up">Default: false</div>
             </td>
             <td class="left clr-hidden-xs-down">boolean</td>
             <td class="clr-hidden-xs-down">false</td>
             <td class="left">Whether the row is expanded or not</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[clrExpandable]</b>
+              <div class="clr-hidden-sm-up">Type: boolean</div>
+              <div class="clr-hidden-sm-up">Default: false</div>
+            </td>
+            <td class="left clr-hidden-xs-down">boolean</td>
+            <td class="clr-hidden-xs-down">false</td>
+            <td class="left">Whether the row is expandable (also shows caret icons)</td>
           </tr>
           <tr>
             <td class="left">
@@ -108,13 +172,13 @@
           </tr>
           <tr>
             <td class="left">
-              <b>[clrExpandable]</b>
-              <div class="clr-hidden-sm-up">Type: boolean</div>
-              <div class="clr-hidden-sm-up">Default: false</div>
+              <b>[clrTtItem]</b>
+              <div class="clr-hidden-sm-up">Type: TreetableTreeNode&lt;T&gt;</div>
+              <div class="clr-hidden-sm-up">Default: true</div>
             </td>
-            <td class="left clr-hidden-xs-down">boolean</td>
-            <td class="clr-hidden-xs-down">false</td>
-            <td class="left">Whether the row is expandable (also shows caret icons)</td>
+            <td class="left clr-hidden-xs-down">TreetableTreeNode&lt;T&gt;</td>
+            <td class="clr-hidden-xs-down">undefined</td>
+            <td class="left">A model of the row, used for selection, filtering, sorting and recursive rendering.</td>
           </tr>
         </tbody>
       </table>
@@ -444,66 +508,72 @@
 
         <clr-tt-row clrExpandable="true">
           <clr-tt-cell
-            >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi delectus dignissimos,
-            ducimus...</clr-tt-cell
-          >
+            >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi delectus dignissimos, ducimus...
+          </clr-tt-cell>
           <clr-tt-cell>2</clr-tt-cell>
 
           <clr-tt-row>
             <clr-tt-cell
-              >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur assumenda, at atque dignissimos
-              ...</clr-tt-cell
-            >
+              >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur assumenda, at atque dignissimos ...
+            </clr-tt-cell>
             <clr-tt-cell>3</clr-tt-cell>
           </clr-tt-row>
         </clr-tt-row>
 
         <clr-tt-row>
           <clr-tt-cell
-            >Lorem ipsum dolor sit amet, consectetur adipisicing elit. At aut cumque ex libero, minus ...</clr-tt-cell
-          >
+            >Lorem ipsum dolor sit amet, consectetur adipisicing elit. At aut cumque ex libero, minus ...
+          </clr-tt-cell>
           <clr-tt-cell>1</clr-tt-cell>
         </clr-tt-row>
       </clr-treetable>
 
       <clr-code-snippet [clrCode]="htmlExampleCustomSize"></clr-code-snippet>
 
-      <h4>Smart iterator</h4>
+      <h4>Recursive smart iterator</h4>
 
       <p>
-        If you want to let us handle all the data processing needed by our various features, you will need to use
-        <code class="clr-code">*clrTtItems</code> instead of <code class="clr-code">*ngFor</code>. They have the exact
-        syntax and behave the same way, but the former lets us have full control what is actually being displayed. As
-        you can see in the following example it doesn't change anything for our simple case, but it will as soon as we
-        start adding features like sorting & selection. Optionally you can also pass a track by function to the
-        directive.
+        If you want to let the treetable handle data processing needed by its various features, you will need to use the
+        <code class="clr-code">*clrTtItems</code> structural directive instead of creating a template and looping over
+        it. This directive makes it possible to recursively render trees and enables features like sorting, filtering &
+        selection for the rendered dataset.
+        <br />
+        It has the same syntax as <code class="clr-code">*ngFor</code> and accepts an additional
+        <code class="clr-code">getChildren</code> parameter that receives a node and should return its children. Like
+        <code class="clr-code">*ngFor</code>s <code class="clr-code">index</code> exported value,
+        <code class="clr-code">*clrTtItems</code> also provides exported values.
+        <br />
+        The following exported values can be aliased to local variables:
       </p>
+      <ul>
+        <li>
+          <code class="clr-code">$implicit: T</code>: The value of the individual items in the iterable (<code
+            class="clr-code"
+            >clrTtItemsOf</code
+          >)
+        </li>
+        <li>
+          <code class="clr-code">clrTtNode</code>: The value of the model of the row. This needs to be passed to the
+          <code class="clr-code">[clrTtItem]</code> input of the treetable-row, to further render the child rows.
+        </li>
+        <li><code class="clr-code">isLeaf</code>: True if the current node is a leaf and has no children.</li>
+      </ul>
+      <br />
 
       <clr-treetable>
         <clr-tt-column>Name</clr-tt-column>
         <clr-tt-column>Role</clr-tt-column>
         <clr-tt-column>Supervisor</clr-tt-column>
 
-        <clr-tt-row *clrTtItems="hierachy; let ceo; trackBy: trackByRoleId" [clrExpandable]="true" [clrExpanded]="true">
-          <clr-tt-cell>{{ ceo.value.name }}</clr-tt-cell>
-          <clr-tt-cell>{{ ceo.value.role }}</clr-tt-cell>
+        <clr-tt-row
+          *clrTtItems="let member of orgUnitMemberHierarchy; getChildren: getChildren; clrTtNode as item; isLeaf as isLeaf"
+          [clrExpandable]="!isLeaf"
+          [clrExpanded]="true"
+          [clrTtItem]="item"
+        >
+          <clr-tt-cell>{{ member.value?.name }}</clr-tt-cell>
+          <clr-tt-cell>{{ member.value?.role }}</clr-tt-cell>
           <clr-tt-cell></clr-tt-cell>
-
-          <clr-tt-row
-            *clrTtItems="ceo.children; let heads; trackBy: trackByRoleId"
-            [clrExpandable]="true"
-            [clrExpanded]="true"
-          >
-            <clr-tt-cell>{{ heads.value.name }}</clr-tt-cell>
-            <clr-tt-cell>{{ heads.value.role }}</clr-tt-cell>
-            <clr-tt-cell>{{ heads.parent.name }}</clr-tt-cell>
-
-            <clr-tt-row *clrTtItems="heads.children; let manager; trackBy: trackByRoleId">
-              <clr-tt-cell>{{ manager.value.name }}</clr-tt-cell>
-              <clr-tt-cell>{{ manager.value.role }}</clr-tt-cell>
-              <clr-tt-cell>{{ manager.parent.name }}</clr-tt-cell>
-            </clr-tt-row>
-          </clr-tt-row>
         </clr-tt-row>
       </clr-treetable>
 
@@ -512,8 +582,9 @@
       <h4>Selection</h4>
 
       <p>
-        To allow actions on multiple items at once, we provide the ability for the user to select rows in the treetable.
-        To make rows selectable in your treetable, you need to do the following:
+        To allow actions on multiple items at once, the treetable provides the ability for the user to select rows. To
+        make rows selectable in your treetable, you need to use <code class="clr-code">*clrTtItems</code> and do the
+        following:
       </p>
       <ul>
         <li>
@@ -521,42 +592,62 @@
           component
         </li>
         <li>
-          Add a <code class="clr-code">[(clrTtSelected)]</code> two-way binding on the datagrid itself, to have access
+          Add a <code class="clr-code">[(clrTtSelected)]</code> two-way binding on the treetable itself, to have access
           to the list of currently selected items. Note that by adding items to this list yourself, you can dynamically
           select elements if you need to.
         </li>
       </ul>
+      <p>
+        This will enable the default Clarity selection model used in the
+        <a href="https://clarity.design/documentation/tree-view">TreeView</a>. Parent rows will be automatically
+        selected, if all of its child rows are selected.
+      </p>
 
       <clr-treetable [(clrTtSelected)]="selected">
         <clr-tt-column>Name</clr-tt-column>
         <clr-tt-column>Role</clr-tt-column>
         <clr-tt-column>Supervisor</clr-tt-column>
 
-        <clr-tt-row *clrTtItems="hierachy; let ceo" [clrTtItem]="ceo" [clrExpandable]="true" [clrExpanded]="true">
-          <clr-tt-cell>{{ ceo.value.name }}</clr-tt-cell>
-          <clr-tt-cell>{{ ceo.value.role }}</clr-tt-cell>
+        <clr-tt-row
+          *clrTtItems="let member of orgUnitMemberHierarchy; getChildren: getChildren; clrTtNode as item; isLeaf as isLeaf"
+          [clrExpandable]="!isLeaf"
+          [clrExpanded]="true"
+          [clrTtItem]="item"
+        >
+          <clr-tt-cell>{{ member.value?.name }}</clr-tt-cell>
+          <clr-tt-cell>{{ member.value?.role }}</clr-tt-cell>
           <clr-tt-cell></clr-tt-cell>
-
-          <clr-tt-row
-            *clrTtItems="ceo.children; let heads"
-            [clrTtItem]="heads"
-            [clrExpandable]="true"
-            [clrExpanded]="true"
-          >
-            <clr-tt-cell>{{ heads.value.name }}</clr-tt-cell>
-            <clr-tt-cell>{{ heads.value.role }}</clr-tt-cell>
-            <clr-tt-cell>{{ heads.parent.name }}</clr-tt-cell>
-
-            <clr-tt-row *clrTtItems="heads.children; let manager" [clrTtItem]="manager">
-              <clr-tt-cell>{{ manager.value.name }}</clr-tt-cell>
-              <clr-tt-cell>{{ manager.value.role }}</clr-tt-cell>
-              <clr-tt-cell>{{ manager.parent.name }}</clr-tt-cell>
-            </clr-tt-row>
-          </clr-tt-row>
         </clr-tt-row>
       </clr-treetable>
 
       <clr-code-snippet [clrCode]="htmlExampleSelection"></clr-code-snippet>
+
+      <p>
+        If needed this selection behaviour can be changed, to no longer automatically select parent rows, if all the
+        child rows are selected. To achieve this the <code class="clr-code">[clrTtAutoParentSelection]</code> input of
+        the treetable must be set to <code class="clr-code">false</code>. Now the parent row will stay in status
+        <code class="clr-code">INDETERMINATE</code> when all of its children are selected as long as the parent was not
+        manually selected.
+      </p>
+
+      <clr-treetable [(clrTtSelected)]="selected" [clrTtAutoParentSelection]="false">
+        <clr-tt-column>Name</clr-tt-column>
+        <clr-tt-column>Role</clr-tt-column>
+        <clr-tt-column>Type</clr-tt-column>
+
+        <clr-tt-row
+          *clrTtItems="let member of orgUnitMemberHierarchy; getChildren: getChildren; clrTtNode as item; isLeaf as isLeaf"
+          [clrExpandable]="!isLeaf"
+          [clrExpanded]="true"
+          [clrTtItem]="item"
+        >
+          <clr-tt-cell>{{ member.value.name }}</clr-tt-cell>
+          <clr-tt-cell>{{ member.value.role }}</clr-tt-cell>
+          <clr-tt-cell>{{ member.value.roleType | titlecase }}</clr-tt-cell>
+        </clr-tt-row>
+      </clr-treetable>
+
+      <clr-code-snippet [clrCode]="htmlExampleNoAutoParentSelection"></clr-code-snippet>
     </div>
 
     <h4>Custom Sorting</h4>
@@ -578,24 +669,17 @@
     <clr-treetable>
       <clr-tt-column [clrTtSortBy]="nameComparator" [(clrTtSortOrder)]="sortOrder">Name</clr-tt-column>
       <clr-tt-column>Role</clr-tt-column>
-      <clr-tt-column>Supervisor</clr-tt-column>
+      <clr-tt-column>Type</clr-tt-column>
 
-      <clr-tt-row *clrTtItems="hierachy; let ceo" [clrExpandable]="true" [clrExpanded]="true">
-        <clr-tt-cell>{{ ceo.value.name }}</clr-tt-cell>
-        <clr-tt-cell>{{ ceo.value.role }}</clr-tt-cell>
-        <clr-tt-cell></clr-tt-cell>
-
-        <clr-tt-row *clrTtItems="ceo.children; let heads" [clrExpandable]="true" [clrExpanded]="true">
-          <clr-tt-cell>{{ heads.value.name }}</clr-tt-cell>
-          <clr-tt-cell>{{ heads.value.role }}</clr-tt-cell>
-          <clr-tt-cell>{{ heads.parent.name }}</clr-tt-cell>
-
-          <clr-tt-row *clrTtItems="heads.children; let manager">
-            <clr-tt-cell>{{ manager.value.name }}</clr-tt-cell>
-            <clr-tt-cell>{{ manager.value.role }}</clr-tt-cell>
-            <clr-tt-cell>{{ manager.parent.name }}</clr-tt-cell>
-          </clr-tt-row>
-        </clr-tt-row>
+      <clr-tt-row
+        *clrTtItems="let member of orgUnitMemberHierarchy; getChildren: getChildren; clrTtNode as item; isLeaf as isLeaf"
+        [clrExpandable]="!isLeaf"
+        [clrExpanded]="true"
+        [clrTtItem]="item"
+      >
+        <clr-tt-cell>{{ member.value.name }}</clr-tt-cell>
+        <clr-tt-cell>{{ member.value.role }}</clr-tt-cell>
+        <clr-tt-cell>{{ member.value.roleType | titlecase }}</clr-tt-cell>
       </clr-tt-row>
     </clr-treetable>
 
@@ -613,27 +697,120 @@
     <clr-treetable>
       <clr-tt-column [clrTtSortBy]="nameComparator" [(clrTtSortOrder)]="descOrder">Name</clr-tt-column>
       <clr-tt-column>Role</clr-tt-column>
-      <clr-tt-column>Supervisor</clr-tt-column>
+      <clr-tt-column>Type</clr-tt-column>
 
-      <clr-tt-row *clrTtItems="hierachy; let ceo" [clrExpandable]="true" [clrExpanded]="true">
-        <clr-tt-cell>{{ ceo.value.name }}</clr-tt-cell>
-        <clr-tt-cell>{{ ceo.value.role }}</clr-tt-cell>
-        <clr-tt-cell></clr-tt-cell>
-
-        <clr-tt-row *clrTtItems="ceo.children; let heads" [clrExpandable]="true" [clrExpanded]="true">
-          <clr-tt-cell>{{ heads.value.name }}</clr-tt-cell>
-          <clr-tt-cell>{{ heads.value.role }}</clr-tt-cell>
-          <clr-tt-cell>{{ heads.parent.name }}</clr-tt-cell>
-
-          <clr-tt-row *clrTtItems="heads.children; let manager">
-            <clr-tt-cell>{{ manager.value.name }}</clr-tt-cell>
-            <clr-tt-cell>{{ manager.value.role }}</clr-tt-cell>
-            <clr-tt-cell>{{ manager.parent.name }}</clr-tt-cell>
-          </clr-tt-row>
-        </clr-tt-row>
+      <clr-tt-row
+        *clrTtItems="let member of orgUnitMemberHierarchy; getChildren: getChildren; clrTtNode as item; isLeaf as isLeaf"
+        [clrExpandable]="!isLeaf"
+        [clrExpanded]="true"
+        [clrTtItem]="item"
+      >
+        <clr-tt-cell>{{ member.value.name }}</clr-tt-cell>
+        <clr-tt-cell>{{ member.value.role }}</clr-tt-cell>
+        <clr-tt-cell>{{ member.value.roleType | titlecase }}</clr-tt-cell>
       </clr-tt-row>
     </clr-treetable>
 
     <clr-code-snippet [clrCode]="htmlExamplePresorting"></clr-code-snippet>
+
+    <h4>Filtering</h4>
+
+    <p>
+      This can be done by providing either a built-in filter or a custom filter, which implements
+      <code class="clr-code">ClrTreetableFilterInterface</code>.
+      <br />
+      Currently there is only one built-in filter component, a string filter. This component requires that a
+      <code class="clr-code">ClrTreetableStringFilterFunction</code> is passed to it. This is needed to determine which
+      field on the original object has to be filtered for.
+    </p>
+
+    <clr-treetable>
+      <clr-tt-column>
+        Name
+        <clr-tt-string-filter [clrTtStringFilter]="orgUnitMemberNameFilter" [clrTtFilterPlaceholder]="'Name'" />
+      </clr-tt-column>
+      <clr-tt-column>
+        Role
+        <clr-tt-string-filter [clrTtStringFilter]="orgUnitMemberRoleFilter" [clrTtFilterPlaceholder]="'Role'" />
+      </clr-tt-column>
+      <clr-tt-column>Type</clr-tt-column>
+
+      <clr-tt-row
+        *clrTtItems="let member of orgUnitMemberHierarchy; getChildren: getChildren; clrTtNode as item; isLeaf as isLeaf"
+        [clrExpandable]="!isLeaf"
+        [clrExpanded]="true"
+        [clrTtItem]="item"
+      >
+        <clr-tt-cell>{{ member.value.name }}</clr-tt-cell>
+        <clr-tt-cell>{{ member.value.role }}</clr-tt-cell>
+        <clr-tt-cell>{{ member.value.roleType | titlecase }}</clr-tt-cell>
+      </clr-tt-row>
+    </clr-treetable>
+
+    <div cds-layout="m-t:lg">
+      <clr-tabs>
+        <clr-tab>
+          <button clrTabLink>HTML</button>
+          <clr-tab-content *clrIfActive>
+            <clr-code-snippet [clrCode]="htmlExampleBuiltInFilter" />
+          </clr-tab-content>
+        </clr-tab>
+        <clr-tab>
+          <button clrTabLink>TS</button>
+          <clr-tab-content *clrIfActive>
+            <clr-code-snippet [clrCode]="tsExampleBuiltInFilterFunction" [clrLanguage]="'typescript'" />
+          </clr-tab-content>
+        </clr-tab>
+      </clr-tabs>
+    </div>
+
+    <p>
+      A custom filter can be created by implementing the <code class="clr-code">ClrTreetableFilterInterface</code>. The
+      custom implementation then has to be passed as an <code class="clr-code">[clrTtFilter]</code> for a
+      treetable-filter element to add it to a treetable-column. The filter will be applied to the dataset. If you want
+      to make this filter server driven, then you have to return true in the
+      <code class="clr-code">accept()</code> method in the interface and react to the filter state changes in the
+      <code class="clr-code">(clrTtRefresh)</code>
+      output of the treetable.
+    </p>
+
+    <clr-treetable>
+      <clr-tt-column>Name</clr-tt-column>
+      <clr-tt-column>Role</clr-tt-column>
+      <clr-tt-column>
+        Type
+        <clr-tt-filter [clrTtFilter]="roleTypeFilter">
+          <clr-role-type-filter #roleTypeFilter />
+        </clr-tt-filter>
+      </clr-tt-column>
+
+      <clr-tt-row
+        *clrTtItems="let member of orgUnitMemberHierarchy; getChildren: getChildren; clrTtNode as item; isLeaf as isLeaf"
+        [clrExpandable]="!isLeaf"
+        [clrExpanded]="true"
+        [clrTtItem]="item"
+      >
+        <clr-tt-cell>{{ member.value.name }}</clr-tt-cell>
+        <clr-tt-cell>{{ member.value.role }}</clr-tt-cell>
+        <clr-tt-cell>{{ member.value.roleType | titlecase }}</clr-tt-cell>
+      </clr-tt-row>
+    </clr-treetable>
+
+    <div cds-layout="m-t:md">
+      <clr-tabs>
+        <clr-tab>
+          <button clrTabLink>HTML</button>
+          <clr-tab-content *clrIfActive>
+            <clr-code-snippet [clrCode]="htmlExampleCustomFilter"></clr-code-snippet>
+          </clr-tab-content>
+        </clr-tab>
+        <clr-tab>
+          <button clrTabLink>TS</button>
+          <clr-tab-content *clrIfActive>
+            <clr-code-snippet [clrCode]="tsExampleCustomFilter" [clrLanguage]="'typescript'" />
+          </clr-tab-content>
+        </clr-tab>
+      </clr-tabs>
+    </div>
   </article>
 </clr-doc-wrapper>

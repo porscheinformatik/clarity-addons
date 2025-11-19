@@ -387,7 +387,7 @@ a.btn-primary {
   margin-top: -7px;
 }
 
-ul:not(.list-unstyled) {
+ul:not(.list-unstyled):not(:where(clr-tabs ul)) {
   margin-left: var(--cds-global-layout-space-lg) !important;
   margin-top: var(--cds-global-layout-space-md) !important;
   list-style-position: outside !important;

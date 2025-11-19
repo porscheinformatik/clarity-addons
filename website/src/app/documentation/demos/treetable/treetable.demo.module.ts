@@ -12,6 +12,7 @@ import { UtilsModule } from '../../../utils/utils.module';
 import { FormsModule } from '@angular/forms';
 import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
 import { TreetableDemo } from './treetable.demo';
+import { TreetableRoleTypeFilterComponent } from './treetable-demo-custom-filter';
 
 @NgModule({
   imports: [
@@ -23,7 +24,7 @@ import { TreetableDemo } from './treetable.demo';
     ClarityModule,
     ClrAddonsModule,
   ],
-  declarations: [TreetableDemo],
+  declarations: [TreetableDemo, TreetableRoleTypeFilterComponent],
   exports: [TreetableDemo],
 })
 export class TreetableDemoModule {}
