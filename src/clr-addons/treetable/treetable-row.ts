@@ -36,10 +36,10 @@ export class ClrTreetableRow<T extends object> {
   private readonly _recursionService = inject(ClrTreetableRecursionService);
   private readonly _treetable = inject(ClrTreetable);
 
-  readonly clrExpanded = model(false);
-  readonly clrExpandable = input(false);
-  readonly clrClickable = input(true);
-  readonly clrTtItem = input<ClrTreetableTreeNode<T>>(undefined);
+  clrExpanded = model(false);
+  clrExpandable = input(false);
+  clrClickable = input(true);
+  clrTtItem = input<ClrTreetableTreeNode<T>>(undefined);
 
   private readonly _actionOverflow = contentChild(ClrTreetableActionOverflow);
   protected readonly shouldAnimate = signal<boolean>(false);

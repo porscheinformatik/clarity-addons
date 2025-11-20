@@ -31,8 +31,8 @@ export class TreetableItemsDirective<T extends object> {
   private readonly _recursionService = inject(ClrTreetableRecursionService<T>);
   private readonly _templateRef = inject(TemplateRef<ClrTreetableItemsContext<T>>);
 
-  readonly clrTtItemsOf = input.required<Array<T>>();
-  readonly clrTtItemsGetChildren = input.required<ClrTreetableChildrenFunction<T>>();
+  clrTtItemsOf = input.required<Array<T>>();
+  clrTtItemsGetChildren = input.required<ClrTreetableChildrenFunction<T>>();
 
   constructor() {
     if (this._templateRef) {

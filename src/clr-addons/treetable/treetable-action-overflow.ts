@@ -45,7 +45,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClrTreetableActionOverflow {
-  readonly empty = input(false);
+  empty = input(false);
 
   public smartPosition: ClrPopoverPosition = {
     axis: ClrAxis.HORIZONTAL,

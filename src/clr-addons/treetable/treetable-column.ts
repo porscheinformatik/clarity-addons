@@ -59,9 +59,9 @@ import {
 export class ClrTreetableColumn<T extends object> {
   private readonly _sort = inject(Sort<T>);
 
-  readonly clrTtSortBy = input<ClrTreetableComparatorInterface<T> | null>(null);
-  readonly clrTtSortOrder = input(ClrTreetableSortOrder.UNSORTED);
-  readonly clrTtSortOrderChange = output<ClrTreetableSortOrder>();
+  clrTtSortBy = input<ClrTreetableComparatorInterface<T> | null>(null);
+  clrTtSortOrder = input(ClrTreetableSortOrder.UNSORTED);
+  clrTtSortOrderChange = output<ClrTreetableSortOrder>();
 
   private readonly _internalSortOrder = computed(() => {
     const sortState = this._sort.sortState();

@@ -29,14 +29,14 @@ export class ClrTreetable<T extends object> {
   private readonly _dataStateService = inject(TreetableDataStateService<T>);
   private readonly _recursionService = inject(ClrTreetableRecursionService<T>);
 
-  readonly clrClickableRows = input(true);
-  readonly clrHideHeader = input(false);
-  readonly clrTtLoading = input(false);
-  readonly clrTtSelected = input<T[]>(undefined);
-  readonly clrTtAutoParentSelection = input(true);
+  clrClickableRows = input(true);
+  clrHideHeader = input(false);
+  clrTtLoading = input(false);
+  clrTtSelected = input<T[]>(undefined);
+  clrTtAutoParentSelection = input(true);
 
-  readonly clrTtSelectedChange = outputFromObservable<T[]>(toObservable(this._dataStateService.selectedNodes));
-  readonly clrTtRefresh = outputFromObservable<ClrTreetableState<T>>(this._dataStateService.changes$);
+  clrTtSelectedChange = outputFromObservable<T[]>(toObservable(this._dataStateService.selectedNodes));
+  clrTtRefresh = outputFromObservable<ClrTreetableState<T>>(this._dataStateService.changes$);
 
   private readonly _ttRows = contentChildren(ClrTreetableRow, { descendants: true });
   private readonly _actionOverflow = contentChildren(ClrTreetableActionOverflow, { descendants: true });

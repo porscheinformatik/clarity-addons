@@ -61,15 +61,15 @@ const DEBOUNCE_TIME = 300 as const;
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
-export class ClrTreetableStringFilter<T> implements ClrTreetableFilterInterface<T, string> {
+export class ClrTreetableStringFilter<T extends object> implements ClrTreetableFilterInterface<T, string> {
   private readonly smartToggleService = inject(ClrPopoverToggleService);
   private readonly commonStrings = inject(ClrCommonStringsService);
   private readonly elementRef = inject(ElementRef);
 
-  readonly clrTtStringFilter = input.required<ClrTreetableStringFilterFunction<T>>();
-  readonly clrTtFilterPlaceholder = input(this.commonStrings.keys.filterItems);
-  readonly clrTtFilterLabel = input('');
-  readonly clrTtFilterValue = model<string>();
+  clrTtStringFilter = input.required<ClrTreetableStringFilterFunction<T>>();
+  clrTtFilterPlaceholder = input(this.commonStrings.keys.filterItems);
+  clrTtFilterLabel = input('');
+  clrTtFilterValue = model<string>();
 
   private readonly _input = viewChild('input', { read: ElementRef<HTMLInputElement> });
   private readonly _textChange$ = new Subject<string>();

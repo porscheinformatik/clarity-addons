@@ -25,7 +25,7 @@ import { ClrTreetableSelectedState } from './enums/selection-type';
   standalone: false,
 })
 export class ClrTreetableRowCheckbox {
-  readonly clrTtSelectionState = model(ClrTreetableSelectedState.UNSELECTED);
+  clrTtSelectionState = model(ClrTreetableSelectedState.UNSELECTED);
 
   protected isSelected = computed(() => this.clrTtSelectionState() === ClrTreetableSelectedState.SELECTED);
   protected isIndeterminate = computed(() => this.clrTtSelectionState() === ClrTreetableSelectedState.INDETERMINATE);

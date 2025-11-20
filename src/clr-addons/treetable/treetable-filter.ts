@@ -69,7 +69,7 @@ export class ClrTreetableFilter<T extends object> implements OnInit, OnDestroy {
     content: ClrAlignment.END,
   };
 
-  readonly clrTtFilter = input.required<ClrTreetableFilterInterface<T>>();
+  clrTtFilter = input.required<ClrTreetableFilterInterface<T>>();
 
   private readonly registered = signal<RegisteredTreetableFilter<T, ClrTreetableFilterInterface<T>>>(undefined);
   protected readonly open = toSignal(this.smartToggleService.openChange);
