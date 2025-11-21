@@ -106,7 +106,8 @@
     "replace": "1.2.2",
     "sass": "1.93.2",
     "shx": "0.4.0",
-    "typescript": "5.8.3"
+    "typescript": "5.8.3",
+    "zipcelx": "1.6.2"
   },
   "engines": {
     "node": ">=20.0.0",
