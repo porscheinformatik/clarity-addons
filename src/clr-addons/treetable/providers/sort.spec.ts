@@ -4,81 +4,124 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Sort } from './sort';
+import { Sort, TreetableSortState } from './sort';
 import { ClrTreetableComparatorInterface } from '../interfaces/comparator.interface';
+import { TestBed } from '@angular/core/testing';
 
-describe('Sort', () => {
-  let sort: Sort<number>;
-  let comparator: ClrTreetableComparatorInterface<number>;
+type Item = { id: number; subItems?: Item[] };
+
+class IdComparator implements ClrTreetableComparatorInterface<Item> {
+  compare(a: Item, b: Item): number {
+    return a.id - b.id;
+  }
+}
+
+describe('Sort<Item>', () => {
+  let service: Sort<Item>;
+  let comparator: IdComparator;
 
   beforeEach(() => {
-    sort = new Sort<number>();
-    comparator = {
-      compare: (a: number, b: number) => a - b,
-    };
+    TestBed.configureTestingModule({ providers: [Sort] });
+    service = TestBed.inject(Sort<Item>);
+    comparator = new IdComparator();
+
+    TestBed.flushEffects();
   });
 
-  it('should initialize with default state', () => {
-    expect(sort.comparator).toBeUndefined();
-    expect(sort.reverse).toBeFalse();
+  it('should have initial empty sort state', () => {
+    const state = service.sortState();
+    expect(state.comparator).toBeNull();
+    expect(state.reverse).toBeFalse();
   });
 
-  it('should set comparator and emit change', () => {
-    const changeSpy = jasmine.createSpy('changeSpy');
-    sort.change.subscribe(changeSpy);
-
-    sort.comparator = comparator;
-    expect(sort.comparator).toBe(comparator);
-    expect(changeSpy).toHaveBeenCalledWith(sort);
+  it('should set comparator and default reverse=false', () => {
+    service.toggle(comparator);
+    const state = service.sortState();
+    expect(state.comparator).toBe(comparator);
+    expect(state.reverse).toBeFalse();
   });
 
-  it('should toggle sorting order', () => {
-    const changeSpy = jasmine.createSpy('changeSpy');
-    sort.change.subscribe(changeSpy);
-
-    sort.comparator = comparator;
-
-    sort.toggle(comparator);
-    expect(sort.reverse).toBeTrue();
-    expect(changeSpy).toHaveBeenCalledWith(sort);
-
-    sort.toggle(comparator);
-    expect(sort.reverse).toBeFalse();
-    expect(changeSpy).toHaveBeenCalledWith(sort);
+  it('should toggle reverse when same comparator was toggled again', () => {
+    service.toggle(comparator);
+    service.toggle(comparator);
+    expect(service.sortState().reverse).toBeTrue();
   });
 
-  it('should toggle sorting order with forceReverse', () => {
-    const changeSpy = jasmine.createSpy('changeSpy');
-    sort.change.subscribe(changeSpy);
-
-    sort.comparator = comparator;
-
-    sort.toggle(comparator, true);
-    expect(sort.reverse).toBeTrue();
-    expect(changeSpy).toHaveBeenCalledWith(sort);
+  it('should force reverse=true for the first sort', () => {
+    service.toggle(comparator, true);
+    expect(service.sortState().reverse).toBeTrue();
   });
 
-  it('should clear sorting and emit change', () => {
-    const changeSpy = jasmine.createSpy('changeSpy');
-    sort.change.subscribe(changeSpy);
-
-    sort.clear();
-    expect(sort.comparator).toBeNull();
-    expect(changeSpy).toHaveBeenCalledWith(sort);
+  it('should force reverse=false even after a reverse=true', () => {
+    service.toggle(comparator, true);
+    service.toggle(comparator, false);
+    expect(service.sortState().reverse).toBeFalse();
   });
 
-  it('should compare values correctly in ascending order', () => {
-    sort.comparator = comparator;
-    expect(sort.compare(1, 2)).toBeLessThan(0);
-    expect(sort.compare(2, 1)).toBeGreaterThan(0);
-    expect(sort.compare(1, 1)).toBe(0);
+  it('should clear comparator', () => {
+    service.toggle(comparator);
+    service.clear();
+    expect(service.sortState().comparator).toBeNull();
   });
 
-  it('should compare values correctly in descending order', () => {
-    sort.comparator = comparator;
-    sort.reverse = true;
-    expect(sort.compare(1, 2)).toBeGreaterThan(0);
-    expect(sort.compare(2, 1)).toBeLessThan(0);
-    expect(sort.compare(1, 1)).toBe(0);
+  it('should compare with active comparator forward', () => {
+    service.toggle(comparator);
+    const a: Item = { id: 1 };
+    const b: Item = { id: 2 };
+    expect(service.compare(a, b)).toBeLessThan(0);
+  });
+
+  it('should compare reversed when reverse=true', () => {
+    service.toggle(comparator, true);
+    const a: Item = { id: 1 };
+    const b: Item = { id: 2 };
+    expect(service.compare(a, b)).toBeGreaterThan(0);
+  });
+
+  it('should return 0 compare when no comparator is set', () => {
+    const a: Item = { id: 5 };
+    const b: Item = { id: 1 };
+    expect(service.compare(a, b)).toBe(0);
+  });
+
+  it('should emit sort state changes via changes$', () => {
+    const emissions: TreetableSortState<Item>[] = [];
+    const sub = service.changes$.subscribe(state => {
+      console.log('emission', state);
+      emissions.push(state);
+    });
+
+    // Initial (unsorted)
+    TestBed.flushEffects();
+
+    // Set comparator (ASC)
+    service.toggle(comparator);
+    TestBed.flushEffects();
+
+    // Toggle reverse (DESC)
+    service.toggle(comparator);
+    TestBed.flushEffects();
+
+    // Force reverse stays true
+    service.toggle(comparator, true);
+    TestBed.flushEffects();
+
+    // Force reverse false (ASC)
+    service.toggle(comparator, false);
+    TestBed.flushEffects();
+
+    // Clear comparator (UNSORTED)
+    service.clear();
+    TestBed.flushEffects();
+
+    sub.unsubscribe();
+
+    expect(emissions.length).toBe(5);
+
+    expect(emissions[0]).toEqual({ comparator: null, reverse: false });
+    expect(emissions[1]).toEqual({ comparator, reverse: false });
+    expect(emissions[2]).toEqual({ comparator, reverse: true });
+    expect(emissions[3]).toEqual({ comparator, reverse: false });
+    expect(emissions[4]).toEqual({ comparator: null, reverse: false });
   });
 });

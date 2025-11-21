@@ -8,47 +8,83 @@
 
 <h4>DataTreeTable With Recursive Loops</h4>
 
-<button class="btn btn-secondary" (click)="sortOrder = 0" [disabled]="sortOrder === 0">Clear sort</button>
+<clr-button-group class="btn-sm" cds-layout="m-t:sm">
+  <clr-button (click)="sortOrder = 0" [disabled]="sortOrder === 0">Clear sort</clr-button>
+  <clr-button (click)="appendRootNode()">Append root node</clr-button>
+  <clr-button (click)="toggleLoading()">Toggle loading</clr-button>
+  <clr-button (click)="toggleAutoParentSelection()">Toggle auto parent selection</clr-button>
+  <clr-button (click)="toggleExternallySelected()">Toggle externally selected</clr-button>
+</clr-button-group>
 
-<clr-treetable [(clrTtSelected)]="selected">
-  <clr-tt-column [clrTtSortBy]="comperator" [(clrTtSortOrder)]="sortOrder">Name</clr-tt-column>
-  <clr-tt-column [clrTtSortBy]="comperator2" [(clrTtSortOrder)]="sortOrder2">ID</clr-tt-column>
+<clr-treetable
+  [(clrTtSelected)]="selected"
+  [clrTtLoading]="loading()"
+  [clrTtAutoParentSelection]="autoParentSelection()"
+  (clrTtRefresh)="logState($event)"
+>
+  <clr-tt-column [clrTtSortBy]="comperator" [(clrTtSortOrder)]="sortOrder">
+    Name
+    <clr-tt-string-filter [clrTtStringFilter]="treeNameFilter" [clrTtFilterPlaceholder]="'Name'"></clr-tt-string-filter>
+  </clr-tt-column>
+  <clr-tt-column [clrTtSortBy]="comperator2" [(clrTtSortOrder)]="sortOrder2">
+    ID
+    <clr-tt-string-filter [clrTtStringFilter]="treeIdFilter"></clr-tt-string-filter>
+  </clr-tt-column>
   <clr-tt-column>Parent</clr-tt-column>
 
-  <ng-container
-    ngProjectAs="clr-tt-row"
-    *ngTemplateOutlet="recursiveRows; context: { $implicit: rootNodes }"
-  ></ng-container>
+  <clr-tt-row
+    *clrTtItems="let node of rootNodes(); getChildren: getChildren; isLeaf as isLeaf; clrTtNode as item"
+    [clrExpandable]="!isLeaf"
+    [clrExpanded]="true"
+    [clrTtItem]="item"
+  >
+    <clr-tt-action-overflow>
+      <button class="action-item" (click)="testAction()">Test Action</button>
+    </clr-tt-action-overflow>
 
-  <ng-template #recursiveRows let-nodes>
-    <clr-tt-row
-      *clrTtItems="nodes; let node; trackBy: trackByFn"
-      [clrTtItem]="node"
-      [clrExpandable]="node.children?.length > 0"
-      [clrExpanded]="true"
-    >
-      <clr-tt-action-overflow>
-        <button class="action-item">Test Action</button>
-      </clr-tt-action-overflow>
-
-      <clr-tt-cell>{{ node.value.name }}</clr-tt-cell>
-      <clr-tt-cell>{{ node.id }}</clr-tt-cell>
-      <clr-tt-cell>{{ node.parent?.id || 'No Parent' }}</clr-tt-cell>
-
-      <ng-container ngProjectAs="clr-tt-row" *ngIf="node.children?.length > 0">
-        <ng-container
-          ngProjectAs="clr-tt-row"
-          *ngTemplateOutlet="recursiveRows; context: { $implicit: node.children }"
-        ></ng-container>
-      </ng-container>
-    </clr-tt-row>
-  </ng-template>
+    <clr-tt-cell>{{ node.value.name }}</clr-tt-cell>
+    <clr-tt-cell>{{ node.id }}</clr-tt-cell>
+    <clr-tt-cell>{{ node.parent?.id || 'No Parent' }}</clr-tt-cell>
+  </clr-tt-row>
 
   <clr-tt-placeholder>No users found</clr-tt-placeholder>
 </clr-treetable>
 
-<div>Selected: {{ selected | json }}</div>
-<div>Sort order col1: {{sortOrder}}</div>
+<br />
+<div>Selected: {{ selected() | json }}</div>
+<div>Sort order col1: {{ sortOrder }}</div>
+<div>Auto parent selection: {{ autoParentSelection() }}</div>
+<br />
+
+<h4>Treetable with actions</h4>
+<clr-treetable [clrClickableRows]="true">
+  <clr-tt-column class="clr-col-lg-10 clr-col-md-8">Position</clr-tt-column>
+  <clr-tt-column class="clr-col-lg-2 clr-col-md-4 text-right">Price</clr-tt-column>
+
+  <clr-tt-row [clrExpandable]="true">
+    <clr-tt-action-overflow>
+      <button class="action-item">Test</button>
+    </clr-tt-action-overflow>
+    <clr-tt-cell>Vehicle configuration</clr-tt-cell>
+    <clr-tt-cell class="text-right">18,519.99 EUR</clr-tt-cell>
+
+    <clr-tt-row *ngFor="let a of [1]">
+      <clr-tt-cell>Audi A1 3-Türer Attraction 1.2 TFSI 63(86) kW(PS) 5-Gang</clr-tt-cell>
+      <clr-tt-cell class="text-right">16,750.00 EUR</clr-tt-cell>
+    </clr-tt-row>
+
+    <clr-tt-row>
+      <clr-tt-cell>
+        Florettsilber Metallic Brillantschwarz / granatrot-schwarz-granatrot/schwarz- schwarz/schwarz/titangrau
+      </clr-tt-cell>
+      <clr-tt-cell class="text-right">480.00 EUR</clr-tt-cell>
+    </clr-tt-row>
+  </clr-tt-row>
+  <clr-tt-row>
+    <clr-tt-cell>Sales add-ons</clr-tt-cell>
+    <clr-tt-cell class="text-right"></clr-tt-cell>
+  </clr-tt-row>
+</clr-treetable>
 
 <h4>Treetable with large amount of data async</h4>
 <clr-treetable>
@@ -58,7 +94,7 @@
   <clr-tt-column>Col4</clr-tt-column>
   <clr-tt-column>Col5</clr-tt-column>
   <clr-tt-column>Col6</clr-tt-column>
-  <clr-tt-row [clrExpanded]="true" [clrExpandable]="true">
+  <clr-tt-row [clrExpanded]="false" [clrExpandable]="true">
     <clr-tt-cell>Vehicleconfigs</clr-tt-cell>
     <clr-tt-cell></clr-tt-cell>
     <clr-tt-cell></clr-tt-cell>
@@ -72,19 +108,19 @@
 
     <ng-template #singleNode let-data>
       <clr-tt-row [clrExpandable]="isExpandable(data)" [clrExpanded]="true">
-        <clr-tt-cell>{{data.col1}}</clr-tt-cell>
-        <clr-tt-cell>{{data.col2}}</clr-tt-cell>
-        <clr-tt-cell>{{data.col3}}</clr-tt-cell>
-        <clr-tt-cell>{{data.col4}}</clr-tt-cell>
-        <clr-tt-cell>{{data.col5}}</clr-tt-cell>
-        <clr-tt-cell>{{data.col6}}</clr-tt-cell>
+        <clr-tt-cell>{{ data.col1 }}</clr-tt-cell>
+        <clr-tt-cell>{{ data.col2 }}</clr-tt-cell>
+        <clr-tt-cell>{{ data.col3 }}</clr-tt-cell>
+        <clr-tt-cell>{{ data.col4 }}</clr-tt-cell>
+        <clr-tt-cell>{{ data.col5 }}</clr-tt-cell>
+        <clr-tt-cell>{{ data.col6 }}</clr-tt-cell>
         <clr-tt-row *ngFor="let child1 of data.child">
-          <clr-tt-cell>{{child1.col1}}</clr-tt-cell>
-          <clr-tt-cell>{{child1.col2}}</clr-tt-cell>
-          <clr-tt-cell>{{child1.col3}}</clr-tt-cell>
-          <clr-tt-cell>{{child1.col4}}</clr-tt-cell>
-          <clr-tt-cell>{{child1.col5}}</clr-tt-cell>
-          <clr-tt-cell>{{child1.col6}}</clr-tt-cell>
+          <clr-tt-cell>{{ child1.col1 }}</clr-tt-cell>
+          <clr-tt-cell>{{ child1.col2 }}</clr-tt-cell>
+          <clr-tt-cell>{{ child1.col3 }}</clr-tt-cell>
+          <clr-tt-cell>{{ child1.col4 }}</clr-tt-cell>
+          <clr-tt-cell>{{ child1.col5 }}</clr-tt-cell>
+          <clr-tt-cell>{{ child1.col6 }}</clr-tt-cell>
         </clr-tt-row>
         <clr-tt-row [clrExpanded]="true" [clrExpandable]="true">
           <clr-tt-cell>Extras</clr-tt-cell>
@@ -94,160 +130,160 @@
           <clr-tt-cell></clr-tt-cell>
           <clr-tt-cell></clr-tt-cell>
           <clr-tt-row *ngFor="let extra of data.extras">
-            <clr-tt-cell>{{extra.col1}}</clr-tt-cell>
-            <clr-tt-cell>{{extra.col2}}</clr-tt-cell>
-            <clr-tt-cell>{{extra.col3}}</clr-tt-cell>
-            <clr-tt-cell>{{extra.col4}}</clr-tt-cell>
-            <clr-tt-cell>{{extra.col5}}</clr-tt-cell>
-            <clr-tt-cell>{{extra.col6}}</clr-tt-cell>
+            <clr-tt-cell>{{ extra.col1 }}</clr-tt-cell>
+            <clr-tt-cell>{{ extra.col2 }}</clr-tt-cell>
+            <clr-tt-cell>{{ extra.col3 }}</clr-tt-cell>
+            <clr-tt-cell>{{ extra.col4 }}</clr-tt-cell>
+            <clr-tt-cell>{{ extra.col5 }}</clr-tt-cell>
+            <clr-tt-cell>{{ extra.col6 }}</clr-tt-cell>
           </clr-tt-row>
         </clr-tt-row>
       </clr-tt-row>
-    </ng-template> </clr-tt-row
-  >>
-</clr-treetable>
-
-<!-- TODO: check if we can hide that, because it makes the ui very buggy
-<h4>Treetable with large amount of data</h4>
-<clr-treetable>
-  <clr-tt-column>Col1</clr-tt-column>
-  <clr-tt-column>Col2</clr-tt-column>
-  <clr-tt-column>Col3</clr-tt-column>
-  <clr-tt-column>Col4</clr-tt-column>
-  <clr-tt-column>Col5</clr-tt-column>
-  <clr-tt-column>Col6</clr-tt-column>
-  <clr-tt-row *ngFor="let _ of [].constructor(200)" [clrExpanded]="true" [clrExpandable]="true">
-    <clr-tt-cell>Vehicle configuration</clr-tt-cell>
-    <clr-tt-cell></clr-tt-cell>
-    <clr-tt-cell>18,519.99EUR</clr-tt-cell>
-    <clr-tt-cell>20%</clr-tt-cell>
-    <clr-tt-cell>19.99EUR</clr-tt-cell>
-    <clr-tt-cell>-519.99EUR</clr-tt-cell>
-
-    <clr-tt-row>
-      <clr-tt-cell>Audi A1 3-Türer Attraction 1.2 TFSI 63(86) kW(PS) 5-Gang</clr-tt-cell>
-      <clr-tt-cell>EUR 16,750.00</clr-tt-cell>
-      <clr-tt-cell></clr-tt-cell>
-      <clr-tt-cell>20%</clr-tt-cell>
-      <clr-tt-cell>19.99EUR</clr-tt-cell>
-      <clr-tt-cell>-519.99EUR</clr-tt-cell>
-    </clr-tt-row>
-
-    <clr-tt-row>
-      <clr-tt-cell
-        >Florettsilber Metallic Brillantschwarz / granatrot-schwarz-granatrot / schwarz- schwarz / schwarz / titangrau
-      </clr-tt-cell>
-      <clr-tt-cell>EUR 480.00</clr-tt-cell>
-      <clr-tt-cell></clr-tt-cell>
-      <clr-tt-cell>20%</clr-tt-cell>
-      <clr-tt-cell>19.99EUR</clr-tt-cell>
-      <clr-tt-cell>-519.99EUR</clr-tt-cell>
-    </clr-tt-row>
-
-    <clr-tt-row [clrExpanded]="true" [clrExpandable]="true">
-      <clr-tt-cell>Extra</clr-tt-cell>
-      <clr-tt-cell>EUR 1,289.99</clr-tt-cell>
-      <clr-tt-cell></clr-tt-cell>
-      <clr-tt-cell>20%</clr-tt-cell>
-      <clr-tt-cell>19.99EUR</clr-tt-cell>
-      <clr-tt-cell>-519.99EUR</clr-tt-cell>
-
-      <clr-tt-row>
-        <clr-tt-cell>Sitzpaket (PV2)</clr-tt-cell>
-        <clr-tt-cell>EUR 0.00</clr-tt-cell>
-        <clr-tt-cell></clr-tt-cell>
-        <clr-tt-cell>20%</clr-tt-cell>
-        <clr-tt-cell>19.99EUR</clr-tt-cell>
-        <clr-tt-cell>-519.99EUR</clr-tt-cell>
-
-        <clr-tt-row>
-          <clr-tt-cell>Vehicle configuration</clr-tt-cell>
-          <clr-tt-cell></clr-tt-cell>
-          <clr-tt-cell>18,519.99EUR</clr-tt-cell>
-          <clr-tt-cell>20%</clr-tt-cell>
-          <clr-tt-cell>19.99EUR</clr-tt-cell>
-          <clr-tt-cell>-519.99EUR</clr-tt-cell>
-
-          <clr-tt-row>
-            <clr-tt-cell>Audi A1 3-Türer Attraction 1.2 TFSI 63(86) kW(PS) 5-Gang</clr-tt-cell>
-            <clr-tt-cell>EUR 16,750.00</clr-tt-cell>
-            <clr-tt-cell></clr-tt-cell>
-            <clr-tt-cell>20%</clr-tt-cell>
-            <clr-tt-cell>19.99EUR</clr-tt-cell>
-            <clr-tt-cell>-519.99EUR</clr-tt-cell>
-          </clr-tt-row>
-
-          <clr-tt-row>
-            <clr-tt-cell
-              >Florettsilber Metallic Brillantschwarz / granatrot-schwarz-granatrot/schwarz- schwarz/schwarz/titangrau
-            </clr-tt-cell>
-            <clr-tt-cell>EUR 480.00</clr-tt-cell>
-            <clr-tt-cell></clr-tt-cell>
-            <clr-tt-cell>20%</clr-tt-cell>
-            <clr-tt-cell>19.99EUR</clr-tt-cell>
-            <clr-tt-cell>-519.99EUR</clr-tt-cell>
-          </clr-tt-row>
-
-          <clr-tt-row [clrExpandable]="true">
-            <clr-tt-cell>Extra</clr-tt-cell>
-            <clr-tt-cell>EUR 1,289.99</clr-tt-cell>
-            <clr-tt-cell></clr-tt-cell>
-            <clr-tt-cell>20%</clr-tt-cell>
-            <clr-tt-cell>19.99EUR</clr-tt-cell>
-            <clr-tt-cell>-519.99EUR</clr-tt-cell>
-
-            <clr-tt-row>
-              <clr-tt-cell>Sitzpaket (PV2)</clr-tt-cell>
-              <clr-tt-cell>EUR 0.00</clr-tt-cell>
-              <clr-tt-cell></clr-tt-cell>
-              <clr-tt-cell>20%</clr-tt-cell>
-              <clr-tt-cell>19.99EUR</clr-tt-cell>
-              <clr-tt-cell>-519.99EUR</clr-tt-cell>
-            </clr-tt-row>
-
-            <clr-tt-row>
-              <clr-tt-cell>style Paket (WMV)</clr-tt-cell>
-              <clr-tt-cell>EUR 950.00</clr-tt-cell>
-              <clr-tt-cell></clr-tt-cell>
-              <clr-tt-cell>20%</clr-tt-cell>
-              <clr-tt-cell>19.99EUR</clr-tt-cell>
-              <clr-tt-cell>-519.99EUR</clr-tt-cell>
-            </clr-tt-row>
-
-            <clr-tt-row>
-              <clr-tt-cell>Sportsitze vorn (PS1)</clr-tt-cell>
-              <clr-tt-cell>EUR 339.99</clr-tt-cell>
-              <clr-tt-cell></clr-tt-cell>
-              <clr-tt-cell>20%</clr-tt-cell>
-              <clr-tt-cell>19.99EUR</clr-tt-cell>
-              <clr-tt-cell>-519.99EUR</clr-tt-cell>
-            </clr-tt-row>
-          </clr-tt-row>
-        </clr-tt-row>
-      </clr-tt-row>
-
-      <clr-tt-row>
-        <clr-tt-cell>style Paket (WMV)</clr-tt-cell>
-        <clr-tt-cell>EUR 950.00</clr-tt-cell>
-        <clr-tt-cell></clr-tt-cell>
-        <clr-tt-cell>20%</clr-tt-cell>
-        <clr-tt-cell>19.99EUR</clr-tt-cell>
-        <clr-tt-cell>-519.99EUR</clr-tt-cell>
-      </clr-tt-row>
-
-      <clr-tt-row>
-        <clr-tt-cell>Sportsitze vorn (PS1)</clr-tt-cell>
-        <clr-tt-cell>EUR 339.99</clr-tt-cell>
-        <clr-tt-cell></clr-tt-cell>
-        <clr-tt-cell>20%</clr-tt-cell>
-        <clr-tt-cell>19.99EUR</clr-tt-cell>
-        <clr-tt-cell>-519.99EUR</clr-tt-cell>
-      </clr-tt-row>
-    </clr-tt-row>
+    </ng-template>
   </clr-tt-row>
 </clr-treetable>
 
--->
+<!-- TODO: check if we can hide that, because it makes the ui very buggy
+<!--<h4>Treetable with large amount of data</h4>-->
+<!--<clr-treetable>-->
+<!--  <clr-tt-column>Col1</clr-tt-column>-->
+<!--  <clr-tt-column>Col2</clr-tt-column>-->
+<!--  <clr-tt-column>Col3</clr-tt-column>-->
+<!--  <clr-tt-column>Col4</clr-tt-column>-->
+<!--  <clr-tt-column>Col5</clr-tt-column>-->
+<!--  <clr-tt-column>Col6</clr-tt-column>-->
+<!--  <clr-tt-row *ngFor="let _ of [].constructor(200)" [clrExpanded]="true" [clrExpandable]="true">-->
+<!--    <clr-tt-cell>Vehicle configuration</clr-tt-cell>-->
+<!--    <clr-tt-cell></clr-tt-cell>-->
+<!--    <clr-tt-cell>18,519.99EUR</clr-tt-cell>-->
+<!--    <clr-tt-cell>20%</clr-tt-cell>-->
+<!--    <clr-tt-cell>19.99EUR</clr-tt-cell>-->
+<!--    <clr-tt-cell>-519.99EUR</clr-tt-cell>-->
+
+<!--    <clr-tt-row>-->
+<!--      <clr-tt-cell>Audi A1 3-Türer Attraction 1.2 TFSI 63(86) kW(PS) 5-Gang</clr-tt-cell>-->
+<!--      <clr-tt-cell>EUR 16,750.00</clr-tt-cell>-->
+<!--      <clr-tt-cell></clr-tt-cell>-->
+<!--      <clr-tt-cell>20%</clr-tt-cell>-->
+<!--      <clr-tt-cell>19.99EUR</clr-tt-cell>-->
+<!--      <clr-tt-cell>-519.99EUR</clr-tt-cell>-->
+<!--    </clr-tt-row>-->
+
+<!--    <clr-tt-row>-->
+<!--      <clr-tt-cell-->
+<!--        >Florettsilber Metallic Brillantschwarz / granatrot-schwarz-granatrot / schwarz- schwarz / schwarz / titangrau-->
+<!--      </clr-tt-cell>-->
+<!--      <clr-tt-cell>EUR 480.00</clr-tt-cell>-->
+<!--      <clr-tt-cell></clr-tt-cell>-->
+<!--      <clr-tt-cell>20%</clr-tt-cell>-->
+<!--      <clr-tt-cell>19.99EUR</clr-tt-cell>-->
+<!--      <clr-tt-cell>-519.99EUR</clr-tt-cell>-->
+<!--    </clr-tt-row>-->
+
+<!--    <clr-tt-row [clrExpanded]="true" [clrExpandable]="true">-->
+<!--      <clr-tt-cell>Extra</clr-tt-cell>-->
+<!--      <clr-tt-cell>EUR 1,289.99</clr-tt-cell>-->
+<!--      <clr-tt-cell></clr-tt-cell>-->
+<!--      <clr-tt-cell>20%</clr-tt-cell>-->
+<!--      <clr-tt-cell>19.99EUR</clr-tt-cell>-->
+<!--      <clr-tt-cell>-519.99EUR</clr-tt-cell>-->
+
+<!--      <clr-tt-row>-->
+<!--        <clr-tt-cell>Sitzpaket (PV2)</clr-tt-cell>-->
+<!--        <clr-tt-cell>EUR 0.00</clr-tt-cell>-->
+<!--        <clr-tt-cell></clr-tt-cell>-->
+<!--        <clr-tt-cell>20%</clr-tt-cell>-->
+<!--        <clr-tt-cell>19.99EUR</clr-tt-cell>-->
+<!--        <clr-tt-cell>-519.99EUR</clr-tt-cell>-->
+
+<!--        <clr-tt-row>-->
+<!--          <clr-tt-cell>Vehicle configuration</clr-tt-cell>-->
+<!--          <clr-tt-cell></clr-tt-cell>-->
+<!--          <clr-tt-cell>18,519.99EUR</clr-tt-cell>-->
+<!--          <clr-tt-cell>20%</clr-tt-cell>-->
+<!--          <clr-tt-cell>19.99EUR</clr-tt-cell>-->
+<!--          <clr-tt-cell>-519.99EUR</clr-tt-cell>-->
+
+<!--          <clr-tt-row>-->
+<!--            <clr-tt-cell>Audi A1 3-Türer Attraction 1.2 TFSI 63(86) kW(PS) 5-Gang</clr-tt-cell>-->
+<!--            <clr-tt-cell>EUR 16,750.00</clr-tt-cell>-->
+<!--            <clr-tt-cell></clr-tt-cell>-->
+<!--            <clr-tt-cell>20%</clr-tt-cell>-->
+<!--            <clr-tt-cell>19.99EUR</clr-tt-cell>-->
+<!--            <clr-tt-cell>-519.99EUR</clr-tt-cell>-->
+<!--          </clr-tt-row>-->
+
+<!--          <clr-tt-row>-->
+<!--            <clr-tt-cell-->
+<!--              >Florettsilber Metallic Brillantschwarz / granatrot-schwarz-granatrot/schwarz- schwarz/schwarz/titangrau-->
+<!--            </clr-tt-cell>-->
+<!--            <clr-tt-cell>EUR 480.00</clr-tt-cell>-->
+<!--            <clr-tt-cell></clr-tt-cell>-->
+<!--            <clr-tt-cell>20%</clr-tt-cell>-->
+<!--            <clr-tt-cell>19.99EUR</clr-tt-cell>-->
+<!--            <clr-tt-cell>-519.99EUR</clr-tt-cell>-->
+<!--          </clr-tt-row>-->
+
+<!--          <clr-tt-row [clrExpandable]="true">-->
+<!--            <clr-tt-cell>Extra</clr-tt-cell>-->
+<!--            <clr-tt-cell>EUR 1,289.99</clr-tt-cell>-->
+<!--            <clr-tt-cell></clr-tt-cell>-->
+<!--            <clr-tt-cell>20%</clr-tt-cell>-->
+<!--            <clr-tt-cell>19.99EUR</clr-tt-cell>-->
+<!--            <clr-tt-cell>-519.99EUR</clr-tt-cell>-->
+
+<!--            <clr-tt-row>-->
+<!--              <clr-tt-cell>Sitzpaket (PV2)</clr-tt-cell>-->
+<!--              <clr-tt-cell>EUR 0.00</clr-tt-cell>-->
+<!--              <clr-tt-cell></clr-tt-cell>-->
+<!--              <clr-tt-cell>20%</clr-tt-cell>-->
+<!--              <clr-tt-cell>19.99EUR</clr-tt-cell>-->
+<!--              <clr-tt-cell>-519.99EUR</clr-tt-cell>-->
+<!--            </clr-tt-row>-->
+
+<!--            <clr-tt-row>-->
+<!--              <clr-tt-cell>style Paket (WMV)</clr-tt-cell>-->
+<!--              <clr-tt-cell>EUR 950.00</clr-tt-cell>-->
+<!--              <clr-tt-cell></clr-tt-cell>-->
+<!--              <clr-tt-cell>20%</clr-tt-cell>-->
+<!--              <clr-tt-cell>19.99EUR</clr-tt-cell>-->
+<!--              <clr-tt-cell>-519.99EUR</clr-tt-cell>-->
+<!--            </clr-tt-row>-->
+
+<!--            <clr-tt-row>-->
+<!--              <clr-tt-cell>Sportsitze vorn (PS1)</clr-tt-cell>-->
+<!--              <clr-tt-cell>EUR 339.99</clr-tt-cell>-->
+<!--              <clr-tt-cell></clr-tt-cell>-->
+<!--              <clr-tt-cell>20%</clr-tt-cell>-->
+<!--              <clr-tt-cell>19.99EUR</clr-tt-cell>-->
+<!--              <clr-tt-cell>-519.99EUR</clr-tt-cell>-->
+<!--            </clr-tt-row>-->
+<!--          </clr-tt-row>-->
+<!--        </clr-tt-row>-->
+<!--      </clr-tt-row>-->
+
+<!--      <clr-tt-row>-->
+<!--        <clr-tt-cell>style Paket (WMV)</clr-tt-cell>-->
+<!--        <clr-tt-cell>EUR 950.00</clr-tt-cell>-->
+<!--        <clr-tt-cell></clr-tt-cell>-->
+<!--        <clr-tt-cell>20%</clr-tt-cell>-->
+<!--        <clr-tt-cell>19.99EUR</clr-tt-cell>-->
+<!--        <clr-tt-cell>-519.99EUR</clr-tt-cell>-->
+<!--      </clr-tt-row>-->
+
+<!--      <clr-tt-row>-->
+<!--        <clr-tt-cell>Sportsitze vorn (PS1)</clr-tt-cell>-->
+<!--        <clr-tt-cell>EUR 339.99</clr-tt-cell>-->
+<!--        <clr-tt-cell></clr-tt-cell>-->
+<!--        <clr-tt-cell>20%</clr-tt-cell>-->
+<!--        <clr-tt-cell>19.99EUR</clr-tt-cell>-->
+<!--        <clr-tt-cell>-519.99EUR</clr-tt-cell>-->
+<!--      </clr-tt-row>-->
+<!--    </clr-tt-row>-->
+<!--  </clr-tt-row>-->
+<!--</clr-treetable>-->
+
+<!--&ndash;&gt;-->
 
 <h4>Treetable with whole clickable rows</h4>
 <clr-treetable>
@@ -494,8 +530,8 @@
     </clr-tt-row>
 
     <clr-tt-row>
-      <clr-tt-cell
-        >Florettsilber Metallic Brillantschwarz / granatrot-schwarz-granatrot/schwarz- schwarz/schwarz/titangrau
+      <clr-tt-cell>
+        Florettsilber Metallic Brillantschwarz / granatrot-schwarz-granatrot/schwarz- schwarz/schwarz/titangrau
       </clr-tt-cell>
       <clr-tt-cell class="text-right">480.00 EUR</clr-tt-cell>
     </clr-tt-row>
@@ -619,9 +655,9 @@
       <clr-tt-action-overflow>
         <button class="action-item">Test</button>
       </clr-tt-action-overflow>
-      <clr-tt-cell>{{node.name}}</clr-tt-cell>
-      <clr-tt-cell>{{node.type}}</clr-tt-cell>
-      <clr-tt-cell>{{node.version}}</clr-tt-cell>
+      <clr-tt-cell>{{ node.name }}</clr-tt-cell>
+      <clr-tt-cell>{{ node.type }}</clr-tt-cell>
+      <clr-tt-cell>{{ node.version }}</clr-tt-cell>
       <ng-container ngProjectAs="clr-tt-row" *ngFor="let childNode of node.children">
         <ng-container *ngTemplateOutlet="singleNode; context: { $implicit: childNode }"></ng-container>
       </ng-container>
@@ -644,9 +680,9 @@
       <clr-tt-action-overflow>
         <button class="action-item">Test</button>
       </clr-tt-action-overflow>
-      <clr-tt-cell class="text-truncate">{{node.name}} {{veryLongString}}</clr-tt-cell>
-      <clr-tt-cell class="text-truncate">{{node.type}} {{veryLongString}}</clr-tt-cell>
-      <clr-tt-cell class="text-truncate">{{node.version}} {{veryLongString}}</clr-tt-cell>
+      <clr-tt-cell class="text-truncate">{{ node.name }} {{ veryLongString }}</clr-tt-cell>
+      <clr-tt-cell class="text-truncate">{{ node.type }} {{ veryLongString }}</clr-tt-cell>
+      <clr-tt-cell class="text-truncate">{{ node.version }} {{ veryLongString }}</clr-tt-cell>
       <ng-container ngProjectAs="clr-tt-row" *ngFor="let childNode of node.children">
         <ng-container *ngTemplateOutlet="truncateNode; context: { $implicit: childNode }"></ng-container>
       </ng-container>
@@ -654,7 +690,7 @@
   </ng-template>
 </clr-treetable>
 
-<h4>Signpost</h4>
+<h4>Signpost and Tooltip</h4>
 <clr-treetable [clrClickableRows]="false">
   <clr-tt-column>Name</clr-tt-column>
   <clr-tt-column>Type</clr-tt-column>
@@ -670,7 +706,7 @@
         <button class="action-item">Test</button>
       </clr-tt-action-overflow>
       <clr-tt-cell class="text-truncate"
-        >{{node.name}}
+        >{{ node.name }}
         <clr-signpost>
           <button
             class="btn btn-link btn-icon btn-sm"
@@ -682,8 +718,13 @@
           <clr-signpost-content>Signpost</clr-signpost-content>
         </clr-signpost>
       </clr-tt-cell>
-      <clr-tt-cell class="text-truncate">{{node.type}}</clr-tt-cell>
-      <clr-tt-cell class="text-truncate">{{node.version}}</clr-tt-cell>
+      <clr-tt-cell class="text-truncate">{{ node.type }}</clr-tt-cell>
+      <clr-tt-cell class="text-truncate">
+        <clr-tooltip>
+          <span clrTooltipTrigger> {{ node.version }} </span>
+          <clr-tooltip-content> {{ node.version + ' for reference' }} </clr-tooltip-content>
+        </clr-tooltip>
+      </clr-tt-cell>
       <ng-container ngProjectAs="clr-tt-row" *ngFor="let childNode of node.children">
         <ng-container *ngTemplateOutlet="signpostNode; context: { $implicit: childNode }"></ng-container>
       </ng-container>

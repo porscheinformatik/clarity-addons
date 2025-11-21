@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, Input, NgZone, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, NgZone } from '@angular/core';
 import {
   ClrAlignment,
   ClrAxis,
@@ -14,17 +14,14 @@ import {
   ClrPopoverToggleService,
   ClrSide,
 } from '@clr/angular';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import { ClarityIcons, ellipsisVerticalIcon } from '@cds/core/icon';
-
-ClarityIcons.addIcons(ellipsisVerticalIcon);
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'clr-tt-action-overflow',
   providers: [ClrPopoverToggleService, ClrPopoverEventsService, ClrPopoverPositionService],
   template: `
-    <ng-container *ngIf="!empty">
+    @if (!empty()) {
+    <ng-container>
       <button class="treetable-action-trigger" clrPopoverAnchor clrPopoverOpenCloseButton>
         <cds-icon shape="ellipsis-vertical"></cds-icon>
       </button>
@@ -37,6 +34,7 @@ ClarityIcons.addIcons(ellipsisVerticalIcon);
         <ng-content></ng-content>
       </div>
     </ng-container>
+    }
   `,
   host: {
     '[class.treetable-row-actions]': 'true',
@@ -44,9 +42,10 @@ ClarityIcons.addIcons(ellipsisVerticalIcon);
     role: 'cell',
   },
   standalone: false,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ClrTreetableActionOverflow implements OnDestroy {
-  @Input() empty = false;
+export class ClrTreetableActionOverflow {
+  empty = input(false);
 
   public smartPosition: ClrPopoverPosition = {
     axis: ClrAxis.HORIZONTAL,
@@ -55,10 +54,8 @@ export class ClrTreetableActionOverflow implements OnDestroy {
     content: ClrAlignment.CENTER,
   };
 
-  destroyed$ = new Subject<void>();
-
   constructor(private smartToggleService: ClrPopoverToggleService, private zone: NgZone) {
-    this.smartToggleService.openChange.pipe(takeUntil(this.destroyed$.asObservable())).subscribe(openState => {
+    this.smartToggleService.openChange.pipe(takeUntilDestroyed()).subscribe(openState => {
       if (openState) {
         this.focusFirstButton();
       }
@@ -78,10 +75,5 @@ export class ClrTreetableActionOverflow implements OnDestroy {
 
   closeOverflowContent(event: Event): void {
     this.smartToggleService.toggleWithEvent(event);
-  }
-
-  ngOnDestroy(): void {
-    this.destroyed$.next();
-    this.destroyed$.complete();
   }
 }

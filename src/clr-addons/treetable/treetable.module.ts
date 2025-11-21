@@ -19,6 +19,18 @@ import { TreetableCellRenderer } from './renderer/cell-renderer';
 import { ClrTreetableActionOverflow } from './treetable-action-overflow';
 import { TreetableItemsDirective } from './treetable-items';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ClrTreetableFilter } from './treetable-filter';
+import {
+  angleIcon,
+  arrowIcon,
+  ClarityIcons,
+  ellipsisVerticalIcon,
+  filterGridCircleIcon,
+  filterGridIcon,
+} from '@cds/core/icon';
+import { ClrTreetableStringFilter } from './built-in/filter/treetable-string-filter';
+import { ClrTreetableRecursiveRows } from './treetable-recursive-rows';
+import { ClrTreetableRowCheckbox } from './treetable-row-checkbox';
 
 const CLR_TREETABLE_DIRECTIVES: Type<any>[] = [
   ClrTreetable,
@@ -32,11 +44,17 @@ const CLR_TREETABLE_DIRECTIVES: Type<any>[] = [
   TreetableRowRenderer,
   TreetableCellRenderer,
   TreetableItemsDirective,
+  ClrTreetableFilter,
+  ClrTreetableStringFilter,
 ];
 
 @NgModule({
   imports: [CommonModule, ClarityModule, ReactiveFormsModule, FormsModule],
-  declarations: [CLR_TREETABLE_DIRECTIVES],
+  declarations: [CLR_TREETABLE_DIRECTIVES, ClrTreetableRecursiveRows, ClrTreetableRowCheckbox],
   exports: [CLR_TREETABLE_DIRECTIVES],
 })
-export class ClrTreetableModule {}
+export class ClrTreetableModule {
+  constructor() {
+    ClarityIcons.addIcons(angleIcon, arrowIcon, ellipsisVerticalIcon, filterGridCircleIcon, filterGridIcon);
+  }
+}

@@ -9,15 +9,24 @@ import { ClrTreetableColumn } from './treetable-column';
 import { ClrTreetableComparatorInterface } from './interfaces/comparator.interface';
 import { Sort } from './providers';
 import { ClrTreetableSortOrder } from './enums/sort-order.enum';
+import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
+import SpyObj = jasmine.SpyObj;
 
-export const numberTestComparator: ClrTreetableComparatorInterface<number> = {
-  compare: (a: number, b: number) => a - b,
-};
+type TestObject = { id: string; number: number };
 
 describe('ClrTreetableColumn', () => {
-  let component: ClrTreetableColumn<number>;
-  let fixture: ComponentFixture<ClrTreetableColumn<number>>;
-  let sortProvider: Sort<number>;
+  let component: ClrTreetableColumn<TestObject>;
+  let fixture: ComponentFixture<ClrTreetableColumn<TestObject>>;
+  let sortProvider: Sort<TestObject>;
+
+  let sortProviderToggleSpy: SpyObj<unknown>;
+  let sortOrderChangedSpy: SpyObj<unknown>;
+
+  const ComponentInputs = { sortBy: 'clrTtSortBy', sortOrder: 'clrTtSortOrder' } as const;
+  const testComparator: ClrTreetableComparatorInterface<TestObject> = {
+    compare: (a: TestObject, b: TestObject) => a?.number - b?.number,
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -25,89 +34,159 @@ describe('ClrTreetableColumn', () => {
       providers: [Sort],
     });
 
-    fixture = TestBed.createComponent(ClrTreetableColumn);
-    component = fixture.componentInstance;
     sortProvider = TestBed.inject(Sort);
+
+    fixture = TestBed.createComponent(ClrTreetableColumn<TestObject>);
+    component = fixture.componentInstance;
+    fixture.autoDetectChanges();
+
+    sortProviderToggleSpy = spyOn(sortProvider, 'toggle').and.callThrough();
+    sortOrderChangedSpy = spyOn(component.clrTtSortOrderChange, 'emit');
   });
 
-  it('should initialize with default state', () => {
-    expect(component.sortBy).toBeUndefined();
-    expect(component.sortOrder).toBe(ClrTreetableSortOrder.UNSORTED);
-    expect(component.sortDirection).toBeUndefined();
-    expect(component.sortable).toBeFalse();
+  function getSortButton(): DebugElement | null {
+    return fixture.debugElement.query(By.css('[data-testId="clrTtSortButton"]'));
+  }
+
+  function getSortIndicator(): DebugElement | null {
+    return fixture.debugElement.query(By.css('[data-testId="clrTtSortIndicator"]'));
+  }
+
+  it(`should initialize with default state, if ${ComponentInputs.sortBy} is not set`, () => {
+    const sortIcon: HTMLElement = fixture.nativeElement.querySelector('.sort-icon');
+
+    expect(component).toBeDefined();
+    expect(component.clrTtSortBy()).toBeNull();
+    expect(component.clrTtSortOrder()).toBe(ClrTreetableSortOrder.UNSORTED);
+    expect(sortOrderChangedSpy).not.toHaveBeenCalled();
+    expect(sortIcon).toBeFalsy();
   });
 
-  it('should be sortable when sortBy is set', () => {
-    component.sortBy = { compare: (a, b) => a - b };
-    expect(component.sortable).toBeTrue();
+  it(`should be sortable when ${ComponentInputs.sortBy} is set`, async () => {
+    fixture.componentRef.setInput(ComponentInputs.sortBy, { compare: (a: number, b: number) => a - b });
+    await fixture.whenStable();
+
+    const sortBtn = getSortButton();
+
+    expect(component.clrTtSortOrder()).toBe(ClrTreetableSortOrder.UNSORTED);
+    expect(sortOrderChangedSpy).not.toHaveBeenCalled();
+    expect(sortBtn).toBeTruthy();
   });
 
-  it('should sort in ascending order when sort is called', () => {
-    component.sortBy = numberTestComparator;
+  it(`should sort in ascending order when sort button is clicked and no ${ComponentInputs.sortOrder} is provided`, async () => {
+    fixture.componentRef.setInput(ComponentInputs.sortBy, testComparator);
+    await fixture.whenStable();
 
-    spyOn(sortProvider, 'toggle').and.callThrough();
-    spyOn(component.sortOrderChange, 'emit');
+    const sortBtn = getSortButton();
+    sortBtn.nativeElement.click();
+    await fixture.whenStable();
 
-    component.sort(false);
+    const sortIndicator = getSortIndicator();
 
-    expect(sortProvider.toggle).toHaveBeenCalledWith(numberTestComparator, false);
-    expect(component.sortOrder).toBe(ClrTreetableSortOrder.ASC);
-    expect(component.sortDirection).toBe('up');
-    expect(component.sortOrderChange.emit).toHaveBeenCalledWith(ClrTreetableSortOrder.ASC);
+    expect(sortProviderToggleSpy).toHaveBeenCalledWith(testComparator, undefined);
+    expect(sortIndicator).toBeDefined();
+    expect(sortIndicator.nativeElement.direction).toBe('up');
+    expect(sortOrderChangedSpy).toHaveBeenCalledWith(ClrTreetableSortOrder.ASC);
   });
 
-  it('should sort in descending order when sort is called with reverse', () => {
-    component.sortBy = numberTestComparator;
+  it(`should sort in ascending order when ${ComponentInputs.sortOrder} is provided with ascending`, async () => {
+    fixture.componentRef.setInput(ComponentInputs.sortBy, testComparator);
+    fixture.componentRef.setInput(ComponentInputs.sortOrder, ClrTreetableSortOrder.ASC);
+    await fixture.whenStable();
 
-    spyOn(sortProvider, 'toggle').and.callThrough();
-    spyOn(component.sortOrderChange, 'emit');
+    const sortBtn = getSortButton();
+    const sortIndicator = getSortIndicator();
 
-    component.sort(true);
-
-    expect(sortProvider.toggle).toHaveBeenCalledWith(numberTestComparator, true);
-    expect(component.sortOrder).toBe(ClrTreetableSortOrder.DESC);
-    expect(component.sortDirection).toBe('down');
-    expect(component.sortOrderChange.emit).toHaveBeenCalledWith(ClrTreetableSortOrder.DESC);
+    expect(sortProviderToggleSpy).toHaveBeenCalledWith(testComparator, false);
+    expect(sortBtn).toBeDefined();
+    expect(sortIndicator).toBeDefined();
+    expect(sortIndicator.nativeElement.direction).toBe('up');
+    expect(sortOrderChangedSpy).toHaveBeenCalledWith(ClrTreetableSortOrder.ASC);
   });
 
-  it('should clear sorting when clrTtSortOrder is set to UNSORTED', () => {
-    component.sortBy = numberTestComparator;
-    component.sortOrder = ClrTreetableSortOrder.ASC;
+  it(`should sort in descending order when sort button is clicked and ${ComponentInputs.sortOrder} is ascending`, async () => {
+    fixture.componentRef.setInput(ComponentInputs.sortBy, testComparator);
+    fixture.componentRef.setInput(ComponentInputs.sortOrder, ClrTreetableSortOrder.ASC);
+    await fixture.whenStable();
 
-    spyOn(sortProvider, 'clear').and.callThrough();
-    spyOn(component.sortOrderChange, 'emit');
+    const sortBtn = getSortButton();
+    sortBtn.nativeElement.click();
+    await fixture.whenStable();
 
-    component.sortOrder = ClrTreetableSortOrder.UNSORTED;
+    const sortIndicator = getSortIndicator();
 
-    expect(sortProvider.clear).toHaveBeenCalled();
-    expect(component.sortOrder).toBe(ClrTreetableSortOrder.UNSORTED);
-    expect(component.sortDirection).toBeNull();
-    expect(component.sortOrderChange.emit).toHaveBeenCalledWith(ClrTreetableSortOrder.UNSORTED);
+    expect(sortProviderToggleSpy).toHaveBeenCalledWith(testComparator, undefined);
+    expect(sortIndicator).toBeDefined();
+    expect(sortIndicator.nativeElement.direction).toBe('down');
+    expect(sortOrderChangedSpy).toHaveBeenCalledWith(ClrTreetableSortOrder.DESC);
   });
 
-  it('should update ariaSort correctly', () => {
-    component.sortBy = numberTestComparator;
+  it(`should sort in descending order when ${ComponentInputs.sortOrder} is provided with descending`, async () => {
+    fixture.componentRef.setInput(ComponentInputs.sortBy, testComparator);
+    fixture.componentRef.setInput(ComponentInputs.sortOrder, ClrTreetableSortOrder.DESC);
+    await fixture.whenStable();
 
-    component.sortOrder = ClrTreetableSortOrder.ASC;
-    expect(component.ariaSort).toBe('ascending');
+    const sortBtn = getSortButton();
+    const sortIndicator = getSortIndicator();
 
-    component.sortOrder = ClrTreetableSortOrder.DESC;
-    expect(component.ariaSort).toBe('descending');
-
-    component.sortOrder = ClrTreetableSortOrder.UNSORTED;
-    expect(component.ariaSort).toBe('none');
+    expect(sortProviderToggleSpy).toHaveBeenCalledWith(testComparator, true);
+    expect(sortBtn).toBeDefined();
+    expect(sortIndicator).toBeDefined();
+    expect(sortIndicator.nativeElement.direction).toBe('down');
+    expect(sortOrderChangedSpy).toHaveBeenCalledWith(ClrTreetableSortOrder.DESC);
   });
 
-  it('should react to external sorting changes', () => {
-    component.sortBy = numberTestComparator;
-    component.sortOrder = ClrTreetableSortOrder.ASC as ClrTreetableSortOrder;
+  it(`should sort in ascending order when sort button is clicked and ${ComponentInputs.sortOrder} is descending`, async () => {
+    fixture.componentRef.setInput(ComponentInputs.sortBy, testComparator);
+    fixture.componentRef.setInput(ComponentInputs.sortOrder, ClrTreetableSortOrder.DESC);
+    await fixture.whenStable();
 
-    spyOn(component.sortOrderChange, 'emit');
+    const sortBtn = getSortButton();
+    sortBtn.nativeElement.click();
+    await fixture.whenStable();
 
-    sortProvider.comparator = null;
+    const sortIndicator = getSortIndicator();
 
-    expect(component.sortOrder).toBe(ClrTreetableSortOrder.UNSORTED);
-    expect(component.sortDirection).toBeNull();
-    expect(component.sortOrderChange.emit).toHaveBeenCalledWith(ClrTreetableSortOrder.UNSORTED);
+    expect(sortProviderToggleSpy).toHaveBeenCalledWith(testComparator, undefined);
+    expect(sortIndicator).toBeDefined();
+    expect(sortIndicator.nativeElement.direction).toBe('up');
+    expect(sortOrderChangedSpy).toHaveBeenCalledWith(ClrTreetableSortOrder.ASC);
+  });
+
+  it(`should clear sorting when ${ComponentInputs.sortOrder} is set to UNSORTED`, async () => {
+    const sortProviderClearSpy = spyOn(sortProvider, 'clear').and.callThrough();
+
+    fixture.componentRef.setInput(ComponentInputs.sortBy, testComparator);
+    fixture.componentRef.setInput(ComponentInputs.sortOrder, ClrTreetableSortOrder.ASC);
+    await fixture.whenStable();
+
+    fixture.componentRef.setInput(ComponentInputs.sortOrder, ClrTreetableSortOrder.UNSORTED);
+    await fixture.whenStable();
+
+    const sortBtn = getSortButton();
+    const sortIndicator = getSortIndicator();
+
+    expect(sortProviderClearSpy).toHaveBeenCalled();
+    expect(component.clrTtSortOrder()).toBe(ClrTreetableSortOrder.UNSORTED);
+    expect(sortBtn).toBeDefined();
+    expect(sortIndicator).toBeNull();
+    expect(sortOrderChangedSpy).toHaveBeenCalledWith(ClrTreetableSortOrder.UNSORTED);
+  });
+
+  it('should update aria sort correctly', async () => {
+    fixture.componentRef.setInput(ComponentInputs.sortBy, testComparator);
+    fixture.componentRef.setInput(ComponentInputs.sortOrder, ClrTreetableSortOrder.ASC);
+    await fixture.whenStable();
+
+    const componentElement: HTMLElement = fixture.nativeElement;
+    expect(componentElement.ariaSort).toBe('ascending');
+
+    fixture.componentRef.setInput(ComponentInputs.sortOrder, ClrTreetableSortOrder.DESC);
+    await fixture.whenStable();
+    expect(componentElement.ariaSort).toBe('descending');
+
+    fixture.componentRef.setInput(ComponentInputs.sortOrder, ClrTreetableSortOrder.UNSORTED);
+    await fixture.whenStable();
+    expect(componentElement.ariaSort).toBe('none');
   });
 });

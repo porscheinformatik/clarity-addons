@@ -113,6 +113,30 @@ $indentation-increment: 1rem;
   }
 }
 
+@mixin clr-button-no-styles {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  background: none;
+
+  @at-root button#{&} {
+    cursor: pointer;
+  }
+}
+
+@mixin clr-treetable-popover {
+  background: var(--cds-alias-object-container-background);
+  border-color: var(--cds-alias-object-border-color);
+  color: var(--cds-alias-typography-color-400);
+  box-shadow: var(--cds-alias-object-shadow-100);
+}
+
 @include mixins.exports('treetable.clr-addons') {
   @include basic-table(
     '.treetable',
@@ -174,15 +198,7 @@ $indentation-increment: 1rem;
         overflow: hidden;
 
         .treetable-expandable-caret-button {
-          -webkit-appearance: none;
-          -moz-appearance: none;
-          -ms-appearance: none;
-          -o-appearance: none;
-          margin: 0;
-          padding: 0;
-          border: none;
-          border-radius: 0;
-          box-shadow: none;
+          @include clr-button-no-styles();
           background: none;
           cursor: pointer;
           height: 1.5rem;
@@ -248,6 +264,10 @@ $indentation-increment: 1rem;
           text-align: left;
           min-width: 4rem;
           line-height: var(--cds-alias-typography-caption-line-height);
+          display: flex;
+          flex: 1 1 auto;
+          vertical-align: top;
+          border: none;
 
           &:last-of-type {
             padding-right: 1rem;
@@ -266,11 +286,6 @@ $indentation-increment: 1rem;
             display: flex;
             width: 100%;
 
-            &:hover {
-              text-decoration: underline;
-              cursor: pointer;
-            }
-
             .sort-icon {
               color: var(--cds-alias-object-interaction-color);
               margin-left: auto;
@@ -285,6 +300,73 @@ $indentation-increment: 1rem;
                 color: var(--cds-alias-object-interaction-color-active);
               }
             }
+
+            .signpost .signpost-action.btn {
+              height: inherit;
+              line-height: inherit;
+            }
+          }
+
+          button.treetable-column-title:hover {
+            text-decoration: underline;
+            cursor: pointer;
+          }
+
+          clr-tt-filter {
+            display: flex;
+            order: 99;
+            margin-left: auto;
+            align-items: center;
+          }
+
+          .treetable-filter-toggle {
+            @include clr-button-no-styles();
+            cursor: pointer;
+            float: right;
+            vertical-align: middle;
+            height: var(--clr-base-icon-size-s);
+            min-height: var(--clr-base-icon-size-s);
+            width: var(--clr-base-icon-size-s);
+            min-width: var(--clr-base-icon-size-s);
+            margin-left: var(--clr-base-horizontal-offset-s);
+            background-repeat: no-repeat;
+            background-size: contain;
+
+            cds-icon,
+            clr-icon {
+              color: var(--cds-alias-object-interaction-color);
+              padding-left: 0;
+            }
+
+            &:hover {
+              cds-icon,
+              clr-icon {
+                color: var(--cds-alias-object-interaction-color-hover);
+              }
+            }
+
+            &.treetable-filter-open {
+              cds-icon,
+              clr-icon {
+                color: var(--cds-alias-object-interaction-color-active);
+              }
+            }
+
+            &.treetable-filtered {
+              cds-icon,
+              clr-icon {
+                color: var(--cds-alias-object-interaction-color-selected);
+              }
+            }
+          }
+
+          &.treetable-fixed-width {
+            flex: 0 0 auto;
+          }
+
+          .treetable-column-flex {
+            display: flex;
+            flex: 1 1 auto;
           }
         }
 
@@ -362,6 +444,18 @@ $indentation-increment: 1rem;
           @include row-indentation-recursive(0, 10);
         }
       }
+
+      .treetable-spinner {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        top: var(--clr-base-vertical-offset-l);
+        height: calc(100% - var(--clr-base-vertical-offset-l));
+        background-color: var(--cds-alias-object-container-backdrop-background);
+        z-index: map.get(variables.$clr-layers, datagrid-host); // Keeps the spinner above the treetable header.
+      }
     }
 
     &:not(.empty) .treetable-placeholder-container {
@@ -399,6 +493,38 @@ $indentation-increment: 1rem;
         background-position: center;
         background-image: mixins.generateEmptyTreetablePlaceholder();
       }
+    }
+  }
+
+  .treetable-filter {
+    @include clr-treetable-popover;
+    margin-top: var(--cds-global-space-3);
+    border-width: var(--cds-alias-object-border-width-100);
+    border-style: solid;
+    padding: var(--clr-base-vertical-offset-xl);
+    border-radius: var(--clr-base-border-radius-s);
+    font-weight: normal;
+
+    .treetable-filter-close-wrapper {
+      text-align: right;
+
+      .close {
+        float: none;
+        font-size: unset;
+      }
+    }
+
+    .treetable-numeric-filter-form {
+      display: flex;
+      gap: var(--clr-base-gap-m);
+
+      input.treetable-numeric-filter-input {
+        width: var(--clr-base-layout-space-5xl);
+      }
+    }
+
+    .clr-form-control {
+      margin-top: 0;
     }
   }
 }

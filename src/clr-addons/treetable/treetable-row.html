@@ -5,40 +5,58 @@
   -->
 
 <div
-  [ngClass]="{'clr-row-clickable': showClickClass, 'treetable-selected': selected}"
   class="clr-tt-node-content treetable-row"
+  [class.clr-row-clickable]="showClickClass()"
+  [class.treetable-selected]="isSelected()"
   (click)="onRowClick($event)"
 >
-  @if(selection.selectionType === SelectionType.Multi){
-  <div class="clr-checkbox-wrapper treetable-row-selection treetable-cell">
-    <input type="checkbox" [ngModel]="selected" (ngModelChange)="toggle($event)" (click)="$event.stopPropagation()" />
-  </div>
+  @if (showSelection()) {
+  <clr-tt-row-checkbox
+    [clrTtSelectionState]="clrTtItem().selected()"
+    (clrTtSelectionStateChange)="toggleSelection($event)"
+    (click)="$event.stopPropagation()"
+  >
+  </clr-tt-row-checkbox>
   }
 
-  <ng-content select="clr-tt-action-overflow"></ng-content>
-  <clr-tt-action-overflow *ngIf="showActionOverflow && showEmptyActionOverflow" [empty]="true"></clr-tt-action-overflow>
+  <ng-content select="clr-tt-action-overflow" />
+
+  @if (showActionOverflow() && showEmptyActionOverflow()) {
+  <clr-tt-action-overflow [empty]="true" />
+  }
+
   <div class="treetable-scrolling-cells">
-    <div class="treetable-expandable-caret" *ngIf="expandable">
-      <button type="button" class="treetable-expandable-caret-button" (click)="onCaretClick()">
+    @if (clrExpandable()) {
+    <div class="treetable-expandable-caret">
+      <button
+        type="button"
+        class="treetable-expandable-caret-button"
+        data-testId="clrTtRowCaret"
+        (click)="onCaretClick()"
+      >
         <cds-icon
           shape="angle"
-          [attr.direction]="expanded ? 'down' : 'right'"
+          [attr.direction]="clrExpanded() ? 'down' : 'right'"
           class="treetable-expandable-caret-icon"
         ></cds-icon>
       </button>
     </div>
+    }
 
-    <ng-content select="clr-tt-cell"></ng-content>
+    <ng-content select="clr-tt-cell" />
   </div>
 </div>
 
 <div
-  class="treetable-row-animation-container"
-  [class.expanded]="expanded"
-  [class.collapsed]="!expanded"
+  class="treetable-children-container"
+  data-testId="clrTtRowChildContainer"
+  [class.expanded]="clrExpanded()"
+  [class.collapsed]="!clrExpanded()"
   [class.animate]="shouldAnimate()"
 >
-  <div class="treetable-row-animation-wrapper">
-    <ng-content select="clr-tt-row"></ng-content>
-  </div>
+  @if (isRecursionMode()) {
+  <clr-tt-recursive-rows [parent]="clrTtItem()" />
+  } @else {
+  <ng-content select="clr-tt-row" />
+  }
 </div>
