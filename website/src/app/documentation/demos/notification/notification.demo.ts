@@ -14,7 +14,7 @@ const CODE_EXAMPLE = `
 <ng-template #example>
     <ng-container clr-notification-message>
         Some Information
-        <button class="btn btn-info-outline" (click)="showAlert()">Show Alert</button>
+        <button class="btn alert-action" (click)="showAlert()">Show Alert</button>
     </ng-container>
 </ng-template>
 `;
