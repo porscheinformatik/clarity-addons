@@ -20,13 +20,13 @@
   "dependencies": {
     "@angular/animations": "19.2.16",
     "@angular/cdk": "19.2.19",
-    "@angular/common": "19.2.6",
+    "@angular/common": "19.2.16",
     "@angular/compiler": "19.2.16",
     "@angular/core": "19.2.16",
     "@angular/forms": "19.2.16",
     "@angular/platform-browser": "19.2.16",
     "@angular/platform-browser-dynamic": "19.2.16",
-    "@angular/platform-server": "19.2.6",
+    "@angular/platform-server": "19.2.16",
     "@angular/router": "19.2.16",
     "@cds/core": "^6.13.0",
     "@clr/angular": "^17.11.0",
@@ -43,7 +43,7 @@
     "prismjs": "1.30.0",
     "rxjs": "7.8.2",
     "tslib": "2.8.1",
-    "zone.js": "0.16.0"
+    "zone.js": "0.15.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "19.2.19",
