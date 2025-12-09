@@ -38,6 +38,10 @@ export class ClrEnumFilterComponent<T extends { [key: string]: any }>
     this.setFilteredValues(values);
   }
 
+  public reset() {
+    this.clearFilters();
+  }
+
   private setFilteredValues(values: (string | FilterValue)[]): void {
     const mappedValues = this.mapValues(values);
     if (this.possibleValues?.length) {
