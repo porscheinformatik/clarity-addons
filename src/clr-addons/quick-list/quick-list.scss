@@ -28,7 +28,9 @@
     .quick-list-add {
       padding: 0;
       text-align: left;
+      place-content: baseline;
     }
+
     .quick-list-addcompact {
       margin-top: -5px !important;
       margin-right: 0 !important;
