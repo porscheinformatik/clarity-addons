@@ -303,4 +303,10 @@
       padding-right: 0;
     }
   }
+
+  // Remove the last column separator in datagrids
+  clr-dg-column:not(.datagrid-hidden-column):not(:has(+ clr-dg-column:not(.datagrid-hidden-column)))
+    .datagrid-column-separator {
+    display: none;
+  }
 }
