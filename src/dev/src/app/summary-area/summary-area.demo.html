@@ -1,0 +1,104 @@
+<clr-summary-area
+  [rows]="3"
+  [error]="summaryAreaErrorState"
+  [warning]="summaryAreaWarningState"
+  [loading]="summaryAreaLoadingState"
+>
+  <clr-summary-item label="Label1" [valueCopyable]="true">
+    <clr-summary-item-value
+      value="exec custom logic"
+      [click]="handleCustomLogicValueClick.bind(this)"
+    ></clr-summary-item-value>
+  </clr-summary-item>
+  <clr-summary-item label="Item Label2" [loading]="itemLoadingState" [valueCopyable]="true">
+    <clr-summary-item-value
+      value="John Doe"
+      tooltip="Navigate to external app"
+      [click]="goToExternalApp.bind(this)"
+    ></clr-summary-item-value>
+  </clr-summary-item>
+  <clr-summary-item label="Label3">
+    <clr-summary-item-value icon="color-palette"></clr-summary-item-value>
+    <clr-summary-item-value value="Clarity Colors" [click]="goToInternalRoute.bind(this)"></clr-summary-item-value>
+  </clr-summary-item>
+  <clr-summary-item label="Label4" [valueCopyable]="true">
+    <div>custom content!</div>
+  </clr-summary-item>
+  <clr-summary-item label="Priority5" [valueCopyable]="true">
+    <clr-summary-item-value
+      icon="chat-bubble"
+      tooltip="I am a clickable icon!"
+      [click]="handleSummaryItemIconClick.bind(this)"
+    ></clr-summary-item-value>
+    <clr-summary-item-value value="Chat Bubble"></clr-summary-item-value>
+  </clr-summary-item>
+  <clr-summary-item label="CustomContent6" [valueCopyable]="true">
+    <div>Your custom content here</div>
+  </clr-summary-item>
+  <clr-summary-item label="Tooltip7" [valueCopyable]="true">
+    <clr-summary-item-value icon="pencil" tooltip="Edit this item"></clr-summary-item-value>
+    <clr-summary-item-value value="Long text" tooltip="Full value: Long text"></clr-summary-item-value>
+  </clr-summary-item>
+  <clr-summary-item label="Empty Item8" [valueCopyable]="true"><div>content</div></clr-summary-item>
+  <clr-summary-item [label]="'Status9'" [error]="itemErrorState" [valueCopyable]="true">
+    <clr-summary-item-value value="value for error item"></clr-summary-item-value>
+  </clr-summary-item>
+  <clr-summary-item label="Error Item10" [warning]="itemWarningState" [error]="itemErrorState" [valueCopyable]="true">
+    <clr-summary-item-value></clr-summary-item-value>
+    <clr-summary-item-value value="not empty"></clr-summary-item-value>
+    <clr-summary-item-value></clr-summary-item-value>
+  </clr-summary-item>
+  <clr-summary-item
+    label="Empty Value Item11"
+    [editConfig]="{enabled: true, click: onEditClick}"
+    [valueCopyable]="true"
+  ></clr-summary-item>
+  <clr-summary-item
+    label="Empty Value Item12"
+    [showOnEmptyValue]="false"
+    [error]="itemErrorState"
+    [warning]="itemWarningState"
+    [valueCopyable]="true"
+  >
+    <clr-summary-item-value [showOnEmptyValue]="false" tooltip="I am a tooltip"></clr-summary-item-value>
+  </clr-summary-item>
+  <clr-summary-item label="Projected Icon13" [valueCopyable]="true">
+    <clr-summary-item-value icon="wand" [click]="handleCustomLogic.bind(this)"> </clr-summary-item-value>
+    <clr-summary-item-value>
+      <cds-icon shape="bars" size="20"></cds-icon>
+    </clr-summary-item-value>
+  </clr-summary-item>
+  <clr-summary-item label="Single eiv14" [valueCopyable]="true">
+    <clr-summary-item-value></clr-summary-item-value>
+  </clr-summary-item>
+  <clr-summary-item label="Notes15" [valueCopyable]="true">
+    <clr-summary-item-value
+      value="Waiting for additional documentation, so long, so long, so long, so long, so long"
+    ></clr-summary-item-value>
+  </clr-summary-item>
+  <clr-summary-item label="Tooltip16">
+    <clr-summary-item-value icon="pencil" tooltip="Edit this item"></clr-summary-item-value>
+    <clr-summary-item-value value="Long text" tooltip="Full value: Long text"></clr-summary-item-value>
+  </clr-summary-item>
+  <clr-summary-item label="Risk Level17">
+    <clr-summary-item-value value="Moderate"></clr-summary-item-value>
+  </clr-summary-item>
+  <clr-summary-item label="Notes18">
+    <clr-summary-item-value value="Waiting for additional documentation"></clr-summary-item-value>
+  </clr-summary-item>
+  <clr-summary-item label="Copyable with Values19" [valueCopyable]="true">
+    <clr-summary-item-value value="Copy me"></clr-summary-item-value>
+    <clr-summary-item-value value="to clipboard!"></clr-summary-item-value>
+  </clr-summary-item>
+  <clr-summary-item label="Copyable Projected20" [valueCopyable]="true">
+    Just projected content without summary-item-value
+  </clr-summary-item>
+  <clr-summary-item label="Copyable Empty21" [valueCopyable]="true"></clr-summary-item>
+  <clr-summary-item label="Not Copyable22" [valueCopyable]="false">
+    <clr-summary-item-value value="This has no copy button"></clr-summary-item-value>
+  </clr-summary-item>
+</clr-summary-area>
+
+@if(showCustomAlert) {
+<my-custom-alert (hide)="closeCustomAlert()"></my-custom-alert>
+}

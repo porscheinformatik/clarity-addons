@@ -1,0 +1,13 @@
+:host {
+  display: flex;
+  align-items: center;
+}
+
+.summary-item-copy-value-icon {
+  cursor: pointer;
+  color: #d5d5d5; //TODO: is there a CSS variable for this color?
+}
+
+.summary-item-copy-value-icon:hover {
+  color: #009aa3; //TODO: is there a CSS variable for this color?
+}

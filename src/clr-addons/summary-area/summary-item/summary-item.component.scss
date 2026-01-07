@@ -1,0 +1,80 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.summary-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.25rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.summary-item.hidden {
+  display: none;
+}
+
+.summary-item-label {
+  flex-shrink: 0;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.summary-item-values {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.25rem;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: visible;
+}
+
+.summary-item-loading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.summary-item-loading .loading-spinner {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.summary-item-loading .loading-text {
+  color: var(--cds-alias-typography-color-300);
+  white-space: nowrap;
+}
+
+.value {
+  display: inline-block;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.value-link,
+.edit-link {
+  color: var(--cds-alias-typography-link-color);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.value-link:visited,
+.edit-link:visited {
+  color: var(--cds-alias-typography-link-color-visited);
+}
+
+.value-link:hover,
+.value-link:focus,
+.edit-link:hover,
+.edit-link:focus {
+  color: var(--cds-alias-typography-link-color-hover);
+  text-decoration: underline;
+}

@@ -1,0 +1,134 @@
+.summary-area-container {
+  margin: 12px 24px;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--columns), minmax(0, 320px));
+  grid-template-rows: repeat(var(--rows), auto);
+  grid-auto-flow: column;
+  max-width: 100%;
+  column-gap: 36px;
+  row-gap: 6px;
+}
+
+.summary-item {
+  max-width: 320px;
+  min-width: 0;
+  height: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.summary-area-state {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  justify-content: left;
+  width: 100%;
+}
+
+.error-alert {
+  display: flex;
+  width: 100%;
+  justify-content: left;
+}
+
+clr-alert-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+clr-alert-item .alert-text,
+clr-alert-item .alert-action {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.alert-action {
+  color: var(--cds-alias-typography-link-color) !important;
+  cursor: pointer;
+}
+
+.alert-action:visited {
+  color: var(--cds-alias-typography-link-color-visited);
+}
+
+.alert-action:hover,
+.alert-action:focus {
+  color: var(--cds-alias-typography-link-color-hover);
+}
+
+.summary-area-alert {
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  padding-left: 0.75rem;
+  margin-bottom: 0.3rem;
+}
+
+.summary-area-state.error {
+  color: var(--cds-alias-status-danger);
+}
+
+.summary-area-state.error cds-icon {
+  color: var(--cds-alias-status-danger);
+}
+
+.summary-area-state.warning {
+  color: var(--cds-alias-status-warning);
+}
+
+.summary-area-state.warning cds-icon {
+  color: var(--cds-alias-status-warning);
+}
+
+.summary-area-panels {
+  position: relative;
+}
+
+.summary-area-panel {
+  overflow: hidden;
+  transform-origin: top center;
+  transform: scaleY(0.95);
+  transition: opacity 220ms ease, transform 220ms ease, max-height 220ms ease;
+  max-height: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.summary-area-panel__body {
+  will-change: opacity, transform;
+}
+
+.summary-area-panel.is-active {
+  max-height: 999px;
+  opacity: 1;
+  pointer-events: auto;
+  transform: scaleY(1);
+  overflow: visible;
+}
+
+.summary-area-panel--state.is-active {
+  margin-bottom: 0.5rem;
+}
+
+.summary-area-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  min-height: 80px;
+}
+
+.summary-area-loading .loading-text {
+  color: var(--cds-alias-typography-color-300);
+}
+
+.summary-area-panel:not(.is-active) {
+  transform: scaleY(0.9);
+}

@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+  ~ Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
@@ -40,6 +40,7 @@
           </a>
           <a class="nav-link" href="#" onClick="return false;" clrMainNavGroupItem>Submenu 5 3</a>
         </clr-main-nav-group>
+        <a class="nav-link" href="/summary-area"><span class="nav-text">Summary Area</span></a>
       </div>
     </div>
     <div class="header-actions">
@@ -86,6 +87,7 @@
   <div class="content-header">
     <clr-back-button></clr-back-button>
     <h2>Content Header</h2>
+    <clr-summary-area-toggle></clr-summary-area-toggle>
     <div class="command-bar">
       <clr-history [clrUsername]="'me'" [clrTenantId]="'1'"></clr-history>
       <clr-button-group [clrMenuPosition]="'bottom-right'">
@@ -95,5 +97,6 @@
       </clr-button-group>
     </div>
   </div>
+  <my-app-summary-area-demo></my-app-summary-area-demo>
   <my-app-content-container class="content-container"></my-app-content-container>
 </clr-main-container>

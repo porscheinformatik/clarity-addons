@@ -1,0 +1,16 @@
+<button
+  class="summary-area-toggle"
+  type="button"
+  [attr.aria-pressed]="!collapsed()"
+  [attr.aria-label]="ariaLabel"
+  [disabled]="disabled()"
+  (click)="handleToggle($event)"
+>
+  <cds-icon
+    shape="angle-double"
+    size="20"
+    direction="up"
+    class="icon-rotate summary-area-icon"
+    [class.icon-rotated]="collapsed()"
+  ></cds-icon>
+</button>

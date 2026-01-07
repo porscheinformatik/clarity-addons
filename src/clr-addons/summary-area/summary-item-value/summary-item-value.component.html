@@ -1,0 +1,50 @@
+@if (icon() !== undefined && icon() !== null && icon() !== '') { @if (click()) { @if (tooltip()) {
+<clr-tooltip>
+  <cds-icon
+    clrTooltipTrigger
+    [attr.shape]="icon()"
+    class="value-icon value-link"
+    tabindex="0"
+    (click)="click()?.()"
+    (keydown.enter)="click()?.()"
+  ></cds-icon>
+  <clr-tooltip-content clrSize="md" clrPosition="top-right" *clrIfOpen> {{ tooltip() }}</clr-tooltip-content>
+</clr-tooltip>
+} @else {
+<cds-icon
+  [attr.shape]="icon()"
+  class="value-icon value-link"
+  tabindex="0"
+  (click)="click()?.()"
+  (keydown.enter)="click()?.()"
+></cds-icon>
+} } @else { @if (tooltip()) {
+<clr-tooltip>
+  <cds-icon clrTooltipTrigger [attr.shape]="icon()" class="value-icon value-icon-neutral"></cds-icon>
+  <clr-tooltip-content clrSize="md" clrPosition="top-right" *clrIfOpen> {{ tooltip() }}</clr-tooltip-content>
+</clr-tooltip>
+} @else {
+<cds-icon [attr.shape]="icon()" class="value-icon value-icon-neutral"></cds-icon>
+} } } @else if (value() !== undefined && value() !== null && value() !== '') { @if (click()) { @if (effectiveTooltip) {
+<clr-tooltip>
+  <span #valueElement class="value value-link" clrTooltipTrigger (click)="click()?.()" (keydown.enter)="click()?.()">
+    {{ value() }}
+  </span>
+  <clr-tooltip-content clrSize="md" clrPosition="top-right" *clrIfOpen> {{ effectiveTooltip }}</clr-tooltip-content>
+</clr-tooltip>
+} @else {
+<span #valueElement class="value value-link" (click)="click()?.()" (keydown.enter)="click()?.()">{{ value() }}</span>
+} } @else { @if (effectiveTooltip) {
+<clr-tooltip>
+  <span #valueElement class="value" clrTooltipTrigger>{{ value() }}</span>
+  <clr-tooltip-content clrSize="md" clrPosition="top-right" *clrIfOpen> {{ effectiveTooltip }}</clr-tooltip-content>
+</clr-tooltip>
+} @else {
+<span #valueElement class="value">{{ value() }}</span>
+} } } @else {
+<span class="projected-wrapper" #projectedContent>
+  <ng-content></ng-content>
+</span>
+@if (showPlaceholder) {
+<span class="value value-placeholder">&mdash;</span>
+} }
