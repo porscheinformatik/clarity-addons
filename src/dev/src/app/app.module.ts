@@ -21,7 +21,6 @@ import { LandingComponent } from './landing.component';
 import { RouteHistoryService } from './route-history.service';
 import { MockClrHistoryHttpService } from './_mocks/history.http.mock.service';
 import { SummaryAreaDemo } from './summary-area/summary-area.demo';
-import { ClrSummaryAreaToggleComponent } from '../../../clr-addons/summary-area/summary-area-toggle/summary-area-toggle.component';
 
 @NgModule({
   declarations: [AppComponent, LandingComponent, AppContentContainerComponent],
@@ -32,7 +31,6 @@ import { ClrSummaryAreaToggleComponent } from '../../../clr-addons/summary-area/
     ClarityModule,
     ClrAddonsModule,
     ROUTING,
-    ClrSummaryAreaToggleComponent,
     SummaryAreaDemo,
   ],
   bootstrap: [AppComponent],

@@ -10,25 +10,41 @@ import {
 } from '../../../../clr-addons/summary-area/summary-item/summary-item.model';
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ClrSummaryAreaComponent } from '../../../../clr-addons/summary-area/summary-area/summary-area.component';
-import { ClrSummaryItemComponent } from '../../../../clr-addons/summary-area/summary-item/summary-item.component';
-import { ClrSummaryItemValueComponent } from '../../../../clr-addons/summary-area/summary-item-value/summary-item-value.component';
+// import { ClrSummaryAreaComponent } from '../../../../clr-addons/summary-area/summary-area/summary-area.component';
+// import { ClrSummaryItemComponent } from '../../../../clr-addons/summary-area/summary-item/summary-item.component';
+// import { ClrSummaryItemValueComponent } from '../../../../clr-addons/summary-area/summary-item-value/summary-item-value.component';
 import { ClrIconModule } from '@clr/angular';
-import { barsIcon, chatBubbleIcon, ClarityIcons, colorPaletteIcon, pencilIcon, wandIcon } from '@cds/core/icon';
-import { CustomAlert } from './custom-alert';
+import {
+  barsIcon,
+  chatBubbleIcon,
+  ClarityIcons,
+  colorPaletteIcon,
+  pencilIcon,
+  popOutIcon,
+  wandIcon,
+} from '@cds/core/icon';
+import { ClrSummaryAreaModule, gasIcon } from '@porscheinformatik/clr-addons';
+import { ProgressItemComponent } from './progress-item/progress-item.component';
 
-ClarityIcons.addIcons(pencilIcon, barsIcon, wandIcon, chatBubbleIcon, colorPaletteIcon);
+ClarityIcons.addIcons(pencilIcon, barsIcon, wandIcon, chatBubbleIcon, colorPaletteIcon, popOutIcon, gasIcon);
 
 @Component({
   selector: 'my-app-summary-area-demo',
   templateUrl: './summary-area.demo.html',
-  imports: [ClrSummaryAreaComponent, ClrSummaryItemComponent, ClrSummaryItemValueComponent, ClrIconModule, CustomAlert],
+  imports: [
+    // ClrSummaryAreaComponent,
+    // ClrSummaryItemComponent,
+    // ClrSummaryItemValueComponent,
+    ClrIconModule,
+    ClrSummaryAreaModule,
+    ProgressItemComponent,
+  ],
 })
 export class SummaryAreaDemo implements OnInit {
   public summaryAreaErrorState: ClrSummaryAreaError = {
     active: false, // set to true to see the general error state of the summary area
     text: 'Critical error',
-    linkText: 'Reload',
+    linkText: 'Click here to resolve',
     click: () => {
       this.summaryAreaErrorState.active = false;
       alert('Handle error clicked!');
@@ -43,17 +59,20 @@ export class SummaryAreaDemo implements OnInit {
       alert('Handle warning clicked!');
     },
   };
-  public summaryAreaLoadingState: ClrSummaryAreaLoading = { active: true };
-  public itemLoadingState: ClrSummaryItemLoading = { active: true };
+  public summaryAreaLoadingState: ClrSummaryAreaLoading = { active: true, text: 'Loading...' };
+  public itemLoadingState: ClrSummaryItemLoading = { active: true, text: 'Fetching...' };
   public itemErrorState: ClrSummaryItemError = {
-    active: false,
+    active: true,
     text: 'Click to handle error',
     click: () => this.handleErrorClick(this.itemErrorState),
   };
   public itemWarningState: ClrSummaryItemWarning = {
-    active: false,
-    text: 'Click to handle warning',
-    click: () => alert('Warning clicked!'),
+    active: true,
+    text: 'Reload',
+    click: () => {
+      this.itemWarningState.active = false;
+      alert('Handle warning clicked!');
+    },
   };
   public errorState: ClrSummaryAreaError = {
     active: false,
@@ -64,8 +83,6 @@ export class SummaryAreaDemo implements OnInit {
       alert('Handle error clicked!');
     },
   };
-
-  public showCustomAlert = false;
 
   private readonly router: Router = inject(Router);
 
@@ -88,10 +105,6 @@ export class SummaryAreaDemo implements OnInit {
     alert('Wuhu, you clicked the icon!');
   }
 
-  public goToInternalRoute(): void {
-    this.router.navigate(['/clarity']);
-  }
-
   public handleErrorClick(errorState: ClrSummaryAreaError): void {
     this.itemErrorState = {
       ...errorState,
@@ -104,15 +117,20 @@ export class SummaryAreaDemo implements OnInit {
     alert('Edit clicked!');
   };
 
+  public goToIconsPage(): void {
+    this.router.navigate(['/icons']);
+  }
+
+  public goToPagerRoute(): void {
+    this.router.navigate(['/pager']);
+  }
+
+  public goToClarityRoute(): void {
+    this.router.navigate(['/clarity']);
+  }
+
   public goToExternalApp(): void {
-    globalThis.location.href = 'https://external-app.example.com';
-  }
-
-  public handleCustomLogic(): void {
-    this.showCustomAlert = true;
-  }
-
-  public closeCustomAlert(): void {
-    this.showCustomAlert = false;
+    //globalThis.location.href = 'https://external-app.example.com'; // open in same tab
+    window.open('https://external-app.example.com', '_blank'); // open in new tab
   }
 }

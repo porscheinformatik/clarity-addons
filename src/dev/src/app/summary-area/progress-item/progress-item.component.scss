@@ -1,0 +1,47 @@
+:host {
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+
+.progress-item-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+clr-progress-bar {
+  flex: 1;
+  min-width: 0;
+}
+
+button {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.progress-bar.progress.warning {
+  --clr-progress-alt-color-3: var(--cds-alias-status-warning);
+}
+
+.progress-button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/*.detail-modal {
+  z-index: 10000 !important;
+  position: fixed !important;
+}*/
+
+.modal-footer {
+  margin-top: 1.5em;
+}
+
+.progress-item-button {
+  margin: 0;
+}

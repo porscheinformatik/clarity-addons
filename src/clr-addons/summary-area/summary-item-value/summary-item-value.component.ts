@@ -12,15 +12,15 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { ClarityModule, ClrIconModule } from '@clr/angular';
+//import { CommonModule } from '@angular/common';
+//import { RouterModule } from '@angular/router';
+//import { ClarityModule, ClrIconModule } from '@clr/angular';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'clr-summary-item-value',
-  standalone: true,
-  imports: [CommonModule, RouterModule, ClarityModule, ClrIconModule],
+  standalone: false,
+  //imports: [CommonModule, RouterModule, ClarityModule, ClrIconModule],
   providers: [provideAnimations()],
   templateUrl: './summary-item-value.component.html',
   styleUrls: ['./summary-item-value.component.scss'],
@@ -34,6 +34,7 @@ export class ClrSummaryItemValueComponent
   public readonly value = input<string | undefined>();
   public readonly icon = input<string | undefined>();
   public readonly click = input<(() => void) | undefined>();
+  //@Output() clickEvent = new EventEmitter<any>();
   public readonly tooltip = input<string | undefined>();
   public readonly showOnEmptyValue = input<boolean>(true);
 

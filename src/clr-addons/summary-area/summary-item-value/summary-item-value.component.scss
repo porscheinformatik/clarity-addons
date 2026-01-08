@@ -87,9 +87,11 @@ clr-tooltip-content {
 :host(.error) {
   color: var(--cds-alias-status-danger);
 }
+
 :host(.error) cds-icon {
-  color: var(--cds-alias-status-danger);
+  color: var(--cds-alias-status-danger) !important;
 }
+
 :host(.error) .value {
   color: var(--cds-alias-status-danger);
 }
@@ -98,7 +100,7 @@ clr-tooltip-content {
   color: var(--cds-alias-status-warning);
 }
 :host(.warning) cds-icon {
-  color: var(--cds-alias-status-warning);
+  color: var(--cds-alias-status-warning) !important;
 }
 :host(.warning) .value {
   color: var(--cds-alias-status-warning);

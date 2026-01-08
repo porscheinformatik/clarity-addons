@@ -9,9 +9,9 @@ import {
   input,
   QueryList,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+//import { CommonModule } from '@angular/common';
 import { ClrSummaryItemComponent } from '../summary-item/summary-item.component';
-import { ClarityModule } from '@clr/angular';
+//import { ClarityModule } from '@clr/angular';
 import { ClrSummaryAreaStateService } from './summary-area-state.service';
 import {
   ClrSummaryAreaColumns,
@@ -23,8 +23,8 @@ import {
 
 @Component({
   selector: 'clr-summary-area',
-  standalone: true,
-  imports: [CommonModule, ClarityModule],
+  standalone: false,
+  //imports: [CommonModule, ClarityModule],
   templateUrl: './summary-area.component.html',
   styleUrl: './summary-area.component.scss',
 })
@@ -33,6 +33,7 @@ export class ClrSummaryAreaComponent implements AfterViewInit {
 
   public readonly isCollapsed;
   public rows = input<ClrSummaryAreaRows>(3);
+  clrClickableRows = input(true);
   public currentColumns: ClrSummaryAreaColumns = 5;
   public currentRows: ClrSummaryAreaRows = this.rows();
 

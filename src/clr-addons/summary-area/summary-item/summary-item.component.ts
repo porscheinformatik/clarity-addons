@@ -9,8 +9,8 @@ import {
   TemplateRef,
   ViewChild,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ClarityModule } from '@clr/angular';
+// import { CommonModule } from '@angular/common';
+// import { ClarityModule } from '@clr/angular';
 import { ClrSummaryItemValueComponent } from '../summary-item-value/summary-item-value.component';
 import {
   ClrSummaryItemError,
@@ -18,12 +18,12 @@ import {
   ClrSummaryItemLoading,
   ClrSummaryItemEditConfig,
 } from './summary-item.model';
-import { ClrSummaryItemValueCopyButtonComponent } from '../summary-item-value-copy-button/summary-item-value-copy-button.component';
+// import { ClrSummaryItemValueCopyButtonComponent } from '../summary-item-value-copy-button/summary-item-value-copy-button.component';
 
 @Component({
   selector: 'clr-summary-item',
-  standalone: true,
-  imports: [CommonModule, ClarityModule, ClrSummaryItemValueComponent, ClrSummaryItemValueCopyButtonComponent],
+  standalone: false,
+  //imports: [CommonModule, ClarityModule, ClrSummaryItemValueComponent, ClrSummaryItemValueCopyButtonComponent],
   templateUrl: './summary-item.component.html',
   styleUrls: ['./summary-item.component.scss'],
 })
