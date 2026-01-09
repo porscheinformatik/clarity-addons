@@ -1,5 +1,5 @@
-@if (!isCollapsed()) {
-<div class="summary-area-panels">
+<!--@if (!isCollapsed()) {-->
+<div class="summary-area-panels" [class.is-active]="!isCollapsed()">
   <div
     class="summary-area-panel summary-area-panel--state"
     [class.is-active]="hasLoading || hasError || hasWarning"
@@ -12,7 +12,7 @@
     <div class="summary-area-panel__body">
       @if (hasLoading) {
       <div class="summary-area-loading">
-        <clr-spinner [clrSmall]="true"></clr-spinner>
+        <clr-spinner [clrMedium]="true"></clr-spinner>
         <span class="loading-text">{{ loadingText }}</span>
       </div>
       } @else if (hasError) {
@@ -70,4 +70,4 @@
     </div>
   </div>
 </div>
-}
+<!--}-->

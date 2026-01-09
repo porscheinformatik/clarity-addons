@@ -43,6 +43,9 @@ export class ClrSummaryAreaComponent implements AfterViewInit {
 
   private readonly state = inject(ClrSummaryAreaStateService);
   private readonly cdr = inject(ChangeDetectorRef);
+  private readonly defaultLoadingText = 'Loading...';
+  private readonly defaultErrorText = 'Error';
+  private readonly defaultWarningText = 'Warning';
 
   constructor() {
     this.isCollapsed = this.state.collapsed;
@@ -64,7 +67,7 @@ export class ClrSummaryAreaComponent implements AfterViewInit {
   }
 
   public get loadingText(): string {
-    return this.loading()?.text || 'summary.area.loading.text';
+    return this.loading()?.text || this.defaultLoadingText;
   }
 
   public get hasError(): boolean {
@@ -72,7 +75,7 @@ export class ClrSummaryAreaComponent implements AfterViewInit {
   }
 
   public get errorText(): string {
-    return this.error()?.text || 'summary.area.error';
+    return this.error()?.text || this.defaultErrorText;
   }
 
   public get errorLinkText(): string | undefined {
@@ -88,7 +91,7 @@ export class ClrSummaryAreaComponent implements AfterViewInit {
   }
 
   public get warningText(): string {
-    return this.warning()?.text || 'summary.area.warning';
+    return this.warning()?.text || this.defaultWarningText;
   }
 
   public get warningLinkText(): string | undefined {

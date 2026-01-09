@@ -40,6 +40,7 @@ export class ClrSummaryItemValueComponent
 
   public hasProjectedContent = false;
   public isTextOverflowing = false;
+  public tooltipSize = 'md';
 
   private resizeObserver?: ResizeObserver;
   private readonly ngZone = inject(NgZone);
@@ -61,15 +62,16 @@ export class ClrSummaryItemValueComponent
 
   /**
    * Returns the tooltip text to display.
-   * If a custom tooltip is configured, use that.
-   * If no custom tooltip but text is overflowing (ellipsis shown), use the value as tooltip.
+   * If a text overflow is detected, the full value is used as tooltip.
+   * If no overflow, but a custom tooltip is provided, that is used.
+   * Tooltip is undefined otherwise.
    */
   public get effectiveTooltip(): string | undefined {
-    if (this.tooltip()) {
-      return this.tooltip();
-    }
     if (this.isTextOverflowing && this.hasText) {
       return this.value();
+    }
+    if (this.tooltip()) {
+      return this.tooltip();
     }
     return undefined;
   }
@@ -149,6 +151,11 @@ export class ClrSummaryItemValueComponent
     if (this.valueElement?.nativeElement) {
       const el = this.valueElement.nativeElement;
       this.isTextOverflowing = el.scrollWidth > el.clientWidth;
+    }
+
+    const tooltip = this.effectiveTooltip;
+    if (tooltip && tooltip.length < 34) {
+      this.tooltipSize = 'sm';
     }
   }
 

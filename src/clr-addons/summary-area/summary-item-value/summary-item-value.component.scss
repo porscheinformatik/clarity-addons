@@ -6,7 +6,7 @@
   flex: 0 1 auto;
   max-width: 100%;
   min-width: 0;
-  overflow: hidden;
+  overflow: visible;
 }
 
 :host.hidden {
@@ -99,9 +99,11 @@ clr-tooltip-content {
 :host(.warning) {
   color: var(--cds-alias-status-warning);
 }
+
 :host(.warning) cds-icon {
   color: var(--cds-alias-status-warning) !important;
 }
+
 :host(.warning) .value {
   color: var(--cds-alias-status-warning);
 }

@@ -219,7 +219,7 @@ describe('SummaryAreaComponent', () => {
     it('should use default error text when not provided', () => {
       hostComponent.error = { active: true };
       fixture.detectChanges();
-      expect(component.errorText).toBe('summary.area.error');
+      expect(component.errorText).toBe('Error');
     });
 
     it('should use custom error text when provided', () => {
@@ -349,7 +349,7 @@ describe('SummaryAreaComponent', () => {
     it('should use default warning text when not provided', () => {
       hostComponent.warning = { active: true };
       fixture.detectChanges();
-      expect(component.warningText).toBe('summary.area.warning');
+      expect(component.warningText).toBe('Warning');
     });
 
     it('should use custom warning text when provided', () => {
@@ -463,7 +463,7 @@ describe('SummaryAreaComponent', () => {
     it('should use default loading text when not provided', () => {
       hostComponent.loading = { active: true };
       fixture.detectChanges();
-      expect(component.loadingText).toBe('summary.area.loading.text');
+      expect(component.loadingText).toBe('Loading');
     });
 
     it('should use custom loading text when provided', () => {

@@ -43,12 +43,17 @@ export class ClrSummaryItemComponent implements AfterContentInit, AfterContentCh
 
   public hasProjectedContent = false;
 
+  private readonly defaultLoadingText = 'Loading...';
+  private readonly defaultErrorText = 'Error';
+  private readonly defaultWarningText = 'Warning';
+  private readonly defaultEditText = 'Edit';
+
   public get hasLoading(): boolean {
     return !!this.loading() && this.loading().active;
   }
 
   public get loadingText(): string {
-    return this.loading()?.text || 'summary.item.loading';
+    return this.loading()?.text || this.defaultLoadingText;
   }
 
   public get hasError(): boolean {
@@ -56,7 +61,7 @@ export class ClrSummaryItemComponent implements AfterContentInit, AfterContentCh
   }
 
   public get errorText(): string {
-    return this.error()?.text || 'summary.item.error';
+    return this.error()?.text || this.defaultErrorText;
   }
 
   public get errorClick(): (() => void) | undefined {
@@ -67,7 +72,7 @@ export class ClrSummaryItemComponent implements AfterContentInit, AfterContentCh
     return !this.hasLoading && !this.hasError && !!this.warning() && this.warning().active;
   }
   public get warningText(): string {
-    return this.warning()?.text || 'summary.item.warning';
+    return this.warning()?.text || this.defaultWarningText;
   }
   public get warningClick(): (() => void) | undefined {
     return this.warning()?.click;
@@ -84,7 +89,7 @@ export class ClrSummaryItemComponent implements AfterContentInit, AfterContentCh
   }
 
   public get editText(): string {
-    return this.editConfig()?.text || 'summary.item.edit';
+    return this.editConfig()?.text || this.defaultEditText;
   }
 
   public get editClick(): (() => void) | undefined {

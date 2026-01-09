@@ -1,5 +1,6 @@
-.summary-area-container {
-  margin: 12px 24px;
+.summary-area-container,
+.summary-area-alert {
+  margin: 0 24px 12px 24px;
   max-width: 100%;
   overflow-x: auto;
 }
@@ -18,7 +19,7 @@
   max-width: 320px;
   min-width: 0;
   height: 20px;
-  overflow: hidden;
+  overflow: visible;
   display: flex;
   flex-direction: column;
 }
@@ -63,13 +64,6 @@ clr-alert-item .alert-action {
   color: var(--cds-alias-typography-link-color-hover);
 }
 
-.summary-area-alert {
-  padding-top: 0.3rem;
-  padding-bottom: 0.3rem;
-  padding-left: 0.75rem;
-  margin-bottom: 0.3rem;
-}
-
 .summary-area-state.error {
   color: var(--cds-alias-status-danger);
 }
@@ -88,22 +82,28 @@ clr-alert-item .alert-action {
 
 .summary-area-panels {
   position: relative;
+  max-height: 0;
+  opacity: 0;
+  transform: scaleY(0.95);
+  pointer-events: none;
+  transition: max-height 0.2s ease-in-out, opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
 }
 
 .summary-area-panel {
-  overflow: hidden;
   transform-origin: top center;
   transform: scaleY(0.95);
-  transition: opacity 220ms ease, transform 220ms ease, max-height 220ms ease;
+  transition: max-height 0.2s ease-in-out, opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
   max-height: 0;
   opacity: 0;
   pointer-events: none;
+  overflow: visible;
 }
 
 .summary-area-panel__body {
-  will-change: opacity, transform;
+  will-change: opacity, transform, max-height;
 }
 
+.summary-area-panels.is-active,
 .summary-area-panel.is-active {
   max-height: 999px;
   opacity: 1;
@@ -131,4 +131,9 @@ clr-alert-item .alert-action {
 
 .summary-area-panel:not(.is-active) {
   transform: scaleY(0.9);
+}
+
+clr-alert ::ng-deep > .alert-lightweight {
+  padding-left: 0;
+  padding-right: 0;
 }

@@ -69,7 +69,7 @@ describe('SummaryAreaToggleComponent', () => {
     });
 
     it('should have ariaLabel defined', () => {
-      expect(component.ariaLabel).toBe('summary.area.toggle');
+      expect(component.ariaLabel).toBe('clr.summary.area.toggle');
     });
   });
 
@@ -168,7 +168,7 @@ describe('SummaryAreaToggleComponent', () => {
   describe('aria attributes', () => {
     it('should have aria-label attribute', () => {
       const button = fixture.debugElement.query(By.css('button'));
-      expect(button.attributes['aria-label']).toBe('summary.area.toggle');
+      expect(button.attributes['aria-label']).toBe('clr.summary.area.toggle');
     });
 
     it('should have aria-pressed="true" when not collapsed', () => {

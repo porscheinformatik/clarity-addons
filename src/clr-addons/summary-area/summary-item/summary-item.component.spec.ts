@@ -587,7 +587,7 @@ describe('SummaryItemComponent', () => {
     it('should use default edit text when not provided', () => {
       hostComponent.editConfig = { enabled: true, click: (): void => {} };
       fixture.detectChanges();
-      expect(component.editText).toBe('summary.item.edit');
+      expect(component.editText).toBe('Edit');
     });
 
     it('should use custom edit text when provided', () => {

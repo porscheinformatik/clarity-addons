@@ -19,7 +19,7 @@ export class ClrSummaryAreaToggleComponent {
   public readonly disabled = input(false);
   public readonly state = inject(ClrSummaryAreaStateService);
   public readonly collapsed = this.state.collapsed;
-  public readonly ariaLabel = 'summary.area.toggle';
+  public readonly ariaLabel = 'clr.summary.area.toggle';
 
   @HostListener('keydown', ['$event'])
   public handleKeydown(event: KeyboardEvent): void {

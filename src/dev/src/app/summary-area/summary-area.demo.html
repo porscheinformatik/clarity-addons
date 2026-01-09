@@ -45,7 +45,7 @@
   </clr-summary-item>
   <clr-summary-item
     label="Edit Empty Value10"
-    [editConfig]="{enabled: true, click: onEditClick, text: 'Edit'}"
+    [editConfig]="{enabled: true, click: onEditClick}"
     [valueCopyable]="true"
   ></clr-summary-item>
   <clr-summary-item label="Error Item11" [error]="itemErrorState">
@@ -60,7 +60,6 @@
     <clr-summary-item-value value="Navigate internally" [click]="goToPagerRoute.bind(this)"></clr-summary-item-value>
   </clr-summary-item>
   <clr-summary-item label="External link14" [valueCopyable]="true">
-    <clr-summary-item-value icon="pop-out"></clr-summary-item-value>
     <clr-summary-item-value
       value="External App Jump"
       tooltip="Navigate to external app"
@@ -70,6 +69,10 @@
   <clr-summary-item label="Long Text15" [valueCopyable]="true">
     <clr-summary-item-value
       value="This is very long text, so long, so long, so long, so long, so long"
+      tooltip="I am a tooltip for very long text value"
     ></clr-summary-item-value>
+  </clr-summary-item>
+  <clr-summary-item label="Item Label16" [error]="itemErrorState">
+    <clr-summary-item-value value="I should not be visible for 3 rows"></clr-summary-item-value>
   </clr-summary-item>
 </clr-summary-area>
