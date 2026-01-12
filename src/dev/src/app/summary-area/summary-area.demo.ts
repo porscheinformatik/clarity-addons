@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 // import { ClrSummaryAreaComponent } from '../../../../clr-addons/summary-area/summary-area/summary-area.component';
 // import { ClrSummaryItemComponent } from '../../../../clr-addons/summary-area/summary-item/summary-item.component';
 // import { ClrSummaryItemValueComponent } from '../../../../clr-addons/summary-area/summary-item-value/summary-item-value.component';
-import { ClrIconModule } from '@clr/angular';
+import { ClrIconModule, ClrModalModule } from '@clr/angular';
 import {
   barsIcon,
   chatBubbleIcon,
@@ -38,9 +38,12 @@ ClarityIcons.addIcons(pencilIcon, barsIcon, wandIcon, chatBubbleIcon, colorPalet
     ClrIconModule,
     ClrSummaryAreaModule,
     ProgressItemComponent,
+    ClrModalModule,
   ],
 })
 export class SummaryAreaDemo implements OnInit {
+  public showProgressDetails = false;
+
   public summaryAreaErrorState: ClrSummaryAreaError = {
     active: false, // set to true to see the general error state of the summary area
     text: 'Critical error',
@@ -130,7 +133,14 @@ export class SummaryAreaDemo implements OnInit {
   }
 
   public goToExternalApp(): void {
-    //globalThis.location.href = 'https://external-app.example.com'; // open in same tab
-    window.open('https://external-app.example.com', '_blank'); // open in new tab
+    window.open('https://external-app.example.com', '_blank');
+  }
+
+  public openProgressDetails() {
+    this.showProgressDetails = true;
+  }
+
+  public closeProgressDetails() {
+    this.showProgressDetails = false;
   }
 }

@@ -17,7 +17,6 @@
   flex: 0 0 auto;
   max-width: none;
   min-width: auto;
-  overflow: visible;
 }
 
 .value,
@@ -42,7 +41,7 @@ cds-icon {
 }
 
 .value-icon-neutral {
-  color: var(--cds-alias-status-neutral) !important;
+  color: var(--cds-alias-status-neutral);
 }
 
 .value-link,
@@ -77,11 +76,6 @@ clr-tooltip {
 clr-tooltip [clrTooltipTrigger] {
   flex: 1 1 auto;
   min-width: 0;
-}
-
-clr-tooltip-content {
-  z-index: 10000 !important;
-  position: fixed !important;
 }
 
 :host(.error) {

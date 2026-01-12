@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { ClrSummaryItemValueCopyButtonComponent } from './summary-item-value-copy-button.component';
+import { ClrSummaryItemValueCopyButtonComponent } from './summary-item-value-copy-button';
 
 @Component({
   template: `<clr-summary-area-value-copy-button [value]="testValue"></clr-summary-area-value-copy-button>`,

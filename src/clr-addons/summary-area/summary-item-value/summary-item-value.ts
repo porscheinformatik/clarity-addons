@@ -10,6 +10,7 @@ import {
   NgZone,
   OnDestroy,
   OnInit,
+  output,
   ViewChild,
 } from '@angular/core';
 //import { CommonModule } from '@angular/common';
@@ -22,21 +23,19 @@ import { provideAnimations } from '@angular/platform-browser/animations';
   standalone: false,
   //imports: [CommonModule, RouterModule, ClarityModule, ClrIconModule],
   providers: [provideAnimations()],
-  templateUrl: './summary-item-value.component.html',
-  styleUrls: ['./summary-item-value.component.scss'],
+  templateUrl: './summary-item-value.html',
+  styleUrls: ['./summary-item-value.scss'],
 })
-export class ClrSummaryItemValueComponent
-  implements OnInit, AfterContentInit, AfterContentChecked, AfterViewInit, OnDestroy
-{
+export class ClrSummaryItemValue implements OnInit, AfterContentInit, AfterContentChecked, AfterViewInit, OnDestroy {
   @ViewChild('projectedContent') projectedContent?: ElementRef<HTMLSpanElement>;
   @ViewChild('valueElement') valueElement?: ElementRef<HTMLSpanElement>;
 
   public readonly value = input<string | undefined>();
   public readonly icon = input<string | undefined>();
-  public readonly click = input<(() => void) | undefined>();
-  //@Output() clickEvent = new EventEmitter<any>();
   public readonly tooltip = input<string | undefined>();
   public readonly showOnEmptyValue = input<boolean>(true);
+  public readonly clickable = input<boolean>(false);
+  public readonly clicked = output<void>();
 
   public hasProjectedContent = false;
   public isTextOverflowing = false;
@@ -58,6 +57,16 @@ export class ClrSummaryItemValueComponent
   @HostBinding('class.hidden')
   public get isHidden(): boolean {
     return this.shouldHide;
+  }
+
+  public get hasClickHandler(): boolean {
+    return this.clickable();
+  }
+
+  public handleClick(): void {
+    if (this.clickable()) {
+      this.clicked.emit();
+    }
   }
 
   /**

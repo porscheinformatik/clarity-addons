@@ -9,11 +9,11 @@ ClarityIcons.addIcons(angleDoubleIcon);
 @Component({
   selector: 'clr-summary-area-toggle',
   standalone: false,
-  templateUrl: './summary-area-toggle.component.html',
-  styleUrl: './summary-area-toggle.component.scss',
+  templateUrl: './summary-area-toggle.html',
+  styleUrl: './summary-area-toggle.scss',
   //imports: [ClrIconModule, ClrTooltipModule],
 })
-export class ClrSummaryAreaToggleComponent {
+export class ClrSummaryAreaToggle {
   @Output() public readonly summaryToggle = new EventEmitter<void>();
 
   public readonly disabled = input(false);

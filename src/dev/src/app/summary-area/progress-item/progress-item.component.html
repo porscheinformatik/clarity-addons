@@ -1,15 +1,5 @@
 <div class="progress-item-container">
   <clr-progress-bar class="progress-bar" [clrValue]="60" [clrColor]="'warning'"> </clr-progress-bar>
-  <!--  <span>60%</span>-->
+  <!--    <span (click)="openDetails()">60%</span>-->
   <button type="button" class="btn btn-sm btn-link progress-item-button" (click)="openDetails()">60%</button>
 </div>
-
-<clr-modal [(clrModalOpen)]="showDetails" class="detail-modal">
-  <h3 class="modal-title">
-    <span>Progress details</span>
-  </h3>
-  <div class="modal-body">I am a placeholder for progress details content.</div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-primary" (click)="closeDetails()">Close</button>
-  </div>
-</clr-modal>

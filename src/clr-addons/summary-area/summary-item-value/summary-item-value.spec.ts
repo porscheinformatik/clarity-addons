@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, ViewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { ClrSummaryItemValueComponent } from './summary-item-value.component';
+import { ClrSummaryItemValue } from './summary-item-value';
 import { ClarityModule } from '@clr/angular';
 import { CommonModule } from '@angular/common';
 
@@ -20,10 +20,10 @@ import { CommonModule } from '@angular/common';
     </clr-summary-item-value>
   `,
   standalone: true,
-  imports: [CommonModule, ClrSummaryItemValueComponent, ClarityModule],
+  imports: [CommonModule, ClrSummaryItemValue, ClarityModule],
 })
 class TestHostComponent {
-  @ViewChild(ClrSummaryItemValueComponent) component!: ClrSummaryItemValueComponent;
+  @ViewChild(ClrSummaryItemValue) component!: ClrSummaryItemValue;
   value: string | undefined;
   icon: string | undefined;
   clickFn: (() => void) | undefined;
@@ -35,11 +35,11 @@ class TestHostComponent {
 describe('SummaryItemValueComponent', () => {
   let hostComponent: TestHostComponent;
   let fixture: ComponentFixture<TestHostComponent>;
-  let component: ClrSummaryItemValueComponent;
+  let component: ClrSummaryItemValue;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TestHostComponent, ClrSummaryItemValueComponent, NoopAnimationsModule, ClarityModule],
+      imports: [TestHostComponent, ClrSummaryItemValue, NoopAnimationsModule, ClarityModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TestHostComponent);
@@ -218,7 +218,7 @@ describe('SummaryItemValueComponent', () => {
       hostComponent.icon = undefined;
       fixture.detectChanges();
 
-      const hostElement = fixture.debugElement.query(By.directive(ClrSummaryItemValueComponent));
+      const hostElement = fixture.debugElement.query(By.directive(ClrSummaryItemValue));
       expect(hostElement.nativeElement.classList.contains('hidden')).toBe(true);
     });
 
@@ -226,7 +226,7 @@ describe('SummaryItemValueComponent', () => {
       hostComponent.showOnEmptyValue = true;
       fixture.detectChanges();
 
-      const hostElement = fixture.debugElement.query(By.directive(ClrSummaryItemValueComponent));
+      const hostElement = fixture.debugElement.query(By.directive(ClrSummaryItemValue));
       expect(hostElement.nativeElement.classList.contains('hidden')).toBe(false);
     });
   });
@@ -391,7 +391,7 @@ describe('SummaryItemValueComponent', () => {
       @Component({
         template: `<clr-summary-item-value [value]="'text'" [icon]="'pencil'"></clr-summary-item-value>`,
         standalone: true,
-        imports: [ClrSummaryItemValueComponent],
+        imports: [ClrSummaryItemValue],
       })
       class InvalidTestComponent {}
 
@@ -411,7 +411,7 @@ describe('SummaryItemValueComponent', () => {
       hostComponent.icon = 'pencil';
       fixture.detectChanges();
 
-      const hostElement = fixture.debugElement.query(By.directive(ClrSummaryItemValueComponent));
+      const hostElement = fixture.debugElement.query(By.directive(ClrSummaryItemValue));
       expect(hostElement.nativeElement.classList.contains('has-icon')).toBe(true);
     });
 
@@ -419,7 +419,7 @@ describe('SummaryItemValueComponent', () => {
       hostComponent.value = 'Test Value';
       fixture.detectChanges();
 
-      const hostElement = fixture.debugElement.query(By.directive(ClrSummaryItemValueComponent));
+      const hostElement = fixture.debugElement.query(By.directive(ClrSummaryItemValue));
       expect(hostElement.nativeElement.classList.contains('has-text')).toBe(true);
     });
 
@@ -427,7 +427,7 @@ describe('SummaryItemValueComponent', () => {
       hostComponent.icon = undefined;
       fixture.detectChanges();
 
-      const hostElement = fixture.debugElement.query(By.directive(ClrSummaryItemValueComponent));
+      const hostElement = fixture.debugElement.query(By.directive(ClrSummaryItemValue));
       expect(hostElement.nativeElement.classList.contains('has-icon')).toBe(false);
     });
 
@@ -435,7 +435,7 @@ describe('SummaryItemValueComponent', () => {
       hostComponent.value = undefined;
       fixture.detectChanges();
 
-      const hostElement = fixture.debugElement.query(By.directive(ClrSummaryItemValueComponent));
+      const hostElement = fixture.debugElement.query(By.directive(ClrSummaryItemValue));
       expect(hostElement.nativeElement.classList.contains('has-text')).toBe(false);
     });
   });

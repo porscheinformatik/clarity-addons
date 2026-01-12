@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 // import { CommonModule } from '@angular/common';
 // import { ClarityModule } from '@clr/angular';
-import { ClrSummaryItemValueComponent } from '../summary-item-value/summary-item-value.component';
+import { ClrSummaryItemValue } from '../summary-item-value/summary-item-value';
 import {
   ClrSummaryItemError,
   ClrSummaryItemWarning,
@@ -24,14 +24,14 @@ import {
   selector: 'clr-summary-item',
   standalone: false,
   //imports: [CommonModule, ClarityModule, ClrSummaryItemValueComponent, ClrSummaryItemValueCopyButtonComponent],
-  templateUrl: './summary-item.component.html',
-  styleUrls: ['./summary-item.component.scss'],
+  templateUrl: './summary-item.html',
+  styleUrls: ['./summary-item.scss'],
 })
-export class ClrSummaryItemComponent implements AfterContentInit, AfterContentChecked {
+export class ClrSummaryItem implements AfterContentInit, AfterContentChecked {
   @ViewChild('itemTemplate', { static: true }) template!: TemplateRef<never>;
   @ViewChild('valuesContainer') valuesContainer!: ElementRef<HTMLDivElement>;
-  @ContentChildren(ClrSummaryItemValueComponent, { descendants: true })
-  valueChildren!: QueryList<ClrSummaryItemValueComponent>;
+  @ContentChildren(ClrSummaryItemValue, { descendants: true })
+  valueChildren!: QueryList<ClrSummaryItemValue>;
 
   public label = input<string>();
   public error = input<ClrSummaryItemError | undefined>();

@@ -9,8 +9,8 @@ ClarityIcons.addIcons(copyToClipboardIcon, successStandardIcon);
 @Component({
   selector: 'clr-summary-area-value-copy-button',
   // imports: [CdkCopyToClipboard, NgClass, ClrIconModule],
-  templateUrl: './summary-item-value-copy-button.component.html',
-  styleUrl: './summary-item-value-copy-button.component.scss',
+  templateUrl: './summary-item-value-copy-button.html',
+  styleUrl: './summary-item-value-copy-button.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })

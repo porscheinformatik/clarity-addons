@@ -1,6 +1,6 @@
 .summary-area-container,
 .summary-area-alert {
-  margin: 0 24px 12px 24px;
+  margin: 0 24px 9px 24px;
   max-width: 100%;
   overflow-x: auto;
 }
@@ -13,6 +13,7 @@
   max-width: 100%;
   column-gap: 36px;
   row-gap: 6px;
+  padding: 3px 0;
 }
 
 .summary-item {
@@ -105,10 +106,10 @@ clr-alert-item .alert-action {
 
 .summary-area-panels.is-active,
 .summary-area-panel.is-active {
-  max-height: 999px;
+  max-height: 700px;
   opacity: 1;
   pointer-events: auto;
-  transform: scaleY(1);
+  transform: unset;
   overflow: visible;
 }
 

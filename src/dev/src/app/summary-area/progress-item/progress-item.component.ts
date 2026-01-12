@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ClrAlertModule, ClrDatagridModule, ClrIconModule, ClrModalModule, ClrProgressBarModule } from '@clr/angular';
 
 @Component({
@@ -8,13 +8,9 @@ import { ClrAlertModule, ClrDatagridModule, ClrIconModule, ClrModalModule, ClrPr
   styleUrl: './progress-item.component.scss',
 })
 export class ProgressItemComponent {
-  public showDetails = false;
+  @Output() showDetailsEvent = new EventEmitter<void>();
 
   public openDetails() {
-    this.showDetails = true;
-  }
-
-  public closeDetails(): void {
-    this.showDetails = false;
+    this.showDetailsEvent.emit();
   }
 }

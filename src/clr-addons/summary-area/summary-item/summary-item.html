@@ -14,17 +14,27 @@
       </div>
       } @else if (hasError) {
       <clr-summary-item-value icon="error-standard" class="error"></clr-summary-item-value>
-      <clr-summary-item-value [value]="errorText" [click]="errorClick" class="error"></clr-summary-item-value>
+      <clr-summary-item-value
+        [value]="errorText"
+        [clickable]="true"
+        (clicked)="errorClick()"
+        class="error"
+      ></clr-summary-item-value>
       } @else if (hasWarning) {
       <clr-summary-item-value icon="warning-standard" class="warning"></clr-summary-item-value>
-      <clr-summary-item-value [value]="warningText" [click]="warningClick" class="warning"></clr-summary-item-value>
+      <clr-summary-item-value
+        [value]="warningText"
+        [clickable]="true"
+        (clicked)="warningClick()"
+        class="warning"
+      ></clr-summary-item-value>
       } @else {
       <ng-content select="clr-summary-item-value"></ng-content>
       <ng-content></ng-content>
       @if (showEditButton) {
-      <span class="value value-link edit-link" (click)="editClick?.()" (keydown.enter)="editClick?.()">{{
-        editText
-      }}</span>
+      <span class="value value-link edit-link" (click)="editClick?.()" (keydown.enter)="editClick?.()"
+        >{{ editText }}</span
+      >
       } @else if (!hasProjectedContent) {
       <span class="value value-placeholder">&mdash;</span>
       } @if (showCopyButton) {

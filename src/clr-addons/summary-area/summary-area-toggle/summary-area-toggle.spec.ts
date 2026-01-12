@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, ViewChild, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { ClrSummaryAreaToggleComponent } from './summary-area-toggle.component';
+import { ClrSummaryAreaToggle } from './summary-area-toggle';
 import { ClrSummaryAreaStateService } from '../summary-area/summary-area-state.service';
 import { ClarityModule } from '@clr/angular';
 
@@ -23,10 +23,10 @@ class MockSummaryAreaStateService {
 @Component({
   template: `<clr-summary-area-toggle [disabled]="disabled" (summaryToggle)="onToggle()"></clr-summary-area-toggle>`,
   standalone: true,
-  imports: [ClrSummaryAreaToggleComponent],
+  imports: [ClrSummaryAreaToggle],
 })
 class TestHostComponent {
-  @ViewChild(ClrSummaryAreaToggleComponent) component!: ClrSummaryAreaToggleComponent;
+  @ViewChild(ClrSummaryAreaToggle) component!: ClrSummaryAreaToggle;
   disabled = false;
   toggleCount = 0;
 
@@ -38,14 +38,14 @@ class TestHostComponent {
 describe('SummaryAreaToggleComponent', () => {
   let hostComponent: TestHostComponent;
   let fixture: ComponentFixture<TestHostComponent>;
-  let component: ClrSummaryAreaToggleComponent;
+  let component: ClrSummaryAreaToggle;
   let mockStateService: MockSummaryAreaStateService;
 
   beforeEach(async () => {
     mockStateService = new MockSummaryAreaStateService();
 
     await TestBed.configureTestingModule({
-      imports: [TestHostComponent, ClrSummaryAreaToggleComponent, NoopAnimationsModule, ClarityModule],
+      imports: [TestHostComponent, ClrSummaryAreaToggle, NoopAnimationsModule, ClarityModule],
       providers: [{ provide: ClrSummaryAreaStateService, useValue: mockStateService }],
     }).compileComponents();
 
@@ -351,19 +351,19 @@ describe('SummaryAreaToggleComponent', () => {
 });
 
 describe('SummaryAreaToggleComponent - standalone tests', () => {
-  let component: ClrSummaryAreaToggleComponent;
-  let fixture: ComponentFixture<ClrSummaryAreaToggleComponent>;
+  let component: ClrSummaryAreaToggle;
+  let fixture: ComponentFixture<ClrSummaryAreaToggle>;
   let mockStateService: MockSummaryAreaStateService;
 
   beforeEach(async () => {
     mockStateService = new MockSummaryAreaStateService();
 
     await TestBed.configureTestingModule({
-      imports: [ClrSummaryAreaToggleComponent, NoopAnimationsModule, ClarityModule],
+      imports: [ClrSummaryAreaToggle, NoopAnimationsModule, ClarityModule],
       providers: [{ provide: ClrSummaryAreaStateService, useValue: mockStateService }],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ClrSummaryAreaToggleComponent);
+    fixture = TestBed.createComponent(ClrSummaryAreaToggle);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

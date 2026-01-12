@@ -17,6 +17,7 @@
 
 .icon-rotated {
   transform: rotate(180deg);
+  transition: all 0.2s ease-in-out;
 }
 
 .summary-area-toggle:disabled {

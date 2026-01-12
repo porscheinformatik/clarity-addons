@@ -3,8 +3,8 @@ import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { ClrSummaryItemComponent } from './summary-item.component';
-import { ClrSummaryItemValueComponent } from '../summary-item-value/summary-item-value.component';
+import { ClrSummaryItem } from './summary-item';
+import { ClrSummaryItemValue } from '../summary-item-value/summary-item-value';
 import {
   ClrSummaryItemError,
   ClrSummaryItemWarning,
@@ -35,10 +35,10 @@ import { ClarityModule } from '@clr/angular';
     </clr-summary-item>
   `,
   standalone: true,
-  imports: [CommonModule, ClrSummaryItemComponent, ClrSummaryItemValueComponent, ClarityModule],
+  imports: [CommonModule, ClrSummaryItem, ClrSummaryItemValue, ClarityModule],
 })
 class TestHostComponent {
-  @ViewChild(ClrSummaryItemComponent) component!: ClrSummaryItemComponent;
+  @ViewChild(ClrSummaryItem) component!: ClrSummaryItem;
   label = 'Test Label';
   error: ClrSummaryItemError | undefined;
   warning: ClrSummaryItemWarning | undefined;
@@ -61,10 +61,10 @@ class TestHostComponent {
     </clr-summary-item>
   `,
   standalone: true,
-  imports: [ClrSummaryItemComponent, ClrSummaryItemValueComponent],
+  imports: [ClrSummaryItem, ClrSummaryItemValue],
 })
 class MultiValueTestHostComponent {
-  @ViewChild(ClrSummaryItemComponent) component!: ClrSummaryItemComponent;
+  @ViewChild(ClrSummaryItem) component!: ClrSummaryItem;
   showOnEmptyValue = true;
   value1: string | undefined;
   value2: string | undefined;
@@ -81,27 +81,21 @@ class MultiValueTestHostComponent {
     </clr-summary-item>
   `,
   standalone: true,
-  imports: [ClrSummaryItemComponent, ClrSummaryItemValueComponent],
+  imports: [ClrSummaryItem, ClrSummaryItemValue],
 })
 class InvalidIconTestHostComponent {
-  @ViewChild(ClrSummaryItemComponent) component!: ClrSummaryItemComponent;
+  @ViewChild(ClrSummaryItem) component!: ClrSummaryItem;
 }
 
 describe('SummaryItemComponent', () => {
   describe('Basic functionality', () => {
     let hostComponent: TestHostComponent;
     let fixture: ComponentFixture<TestHostComponent>;
-    let component: ClrSummaryItemComponent;
+    let component: ClrSummaryItem;
 
     beforeEach(async () => {
       await TestBed.configureTestingModule({
-        imports: [
-          TestHostComponent,
-          ClrSummaryItemComponent,
-          ClrSummaryItemValueComponent,
-          NoopAnimationsModule,
-          ClarityModule,
-        ],
+        imports: [TestHostComponent, ClrSummaryItem, ClrSummaryItemValue, NoopAnimationsModule, ClarityModule],
       }).compileComponents();
 
       fixture = TestBed.createComponent(TestHostComponent);
@@ -247,17 +241,11 @@ describe('SummaryItemComponent', () => {
   describe('Error state', () => {
     let hostComponent: TestHostComponent;
     let fixture: ComponentFixture<TestHostComponent>;
-    let component: ClrSummaryItemComponent;
+    let component: ClrSummaryItem;
 
     beforeEach(async () => {
       await TestBed.configureTestingModule({
-        imports: [
-          TestHostComponent,
-          ClrSummaryItemComponent,
-          ClrSummaryItemValueComponent,
-          NoopAnimationsModule,
-          ClarityModule,
-        ],
+        imports: [TestHostComponent, ClrSummaryItem, ClrSummaryItemValue, NoopAnimationsModule, ClarityModule],
       }).compileComponents();
 
       fixture = TestBed.createComponent(TestHostComponent);
@@ -338,17 +326,11 @@ describe('SummaryItemComponent', () => {
   describe('Warning state', () => {
     let hostComponent: TestHostComponent;
     let fixture: ComponentFixture<TestHostComponent>;
-    let component: ClrSummaryItemComponent;
+    let component: ClrSummaryItem;
 
     beforeEach(async () => {
       await TestBed.configureTestingModule({
-        imports: [
-          TestHostComponent,
-          ClrSummaryItemComponent,
-          ClrSummaryItemValueComponent,
-          NoopAnimationsModule,
-          ClarityModule,
-        ],
+        imports: [TestHostComponent, ClrSummaryItem, ClrSummaryItemValue, NoopAnimationsModule, ClarityModule],
       }).compileComponents();
 
       fixture = TestBed.createComponent(TestHostComponent);
@@ -419,17 +401,11 @@ describe('SummaryItemComponent', () => {
   describe('Loading state', () => {
     let hostComponent: TestHostComponent;
     let fixture: ComponentFixture<TestHostComponent>;
-    let component: ClrSummaryItemComponent;
+    let component: ClrSummaryItem;
 
     beforeEach(async () => {
       await TestBed.configureTestingModule({
-        imports: [
-          TestHostComponent,
-          ClrSummaryItemComponent,
-          ClrSummaryItemValueComponent,
-          NoopAnimationsModule,
-          ClarityModule,
-        ],
+        imports: [TestHostComponent, ClrSummaryItem, ClrSummaryItemValue, NoopAnimationsModule, ClarityModule],
       }).compileComponents();
 
       fixture = TestBed.createComponent(TestHostComponent);
@@ -541,17 +517,11 @@ describe('SummaryItemComponent', () => {
   describe('Edit config', () => {
     let hostComponent: TestHostComponent;
     let fixture: ComponentFixture<TestHostComponent>;
-    let component: ClrSummaryItemComponent;
+    let component: ClrSummaryItem;
 
     beforeEach(async () => {
       await TestBed.configureTestingModule({
-        imports: [
-          TestHostComponent,
-          ClrSummaryItemComponent,
-          ClrSummaryItemValueComponent,
-          NoopAnimationsModule,
-          ClarityModule,
-        ],
+        imports: [TestHostComponent, ClrSummaryItem, ClrSummaryItemValue, NoopAnimationsModule, ClarityModule],
       }).compileComponents();
 
       fixture = TestBed.createComponent(TestHostComponent);
@@ -632,16 +602,11 @@ describe('SummaryItemComponent', () => {
   describe('Multiple value children', () => {
     let hostComponent: MultiValueTestHostComponent;
     let fixture: ComponentFixture<MultiValueTestHostComponent>;
-    let component: ClrSummaryItemComponent;
+    let component: ClrSummaryItem;
 
     beforeEach(async () => {
       await TestBed.configureTestingModule({
-        imports: [
-          MultiValueTestHostComponent,
-          ClrSummaryItemComponent,
-          ClrSummaryItemValueComponent,
-          NoopAnimationsModule,
-        ],
+        imports: [MultiValueTestHostComponent, ClrSummaryItem, ClrSummaryItemValue, NoopAnimationsModule],
       }).compileComponents();
 
       fixture = TestBed.createComponent(MultiValueTestHostComponent);
@@ -690,7 +655,7 @@ describe('SummaryItemComponent', () => {
       hostComponent.showOnEmptyValue2 = true; // This child should show placeholder
       fixture.detectChanges();
 
-      const valueComponents = fixture.debugElement.queryAll(By.directive(ClrSummaryItemValueComponent));
+      const valueComponents = fixture.debugElement.queryAll(By.directive(ClrSummaryItemValue));
       // First child should be hidden
       expect(valueComponents[0].nativeElement.classList.contains('hidden')).toBe(true);
       // Second child should be visible with placeholder
@@ -702,12 +667,7 @@ describe('SummaryItemComponent', () => {
     it('should throw error when multiple children have icons', () => {
       expect(() => {
         TestBed.configureTestingModule({
-          imports: [
-            InvalidIconTestHostComponent,
-            ClrSummaryItemComponent,
-            ClrSummaryItemValueComponent,
-            NoopAnimationsModule,
-          ],
+          imports: [InvalidIconTestHostComponent, ClrSummaryItem, ClrSummaryItemValue, NoopAnimationsModule],
         }).compileComponents();
 
         const fixture = TestBed.createComponent(InvalidIconTestHostComponent);
@@ -722,13 +682,7 @@ describe('SummaryItemComponent', () => {
 
     beforeEach(async () => {
       await TestBed.configureTestingModule({
-        imports: [
-          TestHostComponent,
-          ClrSummaryItemComponent,
-          ClrSummaryItemValueComponent,
-          NoopAnimationsModule,
-          ClarityModule,
-        ],
+        imports: [TestHostComponent, ClrSummaryItem, ClrSummaryItemValue, NoopAnimationsModule, ClarityModule],
       }).compileComponents();
 
       fixture = TestBed.createComponent(TestHostComponent);
@@ -768,13 +722,7 @@ describe('SummaryItemComponent', () => {
 
     beforeEach(async () => {
       await TestBed.configureTestingModule({
-        imports: [
-          TestHostComponent,
-          ClrSummaryItemComponent,
-          ClrSummaryItemValueComponent,
-          NoopAnimationsModule,
-          ClarityModule,
-        ],
+        imports: [TestHostComponent, ClrSummaryItem, ClrSummaryItemValue, NoopAnimationsModule, ClarityModule],
       }).compileComponents();
 
       fixture = TestBed.createComponent(TestHostComponent);
@@ -787,7 +735,7 @@ describe('SummaryItemComponent', () => {
       hostComponent.value = 'Projected Value';
       fixture.detectChanges();
 
-      const valueComponent = fixture.debugElement.query(By.directive(ClrSummaryItemValueComponent));
+      const valueComponent = fixture.debugElement.query(By.directive(ClrSummaryItemValue));
       expect(valueComponent).toBeTruthy();
     });
 
@@ -805,7 +753,7 @@ describe('SummaryItemComponent', () => {
       hostComponent.projectedContent = 'Text';
       fixture.detectChanges();
 
-      const valueComponent = fixture.debugElement.query(By.directive(ClrSummaryItemValueComponent));
+      const valueComponent = fixture.debugElement.query(By.directive(ClrSummaryItemValue));
       const valuesContainer = fixture.debugElement.query(By.css('.summary-item-values'));
 
       expect(valueComponent).toBeTruthy();
@@ -821,15 +769,15 @@ describe('SummaryItemComponent', () => {
         </clr-summary-item>
       `,
       standalone: true,
-      imports: [ClrSummaryItemComponent],
+      imports: [ClrSummaryItem],
     })
     class CustomElementTestComponent {
-      @ViewChild(ClrSummaryItemComponent) component!: ClrSummaryItemComponent;
+      @ViewChild(ClrSummaryItem) component!: ClrSummaryItem;
     }
 
     it('should detect custom element as content', async () => {
       await TestBed.configureTestingModule({
-        imports: [CustomElementTestComponent, ClrSummaryItemComponent, NoopAnimationsModule],
+        imports: [CustomElementTestComponent, ClrSummaryItem, NoopAnimationsModule],
       }).compileComponents();
 
       const fixture = TestBed.createComponent(CustomElementTestComponent);
@@ -841,7 +789,7 @@ describe('SummaryItemComponent', () => {
 
     it('should show item when custom element is projected even with showOnEmptyValue=false', async () => {
       await TestBed.configureTestingModule({
-        imports: [CustomElementTestComponent, ClrSummaryItemComponent, NoopAnimationsModule],
+        imports: [CustomElementTestComponent, ClrSummaryItem, NoopAnimationsModule],
       }).compileComponents();
 
       const fixture = TestBed.createComponent(CustomElementTestComponent);

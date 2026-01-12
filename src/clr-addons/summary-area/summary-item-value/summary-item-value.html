@@ -1,12 +1,12 @@
-@if (icon() !== undefined && icon() !== null && icon() !== '') { @if (click()) { @if (tooltip()) {
+@if (icon() !== undefined && icon() !== null && icon() !== '') { @if (hasClickHandler) { @if (tooltip()) {
 <clr-tooltip>
   <cds-icon
     clrTooltipTrigger
     [attr.shape]="icon()"
     class="value-icon value-link"
     tabindex="0"
-    (click)="click()?.()"
-    (keydown.enter)="click()?.()"
+    (click)="handleClick()"
+    (keydown.enter)="handleClick()"
   ></cds-icon>
   <clr-tooltip-content [clrSize]="tooltipSize" clrPosition="top-right" *clrIfOpen> {{ tooltip() }}</clr-tooltip-content>
 </clr-tooltip>
@@ -15,8 +15,8 @@
   [attr.shape]="icon()"
   class="value-icon value-link"
   tabindex="0"
-  (click)="click()?.()"
-  (keydown.enter)="click()?.()"
+  (click)="handleClick()"
+  (keydown.enter)="handleClick()"
 ></cds-icon>
 } } @else { @if (tooltip()) {
 <clr-tooltip>
@@ -25,9 +25,16 @@
 </clr-tooltip>
 } @else {
 <cds-icon [attr.shape]="icon()" class="value-icon value-icon-neutral"></cds-icon>
-} } } @else if (value() !== undefined && value() !== null && value() !== '') { @if (click()) { @if (effectiveTooltip) {
+} } } @else if (value() !== undefined && value() !== null && value() !== '') { @if (hasClickHandler) { @if
+(effectiveTooltip) {
 <clr-tooltip>
-  <span #valueElement class="value value-link" clrTooltipTrigger (click)="click()?.()" (keydown.enter)="click()?.()">
+  <span
+    #valueElement
+    class="value value-link"
+    clrTooltipTrigger
+    (click)="handleClick()"
+    (keydown.enter)="handleClick()"
+  >
     {{ value() }}
   </span>
   <clr-tooltip-content [clrSize]="tooltipSize" clrPosition="top-right" *clrIfOpen>
@@ -35,7 +42,9 @@
   >
 </clr-tooltip>
 } @else {
-<span #valueElement class="value value-link" (click)="click()?.()" (keydown.enter)="click()?.()">{{ value() }}</span>
+<span #valueElement class="value value-link" (click)="handleClick()" (keydown.enter)="handleClick()"
+  >{{ value() }}</span
+>
 } } @else { @if (effectiveTooltip) {
 <clr-tooltip>
   <span #valueElement class="value" clrTooltipTrigger>{{ value() }}</span>

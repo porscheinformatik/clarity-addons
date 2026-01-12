@@ -10,7 +10,7 @@ import {
   QueryList,
 } from '@angular/core';
 //import { CommonModule } from '@angular/common';
-import { ClrSummaryItemComponent } from '../summary-item/summary-item.component';
+import { ClrSummaryItem } from '../summary-item/summary-item';
 //import { ClarityModule } from '@clr/angular';
 import { ClrSummaryAreaStateService } from './summary-area-state.service';
 import {
@@ -25,11 +25,11 @@ import {
   selector: 'clr-summary-area',
   standalone: false,
   //imports: [CommonModule, ClarityModule],
-  templateUrl: './summary-area.component.html',
-  styleUrl: './summary-area.component.scss',
+  templateUrl: './summary-area.html',
+  styleUrl: './summary-area.scss',
 })
-export class ClrSummaryAreaComponent implements AfterViewInit {
-  @ContentChildren(ClrSummaryItemComponent, { descendants: true }) items!: QueryList<ClrSummaryItemComponent>;
+export class ClrSummaryArea implements AfterViewInit {
+  @ContentChildren(ClrSummaryItem, { descendants: true }) items!: QueryList<ClrSummaryItem>;
 
   public readonly isCollapsed;
   public rows = input<ClrSummaryAreaRows>(3);
@@ -57,7 +57,7 @@ export class ClrSummaryAreaComponent implements AfterViewInit {
     });
   }
 
-  public get visibleItems(): ClrSummaryItemComponent[] {
+  public get visibleItems(): ClrSummaryItem[] {
     const maxItems = 5 * this.rows();
     return this.items ? this.items.toArray().slice(0, maxItems) : [];
   }

@@ -1,4 +1,3 @@
-<!--@if (!isCollapsed()) {-->
 <div class="summary-area-panels" [class.is-active]="!isCollapsed()">
   <div
     class="summary-area-panel summary-area-panel--state"
@@ -36,13 +35,13 @@
           <clr-alert-item>
             @if (warningLinkText && warningClick) {
             <span class="alert-text">{{ warningText }}</span>
-            <span class="alert-action" (click)="warningClick()" (keydown.enter)="warningClick()">{{
-              warningLinkText
-            }}</span>
+            <span class="alert-action" (click)="warningClick()" (keydown.enter)="warningClick()"
+              >{{ warningLinkText }}</span
+            >
             } @else if (warningClick) {
-            <span class="alert-action" (click)="warningClick()" (keydown.enter)="warningClick()">{{
-              warningText
-            }}</span>
+            <span class="alert-action" (click)="warningClick()" (keydown.enter)="warningClick()"
+              >{{ warningText }}</span
+            >
             } @else {
             <span class="alert-text">{{ warningText }}</span>
             }
@@ -70,4 +69,3 @@
     </div>
   </div>
 </div>
-<!--}-->

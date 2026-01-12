@@ -2,9 +2,9 @@ import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testin
 import { Component, ViewChild, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { ClrSummaryAreaComponent } from './summary-area.component';
-import { ClrSummaryItemComponent } from '../summary-item/summary-item.component';
-import { ClrSummaryItemValueComponent } from '../summary-item-value/summary-item-value.component';
+import { ClrSummaryArea } from './summary-area';
+import { ClrSummaryItem } from '../summary-item/summary-item';
+import { ClrSummaryItemValue } from '../summary-item-value/summary-item-value';
 import { ClrSummaryAreaStateService } from './summary-area-state.service';
 import { ClrSummaryAreaError, ClrSummaryAreaWarning, ClrSummaryAreaLoading } from './summary-area.model';
 import { ClarityModule } from '@clr/angular';
@@ -29,10 +29,10 @@ class MockSummaryAreaStateService {
     </clr-summary-area>
   `,
   standalone: true,
-  imports: [ClrSummaryAreaComponent, ClrSummaryItemComponent, ClrSummaryItemValueComponent, ClarityModule],
+  imports: [ClrSummaryArea, ClrSummaryItem, ClrSummaryItemValue, ClarityModule],
 })
 class TestHostComponent {
-  @ViewChild(ClrSummaryAreaComponent) component!: ClrSummaryAreaComponent;
+  @ViewChild(ClrSummaryArea) component!: ClrSummaryArea;
   rows: 1 | 2 | 3 = 3;
   error: ClrSummaryAreaError | undefined;
   warning: ClrSummaryAreaWarning | undefined;
@@ -56,10 +56,10 @@ class TestHostComponent {
     </clr-summary-area>
   `,
   standalone: true,
-  imports: [ClrSummaryAreaComponent, ClrSummaryItemComponent, ClrSummaryItemValueComponent],
+  imports: [ClrSummaryArea, ClrSummaryItem, ClrSummaryItemValue],
 })
 class ManyItemsTestHostComponent {
-  @ViewChild(ClrSummaryAreaComponent) component!: ClrSummaryAreaComponent;
+  @ViewChild(ClrSummaryArea) component!: ClrSummaryArea;
   manyItems = Array.from({ length: 20 }, (_, i) => i + 1);
 }
 
@@ -73,15 +73,15 @@ describe('SummaryAreaComponent', () => {
   describe('Basic functionality', () => {
     let hostComponent: TestHostComponent;
     let fixture: ComponentFixture<TestHostComponent>;
-    let component: ClrSummaryAreaComponent;
+    let component: ClrSummaryArea;
 
     beforeEach(async () => {
       await TestBed.configureTestingModule({
         imports: [
           TestHostComponent,
-          ClrSummaryAreaComponent,
-          ClrSummaryItemComponent,
-          ClrSummaryItemValueComponent,
+          ClrSummaryArea,
+          ClrSummaryItem,
+          ClrSummaryItemValue,
           NoopAnimationsModule,
           ClarityModule,
         ],
@@ -171,15 +171,15 @@ describe('SummaryAreaComponent', () => {
   describe('Error state', () => {
     let hostComponent: TestHostComponent;
     let fixture: ComponentFixture<TestHostComponent>;
-    let component: ClrSummaryAreaComponent;
+    let component: ClrSummaryArea;
 
     beforeEach(async () => {
       await TestBed.configureTestingModule({
         imports: [
           TestHostComponent,
-          ClrSummaryAreaComponent,
-          ClrSummaryItemComponent,
-          ClrSummaryItemValueComponent,
+          ClrSummaryArea,
+          ClrSummaryItem,
+          ClrSummaryItemValue,
           NoopAnimationsModule,
           ClarityModule,
         ],
@@ -301,15 +301,15 @@ describe('SummaryAreaComponent', () => {
   describe('Warning state', () => {
     let hostComponent: TestHostComponent;
     let fixture: ComponentFixture<TestHostComponent>;
-    let component: ClrSummaryAreaComponent;
+    let component: ClrSummaryArea;
 
     beforeEach(async () => {
       await TestBed.configureTestingModule({
         imports: [
           TestHostComponent,
-          ClrSummaryAreaComponent,
-          ClrSummaryItemComponent,
-          ClrSummaryItemValueComponent,
+          ClrSummaryArea,
+          ClrSummaryItem,
+          ClrSummaryItemValue,
           NoopAnimationsModule,
           ClarityModule,
         ],
@@ -412,15 +412,15 @@ describe('SummaryAreaComponent', () => {
   describe('Loading state', () => {
     let hostComponent: TestHostComponent;
     let fixture: ComponentFixture<TestHostComponent>;
-    let component: ClrSummaryAreaComponent;
+    let component: ClrSummaryArea;
 
     beforeEach(async () => {
       await TestBed.configureTestingModule({
         imports: [
           TestHostComponent,
-          ClrSummaryAreaComponent,
-          ClrSummaryItemComponent,
-          ClrSummaryItemValueComponent,
+          ClrSummaryArea,
+          ClrSummaryItem,
+          ClrSummaryItemValue,
           NoopAnimationsModule,
           ClarityModule,
         ],
@@ -557,9 +557,9 @@ describe('SummaryAreaComponent', () => {
       await TestBed.configureTestingModule({
         imports: [
           TestHostComponent,
-          ClrSummaryAreaComponent,
-          ClrSummaryItemComponent,
-          ClrSummaryItemValueComponent,
+          ClrSummaryArea,
+          ClrSummaryItem,
+          ClrSummaryItemValue,
           NoopAnimationsModule,
           ClarityModule,
         ],
@@ -592,7 +592,7 @@ describe('SummaryAreaComponent', () => {
 
     it('should render projected summary items', () => {
       fixture.detectChanges();
-      const items = fixture.debugElement.queryAll(By.directive(ClrSummaryItemComponent));
+      const items = fixture.debugElement.queryAll(By.directive(ClrSummaryItem));
       expect(items.length).toBe(3);
     });
   });
@@ -600,15 +600,15 @@ describe('SummaryAreaComponent', () => {
   describe('Many items', () => {
     let hostComponent: ManyItemsTestHostComponent;
     let fixture: ComponentFixture<ManyItemsTestHostComponent>;
-    let component: ClrSummaryAreaComponent;
+    let component: ClrSummaryArea;
 
     beforeEach(async () => {
       await TestBed.configureTestingModule({
         imports: [
           ManyItemsTestHostComponent,
-          ClrSummaryAreaComponent,
-          ClrSummaryItemComponent,
-          ClrSummaryItemValueComponent,
+          ClrSummaryArea,
+          ClrSummaryItem,
+          ClrSummaryItemValue,
           NoopAnimationsModule,
         ],
         providers: [{ provide: ClrSummaryAreaStateService, useValue: mockStateService }],
@@ -639,9 +639,9 @@ describe('SummaryAreaComponent', () => {
       await TestBed.configureTestingModule({
         imports: [
           TestHostComponent,
-          ClrSummaryAreaComponent,
-          ClrSummaryItemComponent,
-          ClrSummaryItemValueComponent,
+          ClrSummaryArea,
+          ClrSummaryItem,
+          ClrSummaryItemValue,
           NoopAnimationsModule,
           ClarityModule,
         ],
@@ -698,9 +698,9 @@ describe('SummaryAreaComponent', () => {
       await TestBed.configureTestingModule({
         imports: [
           TestHostComponent,
-          ClrSummaryAreaComponent,
-          ClrSummaryItemComponent,
-          ClrSummaryItemValueComponent,
+          ClrSummaryArea,
+          ClrSummaryItem,
+          ClrSummaryItemValue,
           NoopAnimationsModule,
           ClarityModule,
         ],
@@ -755,15 +755,15 @@ describe('SummaryAreaComponent', () => {
   describe('Window resize', () => {
     let hostComponent: TestHostComponent;
     let fixture: ComponentFixture<TestHostComponent>;
-    let component: ClrSummaryAreaComponent;
+    let component: ClrSummaryArea;
 
     beforeEach(async () => {
       await TestBed.configureTestingModule({
         imports: [
           TestHostComponent,
-          ClrSummaryAreaComponent,
-          ClrSummaryItemComponent,
-          ClrSummaryItemValueComponent,
+          ClrSummaryArea,
+          ClrSummaryItem,
+          ClrSummaryItemValue,
           NoopAnimationsModule,
           ClarityModule,
         ],
@@ -799,9 +799,9 @@ describe('SummaryAreaComponent', () => {
       await TestBed.configureTestingModule({
         imports: [
           TestHostComponent,
-          ClrSummaryAreaComponent,
-          ClrSummaryItemComponent,
-          ClrSummaryItemValueComponent,
+          ClrSummaryArea,
+          ClrSummaryItem,
+          ClrSummaryItemValue,
           NoopAnimationsModule,
           ClarityModule,
         ],
@@ -849,19 +849,19 @@ describe('SummaryAreaComponent', () => {
 });
 
 describe('SummaryAreaComponent - standalone tests', () => {
-  let component: ClrSummaryAreaComponent;
-  let fixture: ComponentFixture<ClrSummaryAreaComponent>;
+  let component: ClrSummaryArea;
+  let fixture: ComponentFixture<ClrSummaryArea>;
   let mockStateService: MockSummaryAreaStateService;
 
   beforeEach(async () => {
     mockStateService = new MockSummaryAreaStateService();
 
     await TestBed.configureTestingModule({
-      imports: [ClrSummaryAreaComponent, NoopAnimationsModule, ClarityModule],
+      imports: [ClrSummaryArea, NoopAnimationsModule, ClarityModule],
       providers: [{ provide: ClrSummaryAreaStateService, useValue: mockStateService }],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ClrSummaryAreaComponent);
+    fixture = TestBed.createComponent(ClrSummaryArea);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
