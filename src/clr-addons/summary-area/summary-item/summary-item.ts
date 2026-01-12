@@ -9,8 +9,8 @@ import {
   TemplateRef,
   ViewChild,
 } from '@angular/core';
-// import { CommonModule } from '@angular/common';
-// import { ClarityModule } from '@clr/angular';
+import { CommonModule } from '@angular/common';
+import { ClarityModule } from '@clr/angular';
 import { ClrSummaryItemValue } from '../summary-item-value/summary-item-value';
 import {
   ClrSummaryItemError,
@@ -18,12 +18,12 @@ import {
   ClrSummaryItemLoading,
   ClrSummaryItemEditConfig,
 } from './summary-item.model';
-// import { ClrSummaryItemValueCopyButtonComponent } from '../summary-item-value-copy-button/summary-item-value-copy-button.component';
+import { ClrSummaryItemValueCopyButton } from '../summary-item-value-copy-button/summary-item-value-copy-button';
 
 @Component({
   selector: 'clr-summary-item',
-  standalone: false,
-  //imports: [CommonModule, ClarityModule, ClrSummaryItemValueComponent, ClrSummaryItemValueCopyButtonComponent],
+  standalone: true,
+  imports: [CommonModule, ClarityModule, ClrSummaryItemValue, ClrSummaryItemValueCopyButton],
   templateUrl: './summary-item.html',
   styleUrls: ['./summary-item.scss'],
 })
@@ -186,17 +186,11 @@ export class ClrSummaryItem implements AfterContentInit, AfterContentChecked {
       }
     }
 
-    // Check if any clr-summary-item-value child has meaningful content OR will show a placeholder
-    // A child with showOnEmptyValue=true will render a placeholder, so the parent should not also render one
+    // Check if any clr-summary-item-value child has meaningful content
+    // A child with showOnEmptyValue=true will render a placeholder - this is not meaningful content
     if (this.valueChildren && this.valueChildren.length > 0) {
       const hasVisibleValueChild = this.valueChildren.toArray().some(child => {
-        // Child has meaningful content - it will render something
-        if (child.hasMeaningfulContent) {
-          return true;
-        }
-        // Child has no content but showOnEmptyValue is true - it will render a placeholder
-        // So the parent should NOT also render a placeholder
-        return child.showOnEmptyValue();
+        return child.hasMeaningfulContent;
       });
       if (hasVisibleValueChild) {
         this.hasProjectedContent = true;

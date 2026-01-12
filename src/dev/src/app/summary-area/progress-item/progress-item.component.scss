@@ -40,3 +40,9 @@ button {
 .progress-item-button {
   margin: 0;
 }
+
+.details-link {
+  color: var(--cds-alias-typography-link-color);
+  text-decoration: underline;
+  cursor: pointer;
+}

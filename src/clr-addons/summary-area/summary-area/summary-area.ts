@@ -9,9 +9,9 @@ import {
   input,
   QueryList,
 } from '@angular/core';
-//import { CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { ClrSummaryItem } from '../summary-item/summary-item';
-//import { ClarityModule } from '@clr/angular';
+import { ClarityModule } from '@clr/angular';
 import { ClrSummaryAreaStateService } from './summary-area-state.service';
 import {
   ClrSummaryAreaColumns,
@@ -23,8 +23,8 @@ import {
 
 @Component({
   selector: 'clr-summary-area',
-  standalone: false,
-  //imports: [CommonModule, ClarityModule],
+  standalone: true,
+  imports: [CommonModule, ClarityModule],
   templateUrl: './summary-area.html',
   styleUrl: './summary-area.scss',
 })

@@ -50,10 +50,12 @@ cds-icon {
   text-decoration: underline;
   cursor: pointer;
 }
+
 .value-link:visited,
 .edit-link:visited {
   color: var(--cds-alias-typography-link-color-visited);
 }
+
 .value-link:hover,
 .value-link:focus,
 .edit-link:hover,

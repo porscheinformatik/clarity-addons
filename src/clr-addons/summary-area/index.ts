@@ -4,11 +4,11 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-export * from './summary-area/summary-area.module';
 export * from './summary-area/summary-area';
+export * from './summary-area/summary-area.model';
 export * from './summary-area/summary-area-state.service';
 export * from './summary-area-toggle/summary-area-toggle';
 export * from './summary-item/summary-item';
+export * from './summary-item/summary-item.model';
 export * from './summary-item-value/summary-item-value';
 export * from './summary-item-value-copy-button/summary-item-value-copy-button';
-export * from './summary-item/summary-item.model';

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, HostListener, Output, inject, input } from '@angular/core';
-//import { ClrIconModule, ClrTooltipModule } from '@clr/angular';
+import { ClrIconModule, ClrTooltipModule } from '@clr/angular';
 
 import { ClrSummaryAreaStateService } from '../summary-area/summary-area-state.service';
 import { angleDoubleIcon, ClarityIcons } from '@cds/core/icon';
@@ -8,10 +8,10 @@ ClarityIcons.addIcons(angleDoubleIcon);
 
 @Component({
   selector: 'clr-summary-area-toggle',
-  standalone: false,
+  standalone: true,
   templateUrl: './summary-area-toggle.html',
   styleUrl: './summary-area-toggle.scss',
-  //imports: [ClrIconModule, ClrTooltipModule],
+  imports: [ClrIconModule, ClrTooltipModule],
 })
 export class ClrSummaryAreaToggle {
   @Output() public readonly summaryToggle = new EventEmitter<void>();

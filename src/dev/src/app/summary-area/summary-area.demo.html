@@ -43,10 +43,9 @@
   <clr-summary-item label="Progress7" [valueCopyable]="true">
     <app-progress-item (showDetailsEvent)="openProgressDetails()"></app-progress-item>
   </clr-summary-item>
-  <clr-summary-item label="Empty Item8" [valueCopyable]="true"></clr-summary-item>
+  <clr-summary-item label="Empty Item8" [showOnEmptyValue]="true"></clr-summary-item>
   <clr-summary-item [label]="'Empty Value9'" [showOnEmptyValue]="false">
-    <!-- TODO: text if showOnEmptyValue works correctly! -->
-    <clr-summary-item-value [showOnEmptyValue]="false"></clr-summary-item-value>
+    <clr-summary-item-value [value]="undefined"></clr-summary-item-value>
   </clr-summary-item>
   <clr-summary-item
     label="Edit Empty Value10"

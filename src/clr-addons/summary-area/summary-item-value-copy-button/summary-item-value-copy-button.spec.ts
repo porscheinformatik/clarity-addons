@@ -1,27 +1,27 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { ClrSummaryItemValueCopyButtonComponent } from './summary-item-value-copy-button';
+import { ClrSummaryItemValueCopyButton } from './summary-item-value-copy-button';
 
 @Component({
   template: `<clr-summary-area-value-copy-button [value]="testValue"></clr-summary-area-value-copy-button>`,
   standalone: true,
-  imports: [ClrSummaryItemValueCopyButtonComponent],
+  imports: [ClrSummaryItemValueCopyButton],
 })
 class TestHostComponent {
   testValue = 'Test Value';
 }
 
 describe('SummaryItemValueCopyButtonComponent', () => {
-  let component: ClrSummaryItemValueCopyButtonComponent;
-  let fixture: ComponentFixture<ClrSummaryItemValueCopyButtonComponent>;
+  let component: ClrSummaryItemValueCopyButton;
+  let fixture: ComponentFixture<ClrSummaryItemValueCopyButton>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ClrSummaryItemValueCopyButtonComponent],
+      imports: [ClrSummaryItemValueCopyButton],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ClrSummaryItemValueCopyButtonComponent);
+    fixture = TestBed.createComponent(ClrSummaryItemValueCopyButton);
     component = fixture.componentInstance;
   });
 
@@ -192,7 +192,7 @@ describe('SummaryItemValueCopyButtonComponent', () => {
       hostFixture = TestBed.createComponent(TestHostComponent);
       hostComponent = hostFixture.componentInstance;
       hostFixture.detectChanges();
-      buttonDebugElement = hostFixture.debugElement.query(By.directive(ClrSummaryItemValueCopyButtonComponent));
+      buttonDebugElement = hostFixture.debugElement.query(By.directive(ClrSummaryItemValueCopyButton));
     });
 
     it('should bind the value input from host component', () => {

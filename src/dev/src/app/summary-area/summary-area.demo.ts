@@ -1,18 +1,17 @@
+import { Component, inject, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {
+  ClrSummaryArea,
+  ClrSummaryItem,
+  ClrSummaryItemValue,
   ClrSummaryAreaError,
   ClrSummaryAreaLoading,
   ClrSummaryAreaWarning,
-} from '../../../../clr-addons/summary-area/summary-area/summary-area.model';
-import {
   ClrSummaryItemError,
   ClrSummaryItemLoading,
   ClrSummaryItemWarning,
-} from '../../../../clr-addons/summary-area/summary-item/summary-item.model';
-import { Component, inject, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-// import { ClrSummaryAreaComponent } from '../../../../clr-addons/summary-area/summary-area/summary-area.component';
-// import { ClrSummaryItemComponent } from '../../../../clr-addons/summary-area/summary-item/summary-item.component';
-// import { ClrSummaryItemValueComponent } from '../../../../clr-addons/summary-area/summary-item-value/summary-item-value.component';
+  gasIcon,
+} from '@porscheinformatik/clr-addons';
 import { ClrIconModule, ClrModalModule } from '@clr/angular';
 import {
   barsIcon,
@@ -23,7 +22,6 @@ import {
   popOutIcon,
   wandIcon,
 } from '@cds/core/icon';
-import { ClrSummaryAreaModule, gasIcon } from '@porscheinformatik/clr-addons';
 import { ProgressItemComponent } from './progress-item/progress-item.component';
 
 ClarityIcons.addIcons(pencilIcon, barsIcon, wandIcon, chatBubbleIcon, colorPaletteIcon, popOutIcon, gasIcon);
@@ -31,15 +29,7 @@ ClarityIcons.addIcons(pencilIcon, barsIcon, wandIcon, chatBubbleIcon, colorPalet
 @Component({
   selector: 'my-app-summary-area-demo',
   templateUrl: './summary-area.demo.html',
-  imports: [
-    // ClrSummaryAreaComponent,
-    // ClrSummaryItemComponent,
-    // ClrSummaryItemValueComponent,
-    ClrIconModule,
-    ClrSummaryAreaModule,
-    ProgressItemComponent,
-    ClrModalModule,
-  ],
+  imports: [ClrSummaryArea, ClrSummaryItem, ClrSummaryItemValue, ClrIconModule, ProgressItemComponent, ClrModalModule],
 })
 export class SummaryAreaDemo implements OnInit {
   public showProgressDetails = false;
@@ -90,11 +80,12 @@ export class SummaryAreaDemo implements OnInit {
   private readonly router: Router = inject(Router);
 
   public ngOnInit(): void {
-    // Simulate loading
+    // Simulate general loading state
     setTimeout(() => {
       this.summaryAreaLoadingState = { ...this.summaryAreaLoadingState, active: false };
     }, 1000);
 
+    // Simulate item loading state
     setTimeout(() => {
       this.itemLoadingState = { ...this.itemLoadingState, active: false };
     }, 5000);

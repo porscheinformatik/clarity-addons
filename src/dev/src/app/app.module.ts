@@ -12,6 +12,7 @@ import {
   ClrAddonsModule,
   ClrHistoryService,
   ClrNotificationService,
+  ClrSummaryAreaToggle,
   HISTORY_TOKEN,
 } from '@porscheinformatik/clr-addons';
 import { AppComponent } from './app.component';
@@ -32,6 +33,7 @@ import { SummaryAreaDemo } from './summary-area/summary-area.demo';
     ClrAddonsModule,
     ROUTING,
     SummaryAreaDemo,
+    ClrSummaryAreaToggle,
   ],
   bootstrap: [AppComponent],
   providers: [

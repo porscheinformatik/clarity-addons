@@ -13,15 +13,15 @@ import {
   output,
   ViewChild,
 } from '@angular/core';
-//import { CommonModule } from '@angular/common';
-//import { RouterModule } from '@angular/router';
-//import { ClarityModule, ClrIconModule } from '@clr/angular';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { ClarityModule, ClrIconModule } from '@clr/angular';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'clr-summary-item-value',
-  standalone: false,
-  //imports: [CommonModule, RouterModule, ClarityModule, ClrIconModule],
+  standalone: true,
+  imports: [CommonModule, RouterModule, ClarityModule, ClrIconModule],
   providers: [provideAnimations()],
   templateUrl: './summary-item-value.html',
   styleUrls: ['./summary-item-value.scss'],
@@ -33,7 +33,6 @@ export class ClrSummaryItemValue implements OnInit, AfterContentInit, AfterConte
   public readonly value = input<string | undefined>();
   public readonly icon = input<string | undefined>();
   public readonly tooltip = input<string | undefined>();
-  public readonly showOnEmptyValue = input<boolean>(true);
   public readonly clickable = input<boolean>(false);
   public readonly clicked = output<void>();
 
@@ -95,22 +94,10 @@ export class ClrSummaryItemValue implements OnInit, AfterContentInit, AfterConte
 
   /**
    * Returns true if this component should be hidden.
-   * This happens when showOnEmptyValue is false and there's no meaningful content.
+   * This happens when there's no meaningful content.
    */
   public get shouldHide(): boolean {
-    if (this.showOnEmptyValue()) {
-      return false;
-    }
-    // When showOnEmptyValue is false, hide if there's no meaningful content
     return !this.hasMeaningfulContent;
-  }
-
-  /**
-   * Returns true if the long dash placeholder should be shown.
-   * Only show when showOnEmptyValue is true AND there's no meaningful content.
-   */
-  public get showPlaceholder(): boolean {
-    return this.showOnEmptyValue() && !this.hasMeaningfulContent;
   }
 
   public ngOnInit(): void {

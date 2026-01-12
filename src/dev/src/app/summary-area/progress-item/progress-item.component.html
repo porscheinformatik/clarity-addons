@@ -1,5 +1,4 @@
 <div class="progress-item-container">
   <clr-progress-bar class="progress-bar" [clrValue]="60" [clrColor]="'warning'"> </clr-progress-bar>
-  <!--    <span (click)="openDetails()">60%</span>-->
-  <button type="button" class="btn btn-sm btn-link progress-item-button" (click)="openDetails()">60%</button>
+  <span class="details-link" (click)="openDetails()" (keydown.enter)="openDetails()">60%</span>
 </div>
