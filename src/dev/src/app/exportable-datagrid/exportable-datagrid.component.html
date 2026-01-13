@@ -23,26 +23,14 @@
       <clr-dg-column [clrDgField]="'column3'">
         <ng-container *clrDgHideableColumn="{ hidden: false }">Column 3</ng-container>
       </clr-dg-column>
-      <clr-dg-column [clrDgField]="'column5'">
-        <ng-container *clrDgHideableColumn="{ hidden: true }">Column 5</ng-container>
-      </clr-dg-column>
       <clr-dg-column [clrDgField]="'column4'">
         <ng-container *clrDgHideableColumn="{ hidden: true }">Column 4</ng-container>
-      </clr-dg-column>
-      <clr-dg-column [clrDgField]="'column6'">
-        <ng-container *clrDgHideableColumn="{ hidden: true }">Column 6</ng-container>
-      </clr-dg-column>
-      <clr-dg-column [clrDgField]="'column7'">
-        <ng-container *clrDgHideableColumn="{ hidden: true }">Column 7</ng-container>
       </clr-dg-column>
 
       <clr-dg-row *clrDgItems="let entry of exportableEntries" [clrDgItem]="entry">
         <clr-dg-cell>{{ entry.column1 }}</clr-dg-cell>
         <clr-dg-cell>{{ entry.column2 }}</clr-dg-cell>
         <clr-dg-cell>{{ entry.column3 }}</clr-dg-cell>
-        <clr-dg-cell>{{ entry.column4 }}</clr-dg-cell>
-        <clr-dg-cell>{{ entry.column4 }}</clr-dg-cell>
-        <clr-dg-cell>{{ entry.column4 }}</clr-dg-cell>
         <clr-dg-cell>{{ entry.column4 }}</clr-dg-cell>
       </clr-dg-row>
 
