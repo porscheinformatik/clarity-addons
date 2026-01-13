@@ -305,8 +305,11 @@
   }
 
   // Remove the last column separator in datagrids
-  clr-dg-column:not(.datagrid-hidden-column):not(:has(+ clr-dg-column:not(.datagrid-hidden-column)))
-    .datagrid-column-separator {
+  clr-dg-column.datagrid-column:not(.datagrid-hidden-column):not(
+      :has(~ clr-dg-column.datagrid-column:not(.datagrid-hidden-column))
+    )
+    > .datagrid-column-flex
+    > clr-dg-column-separator.datagrid-column-separator {
     display: none;
   }
 }
