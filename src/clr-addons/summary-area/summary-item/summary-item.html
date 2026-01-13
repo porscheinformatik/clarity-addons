@@ -9,8 +9,8 @@
     <div class="summary-item-values" #valuesContainer>
       @if (hasLoading) {
       <div class="summary-item-loading">
-        <clr-spinner [clrSmall]="true" class="loading-spinner"></clr-spinner>
-        <span class="loading-text">{{ loadingText }}</span>
+        <span class="spinner spinner-inline"></span>
+        <span>{{ loadingText }}</span>
       </div>
       } @else if (hasError) {
       <clr-summary-item-value icon="error-standard" class="error"></clr-summary-item-value>

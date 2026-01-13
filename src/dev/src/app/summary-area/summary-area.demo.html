@@ -37,6 +37,8 @@
     ></clr-summary-item-value>
     <clr-summary-item-value value="Chat Bubble"></clr-summary-item-value>
   </clr-summary-item>
+  <!-- NOTE: There will be no copy button shown for 'Custom Text6' item,
+       since copy of text values is only supported for summary-item-value components -->
   <clr-summary-item label="Custom Text6" [valueCopyable]="true">
     <div>Projected content</div>
   </clr-summary-item>
@@ -82,6 +84,9 @@
     ></clr-summary-item-value>
   </clr-summary-item>
   <clr-summary-item label="Long Text15" [valueCopyable]="true">
+    <!-- NOTE: Since the value part exceed the width of a summary area column an ellipsis is shown for the value.
+          Be aware, that the tooltip of the item value will then show the value of the clr-summary-item-value element,
+          since this has a higher priority then the defined tooltip of the element -->
     <clr-summary-item-value
       value="This is very long text, so long, so long, so long, so long, so long"
       tooltip="I am a tooltip for very long text value"

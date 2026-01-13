@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
+ * This software is released under MIT license.
+ * The full license information can be found in LICENSE in the root directory of this project.
+ */
 import {
   AfterContentInit,
   AfterViewInit,
@@ -167,9 +172,10 @@ export class ClrSummaryItemValue implements OnInit, AfterContentInit, AfterViewI
     this.ngZone.runOutsideAngular(() => {
       this.resizeObserver = new ResizeObserver(() => {
         const prevOverflowing = this.isTextOverflowing;
+        const prevTooltipSize = this.tooltipSize;
         this.checkTextOverflowSync();
-        // Only trigger change detection if overflow state changed
-        if (prevOverflowing !== this.isTextOverflowing) {
+        // Trigger change detection if overflow state or tooltip size changed
+        if (prevOverflowing !== this.isTextOverflowing || prevTooltipSize !== this.tooltipSize) {
           this.ngZone.run(() => {
             this.cdr.markForCheck();
           });
@@ -182,8 +188,10 @@ export class ClrSummaryItemValue implements OnInit, AfterContentInit, AfterViewI
       }
     });
 
-    // Initial check
-    this.checkTextOverflowSync();
+    // Defer initial check to avoid ExpressionChangedAfterItHasBeenCheckedError
+    Promise.resolve().then(() => {
+      this.checkTextOverflowSync();
+    });
   }
 
   private checkTextOverflowSync(): void {
@@ -193,8 +201,12 @@ export class ClrSummaryItemValue implements OnInit, AfterContentInit, AfterViewI
     }
 
     const tooltip = this.effectiveTooltip;
-    if (tooltip && tooltip.length < 34) {
-      this.tooltipSize = 'sm';
+    // if the tooltip content is too short for medium size, size small should be used instead
+    const newSize = tooltip && tooltip.length < 34 ? 'sm' : 'md';
+
+    if (this.tooltipSize !== newSize) {
+      this.tooltipSize = newSize;
+      this.cdr.markForCheck();
     }
   }
 
@@ -229,37 +241,4 @@ export class ClrSummaryItemValue implements OnInit, AfterContentInit, AfterViewI
     }
     return false;
   }
-
-  // private checkProjectedContent(): void {
-  //   if (this.projectedContent?.nativeElement) {
-  //     const wrapper = this.projectedContent.nativeElement;
-  //     this.hasProjectedContent = Array.from(wrapper.childNodes).some(child => this.hasMeaningfulContentRecursive(child));
-  //   } else {
-  //     this.hasProjectedContent = false;
-  //   }
-  // }
-  //
-  // private hasMeaningfulContentRecursive(node: Node): boolean {
-  //   if (node.nodeType === Node.TEXT_NODE) {
-  //     return !!node.textContent?.trim();
-  //   }
-  //   if (node.nodeType === Node.ELEMENT_NODE) {
-  //     return Array.from(node.childNodes).some(child => this.hasMeaningfulContentRecursive(child));
-  //   }
-  //   return false;
-  // }
-
-  /*private checkProjectedContent(): void {
-    if (this.projectedContent?.nativeElement) {
-      const wrapper = this.projectedContent.nativeElement;
-      this.hasProjectedContent = Array.from(wrapper.childNodes).some(node => {
-        if (node.nodeType === Node.TEXT_NODE) {
-          return node.textContent && node.textContent.trim().length > 0;
-        }
-        return node.nodeType === Node.ELEMENT_NODE;
-      });
-    } else {
-      this.hasProjectedContent = false;
-    }
-  }*/
 }

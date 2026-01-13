@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
+ * This software is released under MIT license.
+ * The full license information can be found in LICENSE in the root directory of this project.
+ */
 import {
   AfterViewInit,
   ChangeDetectorRef,
@@ -46,6 +51,7 @@ export class ClrSummaryArea implements AfterViewInit {
   private readonly defaultLoadingText = 'Loading...';
   private readonly defaultErrorText = 'Error';
   private readonly defaultWarningText = 'Warning';
+  private readonly maxColumns: ClrSummaryAreaColumns = 5;
 
   constructor() {
     this.isCollapsed = this.state.collapsed;
@@ -57,8 +63,15 @@ export class ClrSummaryArea implements AfterViewInit {
     });
   }
 
+  /**
+   * Depending on the current rows input only a specific amount of items can be visible to the user.
+   * The summary area only supports up to 5 columns.
+   * For 1 row, 5 items are visible, for 2 rows 10 items, and for 3 rows 15 items.
+   * Any items beyond that will not be shown.
+   * This logic is for meeting the requirement that it remains a summary area and does not grow indefinitely.
+   */
   public get visibleItems(): ClrSummaryItem[] {
-    const maxItems = 5 * this.rows();
+    const maxItems = this.maxColumns * this.rows();
     return this.items ? this.items.toArray().slice(0, maxItems) : [];
   }
 
@@ -116,16 +129,16 @@ export class ClrSummaryArea implements AfterViewInit {
 
   private updateGrid(): void {
     if (this.items && this.items.length > 0) {
-      const maxItems = 5 * this.rows();
+      const maxItems = this.maxColumns * this.rows();
       const itemCount = Math.min(this.items.length, maxItems);
       const minRows = this.rows();
       // Use window.innerWidth as the summary-area may have negative margins extending beyond viewport
       // Subtract some padding for the content area (approx 2rem = 32px on each side)
       const containerWidth = window.innerWidth - 64;
-      const minColWidth = 320 + 36; // px, including gap
+      const minColWidth = 320 + 36; // px per column + gap between columns
 
-      // Calculate the minimum columns needed to satisfy the row constraint (never more than 5)
-      const neededColumns = Math.min(Math.ceil(itemCount / minRows), 5);
+      // Calculate the minimum columns needed to satisfy the row and column constraint (never more than 5 columns)
+      const neededColumns = Math.min(Math.ceil(itemCount / minRows), this.maxColumns);
       // Calculate the maximum columns that fit the screen
       const maxColumnsByWidth = Math.max(1, Math.floor(containerWidth / minColWidth));
 

@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
+ * This software is released under MIT license.
+ * The full license information can be found in LICENSE in the root directory of this project.
+ */
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, input } from '@angular/core';
 import { ClrIconModule } from '@clr/angular';
 import { CdkCopyToClipboard } from '@angular/cdk/clipboard';
@@ -30,6 +35,6 @@ export class ClrSummaryItemValueCopyButton {
     setTimeout(() => {
       this.showValueCopiedIcon.delete(value);
       this.cdr.detectChanges();
-    }, 1000);
+    }, 400);
   }
 }

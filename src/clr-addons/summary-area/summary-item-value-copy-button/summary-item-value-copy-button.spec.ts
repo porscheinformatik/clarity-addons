@@ -177,9 +177,9 @@ describe('SummaryItemValueCopyButton', () => {
           setTimeout(() => {
             expect(component.showValueCopiedIcon.has(value2)).toBe(false);
             done();
-          }, 600);
-        }, 600);
-      }, 500);
+          }, 200);
+        }, 300);
+      }, 200);
     });
   });
 

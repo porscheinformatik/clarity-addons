@@ -1,5 +1,11 @@
+/*
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
+ * This software is released under MIT license.
+ * The full license information can be found in LICENSE in the root directory of this project.
+ */
 import {
   AfterContentInit,
+  AfterViewChecked,
   ChangeDetectorRef,
   Component,
   ContentChildren,
@@ -29,7 +35,7 @@ import { ClrSummaryItemValueCopyButton } from '../summary-item-value-copy-button
   templateUrl: './summary-item.html',
   styleUrls: ['./summary-item.scss'],
 })
-export class ClrSummaryItem implements AfterContentInit, OnDestroy {
+export class ClrSummaryItem implements AfterContentInit, AfterViewChecked, OnDestroy {
   @ViewChild('itemTemplate', { static: true }) template!: TemplateRef<never>;
   @ViewChild('valuesContainer') valuesContainer!: ElementRef<HTMLDivElement>;
   @ContentChildren(ClrSummaryItemValue, { descendants: true })
@@ -48,6 +54,7 @@ export class ClrSummaryItem implements AfterContentInit, OnDestroy {
   private readonly cdr = inject(ChangeDetectorRef);
   private mutationObserver?: MutationObserver;
   private contentCheckScheduled = false;
+  private viewInitialized = false;
 
   private readonly defaultLoadingText = 'Loading...';
   private readonly defaultErrorText = 'Error';
@@ -102,9 +109,11 @@ export class ClrSummaryItem implements AfterContentInit, OnDestroy {
     return this.editConfig()?.click;
   }
 
+  /**
+   * Only collect text values from child summary-item-value components
+   * Exclude projected content and empty values
+   */
   public get copyableValue(): string {
-    // Only collect text values from child summary-item-value components
-    // Exclude projected content and empty values
     return this.valueChildren
       .toArray()
       .map(child => child.value())
@@ -112,12 +121,14 @@ export class ClrSummaryItem implements AfterContentInit, OnDestroy {
       .join(' ');
   }
 
+  /**
+   * Only show copy button if:
+   * 1. valueCopyable is true
+   * 2. Not in loading, error, warning state
+   * 3. Not showing edit button
+   * 4. Has actual text values from summary-item-value components (not just projected content or placeholder)
+   */
   public get showCopyButton(): boolean {
-    // Only show copy button if:
-    // 1. valueCopyable is true
-    // 2. Not in loading, error, warning state
-    // 3. Not showing edit button
-    // 4. Has actual text values from summary-item-value components (not just projected content or placeholder)
     const hasTextValues = this.valueChildren.toArray().some(child => !!child.value()?.trim());
     return (
       this.valueCopyable() &&
@@ -142,8 +153,6 @@ export class ClrSummaryItem implements AfterContentInit, OnDestroy {
     // Initial check based on valueChildren (works before template is rendered)
     this.updateProjectedContentFlag();
   }
-
-  private viewInitialized = false;
 
   public ngAfterViewChecked(): void {
     // Once valuesContainer is available (template rendered), setup observer
