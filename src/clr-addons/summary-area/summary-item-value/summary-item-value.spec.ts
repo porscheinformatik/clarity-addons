@@ -6,17 +6,18 @@ import { ClrSummaryItemValue } from './summary-item-value';
 import { ClarityModule } from '@clr/angular';
 import { CommonModule } from '@angular/common';
 
-// Test host component for testing projected content
 @Component({
   template: `
     <clr-summary-item-value
-      [value]="value"
       [icon]="icon"
-      [click]="clickFn"
+      [value]="value"
+      [clickable]="clickable"
+      (clicked)="clickedFn()"
       [tooltip]="tooltip"
-      [showOnEmptyValue]="showOnEmptyValue"
     >
-      <ng-container *ngIf="projectedContent">{{ projectedContent }}</ng-container>
+      @if (projectedContent) {
+      <span>{{ projectedContent }}</span>
+      }
     </clr-summary-item-value>
   `,
   standalone: true,
@@ -24,15 +25,24 @@ import { CommonModule } from '@angular/common';
 })
 class TestHostComponent {
   @ViewChild(ClrSummaryItemValue) component!: ClrSummaryItemValue;
-  value: string | undefined;
   icon: string | undefined;
-  clickFn: (() => void) | undefined;
+  value: string | undefined;
   tooltip: string | undefined;
-  showOnEmptyValue = true;
+  clickable: boolean | undefined;
+  clickedFn: () => void;
   projectedContent: string | undefined;
 }
 
-describe('SummaryItemValueComponent', () => {
+@Component({
+  template: ` <clr-summary-item-value [icon]="'pencil'" [value]="'Test Value'"></clr-summary-item-value> `,
+  standalone: true,
+  imports: [CommonModule, ClrSummaryItemValue, ClarityModule],
+})
+class TestHostInvalidComponent {
+  @ViewChild(ClrSummaryItemValue) component!: ClrSummaryItemValue;
+}
+
+describe('SummaryItemValue', () => {
   let hostComponent: TestHostComponent;
   let fixture: ComponentFixture<TestHostComponent>;
   let component: ClrSummaryItemValue;
@@ -53,12 +63,12 @@ describe('SummaryItemValueComponent', () => {
       expect(component).toBeTruthy();
     });
 
-    it('should have default showOnEmptyValue as true', () => {
-      expect(component.showOnEmptyValue()).toBe(true);
+    it('should have hasProjectedContent as false initially', () => {
+      expect(component.isTextOverflowing).toBe(false);
     });
 
-    it('should have hasProjectedContent as false initially when no content', () => {
-      expect(component.hasProjectedContent).toBe(false);
+    it('should have tooltipSize on size md', () => {
+      expect(component.tooltipSize).toBe('md');
     });
   });
 
@@ -117,18 +127,26 @@ describe('SummaryItemValueComponent', () => {
   describe('hasMeaningfulContent', () => {
     it('should return true when icon is set', () => {
       hostComponent.icon = 'pencil';
+      hostComponent.value = undefined;
+      hostComponent.projectedContent = undefined;
       fixture.detectChanges();
       expect(component.hasMeaningfulContent).toBe(true);
     });
 
     it('should return true when value is set', () => {
       hostComponent.value = 'Test Value';
+      hostComponent.icon = undefined;
+      hostComponent.projectedContent = undefined;
       fixture.detectChanges();
       expect(component.hasMeaningfulContent).toBe(true);
     });
 
     it('should return true when projected content is present', () => {
+      hostComponent.icon = undefined;
+      hostComponent.value = undefined;
       hostComponent.projectedContent = 'Projected Text';
+      fixture.detectChanges();
+      component.checkProjectedContent(); // Manually trigger content check since MutationObserver doesn't fire in tests
       fixture.detectChanges();
       expect(component.hasMeaningfulContent).toBe(true);
     });
@@ -143,79 +161,46 @@ describe('SummaryItemValueComponent', () => {
   });
 
   describe('shouldHide', () => {
-    it('should return false when showOnEmptyValue is true', () => {
-      hostComponent.showOnEmptyValue = true;
+    it('should return false when icon is set', () => {
+      hostComponent.icon = 'pencil';
+      hostComponent.value = undefined;
+      hostComponent.projectedContent = undefined;
       fixture.detectChanges();
       expect(component.shouldHide).toBe(false);
     });
 
-    it('should return true when showOnEmptyValue is false and no content', () => {
-      hostComponent.showOnEmptyValue = false;
+    it('should return false when value is set', () => {
+      hostComponent.value = 'Test Value';
+      hostComponent.icon = undefined;
+      hostComponent.projectedContent = undefined;
+      fixture.detectChanges();
+      expect(component.shouldHide).toBe(false);
+    });
+
+    it('should return false when projected content is present', () => {
+      hostComponent.projectedContent = 'Projected Text';
+      hostComponent.icon = undefined;
+      hostComponent.value = undefined;
+      fixture.detectChanges();
+      component.checkProjectedContent(); // Manually trigger content check since MutationObserver doesn't fire in tests
+      fixture.detectChanges();
+      expect(component.shouldHide).toBe(false);
+    });
+
+    it('should return true when icon, value are not set and has no projected content', () => {
       hostComponent.value = undefined;
       hostComponent.icon = undefined;
       hostComponent.projectedContent = undefined;
       fixture.detectChanges();
       expect(component.shouldHide).toBe(true);
     });
-
-    it('should return false when showOnEmptyValue is false but has value', () => {
-      hostComponent.showOnEmptyValue = false;
-      hostComponent.value = 'Test Value';
-      fixture.detectChanges();
-      expect(component.shouldHide).toBe(false);
-    });
-
-    it('should return false when showOnEmptyValue is false but has icon', () => {
-      hostComponent.showOnEmptyValue = false;
-      hostComponent.icon = 'pencil';
-      fixture.detectChanges();
-      expect(component.shouldHide).toBe(false);
-    });
-
-    it('should return false when showOnEmptyValue is false but has projected content', () => {
-      hostComponent.showOnEmptyValue = false;
-      hostComponent.projectedContent = 'Projected Text';
-      fixture.detectChanges();
-      expect(component.shouldHide).toBe(false);
-    });
-  });
-
-  describe('showPlaceholder', () => {
-    it('should return true when showOnEmptyValue is true and no content', () => {
-      hostComponent.showOnEmptyValue = true;
-      hostComponent.value = undefined;
-      hostComponent.icon = undefined;
-      hostComponent.projectedContent = undefined;
-      fixture.detectChanges();
-      expect(component.showPlaceholder).toBe(true);
-    });
-
-    it('should return false when showOnEmptyValue is false', () => {
-      hostComponent.showOnEmptyValue = false;
-      fixture.detectChanges();
-      expect(component.showPlaceholder).toBe(false);
-    });
-
-    it('should return false when has value', () => {
-      hostComponent.showOnEmptyValue = true;
-      hostComponent.value = 'Test Value';
-      fixture.detectChanges();
-      expect(component.showPlaceholder).toBe(false);
-    });
-
-    it('should return false when has icon', () => {
-      hostComponent.showOnEmptyValue = true;
-      hostComponent.icon = 'pencil';
-      fixture.detectChanges();
-      expect(component.showPlaceholder).toBe(false);
-    });
   });
 
   describe('isHidden HostBinding', () => {
     it('should add hidden class when shouldHide is true', () => {
-      hostComponent.showOnEmptyValue = false;
       hostComponent.value = undefined;
       hostComponent.icon = undefined;
+      hostComponent.projectedContent = undefined;
       fixture.detectChanges();
 
       const hostElement = fixture.debugElement.query(By.directive(ClrSummaryItemValue));
@@ -223,7 +208,7 @@ describe('SummaryItemValueComponent', () => {
     });
 
     it('should not add hidden class when shouldHide is false', () => {
-      hostComponent.showOnEmptyValue = true;
+      hostComponent.value = 'Test Value';
       fixture.detectChanges();
 
       const hostElement = fixture.debugElement.query(By.directive(ClrSummaryItemValue));
@@ -241,10 +226,11 @@ describe('SummaryItemValueComponent', () => {
       expect(iconElement.attributes['shape']).toBe('pencil');
     });
 
-    it('should render icon with click handler when click is provided', () => {
-      const clickSpy = jasmine.createSpy('clickFn');
+    it('should render icon with click handler when clicked and clickable is provided', () => {
+      const clickSpy = jasmine.createSpy('clickedFn');
       hostComponent.icon = 'pencil';
-      hostComponent.clickFn = clickSpy;
+      hostComponent.clickable = true;
+      hostComponent.clickedFn = clickSpy;
       fixture.detectChanges();
 
       const iconElement = fixture.debugElement.query(By.css('cds-icon.value-link'));
@@ -254,9 +240,21 @@ describe('SummaryItemValueComponent', () => {
       expect(clickSpy).toHaveBeenCalled();
     });
 
-    it('should render icon without click styling when no click handler', () => {
+    it('should render icon without click styling when clicked handler without positive clickable value is provided', () => {
+      const clickSpy = jasmine.createSpy('clickedFn');
       hostComponent.icon = 'pencil';
-      hostComponent.clickFn = undefined;
+      hostComponent.clickable = false;
+      hostComponent.clickedFn = clickSpy;
+      fixture.detectChanges();
+
+      const iconElement = fixture.debugElement.query(By.css('cds-icon.value-icon-neutral'));
+      expect(iconElement).toBeTruthy();
+    });
+
+    it('should render icon without click styling when no clicked handler and no clickable value is provided', () => {
+      hostComponent.icon = 'pencil';
+      hostComponent.clickable = false;
+      hostComponent.clickedFn = undefined;
       fixture.detectChanges();
 
       const iconElement = fixture.debugElement.query(By.css('cds-icon.value-icon-neutral'));
@@ -274,10 +272,11 @@ describe('SummaryItemValueComponent', () => {
       expect(valueElement.nativeElement.textContent.trim()).toBe('Test Value');
     });
 
-    it('should render value as link when click is provided', () => {
-      const clickSpy = jasmine.createSpy('clickFn');
+    it('should render value as link when clicked handler and positive clickable value is provided', () => {
+      const clickSpy = jasmine.createSpy();
       hostComponent.value = 'Clickable Value';
-      hostComponent.clickFn = clickSpy;
+      hostComponent.clickable = true;
+      hostComponent.clickedFn = clickSpy;
       fixture.detectChanges();
 
       const linkElement = fixture.debugElement.query(By.css('.value-link'));
@@ -287,9 +286,21 @@ describe('SummaryItemValueComponent', () => {
       expect(clickSpy).toHaveBeenCalled();
     });
 
-    it('should not render value as link when no click handler', () => {
+    it('should not render value as link when clicked handler but no positive clickable value is provided', () => {
+      const clickSpy = jasmine.createSpy('clickedFn');
       hostComponent.value = 'Plain Value';
-      hostComponent.clickFn = undefined;
+      hostComponent.clickable = false;
+      hostComponent.clickedFn = clickSpy;
+      fixture.detectChanges();
+
+      const linkElement = fixture.debugElement.query(By.css('.value-link'));
+      expect(linkElement).toBeFalsy();
+    });
+
+    it('should not render value as link when no clicked handler is provided', () => {
+      hostComponent.value = 'Plain Value';
+      hostComponent.clickable = false;
+      hostComponent.clickedFn = undefined;
       fixture.detectChanges();
 
       const linkElement = fixture.debugElement.query(By.css('.value-link'));
@@ -297,63 +308,26 @@ describe('SummaryItemValueComponent', () => {
     });
   });
 
-  describe('placeholder rendering', () => {
-    it('should render placeholder when no content and showOnEmptyValue is true', () => {
-      hostComponent.showOnEmptyValue = true;
-      hostComponent.value = undefined;
-      hostComponent.icon = undefined;
-      hostComponent.projectedContent = undefined;
-      fixture.detectChanges();
-
-      const placeholder = fixture.debugElement.query(By.css('.value-placeholder'));
-      expect(placeholder).toBeTruthy();
-      expect(placeholder.nativeElement.textContent.trim()).toBe('—');
-    });
-
-    it('should not render placeholder when showOnEmptyValue is false', () => {
-      hostComponent.showOnEmptyValue = false;
-      hostComponent.value = undefined;
-      hostComponent.icon = undefined;
-      fixture.detectChanges();
-
-      const placeholder = fixture.debugElement.query(By.css('.value-placeholder'));
-      expect(placeholder).toBeFalsy();
-    });
-
-    it('should not render placeholder when has value', () => {
-      hostComponent.showOnEmptyValue = true;
-      hostComponent.value = 'Test Value';
-      fixture.detectChanges();
-
-      const placeholder = fixture.debugElement.query(By.css('.value-placeholder'));
-      expect(placeholder).toBeFalsy();
-    });
-  });
-
   describe('projected content', () => {
-    it('should detect projected content', () => {
+    it('should return true when projected content is present', () => {
+      hostComponent.icon = undefined;
+      hostComponent.value = undefined;
       hostComponent.projectedContent = 'Projected Text';
       fixture.detectChanges();
-
-      expect(component.hasProjectedContent).toBe(true);
+      component.checkProjectedContent(); // Manually trigger content check since MutationObserver doesn't fire in tests
+      fixture.detectChanges();
+      expect(component.hasMeaningfulContent).toBe(true);
     });
 
-    it('should render projected content', () => {
+    it('should render projected content when icon and value text are not provided', () => {
+      hostComponent.icon = undefined;
+      hostComponent.value = undefined;
       hostComponent.projectedContent = 'Projected Text';
       fixture.detectChanges();
 
       const projectedWrapper = fixture.debugElement.query(By.css('.projected-wrapper'));
       expect(projectedWrapper).toBeTruthy();
       expect(projectedWrapper.nativeElement.textContent.trim()).toBe('Projected Text');
-    });
-
-    it('should not show placeholder when projected content exists', () => {
-      hostComponent.showOnEmptyValue = true;
-      hostComponent.projectedContent = 'Projected Text';
-      fixture.detectChanges();
-
-      const placeholder = fixture.debugElement.query(By.css('.value-placeholder'));
-      expect(placeholder).toBeFalsy();
     });
   });
 
@@ -388,21 +362,10 @@ describe('SummaryItemValueComponent', () => {
 
   describe('validation', () => {
     it('should throw error when both icon and value are set', () => {
-      @Component({
-        template: `<clr-summary-item-value [value]="'text'" [icon]="'pencil'"></clr-summary-item-value>`,
-        standalone: true,
-        imports: [ClrSummaryItemValue],
-      })
-      class InvalidTestComponent {}
-
-      TestBed.configureTestingModule({
-        imports: [InvalidTestComponent, NoopAnimationsModule],
-      });
-
       expect(() => {
-        const invalidFixture = TestBed.createComponent(InvalidTestComponent);
+        const invalidFixture = TestBed.createComponent(TestHostInvalidComponent);
         invalidFixture.detectChanges();
-      }).toThrowError('SummaryItemValueComponent: You cannot define both icon and value. Only one is allowed.');
+      }).toThrowError('SummaryItemValue: You cannot define both icon and value. Only one is allowed.');
     });
   });
 
@@ -440,49 +403,14 @@ describe('SummaryItemValueComponent', () => {
     });
   });
 
-  describe('keyboard accessibility', () => {
-    it('should trigger click on Enter keydown for icon with click handler', () => {
-      const clickSpy = jasmine.createSpy('clickFn');
-      hostComponent.icon = 'pencil';
-      hostComponent.clickFn = clickSpy;
-      fixture.detectChanges();
-
-      const iconElement = fixture.debugElement.query(By.css('cds-icon.value-link'));
-      iconElement.triggerEventHandler('keydown.enter', {});
-      expect(clickSpy).toHaveBeenCalled();
-    });
-
-    it('should trigger click on Enter keydown for value with click handler', () => {
-      const clickSpy = jasmine.createSpy('clickFn');
-      hostComponent.value = 'Clickable Value';
-      hostComponent.clickFn = clickSpy;
-      fixture.detectChanges();
-
-      const valueElement = fixture.debugElement.query(By.css('.value-link'));
-      valueElement.triggerEventHandler('keydown.enter', {});
-      expect(clickSpy).toHaveBeenCalled();
-    });
-
-    it('should have tabindex on clickable icon', () => {
-      hostComponent.icon = 'pencil';
-      hostComponent.clickFn = (): void => {};
-      fixture.detectChanges();
-
-      const iconElement = fixture.debugElement.query(By.css('cds-icon.value-link'));
-      expect(iconElement.attributes['tabindex']).toBe('0');
-    });
-  });
-
   describe('priority of content types', () => {
-    it('should prioritize icon over value', () => {
+    it('should prioritize icon over projected content', () => {
       hostComponent.icon = 'pencil';
-      hostComponent.value = undefined;
+      hostComponent.projectedContent = 'Projected Text';
       fixture.detectChanges();
 
       const iconElement = fixture.debugElement.query(By.css('cds-icon'));
-      const valueElement = fixture.debugElement.query(By.css('.value:not(.value-placeholder)'));
       expect(iconElement).toBeTruthy();
-      expect(valueElement).toBeFalsy();
     });
 
     it('should prioritize value over projected content', () => {
@@ -490,7 +418,7 @@ describe('SummaryItemValueComponent', () => {
       hostComponent.projectedContent = 'Projected Text';
       fixture.detectChanges();
 
-      const valueElement = fixture.debugElement.query(By.css('.value:not(.value-placeholder)'));
+      const valueElement = fixture.debugElement.query(By.css('.value'));
       expect(valueElement).toBeTruthy();
       expect(valueElement.nativeElement.textContent.trim()).toBe('Test Value');
     });

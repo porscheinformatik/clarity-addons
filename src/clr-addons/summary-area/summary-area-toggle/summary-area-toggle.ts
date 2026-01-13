@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostListener, Output, inject, input } from '@angular/core';
+import { Component, HostListener, inject, input, output } from '@angular/core';
 import { ClrIconModule, ClrTooltipModule } from '@clr/angular';
 
 import { ClrSummaryAreaStateService } from '../summary-area/summary-area-state.service';
@@ -14,12 +14,12 @@ ClarityIcons.addIcons(angleDoubleIcon);
   imports: [ClrIconModule, ClrTooltipModule],
 })
 export class ClrSummaryAreaToggle {
-  @Output() public readonly summaryToggle = new EventEmitter<void>();
-
+  public readonly summaryToggle = output<void>();
   public readonly disabled = input(false);
+  public readonly ariaLabel = input<string>('Toggle Summary Area');
+
   public readonly state = inject(ClrSummaryAreaStateService);
   public readonly collapsed = this.state.collapsed;
-  public readonly ariaLabel = 'clr.summary.area.toggle';
 
   @HostListener('keydown', ['$event'])
   public handleKeydown(event: KeyboardEvent): void {

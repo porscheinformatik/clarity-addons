@@ -6,7 +6,6 @@ import { ClrSummaryAreaToggle } from './summary-area-toggle';
 import { ClrSummaryAreaStateService } from '../summary-area/summary-area-state.service';
 import { ClarityModule } from '@clr/angular';
 
-// Mock SummaryAreaStateService
 class MockSummaryAreaStateService {
   public collapsed = signal(false);
 
@@ -19,9 +18,12 @@ class MockSummaryAreaStateService {
   }
 }
 
-// Test host component
 @Component({
-  template: `<clr-summary-area-toggle [disabled]="disabled" (summaryToggle)="onToggle()"></clr-summary-area-toggle>`,
+  template: ` <clr-summary-area-toggle
+    [disabled]="disabled"
+    [ariaLabel]="'Toggle Summary Area Aria Label'"
+    (summaryToggle)="onToggle()"
+  ></clr-summary-area-toggle>`,
   standalone: true,
   imports: [ClrSummaryAreaToggle],
 })
@@ -35,7 +37,7 @@ class TestHostComponent {
   }
 }
 
-describe('SummaryAreaToggleComponent', () => {
+describe('SummaryAreaToggle', () => {
   let hostComponent: TestHostComponent;
   let fixture: ComponentFixture<TestHostComponent>;
   let component: ClrSummaryAreaToggle;
@@ -69,7 +71,7 @@ describe('SummaryAreaToggleComponent', () => {
     });
 
     it('should have ariaLabel defined', () => {
-      expect(component.ariaLabel).toBe('clr.summary.area.toggle');
+      expect(component.ariaLabel()).toBe('Toggle Summary Area Aria Label');
     });
   });
 
@@ -168,7 +170,7 @@ describe('SummaryAreaToggleComponent', () => {
   describe('aria attributes', () => {
     it('should have aria-label attribute', () => {
       const button = fixture.debugElement.query(By.css('button'));
-      expect(button.attributes['aria-label']).toBe('clr.summary.area.toggle');
+      expect(button.attributes['aria-label']).toBe('Toggle Summary Area Aria Label');
     });
 
     it('should have aria-pressed="true" when not collapsed', () => {

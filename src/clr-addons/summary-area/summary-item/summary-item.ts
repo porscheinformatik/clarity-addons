@@ -1,10 +1,12 @@
 import {
   AfterContentInit,
-  AfterContentChecked,
+  ChangeDetectorRef,
   Component,
   ContentChildren,
   ElementRef,
+  inject,
   input,
+  OnDestroy,
   QueryList,
   TemplateRef,
   ViewChild,
@@ -27,7 +29,7 @@ import { ClrSummaryItemValueCopyButton } from '../summary-item-value-copy-button
   templateUrl: './summary-item.html',
   styleUrls: ['./summary-item.scss'],
 })
-export class ClrSummaryItem implements AfterContentInit, AfterContentChecked {
+export class ClrSummaryItem implements AfterContentInit, OnDestroy {
   @ViewChild('itemTemplate', { static: true }) template!: TemplateRef<never>;
   @ViewChild('valuesContainer') valuesContainer!: ElementRef<HTMLDivElement>;
   @ContentChildren(ClrSummaryItemValue, { descendants: true })
@@ -42,6 +44,10 @@ export class ClrSummaryItem implements AfterContentInit, AfterContentChecked {
   public valueCopyable = input<boolean>(false);
 
   public hasProjectedContent = false;
+
+  private readonly cdr = inject(ChangeDetectorRef);
+  private mutationObserver?: MutationObserver;
+  private contentCheckScheduled = false;
 
   private readonly defaultLoadingText = 'Loading...';
   private readonly defaultErrorText = 'Error';
@@ -131,63 +137,64 @@ export class ClrSummaryItem implements AfterContentInit, AfterContentChecked {
           throw new Error('Icon value is only allowed for the first item value. Others must have text only.');
         }
       });
+      this.valueChildren.changes.subscribe(() => this.scheduleContentCheck());
+    }
+    // Initial check based on valueChildren (works before template is rendered)
+    this.updateProjectedContentFlag();
+  }
+
+  private viewInitialized = false;
+
+  public ngAfterViewChecked(): void {
+    // Once valuesContainer is available (template rendered), setup observer
+    if (!this.viewInitialized && this.valuesContainer?.nativeElement) {
+      this.viewInitialized = true;
+      this.setupMutationObserver();
+    }
+    // Always update content flag synchronously during view check
+    if (this.valuesContainer?.nativeElement) {
       this.updateProjectedContentFlag();
-      this.valueChildren.changes.subscribe(() => this.updateProjectedContentFlag());
     }
   }
 
-  public ngAfterContentChecked(): void {
-    if (!this.hasLoading && !this.hasError) {
-      this.updateProjectedContentFlag();
+  public ngOnDestroy(): void {
+    if (this.mutationObserver) {
+      this.mutationObserver.disconnect();
+      this.mutationObserver = undefined;
     }
+  }
+
+  private setupMutationObserver(): void {
+    if (this.valuesContainer?.nativeElement && !this.mutationObserver) {
+      this.mutationObserver = new MutationObserver(() => {
+        this.scheduleContentCheck();
+      });
+
+      this.mutationObserver.observe(this.valuesContainer.nativeElement, {
+        childList: true,
+        subtree: true,
+        characterData: true,
+      });
+    }
+  }
+
+  private scheduleContentCheck(): void {
+    if (this.contentCheckScheduled) {
+      return;
+    }
+    this.contentCheckScheduled = true;
+
+    // Use microtask to batch multiple changes
+    queueMicrotask(() => {
+      this.contentCheckScheduled = false;
+      this.updateProjectedContentFlag();
+      this.cdr.markForCheck();
+    });
   }
 
   private updateProjectedContentFlag(): void {
-    // Check the valuesContainer for any non-empty text node or non-placeholder element
-    // This handles direct text content or custom elements projected into the summary item
-    if (this.valuesContainer?.nativeElement) {
-      const container = this.valuesContainer.nativeElement;
-      const hasDirectContent = Array.from(container.childNodes).some(node => {
-        if (node.nodeType === Node.COMMENT_NODE) {
-          return false;
-        }
-
-        if (node.nodeType === Node.TEXT_NODE) {
-          return node.textContent && node.textContent.trim().length > 0;
-        }
-
-        if (node.nodeType === Node.ELEMENT_NODE) {
-          const element = node as HTMLElement;
-          // Skip clr-summary-item-value elements - they will be checked separately
-          if (element.tagName?.toLowerCase() === 'clr-summary-item-value') {
-            return false;
-          }
-          // Skip placeholder elements
-          if (element.classList.contains('value-placeholder')) {
-            return false;
-          }
-          // Skip edit-link elements (rendered by this component, not projected content)
-          if (element.classList.contains('edit-link')) {
-            return false;
-          }
-          // Skip loading spinner container
-          if (element.classList.contains('summary-item-loading')) {
-            return false;
-          }
-          // Accept any other element
-          return true;
-        }
-
-        return false;
-      });
-      if (hasDirectContent) {
-        this.hasProjectedContent = true;
-        return;
-      }
-    }
-
-    // Check if any clr-summary-item-value child has meaningful content
-    // A child with showOnEmptyValue=true will render a placeholder - this is not meaningful content
+    // Check if any clr-summary-item-value child has meaningful content first
+    // (this works even before template is rendered)
     if (this.valueChildren && this.valueChildren.length > 0) {
       const hasVisibleValueChild = this.valueChildren.toArray().some(child => {
         return child.hasMeaningfulContent;
@@ -198,6 +205,42 @@ export class ClrSummaryItem implements AfterContentInit, AfterContentChecked {
       }
     }
 
-    this.hasProjectedContent = false;
+    // If valuesContainer is not yet initialized, we've already checked valueChildren above
+    if (!this.valuesContainer?.nativeElement) {
+      this.hasProjectedContent = false;
+      return;
+    }
+
+    // Check for direct content in the container (text nodes, other elements)
+    const container = this.valuesContainer.nativeElement;
+    this.hasProjectedContent = Array.from(container.childNodes).some(node => {
+      if (node.nodeType === Node.COMMENT_NODE) {
+        return false;
+      }
+
+      if (node.nodeType === Node.TEXT_NODE) {
+        return node.textContent && node.textContent.trim().length > 0;
+      }
+
+      if (node.nodeType === Node.ELEMENT_NODE) {
+        const element = node as HTMLElement;
+        const tagName = element.tagName?.toLowerCase();
+        // Skip our own components and internal elements
+        if (tagName === 'clr-summary-item-value' || tagName === 'clr-summary-area-value-copy-button') {
+          return false;
+        }
+        // Skip internal elements by class
+        if (
+          element.classList.contains('edit-link') ||
+          element.classList.contains('value-placeholder') ||
+          element.classList.contains('summary-item-loading')
+        ) {
+          return false;
+        }
+        return true;
+      }
+
+      return false;
+    });
   }
 }

@@ -2,7 +2,7 @@
   class="summary-area-toggle"
   type="button"
   [attr.aria-pressed]="!collapsed()"
-  [attr.aria-label]="ariaLabel"
+  [attr.aria-label]="ariaLabel()"
   [disabled]="disabled()"
   (click)="handleToggle($event)"
 >

@@ -12,7 +12,7 @@ class TestHostComponent {
   testValue = 'Test Value';
 }
 
-describe('SummaryItemValueCopyButtonComponent', () => {
+describe('SummaryItemValueCopyButton', () => {
   let component: ClrSummaryItemValueCopyButton;
   let fixture: ComponentFixture<ClrSummaryItemValueCopyButton>;
 
@@ -47,7 +47,7 @@ describe('SummaryItemValueCopyButtonComponent', () => {
       fixture.detectChanges();
 
       const icon = fixture.debugElement.query(By.css('cds-icon'));
-      expect(icon.nativeElement.classList.contains('cng-generic-card-attribute-was-copied-color')).toBe(false);
+      expect(icon.nativeElement.classList.contains('attribute-was-copied-color')).toBe(false);
     });
   });
 
@@ -78,7 +78,7 @@ describe('SummaryItemValueCopyButtonComponent', () => {
       icon.nativeElement.dispatchEvent(new MouseEvent('mousedown'));
       fixture.detectChanges();
 
-      expect(icon.nativeElement.classList.contains('cng-generic-card-attribute-was-copied-color')).toBe(true);
+      expect(icon.nativeElement.classList.contains('attribute-was-copied-color')).toBe(true);
     });
 
     it('should remove value from showValueCopiedIcon set after 1 second', done => {
@@ -121,11 +121,11 @@ describe('SummaryItemValueCopyButtonComponent', () => {
       icon.nativeElement.dispatchEvent(new MouseEvent('mousedown'));
       fixture.detectChanges();
 
-      expect(icon.nativeElement.classList.contains('cng-generic-card-attribute-was-copied-color')).toBe(true);
+      expect(icon.nativeElement.classList.contains('attribute-was-copied-color')).toBe(true);
 
       setTimeout(() => {
         fixture.detectChanges();
-        expect(icon.nativeElement.classList.contains('cng-generic-card-attribute-was-copied-color')).toBe(false);
+        expect(icon.nativeElement.classList.contains('attribute-was-copied-color')).toBe(false);
         done();
       }, 1100);
     });

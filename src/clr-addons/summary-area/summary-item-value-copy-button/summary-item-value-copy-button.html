@@ -3,5 +3,5 @@
   [cdkCopyToClipboard]="value()"
   (mousedown)="copyValueClicked(value())"
   [attr.shape]="showValueCopiedIcon.has(value()) ? 'success-standard' : 'copy-to-clipboard'"
-  [ngClass]="{ 'cng-generic-card-attribute-was-copied-color': showValueCopiedIcon.has(value()) }"
+  [ngClass]="{ 'attribute-was-copied-color': showValueCopiedIcon.has(value()) }"
 ></cds-icon>

@@ -1,7 +1,7 @@
 import {
-  AfterContentChecked,
   AfterContentInit,
   AfterViewInit,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   HostBinding,
@@ -26,7 +26,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
   templateUrl: './summary-item-value.html',
   styleUrls: ['./summary-item-value.scss'],
 })
-export class ClrSummaryItemValue implements OnInit, AfterContentInit, AfterContentChecked, AfterViewInit, OnDestroy {
+export class ClrSummaryItemValue implements OnInit, AfterContentInit, AfterViewInit, OnDestroy {
   @ViewChild('projectedContent') projectedContent?: ElementRef<HTMLSpanElement>;
   @ViewChild('valueElement') valueElement?: ElementRef<HTMLSpanElement>;
 
@@ -41,7 +41,10 @@ export class ClrSummaryItemValue implements OnInit, AfterContentInit, AfterConte
   public tooltipSize = 'md';
 
   private resizeObserver?: ResizeObserver;
+  private mutationObserver?: MutationObserver;
+  private contentCheckScheduled = false;
   private readonly ngZone = inject(NgZone);
+  private readonly cdr = inject(ChangeDetectorRef);
 
   @HostBinding('class.has-icon')
   public get hasIcon(): boolean {
@@ -102,35 +105,75 @@ export class ClrSummaryItemValue implements OnInit, AfterContentInit, AfterConte
 
   public ngOnInit(): void {
     if (this.hasIcon && this.hasText) {
-      throw new Error('SummaryItemValueComponent: You cannot define both icon and value. Only one is allowed.');
+      throw new Error('SummaryItemValue: You cannot define both icon and value. Only one is allowed.');
     }
   }
 
   public ngAfterContentInit(): void {
-    this.checkProjectedContent();
-  }
-
-  public ngAfterContentChecked(): void {
-    this.checkProjectedContent();
+    this.scheduleContentCheck();
+    this.setupMutationObserver();
   }
 
   public ngAfterViewInit(): void {
     this.setupOverflowDetection();
+    this.setupMutationObserver();
+    this.scheduleContentCheck();
   }
 
   public ngOnDestroy(): void {
     if (this.resizeObserver) {
       this.resizeObserver.disconnect();
+      this.resizeObserver = undefined;
     }
+    if (this.mutationObserver) {
+      this.mutationObserver.disconnect();
+      this.mutationObserver = undefined;
+    }
+  }
+
+  private setupMutationObserver(): void {
+    if (this.projectedContent?.nativeElement && !this.mutationObserver) {
+      this.ngZone.runOutsideAngular(() => {
+        this.mutationObserver = new MutationObserver(() => {
+          this.scheduleContentCheck();
+        });
+
+        this.mutationObserver.observe(this.projectedContent.nativeElement, {
+          childList: true,
+          subtree: true,
+          characterData: true,
+        });
+      });
+    }
+  }
+
+  private scheduleContentCheck(): void {
+    if (this.contentCheckScheduled) {
+      return;
+    }
+    this.contentCheckScheduled = true;
+
+    queueMicrotask(() => {
+      this.contentCheckScheduled = false;
+      this.checkProjectedContent();
+      this.ngZone.run(() => {
+        this.cdr.markForCheck();
+      });
+    });
   }
 
   private setupOverflowDetection(): void {
     // Use ResizeObserver to detect when the element size changes
     this.ngZone.runOutsideAngular(() => {
       this.resizeObserver = new ResizeObserver(() => {
-        this.ngZone.run(() => {
-          this.checkTextOverflow();
-        });
+        const prevOverflowing = this.isTextOverflowing;
+        this.checkTextOverflowSync();
+        // Only trigger change detection if overflow state changed
+        if (prevOverflowing !== this.isTextOverflowing) {
+          this.ngZone.run(() => {
+            this.cdr.markForCheck();
+          });
+        }
       });
 
       // Observe the host element for size changes
@@ -140,10 +183,10 @@ export class ClrSummaryItemValue implements OnInit, AfterContentInit, AfterConte
     });
 
     // Initial check
-    setTimeout(() => this.checkTextOverflow(), 0);
+    this.checkTextOverflowSync();
   }
 
-  private checkTextOverflow(): void {
+  private checkTextOverflowSync(): void {
     if (this.valueElement?.nativeElement) {
       const el = this.valueElement.nativeElement;
       this.isTextOverflowing = el.scrollWidth > el.clientWidth;
@@ -155,20 +198,68 @@ export class ClrSummaryItemValue implements OnInit, AfterContentInit, AfterConte
     }
   }
 
-  private checkProjectedContent(): void {
+  /** @internal - Manually trigger projected content check. Useful for testing. */
+  public checkProjectedContent(): void {
+    if (this.projectedContent?.nativeElement) {
+      const wrapper = this.projectedContent.nativeElement;
+      const hasText = !!wrapper.textContent?.trim();
+
+      if (!hasText) {
+        this.hasProjectedContent = false;
+        return;
+      }
+
+      this.hasProjectedContent = this.hasMeaningfulContentRecursive(wrapper);
+    } else {
+      this.hasProjectedContent = false;
+    }
+  }
+
+  private hasMeaningfulContentRecursive(node: Node): boolean {
+    for (const child of Array.from(node.childNodes)) {
+      if (child.nodeType === Node.TEXT_NODE) {
+        if (child.textContent?.trim()) {
+          return true; // Early exit on first meaningful text
+        }
+      } else if (child.nodeType === Node.ELEMENT_NODE) {
+        if (this.hasMeaningfulContentRecursive(child)) {
+          return true; // Early exit when found in subtree
+        }
+      }
+    }
+    return false;
+  }
+
+  // private checkProjectedContent(): void {
+  //   if (this.projectedContent?.nativeElement) {
+  //     const wrapper = this.projectedContent.nativeElement;
+  //     this.hasProjectedContent = Array.from(wrapper.childNodes).some(child => this.hasMeaningfulContentRecursive(child));
+  //   } else {
+  //     this.hasProjectedContent = false;
+  //   }
+  // }
+  //
+  // private hasMeaningfulContentRecursive(node: Node): boolean {
+  //   if (node.nodeType === Node.TEXT_NODE) {
+  //     return !!node.textContent?.trim();
+  //   }
+  //   if (node.nodeType === Node.ELEMENT_NODE) {
+  //     return Array.from(node.childNodes).some(child => this.hasMeaningfulContentRecursive(child));
+  //   }
+  //   return false;
+  // }
+
+  /*private checkProjectedContent(): void {
     if (this.projectedContent?.nativeElement) {
       const wrapper = this.projectedContent.nativeElement;
       this.hasProjectedContent = Array.from(wrapper.childNodes).some(node => {
         if (node.nodeType === Node.TEXT_NODE) {
           return node.textContent && node.textContent.trim().length > 0;
         }
-        if (node.nodeType === Node.ELEMENT_NODE) {
-          return !(node as HTMLElement).classList.contains('value-placeholder');
-        }
-        return false;
+        return node.nodeType === Node.ELEMENT_NODE;
       });
     } else {
       this.hasProjectedContent = false;
     }
-  }
+  }*/
 }
