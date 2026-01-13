@@ -109,10 +109,6 @@ export class ClrSummaryArea implements AfterViewInit {
     }
   }
 
-  public toggle(): void {
-    this.state.toggle();
-  }
-
   public ngAfterViewInit(): void {
     this.updateGrid();
     this.cdr.detectChanges();
