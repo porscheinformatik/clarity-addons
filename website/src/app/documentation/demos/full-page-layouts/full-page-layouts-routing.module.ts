@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SummaryAreaPageLayoutDemo } from './summary-area-page-layout/summary-area-page-layout.demo';
+import { SummaryAreaOverviewPageDemo } from './summary-area-page-layout/summary-area-overview-page.demo';
 
 const fullPageLayoutsRoutes: Routes = [
   {
@@ -170,8 +170,10 @@ const fullPageLayoutsRoutes: Routes = [
               import('./summary-area-page-layout/summary-area-page-layout.demo.module').then(
                 m => m.SummaryAreaPageLayoutDemoModule
               ),
+            //component: SummaryAreaOverviewPageDemo,
             data: {
               browserTitle: 'Summary Area Page Layout',
+              id: 1,
             },
           },
           {
@@ -182,6 +184,7 @@ const fullPageLayoutsRoutes: Routes = [
               ),
             data: {
               browserTitle: 'Summary Area Page Layout',
+              id: 2,
             },
           },
           {
@@ -192,6 +195,18 @@ const fullPageLayoutsRoutes: Routes = [
               ),
             data: {
               browserTitle: 'Summary Area Page Layout',
+              id: 3,
+            },
+          },
+          {
+            path: `tasks`,
+            loadChildren: () =>
+              import('./summary-area-page-layout/summary-area-page-layout.demo.module').then(
+                m => m.SummaryAreaPageLayoutDemoModule
+              ),
+            data: {
+              browserTitle: 'Summary Area Page Layout',
+              id: 4,
             },
           },
         ],

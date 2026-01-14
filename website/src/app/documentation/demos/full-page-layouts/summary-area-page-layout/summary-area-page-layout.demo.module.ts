@@ -6,11 +6,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { ClarityModule } from '@clr/angular';
-import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
+import { ClarityModule, ClrModalModule, ClrProgressBarModule } from '@clr/angular';
+import {
+  ClrAddonsModule,
+  ClrSummaryAreaToggle,
+  ClrSummaryArea,
+  ClrSummaryItem,
+  ClrSummaryItemValue,
+} from '@porscheinformatik/clr-addons';
 
 import { DemoMenuModule } from '../demo-menu/demo-menu.module';
 import { SummaryAreaPageLayoutDemo } from './summary-area-page-layout.demo';
+import { SummaryAreaOverviewPageDemo } from './summary-area-overview-page.demo';
+import { SummaryAreaDetailsPageDemo } from './summary-area-details-page.demo';
+import { SummaryAreaSettingsPageDemo } from './summary-area-settings-page.demo';
+import { SummaryAreaTasksPageDemo } from './summary-area-tasks-page.demo';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -19,8 +30,27 @@ import { SummaryAreaPageLayoutDemo } from './summary-area-page-layout.demo';
     ClrAddonsModule,
     DemoMenuModule,
     RouterModule.forChild([{ path: '', component: SummaryAreaPageLayoutDemo, outlet: 'fullpage' }]),
+    ClrSummaryAreaToggle,
+    ClrModalModule,
+    ClrSummaryArea,
+    ClrSummaryItem,
+    ClrSummaryItemValue,
+    ClrProgressBarModule,
+    FormsModule,
   ],
-  declarations: [SummaryAreaPageLayoutDemo],
-  exports: [SummaryAreaPageLayoutDemo],
+  declarations: [
+    SummaryAreaPageLayoutDemo,
+    SummaryAreaOverviewPageDemo,
+    SummaryAreaDetailsPageDemo,
+    SummaryAreaSettingsPageDemo,
+    SummaryAreaTasksPageDemo,
+  ],
+  exports: [
+    SummaryAreaPageLayoutDemo,
+    SummaryAreaOverviewPageDemo,
+    SummaryAreaDetailsPageDemo,
+    SummaryAreaSettingsPageDemo,
+    SummaryAreaTasksPageDemo,
+  ],
 })
 export class SummaryAreaPageLayoutDemoModule {}

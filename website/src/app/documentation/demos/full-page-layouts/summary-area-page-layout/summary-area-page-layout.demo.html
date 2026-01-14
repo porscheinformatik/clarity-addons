@@ -4,15 +4,106 @@
   <div class="content-header">
     <clr-back-button></clr-back-button>
     <h2>Summary Area Page Layout</h2>
+    <clr-summary-area-toggle></clr-summary-area-toggle>
     <clr-button-group class="command-bar" [clrMenuPosition]="'bottom-right'">
       <clr-button>Edit</clr-button>
       <clr-button>Refresh</clr-button>
       <clr-button [clrInMenu]="true">Export</clr-button>
     </clr-button-group>
   </div>
+  <clr-summary-area [rows]="3">
+    <clr-summary-item label="Name" [valueCopyable]="true">
+      <clr-summary-item-value icon="user"></clr-summary-item-value>
+      <clr-summary-item-value value="John Doe"></clr-summary-item-value>
+    </clr-summary-item>
+    <clr-summary-item label="Employee Badge ID" [valueCopyable]="true" [error]="itemErrorState">
+      <clr-summary-item-value value="59333 567032"></clr-summary-item-value>
+    </clr-summary-item>
+    <clr-summary-item label="Email" [valueCopyable]="true">
+      <clr-summary-item-value icon="envelope"></clr-summary-item-value>
+      <clr-summary-item-value
+        value="john@example.com"
+        [clickable]="true"
+        (clicked)="sendEmail('john@example.com')"
+      ></clr-summary-item-value>
+    </clr-summary-item>
+    <clr-summary-item label="Phone" [valueCopyable]="true">
+      <clr-summary-item-value
+        icon="mobile"
+        [clickable]="true"
+        (clicked)="callPhone('+4312345678')"
+      ></clr-summary-item-value>
+      <clr-summary-item-value
+        value="+43 1234 5678"
+        [clickable]="true"
+        (clicked)="callPhone('+4312345678')"
+      ></clr-summary-item-value>
+    </clr-summary-item>
+    <clr-summary-item label="Location">
+      <clr-summary-item-value icon="map-marker"></clr-summary-item-value>
+      <clr-summary-item-value value="Vienna"></clr-summary-item-value>
+    </clr-summary-item>
+    <clr-summary-item label="Status">
+      <clr-summary-item-value value="Active"></clr-summary-item-value>
+    </clr-summary-item>
+    <clr-summary-item label="Role">
+      <clr-summary-item-value
+        icon="administrator"
+        [clickable]="true"
+        (clicked)="navigateInternally('/full-page-layouts/summary-area-page-layout/settings')"
+        tooltip="Navigate to settings"
+      ></clr-summary-item-value>
+      <clr-summary-item-value value="Admin"></clr-summary-item-value>
+    </clr-summary-item>
+    <clr-summary-item label="Last Login">
+      <clr-summary-item-value icon="login"></clr-summary-item-value>
+      <clr-summary-item-value value="2026-06-01 10:00"></clr-summary-item-value>
+    </clr-summary-item>
+    <clr-summary-item label="Department" [valueCopyable]="true">
+      <clr-summary-item-value
+        value="Global Strategic Innovation and Advanced Research & Development Operations for Emerging Technologies and Digital Transformation Initiatives"
+      ></clr-summary-item-value>
+    </clr-summary-item>
+    <clr-summary-item label="Manager" [valueCopyable]="true">
+      <clr-summary-item-value
+        value="Jane Smith"
+        [clickable]="true"
+        (clicked)="navigateInternally('/full-page-layouts/summary-area-page-layout/details')"
+        tooltip="Navigate to manager details"
+      ></clr-summary-item-value>
+    </clr-summary-item>
+    <clr-summary-item label="Tasks" [loading]="itemLoadingState">
+      <clr-summary-item-value
+        value="5 open Tasks"
+        [clickable]="true"
+        (clicked)="navigateInternally('/full-page-layouts/summary-area-page-layout/tasks')"
+      ></clr-summary-item-value>
+    </clr-summary-item>
+    <clr-summary-item label="Quota">
+      <clr-progress-bar class="progress-bar" [clrValue]="60" [clrColor]="'warning'"> </clr-progress-bar>
+      <span>60%</span>
+    </clr-summary-item>
+    <clr-summary-item label="Performance"> </clr-summary-item>
+    <clr-summary-item label="References">
+      <clr-summary-item-value
+        value="John Awesome's Website"
+        [clickable]="true"
+        (clicked)="openJohnsWebsite()"
+      ></clr-summary-item-value>
+    </clr-summary-item>
+  </clr-summary-area>
+
   <div class="content-container">
     <div class="content-area">
-      <h3>TODO: add some dummy content here</h3>
+      @if (id === 1) {
+      <clr-summary-area-overview-page-demo></clr-summary-area-overview-page-demo>
+      } @else if (id === 2) {
+      <clr-summary-area-details-page-demo></clr-summary-area-details-page-demo>
+      } @else if (id === 3) {
+      <clr-summary-area-settings-page-demo></clr-summary-area-settings-page-demo>
+      } @else if (id === 4) {
+      <clr-summary-area-tasks-page-demo></clr-summary-area-tasks-page-demo>
+      }
     </div>
     <clr-vertical-nav [clr-nav-level]="2" [clrVerticalNavCollapsible]="true">
       <a class="nav-link" routerLink="/full-page-layouts/summary-area-page-layout/overview" routerLinkActive="active"
@@ -23,6 +114,9 @@
       >
       <a class="nav-link" routerLink="/full-page-layouts/summary-area-page-layout/settings" routerLinkActive="active"
         ><span class="nav-text">Settings</span></a
+      >
+      <a class="nav-link" routerLink="/full-page-layouts/summary-area-page-layout/tasks" routerLinkActive="active"
+        ><span class="nav-text">Tasks</span></a
       >
     </clr-vertical-nav>
   </div>
