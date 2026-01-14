@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -12,6 +12,7 @@ import {
   ClrAddonsModule,
   ClrHistoryService,
   ClrNotificationService,
+  ClrSummaryAreaToggle,
   HISTORY_TOKEN,
 } from '@porscheinformatik/clr-addons';
 import { AppComponent } from './app.component';
@@ -20,10 +21,20 @@ import { AppContentContainerComponent } from './content-container.component';
 import { LandingComponent } from './landing.component';
 import { RouteHistoryService } from './route-history.service';
 import { MockClrHistoryHttpService } from './_mocks/history.http.mock.service';
+import { SummaryAreaDemo } from './summary-area/summary-area.demo';
 
 @NgModule({
   declarations: [AppComponent, LandingComponent, AppContentContainerComponent],
-  imports: [BrowserAnimationsModule, CommonModule, FormsModule, ClarityModule, ClrAddonsModule, ROUTING],
+  imports: [
+    BrowserAnimationsModule,
+    CommonModule,
+    FormsModule,
+    ClarityModule,
+    ClrAddonsModule,
+    ROUTING,
+    SummaryAreaDemo,
+    ClrSummaryAreaToggle,
+  ],
   bootstrap: [AppComponent],
   providers: [
     ClrNotificationService,
