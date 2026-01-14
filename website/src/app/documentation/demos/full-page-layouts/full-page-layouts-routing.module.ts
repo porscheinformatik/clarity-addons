@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SummaryAreaPageLayoutDemo } from './summary-area-page-layout/summary-area-page-layout.demo';
 
 const fullPageLayoutsRoutes: Routes = [
   {
@@ -151,6 +152,46 @@ const fullPageLayoutsRoutes: Routes = [
             data: {
               browserTitle: 'Sidebar Page Layout',
               id: 3,
+            },
+          },
+        ],
+      },
+      {
+        path: `summary-area-page-layout`,
+        children: [
+          {
+            path: '',
+            redirectTo: 'overview',
+            pathMatch: 'full',
+          },
+          {
+            path: `overview`,
+            loadChildren: () =>
+              import('./summary-area-page-layout/summary-area-page-layout.demo.module').then(
+                m => m.SummaryAreaPageLayoutDemoModule
+              ),
+            data: {
+              browserTitle: 'Summary Area Page Layout',
+            },
+          },
+          {
+            path: `details`,
+            loadChildren: () =>
+              import('./summary-area-page-layout/summary-area-page-layout.demo.module').then(
+                m => m.SummaryAreaPageLayoutDemoModule
+              ),
+            data: {
+              browserTitle: 'Summary Area Page Layout',
+            },
+          },
+          {
+            path: `settings`,
+            loadChildren: () =>
+              import('./summary-area-page-layout/summary-area-page-layout.demo.module').then(
+                m => m.SummaryAreaPageLayoutDemoModule
+              ),
+            data: {
+              browserTitle: 'Summary Area Page Layout',
             },
           },
         ],

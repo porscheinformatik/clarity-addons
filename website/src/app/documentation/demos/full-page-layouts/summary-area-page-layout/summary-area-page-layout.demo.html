@@ -1,0 +1,29 @@
+<clr-main-container>
+  <clr-demo-menu></clr-demo-menu>
+
+  <div class="content-header">
+    <clr-back-button></clr-back-button>
+    <h2>Summary Area Page Layout</h2>
+    <clr-button-group class="command-bar" [clrMenuPosition]="'bottom-right'">
+      <clr-button>Edit</clr-button>
+      <clr-button>Refresh</clr-button>
+      <clr-button [clrInMenu]="true">Export</clr-button>
+    </clr-button-group>
+  </div>
+  <div class="content-container">
+    <div class="content-area">
+      <h3>TODO: add some dummy content here</h3>
+    </div>
+    <clr-vertical-nav [clr-nav-level]="2" [clrVerticalNavCollapsible]="true">
+      <a class="nav-link" routerLink="/full-page-layouts/summary-area-page-layout/overview" routerLinkActive="active"
+        ><span class="nav-text">Overview</span></a
+      >
+      <a class="nav-link" routerLink="/full-page-layouts/summary-area-page-layout/details" routerLinkActive="active"
+        ><span class="nav-text">Details</span></a
+      >
+      <a class="nav-link" routerLink="/full-page-layouts/summary-area-page-layout/settings" routerLinkActive="active"
+        ><span class="nav-text">Settings</span></a
+      >
+    </clr-vertical-nav>
+  </div>
+</clr-main-container>

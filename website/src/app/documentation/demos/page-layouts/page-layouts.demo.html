@@ -21,6 +21,15 @@
         >
       </li>
       <li>
+        <a
+          routerLink="."
+          fragment="summary-area-layout"
+          [class.active]="(activeFragment | async) ===
+        'summary-area-layout'"
+          >Summary Area Page Layout</a
+        >
+      </li>
+      <li>
         <a routerLink="." fragment="sticky-footer" [class.active]="(activeFragment | async) === 'sticky-footer'"
           >Sticky Footer Layout</a
         >
@@ -279,6 +288,29 @@
         routerLink="/full-page-layouts/sidebarpage-layout"
         routerLinkActive="active"
         ><span class="nav-text">Sidebar Page Layout</span></a
+      >
+    </div>
+
+    <h2 id="summary-area-layout">Summary Area Page Layout</h2>
+    <h5 class="component-summary" id="generic-pager-header">
+      The Summary area Page Layout enhances the Base Page Layout and the Sidebar Page Layout with a summary area panel
+      below the page title within the page header area.
+    </h5>
+
+    <div id="design-guidelines">
+      <h3>Design Guidelines</h3>
+      <p>The Summary Area Page Layout includes the following components:</p>
+      <div>TODO</div>
+    </div>
+
+    <div id="code-examples">
+      <h3 id="examples">Code &amp; Examples</h3>
+      <h4>Demo</h4>
+
+      <cds-icon shape="display"></cds-icon>&nbsp;<a
+        routerLink="/full-page-layouts/summary-area-page-layout"
+        routerLinkActive="active"
+        ><span class="nav-text">Summary Area Page Layout</span></a
       >
     </div>
 
