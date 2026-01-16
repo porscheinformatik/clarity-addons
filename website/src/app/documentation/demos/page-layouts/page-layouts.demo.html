@@ -293,25 +293,54 @@
 
     <h2 id="summary-area-layout">Summary Area Page Layout</h2>
     <h5 class="component-summary" id="generic-pager-header">
-      The Summary area Page Layout enhances the Base Page Layout and the Sidebar Page Layout with a summary area panel
-      below the page title within the page header area.
+      The Summary Area Page Layout enhances the Base and Sidebar Page Layouts by adding a summary area panel between the
+      page header and the page content. This area is ideal for displaying key information and quick actions at a glance.
     </h5>
 
     <div id="design-guidelines">
       <h3>Design Guidelines</h3>
       <p>The Summary Area Page Layout includes the following components:</p>
-      <div>TODO</div>
+      <ul class="list">
+        <li>Main Navigation</li>
+        <li>Page Title</li>
+        <li>Summary Area (grid of label-value pairs, icons, actions, copy, etc.)</li>
+        <li>Content Area</li>
+        <li>Vertical Nav (Sidebar, optional)</li>
+      </ul>
+      <p>Further components may complete the layout as needed:</p>
+      <ul class="list">
+        <li>Command Bar</li>
+        <li>Back Button</li>
+        <li>Collapsible Summary Area</li>
+      </ul>
+      <h3>Use when</h3>
+      <ul class="list">
+        <li>You want to provide a quick summary of key data at the top of the page.</li>
+        <li>Users need to see important status, identifiers, or actions without scrolling.</li>
+        <li>There are multiple sections/tabs and a summary should always be visible.</li>
+        <li>You want to provide quick actions (copy, edit, navigate) for summary items.</li>
+      </ul>
+      <h3>Do not use when</h3>
+      <ul class="list">
+        <li>The page has only a single, simple form or content area.</li>
+        <li>There is no meaningful summary or key data to display.</li>
+        <li>The summary would duplicate all content from the main area.</li>
+      </ul>
     </div>
 
     <div id="code-examples">
       <h3 id="examples">Code &amp; Examples</h3>
       <h4>Demo</h4>
-
       <cds-icon shape="display"></cds-icon>&nbsp;<a
         routerLink="/full-page-layouts/summary-area-page-layout"
         routerLinkActive="active"
-        ><span class="nav-text">Summary Area Page Layout</span></a
+        ><span class="nav-text">Summary Area Page Layout Demo</span></a
       >
+      <p>
+        The demo shows a summary area with label-value pairs, icons, copy buttons, clickable values, loading and error
+        states, and navigation between tabs. Try switching between Overview, Details, Settings, and Tasks to see the
+        summary area remain persistent.
+      </p>
     </div>
 
     <h2 id="sticky-footer">Sticky Footer Layout</h2>

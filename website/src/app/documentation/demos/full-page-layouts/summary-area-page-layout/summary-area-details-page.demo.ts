@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
   selector: 'clr-summary-area-details-page-demo',
   template: `
     <div class="details-header">
-      <h3>Profile Details: John Doe</h3>
+      <h3 style="margin-top: 0">Profile Details: John Doe</h3>
       <p>View and edit detailed information about this person.</p>
     </div>
 
@@ -94,16 +94,4 @@ import { Router } from '@angular/router';
 })
 export class SummaryAreaDetailsPageDemo {
   private readonly router: Router = inject(Router);
-
-  navigateInternally(route: string) {
-    this.router.navigate([route]);
-  }
-
-  sendEmail(email: string) {
-    globalThis.location.href = `mailto:${email}`;
-  }
-
-  callPhone(number: string) {
-    globalThis.location.href = `tel:${number}`;
-  }
 }

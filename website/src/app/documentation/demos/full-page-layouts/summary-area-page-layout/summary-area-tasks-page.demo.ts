@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
   selector: 'clr-summary-area-tasks-page-demo',
   template: `
     <div class="tasks-header">
-      <h3>Open Tasks for John Doe</h3>
+      <h3 style="margin-top: 0">Open Tasks for John Doe</h3>
       <p>You have 5 open tasks assigned.</p>
     </div>
 

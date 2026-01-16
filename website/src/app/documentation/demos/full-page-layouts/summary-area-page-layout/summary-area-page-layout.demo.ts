@@ -20,6 +20,7 @@ import {
   ClrSummaryAreaLoading,
   ClrSummaryItemLoading,
   ClrSummaryItemError,
+  ClrSummaryItemEditConfig,
 } from '@porscheinformatik/clr-addons';
 
 ClarityIcons.addIcons(userIcon, envelopeIcon, pencilIcon, administratorIcon, mobileIcon, mapMarkerIcon, loginIcon);
@@ -30,7 +31,6 @@ ClarityIcons.addIcons(userIcon, envelopeIcon, pencilIcon, administratorIcon, mob
   standalone: false,
 })
 export class SummaryAreaPageLayoutDemo implements OnInit {
-  public id: number;
   public summaryAreaLoadingState: ClrSummaryAreaLoading = { active: true, text: 'Loading...' };
   public itemLoadingState: ClrSummaryItemLoading = { active: true, text: 'Search open tasks...' };
   public itemErrorState: ClrSummaryItemError = {
@@ -48,13 +48,17 @@ export class SummaryAreaPageLayoutDemo implements OnInit {
       alert('Handle warning clicked!');
     },
   };
+  public editConfig: ClrSummaryItemEditConfig = {
+    enabled: true,
+    text: 'Edit',
+    click: () => {
+      alert('Edit skills clicked!');
+    },
+  };
 
   private readonly router: Router = inject(Router);
 
   public ngOnInit(): void {
-    this.id = this.getRouteDataId();
-    console.log('### DEBUG: Collected route data id:', this.id);
-
     setTimeout(() => {
       this.summaryAreaLoadingState = { ...this.summaryAreaLoadingState, active: false };
     }, 1000);
@@ -64,8 +68,8 @@ export class SummaryAreaPageLayoutDemo implements OnInit {
     }, 5000);
   }
 
-  navigateInternally(route: string) {
-    this.router.navigate([route]);
+  navigateInternally(page: string) {
+    this.router.navigate(['/full-page-layouts/summary-area-page-layout', { outlets: { fullpage: page } }]);
   }
 
   openJohnsWebsite() {
@@ -79,12 +83,4 @@ export class SummaryAreaPageLayoutDemo implements OnInit {
   callPhone(number: string) {
     globalThis.location.href = `tel:${number}`;
   }
-
-  private readonly getRouteDataId = (): number | undefined => {
-    let route = this.router.routerState.snapshot.root;
-    while (route && !route.data?.id) {
-      route = route.firstChild;
-    }
-    return route?.data?.id;
-  };
 }

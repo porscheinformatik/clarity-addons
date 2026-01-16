@@ -29,7 +29,20 @@ import { FormsModule } from '@angular/forms';
     ClarityModule,
     ClrAddonsModule,
     DemoMenuModule,
-    RouterModule.forChild([{ path: '', component: SummaryAreaPageLayoutDemo, outlet: 'fullpage' }]),
+    RouterModule.forChild([
+      {
+        path: '',
+        component: SummaryAreaPageLayoutDemo,
+        outlet: 'fullpage',
+        children: [
+          { path: '', redirectTo: 'overview', pathMatch: 'full' },
+          { path: 'overview', component: SummaryAreaOverviewPageDemo },
+          { path: 'details', component: SummaryAreaDetailsPageDemo },
+          { path: 'settings', component: SummaryAreaSettingsPageDemo },
+          { path: 'tasks', component: SummaryAreaTasksPageDemo },
+        ],
+      },
+    ]),
     ClrSummaryAreaToggle,
     ClrModalModule,
     ClrSummaryArea,

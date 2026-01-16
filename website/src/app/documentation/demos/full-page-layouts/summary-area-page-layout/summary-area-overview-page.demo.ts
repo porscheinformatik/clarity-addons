@@ -21,13 +21,11 @@ ClarityIcons.addIcons(userIcon, envelopeIcon, pencilIcon, administratorIcon, mob
 @Component({
   selector: 'clr-summary-area-overview-page-demo',
   template: `
-    <div class="overview-header">
-      <h3>Welcome, John Doe!</h3>
-      <p>
-        This is the overview page for your profile. Here you can quickly access your most important information and
-        actions.
-      </p>
-    </div>
+    <h3 style="margin-top: 0">Welcome, John Doe!</h3>
+    <p>
+      This is the overview page for your profile. Here you can quickly access your most important information and
+      actions.
+    </p>
 
     <div class="overview-highlights">
       <ul>
@@ -42,9 +40,7 @@ ClarityIcons.addIcons(userIcon, envelopeIcon, pencilIcon, administratorIcon, mob
     <div class="overview-actions">
       <button class="btn" (click)="sendEmail('john@example.com')">Send Email</button>
       <button class="btn" (click)="callPhone('+4312345678')">Call</button>
-      <button class="btn" (click)="navigateInternally('/full-page-layouts/summary-area-page-layout/details')">
-        View Details
-      </button>
+      <button class="btn" (click)="navigateInternally('details')">View Details</button>
     </div>
   `,
   standalone: false,
@@ -52,8 +48,8 @@ ClarityIcons.addIcons(userIcon, envelopeIcon, pencilIcon, administratorIcon, mob
 export class SummaryAreaOverviewPageDemo {
   private readonly router: Router = inject(Router);
 
-  navigateInternally(route: string) {
-    this.router.navigate([route]);
+  navigateInternally(page: string) {
+    this.router.navigate(['/full-page-layouts/summary-area-page-layout', { outlets: { fullpage: page } }]);
   }
 
   sendEmail(email: string) {

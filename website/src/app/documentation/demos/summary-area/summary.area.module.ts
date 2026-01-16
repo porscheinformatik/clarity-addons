@@ -5,13 +5,22 @@
  */
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
+import {
+  ClrAddonsModule,
+  ClrSummaryArea,
+  ClrSummaryAreaStateService,
+  ClrSummaryAreaToggle,
+  ClrSummaryItem,
+  ClrSummaryItemValue,
+} from '@porscheinformatik/clr-addons';
 import { ClarityModule } from '@clr/angular';
 import { NgModule } from '@angular/core';
 import { UtilsModule } from '../../../utils/utils.module';
 import { FormsModule } from '@angular/forms';
 import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
 import { SummaryAreaDemo } from './summary-area.demo';
+import { CollapsibleSummaryAreaDemo } from './collapsible-summary-area.demo';
+import { CollapsibleSummaryArea2Demo } from './collapsible-summary-area-2.demo';
 
 @NgModule({
   imports: [
@@ -22,8 +31,15 @@ import { SummaryAreaDemo } from './summary-area.demo';
     FormsModule,
     ClarityModule,
     ClrAddonsModule,
+    ClrSummaryArea,
+    ClrSummaryItem,
+    ClrSummaryItemValue,
+    ClrSummaryAreaToggle,
+    CollapsibleSummaryAreaDemo,
+    CollapsibleSummaryArea2Demo,
   ],
   declarations: [SummaryAreaDemo],
   exports: [SummaryAreaDemo],
+  providers: [ClrSummaryAreaStateService],
 })
 export class SummaryAreaDemoModule {}

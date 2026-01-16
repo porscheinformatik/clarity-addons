@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
   selector: 'clr-summary-area-settings-page-demo',
   template: `
     <div class="settings-header">
-      <h3>Settings for John Doe</h3>
+      <h3 style="margin-top: 0">Settings for John Doe</h3>
       <p>Manage your preferences and account options.</p>
     </div>
 

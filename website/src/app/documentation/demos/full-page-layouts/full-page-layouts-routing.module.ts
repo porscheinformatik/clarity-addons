@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SummaryAreaOverviewPageDemo } from './summary-area-page-layout/summary-area-overview-page.demo';
 
 const fullPageLayoutsRoutes: Routes = [
   {
@@ -158,58 +157,13 @@ const fullPageLayoutsRoutes: Routes = [
       },
       {
         path: `summary-area-page-layout`,
-        children: [
-          {
-            path: '',
-            redirectTo: 'overview',
-            pathMatch: 'full',
-          },
-          {
-            path: `overview`,
-            loadChildren: () =>
-              import('./summary-area-page-layout/summary-area-page-layout.demo.module').then(
-                m => m.SummaryAreaPageLayoutDemoModule
-              ),
-            //component: SummaryAreaOverviewPageDemo,
-            data: {
-              browserTitle: 'Summary Area Page Layout',
-              id: 1,
-            },
-          },
-          {
-            path: `details`,
-            loadChildren: () =>
-              import('./summary-area-page-layout/summary-area-page-layout.demo.module').then(
-                m => m.SummaryAreaPageLayoutDemoModule
-              ),
-            data: {
-              browserTitle: 'Summary Area Page Layout',
-              id: 2,
-            },
-          },
-          {
-            path: `settings`,
-            loadChildren: () =>
-              import('./summary-area-page-layout/summary-area-page-layout.demo.module').then(
-                m => m.SummaryAreaPageLayoutDemoModule
-              ),
-            data: {
-              browserTitle: 'Summary Area Page Layout',
-              id: 3,
-            },
-          },
-          {
-            path: `tasks`,
-            loadChildren: () =>
-              import('./summary-area-page-layout/summary-area-page-layout.demo.module').then(
-                m => m.SummaryAreaPageLayoutDemoModule
-              ),
-            data: {
-              browserTitle: 'Summary Area Page Layout',
-              id: 4,
-            },
-          },
-        ],
+        loadChildren: () =>
+          import('./summary-area-page-layout/summary-area-page-layout.demo.module').then(
+            m => m.SummaryAreaPageLayoutDemoModule
+          ),
+        data: {
+          browserTitle: 'Summary Area Page Layout',
+        },
       },
     ],
   },
