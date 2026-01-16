@@ -155,6 +155,16 @@ const fullPageLayoutsRoutes: Routes = [
           },
         ],
       },
+      {
+        path: `summary-area-page-layout`,
+        loadChildren: () =>
+          import('./summary-area-page-layout/summary-area-page-layout.demo.module').then(
+            m => m.SummaryAreaPageLayoutDemoModule
+          ),
+        data: {
+          browserTitle: 'Summary Area Page Layout',
+        },
+      },
     ],
   },
 ];

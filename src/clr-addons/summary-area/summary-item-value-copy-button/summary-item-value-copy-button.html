@@ -1,0 +1,7 @@
+<cds-icon
+  class="summary-item-copy-value-icon"
+  [cdkCopyToClipboard]="value()"
+  (mousedown)="copyValueClicked(value())"
+  [attr.shape]="showValueCopiedIcon.has(value()) ? 'success-standard' : 'copy-to-clipboard'"
+  [ngClass]="{ 'attribute-was-copied-color': showValueCopiedIcon.has(value()) }"
+></cds-icon>

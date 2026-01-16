@@ -1,0 +1,105 @@
+:host {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.25rem;
+  flex: 0 1 auto;
+  max-width: 100%;
+  min-width: 0;
+  overflow: visible;
+}
+
+:host.hidden {
+  display: none;
+}
+
+:host.has-icon {
+  flex: 0 0 auto;
+  max-width: none;
+  min-width: auto;
+}
+
+.value,
+.value-link,
+.projected-wrapper,
+clr-tooltip [clrTooltipTrigger] {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+cds-icon {
+  flex-shrink: 0;
+}
+
+.value-icon {
+  height: 20px;
+  width: 20px;
+}
+
+.value-icon-neutral {
+  color: var(--cds-alias-status-neutral);
+}
+
+.value-link,
+.edit-link {
+  color: var(--cds-alias-typography-link-color);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.value-link:visited,
+.edit-link:visited {
+  color: var(--cds-alias-typography-link-color-visited);
+}
+
+.value-link:hover,
+.value-link:focus,
+.edit-link:hover,
+.edit-link:focus {
+  color: var(--cds-alias-typography-link-color-hover);
+  text-decoration: underline;
+}
+
+.value {
+  display: inline-block;
+}
+
+clr-tooltip {
+  display: inline-flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: visible;
+}
+
+clr-tooltip [clrTooltipTrigger] {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+:host(.error) {
+  color: var(--cds-alias-status-danger);
+}
+
+:host(.error) cds-icon {
+  color: var(--cds-alias-status-danger) !important;
+}
+
+:host(.error) .value {
+  color: var(--cds-alias-status-danger);
+}
+
+:host(.warning) {
+  color: var(--cds-alias-status-warning);
+}
+
+:host(.warning) cds-icon {
+  color: var(--cds-alias-status-warning) !important;
+}
+
+:host(.warning) .value {
+  color: var(--cds-alias-status-warning);
+}

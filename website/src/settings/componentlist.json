@@ -116,6 +116,11 @@
       "type": "component"
     },
     {
+      "url": "summary-area",
+      "text": "Summary Area",
+      "type": "component"
+    },
+    {
       "url": "treetable",
       "text": "Treetable",
       "type": "component"

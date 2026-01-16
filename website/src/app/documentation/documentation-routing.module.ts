@@ -110,6 +110,13 @@ const documentationRoutes: Routes = [
         },
       },
       {
+        path: 'summary-area',
+        loadChildren: () => import('./demos/summary-area/summary.area.module').then(m => m.SummaryAreaDemoModule),
+        data: {
+          browserTitle: 'Summary Area',
+        },
+      },
+      {
         path: 'treetable',
         loadChildren: () => import('./demos/treetable/treetable.demo.module').then(m => m.TreetableDemoModule),
         data: {

@@ -1,0 +1,73 @@
+@if (!isCollapsed()) {
+<div class="summary-area-panels" [class.is-active]="!isCollapsed()">
+  <div
+    class="summary-area-panel summary-area-panel--state"
+    [class.is-active]="hasLoading || hasError || hasWarning"
+    [class.is-loading]="hasLoading"
+    [class.is-error]="hasError"
+    [class.is-warning]="hasWarning"
+    [attr.aria-hidden]="hasLoading || hasError || hasWarning ? 'false' : 'true'"
+    [attr.inert]="hasLoading || hasError || hasWarning ? null : ''"
+  >
+    <div class="summary-area-panel__body">
+      @if (hasLoading) {
+      <div class="summary-area-loading">
+        <clr-spinner [clrMedium]="true"></clr-spinner>
+        <span class="loading-text">{{ loadingText }}</span>
+      </div>
+      } @else if (hasError) {
+      <div class="summary-area-alert">
+        <clr-alert [clrAlertLightweight]="true" [clrAlertType]="'danger'">
+          <clr-alert-item>
+            @if (errorLinkText && errorClick) {
+            <span class="alert-text">{{ errorText }}</span>
+            <span class="alert-action" (click)="errorClick()" (keydown.enter)="errorClick()">{{ errorLinkText }}</span>
+            } @else if (errorClick) {
+            <span class="alert-action" (click)="errorClick()" (keydown.enter)="errorClick()">{{ errorText }}</span>
+            } @else {
+            <span class="alert-text">{{ errorText }}</span>
+            }
+          </clr-alert-item>
+        </clr-alert>
+      </div>
+      } @else if (hasWarning) {
+      <div class="summary-area-alert">
+        <clr-alert [clrAlertLightweight]="true" [clrAlertType]="'warning'">
+          <clr-alert-item>
+            @if (warningLinkText && warningClick) {
+            <span class="alert-text">{{ warningText }}</span>
+            <span class="alert-action" (click)="warningClick()" (keydown.enter)="warningClick()"
+              >{{ warningLinkText }}</span
+            >
+            } @else if (warningClick) {
+            <span class="alert-action" (click)="warningClick()" (keydown.enter)="warningClick()"
+              >{{ warningText }}</span
+            >
+            } @else {
+            <span class="alert-text">{{ warningText }}</span>
+            }
+          </clr-alert-item>
+        </clr-alert>
+      </div>
+      }
+    </div>
+  </div>
+
+  <div
+    class="summary-area-panel summary-area-panel--grid"
+    [class.is-active]="!hasError && !hasWarning && !hasLoading"
+    [attr.aria-hidden]="hasError || hasWarning || hasLoading ? 'true' : 'false'"
+    [attr.inert]="hasError || hasWarning || hasLoading ? '' : null"
+  >
+    <div class="summary-area-panel__body">
+      <div class="summary-area-container">
+        <div class="summary-grid" [style.--columns]="currentColumns" [style.--rows]="currentRows">
+          <ng-container *ngFor="let item of visibleItems">
+            <ng-container *ngTemplateOutlet="item.template"></ng-container>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+}
