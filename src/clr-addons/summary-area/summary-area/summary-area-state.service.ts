@@ -3,31 +3,57 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Injectable, effect, signal } from '@angular/core';
+import { Injectable, Signal, WritableSignal, signal } from '@angular/core';
+
+export const defaultSummaryAreaCollapsedKey = 'clrSummaryAreaCollapsed';
+
+interface SignalEntry {
+  signal: WritableSignal<boolean>;
+  storageKey: string;
+}
 
 @Injectable({ providedIn: 'root' })
 export class ClrSummaryAreaStateService {
-  public readonly collapsed;
-  private readonly storageKey = 'summaryAreaCollapsed';
+  private readonly collapsedMap = new Map<string, SignalEntry>();
 
-  constructor() {
-    this.collapsed = signal(this.readInitialState());
-    effect(() => {
-      localStorage.setItem(this.storageKey, String(this.collapsed()));
-    });
+  public collapsed(key?: string): Signal<boolean> {
+    const storageKey = key || defaultSummaryAreaCollapsedKey;
+    return this.getOrCreateEntry(storageKey).signal;
   }
 
-  public toggle(): void {
-    this.collapsed.update(value => !value);
+  public toggle(key?: string): void {
+    const storageKey = key || defaultSummaryAreaCollapsedKey;
+    const entry = this.getOrCreateEntry(storageKey);
+    const newValue = !entry.signal();
+    entry.signal.set(newValue);
+    this.persistToStorage(storageKey, newValue);
   }
 
-  public setCollapsed(value: boolean): void {
-    this.collapsed.set(value);
+  public setCollapsed(key: string, value: boolean): void {
+    const entry = this.getOrCreateEntry(key);
+    entry.signal.set(value);
+    this.persistToStorage(key, value);
   }
 
-  private readInitialState(): boolean {
+  private getOrCreateEntry(storageKey: string): SignalEntry {
+    if (!this.collapsedMap.has(storageKey)) {
+      const collapsedSignal = signal(this.readInitialState(storageKey));
+      this.collapsedMap.set(storageKey, { signal: collapsedSignal, storageKey });
+    }
+    return this.collapsedMap.get(storageKey)!;
+  }
+
+  private persistToStorage(key: string, value: boolean): void {
     try {
-      return localStorage.getItem(this.storageKey) === 'true';
+      localStorage.setItem(key, String(value));
+    } catch (e) {
+      // Ignore storage errors
+    }
+  }
+
+  private readInitialState(storageKey: string): boolean {
+    try {
+      return localStorage.getItem(storageKey) === 'true';
     } catch {
       return false;
     }

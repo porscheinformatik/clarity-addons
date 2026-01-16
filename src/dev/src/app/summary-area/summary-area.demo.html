@@ -1,5 +1,6 @@
 <clr-summary-area
   [rows]="3"
+  [localStorageKey]="'summaryAreaDevDemo'"
   [error]="summaryAreaErrorState"
   [warning]="summaryAreaWarningState"
   [loading]="summaryAreaLoadingState"
@@ -49,10 +50,13 @@
   <clr-summary-item [label]="'Empty Value9'" [showOnEmptyValue]="false">
     <clr-summary-item-value [value]="undefined"></clr-summary-item-value>
   </clr-summary-item>
+  <!-- NOTE: a provided editConfig overwrites the config showOnEmptyValue,
+            so an item with an edit config is always shown -->
   <clr-summary-item
     label="Edit Empty Value10"
     [editConfig]="{enabled: true, click: onEditClick}"
     [valueCopyable]="true"
+    [showOnEmptyValue]="false"
   ></clr-summary-item>
   <clr-summary-item label="Error Item11" [error]="itemErrorState">
     <clr-summary-item-value icon="gas"></clr-summary-item-value>
@@ -61,7 +65,7 @@
   <clr-summary-item label="Warning Item12" [warning]="itemWarningState" [valueCopyable]="true">
     <clr-summary-item-value value="warning resolved"></clr-summary-item-value>
   </clr-summary-item>
-  <clr-summary-item label="Two links13" [valueCopyable]="true">
+  <clr-summary-item label="Two links13" [valueCopyable]="true" [editConfig]="{enabled: true, click: onEditClick}">
     <clr-summary-item-value
       [icon]="'wand'"
       [clickable]="true"

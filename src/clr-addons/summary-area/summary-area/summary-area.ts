@@ -12,12 +12,14 @@ import {
   HostListener,
   inject,
   input,
+  computed,
   QueryList,
+  Signal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ClrSummaryItem } from '../summary-item/summary-item';
 import { ClarityModule } from '@clr/angular';
-import { ClrSummaryAreaStateService } from './summary-area-state.service';
+import { ClrSummaryAreaStateService, defaultSummaryAreaCollapsedKey } from './summary-area-state.service';
 import {
   ClrSummaryAreaColumns,
   ClrSummaryAreaRows,
@@ -36,15 +38,14 @@ import {
 export class ClrSummaryArea implements AfterViewInit {
   @ContentChildren(ClrSummaryItem, { descendants: true }) items!: QueryList<ClrSummaryItem>;
 
-  public readonly isCollapsed;
-  public rows = input<ClrSummaryAreaRows>(3);
-  clrClickableRows = input(true);
-  public currentColumns: ClrSummaryAreaColumns = 5;
-  public currentRows: ClrSummaryAreaRows = this.rows();
+  public readonly rows = input<ClrSummaryAreaRows>(3);
+  public readonly localStorageKey = input<string>(defaultSummaryAreaCollapsedKey);
+  public readonly error = input<ClrSummaryAreaError | undefined>();
+  public readonly warning = input<ClrSummaryAreaWarning | undefined>();
+  public readonly loading = input<ClrSummaryAreaLoading | undefined>();
 
-  public error = input<ClrSummaryAreaError | undefined>();
-  public warning = input<ClrSummaryAreaWarning | undefined>();
-  public loading = input<ClrSummaryAreaLoading | undefined>();
+  public currentColumns: ClrSummaryAreaColumns = 5;
+  public currentRows: ClrSummaryAreaRows = 3;
 
   private readonly state = inject(ClrSummaryAreaStateService);
   private readonly cdr = inject(ChangeDetectorRef);
@@ -53,8 +54,13 @@ export class ClrSummaryArea implements AfterViewInit {
   private readonly defaultWarningText = 'Warning';
   private readonly maxColumns: ClrSummaryAreaColumns = 5;
 
+  public readonly isCollapsed: Signal<boolean> = computed(() => {
+    return this.state.collapsed(this.localStorageKey())();
+  });
+
   constructor() {
-    this.isCollapsed = this.state.collapsed;
+    this.currentRows = this.rows();
+
     effect(() => {
       if (!this.isCollapsed()) {
         this.updateGrid();
