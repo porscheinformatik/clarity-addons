@@ -689,9 +689,8 @@
 
       <clr-summary-area [rows]="1">
         <clr-summary-item label="Progress">
-          <div class="progress-bar-container">
-            <div class="progress" style="width: 75%">75%</div>
-          </div>
+          <clr-progress-bar class="progress-bar" [clrValue]="60" [clrColor]="'warning'"> </clr-progress-bar>
+          <span>60%</span>
         </clr-summary-item>
         <clr-summary-item label="Custom Badge">
           <span class="badge badge-success">Verified</span>

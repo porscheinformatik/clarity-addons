@@ -149,7 +149,11 @@ const LOADING_EXAMPLE = `<!-- Area Loading -->
 </clr-summary-area>`;
 
 const ERROR_EXAMPLE = `<!-- Area Error -->
-<clr-summary-area [rows]="1" [error]="{active: true, text: 'Failed to load data', linkText: 'Retry', click: onRetry}">
+<clr-summary-area [rows]="1"
+                  [error]="{active: true,
+                            text: 'Failed to load data',
+                            linkText: 'Retry',
+                            click: onRetry}">
   <clr-summary-item label="Name">
     <clr-summary-item-value value="John Doe"></clr-summary-item-value>
   </clr-summary-item>
@@ -157,7 +161,10 @@ const ERROR_EXAMPLE = `<!-- Area Error -->
 
 <!-- Item Error -->
 <clr-summary-area [rows]="1">
-  <clr-summary-item label="Sync Status" [error]="{active: true, text: 'Sync failed - Click to retry', click: onRetryItem}">
+  <clr-summary-item label="Sync Status"
+                    [error]="{active: true,
+                              text: 'Sync failed - Click to retry',
+                              click: onRetryItem}">
     <clr-summary-item-value value="Synced"></clr-summary-item-value>
   </clr-summary-item>
   <clr-summary-item label="Type">
@@ -166,7 +173,11 @@ const ERROR_EXAMPLE = `<!-- Area Error -->
 </clr-summary-area>`;
 
 const WARNING_EXAMPLE = `<!-- Area Warning -->
-<clr-summary-area [rows]="1" [warning]="{active: true, text: 'Data may be outdated', linkText: 'Refresh', click: onRefresh}">
+<clr-summary-area [rows]="1"
+                  [warning]="{active: true,
+                              text: 'Data may be outdated'
+                              linkText: 'Refresh',
+                              click: onRefresh}">
   <clr-summary-item label="Last Updated">
     <clr-summary-item-value value="2 hours ago"></clr-summary-item-value>
   </clr-summary-item>
@@ -174,8 +185,10 @@ const WARNING_EXAMPLE = `<!-- Area Warning -->
 
 <!-- Item Warning -->
 <clr-summary-area [rows]="1">
-  <clr-summary-item label="Sync Status" [warning]="{active: true, text: 'Data outdated - Click to sync', click:
-  onSyncItem}">
+  <clr-summary-item label="Sync Status"
+                    [warning]="{active: true,
+                                text: 'Data outdated - Click to sync',
+                                click: onSyncItem}">
     <clr-summary-item-value value="Synced"></clr-summary-item-value>
   </clr-summary-item>
   <clr-summary-item label="Type">
@@ -194,7 +207,9 @@ export class MyComponent {}
 <!-- Template -->
 <div class="clr-row">
   <div class="clr-col-12">
-    <clr-summary-area-toggle [localStorageKey]="'collapseSummaryAreaDemoKey'" ariaLabel="Toggle summary"></clr-summary-area-toggle>
+    <clr-summary-area-toggle [localStorageKey]="'collapseSummaryAreaDemoKey'"
+                              ariaLabel="Toggle summary"
+    ></clr-summary-area-toggle>
   </div>
 </div>
 <clr-summary-area [rows]="2" [localStorageKey]="'collapseSummaryAreaDemoKey'">
