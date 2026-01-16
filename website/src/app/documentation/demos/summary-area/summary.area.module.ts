@@ -19,8 +19,6 @@ import { UtilsModule } from '../../../utils/utils.module';
 import { FormsModule } from '@angular/forms';
 import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
 import { SummaryAreaDemo } from './summary-area.demo';
-import { CollapsibleSummaryAreaDemo } from './collapsible-summary-area.demo';
-import { CollapsibleSummaryArea2Demo } from './collapsible-summary-area-2.demo';
 
 @NgModule({
   imports: [
@@ -35,8 +33,6 @@ import { CollapsibleSummaryArea2Demo } from './collapsible-summary-area-2.demo';
     ClrSummaryItem,
     ClrSummaryItemValue,
     ClrSummaryAreaToggle,
-    CollapsibleSummaryAreaDemo,
-    CollapsibleSummaryArea2Demo,
   ],
   declarations: [SummaryAreaDemo],
   exports: [SummaryAreaDemo],

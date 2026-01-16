@@ -144,6 +144,21 @@
             <td class="clr-hidden-xs-down">undefined</td>
             <td class="left">Shows warning state with configurable text and optional clickable action link</td>
           </tr>
+          <tr>
+            <td class="left">
+              <b>[localStorageKey]</b>
+              <div class="clr-hidden-sm-up">Type: string</div>
+              <div class="clr-hidden-sm-up">Default: 'clrSummaryAreaCollapsed'</div>
+            </td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="clr-hidden-xs-down">'clrSummaryAreaCollapsed'</td>
+            <td class="left">
+              Unique key for persisting the collapsed state in localStorage. Use the same value for both
+              <code class="clr-code">clr-summary-area</code> and
+              <code class="clr-code">clr-summary-area-toggle</code> to link their state. Assign different values for
+              independent summary areas.
+            </td>
+          </tr>
         </tbody>
       </table>
 
@@ -315,6 +330,21 @@
             <td class="left clr-hidden-xs-down">string</td>
             <td class="clr-hidden-xs-down">'Toggle Summary Area'</td>
             <td class="left">Accessibility label for the toggle button</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[localStorageKey]</b>
+              <div class="clr-hidden-sm-up">Type: string</div>
+              <div class="clr-hidden-sm-up">Default: 'clrSummaryAreaCollapsed'</div>
+            </td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="clr-hidden-xs-down">'clrSummaryAreaCollapsed'</td>
+            <td class="left">
+              Unique key for persisting the collapsed state in localStorage. Use the same value for both
+              <code class="clr-code">clr-summary-area-toggle</code> and
+              <code class="clr-code">clr-summary-area</code> to link their state. Assign different values for
+              independent summary areas.
+            </td>
           </tr>
           <tr>
             <td class="left">
@@ -555,6 +585,7 @@
       <br />
 
       <h5>Area Error</h5>
+      <br />
       <clr-summary-area
         [rows]="1"
         [error]="{active: true, text: 'Failed to load data', linkText: 'Retry', click: onRetry}"
@@ -589,6 +620,7 @@
       <br />
 
       <h5>Area Warning</h5>
+      <br />
       <clr-summary-area
         [rows]="1"
         [warning]="{active: true, text: 'Data may be outdated', linkText: 'Refresh', click: onRefresh}"
@@ -617,13 +649,24 @@
 
       <h4>Collapsible Summary Area</h4>
       <p>
-        Use the <code class="clr-code">clr-summary-area-toggle</code> component to allow users to collapse and expand
-        the Summary Area. Both components must share the same
-        <code class="clr-code">ClrSummaryAreaStateService</code> provider. To ensure independent collapse/expand
-        behavior, use a wrapper component with its own provider for each summary area.
+        Use the <code class="clr-code">clr-summary-area-toggle</code> component to let users collapse and expand the
+        Summary Area. Ensure that <code class="clr-code">ClrSummaryAreaStateService</code> is provided for the summary
+        area component. For independent collapse and expand behavior across multiple summary areas in your application,
+        assign a unique value to the <code class="clr-code">[localStorageKey]</code> input for each pair of
+        <code class="clr-code">clr-summary-area-toggle</code> and <code class="clr-code">clr-summary-area</code>. This
+        prevents the collapse state of one summary area from affecting another.
       </p>
       <br />
-      <!--<clr-summary-area [rows]="2" [localStorageKey]="'summaryAreaCollapsableDemo'">
+
+      <div class="clr-row">
+        <div class="clr-col-12">
+          <clr-summary-area-toggle
+            [localStorageKey]="'collapseSummaryAreaDemoKey'"
+            ariaLabel="Toggle summary"
+          ></clr-summary-area-toggle>
+        </div>
+      </div>
+      <clr-summary-area [rows]="2" [localStorageKey]="'collapseSummaryAreaDemoKey'">
         <clr-summary-item label="Customer">
           <clr-summary-item-value value="Acme Corp"></clr-summary-item-value>
         </clr-summary-item>
@@ -633,9 +676,7 @@
         <clr-summary-item label="Status">
           <clr-summary-item-value value="Active"></clr-summary-item-value>
         </clr-summary-item>
-      </clr-summary-area> -->
-      <clr-collapsible-summary-area-demo></clr-collapsible-summary-area-demo>
-      <clr-collapsible-summary-area-demo-2></clr-collapsible-summary-area-demo-2>
+      </clr-summary-area>
 
       <clr-code-snippet [clrCode]="toggleExample"></clr-code-snippet>
 

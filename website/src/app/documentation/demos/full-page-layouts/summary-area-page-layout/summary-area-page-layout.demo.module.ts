@@ -13,6 +13,7 @@ import {
   ClrSummaryArea,
   ClrSummaryItem,
   ClrSummaryItemValue,
+  ClrSummaryAreaStateService,
 } from '@porscheinformatik/clr-addons';
 
 import { DemoMenuModule } from '../demo-menu/demo-menu.module';
@@ -65,5 +66,6 @@ import { FormsModule } from '@angular/forms';
     SummaryAreaSettingsPageDemo,
     SummaryAreaTasksPageDemo,
   ],
+  providers: [ClrSummaryAreaStateService],
 })
 export class SummaryAreaPageLayoutDemoModule {}

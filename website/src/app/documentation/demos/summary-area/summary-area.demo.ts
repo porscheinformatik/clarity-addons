@@ -194,10 +194,10 @@ export class MyComponent {}
 <!-- Template -->
 <div class="clr-row">
   <div class="clr-col-12">
-    <clr-summary-area-toggle ariaLabel="Toggle summary"></clr-summary-area-toggle>
+    <clr-summary-area-toggle [localStorageKey]="'collapseSummaryAreaDemoKey'" ariaLabel="Toggle summary"></clr-summary-area-toggle>
   </div>
 </div>
-<clr-summary-area [rows]="2">
+<clr-summary-area [rows]="2" [localStorageKey]="'collapseSummaryAreaDemoKey'">
   <clr-summary-item label="Customer">
     <clr-summary-item-value value="Acme Corp"></clr-summary-item-value>
   </clr-summary-item>
