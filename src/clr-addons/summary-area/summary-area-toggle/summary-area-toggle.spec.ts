@@ -7,14 +7,24 @@ import { ClrSummaryAreaStateService } from '../summary-area/summary-area-state.s
 import { ClarityModule } from '@clr/angular';
 
 class MockSummaryAreaStateService {
-  public collapsed = signal(false);
+  private readonly collapsedMap = new Map<string, ReturnType<typeof signal<boolean>>>();
+  private readonly defaultKey = 'clrSummaryAreaCollapsed';
 
-  public toggle(): void {
-    this.collapsed.update(value => !value);
+  public collapsed(key?: string): ReturnType<typeof signal<boolean>> {
+    const storageKey = key || this.defaultKey;
+    if (!this.collapsedMap.has(storageKey)) {
+      this.collapsedMap.set(storageKey, signal(false));
+    }
+    return this.collapsedMap.get(storageKey)!;
   }
 
-  public setCollapsed(value: boolean): void {
-    this.collapsed.set(value);
+  public toggle(key?: string): void {
+    const collapsedSignal = this.collapsed(key);
+    collapsedSignal.update(value => !value);
+  }
+
+  public setCollapsed(key: string | undefined, value: boolean): void {
+    this.collapsed(key).set(value);
   }
 }
 
@@ -64,10 +74,6 @@ describe('SummaryAreaToggle', () => {
 
     it('should have default disabled as false', () => {
       expect(component.disabled()).toBe(false);
-    });
-
-    it('should inject SummaryAreaStateService', () => {
-      expect(component.state).toBeTruthy();
     });
 
     it('should have ariaLabel defined', () => {
@@ -143,15 +149,15 @@ describe('SummaryAreaToggle', () => {
 
   describe('collapsed state', () => {
     it('should reflect collapsed state from service', () => {
-      mockStateService.setCollapsed(true);
+      mockStateService.setCollapsed(undefined, true);
       expect(component.collapsed()).toBe(true);
 
-      mockStateService.setCollapsed(false);
+      mockStateService.setCollapsed(undefined, false);
       expect(component.collapsed()).toBe(false);
     });
 
     it('should add icon-rotated class when collapsed', () => {
-      mockStateService.setCollapsed(true);
+      mockStateService.setCollapsed(undefined, true);
       fixture.detectChanges();
 
       const icon = fixture.debugElement.query(By.css('cds-icon'));
@@ -159,7 +165,7 @@ describe('SummaryAreaToggle', () => {
     });
 
     it('should not have icon-rotated class when not collapsed', () => {
-      mockStateService.setCollapsed(false);
+      mockStateService.setCollapsed(undefined, false);
       fixture.detectChanges();
 
       const icon = fixture.debugElement.query(By.css('cds-icon'));
@@ -174,7 +180,7 @@ describe('SummaryAreaToggle', () => {
     });
 
     it('should have aria-pressed="true" when not collapsed', () => {
-      mockStateService.setCollapsed(false);
+      mockStateService.setCollapsed(undefined, false);
       fixture.detectChanges();
 
       const button = fixture.debugElement.query(By.css('button'));
@@ -182,7 +188,7 @@ describe('SummaryAreaToggle', () => {
     });
 
     it('should have aria-pressed="false" when collapsed', () => {
-      mockStateService.setCollapsed(true);
+      mockStateService.setCollapsed(undefined, true);
       fixture.detectChanges();
 
       const button = fixture.debugElement.query(By.css('button'));
@@ -192,12 +198,12 @@ describe('SummaryAreaToggle', () => {
 
   describe('handleToggle', () => {
     it('should toggle state when called', () => {
-      mockStateService.setCollapsed(false);
+      mockStateService.setCollapsed(undefined, false);
       component.handleToggle();
-      expect(mockStateService.collapsed()).toBe(true);
+      expect(mockStateService.collapsed()()).toBe(true);
 
       component.handleToggle();
-      expect(mockStateService.collapsed()).toBe(false);
+      expect(mockStateService.collapsed()()).toBe(false);
     });
 
     it('should emit summaryToggle event when toggled', () => {
@@ -225,14 +231,14 @@ describe('SummaryAreaToggle', () => {
 
   describe('click interaction', () => {
     it('should toggle when button is clicked', () => {
-      mockStateService.setCollapsed(false);
+      mockStateService.setCollapsed(undefined, false);
       fixture.detectChanges();
 
       const button = fixture.debugElement.query(By.css('button'));
       button.nativeElement.click();
       fixture.detectChanges();
 
-      expect(mockStateService.collapsed()).toBe(true);
+      expect(mockStateService.collapsed()()).toBe(true);
     });
 
     it('should emit summaryToggle when button is clicked', () => {
@@ -257,30 +263,30 @@ describe('SummaryAreaToggle', () => {
 
   describe('keyboard interaction', () => {
     it('should toggle on Enter key', () => {
-      mockStateService.setCollapsed(false);
+      mockStateService.setCollapsed(undefined, false);
       const event = new KeyboardEvent('keydown', { key: 'Enter' });
 
       component.handleKeydown(event);
 
-      expect(mockStateService.collapsed()).toBe(true);
+      expect(mockStateService.collapsed()()).toBe(true);
     });
 
     it('should toggle on Space key', () => {
-      mockStateService.setCollapsed(false);
+      mockStateService.setCollapsed(undefined, false);
       const event = new KeyboardEvent('keydown', { key: ' ' });
 
       component.handleKeydown(event);
 
-      expect(mockStateService.collapsed()).toBe(true);
+      expect(mockStateService.collapsed()()).toBe(true);
     });
 
     it('should not toggle on other keys', () => {
-      mockStateService.setCollapsed(false);
+      mockStateService.setCollapsed(undefined, false);
       const event = new KeyboardEvent('keydown', { key: 'Tab' });
 
       component.handleKeydown(event);
 
-      expect(mockStateService.collapsed()).toBe(false);
+      expect(mockStateService.collapsed()()).toBe(false);
     });
 
     it('should emit summaryToggle on Enter key', () => {
@@ -308,12 +314,12 @@ describe('SummaryAreaToggle', () => {
       hostComponent.disabled = true;
       fixture.detectChanges();
 
-      const initialCollapsed = mockStateService.collapsed();
+      const initialCollapsed = mockStateService.collapsed()();
       const event = new KeyboardEvent('keydown', { key: 'Enter' });
 
       component.handleKeydown(event);
 
-      expect(mockStateService.collapsed()).toBe(initialCollapsed);
+      expect(mockStateService.collapsed()()).toBe(initialCollapsed);
     });
   });
 
@@ -387,5 +393,97 @@ describe('SummaryAreaToggleComponent - standalone tests', () => {
     component.handleToggle();
 
     expect(emitted).toBe(true);
+  });
+});
+
+@Component({
+  template: `<clr-summary-area-toggle
+    [localStorageKey]="storageKey"
+    (summaryToggle)="onToggle()"
+  ></clr-summary-area-toggle>`,
+  standalone: true,
+  imports: [ClrSummaryAreaToggle],
+})
+class LocalStorageKeyTestHostComponent {
+  @ViewChild(ClrSummaryAreaToggle) component!: ClrSummaryAreaToggle;
+  storageKey = 'customStorageKey';
+  toggleCount = 0;
+
+  onToggle(): void {
+    this.toggleCount++;
+  }
+}
+
+describe('SummaryAreaToggleComponent - localStorageKey tests', () => {
+  let hostComponent: LocalStorageKeyTestHostComponent;
+  let fixture: ComponentFixture<LocalStorageKeyTestHostComponent>;
+  let component: ClrSummaryAreaToggle;
+  let mockStateService: MockSummaryAreaStateService;
+
+  beforeEach(async () => {
+    mockStateService = new MockSummaryAreaStateService();
+
+    await TestBed.configureTestingModule({
+      imports: [LocalStorageKeyTestHostComponent, ClrSummaryAreaToggle, NoopAnimationsModule, ClarityModule],
+      providers: [{ provide: ClrSummaryAreaStateService, useValue: mockStateService }],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(LocalStorageKeyTestHostComponent);
+    hostComponent = fixture.componentInstance;
+    fixture.detectChanges();
+    component = hostComponent.component;
+  });
+
+  it('should have default localStorageKey when not provided', async () => {
+    // Create a new component without custom key
+    const defaultFixture = TestBed.createComponent(ClrSummaryAreaToggle);
+    defaultFixture.detectChanges();
+    expect(defaultFixture.componentInstance.localStorageKey()).toBe('clrSummaryAreaCollapsed');
+  });
+
+  it('should accept custom localStorageKey input', () => {
+    expect(component.localStorageKey()).toBe('customStorageKey');
+  });
+
+  it('should use custom localStorageKey when toggling', () => {
+    spyOn(mockStateService, 'toggle').and.callThrough();
+    component.handleToggle();
+    expect(mockStateService.toggle).toHaveBeenCalledWith('customStorageKey');
+  });
+
+  it('should use custom localStorageKey when reading collapsed state', () => {
+    // Set custom key to a specific value
+    mockStateService.setCollapsed('customStorageKey', true);
+    // Set default key to a different value
+    mockStateService.setCollapsed('clrSummaryAreaCollapsed', false);
+
+    // The component should use the custom key
+    expect(component.collapsed()).toBe(true);
+  });
+
+  it('should maintain separate collapsed states for different keys', () => {
+    // Set custom key to collapsed
+    mockStateService.setCollapsed('customStorageKey', true);
+    // Set default key to not collapsed
+    mockStateService.setCollapsed('clrSummaryAreaCollapsed', false);
+
+    expect(component.collapsed()).toBe(true);
+
+    // Change to different key
+    hostComponent.storageKey = 'clrSummaryAreaCollapsed';
+    fixture.detectChanges();
+
+    expect(component.collapsed()).toBe(false);
+  });
+
+  it('should toggle only the state for its own localStorageKey', () => {
+    // Initialize both keys
+    mockStateService.setCollapsed('customStorageKey', false);
+    mockStateService.setCollapsed('otherKey', false);
+
+    component.handleToggle();
+
+    expect(mockStateService.collapsed('customStorageKey')()).toBe(true);
+    expect(mockStateService.collapsed('otherKey')()).toBe(false);
   });
 });
