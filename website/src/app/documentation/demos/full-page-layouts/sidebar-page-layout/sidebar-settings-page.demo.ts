@@ -9,7 +9,11 @@ import { Router } from '@angular/router';
       <p>Manage your preferences and account options.</p>
     </div>
 
-    <form clrForm [clrLayout]="'horizontal'" class="clr-row clr-col-lg-6">
+    <form
+      clrForm
+      [clrLayout]="'horizontal'"
+      class="clr-row clr-col-xl-5 clr-col-lg-6 clr-col-md-6 clr-col-sm-8 clr-col-12"
+    >
       <clr-toggle-container class="clr-col-12">
         <clr-toggle-wrapper>
           <input type="checkbox" clrToggle value="yes" name="options" />
@@ -33,31 +37,10 @@ import { Router } from '@angular/router';
         <input clrInput [(ngModel)]="language" name="language" type="text" value="English" />
       </clr-input-container>
     </form>
-    <br />
-    <div class="settings-actions">
-      <button class="btn" type="button" (click)="saveSettings()">Save Changes</button>
-      <button class="btn" type="button" (click)="resetSettings()">Reset to Default</button>
-    </div>
   `,
   standalone: false,
 })
-export class SummaryAreaSettingsPageDemo {
-  private readonly router: Router = inject(Router);
-
-  emailNotifications: boolean = true;
-  smsAlerts: boolean = false;
+export class SidebarSettingsPageDemo {
   theme: string = 'light';
   language: string = 'en';
-
-  saveSettings() {
-    alert('Settings have been saved.');
-  }
-
-  resetSettings() {
-    this.emailNotifications = true;
-    this.smsAlerts = false;
-    this.theme = 'light';
-    this.language = 'English';
-    alert('Settings have been reset to default.');
-  }
 }

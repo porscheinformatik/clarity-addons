@@ -20,7 +20,6 @@ ClarityIcons.addIcons(angleDoubleIcon);
 })
 export class ClrSummaryAreaToggle {
   public readonly summaryToggle = output<void>();
-  public readonly disabled = input(false);
   public readonly ariaLabel = input<string>('Toggle Summary Area');
   public readonly localStorageKey = input<string>(defaultSummaryAreaCollapsedKey);
 
@@ -39,9 +38,6 @@ export class ClrSummaryAreaToggle {
 
   public handleToggle(event?: Event): void {
     event?.preventDefault();
-    if (this.disabled()) {
-      return;
-    }
     this.state.toggle(this.localStorageKey());
     this.summaryToggle.emit();
   }

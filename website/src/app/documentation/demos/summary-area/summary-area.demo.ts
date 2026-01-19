@@ -248,7 +248,8 @@ const COMPLETE_EXAMPLE = `<clr-summary-area [rows]="3">
     ></clr-summary-item-value>
   </clr-summary-item>
   <clr-summary-item label="Status">
-    <clr-summary-item-value icon="check-circle"></clr-summary-item-value>
+    <clr-summary-item-value icon="success-standard
+    "></clr-summary-item-value>
     <clr-summary-item-value value="Completed"></clr-summary-item-value>
   </clr-summary-item>
   <clr-summary-item label="Amount" [valueCopyable]="true">
@@ -282,6 +283,7 @@ const COMPLETE_EXAMPLE = `<clr-summary-area [rows]="3">
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
+  styleUrls: ['./summary-area.demo.scss'],
   standalone: false,
 })
 export class SummaryAreaDemo extends ClarityDocComponent {
@@ -300,6 +302,7 @@ export class SummaryAreaDemo extends ClarityDocComponent {
   toggleExample = TOGGLE_EXAMPLE;
   projectedContentExample = PROJECTED_CONTENT_EXAMPLE;
   completeExample = COMPLETE_EXAMPLE;
+  activeFragment;
 
   constructor() {
     super('summary-area');

@@ -22,10 +22,7 @@ ClarityIcons.addIcons(userIcon, envelopeIcon, pencilIcon, administratorIcon, mob
   selector: 'clr-summary-area-overview-page-demo',
   template: `
     <h3 style="margin-top: 0">Welcome, John Doe!</h3>
-    <p>
-      This is the overview page for your profile. Here you can quickly access your most important information and
-      actions.
-    </p>
+    <p>This is the overview page for your profile. Here you can quickly access your most important information.</p>
 
     <div class="overview-highlights">
       <ul>
@@ -35,28 +32,7 @@ ClarityIcons.addIcons(userIcon, envelopeIcon, pencilIcon, administratorIcon, mob
         <li><strong>Open Tasks:</strong> 5</li>
       </ul>
     </div>
-
-    <br />
-    <div class="overview-actions">
-      <button class="btn" (click)="sendEmail('john@example.com')">Send Email</button>
-      <button class="btn" (click)="callPhone('+4312345678')">Call</button>
-      <button class="btn" (click)="navigateInternally('details')">View Details</button>
-    </div>
   `,
   standalone: false,
 })
-export class SummaryAreaOverviewPageDemo {
-  private readonly router: Router = inject(Router);
-
-  navigateInternally(page: string) {
-    this.router.navigate(['/full-page-layouts/summary-area-page-layout', { outlets: { fullpage: page } }]);
-  }
-
-  sendEmail(email: string) {
-    globalThis.location.href = `mailto:${email}`;
-  }
-
-  callPhone(number: string) {
-    globalThis.location.href = `tel:${number}`;
-  }
-}
+export class SidebarOverviewPageDemo {}

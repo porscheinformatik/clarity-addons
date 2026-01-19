@@ -17,11 +17,11 @@ import {
 } from '@porscheinformatik/clr-addons';
 
 import { DemoMenuModule } from '../demo-menu/demo-menu.module';
-import { SummaryAreaPageLayoutDemo } from './summary-area-page-layout.demo';
-import { SummaryAreaOverviewPageDemo } from './summary-area-overview-page.demo';
-import { SummaryAreaDetailsPageDemo } from './summary-area-details-page.demo';
-import { SummaryAreaSettingsPageDemo } from './summary-area-settings-page.demo';
-import { SummaryAreaTasksPageDemo } from './summary-area-tasks-page.demo';
+import { SidebarPageLayoutDemo } from './sidebar-page-layout.demo';
+import { SidebarOverviewPageDemo } from './sidebar-overview-page.demo';
+import { SidebarProfilePageDemo } from './sidebar-profile-page.demo';
+import { SidebarSettingsPageDemo } from './sidebar-settings-page.demo';
+import { SidebarTasksPageDemo } from './sidebar-tasks-page.demo';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -33,14 +33,14 @@ import { FormsModule } from '@angular/forms';
     RouterModule.forChild([
       {
         path: '',
-        component: SummaryAreaPageLayoutDemo,
+        component: SidebarPageLayoutDemo,
         outlet: 'fullpage',
         children: [
           { path: '', redirectTo: 'overview', pathMatch: 'full' },
-          { path: 'overview', component: SummaryAreaOverviewPageDemo },
-          { path: 'details', component: SummaryAreaDetailsPageDemo },
-          { path: 'settings', component: SummaryAreaSettingsPageDemo },
-          { path: 'tasks', component: SummaryAreaTasksPageDemo },
+          { path: 'overview', component: SidebarOverviewPageDemo },
+          { path: 'profile', component: SidebarProfilePageDemo },
+          { path: 'settings', component: SidebarSettingsPageDemo },
+          { path: 'tasks', component: SidebarTasksPageDemo },
         ],
       },
     ]),
@@ -53,19 +53,19 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
   ],
   declarations: [
-    SummaryAreaPageLayoutDemo,
-    SummaryAreaOverviewPageDemo,
-    SummaryAreaDetailsPageDemo,
-    SummaryAreaSettingsPageDemo,
-    SummaryAreaTasksPageDemo,
+    SidebarPageLayoutDemo,
+    SidebarOverviewPageDemo,
+    SidebarProfilePageDemo,
+    SidebarSettingsPageDemo,
+    SidebarTasksPageDemo,
   ],
   exports: [
-    SummaryAreaPageLayoutDemo,
-    SummaryAreaOverviewPageDemo,
-    SummaryAreaDetailsPageDemo,
-    SummaryAreaSettingsPageDemo,
-    SummaryAreaTasksPageDemo,
+    SidebarPageLayoutDemo,
+    SidebarOverviewPageDemo,
+    SidebarProfilePageDemo,
+    SidebarSettingsPageDemo,
+    SidebarTasksPageDemo,
   ],
   providers: [ClrSummaryAreaStateService],
 })
-export class SummaryAreaPageLayoutDemoModule {}
+export class SidebarPageLayoutDemoModule {}

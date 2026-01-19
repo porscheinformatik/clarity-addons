@@ -2,10 +2,10 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'clr-summary-area-details-page-demo',
+  selector: 'clr-summary-area-profile-page-demo',
   template: `
     <div class="details-header">
-      <h3 style="margin-top: 0">Profile Details: John Doe</h3>
+      <h3 style="margin-top: 0">Profile: John Doe</h3>
       <p>View and edit detailed information about this person.</p>
     </div>
 
@@ -79,10 +79,6 @@ import { Router } from '@angular/router';
           </clr-date-container>
           <input clrTime type="time" />
         </clr-date-time-container>
-        <clr-input-container class="clr-col-12 clr-col-lg-6">
-          <label class="clr-col-12 clr-col-sm-2 clr-col-lg-3">End time</label>
-          <input clrInput type="time" class="clr-col-12 clr-col-sm-3 clr-col-lg-5" />
-        </clr-input-container>
         <clr-textarea-container class="clr-col-12 clr-col-lg-6">
           <label class="clr-col-12 clr-col-sm-2 clr-col-lg-3">Comment / Feedback</label>
           <textarea clrTextarea type="text" class="clr-col-12 clr-col-sm-10 clr-col-lg-9"></textarea>
@@ -92,6 +88,4 @@ import { Router } from '@angular/router';
   `,
   standalone: false,
 })
-export class SummaryAreaDetailsPageDemo {
-  private readonly router: Router = inject(Router);
-}
+export class SidebarProfilePageDemo {}

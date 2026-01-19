@@ -30,7 +30,6 @@ class MockSummaryAreaStateService {
 
 @Component({
   template: ` <clr-summary-area-toggle
-    [disabled]="disabled"
     [ariaLabel]="'Toggle Summary Area Aria Label'"
     (summaryToggle)="onToggle()"
   ></clr-summary-area-toggle>`,
@@ -39,7 +38,6 @@ class MockSummaryAreaStateService {
 })
 class TestHostComponent {
   @ViewChild(ClrSummaryAreaToggle) component!: ClrSummaryAreaToggle;
-  disabled = false;
   toggleCount = 0;
 
   onToggle(): void {
@@ -70,10 +68,6 @@ describe('SummaryAreaToggle', () => {
   describe('initialization', () => {
     it('should create the component', () => {
       expect(component).toBeTruthy();
-    });
-
-    it('should have default disabled as false', () => {
-      expect(component.disabled()).toBe(false);
     });
 
     it('should have ariaLabel defined', () => {
@@ -110,40 +104,6 @@ describe('SummaryAreaToggle', () => {
     it('should have correct icon direction', () => {
       const icon = fixture.debugElement.query(By.css('cds-icon'));
       expect(icon.attributes['direction']).toBe('up');
-    });
-  });
-
-  describe('disabled state', () => {
-    it('should not be disabled by default', () => {
-      const button = fixture.debugElement.query(By.css('button'));
-      expect(button.nativeElement.disabled).toBe(false);
-    });
-
-    it('should be disabled when disabled input is true', () => {
-      hostComponent.disabled = true;
-      fixture.detectChanges();
-
-      const button = fixture.debugElement.query(By.css('button'));
-      expect(button.nativeElement.disabled).toBe(true);
-    });
-
-    it('should not toggle when disabled', () => {
-      hostComponent.disabled = true;
-      fixture.detectChanges();
-
-      const initialCollapsed = mockStateService.collapsed();
-      component.handleToggle();
-
-      expect(mockStateService.collapsed()).toBe(initialCollapsed);
-    });
-
-    it('should not emit summaryToggle when disabled', () => {
-      hostComponent.disabled = true;
-      fixture.detectChanges();
-
-      component.handleToggle();
-
-      expect(hostComponent.toggleCount).toBe(0);
     });
   });
 
@@ -247,18 +207,6 @@ describe('SummaryAreaToggle', () => {
 
       expect(hostComponent.toggleCount).toBe(1);
     });
-
-    it('should not toggle when button is clicked while disabled', () => {
-      hostComponent.disabled = true;
-      fixture.detectChanges();
-
-      const initialCollapsed = mockStateService.collapsed();
-
-      // Manually trigger handleToggle since disabled buttons don't fire click events
-      component.handleToggle();
-
-      expect(mockStateService.collapsed()).toBe(initialCollapsed);
-    });
   });
 
   describe('keyboard interaction', () => {
@@ -309,18 +257,6 @@ describe('SummaryAreaToggle', () => {
 
       expect(hostComponent.toggleCount).toBe(0);
     });
-
-    it('should not toggle on Enter key when disabled', () => {
-      hostComponent.disabled = true;
-      fixture.detectChanges();
-
-      const initialCollapsed = mockStateService.collapsed()();
-      const event = new KeyboardEvent('keydown', { key: 'Enter' });
-
-      component.handleKeydown(event);
-
-      expect(mockStateService.collapsed()()).toBe(initialCollapsed);
-    });
   });
 
   describe('CSS classes', () => {
@@ -345,15 +281,6 @@ describe('SummaryAreaToggle', () => {
       spyOn(mockStateService, 'toggle').and.callThrough();
       component.handleToggle();
       expect(mockStateService.toggle).toHaveBeenCalled();
-    });
-
-    it('should not call state.toggle() when disabled', () => {
-      hostComponent.disabled = true;
-      fixture.detectChanges();
-
-      spyOn(mockStateService, 'toggle');
-      component.handleToggle();
-      expect(mockStateService.toggle).not.toHaveBeenCalled();
     });
   });
 });

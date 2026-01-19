@@ -120,47 +120,8 @@ const fullPageLayoutsRoutes: Routes = [
       },
       {
         path: `sidebarpage-layout`,
-        children: [
-          {
-            path: '',
-            redirectTo: 'one',
-            pathMatch: 'full',
-          },
-          {
-            path: `one`,
-            loadChildren: () =>
-              import('./sidebarpage-layout/sidebarpage-layout.demo.module').then(m => m.SidebarpageLayoutDemoModule),
-            data: {
-              browserTitle: 'Sidebar Page Layout',
-              id: 1,
-            },
-          },
-          {
-            path: `two`,
-            loadChildren: () =>
-              import('./sidebarpage-layout/sidebarpage-layout.demo.module').then(m => m.SidebarpageLayoutDemoModule),
-            data: {
-              browserTitle: 'Sidebar Page Layout',
-              id: 2,
-            },
-          },
-          {
-            path: `three`,
-            loadChildren: () =>
-              import('./sidebarpage-layout/sidebarpage-layout.demo.module').then(m => m.SidebarpageLayoutDemoModule),
-            data: {
-              browserTitle: 'Sidebar Page Layout',
-              id: 3,
-            },
-          },
-        ],
-      },
-      {
-        path: `summary-area-page-layout`,
         loadChildren: () =>
-          import('./summary-area-page-layout/summary-area-page-layout.demo.module').then(
-            m => m.SummaryAreaPageLayoutDemoModule
-          ),
+          import('./sidebar-page-layout/sidebar-page-layout.demo.module').then(m => m.SidebarPageLayoutDemoModule),
         data: {
           browserTitle: 'Summary Area Page Layout',
         },

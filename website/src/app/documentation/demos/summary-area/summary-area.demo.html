@@ -8,7 +8,7 @@
 
     <div id="design-guidelines">
       <h3>Use When</h3>
-      <ul class="list">
+      <ul class="list section">
         <li>
           You need to provide a quick overview of essential information about an entity (e.g., customer, order,
           vehicle).
@@ -20,7 +20,7 @@
       </ul>
 
       <h3>Do not use</h3>
-      <p>Avoid using this component in any of the following cases:</p>
+      <p class="section">Avoid using this component in any of the following cases:</p>
       <ul class="list">
         <li>For data that requires frequent editing – use the View-Edit Section instead.</li>
         <li>For displaying large amounts of data – use a Data Grid instead.</li>
@@ -30,21 +30,21 @@
       </ul>
 
       <h3>Behavior</h3>
-      <p>
+      <p class="section">
         The Summary Area displays information as label-value pairs in a responsive grid layout with up to 5 columns and
         up to 3 rows. Summary Items are arranged column-first, filling columns from top to bottom before moving to the
         next column. On smaller screens, the number of columns automatically reduces to fit the available space.
       </p>
 
-      <h4>Collapsible State</h4>
-      <p>
+      <h4 class="sub-section-title">Collapsible State</h4>
+      <p class="section">
         The Summary Area can be collapsed and expanded using the
         <code class="clr-code">clr-summary-area-toggle</code> component. When collapsed, only the toggle button is
         visible, allowing users to maximize content space while keeping summary information accessible.
       </p>
 
-      <h4>Loading, Error, and Warning States</h4>
-      <p>
+      <h4 class="sub-section-title">Loading, Error, and Warning States</h4>
+      <p class="section">
         Both the Summary Area and individual Summary Items support loading, error, and warning states. These states
         provide visual feedback to users about data availability and potential issues. All of those states have to be
         provided explicitly to the Summary Area or a Summary Item via their respective inputs.
@@ -59,29 +59,29 @@
         </li>
       </ul>
 
-      <h4>Empty Values</h4>
-      <p>
+      <h4 class="sub-section-title">Empty Values</h4>
+      <p class="section">
         Items without values can either show a placeholder dash (—) or be hidden entirely, controlled via the
         <code class="clr-code">[showOnEmptyValue]</code> input. Alternatively, an item can also define an edit
         configuration via the <code class="clr-code">[editConfig]</code>
         input to show a custom action link when no value is present.
       </p>
 
-      <h4>Clickable Values</h4>
-      <p>
+      <h4 class="sub-section-title">Clickable Values</h4>
+      <p class="section">
         Summary item values can be made clickable with the <code class="clr-code">[clickable]</code> input for
         navigation or triggering actions. When a value is clickable, it appears as a link and emits a
         <code class="clr-code">(clicked)</code> event.
       </p>
 
-      <h4>Copy to Clipboard</h4>
-      <p>
+      <h4 class="sub-section-title">Copy to Clipboard</h4>
+      <p class="section">
         Items can be configured with the input <code class="clr-code">[valueCopyable]</code> to show a copy button that
         copies the value text to the clipboard. This is useful for IDs, codes, or other values users might need to copy.
       </p>
 
       <h3>Technical Limitations</h3>
-      <ul class="list">
+      <ul class="list-section">
         <li>Maximum 5 columns supported.</li>
         <li>Maximum 3 rows supported (items beyond 15 will not be visible).</li>
         <li>Icons are only allowed as the first value component in a Summary Item.</li>
@@ -94,7 +94,7 @@
         </li>
       </ul>
 
-      <h3>Summary of Options</h3>
+      <h3 id="summary-of-option">Summary of Options</h3>
 
       <h4>ClrSummaryArea</h4>
       <table class="table">
@@ -216,7 +216,10 @@
             </td>
             <td class="left clr-hidden-xs-down">ClrSummaryItemEditConfig</td>
             <td class="clr-hidden-xs-down">undefined</td>
-            <td class="left">Shows an edit link when enabled and no content is present</td>
+            <td class="left">
+              Shows an edit link when enabled and no content is present. When set, overrides the behavior of the input
+              <code class="clr-code">[showOnEmptyValue]</code>.
+            </td>
           </tr>
           <tr>
             <td class="left">
@@ -362,15 +365,17 @@
     <div id="examples">
       <h3>Code &amp; Examples</h3>
 
-      <h4>Page Layout Demo with a Summary Area</h4>
-      <cds-icon shape="display"></cds-icon>&nbsp;<a
-        routerLink="/full-page-layouts/summary-area-page-layout"
-        routerLinkActive="active"
-        ><span class="nav-text">Summary Area Page Layout Demo</span></a
-      >
+      <h4 class="sub-section-title">Page Layout Demo with a Summary Area</h4>
+      <p class="section">
+        <cds-icon shape="display"></cds-icon>&nbsp;<a
+          routerLink="/full-page-layouts/sidebar-page-layout"
+          routerLinkActive="active"
+          ><span class="nav-text">Summary Area Page Layout Demo</span></a
+        >
+      </p>
 
-      <h4>Basic Summary Area</h4>
-      <p>
+      <h4 class="sub-section-title">Basic Summary Area</h4>
+      <p class="section">
         A simple summary area with multiple items displaying label-value pairs. This is the most common usage pattern.
       </p>
       <br />
@@ -396,8 +401,8 @@
 
       <clr-code-snippet [clrCode]="basicExample"></clr-code-snippet>
 
-      <h4>Summary Item with Icon</h4>
-      <p>
+      <h4 class="sub-section-title" class="sub-section-title">Summary Item with Icon</h4>
+      <p class="section">
         Icons can be placed as the first value element to provide visual context. Note that icons can only be used as
         the first <code class="clr-code">clr-summary-item-value</code> child element in an
         <code class="clr-code">clr-summary-item</code> element.
@@ -421,8 +426,8 @@
 
       <clr-code-snippet [clrCode]="iconExample"></clr-code-snippet>
 
-      <h4>Clickable Values</h4>
-      <p>
+      <h4 class="sub-section-title">Clickable Values</h4>
+      <p class="section">
         Values can be made clickable to navigate or trigger actions. Both icons and text values can be independently
         clickable.
       </p>
@@ -454,8 +459,8 @@
 
       <clr-code-snippet [clrCode]="clickableExample"></clr-code-snippet>
 
-      <h4>Multiple Values</h4>
-      <p>A Summary Item can contain multiple text values, displayed in sequence.</p>
+      <h4 class="sub-section-title">Multiple Values</h4>
+      <p class="section">A Summary Item can contain multiple text values, displayed in sequence.</p>
       <br />
 
       <clr-summary-area [rows]="1">
@@ -468,8 +473,8 @@
 
       <clr-code-snippet [clrCode]="multipleValuesExample"></clr-code-snippet>
 
-      <h4>Tooltip and Long Text</h4>
-      <p>
+      <h4 class="sub-section-title">Tooltip and Long Text</h4>
+      <p class="section">
         Long text values are automatically truncated with ellipsis and display a tooltip with the full value. Custom
         tooltips can be set for additional context. When a value overflows, its text takes precedence for the tooltip
         content over any custom tooltip.
@@ -493,8 +498,8 @@
 
       <clr-code-snippet [clrCode]="tooltipExample"></clr-code-snippet>
 
-      <h4>Empty Value Handling</h4>
-      <p>
+      <h4 class="sub-section-title">Empty Value Handling</h4>
+      <p class="section">
         Items without values can show a placeholder or be hidden entirely. Use
         <code class="clr-code">[showOnEmptyValue]="true"</code> to show a long dash placeholder or
         <code class="clr-code">[showOnEmptyValue]="false"</code> to hide the item.
@@ -511,8 +516,8 @@
 
       <clr-code-snippet [clrCode]="emptyValueExample"></clr-code-snippet>
 
-      <h4>Edit Configuration</h4>
-      <p>
+      <h4 class="sub-section-title">Edit Configuration</h4>
+      <p class="section">
         Empty items can display an edit link when the edit configuration is enabled. This is useful for prompting users
         to add missing data.
       </p>
@@ -528,8 +533,8 @@
 
       <clr-code-snippet [clrCode]="editConfigExample"></clr-code-snippet>
 
-      <h4>Copy to Clipboard</h4>
-      <p>
+      <h4 class="sub-section-title">Copy to Clipboard</h4>
+      <p class="section">
         Enable the copy button to allow users to easily copy values to the clipboard. The copy button shows a success
         indicator when clicked. When copying the value of a summary item with multiple values, the values are
         concatenated with spaces in between (same as they are displayed). Only values defined with
@@ -550,8 +555,8 @@
 
       <clr-code-snippet [clrCode]="copyableExample"></clr-code-snippet>
 
-      <h4>Loading States</h4>
-      <p>
+      <h4 class="sub-section-title">Loading States</h4>
+      <p class="section">
         Both the entire Summary Area and individual items can show loading states. Area loading affects all items. Item
         loading affects only that specific item.
       </p>
@@ -577,8 +582,8 @@
 
       <clr-code-snippet [clrCode]="loadingExample"></clr-code-snippet>
 
-      <h4>Error States</h4>
-      <p>
+      <h4 class="sub-section-title">Error States</h4>
+      <p class="section">
         Error states can be activated when data cannot be loaded or an issue needs attention. Error states can include
         configurable text and clickable action links to resolve the issue.
       </p>
@@ -611,8 +616,8 @@
 
       <clr-code-snippet [clrCode]="errorExample"></clr-code-snippet>
 
-      <h4>Warning States</h4>
-      <p>
+      <h4 class="sub-section-title">Warning States</h4>
+      <p class="section">
         Warning states can be activated to indicate issues that don't prevent the display of critical data or
         functionality but should be brought to the user's attention. Warning states can include configurable text and
         clickable action links to address the warning.
@@ -647,8 +652,8 @@
 
       <clr-code-snippet [clrCode]="warningExample"></clr-code-snippet>
 
-      <h4>Collapsible Summary Area</h4>
-      <p>
+      <h4 class="sub-section-title">Collapsible Summary Area</h4>
+      <p class="section">
         Use the <code class="clr-code">clr-summary-area-toggle</code> component to let users collapse and expand the
         Summary Area. Ensure that <code class="clr-code">ClrSummaryAreaStateService</code> is provided for the summary
         area component. For independent collapse and expand behavior across multiple summary areas in your application,
@@ -680,8 +685,8 @@
 
       <clr-code-snippet [clrCode]="toggleExample"></clr-code-snippet>
 
-      <h4>Custom Projected Content</h4>
-      <p>
+      <h4 class="sub-section-title">Custom Projected Content</h4>
+      <p class="section">
         You can project custom content into a Summary Item for more complex displays. Note that copy functionality is
         not available for projected content.
       </p>
@@ -699,8 +704,8 @@
 
       <clr-code-snippet [clrCode]="projectedContentExample"></clr-code-snippet>
 
-      <h4>Complete Example</h4>
-      <p>A comprehensive example demonstrating multiple features together.</p>
+      <h4 class="sub-section-title">Complete Example</h4>
+      <p class="section">A comprehensive example demonstrating multiple features together.</p>
       <br />
 
       <clr-summary-area [rows]="3">
@@ -716,7 +721,7 @@
           ></clr-summary-item-value>
         </clr-summary-item>
         <clr-summary-item label="Status">
-          <clr-summary-item-value icon="check-circle"></clr-summary-item-value>
+          <clr-summary-item-value icon="success-standard"></clr-summary-item-value>
           <clr-summary-item-value value="Completed"></clr-summary-item-value>
         </clr-summary-item>
         <clr-summary-item label="Amount" [valueCopyable]="true">

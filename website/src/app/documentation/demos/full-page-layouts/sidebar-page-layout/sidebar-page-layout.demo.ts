@@ -27,10 +27,10 @@ ClarityIcons.addIcons(userIcon, envelopeIcon, pencilIcon, administratorIcon, mob
 
 @Component({
   selector: 'clr-summary-area-page-layout-demo',
-  templateUrl: './summary-area-page-layout.demo.html',
+  templateUrl: './sidebar-page-layout.demo.html',
   standalone: false,
 })
-export class SummaryAreaPageLayoutDemo implements OnInit {
+export class SidebarPageLayoutDemo implements OnInit {
   public summaryAreaLoadingState: ClrSummaryAreaLoading = { active: true, text: 'Loading...' };
   public itemLoadingState: ClrSummaryItemLoading = { active: true, text: 'Search open tasks...' };
   public itemErrorState: ClrSummaryItemError = {
@@ -61,19 +61,19 @@ export class SummaryAreaPageLayoutDemo implements OnInit {
   public ngOnInit(): void {
     setTimeout(() => {
       this.summaryAreaLoadingState = { ...this.summaryAreaLoadingState, active: false };
-    }, 1000);
+    }, 2000);
 
     setTimeout(() => {
       this.itemLoadingState = { ...this.itemLoadingState, active: false };
-    }, 5000);
+    }, 10000);
   }
 
   navigateInternally(page: string) {
-    this.router.navigate(['/full-page-layouts/summary-area-page-layout', { outlets: { fullpage: page } }]);
+    this.router.navigate(['/full-page-layouts/sidebar-page-layout', { outlets: { fullpage: page } }]);
   }
 
-  openJohnsWebsite() {
-    window.open('https://www.johns-portfolio.com', '_blank');
+  openReferencesWebsite() {
+    window.open('https://www.porscheinformatik.com/', '_blank');
   }
 
   sendEmail(email: string) {

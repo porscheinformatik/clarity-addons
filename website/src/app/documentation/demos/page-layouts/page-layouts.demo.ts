@@ -17,7 +17,7 @@ const BASEPAGE_CODE_EXAMPLE = `
 
     <div class="content-header">
         <clr-back-button></clr-back-button>
-        <h2>Base Pagelayout</h2>
+        <h2>Base Page Layout</h2>
         <clr-button-group class="command-bar" [clrMenuPosition]="'bottom-right'">
             <clr-button>Command1</clr-button>
             <clr-button>Command2</clr-button>
@@ -47,7 +47,7 @@ const BASEPAGE_ROUTING_CODE_EXAMPLE = `
 const BASEPAGE_ROUTING_PAGE_CODE_EXAMPLE = `
 <div class="content-header">
     <clr-back-button></clr-back-button>
-    <h2>Base Pagelayout</h2>
+    <h2>Base Page Layout</h2>
     <clr-button-group class="command-bar" [clrMenuPosition]="'bottom-right'">
         <clr-button>Command1</clr-button>
         <clr-button>Command2</clr-button>
