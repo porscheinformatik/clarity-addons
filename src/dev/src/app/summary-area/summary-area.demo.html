@@ -1,0 +1,112 @@
+<clr-summary-area
+  [rows]="3"
+  [localStorageKey]="'summaryAreaDevDemo'"
+  [error]="summaryAreaErrorState"
+  [warning]="summaryAreaWarningState"
+  [loading]="summaryAreaLoadingState"
+>
+  <clr-summary-item label="Label1" [valueCopyable]="true">
+    <clr-summary-item-value
+      value="Execute custom logic"
+      [clickable]="true"
+      (clicked)="handleCustomLogicValueClick()"
+    ></clr-summary-item-value>
+  </clr-summary-item>
+  <clr-summary-item label="Item Label2" [loading]="itemLoadingState" [valueCopyable]="true">
+    <clr-summary-item-value value="John Doe (with tooltip)" tooltip="Name: John Doe"></clr-summary-item-value>
+  </clr-summary-item>
+  <clr-summary-item label="Label3">
+    <clr-summary-item-value icon="color-palette"></clr-summary-item-value>
+    <clr-summary-item-value
+      value="Clarity Colors"
+      [clickable]="true"
+      (clicked)="goToClarityRoute()"
+    ></clr-summary-item-value>
+  </clr-summary-item>
+  <clr-summary-item label="Label4" [valueCopyable]="true">
+    <clr-summary-item-value value="Text item1"></clr-summary-item-value>
+    <clr-summary-item-value value="Text item2"></clr-summary-item-value>
+    <clr-summary-item-value value="Text item3"></clr-summary-item-value>
+    <clr-summary-item-value value="Text item4"></clr-summary-item-value>
+  </clr-summary-item>
+  <clr-summary-item label="Priority5" [valueCopyable]="true">
+    <clr-summary-item-value
+      icon="chat-bubble"
+      tooltip="I am a clickable icon!"
+      [clickable]="true"
+      (clicked)="handleSummaryItemIconClick()"
+    ></clr-summary-item-value>
+    <clr-summary-item-value value="Chat Bubble"></clr-summary-item-value>
+  </clr-summary-item>
+  <!-- NOTE: There will be no copy button shown for 'Custom Text6' item,
+       since copy of text values is only supported for summary-item-value components -->
+  <clr-summary-item label="Custom Text6" [valueCopyable]="true">
+    <div>Projected content</div>
+  </clr-summary-item>
+  <clr-summary-item label="Progress7" [valueCopyable]="true">
+    <app-progress-item (showDetailsEvent)="openProgressDetails()"></app-progress-item>
+  </clr-summary-item>
+  <clr-summary-item label="Empty Item8" [showOnEmptyValue]="true"></clr-summary-item>
+  <clr-summary-item [label]="'Empty Value9'" [showOnEmptyValue]="false">
+    <clr-summary-item-value [value]="undefined"></clr-summary-item-value>
+  </clr-summary-item>
+  <!-- NOTE: a provided editConfig overwrites the config showOnEmptyValue,
+            so an item with an edit config is always shown -->
+  <clr-summary-item
+    label="Edit Empty Value10"
+    [editConfig]="{enabled: true, click: onEditClick}"
+    [valueCopyable]="true"
+    [showOnEmptyValue]="false"
+  ></clr-summary-item>
+  <clr-summary-item label="Error Item11" [error]="itemErrorState">
+    <clr-summary-item-value icon="gas"></clr-summary-item-value>
+    <clr-summary-item-value value="error resolved"></clr-summary-item-value>
+  </clr-summary-item>
+  <clr-summary-item label="Warning Item12" [warning]="itemWarningState" [valueCopyable]="true">
+    <clr-summary-item-value value="warning resolved"></clr-summary-item-value>
+  </clr-summary-item>
+  <clr-summary-item label="Two links13" [valueCopyable]="true" [editConfig]="{enabled: true, click: onEditClick}">
+    <clr-summary-item-value
+      [icon]="'wand'"
+      [clickable]="true"
+      (clicked)="goToIconsPage()"
+      [tooltip]="'navigate to /icons route'"
+    ></clr-summary-item-value>
+    <clr-summary-item-value
+      value="Navigate internally"
+      [clickable]="true"
+      (clicked)="goToPagerRoute()"
+      [tooltip]="'navigate to /pager route'"
+    ></clr-summary-item-value>
+  </clr-summary-item>
+  <clr-summary-item label="External link14" [valueCopyable]="true">
+    <clr-summary-item-value
+      value="External App Jump"
+      tooltip="Navigate to external app"
+      [clickable]="true"
+      (clicked)="goToExternalApp()"
+    ></clr-summary-item-value>
+  </clr-summary-item>
+  <clr-summary-item label="Long Text15" [valueCopyable]="true">
+    <!-- NOTE: Since the value part exceed the width of a summary area column an ellipsis is shown for the value.
+          Be aware, that the tooltip of the item value will then show the value of the clr-summary-item-value element,
+          since this has a higher priority then the defined tooltip of the element -->
+    <clr-summary-item-value
+      value="This is very long text, so long, so long, so long, so long, so long"
+      tooltip="I am a tooltip for very long text value"
+    ></clr-summary-item-value>
+  </clr-summary-item>
+  <clr-summary-item label="Item Label16" [error]="itemErrorState">
+    <clr-summary-item-value value="I should not be visible for 3 rows"></clr-summary-item-value>
+  </clr-summary-item>
+</clr-summary-area>
+
+<clr-modal [(clrModalOpen)]="showProgressDetails" class="detail-modal">
+  <h3 class="modal-title">
+    <span>Progress details</span>
+  </h3>
+  <div class="modal-body">I am a placeholder for progress details content.</div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="closeProgressDetails()">Close</button>
+  </div>
+</clr-modal>

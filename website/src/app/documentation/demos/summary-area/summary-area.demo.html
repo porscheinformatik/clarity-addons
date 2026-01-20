@@ -1,0 +1,1083 @@
+<clr-doc-wrapper [title]="title">
+  <article>
+    <h5 class="component-summary" id="summary-area-header">
+      The Summary Area is a grid-based component used to display a compact overview of key information at the top of a
+      page. It presents label-value pairs in a structured, scannable layout ideal for showing entity details, status
+      information, or metadata at a glance.
+    </h5>
+
+    <div id="design-guidelines">
+      <h3>Use When</h3>
+      <ul class="list section">
+        <li>
+          You need to provide a quick overview of essential information about an entity (e.g., customer, order,
+          vehicle).
+        </li>
+        <li>Displaying read-only metadata or status information at the top of a detail page.</li>
+        <li>Users need to scan multiple pieces of related information quickly.</li>
+        <li>The information is static or updates infrequently during a session.</li>
+        <li>You want to show up to 15 items in a structured 5-column × 3-row grid layout.</li>
+      </ul>
+
+      <h3>Do not use</h3>
+      <p class="section">Avoid using this component in any of the following cases:</p>
+      <ul class="list">
+        <li>For data that requires frequent editing – use the View-Edit Section instead.</li>
+        <li>For displaying large amounts of data – use a Data Grid instead.</li>
+        <li>For form inputs or editable fields – use standard Clarity form components.</li>
+        <li>When you have more than 15 items – consider restructuring the information or using tabs/sections.</li>
+        <li>For navigation purposes – use the appropriate navigation components.</li>
+      </ul>
+
+      <h3>Behavior</h3>
+      <p class="section">
+        The Summary Area displays information as label-value pairs in a responsive grid layout with up to 5 columns and
+        up to 3 rows. Summary Items are arranged column-first, filling columns from top to bottom before moving to the
+        next column. On smaller screens, the number of columns automatically reduces to fit the available space.
+      </p>
+
+      <h4 class="sub-section-title">Collapsible State</h4>
+      <p class="section">
+        The Summary Area can be collapsed and expanded using the
+        <code class="clr-code">clr-summary-area-toggle</code> component. When collapsed, only the toggle button is
+        visible, allowing users to maximize content space while keeping summary information accessible.
+      </p>
+
+      <h4 class="sub-section-title">Loading, Error, and Warning States</h4>
+      <p class="section">
+        Both the Summary Area and individual Summary Items support loading, error, and warning states. These states
+        provide visual feedback to users about data availability and potential issues. All of those states have to be
+        provided explicitly to the Summary Area or a Summary Item via their respective inputs.
+      </p>
+      <ul class="list">
+        <li><b>Loading:</b> Shows a spinner with optional customized text while data is being fetched.</li>
+        <li>
+          <b>Error:</b> Displays an error indicator with optional customized text and optional clickable action link .
+        </li>
+        <li>
+          <b>Warning:</b> Shows a warning indicator with optional customized text and optional clickable action link .
+        </li>
+      </ul>
+
+      <h4 class="sub-section-title">Empty Values</h4>
+      <p class="section">
+        Items without values can either show a placeholder dash (—) or be hidden entirely, controlled via the
+        <code class="clr-code">[showOnEmptyValue]</code> input. Alternatively, an item can also define an edit
+        configuration via the <code class="clr-code">[editConfig]</code>
+        input to show a custom action link when no value is present.
+      </p>
+
+      <h4 class="sub-section-title">Clickable Values</h4>
+      <p class="section">
+        Summary item values can be made clickable with the <code class="clr-code">[clickable]</code> input for
+        navigation or triggering actions. When a value is clickable, it appears as a link and emits a
+        <code class="clr-code">(clicked)</code> event.
+      </p>
+
+      <h4 class="sub-section-title">Copy to Clipboard</h4>
+      <p class="section">
+        Items can be configured with the input <code class="clr-code">[valueCopyable]</code> to show a copy button that
+        copies the value text to the clipboard. This is useful for IDs, codes, or other values users might need to copy.
+      </p>
+
+      <h3>Technical Limitations</h3>
+      <ul class="list-section">
+        <li>Maximum 5 columns supported.</li>
+        <li>Maximum 3 rows supported (items beyond 15 will not be visible).</li>
+        <li>Icons are only allowed as the first value component in a Summary Item.</li>
+        <li>
+          A <code class="clr-code">clr-summary-item-value</code> can have either an icon OR a text value, not both.
+        </li>
+        <li>
+          Copy functionality only works with <code class="clr-code">clr-summary-item-value</code> components, not
+          projected content.
+        </li>
+      </ul>
+
+      <h3 id="summary-of-option">Summary of Options</h3>
+
+      <h4 class="sub-section-title">ClrSummaryArea</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Input</th>
+            <th class="left clr-hidden-xs-down">Type</th>
+            <th class="clr-hidden-xs-down">Default</th>
+            <th class="left">Effect</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left">
+              <b>[rows]</b>
+              <div class="clr-hidden-sm-up">Type: 1 | 2 | 3</div>
+              <div class="clr-hidden-sm-up">Default: 3</div>
+            </td>
+            <td class="left clr-hidden-xs-down">1 | 2 | 3</td>
+            <td class="clr-hidden-xs-down">3</td>
+            <td class="left">Maximum number of rows to display for highest screen resolution</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[loading]</b>
+              <div class="clr-hidden-sm-up">Type: ClrSummaryAreaLoading</div>
+            </td>
+            <td class="left clr-hidden-xs-down">ClrSummaryAreaLoading</td>
+            <td class="clr-hidden-xs-down">undefined</td>
+            <td class="left">Shows loading state with spinner and configurable text</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[error]</b>
+              <div class="clr-hidden-sm-up">Type: ClrSummaryAreaError</div>
+            </td>
+            <td class="left clr-hidden-xs-down">ClrSummaryAreaError</td>
+            <td class="clr-hidden-xs-down">undefined</td>
+            <td class="left">Shows error state with configurable text and optional clickable action link</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[warning]</b>
+              <div class="clr-hidden-sm-up">Type: ClrSummaryAreaWarning</div>
+            </td>
+            <td class="left clr-hidden-xs-down">ClrSummaryAreaWarning</td>
+            <td class="clr-hidden-xs-down">undefined</td>
+            <td class="left">Shows warning state with configurable text and optional clickable action link</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[localStorageKey]</b>
+              <div class="clr-hidden-sm-up">Type: string</div>
+              <div class="clr-hidden-sm-up">Default: 'clrSummaryAreaCollapsed'</div>
+            </td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="clr-hidden-xs-down">'clrSummaryAreaCollapsed'</td>
+            <td class="left">
+              Unique key for persisting the collapsed state in localStorage. Use the same value for both
+              <code class="clr-code">clr-summary-area</code> and
+              <code class="clr-code">clr-summary-area-toggle</code> to link their state. Assign different values for
+              independent summary areas.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4 class="sub-section-title">ClrSummaryItem</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Input</th>
+            <th class="left clr-hidden-xs-down">Type</th>
+            <th class="clr-hidden-xs-down">Default</th>
+            <th class="left">Effect</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left">
+              <b>[label]</b>
+              <div class="clr-hidden-sm-up">Type: string</div>
+            </td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="clr-hidden-xs-down">undefined</td>
+            <td class="left">The label text displayed for the item</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[loading]</b>
+              <div class="clr-hidden-sm-up">Type: ClrSummaryItemLoading</div>
+            </td>
+            <td class="left clr-hidden-xs-down">ClrSummaryItemLoading</td>
+            <td class="clr-hidden-xs-down">undefined</td>
+            <td class="left">Shows loading state for the individual item</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[error]</b>
+              <div class="clr-hidden-sm-up">Type: ClrSummaryItemError</div>
+            </td>
+            <td class="left clr-hidden-xs-down">ClrSummaryItemError</td>
+            <td class="clr-hidden-xs-down">undefined</td>
+            <td class="left">Shows error state for the individual item</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[warning]</b>
+              <div class="clr-hidden-sm-up">Type: ClrSummaryItemWarning</div>
+            </td>
+            <td class="left clr-hidden-xs-down">ClrSummaryItemWarning</td>
+            <td class="clr-hidden-xs-down">undefined</td>
+            <td class="left">Shows warning state for the individual item</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[editConfig]</b>
+              <div class="clr-hidden-sm-up">Type: ClrSummaryItemEditConfig</div>
+            </td>
+            <td class="left clr-hidden-xs-down">ClrSummaryItemEditConfig</td>
+            <td class="clr-hidden-xs-down">undefined</td>
+            <td class="left">
+              Shows an edit link when enabled and no content is present. When set, overrides the behavior of the input
+              <code class="clr-code">[showOnEmptyValue]</code>.
+            </td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[showOnEmptyValue]</b>
+              <div class="clr-hidden-sm-up">Type: boolean</div>
+              <div class="clr-hidden-sm-up">Default: true</div>
+            </td>
+            <td class="left clr-hidden-xs-down">boolean</td>
+            <td class="clr-hidden-xs-down">true</td>
+            <td class="left">When true, shows placeholder dash (—) for empty values; when false, hides the item</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[valueCopyable]</b>
+              <div class="clr-hidden-sm-up">Type: boolean</div>
+              <div class="clr-hidden-sm-up">Default: false</div>
+            </td>
+            <td class="left clr-hidden-xs-down">boolean</td>
+            <td class="clr-hidden-xs-down">false</td>
+            <td class="left">When true, shows a copy button to copy the value to clipboard</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4 class="sub-section-title">ClrSummaryItemValue</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Input/Output</th>
+            <th class="left clr-hidden-xs-down">Type</th>
+            <th class="clr-hidden-xs-down">Default</th>
+            <th class="left">Effect</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left">
+              <b>[value]</b>
+              <div class="clr-hidden-sm-up">Type: string</div>
+            </td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="clr-hidden-xs-down">undefined</td>
+            <td class="left">The text value to display</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[icon]</b>
+              <div class="clr-hidden-sm-up">Type: string</div>
+            </td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="clr-hidden-xs-down">undefined</td>
+            <td class="left">Clarity icon name to display (only allowed as first value)</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[tooltip]</b>
+              <div class="clr-hidden-sm-up">Type: string</div>
+            </td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="clr-hidden-xs-down">undefined</td>
+            <td class="left">Custom tooltip text (overridden by value text if text overflows)</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[clickable]</b>
+              <div class="clr-hidden-sm-up">Type: boolean</div>
+              <div class="clr-hidden-sm-up">Default: false</div>
+            </td>
+            <td class="left clr-hidden-xs-down">boolean</td>
+            <td class="clr-hidden-xs-down">false</td>
+            <td class="left">When true, the value appears as a link and is clickable</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>(clicked)</b>
+              <div class="clr-hidden-sm-up">Type: EventEmitter&lt;void&gt;</div>
+            </td>
+            <td class="left clr-hidden-xs-down">EventEmitter&lt;void&gt;</td>
+            <td class="clr-hidden-xs-down">—</td>
+            <td class="left">Emitted when a clickable value is clicked</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4 class="sub-section-title">ClrSummaryAreaToggle</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Input/Output</th>
+            <th class="left clr-hidden-xs-down">Type</th>
+            <th class="clr-hidden-xs-down">Default</th>
+            <th class="left">Effect</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left">
+              <b>[disabled]</b>
+              <div class="clr-hidden-sm-up">Type: boolean</div>
+              <div class="clr-hidden-sm-up">Default: false</div>
+            </td>
+            <td class="left clr-hidden-xs-down">boolean</td>
+            <td class="clr-hidden-xs-down">false</td>
+            <td class="left">Disables the toggle button</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[ariaLabel]</b>
+              <div class="clr-hidden-sm-up">Type: string</div>
+            </td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="clr-hidden-xs-down">'Toggle Summary Area'</td>
+            <td class="left">Accessibility label for the toggle button</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[localStorageKey]</b>
+              <div class="clr-hidden-sm-up">Type: string</div>
+              <div class="clr-hidden-sm-up">Default: 'clrSummaryAreaCollapsed'</div>
+            </td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="clr-hidden-xs-down">'clrSummaryAreaCollapsed'</td>
+            <td class="left">
+              Unique key for persisting the collapsed state in localStorage. Use the same value for both
+              <code class="clr-code">clr-summary-area-toggle</code> and
+              <code class="clr-code">clr-summary-area</code> to link their state. Assign different values for
+              independent summary areas.
+            </td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>(summaryToggle)</b>
+              <div class="clr-hidden-sm-up">Type: EventEmitter&lt;void&gt;</div>
+            </td>
+            <td class="left clr-hidden-xs-down">EventEmitter&lt;void&gt;</td>
+            <td class="clr-hidden-xs-down">—</td>
+            <td class="left">Emitted when the toggle button is clicked</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 class="clr-mt-24px">Model Interfaces</h3>
+      <p class="section">
+        The Summary Area and Summary Item components use specific model interfaces to configure loading, error, warning,
+        and edit states. Below is a detailed description of each interface and how their properties affect the component
+        behavior.
+      </p>
+
+      <h4 class="sub-section-title">ClrSummaryAreaLoading</h4>
+      <p class="section">Used to display a loading indicator with an optional custom message on the Summary Area.</p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Property</th>
+            <th class="left clr-hidden-xs-down">Type</th>
+            <th class="left">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left"><b>active</b></td>
+            <td class="left clr-hidden-xs-down">boolean</td>
+            <td class="left">
+              <b>Required.</b> When <code class="clr-code">true</code>, the Summary Area displays a loading spinner and
+              hides all summary items. Loading state takes highest priority over error and warning states.
+            </td>
+          </tr>
+          <tr>
+            <td class="left"><b>text</b></td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="left">
+              Optional custom text displayed next to the loading spinner. Defaults to "Loading..." if not provided.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4 class="sub-section-title">ClrSummaryAreaError</h4>
+      <p class="section">
+        Used to display an error state with an optional clickable action link on the Summary Area. The error state is
+        only shown when the loading state is inactive.
+      </p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Property</th>
+            <th class="left clr-hidden-xs-down">Type</th>
+            <th class="left">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left"><b>active</b></td>
+            <td class="left clr-hidden-xs-down">boolean</td>
+            <td class="left">
+              <b>Required.</b> When <code class="clr-code">true</code> and loading is inactive, the Summary Area
+              displays an error indicator and hides all summary items. Error state takes priority over warning state.
+            </td>
+          </tr>
+          <tr>
+            <td class="left"><b>text</b></td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="left">
+              Optional custom error message displayed next to the error icon. Defaults to "Error" if not provided.
+            </td>
+          </tr>
+          <tr>
+            <td class="left"><b>linkText</b></td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="left">
+              Optional text for the action link displayed after the error message. Only shown when
+              <code class="clr-code">click</code> callback is also provided.
+            </td>
+          </tr>
+          <tr>
+            <td class="left"><b>click</b></td>
+            <td class="left clr-hidden-xs-down">() =&gt; void</td>
+            <td class="left">
+              Optional callback function invoked when the action link is clicked. Typically used to retry loading or
+              navigate to an error details page.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4 class="sub-section-title">ClrSummaryAreaWarning</h4>
+      <p class="section">
+        Used to display a warning state with an optional clickable action link on the Summary Area. The warning state is
+        only shown when both loading and error states are inactive.
+      </p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Property</th>
+            <th class="left clr-hidden-xs-down">Type</th>
+            <th class="left">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left"><b>active</b></td>
+            <td class="left clr-hidden-xs-down">boolean</td>
+            <td class="left">
+              <b>Required.</b> When <code class="clr-code">true</code> and both loading and error states are inactive,
+              the Summary Area displays a warning indicator and hides all summary items.
+            </td>
+          </tr>
+          <tr>
+            <td class="left"><b>text</b></td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="left">
+              Optional custom warning message displayed next to the warning icon. Defaults to "Warning" if not provided.
+            </td>
+          </tr>
+          <tr>
+            <td class="left"><b>linkText</b></td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="left">
+              Optional text for the action link displayed after the warning message. Only shown when
+              <code class="clr-code">click</code> callback is also provided.
+            </td>
+          </tr>
+          <tr>
+            <td class="left"><b>click</b></td>
+            <td class="left clr-hidden-xs-down">() =&gt; void</td>
+            <td class="left">Optional callback function invoked when the action link is clicked.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4 class="sub-section-title">ClrSummaryAreaColumns</h4>
+      <p class="section">A type alias for the allowed number of columns in the Summary Area grid.</p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Type</th>
+            <th class="left">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left"><code class="clr-code">1 | 2 | 3 | 4 | 5</code></td>
+            <td class="left">
+              The Summary Area supports a maximum of 5 columns. The actual number of columns displayed is calculated
+              dynamically based on the number of items, the configured rows, and the available screen width.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4 class="sub-section-title">ClrSummaryAreaRows</h4>
+      <p class="section">A type alias for the allowed number of rows in the Summary Area grid.</p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Type</th>
+            <th class="left">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left"><code class="clr-code">1 | 2 | 3</code></td>
+            <td class="left">
+              The Summary Area supports a maximum of 3 rows. Combined with the 5 column limit, this means a maximum of
+              15 summary items can be displayed. Items beyond this limit will not be visible.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4 class="sub-section-title">ClrSummaryItemLoading</h4>
+      <p class="section">
+        Used to display a loading indicator with an optional custom message on an individual Summary Item.
+      </p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Property</th>
+            <th class="left clr-hidden-xs-down">Type</th>
+            <th class="left">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left"><b>active</b></td>
+            <td class="left clr-hidden-xs-down">boolean</td>
+            <td class="left">
+              <b>Required.</b> When <code class="clr-code">true</code>, the Summary Item displays a loading spinner
+              instead of its value. Loading state takes highest priority over error and warning states at the item
+              level.
+            </td>
+          </tr>
+          <tr>
+            <td class="left"><b>text</b></td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="left">
+              Optional custom text displayed next to the loading spinner. Defaults to "Loading..." if not provided.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4 class="sub-section-title">ClrSummaryItemError</h4>
+      <p class="section">
+        Used to display an error state with an optional clickable action on an individual Summary Item. The error state
+        is only shown when the loading state is inactive.
+      </p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Property</th>
+            <th class="left clr-hidden-xs-down">Type</th>
+            <th class="left">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left"><b>active</b></td>
+            <td class="left clr-hidden-xs-down">boolean</td>
+            <td class="left">
+              <b>Required.</b> When <code class="clr-code">true</code> and loading is inactive, the Summary Item
+              displays an error indicator instead of its value. Error state takes priority over warning state.
+            </td>
+          </tr>
+          <tr>
+            <td class="left"><b>text</b></td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="left">Optional custom error message. Defaults to "Error" if not provided.</td>
+          </tr>
+          <tr>
+            <td class="left"><b>click</b></td>
+            <td class="left clr-hidden-xs-down">() =&gt; void</td>
+            <td class="left">
+              Optional callback function invoked when the error text is clicked. When provided, the error text becomes a
+              clickable link.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4 class="sub-section-title">ClrSummaryItemWarning</h4>
+      <p class="section">
+        Used to display a warning state with an optional clickable action on an individual Summary Item. The warning
+        state is only shown when both loading and error states are inactive.
+      </p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Property</th>
+            <th class="left clr-hidden-xs-down">Type</th>
+            <th class="left">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left"><b>active</b></td>
+            <td class="left clr-hidden-xs-down">boolean</td>
+            <td class="left">
+              <b>Required.</b> When <code class="clr-code">true</code> and both loading and error states are inactive,
+              the Summary Item displays a warning indicator instead of its value.
+            </td>
+          </tr>
+          <tr>
+            <td class="left"><b>text</b></td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="left">Optional custom warning message. Defaults to "Warning" if not provided.</td>
+          </tr>
+          <tr>
+            <td class="left"><b>click</b></td>
+            <td class="left clr-hidden-xs-down">() =&gt; void</td>
+            <td class="left">
+              Optional callback function invoked when the warning text is clicked. When provided, the warning text
+              becomes a clickable link.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4 class="sub-section-title">ClrSummaryItemEditConfig</h4>
+      <p class="section">
+        Used to display an edit link when the Summary Item has no content. This is useful for providing an action to add
+        or edit data when the value is empty.
+      </p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Property</th>
+            <th class="left clr-hidden-xs-down">Type</th>
+            <th class="left">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left"><b>enabled</b></td>
+            <td class="left clr-hidden-xs-down">boolean</td>
+            <td class="left">
+              <b>Required.</b> When <code class="clr-code">true</code>, an edit link is shown if no content is projected
+              into the Summary Item and no loading, error, or warning state is active. When set, this overrides the
+              <code class="clr-code">[showOnEmptyValue]</code> input behavior.
+            </td>
+          </tr>
+          <tr>
+            <td class="left"><b>text</b></td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="left">Optional custom text for the edit link. Defaults to "Edit" if not provided.</td>
+          </tr>
+          <tr>
+            <td class="left"><b>click</b></td>
+            <td class="left clr-hidden-xs-down">() =&gt; void</td>
+            <td class="left">
+              <b>Required.</b> Callback function invoked when the edit link is clicked. Typically used to open an edit
+              form or dialog.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4 class="sub-section-title">State Priority</h4>
+      <p class="section">
+        Both the Summary Area and Summary Item components follow a priority hierarchy when determining which state to
+        display:
+      </p>
+      <ol class="list">
+        <li><b>Loading</b> — Always takes highest priority when active</li>
+        <li><b>Error</b> — Shown when loading is inactive</li>
+        <li><b>Warning</b> — Shown when both loading and error are inactive</li>
+        <li><b>Edit (Summary Item only)</b> — Shown when no state is active and no content is present</li>
+        <li><b>Content / Empty Value</b> — Normal display when no state is active</li>
+      </ol>
+    </div>
+
+    <div id="examples">
+      <h3>Code &amp; Examples</h3>
+
+      <h4 class="sub-section-title">Page Layout Demo with a Summary Area</h4>
+      <p class="section">
+        <cds-icon shape="display"></cds-icon>&nbsp;<a
+          routerLink="/full-page-layouts/sidebar-page-layout"
+          routerLinkActive="active"
+          ><span class="nav-text">Summary Area Page Layout Demo</span></a
+        >
+      </p>
+
+      <h4 class="sub-section-title">Basic Summary Area</h4>
+      <p class="section">
+        A simple summary area with multiple items displaying label-value pairs. This is the most common usage pattern.
+      </p>
+      <br />
+
+      <clr-summary-area [rows]="3">
+        <clr-summary-item label="Customer Name">
+          <clr-summary-item-value value="John Doe"></clr-summary-item-value>
+        </clr-summary-item>
+        <clr-summary-item label="Customer ID" [valueCopyable]="true">
+          <clr-summary-item-value value="CUST-12345"></clr-summary-item-value>
+        </clr-summary-item>
+        <clr-summary-item label="Email">
+          <clr-summary-item-value icon="envelope"></clr-summary-item-value>
+          <clr-summary-item-value value="john.doe@example.com"></clr-summary-item-value>
+        </clr-summary-item>
+        <clr-summary-item label="Status">
+          <clr-summary-item-value value="Active"></clr-summary-item-value>
+        </clr-summary-item>
+        <clr-summary-item label="Created Date">
+          <clr-summary-item-value value="2024-01-15"></clr-summary-item-value>
+        </clr-summary-item>
+      </clr-summary-area>
+
+      <clr-code-snippet [clrCode]="basicExample"></clr-code-snippet>
+
+      <h4 class="sub-section-title" class="sub-section-title">Summary Item with Icon</h4>
+      <p class="section">
+        Icons can be placed as the first value element to provide visual context. Note that icons can only be used as
+        the first <code class="clr-code">clr-summary-item-value</code> child element in an
+        <code class="clr-code">clr-summary-item</code> element.
+      </p>
+      <br />
+
+      <clr-summary-area [rows]="1">
+        <clr-summary-item label="Priority">
+          <clr-summary-item-value icon="flag"></clr-summary-item-value>
+          <clr-summary-item-value value="High"></clr-summary-item-value>
+        </clr-summary-item>
+        <clr-summary-item label="Type">
+          <clr-summary-item-value icon="users"></clr-summary-item-value>
+          <clr-summary-item-value value="Business"></clr-summary-item-value>
+        </clr-summary-item>
+        <clr-summary-item label="Category">
+          <clr-summary-item-value icon="folder"></clr-summary-item-value>
+          <clr-summary-item-value value="Finance"></clr-summary-item-value>
+        </clr-summary-item>
+      </clr-summary-area>
+
+      <clr-code-snippet [clrCode]="iconExample"></clr-code-snippet>
+
+      <h4 class="sub-section-title">Clickable Values</h4>
+      <p class="section">
+        Values can be made clickable to navigate or trigger actions. Both icons and text values can be independently
+        clickable.
+      </p>
+      <br />
+
+      <clr-summary-area [rows]="1">
+        <clr-summary-item label="Account">
+          <clr-summary-item-value
+            icon="user"
+            [clickable]="true"
+            tooltip="View user profile"
+            (clicked)="handleIconClick()"
+          ></clr-summary-item-value>
+          <clr-summary-item-value
+            value="View Details"
+            [clickable]="true"
+            (clicked)="handleValueClick()"
+          ></clr-summary-item-value>
+        </clr-summary-item>
+        <clr-summary-item label="External Link">
+          <clr-summary-item-value
+            value="Open Documentation"
+            [clickable]="true"
+            tooltip="Opens in new tab"
+            (clicked)="openExternalLink()"
+          ></clr-summary-item-value>
+        </clr-summary-item>
+      </clr-summary-area>
+
+      <clr-code-snippet [clrCode]="clickableExample"></clr-code-snippet>
+
+      <h4 class="sub-section-title">Multiple Values</h4>
+      <p class="section">A Summary Item can contain multiple text values, displayed in sequence.</p>
+      <br />
+
+      <clr-summary-area [rows]="1">
+        <clr-summary-item label="Tags" [valueCopyable]="true">
+          <clr-summary-item-value value="Angular"></clr-summary-item-value>
+          <clr-summary-item-value value="TypeScript"></clr-summary-item-value>
+          <clr-summary-item-value value="Clarity"></clr-summary-item-value>
+        </clr-summary-item>
+      </clr-summary-area>
+
+      <clr-code-snippet [clrCode]="multipleValuesExample"></clr-code-snippet>
+
+      <h4 class="sub-section-title">Tooltip and Long Text</h4>
+      <p class="section">
+        Long text values are automatically truncated with ellipsis and display a tooltip with the full value. Custom
+        tooltips can be set for additional context. When a value overflows, its text takes precedence for the tooltip
+        content over any custom tooltip.
+      </p>
+      <br />
+
+      <clr-summary-area [rows]="1">
+        <clr-summary-item label="Description">
+          <clr-summary-item-value
+            value="This is a very long description that will be truncated with ellipsis"
+            tooltip="This is a tooltip for the long description"
+          ></clr-summary-item-value>
+        </clr-summary-item>
+        <clr-summary-item label="Info">
+          <clr-summary-item-value
+            value="Hover me"
+            tooltip="This is a custom tooltip providing additional context"
+          ></clr-summary-item-value>
+        </clr-summary-item>
+      </clr-summary-area>
+
+      <clr-code-snippet [clrCode]="tooltipExample"></clr-code-snippet>
+
+      <h4 class="sub-section-title">Empty Value Handling</h4>
+      <p class="section">
+        Items without values can show a placeholder or be hidden entirely. Use
+        <code class="clr-code">[showOnEmptyValue]="true"</code> to show a long dash placeholder or
+        <code class="clr-code">[showOnEmptyValue]="false"</code> to hide the item.
+      </p>
+      <br />
+
+      <clr-summary-area [rows]="1">
+        <clr-summary-item label="With Placeholder" [showOnEmptyValue]="true"></clr-summary-item>
+        <clr-summary-item label="Hidden When Empty" [showOnEmptyValue]="false"></clr-summary-item>
+        <clr-summary-item label="Has Value">
+          <clr-summary-item-value value="Visible"></clr-summary-item-value>
+        </clr-summary-item>
+      </clr-summary-area>
+
+      <clr-code-snippet [clrCode]="emptyValueExample"></clr-code-snippet>
+
+      <h4 class="sub-section-title">Edit Configuration</h4>
+      <p class="section">
+        Empty items can display an edit link when the edit configuration is enabled. This is useful for prompting users
+        to add missing data.
+      </p>
+      <br />
+
+      <clr-summary-area [rows]="1">
+        <clr-summary-item
+          label="Phone Number"
+          [editConfig]="{enabled: true, text: 'Add Phone', click: onAddPhone}"
+        ></clr-summary-item>
+        <clr-summary-item label="Address" [editConfig]="{enabled: true, click: onAddAddress}"></clr-summary-item>
+      </clr-summary-area>
+
+      <clr-code-snippet [clrCode]="editConfigExample"></clr-code-snippet>
+
+      <h4 class="sub-section-title">Copy to Clipboard</h4>
+      <p class="section">
+        Enable the copy button to allow users to easily copy values to the clipboard. The copy button shows a success
+        indicator when clicked. When copying the value of a summary item with multiple values, the values are
+        concatenated with spaces in between (same as they are displayed). Only values defined with
+        <code class="clr-code">clr-summary-item-value</code> components can be copied. Projected content cannot be
+        copyied via the copy button.
+      </p>
+      <br />
+
+      <clr-summary-area [rows]="1">
+        <clr-summary-item label="Order ID" [valueCopyable]="true">
+          <clr-summary-item-value value="ORD-2024-00123"></clr-summary-item-value>
+        </clr-summary-item>
+        <clr-summary-item label="Reference Code" [valueCopyable]="true">
+          <clr-summary-item-value value="ABC-XYZ-123"></clr-summary-item-value>
+        </clr-summary-item>
+        <clr-summary-item label="Custom" [valueCopyable]="true"> I am projected content </clr-summary-item>
+      </clr-summary-area>
+
+      <clr-code-snippet [clrCode]="copyableExample"></clr-code-snippet>
+
+      <h4 class="sub-section-title">Loading States</h4>
+      <p class="section">
+        Both the entire Summary Area and individual items can show loading states. Area loading affects all items. Item
+        loading affects only that specific item.
+      </p>
+      <br />
+
+      <h5>Area Loading</h5>
+      <clr-summary-area [rows]="1" [loading]="{active: true, text: 'Loading data...'}">
+        <clr-summary-item label="Name">
+          <clr-summary-item-value value="John Doe"></clr-summary-item-value>
+        </clr-summary-item>
+      </clr-summary-area>
+
+      <h5>Item Loading</h5>
+      <br />
+      <clr-summary-area [rows]="1">
+        <clr-summary-item label="Status" [loading]="{active: true, text: 'Fetching status...'}">
+          <clr-summary-item-value value="Active"></clr-summary-item-value>
+        </clr-summary-item>
+        <clr-summary-item label="Type">
+          <clr-summary-item-value value="Premium"></clr-summary-item-value>
+        </clr-summary-item>
+      </clr-summary-area>
+
+      <clr-code-snippet [clrCode]="loadingExample"></clr-code-snippet>
+
+      <h4 class="sub-section-title">Error States</h4>
+      <p class="section">
+        Error states can be activated when data cannot be loaded or an issue needs attention. Error states can include
+        configurable text and clickable action links to resolve the issue.
+      </p>
+      <br />
+
+      <h5>Area Error</h5>
+      <br />
+      <clr-summary-area
+        [rows]="1"
+        [error]="{active: true, text: 'Failed to load data', linkText: 'Retry', click: onRetry}"
+      >
+        <clr-summary-item label="Name">
+          <clr-summary-item-value value="John Doe"></clr-summary-item-value>
+        </clr-summary-item>
+      </clr-summary-area>
+
+      <h5>Item Error</h5>
+      <br />
+      <clr-summary-area [rows]="1">
+        <clr-summary-item
+          label="Sync Status"
+          [error]="{active: true, text: 'Sync failed - Click to retry', click: onRetryItem}"
+        >
+          <clr-summary-item-value value="Synced"></clr-summary-item-value>
+        </clr-summary-item>
+        <clr-summary-item label="Type">
+          <clr-summary-item-value value="Premium"></clr-summary-item-value>
+        </clr-summary-item>
+      </clr-summary-area>
+
+      <clr-code-snippet [clrCode]="errorExample"></clr-code-snippet>
+
+      <h4 class="sub-section-title">Warning States</h4>
+      <p class="section">
+        Warning states can be activated to indicate issues that don't prevent the display of critical data or
+        functionality but should be brought to the user's attention. Warning states can include configurable text and
+        clickable action links to address the warning.
+      </p>
+      <br />
+
+      <h5>Area Warning</h5>
+      <br />
+      <clr-summary-area
+        [rows]="1"
+        [warning]="{active: true, text: 'Data may be outdated', linkText: 'Refresh', click: onRefresh}"
+      >
+        <clr-summary-item label="Last Updated">
+          <clr-summary-item-value value="2 hours ago"></clr-summary-item-value>
+        </clr-summary-item>
+      </clr-summary-area>
+
+      <h5>Item Warning</h5>
+      <br />
+      <clr-summary-area [rows]="1">
+        <clr-summary-item
+          label="Sync Status"
+          [warning]="{active: true, text: 'Data outdated - Click to sync', click:
+        onSyncItem}"
+        >
+          <clr-summary-item-value value="Synced"></clr-summary-item-value>
+        </clr-summary-item>
+        <clr-summary-item label="Type">
+          <clr-summary-item-value value="Premium"></clr-summary-item-value>
+        </clr-summary-item>
+      </clr-summary-area>
+
+      <clr-code-snippet [clrCode]="warningExample"></clr-code-snippet>
+
+      <h4 class="sub-section-title">Collapsible Summary Area</h4>
+      <p class="section">
+        Use the <code class="clr-code">clr-summary-area-toggle</code> component to let users collapse and expand the
+        Summary Area. Ensure that <code class="clr-code">ClrSummaryAreaStateService</code> is provided for the summary
+        area component. For independent collapse and expand behavior across multiple summary areas in your application,
+        assign a unique value to the <code class="clr-code">[localStorageKey]</code> input for each pair of
+        <code class="clr-code">clr-summary-area-toggle</code> and <code class="clr-code">clr-summary-area</code>. This
+        prevents the collapse state of one summary area from affecting another.
+      </p>
+      <br />
+
+      <div class="clr-row">
+        <div class="clr-col-12">
+          <clr-summary-area-toggle
+            [localStorageKey]="'collapseSummaryAreaDemoKey'"
+            ariaLabel="Toggle summary"
+          ></clr-summary-area-toggle>
+        </div>
+      </div>
+      <clr-summary-area [rows]="2" [localStorageKey]="'collapseSummaryAreaDemoKey'">
+        <clr-summary-item label="Customer">
+          <clr-summary-item-value value="Acme Corp"></clr-summary-item-value>
+        </clr-summary-item>
+        <clr-summary-item label="Contract">
+          <clr-summary-item-value value="Enterprise"></clr-summary-item-value>
+        </clr-summary-item>
+        <clr-summary-item label="Status">
+          <clr-summary-item-value value="Active"></clr-summary-item-value>
+        </clr-summary-item>
+      </clr-summary-area>
+
+      <clr-code-snippet [clrCode]="toggleExample"></clr-code-snippet>
+
+      <h4 class="sub-section-title">Custom Projected Content</h4>
+      <p class="section">
+        You can project custom content into a Summary Item for more complex displays. Note that copy functionality is
+        not available for projected content.
+      </p>
+      <br />
+
+      <clr-summary-area [rows]="1">
+        <clr-summary-item label="Progress">
+          <clr-progress-bar class="progress-bar" [clrValue]="60" [clrColor]="'warning'"> </clr-progress-bar>
+          <span>60%</span>
+        </clr-summary-item>
+        <clr-summary-item label="Custom Badge">
+          <span class="badge badge-success">Verified</span>
+        </clr-summary-item>
+      </clr-summary-area>
+
+      <clr-code-snippet [clrCode]="projectedContentExample"></clr-code-snippet>
+
+      <h4 class="sub-section-title">Complete Example</h4>
+      <p class="section">A comprehensive example demonstrating multiple features together.</p>
+      <br />
+
+      <clr-summary-area [rows]="3">
+        <clr-summary-item label="Order ID" [valueCopyable]="true">
+          <clr-summary-item-value value="ORD-2024-00456"></clr-summary-item-value>
+        </clr-summary-item>
+        <clr-summary-item label="Customer">
+          <clr-summary-item-value icon="user"></clr-summary-item-value>
+          <clr-summary-item-value
+            value="Jane Smith"
+            [clickable]="true"
+            (clicked)="viewCustomer()"
+          ></clr-summary-item-value>
+        </clr-summary-item>
+        <clr-summary-item label="Status">
+          <clr-summary-item-value icon="success-standard"></clr-summary-item-value>
+          <clr-summary-item-value value="Completed"></clr-summary-item-value>
+        </clr-summary-item>
+        <clr-summary-item label="Amount" [valueCopyable]="true">
+          <clr-summary-item-value value="€1,234.56"></clr-summary-item-value>
+        </clr-summary-item>
+        <clr-summary-item label="Payment Method">
+          <clr-summary-item-value value="Credit Card"></clr-summary-item-value>
+        </clr-summary-item>
+        <clr-summary-item label="Shipping Address">
+          <clr-summary-item-value value="123 Main Street, Vienna, Austria"></clr-summary-item-value>
+        </clr-summary-item>
+        <clr-summary-item label="Notes" [showOnEmptyValue]="true"></clr-summary-item>
+        <clr-summary-item label="Tracking" [loading]="{active: false}">
+          <clr-summary-item-value
+            value="Track Package"
+            [clickable]="true"
+            tooltip="Open tracking page"
+            (clicked)="trackPackage()"
+          ></clr-summary-item-value>
+        </clr-summary-item>
+        <clr-summary-item
+          label="Gift Message"
+          [editConfig]="{enabled: true, text: 'Add message', click: onAddGiftMessage}"
+        ></clr-summary-item>
+      </clr-summary-area>
+
+      <clr-code-snippet [clrCode]="completeExample"></clr-code-snippet>
+    </div>
+  </article>
+</clr-doc-wrapper>
