@@ -1,0 +1,109 @@
+<clr-main-container>
+  <clr-demo-menu></clr-demo-menu>
+
+  <div class="content-header">
+    <clr-back-button></clr-back-button>
+    <h2>Sidebar Page Layout (with Summary Area)</h2>
+    <clr-summary-area-toggle [localStorageKey]="'sidebar-page-layout'"></clr-summary-area-toggle>
+    <clr-button-group class="command-bar" [clrMenuPosition]="'bottom-right'">
+      <clr-button>Command1</clr-button>
+      <clr-button>Command2</clr-button>
+      <clr-button [clrInMenu]="true">Command3</clr-button>
+      <clr-button [clrInMenu]="true">Command4</clr-button>
+    </clr-button-group>
+  </div>
+  <clr-summary-area [rows]="3" [loading]="summaryAreaLoadingState" [localStorageKey]="'sidebar-page-layout'">
+    <clr-summary-item label="Name" [valueCopyable]="true">
+      <clr-summary-item-value icon="user"></clr-summary-item-value>
+      <clr-summary-item-value value="John Doe"></clr-summary-item-value>
+    </clr-summary-item>
+    <clr-summary-item label="Employee Badge ID" [valueCopyable]="true" [error]="itemErrorState">
+      <clr-summary-item-value value="59333 567032"></clr-summary-item-value>
+    </clr-summary-item>
+    <clr-summary-item label="Email" [valueCopyable]="true">
+      <clr-summary-item-value icon="envelope"></clr-summary-item-value>
+      <clr-summary-item-value
+        value="john@example.com"
+        [clickable]="true"
+        (clicked)="sendEmail('john@example.com')"
+      ></clr-summary-item-value>
+    </clr-summary-item>
+    <clr-summary-item label="Phone" [valueCopyable]="true">
+      <clr-summary-item-value
+        icon="mobile"
+        [clickable]="true"
+        (clicked)="callPhone('+4312345678')"
+      ></clr-summary-item-value>
+      <clr-summary-item-value
+        value="+43 1234 5678"
+        [clickable]="true"
+        (clicked)="callPhone('+4312345678')"
+      ></clr-summary-item-value>
+    </clr-summary-item>
+    <clr-summary-item label="Location">
+      <clr-summary-item-value icon="map-marker"></clr-summary-item-value>
+      <clr-summary-item-value value="Austria"></clr-summary-item-value>
+    </clr-summary-item>
+    <clr-summary-item label="Status">
+      <clr-summary-item-value value="Active"></clr-summary-item-value>
+    </clr-summary-item>
+    <clr-summary-item label="Role">
+      <clr-summary-item-value
+        icon="administrator"
+        [clickable]="true"
+        (clicked)="navigateInternally('settings')"
+        tooltip="Navigate to settings"
+      ></clr-summary-item-value>
+      <clr-summary-item-value value="Admin"></clr-summary-item-value>
+    </clr-summary-item>
+    <clr-summary-item label="Last Login">
+      <clr-summary-item-value icon="login"></clr-summary-item-value>
+      <clr-summary-item-value value="2026-06-01 10:00"></clr-summary-item-value>
+    </clr-summary-item>
+    <clr-summary-item label="Department" [valueCopyable]="true">
+      <clr-summary-item-value
+        value="Global Strategic Innovation and Advanced Research & Development Operations for Emerging Technologies and Digital Transformation Initiatives"
+      ></clr-summary-item-value>
+    </clr-summary-item>
+    <clr-summary-item label="Manager" [valueCopyable]="true">
+      <clr-summary-item-value
+        value="Jane Smith"
+        [clickable]="true"
+        (clicked)="navigateInternally('profile')"
+        tooltip="Navigate to profile"
+      ></clr-summary-item-value>
+    </clr-summary-item>
+    <clr-summary-item label="Tasks" [loading]="itemLoadingState">
+      <clr-summary-item-value
+        value="5 open Tasks"
+        [clickable]="true"
+        (clicked)="navigateInternally('tasks')"
+      ></clr-summary-item-value>
+    </clr-summary-item>
+    <clr-summary-item label="Quota">
+      <clr-progress-bar class="progress-bar" [clrValue]="60" [clrColor]="'warning'"> </clr-progress-bar>
+      <span>60%</span>
+    </clr-summary-item>
+    <clr-summary-item label="Performance"></clr-summary-item>
+    <clr-summary-item label="Skills" [editConfig]="editConfig"></clr-summary-item>
+    <clr-summary-item label="References">
+      <clr-summary-item-value
+        value="Porsche Informatik"
+        [clickable]="true"
+        (clicked)="openReferencesWebsite()"
+      ></clr-summary-item-value>
+    </clr-summary-item>
+  </clr-summary-area>
+
+  <div class="content-container">
+    <div class="content-area">
+      <router-outlet></router-outlet>
+    </div>
+    <clr-vertical-nav [clr-nav-level]="2" [clrVerticalNavCollapsible]="true">
+      <a class="nav-link" routerLink="overview" routerLinkActive="active"><span class="nav-text">Overview</span></a>
+      <a class="nav-link" routerLink="profile" routerLinkActive="active"><span class="nav-text">Profile</span></a>
+      <a class="nav-link" routerLink="settings" routerLinkActive="active"><span class="nav-text">Settings</span></a>
+      <a class="nav-link" routerLink="tasks" routerLinkActive="active"><span class="nav-text">Tasks</span></a>
+    </clr-vertical-nav>
+  </div>
+</clr-main-container>

@@ -11,8 +11,8 @@ ClarityIcons.addIcons(displayIcon);
 
 const MAINNAV_HTML_EXAMPLE = `
 <clr-main-nav-group clrTitle="Layouts" routerLinkActive="active">
-    <a class="nav-link" routerLink="/full-page-layouts/basepage-layout" routerLinkActive="active" clrMainNavGroupItem>Base Pagelayout</a>
-    <a class="nav-link" routerLink="/full-page-layouts/sidebarpage-layout" routerLinkActive="active" clrMainNavGroupItem>Sidebar Pagelayout</a>
+    <a class="nav-link" routerLink="/full-page-layouts/basepage-layout" routerLinkActive="active" clrMainNavGroupItem>Base Page Layout</a>
+    <a class="nav-link" routerLink="/full-page-layouts/sidebarpage-layout" routerLinkActive="active" clrMainNavGroupItem>Sidebar Page Layout</a>
     <a class="nav-link" routerLink="/full-page-layouts/content-panel" routerLinkActive="active" clrMainNavGroupItem>Content Panel Layout</a>
 </clr-main-nav-group>
 `;

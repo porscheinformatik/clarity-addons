@@ -1,0 +1,17 @@
+:host {
+  display: flex;
+  align-items: center;
+}
+
+.summary-item-copy-value-icon {
+  cursor: pointer;
+  color: var(--cds-alias-status-disabled-tint);
+}
+
+.summary-item-copy-value-icon:hover {
+  color: var(--cds-alias-typography-link-color);
+}
+
+.attribute-was-copied-color {
+  color: var(--cds-alias-status-success) !important;
+}
