@@ -313,3 +313,8 @@
     display: none;
   }
 }
+
+// datagrid detail pagination should be displayed right-aligned
+.datagrid-detail-open .pagination {
+  width: auto;
+}
