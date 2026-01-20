@@ -96,7 +96,7 @@
 
       <h3 id="summary-of-option">Summary of Options</h3>
 
-      <h4>ClrSummaryArea</h4>
+      <h4 class="sub-section-title">ClrSummaryArea</h4>
       <table class="table">
         <thead>
           <tr>
@@ -162,7 +162,7 @@
         </tbody>
       </table>
 
-      <h4>ClrSummaryItem</h4>
+      <h4 class="sub-section-title">ClrSummaryItem</h4>
       <table class="table">
         <thead>
           <tr>
@@ -244,7 +244,7 @@
         </tbody>
       </table>
 
-      <h4>ClrSummaryItemValue</h4>
+      <h4 class="sub-section-title">ClrSummaryItemValue</h4>
       <table class="table">
         <thead>
           <tr>
@@ -304,7 +304,7 @@
         </tbody>
       </table>
 
-      <h4>ClrSummaryAreaToggle</h4>
+      <h4 class="sub-section-title">ClrSummaryAreaToggle</h4>
       <table class="table">
         <thead>
           <tr>
@@ -360,6 +360,335 @@
           </tr>
         </tbody>
       </table>
+
+      <h3 class="clr-mt-24px">Model Interfaces</h3>
+      <p class="section">
+        The Summary Area and Summary Item components use specific model interfaces to configure loading, error, warning,
+        and edit states. Below is a detailed description of each interface and how their properties affect the component
+        behavior.
+      </p>
+
+      <h4 class="sub-section-title">ClrSummaryAreaLoading</h4>
+      <p class="section">Used to display a loading indicator with an optional custom message on the Summary Area.</p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Property</th>
+            <th class="left clr-hidden-xs-down">Type</th>
+            <th class="left">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left"><b>active</b></td>
+            <td class="left clr-hidden-xs-down">boolean</td>
+            <td class="left">
+              <b>Required.</b> When <code class="clr-code">true</code>, the Summary Area displays a loading spinner and
+              hides all summary items. Loading state takes highest priority over error and warning states.
+            </td>
+          </tr>
+          <tr>
+            <td class="left"><b>text</b></td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="left">
+              Optional custom text displayed next to the loading spinner. Defaults to "Loading..." if not provided.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4 class="sub-section-title">ClrSummaryAreaError</h4>
+      <p class="section">
+        Used to display an error state with an optional clickable action link on the Summary Area. The error state is
+        only shown when the loading state is inactive.
+      </p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Property</th>
+            <th class="left clr-hidden-xs-down">Type</th>
+            <th class="left">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left"><b>active</b></td>
+            <td class="left clr-hidden-xs-down">boolean</td>
+            <td class="left">
+              <b>Required.</b> When <code class="clr-code">true</code> and loading is inactive, the Summary Area
+              displays an error indicator and hides all summary items. Error state takes priority over warning state.
+            </td>
+          </tr>
+          <tr>
+            <td class="left"><b>text</b></td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="left">
+              Optional custom error message displayed next to the error icon. Defaults to "Error" if not provided.
+            </td>
+          </tr>
+          <tr>
+            <td class="left"><b>linkText</b></td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="left">
+              Optional text for the action link displayed after the error message. Only shown when
+              <code class="clr-code">click</code> callback is also provided.
+            </td>
+          </tr>
+          <tr>
+            <td class="left"><b>click</b></td>
+            <td class="left clr-hidden-xs-down">() =&gt; void</td>
+            <td class="left">
+              Optional callback function invoked when the action link is clicked. Typically used to retry loading or
+              navigate to an error details page.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4 class="sub-section-title">ClrSummaryAreaWarning</h4>
+      <p class="section">
+        Used to display a warning state with an optional clickable action link on the Summary Area. The warning state is
+        only shown when both loading and error states are inactive.
+      </p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Property</th>
+            <th class="left clr-hidden-xs-down">Type</th>
+            <th class="left">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left"><b>active</b></td>
+            <td class="left clr-hidden-xs-down">boolean</td>
+            <td class="left">
+              <b>Required.</b> When <code class="clr-code">true</code> and both loading and error states are inactive,
+              the Summary Area displays a warning indicator and hides all summary items.
+            </td>
+          </tr>
+          <tr>
+            <td class="left"><b>text</b></td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="left">
+              Optional custom warning message displayed next to the warning icon. Defaults to "Warning" if not provided.
+            </td>
+          </tr>
+          <tr>
+            <td class="left"><b>linkText</b></td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="left">
+              Optional text for the action link displayed after the warning message. Only shown when
+              <code class="clr-code">click</code> callback is also provided.
+            </td>
+          </tr>
+          <tr>
+            <td class="left"><b>click</b></td>
+            <td class="left clr-hidden-xs-down">() =&gt; void</td>
+            <td class="left">Optional callback function invoked when the action link is clicked.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4 class="sub-section-title">ClrSummaryAreaColumns</h4>
+      <p class="section">A type alias for the allowed number of columns in the Summary Area grid.</p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Type</th>
+            <th class="left">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left"><code class="clr-code">1 | 2 | 3 | 4 | 5</code></td>
+            <td class="left">
+              The Summary Area supports a maximum of 5 columns. The actual number of columns displayed is calculated
+              dynamically based on the number of items, the configured rows, and the available screen width.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4 class="sub-section-title">ClrSummaryAreaRows</h4>
+      <p class="section">A type alias for the allowed number of rows in the Summary Area grid.</p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Type</th>
+            <th class="left">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left"><code class="clr-code">1 | 2 | 3</code></td>
+            <td class="left">
+              The Summary Area supports a maximum of 3 rows. Combined with the 5 column limit, this means a maximum of
+              15 summary items can be displayed. Items beyond this limit will not be visible.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4 class="sub-section-title">ClrSummaryItemLoading</h4>
+      <p class="section">
+        Used to display a loading indicator with an optional custom message on an individual Summary Item.
+      </p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Property</th>
+            <th class="left clr-hidden-xs-down">Type</th>
+            <th class="left">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left"><b>active</b></td>
+            <td class="left clr-hidden-xs-down">boolean</td>
+            <td class="left">
+              <b>Required.</b> When <code class="clr-code">true</code>, the Summary Item displays a loading spinner
+              instead of its value. Loading state takes highest priority over error and warning states at the item
+              level.
+            </td>
+          </tr>
+          <tr>
+            <td class="left"><b>text</b></td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="left">
+              Optional custom text displayed next to the loading spinner. Defaults to "Loading..." if not provided.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4 class="sub-section-title">ClrSummaryItemError</h4>
+      <p class="section">
+        Used to display an error state with an optional clickable action on an individual Summary Item. The error state
+        is only shown when the loading state is inactive.
+      </p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Property</th>
+            <th class="left clr-hidden-xs-down">Type</th>
+            <th class="left">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left"><b>active</b></td>
+            <td class="left clr-hidden-xs-down">boolean</td>
+            <td class="left">
+              <b>Required.</b> When <code class="clr-code">true</code> and loading is inactive, the Summary Item
+              displays an error indicator instead of its value. Error state takes priority over warning state.
+            </td>
+          </tr>
+          <tr>
+            <td class="left"><b>text</b></td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="left">Optional custom error message. Defaults to "Error" if not provided.</td>
+          </tr>
+          <tr>
+            <td class="left"><b>click</b></td>
+            <td class="left clr-hidden-xs-down">() =&gt; void</td>
+            <td class="left">
+              Optional callback function invoked when the error text is clicked. When provided, the error text becomes a
+              clickable link.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4 class="sub-section-title">ClrSummaryItemWarning</h4>
+      <p class="section">
+        Used to display a warning state with an optional clickable action on an individual Summary Item. The warning
+        state is only shown when both loading and error states are inactive.
+      </p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Property</th>
+            <th class="left clr-hidden-xs-down">Type</th>
+            <th class="left">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left"><b>active</b></td>
+            <td class="left clr-hidden-xs-down">boolean</td>
+            <td class="left">
+              <b>Required.</b> When <code class="clr-code">true</code> and both loading and error states are inactive,
+              the Summary Item displays a warning indicator instead of its value.
+            </td>
+          </tr>
+          <tr>
+            <td class="left"><b>text</b></td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="left">Optional custom warning message. Defaults to "Warning" if not provided.</td>
+          </tr>
+          <tr>
+            <td class="left"><b>click</b></td>
+            <td class="left clr-hidden-xs-down">() =&gt; void</td>
+            <td class="left">
+              Optional callback function invoked when the warning text is clicked. When provided, the warning text
+              becomes a clickable link.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4 class="sub-section-title">ClrSummaryItemEditConfig</h4>
+      <p class="section">
+        Used to display an edit link when the Summary Item has no content. This is useful for providing an action to add
+        or edit data when the value is empty.
+      </p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Property</th>
+            <th class="left clr-hidden-xs-down">Type</th>
+            <th class="left">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left"><b>enabled</b></td>
+            <td class="left clr-hidden-xs-down">boolean</td>
+            <td class="left">
+              <b>Required.</b> When <code class="clr-code">true</code>, an edit link is shown if no content is projected
+              into the Summary Item and no loading, error, or warning state is active. When set, this overrides the
+              <code class="clr-code">[showOnEmptyValue]</code> input behavior.
+            </td>
+          </tr>
+          <tr>
+            <td class="left"><b>text</b></td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="left">Optional custom text for the edit link. Defaults to "Edit" if not provided.</td>
+          </tr>
+          <tr>
+            <td class="left"><b>click</b></td>
+            <td class="left clr-hidden-xs-down">() =&gt; void</td>
+            <td class="left">
+              <b>Required.</b> Callback function invoked when the edit link is clicked. Typically used to open an edit
+              form or dialog.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4 class="sub-section-title">State Priority</h4>
+      <p class="section">
+        Both the Summary Area and Summary Item components follow a priority hierarchy when determining which state to
+        display:
+      </p>
+      <ol class="list">
+        <li><b>Loading</b> — Always takes highest priority when active</li>
+        <li><b>Error</b> — Shown when loading is inactive</li>
+        <li><b>Warning</b> — Shown when both loading and error are inactive</li>
+        <li><b>Edit (Summary Item only)</b> — Shown when no state is active and no content is present</li>
+        <li><b>Content / Empty Value</b> — Normal display when no state is active</li>
+      </ol>
     </div>
 
     <div id="examples">
