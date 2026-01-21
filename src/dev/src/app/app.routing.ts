@@ -144,6 +144,13 @@ export const APP_ROUTES: Routes = [
       ),
   },
   {
+    path: 'datagrid-detail-datagrid',
+    loadChildren: () =>
+      import('./datagrid-detail-datagrid/datagrid-detail-datagrid.demo.module').then(
+        m => m.DatagridDetailDatagridDemoModule
+      ),
+  },
+  {
     path: 'enum-filter',
     loadChildren: () => import('./enum-filter/enum-filter.demo.module').then(m => m.EnumFilterDemoModule),
   },
