@@ -697,7 +697,7 @@
       <h4 class="sub-section-title">Page Layout Demo with a Summary Area</h4>
       <p class="section">
         <cds-icon shape="display"></cds-icon>&nbsp;<a
-          routerLink="/full-page-layouts/sidebar-page-layout"
+          [routerLink]="['/full-page-layouts/sidebarpage-layout', { outlets: { fullpage: ['overview'] } }]"
           routerLinkActive="active"
           ><span class="nav-text">Summary Area Page Layout Demo</span></a
         >
