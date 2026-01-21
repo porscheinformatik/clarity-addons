@@ -1,0 +1,42 @@
+<h2>Datagrid with detail datagrid</h2>
+
+<clr-datagrid [(clrDgSelected)]="selected">
+  <clr-dg-column [clrDgField]="'name'">Name</clr-dg-column>
+  <clr-dg-column [clrDgField]="'text'">Description</clr-dg-column>
+  <clr-dg-column [clrDgField]="'status'"> Status</clr-dg-column>
+
+  <clr-dg-row *clrDgItems="let item of dataDatagrid" [clrDgItem]="item">
+    <clr-dg-cell>{{ item.name }}</clr-dg-cell>
+    <clr-dg-cell>{{ item.text }}</clr-dg-cell>
+    <clr-dg-cell>{{ item.status }}</clr-dg-cell>
+  </clr-dg-row>
+
+  <clr-dg-detail *clrIfDetail="let detail">
+    <clr-dg-detail-header>Datagrid detail</clr-dg-detail-header>
+    <clr-dg-detail-body>
+      <clr-datagrid [(clrDgSelected)]="selectedDetail">
+        <clr-dg-column [clrDgField]="'name'">Name</clr-dg-column>
+        <clr-dg-column [clrDgField]="'text'">Description</clr-dg-column>
+        <clr-dg-column [clrDgField]="'status'"> Status</clr-dg-column>
+
+        <clr-dg-row *clrDgItems="let item of dataDatagrid" [clrDgItem]="item">
+          <clr-dg-cell>{{ item.name }}</clr-dg-cell>
+          <clr-dg-cell>{{ item.text }}</clr-dg-cell>
+          <clr-dg-cell>{{ item.status }}</clr-dg-cell>
+        </clr-dg-row>
+
+        <clr-dg-footer>
+          <clr-dg-pagination [clrDgPageSize]="10">
+            <clr-dg-page-size [clrPageSizeOptions]="[10,15,20,50,100]">Entries per page </clr-dg-page-size>
+          </clr-dg-pagination>
+        </clr-dg-footer>
+      </clr-datagrid>
+    </clr-dg-detail-body>
+  </clr-dg-detail>
+
+  <clr-dg-footer>
+    <clr-dg-pagination [clrDgPageSize]="10">
+      <clr-dg-page-size [clrPageSizeOptions]="[5,10,15,50,100]">Entries per page</clr-dg-page-size>
+    </clr-dg-pagination>
+  </clr-dg-footer>
+</clr-datagrid>
