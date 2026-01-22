@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, computed, ElementRef, EventEmitter, input, Output, signal } from '@angular/core';
+import { Component, computed, effect, ElementRef, EventEmitter, input, Output, signal } from '@angular/core';
 import { ClarityModule, ClrDatagrid } from '@clr/angular';
 import { ExportDatagridService } from './export-datagrid.service';
 import { NgClass, NgForOf } from '@angular/common';
@@ -12,7 +12,7 @@ import { delay } from 'rxjs';
   standalone: true,
   imports: [ClarityModule, NgForOf, NgClass],
 })
-export class ExportDatagridButtonComponent implements AfterViewInit {
+export class ExportDatagridButtonComponent {
   /* input signals */
   datagrid = input<ClrDatagrid | undefined>();
   datagridRef = input<ElementRef | undefined>();
@@ -48,26 +48,29 @@ export class ExportDatagridButtonComponent implements AfterViewInit {
       });
   });
 
-  ngAfterViewInit(): void {
-    if (!this.datagrid()) {
-      return;
-    }
+  constructor(private readonly exportService: ExportDatagridService) {
+    effect(() => {
+      const datagrid = this.datagrid();
+      if (!datagrid) {
+        return undefined;
+      }
 
-    this.datagrid()
-      .refresh.pipe(delay(0))
-      .subscribe(dgState => {
+      const refreshSub = datagrid.refresh.pipe(delay(0)).subscribe(dgState => {
         const hasFilter = dgState.filters && dgState.filters.length > 0;
         this.updateExportType(ExportTypeEnum.FILTERED, hasFilter, this.exportTypesToShow() || this.exportTypes);
       });
 
-    this.datagrid().selectedChanged.subscribe(() => {
-      const hasSelection = this.datagrid().selection.current.length > 0;
-      console.log(hasSelection);
-      this.updateExportType(ExportTypeEnum.SELECTED, hasSelection, this.exportTypesToShow() || this.exportTypes);
+      const selectedChangedSub = datagrid.selectedChanged.subscribe(() => {
+        const hasSelection = datagrid.selection.current.length > 0;
+        this.updateExportType(ExportTypeEnum.SELECTED, hasSelection, this.exportTypesToShow() || this.exportTypes);
+      });
+
+      return () => {
+        refreshSub.unsubscribe();
+        selectedChangedSub.unsubscribe();
+      };
     });
   }
-
-  constructor(private readonly exportService: ExportDatagridService) {}
 
   private exportExcel(type: ExportTypeEnum): void {
     if (!this.datagrid() || !this.datagridRef()) {
@@ -114,9 +117,6 @@ export class ExportDatagridButtonComponent implements AfterViewInit {
     const index = this.possibleExportTypes().findIndex(et => et === type);
     const allowed =
       !exportTypesToShowVal || exportTypesToShowVal.length === 0 || exportTypesToShowVal.some(et => et.type === type);
-    console.log('allowed', allowed);
-    console.log('index', index);
-    debugger;
     if (index === -1 && allowed && shouldExist) {
       this.possibleExportTypes.update(prev => [...prev, type]);
     } else if (allowed && !shouldExist && index !== -1) {
