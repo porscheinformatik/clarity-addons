@@ -52,7 +52,7 @@ export class ExportDatagridButtonComponent implements OnDestroy {
   });
 
   constructor(private readonly exportService: ExportDatagridService) {
-    effect(onCleanup => {
+    effect(() => {
       const datagrid = this.datagrid();
       if (!datagrid) {
         return undefined;
@@ -60,19 +60,14 @@ export class ExportDatagridButtonComponent implements OnDestroy {
 
       this.destroy$.next();
 
-      const refreshSub = datagrid.refresh.pipe(delay(0), takeUntil(this.destroy$)).subscribe(dgState => {
+      datagrid.refresh.pipe(delay(0), takeUntil(this.destroy$)).subscribe(dgState => {
         const hasFilter = dgState.filters && dgState.filters.length > 0;
         this.updateExportType(ExportTypeEnum.FILTERED, hasFilter, this.exportTypesToShow() || this.exportTypes);
       });
 
-      const selectedChangedSub = datagrid.selectedChanged.pipe(takeUntil(this.destroy$)).subscribe(() => {
+      datagrid.selectedChanged.pipe(takeUntil(this.destroy$)).subscribe(() => {
         const hasSelection = datagrid.selection.current.length > 0;
         this.updateExportType(ExportTypeEnum.SELECTED, hasSelection, this.exportTypesToShow() || this.exportTypes);
-      });
-
-      onCleanup(() => {
-        refreshSub.unsubscribe();
-        selectedChangedSub.unsubscribe();
       });
     });
   }
