@@ -1,9 +1,10 @@
-import { Component, computed, effect, ElementRef, EventEmitter, input, Output, signal } from '@angular/core';
+import { Component, computed, effect, ElementRef, EventEmitter, input, OnDestroy, Output, signal } from '@angular/core';
 import { ClarityModule, ClrDatagrid } from '@clr/angular';
 import { ExportDatagridService } from './export-datagrid.service';
 import { NgClass, NgForOf } from '@angular/common';
 import { ExportType, ExportTypeEnum } from './export-type.model';
-import { delay } from 'rxjs';
+import { delay, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'clr-export-datagrid-button',
@@ -12,7 +13,7 @@ import { delay } from 'rxjs';
   standalone: true,
   imports: [ClarityModule, NgForOf, NgClass],
 })
-export class ExportDatagridButtonComponent {
+export class ExportDatagridButtonComponent implements OnDestroy {
   /* input signals */
   datagrid = input<ClrDatagrid | undefined>();
   datagridRef = input<ElementRef | undefined>();
@@ -22,6 +23,8 @@ export class ExportDatagridButtonComponent {
   exportButtonPosition = input<'left' | 'right'>('right');
   possibleExportTypes = signal<ExportTypeEnum[]>([ExportTypeEnum.ALL]);
   exportButtonText = input('EXPORT');
+
+  destroy$ = new Subject<void>();
 
   /* outputs */
   @Output() readonly backendExport: EventEmitter<ExportTypeEnum> = new EventEmitter<ExportTypeEnum>();
@@ -49,27 +52,34 @@ export class ExportDatagridButtonComponent {
   });
 
   constructor(private readonly exportService: ExportDatagridService) {
-    effect(() => {
+    effect(onCleanup => {
       const datagrid = this.datagrid();
       if (!datagrid) {
         return undefined;
       }
 
-      const refreshSub = datagrid.refresh.pipe(delay(0)).subscribe(dgState => {
+      this.destroy$.next();
+
+      const refreshSub = datagrid.refresh.pipe(delay(0), takeUntil(this.destroy$)).subscribe(dgState => {
         const hasFilter = dgState.filters && dgState.filters.length > 0;
         this.updateExportType(ExportTypeEnum.FILTERED, hasFilter, this.exportTypesToShow() || this.exportTypes);
       });
 
-      const selectedChangedSub = datagrid.selectedChanged.subscribe(() => {
+      const selectedChangedSub = datagrid.selectedChanged.pipe(takeUntil(this.destroy$)).subscribe(() => {
         const hasSelection = datagrid.selection.current.length > 0;
         this.updateExportType(ExportTypeEnum.SELECTED, hasSelection, this.exportTypesToShow() || this.exportTypes);
       });
 
-      return () => {
+      onCleanup(() => {
         refreshSub.unsubscribe();
         selectedChangedSub.unsubscribe();
-      };
+      });
     });
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   private exportExcel(type: ExportTypeEnum): void {
