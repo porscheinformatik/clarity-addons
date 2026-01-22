@@ -9,7 +9,7 @@
       [datagrid]="datagrid"
       [datagridRef]="datagridRef"
       [exportTypesToShow]="exportType"
-      [isBackendExport]="true"
+      [isBackendExport]="false"
       (backendExport)="onBackendExport($event)"
     >
     </clr-export-datagrid-button>
@@ -23,6 +23,12 @@
       <clr-dg-column [clrDgField]="'column3'">
         <ng-container *clrDgHideableColumn="{ hidden: false }">Column 3</ng-container>
       </clr-dg-column>
+      <clr-dg-column [clrDgField]="'status'">
+        <ng-container *clrDgHideableColumn="{ hidden: false }">Status</ng-container>
+        <clr-dg-filter>
+          <clr-enum-filter clrProperty="status"></clr-enum-filter>
+        </clr-dg-filter>
+      </clr-dg-column>
       <clr-dg-column [clrDgField]="'column4'">
         <ng-container *clrDgHideableColumn="{ hidden: true }">Column 4</ng-container>
       </clr-dg-column>
@@ -31,6 +37,7 @@
         <clr-dg-cell>{{ entry.column1 }}</clr-dg-cell>
         <clr-dg-cell>{{ entry.column2 }}</clr-dg-cell>
         <clr-dg-cell>{{ entry.column3 }}</clr-dg-cell>
+        <clr-dg-cell>{{ entry.status }}</clr-dg-cell>
         <clr-dg-cell>{{ entry.column4 }}</clr-dg-cell>
       </clr-dg-row>
 

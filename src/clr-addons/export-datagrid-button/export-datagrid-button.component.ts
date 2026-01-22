@@ -1,8 +1,9 @@
-import { Component, computed, ElementRef, EventEmitter, input, Output, signal } from '@angular/core';
-import { ClarityModule, ClrDatagrid, ClrDatagridColumn } from '@clr/angular';
+import { Component, computed, effect, ElementRef, EventEmitter, input, Output, signal } from '@angular/core';
+import { ClarityModule, ClrDatagrid } from '@clr/angular';
 import { ExportDatagridService } from './export-datagrid.service';
 import { NgClass, NgForOf } from '@angular/common';
 import { ExportType, ExportTypeEnum } from './export-type.model';
+import { delay } from 'rxjs';
 
 @Component({
   selector: 'clr-export-datagrid-button',
@@ -32,25 +33,10 @@ export class ExportDatagridButtonComponent {
   ];
 
   readonly exportTypesFiltered = computed(() => {
-    this.possibleExportTypes();
     let exportTypesToShowVal = this.exportTypesToShow();
     if (!exportTypesToShowVal || exportTypesToShowVal.length === 0) {
       exportTypesToShowVal = this.exportTypes;
     }
-    for (const column of this.datagrid().columns) {
-      // if a column filter is applied, show the FILTERED export type
-      column.filterValueChange.subscribe((col: ClrDatagridColumn) => {
-        this.updateExportType(ExportTypeEnum.FILTERED, !!col, exportTypesToShowVal);
-      });
-    }
-
-    this.datagrid().selectedChanged.subscribe(() => {
-      const hasSelection = this.datagrid().selection.current.length > 0;
-      // if a row is selected, show the SELECTED export type
-      this.updateExportType(ExportTypeEnum.SELECTED, hasSelection, exportTypesToShowVal);
-    });
-
-    // Map to translated value, falling back to default if value is not provided
     return exportTypesToShowVal
       .filter(showType => this.possibleExportTypes().some(et => et === showType.type))
       .map(showType => {
@@ -62,7 +48,29 @@ export class ExportDatagridButtonComponent {
       });
   });
 
-  constructor(private readonly exportService: ExportDatagridService) {}
+  constructor(private readonly exportService: ExportDatagridService) {
+    effect(() => {
+      const datagrid = this.datagrid();
+      if (!datagrid) {
+        return undefined;
+      }
+
+      const refreshSub = datagrid.refresh.pipe(delay(0)).subscribe(dgState => {
+        const hasFilter = dgState.filters && dgState.filters.length > 0;
+        this.updateExportType(ExportTypeEnum.FILTERED, hasFilter, this.exportTypesToShow() || this.exportTypes);
+      });
+
+      const selectedChangedSub = datagrid.selectedChanged.subscribe(() => {
+        const hasSelection = datagrid.selection.current.length > 0;
+        this.updateExportType(ExportTypeEnum.SELECTED, hasSelection, this.exportTypesToShow() || this.exportTypes);
+      });
+
+      return () => {
+        refreshSub.unsubscribe();
+        selectedChangedSub.unsubscribe();
+      };
+    });
+  }
 
   private exportExcel(type: ExportTypeEnum): void {
     if (!this.datagrid() || !this.datagridRef()) {
