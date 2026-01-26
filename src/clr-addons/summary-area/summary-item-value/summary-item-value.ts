@@ -211,7 +211,7 @@ export class ClrSummaryItemValue implements OnInit, AfterContentInit, AfterViewI
 
     const tooltip = this.effectiveTooltip;
     // if the tooltip content is too short for medium size, size small should be used instead
-    const newSize = tooltip && tooltip.length < 34 ? 'sm' : 'md';
+    const newSize = tooltip && tooltip.length < 30 ? 'sm' : 'md';
 
     if (this.tooltipSize !== newSize) {
       this.tooltipSize = newSize;

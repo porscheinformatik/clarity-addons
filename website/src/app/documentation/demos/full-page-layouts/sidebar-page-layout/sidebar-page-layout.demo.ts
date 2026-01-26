@@ -69,7 +69,7 @@ export class SidebarPageLayoutDemo implements OnInit {
   }
 
   navigateInternally(page: string) {
-    this.router.navigate(['/full-page-layouts/sidebar-page-layout', { outlets: { fullpage: page } }]);
+    this.router.navigate(['/full-page-layouts/sidebarpage-layout', { outlets: { fullpage: page } }]);
   }
 
   openReferencesWebsite() {
