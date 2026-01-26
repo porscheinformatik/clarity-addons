@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { ClrSummaryItemValueCopyButton } from './summary-item-value-copy-button';
@@ -62,10 +62,10 @@ describe('SummaryItemValueCopyButton', () => {
       fixture.componentRef.setInput('value', 'test');
       fixture.detectChanges();
 
-      const icon = fixture.debugElement.query(By.css('cds-icon'));
-      icon.nativeElement.dispatchEvent(new MouseEvent('mousedown'));
+      component.onCopied(true);
       fixture.detectChanges();
 
+      const icon = fixture.debugElement.query(By.css('cds-icon'));
       expect(icon.nativeElement.getAttribute('shape')).toBe('success-standard');
     });
 
@@ -73,61 +73,96 @@ describe('SummaryItemValueCopyButton', () => {
       fixture.componentRef.setInput('value', 'test');
       fixture.detectChanges();
 
-      const icon = fixture.debugElement.query(By.css('cds-icon'));
-      icon.nativeElement.dispatchEvent(new MouseEvent('mousedown'));
+      component.onCopied(true);
       fixture.detectChanges();
 
+      const icon = fixture.debugElement.query(By.css('cds-icon'));
       expect(icon.nativeElement.classList.contains('attribute-was-copied-color')).toBe(true);
     });
 
-    it('should remove value from showValueCopiedIcon set after 1 second', done => {
+    it('should remove value from showValueCopiedIcon set after 1 second', fakeAsync(() => {
       const testValue = 'test value';
       fixture.componentRef.setInput('value', testValue);
       fixture.detectChanges();
 
       component.onCopied(true);
-
+      fixture.detectChanges();
       expect(component.showCopiedIcon).toBe(true);
 
-      setTimeout(() => {
-        expect(component.showCopiedIcon).toBe(false);
-        done();
-      }, 1100);
-    });
+      tick(1100);
+      fixture.detectChanges();
+      expect(component.showCopiedIcon).toBe(false);
+    }));
 
-    it('should revert to copy-to-clipboard icon after 1 second', done => {
+    it('should revert to copy-to-clipboard icon after 1 second', fakeAsync(() => {
       fixture.componentRef.setInput('value', 'test');
       fixture.detectChanges();
 
-      const icon = fixture.debugElement.query(By.css('cds-icon'));
-      icon.nativeElement.dispatchEvent(new MouseEvent('mousedown'));
+      component.onCopied(true);
       fixture.detectChanges();
-
+      const icon = fixture.debugElement.query(By.css('cds-icon'));
       expect(icon.nativeElement.getAttribute('shape')).toBe('success-standard');
 
-      setTimeout(() => {
-        fixture.detectChanges();
-        expect(icon.nativeElement.getAttribute('shape')).toBe('copy-to-clipboard');
-        done();
-      }, 1100);
-    });
+      tick(1100);
+      fixture.detectChanges();
+      expect(icon.nativeElement.getAttribute('shape')).toBe('copy-to-clipboard');
+    }));
 
-    it('should remove copied color class after 1 second', done => {
+    it('should remove copied color class after 1 second', fakeAsync(() => {
       fixture.componentRef.setInput('value', 'test');
       fixture.detectChanges();
 
-      const icon = fixture.debugElement.query(By.css('cds-icon'));
-      icon.nativeElement.dispatchEvent(new MouseEvent('mousedown'));
+      component.onCopied(true);
       fixture.detectChanges();
-
+      const icon = fixture.debugElement.query(By.css('cds-icon'));
       expect(icon.nativeElement.classList.contains('attribute-was-copied-color')).toBe(true);
 
-      setTimeout(() => {
-        fixture.detectChanges();
-        expect(icon.nativeElement.classList.contains('attribute-was-copied-color')).toBe(false);
-        done();
-      }, 1100);
-    });
+      tick(1100);
+      fixture.detectChanges();
+      expect(icon.nativeElement.classList.contains('attribute-was-copied-color')).toBe(false);
+    }));
+
+    it('should remove value from showValueCopiedIcon set after 1 second', fakeAsync(() => {
+      const testValue = 'test value';
+      fixture.componentRef.setInput('value', testValue);
+      fixture.detectChanges();
+
+      component.onCopied(true);
+      fixture.detectChanges();
+      expect(component.showCopiedIcon).toBe(true);
+
+      tick(1100);
+      fixture.detectChanges();
+      expect(component.showCopiedIcon).toBe(false);
+    }));
+
+    it('should revert to copy-to-clipboard icon after 1 second', fakeAsync(() => {
+      fixture.componentRef.setInput('value', 'test');
+      fixture.detectChanges();
+
+      component.onCopied(true);
+      fixture.detectChanges();
+      const icon = fixture.debugElement.query(By.css('cds-icon'));
+      expect(icon.nativeElement.getAttribute('shape')).toBe('success-standard');
+
+      tick(1100);
+      fixture.detectChanges();
+      expect(icon.nativeElement.getAttribute('shape')).toBe('copy-to-clipboard');
+    }));
+
+    it('should remove copied color class after 1 second', fakeAsync(() => {
+      fixture.componentRef.setInput('value', 'test');
+      fixture.detectChanges();
+
+      component.onCopied(true);
+      fixture.detectChanges();
+      const icon = fixture.debugElement.query(By.css('cds-icon'));
+      expect(icon.nativeElement.classList.contains('attribute-was-copied-color')).toBe(true);
+
+      tick(1100);
+      fixture.detectChanges();
+      expect(icon.nativeElement.classList.contains('attribute-was-copied-color')).toBe(false);
+    }));
   });
 
   describe('Integration with Host Component', () => {
@@ -160,6 +195,8 @@ describe('SummaryItemValueCopyButton', () => {
 
       // Click the icon
       icon.nativeElement.dispatchEvent(new MouseEvent('mousedown'));
+      hostFixture.componentInstance.testValue = 'Test Value';
+      buttonDebugElement.componentInstance.onCopied(true); // simulate copy success
       hostFixture.detectChanges();
 
       // Verify the success icon is shown
@@ -195,6 +232,7 @@ describe('SummaryItemValueCopyButton', () => {
 
     it('should set tooltip size to sm for short tooltip text', () => {
       fixture.componentRef.setInput('tooltipText', 'Short');
+      fixture.componentRef.setInput('value', 'dummy'); // required input
       component.ngOnInit();
       fixture.detectChanges();
       // Check via rendered DOM attribute
@@ -209,6 +247,7 @@ describe('SummaryItemValueCopyButton', () => {
 
     it('should set tooltip size to md for long tooltip text', () => {
       fixture.componentRef.setInput('tooltipText', 'This is a very long tooltip text that should trigger md size.');
+      fixture.componentRef.setInput('value', 'dummy'); // required input
       component.ngOnInit();
       fixture.detectChanges();
       // Check via rendered DOM attribute

@@ -10,10 +10,12 @@ import { ClrSummaryAreaError, ClrSummaryAreaWarning, ClrSummaryAreaLoading } fro
 import { ClarityModule } from '@clr/angular';
 
 class MockSummaryAreaStateService {
-  public collapsed = signal(false);
-
+  private _collapsed = signal(false);
+  public collapsed() {
+    return this._collapsed;
+  }
   public setCollapsed(value: boolean): void {
-    this.collapsed.set(value);
+    this._collapsed.set(value);
   }
 }
 

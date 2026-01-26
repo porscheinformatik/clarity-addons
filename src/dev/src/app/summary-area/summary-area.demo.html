@@ -12,7 +12,12 @@
       (clicked)="handleCustomLogicValueClick()"
     ></clr-summary-item-value>
   </clr-summary-item>
-  <clr-summary-item label="Item Label2" [loading]="itemLoadingState" [valueCopyable]="true">
+  <clr-summary-item
+    label="Item Label2"
+    [loading]="itemLoadingState"
+    [valueCopyable]="true"
+    [copyButtonTooltip]="'Click to copy full name'"
+  >
     <clr-summary-item-value value="John Doe (with tooltip)" tooltip="Name: John Doe"></clr-summary-item-value>
   </clr-summary-item>
   <clr-summary-item label="Label3">
@@ -87,7 +92,7 @@
       (clicked)="goToExternalApp()"
     ></clr-summary-item-value>
   </clr-summary-item>
-  <clr-summary-item label="Long Text15" [valueCopyable]="true">
+  <clr-summary-item label="Long Text15" [valueCopyable]="true" [copyButtonTooltip]="'Click to copy complete long text'">
     <!-- NOTE: Since the value part exceed the width of a summary area column an ellipsis is shown for the value.
           Be aware, that the tooltip of the item value will then show the value of the clr-summary-item-value element,
           since this has a higher priority then the defined tooltip of the element -->
