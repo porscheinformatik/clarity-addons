@@ -1,8 +1,10 @@
-import { Component, computed, ElementRef, EventEmitter, input, Output, signal } from '@angular/core';
-import { ClarityModule, ClrDatagrid, ClrDatagridColumn } from '@clr/angular';
+import { Component, computed, effect, ElementRef, EventEmitter, input, OnDestroy, Output, signal } from '@angular/core';
+import { ClarityModule, ClrDatagrid } from '@clr/angular';
 import { ExportDatagridService } from './export-datagrid.service';
 import { NgClass, NgForOf } from '@angular/common';
 import { ExportType, ExportTypeEnum } from './export-type.model';
+import { delay, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'clr-export-datagrid-button',
@@ -11,7 +13,7 @@ import { ExportType, ExportTypeEnum } from './export-type.model';
   standalone: true,
   imports: [ClarityModule, NgForOf, NgClass],
 })
-export class ExportDatagridButtonComponent {
+export class ExportDatagridButtonComponent implements OnDestroy {
   /* input signals */
   datagrid = input<ClrDatagrid | undefined>();
   datagridRef = input<ElementRef | undefined>();
@@ -21,6 +23,8 @@ export class ExportDatagridButtonComponent {
   exportButtonPosition = input<'left' | 'right'>('right');
   possibleExportTypes = signal<ExportTypeEnum[]>([ExportTypeEnum.ALL]);
   exportButtonText = input('EXPORT');
+
+  destroy$ = new Subject<void>();
 
   /* outputs */
   @Output() readonly backendExport: EventEmitter<ExportTypeEnum> = new EventEmitter<ExportTypeEnum>();
@@ -32,25 +36,10 @@ export class ExportDatagridButtonComponent {
   ];
 
   readonly exportTypesFiltered = computed(() => {
-    this.possibleExportTypes();
     let exportTypesToShowVal = this.exportTypesToShow();
     if (!exportTypesToShowVal || exportTypesToShowVal.length === 0) {
       exportTypesToShowVal = this.exportTypes;
     }
-    for (const column of this.datagrid().columns) {
-      // if a column filter is applied, show the FILTERED export type
-      column.filterValueChange.subscribe((col: ClrDatagridColumn) => {
-        this.updateExportType(ExportTypeEnum.FILTERED, !!col, exportTypesToShowVal);
-      });
-    }
-
-    this.datagrid().selectedChanged.subscribe(() => {
-      const hasSelection = this.datagrid().selection.current.length > 0;
-      // if a row is selected, show the SELECTED export type
-      this.updateExportType(ExportTypeEnum.SELECTED, hasSelection, exportTypesToShowVal);
-    });
-
-    // Map to translated value, falling back to default if value is not provided
     return exportTypesToShowVal
       .filter(showType => this.possibleExportTypes().some(et => et === showType.type))
       .map(showType => {
@@ -62,7 +51,31 @@ export class ExportDatagridButtonComponent {
       });
   });
 
-  constructor(private readonly exportService: ExportDatagridService) {}
+  constructor(private readonly exportService: ExportDatagridService) {
+    effect(() => {
+      const datagrid = this.datagrid();
+      if (!datagrid) {
+        return undefined;
+      }
+
+      this.destroy$.next();
+
+      datagrid.refresh.pipe(delay(0), takeUntil(this.destroy$)).subscribe(dgState => {
+        const hasFilter = dgState.filters && dgState.filters.length > 0;
+        this.updateExportType(ExportTypeEnum.FILTERED, hasFilter, this.exportTypesToShow() || this.exportTypes);
+      });
+
+      datagrid.selectedChanged.pipe(takeUntil(this.destroy$)).subscribe(() => {
+        const hasSelection = datagrid.selection.current.length > 0;
+        this.updateExportType(ExportTypeEnum.SELECTED, hasSelection, this.exportTypesToShow() || this.exportTypes);
+      });
+    });
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 
   private exportExcel(type: ExportTypeEnum): void {
     if (!this.datagrid() || !this.datagridRef()) {
