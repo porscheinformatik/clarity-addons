@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, HostListener, computed, inject, input, output } from '@angular/core';
+import { Component, computed, HostListener, inject, input, output, Signal } from '@angular/core';
 import { ClrIconModule, ClrTooltipModule } from '@clr/angular';
 
 import { ClrSummaryAreaStateService, defaultSummaryAreaCollapsedKey } from '../summary-area/summary-area-state.service';
@@ -20,12 +20,13 @@ ClarityIcons.addIcons(angleDoubleIcon);
 })
 export class ClrSummaryAreaToggle {
   public readonly summaryToggle = output<void>();
+  public readonly disabled = input(false);
   public readonly ariaLabel = input<string>('Toggle Summary Area');
   public readonly localStorageKey = input<string>(defaultSummaryAreaCollapsedKey);
 
   private readonly state = inject(ClrSummaryAreaStateService);
 
-  public readonly collapsed = computed(() => {
+  public readonly collapsed: Signal<boolean> = computed(() => {
     return this.state.collapsed(this.localStorageKey())();
   });
 
@@ -38,6 +39,9 @@ export class ClrSummaryAreaToggle {
 
   public handleToggle(event?: Event): void {
     event?.preventDefault();
+    if (this.disabled()) {
+      return;
+    }
     this.state.toggle(this.localStorageKey());
     this.summaryToggle.emit();
   }

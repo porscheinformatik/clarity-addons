@@ -8,6 +8,7 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
+  effect,
   ElementRef,
   HostBinding,
   inject,
@@ -50,6 +51,18 @@ export class ClrSummaryItemValue implements OnInit, AfterContentInit, AfterViewI
   private contentCheckScheduled = false;
   private readonly ngZone = inject(NgZone);
   private readonly cdr = inject(ChangeDetectorRef);
+
+  constructor() {
+    // Watch for value changes and trigger overflow detection
+    effect(() => {
+      // Access the value signal to track changes
+      const currentValue = this.value();
+      if (currentValue !== undefined && currentValue !== null && currentValue !== '') {
+        // Schedule overflow check after view updates
+        this.scheduleOverflowCheck();
+      }
+    });
+  }
 
   @HostBinding('class.has-icon')
   public get hasIcon(): boolean {
@@ -168,29 +181,25 @@ export class ClrSummaryItemValue implements OnInit, AfterContentInit, AfterViewI
   }
 
   private setupOverflowDetection(): void {
-    // Use ResizeObserver to detect when the element size changes
-    this.ngZone.runOutsideAngular(() => {
-      this.resizeObserver = new ResizeObserver(() => {
-        const prevOverflowing = this.isTextOverflowing;
-        const prevTooltipSize = this.tooltipSize;
-        this.checkTextOverflowSync();
-        // Trigger change detection if overflow state or tooltip size changed
-        if (prevOverflowing !== this.isTextOverflowing || prevTooltipSize !== this.tooltipSize) {
-          this.ngZone.run(() => {
-            this.cdr.markForCheck();
-          });
-        }
-      });
+    const el = this.valueElement?.nativeElement;
+    if (!el) {
+      return;
+    }
 
-      // Observe the host element for size changes
-      if (this.valueElement?.nativeElement) {
-        this.resizeObserver.observe(this.valueElement.nativeElement);
-      }
+    // Defer initial check to next tick to avoid ExpressionChangedAfterItHasBeenCheckedError
+    setTimeout(() => {
+      this.checkTextOverflowSync();
+      this.cdr.markForCheck();
     });
 
-    // Defer initial check to avoid ExpressionChangedAfterItHasBeenCheckedError
-    Promise.resolve().then(() => {
-      this.checkTextOverflowSync();
+    this.ngZone.runOutsideAngular(() => {
+      this.resizeObserver = new ResizeObserver(() => {
+        this.ngZone.run(() => {
+          this.checkTextOverflowSync();
+          this.cdr.markForCheck();
+        });
+      });
+      this.resizeObserver.observe(el);
     });
   }
 
@@ -208,6 +217,18 @@ export class ClrSummaryItemValue implements OnInit, AfterContentInit, AfterViewI
       this.tooltipSize = newSize;
       this.cdr.markForCheck();
     }
+  }
+
+  /**
+   * Schedule an overflow check after the DOM has been updated.
+   * Uses setTimeout to ensure the check runs outside of change detection.
+   */
+  private scheduleOverflowCheck(): void {
+    // Use setTimeout to ensure the check runs outside of Angular's change detection
+    setTimeout(() => {
+      this.checkTextOverflowSync();
+      this.cdr.markForCheck();
+    });
   }
 
   /** @internal - Manually trigger projected content check. Useful for testing. */

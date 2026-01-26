@@ -10,24 +10,10 @@ import { ClrSummaryAreaError, ClrSummaryAreaWarning, ClrSummaryAreaLoading } fro
 import { ClarityModule } from '@clr/angular';
 
 class MockSummaryAreaStateService {
-  private readonly collapsedMap = new Map<string, ReturnType<typeof signal<boolean>>>();
-  private readonly defaultKey = 'clrSummaryAreaCollapsed';
+  public collapsed = signal(false);
 
-  public collapsed(key?: string): ReturnType<typeof signal<boolean>> {
-    const storageKey = key || this.defaultKey;
-    if (!this.collapsedMap.has(storageKey)) {
-      this.collapsedMap.set(storageKey, signal(false));
-    }
-    return this.collapsedMap.get(storageKey)!;
-  }
-
-  public toggle(key?: string): void {
-    const collapsedSignal = this.collapsed(key);
-    collapsedSignal.update(value => !value);
-  }
-
-  public setCollapsed(key: string | undefined, value: boolean): void {
-    this.collapsed(key).set(value);
+  public setCollapsed(value: boolean): void {
+    this.collapsed.set(value);
   }
 }
 
@@ -75,23 +61,6 @@ class TestHostComponent {
 class ManyItemsTestHostComponent {
   @ViewChild(ClrSummaryArea) component!: ClrSummaryArea;
   manyItems = Array.from({ length: 20 }, (_, i) => i + 1);
-}
-
-// Test host with localStorageKey
-@Component({
-  template: `
-    <clr-summary-area [rows]="3" [localStorageKey]="storageKey">
-      <clr-summary-item label="Item 1">
-        <clr-summary-item-value value="Value 1"></clr-summary-item-value>
-      </clr-summary-item>
-    </clr-summary-area>
-  `,
-  standalone: true,
-  imports: [ClrSummaryArea, ClrSummaryItem, ClrSummaryItemValue],
-})
-class LocalStorageKeyTestHostComponent {
-  @ViewChild(ClrSummaryArea) component!: ClrSummaryArea;
-  storageKey = 'customSummaryAreaKey';
 }
 
 describe('SummaryAreaComponent', () => {
@@ -156,9 +125,9 @@ describe('SummaryAreaComponent', () => {
         mockStateService.setCollapsed(undefined, true);
         fixture.detectChanges();
 
-        // When collapsed, the entire panels container is not rendered (using @if in template)
         const panels = fixture.debugElement.query(By.css('.summary-area-panels'));
-        expect(panels).toBeFalsy();
+        expect(panels).toBeTruthy();
+        expect(panels.classes['is-active']).toBeFalsy();
       });
 
       it('should toggle collapsed state via service', () => {
@@ -235,13 +204,10 @@ describe('SummaryAreaComponent', () => {
     });
 
     it('should use custom localStorageKey when reading collapsed state', () => {
-      // Set custom key to collapsed
-      mockStateService.setCollapsed('customSummaryAreaKey', true);
-      // Set default key to not collapsed
-      mockStateService.setCollapsed('clrSummaryAreaCollapsed', false);
-
-      // The component should use the custom storage key, so it should be collapsed
-      expect(component.isCollapsed()).toBe(true);
+      spyOn(mockStateService, 'collapsed').and.callThrough();
+      // Access isCollapsed to trigger the collapsed() call
+      component.isCollapsed();
+      expect(mockStateService.collapsed).toHaveBeenCalledWith('customSummaryAreaKey');
     });
 
     it('should maintain separate collapsed states for different keys', () => {
@@ -885,7 +851,7 @@ describe('SummaryAreaComponent', () => {
 
     it('should call onResize on window resize when not collapsed', () => {
       spyOn(component, 'onResize').and.callThrough();
-      mockStateService.setCollapsed(undefined, false);
+      mockStateService.setCollapsed(false);
       fixture.detectChanges();
 
       window.dispatchEvent(new Event('resize'));

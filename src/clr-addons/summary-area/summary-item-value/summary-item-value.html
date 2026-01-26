@@ -25,8 +25,7 @@
 </clr-tooltip>
 } @else {
 <cds-icon [attr.shape]="icon()" class="value-icon value-icon-neutral"></cds-icon>
-} } } @else if (value() !== undefined && value() !== null && value() !== '') { @if (hasClickHandler) { @if
-(effectiveTooltip) {
+} } } @else if (value() !== undefined && value() !== null && value() !== '') { @if (hasClickHandler) {
 <clr-tooltip>
   <span
     #valueElement
@@ -37,24 +36,22 @@
   >
     {{ value() }}
   </span>
+  @if (effectiveTooltip) {
   <clr-tooltip-content [clrSize]="tooltipSize" clrPosition="top-right" *clrIfOpen>
     {{ effectiveTooltip }}</clr-tooltip-content
   >
+  }
 </clr-tooltip>
 } @else {
-<span #valueElement class="value value-link" (click)="handleClick()" (keydown.enter)="handleClick()"
-  >{{ value() }}</span
->
-} } @else { @if (effectiveTooltip) {
 <clr-tooltip>
   <span #valueElement class="value" clrTooltipTrigger>{{ value() }}</span>
+  @if (effectiveTooltip) {
   <clr-tooltip-content [clrSize]="tooltipSize" clrPosition="top-right" *clrIfOpen>
     {{ effectiveTooltip }}</clr-tooltip-content
   >
+  }
 </clr-tooltip>
-} @else {
-<span #valueElement class="value">{{ value() }}</span>
-} } } @else {
+} } @else {
 <span class="projected-wrapper" #projectedContent>
   <ng-content></ng-content>
 </span>
