@@ -78,6 +78,11 @@
       <p class="section">
         Items can be configured with the input <code class="clr-code">[valueCopyable]</code> to show a copy button that
         copies the value text to the clipboard. This is useful for IDs, codes, or other values users might need to copy.
+        <br />
+        The tooltip for the copy button can be customized using the
+        <code class="clr-code">[copyButtonTooltip]</code> input on <code class="clr-code">clr-summary-item</code>. By
+        default, it shows "Copy to clipboard". This allows you to provide context-specific tooltip text for the copy
+        action.
       </p>
 
       <h3>Technical Limitations</h3>
@@ -241,6 +246,19 @@
             <td class="clr-hidden-xs-down">false</td>
             <td class="left">When true, shows a copy button to copy the value to clipboard</td>
           </tr>
+          <tr>
+            <td class="left">
+              <b>[copyButtonTooltip]</b>
+              <div class="clr-hidden-sm-up">Type: string</div>
+              <div class="clr-hidden-sm-up">Default: 'Copy to clipboard'</div>
+            </td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="clr-hidden-xs-down">'Copy to clipboard'</td>
+            <td class="left">
+              Custom tooltip text for the item copy button, when copy button is enabled with input
+              <code class="clr-code">[valueCopyable]</code>
+            </td>
+          </tr>
         </tbody>
       </table>
 
@@ -315,16 +333,6 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td class="left">
-              <b>[disabled]</b>
-              <div class="clr-hidden-sm-up">Type: boolean</div>
-              <div class="clr-hidden-sm-up">Default: false</div>
-            </td>
-            <td class="left clr-hidden-xs-down">boolean</td>
-            <td class="clr-hidden-xs-down">false</td>
-            <td class="left">Disables the toggle button</td>
-          </tr>
           <tr>
             <td class="left">
               <b>[ariaLabel]</b>
@@ -869,6 +877,11 @@
         concatenated with spaces in between (same as they are displayed). Only values defined with
         <code class="clr-code">clr-summary-item-value</code> components can be copied. Projected content cannot be
         copyied via the copy button.
+        <br />
+        The tooltip for the copy button can be customized using the
+        <code class="clr-code">[copyButtonTooltip]</code> input on <code class="clr-code">clr-summary-item</code>. By
+        default, it shows "Copy to clipboard". This allows you to provide context-specific tooltip text for the copy
+        action.
       </p>
       <br />
 
@@ -876,7 +889,7 @@
         <clr-summary-item label="Order ID" [valueCopyable]="true">
           <clr-summary-item-value value="ORD-2024-00123"></clr-summary-item-value>
         </clr-summary-item>
-        <clr-summary-item label="Reference Code" [valueCopyable]="true">
+        <clr-summary-item label="Reference Code" [valueCopyable]="true" [copyButtonTooltip]="'Copy Reference Code'">
           <clr-summary-item-value value="ABC-XYZ-123"></clr-summary-item-value>
         </clr-summary-item>
         <clr-summary-item label="Custom" [valueCopyable]="true"> I am projected content </clr-summary-item>

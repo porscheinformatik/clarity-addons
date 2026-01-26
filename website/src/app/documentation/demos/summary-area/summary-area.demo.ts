@@ -123,12 +123,12 @@ const COPYABLE_EXAMPLE = `<clr-summary-area [rows]="1">
     <clr-summary-item label="Order ID" [valueCopyable]="true">
       <clr-summary-item-value value="ORD-2024-00123"></clr-summary-item-value>
     </clr-summary-item>
-    <clr-summary-item label="Reference Code" [valueCopyable]="true">
+    <clr-summary-item label="Reference Code"
+                      [valueCopyable]="true"
+                      [copyButtonTooltip]="'Copy Reference Code'">
       <clr-summary-item-value value="ABC-XYZ-123"></clr-summary-item-value>
     </clr-summary-item>
-    <clr-summary-item label="Custom" [valueCopyable]="true">
-      I am projected content
-    </clr-summary-item>
+    <clr-summary-item label="Custom" [valueCopyable]="true"> I am projected content </clr-summary-item>
   </clr-summary-area>`;
 
 const LOADING_EXAMPLE = `<!-- Area Loading -->
@@ -302,7 +302,6 @@ export class SummaryAreaDemo extends ClarityDocComponent {
   toggleExample = TOGGLE_EXAMPLE;
   projectedContentExample = PROJECTED_CONTENT_EXAMPLE;
   completeExample = COMPLETE_EXAMPLE;
-  activeFragment;
 
   constructor() {
     super('summary-area');
