@@ -48,6 +48,7 @@ export class ClrSummaryItem implements AfterContentInit, AfterViewChecked, OnDes
   public editConfig = input<ClrSummaryItemEditConfig | undefined>();
   public showOnEmptyValue = input<boolean>(true);
   public valueCopyable = input<boolean>(false);
+  public copyButtonTooltip = input<string>('Copy to clipboard');
 
   public hasProjectedContent = false;
 

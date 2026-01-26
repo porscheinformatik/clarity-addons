@@ -114,7 +114,7 @@ describe('SummaryAreaComponent', () => {
 
     describe('collapsed state', () => {
       it('should show content when not collapsed', () => {
-        mockStateService.setCollapsed(undefined, false);
+        mockStateService.setCollapsed(false);
         fixture.detectChanges();
 
         const panels = fixture.debugElement.query(By.css('.summary-area-panels'));
@@ -122,7 +122,7 @@ describe('SummaryAreaComponent', () => {
       });
 
       it('should hide content when collapsed', () => {
-        mockStateService.setCollapsed(undefined, true);
+        mockStateService.setCollapsed(true);
         fixture.detectChanges();
 
         const panels = fixture.debugElement.query(By.css('.summary-area-panels'));
@@ -132,9 +132,9 @@ describe('SummaryAreaComponent', () => {
 
       it('should toggle collapsed state via service', () => {
         expect(component.isCollapsed()).toBe(false);
-        mockStateService.setCollapsed(undefined, true);
+        mockStateService.setCollapsed(true);
         expect(component.isCollapsed()).toBe(true);
-        mockStateService.setCollapsed(undefined, false);
+        mockStateService.setCollapsed(false);
         expect(component.isCollapsed()).toBe(false);
       });
     });
@@ -166,71 +166,6 @@ describe('SummaryAreaComponent', () => {
         // With 3 items and rows=3, max is 15
         expect(component.visibleItems.length).toBe(3);
       }));
-    });
-  });
-
-  describe('localStorageKey input', () => {
-    let hostComponent: LocalStorageKeyTestHostComponent;
-    let fixture: ComponentFixture<LocalStorageKeyTestHostComponent>;
-    let component: ClrSummaryArea;
-
-    beforeEach(async () => {
-      await TestBed.configureTestingModule({
-        imports: [
-          LocalStorageKeyTestHostComponent,
-          ClrSummaryArea,
-          ClrSummaryItem,
-          ClrSummaryItemValue,
-          NoopAnimationsModule,
-          ClarityModule,
-        ],
-        providers: [{ provide: ClrSummaryAreaStateService, useValue: mockStateService }],
-      }).compileComponents();
-
-      fixture = TestBed.createComponent(LocalStorageKeyTestHostComponent);
-      hostComponent = fixture.componentInstance;
-      fixture.detectChanges();
-      component = hostComponent.component;
-    });
-
-    it('should have default localStorageKey when not provided', async () => {
-      const defaultFixture = TestBed.createComponent(ClrSummaryArea);
-      defaultFixture.detectChanges();
-      expect(defaultFixture.componentInstance.localStorageKey()).toBe('clrSummaryAreaCollapsed');
-    });
-
-    it('should accept custom localStorageKey input', () => {
-      expect(component.localStorageKey()).toBe('customSummaryAreaKey');
-    });
-
-    it('should use custom localStorageKey when reading collapsed state', () => {
-      spyOn(mockStateService, 'collapsed').and.callThrough();
-      // Access isCollapsed to trigger the collapsed() call
-      component.isCollapsed();
-      expect(mockStateService.collapsed).toHaveBeenCalledWith('customSummaryAreaKey');
-    });
-
-    it('should maintain separate collapsed states for different keys', () => {
-      // Set custom key to collapsed
-      mockStateService.setCollapsed('customSummaryAreaKey', true);
-      // Set default key to not collapsed
-      mockStateService.setCollapsed('clrSummaryAreaCollapsed', false);
-
-      expect(component.isCollapsed()).toBe(true);
-
-      // Change to different key
-      hostComponent.storageKey = 'clrSummaryAreaCollapsed';
-      fixture.detectChanges();
-
-      expect(component.isCollapsed()).toBe(false);
-    });
-
-    it('should not affect other summary areas with different keys', () => {
-      mockStateService.setCollapsed('customSummaryAreaKey', true);
-      mockStateService.setCollapsed('otherKey', false);
-
-      expect(mockStateService.collapsed('customSummaryAreaKey')()).toBe(true);
-      expect(mockStateService.collapsed('otherKey')()).toBe(false);
     });
   });
 
@@ -945,7 +880,7 @@ describe('SummaryAreaComponent - standalone tests', () => {
 
   it('should have isCollapsed signal from service', () => {
     expect(component.isCollapsed()).toBe(false);
-    mockStateService.setCollapsed(undefined, true);
+    mockStateService.setCollapsed(true);
     expect(component.isCollapsed()).toBe(true);
   });
 });
