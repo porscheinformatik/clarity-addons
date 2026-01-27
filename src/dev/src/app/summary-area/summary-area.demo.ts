@@ -23,13 +23,23 @@ import {
   chatBubbleIcon,
   ClarityIcons,
   colorPaletteIcon,
+  infoStandardIcon,
   pencilIcon,
   popOutIcon,
   wandIcon,
 } from '@cds/core/icon';
 import { ProgressItemComponent } from './progress-item/progress-item.component';
 
-ClarityIcons.addIcons(pencilIcon, barsIcon, wandIcon, chatBubbleIcon, colorPaletteIcon, popOutIcon, gasIcon);
+ClarityIcons.addIcons(
+  pencilIcon,
+  barsIcon,
+  wandIcon,
+  chatBubbleIcon,
+  colorPaletteIcon,
+  popOutIcon,
+  gasIcon,
+  infoStandardIcon
+);
 
 @Component({
   selector: 'my-app-summary-area-demo',
