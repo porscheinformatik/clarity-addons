@@ -13,6 +13,7 @@ import {
   mobileIcon,
   mapMarkerIcon,
   loginIcon,
+  lightbulbIcon,
 } from '@cds/core/icon';
 import { Router } from '@angular/router';
 import {
@@ -23,7 +24,16 @@ import {
   ClrSummaryItemEditConfig,
 } from '@porscheinformatik/clr-addons';
 
-ClarityIcons.addIcons(userIcon, envelopeIcon, pencilIcon, administratorIcon, mobileIcon, mapMarkerIcon, loginIcon);
+ClarityIcons.addIcons(
+  userIcon,
+  envelopeIcon,
+  pencilIcon,
+  administratorIcon,
+  mobileIcon,
+  mapMarkerIcon,
+  loginIcon,
+  lightbulbIcon
+);
 
 @Component({
   selector: 'clr-summary-area-page-layout-demo',
