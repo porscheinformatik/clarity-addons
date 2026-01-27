@@ -3,20 +3,19 @@
   flex-direction: row;
   align-items: center;
   gap: 0.25rem;
-  flex: 0 1 auto;
+  flex: 0 1 auto; // Changed: Don't grow, can shrink, use auto basis
   max-width: 100%;
   min-width: 0;
-  overflow: visible;
+  overflow: visible; // Keep visible so tooltip popup can be seen
 }
 
 :host.hidden {
   display: none;
 }
 
-:host.has-icon {
-  flex: 0 0 auto;
-  max-width: none;
-  min-width: auto;
+:host(.has-icon) {
+  flex: 0 0 auto; // Icons should not shrink
+  width: auto;
 }
 
 .value,
@@ -72,12 +71,15 @@ clr-tooltip {
   display: inline-flex;
   flex: 1 1 auto;
   min-width: 0;
-  overflow: visible;
+  overflow: visible; // Keep visible for popup
 }
 
 clr-tooltip [clrTooltipTrigger] {
   flex: 1 1 auto;
   min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 :host(.error) {

@@ -378,14 +378,28 @@ describe('SummaryAreaToggleComponent - localStorageKey tests', () => {
     expect(mockStateService.toggle).toHaveBeenCalledWith('customStorageKey');
   });
 
-  it('should use custom localStorageKey when reading collapsed state', () => {
-    // Set custom key to a specific value
+  it('should use correct localStorageKey when reading collapsed state and update when input changes', () => {
+    // First key - set the storageKey before detectChanges to ensure signal is created
+    let testFixture = TestBed.createComponent(LocalStorageKeyTestHostComponent);
+    testFixture.componentInstance.storageKey = 'customStorageKey';
+    testFixture.detectChanges();
+    testFixture.detectChanges(); // Ensure @ViewChild is set
+    let testComponent = testFixture.componentInstance.component;
+    // Now the signal exists, set the value
     mockStateService.setCollapsed('customStorageKey', true);
-    // Set default key to a different value
-    mockStateService.setCollapsed('clrSummaryAreaCollapsed', false);
+    testFixture.detectChanges();
+    expect(testComponent.collapsed()).toBe(true);
 
-    // The component should use the custom key
-    expect(component.collapsed()).toBe(true);
+    // New key, new instance - same approach
+    testFixture = TestBed.createComponent(LocalStorageKeyTestHostComponent);
+    testFixture.componentInstance.storageKey = 'anotherKey';
+    testFixture.detectChanges();
+    testFixture.detectChanges(); // Ensure @ViewChild is set
+    testComponent = testFixture.componentInstance.component;
+    // Now the signal exists, set the value
+    mockStateService.setCollapsed('anotherKey', false);
+    testFixture.detectChanges();
+    expect(testComponent.collapsed()).toBe(false);
   });
 
   it('should maintain separate collapsed states for different keys', () => {

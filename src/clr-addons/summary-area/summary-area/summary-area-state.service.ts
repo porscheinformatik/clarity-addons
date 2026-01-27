@@ -3,51 +3,76 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Injectable, Signal, WritableSignal, signal } from '@angular/core';
+import {
+  Injectable,
+  Injector,
+  Signal,
+  WritableSignal,
+  effect,
+  inject,
+  runInInjectionContext,
+  signal,
+  untracked,
+} from '@angular/core';
 
 export const defaultSummaryAreaCollapsedKey = 'clrSummaryAreaCollapsed';
 
-interface SignalEntry {
-  signal: WritableSignal<boolean>;
-  storageKey: string;
-}
-
 @Injectable({ providedIn: 'root' })
 export class ClrSummaryAreaStateService {
-  private readonly collapsedMap = new Map<string, SignalEntry>();
+  private readonly collapsedMap = new Map<string, WritableSignal<boolean>>();
+  private readonly effectsInitialized = new Set<string>();
+  private readonly injector = inject(Injector);
 
   public collapsed(key?: string): Signal<boolean> {
     const storageKey = key || defaultSummaryAreaCollapsedKey;
-    return this.getOrCreateEntry(storageKey).signal;
+
+    // Use untracked to avoid reactive context issues when getting/creating the signal
+    return untracked(() => {
+      if (!this.collapsedMap.has(storageKey)) {
+        const collapsedSignal = signal(this.readInitialState(storageKey));
+        this.collapsedMap.set(storageKey, collapsedSignal);
+
+        // Schedule effect creation outside of any reactive context
+        this.scheduleEffectCreation(storageKey, collapsedSignal);
+      }
+      return this.collapsedMap.get(storageKey)!;
+    });
+  }
+
+  private scheduleEffectCreation(storageKey: string, collapsedSignal: WritableSignal<boolean>): void {
+    if (this.effectsInitialized.has(storageKey)) {
+      return;
+    }
+    this.effectsInitialized.add(storageKey);
+
+    // Use setTimeout to ensure effect is created outside of any reactive context
+    setTimeout(() => {
+      runInInjectionContext(this.injector, () => {
+        effect(() => {
+          const value = collapsedSignal();
+          try {
+            localStorage.setItem(storageKey, String(value));
+          } catch (e) {
+            // Ignore storage errors
+          }
+        });
+      });
+    });
   }
 
   public toggle(key?: string): void {
     const storageKey = key || defaultSummaryAreaCollapsedKey;
-    const entry = this.getOrCreateEntry(storageKey);
-    const newValue = !entry.signal();
-    entry.signal.set(newValue);
-    this.persistToStorage(storageKey, newValue);
+    const collapsedSignal = this.collapsedMap.get(storageKey);
+    if (collapsedSignal) {
+      collapsedSignal.update(value => !value);
+    }
   }
 
   public setCollapsed(key: string, value: boolean): void {
-    const entry = this.getOrCreateEntry(key);
-    entry.signal.set(value);
-    this.persistToStorage(key, value);
-  }
-
-  private getOrCreateEntry(storageKey: string): SignalEntry {
-    if (!this.collapsedMap.has(storageKey)) {
-      const collapsedSignal = signal(this.readInitialState(storageKey));
-      this.collapsedMap.set(storageKey, { signal: collapsedSignal, storageKey });
-    }
-    return this.collapsedMap.get(storageKey)!;
-  }
-
-  private persistToStorage(key: string, value: boolean): void {
-    try {
-      localStorage.setItem(key, String(value));
-    } catch (e) {
-      // Ignore storage errors
+    const storageKey = key || defaultSummaryAreaCollapsedKey;
+    const collapsedSignal = this.collapsedMap.get(storageKey);
+    if (collapsedSignal) {
+      collapsedSignal.set(value);
     }
   }
 

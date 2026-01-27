@@ -29,8 +29,12 @@
   align-items: center;
   gap: 0.25rem;
   flex: 1 1 auto;
-  min-width: 0;
-  overflow: visible;
+  min-width: 0; // Critical: Allow shrinking below content size
+  overflow: visible; // Keep visible for tooltip popup
+}
+
+clr-summary-area-value-copy-button {
+  flex: 0 0 auto; // Don't shrink, keep fixed size
 }
 
 .summary-item-loading {

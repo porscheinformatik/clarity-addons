@@ -12,7 +12,7 @@ import {
   HostListener,
   inject,
   input,
-  computed,
+  OnInit,
   QueryList,
   Signal,
 } from '@angular/core';
@@ -35,17 +35,18 @@ import {
   templateUrl: './summary-area.html',
   styleUrl: './summary-area.scss',
 })
-export class ClrSummaryArea implements AfterViewInit {
+export class ClrSummaryArea implements OnInit, AfterViewInit {
   @ContentChildren(ClrSummaryItem, { descendants: true }) items!: QueryList<ClrSummaryItem>;
 
-  public readonly rows = input<ClrSummaryAreaRows>(3);
-  public readonly localStorageKey = input<string>(defaultSummaryAreaCollapsedKey);
-  public readonly error = input<ClrSummaryAreaError | undefined>();
-  public readonly warning = input<ClrSummaryAreaWarning | undefined>();
-  public readonly loading = input<ClrSummaryAreaLoading | undefined>();
+  public isCollapsed: Signal<boolean>;
+  public rows = input<ClrSummaryAreaRows>(3);
+  public localStorageKey = input<string>(defaultSummaryAreaCollapsedKey);
+  public error = input<ClrSummaryAreaError | undefined>();
+  public warning = input<ClrSummaryAreaWarning | undefined>();
+  public loading = input<ClrSummaryAreaLoading | undefined>();
 
   public currentColumns: ClrSummaryAreaColumns = 5;
-  public currentRows: ClrSummaryAreaRows = 3;
+  public currentRows: ClrSummaryAreaRows = this.rows();
 
   private readonly state = inject(ClrSummaryAreaStateService);
   private readonly cdr = inject(ChangeDetectorRef);
@@ -54,19 +55,17 @@ export class ClrSummaryArea implements AfterViewInit {
   private readonly defaultWarningText = 'Warning';
   private readonly maxColumns: ClrSummaryAreaColumns = 5;
 
-  public readonly isCollapsed: Signal<boolean> = computed(() => {
-    return this.state.collapsed(this.localStorageKey())();
-  });
-
   constructor() {
-    this.currentRows = this.rows();
-
     effect(() => {
       if (!this.isCollapsed()) {
         this.updateGrid();
         requestAnimationFrame(() => this.updateGrid());
       }
     });
+  }
+
+  public ngOnInit(): void {
+    this.isCollapsed = this.state.collapsed(this.localStorageKey());
   }
 
   /**

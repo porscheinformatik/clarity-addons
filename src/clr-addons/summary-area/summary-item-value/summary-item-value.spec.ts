@@ -350,13 +350,13 @@ describe('SummaryItemValue', () => {
       expect(tooltipTrigger).toBeTruthy();
     });
 
-    it('should not render tooltip when tooltip is not provided', () => {
+    it('should not render tooltip content when tooltip is not provided', () => {
       hostComponent.value = 'Test Value';
       hostComponent.tooltip = undefined;
       fixture.detectChanges();
 
-      const tooltipTrigger = fixture.debugElement.query(By.css('clr-tooltip'));
-      expect(tooltipTrigger).toBeFalsy();
+      const tooltipContent = fixture.debugElement.query(By.css('clr-tooltip-content'));
+      expect(tooltipContent).toBeFalsy();
     });
   });
 

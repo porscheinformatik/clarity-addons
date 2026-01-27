@@ -30,6 +30,12 @@
       ></clr-summary-item-value>
       } @else {
       <ng-content select="clr-summary-item-value"></ng-content>
+      @if (showCopyButton) {
+      <clr-summary-area-value-copy-button
+        [value]="copyableValue"
+        [tooltipText]="copyButtonTooltip()"
+      ></clr-summary-area-value-copy-button>
+      }
       <ng-content></ng-content>
       @if (showEditButton) {
       <span class="value value-link edit-link" (click)="editClick?.()" (keydown.enter)="editClick?.()"
@@ -37,8 +43,6 @@
       >
       } @else if (!hasProjectedContent) {
       <span class="value value-placeholder">&mdash;</span>
-      } @if (showCopyButton) {
-      <clr-summary-area-value-copy-button [value]="copyableValue"></clr-summary-area-value-copy-button>
       } }
     </div>
   </div>

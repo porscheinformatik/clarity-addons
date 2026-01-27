@@ -1,13 +1,12 @@
-@if (!isCollapsed()) {
 <div class="summary-area-panels" [class.is-active]="!isCollapsed()">
   <div
     class="summary-area-panel summary-area-panel--state"
-    [class.is-active]="hasLoading || hasError || hasWarning"
+    [class.is-active]="!isCollapsed() && (hasLoading || hasError || hasWarning)"
     [class.is-loading]="hasLoading"
     [class.is-error]="hasError"
     [class.is-warning]="hasWarning"
-    [attr.aria-hidden]="hasLoading || hasError || hasWarning ? 'false' : 'true'"
-    [attr.inert]="hasLoading || hasError || hasWarning ? null : ''"
+    [attr.aria-hidden]="isCollapsed() || !(hasLoading || hasError || hasWarning) ? 'true' : 'false'"
+    [attr.inert]="isCollapsed() || !(hasLoading || hasError || hasWarning) ? '' : null"
   >
     <div class="summary-area-panel__body">
       @if (hasLoading) {
@@ -55,9 +54,9 @@
 
   <div
     class="summary-area-panel summary-area-panel--grid"
-    [class.is-active]="!hasError && !hasWarning && !hasLoading"
-    [attr.aria-hidden]="hasError || hasWarning || hasLoading ? 'true' : 'false'"
-    [attr.inert]="hasError || hasWarning || hasLoading ? '' : null"
+    [class.is-active]="!isCollapsed() && !hasError && !hasWarning && !hasLoading"
+    [attr.aria-hidden]="isCollapsed() || hasError || hasWarning || hasLoading ? 'true' : 'false'"
+    [attr.inert]="isCollapsed() || hasError || hasWarning || hasLoading ? '' : null"
   >
     <div class="summary-area-panel__body">
       <div class="summary-area-container">
@@ -70,4 +69,3 @@
     </div>
   </div>
 </div>
-}
