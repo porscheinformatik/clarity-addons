@@ -1,6 +1,8 @@
 :host {
   display: block;
-  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .summary-item {
@@ -30,6 +32,7 @@
   gap: 0.25rem;
   flex: 1 1 auto;
   min-width: 0; // Critical: Allow shrinking below content size
+  max-width: 100%;
   overflow: visible; // Keep visible for tooltip popup
 }
 

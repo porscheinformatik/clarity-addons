@@ -12,6 +12,7 @@ import {
   HostListener,
   inject,
   input,
+  OnDestroy,
   OnInit,
   QueryList,
   Signal,
@@ -35,7 +36,7 @@ import {
   templateUrl: './summary-area.html',
   styleUrl: './summary-area.scss',
 })
-export class ClrSummaryArea implements OnInit, AfterViewInit {
+export class ClrSummaryArea implements OnInit, AfterViewInit, OnDestroy {
   @ContentChildren(ClrSummaryItem, { descendants: true }) items!: QueryList<ClrSummaryItem>;
 
   public isCollapsed: Signal<boolean>;
@@ -54,6 +55,7 @@ export class ClrSummaryArea implements OnInit, AfterViewInit {
   private readonly defaultErrorText = 'Error';
   private readonly defaultWarningText = 'Warning';
   private readonly maxColumns: ClrSummaryAreaColumns = 5;
+  private itemsSubscription?: { unsubscribe: () => void };
 
   constructor() {
     effect(() => {
@@ -130,6 +132,19 @@ export class ClrSummaryArea implements OnInit, AfterViewInit {
   public ngAfterViewInit(): void {
     this.updateGrid();
     this.cdr.detectChanges();
+
+    // Subscribe to content changes (when items get dynamically added/removed)
+    this.itemsSubscription = this.items.changes.subscribe(() => {
+      // Force layout recalculation after DOM update
+      requestAnimationFrame(() => {
+        this.updateGrid();
+        this.cdr.detectChanges();
+      });
+    });
+  }
+
+  public ngOnDestroy(): void {
+    this.itemsSubscription?.unsubscribe();
   }
 
   private updateGrid(): void {
