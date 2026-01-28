@@ -71,8 +71,9 @@ clr-alert ::ng-deep > .alert-lightweight {
   pointer-events: none;
   visibility: hidden;
   overflow: hidden;
+  margin: 0 0 9px 0;
   transition: height $transition-duration $transition-timing, opacity $transition-duration $transition-timing,
-    visibility 0s $transition-duration;
+    visibility $transition-duration $transition-duration;
 
   &.is-active {
     opacity: 1;
@@ -80,7 +81,7 @@ clr-alert ::ng-deep > .alert-lightweight {
     visibility: visible;
     overflow: visible;
     transition: height $transition-duration $transition-timing, opacity $transition-duration $transition-timing,
-      visibility 0s 0s;
+      visibility $transition-duration $transition-duration;
   }
 
   &.loading-active {
@@ -103,7 +104,7 @@ clr-alert ::ng-deep > .alert-lightweight {
   transform-origin: top center;
   opacity: 0;
   pointer-events: none;
-  overflow: hidden;
+  //overflow: hidden;
   transition: opacity $transition-duration $transition-timing;
   // Panels are stacked - only the active one is visible
   position: absolute;
@@ -112,7 +113,7 @@ clr-alert ::ng-deep > .alert-lightweight {
   right: 0;
 
   &__body {
-    overflow: hidden;
+    //overflow: hidden;
     will-change: opacity;
   }
 

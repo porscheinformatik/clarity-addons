@@ -56,11 +56,10 @@ export class ClrSummaryArea implements OnInit, AfterViewInit, OnDestroy {
   public panelHeight: string = '0px';
 
   private prevLoading = false;
-  private prevError = false;
-  // private prevWarning = false;
+  private prevErrorActive = false;
+  private prevWarningActive = false;
   private prevCollapsed = true;
   private noTransitionTimeout: any;
-  // private effectDebugCounter = 0;
 
   private readonly state = inject(ClrSummaryAreaStateService);
   private readonly cdr = inject(ChangeDetectorRef);
@@ -70,12 +69,13 @@ export class ClrSummaryArea implements OnInit, AfterViewInit, OnDestroy {
   private readonly maxColumns: ClrSummaryAreaColumns = 5;
   private itemsSubscription?: { unsubscribe: () => void };
 
+  public errorActive = computed(() => this.error()?.active() ?? false);
+  public warningActive = computed(() => this.warning()?.active() ?? false);
+
   constructor() {
     // Effect to handle expand/collapse with smooth height transition
     effect(() => {
-      console.log('### DEBUG: collapse effect called');
       const collapsed = this.isCollapsed();
-      const error = this.hasError;
 
       if (!collapsed) {
         // Expanding: update grid first, then measure and set height
@@ -87,70 +87,10 @@ export class ClrSummaryArea implements OnInit, AfterViewInit, OnDestroy {
       } else if (!this.prevCollapsed && collapsed) {
         // Collapsing: set current height first, then animate to 0
         this.animateCollapse();
-        // Reset previous error/warning state to current when collapsed
-        // this.prevError = this.hasError;
-        // this.prevWarning = this.hasWarning;
       }
 
-      if (error !== this.prevError && !collapsed) {
-        this.updateGrid();
-        this.cdr.detectChanges();
-        requestAnimationFrame(() => {
-          this.recalculatePanelHeight();
-        });
-      }
-
-      this.prevError = error;
       this.prevCollapsed = collapsed;
     });
-    // effect(() => {
-    //   const collapsed = this.isCollapsed();
-    //   const error = this.hasError;
-    //   const warning = this.hasWarning;
-    //   this.effectDebugCounter = this.effectDebugCounter + 1;
-    //   console.log('### DEBUG: effect triggered: effectDebugCounter:', this.effectDebugCounter);
-    //   console.log('### DEBUG: effect triggered - collapsed:', this.isCollapsed());
-    //   console.log('### DEBUG: effect triggered - prevCollapsed:', this.prevCollapsed);
-    //   console.log('### DEBUG: effect triggered - hasError:', this.hasError);
-    //   console.log('### DEBUG: effect triggered - prevError:', this.prevError);
-    //   console.log('### DEBUG: effect triggered - hasWarning:', this.hasWarning);
-    //   console.log('### DEBUG: effect triggered - prevWarning:', this.prevWarning);
-    //
-    //   // On expand
-    //   if (!collapsed && this.prevCollapsed) {
-    //     this.updateGrid();
-    //     requestAnimationFrame(() => {
-    //       this.updateGrid();
-    //       this.updatePanelHeight();
-    //       // If grid is shown, recalculate height
-    //       if (!error && !warning && !this.hasLoading) {
-    //         requestAnimationFrame(() => {
-    //           this.recalculatePanelHeight();
-    //         });
-    //       }
-    //     });
-    //   }
-    //
-    //   // On collapse
-    //   if (collapsed && !this.prevCollapsed) {
-    //     this.animateCollapse();
-    //     this.prevError = error;
-    //     this.prevWarning = warning;
-    //   }
-    //
-    //   // On error/warning state change while expanded
-    //   if (!collapsed && (error !== this.prevError || warning !== this.prevWarning)) {
-    //     this.updateGrid();
-    //     this.cdr.detectChanges();
-    //     requestAnimationFrame(() => {
-    //       this.recalculatePanelHeight();
-    //     });
-    //   }
-    //
-    //   this.prevCollapsed = collapsed;
-    //   this.prevError = error;
-    //   this.prevWarning = warning;
-    // });
 
     // Effect to skip animation when transitioning from loading to grid while expanded
     effect(() => {
@@ -176,51 +116,36 @@ export class ClrSummaryArea implements OnInit, AfterViewInit, OnDestroy {
       this.prevLoading = loading;
     });
 
-    // // Effect for tracking changes in the error state
-    // effect(() => {
-    //   console.log('### DEBUG error effect called!');
-    //   const error = this.hasError;
-    //   const collapsed = this.isCollapsed();
-    //   if (error !== this.prevError && !collapsed) {
-    //     this.updateGrid();
-    //     this.cdr.detectChanges();
-    //     requestAnimationFrame(() => {
-    //       this.recalculatePanelHeight();
-    //     });
-    //   }
-    //   this.prevError = error;
-    // });
-
+    // Effect for tracking changes in the error state (using computed signal)
     effect(() => {
-      console.log('### DEBUG errorActive effect called!');
-      const error = this.errorActive();
+      const errorActive = this.errorActive();
       const collapsed = this.isCollapsed();
-      if (error !== this.prevError && !collapsed) {
+      // If error active state changed and area is NOT collapsed, recalculate panel height
+      if (errorActive !== this.prevErrorActive && !collapsed) {
         this.updateGrid();
         this.cdr.detectChanges();
         requestAnimationFrame(() => {
           this.recalculatePanelHeight();
         });
       }
-      this.prevError = error;
+      this.prevErrorActive = errorActive;
     });
 
-    // // Effect for tracking changes in the warning state
-    // effect(() => {
-    //   const warning = this.hasWarning;
-    //   const collapsed = this.isCollapsed();
-    //   if (warning !== this.prevWarning && !collapsed) {
-    //     this.updateGrid();
-    //     this.cdr.detectChanges();
-    //     requestAnimationFrame(() => {
-    //       this.recalculatePanelHeight();
-    //     });
-    //   }
-    //   this.prevWarning = warning;
-    // });
+    // Effect for tracking changes in the warning state (using computed signal)
+    effect(() => {
+      const warningActive = this.warningActive();
+      const collapsed = this.isCollapsed();
+      // If error active state changed and area is NOT collapsed, recalculate panel height
+      if (warningActive !== this.prevWarningActive && !collapsed) {
+        this.updateGrid();
+        this.cdr.detectChanges();
+        requestAnimationFrame(() => {
+          this.recalculatePanelHeight();
+        });
+      }
+      this.prevWarningActive = warningActive;
+    });
   }
-
-  public errorActive = computed(() => this.error()?.active ?? false);
 
   public ngOnInit(): void {
     this.isCollapsed = this.state.collapsed(this.localStorageKey());
@@ -247,8 +172,7 @@ export class ClrSummaryArea implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public get hasError(): boolean {
-    // console.log('### DEBUG: hasError called:', !this.hasLoading && !!this.error() && this.error().active);
-    return !this.hasLoading && !!this.error() && this.error().active;
+    return !this.hasLoading && !!this.error() && this.error().active();
   }
 
   public get errorText(): string {
@@ -264,7 +188,7 @@ export class ClrSummaryArea implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public get hasWarning(): boolean {
-    return !this.hasLoading && !this.hasError && !!this.warning() && this.warning().active;
+    return !this.hasLoading && !this.hasError && !!this.warning() && this.warning().active();
   }
 
   public get warningText(): string {
@@ -330,7 +254,6 @@ export class ClrSummaryArea implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private updateGrid(): void {
-    console.log('### DEBUG: updateGrid() called');
     if (this.items && this.items.length > 0) {
       const maxItems = this.maxColumns * this.rows();
       const itemCount = Math.min(this.items.length, maxItems);
@@ -354,7 +277,6 @@ export class ClrSummaryArea implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private updatePanelHeight(): void {
-    console.log('### DEBUG: updatePanelHeight() called');
     if (this.panelsRef?.nativeElement) {
       const el = this.panelsRef.nativeElement;
 
@@ -458,7 +380,6 @@ export class ClrSummaryArea implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private animateCollapse(): void {
-    console.log('### DEBUG: animateCollapse() called');
     if (this.panelsRef?.nativeElement) {
       const el = this.panelsRef.nativeElement;
       // Set current height explicitly first

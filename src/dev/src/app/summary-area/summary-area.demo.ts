@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   ClrSummaryArea,
@@ -50,29 +50,23 @@ export class SummaryAreaDemo implements OnInit {
   public showProgressDetails = false;
 
   public summaryAreaErrorState: ClrSummaryAreaError = {
-    active: false, // set to true to see the general error state of the summary area
+    active: signal(false), // set to true to see the general error state of the summary area
     text: 'Critical error',
     linkText: 'Click here to resolve',
-    click: () => {
-      this.summaryAreaErrorState.active = false;
-      alert('Handle error clicked!');
-    },
+    click: () => this.handleAreaErrorClick(),
   };
   public summaryAreaWarningState: ClrSummaryAreaWarning = {
-    active: false, // set to true to see the general warning state of the summary area
+    active: signal(true), // set to true to see the general warning state of the summary area
     text: 'Check your data',
     linkText: 'Reload',
-    click: () => {
-      this.summaryAreaWarningState.active = false;
-      alert('Handle warning clicked!');
-    },
+    click: () => this.handleAreaWarningClick(),
   };
-  public summaryAreaLoadingState: ClrSummaryAreaLoading = { active: true, text: 'Loading...' };
+  public summaryAreaLoadingState: ClrSummaryAreaLoading = { active: false, text: 'Loading...' };
   public itemLoadingState: ClrSummaryItemLoading = { active: true, text: 'Fetching...' };
   public itemErrorState: ClrSummaryItemError = {
     active: true,
     text: 'Click to handle error',
-    click: () => this.handleErrorClick(this.itemErrorState),
+    click: () => this.handleItemErrorClick(this.itemErrorState),
   };
   public itemWarningState: ClrSummaryItemWarning = {
     active: true,
@@ -82,15 +76,16 @@ export class SummaryAreaDemo implements OnInit {
       alert('Handle warning clicked!');
     },
   };
-  public errorState: ClrSummaryAreaError = {
-    active: false,
-    text: 'Critical error',
-    linkText: 'Reload',
-    click: () => {
-      this.errorState.active = false;
-      alert('Handle error clicked!');
-    },
-  };
+
+  public handleAreaErrorClick(): void {
+    this.summaryAreaErrorState.active.set(false);
+    alert('Handle error clicked!');
+  }
+
+  public handleAreaWarningClick(): void {
+    this.summaryAreaWarningState.active.set(false);
+    alert('Handle warning clicked!');
+  }
 
   private readonly router: Router = inject(Router);
 
@@ -98,7 +93,7 @@ export class SummaryAreaDemo implements OnInit {
     // Simulate general loading state
     setTimeout(() => {
       this.summaryAreaLoadingState = { ...this.summaryAreaLoadingState, active: false };
-    }, 1000);
+    }, 2000);
 
     // Simulate item loading state
     setTimeout(() => {
@@ -114,7 +109,7 @@ export class SummaryAreaDemo implements OnInit {
     alert('Wuhu, you clicked the icon!');
   }
 
-  public handleErrorClick(errorState: ClrSummaryAreaError): void {
+  public handleItemErrorClick(errorState: ClrSummaryItemError): void {
     this.itemErrorState = {
       ...errorState,
       active: false,
