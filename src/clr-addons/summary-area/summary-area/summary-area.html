@@ -2,6 +2,7 @@
   #panelsRef
   class="summary-area-panels"
   [class.is-active]="!isCollapsed()"
+  [class.loading-active]="hasLoading"
   [class.no-transition]="noTransition"
   [style.height]="panelHeight"
 >

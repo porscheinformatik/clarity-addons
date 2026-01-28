@@ -82,6 +82,12 @@ clr-alert ::ng-deep > .alert-lightweight {
     transition: height $transition-duration $transition-timing, opacity $transition-duration $transition-timing,
       visibility 0s 0s;
   }
+
+  &.loading-active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .summary-area-panels.no-transition {
@@ -99,6 +105,11 @@ clr-alert ::ng-deep > .alert-lightweight {
   pointer-events: none;
   overflow: hidden;
   transition: opacity $transition-duration $transition-timing;
+  // Panels are stacked - only the active one is visible
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
 
   &__body {
     overflow: hidden;
@@ -108,15 +119,12 @@ clr-alert ::ng-deep > .alert-lightweight {
   &.is-active {
     opacity: 1;
     pointer-events: auto;
+    position: relative;
     transition: opacity $transition-duration $transition-timing;
 
     .summary-area-panel__body {
       overflow: visible;
     }
-  }
-
-  &--state.is-active {
-    margin-bottom: 0.5rem;
   }
 }
 
@@ -125,9 +133,9 @@ clr-alert ::ng-deep > .alert-lightweight {
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
+  // Use same margin as grid container
   margin: 0 24px 9px 24px;
-  padding: 6px 0;
-  height: calc(var(--rows, 3) * 20px + (var(--rows, 3) - 1) * 6px);
+  padding: 3px 0;
 
   .loading-text {
     color: var(--cds-alias-typography-color-300);
