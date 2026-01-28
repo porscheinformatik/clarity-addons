@@ -9,6 +9,7 @@ import {
   Component,
   ContentChildren,
   effect,
+  ElementRef,
   HostListener,
   inject,
   input,
@@ -16,6 +17,7 @@ import {
   OnInit,
   QueryList,
   Signal,
+  ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ClrSummaryItem } from '../summary-item/summary-item';
@@ -38,6 +40,7 @@ import {
 })
 export class ClrSummaryArea implements OnInit, AfterViewInit, OnDestroy {
   @ContentChildren(ClrSummaryItem, { descendants: true }) items!: QueryList<ClrSummaryItem>;
+  @ViewChild('panelsRef', { static: true }) panelsRef!: ElementRef<HTMLElement>;
 
   public isCollapsed: Signal<boolean>;
   public rows = input<ClrSummaryAreaRows>(3);
@@ -48,6 +51,12 @@ export class ClrSummaryArea implements OnInit, AfterViewInit, OnDestroy {
 
   public currentColumns: ClrSummaryAreaColumns = 5;
   public currentRows: ClrSummaryAreaRows = this.rows();
+  public noTransition = false;
+  public panelHeight: string = '0px';
+
+  private prevLoading = false;
+  private prevCollapsed = true;
+  private noTransitionTimeout: any;
 
   private readonly state = inject(ClrSummaryAreaStateService);
   private readonly cdr = inject(ChangeDetectorRef);
@@ -58,12 +67,80 @@ export class ClrSummaryArea implements OnInit, AfterViewInit, OnDestroy {
   private itemsSubscription?: { unsubscribe: () => void };
 
   constructor() {
+    // Effect to handle expand/collapse with smooth height transition
     effect(() => {
-      if (!this.isCollapsed()) {
+      const collapsed = this.isCollapsed();
+
+      if (!collapsed) {
+        // Expanding: update grid first, then measure and set height
         this.updateGrid();
-        requestAnimationFrame(() => this.updateGrid());
+        requestAnimationFrame(() => {
+          this.updateGrid();
+          this.updatePanelHeight();
+        });
+      } else if (!this.prevCollapsed && collapsed) {
+        // Collapsing: set current height first, then animate to 0
+        this.animateCollapse();
       }
+
+      this.prevCollapsed = collapsed;
     });
+    // Effect to skip animation when transitioning from loading to grid while expanded
+    effect(() => {
+      const loading = this.hasLoading;
+      const collapsed = this.isCollapsed();
+      // If loading just became false and area is NOT collapsed (expanded), skip transition
+      // This prevents UI jumping when loading finishes and grid appears
+      if (this.prevLoading && !loading && !collapsed) {
+        this.noTransition = true;
+        clearTimeout(this.noTransitionTimeout);
+        this.noTransitionTimeout = setTimeout(() => {
+          this.noTransition = false;
+          this.cdr.markForCheck();
+        }, 50);
+        this.cdr.markForCheck();
+      }
+      this.prevLoading = loading;
+    });
+  }
+
+  private updatePanelHeight(): void {
+    if (this.panelsRef?.nativeElement) {
+      const el = this.panelsRef.nativeElement;
+      // First, set height to 0 to ensure we start from collapsed state
+      this.panelHeight = '0px';
+      this.cdr.detectChanges();
+      // Force reflow
+      void el.offsetHeight;
+      // Now temporarily set to auto to measure the full content height
+      el.style.height = 'auto';
+      const scrollHeight = el.scrollHeight;
+      // Reset to 0 to prepare for animation
+      el.style.height = '0px';
+      // Force reflow again
+      void el.offsetHeight;
+      // Now animate to the measured height
+      requestAnimationFrame(() => {
+        this.panelHeight = scrollHeight + 'px';
+        this.cdr.markForCheck();
+      });
+    }
+  }
+
+  private animateCollapse(): void {
+    if (this.panelsRef?.nativeElement) {
+      const el = this.panelsRef.nativeElement;
+      // Set current height explicitly first
+      this.panelHeight = el.scrollHeight + 'px';
+      this.cdr.detectChanges();
+      // Force reflow
+      void el.offsetHeight;
+      // Then animate to 0
+      requestAnimationFrame(() => {
+        this.panelHeight = '0px';
+        this.cdr.markForCheck();
+      });
+    }
   }
 
   public ngOnInit(): void {

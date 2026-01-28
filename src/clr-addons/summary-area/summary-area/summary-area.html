@@ -1,10 +1,17 @@
-<div class="summary-area-panels" [class.is-active]="!isCollapsed()">
+<div
+  #panelsRef
+  class="summary-area-panels"
+  [class.is-active]="!isCollapsed()"
+  [class.no-transition]="noTransition"
+  [style.height]="panelHeight"
+>
   <div
     class="summary-area-panel summary-area-panel--state"
     [class.is-active]="!isCollapsed() && (hasLoading || hasError || hasWarning)"
     [class.is-loading]="hasLoading"
     [class.is-error]="hasError"
     [class.is-warning]="hasWarning"
+    [style.--rows]="currentRows"
     [attr.aria-hidden]="isCollapsed() || !(hasLoading || hasError || hasWarning) ? 'true' : 'false'"
     [attr.inert]="isCollapsed() || !(hasLoading || hasError || hasWarning) ? '' : null"
   >
