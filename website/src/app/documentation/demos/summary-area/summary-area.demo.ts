@@ -102,8 +102,9 @@ const EMPTY_VALUE_EXAMPLE = `<clr-summary-area [rows]="1">
 const EDIT_CONFIG_EXAMPLE = `<clr-summary-area [rows]="1">
     <clr-summary-item
       label="Phone Number"
-      [editConfig]="{enabled: true, text: 'Add Phone', click: onAddPhone}"
-    ></clr-summary-item>
+      [editConfig]="{enabled: true, text: 'Add Phone', click: onAddPhone}">
+      <clr-summary-item-value icon="mobile"></clr-summary-item-value>
+    </clr-summary-item>
     <clr-summary-item
       label="Address"
       [editConfig]="{enabled: true, click: onAddAddress}"

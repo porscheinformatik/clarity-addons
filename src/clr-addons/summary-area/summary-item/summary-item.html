@@ -38,9 +38,7 @@
       }
       <ng-content></ng-content>
       @if (showEditButton) {
-      <span class="value value-link edit-link" (click)="editClick?.()" (keydown.enter)="editClick?.()"
-        >{{ editText }}</span
-      >
+      <clr-summary-item-value [value]="editText" [clickable]="true" (clicked)="editClick()"></clr-summary-item-value>
       } @else if (!hasProjectedContent) {
       <span class="value value-placeholder">&mdash;</span>
       } }

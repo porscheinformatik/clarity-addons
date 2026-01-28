@@ -107,10 +107,11 @@ export class ClrSummaryItemValue implements OnInit, AfterContentInit, AfterViewI
 
   /**
    * Returns true if this component has any meaningful content to display.
-   * This includes: a value, an icon, or projected content.
+   * This includes: a value or projected content.
+   * An icon is considered special content and does not count as meaningful content alone.
    */
   public get hasMeaningfulContent(): boolean {
-    return this.hasIcon || this.hasText || this.hasProjectedContent;
+    return this.hasText || this.hasProjectedContent;
   }
 
   /**
@@ -118,7 +119,7 @@ export class ClrSummaryItemValue implements OnInit, AfterContentInit, AfterViewI
    * This happens when there's no meaningful content.
    */
   public get shouldHide(): boolean {
-    return !this.hasMeaningfulContent;
+    return !this.hasIcon && !this.hasMeaningfulContent;
   }
 
   public ngOnInit(): void {

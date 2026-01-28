@@ -62,7 +62,10 @@
     [editConfig]="{enabled: true, click: onEditClick}"
     [valueCopyable]="true"
     [showOnEmptyValue]="false"
-  ></clr-summary-item>
+  >
+    <clr-summary-item-value [icon]="'info-standard'"></clr-summary-item-value>
+    <clr-summary-item-value [value]="undefined"></clr-summary-item-value>
+  </clr-summary-item>
   <clr-summary-item label="Error Item11" [error]="itemErrorState">
     <clr-summary-item-value icon="gas"></clr-summary-item-value>
     <clr-summary-item-value value="error resolved"></clr-summary-item-value>

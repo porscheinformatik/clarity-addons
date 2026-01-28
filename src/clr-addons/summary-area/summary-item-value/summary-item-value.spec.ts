@@ -125,12 +125,12 @@ describe('SummaryItemValue', () => {
   });
 
   describe('hasMeaningfulContent', () => {
-    it('should return true when icon is set', () => {
+    it('should return false when icon is set', () => {
       hostComponent.icon = 'pencil';
       hostComponent.value = undefined;
       hostComponent.projectedContent = undefined;
       fixture.detectChanges();
-      expect(component.hasMeaningfulContent).toBe(true);
+      expect(component.hasMeaningfulContent).toBe(false);
     });
 
     it('should return true when value is set', () => {

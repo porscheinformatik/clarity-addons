@@ -94,6 +94,7 @@ export class ClrSummaryItem implements AfterContentInit, AfterViewChecked, OnDes
 
   public get showEditButton(): boolean {
     return (
+      !this.hasNonIconTextValue() &&
       !this.hasLoading &&
       !this.hasError &&
       !this.hasWarning &&
@@ -240,17 +241,20 @@ export class ClrSummaryItem implements AfterContentInit, AfterViewChecked, OnDes
           return false;
         }
         // Skip internal elements by class
-        if (
+        return !(
           element.classList.contains('edit-link') ||
           element.classList.contains('value-placeholder') ||
           element.classList.contains('summary-item-loading')
-        ) {
-          return false;
-        }
-        return true;
+        );
       }
 
       return false;
+    });
+  }
+
+  private hasNonIconTextValue(): boolean {
+    return this.valueChildren.toArray().some(child => {
+      return !child.hasIcon && !!child.value()?.trim();
     });
   }
 }

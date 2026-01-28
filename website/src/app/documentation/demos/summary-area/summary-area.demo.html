@@ -64,7 +64,10 @@
         Items without values can either show a placeholder dash (—) or be hidden entirely, controlled via the
         <code class="clr-code">[showOnEmptyValue]</code> input. Alternatively, an item can also define an edit
         configuration via the <code class="clr-code">[editConfig]</code>
-        input to show a custom action link when no value is present.
+        input to show a custom action link when no value is present. A summary item is considered empty if it has no
+        text value set via a
+        <code class="clr-code">clr-summary-item-value</code> or lacks projected content. An icon defined with
+        <code class="clr-code">clr-summary-item-value</code> alone does not count as meaningful content.
       </p>
 
       <h4 class="sub-section-title">Clickable Values</h4>
@@ -700,9 +703,9 @@
     </div>
 
     <div id="examples">
-      <h3>Code &amp; Examples</h3>
+      <h3 class="sub-section-title">Code &amp; Examples</h3>
 
-      <h4 class="sub-section-title">Page Layout Demo with a Summary Area</h4>
+      <h4>Page Layout Demo with a Summary Area</h4>
       <p class="section">
         <cds-icon shape="display"></cds-icon>&nbsp;<a
           [routerLink]="['/full-page-layouts/sidebarpage-layout', { outlets: { fullpage: ['overview'] } }]"
@@ -855,16 +858,15 @@
 
       <h4 class="sub-section-title">Edit Configuration</h4>
       <p class="section">
-        Empty items can display an edit link when the edit configuration is enabled. This is useful for prompting users
-        to add missing data.
+        Empty items can display an edit link when edit configuration is enabled, allowing users to add missing data. If
+        an icon is defined for the summary item, it will appear next to the edit link.
       </p>
       <br />
 
       <clr-summary-area [rows]="1">
-        <clr-summary-item
-          label="Phone Number"
-          [editConfig]="{enabled: true, text: 'Add Phone', click: onAddPhone}"
-        ></clr-summary-item>
+        <clr-summary-item label="Phone Number" [editConfig]="{enabled: true, text: 'Add Phone', click: onAddPhone}">
+          <clr-summary-item-value icon="mobile"></clr-summary-item-value>
+        </clr-summary-item>
         <clr-summary-item label="Address" [editConfig]="{enabled: true, click: onAddAddress}"></clr-summary-item>
       </clr-summary-area>
 
