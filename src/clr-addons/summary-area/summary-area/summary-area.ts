@@ -317,7 +317,6 @@ export class ClrSummaryArea implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private recalculatePanelHeight(): void {
-    console.log('### DEBUG: recalculatePanelHeight() called');
     if (this.panelsRef?.nativeElement && !this.isCollapsed()) {
       // If specific states are active, use calculated height
       if (this.hasLoading || this.hasError || this.hasWarning) {
@@ -362,21 +361,19 @@ export class ClrSummaryArea implements OnInit, AfterViewInit, OnDestroy {
    * Formula: (rows * itemHeight) + ((rows - 1) * rowGap) + gridPadding + containerMargin
    */
   private calculateGridHeight(): number {
-    console.log('### DEBUG: calculateGridHeight() called');
     const itemHeight = 20; // .summary-item height
     const rowGap = 6; // .summary-grid row-gap
     const gridPadding = 6; // .summary-grid padding (3px top + 3px bottom)
-    const containerMargin = 9; // .summary-area-container margin-bottom
 
     // For error/warning states, use a smaller fixed height
     if (this.hasError || this.hasWarning) {
       const alertHeight = itemHeight + 2 * rowGap;
-      return alertHeight + gridPadding + containerMargin;
+      return alertHeight + gridPadding;
     }
 
     // For loading state, calculate based on current rows
     const gridHeight = this.currentRows * itemHeight + (this.currentRows - 1) * rowGap;
-    return gridHeight + gridPadding + containerMargin;
+    return gridHeight + gridPadding;
   }
 
   private animateCollapse(): void {

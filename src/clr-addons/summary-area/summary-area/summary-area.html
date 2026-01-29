@@ -9,7 +9,6 @@
   <div
     class="summary-area-panel summary-area-panel--state"
     [class.is-active]="!isCollapsed() && (hasLoading || hasError || hasWarning)"
-    [class.is-loading]="hasLoading"
     [class.is-error]="hasError"
     [class.is-warning]="hasWarning"
     [style.--rows]="currentRows"

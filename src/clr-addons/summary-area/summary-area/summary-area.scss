@@ -1,6 +1,8 @@
 // Variables
 $transition-duration: 0.3s;
 $transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+$transition-duration-grid: 0.4s;
+$transition-timing-grid: ease-in-out;
 $panel-max-height: 700px;
 
 // Shared styles
@@ -36,10 +38,15 @@ clr-alert-item {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  flex-wrap: nowrap;
 
-  .alert-text,
+  .alert-text {
+    flex: none;
+    width: auto;
+    white-space: nowrap;
+    align-self: flex-start;
+  }
   .alert-action {
-    flex: 0 0 auto;
     white-space: nowrap;
   }
 }
@@ -72,16 +79,17 @@ clr-alert ::ng-deep > .alert-lightweight {
   visibility: hidden;
   overflow: hidden;
   margin: 0 0 9px 0;
-  transition: height $transition-duration $transition-timing, opacity $transition-duration $transition-timing,
-    visibility $transition-duration $transition-duration;
+  transition: height $transition-duration $transition-timing, opacity $transition-duration-grid $transition-timing-grid,
+    visibility $transition-duration-grid $transition-timing-grid;
 
   &.is-active {
     opacity: 1;
     pointer-events: auto;
     visibility: visible;
     overflow: visible;
-    transition: height $transition-duration $transition-timing, opacity $transition-duration $transition-timing,
-      visibility $transition-duration $transition-duration;
+    transition: height $transition-duration $transition-timing,
+      opacity $transition-duration-grid $transition-timing-grid,
+      visibility $transition-duration-grid $transition-timing-grid;
   }
 
   &.loading-active {
@@ -104,8 +112,7 @@ clr-alert ::ng-deep > .alert-lightweight {
   transform-origin: top center;
   opacity: 0;
   pointer-events: none;
-  //overflow: hidden;
-  transition: opacity $transition-duration $transition-timing;
+  transition: opacity $transition-duration-grid $transition-timing-grid;
   // Panels are stacked - only the active one is visible
   position: absolute;
   top: 0;
@@ -113,7 +120,6 @@ clr-alert ::ng-deep > .alert-lightweight {
   right: 0;
 
   &__body {
-    //overflow: hidden;
     will-change: opacity;
   }
 
@@ -121,7 +127,7 @@ clr-alert ::ng-deep > .alert-lightweight {
     opacity: 1;
     pointer-events: auto;
     position: relative;
-    transition: opacity $transition-duration $transition-timing;
+    transition: opacity $transition-duration-grid $transition-timing-grid;
 
     .summary-area-panel__body {
       overflow: visible;
@@ -134,8 +140,7 @@ clr-alert ::ng-deep > .alert-lightweight {
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  // Use same margin as grid container
-  margin: 0 24px 9px 24px;
+  margin: 0 24px 0 24px;
   padding: 3px 0;
 
   .loading-text {

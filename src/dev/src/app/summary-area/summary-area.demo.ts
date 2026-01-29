@@ -56,12 +56,12 @@ export class SummaryAreaDemo implements OnInit {
     click: () => this.handleAreaErrorClick(),
   };
   public summaryAreaWarningState: ClrSummaryAreaWarning = {
-    active: signal(true), // set to true to see the general warning state of the summary area
+    active: signal(false), // set to true to see the general warning state of the summary area
     text: 'Check your data',
     linkText: 'Reload',
     click: () => this.handleAreaWarningClick(),
   };
-  public summaryAreaLoadingState: ClrSummaryAreaLoading = { active: false, text: 'Loading...' };
+  public summaryAreaLoadingState: ClrSummaryAreaLoading = { active: true, text: 'Loading...' };
   public itemLoadingState: ClrSummaryItemLoading = { active: true, text: 'Fetching...' };
   public itemErrorState: ClrSummaryItemError = {
     active: true,
