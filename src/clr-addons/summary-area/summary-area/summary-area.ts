@@ -52,14 +52,15 @@ export class ClrSummaryArea implements OnInit, AfterViewInit, OnDestroy {
 
   public currentColumns: ClrSummaryAreaColumns = 5;
   public currentRows: ClrSummaryAreaRows = this.rows();
-  public noTransition = false;
   public panelHeight: string = '0px';
+  public loadingPanelHeight: string = '0px';
+  public loadingVisible = false;
 
-  private prevLoading = false;
   private prevErrorActive = false;
   private prevWarningActive = false;
   private prevCollapsed = true;
-  private noTransitionTimeout: any;
+  private prevHasLoading = false;
+  private loadingVisibleTimeout: ReturnType<typeof setTimeout> | null = null;
 
   private readonly state = inject(ClrSummaryAreaStateService);
   private readonly cdr = inject(ChangeDetectorRef);
@@ -92,30 +93,6 @@ export class ClrSummaryArea implements OnInit, AfterViewInit, OnDestroy {
       this.prevCollapsed = collapsed;
     });
 
-    // Effect to skip animation when transitioning from loading to grid while expanded
-    effect(() => {
-      const loading = this.hasLoading;
-      const collapsed = this.isCollapsed();
-      // If loading just became false and area is NOT collapsed (expanded), skip transition
-      // This prevents UI jumping when loading finishes and grid appears
-      if (this.prevLoading && !loading && !collapsed) {
-        this.noTransition = true;
-        clearTimeout(this.noTransitionTimeout);
-        this.noTransitionTimeout = setTimeout(() => {
-          this.noTransition = false;
-          this.cdr.markForCheck();
-        }, 50);
-        this.cdr.markForCheck();
-      }
-      // When loading state changes and not collapsed, recalculate height
-      if (loading !== this.prevLoading && !collapsed) {
-        setTimeout(() => {
-          this.recalculatePanelHeight();
-        }, 0);
-      }
-      this.prevLoading = loading;
-    });
-
     // Effect for tracking changes in the error state (using computed signal)
     effect(() => {
       const errorActive = this.errorActive();
@@ -144,6 +121,40 @@ export class ClrSummaryArea implements OnInit, AfterViewInit, OnDestroy {
         });
       }
       this.prevWarningActive = warningActive;
+    });
+
+    // Effect to delay loading indicator visibility for smooth fade-in animation
+    effect(() => {
+      const loading = this.hasLoading;
+      const collapsed = this.isCollapsed();
+
+      // Clear any pending timeout
+      if (this.loadingVisibleTimeout) {
+        clearTimeout(this.loadingVisibleTimeout);
+        this.loadingVisibleTimeout = null;
+      }
+
+      if (loading && !collapsed) {
+        // Delay showing loading indicator to allow parent panel to become visible first
+        this.loadingVisibleTimeout = setTimeout(() => {
+          this.loadingVisible = true;
+          this.cdr.markForCheck();
+        }, 50);
+      } else {
+        this.loadingVisible = false;
+        this.loadingPanelHeight = '0px';
+        this.cdr.markForCheck();
+      }
+
+      if (this.prevHasLoading !== loading && !collapsed) {
+        this.updateGrid();
+        this.cdr.detectChanges();
+        requestAnimationFrame(() => {
+          this.recalculatePanelHeight();
+        });
+      }
+
+      this.prevHasLoading = loading;
     });
   }
 
@@ -251,6 +262,9 @@ export class ClrSummaryArea implements OnInit, AfterViewInit, OnDestroy {
 
   public ngOnDestroy(): void {
     this.itemsSubscription?.unsubscribe();
+    if (this.loadingVisibleTimeout) {
+      clearTimeout(this.loadingVisibleTimeout);
+    }
   }
 
   private updateGrid(): void {
@@ -327,8 +341,6 @@ export class ClrSummaryArea implements OnInit, AfterViewInit, OnDestroy {
       }
 
       const el = this.panelsRef.nativeElement;
-      // Temporarily disable transition for immediate update
-      this.noTransition = true;
       // Set height to auto temporarily to measure true content height
       const currentHeight = el.style.height;
       el.style.height = 'auto';
@@ -340,9 +352,7 @@ export class ClrSummaryArea implements OnInit, AfterViewInit, OnDestroy {
       el.style.height = currentHeight;
       this.panelHeight = scrollHeight + 'px';
       this.cdr.detectChanges();
-      // Re-enable transition after DOM update
       setTimeout(() => {
-        this.noTransition = false;
         this.cdr.markForCheck();
       }, 0);
     }

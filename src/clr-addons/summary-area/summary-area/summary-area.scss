@@ -96,15 +96,8 @@ clr-alert ::ng-deep > .alert-lightweight {
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-}
-
-.summary-area-panels.no-transition {
-  transition: none !important;
-
-  .summary-area-panel,
-  .summary-area-panel__body {
-    transition: none !important;
+    opacity: 1;
+    transition: opacity $transition-duration-grid $transition-timing-grid;
   }
 }
 
@@ -142,6 +135,13 @@ clr-alert ::ng-deep > .alert-lightweight {
   gap: 0.75rem;
   margin: 0 24px 0 24px;
   padding: 3px 0;
+  opacity: 0;
+  transition: opacity 0s $transition-timing-grid;
+
+  &.is-visible {
+    opacity: 1;
+    transition: opacity $transition-duration-grid $transition-timing-grid;
+  }
 
   .loading-text {
     color: var(--cds-alias-typography-color-300);
