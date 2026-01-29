@@ -3,15 +3,17 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
+import { WritableSignal } from '@angular/core';
+
 export interface ClrSummaryAreaError {
-  active: boolean;
+  active: WritableSignal<boolean>;
   text?: string;
   click?: () => void;
   linkText?: string;
 }
 
 export interface ClrSummaryAreaWarning {
-  active: boolean;
+  active: WritableSignal<boolean>;
   text?: string;
   click?: () => void;
   linkText?: string;

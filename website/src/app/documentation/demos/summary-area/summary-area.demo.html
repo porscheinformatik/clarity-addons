@@ -424,10 +424,11 @@
         <tbody>
           <tr>
             <td class="left"><b>active</b></td>
-            <td class="left clr-hidden-xs-down">boolean</td>
+            <td class="left clr-hidden-xs-down">WritableSignal&lt;boolean&gt;</td>
             <td class="left">
-              <b>Required.</b> When <code class="clr-code">true</code> and loading is inactive, the Summary Area
-              displays an error indicator and hides all summary items. Error state takes priority over warning state.
+              <b>Required.</b> When <code class="clr-code">active()</code> returns <code class="clr-code">true</code>
+              and loading is inactive, the Summary Area displays an error indicator and hides all summary items. Error
+              state takes priority over warning state.
             </td>
           </tr>
           <tr>
@@ -472,10 +473,11 @@
         <tbody>
           <tr>
             <td class="left"><b>active</b></td>
-            <td class="left clr-hidden-xs-down">boolean</td>
+            <td class="left clr-hidden-xs-down">WritableSignal&lt;boolean&gt;</td>
             <td class="left">
-              <b>Required.</b> When <code class="clr-code">true</code> and both loading and error states are inactive,
-              the Summary Area displays a warning indicator and hides all summary items.
+              <b>Required.</b> When <code class="clr-code">active()</code> returns <code class="clr-code">true</code>
+              and both loading and error states are inactive, the Summary Area displays a warning indicator and hides
+              all summary items.
             </td>
           </tr>
           <tr>
@@ -907,7 +909,7 @@
       <br />
 
       <h5>Area Loading</h5>
-      <clr-summary-area [rows]="1" [loading]="{active: true, text: 'Loading data...'}">
+      <clr-summary-area [rows]="1" [loading]="{active: signal(true), text: 'Loading data...'}">
         <clr-summary-item label="Name">
           <clr-summary-item-value value="John Doe"></clr-summary-item-value>
         </clr-summary-item>
@@ -916,7 +918,7 @@
       <h5>Item Loading</h5>
       <br />
       <clr-summary-area [rows]="1">
-        <clr-summary-item label="Status" [loading]="{active: true, text: 'Fetching status...'}">
+        <clr-summary-item label="Status" [loading]="{active: signal(true), text: 'Fetching status...'}">
           <clr-summary-item-value value="Active"></clr-summary-item-value>
         </clr-summary-item>
         <clr-summary-item label="Type">
@@ -937,7 +939,7 @@
       <br />
       <clr-summary-area
         [rows]="1"
-        [error]="{active: true, text: 'Failed to load data', linkText: 'Retry', click: onRetry}"
+        [error]="{active: signal(true), text: 'Failed to load data', linkText: 'Retry', click: onRetry}"
       >
         <clr-summary-item label="Name">
           <clr-summary-item-value value="John Doe"></clr-summary-item-value>
@@ -949,7 +951,7 @@
       <clr-summary-area [rows]="1">
         <clr-summary-item
           label="Sync Status"
-          [error]="{active: true, text: 'Sync failed - Click to retry', click: onRetryItem}"
+          [error]="{active: signal(true), text: 'Sync failed - Click to retry', click: onRetryItem}"
         >
           <clr-summary-item-value value="Synced"></clr-summary-item-value>
         </clr-summary-item>
@@ -972,7 +974,7 @@
       <br />
       <clr-summary-area
         [rows]="1"
-        [warning]="{active: true, text: 'Data may be outdated', linkText: 'Refresh', click: onRefresh}"
+        [warning]="{active: signal(true), text: 'Data may be outdated', linkText: 'Refresh', click: onRefresh}"
       >
         <clr-summary-item label="Last Updated">
           <clr-summary-item-value value="2 hours ago"></clr-summary-item-value>
@@ -984,7 +986,7 @@
       <clr-summary-area [rows]="1">
         <clr-summary-item
           label="Sync Status"
-          [warning]="{active: true, text: 'Data outdated - Click to sync', click:
+          [warning]="{active: signal(true), text: 'Data outdated - Click to sync', click:
         onSyncItem}"
         >
           <clr-summary-item-value value="Synced"></clr-summary-item-value>
@@ -1078,7 +1080,7 @@
           <clr-summary-item-value value="123 Main Street, Vienna, Austria"></clr-summary-item-value>
         </clr-summary-item>
         <clr-summary-item label="Notes" [showOnEmptyValue]="true"></clr-summary-item>
-        <clr-summary-item label="Tracking" [loading]="{active: false}">
+        <clr-summary-item label="Tracking" [loading]="{active: signal(true)}">
           <clr-summary-item-value
             value="Track Package"
             [clickable]="true"
