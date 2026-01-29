@@ -5,7 +5,7 @@
  */
 
 import { ClarityDocComponent } from '../clarity-doc';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ClarityIcons, checkCircleIcon, flagIcon, folderIcon, userIcon, usersIcon } from '@cds/core/icon';
 
 ClarityIcons.addIcons(userIcon, usersIcon, flagIcon, folderIcon, checkCircleIcon);
@@ -133,7 +133,7 @@ const COPYABLE_EXAMPLE = `<clr-summary-area [rows]="1">
   </clr-summary-area>`;
 
 const LOADING_EXAMPLE = `<!-- Area Loading -->
-<clr-summary-area [rows]="1" [loading]="{active: true, text: 'Loading data...'}">
+<clr-summary-area [rows]="1" [loading]="{active: signal(true), text: 'Loading data...'}">
   <clr-summary-item label="Name">
     <clr-summary-item-value value="John Doe"></clr-summary-item-value>
   </clr-summary-item>
@@ -141,7 +141,7 @@ const LOADING_EXAMPLE = `<!-- Area Loading -->
 
 <!-- Item Loading -->
 <clr-summary-area [rows]="1">
-  <clr-summary-item label="Status" [loading]="{active: true, text: 'Fetching status...'}">
+  <clr-summary-item label="Status" [loading]="{active: signal(true), text: 'Fetching status...'}">
     <clr-summary-item-value value="Active"></clr-summary-item-value>
   </clr-summary-item>
   <clr-summary-item label="Type">
@@ -151,7 +151,7 @@ const LOADING_EXAMPLE = `<!-- Area Loading -->
 
 const ERROR_EXAMPLE = `<!-- Area Error -->
 <clr-summary-area [rows]="1"
-                  [error]="{active: true,
+                  [error]="{active: signal(true),
                             text: 'Failed to load data',
                             linkText: 'Retry',
                             click: onRetry}">
@@ -163,7 +163,7 @@ const ERROR_EXAMPLE = `<!-- Area Error -->
 <!-- Item Error -->
 <clr-summary-area [rows]="1">
   <clr-summary-item label="Sync Status"
-                    [error]="{active: true,
+                    [error]="{active: signal(true),
                               text: 'Sync failed - Click to retry',
                               click: onRetryItem}">
     <clr-summary-item-value value="Synced"></clr-summary-item-value>
@@ -175,7 +175,7 @@ const ERROR_EXAMPLE = `<!-- Area Error -->
 
 const WARNING_EXAMPLE = `<!-- Area Warning -->
 <clr-summary-area [rows]="1"
-                  [warning]="{active: true,
+                  [warning]="{active: signal(true),
                               text: 'Data may be outdated'
                               linkText: 'Refresh',
                               click: onRefresh}">
@@ -187,7 +187,7 @@ const WARNING_EXAMPLE = `<!-- Area Warning -->
 <!-- Item Warning -->
 <clr-summary-area [rows]="1">
   <clr-summary-item label="Sync Status"
-                    [warning]="{active: true,
+                    [warning]="{active: signal(true),
                                 text: 'Data outdated - Click to sync',
                                 click: onSyncItem}">
     <clr-summary-item-value value="Synced"></clr-summary-item-value>
@@ -263,7 +263,7 @@ const COMPLETE_EXAMPLE = `<clr-summary-area [rows]="3">
     <clr-summary-item-value value="123 Main Street, Vienna, Austria"></clr-summary-item-value>
   </clr-summary-item>
   <clr-summary-item label="Notes" [showOnEmptyValue]="true"></clr-summary-item>
-  <clr-summary-item label="Tracking" [loading]="{active: false}">
+  <clr-summary-item label="Tracking" [loading]="{active: signal(true)}">
     <clr-summary-item-value
       value="Track Package"
       [clickable]="true"
@@ -358,4 +358,5 @@ export class SummaryAreaDemo extends ClarityDocComponent {
   onSyncItem = (): void => {
     alert('Sync data');
   };
+  protected readonly signal = signal;
 }
