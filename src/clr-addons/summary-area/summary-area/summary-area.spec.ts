@@ -200,19 +200,19 @@ describe('SummaryAreaComponent', () => {
     });
 
     it('should have hasError as false when error is set but not active', () => {
-      hostComponent.error = { active: false, text: 'Error text' };
+      hostComponent.error = { active: signal(false), text: 'Error text' };
       fixture.detectChanges();
       expect(component.hasError).toBe(false);
     });
 
     it('should have hasError as true when error is active', () => {
-      hostComponent.error = { active: true, text: 'Error text' };
+      hostComponent.error = { active: signal(true), text: 'Error text' };
       fixture.detectChanges();
       expect(component.hasError).toBe(true);
     });
 
     it('should render error alert when error is active', () => {
-      hostComponent.error = { active: true, text: 'Error occurred' };
+      hostComponent.error = { active: signal(true), text: 'Error occurred' };
       fixture.detectChanges();
 
       const errorAlert = fixture.debugElement.query(By.css('.summary-area-alert clr-alert'));
@@ -220,44 +220,44 @@ describe('SummaryAreaComponent', () => {
     });
 
     it('should use default error text when not provided', () => {
-      hostComponent.error = { active: true };
+      hostComponent.error = { active: signal(true) };
       fixture.detectChanges();
       expect(component.errorText).toBe('Error');
     });
 
     it('should use custom error text when provided', () => {
-      hostComponent.error = { active: true, text: 'Custom error message' };
+      hostComponent.error = { active: signal(true), text: 'Custom error message' };
       fixture.detectChanges();
       expect(component.errorText).toBe('Custom error message');
     });
 
     it('should have errorClick as undefined when no click handler', () => {
-      hostComponent.error = { active: true, text: 'Error' };
+      hostComponent.error = { active: signal(true), text: 'Error' };
       fixture.detectChanges();
       expect(component.errorClick).toBeUndefined();
     });
 
     it('should have errorClick defined when click handler is provided', () => {
       const clickFn = (): void => {};
-      hostComponent.error = { active: true, text: 'Error', click: clickFn };
+      hostComponent.error = { active: signal(true), text: 'Error', click: clickFn };
       fixture.detectChanges();
       expect(component.errorClick).toBe(clickFn);
     });
 
     it('should have errorLinkText as undefined when not provided', () => {
-      hostComponent.error = { active: true, text: 'Error' };
+      hostComponent.error = { active: signal(true), text: 'Error' };
       fixture.detectChanges();
       expect(component.errorLinkText).toBeUndefined();
     });
 
     it('should have errorLinkText when provided', () => {
-      hostComponent.error = { active: true, text: 'Error', linkText: 'Fix it' };
+      hostComponent.error = { active: signal(true), text: 'Error', linkText: 'Fix it' };
       fixture.detectChanges();
       expect(component.errorLinkText).toBe('Fix it');
     });
 
     it('should render alert-text and alert-action when both text and click are provided', () => {
-      hostComponent.error = { active: true, text: 'Error', click: (): void => {}, linkText: 'Fix' };
+      hostComponent.error = { active: signal(true), text: 'Error', click: (): void => {}, linkText: 'Fix' };
       fixture.detectChanges();
 
       const alertText = fixture.debugElement.query(By.css('.alert-text'));
@@ -267,7 +267,7 @@ describe('SummaryAreaComponent', () => {
     });
 
     it('should render only alert-action when click is provided without linkText', () => {
-      hostComponent.error = { active: true, text: 'Error', click: (): void => {} };
+      hostComponent.error = { active: signal(true), text: 'Error', click: (): void => {} };
       fixture.detectChanges();
 
       const alertAction = fixture.debugElement.query(By.css('.alert-action'));
@@ -275,7 +275,7 @@ describe('SummaryAreaComponent', () => {
     });
 
     it('should render only alert-text when no click is provided', () => {
-      hostComponent.error = { active: true, text: 'Error' };
+      hostComponent.error = { active: signal(true), text: 'Error' };
       fixture.detectChanges();
 
       const alertText = fixture.debugElement.query(By.css('.alert-text'));
@@ -285,7 +285,7 @@ describe('SummaryAreaComponent', () => {
     });
 
     it('should hide grid panel when error is active', () => {
-      hostComponent.error = { active: true, text: 'Error' };
+      hostComponent.error = { active: signal(true), text: 'Error' };
       fixture.detectChanges();
 
       const gridPanel = fixture.debugElement.query(By.css('.summary-area-panel--grid.is-active'));
@@ -293,7 +293,7 @@ describe('SummaryAreaComponent', () => {
     });
 
     it('should show state panel when error is active', () => {
-      hostComponent.error = { active: true, text: 'Error' };
+      hostComponent.error = { active: signal(true), text: 'Error' };
       fixture.detectChanges();
 
       const statePanel = fixture.debugElement.query(By.css('.summary-area-panel--state.is-active'));
@@ -330,19 +330,19 @@ describe('SummaryAreaComponent', () => {
     });
 
     it('should have hasWarning as false when warning is set but not active', () => {
-      hostComponent.warning = { active: false, text: 'Warning text' };
+      hostComponent.warning = { active: signal(false), text: 'Warning text' };
       fixture.detectChanges();
       expect(component.hasWarning).toBe(false);
     });
 
     it('should have hasWarning as true when warning is active', () => {
-      hostComponent.warning = { active: true, text: 'Warning text' };
+      hostComponent.warning = { active: signal(true), text: 'Warning text' };
       fixture.detectChanges();
       expect(component.hasWarning).toBe(true);
     });
 
     it('should render warning alert when warning is active', () => {
-      hostComponent.warning = { active: true, text: 'Warning occurred' };
+      hostComponent.warning = { active: signal(true), text: 'Warning occurred' };
       fixture.detectChanges();
 
       const warningAlert = fixture.debugElement.query(By.css('.summary-area-alert clr-alert'));
@@ -350,45 +350,45 @@ describe('SummaryAreaComponent', () => {
     });
 
     it('should use default warning text when not provided', () => {
-      hostComponent.warning = { active: true };
+      hostComponent.warning = { active: signal(true) };
       fixture.detectChanges();
       expect(component.warningText).toBe('Warning');
     });
 
     it('should use custom warning text when provided', () => {
-      hostComponent.warning = { active: true, text: 'Custom warning message' };
+      hostComponent.warning = { active: signal(true), text: 'Custom warning message' };
       fixture.detectChanges();
       expect(component.warningText).toBe('Custom warning message');
     });
 
     it('should have warningClick as undefined when no click handler', () => {
-      hostComponent.warning = { active: true, text: 'Warning' };
+      hostComponent.warning = { active: signal(true), text: 'Warning' };
       fixture.detectChanges();
       expect(component.warningClick).toBeUndefined();
     });
 
     it('should have warningClick defined when click handler is provided', () => {
       const clickFn = (): void => {};
-      hostComponent.warning = { active: true, text: 'Warning', click: clickFn };
+      hostComponent.warning = { active: signal(true), text: 'Warning', click: clickFn };
       fixture.detectChanges();
       expect(component.warningClick).toBe(clickFn);
     });
 
     it('should have warningLinkText as undefined when not provided', () => {
-      hostComponent.warning = { active: true, text: 'Warning' };
+      hostComponent.warning = { active: signal(true), text: 'Warning' };
       fixture.detectChanges();
       expect(component.warningLinkText).toBeUndefined();
     });
 
     it('should have warningLinkText when provided', () => {
-      hostComponent.warning = { active: true, text: 'Warning', linkText: 'Acknowledge' };
+      hostComponent.warning = { active: signal(true), text: 'Warning', linkText: 'Acknowledge' };
       fixture.detectChanges();
       expect(component.warningLinkText).toBe('Acknowledge');
     });
 
     it('should prioritize error over warning', () => {
-      hostComponent.error = { active: true, text: 'Error' };
-      hostComponent.warning = { active: true, text: 'Warning' };
+      hostComponent.error = { active: signal(true), text: 'Error' };
+      hostComponent.warning = { active: signal(true), text: 'Warning' };
       fixture.detectChanges();
 
       expect(component.hasError).toBe(true);
@@ -396,7 +396,7 @@ describe('SummaryAreaComponent', () => {
     });
 
     it('should hide grid panel when warning is active', () => {
-      hostComponent.warning = { active: true, text: 'Warning' };
+      hostComponent.warning = { active: signal(true), text: 'Warning' };
       fixture.detectChanges();
 
       const gridPanel = fixture.debugElement.query(By.css('.summary-area-panel--grid.is-active'));
@@ -404,7 +404,7 @@ describe('SummaryAreaComponent', () => {
     });
 
     it('should show state panel when warning is active', () => {
-      hostComponent.warning = { active: true, text: 'Warning' };
+      hostComponent.warning = { active: signal(true), text: 'Warning' };
       fixture.detectChanges();
 
       const statePanel = fixture.debugElement.query(By.css('.summary-area-panel--state.is-active'));
@@ -501,7 +501,7 @@ describe('SummaryAreaComponent', () => {
 
     it('should prioritize loading over error', () => {
       hostComponent.loading = { active: true };
-      hostComponent.error = { active: true, text: 'Error' };
+      hostComponent.error = { active: signal(true), text: 'Error' };
       fixture.detectChanges();
 
       expect(component.hasLoading).toBe(true);
@@ -510,7 +510,7 @@ describe('SummaryAreaComponent', () => {
 
     it('should prioritize loading over warning', () => {
       hostComponent.loading = { active: true };
-      hostComponent.warning = { active: true, text: 'Warning' };
+      hostComponent.warning = { active: signal(true), text: 'Warning' };
       fixture.detectChanges();
 
       expect(component.hasLoading).toBe(true);
@@ -519,8 +519,8 @@ describe('SummaryAreaComponent', () => {
 
     it('should prioritize loading over both error and warning', () => {
       hostComponent.loading = { active: true };
-      hostComponent.error = { active: true, text: 'Error' };
-      hostComponent.warning = { active: true, text: 'Warning' };
+      hostComponent.error = { active: signal(true), text: 'Error' };
+      hostComponent.warning = { active: signal(true), text: 'Warning' };
       fixture.detectChanges();
 
       expect(component.hasLoading).toBe(true);
@@ -539,7 +539,7 @@ describe('SummaryAreaComponent', () => {
 
     it('should show error when loading becomes inactive', () => {
       hostComponent.loading = { active: true };
-      hostComponent.error = { active: true, text: 'Error' };
+      hostComponent.error = { active: signal(true), text: 'Error' };
       fixture.detectChanges();
 
       expect(component.hasLoading).toBe(true);
@@ -680,7 +680,7 @@ describe('SummaryAreaComponent', () => {
     });
 
     it('should add is-error class when error is active', () => {
-      hostComponent.error = { active: true, text: 'Error' };
+      hostComponent.error = { active: signal(true), text: 'Error' };
       fixture.detectChanges();
 
       const statePanel = fixture.debugElement.query(By.css('.summary-area-panel--state.is-error'));
@@ -688,7 +688,7 @@ describe('SummaryAreaComponent', () => {
     });
 
     it('should add is-warning class when warning is active', () => {
-      hostComponent.warning = { active: true, text: 'Warning' };
+      hostComponent.warning = { active: signal(true), text: 'Warning' };
       fixture.detectChanges();
 
       const statePanel = fixture.debugElement.query(By.css('.summary-area-panel--state.is-warning'));
@@ -724,7 +724,7 @@ describe('SummaryAreaComponent', () => {
     });
 
     it('should have aria-hidden="false" on state panel when error is active', () => {
-      hostComponent.error = { active: true, text: 'Error' };
+      hostComponent.error = { active: signal(true), text: 'Error' };
       fixture.detectChanges();
 
       const statePanel = fixture.debugElement.query(By.css('.summary-area-panel--state'));
@@ -737,7 +737,7 @@ describe('SummaryAreaComponent', () => {
     });
 
     it('should have aria-hidden="true" on grid panel when error is active', () => {
-      hostComponent.error = { active: true, text: 'Error' };
+      hostComponent.error = { active: signal(true), text: 'Error' };
       fixture.detectChanges();
 
       const gridPanel = fixture.debugElement.query(By.css('.summary-area-panel--grid'));
@@ -750,7 +750,7 @@ describe('SummaryAreaComponent', () => {
     });
 
     it('should not have inert attribute on state panel when error is active', () => {
-      hostComponent.error = { active: true, text: 'Error' };
+      hostComponent.error = { active: signal(true), text: 'Error' };
       fixture.detectChanges();
 
       const statePanel = fixture.debugElement.query(By.css('.summary-area-panel--state'));
@@ -821,7 +821,7 @@ describe('SummaryAreaComponent', () => {
 
     it('should call errorClick when alert action is clicked', () => {
       const clickSpy = jasmine.createSpy('errorClick');
-      hostComponent.error = { active: true, text: 'Error', click: clickSpy };
+      hostComponent.error = { active: signal(true), text: 'Error', click: clickSpy };
       fixture.detectChanges();
 
       const alertAction = fixture.debugElement.query(By.css('.alert-action'));
@@ -832,7 +832,7 @@ describe('SummaryAreaComponent', () => {
 
     it('should call warningClick when alert action is clicked', () => {
       const clickSpy = jasmine.createSpy('warningClick');
-      hostComponent.warning = { active: true, text: 'Warning', click: clickSpy };
+      hostComponent.warning = { active: signal(true), text: 'Warning', click: clickSpy };
       fixture.detectChanges();
 
       const alertAction = fixture.debugElement.query(By.css('.alert-action'));
@@ -843,7 +843,7 @@ describe('SummaryAreaComponent', () => {
 
     it('should call errorClick on Enter keydown', () => {
       const clickSpy = jasmine.createSpy('errorClick');
-      hostComponent.error = { active: true, text: 'Error', click: clickSpy };
+      hostComponent.error = { active: signal(true), text: 'Error', click: clickSpy };
       fixture.detectChanges();
 
       const alertAction = fixture.debugElement.query(By.css('.alert-action'));

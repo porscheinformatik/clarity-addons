@@ -1,6 +1,8 @@
 // Variables
-$transition-duration: 0.2s;
-$transition-timing: ease-in-out;
+$transition-duration: 0.3s;
+$transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+$transition-duration-grid: 0.4s;
+$transition-timing-grid: ease-in-out;
 $panel-max-height: 700px;
 
 // Shared styles
@@ -36,10 +38,15 @@ clr-alert-item {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  flex-wrap: nowrap;
 
-  .alert-text,
+  .alert-text {
+    flex: none;
+    width: auto;
+    white-space: nowrap;
+    align-self: flex-start;
+  }
   .alert-action {
-    flex: 0 0 auto;
     white-space: nowrap;
   }
 }
@@ -63,67 +70,78 @@ clr-alert ::ng-deep > .alert-lightweight {
   padding-right: 0;
 }
 
-// Panel animation styles
 .summary-area-panels {
   position: relative;
-  max-height: 0;
   height: 0;
   opacity: 0;
-  transform: scaleY(0.95);
+  transform-origin: top center;
   pointer-events: none;
   visibility: hidden;
   overflow: hidden;
-  transition: max-height $transition-duration $transition-timing, opacity $transition-duration $transition-timing,
-    transform $transition-duration $transition-timing, visibility 0s $transition-duration;
+  margin: 0 0 9px 0;
+  transition: height $transition-duration $transition-timing, opacity $transition-duration-grid $transition-timing-grid,
+    visibility $transition-duration-grid $transition-timing-grid;
 
   &.is-active {
-    max-height: $panel-max-height;
-    height: auto;
     opacity: 1;
     pointer-events: auto;
-    transform: unset;
     visibility: visible;
     overflow: visible;
-    transition: max-height $transition-duration $transition-timing, opacity $transition-duration $transition-timing,
-      transform $transition-duration $transition-timing, visibility 0s 0s;
+    transition: height $transition-duration $transition-timing,
+      opacity $transition-duration-grid $transition-timing-grid,
+      visibility $transition-duration-grid $transition-timing-grid;
+  }
+
+  &.loading-active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: opacity $transition-duration-grid $transition-timing-grid;
   }
 }
 
 .summary-area-panel {
   transform-origin: top center;
-  transform: scaleY(0.95);
-  max-height: 0;
   opacity: 0;
   pointer-events: none;
-  overflow: hidden;
-  transition: max-height $transition-duration $transition-timing, opacity $transition-duration $transition-timing,
-    transform $transition-duration $transition-timing;
+  transition: opacity $transition-duration-grid $transition-timing-grid;
+  // Panels are stacked - only the active one is visible
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
 
   &__body {
-    will-change: opacity, transform, max-height;
+    will-change: opacity;
   }
 
   &.is-active {
-    max-height: $panel-max-height;
     opacity: 1;
     pointer-events: auto;
-    transform: unset;
-    overflow: visible;
-  }
+    position: relative;
+    transition: opacity $transition-duration-grid $transition-timing-grid;
 
-  &--state.is-active {
-    margin-bottom: 0.5rem;
+    .summary-area-panel__body {
+      overflow: visible;
+    }
   }
 }
 
-// Loading state
 .summary-area-loading {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  padding: 1rem;
-  min-height: 80px;
+  margin: 0 24px 0 24px;
+  padding: 3px 0;
+  opacity: 0;
+  transition: opacity 0s $transition-timing-grid;
+
+  &.is-visible {
+    opacity: 1;
+    transition: opacity $transition-duration-grid $transition-timing-grid;
+  }
 
   .loading-text {
     color: var(--cds-alias-typography-color-300);

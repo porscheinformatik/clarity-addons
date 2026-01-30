@@ -1,20 +1,30 @@
-<div class="summary-area-panels" [class.is-active]="!isCollapsed()">
+<div
+  #panelsRef
+  class="summary-area-panels"
+  [class.is-active]="!isCollapsed()"
+  [class.loading-active]="hasLoading"
+  [style.height]="panelHeight"
+>
   <div
     class="summary-area-panel summary-area-panel--state"
     [class.is-active]="!isCollapsed() && (hasLoading || hasError || hasWarning)"
-    [class.is-loading]="hasLoading"
     [class.is-error]="hasError"
     [class.is-warning]="hasWarning"
+    [style.--rows]="currentRows"
     [attr.aria-hidden]="isCollapsed() || !(hasLoading || hasError || hasWarning) ? 'true' : 'false'"
     [attr.inert]="isCollapsed() || !(hasLoading || hasError || hasWarning) ? '' : null"
   >
     <div class="summary-area-panel__body">
-      @if (hasLoading) {
-      <div class="summary-area-loading">
+      <div
+        class="summary-area-loading"
+        [class.is-visible]="loadingVisible"
+        [attr.aria-hidden]="!hasLoading"
+        [style.height]="loadingPanelHeight"
+      >
         <clr-spinner [clrMedium]="true"></clr-spinner>
         <span class="loading-text">{{ loadingText }}</span>
       </div>
-      } @else if (hasError) {
+      @if (hasError) {
       <div class="summary-area-alert">
         <clr-alert [clrAlertLightweight]="true" [clrAlertType]="'danger'">
           <clr-alert-item>

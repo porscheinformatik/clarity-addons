@@ -7,8 +7,10 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
+  computed,
   ContentChildren,
   effect,
+  ElementRef,
   HostListener,
   inject,
   input,
@@ -16,6 +18,7 @@ import {
   OnInit,
   QueryList,
   Signal,
+  ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ClrSummaryItem } from '../summary-item/summary-item';
@@ -38,6 +41,7 @@ import {
 })
 export class ClrSummaryArea implements OnInit, AfterViewInit, OnDestroy {
   @ContentChildren(ClrSummaryItem, { descendants: true }) items!: QueryList<ClrSummaryItem>;
+  @ViewChild('panelsRef', { static: true }) panelsRef!: ElementRef<HTMLElement>;
 
   public isCollapsed: Signal<boolean>;
   public rows = input<ClrSummaryAreaRows>(3);
@@ -48,6 +52,15 @@ export class ClrSummaryArea implements OnInit, AfterViewInit, OnDestroy {
 
   public currentColumns: ClrSummaryAreaColumns = 5;
   public currentRows: ClrSummaryAreaRows = this.rows();
+  public panelHeight: string = '0px';
+  public loadingPanelHeight: string = '0px';
+  public loadingVisible = false;
+
+  private prevErrorActive = false;
+  private prevWarningActive = false;
+  private prevCollapsed = true;
+  private prevHasLoading = false;
+  private loadingVisibleTimeout: ReturnType<typeof setTimeout> | null = null;
 
   private readonly state = inject(ClrSummaryAreaStateService);
   private readonly cdr = inject(ChangeDetectorRef);
@@ -57,12 +70,91 @@ export class ClrSummaryArea implements OnInit, AfterViewInit, OnDestroy {
   private readonly maxColumns: ClrSummaryAreaColumns = 5;
   private itemsSubscription?: { unsubscribe: () => void };
 
+  public errorActive = computed(() => this.error()?.active() ?? false);
+  public warningActive = computed(() => this.warning()?.active() ?? false);
+
   constructor() {
+    // Effect to handle expand/collapse with smooth height transition
     effect(() => {
-      if (!this.isCollapsed()) {
+      const collapsed = this.isCollapsed();
+
+      if (!collapsed) {
+        // Expanding: update grid first, then measure and set height
         this.updateGrid();
-        requestAnimationFrame(() => this.updateGrid());
+        requestAnimationFrame(() => {
+          this.updateGrid();
+          this.updatePanelHeight();
+        });
+      } else if (!this.prevCollapsed && collapsed) {
+        // Collapsing: set current height first, then animate to 0
+        this.animateCollapse();
       }
+
+      this.prevCollapsed = collapsed;
+    });
+
+    // Effect for tracking changes in the error state (using computed signal)
+    effect(() => {
+      const errorActive = this.errorActive();
+      const collapsed = this.isCollapsed();
+      // If error active state changed and area is NOT collapsed, recalculate panel height
+      if (errorActive !== this.prevErrorActive && !collapsed) {
+        this.updateGrid();
+        this.cdr.detectChanges();
+        requestAnimationFrame(() => {
+          this.recalculatePanelHeight();
+        });
+      }
+      this.prevErrorActive = errorActive;
+    });
+
+    // Effect for tracking changes in the warning state (using computed signal)
+    effect(() => {
+      const warningActive = this.warningActive();
+      const collapsed = this.isCollapsed();
+      // If error active state changed and area is NOT collapsed, recalculate panel height
+      if (warningActive !== this.prevWarningActive && !collapsed) {
+        this.updateGrid();
+        this.cdr.detectChanges();
+        requestAnimationFrame(() => {
+          this.recalculatePanelHeight();
+        });
+      }
+      this.prevWarningActive = warningActive;
+    });
+
+    // Effect to delay loading indicator visibility for smooth fade-in animation
+    effect(() => {
+      const loading = this.hasLoading;
+      const collapsed = this.isCollapsed();
+
+      // Clear any pending timeout
+      if (this.loadingVisibleTimeout) {
+        clearTimeout(this.loadingVisibleTimeout);
+        this.loadingVisibleTimeout = null;
+      }
+
+      if (loading && !collapsed) {
+        // Delay showing loading indicator to allow parent panel to become visible first
+        this.loadingVisibleTimeout = setTimeout(() => {
+          this.loadingVisible = true;
+          this.cdr.markForCheck();
+        }, 50);
+      } else {
+        this.loadingVisible = false;
+        this.loadingPanelHeight = '0px';
+        this.cdr.markForCheck();
+      }
+
+      if (this.prevHasLoading !== loading && !collapsed) {
+        this.updateGrid();
+        this.cdr.detectChanges();
+        requestAnimationFrame(() => {
+          this.recalculatePanelHeight();
+        });
+      }
+
+      this.prevHasLoading = loading;
     });
   }
 
@@ -91,7 +183,7 @@ export class ClrSummaryArea implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public get hasError(): boolean {
-    return !this.hasLoading && !!this.error() && this.error().active;
+    return !this.hasLoading && !!this.error() && this.error().active();
   }
 
   public get errorText(): string {
@@ -107,7 +199,7 @@ export class ClrSummaryArea implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public get hasWarning(): boolean {
-    return !this.hasLoading && !this.hasError && !!this.warning() && this.warning().active;
+    return !this.hasLoading && !this.hasError && !!this.warning() && this.warning().active();
   }
 
   public get warningText(): string {
@@ -126,25 +218,53 @@ export class ClrSummaryArea implements OnInit, AfterViewInit, OnDestroy {
   public onResize(): void {
     if (!this.isCollapsed()) {
       this.updateGrid();
+      this.cdr.detectChanges();
+      // Recalculate height after grid update for responsive changes
+      // Use setTimeout to ensure DOM is updated with new grid layout
+      setTimeout(() => {
+        this.recalculatePanelHeight();
+      }, 0);
     }
   }
 
   public ngAfterViewInit(): void {
     this.updateGrid();
     this.cdr.detectChanges();
+    // Set initial height after content is rendered
+    if (!this.isCollapsed()) {
+      // Use setTimeout to ensure DOM is fully painted
+      setTimeout(() => {
+        // If loading, calculate height immediately based on rows
+        if (this.hasLoading || this.hasError || this.hasWarning) {
+          const calculatedHeight = this.calculateGridHeight();
+          this.panelHeight = calculatedHeight + 'px';
+          this.cdr.detectChanges();
+        } else {
+          this.recalculatePanelHeight();
+        }
+      }, 0);
+    }
 
     // Subscribe to content changes (when items get dynamically added/removed)
     this.itemsSubscription = this.items.changes.subscribe(() => {
       // Force layout recalculation after DOM update
-      requestAnimationFrame(() => {
+      setTimeout(() => {
         this.updateGrid();
         this.cdr.detectChanges();
-      });
+        if (!this.isCollapsed()) {
+          setTimeout(() => {
+            this.recalculatePanelHeight();
+          }, 0);
+        }
+      }, 0);
     });
   }
 
   public ngOnDestroy(): void {
     this.itemsSubscription?.unsubscribe();
+    if (this.loadingVisibleTimeout) {
+      clearTimeout(this.loadingVisibleTimeout);
+    }
   }
 
   private updateGrid(): void {
@@ -167,6 +287,118 @@ export class ClrSummaryArea implements OnInit, AfterViewInit, OnDestroy {
       this.currentColumns = Math.max(1, Math.min(neededColumns, maxColumnsByWidth)) as ClrSummaryAreaColumns;
       this.currentRows = Math.ceil(itemCount / this.currentColumns) as ClrSummaryAreaRows;
       this.cdr.detectChanges();
+    }
+  }
+
+  private updatePanelHeight(): void {
+    if (this.panelsRef?.nativeElement) {
+      const el = this.panelsRef.nativeElement;
+
+      // For loading/error/warning states, use calculated height
+      if (this.hasLoading || this.hasError || this.hasWarning) {
+        const calculatedHeight = this.calculateGridHeight();
+        // Set to 0 first for animation start
+        this.panelHeight = '0px';
+        this.cdr.detectChanges();
+        void el.offsetHeight;
+        // Animate to calculated height
+        requestAnimationFrame(() => {
+          this.panelHeight = calculatedHeight + 'px';
+          this.cdr.markForCheck();
+        });
+        return;
+      }
+
+      // For grid state, measure the DOM
+      // Set to 0 first for animation start
+      this.panelHeight = '0px';
+      this.cdr.detectChanges();
+      // Force reflow
+      void el.offsetHeight;
+      // Temporarily set to auto to measure the full content height
+      el.style.height = 'auto';
+      const scrollHeight = el.scrollHeight;
+      // Reset to 0 to prepare for animation
+      el.style.height = '0px';
+      // Force reflow again
+      void el.offsetHeight;
+      // Animate to measured height
+      requestAnimationFrame(() => {
+        this.panelHeight = scrollHeight + 'px';
+        this.cdr.markForCheck();
+      });
+    }
+  }
+
+  private recalculatePanelHeight(): void {
+    if (this.panelsRef?.nativeElement && !this.isCollapsed()) {
+      // If specific states are active, use calculated height
+      if (this.hasLoading || this.hasError || this.hasWarning) {
+        const calculatedHeight = this.calculateGridHeight();
+        this.panelHeight = calculatedHeight + 'px';
+        this.cdr.detectChanges();
+        return;
+      }
+
+      const el = this.panelsRef.nativeElement;
+      // Set height to auto temporarily to measure true content height
+      const currentHeight = el.style.height;
+      el.style.height = 'auto';
+      // Force reflow to ensure measurement is accurate
+      void el.offsetHeight;
+      // Measure the actual content height
+      const scrollHeight = el.scrollHeight;
+      // Restore height and set new value
+      el.style.height = currentHeight;
+      this.panelHeight = scrollHeight + 'px';
+      this.cdr.detectChanges();
+      setTimeout(() => {
+        this.cdr.markForCheck();
+      }, 0);
+    }
+  }
+
+  /**
+   * Calculate the expected grid height based on currentRows.
+   * This is used when the grid isn't rendered (e.g., during loading state).
+   * The loading container should match the grid height exactly.
+   *
+   * Grid structure:
+   * - .summary-area-container: margin 0 24px 9px 24px
+   * - .summary-grid: padding 3px 0, row-gap 6px
+   * - .summary-item: height 20px
+   *
+   * Formula: (rows * itemHeight) + ((rows - 1) * rowGap) + gridPadding + containerMargin
+   */
+  private calculateGridHeight(): number {
+    const itemHeight = 20; // .summary-item height
+    const rowGap = 6; // .summary-grid row-gap
+    const gridPadding = 6; // .summary-grid padding (3px top + 3px bottom)
+
+    // For error/warning states, use a smaller fixed height
+    if (this.hasError || this.hasWarning) {
+      const alertHeight = itemHeight + 2 * rowGap;
+      return alertHeight + gridPadding;
+    }
+
+    // For loading state, calculate based on current rows
+    const gridHeight = this.currentRows * itemHeight + (this.currentRows - 1) * rowGap;
+    return gridHeight + gridPadding;
+  }
+
+  private animateCollapse(): void {
+    if (this.panelsRef?.nativeElement) {
+      const el = this.panelsRef.nativeElement;
+      // Set current height explicitly first
+      this.panelHeight = el.scrollHeight + 'px';
+      this.cdr.detectChanges();
+      // Force reflow
+      void el.offsetHeight;
+      // Then animate to 0
+      requestAnimationFrame(() => {
+        this.panelHeight = '0px';
+        this.cdr.markForCheck();
+      });
     }
   }
 }
