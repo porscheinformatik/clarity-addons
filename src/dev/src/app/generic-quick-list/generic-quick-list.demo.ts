@@ -6,7 +6,7 @@
 
 import { Component } from '@angular/core';
 import { ClrGenericQuickListItem } from '@porscheinformatik/clr-addons';
-import { of, Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 interface QuickListItem extends ClrGenericQuickListItem {
   firstname: string;
@@ -19,6 +19,8 @@ interface QuickListItem extends ClrGenericQuickListItem {
   standalone: false,
 })
 export class GenericQuickListDemo {
+  readonly = false;
+
   allItems = [
     { id: 1, firstname: 'asdf', lastname: 'yxcv' } as QuickListItem,
     { id: 2, firstname: 'qwert', lastname: 'uipp' } as QuickListItem,

@@ -10,6 +10,7 @@ import {
   ContentChildren,
   ElementRef,
   EventEmitter,
+  HostBinding,
   Input,
   OnDestroy,
   OnInit,
@@ -39,7 +40,7 @@ export class ClrGenericQuickList<T extends ClrGenericQuickListItem> implements O
   @Input('clrBlankItem') blankItem = {} as any;
   @Input('clrControlClasses') controlClasses: string;
   @Input('clrMandatory') required = false;
-  @Input() readonly: string;
+  @HostBinding('class.readonly-list') @Input() readonly: string;
   @Input() compactMode = false;
 
   @Output('clrAdded') added = new EventEmitter();

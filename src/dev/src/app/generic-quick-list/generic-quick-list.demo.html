@@ -47,7 +47,7 @@
 </form>
 
 <h3>Selected Options (horizontal)</h3>
-Form valid: {{form.valid}}
+Form valid: {{ form.valid }}
 <table class="table">
   <thead>
     <tr>
@@ -58,20 +58,28 @@ Form valid: {{form.valid}}
   </thead>
   <tbody>
     <tr *ngFor="let item of allItems">
-      <td>{{item.id}}</td>
-      <td>{{item.firstname}}</td>
-      <td>{{item.lastname}}</td>
+      <td>{{ item.id }}</td>
+      <td>{{ item.firstname }}</td>
+      <td>{{ item.lastname }}</td>
     </tr>
   </tbody>
 </table>
 
 <h3>Vertical</h3>
 <form clrForm clrLayout="vertical" #formV="ngForm">
+  <clr-toggle-container>
+    <clr-toggle-wrapper>
+      <input type="checkbox" clrToggle value="true" name="readonly" [(ngModel)]="readonly" />
+      <label>Readonly</label>
+    </clr-toggle-wrapper>
+  </clr-toggle-container>
+
   <clr-generic-quick-list
     [clrAllItems]="allItemsV"
     class="clr-row clr-col-6"
     (clrRemoved)="itemRemoved($event)"
     (clrAdded)="itemAdded($event)"
+    [readonly]="readonly"
   >
     <label class="clr-control-label">Generic Quickie</label>
     <div class="header-container">
@@ -111,7 +119,7 @@ Form valid: {{form.valid}}
 </form>
 
 <h3>Selected Options (vertical)</h3>
-Form valid: {{formV.valid}}
+Form valid: {{ formV.valid }}
 <table class="table">
   <thead>
     <tr>
@@ -122,9 +130,9 @@ Form valid: {{formV.valid}}
   </thead>
   <tbody>
     <tr *ngFor="let item of allItemsV">
-      <td>{{item.id}}</td>
-      <td>{{item.firstname}}</td>
-      <td>{{item.lastname}}</td>
+      <td>{{ item.id }}</td>
+      <td>{{ item.firstname }}</td>
+      <td>{{ item.lastname }}</td>
     </tr>
   </tbody>
 </table>
