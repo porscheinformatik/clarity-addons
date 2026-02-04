@@ -1,5 +1,5 @@
 @if (icon() !== undefined && icon() !== null && icon() !== '') { @if (hasClickHandler) { @if (tooltip()) {
-<clr-tooltip>
+<clr-tooltip [clrTooltipDelay]="500">
   <cds-icon
     clrTooltipTrigger
     [attr.shape]="icon()"
@@ -19,14 +19,14 @@
   (keydown.enter)="handleClick()"
 ></cds-icon>
 } } @else { @if (tooltip()) {
-<clr-tooltip>
+<clr-tooltip [clrTooltipDelay]="500">
   <cds-icon clrTooltipTrigger [attr.shape]="icon()" class="value-icon value-icon-neutral"></cds-icon>
   <clr-tooltip-content [clrSize]="tooltipSize" clrPosition="top-right" *clrIfOpen> {{ tooltip() }}</clr-tooltip-content>
 </clr-tooltip>
 } @else {
 <cds-icon [attr.shape]="icon()" class="value-icon value-icon-neutral"></cds-icon>
 } } } @else if (value() !== undefined && value() !== null && value() !== '') { @if (hasClickHandler) {
-<clr-tooltip>
+<clr-tooltip [clrTooltipDelay]="500">
   <span
     #valueElement
     class="value value-link"
@@ -43,7 +43,7 @@
   }
 </clr-tooltip>
 } @else {
-<clr-tooltip>
+<clr-tooltip [clrTooltipDelay]="500">
   <span #valueElement class="value" clrTooltipTrigger>{{ value() }}</span>
   @if (effectiveTooltip) {
   <clr-tooltip-content [clrSize]="tooltipSize" clrPosition="top-right" *clrIfOpen>

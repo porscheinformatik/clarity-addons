@@ -23,11 +23,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ClarityModule, ClrIconModule } from '@clr/angular';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { ClrTooltipDelayDirective } from './tooltip-delay.directive';
 
 @Component({
   selector: 'clr-summary-item-value',
   standalone: true,
-  imports: [CommonModule, RouterModule, ClarityModule, ClrIconModule],
+  imports: [CommonModule, RouterModule, ClarityModule, ClrIconModule, ClrTooltipDelayDirective],
   providers: [provideAnimations()],
   templateUrl: './summary-item-value.html',
   styleUrls: ['./summary-item-value.scss'],

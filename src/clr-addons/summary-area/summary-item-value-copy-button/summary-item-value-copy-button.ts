@@ -8,12 +8,13 @@ import { ClrIconModule, ClrTooltipModule } from '@clr/angular';
 import { CdkCopyToClipboard } from '@angular/cdk/clipboard';
 import { NgClass } from '@angular/common';
 import { ClarityIcons, copyToClipboardIcon, successStandardIcon } from '@cds/core/icon';
+import { ClrTooltipDelayDirective } from '../summary-item-value/tooltip-delay.directive';
 
 ClarityIcons.addIcons(copyToClipboardIcon, successStandardIcon);
 
 @Component({
   selector: 'clr-summary-area-value-copy-button',
-  imports: [CdkCopyToClipboard, NgClass, ClrIconModule, ClrTooltipModule],
+  imports: [CdkCopyToClipboard, NgClass, ClrIconModule, ClrTooltipModule, ClrTooltipDelayDirective],
   templateUrl: './summary-item-value-copy-button.html',
   styleUrl: './summary-item-value-copy-button.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
