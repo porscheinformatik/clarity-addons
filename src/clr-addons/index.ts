@@ -28,6 +28,7 @@ export * from './multilingual/index';
 export * from './util/index';
 export * from './generic-quick-list/index';
 export * from './letter-avatar/index';
+export * from './icon-avatar/index';
 export * from './data-list-validator/index';
 export * from './icons/index';
 export * from './history/index';

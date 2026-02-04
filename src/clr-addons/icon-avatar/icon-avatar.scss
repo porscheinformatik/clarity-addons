@@ -1,0 +1,37 @@
+@use '../mixins';
+@import '@cds/core/global.min.css';
+
+@include mixins.exports('icon-avatar.clr-addons') {
+  .avatar-circle {
+    display: flex;
+  }
+
+  .avatar-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #707070;
+    border-radius: 100%;
+    color: var(--cds-global-color-white);
+  }
+
+  :hover,
+  :focus-within {
+    > .clr-avatar .avatar-icon {
+      background-color: var(--clr-btn-link-color);
+      cursor: default;
+    }
+  }
+
+  .avatar-icon cds-icon,
+  .avatar-icon clr-icon {
+    width: 50%;
+    height: 50%;
+    min-width: 0;
+    min-height: 0;
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+  }
+}
