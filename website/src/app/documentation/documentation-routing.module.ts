@@ -168,6 +168,13 @@ const documentationRoutes: Routes = [
         },
       },
       {
+        path: 'icon-avatar',
+        loadChildren: () => import('./demos/icon-avatar/icon-avatar.demo.module').then(m => m.IconAvatarDemoModule),
+        data: {
+          browserTitle: 'Icon Avatar',
+        },
+      },
+      {
         path: 'location-bar',
         loadChildren: () => import('./demos/location-bar/location-bar.demo.module').then(m => m.LocationBarDemoModule),
         data: {

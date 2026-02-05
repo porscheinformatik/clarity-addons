@@ -66,6 +66,11 @@
       "type": "component"
     },
     {
+      "url": "icon-avatar",
+      "text": "Icon avatar",
+      "type": "component"
+    },
+    {
       "url": "letter-avatar",
       "text": "Letter avatar",
       "type": "component"
