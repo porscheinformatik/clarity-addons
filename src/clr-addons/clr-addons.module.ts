@@ -14,6 +14,7 @@ import { ClrDateTimeModule } from './date-time-container';
 import { ClrDotPagerModule } from './dot-pager';
 import { ClrFlowBarModule } from './flow-bar';
 import { ClrGenericQuickListModule } from './generic-quick-list';
+import { ClrIconAvatarModule } from './icon-avatar';
 import { ClrLetterAvatarModule } from './letter-avatar';
 import { ClrMainNavGroupModule } from './main-nav-group';
 import { ClrMultilingualModule } from './multilingual';
@@ -62,6 +63,7 @@ import { ClrReadonlyDirectiveModule } from './readonly/readonly.module';
     ClrProgressSpinnerModule,
     ClrDateTimeModule,
     ClrQuickListModule,
+    ClrIconAvatarModule,
     ClrLetterAvatarModule,
     ClrMultilingualModule,
     ClrGenericQuickListModule,

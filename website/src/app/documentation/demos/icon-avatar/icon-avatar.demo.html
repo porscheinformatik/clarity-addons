@@ -1,0 +1,80 @@
+<clr-doc-wrapper [title]="title">
+  <article>
+    <h5 class="component-summary">The icon avatar is used to display an avatar containing a Clarity icon.</h5>
+
+    <div id="design-guidelines">
+      <h3>Summary of Options</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Input</th>
+            <th class="left clr-hidden-xs-down">Values</th>
+            <th class="clr-hidden-xs-down">Default</th>
+            <th class="left">Effect</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left">
+              <b>clrShape</b>
+              <div class="clr-hidden-sm-up">Type: string</div>
+              <div class="clr-hidden-sm-up">Default: 'user'</div>
+            </td>
+            <td class="left clr-hidden-xs-down">String</td>
+            <td class="clr-hidden-xs-down">undefined</td>
+            <td class="left">The shape of the Clarity icon that gets displayed</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>clrSize</b>
+              <div class="clr-hidden-sm-up">Type: Number</div>
+              <div class="clr-hidden-sm-up">Default: 24</div>
+            </td>
+            <td class="left clr-hidden-xs-down">Number</td>
+            <td class="clr-hidden-xs-down">24</td>
+            <td class="left">Defines the size of the icon avatar in px</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="code-examples">
+      <h3 id="examples">Code &amp; Examples</h3>
+      <h4>Standard behaviour</h4>
+      <p>
+        The icon avatar gets a hover effect when hovering over anything inside his direct parent. See it in action by
+        hovering over the name. Default icon shape is "user".
+      </p>
+      <div style="display: flex">
+        <div class="parent">
+          <clr-icon-avatar class="demo-avatar"></clr-icon-avatar>
+          <a href="#">John Doe</a>
+        </div>
+      </div>
+
+      <clr-code-snippet [clrCode]="htmlExample"></clr-code-snippet>
+
+      <h4>Larger size</h4>
+      <p>For a larger size of the avatar set the <code class="clr-code">clrSize</code> attribute.</p>
+      <div style="display: flex">
+        <div class="parent">
+          <clr-icon-avatar class="demo-avatar avatar-large" clrSize="48"></clr-icon-avatar>
+          <a href="#">John Doe</a>
+        </div>
+      </div>
+
+      <clr-code-snippet [clrCode]="htmlExample2"></clr-code-snippet>
+
+      <h4>Setting a different shape</h4>
+      <p>For a different shape of the avatar set the <code class="clr-code">clrShape</code> attribute</p>
+      <div style="display: flex">
+        <div class="parent">
+          <clr-icon-avatar class="demo-avatar avatar-large" clrSize="48" clrShape="factory"></clr-icon-avatar>
+          <a href="#">Smith Inc.</a>
+        </div>
+      </div>
+
+      <clr-code-snippet [clrCode]="htmlExample3"></clr-code-snippet>
+    </div>
+  </article>
+</clr-doc-wrapper>

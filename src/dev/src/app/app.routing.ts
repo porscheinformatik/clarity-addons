@@ -104,6 +104,10 @@ export const APP_ROUTES: Routes = [
     loadChildren: () => import('./letter-avatar/letter-avatar.demo.module').then(m => m.LetterAvatarDemoModule),
   },
   {
+    path: 'icon-avatar',
+    loadChildren: () => import('./icon-avatar/icon-avatar.demo.module').then(m => m.IconAvatarDemoModule),
+  },
+  {
     path: 'multilingual-input',
     loadChildren: () =>
       import('./multilingual-input/multilingual-input.demo.module').then(m => m.MultilingualInputDemoModule),
