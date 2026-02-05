@@ -1,5 +1,5 @@
 @if (icon() !== undefined && icon() !== null && icon() !== '') { @if (hasClickHandler) { @if (tooltip()) {
-<clr-tooltip [clrTooltipDelay]="500">
+<clr-tooltip>
   <cds-icon
     clrTooltipTrigger
     [attr.shape]="icon()"
@@ -8,7 +8,9 @@
     (click)="handleClick()"
     (keydown.enter)="handleClick()"
   ></cds-icon>
-  <clr-tooltip-content [clrSize]="tooltipSize" clrPosition="top-right" *clrIfOpen> {{ tooltip() }}</clr-tooltip-content>
+  <clr-tooltip-content [clrSize]="tooltipSize" [clrPosition]="tooltipPosition" *clrIfOpen>
+    {{ tooltip() }}</clr-tooltip-content
+  >
 </clr-tooltip>
 } @else {
 <cds-icon
@@ -19,14 +21,16 @@
   (keydown.enter)="handleClick()"
 ></cds-icon>
 } } @else { @if (tooltip()) {
-<clr-tooltip [clrTooltipDelay]="500">
+<clr-tooltip>
   <cds-icon clrTooltipTrigger [attr.shape]="icon()" class="value-icon value-icon-neutral"></cds-icon>
-  <clr-tooltip-content [clrSize]="tooltipSize" clrPosition="top-right" *clrIfOpen> {{ tooltip() }}</clr-tooltip-content>
+  <clr-tooltip-content [clrSize]="tooltipSize" [clrPosition]="tooltipPosition" *clrIfOpen>
+    {{ tooltip() }}</clr-tooltip-content
+  >
 </clr-tooltip>
 } @else {
 <cds-icon [attr.shape]="icon()" class="value-icon value-icon-neutral"></cds-icon>
 } } } @else if (value() !== undefined && value() !== null && value() !== '') { @if (hasClickHandler) {
-<clr-tooltip [clrTooltipDelay]="500">
+<clr-tooltip>
   <span
     #valueElement
     class="value value-link"
@@ -37,20 +41,20 @@
     {{ value() }}
   </span>
   @if (effectiveTooltip) {
-  <clr-tooltip-content [clrSize]="tooltipSize" clrPosition="top-right" *clrIfOpen>
+  <clr-tooltip-content [clrSize]="tooltipSize" [clrPosition]="tooltipPosition" *clrIfOpen>
     {{ effectiveTooltip }}</clr-tooltip-content
   >
   }
+</clr-tooltip>
+} @else if(effectiveTooltip) {
+<clr-tooltip>
+  <span #valueElement class="value" clrTooltipTrigger>{{ value() }}</span>
+  <clr-tooltip-content [clrSize]="tooltipSize" [clrPosition]="tooltipPosition" *clrIfOpen>
+    {{ effectiveTooltip }}</clr-tooltip-content
+  >
 </clr-tooltip>
 } @else {
-<clr-tooltip [clrTooltipDelay]="500">
-  <span #valueElement class="value" clrTooltipTrigger>{{ value() }}</span>
-  @if (effectiveTooltip) {
-  <clr-tooltip-content [clrSize]="tooltipSize" clrPosition="top-right" *clrIfOpen>
-    {{ effectiveTooltip }}</clr-tooltip-content
-  >
-  }
-</clr-tooltip>
+<span #valueElement class="value">{{ value() }}</span>
 } } @else {
 <span class="projected-wrapper" #projectedContent>
   <ng-content></ng-content>
