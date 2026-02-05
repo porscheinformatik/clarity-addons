@@ -42,7 +42,7 @@ export class ClrSummaryItemValueCopyButton implements OnInit, AfterViewInit, OnD
   private resizeListener?: () => void;
 
   public ngOnInit(): void {
-    const newSize = this.tooltipText && this.tooltipText().length < 30 ? 'sm' : 'md';
+    const newSize = this.tooltipText && this.tooltipText().length < 15 ? 'sm' : 'md';
 
     if (this.tooltipSize !== newSize) {
       this.tooltipSize = newSize;
