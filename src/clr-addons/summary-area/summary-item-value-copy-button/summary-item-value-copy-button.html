@@ -7,7 +7,7 @@
     [attr.shape]="showCopiedIcon ? 'success-standard' : 'copy-to-clipboard'"
     [ngClass]="{ 'attribute-was-copied-color': showCopiedIcon }"
   ></cds-icon>
-  <clr-tooltip-content [clrSize]="tooltipSize" clrPosition="top-right" *clrIfOpen
+  <clr-tooltip-content [clrSize]="tooltipSize" [clrPosition]="tooltipPosition" *clrIfOpen
     >{{ tooltipText() }}</clr-tooltip-content
   >
 </clr-tooltip>

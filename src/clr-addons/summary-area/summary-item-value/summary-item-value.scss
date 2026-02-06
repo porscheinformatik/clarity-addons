@@ -82,6 +82,19 @@ clr-tooltip [clrTooltipTrigger] {
   white-space: nowrap;
 }
 
+// Fix tooltip content to wrap long text without spaces
+::ng-deep clr-tooltip-content {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+::ng-deep .tooltip-content {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
 :host(.error) {
   color: var(--cds-alias-status-danger);
 }

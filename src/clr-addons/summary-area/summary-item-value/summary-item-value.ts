@@ -45,10 +45,13 @@ export class ClrSummaryItemValue implements OnInit, AfterContentInit, AfterViewI
   public hasProjectedContent = false;
   public isTextOverflowing = false;
   public tooltipSize = 'md';
+  public tooltipPosition: 'bottom-right' | 'bottom-left' = 'bottom-right';
 
   private resizeObserver?: ResizeObserver;
   private mutationObserver?: MutationObserver;
   private contentCheckScheduled = false;
+  private windowResizeListener?: () => void;
+  private readonly elementRef = inject(ElementRef);
   private readonly ngZone = inject(NgZone);
   private readonly cdr = inject(ChangeDetectorRef);
 
@@ -126,6 +129,27 @@ export class ClrSummaryItemValue implements OnInit, AfterContentInit, AfterViewI
     if (this.hasIcon && this.hasText) {
       throw new Error('SummaryItemValue: You cannot define both icon and value. Only one is allowed.');
     }
+
+    this.updateTooltipPosition();
+  }
+
+  private updateTooltipPosition(): void {
+    // Use double requestAnimationFrame to ensure CSS grid layout is complete
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        const element = this.elementRef.nativeElement;
+        const rect = element.getBoundingClientRect();
+
+        const tooltipWidth = 200;
+        const rightSpaceAvailable = window.innerWidth - rect.right;
+        const newPosition = rightSpaceAvailable < tooltipWidth + 24 ? 'bottom-left' : 'bottom-right';
+
+        if (this.tooltipPosition !== newPosition) {
+          this.tooltipPosition = newPosition;
+          this.cdr.markForCheck();
+        }
+      });
+    });
   }
 
   public ngAfterContentInit(): void {
@@ -137,6 +161,17 @@ export class ClrSummaryItemValue implements OnInit, AfterContentInit, AfterViewI
     this.setupOverflowDetection();
     this.setupMutationObserver();
     this.scheduleContentCheck();
+    this.updateTooltipPosition();
+
+    // Listen for window resize to update tooltip position when grid layout changes
+    this.ngZone.runOutsideAngular(() => {
+      this.windowResizeListener = () => {
+        this.ngZone.run(() => {
+          this.updateTooltipPosition();
+        });
+      };
+      window.addEventListener('resize', this.windowResizeListener);
+    });
   }
 
   public ngOnDestroy(): void {
@@ -147,6 +182,10 @@ export class ClrSummaryItemValue implements OnInit, AfterContentInit, AfterViewI
     if (this.mutationObserver) {
       this.mutationObserver.disconnect();
       this.mutationObserver = undefined;
+    }
+    if (this.windowResizeListener) {
+      window.removeEventListener('resize', this.windowResizeListener);
+      this.windowResizeListener = undefined;
     }
   }
 
@@ -197,10 +236,14 @@ export class ClrSummaryItemValue implements OnInit, AfterContentInit, AfterViewI
       this.resizeObserver = new ResizeObserver(() => {
         this.ngZone.run(() => {
           this.checkTextOverflowSync();
+          this.updateTooltipPosition();
           this.cdr.markForCheck();
         });
       });
-      this.resizeObserver.observe(el);
+      this.resizeObserver.observe(this.elementRef.nativeElement);
+      if (el) {
+        this.resizeObserver.observe(el);
+      }
     });
   }
 
@@ -212,7 +255,7 @@ export class ClrSummaryItemValue implements OnInit, AfterContentInit, AfterViewI
 
     const tooltip = this.effectiveTooltip;
     // if the tooltip content is too short for medium size, size small should be used instead
-    const newSize = tooltip && tooltip.length < 30 ? 'sm' : 'md';
+    const newSize = tooltip && tooltip.length < 15 ? 'sm' : 'md';
 
     if (this.tooltipSize !== newSize) {
       this.tooltipSize = newSize;

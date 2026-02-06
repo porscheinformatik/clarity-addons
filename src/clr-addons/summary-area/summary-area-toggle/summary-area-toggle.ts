@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, HostListener, computed, inject, input, output } from '@angular/core';
+import { Component, HostListener, computed, inject, input, output, AfterViewInit } from '@angular/core';
 import { ClrIconModule, ClrTooltipModule } from '@clr/angular';
 
 import { ClrSummaryAreaStateService, defaultSummaryAreaCollapsedKey } from '../summary-area/summary-area-state.service';
@@ -18,7 +18,7 @@ ClarityIcons.addIcons(angleDoubleIcon);
   styleUrl: './summary-area-toggle.scss',
   imports: [ClrIconModule, ClrTooltipModule],
 })
-export class ClrSummaryAreaToggle {
+export class ClrSummaryAreaToggle implements AfterViewInit {
   public readonly summaryToggle = output<void>();
   public readonly ariaLabel = input<string>('Toggle Summary Area');
   public readonly localStorageKey = input<string>(defaultSummaryAreaCollapsedKey);
@@ -28,6 +28,14 @@ export class ClrSummaryAreaToggle {
   public readonly collapsed = computed(() => {
     return this.state.collapsed(this.localStorageKey())();
   });
+
+  public suppressAnimation = true;
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.suppressAnimation = false;
+    });
+  }
 
   @HostListener('keydown', ['$event'])
   public handleKeydown(event: KeyboardEvent): void {
