@@ -5,6 +5,7 @@
  */
 import { Component } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
+import { ClarityIcons, factoryIcon } from '@cds/core/icon';
 
 const HTML_EXAMPLE = `
 <div class="parent">
@@ -36,6 +37,14 @@ const HTML_EXAMPLE3 = `
 </div>
 `;
 
+const TYPESCRIPT1 = `
+import { ClarityIcons, factoryIcon } from '@cds/core/icon';
+
+ClarityIcons.addIcons(factoryIcon);
+`;
+
+ClarityIcons.addIcons(factoryIcon);
+
 @Component({
   selector: 'clr-icon-avatar-demo',
   templateUrl: './icon-avatar.demo.html',
@@ -50,6 +59,7 @@ export class IconAvatarDemo extends ClarityDocComponent {
   htmlExample = HTML_EXAMPLE;
   htmlExample2 = HTML_EXAMPLE2;
   htmlExample3 = HTML_EXAMPLE3;
+  tsExample1 = TYPESCRIPT1;
 
   constructor() {
     super('icon-avatar');

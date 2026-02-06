@@ -5,9 +5,6 @@
  */
 
 import { AfterViewInit, Component, ElementRef, HostBinding, Input, Renderer2, ViewChild } from '@angular/core';
-import { ClarityIcons, commerceCollectionIcons, coreCollectionIcons, essentialCollectionIcons } from '@cds/core/icon';
-
-ClarityIcons.addIcons(...coreCollectionIcons, ...essentialCollectionIcons, ...commerceCollectionIcons);
 
 @Component({
   selector: 'clr-icon-avatar',
