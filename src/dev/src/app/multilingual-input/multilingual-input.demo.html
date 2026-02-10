@@ -14,6 +14,19 @@
     <clr-control-error>Error</clr-control-error>
     <clr-control-helper>Helper</clr-control-helper>
   </clr-multilingual-input>
+  <clr-multilingual-input
+    class="clr-col-12 clr-row"
+    clrSelectedLang="ww"
+    [(ngModel)]="template1"
+    [readonly]="true"
+    clrRequiredAllMultilang
+    clrControlClasses="clr-col-md-9 clr-col-lg-2"
+    name="template1"
+  >
+    <label class="clr-col-md-3 clr-col-lg-2">Test1</label>
+    <clr-control-error>Error</clr-control-error>
+    <clr-control-helper>Helper</clr-control-helper>
+  </clr-multilingual-input>
 
   <h4>Output texts</h4>
   <table class="table">
@@ -23,11 +36,11 @@
     </tr>
     <tr>
       <td>EN</td>
-      <td>{{template1.get('en')}}</td>
+      <td>{{ template1.get('en') }}</td>
     </tr>
     <tr>
       <td>DE</td>
-      <td>{{template1.get('de')}}</td>
+      <td>{{ template1.get('de') }}</td>
     </tr>
   </table>
 
@@ -150,11 +163,11 @@
     </tr>
     <tr>
       <td>EN</td>
-      <td>{{exampleForm.get('sample1').value.get('en')}}</td>
+      <td>{{ exampleForm.get('sample1').value.get('en') }}</td>
     </tr>
     <tr>
       <td>DE</td>
-      <td>{{exampleForm.get('sample1').value.get('de')}}</td>
+      <td>{{ exampleForm.get('sample1').value.get('de') }}</td>
     </tr>
   </table>
 </form>

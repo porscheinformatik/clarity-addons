@@ -8,6 +8,11 @@
     (selectedLangChange)="changeLanguage($event)"
   >
   </clr-multilingual-selector>
+  @if (readonly || readonly === '') {
+  <span [title]="!!shownTexts && !!selectedLang ? shownTexts.get(selectedLang) : ''" class="text-truncate">
+    {{ !!shownTexts && !!selectedLang ? shownTexts.get(selectedLang) : '' }}
+  </span>
+  } @else {
   <div class="clr-multi-input-wrapper">
     <div class="clr-input-wrapper">
       <input
@@ -18,7 +23,6 @@
         (ngModelChange)="setText(selectedLang, $event)"
         (blur)="onTouch()"
         [disabled]="disabled"
-        [readonly]="readonly || readonly === ''"
         autocomplete="off"
         [maxlength]="maxlength || null"
         #input
@@ -28,4 +32,5 @@
     <ng-content select="clr-control-helper" *ngIf="!showError"></ng-content>
     <ng-content select="clr-control-error" *ngIf="showError"></ng-content>
   </div>
+  }
 </div>
