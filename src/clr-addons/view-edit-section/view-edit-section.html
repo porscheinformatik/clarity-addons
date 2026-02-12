@@ -1,6 +1,6 @@
 <div class="card view-edit-section" (keyup.escape)="onCancel()">
   <div class="card-block">
-    <div class="card-title">
+    <div class="card-title" [attr.cds-text]="_titleTextStyle">
       {{ _title }}
       <button
         type="button"

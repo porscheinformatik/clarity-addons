@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -42,6 +42,15 @@ export class ClrViewEditSection implements AfterViewInit {
   @Input('clrEditIcon') _editIcon = 'pencil';
   @Input('clrIsCollapsible') _isCollapsible = false;
   @Input('clrIsCollapsed') _isCollapsed = false;
+  @Input('clrTitleTextStyle') _titleTextStyle:
+    | 'headline'
+    | 'title'
+    | 'section'
+    | 'subsection'
+    | 'headline regular'
+    | 'title regular'
+    | 'section regular'
+    | 'subsection regular' = 'subsection';
 
   @Input('clrViewRef') viewRef: TemplateRef<any>;
   @Input('clrEditRef') editRef: TemplateRef<any>;
