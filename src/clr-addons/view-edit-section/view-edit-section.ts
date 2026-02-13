@@ -7,6 +7,7 @@
 import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { angleIcon, ClarityIcons, pencilIcon } from '@cds/core/icon';
+import { ClrViewEditSectionTitleTextFontWeight, ClrViewEditSectionTitleTextStyle } from './view-edit-section.types';
 
 ClarityIcons.addIcons(angleIcon, pencilIcon);
 
@@ -42,15 +43,8 @@ export class ClrViewEditSection implements AfterViewInit {
   @Input('clrEditIcon') _editIcon = 'pencil';
   @Input('clrIsCollapsible') _isCollapsible = false;
   @Input('clrIsCollapsed') _isCollapsed = false;
-  @Input('clrTitleTextStyle') _titleTextStyle:
-    | 'headline'
-    | 'title'
-    | 'section'
-    | 'subsection'
-    | 'headline regular'
-    | 'title regular'
-    | 'section regular'
-    | 'subsection regular' = 'subsection';
+  @Input('clrTitleTextStyle') _titleTextStyle: ClrViewEditSectionTitleTextStyle = 'subsection';
+  @Input('clrTitleTextFontWeight') _titleTextFontWeight: ClrViewEditSectionTitleTextFontWeight = 'medium';
 
   @Input('clrViewRef') viewRef: TemplateRef<any>;
   @Input('clrEditRef') editRef: TemplateRef<any>;
