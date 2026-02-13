@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -7,6 +7,7 @@
 import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { angleIcon, ClarityIcons, pencilIcon } from '@cds/core/icon';
+import { ClrViewEditSectionTitleTextFontWeight, ClrViewEditSectionTitleTextStyle } from './view-edit-section.types';
 
 ClarityIcons.addIcons(angleIcon, pencilIcon);
 
@@ -42,6 +43,8 @@ export class ClrViewEditSection implements AfterViewInit {
   @Input('clrEditIcon') _editIcon = 'pencil';
   @Input('clrIsCollapsible') _isCollapsible = false;
   @Input('clrIsCollapsed') _isCollapsed = false;
+  @Input('clrTitleTextStyle') _titleTextStyle: ClrViewEditSectionTitleTextStyle = 'subsection';
+  @Input('clrTitleTextFontWeight') _titleTextFontWeight: ClrViewEditSectionTitleTextFontWeight = 'medium';
 
   @Input('clrViewRef') viewRef: TemplateRef<any>;
   @Input('clrEditRef') editRef: TemplateRef<any>;
