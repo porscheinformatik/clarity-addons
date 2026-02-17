@@ -35,7 +35,7 @@
     "@porscheinformatik/clr-addons": "file:../dist/clr-addons",
     "@webcomponents/custom-elements": "1.6.0",
     "@webcomponents/webcomponentsjs": "2.8.0",
-    "angular-calendar": "0.31.1",
+    "angular-calendar": "0.32.0",
     "core-js": "3.48.0",
     "date-fns": "2.30.0",
     "intl": "1.2.5",
