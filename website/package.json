@@ -55,6 +55,6 @@
     "cp-cli": "2.0.0",
     "gh-pages": "6.3.0",
     "ts-loader": "9.5.4",
-    "typescript": "5.8.3"
+    "typescript": "5.9.3"
   }
 }
