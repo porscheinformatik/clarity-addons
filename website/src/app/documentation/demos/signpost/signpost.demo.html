@@ -3,18 +3,51 @@
     <h5 class="component-summary">
       A signpost component designed for use in datagrids or treetables to prevent overlapping elements.
     </h5>
-    <h3>Parameter</h3>
-    <ul class="list">
-      <li>
-        <strong>targetAnchor:</strong> Specifies where the signpost content container should be attached. For datagrids
-        or treetables, this should be placed at the end of the content div container to prevent layout issues.
-      </li>
 
-      <li>
-        <strong>position: </strong> Defines the direction in which the signpost content is displayed, following the
-        standard Clarity Design positioning system.
-      </li>
-    </ul>
+    <h3>Summary of Options</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="left">Input/Output</th>
+          <th class="left clr-hidden-xs-down">Values</th>
+          <th class="clr-hidden-xs-down">Default</th>
+          <th class="left">Effect</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="left">
+            <b>[targetAnchor]</b>
+            <div class="clr-hidden-sm-up">Type: String</div>
+            <div class="clr-hidden-sm-up">Default: undefined</div>
+          </td>
+          <td class="left clr-hidden-xs-down">String</td>
+          <td class="clr-hidden-xs-down">undefined</td>
+          <td class="left">
+            Specifies where the signpost content container should be attached. For datagrids or treetables, this should
+            be placed at the end of the content div container to prevent layout issues.
+          </td>
+        </tr>
+        <tr>
+          <td class="left">
+            <b>[position]</b>
+            <div class="clr-hidden-sm-up">Type: String</div>
+            <div class="clr-hidden-sm-up">Default: right-bottom</div>
+          </td>
+          <td class="left clr-hidden-xs-down">String</td>
+          <td class="clr-hidden-xs-down">right-bottom</td>
+          <td class="left">
+            Defines the direction in which the signpost content is displayed, following the standard
+            <a
+              title="Clarity Design Signpost positions"
+              href="https://clarity.design/documentation/signpost/code#signposts-positions"
+              >Clarity Design positioning system.</a
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
     <div id="code-examples">
       <h3 id="examples">Code &amp; Examples</h3>
 
@@ -35,10 +68,9 @@
             </clr-tt-action-overflow>
             <clr-tt-cell class="text-truncate"
               >{{ node.name }}
-              <cng-signpost [targetAnchor]="'.treetable-grid'"
-                >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pellentesque dapibus orci vitae
-                bibendum.</cng-signpost
-              >
+              <clr-signpost-addon [targetAnchor]="'.treetable-grid'"
+                >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pellentesque dapibus orci vitae bibendum.
+              </clr-signpost-addon>
             </clr-tt-cell>
             <clr-tt-cell class="text-truncate">{{ node.type }}</clr-tt-cell>
             <clr-tt-cell class="text-truncate">

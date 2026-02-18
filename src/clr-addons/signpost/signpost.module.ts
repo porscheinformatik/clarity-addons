@@ -5,10 +5,12 @@
  */
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { SignpostComponent } from './signpost.component';
+import { ClrIconModule, ClrSignpostModule } from '@clr/angular';
+import { ClrSignpostAddonComponent } from './signpost.component';
 
 @NgModule({
-  imports: [CommonModule, SignpostComponent],
-  exports: [SignpostComponent],
+  imports: [CommonModule, ClrIconModule, ClrSignpostModule],
+  declarations: [ClrSignpostAddonComponent],
+  exports: [ClrSignpostAddonComponent],
 })
-export class ClrSignpostModule {}
+export class ClrSignpostAddonModule {}

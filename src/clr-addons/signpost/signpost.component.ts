@@ -1,16 +1,15 @@
 import { Component, ElementRef, Inject, Input, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { ClrIconModule, ClrSignpostContent, ClrSignpostModule } from '@clr/angular';
+import { ClrSignpostContent } from '@clr/angular';
 import { ClarityIcons, infoStandardIcon } from '@cds/core/icon';
 
 @Component({
-  selector: 'cng-signpost',
-  imports: [ClrSignpostModule, ClrIconModule],
+  selector: 'clr-signpost-addon',
   templateUrl: './signpost.component.html',
   styleUrl: './signpost.component.css',
-  standalone: true,
+  standalone: false,
 })
-export class SignpostComponent implements OnInit, OnDestroy {
+export class ClrSignpostAddonComponent implements OnInit, OnDestroy {
   open = false;
   preventPropagationCall = (event: MouseEvent) => this.preventPropagation(event);
 
@@ -44,16 +43,16 @@ export class SignpostComponent implements OnInit, OnDestroy {
   openChanged(isOpen: any) {
     if (isOpen) {
       setTimeout(() => {
-        this.moveSignpostContentToSiblingOfLabel();
+        this.moveSignpostContentBelowTargetAnchor();
       });
     }
   }
 
-  private moveSignpostContentToSiblingOfLabel() {
+  private moveSignpostContentBelowTargetAnchor() {
     if (this.signpostElement) {
-      const parentOfContainingLabel = this.signpostElement.nativeElement.closest(this.targetAnchor);
-      if (parentOfContainingLabel) {
-        this.renderer.appendChild(parentOfContainingLabel, this.signpostElement.nativeElement);
+      const targetAnchorParent = this.signpostElement.nativeElement.closest(this.targetAnchor);
+      if (targetAnchorParent) {
+        this.renderer.appendChild(targetAnchorParent, this.signpostElement.nativeElement);
       }
     }
   }
