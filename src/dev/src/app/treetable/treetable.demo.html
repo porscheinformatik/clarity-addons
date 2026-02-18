@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+  ~ Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
@@ -707,16 +707,32 @@
       </clr-tt-action-overflow>
       <clr-tt-cell class="text-truncate"
         >{{ node.name }}
-        <clr-signpost>
-          <button
-            class="btn btn-link btn-icon btn-sm"
-            style="padding: 0; min-width: 1.2rem; height: 0.65rem; border-width: 0"
-            clrSignpostTrigger
-          >
-            <cds-icon shape="info-standard" size="13" style="vertical-align: initial"></cds-icon>
-          </button>
-          <clr-signpost-content>Signpost</clr-signpost-content>
-        </clr-signpost>
+        <cng-signpost [targetAnchor]="'.treetable-grid'"
+          >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pellentesque dapibus orci vitae
+          bibendum.</cng-signpost
+        >
+      </clr-tt-cell>
+      <clr-tt-cell class="text-truncate">{{ node.type }}</clr-tt-cell>
+      <clr-tt-cell class="text-truncate">
+        <clr-tooltip>
+          <span clrTooltipTrigger> {{ node.version }} </span>
+          <clr-tooltip-content> {{ node.version + ' for reference' }} </clr-tooltip-content>
+        </clr-tooltip>
+      </clr-tt-cell>
+      <ng-container ngProjectAs="clr-tt-row" *ngFor="let childNode of node.children">
+        <ng-container *ngTemplateOutlet="signpostNode; context: { $implicit: childNode }"></ng-container>
+      </ng-container>
+    </clr-tt-row>
+    <clr-tt-row [clrExpandable]="node.children?.length > 0" [clrExpanded]="true">
+      <clr-tt-action-overflow>
+        <button class="action-item">Test</button>
+      </clr-tt-action-overflow>
+      <clr-tt-cell class="text-truncate"
+        >{{ node.name }}
+        <cng-signpost [targetAnchor]="'.treetable-grid'"
+          >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pellentesque dapibus orci vitae
+          bibendum.</cng-signpost
+        >
       </clr-tt-cell>
       <clr-tt-cell class="text-truncate">{{ node.type }}</clr-tt-cell>
       <clr-tt-cell class="text-truncate">

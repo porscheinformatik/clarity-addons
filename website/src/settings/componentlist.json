@@ -121,6 +121,11 @@
       "type": "component"
     },
     {
+      "url": "signpost",
+      "text": "Signpost",
+      "type": "component"
+    },
+    {
       "url": "summary-area",
       "text": "Summary Area",
       "type": "component"

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -193,7 +193,14 @@ export class TreetableDemo implements OnInit {
                 name: 'Child1',
                 type: 'Child',
                 version: 'V1',
-                children: [{ name: 'ChildChild1', type: 'ChildChild', version: 'V1' }],
+                children: [
+                  {
+                    name: 'ChildChild1',
+                    type: 'ChildChild',
+                    version: 'V1',
+                    children: [{ name: 'ChildChildChild1', type: 'ChildChildChild', version: 'V1' }],
+                  },
+                ],
               },
               { name: 'Child2', type: 'Child', version: 'V1' },
             ],

@@ -1,0 +1,10 @@
+<clr-signpost data-testid="clr-signpost-1599455073503533">
+  <button class="btn btn-icon btn-link btn-sm" type="button" clrSignpostTrigger>
+    <cds-icon shape="info-standard" size="24" style="vertical-align: initial"></cds-icon>
+  </button>
+  <ng-template [(clrIfOpen)]="open" (clrIfOpenChange)="openChanged($event)">
+    <clr-signpost-content [clrPosition]="position">
+      <ng-content></ng-content>
+    </clr-signpost-content>
+  </ng-template>
+</clr-signpost>

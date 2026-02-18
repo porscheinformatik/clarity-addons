@@ -43,6 +43,7 @@ import { ClrDaterangepickerModule } from './daterangepicker';
 import { ClrIfWarningModule } from './clr-control-warning/if-warning.module';
 import { ClrActionPanelModule } from './action-panel';
 import { ClrReadonlyDirectiveModule } from './readonly/readonly.module';
+import { ClrSignpostModule } from './signpost';
 
 @NgModule({
   exports: [
@@ -82,6 +83,7 @@ import { ClrReadonlyDirectiveModule } from './readonly/readonly.module';
     ClrActionPanelModule,
     ClrReadonlyDirectiveModule,
     ClrDatagridColumnReorderModule,
+    ClrSignpostModule,
   ],
 })
 export class ClrAddonsModule {}
