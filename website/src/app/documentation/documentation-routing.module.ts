@@ -110,6 +110,13 @@ const documentationRoutes: Routes = [
         },
       },
       {
+        path: 'signpost',
+        loadChildren: () => import('./demos/signpost/signpost.demo.module').then(m => m.SignpostDemoModule),
+        data: {
+          browserTitle: 'Signpost',
+        },
+      },
+      {
         path: 'summary-area',
         loadChildren: () => import('./demos/summary-area/summary.area.module').then(m => m.SummaryAreaDemoModule),
         data: {

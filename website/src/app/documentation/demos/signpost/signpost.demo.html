@@ -1,0 +1,92 @@
+<clr-doc-wrapper [title]="title" [showTabs]="false">
+  <article>
+    <h5 class="component-summary">
+      A signpost component designed for use in datagrids or treetables to prevent overlapping elements.
+    </h5>
+
+    <h3>Summary of Options</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="left">Input/Output</th>
+          <th class="left clr-hidden-xs-down">Values</th>
+          <th class="clr-hidden-xs-down">Default</th>
+          <th class="left">Effect</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="left">
+            <b>[targetAnchor]</b>
+            <div class="clr-hidden-sm-up">Type: String</div>
+            <div class="clr-hidden-sm-up">Default: undefined</div>
+          </td>
+          <td class="left clr-hidden-xs-down">String</td>
+          <td class="clr-hidden-xs-down">undefined</td>
+          <td class="left">
+            Determines the location where the signpost content is rendered. For datagrids or treetables, attach it to
+            the end of the content container to ensure proper layout and avoid overlapping elements.
+          </td>
+        </tr>
+        <tr>
+          <td class="left">
+            <b>[position]</b>
+            <div class="clr-hidden-sm-up">Type: String</div>
+            <div class="clr-hidden-sm-up">Default: right-bottom</div>
+          </td>
+          <td class="left clr-hidden-xs-down">String</td>
+          <td class="clr-hidden-xs-down">right-bottom</td>
+          <td class="left">
+            Defines the direction in which the signpost content is displayed, following the standard
+            <a
+              title="Clarity Design Signpost positions"
+              href="https://clarity.design/documentation/signpost/code#signposts-positions"
+              >Clarity Design positioning system.</a
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div id="code-examples">
+      <h3 id="examples">Code &amp; Examples</h3>
+
+      <h4>Treetable</h4>
+      <clr-treetable [clrClickableRows]="false">
+        <clr-tt-column>Name</clr-tt-column>
+        <clr-tt-column>Type</clr-tt-column>
+        <clr-tt-column>Version</clr-tt-column>
+
+        <ng-container ngProjectAs="clr-tt-row" *ngFor="let node of root">
+          <ng-container *ngTemplateOutlet="signpostNode; context: { $implicit: node }"></ng-container>
+        </ng-container>
+
+        <ng-template #signpostNode let-node>
+          <clr-tt-row [clrExpandable]="node.children?.length > 0" [clrExpanded]="true">
+            <clr-tt-action-overflow>
+              <button class="action-item">Test</button>
+            </clr-tt-action-overflow>
+            <clr-tt-cell class="text-truncate"
+              >{{ node.name }}
+              <clr-signpost-addon [targetAnchor]="'.treetable-grid'"
+                >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pellentesque dapibus orci vitae bibendum.
+              </clr-signpost-addon>
+            </clr-tt-cell>
+            <clr-tt-cell class="text-truncate">{{ node.type }}</clr-tt-cell>
+            <clr-tt-cell class="text-truncate">
+              <clr-tooltip>
+                <span clrTooltipTrigger> {{ node.version }} </span>
+                <clr-tooltip-content> {{ node.version + ' for reference' }}</clr-tooltip-content>
+              </clr-tooltip>
+            </clr-tt-cell>
+            <ng-container ngProjectAs="clr-tt-row" *ngFor="let childNode of node.children">
+              <ng-container *ngTemplateOutlet="signpostNode; context: { $implicit: childNode }"></ng-container>
+            </ng-container>
+          </clr-tt-row>
+        </ng-template>
+      </clr-treetable>
+
+      <clr-code-snippet [clrCode]="htmlExample"></clr-code-snippet>
+    </div>
+  </article>
+</clr-doc-wrapper>
