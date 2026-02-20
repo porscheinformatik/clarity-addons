@@ -81,7 +81,7 @@
     "cp-cli": "2.0.0",
     "csso-cli": "4.0.2",
     "del-cli": "7.0.0",
-    "eslint": "8.57.1",
+    "eslint": "10.0.1",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-jasmine": "4.2.2",
     "husky": "9.1.7",
