@@ -73,7 +73,7 @@
     "@types/jasmine": "6.0.0",
     "@types/jasmine-matchers": "0.2.35",
     "@types/jasminewd2": "2.0.13",
-    "@types/node": "24.10.13",
+    "@types/node": "24.10.14",
     "@types/zipcelx": "1.5.2",
     "@typescript-eslint/eslint-plugin": "8.56.1",
     "@typescript-eslint/parser": "8.56.1",
