@@ -210,7 +210,13 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
       return;
     }
 
-    const daterange = this.daterangeParsingService.parse(target.value, this.separatorText);
+    let daterange;
+    if (this.daterangeService.timeActive) {
+      daterange = this.daterangeParsingService.parseWithTime(target.value, this.separatorText);
+    } else {
+      daterange = this.daterangeParsingService.parse(target.value, this.separatorText);
+    }
+
     const invalidDaterange: boolean = daterange == null || daterange.from == null || daterange.to == null;
 
     // Invalid manual daterange specified.
@@ -219,7 +225,6 @@ export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlVa
         invalid: target.value,
       });
     }
-
     // Update selected daterange, but only notify when valid.
     this.daterangeService.updateSelectedDaterange(daterange, !invalidDaterange);
   }

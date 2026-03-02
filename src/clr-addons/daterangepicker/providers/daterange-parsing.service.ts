@@ -15,7 +15,7 @@ import {
 import { NullableDaterange } from '../interfaces/daterange.interface';
 import { DayModel, NullableDayModel } from '../models/day.model';
 import { NullableTimerange } from '../interfaces/timerange.interface';
-import { TimeModel } from '../models/time.model';
+import { NullableTimeModel, TimeModel } from '../models/time.model';
 
 /**
  * Daterange parsing service.
@@ -171,6 +171,25 @@ export class DaterangeParsingService {
     return { from, to };
   }
 
+  public parseWithTime(daterangeString: string, separator: string = SEPARATOR_TEXT_DEFAULT): NullableTimerange {
+    if (daterangeString == null || daterangeString === '') {
+      return null;
+    }
+
+    const [fromString, toString] = daterangeString.split(separator);
+    const from = this.getDayModelFromDateString(fromString.split(' ')[0]);
+    const to = this.getDayModelFromDateString(toString.split(' ')[0]);
+
+    const fromTime = this.getTimeModelFromDateString(fromString.split(' ')[1]);
+    const toTime = this.getTimeModelFromDateString(toString.split(' ')[1]);
+
+    if (from == null && to == null) {
+      return null;
+    }
+
+    return { from, to, fromTime, toTime };
+  }
+
   /**
    * Get `DayModel` from date string.
    * @param dateString - Date string.
@@ -197,6 +216,39 @@ export class DaterangeParsingService {
       // secondPart is month && thirdPart is date.
       return this.getDayModelFromDateParts(firstPart, secondPart, thirdPart);
     }
+  }
+
+  /**
+   * Get `TimeModel` from time string.
+   * @param timeString - Time string in HH:mm:ss or HH:mm format.
+   * @returns TimeModel.
+   */
+  public getTimeModelFromDateString(timeString: string): NullableTimeModel {
+    // If no time string provided, return null
+    if (timeString == null || timeString === '') {
+      return null;
+    }
+
+    // Parse the time string
+    const timeParts = timeString.trim().split(':');
+    if (timeParts.length < 1 || timeParts.length > 3) {
+      return null;
+    }
+
+    const hours = parseInt(timeParts[0], 10);
+    const minutes = parseInt(timeParts[1], 10);
+    const seconds = timeParts.length === 3 ? parseInt(timeParts[2], 10) : 0;
+
+    // Validate time values
+    if (isNaN(hours) || isNaN(minutes) || isNaN(seconds)) {
+      return null;
+    }
+
+    if (hours < 0 || hours > 23 || minutes < 0 || minutes > 59 || seconds < 0 || seconds > 59) {
+      return null;
+    }
+
+    return new TimeModel(hours, minutes, seconds);
   }
 
   /**
