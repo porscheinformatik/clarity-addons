@@ -321,4 +321,170 @@ describe('Service: DaterangeParsingService', () => {
       });
     });
   });
+
+  describe('getTimeModelFromDateString', () => {
+    const invalidInputs = [
+      { dateString: '01-01-2022', timeString: null, description: '`null` timeString' },
+      { dateString: '01-01-2022', timeString: '', description: 'empty timeString' },
+      { dateString: 'invalid', timeString: 'invalid', description: 'invalid timeString format' },
+    ] as Array<{ dateString: string; timeString: string; description: string }>;
+    invalidInputs.forEach(test => {
+      it(`should return \`null\` with ${test.description}`, () => {
+        // Arrange.
+        const locale = LITTLE_ENDIAN_LOCALE;
+        const sut = new DaterangeParsingService(locale);
+
+        // Act.
+        const result = sut.getTimeModelFromDateString(test.timeString);
+
+        // Assert.
+        expect(result).toBeNull();
+      });
+    });
+
+    it('should parse valid time string with HH:mm:ss format', () => {
+      // Arrange.
+      const locale = LITTLE_ENDIAN_LOCALE;
+      const sut = new DaterangeParsingService(locale);
+
+      // Act.
+      const result = sut.getTimeModelFromDateString('10:30:45');
+
+      // Assert.
+      expect(result).toEqual(new TimeModel(10, 30, 45));
+    });
+
+    it('should parse valid time string with HH:mm format', () => {
+      // Arrange.
+      const locale = LITTLE_ENDIAN_LOCALE;
+      const sut = new DaterangeParsingService(locale);
+
+      // Act.
+      const result = sut.getTimeModelFromDateString('10:30');
+
+      // Assert.
+      expect(result).toEqual(new TimeModel(10, 30, 0));
+    });
+
+    it('should parse time string with leading/trailing whitespace', () => {
+      // Arrange.
+      const locale = LITTLE_ENDIAN_LOCALE;
+      const sut = new DaterangeParsingService(locale);
+
+      // Act.
+      const result = sut.getTimeModelFromDateString('  10:30:45  ');
+
+      // Assert.
+      expect(result).toEqual(new TimeModel(10, 30, 45));
+    });
+
+    it('should parse time with midnight (00:00:00)', () => {
+      // Arrange.
+      const locale = LITTLE_ENDIAN_LOCALE;
+      const sut = new DaterangeParsingService(locale);
+
+      // Act.
+      const result = sut.getTimeModelFromDateString('00:00:00');
+
+      // Assert.
+      expect(result).toEqual(new TimeModel(0, 0, 0));
+    });
+
+    it('should parse time with end of day (23:59:59)', () => {
+      // Arrange.
+      const locale = LITTLE_ENDIAN_LOCALE;
+      const sut = new DaterangeParsingService(locale);
+
+      // Act.
+      const result = sut.getTimeModelFromDateString('23:59:59');
+
+      // Assert.
+      expect(result).toEqual(new TimeModel(23, 59, 59));
+    });
+
+    const invalidTimeStrings = [
+      { value: '24:00:00', description: 'invalid hour (24)' },
+      { value: '10:60:00', description: 'invalid minute (60)' },
+      { value: '10:30:60', description: 'invalid second (60)' },
+      { value: '-1:30:00', description: 'negative hour' },
+      { value: '10:-5:00', description: 'negative minute' },
+      { value: '10:30:-5', description: 'negative second' },
+      { value: '10', description: 'incomplete time (only 1 part)' },
+      { value: 'abc:def:ghi', description: 'non-numeric values' },
+      { value: '10:30:00:00', description: 'too many time parts' },
+    ] as Array<{ value: string; description: string }>;
+    invalidTimeStrings.forEach(test => {
+      it(`should return \`null\` with ${test.description}`, () => {
+        // Arrange.
+        const locale = LITTLE_ENDIAN_LOCALE;
+        const sut = new DaterangeParsingService(locale);
+
+        // Act.
+        const result = sut.getTimeModelFromDateString(test.value);
+
+        // Assert.
+        expect(result).toBeNull();
+      });
+    });
+
+    it('should work with LITTLE_ENDIAN locale (DD-MM-YYYY)', () => {
+      // Arrange.
+      const locale = LITTLE_ENDIAN_LOCALE;
+      const sut = new DaterangeParsingService(locale);
+
+      // Act.
+      const result = sut.getTimeModelFromDateString('14:30:15');
+
+      // Assert.
+      expect(result).toEqual(new TimeModel(14, 30, 15));
+    });
+
+    it('should work with MIDDLE_ENDIAN locale (MM/DD/YYYY)', () => {
+      // Arrange.
+      const locale = MIDDLE_ENDIAN_LOCALE;
+      const sut = new DaterangeParsingService(locale);
+
+      // Act.
+      const result = sut.getTimeModelFromDateString('14:30:15');
+
+      // Assert.
+      expect(result).toEqual(new TimeModel(14, 30, 15));
+    });
+
+    it('should work with BIG_ENDIAN locale (YYYY/MM/DD)', () => {
+      // Arrange.
+      const locale = BIG_ENDIAN_LOCALE;
+      const sut = new DaterangeParsingService(locale);
+
+      // Act.
+      const result = sut.getTimeModelFromDateString('14:30:15');
+
+      // Assert.
+      expect(result).toEqual(new TimeModel(14, 30, 15));
+    });
+
+    it('should parse time with single digit hours and minutes', () => {
+      // Arrange.
+      const locale = LITTLE_ENDIAN_LOCALE;
+      const sut = new DaterangeParsingService(locale);
+
+      // Act.
+      const result = sut.getTimeModelFromDateString('9:5:3');
+
+      // Assert.
+      expect(result).toEqual(new TimeModel(9, 5, 3));
+    });
+
+    it('should return null when timeString is undefined', () => {
+      // Arrange.
+      const locale = LITTLE_ENDIAN_LOCALE;
+      const sut = new DaterangeParsingService(locale);
+
+      // Act.
+      const result = sut.getTimeModelFromDateString(undefined);
+
+      // Assert.
+      expect(result).toBeNull();
+    });
+  });
 });
