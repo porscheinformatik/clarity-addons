@@ -56,6 +56,11 @@
       "type": "component"
     },
     {
+      "url": "keyboard-operation",
+      "text": "Keyboard Operation",
+      "type": "layout"
+    },
+    {
       "url": "html-editor",
       "text": "Html Editor",
       "type": "component"

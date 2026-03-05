@@ -43,11 +43,16 @@ import { ClrDaterangepickerModule } from './daterangepicker';
 import { ClrIfWarningModule } from './clr-control-warning/if-warning.module';
 import { ClrActionPanelModule } from './action-panel';
 import { ClrReadonlyDirectiveModule } from './readonly/readonly.module';
+import { ClrFocusFirstInvalidFieldDirective } from './focus-first-invalid-field';
+import { ClrControlEnterSubmitDirective } from './control-enter-submit';
 import { ClrSignpostAddonModule } from './signpost';
 
 @NgModule({
+  imports: [ClrFocusFirstInvalidFieldDirective],
+  declarations: [ClrControlEnterSubmitDirective],
   exports: [
     ClrViewEditSectionModule,
+
     ClrPagerModule,
     ClrDotPagerModule,
     ClrPagedSearchResultListModule,
@@ -84,6 +89,8 @@ import { ClrSignpostAddonModule } from './signpost';
     ClrReadonlyDirectiveModule,
     ClrDatagridColumnReorderModule,
     ClrSignpostAddonModule,
+    ClrFocusFirstInvalidFieldDirective,
+    ClrControlEnterSubmitDirective,
   ],
 })
 export class ClrAddonsModule {}

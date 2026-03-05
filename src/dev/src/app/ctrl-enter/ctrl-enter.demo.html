@@ -1,0 +1,55 @@
+<h2>Ctrl+Enter Directive</h2>
+<p>
+  The <code>clrControlEnterSubmit</code> directive enables form submission by pressing <code>Ctrl+Enter</code> (or
+  <code>Cmd+Enter</code> on macOS) while focus is within any input field of the form.
+</p>
+
+<h3>1. With Tooltip (Pretranslated Text)</h3>
+<p>
+  This form uses <code>[clrControlEnterSubmit]="'Ctrl+Enter to submit'"</code>. The tooltip text is pretranslated and
+  passed directly to the directive. Hover over the submit button to see the tooltip.
+</p>
+
+<div class="clr-example">
+  <form [clrControlEnterSubmit]="'Ctrl+Enter to submit'" (submit)="onSubmit()">
+    <clr-input-container>
+      <label>Name (Press Ctrl+Enter here)</label>
+      <input clrInput type="text" name="name" [(ngModel)]="name" />
+    </clr-input-container>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+  <div style="margin-top: 1rem" *ngIf="submitted">
+    <clr-alert [clrAlertType]="'success'" [clrAlertAppLevel]="false">
+      <clr-alert-item>
+        <span class="alert-text">Form submitted at {{ lastSubmitTime }}</span>
+      </clr-alert-item>
+    </clr-alert>
+  </div>
+</div>
+
+<h3>2. Without Tooltip</h3>
+<p>
+  This form uses <code>clrControlEnterSubmit</code> without a value (or with an empty value). No tooltip is displayed on
+  the submit button.
+</p>
+
+<div class="clr-example">
+  <form clrControlEnterSubmit (submit)="onSubmit2()">
+    <clr-input-container>
+      <label>Email (Press Ctrl+Enter here)</label>
+      <input clrInput type="text" name="email" [(ngModel)]="email" />
+    </clr-input-container>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+  <div style="margin-top: 1rem" *ngIf="submitted2">
+    <clr-alert [clrAlertType]="'success'" [clrAlertAppLevel]="false">
+      <clr-alert-item>
+        <span class="alert-text">Form submitted at {{ lastSubmitTime2 }}</span>
+      </clr-alert-item>
+    </clr-alert>
+  </div>
+</div>

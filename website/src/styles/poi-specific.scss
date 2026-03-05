@@ -17,7 +17,7 @@ $contentTopMargin: calc(2 * var(tokens.$cds-global-space-15));
 .table-of-contents {
   position: fixed;
   top: $contentTopMargin;
-  left: calc(variables.$clr_baselineRem_2_66 + variables.$clr_baselineRem_48);
+  left: variables.$clr_baselineRem_2_66 + variables.$clr_baselineRem_48;
   border-left: 1px solid tokens.$cds-alias-object-border-color;
   z-index: 100000;
 
@@ -74,6 +74,7 @@ $contentTopMargin: calc(2 * var(tokens.$cds-global-space-15));
 
   li {
     $activeBorderWidth: tokens.$cds-alias-object-border-width-300;
+    $globalSpaceToken: tokens.$cds-global-space-11;
 
     a {
       display: block;
@@ -97,7 +98,7 @@ $contentTopMargin: calc(2 * var(tokens.$cds-global-space-15));
     }
 
     ul > li > a {
-      padding-left: calc(var(tokens.$cds-global-space-11) - $activeBorderWidth);
+      padding-left: calc($globalSpaceToken - $activeBorderWidth);
     }
   }
 }

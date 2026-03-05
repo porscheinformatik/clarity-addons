@@ -167,6 +167,17 @@ export const APP_ROUTES: Routes = [
     loadChildren: () =>
       import('./exportable-datagrid/exportable-datagrid.module').then(m => m.ExportableDatagridModule),
   },
+  {
+    path: 'focus-first-invalid-field',
+    loadChildren: () =>
+      import('./focus-first-invalid-field/focus-first-invalid-field.demo.module').then(
+        m => m.FocusFirstInvalidFieldDemoModule
+      ),
+  },
+  {
+    path: 'ctrl-enter',
+    loadChildren: () => import('./ctrl-enter/ctrl-enter.demo.module').then(m => m.CtrlEnterDemoModule),
+  },
 ];
 
 export const ROUTING: ModuleWithProviders<RouterModule> = RouterModule.forRoot(APP_ROUTES);
