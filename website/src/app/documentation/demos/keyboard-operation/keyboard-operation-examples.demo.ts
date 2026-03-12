@@ -49,12 +49,17 @@ export const CONTROL_ENTER_BASIC_EXAMPLE = `
   <button class="btn btn-primary" type="submit">Submit</button>
 </form>
 
-<!-- 2. Without tooltip -->
-<form clrForm clrControlEnterSubmit (ngSubmit)="onCtrlEnterSubmit()">
+<!-- 2. Without translation (no tooltip) -->
+<form clrControlEnterSubmit (ngSubmit)="onCtrlEnterSubmit()">
   <!-- ... form fields ... -->
   <button class="btn btn-primary" type="submit">Submit</button>
 </form>
 `;
 
 export const CONTROL_ENTER_TRANSLATION_EXAMPLE = `
-<form clrForm [clrControlEnterSubmit]="'Ctrl+Enter to submit'" (ngSubmit)="onSubmit()`;
+<!-- 1. Tooltip passed directly as a string -->
+<form clrForm [clrControlEnterSubmit]="'Ctrl+Enter to submit'" (ngSubmit)="onSubmit() </form>
+
+<!-- 2. Tooltip passed via pipe translation -->
+<form clrForm [clrControlEnterSubmit]="control.enter.to.submit.translation.key | translate" (ngSubmit)="onSubmit() </form>
+`;
