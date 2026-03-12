@@ -40,31 +40,21 @@ export const FOCUS_FIRST_INVALID_EXAMPLE = `
 `;
 
 export const CONTROL_ENTER_BASIC_EXAMPLE = `
-<!-- 1. With translated tooltip) -->
-<form [clrControlEnterSubmit]="'Ctrl(Cmd) + Enter to submit'" (ngSubmit)="onCtrlEnterSubmit()" #form="ngForm">
+<!-- 1. With tooltip -->
+<form clrForm [clrControlEnterSubmit]="'Ctrl(Cmd) + Enter to submit'" (ngSubmit)="onCtrlEnterSubmit()" #form="ngForm">
   <clr-input-container>
     <label>Press Ctrl+Enter here</label>
     <input clrInput [(ngModel)]="ctrlEnterModel" name="ctrlEnterModel" />
   </clr-input-container>
   <button class="btn btn-primary" type="submit">Submit</button>
-  <div *ngIf="ctrlEnterSubmitted" class="alert alert-success" style="margin-top: 12px">
-    <div class="alert-items">
-      <div class="alert-item static">
-        <div class="alert-icon-wrapper">
-          <clr-icon class="alert-icon" shape="check-circle"></clr-icon>
-        </div>
-        <span class="alert-text">Submitted at {{ ctrlEnterLastSubmitTime }}</span>
-      </div>
-    </div>
-  </div>
 </form>
 
-<!-- 2. Without translation (no tooltip) -->
-<form clrControlEnterSubmit (ngSubmit)="onCtrlEnterSubmit()">
+<!-- 2. Without tooltip -->
+<form clrForm clrControlEnterSubmit (ngSubmit)="onCtrlEnterSubmit()">
   <!-- ... form fields ... -->
   <button class="btn btn-primary" type="submit">Submit</button>
 </form>
 `;
 
 export const CONTROL_ENTER_TRANSLATION_EXAMPLE = `
-<form [clrControlEnterSubmit]="'Ctrl+Enter to submit'" (ngSubmit)="onSubmit()`;
+<form clrForm [clrControlEnterSubmit]="'Ctrl+Enter to submit'" (ngSubmit)="onSubmit()`;

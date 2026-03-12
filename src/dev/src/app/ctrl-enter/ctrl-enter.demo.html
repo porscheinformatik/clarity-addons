@@ -11,7 +11,7 @@
 </p>
 
 <div class="clr-example">
-  <form [clrControlEnterSubmit]="'Ctrl+Enter to submit'" (submit)="onSubmit()">
+  <form clrForm [clrControlEnterSubmit]="'Ctrl+Enter to submit'" (submit)="onSubmit()">
     <clr-input-container>
       <label>Name (Press Ctrl+Enter here)</label>
       <input clrInput type="text" name="name" [(ngModel)]="name" />
@@ -52,4 +52,41 @@
       </clr-alert-item>
     </clr-alert>
   </div>
+</div>
+
+<h3>3. Multiple Forms Example</h3>
+<p>
+  Try pressing <code>Ctrl+Enter</code> (or <code>Cmd+Enter</code> on Mac) anywhere in either form below. Both forms will
+  submit simultaneously if they use the <code>clrControlEnterSubmit</code> directive, demonstrating the
+  global/multi-form capability.
+</p>
+<div class="clr-example-grid">
+  <form clrForm clrControlEnterSubmit (submit)="onSubmitGroup(0)">
+    <clr-input-container>
+      <label>Group 1 Input</label>
+      <input clrInput type="text" name="group1" [(ngModel)]="group1" />
+    </clr-input-container>
+    <button type="submit" class="btn btn-primary">Submit Group 1</button>
+    <div style="margin-top: 1rem" *ngIf="submittedGroups[0]">
+      <clr-alert [clrAlertType]="'success'" [clrAlertAppLevel]="false">
+        <clr-alert-item>
+          <span class="alert-text">Group 1 submitted at {{ lastSubmitTimesGroups[0] }}</span>
+        </clr-alert-item>
+      </clr-alert>
+    </div>
+  </form>
+  <form clrForm clrControlEnterSubmit (submit)="onSubmitGroup(1)">
+    <clr-input-container>
+      <label>Group 2 Input</label>
+      <input clrInput type="text" name="group2" [(ngModel)]="group2" />
+    </clr-input-container>
+    <button type="submit" class="btn btn-primary">Submit Group 2</button>
+    <div style="margin-top: 1rem" *ngIf="submittedGroups[1]">
+      <clr-alert [clrAlertType]="'success'" [clrAlertAppLevel]="false">
+        <clr-alert-item>
+          <span class="alert-text">Group 2 submitted at {{ lastSubmitTimesGroups[1] }}</span>
+        </clr-alert-item>
+      </clr-alert>
+    </div>
+  </form>
 </div>

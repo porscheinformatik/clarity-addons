@@ -13,6 +13,7 @@ import {
   CONTROL_ENTER_TRANSLATION_EXAMPLE,
   FOCUS_FIRST_INVALID_EXAMPLE,
 } from './keyboard-operation-examples.demo';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 ClarityIcons.addIcons(checkIcon);
 
@@ -53,9 +54,11 @@ export class KeyboardOperationDemo extends ClarityDocComponent implements OnInit
   form2Phone: string;
 
   // Control Enter fields
+
+  ctrlEnterValidatedForm: FormGroup;
+  ctrlEnterNonValidatedForm: FormGroup;
+
   ctrlEnterModel: string;
-  ctrlEnterForm1: string;
-  ctrlEnterForm2: string;
   ctrlEnterSubmitted = false;
   ctrlEnterLastSubmitTime: string;
   ctrlEnterForm1Submitted = false;
@@ -72,6 +75,12 @@ export class KeyboardOperationDemo extends ClarityDocComponent implements OnInit
       this.elementRef.nativeElement.querySelectorAll(this.headingSelector)
     ) as HTMLHeadingElement[];
     this.tableOfContents = this.getTableOfContents(headingElements);
+    this.ctrlEnterValidatedForm = new FormGroup({
+      sampleInput: new FormControl('', [Validators.required]),
+    });
+    this.ctrlEnterNonValidatedForm = new FormGroup({
+      sampleInput: new FormControl(''),
+    });
   }
 
   getTableOfContents(headingElements: HTMLHeadingElement[]) {
@@ -123,9 +132,10 @@ export class KeyboardOperationDemo extends ClarityDocComponent implements OnInit
   }
 
   onCtrlEnterForm1Submit() {
-    console.log('Form 1 submitted');
-    this.ctrlEnterForm1Submitted = true;
-    setTimeout(() => (this.ctrlEnterForm1Submitted = false), 2000);
+    if (this.ctrlEnterValidatedForm.valid) {
+      this.ctrlEnterForm1Submitted = true;
+      setTimeout(() => (this.ctrlEnterForm1Submitted = false), 2000);
+    }
   }
 
   onCtrlEnterForm2Submit() {

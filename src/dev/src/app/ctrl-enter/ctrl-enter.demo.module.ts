@@ -5,7 +5,7 @@
  */
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { ClarityModule, ClrFormsModule } from '@clr/angular';
@@ -16,13 +16,14 @@ import { CtrlEnterDemo } from './ctrl-enter.demo';
 @NgModule({
   imports: [
     CommonModule,
-    ClarityModule,
     FormsModule,
+    ClarityModule,
     ClrFormsModule,
     ClrAddonsModule,
+    ReactiveFormsModule,
     RouterModule.forChild([{ path: '', component: CtrlEnterDemo }]),
   ],
-  declarations: [],
-  exports: [],
+  declarations: [CtrlEnterDemo],
+  exports: [CtrlEnterDemo],
 })
 export class CtrlEnterDemoModule {}

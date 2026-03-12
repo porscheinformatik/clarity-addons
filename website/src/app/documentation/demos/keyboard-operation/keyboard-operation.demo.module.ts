@@ -5,7 +5,7 @@
  */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ClarityModule, ClrFormsModule } from '@clr/angular';
 import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
@@ -24,6 +24,7 @@ import { KeyboardOperationDemo } from './keyboard-operation.demo';
     UtilsModule,
     DocWrapperModule,
     RouterModule.forChild([{ path: '', component: KeyboardOperationDemo }]),
+    ReactiveFormsModule,
   ],
   declarations: [KeyboardOperationDemo],
   exports: [KeyboardOperationDemo],

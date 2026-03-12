@@ -179,7 +179,7 @@
     </ul>
 
     <div id="examples">
-      <h3 id="focus-first-example">Code Example - Single Form</h3>
+      <h3 id="focus-first-example">Code Example</h3>
       <p>Basic form implementation with FocusFirstInvalidFieldDirective:</p>
       <clr-code-snippet [clrCode]="focusFirstInvalidExample"></clr-code-snippet>
     </div>
@@ -187,56 +187,52 @@
   <article>
     <h2 id="control-enter">ControlEnterSubmit Directive</h2>
     <p>
-      The <code class="clr-code">clrControlEnterSubmit</code> directive enables form submission using
-      <kbd>Ctrl+Enter</kbd> (or <kbd>Cmd+Enter</kbd> on macOS). It provides a convenient keyboard shortcut for users to
-      submit forms without leaving the input field.
+      The <code class="clr-code">clrControlEnterSubmit</code> directive enables form submission via
+      <kbd>Ctrl+Enter</kbd> globally. When <kbd>Ctrl+Enter</kbd> is pressed anywhere on the page, every form with this
+      directive will be validated and submitted, regardless of focus. Native <kbd>Enter</kbd> submission for the focused
+      form is preserved and unaffected. This allows both global keyboard shortcuts and standard submission behavior
+      without interfering with validation logic.
     </p>
-    <div class="alert alert-info" style="margin-bottom: 16px">
-      <div class="alert-items">
-        <div class="alert-item static">
-          <span class="alert-text">
-            <strong>Note:</strong> Normal Enter submission is prevented when this directive is applied. Only Ctrl+Enter
-            (or Cmd+Enter) will trigger form submission.
-          </span>
-        </div>
-      </div>
-    </div>
-
+    <p>
+      <strong>Native Enter Submit:</strong> The directive does <em>not</em> override the default <kbd>Enter</kbd> submit
+      for individual forms; users can submit a focused form as normal.
+    </p>
+    <p>
+      <strong>Global Ctrl+Enter Submit:</strong> When pressed, <kbd>Ctrl+Enter</kbd> submits every form with this
+      directive on the page, regardless of focus.
+    </p>
+    <p><strong>Validation:</strong> Validation and error handling continue per normal Clarity usage.</p>
     <h3 id="control-enter-usage">Usage</h3>
     <p>
-      Add the <code class="clr-code">clrControlEnterSubmit</code> directive to your
-      <code class="clr-code">form</code> element. The directive listens for the key combination and triggers the form's
-      submit event.
+      Add the <code class="clr-code">clrControlEnterSubmit</code> directive to each
+      <code class="clr-code">form</code> element you want to globally submit. The directive listens for
+      <kbd>Ctrl+Enter</kbd> on the window and triggers submission for all such forms. Native <kbd>Enter</kbd> submit on
+      an individual form remains supported and is not overridden. This allows a combination of both standard and
+      enhanced global keyboard form handling.
     </p>
+    <h4 id="control-enter-tooltip-translation">Tooltip & Translation</h4>
     <p>
       Optionally, you can pass a pre-translated tooltip string to the directive (e.g.,
       <code class="clr-code">[clrControlEnterSubmit]="'Ctrl+Enter to submit'"</code>). If a string is provided, a
       tooltip with the shortcut hint will be displayed on the submit button. If no string is provided, no tooltip is
-      shown.
+      shown. Translation of the tooltip is not handled in within the directive.
     </p>
 
-    <h3 id="control-enter-tooltip-translation">Tooltip & Translation</h3>
     <p>
       To enable the tooltip, pass a pre-translated string to the directive via the
       <code class="clr-code">[clrControlEnterSubmit]</code> input. For example:
     </p>
     <clr-code-snippet clrLanguage="html" [clrCode]="controlEnterTranslationExample"></clr-code-snippet>
-    <p>If no translation is provided, the tooltip will be ignored.</p>
-
-    <h4 id="control-enter-prevent-normal">Preventing Normal Enter Submission</h4>
-    <p>
-      When <code class="clr-code">clrControlEnterSubmit</code> is applied, pressing Enter alone will not submit the
-      form. Only the Ctrl+Enter (or Cmd+Enter) combination will trigger submission. This prevents accidental form
-      submissions and ensures keyboard shortcuts are used intentionally.
-    </p>
 
     <h3 id="control-enter-best-practices">Best Practices</h3>
     <ul>
-      <li>Use this directive on forms that have validation requirements</li>
-      <li>Ensure form fields have proper ARIA labels for accessibility</li>
-      <li>Combine with Clarity's validation error messages for comprehensive feedback</li>
-      <li>Test with various form field types to ensure proper focus behavior</li>
-      <li>When using multiple forms on one page, be sure each form has unique field names to prevent conflicts</li>
+      <li>Use <code class="clr-code">clrControlEnterSubmit</code> on any form requiring enhanced keyboard operation</li>
+      <li>Ensure forms are declared as <code class="clr-code">clrForm</code></li>
+      <li>
+        <kbd>Ctrl+Enter</kbd> triggers global multi-form submission, <kbd>Enter</kbd> triggers standard single form
+        submit. Test combinations for undesirable side effects.
+      </li>
+      <li>All validation logic is preserved and not altered by the directive.</li>
     </ul>
 
     <div class="clr-example">
@@ -260,59 +256,72 @@
         </div>
       </form>
     </div>
-    <h4 id="control-enter-multi-form">Independent Form Handling</h4>
-
+    <h4 id="control-enter-multi-form">Global Multi-Form Submission</h4>
     <div class="clr-example">
       <p>
-        When multiple forms are present, the shortcut only submits the form that currently contains the focused element.
+        When multiple forms with the <code class="clr-code">clrControlEnterSubmit</code> directive are present, pressing
+        <kbd>Ctrl+Enter</kbd> submits every one of them at once, regardless of which form is currently focused. This
+        provides a powerful global keyboard shortcut for rapid form submission across the entire page, enabling bulk
+        actions or multi-form workflows.
       </p>
       <div class="clr-row">
         <div class="clr-col-12 clr-col-md-6">
           <div class="card">
-            <div class="card-header">Form 1 (with tooltip)</div>
+            <div class="card-header">Form 1 (with required field)</div>
             <div class="card-block">
-              <form (ngSubmit)="onCtrlEnterForm1Submit()" [clrControlEnterSubmit]="'Ctrl+Enter to submit'" clrForm>
-                <clr-input-container>
-                  <label>Input 1</label>
-                  <input [(ngModel)]="ctrlEnterForm1" clrInput name="ctrlEnterForm1" />
+              <form
+                clrForm
+                (ngSubmit)="onCtrlEnterForm1Submit()"
+                clrControlEnterSubmit
+                [formGroup]="ctrlEnterValidatedForm"
+              >
+                <clr-input-container class="clr-row">
+                  <label class="clr-required-mark clr-col-2">Input</label>
+                  <input class="clr-col-8" formControlName="sampleInput" required clrInput name="sampleInput" />
+                  <clr-control-error></clr-control-error>
                 </clr-input-container>
                 <button class="btn btn-primary" type="submit">Submit Form 1</button>
-                <div *ngIf="ctrlEnterForm1Submitted" class="alert alert-success alert-sm" style="margin-top: 12px">
-                  <div class="alert-items">
-                    <div class="alert-item static">
-                      <span class="alert-text">Submitted!</span>
-                    </div>
+              </form>
+              <div *ngIf="ctrlEnterForm1Submitted" class="alert alert-success alert-sm" style="margin-top: 12px">
+                <div class="alert-items">
+                  <div class="alert-item static">
+                    <span class="alert-text">Submitted!</span>
                   </div>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>
         <div class="clr-col-12 clr-col-md-6">
           <div class="card">
-            <div class="card-header">Form 2 (no tooltip)</div>
+            <div class="card-header">Form 2 (no validation required)</div>
             <div class="card-block">
-              <form (ngSubmit)="onCtrlEnterForm2Submit()" clrControlEnterSubmit clrForm>
-                <clr-input-container>
-                  <label>Input 2</label>
-                  <input [(ngModel)]="ctrlEnterForm2" clrInput name="ctrlEnterForm2" />
+              <form
+                clrForm
+                (ngSubmit)="onCtrlEnterForm2Submit()"
+                clrControlEnterSubmit
+                [formGroup]="ctrlEnterNonValidatedForm"
+              >
+                <clr-input-container class="clr-row">
+                  <label class="clr-col-2">Input</label>
+                  <input class="clr-col-8" formControlName="sampleInput" clrInput name="sampleInput" />
                 </clr-input-container>
                 <button class="btn btn-primary" type="submit">Submit Form 2</button>
-                <div *ngIf="ctrlEnterForm2Submitted" class="alert alert-success alert-sm" style="margin-top: 12px">
-                  <div class="alert-items">
-                    <div class="alert-item static">
-                      <span class="alert-text">Submitted!</span>
-                    </div>
+              </form>
+              <div *ngIf="ctrlEnterForm2Submitted" class="alert alert-success alert-sm" style="margin-top: 12px">
+                <div class="alert-items">
+                  <div class="alert-item static">
+                    <span class="alert-text">Submitted!</span>
                   </div>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <h3 id="control-enter-code-examples">Code Example - Single Form</h3>
+    <h3 id="control-enter-code-examples">Code Example</h3>
     <clr-code-snippet [clrCode]="controlEnterBasicExample"></clr-code-snippet>
   </article>
 </clr-doc-wrapper>

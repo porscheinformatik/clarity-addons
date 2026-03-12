@@ -4,33 +4,12 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { ClrCommonFormsModule, ClrInputModule, ClarityModule } from '@clr/angular';
-import {
-  ClrAddonsModule,
-  CLR_CONTROL_ENTER_SUBMIT_TRANSLATION,
-  ClrControlEnterSubmitTranslationService,
-} from '@porscheinformatik/clr-addons';
 
 @Component({
   selector: 'clr-ctrl-enter-demo',
   templateUrl: './ctrl-enter.demo.html',
-  standalone: true,
-  imports: [CommonModule, FormsModule, ClrCommonFormsModule, ClrInputModule, ClarityModule, ClrAddonsModule],
-  providers: [
-    {
-      provide: CLR_CONTROL_ENTER_SUBMIT_TRANSLATION,
-      useValue: {
-        translate: (key: string) => {
-          if (key === 'CTRL_ENTER_SUBMIT') {
-            return 'Ctrl+Enter to submit';
-          }
-          return key;
-        },
-      } as ClrControlEnterSubmitTranslationService,
-    },
-  ],
+  providers: [],
+  standalone: false,
 })
 export class CtrlEnterDemo {
   name = '';
@@ -41,10 +20,14 @@ export class CtrlEnterDemo {
   submitted2 = false;
   lastSubmitTime2 = '';
 
+  group1 = '';
+  group2 = '';
+  submittedGroups = [false, false];
+  lastSubmitTimesGroups = ['', ''];
+
   onSubmit() {
     this.submitted = true;
     this.lastSubmitTime = new Date().toLocaleTimeString();
-    // Reset submitted after 3 seconds to allow re-testing
     setTimeout(() => {
       this.submitted = false;
     }, 3000);
@@ -53,9 +36,16 @@ export class CtrlEnterDemo {
   onSubmit2() {
     this.submitted2 = true;
     this.lastSubmitTime2 = new Date().toLocaleTimeString();
-    // Reset submitted after 3 seconds to allow re-testing
     setTimeout(() => {
       this.submitted2 = false;
+    }, 3000);
+  }
+
+  onSubmitGroup(idx: number) {
+    this.submittedGroups[idx] = true;
+    this.lastSubmitTimesGroups[idx] = new Date().toLocaleTimeString();
+    setTimeout(() => {
+      this.submittedGroups[idx] = false;
     }, 3000);
   }
 }

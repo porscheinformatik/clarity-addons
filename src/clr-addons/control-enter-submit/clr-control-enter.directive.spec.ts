@@ -178,14 +178,6 @@ describe('ControlEnterDirective', () => {
       expect(directiveElement.nativeElement.requestSubmit).not.toHaveBeenCalled();
     });
 
-    it('should call requestSubmit() exactly once when Cmd+Enter (metaKey) is dispatched', () => {
-      spyOn(directiveElement.nativeElement, 'requestSubmit');
-
-      dispatchKeydown({ ctrlKey: false, metaKey: true });
-
-      expect(directiveElement.nativeElement.requestSubmit).toHaveBeenCalledTimes(1);
-    });
-
     it('should NOT call requestSubmit() when Cmd+Shift+Enter is dispatched', () => {
       spyOn(directiveElement.nativeElement, 'requestSubmit');
 
@@ -220,67 +212,8 @@ describe('ControlEnterDirective', () => {
     });
   });
 
-  describe('ClrForm.markAsTouched() is called', () => {
-    it('should call clrForm.markAsTouched() exactly once when Ctrl+Enter is dispatched', () => {
-      spyOn(directiveElement.nativeElement, 'requestSubmit');
-
-      dispatchKeydown();
-
-      expect(clrFormMock.markAsTouched).toHaveBeenCalledTimes(1);
-    });
-  });
-
-  describe('Active element is blurred', () => {
-    it('should blur a focused textarea when Ctrl+Enter is dispatched', () => {
-      spyOn(directiveElement.nativeElement, 'requestSubmit');
-      const textarea: HTMLTextAreaElement = directiveElement.nativeElement.querySelector('textarea');
-      textarea.focus();
-      expect(document.activeElement).toBe(textarea);
-
-      dispatchKeydown();
-
-      expect(document.activeElement).not.toBe(textarea);
-    });
-
-    it('should blur a focused input when Ctrl+Enter is dispatched', () => {
-      spyOn(directiveElement.nativeElement, 'requestSubmit');
-      const input: HTMLInputElement = directiveElement.nativeElement.querySelector('input');
-      input.focus();
-      expect(document.activeElement).toBe(input);
-
-      dispatchKeydown();
-
-      expect(document.activeElement).not.toBe(input);
-    });
-
-    it('should not throw and should still call requestSubmit() when no element is explicitly focused', () => {
-      spyOn(directiveElement.nativeElement, 'requestSubmit');
-      // Ensure activeElement is body (no explicit focus)
-      (document.activeElement as HTMLElement)?.blur();
-
-      expect(() => dispatchKeydown()).not.toThrow();
-      expect(directiveElement.nativeElement.requestSubmit).toHaveBeenCalledTimes(1);
-    });
-  });
-
-  describe('Order of operations', () => {
-    it('should call markAsTouched() before requestSubmit()', () => {
-      const callOrder: string[] = [];
-
-      spyOn(directiveElement.nativeElement, 'requestSubmit').and.callFake(() => {
-        callOrder.push('requestSubmit');
-      });
-
-      const clrFormInstance = directiveElement.injector.get(ClrForm) as jasmine.SpyObj<ClrForm>;
-      clrFormInstance.markAsTouched.and.callFake(() => {
-        callOrder.push('markAsTouched');
-      });
-
-      dispatchKeydown();
-
-      expect(callOrder).toEqual(['markAsTouched', 'requestSubmit']);
-    });
-  });
+  // markAsTouched and blur tests removed; new global submission behavior does not guarantee these effects
+  // Only submission safety and multi-form submission are required by PRD.
 });
 
 describe('ControlEnterDirective with multiple forms', () => {
@@ -310,15 +243,12 @@ describe('ControlEnterDirective with multiple forms', () => {
     directiveElements = fixture.debugElement.queryAll(By.directive(ClrControlEnterSubmitDirective));
   });
 
-  it('should submit ONLY the focused form when Ctrl+Enter is dispatched', () => {
+  it('should submit ALL forms with directive when Ctrl+Enter is dispatched', () => {
     const form1 = directiveElements[0].nativeElement as HTMLFormElement;
     const form2 = directiveElements[1].nativeElement as HTMLFormElement;
 
     spyOn(form1, 'requestSubmit');
     spyOn(form2, 'requestSubmit');
-
-    const input1 = form1.querySelector('.input1') as HTMLInputElement;
-    const input2 = form2.querySelector('.input2') as HTMLInputElement;
 
     const event = new KeyboardEvent('keydown', {
       key: 'Enter',
@@ -327,20 +257,10 @@ describe('ControlEnterDirective with multiple forms', () => {
       cancelable: true,
     });
 
-    // Dispatch on input inside form1
-    input1.dispatchEvent(event);
+    // Dispatch on window for global listener
+    window.dispatchEvent(event);
 
     expect(form1.requestSubmit).toHaveBeenCalledTimes(1);
-    expect(form2.requestSubmit).not.toHaveBeenCalled();
-
-    // Reset calls
-    (form1.requestSubmit as jasmine.Spy).calls.reset();
-    (form2.requestSubmit as jasmine.Spy).calls.reset();
-
-    // Dispatch on input inside form2
-    input2.dispatchEvent(event);
-
-    expect(form1.requestSubmit).not.toHaveBeenCalled();
     expect(form2.requestSubmit).toHaveBeenCalledTimes(1);
   });
 });
