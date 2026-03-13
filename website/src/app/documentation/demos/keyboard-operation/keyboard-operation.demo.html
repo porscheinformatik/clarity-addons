@@ -1,0 +1,346 @@
+<clr-doc-wrapper [showTabs]="false" [title]="title">
+  <article>
+    @if (tableOfContents && tableOfContents.length) {
+    <div class="table-of-contents">
+      <span class="title">Content</span>
+      <ng-container *ngTemplateOutlet="tocList; context: { $implicit: tableOfContents }"></ng-container>
+    </div>
+    }
+    <h5 class="component-summary" id="keyboard-operation-header">
+      Keyboard operation directives extend the default Clarity form elements by providing additional functionality and
+      behavior to enhance form interactions.
+    </h5>
+
+    <h2 id="focus-first-header">FocusFirstInvalidField Directive</h2>
+    <p>
+      The <code class="clr-code">FocusFirstInvalidFieldDirective</code> automatically focuses the first invalid form
+      field when a form submit action is triggered. This improves user experience by immediately directing attention to
+      fields that need correction, reducing the cognitive load on users.
+    </p>
+    <p>When a form with this directive is submitted:</p>
+    <ul>
+      <li>The directive listens to the form's submit event</li>
+      <li>It searches for the first element with the CSS class <code class="clr-code">ng-invalid</code></li>
+      <li>If found, it focuses the first focusable child element (input, textarea, or select)</li>
+      <li>If the invalid element has no focusable children, it focuses the element itself</li>
+      <li>If all fields are valid, no focus change occurs</li>
+    </ul>
+
+    <h3 id="focus-first-usage">Usage</h3>
+    <p>Simply add the <code class="clr-code">clrFocusFirstInvalidField</code> attribute to your form element:</p>
+
+    <h4 id="focus-first-handling">Independent Form Handling</h4>
+    <p>
+      Each form with the <code class="clr-code">clrFocusFirstInvalidField</code> directive operates independently. When
+      multiple forms are present on a single page:
+    </p>
+    <ul>
+      <li>Each form manages its own validation state independently</li>
+      <li>Submitting one form only validates and focuses invalid fields in that form</li>
+      <li>Invalid fields in other forms are not affected</li>
+      <li>You can have as many forms as needed on a single page, each with independent directive handling</li>
+    </ul>
+
+    <h4 id="focus-first-supported-controls">Supported Form Controls</h4>
+    <p>The directive works with the following Clarity form elements:</p>
+    <ul>
+      <li>Text inputs (<code class="clr-code">clrInput</code>)</li>
+      <li>Textareas (<code class="clr-code">clrTextarea</code>)</li>
+      <li>Select dropdowns (<code class="clr-code">clrSelect</code>)</li>
+      <li>Custom form controls with focusable child elements</li>
+    </ul>
+
+    <div class="clr-example">
+      <form #form="ngForm" (ngSubmit)="onSubmit()" clrFocusFirstInvalidField clrForm>
+        <h4>Single Form</h4>
+        <p>Try submitting the form without filling in the required fields to see the focus behavior:</p>
+
+        <clr-input-container class="clr-col-12">
+          <label class="clr-required-mark">Input Field (required)</label>
+          <input
+            [(ngModel)]="inputField"
+            clrInput
+            name="inputField"
+            placeholder="Please fill this field"
+            required
+            type="text"
+          />
+          <clr-control-error *clrIfError="'required'">This field is required</clr-control-error>
+        </clr-input-container>
+
+        <clr-textarea-container class="clr-col-12">
+          <label class="clr-required-mark">Textarea Field (required)</label>
+          <textarea
+            [(ngModel)]="textAreaField"
+            clrTextarea
+            name="textAreaField"
+            placeholder="Please fill this field"
+            required
+          ></textarea>
+          <clr-control-error *clrIfError="'required'">This field is required</clr-control-error>
+        </clr-textarea-container>
+
+        <clr-select-container class="clr-col-12">
+          <label class="clr-required-mark">Select Field (required)</label>
+          <select [(ngModel)]="selectField" clrSelect name="selectField" required>
+            <option disabled selected value="">Select an option...</option>
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+          </select>
+          <clr-control-error *clrIfError="'required'">This field is required</clr-control-error>
+        </clr-select-container>
+
+        <button class="btn btn-primary" type="submit">Submit Form</button>
+      </form>
+    </div>
+    <div class="clr-example">
+      <h4>Multiple Forms</h4>
+      <p>
+        You can use the directive on multiple forms on the same page. Each form validates and focuses independently. Try
+        submitting each form independently without filling in their required fields:
+      </p>
+
+      <div class="clr-row">
+        <div class="clr-col-12 clr-col-md-6">
+          <h5>Form 1 - Personal Information</h5>
+          <form #form1="ngForm" (ngSubmit)="onSubmitForm1()" clrFocusFirstInvalidField clrForm>
+            <clr-input-container class="clr-col-12">
+              <label class="clr-required-mark">First Name</label>
+              <input
+                [(ngModel)]="form1FirstName"
+                clrInput
+                name="form1FirstName"
+                placeholder="Enter first name"
+                required
+                type="text"
+              />
+              <clr-control-error *clrIfError="'required'">This field is required</clr-control-error>
+            </clr-input-container>
+
+            <clr-input-container class="clr-col-12">
+              <label class="clr-required-mark">Last Name</label>
+              <input
+                [(ngModel)]="form1LastName"
+                clrInput
+                name="form1LastName"
+                placeholder="Enter last name"
+                required
+                type="text"
+              />
+              <clr-control-error *clrIfError="'required'">This field is required</clr-control-error>
+            </clr-input-container>
+
+            <button class="btn btn-primary" type="submit">Submit Form 1</button>
+          </form>
+        </div>
+
+        <div class="clr-col-12 clr-col-md-6">
+          <h5>Form 2 - Contact Information</h5>
+          <form #form2="ngForm" (ngSubmit)="onSubmitForm2()" clrFocusFirstInvalidField clrForm>
+            <clr-input-container class="clr-col-12" style="height: 40px">
+              <label class="clr-required-mark">Email</label>
+              <input
+                [(ngModel)]="form2Email"
+                clrInput
+                name="form2Email"
+                placeholder="Enter email"
+                required
+                type="email"
+              />
+              <clr-control-error *clrIfError="'required'">This field is required</clr-control-error>
+            </clr-input-container>
+
+            <clr-input-container class="clr-col-12" style="height: 40px">
+              <label class="clr-required-mark">Phone</label>
+              <input
+                [(ngModel)]="form2Phone"
+                clrInput
+                name="form2Phone"
+                placeholder="Enter phone"
+                required
+                type="tel"
+              />
+              <clr-control-error *clrIfError="'required'">This field is required</clr-control-error>
+            </clr-input-container>
+
+            <button class="btn btn-primary" type="submit">Submit Form 2</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <h3 id="focus-first-best-practices">Best Practices</h3>
+    <ul>
+      <li>Use this directive on forms that have validation requirements</li>
+      <li>Ensure form fields have proper ARIA labels for accessibility</li>
+      <li>Combine with Clarity's validation error messages for comprehensive feedback</li>
+      <li>Test with various form field types to ensure proper focus behavior</li>
+      <li>When using multiple forms on one page, be sure each form has unique field names to prevent conflicts</li>
+    </ul>
+
+    <div id="examples">
+      <h3 id="focus-first-example">Code Example</h3>
+      <p>Basic form implementation with FocusFirstInvalidFieldDirective:</p>
+      <clr-code-snippet [clrCode]="focusFirstInvalidExample"></clr-code-snippet>
+    </div>
+  </article>
+  <article>
+    <h2 id="control-enter">ControlEnterSubmit Directive</h2>
+    <p>
+      The <code class="clr-code">clrControlEnterSubmit</code> directive enables form submission via
+      <kbd>Ctrl+Enter</kbd> globally. When <kbd>Ctrl+Enter</kbd> is pressed anywhere on the page, every form with this
+      directive will be validated and submitted, regardless of focus. Native <kbd>Enter</kbd> submission for the focused
+      form is preserved and unaffected. This allows both global keyboard shortcuts and standard submission behavior
+      without interfering with validation logic.
+    </p>
+    <p>
+      <strong>Native Enter Submit:</strong> The directive does <em>not</em> override the default <kbd>Enter</kbd> submit
+      for individual forms; users can submit a focused form as normal.
+    </p>
+    <p>
+      <strong>Global Ctrl+Enter Submit:</strong> When pressed, <kbd>Ctrl+Enter</kbd> submits every form with this
+      directive on the page, regardless of focus.
+    </p>
+    <p><strong>Validation:</strong> Validation and error handling continue per normal Clarity usage.</p>
+    <h3 id="control-enter-usage">Usage</h3>
+    <p>
+      Add the <code class="clr-code">clrControlEnterSubmit</code> directive to each
+      <code class="clr-code">form</code> element you want to globally submit. The directive listens for
+      <kbd>Ctrl+Enter</kbd> on the window and triggers submission for all such forms. Native <kbd>Enter</kbd> submit on
+      an individual form remains supported and is not overridden. This allows a combination of both standard and
+      enhanced global keyboard form handling.
+    </p>
+    <h4 id="control-enter-tooltip-translation">Tooltip & Translation</h4>
+    <p>
+      You can pass a tooltip string to the directive If a string is provided, a tooltip with the shortcut hint will be
+      displayed on the submit button. If no string is provided, no tooltip is shown. Translation of the tooltip is not
+      handled in within the directive, but can be passed using translation pipes
+    </p>
+
+    <p>
+      To enable the tooltip, pass a pre-translated string to the directive via the
+      <code class="clr-code">[clrControlEnterSubmit]</code> input. For example:
+    </p>
+    <clr-code-snippet clrLanguage="html" [clrCode]="controlEnterTranslationExample"></clr-code-snippet>
+
+    <h3 id="control-enter-best-practices">Best Practices</h3>
+    <ul>
+      <li>Use <code class="clr-code">clrControlEnterSubmit</code> on any form requiring enhanced keyboard operation</li>
+      <li>Ensure forms are declared as <code class="clr-code">clrForm</code></li>
+      <li>
+        <kbd>Ctrl+Enter</kbd> triggers global multi-form submission, <kbd>Enter</kbd> triggers standard single form
+        submit. Test combinations for undesirable side effects.
+      </li>
+      <li>All validation logic is preserved and not altered by the directive.</li>
+    </ul>
+
+    <div class="clr-example">
+      <h4>Interactive Example</h4>
+      <p>Type in the input and press Ctrl+Enter (or Cmd+Enter) to submit:</p>
+      <form (ngSubmit)="onCtrlEnterSubmit()" [clrControlEnterSubmit]="'Ctrl+Enter to submit'" clrForm>
+        <clr-input-container>
+          <label>Press Ctrl+Enter here (hover for tooltip)</label>
+          <input [(ngModel)]="ctrlEnterModel" clrInput name="ctrlEnterModel" type="text" />
+        </clr-input-container>
+        <button class="btn btn-primary" type="submit">Submit</button>
+        <div *ngIf="ctrlEnterSubmitted" class="alert alert-success" style="margin-top: 12px">
+          <div class="alert-items">
+            <div class="alert-item static">
+              <div class="alert-icon-wrapper">
+                <clr-icon class="alert-icon" shape="check-circle"></clr-icon>
+              </div>
+              <span class="alert-text">Submitted at {{ ctrlEnterLastSubmitTime }}</span>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <h4 id="control-enter-multi-form">Global Multi-Form Submission</h4>
+    <div class="clr-example">
+      <p>
+        When multiple forms with the <code class="clr-code">clrControlEnterSubmit</code> directive are present, pressing
+        <kbd>Ctrl+Enter</kbd> submits every one of them at once, regardless of which form is currently focused. This
+        provides a powerful global keyboard shortcut for rapid form submission across the entire page, enabling bulk
+        actions or multi-form workflows.
+      </p>
+      <div class="clr-row">
+        <div class="clr-col-12 clr-col-md-6">
+          <div class="card">
+            <div class="card-header">Form 1 (with required field)</div>
+            <div class="card-block">
+              <form
+                clrForm
+                (ngSubmit)="onCtrlEnterForm1Submit()"
+                clrControlEnterSubmit
+                [formGroup]="ctrlEnterValidatedForm"
+              >
+                <clr-input-container class="clr-row">
+                  <label class="clr-required-mark clr-col-2">Input</label>
+                  <input class="clr-col-8" formControlName="sampleInput" required clrInput name="sampleInput" />
+                  <clr-control-error></clr-control-error>
+                </clr-input-container>
+                <button class="btn btn-primary" type="submit">Submit Form 1</button>
+              </form>
+              <div *ngIf="ctrlEnterForm1Submitted" class="alert alert-success alert-sm" style="margin-top: 12px">
+                <div class="alert-items">
+                  <div class="alert-item static">
+                    <span class="alert-text">Submitted!</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="clr-col-12 clr-col-md-6">
+          <div class="card">
+            <div class="card-header">Form 2 (no validation required)</div>
+            <div class="card-block">
+              <form
+                clrForm
+                (ngSubmit)="onCtrlEnterForm2Submit()"
+                clrControlEnterSubmit
+                [formGroup]="ctrlEnterNonValidatedForm"
+              >
+                <clr-input-container class="clr-row">
+                  <label class="clr-col-2">Input</label>
+                  <input class="clr-col-8" formControlName="sampleInput" clrInput name="sampleInput" />
+                </clr-input-container>
+                <button class="btn btn-primary" type="submit">Submit Form 2</button>
+              </form>
+              <div *ngIf="ctrlEnterForm2Submitted" class="alert alert-success alert-sm" style="margin-top: 12px">
+                <div class="alert-items">
+                  <div class="alert-item static">
+                    <span class="alert-text">Submitted!</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 id="control-enter-code-examples">Code Example</h3>
+    <clr-code-snippet [clrCode]="controlEnterBasicExample"></clr-code-snippet>
+  </article>
+</clr-doc-wrapper>
+
+<ng-template #tocList let-entries>
+  @if (entries?.length) {
+  <ul class="list-unstyled toc-list">
+    @for (entry of entries; track entry) {
+    <li>
+      <a
+        [fragment]="entry.id"
+        [class.active]="(activeFragment | async) === entry.id"
+        [replaceUrl]="true"
+        routerLink="."
+      >
+        {{ entry.label }}
+      </a>
+      <ng-container *ngTemplateOutlet="tocList; context: { $implicit: entry.children }"></ng-container>
+    </li>
+    }
+  </ul>
+  }
+</ng-template>

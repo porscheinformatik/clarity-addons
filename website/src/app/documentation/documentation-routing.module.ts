@@ -160,6 +160,14 @@ const documentationRoutes: Routes = [
         },
       },
       {
+        path: 'keyboard-operation',
+        loadChildren: () =>
+          import('./demos/keyboard-operation/keyboard-operation.demo.module').then(m => m.KeyboardOperationDemoModule),
+        data: {
+          browserTitle: 'Keyboard Operation',
+        },
+      },
+      {
         path: 'readonly',
         loadChildren: () => import('./demos/readonly/readonly.demo.module').then(m => m.ReadonlyDemoModule),
         data: {
@@ -248,6 +256,7 @@ const documentationRoutes: Routes = [
           browserTitle: 'Angular Calendar',
         },
       },
+
       {
         path: 'control-warning',
         loadChildren: () =>

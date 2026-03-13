@@ -1,0 +1,129 @@
+<h2>Focus First Invalid Field Directive</h2>
+
+<p>
+  This directive automatically focuses the first invalid field when a form is submitted. Try submitting the form with
+  invalid fields to see the focus behavior.
+</p>
+
+<div class="clr-example">
+  <form #form="ngForm" (ngSubmit)="onSubmit()" clrFocusFirstInvalidField clrForm>
+    <h3>Input Fields</h3>
+    <clr-input-container class="clr-col-12">
+      <label class="clr-required-mark" for="input-field-1">Input Field 1 (required)</label>
+      <input
+        [(ngModel)]="inputField1"
+        clrInput
+        id="input-field-1"
+        name="inputField1"
+        placeholder="Please fill this field"
+        required
+        type="text"
+      />
+      <clr-control-error *clrIfError="'required'"></clr-control-error>
+    </clr-input-container>
+    <clr-input-container class="clr-col-12">
+      <label class="clr-control-label" for="input-field-2">Input Field 2 (optional)</label>
+      <input
+        [(ngModel)]="inputField2"
+        clrInput
+        data-testid="input-field-2"
+        id="input-field-2"
+        name="inputField2"
+        placeholder="This field is optional"
+        type="text"
+      />
+    </clr-input-container>
+    <clr-input-container class="clr-col-12">
+      <label class="clr-required-mark" for="input-field-3">Input Field 3 (required)</label>
+      <input
+        [(ngModel)]="inputField3"
+        clrInput
+        data-testid="input-field-3"
+        id="input-field-3"
+        name="inputField3"
+        placeholder="Please fill this field"
+        required
+        type="text"
+      />
+      <clr-control-error *clrIfError="'required'"></clr-control-error>
+    </clr-input-container>
+    <h3>Textarea Fields</h3>
+    <clr-textarea-container class="clr-col-12">
+      <label for="textarea-1">Textarea 1 (optional)</label>
+      <textarea
+        id="textarea-1"
+        name="textAreaInput1"
+        [(ngModel)]="textAreaInput1"
+        data-testid="textarea-1"
+        clrTextarea
+        placeholder="This field is optional"
+      ></textarea>
+    </clr-textarea-container>
+    <clr-textarea-container class="clr-col-12">
+      <label for="textarea-2" class="clr-required-mark">Textarea 2 (required)</label>
+      <textarea
+        id="textarea-2"
+        name="textAreaInput2"
+        [(ngModel)]="textAreaInput2"
+        required
+        data-testid="textarea-2"
+        clrTextarea
+        placeholder="Please fill this field"
+      ></textarea>
+      <clr-control-error *clrIfError="'required'"></clr-control-error>
+    </clr-textarea-container>
+    <h3>Select Field</h3>
+    <clr-select-container class="clr-col-12">
+      <label for="select-1" class="clr-required-mark">Select Field (required)</label>
+      <select id="select-1" name="selectField1" [(ngModel)]="selectField1" required data-testid="select-1" clrSelect>
+        <option value="" disabled selected>Select an option...</option>
+        <option value="optionA">Option A</option>
+        <option value="optionB">Option B</option>
+        <option value="optionC">Option C</option>
+      </select>
+      <clr-control-error *clrIfError="'required'"></clr-control-error>
+    </clr-select-container>
+    <h3>Custom Control (No child input/textarea/select)</h3>
+
+    <div class="clr-form-group">
+      <label for="custom-control" class="clr-required">Custom Control (div with tabindex)</label>
+      <div
+        id="custom-control"
+        class="custom-control"
+        data-testid="custom-control"
+        style="border: 1px solid #ccc; padding: 10px; border-radius: 4px; min-height: 40px; background-color: #f5f5f5"
+      >
+        This is a custom control without child input/textarea/select elements
+      </div>
+    </div>
+    <h3>Datagrid</h3>
+    <div class="clr-form-group">
+      <clr-datagrid class="clr-col-12 clr-col-md-6">
+        <clr-dg-column [clrDgField]="'text'">
+          <div class="required">Description</div>
+        </clr-dg-column>
+        <clr-dg-row *clrDgItems="let item of dataDatagrid" [clrDgItem]="item">
+          <clr-dg-cell>
+            <clr-select-container>
+              <label for="selectDataGrid" hidden></label>
+              <select
+                id="selectDataGrid"
+                name="selectFieldDataGrid"
+                [(ngModel)]="selectFieldDataGrid"
+                required
+                clrSelect
+              >
+                <option value="" disabled selected>Select an option...</option>
+                <option value="optionA">Option A</option>
+                <option value="optionB">Option B</option>
+                <option value="optionC">Option C</option>
+              </select>
+              <clr-control-error *clrIfError="'required'"></clr-control-error>
+            </clr-select-container>
+          </clr-dg-cell>
+        </clr-dg-row>
+      </clr-datagrid>
+    </div>
+    <button class="btn btn-primary" data-testid="submit-button" type="submit">Submit Form</button>
+  </form>
+</div>
