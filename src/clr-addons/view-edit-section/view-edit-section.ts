@@ -4,10 +4,20 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  inject,
+  Input,
+  Output,
+  TemplateRef,
+} from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { angleIcon, ClarityIcons, pencilIcon } from '@cds/core/icon';
 import { ClrViewEditSectionTitleTextFontWeight, ClrViewEditSectionTitleTextStyle } from './view-edit-section.types';
+import { ClrCommonStringsService } from '@clr/angular';
 
 ClarityIcons.addIcons(angleIcon, pencilIcon);
 
@@ -35,10 +45,12 @@ ClarityIcons.addIcons(angleIcon, pencilIcon);
   standalone: false,
 })
 export class ClrViewEditSection implements AfterViewInit {
+  private readonly commonStrings = inject(ClrCommonStringsService);
+
   @Input('clrTitle') _title: string;
-  @Input('clrSaveText') _saveText = 'Save';
+  @Input('clrSaveText') _saveText = this.commonStrings.keys.apply;
   @Input('clrPreventModeChangeOnSave') _preventSave = false;
-  @Input('clrCancelText') _cancelText = 'Cancel';
+  @Input('clrCancelText') _cancelText = this.commonStrings.keys.cancel;
   @Input('clrEditable') _editable = true;
   @Input('clrEditIcon') _editIcon = 'pencil';
   @Input('clrIsCollapsible') _isCollapsible = false;
