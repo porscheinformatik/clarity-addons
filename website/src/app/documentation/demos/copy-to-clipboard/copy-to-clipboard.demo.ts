@@ -10,13 +10,15 @@ const DATAGRID_EXAMPLE = `<clr-datagrid>
   <clr-dg-column>ID</clr-dg-column>
   <clr-dg-column>Name</clr-dg-column>
 
-  <clr-dg-row *ngFor="let user of users">
-    <clr-dg-cell class="clr-copy-to-clipboard-container">
-      {{ user.id }}
-      <clr-copy-to-clipboard [value]="user.id" [hiddenUntilHovered]="true"></clr-copy-to-clipboard>
-    </clr-dg-cell>
-    <clr-dg-cell>{{ user.name }}</clr-dg-cell>
-  </clr-dg-row>
+  @for (user of users; track user.id) {
+    <clr-dg-row>
+      <clr-dg-cell class="clr-copy-to-clipboard-container">
+        {{ user.id }}
+        <clr-copy-to-clipboard [value]="user.id" [hiddenUntilHovered]="true"></clr-copy-to-clipboard>
+      </clr-dg-cell>
+      <clr-dg-cell>{{ user.name }}</clr-dg-cell>
+    </clr-dg-row>
+  }
 </clr-datagrid>`;
 
 const TREETABLE_EXAMPLE = `<clr-treetable>
@@ -47,13 +49,15 @@ const TABLE_EXAMPLE = `<table class="table">
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let row of tableRows">
-      <td>{{ row.label }}</td>
-      <td class="clr-copy-to-clipboard-container clr-justify-content-center">
-        {{ row.value }}
-        <clr-copy-to-clipboard [value]="row.value" [hiddenUntilHovered]="true"></clr-copy-to-clipboard>
-      </td>
-    </tr>
+    @for (row of tableRows; track row.label) {
+      <tr>
+        <td>{{ row.label }}</td>
+        <td class="clr-copy-to-clipboard-container clr-justify-content-center">
+          {{ row.value }}
+          <clr-copy-to-clipboard [value]="row.value" [hiddenUntilHovered]="true"></clr-copy-to-clipboard>
+        </td>
+      </tr>
+    }
   </tbody>
 </table>`;
 
