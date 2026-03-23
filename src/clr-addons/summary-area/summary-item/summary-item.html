@@ -31,10 +31,7 @@
       } @else {
       <ng-content select="clr-summary-item-value"></ng-content>
       @if (showCopyButton) {
-      <clr-summary-area-value-copy-button
-        [value]="copyableValue"
-        [tooltipText]="copyButtonTooltip()"
-      ></clr-summary-area-value-copy-button>
+      <clr-copy-to-clipboard [value]="copyableValue" [tooltipText]="copyButtonTooltip()"></clr-copy-to-clipboard>
       }
       <ng-content></ng-content>
       @if (showEditButton) {

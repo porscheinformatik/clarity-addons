@@ -125,6 +125,10 @@ export const APP_ROUTES: Routes = [
     path: 'kitchen-sink',
     loadChildren: () => import('./kitchen-sink/kitchen-sink.module').then(m => m.KitchenSinkModule),
   },
+  {
+    path: 'copy-to-clipboard',
+    loadComponent: () => import('./copy-to-clipboard/copy-to-clipboard.demo').then(m => m.CopyToClipboardDemo),
+  },
   { path: 'dropdown', loadChildren: () => import('./dropdown/dropdown.demo.module').then(m => m.DropdownDemoModule) },
   {
     path: 'datagrid-filters',

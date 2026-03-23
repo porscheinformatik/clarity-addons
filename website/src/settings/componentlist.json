@@ -41,6 +41,11 @@
       "type": "component"
     },
     {
+      "url": "copy-to-clipboard",
+      "text": "Copy to Clipboard",
+      "type": "component"
+    },
+    {
       "url": "control-warning",
       "text": "Control Warning",
       "type": "component"

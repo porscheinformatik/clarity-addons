@@ -1,0 +1,204 @@
+<clr-doc-wrapper [title]="title" [showTabs]="false">
+  <article>
+    <h5 class="component-summary">
+      A generic copy-to-clipboard button that can be placed inside any container (datagrid cells, treetable cells, table
+      cells, or summary items) to let users copy a value with a single click.
+    </h5>
+
+    <p>
+      The component uses the Angular CDK clipboard module to perform the copy operation. It displays a
+      <code class="clr-code">copy-to-clipboard</code> icon that changes to a <code class="clr-code">success</code> icon
+      for 1 second after a successful copy.
+    </p>
+    <p>
+      When used inside data cells, set <code class="clr-code">[hiddenUntilHovered]="true"</code> to keep the icon hidden
+      until the user hovers over the parent element. This avoids visual clutter in dense grids while still providing
+      easy access to the copy action.
+    </p>
+    <p>
+      <strong>Note:</strong> The summary area's <code class="clr-code">[valueCopyable]</code> input on
+      <code class="clr-code">clr-summary-item</code> uses this component internally.
+    </p>
+
+    <h3>Summary of Options</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="left">Input</th>
+          <th class="left clr-hidden-xs-down">Type</th>
+          <th class="clr-hidden-xs-down">Default</th>
+          <th class="left">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="left">
+            <b>[value]</b>
+            <div class="clr-hidden-sm-up">Type: string (required)</div>
+          </td>
+          <td class="left clr-hidden-xs-down">string</td>
+          <td class="clr-hidden-xs-down"><i>required</i></td>
+          <td class="left">The text value to copy to the clipboard when the icon is clicked.</td>
+        </tr>
+        <tr>
+          <td class="left">
+            <b>[tooltipText]</b>
+            <div class="clr-hidden-sm-up">Type: string</div>
+            <div class="clr-hidden-sm-up">Default: 'Copy to clipboard'</div>
+          </td>
+          <td class="left clr-hidden-xs-down">string</td>
+          <td class="clr-hidden-xs-down">'Copy to clipboard'</td>
+          <td class="left">The text displayed in the tooltip when hovering over the copy icon.</td>
+        </tr>
+        <tr>
+          <td class="left">
+            <b>[hiddenUntilHovered]</b>
+            <div class="clr-hidden-sm-up">Type: boolean</div>
+            <div class="clr-hidden-sm-up">Default: false</div>
+          </td>
+          <td class="left clr-hidden-xs-down">boolean</td>
+          <td class="clr-hidden-xs-down">false</td>
+          <td class="left">
+            When <code class="clr-code">true</code>, the copy icon is hidden until the user hovers over the parent
+            element (e.g. a table cell). Ideal for use in datagrids, treetables, and tables to reduce visual noise.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div id="code-examples">
+      <h3 id="examples">Code &amp; Examples</h3>
+
+      <div class="alert alert-info" role="alert">
+        <div class="alert-items">
+          <div class="alert-item static">
+            <div class="alert-icon-wrapper">
+              <cds-icon class="alert-icon" shape="info-circle"></cds-icon>
+            </div>
+            <span class="alert-text">
+              For inline alignment of the value and the copy icon, add the
+              <code class="clr-code">clr-copy-to-clipboard-container</code> class to the direct parent element of
+              <code class="clr-code">&lt;clr-copy-to-clipboard&gt;</code>. This applies
+              <code class="clr-code">display: flex</code>, <code class="clr-code">flex-direction: row</code> and
+              <code class="clr-code">align-items: center</code> to keep the text and icon on the same line.
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <h4>Datagrid</h4>
+      <p>
+        Place <code class="clr-code">&lt;clr-copy-to-clipboard&gt;</code> inside a
+        <code class="clr-code">&lt;clr-dg-cell&gt;</code>. The icon appears when hovering over the cell.
+      </p>
+      <clr-datagrid>
+        <clr-dg-column>ID</clr-dg-column>
+        <clr-dg-column>Name</clr-dg-column>
+        <clr-dg-column>Email</clr-dg-column>
+
+        <clr-dg-row *ngFor="let user of users">
+          <clr-dg-cell class="clr-copy-to-clipboard-container">
+            {{ user.id }}
+            <clr-copy-to-clipboard [value]="user.id" [hiddenUntilHovered]="true"></clr-copy-to-clipboard>
+          </clr-dg-cell>
+          <clr-dg-cell>{{ user.name }}</clr-dg-cell>
+          <clr-dg-cell class="clr-copy-to-clipboard-container">
+            {{ user.email }}
+            <clr-copy-to-clipboard [value]="user.email" [hiddenUntilHovered]="true"></clr-copy-to-clipboard>
+          </clr-dg-cell>
+        </clr-dg-row>
+
+        <clr-dg-footer>{{ users.length }} users</clr-dg-footer>
+      </clr-datagrid>
+      <clr-code-snippet [clrCode]="datagridExample"></clr-code-snippet>
+
+      <h4>Treetable</h4>
+      <p>
+        Place <code class="clr-code">&lt;clr-copy-to-clipboard&gt;</code> inside a
+        <code class="clr-code">&lt;clr-tt-cell&gt;</code>.
+      </p>
+      <clr-treetable>
+        <clr-tt-column class="clr-col-6">Department</clr-tt-column>
+        <clr-tt-column class="clr-col-6">Code</clr-tt-column>
+
+        @for (dept of treeData; track dept.code) {
+        <clr-tt-row [clrExpandable]="!!dept.children?.length" [clrExpanded]="true">
+          <clr-tt-cell>{{ dept.name }}</clr-tt-cell>
+          <clr-tt-cell class="clr-copy-to-clipboard-container">
+            {{ dept.code }}
+            <clr-copy-to-clipboard [value]="dept.code" [hiddenUntilHovered]="true"></clr-copy-to-clipboard>
+          </clr-tt-cell>
+
+          @for (child of dept.children; track child.code) {
+          <clr-tt-row>
+            <clr-tt-cell>{{ child.name }}</clr-tt-cell>
+            <clr-tt-cell class="clr-copy-to-clipboard-container">
+              {{ child.code }}
+              <clr-copy-to-clipboard [value]="child.code" [hiddenUntilHovered]="true"></clr-copy-to-clipboard>
+            </clr-tt-cell>
+          </clr-tt-row>
+          }
+        </clr-tt-row>
+        }
+
+        <clr-tt-placeholder>No departments found</clr-tt-placeholder>
+      </clr-treetable>
+      <clr-code-snippet [clrCode]="treetableExample"></clr-code-snippet>
+
+      <h4>Plain HTML Table</h4>
+
+      <p>
+        Works in standard <code class="clr-code">&lt;table&gt;</code> elements as well. The parent hover detection
+        targets the immediate parent element (the <code class="clr-code">&lt;td&gt;</code>).
+      </p>
+
+      <div class="alert alert-info" role="alert">
+        <div class="alert-items">
+          <div class="alert-item static">
+            <div class="alert-icon-wrapper">
+              <cds-icon class="alert-icon" shape="info-circle"></cds-icon>
+            </div>
+            <span class="alert-text">
+              In plain HTML tables, an additional <code class="clr-code">justify-content: center</code> style is needed
+              on the cell to match the default table cell alignment. Add the utility class
+              <code class="clr-code">clr-justify-content-center</code> alongside
+              <code class="clr-code">clr-copy-to-clipboard-container</code> on the
+              <code class="clr-code">&lt;td&gt;</code>.
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Label</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of tableRows">
+            <td>{{ row.label }}</td>
+            <td class="clr-copy-to-clipboard-container clr-justify-content-center">
+              {{ row.value }}
+              <clr-copy-to-clipboard [value]="row.value" [hiddenUntilHovered]="true"></clr-copy-to-clipboard>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <clr-code-snippet [clrCode]="tableExample"></clr-code-snippet>
+
+      <h4>Always Visible (no hiddenUntilHovered)</h4>
+      <p>
+        Without <code class="clr-code">[hiddenUntilHovered]</code>, the icon is always visible. This is the default
+        behavior, used by the summary area.
+      </p>
+      <div class="clr-copy-to-clipboard-container">
+        <span>Some copyable value</span>
+        <clr-copy-to-clipboard [value]="'Some copyable value'" [tooltipText]="'Copy this value'">
+        </clr-copy-to-clipboard>
+      </div>
+      <clr-code-snippet [clrCode]="alwaysVisibleExample"></clr-code-snippet>
+    </div>
+  </article>
+</clr-doc-wrapper>

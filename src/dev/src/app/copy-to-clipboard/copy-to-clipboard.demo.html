@@ -1,0 +1,82 @@
+<!--
+  ~ Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
+  ~ This software is released under MIT license.
+  ~ The full license information can be found in LICENSE in the root directory of this project.
+  -->
+
+<h2>Copy to Clipboard</h2>
+<p>
+  The <code>clr-copy-to-clipboard</code> component can be placed inside any cell to provide a one-click copy action.
+  When <code>[hiddenUntilHovered]="true"</code> is set, the icon only appears when the user hovers over the parent
+  element (e.g. a table cell).
+</p>
+
+<h3>Clarity Datagrid</h3>
+<clr-datagrid>
+  <clr-dg-column>ID</clr-dg-column>
+  <clr-dg-column>Name</clr-dg-column>
+  <clr-dg-column>Email</clr-dg-column>
+  <clr-dg-column>Role</clr-dg-column>
+
+  <clr-dg-row *ngFor="let user of users">
+    <clr-dg-cell class="clr-copy-to-clipboard-container">
+      {{ user.id }}
+      <clr-copy-to-clipboard [value]="user.id" [hiddenUntilHovered]="true"></clr-copy-to-clipboard>
+    </clr-dg-cell>
+    <clr-dg-cell>{{ user.name }}</clr-dg-cell>
+    <clr-dg-cell class="clr-copy-to-clipboard-container">
+      {{ user.email }}
+      <clr-copy-to-clipboard [value]="user.email" [hiddenUntilHovered]="true"></clr-copy-to-clipboard>
+    </clr-dg-cell>
+    <clr-dg-cell>{{ user.role }}</clr-dg-cell>
+  </clr-dg-row>
+
+  <clr-dg-footer>{{ users.length }} users</clr-dg-footer>
+</clr-datagrid>
+
+<h3>Treetable</h3>
+<clr-treetable>
+  <clr-tt-column class="clr-col-6">Department</clr-tt-column>
+  <clr-tt-column class="clr-col-6">Code</clr-tt-column>
+
+  @for (dept of treeData; track dept.code) {
+  <clr-tt-row [clrExpandable]="!!dept.children?.length" [clrExpanded]="true">
+    <clr-tt-cell>{{ dept.name }}</clr-tt-cell>
+    <clr-tt-cell class="clr-copy-to-clipboard-container">
+      {{ dept.code }}
+      <clr-copy-to-clipboard [value]="dept.code" [hiddenUntilHovered]="true"></clr-copy-to-clipboard>
+    </clr-tt-cell>
+
+    @for (child of dept.children; track child.code) {
+    <clr-tt-row>
+      <clr-tt-cell>{{ child.name }}</clr-tt-cell>
+      <clr-tt-cell class="clr-copy-to-clipboard-container">
+        {{ child.code }}
+        <clr-copy-to-clipboard [value]="child.code" [hiddenUntilHovered]="true"></clr-copy-to-clipboard>
+      </clr-tt-cell>
+    </clr-tt-row>
+    }
+  </clr-tt-row>
+  }
+
+  <clr-tt-placeholder>No departments found</clr-tt-placeholder>
+</clr-treetable>
+
+<h3>Plain HTML Table</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Label</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of tableRows">
+      <td>{{ row.label }}</td>
+      <td class="clr-copy-to-clipboard-container clr-justify-content-center">
+        {{ row.value }}
+        <clr-copy-to-clipboard [value]="row.value" [hiddenUntilHovered]="true"></clr-copy-to-clipboard>
+      </td>
+    </tr>
+  </tbody>
+</table>

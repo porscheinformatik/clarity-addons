@@ -11,4 +11,3 @@ export * from './summary-area-toggle/summary-area-toggle';
 export * from './summary-item/summary-item';
 export * from './summary-item/summary-item.model';
 export * from './summary-item-value/summary-item-value';
-export * from './summary-item-value-copy-button/summary-item-value-copy-button';

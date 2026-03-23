@@ -1,0 +1,37 @@
+:host,
+.tooltip {
+  display: flex;
+  align-items: center;
+}
+
+.copy-to-clipboard-icon {
+  cursor: pointer;
+  color: var(--cds-alias-status-disabled-tint) !important;
+}
+
+.copy-to-clipboard-icon:hover {
+  color: var(--cds-alias-typography-link-color) !important;
+}
+
+.attribute-was-copied-color {
+  color: var(--cds-alias-status-success) !important;
+}
+
+:host(.hidden-until-hovered) {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.15s ease, visibility 0.15s ease;
+}
+
+:host(.hidden-until-hovered.parent-hovered),
+:host(.hidden-until-hovered:focus-within) {
+  visibility: visible;
+  opacity: 1;
+}
+
+.copy-to-clipboard-parent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.25rem;
+}

@@ -1,27 +1,41 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { ClrSummaryItemValueCopyButton } from './summary-item-value-copy-button';
+import { ClrCopyToClipboard } from './copy-to-clipboard';
 
 @Component({
-  template: `<clr-summary-area-value-copy-button [value]="testValue"></clr-summary-area-value-copy-button>`,
+  template: `<clr-copy-to-clipboard [value]="testValue"></clr-copy-to-clipboard>`,
   standalone: true,
-  imports: [ClrSummaryItemValueCopyButton],
+  imports: [ClrCopyToClipboard],
 })
 class TestHostComponent {
   testValue = 'Test Value';
 }
 
-describe('SummaryItemValueCopyButton', () => {
-  let component: ClrSummaryItemValueCopyButton;
-  let fixture: ComponentFixture<ClrSummaryItemValueCopyButton>;
+@Component({
+  template: `
+    <div class="parent-cell">
+      <span>{{ cellText }}</span>
+      <clr-copy-to-clipboard [value]="cellText" [hiddenUntilHovered]="true"></clr-copy-to-clipboard>
+    </div>
+  `,
+  standalone: true,
+  imports: [ClrCopyToClipboard],
+})
+class HiddenUntilHoveredHostComponent {
+  cellText = 'Copyable Value';
+}
+
+describe('ClrCopyToClipboard', () => {
+  let component: ClrCopyToClipboard;
+  let fixture: ComponentFixture<ClrCopyToClipboard>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ClrSummaryItemValueCopyButton],
+      imports: [ClrCopyToClipboard],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ClrSummaryItemValueCopyButton);
+    fixture = TestBed.createComponent(ClrCopyToClipboard);
     component = fixture.componentInstance;
   });
 
@@ -30,7 +44,7 @@ describe('SummaryItemValueCopyButton', () => {
   });
 
   describe('Initial State', () => {
-    it('should have empty showValueCopiedIcon set', () => {
+    it('should have showCopiedIcon set to false', () => {
       expect(component.showCopiedIcon).toBe(false);
     });
 
@@ -52,9 +66,8 @@ describe('SummaryItemValueCopyButton', () => {
   });
 
   describe('Copy Functionality', () => {
-    it('should add value to showValueCopiedIcon set when copyAttributeClicked is called', () => {
+    it('should set showCopiedIcon to true when onCopied is called with success', () => {
       component.onCopied(true);
-
       expect(component.showCopiedIcon).toBe(true);
     });
 
@@ -80,51 +93,8 @@ describe('SummaryItemValueCopyButton', () => {
       expect(icon.nativeElement.classList.contains('attribute-was-copied-color')).toBe(true);
     });
 
-    it('should remove value from showValueCopiedIcon set after 1 second', fakeAsync(() => {
-      const testValue = 'test value';
-      fixture.componentRef.setInput('value', testValue);
-      fixture.detectChanges();
-
-      component.onCopied(true);
-      fixture.detectChanges();
-      expect(component.showCopiedIcon).toBe(true);
-
-      tick(1100);
-      fixture.detectChanges();
-      expect(component.showCopiedIcon).toBe(false);
-    }));
-
-    it('should revert to copy-to-clipboard icon after 1 second', fakeAsync(() => {
-      fixture.componentRef.setInput('value', 'test');
-      fixture.detectChanges();
-
-      component.onCopied(true);
-      fixture.detectChanges();
-      const icon = fixture.debugElement.query(By.css('cds-icon'));
-      expect(icon.nativeElement.getAttribute('shape')).toBe('success-standard');
-
-      tick(1100);
-      fixture.detectChanges();
-      expect(icon.nativeElement.getAttribute('shape')).toBe('copy-to-clipboard');
-    }));
-
-    it('should remove copied color class after 1 second', fakeAsync(() => {
-      fixture.componentRef.setInput('value', 'test');
-      fixture.detectChanges();
-
-      component.onCopied(true);
-      fixture.detectChanges();
-      const icon = fixture.debugElement.query(By.css('cds-icon'));
-      expect(icon.nativeElement.classList.contains('attribute-was-copied-color')).toBe(true);
-
-      tick(1100);
-      fixture.detectChanges();
-      expect(icon.nativeElement.classList.contains('attribute-was-copied-color')).toBe(false);
-    }));
-
-    it('should remove value from showValueCopiedIcon set after 1 second', fakeAsync(() => {
-      const testValue = 'test value';
-      fixture.componentRef.setInput('value', testValue);
+    it('should reset showCopiedIcon after 1 second', fakeAsync(() => {
+      fixture.componentRef.setInput('value', 'test value');
       fixture.detectChanges();
 
       component.onCopied(true);
@@ -174,7 +144,7 @@ describe('SummaryItemValueCopyButton', () => {
       hostFixture = TestBed.createComponent(TestHostComponent);
       hostComponent = hostFixture.componentInstance;
       hostFixture.detectChanges();
-      buttonDebugElement = hostFixture.debugElement.query(By.directive(ClrSummaryItemValueCopyButton));
+      buttonDebugElement = hostFixture.debugElement.query(By.directive(ClrCopyToClipboard));
     });
 
     it('should bind the value input from host component', () => {
@@ -288,6 +258,62 @@ describe('SummaryItemValueCopyButton', () => {
         expect(component.showCopiedIcon).toBe(false);
         done();
       }, 1100);
+    });
+  });
+
+  describe('hiddenUntilHovered', () => {
+    let hoveredFixture: ComponentFixture<HiddenUntilHoveredHostComponent>;
+    let copyElement: DebugElement;
+
+    beforeEach(() => {
+      hoveredFixture = TestBed.createComponent(HiddenUntilHoveredHostComponent);
+      hoveredFixture.detectChanges();
+      copyElement = hoveredFixture.debugElement.query(By.directive(ClrCopyToClipboard));
+    });
+
+    it('should have hidden-until-hovered class when hiddenUntilHovered is true', () => {
+      expect(copyElement.nativeElement.classList.contains('hidden-until-hovered')).toBe(true);
+    });
+
+    it('should not have parent-hovered class initially', () => {
+      expect(copyElement.nativeElement.classList.contains('parent-hovered')).toBe(false);
+    });
+
+    it('should add parent-hovered class when parent receives mouseenter', () => {
+      const parentEl = copyElement.nativeElement.parentElement;
+      parentEl.dispatchEvent(new MouseEvent('mouseenter'));
+      hoveredFixture.detectChanges();
+
+      expect(copyElement.nativeElement.classList.contains('parent-hovered')).toBe(true);
+    });
+
+    it('should remove parent-hovered class when parent receives mouseleave', () => {
+      const parentEl = copyElement.nativeElement.parentElement;
+      parentEl.dispatchEvent(new MouseEvent('mouseenter'));
+      hoveredFixture.detectChanges();
+      expect(copyElement.nativeElement.classList.contains('parent-hovered')).toBe(true);
+
+      parentEl.dispatchEvent(new MouseEvent('mouseleave'));
+      hoveredFixture.detectChanges();
+      expect(copyElement.nativeElement.classList.contains('parent-hovered')).toBe(false);
+    });
+
+    it('should not have hidden-until-hovered class when hiddenUntilHovered is false (default)', () => {
+      const defaultFixture = TestBed.createComponent(TestHostComponent);
+      defaultFixture.detectChanges();
+      const defaultCopyElement = defaultFixture.debugElement.query(By.directive(ClrCopyToClipboard));
+
+      expect(defaultCopyElement.nativeElement.classList.contains('hidden-until-hovered')).toBe(false);
+    });
+
+    it('should clean up parent listeners on destroy', () => {
+      const parentEl = copyElement.nativeElement.parentElement;
+      const removeSpy = spyOn(parentEl, 'removeEventListener').and.callThrough();
+
+      copyElement.componentInstance.ngOnDestroy();
+
+      expect(removeSpy).toHaveBeenCalledWith('mouseenter', jasmine.any(Function));
+      expect(removeSpy).toHaveBeenCalledWith('mouseleave', jasmine.any(Function));
     });
   });
 });

@@ -653,5 +653,12 @@ clr-control-helper.clr-warning {
   min-width: 1.2rem;
 }
 
+.clr-copy-to-clipboard-container.clr-copy-to-clipboard-container:has(clr-copy-to-clipboard) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.25rem;
+}
+
 // Has to be at the bottom to override the styles from the above properly
 @include meta.load-css('mobile');

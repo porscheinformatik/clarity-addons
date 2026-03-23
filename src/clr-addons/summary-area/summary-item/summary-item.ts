@@ -26,12 +26,12 @@ import {
   ClrSummaryItemLoading,
   ClrSummaryItemEditConfig,
 } from './summary-item.model';
-import { ClrSummaryItemValueCopyButton } from '../summary-item-value-copy-button/summary-item-value-copy-button';
+import { ClrCopyToClipboard } from '../../copy-to-clipboard';
 
 @Component({
   selector: 'clr-summary-item',
   standalone: true,
-  imports: [CommonModule, ClarityModule, ClrSummaryItemValue, ClrSummaryItemValueCopyButton],
+  imports: [CommonModule, ClarityModule, ClrSummaryItemValue, ClrCopyToClipboard],
   templateUrl: './summary-item.html',
   styleUrls: ['./summary-item.scss'],
 })
@@ -237,7 +237,7 @@ export class ClrSummaryItem implements AfterContentInit, AfterViewChecked, OnDes
         const element = node as HTMLElement;
         const tagName = element.tagName?.toLowerCase();
         // Skip our own components and internal elements
-        if (tagName === 'clr-summary-item-value' || tagName === 'clr-summary-area-value-copy-button') {
+        if (tagName === 'clr-summary-item-value' || tagName === 'clr-copy-to-clipboard') {
           return false;
         }
         // Skip internal elements by class

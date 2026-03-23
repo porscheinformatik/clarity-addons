@@ -22,17 +22,24 @@ import { ClarityIcons, copyToClipboardIcon, successStandardIcon } from '@cds/cor
 ClarityIcons.addIcons(copyToClipboardIcon, successStandardIcon);
 
 @Component({
-  selector: 'clr-summary-area-value-copy-button',
+  selector: 'clr-copy-to-clipboard',
   imports: [CdkCopyToClipboard, NgClass, ClrIconModule, ClrTooltipModule],
-  templateUrl: './summary-item-value-copy-button.html',
-  styleUrl: './summary-item-value-copy-button.scss',
+  templateUrl: './copy-to-clipboard.html',
+  styleUrl: './copy-to-clipboard.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
+  host: {
+    '[class.hidden-until-hovered]': 'hiddenUntilHovered()',
+    '[class.parent-hovered]': 'parentHovered',
+  },
 })
-export class ClrSummaryItemValueCopyButton implements OnInit, AfterViewInit, OnDestroy {
+export class ClrCopyToClipboard implements OnInit, AfterViewInit, OnDestroy {
   public value = input.required<string>();
   public tooltipText = input<string>('Copy to clipboard');
+  public hiddenUntilHovered = input<boolean>(false);
+
   public showCopiedIcon = false;
+  public parentHovered = false;
   protected tooltipSize = 'md';
   public tooltipPosition: 'bottom-right' | 'bottom-left' = 'bottom-right';
 
@@ -40,6 +47,8 @@ export class ClrSummaryItemValueCopyButton implements OnInit, AfterViewInit, OnD
   private readonly elementRef = inject(ElementRef);
   private resetTimeout: ReturnType<typeof setTimeout> | null = null;
   private resizeListener?: () => void;
+  private parentEnterListener?: () => void;
+  private parentLeaveListener?: () => void;
 
   public ngOnInit(): void {
     const newSize = this.tooltipText && this.tooltipText().length < 15 ? 'sm' : 'md';
@@ -57,6 +66,10 @@ export class ClrSummaryItemValueCopyButton implements OnInit, AfterViewInit, OnD
 
     this.resizeListener = () => this.updateTooltipPosition();
     window.addEventListener('resize', this.resizeListener);
+
+    if (this.hiddenUntilHovered()) {
+      this.setupParentHoverListeners();
+    }
   }
 
   public ngOnDestroy(): void {
@@ -68,6 +81,8 @@ export class ClrSummaryItemValueCopyButton implements OnInit, AfterViewInit, OnD
     if (this.resizeListener) {
       window.removeEventListener('resize', this.resizeListener);
     }
+
+    this.teardownParentHoverListeners();
   }
 
   /**
@@ -91,6 +106,40 @@ export class ClrSummaryItemValueCopyButton implements OnInit, AfterViewInit, OnD
       this.resetTimeout = null;
       this.cdr.markForCheck();
     }, 1000);
+  }
+
+  private setupParentHoverListeners(): void {
+    const parent = this.elementRef.nativeElement.parentElement;
+    if (!parent) {
+      return;
+    }
+
+    this.parentEnterListener = () => {
+      this.parentHovered = true;
+      this.cdr.markForCheck();
+    };
+
+    this.parentLeaveListener = () => {
+      this.parentHovered = false;
+      this.cdr.markForCheck();
+    };
+
+    parent.addEventListener('mouseenter', this.parentEnterListener);
+    parent.addEventListener('mouseleave', this.parentLeaveListener);
+  }
+
+  private teardownParentHoverListeners(): void {
+    const parent = this.elementRef.nativeElement.parentElement;
+    if (!parent) {
+      return;
+    }
+
+    if (this.parentEnterListener) {
+      parent.removeEventListener('mouseenter', this.parentEnterListener);
+    }
+    if (this.parentLeaveListener) {
+      parent.removeEventListener('mouseleave', this.parentLeaveListener);
+    }
   }
 
   private updateTooltipPosition(): void {

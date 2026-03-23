@@ -1,11 +1,13 @@
 <clr-tooltip>
   <cds-icon
     clrTooltipTrigger
-    class="summary-item-copy-value-icon"
+    class="copy-to-clipboard-icon"
     [cdkCopyToClipboard]="value()"
     (cdkCopyToClipboardCopied)="onCopied($event)"
     [attr.shape]="showCopiedIcon ? 'success-standard' : 'copy-to-clipboard'"
     [ngClass]="{ 'attribute-was-copied-color': showCopiedIcon }"
+    (click)="$event.stopPropagation()"
+    (keydown.enter)="$event.stopPropagation()"
   ></cds-icon>
   <clr-tooltip-content [clrSize]="tooltipSize" [clrPosition]="tooltipPosition" *clrIfOpen
     >{{ tooltipText() }}</clr-tooltip-content

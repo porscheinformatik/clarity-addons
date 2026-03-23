@@ -251,6 +251,14 @@ const documentationRoutes: Routes = [
       },
 
       {
+        path: 'copy-to-clipboard',
+        loadChildren: () =>
+          import('./demos/copy-to-clipboard/copy-to-clipboard.demo.module').then(m => m.CopyToClipboardDemoModule),
+        data: {
+          browserTitle: 'Copy to Clipboard',
+        },
+      },
+      {
         path: 'control-warning',
         loadChildren: () =>
           import('./demos/control-warning/control-warning.demo.module').then(m => m.ControlWarningDemoModule),
