@@ -48,11 +48,10 @@ import { ClrControlEnterSubmitDirective } from './control-enter-submit';
 import { ClrSignpostAddonModule } from './signpost';
 
 @NgModule({
-  imports: [ClrFocusFirstInvalidFieldDirective],
-  declarations: [ClrControlEnterSubmitDirective],
+  imports: [ClrFocusFirstInvalidFieldDirective, ClrControlEnterSubmitDirective],
+  declarations: [],
   exports: [
     ClrViewEditSectionModule,
-
     ClrPagerModule,
     ClrDotPagerModule,
     ClrPagedSearchResultListModule,
