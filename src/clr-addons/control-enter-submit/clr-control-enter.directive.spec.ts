@@ -76,8 +76,8 @@ describe('ControlEnterDirective', () => {
     platformMock = { isBrowser: true };
 
     await TestBed.configureTestingModule({
-      declarations: [ClrControlEnterSubmitDirective, TestComponent, TestComponentNoButton],
-      imports: [ReactiveFormsModule],
+      declarations: [TestComponent, TestComponentNoButton],
+      imports: [ReactiveFormsModule, ClrControlEnterSubmitDirective],
       providers: [
         {
           provide: ClrForm,
@@ -222,8 +222,8 @@ describe('ControlEnterDirective with multiple forms', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ClrControlEnterSubmitDirective, TestMultipleFormsComponent],
-      imports: [ReactiveFormsModule],
+      declarations: [TestMultipleFormsComponent],
+      imports: [ReactiveFormsModule, ClrControlEnterSubmitDirective],
       providers: [
         {
           provide: ClrForm,
@@ -270,8 +270,8 @@ describe('ControlEnterDirective Tooltip Behavior', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ClrControlEnterSubmitDirective, TestComponentWithTooltip, TestComponentWithEmptyTooltip],
-      imports: [ReactiveFormsModule],
+      declarations: [TestComponentWithTooltip, TestComponentWithEmptyTooltip],
+      imports: [ReactiveFormsModule, ClrControlEnterSubmitDirective],
       providers: [
         {
           provide: ClrForm,
