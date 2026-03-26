@@ -1,0 +1,73 @@
+.chart-skeleton {
+  width: 100%;
+  height: 100%;
+}
+
+.placeholder-skeleton ::ng-deep .skeleton-loader {
+  cursor: default;
+}
+
+.skeleton-bars {
+  display: flex;
+  gap: var(--clr-base-gap-l);
+  width: 100%;
+  height: 100%;
+  padding: var(--cds-global-layout-space-xs) var(--cds-global-layout-space-xl);
+
+  &.vertical {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+
+    .skeleton-bar {
+      width: var(--cds-global-layout-space-md);
+
+      &.bar-1 {
+        height: 60%;
+      }
+      &.bar-2 {
+        height: 95%;
+      }
+      &.bar-3 {
+        height: 40%;
+      }
+      &.bar-4 {
+        height: 75%;
+      }
+      &.bar-5 {
+        height: 50%;
+      }
+      &.bar-6 {
+        height: 25%;
+      }
+    }
+  }
+
+  &.horizontal {
+    flex-direction: column;
+    justify-content: center;
+
+    .skeleton-bar {
+      height: var(--cds-global-layout-space-md);
+
+      &.bar-1 {
+        width: 60%;
+      }
+      &.bar-2 {
+        width: 95%;
+      }
+      &.bar-3 {
+        width: 40%;
+      }
+      &.bar-4 {
+        width: 75%;
+      }
+      &.bar-5 {
+        width: 50%;
+      }
+      &.bar-6 {
+        width: 25%;
+      }
+    }
+  }
+}

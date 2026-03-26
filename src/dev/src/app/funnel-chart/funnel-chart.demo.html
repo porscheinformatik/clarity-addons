@@ -1,0 +1,161 @@
+<!--
+  Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
+  This software is released under MIT license.
+  The full license information can be found in LICENSE in the root directory of this project.
+-->
+
+<h2>Funnel Chart Demo</h2>
+
+<!-- Controls -->
+<div style="margin-bottom: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center">
+  <button class="btn btn-outline" (click)="toggleLoading()">Toggle Loading (current: {{ loading() }})</button>
+  <button class="btn btn-outline" (click)="toggleExportButton()">
+    Toggle Export Button (current: {{ showExportButton() }})
+  </button>
+</div>
+
+@if (lastClicked()) {
+<clr-alert [clrAlertType]="'info'" [clrAlertClosable]="false" style="margin-bottom: 1rem">
+  <clr-alert-item>
+    <span class="alert-text">
+      Clicked: <strong>{{ lastClicked().label }}</strong> @if (lastClicked().section) { (section:
+      <strong>{{ lastClicked().section }}</strong>) } – Value: <strong>{{ lastClicked().value }}</strong>
+    </span>
+  </clr-alert-item>
+</clr-alert>
+}
+
+<!-- Full pipeline funnel with sections and info tooltips -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">Default Funnel – 5 stages · 4 sections (Passed Through, Active, Lost, Rejected)</div>
+  <div class="card-block">
+    <div style="height: 400px; width: 100%">
+      <clr-funnel-chart
+        [data]="pipelineData"
+        [loading]="loading()"
+        [showExportButton]="showExportButton()"
+        exportFilename="sales-pipeline"
+        (valueClicked)="onValueClicked($event)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-funnel-chart>
+    </div>
+  </div>
+</div>
+
+<!-- Centered funnel -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">
+    Centered Funnel (<code>[orientation]="'centered'"</code>) – trapezoid funnel with spacers
+  </div>
+  <div class="card-block">
+    <div style="height: 450px; width: 100%">
+      <clr-funnel-chart
+        [data]="pipelineData"
+        [loading]="loading()"
+        [showExportButton]="showExportButton()"
+        orientation="centered"
+        exportFilename="sales-pipeline-centered"
+        (valueClicked)="onValueClicked($event)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-funnel-chart>
+    </div>
+  </div>
+</div>
+
+<!-- Minimal data – no sections (value only) -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">Minimal Funnel – value only, no sections</div>
+  <div class="card-block">
+    <div style="height: 280px; width: 100%">
+      <clr-funnel-chart
+        [data]="minimalData"
+        exportFilename=""
+        (valueClicked)="onValueClicked($event)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-funnel-chart>
+    </div>
+  </div>
+</div>
+
+<!-- Custom section labels (German) -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">Custom Chart Labels (<code>[chartLabels]</code> – German total / all)</div>
+  <div class="card-block">
+    <div style="height: 380px; width: 100%">
+      <clr-funnel-chart
+        [data]="pipelineData"
+        [chartLabels]="germanChartLabels"
+        exportFilename=""
+        (valueClicked)="onValueClicked($event)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-funnel-chart>
+    </div>
+  </div>
+</div>
+
+<!-- Custom bar gap -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">Custom Bar Gap (<code>[barGap]="8"</code>)</div>
+  <div class="card-block">
+    <div style="height: 380px; width: 100%">
+      <clr-funnel-chart
+        [data]="pipelineData"
+        [barGap]="8"
+        exportFilename=""
+        (valueClicked)="onValueClicked($event)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-funnel-chart>
+    </div>
+  </div>
+</div>
+
+<!-- Custom hex colors -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">
+    Custom Section Color Overrides (<code>[sectionColors]</code> with hex values, applied by section key)
+  </div>
+  <div class="card-block">
+    <div style="height: 380px; width: 100%">
+      <clr-funnel-chart
+        [data]="pipelineData"
+        [sectionColors]="customSectionColors"
+        exportFilename=""
+        (valueClicked)="onValueClicked($event)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-funnel-chart>
+    </div>
+  </div>
+</div>
+
+<!-- CSS custom property colors -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">
+    CSS Custom Property Colors (<code>[sectionColors]</code> with <code>--cds-global-color-*</code> tokens)
+  </div>
+  <div class="card-block">
+    <div style="height: 380px; width: 100%">
+      <clr-funnel-chart
+        [data]="pipelineData"
+        [sectionColors]="cssVarColors"
+        exportFilename=""
+        (valueClicked)="onValueClicked($event)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-funnel-chart>
+    </div>
+  </div>
+</div>
+
+<!-- Loading state -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">Loading State</div>
+  <div class="card-block">
+    <div style="height: 300px; width: 100%">
+      <clr-funnel-chart
+        [data]="pipelineData"
+        [loading]="true"
+        exportFilename=""
+        style="display: block; width: 100%; height: 100%"
+      ></clr-funnel-chart>
+    </div>
+  </div>
+</div>

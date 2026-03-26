@@ -43,6 +43,13 @@ const documentationRoutes: Routes = [
         },
       },
       {
+        path: 'charts',
+        loadChildren: () => import('./demos/charts/charts.demo.module').then(m => m.ChartsDemoModule),
+        data: {
+          browserTitle: 'Charts',
+        },
+      },
+      {
         path: 'collapse-expand-section',
         loadChildren: () =>
           import('./demos/collapse-expand-section/collapse-expand-section.demo.module').then(

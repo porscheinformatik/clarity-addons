@@ -1,0 +1,676 @@
+<clr-doc-wrapper [title]="title" [showTabs]="false">
+  <div class="table-of-contents">
+    <span class="title">Content</span>
+    <ul class="list-unstyled toc-list">
+      <li>
+        <a
+          routerLink="."
+          fragment="setup"
+          [class.active]="(activeFragment | async) === 'setup' || (activeFragment | async) === null"
+          >Module Setup</a
+        >
+      </li>
+      <li>
+        <a routerLink="." fragment="bar-chart" [class.active]="(activeFragment | async) === 'bar-chart'">Bar Chart</a>
+      </li>
+      <li>
+        <a routerLink="." fragment="stacked-bar-chart" [class.active]="(activeFragment | async) === 'stacked-bar-chart'"
+          >Stacked Bar Chart</a
+        >
+      </li>
+      <li>
+        <a routerLink="." fragment="line-chart" [class.active]="(activeFragment | async) === 'line-chart'"
+          >Line Chart</a
+        >
+      </li>
+      <li>
+        <a routerLink="." fragment="area-chart" [class.active]="(activeFragment | async) === 'area-chart'"
+          >Area Chart</a
+        >
+      </li>
+      <li>
+        <a routerLink="." fragment="combo-chart" [class.active]="(activeFragment | async) === 'combo-chart'"
+          >Combo Chart</a
+        >
+      </li>
+      <li>
+        <a routerLink="." fragment="pie-chart" [class.active]="(activeFragment | async) === 'pie-chart'"
+          >Pie / Donut Chart</a
+        >
+      </li>
+      <li>
+        <a routerLink="." fragment="funnel-chart" [class.active]="(activeFragment | async) === 'funnel-chart'"
+          >Funnel Chart</a
+        >
+      </li>
+      <li>
+        <a routerLink="." fragment="shared-inputs" [class.active]="(activeFragment | async) === 'shared-inputs'"
+          >Shared Inputs</a
+        >
+      </li>
+      <li>
+        <a routerLink="." fragment="color-handling" [class.active]="(activeFragment | async) === 'color-handling'"
+          >Color Handling</a
+        >
+      </li>
+    </ul>
+  </div>
+
+  <article>
+    <h5 class="component-summary">
+      Clarity Addons provides six D3-powered chart components that are fully responsive, support CSS custom-property
+      colours, legends, tooltips and SVG export. Import
+      <code class="clr-code">ClrChartsModule</code> to use them all at once.
+    </h5>
+
+    <!-- ── Module Setup ──────────────────────────────────────────────────── -->
+    <h2 id="setup">Module Setup</h2>
+    <p>
+      Add <code class="clr-code">ClrChartsModule</code> to your <code class="clr-code">NgModule</code> imports (or
+      import the six standalone-wrapped components individually):
+    </p>
+    <clr-code-snippet
+      clrLanguage="typescript"
+      [clrCode]="'import { ClrChartsModule } from \'@porscheinformatik/clr-addons\';\n\n@NgModule({\n  imports: [ClrChartsModule],\n})\nexport class AppModule {}'"
+    ></clr-code-snippet>
+
+    <!-- ── Shared Inputs ─────────────────────────────────────────────────── -->
+    <h2 id="shared-inputs">Shared Inputs (all charts)</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="left">Input</th>
+          <th class="left">Type</th>
+          <th class="left">Default</th>
+          <th class="left">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="left"><code>loading</code></td>
+          <td class="left">boolean</td>
+          <td class="left">false</td>
+          <td class="left">Shows a skeleton placeholder instead of the chart.</td>
+        </tr>
+        <tr>
+          <td class="left"><code>showLegend</code></td>
+          <td class="left">boolean</td>
+          <td class="left">true</td>
+          <td class="left">Toggles the colour-keyed legend below the chart.</td>
+        </tr>
+        <tr>
+          <td class="left"><code>showExportButton</code></td>
+          <td class="left">boolean</td>
+          <td class="left">false</td>
+          <td class="left">Displays a download button that exports the chart as SVG.</td>
+        </tr>
+        <tr>
+          <td class="left"><code>exportFilename</code></td>
+          <td class="left">string</td>
+          <td class="left">"&lt;chart-type&gt;"</td>
+          <td class="left">File name (without extension) used for the SVG export.</td>
+        </tr>
+        <tr>
+          <td class="left"><code>tooltipOrientation</code></td>
+          <td class="left">'top' | 'bottom'</td>
+          <td class="left">'top'</td>
+          <td class="left">Where the tooltip anchor appears relative to the hovered element.</td>
+        </tr>
+        <tr>
+          <td class="left"><code>noItemsMessage</code></td>
+          <td class="left">string</td>
+          <td class="left">built-in</td>
+          <td class="left">Message shown in the info-alert when the data array is empty.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- ================================================================== -->
+    <!-- COLOR HANDLING                                                      -->
+    <!-- ================================================================== -->
+    <h2 id="color-handling">Color Handling</h2>
+    <p>
+      Every chart component accepts colors on individual data items (or series). The
+      <code class="clr-code">color</code> property accepts two formats — the internal
+      <code class="clr-code">toChartColor()</code> utility resolves both automatically. You can use all colors defined
+      in
+      <a href="https://clarity.design/documentation/color" target="_blank" rel="noopener">Clarity</a>
+      or
+      <a routerLink="/documentation/latest/colors">Clarity Addons</a>.
+    </p>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="left">Format</th>
+          <th class="left">Example value</th>
+          <th class="left">Resolved CSS value</th>
+          <th class="left">When to use</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="left"><strong>Hex / RGB / HSL</strong></td>
+          <td class="left"><code>'#e57200'</code> &nbsp;·&nbsp; <code>'rgb(229,114,0)'</code></td>
+          <td class="left">passed through as-is</td>
+          <td class="left">Fixed brand colors or one-off overrides</td>
+        </tr>
+        <tr>
+          <td class="left"><strong>CSS Custom Property</strong></td>
+          <td class="left"><code>'--clr-color-action-600'</code></td>
+          <td class="left"><code>var(--clr-color-action-600)</code></td>
+          <td class="left">Design-token colors that automatically adapt to theme changes (light / dark mode)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <clr-alert [clrAlertType]="'info'" [clrAlertClosable]="false" style="margin-bottom: 1rem">
+      <clr-alert-item>
+        <span class="alert-text">
+          CSS custom properties are detected by a leading <code>--</code>. You pass the name <em>without</em> the
+          <code>var(…)</code> wrapper — the chart resolves it internally.
+        </span>
+      </clr-alert-item>
+    </clr-alert>
+
+    <h3>Example</h3>
+    <p>
+      The chart below mixes plain hex strings and Clarity / CDS design-token names in the same dataset. The bars labeled
+      <em>Hex …</em> use literal hex codes; the remaining bars reference CSS custom properties that are resolved at
+      runtime from the active theme.
+    </p>
+    <clr-code-snippet [clrCode]="colorTs" clrLanguage="typescript"></clr-code-snippet>
+    <clr-code-snippet [clrCode]="colorHtml" clrLanguage="html"></clr-code-snippet>
+
+    <div style="height: 300px; width: 100%; margin-top: 1rem">
+      <clr-bar-chart
+        [data]="colorData"
+        orientation="vertical"
+        [showLegend]="true"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-bar-chart>
+    </div>
+
+    <!-- ================================================================== -->
+    <!-- BAR CHART                                                           -->
+    <!-- ================================================================== -->
+    <h2 id="bar-chart">Bar Chart <code class="clr-code">&lt;clr-bar-chart&gt;</code></h2>
+    <p>
+      Renders vertical or horizontal bars. Each item requires a unique <code class="clr-code">key</code>, a display
+      <code class="clr-code">label</code>, a numeric <code class="clr-code">value</code>, and an optional
+      <code class="clr-code">color</code> (hex or <code class="clr-code">--css-custom-property</code>).
+    </p>
+
+    <h3>Inputs</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="left">Input</th>
+          <th class="left">Type</th>
+          <th class="left">Default</th>
+          <th class="left">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="left"><code>data</code> <em>(required)</em></td>
+          <td class="left">BarChartData[]</td>
+          <td class="left">—</td>
+          <td class="left">Array of data items to display.</td>
+        </tr>
+        <tr>
+          <td class="left"><code>orientation</code> <em>(required)</em></td>
+          <td class="left">'vertical' | 'horizontal'</td>
+          <td class="left">—</td>
+          <td class="left">Direction of the bars.</td>
+        </tr>
+        <tr>
+          <td class="left"><code>stackLabels</code></td>
+          <td class="left">string[]</td>
+          <td class="left">undefined</td>
+          <td class="left">Enables stacking; each entry is a <code>stackKey</code> group.</td>
+        </tr>
+        <tr>
+          <td class="left"><code>xAxisLabel</code> / <code>yAxisLabel</code></td>
+          <td class="left">string</td>
+          <td class="left">''</td>
+          <td class="left">Optional axis description labels.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Usage</h3>
+    <clr-code-snippet [clrCode]="barChartTs" clrLanguage="typescript"></clr-code-snippet>
+    <clr-code-snippet [clrCode]="barChartHtml" clrLanguage="html"></clr-code-snippet>
+
+    <h3>Example – Vertical</h3>
+    <div style="height: 300px; width: 100%">
+      <clr-bar-chart
+        [data]="barData"
+        orientation="vertical"
+        [showLegend]="true"
+        [showExportButton]="true"
+        xAxisLabel="Month"
+        yAxisLabel="Revenue (€)"
+        exportFilename="bar-chart"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-bar-chart>
+    </div>
+
+    <h3>Example – Horizontal</h3>
+    <div style="height: 280px; width: 100%; margin-top: 1.5rem">
+      <clr-bar-chart
+        [data]="barData"
+        orientation="horizontal"
+        yAxisLabel="Month"
+        xAxisLabel="Revenue (€)"
+        [showLegend]="true"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-bar-chart>
+    </div>
+
+    <h3>Example – Axis Labels (<code>xAxisLabel</code> &amp; <code>yAxisLabel</code>)</h3>
+    <p>
+      Both inputs accept a plain string that is rendered as a description label below the X axis and rotated to the left
+      of the Y axis respectively. They are available on all XY-based chart types.
+    </p>
+    <clr-code-snippet
+      clrLanguage="html"
+      [clrCode]='&apos;<clr-bar-chart\n  [data]="barData"\n  orientation="vertical"\n  xAxisLabel="Month"\n  yAxisLabel="Revenue (€)"\n  style="display:block;width:100%;height:300px;"\n></clr-bar-chart>&apos;'
+    >
+    </clr-code-snippet>
+    <div style="height: 320px; width: 100%; margin-top: 1rem">
+      <clr-bar-chart
+        [data]="barData"
+        orientation="vertical"
+        [showLegend]="true"
+        xAxisLabel="Month"
+        yAxisLabel="Revenue (€)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-bar-chart>
+    </div>
+
+    <!-- ================================================================== -->
+    <!-- STACKED BAR CHART                                                  -->
+    <!-- ================================================================== -->
+    <h2 id="stacked-bar-chart">Stacked Bar Chart</h2>
+    <p>
+      Activate stacking by providing <code class="clr-code">[stackLabels]</code> and setting a
+      <code class="clr-code">stackKey</code> on each data item. Works for both orientations.
+    </p>
+
+    <clr-code-snippet [clrCode]="stackedBarTs" clrLanguage="typescript"></clr-code-snippet>
+    <clr-code-snippet [clrCode]="stackedBarHtml" clrLanguage="html"></clr-code-snippet>
+
+    <h3>Example – Stacked Vertical</h3>
+    <div style="height: 300px; width: 100%">
+      <clr-bar-chart
+        [data]="stackedData"
+        [stackLabels]="stackLabels"
+        orientation="vertical"
+        [showLegend]="true"
+        xAxisLabel="Month"
+        yAxisLabel="Revenue (€)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-bar-chart>
+    </div>
+
+    <h3>Example – Stacked Horizontal</h3>
+    <div style="height: 280px; width: 100%; margin-top: 1.5rem">
+      <clr-bar-chart
+        [data]="stackedData"
+        [stackLabels]="stackLabels"
+        orientation="horizontal"
+        yAxisLabel="Month"
+        xAxisLabel="Revenue (€)"
+        [showLegend]="true"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-bar-chart>
+    </div>
+
+    <!-- ================================================================== -->
+    <!-- LINE CHART                                                          -->
+    <!-- ================================================================== -->
+    <h2 id="line-chart">Line Chart <code class="clr-code">&lt;clr-line-chart&gt;</code></h2>
+    <p>
+      Renders one or more line series over a shared X axis. Each series requires a unique
+      <code class="clr-code">key</code>, a <code class="clr-code">label</code>, a <code class="clr-code">color</code>,
+      and an array of <code class="clr-code">&#123; x, value &#125;</code> data points.
+    </p>
+
+    <h3>Inputs</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="left">Input</th>
+          <th class="left">Type</th>
+          <th class="left">Default</th>
+          <th class="left">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="left"><code>series</code> <em>(required)</em></td>
+          <td class="left">XYChartSeries[]</td>
+          <td class="left">—</td>
+          <td class="left">Array of series to display.</td>
+        </tr>
+        <tr>
+          <td class="left"><code>showArea</code></td>
+          <td class="left">boolean</td>
+          <td class="left">false</td>
+          <td class="left">Fills the area below each line.</td>
+        </tr>
+        <tr>
+          <td class="left"><code>showValues</code></td>
+          <td class="left">boolean</td>
+          <td class="left">false</td>
+          <td class="left">Displays the numeric value next to each dot.</td>
+        </tr>
+        <tr>
+          <td class="left"><code>xAxisLabel</code> / <code>yAxisLabel</code></td>
+          <td class="left">string</td>
+          <td class="left">''</td>
+          <td class="left">Optional axis description labels.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <clr-code-snippet [clrCode]="lineChartTs" clrLanguage="typescript"></clr-code-snippet>
+    <clr-code-snippet [clrCode]="lineChartHtml" clrLanguage="html"></clr-code-snippet>
+
+    <h3>Example</h3>
+    <div style="height: 300px; width: 100%">
+      <clr-line-chart
+        [series]="lineSeries"
+        [showLegend]="true"
+        [showExportButton]="true"
+        exportFilename="line-chart"
+        xAxisLabel="Month"
+        yAxisLabel="Revenue (€)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-line-chart>
+    </div>
+
+    <h3>Example – Show Values (<code>showValues</code>)</h3>
+    <p>
+      Setting <code class="clr-code">[showValues]="true"</code> renders the numeric value of each data point directly
+      next to its dot on the chart, making individual readings immediately visible without hovering.
+    </p>
+    <clr-code-snippet
+      clrLanguage="html"
+      [clrCode]='&apos;<clr-line-chart\n  [series]="lineSeries"\n  [showValues]="true"\n  style="display:block;width:100%;height:300px;"\n></clr-line-chart>&apos;'
+    >
+    </clr-code-snippet>
+    <div style="height: 320px; width: 100%; margin-top: 1rem">
+      <clr-line-chart
+        [series]="lineSeries"
+        [showLegend]="true"
+        [showValues]="true"
+        xAxisLabel="Month"
+        yAxisLabel="Revenue (€)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-line-chart>
+    </div>
+
+    <h3>Example – Axis Labels (<code>xAxisLabel</code> &amp; <code>yAxisLabel</code>)</h3>
+    <p>
+      The same <code class="clr-code">xAxisLabel</code> and <code class="clr-code">yAxisLabel</code>
+      inputs that work on the bar chart are also available here.
+    </p>
+    <clr-code-snippet
+      clrLanguage="html"
+      [clrCode]='&apos;<clr-line-chart\n  [series]="lineSeries"\n  xAxisLabel="Month"\n  yAxisLabel="Value"\n  style="display:block;width:100%;height:300px;"\n></clr-line-chart>&apos;'
+    >
+    </clr-code-snippet>
+    <div style="height: 320px; width: 100%; margin-top: 1rem">
+      <clr-line-chart
+        [series]="lineSeries"
+        [showLegend]="true"
+        xAxisLabel="Month"
+        yAxisLabel="Value"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-line-chart>
+    </div>
+
+    <!-- ================================================================== -->
+    <!-- AREA CHART                                                          -->
+    <!-- ================================================================== -->
+    <h2 id="area-chart">Area Chart <code class="clr-code">&lt;clr-area-chart&gt;</code></h2>
+    <p>
+      An area chart is a line chart with the region below each line filled. Use
+      <code class="clr-code">[areaOpacity]</code> to keep overlapping areas readable.
+    </p>
+
+    <h3>Additional Inputs</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="left">Input</th>
+          <th class="left">Type</th>
+          <th class="left">Default</th>
+          <th class="left">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="left"><code>series</code> <em>(required)</em></td>
+          <td class="left">XYChartSeries[]</td>
+          <td class="left">—</td>
+          <td class="left">Array of series to display.</td>
+        </tr>
+        <tr>
+          <td class="left"><code>areaOpacity</code></td>
+          <td class="left">number (0–1)</td>
+          <td class="left">0.2</td>
+          <td class="left">Fill opacity of the area below each line.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <clr-code-snippet [clrCode]="areaChartTs" clrLanguage="typescript"></clr-code-snippet>
+    <clr-code-snippet [clrCode]="areaChartHtml" clrLanguage="html"></clr-code-snippet>
+
+    <h3>Example</h3>
+    <div style="height: 300px; width: 100%">
+      <clr-area-chart
+        [series]="lineSeries"
+        [areaOpacity]="0.2"
+        [showLegend]="true"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-area-chart>
+    </div>
+
+    <!-- ================================================================== -->
+    <!-- COMBO CHART                                                         -->
+    <!-- ================================================================== -->
+    <h2 id="combo-chart">Combo Chart <code class="clr-code">&lt;clr-combo-chart&gt;</code></h2>
+    <p>
+      Overlays one or more line series on top of grouped/stacked bar series sharing the same X axis and Y scale. Ideal
+      for comparing actuals vs. targets.
+    </p>
+
+    <h3>Inputs</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="left">Input</th>
+          <th class="left">Type</th>
+          <th class="left">Default</th>
+          <th class="left">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="left"><code>barSeries</code></td>
+          <td class="left">ComboBarSeries[]</td>
+          <td class="left">[]</td>
+          <td class="left">
+            Bar series. Each item's <code>data</code> requires <code>x</code>, <code>xLabel</code> and
+            <code>value</code>.
+          </td>
+        </tr>
+        <tr>
+          <td class="left"><code>lineSeries</code></td>
+          <td class="left">ComboLineSeries[]</td>
+          <td class="left">[]</td>
+          <td class="left">Line series overlaid on the bars.</td>
+        </tr>
+        <tr>
+          <td class="left"><code>xAxisLabel</code> / <code>yAxisLabel</code></td>
+          <td class="left">string</td>
+          <td class="left">''</td>
+          <td class="left">Optional axis description labels.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <clr-code-snippet [clrCode]="comboChartTs" clrLanguage="typescript"></clr-code-snippet>
+    <clr-code-snippet [clrCode]="comboChartHtml" clrLanguage="html"></clr-code-snippet>
+
+    <h3>Example</h3>
+    <div style="height: 320px; width: 100%">
+      <clr-combo-chart
+        [barSeries]="comboBarSeries"
+        [lineSeries]="comboLineSeries"
+        xAxisLabel="Month"
+        yAxisLabel="Amount"
+        yLineAxisLabel="Rate"
+        [showLegend]="true"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-combo-chart>
+    </div>
+
+    <!-- ================================================================== -->
+    <!-- PIE / DONUT CHART                                                  -->
+    <!-- ================================================================== -->
+    <h2 id="pie-chart">Pie / Donut Chart <code class="clr-code">&lt;clr-pie-chart&gt;</code></h2>
+    <p>
+      Renders a pie or donut chart. Toggle between both modes with
+      <code class="clr-code">[donut]</code>. Every slice requires a <code class="clr-code">color</code>.
+    </p>
+
+    <h3>Inputs</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="left">Input</th>
+          <th class="left">Type</th>
+          <th class="left">Default</th>
+          <th class="left">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="left"><code>data</code> <em>(required)</em></td>
+          <td class="left">PieChartData[]</td>
+          <td class="left">—</td>
+          <td class="left">
+            Slices: each item needs <code>key</code>, <code>label</code>, <code>value</code>, <code>color</code>.
+          </td>
+        </tr>
+        <tr>
+          <td class="left"><code>donut</code></td>
+          <td class="left">boolean</td>
+          <td class="left">true</td>
+          <td class="left">Renders a hollow donut instead of a filled pie.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <clr-code-snippet [clrCode]="pieChartTs" clrLanguage="typescript"></clr-code-snippet>
+    <clr-code-snippet [clrCode]="pieChartHtml" clrLanguage="html"></clr-code-snippet>
+
+    <h3>Example – Donut</h3>
+    <div style="height: 300px; width: 100%">
+      <clr-pie-chart
+        [data]="pieData"
+        [donut]="true"
+        [showLegend]="true"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-pie-chart>
+    </div>
+
+    <h3>Example – Pie</h3>
+    <div style="height: 300px; width: 100%; margin-top: 1.5rem">
+      <clr-pie-chart
+        [data]="pieData"
+        [donut]="false"
+        [showLegend]="true"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-pie-chart>
+    </div>
+
+    <!-- ================================================================== -->
+    <!-- FUNNEL CHART                                                        -->
+    <!-- ================================================================== -->
+    <h2 id="funnel-chart">Funnel Chart <code class="clr-code">&lt;clr-funnel-chart&gt;</code></h2>
+    <p>
+      Visualises a multi-stage pipeline. Each stage can optionally be broken into coloured
+      <code class="clr-code">sections</code>. Two orientations are available:
+      <code class="clr-code">'default'</code> (horizontal bars) and <code class="clr-code">'centered'</code> (trapezoid
+      funnel).
+    </p>
+
+    <h3>Inputs</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="left">Input</th>
+          <th class="left">Type</th>
+          <th class="left">Default</th>
+          <th class="left">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="left"><code>data</code></td>
+          <td class="left">FunnelChartData[]</td>
+          <td class="left">[]</td>
+          <td class="left">Pipeline stages. Each stage has a <code>value</code> and optional <code>sections</code>.</td>
+        </tr>
+        <tr>
+          <td class="left"><code>orientation</code></td>
+          <td class="left">'default' | 'centered'</td>
+          <td class="left">'default'</td>
+          <td class="left"><code>'default'</code> = horizontal bars; <code>'centered'</code> = trapezoid.</td>
+        </tr>
+        <tr>
+          <td class="left"><code>sectionColors</code></td>
+          <td class="left">Record&lt;string, string&gt;</td>
+          <td class="left">—</td>
+          <td class="left">Override section colours by <code>key</code>. Accepts hex or CSS custom properties.</td>
+        </tr>
+        <tr>
+          <td class="left"><code>barGap</code></td>
+          <td class="left">number</td>
+          <td class="left">4</td>
+          <td class="left">Vertical gap between bars in pixels.</td>
+        </tr>
+        <tr>
+          <td class="left"><code>chartLabels</code></td>
+          <td class="left">Partial&lt;FunnelChartLabels&gt;</td>
+          <td class="left">built-in</td>
+          <td class="left">Override the "Total" and "All" label strings (e.g. for i18n).</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <clr-code-snippet [clrCode]="funnelChartTs" clrLanguage="typescript"></clr-code-snippet>
+    <clr-code-snippet [clrCode]="funnelChartHtml" clrLanguage="html"></clr-code-snippet>
+
+    <h3>Example – Default (horizontal bars)</h3>
+    <div style="height: 320px; width: 100%">
+      <clr-funnel-chart [data]="funnelData" style="display: block; width: 100%; height: 100%"></clr-funnel-chart>
+    </div>
+
+    <h3>Example – Centered (trapezoid)</h3>
+    <div style="height: 380px; width: 100%; margin-top: 1.5rem">
+      <clr-funnel-chart
+        [data]="funnelData"
+        orientation="centered"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-funnel-chart>
+    </div>
+  </article>
+</clr-doc-wrapper>

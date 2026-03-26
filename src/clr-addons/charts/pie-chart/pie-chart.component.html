@@ -1,0 +1,41 @@
+<div class="chart-container">
+  <div class="chart-area" #container (cngWindowResize)="updateChart()" [class.pt-3]="alertMessageAndType()">
+    <svg [class.d-none]="loading() || !hasData()" #chart></svg>
+
+    @if (tooltipPosition()) {
+    <cng-chart-tooltip
+      [tooltipPosition]="tooltipPosition()"
+      [tooltipOrientation]="tooltipOrientation()"
+      [squareColor]="selectedItem()?.color"
+      (tooltipClosed)="resetTooltip()"
+      (cngOutsideClick)="resetTooltip()"
+      (tooltipHeaderClicked)="
+          valueClicked.emit({
+            key: selectedItem().key,
+            label: selectedItem().fullLabel || selectedItem().label,
+            value: selectedItem().value,
+          })
+        "
+    >
+      <ng-container ngProjectAs="cng-title">
+        ({{ selectedItem().value }}) {{ selectedItem().fullLabel || selectedItem().label }}
+      </ng-container>
+
+      <p class="mt-0">
+        {{ (100 * selectedItem().value) / total() | number : '1.0-2' }}%
+        {{ tooltipPercentOfTotal() }}
+      </p>
+    </cng-chart-tooltip>
+    } @if (loading() || !hasData()) {
+    <cng-bar-chart-skeleton orientation="vertical" [skeletonType]="loading() ? 'loading' : 'placeholder'" />
+    } @if (alertMessageAndType()) {
+    <cng-chart-alert-overlay [alertType]="alertMessageAndType()[1]" [alertMessage]="alertMessageAndType()[0]" />
+    }
+  </div>
+
+  @if (showLegend() && !loading() && legendItems().length) {
+  <cng-chart-legend [items]="legendItems()" />
+  } @if (showExportButton() && !loading() && hasData()) {
+  <cng-chart-export-button class="chart-export-btn" [svgRef]="svgElement()" [filename]="exportFilename()" />
+  }
+</div>

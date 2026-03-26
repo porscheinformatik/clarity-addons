@@ -1,0 +1,44 @@
+.has-more-info {
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--clr-color-neutral-600, #666);
+  text-underline-offset: 3px;
+}
+
+.color-square {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  border-radius: 1px;
+  margin-top: 4px;
+}
+
+.mt-0 {
+  margin-top: 0 !important; /* NOSONAR */
+}
+
+.d-flex {
+  display: flex;
+}
+
+.mt-0-5 {
+  margin-top: 0.5rem !important; /* NOSONAR */
+}
+
+.mt-0-25 {
+  margin-top: 0.25rem !important; /* NOSONAR */
+}
+
+.d-none {
+  display: none;
+}
+
+.pt-3 {
+  padding-top: 3rem !important; /* NOSONAR */
+}
+
+.chart-container {
+  position: relative;
+}

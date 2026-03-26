@@ -1,6 +1,6 @@
 {
   "name": "clr-addons",
-  "version": "19.16.0",
+  "version": "19.17.0",
   "private": true,
   "scripts": {
     "build:ui:css": "sass --source-map --precision=8 ./src/clr-addons/themes/phs/phs-theme.scss ./dist/clr-addons/styles/clr-addons-phs.css",
@@ -51,6 +51,8 @@
     "@webcomponents/custom-elements": "1.6.0",
     "@webcomponents/webcomponentsjs": "2.8.0",
     "core-js": "3.49.0",
+    "d3": "7.9.0",
+    "ngx-skeleton-loader": "^10.0.0",
     "rxjs": "7.8.2",
     "tslib": "2.8.1",
     "zone.js": "0.15.1"
@@ -70,6 +72,7 @@
     "@angular-eslint/builder": "21.0.1",
     "@angular/cli": "19.2.20",
     "@angular/compiler-cli": "19.2.18",
+    "@types/d3": "7.4.3",
     "@types/jasmine": "6.0.0",
     "@types/jasmine-matchers": "0.2.35",
     "@types/jasminewd2": "2.0.13",

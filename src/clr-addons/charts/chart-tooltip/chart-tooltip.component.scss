@@ -1,0 +1,61 @@
+.tooltip-container {
+  position: absolute;
+  background: var(--clr-color-neutral-0, #fff);
+  border: 1px solid var(--clr-color-neutral-400, #ccc);
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  padding: 12px 16px;
+  z-index: 1000;
+  min-width: 150px;
+  transform: translate(-50%, -100%) translateY(-10px);
+
+  &.orientation-bottom {
+    transform: translate(-50%, 0) translateY(10px);
+  }
+}
+
+.tooltip-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 8px;
+
+  h5 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--clr-color-neutral-1000, #000);
+    flex-grow: 1;
+    max-width: 200px;
+  }
+}
+
+.tooltip-close-btn {
+  cursor: pointer;
+  color: var(--clr-close-color);
+
+  &:hover,
+  &:focus {
+    color: var(--clr-close-color-hover);
+  }
+}
+
+.color-label-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.tooltip-content {
+  font-size: 12px;
+  color: var(--clr-color-neutral-700, #565656);
+}
+
+hr:has(+ .tooltip-footer:empty) {
+  display: none;
+}
+
+hr {
+  // counterbalance the tooltip-container
+  margin: 6px -16px;
+}

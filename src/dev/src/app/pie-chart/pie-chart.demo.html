@@ -1,0 +1,86 @@
+<!--
+  Copyright (c) 2026 Porsche Informatik. All Rights Reserved.
+  This software is released under MIT license.
+  The full license information can be found in LICENSE in the root directory of this project.
+-->
+
+<h2>Pie Chart Demo</h2>
+
+<!-- Controls -->
+<div style="margin-bottom: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center">
+  <button class="btn btn-outline" (click)="toggleDonut()">Toggle Donut (current: {{ donut() }})</button>
+  <button class="btn btn-outline" (click)="toggleLegend()">Toggle Legend (current: {{ showLegend() }})</button>
+  <button class="btn btn-outline" (click)="toggleLoading()">Toggle Loading (current: {{ loading() }})</button>
+  <button class="btn btn-outline" (click)="toggleExportButton()">
+    Toggle Export Button (current: {{ showExportButton() }})
+  </button>
+  <label style="display: flex; align-items: center; gap: 0.25rem; font-size: 0.85rem">
+    Export filename:
+    <input
+      class="clr-input"
+      type="text"
+      [ngModel]="exportFilename()"
+      (ngModelChange)="exportFilename.set($event)"
+      style="width: 130px"
+    />
+  </label>
+</div>
+
+@if (lastClicked()) {
+<clr-alert [clrAlertType]="'info'" [clrAlertClosable]="false" style="margin-bottom: 1rem">
+  <clr-alert-item>
+    <span class="alert-text">
+      Clicked: <strong>{{ lastClicked().label }}</strong> – Value: <strong>{{ lastClicked().value }}</strong>
+    </span>
+  </clr-alert-item>
+</clr-alert>
+}
+
+<!-- Main chart -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">
+    {{ donut() ? 'Donut' : 'Pie' }} Chart ({{ showLegend() ? 'with legend' : 'no legend' }})
+  </div>
+  <div class="card-block">
+    <div style="height: 320px; width: 100%">
+      <clr-pie-chart
+        [data]="simpleData"
+        [donut]="donut()"
+        [loading]="loading()"
+        [showLegend]="showLegend()"
+        [showExportButton]="showExportButton()"
+        [exportFilename]="exportFilename()"
+        (valueClicked)="onValueClicked($event)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-pie-chart>
+    </div>
+  </div>
+</div>
+
+<!-- Alert: No Items -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">Alert – No Items (empty data → info alert)</div>
+  <div class="card-block">
+    <div style="height: 200px; width: 100%">
+      <clr-pie-chart
+        [data]="emptyData"
+        [loading]="false"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-pie-chart>
+    </div>
+  </div>
+</div>
+
+<!-- Loading State -->
+<div class="card">
+  <div class="card-header">Loading State</div>
+  <div class="card-block">
+    <div style="height: 250px; width: 100%">
+      <clr-pie-chart
+        [data]="simpleData"
+        [loading]="true"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-pie-chart>
+    </div>
+  </div>
+</div>

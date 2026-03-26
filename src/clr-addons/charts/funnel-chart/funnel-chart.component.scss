@@ -1,0 +1,46 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.funnel-container {
+  height: 100%;
+  width: 100%;
+  max-width: 1400px;
+  margin: auto;
+  position: relative;
+}
+
+svg {
+  width: 100%;
+  height: 100%;
+}
+
+clr-signpost {
+  position: absolute !important;
+}
+
+.tooltip-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.row-right {
+  margin-left: auto;
+}
+
+.funnel-export-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.funnel-container:hover .funnel-export-btn {
+  opacity: 1;
+  pointer-events: auto;
+}

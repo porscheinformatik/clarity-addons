@@ -11,6 +11,30 @@ import { LandingComponent } from './landing.component';
 export const APP_ROUTES: Routes = [
   { path: '', component: LandingComponent },
   {
+    path: 'bar-chart',
+    loadComponent: () => import('./bar-chart/bar-chart.demo').then(m => m.BarChartDemo),
+  },
+  {
+    path: 'line-chart',
+    loadComponent: () => import('./line-chart/line-chart.demo').then(m => m.LineChartDemo),
+  },
+  {
+    path: 'pie-chart',
+    loadComponent: () => import('./pie-chart/pie-chart.demo').then(m => m.PieChartDemo),
+  },
+  {
+    path: 'area-chart',
+    loadComponent: () => import('./area-chart/area-chart.demo').then(m => m.AreaChartDemo),
+  },
+  {
+    path: 'combo-chart',
+    loadComponent: () => import('./combo-chart/combo-chart.demo').then(m => m.ComboChartDemo),
+  },
+  {
+    path: 'funnel-chart',
+    loadComponent: () => import('./funnel-chart/funnel-chart.demo').then(m => m.FunnelChartDemo),
+  },
+  {
     path: 'action-panel',
     loadChildren: () => import('./action-panel/action-panel.demo.module').then(m => m.ActionPanelDemoModule),
   },

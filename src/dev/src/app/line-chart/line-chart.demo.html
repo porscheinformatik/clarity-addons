@@ -1,0 +1,141 @@
+<!--
+  Copyright (c) 2026 Porsche Informatik. All Rights Reserved.
+  This software is released under MIT license.
+  The full license information can be found in LICENSE in the root directory of this project.
+-->
+
+<h2>Line Chart Demo</h2>
+
+<!-- Controls -->
+<div style="margin-bottom: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center">
+  <button class="btn btn-outline" (click)="toggleLoading()">Toggle Loading (current: {{ loading() }})</button>
+  <button class="btn btn-outline" (click)="toggleArea()">Toggle Area Fill (current: {{ showArea() }})</button>
+  <button class="btn btn-outline" (click)="toggleLegend()">Toggle Legend (current: {{ showLegend() }})</button>
+  <button class="btn btn-outline" (click)="toggleValues()">Toggle Values (current: {{ showValues() }})</button>
+  <button class="btn btn-outline" (click)="toggleExportButton()">
+    Toggle Export Button (current: {{ showExportButton() }})
+  </button>
+  <label style="display: flex; align-items: center; gap: 0.25rem; font-size: 0.85rem">
+    Export filename:
+    <input
+      class="clr-input"
+      type="text"
+      [ngModel]="exportFilename()"
+      (ngModelChange)="exportFilename.set($event)"
+      style="width: 130px"
+    />
+  </label>
+</div>
+
+@if (lastClicked()) {
+<clr-alert [clrAlertType]="'info'" [clrAlertClosable]="false" style="margin-bottom: 1rem">
+  <clr-alert-item>
+    <span class="alert-text">
+      Clicked: <strong>{{ lastClicked().seriesLabel }}</strong> at <strong>{{ lastClicked().x }}</strong> – Value:
+      <strong>{{ lastClicked().value }}</strong>
+    </span>
+  </clr-alert-item>
+</clr-alert>
+}
+
+<!-- Single Series -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">Single Series Line Chart</div>
+  <div class="card-block">
+    <div style="height: 300px; width: 100%">
+      <clr-line-chart
+        [series]="singleSeries"
+        [loading]="loading()"
+        [showArea]="showArea()"
+        [showLegend]="showLegend()"
+        [showValues]="showValues()"
+        [showExportButton]="showExportButton()"
+        [exportFilename]="exportFilename()"
+        (valueClicked)="onValueClicked($event)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-line-chart>
+    </div>
+  </div>
+</div>
+
+<!-- Multi Series -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">Multi Series Line Chart (3 lines) + Legend</div>
+  <div class="card-block">
+    <div style="height: 300px; width: 100%">
+      <clr-line-chart
+        [series]="multiSeries"
+        [loading]="loading()"
+        [showArea]="showArea()"
+        [showLegend]="showLegend()"
+        [showValues]="showValues()"
+        [showExportButton]="showExportButton()"
+        [exportFilename]="exportFilename()"
+        (valueClicked)="onValueClicked($event)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-line-chart>
+    </div>
+  </div>
+</div>
+
+<!-- Show Values -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">Show Values at each dot (<code>[showValues]="true"</code>)</div>
+  <div class="card-block">
+    <div style="height: 320px; width: 100%">
+      <clr-line-chart
+        [series]="multiSeries"
+        [showValues]="true"
+        [showLegend]="true"
+        exportFilename=""
+        (valueClicked)="onValueClicked($event)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-line-chart>
+    </div>
+  </div>
+</div>
+
+<!-- Alert: No Items -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">Alert – No Items (empty series → info alert)</div>
+  <div class="card-block">
+    <div style="height: 200px; width: 100%">
+      <clr-line-chart
+        [series]="emptySeries"
+        [loading]="false"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-line-chart>
+    </div>
+  </div>
+</div>
+
+<!-- Axis Labels -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">Axis Labels (<code>xAxisLabel</code> &amp; <code>yAxisLabel</code>)</div>
+  <div class="card-block">
+    <div style="height: 320px; width: 100%">
+      <clr-line-chart
+        [series]="multiSeries"
+        [showLegend]="true"
+        xAxisLabel="Month"
+        yAxisLabel="Revenue (€)"
+        (valueClicked)="onValueClicked($event)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-line-chart>
+    </div>
+  </div>
+</div>
+
+<!-- Loading State -->
+<div class="card">
+  <div class="card-header">Loading State</div>
+  <div class="card-block">
+    <div style="height: 250px; width: 100%">
+      <clr-line-chart
+        [series]="singleSeries"
+        [loading]="true"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-line-chart>
+    </div>
+  </div>
+</div>

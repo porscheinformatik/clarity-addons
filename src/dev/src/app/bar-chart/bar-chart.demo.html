@@ -1,0 +1,256 @@
+<!--
+  Copyright (c) 2026 Porsche Informatik. All Rights Reserved.
+  This software is released under MIT license.
+  The full license information can be found in LICENSE in the root directory of this project.
+-->
+
+<h2>Bar Chart Demo</h2>
+
+<!-- Controls -->
+<div style="margin-bottom: 1rem; display: flex; flex-direction: column; gap: 0.5rem">
+  <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center">
+    <button class="btn btn-outline" (click)="toggleOrientation()">
+      Toggle Orientation (current: {{ orientation() }})
+    </button>
+    <button class="btn btn-outline" (click)="toggleLoading()">Toggle Loading (current: {{ loading() }})</button>
+    <button class="btn btn-outline" (click)="toggleStacked()">Toggle Stacked (current: {{ showStacked() }})</button>
+    <button class="btn btn-outline" (click)="toggleLegend()">Toggle Legend (current: {{ showLegend() }})</button>
+    <button class="btn btn-outline" (click)="toggleExportButton()">
+      Toggle Export Button (current: {{ showExportButton() }})
+    </button>
+  </div>
+  <div style="display: flex; align-items: center">
+    <label style="display: flex; align-items: center; gap: 0.25rem; font-size: 0.85rem">
+      Export filename:
+      <input
+        class="clr-input"
+        type="text"
+        [ngModel]="exportFilename()"
+        (ngModelChange)="exportFilename.set($event)"
+        style="width: 130px"
+      />
+    </label>
+  </div>
+</div>
+
+@if (lastClicked()) {
+<clr-alert [clrAlertType]="'info'" [clrAlertClosable]="false" style="margin-bottom: 1rem">
+  <clr-alert-item>
+    <span class="alert-text">
+      Clicked: <strong>{{ lastClicked().label }}</strong> – Value: <strong>{{ lastClicked().value }}</strong>
+    </span>
+  </clr-alert-item>
+</clr-alert>
+}
+
+<!-- Simple / Stacked Chart -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">{{ showStacked() ? 'Stacked Bar Chart' : 'Simple Bar Chart' }} ({{ orientation() }})</div>
+  <div class="card-block">
+    <div [style.height]="orientation() === 'vertical' ? '300px' : '250px'" style="width: 100%">
+      <clr-bar-chart
+        [data]="activeData()"
+        [stackLabels]="activeStackLabels()"
+        [orientation]="orientation()"
+        [loading]="loading()"
+        [showLegend]="showLegend()"
+        [showExportButton]="showExportButton()"
+        [exportFilename]="exportFilename()"
+        (valueClicked)="onValueClicked($event)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-bar-chart>
+    </div>
+  </div>
+</div>
+
+<!-- Vertical Chart (fixed) -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">Vertical Bar Chart (fixed data)</div>
+  <div class="card-block">
+    <div style="height: 300px; width: 100%">
+      <clr-bar-chart
+        [data]="simpleData"
+        orientation="vertical"
+        [loading]="false"
+        [showExportButton]="showExportButton()"
+        [exportFilename]="exportFilename()"
+        (valueClicked)="onValueClicked($event)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-bar-chart>
+    </div>
+  </div>
+</div>
+
+<!-- Horizontal Chart (fixed) -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">Horizontal Bar Chart (fixed data)</div>
+  <div class="card-block">
+    <div style="height: 250px; width: 100%">
+      <clr-bar-chart
+        [data]="simpleData"
+        orientation="horizontal"
+        [loading]="false"
+        [showExportButton]="showExportButton()"
+        [exportFilename]="exportFilename()"
+        (valueClicked)="onValueClicked($event)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-bar-chart>
+    </div>
+  </div>
+</div>
+
+<!-- Stacked Vertical Chart (fixed) -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">Stacked Vertical Bar Chart (fixed data) + Legend</div>
+  <div class="card-block">
+    <div style="height: 320px; width: 100%">
+      <clr-bar-chart
+        [data]="stackedData"
+        [stackLabels]="stackLabels"
+        orientation="vertical"
+        [loading]="false"
+        [showLegend]="true"
+        [showExportButton]="showExportButton()"
+        [exportFilename]="exportFilename()"
+        (valueClicked)="onValueClicked($event)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-bar-chart>
+    </div>
+  </div>
+</div>
+
+<!-- Stacked Horizontal Chart (fixed) -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">Stacked Horizontal Bar Chart (fixed data) + Legend</div>
+  <div class="card-block">
+    <div style="height: 320px; width: 100%">
+      <clr-bar-chart
+        [data]="stackedData"
+        [stackLabels]="stackLabels"
+        orientation="horizontal"
+        [loading]="false"
+        [showLegend]="true"
+        [showExportButton]="showExportButton()"
+        [exportFilename]="exportFilename()"
+        (valueClicked)="onValueClicked($event)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-bar-chart>
+    </div>
+  </div>
+</div>
+
+<!-- Multiple values per month (stacked, 3 series × 12 months) -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">Multiple Values per Month – Stacked (Revenue · Costs · Profit, 12 months) + Legend</div>
+  <div class="card-block">
+    <div style="height: 340px; width: 100%">
+      <clr-bar-chart
+        [data]="multiValueData"
+        [stackLabels]="months"
+        orientation="vertical"
+        [loading]="false"
+        [showLegend]="true"
+        (valueClicked)="onValueClicked($event)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-bar-chart>
+    </div>
+  </div>
+</div>
+
+<!-- CSS variable colors -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">CSS Variable Colors – mix of <code>--cds-global-color-*</code> tokens and hex values</div>
+  <div class="card-block">
+    <div style="height: 300px; width: 100%">
+      <clr-bar-chart
+        [data]="simpleData"
+        orientation="vertical"
+        [loading]="false"
+        [showLegend]="true"
+        (valueClicked)="onValueClicked($event)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-bar-chart>
+    </div>
+  </div>
+</div>
+
+<!-- Alert: No Items (info) -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">Alert – No Items <code>[data]="[]"</code> → info alert</div>
+  <div class="card-block">
+    <div style="height: 200px; width: 100%">
+      <clr-bar-chart
+        [data]="emptyData"
+        orientation="vertical"
+        [loading]="false"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-bar-chart>
+    </div>
+  </div>
+</div>
+
+<!-- Alert: Too Many Items (warning) -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">Alert – Too Many Items (30 items, only a subset shown) → warning alert</div>
+  <div class="card-block">
+    <div style="height: 300px; width: 100%">
+      <clr-bar-chart
+        [data]="manyData"
+        orientation="vertical"
+        [loading]="false"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-bar-chart>
+    </div>
+  </div>
+</div>
+
+<!-- Axis Labels – Vertical -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">Axis Labels – Vertical (<code>xAxisLabel</code> &amp; <code>yAxisLabel</code>)</div>
+  <div class="card-block">
+    <div style="height: 320px; width: 100%">
+      <clr-bar-chart
+        [data]="simpleData"
+        orientation="vertical"
+        [loading]="false"
+        xAxisLabel="Month"
+        yAxisLabel="Revenue (€)"
+        (valueClicked)="onValueClicked($event)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-bar-chart>
+    </div>
+  </div>
+</div>
+
+<!-- Axis Labels – Horizontal -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">Axis Labels – Horizontal (<code>xAxisLabel</code> &amp; <code>yAxisLabel</code>)</div>
+  <div class="card-block">
+    <div style="height: 280px; width: 100%">
+      <clr-bar-chart
+        [data]="simpleData"
+        orientation="horizontal"
+        [loading]="false"
+        xAxisLabel="Revenue (€)"
+        yAxisLabel="Month"
+        (valueClicked)="onValueClicked($event)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-bar-chart>
+    </div>
+  </div>
+</div>
+
+<!-- Loading State -->
+<div class="card">
+  <div class="card-header">Loading State</div>
+  <div class="card-block">
+    <div style="height: 250px; width: 100%">
+      <clr-bar-chart
+        [data]="simpleData"
+        orientation="vertical"
+        [loading]="true"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-bar-chart>
+    </div>
+  </div>
+</div>

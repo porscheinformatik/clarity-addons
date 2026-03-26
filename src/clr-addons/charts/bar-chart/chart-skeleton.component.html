@@ -1,0 +1,22 @@
+<div class="chart-skeleton" [class.placeholder-skeleton]="skeletonType() === 'placeholder'">
+  <div
+    class="skeleton-bars"
+    [class.horizontal]="orientation() === 'horizontal'"
+    [class.vertical]="orientation() === 'vertical'"
+  >
+    @for (_item of [1, 2, 3, 4, 5, 6]; track $index) {
+    <div class="skeleton-bar bar-{{ $index + 1 }}">
+      <ngx-skeleton-loader
+        [appearance]="'circle'"
+        [count]="1"
+        [animation]="animationStyle()"
+        [theme]="{
+            width: '100%',
+            height: '100%',
+            'border-radius': 'var(--clr-base-border-radius-xxs)',
+          }"
+      />
+    </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<div
+  class="tooltip-container"
+  [class.orientation-bottom]="tooltipOrientation() === 'bottom'"
+  (click)="$event.stopPropagation()"
+  [style.left.px]="tooltipPosition().x"
+  [style.top.px]="tooltipPosition().y"
+>
+  <div class="tooltip-header">
+    <div class="color-label-wrapper">
+      @if (squareColor()) {
+      <div class="color-square" [style.background-color]="toChartColor(squareColor())"></div>
+      }
+      <h5
+        [class.has-more-info]="tooltipClickable()"
+        (click)="$event.stopPropagation(); tooltipClickable() && tooltipHeaderClicked.emit()"
+      >
+        <ng-content select="cng-title" />
+      </h5>
+    </div>
+    <cds-icon shape="times" class="tooltip-close-btn" (click)="$event.stopPropagation(); tooltipClosed.emit()" />
+  </div>
+  <div class="tooltip-content">
+    <ng-content />
+  </div>
+  <hr />
+  <div class="tooltip-footer"><ng-content select="cng-footer" /></div>
+</div>

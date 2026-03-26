@@ -1,0 +1,36 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+:host ::ng-deep .domain {
+  display: none;
+}
+
+.chart-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.chart-area {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+}
+
+svg {
+  height: 100%;
+  width: 100%;
+}
+
+cng-bar-chart-skeleton {
+  height: 100%;
+}
+
+.percentage-info {
+  margin-left: 15px;
+}

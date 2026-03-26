@@ -1,0 +1,172 @@
+<!--
+  Copyright (c) 2026 Porsche Informatik. All Rights Reserved.
+  This software is released under MIT license.
+  The full license information can be found in LICENSE in the root directory of this project.
+-->
+
+<h2>Combo Chart Demo (Bar + Line)</h2>
+
+<!-- Controls -->
+<div style="margin-bottom: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center">
+  <button class="btn btn-outline" (click)="toggleLoading()">Toggle Loading (current: {{ loading() }})</button>
+  <button class="btn btn-outline" (click)="toggleLegend()">Toggle Legend (current: {{ showLegend() }})</button>
+  <button class="btn btn-outline" (click)="toggleExportButton()">
+    Toggle Export Button (current: {{ showExportButton() }})
+  </button>
+  <label style="display: flex; align-items: center; gap: 0.25rem; font-size: 0.85rem">
+    Export filename:
+    <input
+      class="clr-input"
+      type="text"
+      [ngModel]="exportFilename()"
+      (ngModelChange)="exportFilename.set($event)"
+      style="width: 130px"
+    />
+  </label>
+</div>
+
+@if (lastClicked()) {
+<clr-alert [clrAlertType]="'info'" [clrAlertClosable]="false" style="margin-bottom: 1rem">
+  <clr-alert-item>
+    <span class="alert-text">
+      Clicked: <strong>{{ lastClicked().seriesLabel }}</strong>
+      ({{ lastClicked().seriesType }}) at
+      <strong>{{ lastClicked().x }}</strong> – Value:
+      <strong>{{ lastClicked().value }}</strong>
+    </span>
+  </clr-alert-item>
+</clr-alert>
+}
+
+<!-- Full combo: 2 bar series + 2 line series -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">Combo Chart – 2 Bar Series + 2 Line Overlays</div>
+  <div class="card-block">
+    <div style="height: 320px; width: 100%">
+      <clr-combo-chart
+        [barSeries]="barSeries"
+        [lineSeries]="lineSeries"
+        [loading]="loading()"
+        [showLegend]="showLegend()"
+        [showExportButton]="showExportButton()"
+        [exportFilename]="exportFilename()"
+        (valueClicked)="onValueClicked($event)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-combo-chart>
+    </div>
+  </div>
+</div>
+
+<!-- Bars only (no line series) -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">Bars Only (no line overlay)</div>
+  <div class="card-block">
+    <div style="height: 280px; width: 100%">
+      <clr-combo-chart
+        [barSeries]="barSeries"
+        [lineSeries]="barsOnlyLineSeries"
+        [loading]="loading()"
+        [showLegend]="showLegend()"
+        [showExportButton]="showExportButton()"
+        [exportFilename]="exportFilename()"
+        (valueClicked)="onValueClicked($event)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-combo-chart>
+    </div>
+  </div>
+</div>
+
+<!-- Lines only (no bar series) -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">Lines Only (no bars)</div>
+  <div class="card-block">
+    <div style="height: 280px; width: 100%">
+      <clr-combo-chart
+        [barSeries]="linesOnlyBarSeries"
+        [lineSeries]="lineSeries"
+        [loading]="loading()"
+        [showLegend]="showLegend()"
+        [showExportButton]="showExportButton()"
+        [exportFilename]="exportFilename()"
+        (valueClicked)="onValueClicked($event)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-combo-chart>
+    </div>
+  </div>
+</div>
+
+<!-- Tooltip orientation bottom -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">Tooltip Orientation – Bottom</div>
+  <div class="card-block">
+    <div style="height: 280px; width: 100%">
+      <clr-combo-chart
+        [barSeries]="barSeries"
+        [lineSeries]="lineSeries"
+        tooltipOrientation="bottom"
+        [loading]="loading()"
+        exportFilename=""
+        (valueClicked)="onValueClicked($event)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-combo-chart>
+    </div>
+  </div>
+</div>
+
+<!-- RTT Monitoring: 2 stacked bars (numSuccess / numErrors) + 3 RTT lines -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">
+    Round-Trip Time Monitoring – Bars: numSuccess · numErrors (stacked) &amp; Lines: min · avg · max RTT
+  </div>
+  <div class="card-block">
+    <div style="height: 360px; width: 100%">
+      <clr-combo-chart
+        [barSeries]="rttBarSeries"
+        [lineSeries]="rttLineSeries"
+        [showLegend]="true"
+        xAxisLabel="Hour of Day"
+        yAxisLabel="Number of Calls"
+        yLineAxisLabel="Duration (ms)"
+        noItemsMessage="No monitoring data available"
+        tooltipPercentOfTotal="of all calls"
+        (valueClicked)="onValueClicked($event)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-combo-chart>
+    </div>
+  </div>
+</div>
+
+<!-- Axis Labels showcase -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">Axis Labels (<code>xAxisLabel</code> &amp; <code>yAxisLabel</code>)</div>
+  <div class="card-block">
+    <div style="height: 340px; width: 100%">
+      <clr-combo-chart
+        [barSeries]="barSeries"
+        [lineSeries]="lineSeries"
+        [showLegend]="true"
+        xAxisLabel="Month"
+        yAxisLabel="Amount"
+        yLineAxisLabel="Rate"
+        exportFilename=""
+        (valueClicked)="onValueClicked($event)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-combo-chart>
+    </div>
+  </div>
+</div>
+
+<!-- Alert: No Items -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">Alert – No Items (empty series → info alert)</div>
+  <div class="card-block">
+    <div style="height: 200px; width: 100%">
+      <clr-combo-chart
+        [barSeries]="emptyBarSeries"
+        [lineSeries]="emptyLineSeries"
+        exportFilename=""
+        style="display: block; width: 100%; height: 100%"
+      ></clr-combo-chart>
+    </div>
+  </div>
+</div>

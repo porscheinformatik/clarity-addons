@@ -36,6 +36,11 @@
       "type": "component"
     },
     {
+      "url": "charts",
+      "text": "Charts",
+      "type": "component"
+    },
+    {
       "url": "collapse-expand-section",
       "text": "Collapse/Expand Section",
       "type": "component"
