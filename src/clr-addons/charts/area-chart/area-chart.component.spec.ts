@@ -3,6 +3,7 @@ import { ComponentRef } from '@angular/core';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { AreaChartComponent, AreaChartSeries } from './area-chart.component';
 import { NO_ITEMS_MESSAGE, NO_ITEMS_ALERT_TYPE } from '../constants';
+import { ClrChartsModule } from '../charts.module';
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr'];
 
@@ -27,7 +28,7 @@ describe('AreaChartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AreaChartComponent],
+      imports: [ClrChartsModule],
       providers: [provideNoopAnimations()],
     }).compileComponents();
 

@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ComponentRef } from '@angular/core';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { FunnelChartComponent, FunnelChartData } from './funnel-chart.component';
+import { ClrChartsModule } from '../charts.module';
 
 const SAMPLE_DATA: FunnelChartData[] = [
   {
@@ -57,7 +58,7 @@ describe('FunnelChartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FunnelChartComponent],
+      imports: [ClrChartsModule],
       providers: [provideNoopAnimations()],
     }).compileComponents();
 

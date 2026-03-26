@@ -3,6 +3,7 @@ import { ComponentRef } from '@angular/core';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { LineChartComponent, LineChartSeries } from './line-chart.component';
 import { NO_ITEMS_MESSAGE, NO_ITEMS_ALERT_TYPE } from '../constants';
+import { ClrChartsModule } from '../charts.module';
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr'];
 
@@ -27,7 +28,7 @@ describe('LineChartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LineChartComponent],
+      imports: [ClrChartsModule],
       providers: [provideNoopAnimations()],
     }).compileComponents();
 

@@ -3,6 +3,7 @@ import { ComponentRef } from '@angular/core';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { PieChartComponent, PieChartData } from './pie-chart.component';
 import { NO_ITEMS_MESSAGE, NO_ITEMS_ALERT_TYPE } from '../constants';
+import { ClrChartsModule } from '../charts.module';
 
 const DATA: PieChartData[] = [
   { key: 'jan', label: 'January', value: 120, color: '#e57200' },
@@ -17,7 +18,7 @@ describe('PieChartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PieChartComponent],
+      imports: [ClrChartsModule],
       providers: [provideNoopAnimations()],
     }).compileComponents();
 
@@ -36,7 +37,7 @@ describe('PieChartComponent', () => {
     it('should default loading to false', () => expect(component.loading()).toBeFalse());
     it('should default showLegend to true', () => expect(component.showLegend()).toBeTrue());
     it('should default donut to true', () => expect(component.donut()).toBeTrue());
-    it('should default exportFilename to empty string', () => expect(component.exportFilename()).toBe(''));
+    it('should default exportFilename to "pie-chart"', () => expect(component.exportFilename()).toBe('pie-chart'));
     it('should default tooltipOrientation to "top"', () => expect(component.tooltipOrientation()).toBe('top'));
   });
 
