@@ -13,7 +13,6 @@ import { ClrForm } from '@clr/angular';
 
 @Directive({
   selector: 'form[clrControlEnterSubmit]',
-  standalone: false,
 })
 export class ClrControlEnterSubmitDirective implements AfterContentInit, AfterViewChecked {
   @Input('clrControlEnterSubmit') tooltipText: string | undefined;
