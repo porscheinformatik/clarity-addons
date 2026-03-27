@@ -9,7 +9,6 @@ import {
   computed,
   input,
   OnChanges,
-  OnInit,
   output,
   signal,
   SimpleChanges,
@@ -130,7 +129,7 @@ const DEFAULT_CHART_LABELS: FunnelChartLabels = {
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
-export class FunnelChartComponent extends ChartBase<FunnelDataPoint> implements OnInit, OnChanges {
+export class FunnelChartComponent extends ChartBase<FunnelDataPoint> implements OnChanges {
   // ── Inputs ──────────────────────────────────────────────────────────────────
   public readonly data = input<FunnelChartData[]>([]);
   public readonly showExportButton = input(false);
@@ -211,8 +210,9 @@ export class FunnelChartComponent extends ChartBase<FunnelDataPoint> implements 
     requestAnimationFrame(() => this.updateChart());
   }
 
-  public ngOnInit(): void {
+  public override ngAfterViewInit(): void {
     this.svg = d3select(this.chartRef().nativeElement);
+    super.ngAfterViewInit();
   }
 
   // ── Chart rendering ──────────────────────────────────────────────────────────

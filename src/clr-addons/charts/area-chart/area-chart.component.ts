@@ -1,13 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  input,
-  OnChanges,
-  OnInit,
-  output,
-  SimpleChanges,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, OnChanges, output, SimpleChanges } from '@angular/core';
 import {
   area as d3area,
   curveMonotoneX,
@@ -48,7 +39,7 @@ type AreaChartSelectedPoint = XYChartPoint & {
   standalone: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AreaChartComponent extends ChartBase<AreaChartSelectedPoint> implements OnInit, OnChanges {
+export class AreaChartComponent extends ChartBase<AreaChartSelectedPoint> implements OnChanges {
   public readonly series = input.required<XYChartSeries[]>();
   public readonly tooltipOrientation = input<'top' | 'bottom'>('top');
   public readonly showLegend = input(true);
@@ -101,8 +92,9 @@ export class AreaChartComponent extends ChartBase<AreaChartSelectedPoint> implem
     requestAnimationFrame(() => this.updateChart());
   }
 
-  public ngOnInit(): void {
+  public override ngAfterViewInit(): void {
     this.svg = d3select(this.chartRef().nativeElement);
+    super.ngAfterViewInit();
   }
 
   protected updateChart(): void {

@@ -1,13 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  input,
-  OnChanges,
-  OnInit,
-  output,
-  SimpleChanges,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, OnChanges, output, SimpleChanges } from '@angular/core';
 import { Arc, arc as d3arc, format as d3format, pie as d3pie, PieArcDatum, select as d3select, Selection } from 'd3';
 import { NO_ITEMS_ALERT_TYPE, NO_ITEMS_MESSAGE } from '../constants';
 import { toChartColor } from '../utils';
@@ -35,7 +26,7 @@ export interface PieChartValue {
   standalone: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PieChartComponent extends ChartBase<PieChartData> implements OnInit, OnChanges {
+export class PieChartComponent extends ChartBase<PieChartData> implements OnChanges {
   public readonly data = input.required<PieChartData[]>();
   public readonly donut = input(true);
   public readonly showLegend = input(true);
@@ -78,8 +69,9 @@ export class PieChartComponent extends ChartBase<PieChartData> implements OnInit
     requestAnimationFrame(() => this.updateChart());
   }
 
-  public ngOnInit(): void {
+  public override ngAfterViewInit(): void {
     this.svg = d3select(this.chartRef().nativeElement);
+    super.ngAfterViewInit();
   }
 
   protected updateChart(): void {

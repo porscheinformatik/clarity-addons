@@ -77,7 +77,7 @@ areaSeries: XYChartSeries[] = [
 ];`;
 
 const AREA_CHART_HTML = `<clr-area-chart
-  [series]="lineSeries"
+  [series]="areaSeries"
   [areaOpacity]="0.2"
   [showLegend]="true"
   style="display:block;width:100%;height:300px;"

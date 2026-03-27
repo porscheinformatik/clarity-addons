@@ -16,6 +16,22 @@ describe('Chart Utils', () => {
     it('should return 100 when value equals total', () => {
       expect(percentage(5, 5)).toBe(100);
     });
+
+    it('should return 0 when total is 0 (guards against Infinity/NaN)', () => {
+      expect(percentage(42, 0)).toBe(0);
+    });
+
+    it('should return 0 when total is negative', () => {
+      expect(percentage(10, -5)).toBe(0);
+    });
+
+    it('should clamp to 100 when value exceeds total', () => {
+      expect(percentage(150, 100)).toBe(100);
+    });
+
+    it('should clamp to 0 when value is negative', () => {
+      expect(percentage(-10, 100)).toBe(0);
+    });
   });
 
   describe('d3percentFormat()', () => {

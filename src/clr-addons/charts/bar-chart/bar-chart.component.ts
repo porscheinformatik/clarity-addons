@@ -4,7 +4,6 @@ import {
   computed,
   input,
   OnChanges,
-  OnInit,
   output,
   signal,
   SimpleChanges,
@@ -65,7 +64,7 @@ type BarChartLabel = { stackKey: string; label: string };
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
-export class BarChartComponent extends ChartBase<BarChartDataPoint> implements OnInit, OnChanges {
+export class BarChartComponent extends ChartBase<BarChartDataPoint> implements OnChanges {
   public readonly data = input.required<BarChartData[]>();
   public readonly stackLabels = input<string[] | undefined>(undefined);
   public readonly orientation = input.required<'horizontal' | 'vertical'>();
@@ -226,9 +225,9 @@ export class BarChartComponent extends ChartBase<BarChartDataPoint> implements O
     requestAnimationFrame(() => this.updateChart());
   }
 
-  public ngOnInit(): void {
+  public override ngAfterViewInit(): void {
     this.createChart();
-    requestAnimationFrame(() => this.updateChart());
+    super.ngAfterViewInit(); // schedules the initial requestAnimationFrame(() => updateChart())
   }
 
   private createChart(): void {

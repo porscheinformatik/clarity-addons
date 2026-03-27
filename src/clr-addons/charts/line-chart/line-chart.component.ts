@@ -1,13 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  input,
-  OnChanges,
-  OnInit,
-  output,
-  SimpleChanges,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, OnChanges, output, SimpleChanges } from '@angular/core';
 import {
   curveMonotoneX,
   format as d3format,
@@ -48,7 +39,7 @@ type LineChartSelectedPoint = XYChartPoint & {
   standalone: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LineChartComponent extends ChartBase<LineChartSelectedPoint> implements OnInit, OnChanges {
+export class LineChartComponent extends ChartBase<LineChartSelectedPoint> implements OnChanges {
   public readonly series = input.required<XYChartSeries[]>();
   public readonly tooltipOrientation = input<'top' | 'bottom'>('top');
   public readonly showArea = input(false);
@@ -101,8 +92,9 @@ export class LineChartComponent extends ChartBase<LineChartSelectedPoint> implem
     requestAnimationFrame(() => this.updateChart());
   }
 
-  public ngOnInit(): void {
+  public override ngAfterViewInit(): void {
     this.svg = d3select(this.chartRef().nativeElement);
+    super.ngAfterViewInit();
   }
 
   protected updateChart(): void {

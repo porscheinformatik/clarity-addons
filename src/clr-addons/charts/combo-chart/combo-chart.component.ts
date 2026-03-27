@@ -1,13 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  input,
-  OnChanges,
-  OnInit,
-  output,
-  SimpleChanges,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, OnChanges, output, SimpleChanges } from '@angular/core';
 import {
   axisRight as d3axisRight,
   curveMonotoneX,
@@ -86,7 +77,7 @@ interface SelectedComboItem {
   standalone: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ComboChartComponent extends ChartBase<SelectedComboItem> implements OnInit, OnChanges {
+export class ComboChartComponent extends ChartBase<SelectedComboItem> implements OnChanges {
   // ── Inputs ──────────────────────────────────────────────────────────────────
   public readonly barSeries = input<ComboBarSeries[]>([]);
   public readonly lineSeries = input<ComboLineSeries[]>([]);
@@ -152,8 +143,9 @@ export class ComboChartComponent extends ChartBase<SelectedComboItem> implements
     requestAnimationFrame(() => this.updateChart());
   }
 
-  public ngOnInit(): void {
+  public override ngAfterViewInit(): void {
     this.svg = d3select(this.chartRef().nativeElement);
+    super.ngAfterViewInit();
   }
 
   // ── Chart rendering ──────────────────────────────────────────────────────────
