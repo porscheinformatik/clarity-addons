@@ -242,6 +242,13 @@ const documentationRoutes: Routes = [
         },
       },
       {
+        path: 'html-editor',
+        loadChildren: () => import('./demos/html-editor/html-editor.demo.module').then(m => m.HtmlEditorDemoModule),
+        data: {
+          browserTitle: 'Html-Editor',
+        },
+      },
+      {
         path: 'colors',
         loadChildren: () => import('./demos/colors/colors.demo.module').then(m => m.ColorsDemoModule),
         data: {
