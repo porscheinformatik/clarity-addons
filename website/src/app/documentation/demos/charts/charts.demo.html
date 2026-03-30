@@ -59,8 +59,10 @@
   <article>
     <h5 class="component-summary">
       Clarity Addons provides six D3-powered chart components that are fully responsive, support CSS custom-property
-      colours, legends, tooltips and SVG export. Import
-      <code class="clr-code">ClrChartsModule</code> to use them all at once.
+      colours, legends, tooltips and SVG export. Import <code class="clr-code">ClrChartsModule</code> to use them all at
+      once. Pay attention that the charts have their own entry point —
+      <code class="clr-code">&#64;porscheinformatik/clr-addons/charts</code> — that is separate from the main Addons
+      module. This allows apps which don't use charts to avoid the extra bundle weight of D3 and its dependencies.
     </h5>
 
     <!-- ── Module Setup ──────────────────────────────────────────────────── -->
@@ -71,7 +73,7 @@
     </p>
     <clr-code-snippet
       clrLanguage="typescript"
-      [clrCode]="'import { ClrChartsModule } from \'@porscheinformatik/clr-addons\';\n\n@NgModule({\n  imports: [ClrChartsModule],\n})\nexport class AppModule {}'"
+      [clrCode]="'import { ClrChartsModule } from \'@porscheinformatik/clr-addons/charts\';\n\n@NgModule({\n  imports: [ClrChartsModule],\n})\nexport class AppModule {}'"
     ></clr-code-snippet>
 
     <!-- ── Shared Inputs ─────────────────────────────────────────────────── -->

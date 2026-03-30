@@ -7,7 +7,7 @@ import { Component, computed, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ClrAlertModule } from '@clr/angular';
-import { ClrChartsModule, BarChartData, BarChartValue } from '@porscheinformatik/clr-addons';
+import { BarChartData, BarChartValue, ClrChartsModule } from '@porscheinformatik/clr-addons/charts';
 
 const COLORS = ['--cds-global-color-lavender-400', '#00828b', '#c1326e', '#5b40b2', '#007cba', '#006b4a', '#9e3b00'];
 

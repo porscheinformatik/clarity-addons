@@ -46,7 +46,6 @@ import { ClrReadonlyDirectiveModule } from './readonly/readonly.module';
 import { ClrFocusFirstInvalidFieldDirective } from './focus-first-invalid-field';
 import { ClrControlEnterSubmitDirective } from './control-enter-submit';
 import { ClrSignpostAddonModule } from './signpost';
-import { ClrChartsModule } from './charts';
 
 @NgModule({
   imports: [ClrFocusFirstInvalidFieldDirective, ClrControlEnterSubmitDirective],
@@ -91,7 +90,6 @@ import { ClrChartsModule } from './charts';
     ClrSignpostAddonModule,
     ClrFocusFirstInvalidFieldDirective,
     ClrControlEnterSubmitDirective,
-    ClrChartsModule,
   ],
 })
 export class ClrAddonsModule {}

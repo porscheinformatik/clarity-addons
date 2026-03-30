@@ -7,7 +7,12 @@ import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ClrAlertModule } from '@clr/angular';
-import { ClrChartsModule, ComboBarSeries, ComboChartValue, ComboLineSeries } from '@porscheinformatik/clr-addons';
+import {
+  ClrChartsModule,
+  ComboBarSeries,
+  ComboChartValue,
+  ComboLineSeries,
+} from '@porscheinformatik/clr-addons/charts';
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 

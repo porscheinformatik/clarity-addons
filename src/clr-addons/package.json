@@ -23,7 +23,17 @@
     "@angular/compiler": "^19.0.0",
     "@clr/angular": "^17.12.2",
     "@cds/core": "^6.17.0",
-    "@clr/ui": "^17.12.2"
+    "@clr/ui": "^17.12.2",
+    "d3": ">=7.0.0",
+    "ngx-skeleton-loader": ">=10.0.0"
+  },
+  "peerDependenciesMeta": {
+    "d3": {
+      "optional": true
+    },
+    "ngx-skeleton-loader": {
+      "optional": true
+    }
   },
   "author": "porscheinformatik",
   "license": "MIT",

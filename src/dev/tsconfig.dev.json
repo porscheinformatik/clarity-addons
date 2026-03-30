@@ -4,7 +4,8 @@
     "outDir": "../out-tsc/dev",
     "baseUrl": "./",
     "paths": {
-      "@porscheinformatik/clr-addons": ["../clr-addons"]
+      "@porscheinformatik/clr-addons": ["../clr-addons"],
+      "@porscheinformatik/clr-addons/charts": ["../clr-addons/charts"]
     }
   },
   "files": ["src/main.ts", "src/polyfills.ts"],

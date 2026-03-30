@@ -7,7 +7,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ClarityModule } from '@clr/angular';
-import { ClrChartsModule } from '@porscheinformatik/clr-addons';
+import { ClrChartsModule } from '@porscheinformatik/clr-addons/charts';
 import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
 import { UtilsModule } from '../../../utils/utils.module';
 import { ChartsDemo } from './charts.demo';

@@ -7,7 +7,7 @@ import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ClrAlertModule } from '@clr/angular';
-import { ClrChartsModule, PieChartData, PieChartValue } from '@porscheinformatik/clr-addons';
+import { ClrChartsModule, PieChartData, PieChartValue } from '@porscheinformatik/clr-addons/charts';
 
 const COLORS = ['#e57200', '#00828b', '#c1326e', '#5b40b2', '#007cba', '#006b4a', '#9e3b00'];
 

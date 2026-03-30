@@ -9,12 +9,12 @@ import { share } from 'rxjs';
 import { ClarityDocComponent } from '../clarity-doc';
 import {
   BarChartData,
-  XYChartSeries,
-  PieChartData,
   ComboBarSeries,
   ComboLineSeries,
   FunnelChartData,
-} from '@porscheinformatik/clr-addons';
+  PieChartData,
+  XYChartSeries,
+} from '@porscheinformatik/clr-addons/charts';
 
 // ── Code snippets ──────────────────────────────────────────────────────────────
 

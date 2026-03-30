@@ -6,7 +6,7 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ClrAlertModule } from '@clr/angular';
-import { ClrChartsModule, FunnelChartData, FunnelValue } from '@porscheinformatik/clr-addons';
+import { ClrChartsModule, FunnelChartData, FunnelValue } from '@porscheinformatik/clr-addons/charts';
 
 const PIPELINE_DATA: FunnelChartData[] = [
   {
