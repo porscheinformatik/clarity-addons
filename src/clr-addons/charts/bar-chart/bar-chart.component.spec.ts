@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ComponentRef } from '@angular/core';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
-import { BarChartComponent, BarChartData } from './bar-chart.component';
+import { BarChartComponent, BarChartData, BarChartLabel } from './bar-chart.component';
 import { NO_ITEMS_ALERT_TYPE, NO_ITEMS_MESSAGE } from '../constants';
 import { ClrChartsModule } from '../charts.module';
 
@@ -16,6 +16,11 @@ const STACKED_DATA: BarChartData[] = [
   { key: 'jan-b', label: 'Costs', value: 60, color: '#00828b', stackKey: 'jan' },
   { key: 'feb-a', label: 'Revenue', value: 85, color: '#e57200', stackKey: 'feb' },
   { key: 'feb-b', label: 'Costs', value: 40, color: '#00828b', stackKey: 'feb' },
+];
+
+const STACKS: BarChartLabel[] = [
+  { stackKey: 'jan', label: 'January' },
+  { stackKey: 'feb', label: 'February' },
 ];
 
 describe('BarChartComponent', () => {
@@ -47,7 +52,7 @@ describe('BarChartComponent', () => {
     it('should default showExportButton to false', () => expect(component.showExportButton()).toBeFalse());
     it('should default exportFilename to "bar-chart"', () => expect(component.exportFilename()).toBe('bar-chart'));
     it('should default tooltipOrientation to "top"', () => expect(component.tooltipOrientation()).toBe('top'));
-    it('should default stackLabels to undefined', () => expect(component.stacks()).toBeUndefined());
+    it('should default stacks to undefined', () => expect(component.stacks()).toBeUndefined());
   });
 
   describe('alertMessageAndType()', () => {
@@ -81,7 +86,7 @@ describe('BarChartComponent', () => {
 
     it('should return one item per distinct label for stacked data', () => {
       componentRef.setInput('data', STACKED_DATA);
-      componentRef.setInput('stackLabels', ['jan', 'feb']);
+      componentRef.setInput('stacks', STACKS);
       componentRef.setInput('showLegend', true);
       fixture.detectChanges();
       // Revenue + Costs = 2 distinct labels
