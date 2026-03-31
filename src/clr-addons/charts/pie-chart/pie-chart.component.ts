@@ -31,6 +31,7 @@ export class PieChartComponent extends ChartBase<PieChartData> implements OnChan
   public readonly donut = input(true);
   public readonly showLegend = input(true);
   public readonly showExportButton = input(false);
+  public readonly exportButtonTitle = input<string>('Export');
   public readonly exportFilename = input<string>('pie-chart');
   public readonly tooltipOrientation = input<'top' | 'bottom'>('top');
 

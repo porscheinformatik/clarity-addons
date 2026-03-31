@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ClrAlertModule } from '@clr/angular';
 import { BarChartData, BarChartValue, ClrChartsModule } from '@porscheinformatik/clr-addons/charts';
+import { BarChartLabel } from '../../../../clr-addons/charts';
 
 const COLORS = ['--cds-global-color-lavender-400', '#00828b', '#c1326e', '#5b40b2', '#007cba', '#006b4a', '#9e3b00'];
 
@@ -48,32 +49,50 @@ export class BarChartDemo {
     { key: 'apr-b', label: 'Costs', value: 75, color: COLORS[1], stackKey: 'apr' },
   ];
 
-  protected readonly stackLabels = ['jan', 'feb', 'mar', 'apr'];
+  protected readonly stacks: BarChartLabel[] = [
+    { stackKey: 'jan', label: 'January' },
+    { stackKey: 'feb', label: 'February' },
+    { stackKey: 'mar', label: 'March' },
+    { stackKey: 'apr', label: 'April' },
+  ];
 
   /** Multiple values per month – 3 series × 12 months stacked */
-  protected readonly months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+  protected readonly allMonthsStacks: BarChartLabel[] = [
+    { stackKey: 'jan', label: 'January' },
+    { stackKey: 'feb', label: 'February' },
+    { stackKey: 'mar', label: 'March' },
+    { stackKey: 'apr', label: 'April' },
+    { stackKey: 'may', label: 'May' },
+    { stackKey: 'jun', label: 'June' },
+    { stackKey: 'jul', label: 'July' },
+    { stackKey: 'aug', label: 'August' },
+    { stackKey: 'sep', label: 'September' },
+    { stackKey: 'oct', label: 'October' },
+    { stackKey: 'nov', label: 'November' },
+    { stackKey: 'dec', label: 'December' },
+  ];
 
-  protected readonly multiValueData: BarChartData[] = this.months.flatMap((m, i) => [
+  protected readonly multiValueData: BarChartData[] = this.allMonthsStacks.flatMap((m, i) => [
     {
       key: `${m}-revenue`,
       label: 'Revenue',
       value: 80 + Math.round(Math.sin(i / 2) * 50 + i * 8),
       color: COLORS[0],
-      stackKey: m,
+      stackKey: m.stackKey,
     },
     {
       key: `${m}-costs`,
       label: 'Costs',
       value: 40 + Math.round(Math.cos(i / 2) * 25 + i * 4),
       color: COLORS[1],
-      stackKey: m,
+      stackKey: m.stackKey,
     },
     {
       key: `${m}-profit`,
       label: 'Profit',
       value: 20 + Math.round(Math.sin(i / 3) * 20 + i * 2),
       color: COLORS[2],
-      stackKey: m,
+      stackKey: m.stackKey,
     },
   ]);
 
@@ -92,8 +111,8 @@ export class BarChartDemo {
     this.showStacked() ? this.stackedData : this.simpleData
   );
 
-  protected readonly activeStackLabels = computed<string[] | undefined>(() =>
-    this.showStacked() ? this.stackLabels : undefined
+  protected readonly activeStacks = computed<BarChartLabel[] | undefined>(() =>
+    this.showStacked() ? this.stacks : undefined
   );
 
   protected toggleOrientation(): void {

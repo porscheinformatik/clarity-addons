@@ -44,6 +44,7 @@ export class AreaChartComponent extends ChartBase<AreaChartSelectedPoint> implem
   public readonly tooltipOrientation = input<'top' | 'bottom'>('top');
   public readonly showLegend = input(true);
   public readonly showExportButton = input(false);
+  public readonly exportButtonTitle = input<string>('Export');
   public readonly exportFilename = input<string>('area-chart');
   /** Area fill opacity (0–1). Default: 0.2. */
   public readonly areaOpacity = input<number>(0.2);

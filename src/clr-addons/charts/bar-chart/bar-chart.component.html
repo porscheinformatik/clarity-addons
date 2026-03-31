@@ -6,7 +6,7 @@
     <cng-chart-tooltip
       [tooltipPosition]="tooltipPosition()"
       [tooltipOrientation]="tooltipOrientation()"
-      [squareColor]="!stackLabels() ? selectedItem()?.color : undefined"
+      [squareColor]="!stacks() ? selectedItem()?.color : undefined"
       (tooltipClosed)="resetTooltip()"
       (cngOutsideClick)="resetTooltip()"
       (tooltipHeaderClicked)="valueClicked.emit({ key: tooltipKey(), label: tooltipLabel(), value: tooltipValue() })"
@@ -18,8 +18,7 @@
         {{ tooltipPercentOfTotal() }}
       </p>
 
-      @if (stackLabels()) { @let stackKey = selectedItem().stackKey; @for (slice of selectedStackSlices(); track
-      slice.key) {
+      @if (stacks()) { @for (slice of selectedStackSlices(); track slice.key) {
       <div class="mt-0-5 d-flex">
         <div class="color-square mr-0-5" [style.background-color]="toChartColor(slice.color)"></div>
         <strong>{{ slice.fullLabel || slice.label }}:&nbsp;</strong>
@@ -39,7 +38,7 @@
       <p class="mt-0-25 percentage-info">
         {{ (100 * slice.value) / total() | number : '1.0-2' }}%
         {{ tooltipPercentOfTotal() }}
-        {{ slice.percentageOfStack | number : '1.0-2' }}% {{ tooltipPercentOf() }} "{{ stackKey }}"
+        {{ slice.percentageOfStack | number : '1.0-2' }}% {{ tooltipPercentOf() }} "{{ tooltipLabel() }}"
       </p>
       } }
     </cng-chart-tooltip>
@@ -53,6 +52,6 @@
   @if (showLegend() && !loading() && legendItems().length) {
   <cng-chart-legend [items]="legendItems()" />
   } @if (showExportButton() && !loading() && data()?.length) {
-  <cng-chart-export-button class="chart-export-btn" [svgRef]="svgElement()" [filename]="exportFilename()" />
+  <cng-chart-export-button [svgRef]="svgElement()" [filename]="exportFilename()" [buttonTitle]="exportButtonTitle()" />
   }
 </div>

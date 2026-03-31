@@ -50,7 +50,7 @@
     <div [style.height]="orientation() === 'vertical' ? '300px' : '250px'" style="width: 100%">
       <clr-bar-chart
         [data]="activeData()"
-        [stackLabels]="activeStackLabels()"
+        [stacks]="activeStacks()"
         [orientation]="orientation()"
         [loading]="loading()"
         [showLegend]="showLegend()"
@@ -106,7 +106,7 @@
     <div style="height: 320px; width: 100%">
       <clr-bar-chart
         [data]="stackedData"
-        [stackLabels]="stackLabels"
+        [stacks]="stacks"
         orientation="vertical"
         [loading]="false"
         [showLegend]="true"
@@ -126,7 +126,7 @@
     <div style="height: 320px; width: 100%">
       <clr-bar-chart
         [data]="stackedData"
-        [stackLabels]="stackLabels"
+        [stacks]="stacks"
         orientation="horizontal"
         [loading]="false"
         [showLegend]="true"
@@ -146,7 +146,7 @@
     <div style="height: 340px; width: 100%">
       <clr-bar-chart
         [data]="multiValueData"
-        [stackLabels]="months"
+        [stacks]="allMonthsStacks"
         orientation="vertical"
         [loading]="false"
         [showLegend]="true"

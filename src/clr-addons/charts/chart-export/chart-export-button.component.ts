@@ -10,6 +10,7 @@ ClarityIcons.addIcons(downloadIcon);
     <clr-dropdown>
       <button class="btn btn-sm btn-icon btn-link export-trigger" clrDropdownTrigger title="Export chart">
         <cds-icon shape="download" size="16"></cds-icon>
+        {{ buttonTitle() }}
       </button>
       <clr-dropdown-menu *clrIfOpen clrPosition="bottom-left">
         <button clrDropdownItem (click)="export('svg')">SVG</button>
@@ -21,8 +22,8 @@ ClarityIcons.addIcons(downloadIcon);
     `
       :host {
         position: absolute;
-        bottom: -15px;
-        left: -5px;
+        top: 15px;
+        right: 15px;
         z-index: 10;
         opacity: 1;
         pointer-events: auto;
@@ -35,6 +36,7 @@ ClarityIcons.addIcons(downloadIcon);
 export class ChartExportButtonComponent {
   public readonly svgRef = input<SVGSVGElement | undefined>(undefined);
   public readonly filename = input<string>('chart');
+  public readonly buttonTitle = input<string>('Export');
 
   private readonly exportService = inject(ChartExportService);
 

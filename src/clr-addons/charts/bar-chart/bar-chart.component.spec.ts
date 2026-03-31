@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ComponentRef } from '@angular/core';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { BarChartComponent, BarChartData } from './bar-chart.component';
-import { NO_ITEMS_MESSAGE, NO_ITEMS_ALERT_TYPE } from '../constants';
+import { NO_ITEMS_ALERT_TYPE, NO_ITEMS_MESSAGE } from '../constants';
 import { ClrChartsModule } from '../charts.module';
 
 const SIMPLE_DATA: BarChartData[] = [
@@ -47,7 +47,7 @@ describe('BarChartComponent', () => {
     it('should default showExportButton to false', () => expect(component.showExportButton()).toBeFalse());
     it('should default exportFilename to "bar-chart"', () => expect(component.exportFilename()).toBe('bar-chart'));
     it('should default tooltipOrientation to "top"', () => expect(component.tooltipOrientation()).toBe('top'));
-    it('should default stackLabels to undefined', () => expect(component.stackLabels()).toBeUndefined());
+    it('should default stackLabels to undefined', () => expect(component.stacks()).toBeUndefined());
   });
 
   describe('alertMessageAndType()', () => {

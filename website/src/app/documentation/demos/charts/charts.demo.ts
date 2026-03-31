@@ -9,6 +9,7 @@ import { share } from 'rxjs';
 import { ClarityDocComponent } from '../clarity-doc';
 import {
   BarChartData,
+  BarChartLabel,
   ComboBarSeries,
   ComboLineSeries,
   FunnelChartData,
@@ -39,11 +40,14 @@ const STACKED_BAR_TS = `stackedData: BarChartData[] = [
   { key: 'feb-a', label: 'Revenue', value:  85, color: '#e57200', stackKey: 'feb' },
   { key: 'feb-b', label: 'Costs',   value:  40, color: '#00828b', stackKey: 'feb' },
 ];
-stackLabels = ['jan', 'feb'];`;
+stacks: BarChartLabel[] = [
+    { stackKey: 'jan', label: 'January' },
+    { stackKey: 'feb', label: 'February' }
+  ];`;
 
 const STACKED_BAR_HTML = `<clr-bar-chart
   [data]="stackedData"
-  [stackLabels]="stackLabels"
+  [stacks]="stacks"
   orientation="vertical"
   [showLegend]="true"
   style="display:block;width:100%;height:300px;"
@@ -52,11 +56,11 @@ const STACKED_BAR_HTML = `<clr-bar-chart
 const LINE_CHART_TS = `lineSeries: XYChartSeries[] = [
   {
     key: 'revenue', label: 'Revenue', color: '#e57200',
-    data: [{ x: 'Jan', value: 80 }, { x: 'Feb', value: 120 }, { x: 'Mar', value: 95 }],
+    data: [{ x: 'January', value: 80 }, { x: 'February', value: 120 }, { x: 'March', value: 95 }],
   },
   {
     key: 'costs', label: 'Costs', color: '#00828b',
-    data: [{ x: 'Jan', value: 50 }, { x: 'Feb', value: 70 }, { x: 'Mar', value: 60 }],
+    data: [{ x: 'January', value: 50 }, { x: 'February', value: 70 }, { x: 'March', value: 60 }],
   },
 ];`;
 
@@ -72,7 +76,7 @@ const AREA_CHART_TS = `// Same XYChartSeries[] shape as the line chart
 areaSeries: XYChartSeries[] = [
   {
     key: 'revenue', label: 'Revenue', color: '#e57200',
-    data: [{ x: 'Jan', value: 80 }, { x: 'Feb', value: 120 }, { x: 'Mar', value: 95 }],
+    data: [{ x: 'January', value: 80 }, { x: 'February', value: 120 }, { x: 'March', value: 95 }],
   },
 ];`;
 
@@ -143,7 +147,20 @@ const FUNNEL_CHART_HTML = `<clr-funnel-chart
 
 // ── Month labels ───────────────────────────────────────────────────────────────
 
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const MONTHS = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
 
 // ── Color Handling ─────────────────────────────────────────────────────────────
 
@@ -164,6 +181,121 @@ const COLOR_HTML = `<clr-bar-chart
   [showLegend]="true"
   style="display:block;width:100%;height:300px;"
 ></clr-bar-chart>`;
+
+// ── Adding a custom chart ──────────────────────────────────────────────────────
+
+const ADD_CHART_TS = `import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
+import { select as d3select } from 'd3';
+import { ChartBase } from '../shared/chart-base';
+import { toChartColor } from '../utils';
+
+export interface MyChartData {
+  key: string;
+  label: string;
+  value: number;
+  color?: string;
+}
+
+@Component({
+  selector: 'clr-my-chart',
+  templateUrl: './my-chart.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
+})
+export class MyChartComponent extends ChartBase<MyChartData> implements OnChanges {
+  // Required input – your chart's data
+  readonly data = input.required<MyChartData[]>();
+
+  // Shared inputs inherited via ChartBase: loading, showLegend, showExportButton, …
+  readonly showLegend = input(true);
+  readonly showExportButton = input(false);
+  readonly exportButtonTitle = input('Export');
+  readonly exportFilename = input('my-chart');
+
+  readonly legendItems = computed(() =>
+    this.data().map(d => ({ label: d.label, color: d.color }))
+  );
+
+  ngOnChanges(_changes: SimpleChanges): void {
+    requestAnimationFrame(() => this.updateChart());
+  }
+
+  override ngAfterViewInit(): void {
+    // chartRef() and containerRef() are available after this point
+    super.ngAfterViewInit(); // schedules the first updateChart()
+  }
+
+  protected updateChart(): void {
+    const svg = d3select(this.chartRef().nativeElement);
+    svg.selectAll('*').remove();
+
+    if (this.loading() || !this.data()?.length) {
+      return;
+    }
+
+    const { width, height } = this.getContainerDimensions();
+    // … your D3 rendering logic …
+    svg.attr('width', width).attr('height', height);
+  }
+}`;
+
+const ADD_CHART_HTML = `<div class="chart-container">
+  <div class="chart-area" #container (cngWindowResize)="updateChart()">
+
+    <!-- The #chart reference is used by ChartBase for SVG export -->
+    <svg [class.d-none]="loading() || !data()?.length" #chart></svg>
+
+    <!-- Tooltip: wire the signals from ChartBase -->
+    @if (tooltipPosition()) {
+      <cng-chart-tooltip
+        [tooltipPosition]="tooltipPosition()"
+        (tooltipClosed)="resetTooltip()"
+        (cngOutsideClick)="resetTooltip()"
+      >
+        <ng-container ngProjectAs="cng-title">{{ selectedItem()?.label }}</ng-container>
+        <p>{{ selectedItem()?.value }}</p>
+      </cng-chart-tooltip>
+    }
+
+    <!-- Skeleton shown while loading or when data is empty -->
+    @if (loading() || !data()?.length) {
+      <cng-chart-skeleton [skeletonType]="loading() ? 'loading' : 'placeholder'" />
+    }
+  </div>
+
+  @if (showLegend() && !loading() && legendItems().length) {
+    <cng-chart-legend [items]="legendItems()" />
+  }
+  @if (showExportButton() && !loading() && data()?.length) {
+    <cng-chart-export-button
+      [svgRef]="svgElement()"
+      [filename]="exportFilename()"
+      [buttonTitle]="exportButtonTitle()"
+    />
+  }
+</div>`;
+
+const ADD_CHART_MODULE_TS = `// charts.module.ts
+import { MyChartComponent } from './my-chart/my-chart.component';
+
+const CLR_CHARTS_DECLARATIONS = [
+  // … existing components …
+  MyChartComponent,
+];
+
+@NgModule({
+  declarations: [...CLR_CHARTS_DECLARATIONS],
+  exports: [...CLR_CHARTS_DECLARATIONS],
+  // …
+})
+export class ClrChartsModule {}`;
 
 @Component({
   selector: 'clr-charts-demo',
@@ -192,6 +324,9 @@ export class ChartsDemo extends ClarityDocComponent {
   funnelChartHtml = FUNNEL_CHART_HTML;
   colorTs = COLOR_TS;
   colorHtml = COLOR_HTML;
+  addChartTs = ADD_CHART_TS;
+  addChartHtml = ADD_CHART_HTML;
+  addChartModuleTs = ADD_CHART_MODULE_TS;
 
   // ── Color Handling ─────────────────────────────────────────────────────────
   colorData: BarChartData[] = [
@@ -221,7 +356,11 @@ export class ChartsDemo extends ClarityDocComponent {
     { key: 'mar-b', label: 'Costs', value: 90, color: '#00828b', stackKey: 'mar' },
   ];
 
-  stackLabels = ['jan', 'feb', 'mar'];
+  stacks: BarChartLabel[] = [
+    { stackKey: 'jan', label: 'January' },
+    { stackKey: 'feb', label: 'February' },
+    { stackKey: 'mar', label: 'March' },
+  ];
 
   // ── Line / Area Chart ──────────────────────────────────────────────────────
   lineSeries: XYChartSeries[] = [
@@ -260,7 +399,7 @@ export class ChartsDemo extends ClarityDocComponent {
       key: 'target',
       label: 'Target',
       color: '#c1326e',
-      data: MONTHS.map((x, i) => ({ x, value: 100 + i * 10 })),
+      data: MONTHS.map((x, i) => ({ x, value: i })),
     },
   ];
 

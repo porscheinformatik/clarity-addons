@@ -55,7 +55,7 @@ type BarChartDataPoint = BarChartData & {
   percentageOfStack: number;
 };
 
-type BarChartLabel = { stackKey: string; label: string };
+export type BarChartLabel = { stackKey: string; label: string };
 
 @Component({
   selector: 'clr-bar-chart',
@@ -66,7 +66,7 @@ type BarChartLabel = { stackKey: string; label: string };
 })
 export class BarChartComponent extends ChartBase<BarChartDataPoint> implements OnChanges {
   public readonly data = input.required<BarChartData[]>();
-  public readonly stackLabels = input<string[] | undefined>(undefined);
+  public readonly stacks = input<BarChartLabel[] | undefined>(undefined);
   public readonly orientation = input.required<'horizontal' | 'vertical'>();
   public readonly tooltipOrientation = input<'top' | 'bottom'>('top');
 
@@ -82,6 +82,7 @@ export class BarChartComponent extends ChartBase<BarChartDataPoint> implements O
 
   public readonly showLegend = input(true);
   public readonly showExportButton = input(false);
+  public readonly exportButtonTitle = input<string>('Export');
   public readonly exportFilename = input<string>('bar-chart');
 
   /** Optional label rendered below the X axis. */
@@ -144,7 +145,7 @@ export class BarChartComponent extends ChartBase<BarChartDataPoint> implements O
       return [this.noItemsMessage(), NO_ITEMS_ALERT_TYPE];
     } else if (this.totalBarCount() !== this.showingBarCount()) {
       return [
-        this.stackLabels() ? this.tooManyItemsGroupedMessage() : this.tooManyItemsMessage(),
+        this.stacks() ? this.tooManyItemsGroupedMessage() : this.tooManyItemsMessage(),
         TOO_MANY_ITEMS_ALERT_TYPE,
       ];
     }
@@ -156,7 +157,7 @@ export class BarChartComponent extends ChartBase<BarChartDataPoint> implements O
     if (!this.showLegend() || !this.data()?.length) {
       return [];
     }
-    if (this.stackLabels()?.length) {
+    if (this.stacks()?.length) {
       // Stacked: one legend entry per distinct label (= each layer in the stack)
       const seen = new Set<string>();
       const items: ChartLegendItem[] = [];
@@ -179,7 +180,7 @@ export class BarChartComponent extends ChartBase<BarChartDataPoint> implements O
     if (!item) {
       return undefined;
     }
-    return this.stackLabels()?.length ? this.keysByStack()[item.stackKey] ?? [] : [item.key];
+    return this.stacks()?.length ? this.keysByStack()[item.stackKey] ?? [] : [item.key];
   });
 
   protected readonly tooltipLabel = computed<string | undefined>(() => {
@@ -187,7 +188,7 @@ export class BarChartComponent extends ChartBase<BarChartDataPoint> implements O
     if (!item) {
       return undefined;
     }
-    return this.stackLabels()?.length ? item.stackKey : item.fullLabel ?? item.label;
+    return this.stacks()?.find(stack => stack.stackKey === item.stackKey)?.label ?? item.fullLabel ?? item.label;
   });
 
   protected readonly tooltipValue = computed<number | undefined>(() => {
@@ -195,13 +196,13 @@ export class BarChartComponent extends ChartBase<BarChartDataPoint> implements O
     if (!item) {
       return undefined;
     }
-    return this.stackLabels()?.length ? this.totalByStack()[item.stackKey] ?? 0 : item.value;
+    return this.stacks()?.length ? this.totalByStack()[item.stackKey] ?? 0 : item.value;
   });
 
   /** Slices belonging to the currently selected stack – used by the tooltip @for loop. */
   protected readonly selectedStackSlices = computed<BarChartDataPoint[]>(() => {
     const item = this.selectedItem();
-    if (!item || !this.stackLabels()?.length) {
+    if (!item || !this.stacks()?.length) {
       return [];
     }
     return this.slicedDataPoints().filter(d => d.stackKey === item.stackKey);
@@ -260,10 +261,10 @@ export class BarChartComponent extends ChartBase<BarChartDataPoint> implements O
     const flatStacks = slicedStacks.flat();
     this.slicedDataPoints.set(flatStacks);
     const slicedStackKeys = new Set(slicedStacks.map(stack => stack[0].stackKey));
-    const labels: BarChartLabel[] = this.stackLabels()?.length
-      ? this.stackLabels()
-          .filter(label => slicedStackKeys.has(label))
-          .map(label => ({ stackKey: label, label }))
+    const labels: BarChartLabel[] = this.stacks()?.length
+      ? this.stacks()
+          .filter(stack => slicedStackKeys.has(stack.stackKey))
+          .map(stack => ({ stackKey: stack.stackKey, label: stack.label }))
       : flatStacks.map(d => ({ stackKey: d.stackKey, label: d.label }));
 
     const g = this.svg
@@ -338,7 +339,7 @@ export class BarChartComponent extends ChartBase<BarChartDataPoint> implements O
       .style('fill', (d: BarChartDataPoint) => toChartColor(d.color));
 
     this.appendAxisLabel(g, xAxisLabel, width / 2, height + 40);
-    this.appendAxisLabel(g, yAxisLabel, -height / 2, -(leftMargin - 8), 'rotate(-90)');
+    this.appendAxisLabel(g, yAxisLabel, -height / 2, -(leftMargin - 10), 'rotate(-90)');
   }
 
   private createHorizontalChart(
@@ -454,7 +455,7 @@ export class BarChartComponent extends ChartBase<BarChartDataPoint> implements O
 
   private addTextClickHandler(g: Selection<SVGTextElement, BarChartLabel, SVGElement, undefined>) {
     // no click handler for labels in stacked charts
-    if (this.stackLabels()?.length) {
+    if (this.stacks()?.length) {
       return;
     }
 
@@ -555,7 +556,7 @@ export class BarChartComponent extends ChartBase<BarChartDataPoint> implements O
 
   private stackItems(data: BarChartData[]): BarChartDataPoint[][] {
     let groups: [string, BarChartData[]][];
-    if (this.stackLabels()?.length) {
+    if (this.stacks()?.length) {
       groups = Array.from(d3group(data, (d: BarChartData) => d.stackKey ?? d.key));
     } else {
       groups = data.map(item => [item.key, [item]]);

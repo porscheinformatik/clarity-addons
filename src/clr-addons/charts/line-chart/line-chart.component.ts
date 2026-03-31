@@ -46,6 +46,7 @@ export class LineChartComponent extends ChartBase<LineChartSelectedPoint> implem
   public readonly showLegend = input(true);
   public readonly showValues = input(false);
   public readonly showExportButton = input(false);
+  public readonly exportButtonTitle = input<string>('Export');
   public readonly exportFilename = input<string>('line-chart');
 
   public readonly noItemsMessage = input<string>(NO_ITEMS_MESSAGE);

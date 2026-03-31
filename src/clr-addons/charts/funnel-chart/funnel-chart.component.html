@@ -127,6 +127,11 @@
   </cng-chart-tooltip>
 
   } } @if (showExportButton() && !loading() && hasData()) {
-  <cng-chart-export-button class="funnel-export-btn" [svgRef]="svgElement()" [filename]="exportFilename()" />
+  <cng-chart-export-button
+    class="funnel-export-btn"
+    [svgRef]="svgElement()"
+    [filename]="exportFilename()"
+    [buttonTitle]="exportButtonTitle()"
+  />
   }
 </div>

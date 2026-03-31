@@ -84,6 +84,7 @@ export class ComboChartComponent extends ChartBase<SelectedComboItem> implements
   public readonly tooltipOrientation = input<'top' | 'bottom'>('top');
   public readonly showLegend = input(true);
   public readonly showExportButton = input(false);
+  public readonly exportButtonTitle = input<string>('Export');
   public readonly exportFilename = input<string>('combo-chart');
 
   public readonly noItemsMessage = input<string>(NO_ITEMS_MESSAGE);

@@ -11,6 +11,16 @@
         >
       </li>
       <li>
+        <a routerLink="." fragment="shared-inputs" [class.active]="(activeFragment | async) === 'shared-inputs'"
+          >Shared Inputs</a
+        >
+      </li>
+      <li>
+        <a routerLink="." fragment="color-handling" [class.active]="(activeFragment | async) === 'color-handling'"
+          >Color Handling</a
+        >
+      </li>
+      <li>
         <a routerLink="." fragment="bar-chart" [class.active]="(activeFragment | async) === 'bar-chart'">Bar Chart</a>
       </li>
       <li>
@@ -44,13 +54,8 @@
         >
       </li>
       <li>
-        <a routerLink="." fragment="shared-inputs" [class.active]="(activeFragment | async) === 'shared-inputs'"
-          >Shared Inputs</a
-        >
-      </li>
-      <li>
-        <a routerLink="." fragment="color-handling" [class.active]="(activeFragment | async) === 'color-handling'"
-          >Color Handling</a
+        <a routerLink="." fragment="adding-charts" [class.active]="(activeFragment | async) === 'adding-charts'"
+          >Adding Additional Charts</a
         >
       </li>
     </ul>
@@ -58,11 +63,12 @@
 
   <article>
     <h5 class="component-summary">
-      Clarity Addons provides six D3-powered chart components that are fully responsive, support CSS custom-property
-      colours, legends, tooltips and SVG export. Import <code class="clr-code">ClrChartsModule</code> to use them all at
-      once. Pay attention that the charts have their own entry point —
-      <code class="clr-code">&#64;porscheinformatik/clr-addons/charts</code> — that is separate from the main Addons
-      module. This allows apps which don't use charts to avoid the extra bundle weight of D3 and its dependencies.
+      Clarity Addons provides six <a href="https://d3js.org/" target="_blank">D3-powered</a> chart components that are
+      fully responsive, support CSS custom-property colours, legends, tooltips and SVG export. Import
+      <code class="clr-code">ClrChartsModule</code> to use them all at once. Pay attention that the charts have their
+      own entry point — <code class="clr-code">&#64;porscheinformatik/clr-addons/charts</code> — that is separate from
+      the main Addons module. This allows apps which don't use charts to avoid the extra bundle weight of D3 and its
+      dependencies.
     </h5>
 
     <!-- ── Module Setup ──────────────────────────────────────────────────── -->
@@ -105,6 +111,12 @@
           <td class="left">boolean</td>
           <td class="left">false</td>
           <td class="left">Displays a download button that exports the chart as SVG.</td>
+        </tr>
+        <tr>
+          <td class="left"><code>exportButtonTitle</code></td>
+          <td class="left">string</td>
+          <td class="left">Export</td>
+          <td class="left">Title of the export button.</td>
         </tr>
         <tr>
           <td class="left"><code>exportFilename</code></td>
@@ -227,8 +239,8 @@
           <td class="left">Direction of the bars.</td>
         </tr>
         <tr>
-          <td class="left"><code>stackLabels</code></td>
-          <td class="left">string[]</td>
+          <td class="left"><code>stacks</code></td>
+          <td class="left">BarChartLabel[]</td>
           <td class="left">undefined</td>
           <td class="left">Enables stacking; each entry is a <code>stackKey</code> group.</td>
         </tr>
@@ -251,7 +263,6 @@
         [data]="barData"
         orientation="vertical"
         [showLegend]="true"
-        [showExportButton]="true"
         xAxisLabel="Month"
         yAxisLabel="Revenue (€)"
         exportFilename="bar-chart"
@@ -297,7 +308,7 @@
     <!-- ================================================================== -->
     <h2 id="stacked-bar-chart">Stacked Bar Chart</h2>
     <p>
-      Activate stacking by providing <code class="clr-code">[stackLabels]</code> and setting a
+      Activate stacking by providing <code class="clr-code">[stacks]</code> and setting a
       <code class="clr-code">stackKey</code> on each data item. Works for both orientations.
     </p>
 
@@ -308,7 +319,7 @@
     <div style="height: 300px; width: 100%">
       <clr-bar-chart
         [data]="stackedData"
-        [stackLabels]="stackLabels"
+        [stacks]="stacks"
         orientation="vertical"
         [showLegend]="true"
         xAxisLabel="Month"
@@ -321,7 +332,7 @@
     <div style="height: 280px; width: 100%; margin-top: 1.5rem">
       <clr-bar-chart
         [data]="stackedData"
-        [stackLabels]="stackLabels"
+        [stacks]="stacks"
         orientation="horizontal"
         yAxisLabel="Month"
         xAxisLabel="Revenue (€)"
@@ -674,5 +685,70 @@
         style="display: block; width: 100%; height: 100%"
       ></clr-funnel-chart>
     </div>
+
+    <!-- ================================================================== -->
+    <!-- ADDING A CUSTOM CHART                                               -->
+    <!-- ================================================================== -->
+    <h2 id="adding-charts">Adding Additional Charts</h2>
+    <p>
+      All chart components are built on a shared <code class="clr-code">ChartBase</code> abstract class and registered
+      through <code class="clr-code">ClrChartsModule</code>. Follow the steps below to add a new chart type that
+      integrates seamlessly with the existing skeleton, tooltip, legend, and export infrastructure.
+    </p>
+
+    <h3>1. Create the component files</h3>
+    <p>Create a new folder under <code class="clr-code">src/clr-addons/charts/&lt;my-chart&gt;/</code> containing:</p>
+    <ul>
+      <li><code class="clr-code">my-chart.component.ts</code> — the component class</li>
+      <li><code class="clr-code">my-chart.component.html</code> — the template</li>
+      <li><code class="clr-code">my-chart.component.scss</code> — optional styles</li>
+    </ul>
+
+    <h3>2. Extend <code class="clr-code">ChartBase</code></h3>
+    <p>
+      <code class="clr-code">ChartBase&lt;TSelected&gt;</code> wires up the container resize listener, skeleton state,
+      tooltip position signal, and SVG export reference. Your component only needs to implement
+      <code class="clr-code">updateChart()</code>, which is called automatically after the view is ready and on every
+      subsequent resize.
+    </p>
+    <clr-code-snippet clrLanguage="typescript" [clrCode]="addChartTs"></clr-code-snippet>
+
+    <h3>3. Write the template</h3>
+    <p>
+      Follow the same structure used by the existing charts: a
+      <code class="clr-code">.chart-container</code> wrapper with a <code class="clr-code">#container</code> div (needed
+      by <code class="clr-code">getContainerDimensions()</code>), a
+      <code class="clr-code">&lt;svg #chart&gt;</code> element, and the shared helper components wired to the signals
+      inherited from <code class="clr-code">ChartBase</code>:
+    </p>
+    <clr-code-snippet clrLanguage="html" [clrCode]="addChartHtml"></clr-code-snippet>
+
+    <h3>4. Register in <code class="clr-code">ClrChartsModule</code></h3>
+    <p>
+      Add the new component to the <code class="clr-code">declarations</code> and
+      <code class="clr-code">exports</code> arrays in
+      <code class="clr-code">src/clr-addons/charts/charts.module.ts</code>:
+    </p>
+    <clr-code-snippet clrLanguage="typescript" [clrCode]="addChartModuleTs"></clr-code-snippet>
+
+    <h3>5. Re-export from the entry point</h3>
+    <p>
+      Add a barrel export in <code class="clr-code">src/clr-addons/charts/index.ts</code> so consumers can import the
+      component's types directly from <code class="clr-code">&#64;porscheinformatik/clr-addons/charts</code>:
+    </p>
+    <clr-code-snippet
+      clrLanguage="typescript"
+      [clrCode]="'export * from \'./my-chart/my-chart.component\';'"
+    ></clr-code-snippet>
+
+    <clr-alert [clrAlertType]="'info'" [clrAlertClosable]="false" style="margin-bottom: 1rem">
+      <clr-alert-item>
+        <span class="alert-text">
+          Use <code>toChartColor(color)</code> from <code>../utils</code> to resolve both plain hex values and CSS
+          custom-property names (e.g. <code>'--clr-color-action-600'</code>) to a valid CSS color string before passing
+          them to D3 <code>.style('fill', …)</code> or <code>.style('stroke', …)</code> calls.
+        </span>
+      </clr-alert-item>
+    </clr-alert>
   </article>
 </clr-doc-wrapper>

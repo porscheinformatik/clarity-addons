@@ -133,6 +133,7 @@ export class FunnelChartComponent extends ChartBase<FunnelDataPoint> implements 
   // ── Inputs ──────────────────────────────────────────────────────────────────
   public readonly data = input<FunnelChartData[]>([]);
   public readonly showExportButton = input(false);
+  public readonly exportButtonTitle = input<string>('Export');
   public readonly exportFilename = input<string>('funnel-chart');
 
   /** Rendering mode. 'default' = horizontal bars with sections; 'centered' = centered trapezoid funnel. */
