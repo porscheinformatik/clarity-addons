@@ -104,7 +104,7 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
 
     const columnOrderPersistenceEnabled = this.options.persistColumnOrder ?? false;
     if (columnOrderPersistenceEnabled && !!this.reorderDirective) {
-      this.initColumnOrderPersister(localStorageState);
+      this.initColumnOrderPersister();
       this.initColumnOrder(localStorageState);
     }
 
@@ -213,14 +213,14 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
     this.datagrid.items.change.pipe(takeUntil(this.destroy$)).subscribe(() => this.updatePaginationDescription());
   }
 
-  private initColumnOrderPersister(state: ClrDatagridStatePersistenceModel) {
+  private initColumnOrderPersister() {
     this.reorderDirective.columnOrderChanged
       .pipe(
         takeUntil(this.destroy$),
         // we skip the first value (init), because it's already coming from the local storage, so no need to save it again
         filter(({ trigger }) => trigger !== 'init')
       )
-      .subscribe(({ columns }) => this.persistColumnOrder(state, columns));
+      .subscribe(({ columns }) => this.persistColumnOrder(columns));
   }
 
   private initColumnOrder(savedState: ClrDatagridStatePersistenceModel): void {
@@ -290,13 +290,18 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
     }
   }
 
-  private persistColumnOrder(state: ClrDatagridStatePersistenceModel, columns: { name: string }[]): void {
+  private persistColumnOrder(columns: { name: string }[]): void {
+    const state = this.getLocalStorageState();
     state.columns = state.columns || {};
 
-    columns.forEach(({ name }, index) => {
-      state.columns[name] = state.columns[name] || {};
-      state.columns[name].order = index;
-    });
+    if (this.options.persistColumnOrderTransformer) {
+      this.options.persistColumnOrderTransformer(state, columns);
+    } else {
+      columns.forEach(({ name }, index) => {
+        state.columns[name] = state.columns[name] || {};
+        state.columns[name].order = index;
+      });
+    }
 
     this.saveLocalStorageState(state);
   }

@@ -81,7 +81,7 @@ export class DatagridColumnReorderDirective<T extends { name: string }> implemen
   private updateColumnOrder(dragPreviousIndex: number, dragCurrentIndex: number): void {
     // we need to divide the indexes by two, because each column has two draggable elements:
     // - the column itself and the resize handle
-    const from = dragPreviousIndex / 2;
+    const from = Math.floor((dragPreviousIndex + 1) / 2);
     const to = Math.floor((dragCurrentIndex + 1) / 2);
     if (from === to) {
       // no change, do nothing

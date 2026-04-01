@@ -16,6 +16,7 @@ import { By } from '@angular/platform-browser';
 import { BehaviorSubject } from 'rxjs';
 import { ClrEnumFilterComponent, ClrEnumFilterModule } from '../enum-filter';
 import { CdkDrag, CdkDragDrop, CdkDropList } from '@angular/cdk/drag-drop';
+import { ClrDatagridStatePersistenceModel } from './datagrid-state-persistence-model.interface';
 
 @Component({
   template: `
@@ -28,7 +29,8 @@ import { CdkDrag, CdkDragDrop, CdkDropList } from '@angular/cdk/drag-drop';
         persistPagination,
         persistSort,
         persistColumnWidths,
-        persistColumnOrder
+        persistColumnOrder,
+        persistColumnOrderTransformer
       }"
       [clrPaginationDescription]="'{{first}} - {{last}} of {{total}} entries'"
       [clrDatagridColumnReorder]="columns"
@@ -105,6 +107,8 @@ class TestComponent {
   persistSort: boolean | undefined = false;
   persistColumnWidths: boolean | undefined = false;
   persistColumnOrder: boolean | undefined = false;
+  persistColumnOrderTransformer: (state: ClrDatagridStatePersistenceModel, columns: { name: string }[]) => void =
+    undefined;
 }
 
 const DEFAULT_PAGE_SIZE = 15;
@@ -504,6 +508,25 @@ describe('StatePersistenceKeyDirective', () => {
       fixture.detectChanges();
 
       expect(fixture.componentInstance.columns.map(c => c.name)).toEqual(['dynamic-column-1', 'dynamic-column-2']);
+    });
+
+    it('should use custom order transformer', () => {
+      const storageKey = PERSISTENCE_KEY + '-should-use-custom-transformer';
+      localStorage.setItem(storageKey, '{"columns":{"dynamic-column-1":{"order":1},"dynamic-column-2":{"order":2}}}');
+      fixture.componentInstance.storageKey = storageKey;
+      fixture.componentInstance.persistColumnOrder = true;
+      fixture.componentInstance.persistColumnOrderTransformer = (state, _columns) => {
+        // muliply the order by 10 for whatever reason
+        state.columns['dynamic-column-1'].order = 10 * state.columns['dynamic-column-1'].order;
+        state.columns['dynamic-column-2'].order = 10 * state.columns['dynamic-column-2'].order;
+      };
+      fixture.detectChanges();
+
+      fixture.componentInstance.dropList.dropped.emit(createCdkDropEvent(0, 1));
+
+      expect(localStorage.getItem(storageKey)).toEqual(
+        '{"columns":{"dynamic-column-1":{"order":10},"dynamic-column-2":{"order":20}}}'
+      );
     });
 
     function createCdkDropEvent(previousIndex: number, currentIndex: number): CdkDragDrop<unknown> {

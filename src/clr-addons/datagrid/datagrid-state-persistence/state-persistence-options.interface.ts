@@ -1,3 +1,5 @@
+import { ClrDatagridStatePersistenceModel } from './datagrid-state-persistence-model.interface';
+
 export interface StatePersistenceOptions {
   key: string;
   serverDriven: boolean;
@@ -7,4 +9,5 @@ export interface StatePersistenceOptions {
   persistHiddenColumns?: boolean;
   persistColumnWidths?: boolean;
   persistColumnOrder?: boolean;
+  persistColumnOrderTransformer?: (state: ClrDatagridStatePersistenceModel, columns: { name: string }[]) => void;
 }
