@@ -14,6 +14,13 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { filter } from 'rxjs/operators';
 import { ClrDatagrid, ClrDatagridColumn } from '@clr/angular';
 
+interface ColumnOrderChangedEvent<T> {
+  columns: T[];
+  from?: number;
+  to?: number;
+  trigger: 'init' | 'drag' | 'reset';
+}
+
 @Directive({
   selector: '[clrDatagridColumnReorder]',
   host: {
@@ -24,12 +31,16 @@ import { ClrDatagrid, ClrDatagridColumn } from '@clr/angular';
 export class DatagridColumnReorderDirective<T extends { name: string }> implements OnInit {
   @Input('clrDatagridColumnReorder') columnDefinitions: T[] = [];
 
-  @Output('clrDatagridColumnOrderChanged') columnOrderChanged = new EventEmitter<{
-    columns: T[];
-    from?: number;
-    to?: number;
-    trigger: 'init' | 'drag';
-  }>();
+  @Output('clrDatagridColumnOrderChanged') columnOrderChanged = Object.assign(
+    new EventEmitter<ColumnOrderChangedEvent<T>>(),
+    {
+      emit: (value: ColumnOrderChangedEvent<T>) => {
+        this.columnOrderChanged.next(value);
+        // after change detection, columns need to be rerendered first
+        setTimeout(() => this.updateSeparatorVisibility(), 0);
+      },
+    }
+  );
 
   @ContentChildren(ClrDatagridColumn) public clrColumns: QueryList<ClrDatagridColumn>;
 
@@ -61,9 +72,10 @@ export class DatagridColumnReorderDirective<T extends { name: string }> implemen
   public initializeColumnOrder(storedOrder: Record<string, number>) {
     const orderedColumns = this.reconcileColumnOrder(this.columnDefinitions, storedOrder);
     this.columnOrderChanged.emit({ columns: orderedColumns, trigger: 'init' });
+  }
 
-    // after change detection, columns need to be rerendered first
-    setTimeout(() => this.updateSeparatorVisibility(), 0);
+  public resetColumnOrder(columns: T[]): void {
+    this.columnOrderChanged.emit({ columns, trigger: 'reset' });
   }
 
   // This is needed in case there is a new column, which is not stored in the storage.
@@ -91,9 +103,6 @@ export class DatagridColumnReorderDirective<T extends { name: string }> implemen
     const columnDefinitionCopy = [...this.columnDefinitions];
     moveItemInArray(columnDefinitionCopy, from, to);
     this.columnOrderChanged.emit({ columns: columnDefinitionCopy, from, to, trigger: 'drag' });
-
-    // after change detection, columns need to be rerendered first
-    setTimeout(() => this.updateSeparatorVisibility(), 0);
   }
 
   // show separator for all but the last visible column
