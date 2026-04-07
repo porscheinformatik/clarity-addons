@@ -220,7 +220,9 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
         // we skip the first value (init), because it's already coming from the local storage, so no need to save it again
         filter(({ trigger }) => trigger !== 'init')
       )
-      .subscribe(({ columns }) => this.persistColumnOrder(columns));
+      .subscribe(({ trigger, columns }) =>
+        trigger === 'reset' ? this.resetColumnOrder() : this.persistColumnOrder(columns)
+      );
   }
 
   private initColumnOrder(savedState: ClrDatagridStatePersistenceModel): void {
@@ -301,6 +303,17 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
         state.columns[name] = state.columns[name] || {};
         state.columns[name].order = index;
       });
+    }
+
+    this.saveLocalStorageState(state);
+  }
+
+  private resetColumnOrder(): void {
+    const state = this.getLocalStorageState();
+    state.columns = state.columns || {};
+
+    for (const name in state.columns) {
+      state.columns[name].order = undefined;
     }
 
     this.saveLocalStorageState(state);
