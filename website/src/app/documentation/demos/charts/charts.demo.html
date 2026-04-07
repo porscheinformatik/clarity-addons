@@ -535,6 +535,30 @@
           <td class="left">''</td>
           <td class="left">Optional axis description labels.</td>
         </tr>
+        <tr>
+          <td class="left"><code>yLineAxisLabel</code></td>
+          <td class="left">string</td>
+          <td class="left">''</td>
+          <td class="left">Optional label for the right Y axis (line scale).</td>
+        </tr>
+        <tr>
+          <td class="left"><code>yBarMax</code></td>
+          <td class="left">number | undefined</td>
+          <td class="left">undefined</td>
+          <td class="left">
+            Fixes the maximum value of the left (bar) Y axis. When omitted the scale is calculated automatically from
+            the data.
+          </td>
+        </tr>
+        <tr>
+          <td class="left"><code>yLineMax</code></td>
+          <td class="left">number | undefined</td>
+          <td class="left">undefined</td>
+          <td class="left">
+            Fixes the maximum value of the right (line) Y axis. When omitted the scale is calculated automatically from
+            the data.
+          </td>
+        </tr>
       </tbody>
     </table>
 
@@ -549,6 +573,27 @@
         xAxisLabel="Month"
         yAxisLabel="Amount"
         yLineAxisLabel="Rate"
+        [showLegend]="true"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-combo-chart>
+    </div>
+
+    <h3>Fixed Y Axis Max Values (<code class="clr-code">yBarMax</code> / <code class="clr-code">yLineMax</code>)</h3>
+    <p>
+      Use <code class="clr-code">[yBarMax]</code> and <code class="clr-code">[yLineMax]</code> to pin the upper bound of
+      either Y axis to a fixed value. This is especially useful when comparing multiple charts side-by-side on a
+      consistent scale.
+    </p>
+    <clr-code-snippet [clrCode]="comboYMaxHtml" clrLanguage="html"></clr-code-snippet>
+    <div style="height: 340px; width: 100%">
+      <clr-combo-chart
+        [barSeries]="comboBarSeries"
+        [lineSeries]="comboLineSeries"
+        [yBarMax]="500"
+        [yLineMax]="300"
+        xAxisLabel="Month"
+        yAxisLabel="Amount (max 500)"
+        yLineAxisLabel="Rate (max 300)"
         [showLegend]="true"
         style="display: block; width: 100%; height: 100%"
       ></clr-combo-chart>

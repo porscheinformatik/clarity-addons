@@ -43,6 +43,11 @@
   @if (showLegend() && !loading() && legendItems().length) {
   <cng-chart-legend [items]="legendItems()" />
   } @if (showExportButton() && !loading() && hasData()) {
-  <cng-chart-export-button [svgRef]="svgElement()" [filename]="exportFilename()" [buttonTitle]="exportButtonTitle()" />
+  <cng-chart-export-button
+    [svgRef]="svgElement()"
+    [filename]="exportFilename()"
+    [buttonTitle]="exportButtonTitle()"
+    [legendItems]="legendItems()"
+  />
   }
 </div>

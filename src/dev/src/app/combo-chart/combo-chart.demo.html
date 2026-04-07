@@ -156,6 +156,34 @@
   </div>
 </div>
 
+<!-- Fixed Y axis max values -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">
+    Fixed Y Axis Max Values (<code>[yBarMax]="500"</code> &amp; <code>[yLineMax]="300"</code>)
+  </div>
+  <div class="card-block">
+    <p class="card-text" style="font-size: 0.85rem; color: var(--clr-color-neutral-700)">
+      Use <code>[yBarMax]</code> to pin the maximum of the left (bar) Y axis and <code>[yLineMax]</code> to pin the
+      maximum of the right (line) Y axis. Useful to compare charts side-by-side on a consistent scale.
+    </p>
+    <div style="height: 340px; width: 100%">
+      <clr-combo-chart
+        [barSeries]="barSeries"
+        [lineSeries]="lineSeries"
+        [showLegend]="true"
+        [yBarMax]="500"
+        [yLineMax]="300"
+        xAxisLabel="Month"
+        yAxisLabel="Amount (fixed max 500)"
+        yLineAxisLabel="Rate (fixed max 300)"
+        exportFilename=""
+        (valueClicked)="onValueClicked($event)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-combo-chart>
+    </div>
+  </div>
+</div>
+
 <!-- Alert: No Items -->
 <div class="card" style="margin-bottom: 1.5rem">
   <div class="card-header">Alert – No Items (empty series → info alert)</div>

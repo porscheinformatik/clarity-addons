@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core
 import { ClrDropdownModule, ClrIconModule } from '@clr/angular';
 import { ChartExportService } from './chart-export.service';
 import { ClarityIcons, downloadIcon } from '@cds/core/icon';
+import { ChartLegendItem } from '../chart-legend/chart-legend.component';
 
 ClarityIcons.addIcons(downloadIcon);
 @Component({
@@ -37,6 +38,8 @@ export class ChartExportButtonComponent {
   public readonly svgRef = input<SVGSVGElement | undefined>(undefined);
   public readonly filename = input<string>('chart');
   public readonly buttonTitle = input<string>('Export');
+  /** Legend items to include below the chart in the exported file. */
+  public readonly legendItems = input<ChartLegendItem[] | undefined>(undefined);
 
   private readonly exportService = inject(ChartExportService);
 
@@ -47,10 +50,10 @@ export class ChartExportButtonComponent {
     }
     switch (format) {
       case 'svg':
-        this.exportService.exportSvg(svg, this.filename());
+        this.exportService.exportSvg(svg, this.filename(), this.legendItems());
         break;
       case 'png':
-        this.exportService.exportPng(svg, this.filename());
+        this.exportService.exportPng(svg, this.filename(), this.legendItems());
         break;
     }
   }

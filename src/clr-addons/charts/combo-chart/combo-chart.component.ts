@@ -96,6 +96,10 @@ export class ComboChartComponent extends ChartBase<SelectedComboItem> implements
   public readonly yAxisLabel = input<string>('');
   /** Optional label rendered rotated to the right of the Y axis (line scale). */
   public readonly yLineAxisLabel = input<string>('');
+  /** Optional fixed maximum value for the bar Y axis (left). Defaults to auto. */
+  public readonly yBarMax = input<number | undefined>(undefined);
+  /** Optional fixed maximum value for the line Y axis (right). Defaults to auto. */
+  public readonly yLineMax = input<number | undefined>(undefined);
 
   // ── Outputs ─────────────────────────────────────────────────────────────────
   public readonly valueClicked = output<ComboChartValue>();
@@ -189,17 +193,19 @@ export class ComboChartComponent extends ChartBase<SelectedComboItem> implements
         xStackTotals.set(point.x, (xStackTotals.get(point.x) ?? 0) + point.value);
       }
     }
-    const maxBar = d3max([...xStackTotals.values()]) ?? 0;
+    const maxBarAuto = d3max([...xStackTotals.values()]) ?? 0;
+    const maxBar = this.yBarMax() ?? maxBarAuto;
     const yBar = d3scaleLinear()
       .domain([0, maxBar || 1])
-      .nice()
+      .nice(this.yBarMax() === undefined ? undefined : 0)
       .range([height, 0]);
 
     // Line Y scale (right axis)
-    const maxLine = d3max(this.lineSeries().flatMap(s => s.data.map(d => d.value))) ?? 0;
+    const maxLineAuto = d3max(this.lineSeries().flatMap(s => s.data.map(d => d.value))) ?? 0;
+    const maxLine = this.yLineMax() ?? maxLineAuto;
     const yLine = d3scaleLinear()
       .domain([0, maxLine || 1])
-      .nice()
+      .nice(this.yLineMax() === undefined ? undefined : 0)
       .range([height, 0]);
 
     const g = this.svg

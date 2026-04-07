@@ -108,6 +108,18 @@ const COMBO_CHART_HTML = `<clr-combo-chart
   style="display:block;width:100%;height:320px;"
 ></clr-combo-chart>`;
 
+const COMBO_Y_MAX_HTML = `<clr-combo-chart
+  [barSeries]="comboBarSeries"
+  [lineSeries]="comboLineSeries"
+  [yBarMax]="500"
+  [yLineMax]="300"
+  xAxisLabel="Month"
+  yAxisLabel="Amount (max 500)"
+  yLineAxisLabel="Rate (max 300)"
+  [showLegend]="true"
+  style="display:block;width:100%;height:340px;"
+></clr-combo-chart>`;
+
 const PIE_CHART_TS = `pieData: PieChartData[] = [
   { key: 'a', label: 'Category A', value: 120, color: '#e57200' },
   { key: 'b', label: 'Category B', value: 85,  color: '#00828b' },
@@ -318,6 +330,7 @@ export class ChartsDemo extends ClarityDocComponent {
   areaChartHtml = AREA_CHART_HTML;
   comboChartTs = COMBO_CHART_TS;
   comboChartHtml = COMBO_CHART_HTML;
+  comboYMaxHtml = COMBO_Y_MAX_HTML;
   pieChartTs = PIE_CHART_TS;
   pieChartHtml = PIE_CHART_HTML;
   funnelChartTs = FUNNEL_CHART_TS;

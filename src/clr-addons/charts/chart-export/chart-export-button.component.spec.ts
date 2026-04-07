@@ -45,20 +45,20 @@ describe('ChartExportButtonComponent', () => {
       expect(exportService.exportPng).not.toHaveBeenCalled();
     });
 
-    it('should call exportSvg with the correct svg and filename', () => {
+    it('should call exportSvg with the correct svg, filename and legendItems', () => {
       const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg') as SVGSVGElement;
       componentRef.setInput('svgRef', svg);
       componentRef.setInput('filename', 'bar-chart');
       component.export('svg');
-      expect(exportService.exportSvg).toHaveBeenCalledOnceWith(svg, 'bar-chart');
+      expect(exportService.exportSvg).toHaveBeenCalledOnceWith(svg, 'bar-chart', undefined);
     });
 
-    it('should call exportPng with the correct svg and filename', () => {
+    it('should call exportPng with the correct svg, filename and legendItems', () => {
       const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg') as SVGSVGElement;
       componentRef.setInput('svgRef', svg);
       componentRef.setInput('filename', 'line-chart');
       component.export('png');
-      expect(exportService.exportPng).toHaveBeenCalledOnceWith(svg, 'line-chart');
+      expect(exportService.exportPng).toHaveBeenCalledOnceWith(svg, 'line-chart', undefined);
     });
   });
 });
