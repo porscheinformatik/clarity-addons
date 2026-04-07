@@ -38,6 +38,10 @@ export class DatagridColumnReorderDirective<T extends { name: string }> implemen
         this.columnOrderChanged.next(value);
         // after change detection, columns need to be rerendered first
         setTimeout(() => this.updateSeparatorVisibility(), 0);
+        // After Angular has reordered the DOM,
+        // force Clarity to re-project columns in the new order by triggering its render cycle.
+        // DatagridRenderOrganizer is not publicly exported, so we access it via the datagrid instance.
+        setTimeout(() => (this.datagrid as any).organizer?.resize());
       },
     }
   );
