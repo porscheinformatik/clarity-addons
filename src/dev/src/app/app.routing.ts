@@ -206,6 +206,10 @@ export const APP_ROUTES: Routes = [
     path: 'ctrl-enter',
     loadChildren: () => import('./ctrl-enter/ctrl-enter.demo.module').then(m => m.CtrlEnterDemoModule),
   },
+  {
+    path: 'keyboard-nav',
+    loadComponent: () => import('./keyboard-nav/keyboard-nav.demo').then(m => m.KeyboardNavDemo),
+  },
 ];
 
 export const ROUTING: ModuleWithProviders<RouterModule> = RouterModule.forRoot(APP_ROUTES);

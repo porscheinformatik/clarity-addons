@@ -1,0 +1,256 @@
+<!--
+  ~ Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
+  ~ This software is released under MIT license.
+  ~ The full license information can be found in LICENSE in the root directory of this project.
+  -->
+
+<h2>Keyboard Navigation</h2>
+<p>
+  Two standalone directives add keyboard-driven navigation to any Clarity navigation component (<code>clr-tabs</code>,
+  <code>clr-vertical-nav</code>, or any custom host).
+</p>
+
+<!-- ─── Ctrl+Arrow ──────────────────────────────────────────────────────────── -->
+<h3>1. clrKeyboardNavCtrlArrow</h3>
+<p>
+  Add <code>clrKeyboardNavCtrlArrow</code> to a navigation host. While focus is anywhere on the page, use
+  <kbd>Ctrl+Left</kbd> / <kbd>Ctrl+Right</kbd> to cycle through tabs (or <kbd>Ctrl+Up</kbd> / <kbd>Ctrl+Down</kbd> for a
+  vertical nav). Navigation wraps around at both ends.
+</p>
+<p><strong>Try it:</strong> press <kbd>Ctrl+Right</kbd> / <kbd>Ctrl+Left</kbd> to switch tabs.</p>
+
+<clr-tabs clrKeyboardNavCtrlArrow clrNavOrientation="horizontal">
+  <clr-tab>
+    <button clrTabLink><cds-icon shape="home"></cds-icon> Category 1</button>
+    <clr-tab-content *clrIfActive="true">
+      <div style="padding: 1rem">
+        <strong>Category 1</strong> — press <kbd>Ctrl+Right</kbd> to go forward, <kbd>Ctrl+Left</kbd> from here wraps to
+        the last tab.
+      </div>
+    </clr-tab-content>
+  </clr-tab>
+  <clr-tab>
+    <button clrTabLink><cds-icon shape="cog"></cds-icon> Category 2</button>
+    <clr-tab-content *clrIfActive>
+      <div style="padding: 1rem"><strong>Category 2</strong></div>
+    </clr-tab-content>
+  </clr-tab>
+  <clr-tab>
+    <button clrTabLink><cds-icon shape="user"></cds-icon> Category 3</button>
+    <clr-tab-content *clrIfActive>
+      <div style="padding: 1rem"><strong>Category 3</strong></div>
+    </clr-tab-content>
+  </clr-tab>
+  <clr-tab>
+    <button clrTabLink><cds-icon shape="bell"></cds-icon> Category 4</button>
+    <clr-tab-content *clrIfActive>
+      <div style="padding: 1rem"><strong>Category 4</strong> — <kbd>Ctrl+Right</kbd> wraps back to Category 1.</div>
+    </clr-tab-content>
+  </clr-tab>
+</clr-tabs>
+
+<!-- ─── Alt+Mnemonic ───────────────────────────────────────────────────────── -->
+<h3>2. clrKeyboardNavAltMnemonic</h3>
+<p>
+  Add <code>clrKeyboardNavAltMnemonic</code> to a navigation host. Numeric mnemonics (1, 2, 3, …) are assigned to each
+  item at page load and never change. Hold <kbd>Alt</kbd> to reveal the badge overlays, then type the digit(s) and
+  release <kbd>Alt</kbd> to navigate.
+</p>
+<p>
+  <strong>Multi-digit test:</strong> <kbd>Alt</kbd> held → <kbd>1</kbd> → <kbd>0</kbd> → <kbd>Alt</kbd> released
+  navigates to item&nbsp;10. There are 11 tabs below so both <kbd>Alt+10</kbd> and <kbd>Alt+11</kbd> require two
+  keystrokes.
+</p>
+<p><strong>Try it:</strong> hold <kbd>Alt</kbd> to see the badges, then press a digit (or two).</p>
+
+<clr-tabs clrKeyboardNavAltMnemonic>
+  <clr-tab>
+    <button clrTabLink><cds-icon shape="star"></cds-icon> Alpha</button>
+    <clr-tab-content *clrIfActive="true">
+      <div style="padding: 1rem"><strong>Alpha</strong> — mnemonic <kbd>Alt+1</kbd></div>
+    </clr-tab-content>
+  </clr-tab>
+  <clr-tab>
+    <button clrTabLink><cds-icon shape="heart"></cds-icon> Beta</button>
+    <clr-tab-content *clrIfActive>
+      <div style="padding: 1rem"><strong>Beta</strong> — mnemonic <kbd>Alt+2</kbd></div>
+    </clr-tab-content>
+  </clr-tab>
+  <clr-tab>
+    <button clrTabLink><cds-icon shape="bolt"></cds-icon> Gamma</button>
+    <clr-tab-content *clrIfActive>
+      <div style="padding: 1rem"><strong>Gamma</strong> — mnemonic <kbd>Alt+3</kbd></div>
+    </clr-tab-content>
+  </clr-tab>
+  <clr-tab>
+    <button clrTabLink><cds-icon shape="flag"></cds-icon> Delta</button>
+    <clr-tab-content *clrIfActive>
+      <div style="padding: 1rem"><strong>Delta</strong> — mnemonic <kbd>Alt+4</kbd></div>
+    </clr-tab-content>
+  </clr-tab>
+  <clr-tab>
+    <button clrTabLink><cds-icon shape="search"></cds-icon> Epsilon</button>
+    <clr-tab-content *clrIfActive>
+      <div style="padding: 1rem"><strong>Epsilon</strong> — mnemonic <kbd>Alt+5</kbd></div>
+    </clr-tab-content>
+  </clr-tab>
+  <clr-tab>
+    <button clrTabLink><cds-icon shape="folder"></cds-icon> Zeta</button>
+    <clr-tab-content *clrIfActive>
+      <div style="padding: 1rem"><strong>Zeta</strong> — mnemonic <kbd>Alt+6</kbd></div>
+    </clr-tab-content>
+  </clr-tab>
+  <clr-tab>
+    <button clrTabLink><cds-icon shape="calendar"></cds-icon> Eta</button>
+    <clr-tab-content *clrIfActive>
+      <div style="padding: 1rem"><strong>Eta</strong> — mnemonic <kbd>Alt+7</kbd></div>
+    </clr-tab-content>
+  </clr-tab>
+  <clr-tab>
+    <button clrTabLink><cds-icon shape="map"></cds-icon> Theta</button>
+    <clr-tab-content *clrIfActive>
+      <div style="padding: 1rem"><strong>Theta</strong> — mnemonic <kbd>Alt+8</kbd></div>
+    </clr-tab-content>
+  </clr-tab>
+  <clr-tab>
+    <button clrTabLink><cds-icon shape="terminal"></cds-icon> Iota</button>
+    <clr-tab-content *clrIfActive>
+      <div style="padding: 1rem"><strong>Iota</strong> — mnemonic <kbd>Alt+9</kbd></div>
+    </clr-tab-content>
+  </clr-tab>
+  <clr-tab>
+    <button clrTabLink><cds-icon shape="shield"></cds-icon> Kappa</button>
+    <clr-tab-content *clrIfActive>
+      <div style="padding: 1rem">
+        <strong>Kappa</strong> — two-digit mnemonic <kbd>Alt</kbd>+<kbd>1</kbd><kbd>0</kbd>
+      </div>
+    </clr-tab-content>
+  </clr-tab>
+  <clr-tab>
+    <button clrTabLink><cds-icon shape="clock"></cds-icon> Lambda</button>
+    <clr-tab-content *clrIfActive>
+      <div style="padding: 1rem">
+        <strong>Lambda</strong> — two-digit mnemonic <kbd>Alt</kbd>+<kbd>1</kbd><kbd>1</kbd>
+      </div>
+    </clr-tab-content>
+  </clr-tab>
+</clr-tabs>
+
+<!-- ─── Alt+Mnemonic with icons ───────────────────────────────────────────── -->
+<h3>2b. clrKeyboardNavAltMnemonic – vertical nav with icons</h3>
+<p>
+  The <code>cds-icon</code> in front of each label is replaced <em>in-place</em> by the circle badge when
+  <kbd>Alt</kbd> is held — no layout shift.
+</p>
+<p><strong>Try it:</strong> hold <kbd>Alt</kbd> to see the badges, then press a digit.</p>
+
+<div style="max-width: 220px">
+  <clr-vertical-nav clrKeyboardNavAltMnemonic>
+    <a
+      clrVerticalNavLink
+      href="#"
+      [class.active]="activeVerticalNavItem === 'Home'"
+      (click)="activeVerticalNavItem = 'Home'; $event.preventDefault()"
+    >
+      <cds-icon clrVerticalNavIcon shape="home"></cds-icon>
+      Home
+    </a>
+    <a
+      clrVerticalNavLink
+      href="#"
+      [class.active]="activeVerticalNavItem === 'Search'"
+      (click)="activeVerticalNavItem = 'Search'; $event.preventDefault()"
+    >
+      <cds-icon clrVerticalNavIcon shape="search"></cds-icon>
+      Search
+    </a>
+    <a
+      clrVerticalNavLink
+      href="#"
+      [class.active]="activeVerticalNavItem === 'Profile'"
+      (click)="activeVerticalNavItem = 'Profile'; $event.preventDefault()"
+    >
+      <cds-icon clrVerticalNavIcon shape="user"></cds-icon>
+      Profile
+    </a>
+    <a
+      clrVerticalNavLink
+      href="#"
+      [class.active]="activeVerticalNavItem === 'Documents'"
+      (click)="activeVerticalNavItem = 'Documents'; $event.preventDefault()"
+    >
+      <cds-icon clrVerticalNavIcon shape="folder"></cds-icon>
+      Documents
+    </a>
+    <a
+      clrVerticalNavLink
+      href="#"
+      [class.active]="activeVerticalNavItem === 'Notifications'"
+      (click)="activeVerticalNavItem = 'Notifications'; $event.preventDefault()"
+    >
+      <cds-icon clrVerticalNavIcon shape="bell"></cds-icon>
+      Notifications
+    </a>
+    <a
+      clrVerticalNavLink
+      href="#"
+      [class.active]="activeVerticalNavItem === 'Settings'"
+      (click)="activeVerticalNavItem = 'Settings'; $event.preventDefault()"
+    >
+      <cds-icon clrVerticalNavIcon shape="cog"></cds-icon>
+      Settings
+    </a>
+  </clr-vertical-nav>
+</div>
+<p style="margin-top: 0.5rem">Active: <strong>{{ activeVerticalNavItem }}</strong></p>
+
+<!-- ─── Both combined ─────────────────────────────────────────────────────── -->
+<h3>3. Both directives combined</h3>
+<p>Apply both directives to the same host. Use either <kbd>Ctrl+Arrow</kbd> or <kbd>Alt+digit</kbd> to navigate.</p>
+<p>
+  Overlay guard demo: check the checkbox to simulate an active overlay — both shortcuts will be deactivated while it is
+  checked.
+</p>
+
+<label style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem">
+  <input type="checkbox" [(ngModel)]="overlayActive" />
+  Simulate overlay active (<code>[clrNavDisabled]="overlayActive"</code>)
+</label>
+
+<clr-tabs
+  clrKeyboardNavCtrlArrow
+  clrKeyboardNavAltMnemonic
+  clrNavOrientation="horizontal"
+  [clrNavDisabled]="overlayActive"
+>
+  <clr-tab>
+    <button clrTabLink><cds-icon shape="wrench"></cds-icon> Service</button>
+    <clr-tab-content *clrIfActive="true">
+      <div style="padding: 1rem"><strong>Service</strong> — <kbd>Alt+1</kbd> / <kbd>Ctrl+Left/Right</kbd></div>
+    </clr-tab-content>
+  </clr-tab>
+  <clr-tab>
+    <button clrTabLink><cds-icon shape="blocks-group"></cds-icon> Parts</button>
+    <clr-tab-content *clrIfActive>
+      <div style="padding: 1rem"><strong>Parts</strong> — <kbd>Alt+2</kbd></div>
+    </clr-tab-content>
+  </clr-tab>
+  <clr-tab>
+    <button clrTabLink><cds-icon shape="inbox"></cds-icon> Package</button>
+    <clr-tab-content *clrIfActive>
+      <div style="padding: 1rem"><strong>Package</strong> — <kbd>Alt+3</kbd></div>
+    </clr-tab-content>
+  </clr-tab>
+  <clr-tab>
+    <button clrTabLink><cds-icon shape="drop"></cds-icon> Fluid</button>
+    <clr-tab-content *clrIfActive>
+      <div style="padding: 1rem"><strong>Fluid</strong> — <kbd>Alt+4</kbd></div>
+    </clr-tab-content>
+  </clr-tab>
+  <clr-tab>
+    <button clrTabLink><cds-icon shape="circle"></cds-icon> Tyres</button>
+    <clr-tab-content *clrIfActive>
+      <div style="padding: 1rem"><strong>Tyres</strong> — <kbd>Alt+5</kbd></div>
+    </clr-tab-content>
+  </clr-tab>
+</clr-tabs>

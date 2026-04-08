@@ -1,0 +1,445 @@
+<!--
+  ~ Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
+  ~ This software is released under MIT license.
+  ~ The full license information can be found in LICENSE in the root directory of this project.
+  -->
+
+<clr-doc-wrapper [title]="title" [showTabs]="false">
+  <article>
+    <!-- ─── Table of Contents ──────────────────────────────────────────────── -->
+    @if (tableOfContents && tableOfContents.length) {
+    <div class="table-of-contents">
+      <span class="title">Content</span>
+      <ng-container *ngTemplateOutlet="tocList; context: { $implicit: tableOfContents }"></ng-container>
+    </div>
+    }
+
+    <!-- ─── Intro ─────────────────────────────────────────────────────────── -->
+    <h5 class="component-summary" id="keyboard-nav-header">
+      Two standalone directives — <code class="clr-code">clrKeyboardNavCtrlArrow</code> and
+      <code class="clr-code">clrKeyboardNavAltMnemonic</code> — add keyboard-driven navigation to any Clarity navigation
+      component (<code class="clr-code">clr-tabs</code>, <code class="clr-code">clr-vertical-nav</code>, or any custom
+      host element) without changing the existing DOM structure.
+    </h5>
+
+    <!-- ─── Import ────────────────────────────────────────────────────────── -->
+    <h2 id="import">Import</h2>
+    <p>Import the directives individually or via <code class="clr-code">ClrAddonsModule</code>:</p>
+    <clr-code-snippet [clrCode]="importExample"></clr-code-snippet>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         1. Ctrl+Arrow
+    ════════════════════════════════════════════════════════════════════════ -->
+    <h2 id="ctrl-arrow">clrKeyboardNavCtrlArrow</h2>
+    <p>
+      Adds circular keyboard navigation using <kbd>Ctrl+Arrow</kbd> keys. Attach the directive to any Clarity navigation
+      host and navigate without ever leaving the keyboard.
+    </p>
+    <ul>
+      <li><kbd>Ctrl+Left</kbd> / <kbd>Ctrl+Up</kbd> — previous item (wraps to last).</li>
+      <li><kbd>Ctrl+Right</kbd> / <kbd>Ctrl+Down</kbd> — next item (wraps to first).</li>
+      <li>Item order is captured once at page load and never changes.</li>
+      <li>Works globally — no need to focus the navigation host first.</li>
+    </ul>
+
+    <h3 id="ctrl-arrow-api">API</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="left">Input</th>
+          <th class="left clr-hidden-xs-down">Type</th>
+          <th class="clr-hidden-xs-down">Default</th>
+          <th class="left">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="left"><code class="clr-code">clrNavItemSelector</code></td>
+          <td class="left clr-hidden-xs-down">string</td>
+          <td class="clr-hidden-xs-down"><code class="clr-code">[clrVerticalNavLink], [clrTabLink]</code></td>
+          <td class="left">CSS selector for the navigable items inside the host element.</td>
+        </tr>
+        <tr>
+          <td class="left"><code class="clr-code">clrNavOrientation</code></td>
+          <td class="left clr-hidden-xs-down"><code class="clr-code">'horizontal' | 'vertical' | 'both'</code></td>
+          <td class="clr-hidden-xs-down"><code class="clr-code">'both'</code></td>
+          <td class="left">
+            Restricts which arrow directions are active. Use <code class="clr-code">'horizontal'</code> for tabs,
+            <code class="clr-code">'vertical'</code> for sidebars.
+          </td>
+        </tr>
+        <tr>
+          <td class="left"><code class="clr-code">clrNavDisabled</code></td>
+          <td class="left clr-hidden-xs-down">boolean</td>
+          <td class="clr-hidden-xs-down"><code class="clr-code">false</code></td>
+          <td class="left">
+            Set to <code class="clr-code">true</code> to disable all navigation (e.g. while a modal is open).
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 id="ctrl-arrow-demo">Interactive Demo</h3>
+    <p>
+      Press <kbd>Ctrl+Right</kbd> / <kbd>Ctrl+Left</kbd> anywhere on the page to cycle through the tabs below.
+      Navigation wraps around — <kbd>Ctrl+Left</kbd> on Category 1 jumps to the last tab.
+    </p>
+
+    <div class="clr-example">
+      <clr-tabs clrKeyboardNavCtrlArrow clrNavOrientation="horizontal">
+        <clr-tab>
+          <button clrTabLink><cds-icon shape="home"></cds-icon> Category 1</button>
+          <clr-tab-content *clrIfActive="true">
+            <div style="padding: 1rem">
+              <strong>Category 1</strong> — Press <kbd>Ctrl+Right</kbd> to go forward. <kbd>Ctrl+Left</kbd> from here
+              wraps to the last tab.
+            </div>
+          </clr-tab-content>
+        </clr-tab>
+        <clr-tab>
+          <button clrTabLink><cds-icon shape="cog"></cds-icon> Category 2</button>
+          <clr-tab-content *clrIfActive>
+            <div style="padding: 1rem"><strong>Category 2</strong></div>
+          </clr-tab-content>
+        </clr-tab>
+        <clr-tab>
+          <button clrTabLink><cds-icon shape="user"></cds-icon> Category 3</button>
+          <clr-tab-content *clrIfActive>
+            <div style="padding: 1rem"><strong>Category 3</strong></div>
+          </clr-tab-content>
+        </clr-tab>
+        <clr-tab>
+          <button clrTabLink><cds-icon shape="bell"></cds-icon> Category 4</button>
+          <clr-tab-content *clrIfActive>
+            <div style="padding: 1rem">
+              <strong>Category 4</strong> — <kbd>Ctrl+Right</kbd> wraps back to Category 1.
+            </div>
+          </clr-tab-content>
+        </clr-tab>
+      </clr-tabs>
+    </div>
+
+    <h3 id="ctrl-arrow-example">Code Example</h3>
+    <clr-code-snippet [clrCode]="ctrlArrowExample"></clr-code-snippet>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         2. Alt+Mnemonic
+    ════════════════════════════════════════════════════════════════════════ -->
+    <h2 id="alt-mnemonic">clrKeyboardNavAltMnemonic</h2>
+    <p>
+      Assigns sequential numeric mnemonics (1, 2, 3, …) to navigation items and enables
+      <kbd>Alt</kbd>-key-based navigation.
+    </p>
+    <ul>
+      <li>Mnemonics are assigned once at view initialisation and remain stable for the page lifetime.</li>
+      <li>
+        While <kbd>Alt</kbd> is held the CSS class <code class="clr-code">clr-kbd-mnemonics-visible</code> is added to
+        the host — styled badges appear on each item.
+      </li>
+      <li>Digit keys pressed while <kbd>Alt</kbd> is held accumulate into a buffer.</li>
+      <li>
+        Releasing <kbd>Alt</kbd> navigates to the matching item. Multi-digit mnemonics are supported: <kbd>Alt</kbd> +
+        <kbd>1</kbd> + <kbd>0</kbd> → item 10.
+      </li>
+      <li>
+        When an item has a <code class="clr-code">cds-icon</code>, the icon is replaced <em>in-place</em> by a circle
+        badge while <kbd>Alt</kbd> is held — no layout shift.
+      </li>
+      <li><kbd>Alt+Arrow</kbd> browser history navigation is never overridden.</li>
+    </ul>
+
+    <h3 id="alt-mnemonic-api">API</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="left">Input</th>
+          <th class="left clr-hidden-xs-down">Type</th>
+          <th class="clr-hidden-xs-down">Default</th>
+          <th class="left">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="left"><code class="clr-code">clrNavItemSelector</code></td>
+          <td class="left clr-hidden-xs-down">string</td>
+          <td class="clr-hidden-xs-down"><code class="clr-code">[clrVerticalNavLink], [clrTabLink]</code></td>
+          <td class="left">CSS selector for the navigable items inside the host element.</td>
+        </tr>
+        <tr>
+          <td class="left"><code class="clr-code">clrNavDisabled</code></td>
+          <td class="left clr-hidden-xs-down">boolean</td>
+          <td class="clr-hidden-xs-down"><code class="clr-code">false</code></td>
+          <td class="left">
+            Set to <code class="clr-code">true</code> to disable all navigation (e.g. while a modal is open).
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 id="alt-mnemonic-tabs-demo">Demo — Tabs (11 items, multi-digit mnemonic)</h3>
+    <p>
+      Hold <kbd>Alt</kbd> to reveal the numbered badges, then type a digit (or two) to navigate. Items 10 and 11 require
+      two keystrokes: <kbd>Alt</kbd> + <kbd>1</kbd> + <kbd>0</kbd> and <kbd>Alt</kbd> + <kbd>1</kbd> + <kbd>1</kbd>.
+    </p>
+
+    <div class="clr-example">
+      <clr-tabs clrKeyboardNavAltMnemonic>
+        <clr-tab>
+          <button clrTabLink><cds-icon shape="star"></cds-icon> Alpha</button>
+          <clr-tab-content *clrIfActive="true">
+            <div style="padding: 1rem"><strong>Alpha</strong> — mnemonic <kbd>Alt+1</kbd></div>
+          </clr-tab-content>
+        </clr-tab>
+        <clr-tab>
+          <button clrTabLink><cds-icon shape="heart"></cds-icon> Beta</button>
+          <clr-tab-content *clrIfActive>
+            <div style="padding: 1rem"><strong>Beta</strong> — mnemonic <kbd>Alt+2</kbd></div>
+          </clr-tab-content>
+        </clr-tab>
+        <clr-tab>
+          <button clrTabLink><cds-icon shape="bolt"></cds-icon> Gamma</button>
+          <clr-tab-content *clrIfActive>
+            <div style="padding: 1rem"><strong>Gamma</strong> — mnemonic <kbd>Alt+3</kbd></div>
+          </clr-tab-content>
+        </clr-tab>
+        <clr-tab>
+          <button clrTabLink><cds-icon shape="flag"></cds-icon> Delta</button>
+          <clr-tab-content *clrIfActive>
+            <div style="padding: 1rem"><strong>Delta</strong> — mnemonic <kbd>Alt+4</kbd></div>
+          </clr-tab-content>
+        </clr-tab>
+        <clr-tab>
+          <button clrTabLink><cds-icon shape="search"></cds-icon> Epsilon</button>
+          <clr-tab-content *clrIfActive>
+            <div style="padding: 1rem"><strong>Epsilon</strong> — mnemonic <kbd>Alt+5</kbd></div>
+          </clr-tab-content>
+        </clr-tab>
+        <clr-tab>
+          <button clrTabLink><cds-icon shape="folder"></cds-icon> Zeta</button>
+          <clr-tab-content *clrIfActive>
+            <div style="padding: 1rem"><strong>Zeta</strong> — mnemonic <kbd>Alt+6</kbd></div>
+          </clr-tab-content>
+        </clr-tab>
+        <clr-tab>
+          <button clrTabLink><cds-icon shape="calendar"></cds-icon> Eta</button>
+          <clr-tab-content *clrIfActive>
+            <div style="padding: 1rem"><strong>Eta</strong> — mnemonic <kbd>Alt+7</kbd></div>
+          </clr-tab-content>
+        </clr-tab>
+        <clr-tab>
+          <button clrTabLink><cds-icon shape="map"></cds-icon> Theta</button>
+          <clr-tab-content *clrIfActive>
+            <div style="padding: 1rem"><strong>Theta</strong> — mnemonic <kbd>Alt+8</kbd></div>
+          </clr-tab-content>
+        </clr-tab>
+        <clr-tab>
+          <button clrTabLink><cds-icon shape="terminal"></cds-icon> Iota</button>
+          <clr-tab-content *clrIfActive>
+            <div style="padding: 1rem"><strong>Iota</strong> — mnemonic <kbd>Alt+9</kbd></div>
+          </clr-tab-content>
+        </clr-tab>
+        <clr-tab>
+          <button clrTabLink><cds-icon shape="shield"></cds-icon> Kappa</button>
+          <clr-tab-content *clrIfActive>
+            <div style="padding: 1rem">
+              <strong>Kappa</strong> — two-digit mnemonic <kbd>Alt</kbd>+<kbd>1</kbd><kbd>0</kbd>
+            </div>
+          </clr-tab-content>
+        </clr-tab>
+        <clr-tab>
+          <button clrTabLink><cds-icon shape="clock"></cds-icon> Lambda</button>
+          <clr-tab-content *clrIfActive>
+            <div style="padding: 1rem">
+              <strong>Lambda</strong> — two-digit mnemonic <kbd>Alt</kbd>+<kbd>1</kbd><kbd>1</kbd>
+            </div>
+          </clr-tab-content>
+        </clr-tab>
+      </clr-tabs>
+    </div>
+
+    <h3 id="alt-mnemonic-vertical-demo">Demo — Vertical Nav with Icons</h3>
+    <p>
+      The <code class="clr-code">cds-icon</code> in front of each label is replaced <em>in-place</em> by the circle
+      badge when <kbd>Alt</kbd> is held — no layout shift occurs. Active item:
+      <strong>{{ activeVerticalNavItem }}</strong>
+    </p>
+
+    <div class="clr-example" style="max-width: 220px">
+      <clr-vertical-nav clrKeyboardNavAltMnemonic>
+        <a
+          clrVerticalNavLink
+          href="#"
+          [class.active]="activeVerticalNavItem === 'Home'"
+          (click)="activeVerticalNavItem = 'Home'; $event.preventDefault()"
+        >
+          <cds-icon clrVerticalNavIcon shape="home"></cds-icon>
+          Home
+        </a>
+        <a
+          clrVerticalNavLink
+          href="#"
+          [class.active]="activeVerticalNavItem === 'Search'"
+          (click)="activeVerticalNavItem = 'Search'; $event.preventDefault()"
+        >
+          <cds-icon clrVerticalNavIcon shape="search"></cds-icon>
+          Search
+        </a>
+        <a
+          clrVerticalNavLink
+          href="#"
+          [class.active]="activeVerticalNavItem === 'Profile'"
+          (click)="activeVerticalNavItem = 'Profile'; $event.preventDefault()"
+        >
+          <cds-icon clrVerticalNavIcon shape="user"></cds-icon>
+          Profile
+        </a>
+        <a
+          clrVerticalNavLink
+          href="#"
+          [class.active]="activeVerticalNavItem === 'Documents'"
+          (click)="activeVerticalNavItem = 'Documents'; $event.preventDefault()"
+        >
+          <cds-icon clrVerticalNavIcon shape="folder"></cds-icon>
+          Documents
+        </a>
+        <a
+          clrVerticalNavLink
+          href="#"
+          [class.active]="activeVerticalNavItem === 'Notifications'"
+          (click)="activeVerticalNavItem = 'Notifications'; $event.preventDefault()"
+        >
+          <cds-icon clrVerticalNavIcon shape="bell"></cds-icon>
+          Notifications
+        </a>
+        <a
+          clrVerticalNavLink
+          href="#"
+          [class.active]="activeVerticalNavItem === 'Settings'"
+          (click)="activeVerticalNavItem = 'Settings'; $event.preventDefault()"
+        >
+          <cds-icon clrVerticalNavIcon shape="cog"></cds-icon>
+          Settings
+        </a>
+      </clr-vertical-nav>
+    </div>
+
+    <h3 id="alt-mnemonic-example">Code Example</h3>
+    <clr-code-snippet [clrCode]="altMnemonicExample"></clr-code-snippet>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         3. Both combined
+    ════════════════════════════════════════════════════════════════════════ -->
+    <h2 id="combined">Both Directives Combined</h2>
+    <p>
+      Both directives can be applied to the same host element. Use either
+      <kbd>Ctrl+Arrow</kbd> or <kbd>Alt+digit</kbd> to navigate — they operate independently and never interfere with
+      each other.
+    </p>
+    <p>
+      The shared <code class="clr-code">[clrNavDisabled]</code> input deactivates <em>both</em> shortcuts at once when
+      set to <code class="clr-code">true</code>, making it easy to guard against navigation while a modal or overlay is
+      open.
+    </p>
+
+    <h3 id="combined-demo">Interactive Demo — Overlay Guard</h3>
+    <p>Check the checkbox to simulate an active overlay. Both shortcuts are suspended while it is checked.</p>
+
+    <div class="clr-example">
+      <label style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem">
+        <input type="checkbox" [(ngModel)]="overlayActive" />
+        Simulate overlay active (<code class="clr-code">[clrNavDisabled]="overlayActive"</code>)
+      </label>
+
+      <clr-tabs
+        clrKeyboardNavCtrlArrow
+        clrKeyboardNavAltMnemonic
+        clrNavOrientation="horizontal"
+        [clrNavDisabled]="overlayActive"
+      >
+        <clr-tab>
+          <button clrTabLink><cds-icon shape="wrench"></cds-icon> Service</button>
+          <clr-tab-content *clrIfActive="true">
+            <div style="padding: 1rem">
+              <strong>Service</strong> — <kbd>Alt+1</kbd> / <kbd>Ctrl+Left</kbd> or <kbd>Ctrl+Right</kbd>
+            </div>
+          </clr-tab-content>
+        </clr-tab>
+        <clr-tab>
+          <button clrTabLink><cds-icon shape="blocks-group"></cds-icon> Parts</button>
+          <clr-tab-content *clrIfActive>
+            <div style="padding: 1rem"><strong>Parts</strong> — <kbd>Alt+2</kbd></div>
+          </clr-tab-content>
+        </clr-tab>
+        <clr-tab>
+          <button clrTabLink><cds-icon shape="inbox"></cds-icon> Package</button>
+          <clr-tab-content *clrIfActive>
+            <div style="padding: 1rem"><strong>Package</strong> — <kbd>Alt+3</kbd></div>
+          </clr-tab-content>
+        </clr-tab>
+        <clr-tab>
+          <button clrTabLink><cds-icon shape="drop"></cds-icon> Fluid</button>
+          <clr-tab-content *clrIfActive>
+            <div style="padding: 1rem"><strong>Fluid</strong> — <kbd>Alt+4</kbd></div>
+          </clr-tab-content>
+        </clr-tab>
+        <clr-tab>
+          <button clrTabLink><cds-icon shape="circle"></cds-icon> Tyres</button>
+          <clr-tab-content *clrIfActive>
+            <div style="padding: 1rem"><strong>Tyres</strong> — <kbd>Alt+5</kbd></div>
+          </clr-tab-content>
+        </clr-tab>
+      </clr-tabs>
+    </div>
+
+    <h3 id="combined-example">Code Example</h3>
+    <clr-code-snippet [clrCode]="combinedExample"></clr-code-snippet>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         4. Best Practices
+    ════════════════════════════════════════════════════════════════════════ -->
+    <h2 id="best-practices">Best Practices</h2>
+    <ul>
+      <li>
+        Always set <code class="clr-code">clrNavOrientation="horizontal"</code> on
+        <code class="clr-code">clr-tabs</code> to avoid conflicting with vertical shortcuts.
+      </li>
+      <li>
+        Bind <code class="clr-code">[clrNavDisabled]</code> to your overlay/modal open state to prevent accidental
+        navigation while dialogs are open.
+      </li>
+      <li>
+        Both directives work with any focusable host element — not just Clarity components. Use
+        <code class="clr-code">clrNavItemSelector</code> to target custom nav buttons.
+      </li>
+      <li>
+        The <code class="clr-code">clrKeyboardNavAltMnemonic</code> directive never overrides <kbd>Alt+Arrow</kbd>,
+        preserving browser history navigation.
+      </li>
+      <li>
+        Mnemonics remain stable across the page lifetime. If items are added dynamically after initialisation,
+        reinitialise the component to reassign mnemonics.
+      </li>
+    </ul>
+  </article>
+</clr-doc-wrapper>
+
+<!-- ─── ToC template ───────────────────────────────────────────────────────── -->
+<ng-template #tocList let-entries>
+  @if (entries?.length) {
+  <ul class="list-unstyled toc-list">
+    @for (entry of entries; track entry) {
+    <li>
+      <a
+        [fragment]="entry.id"
+        [class.active]="(activeFragment | async) === entry.id"
+        [replaceUrl]="true"
+        routerLink="."
+      >
+        {{ entry.label }}
+      </a>
+      <ng-container *ngTemplateOutlet="tocList; context: { $implicit: entry.children }"></ng-container>
+    </li>
+    }
+  </ul>
+  }
+</ng-template>

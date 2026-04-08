@@ -280,6 +280,13 @@ const documentationRoutes: Routes = [
           browserTitle: 'Control Warning',
         },
       },
+      {
+        path: 'keyboard-nav',
+        loadChildren: () => import('./demos/keyboard-nav/keyboard-nav.demo.module').then(m => m.KeyboardNavDemoModule),
+        data: {
+          browserTitle: 'Keyboard Navigation',
+        },
+      },
     ],
   },
 ];

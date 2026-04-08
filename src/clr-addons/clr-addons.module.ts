@@ -46,9 +46,16 @@ import { ClrReadonlyDirectiveModule } from './readonly/readonly.module';
 import { ClrFocusFirstInvalidFieldDirective } from './focus-first-invalid-field';
 import { ClrControlEnterSubmitDirective } from './control-enter-submit';
 import { ClrSignpostAddonModule } from './signpost';
+import { ClrKeyboardNavCtrlArrowDirective } from './keyboard-nav/clr-keyboard-nav-ctrl-arrow.directive';
+import { ClrKeyboardNavAltMnemonicDirective } from './keyboard-nav/clr-keyboard-nav-alt-mnemonic.directive';
 
 @NgModule({
-  imports: [ClrFocusFirstInvalidFieldDirective, ClrControlEnterSubmitDirective],
+  imports: [
+    ClrFocusFirstInvalidFieldDirective,
+    ClrControlEnterSubmitDirective,
+    ClrKeyboardNavCtrlArrowDirective,
+    ClrKeyboardNavAltMnemonicDirective,
+  ],
   declarations: [],
   exports: [
     ClrViewEditSectionModule,
@@ -90,6 +97,8 @@ import { ClrSignpostAddonModule } from './signpost';
     ClrSignpostAddonModule,
     ClrFocusFirstInvalidFieldDirective,
     ClrControlEnterSubmitDirective,
+    ClrKeyboardNavCtrlArrowDirective,
+    ClrKeyboardNavAltMnemonicDirective,
   ],
 })
 export class ClrAddonsModule {}

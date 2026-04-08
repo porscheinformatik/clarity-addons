@@ -1,0 +1,115 @@
+/*
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
+ * This software is released under MIT license.
+ * The full license information can be found in LICENSE in the root directory of this project.
+ */
+
+// Keyboard mnemonic badges
+// Shown on each nav item while the Alt key is held on a host decorated with
+// [clrKeyboardNavAltMnemonic]. The numeric value comes from the directive's
+// data attribute; colours reuse Clarity's primary-button tokens so the badge
+// adapts automatically to the active theme.
+//
+// Two rendering paths:
+//   1. Icon-swap  – the directive wraps the first cds-icon in .clr-kbd-icon-slot
+//                   and injects a sibling .clr-kbd-mnemonic-badge.  When Alt is
+//                   held the icon is hidden and the badge fills its space.
+//   2. Fallback   – nav items with no icon use a ::before pseudo-element badge.
+
+// ─── Shared visual properties ─────────────────────────────────────────────────
+
+@mixin badge-appearance {
+  box-sizing: border-box;
+  height: 16px;
+  min-width: 16px;
+  padding: 1px 4px 0;
+  // Pill radius works for both 1- and 2-digit mnemonics (border-radius: 50%
+  // would create an ellipse when width > height for two digits).
+  border-radius: 8px;
+
+  background-color: #fff;
+  border: 1.5px solid var(--cds-alias-status-alt, #0079b8);
+  color: var(--cds-alias-status-alt, #0079b8);
+
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+
+  pointer-events: none;
+  z-index: 100;
+}
+
+// ─── Icon-slot wrapper ────────────────────────────────────────────────────────
+
+.clr-kbd-icon-slot {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  align-self: center;
+}
+
+// ─── Path 1 badge (hidden by default, shown when Alt is held) ─────────────────
+
+.clr-kbd-mnemonic-badge {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  flex-shrink: 0;
+  @include badge-appearance;
+}
+
+// ─── Active state (Alt held) ─────────────────────────────────────────────────
+
+.clr-kbd-mnemonics-visible {
+  // Path 1: hide icon, show badge.
+  .clr-kbd-icon-slot {
+    cds-icon {
+      visibility: hidden;
+    }
+
+    .clr-kbd-mnemonic-badge {
+      display: inline-flex;
+      // Override any colour/size changes from Clarity's active or hover state.
+      background-color: #fff !important;
+      border-color: var(--cds-alias-status-alt, #0079b8) !important;
+      color: var(--cds-alias-status-alt, #0079b8) !important;
+      height: 16px !important;
+      min-width: 16px !important;
+      width: auto !important;
+    }
+  }
+
+  // Path 2: fallback via ::after (no icon present).
+  // NOTE: ::before is intentionally avoided – Clarity's active-tab bottom
+  // indicator is drawn with ::before on the same button element.  Using ::after
+  // leaves that indicator untouched.
+  [data-clr-kbd-mnemonic]:not(:has(.clr-kbd-icon-slot)) {
+    position: relative !important;
+
+    &::after {
+      content: attr(data-clr-kbd-mnemonic);
+      display: inline-flex;
+      position: absolute;
+      top: 50%;
+      left: 0.3rem;
+      right: auto !important;
+      width: auto !important;
+      transform: translateY(-50%);
+      @include badge-appearance;
+      // Ensure identical appearance regardless of active / hover state on the
+      // parent (mirrors the !important overrides used in Path 1).
+      background-color: #fff !important;
+      border-color: var(--cds-alias-status-alt, #0079b8) !important;
+      color: var(--cds-alias-status-alt, #0079b8) !important;
+      height: 16px !important;
+      min-width: 16px !important;
+    }
+  }
+}
