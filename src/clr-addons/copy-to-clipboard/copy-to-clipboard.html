@@ -8,6 +8,7 @@
     [ngClass]="{ 'attribute-was-copied-color': showCopiedIcon }"
     (click)="$event.stopPropagation()"
     (keydown.enter)="$event.stopPropagation()"
+    (mousedown)="$event.preventDefault()"
   ></cds-icon>
   <clr-tooltip-content [clrSize]="tooltipSize" [clrPosition]="tooltipPosition" *clrIfOpen
     >{{ tooltipText() }}</clr-tooltip-content
