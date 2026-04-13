@@ -166,6 +166,53 @@ export class ComboChartDemo {
   protected emptyBarSeries: ComboBarSeries[] = [];
   protected emptyLineSeries: ComboLineSeries[] = [];
 
+  // ── Clipping demo data (values intentionally exceed yBarMax=200 / yLineMax=100) ──
+
+  protected readonly clippingBarSeries: ComboBarSeries[] = [
+    {
+      key: 'clipping-a',
+      label: 'Series A',
+      color: '#e57200',
+      data: [
+        { x: 'Jan', xLabel: 'Jan', value: 120 },
+        { x: 'Feb', xLabel: 'Feb', value: 250 }, // exceeds max (200)
+        { x: 'Mar', xLabel: 'Mar', value: 80 },
+        { x: 'Apr', xLabel: 'Apr', value: 340 }, // strongly exceeds max
+        { x: 'May', xLabel: 'May', value: 190 },
+        { x: 'Jun', xLabel: 'Jun', value: 60 },
+      ],
+    },
+    {
+      key: 'clipping-b',
+      label: 'Series B',
+      color: '#00828b',
+      data: [
+        { x: 'Jan', xLabel: 'Jan', value: 60 },
+        { x: 'Feb', xLabel: 'Feb', value: 40 },
+        { x: 'Mar', xLabel: 'Mar', value: 90 },
+        { x: 'Apr', xLabel: 'Apr', value: 30 },
+        { x: 'May', xLabel: 'May', value: 50 },
+        { x: 'Jun', xLabel: 'Jun', value: 110 },
+      ],
+    },
+  ];
+
+  protected readonly clippingLineSeries: ComboLineSeries[] = [
+    {
+      key: 'clipping-line',
+      label: 'Rate',
+      color: '#c1326e',
+      data: [
+        { x: 'Jan', value: 40 },
+        { x: 'Feb', value: 150 }, // exceeds yLineMax=100
+        { x: 'Mar', value: 70 },
+        { x: 'Apr', value: 220 }, // strongly exceeded
+        { x: 'May', value: 90 },
+        { x: 'Jun', value: 55 },
+      ],
+    },
+  ];
+
   // ── Actions ───────────────────────────────────────────────────────────────────
 
   public toggleLoading(): void {

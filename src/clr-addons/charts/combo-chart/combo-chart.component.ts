@@ -139,6 +139,7 @@ export class ComboChartComponent extends ChartBase<SelectedComboItem> implements
 
   // ── State ────────────────────────────────────────────────────────────────────
   private svg: Selection<SVGSVGElement, unknown, null, undefined>;
+  private _clipIdCounter = 0;
 
   // ── Lifecycle ────────────────────────────────────────────────────────────────
   public ngOnChanges(_changes: SimpleChanges): void {
@@ -208,6 +209,20 @@ export class ComboChartComponent extends ChartBase<SelectedComboItem> implements
       .nice(this.yLineMax() === undefined ? undefined : 0)
       .range([height, 0]);
 
+    // ── SVG ClipPath ─────────────────────────────────────────────────────────
+    // Ensures bars/lines that exceed the Y-axis maximum (yBarMax/yLineMax) are
+    // visually clipped at the chart boundary without modifying the data values.
+    const clipId = `combo-clip-${this._clipIdCounter++}`;
+    this.svg
+      .append('defs')
+      .append('clipPath')
+      .attr('id', clipId)
+      .append('rect')
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('width', width)
+      .attr('height', height);
+
     const g = this.svg
       .attr('width', width)
       .attr('height', height)
@@ -255,8 +270,12 @@ export class ComboChartComponent extends ChartBase<SelectedComboItem> implements
       }
     }
 
-    this.drawBars(g, x, yBar);
-    this.drawLines(g, x, yLine);
+    // Wrap chart content in a clipped group so elements exceeding the Y max
+    // are not visible beyond the chart boundary.
+    const contentGroup = g.append('g').attr('clip-path', `url(#${clipId})`);
+
+    this.drawBars(contentGroup, x, yBar);
+    this.drawLines(contentGroup, x, yLine);
   }
 
   private drawBars(

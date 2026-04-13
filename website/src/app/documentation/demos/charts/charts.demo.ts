@@ -120,6 +120,19 @@ const COMBO_Y_MAX_HTML = `<clr-combo-chart
   style="display:block;width:100%;height:340px;"
 ></clr-combo-chart>`;
 
+const COMBO_Y_CLIP_HTML = `<!-- Values exceeding the max are visually clipped; actual data values remain unchanged -->
+<clr-combo-chart
+  [barSeries]="comboClippingBarSeries"
+  [lineSeries]="comboClippingLineSeries"
+  [yBarMax]="200"
+  [yLineMax]="100"
+  xAxisLabel="Month"
+  yAxisLabel="Value (max 200)"
+  yLineAxisLabel="Rate (max 100)"
+  [showLegend]="true"
+  style="display:block;width:100%;height:340px;"
+></clr-combo-chart>`;
+
 const PIE_CHART_TS = `pieData: PieChartData[] = [
   { key: 'a', label: 'Category A', value: 120, color: '#e57200' },
   { key: 'b', label: 'Category B', value: 85,  color: '#00828b' },
@@ -331,6 +344,7 @@ export class ChartsDemo extends ClarityDocComponent {
   comboChartTs = COMBO_CHART_TS;
   comboChartHtml = COMBO_CHART_HTML;
   comboYMaxHtml = COMBO_Y_MAX_HTML;
+  comboYClipHtml = COMBO_Y_CLIP_HTML;
   pieChartTs = PIE_CHART_TS;
   pieChartHtml = PIE_CHART_HTML;
   funnelChartTs = FUNNEL_CHART_TS;
@@ -413,6 +427,52 @@ export class ChartsDemo extends ClarityDocComponent {
       label: 'Target',
       color: '#c1326e',
       data: MONTHS.map((x, i) => ({ x, value: i })),
+    },
+  ];
+
+  // ── Combo Chart – Clipping demo (values exceed yBarMax=200 / yLineMax=100) ──
+  comboClippingBarSeries: ComboBarSeries[] = [
+    {
+      key: 'serie-a',
+      label: 'Series A',
+      color: '#e57200',
+      data: [
+        { x: 'Jan', xLabel: 'Jan', value: 120 },
+        { x: 'Feb', xLabel: 'Feb', value: 250 }, // exceeds max (200)
+        { x: 'Mar', xLabel: 'Mar', value: 80 },
+        { x: 'Apr', xLabel: 'Apr', value: 340 }, // strongly exceeds max
+        { x: 'May', xLabel: 'May', value: 190 },
+        { x: 'Jun', xLabel: 'Jun', value: 60 },
+      ],
+    },
+    {
+      key: 'serie-b',
+      label: 'Series B',
+      color: '#00828b',
+      data: [
+        { x: 'Jan', xLabel: 'Jan', value: 60 },
+        { x: 'Feb', xLabel: 'Feb', value: 40 },
+        { x: 'Mar', xLabel: 'Mar', value: 90 },
+        { x: 'Apr', xLabel: 'Apr', value: 30 },
+        { x: 'May', xLabel: 'May', value: 50 },
+        { x: 'Jun', xLabel: 'Jun', value: 110 },
+      ],
+    },
+  ];
+
+  comboClippingLineSeries: ComboLineSeries[] = [
+    {
+      key: 'clipping-rate',
+      label: 'Rate',
+      color: '#c1326e',
+      data: [
+        { x: 'Jan', value: 40 },
+        { x: 'Feb', value: 150 }, // exceeds yLineMax=100
+        { x: 'Mar', value: 70 },
+        { x: 'Apr', value: 220 }, // strongly exceeded
+        { x: 'May', value: 90 },
+        { x: 'Jun', value: 55 },
+      ],
     },
   ];
 

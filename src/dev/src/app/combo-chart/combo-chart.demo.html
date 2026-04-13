@@ -184,6 +184,34 @@
   </div>
 </div>
 
+<!-- Y Axis clipping – values exceed the max -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">
+    Y Axis Clipping – Values Exceed the Maximum (<code>[yBarMax]="200"</code> &amp; <code>[yLineMax]="100"</code>)
+  </div>
+  <div class="card-block">
+    <p class="card-text" style="font-size: 0.85rem; color: var(--clr-color-neutral-700)">
+      When data points exceed the configured maximum, they are visually clipped at the upper boundary (SVG clipPath).
+      The actual values remain unchanged – the tooltip still shows the real value.
+    </p>
+    <div style="height: 340px; width: 100%">
+      <clr-combo-chart
+        [barSeries]="clippingBarSeries"
+        [lineSeries]="clippingLineSeries"
+        [showLegend]="true"
+        [yBarMax]="200"
+        [yLineMax]="100"
+        xAxisLabel="Month"
+        yAxisLabel="Value (max 200)"
+        yLineAxisLabel="Rate (max 100)"
+        exportFilename=""
+        (valueClicked)="onValueClicked($event)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-combo-chart>
+    </div>
+  </div>
+</div>
+
 <!-- Alert: No Items -->
 <div class="card" style="margin-bottom: 1.5rem">
   <div class="card-header">Alert – No Items (empty series → info alert)</div>
