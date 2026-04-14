@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, computed, input, OnChanges, output,
 import {
   axisRight as d3axisRight,
   curveMonotoneX,
-  format as d3format,
   line as d3line,
   max as d3max,
   scaleBand as d3scaleBand,
@@ -15,7 +14,7 @@ import {
 import { NO_ITEMS_ALERT_TYPE, NO_ITEMS_MESSAGE } from '../constants';
 import { toChartColor } from '../utils';
 import { ChartLegendItem } from '../chart-legend/chart-legend.component';
-import { drawXYAxes, styleGridLines } from '../shared/d3-chart-axes';
+import { computeYTickFormat, computeYTickValues, drawXYAxes, styleGridLines } from '../shared/d3-chart-axes';
 import { ChartBase } from '../shared/chart-base';
 
 // ─── Public types ────────────────────────────────────────────────────────────
@@ -241,13 +240,12 @@ export class ComboChartComponent extends ChartBase<SelectedComboItem> implements
 
     // ── Right Y axis for line series ─────────────────────────────────────────
     if (hasLines) {
-      const lineTickValues = yLine.ticks(5).filter((t: number) => Number.isInteger(t));
+      const lineTickValues = computeYTickValues(yLine);
+      const lineTickFormat = computeYTickFormat(yLine);
       const rightAxisG = g
         .append('g')
         .attr('transform', `translate(${width},0)`)
-        .call(
-          d3axisRight(yLine).tickValues(lineTickValues).tickFormat(d3format('~s')).tickSize(-width) // draw grid lines across the chart
-        );
+        .call(d3axisRight(yLine).tickValues(lineTickValues).tickFormat(lineTickFormat).tickSize(-width));
       rightAxisG.selectAll('text').style('font-size', '11px').style('fill', 'var(--clr-color-neutral-600, #666)');
       // Style the line-axis grid lines with a distinct dashed color
       rightAxisG

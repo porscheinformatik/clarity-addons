@@ -27,6 +27,41 @@ export interface XYAxisOptions {
 }
 
 /**
+ * Computes sensible tick values for a linear Y scale.
+ *
+ * When the domain contains enough integer values (≥ 3) the ticks are filtered
+ * to integers only (avoids fractional labels for count data).  For small-range
+ * domains – e.g. 0–1 ratios / probabilities – the raw D3 ticks are returned
+ * unchanged so that decimal labels are still visible.
+ */
+export function computeYTickValues(y: ScaleLinear<number, number>, count = 5): number[] {
+  const raw = y.ticks(count);
+  const integers = raw.filter(Number.isInteger);
+  // Keep integer-only ticks only when there are at least 3 of them; otherwise
+  // the domain is too small (e.g. 0–1) and we need the decimal ticks.
+  return integers.length >= 3 ? integers : raw;
+}
+
+/**
+ * Returns a D3 tick-format function that matches the decision made in
+ * {@link computeYTickValues}:
+ *
+ * - **Integer / large-value domain** (≥ 3 integer ticks): SI prefix format
+ *   (`~s`), e.g. `1k`, `200`.
+ * - **Small / decimal domain** (< 3 integer ticks, e.g. 0–1 ratios): plain
+ *   fixed-point format (`.3~f`) – avoids the SI "milli" prefix (`m`) that
+ *   D3 would otherwise apply to values < 1.
+ */
+export function computeYTickFormat(
+  y: ScaleLinear<number, number>,
+  count = 5
+): (d: number | { valueOf(): number }) => string {
+  const raw = y.ticks(count);
+  const integers = raw.filter(Number.isInteger);
+  return integers.length >= 3 ? d3format('~s') : d3format('.3~f');
+}
+
+/**
  * Draws the X and Y axes (with integer-only Y ticks and grid lines) plus
  * optional description labels onto the given D3 group.
  *
@@ -52,9 +87,10 @@ export function drawXYAxes(
     .style('fill', 'var(--clr-color-neutral-600, #666)');
 
   // Y axis
-  const tickValues = y.ticks(5).filter((t: number) => Number.isInteger(t));
+  const tickValues = computeYTickValues(y);
+  const tickFormat = computeYTickFormat(y);
   g.append('g')
-    .call(d3axisLeft(y).tickValues(tickValues).tickSize(-width).tickFormat(d3format('~s')))
+    .call(d3axisLeft(y).tickValues(tickValues).tickSize(-width).tickFormat(tickFormat))
     .selectAll('text')
     .style('font-size', '11px')
     .style('fill', 'var(--clr-color-neutral-600, #666)');

@@ -212,6 +212,32 @@
   </div>
 </div>
 
+<!-- Y Axis max = 1 (ratio / probability scale 0–1) -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">
+    Y Axis Max = 1 – Ratio / Probability Scale (<code>[yBarMax]="1"</code> &amp; <code>[yLineMax]="1"</code>)
+  </div>
+  <div class="card-block">
+    <p class="card-text" style="font-size: 0.85rem; color: var(--clr-color-neutral-700)">
+      Both Y axes are pinned to a maximum of <strong>1</strong>, which is ideal for ratio or probability data (0 – 1).
+      The bar series shows the success and error rates per month; the line overlay shows the target rate.
+    </p>
+    <div style="height: 340px; width: 100%">
+      <clr-combo-chart
+        [barSeries]="ratioBarSeries"
+        [lineSeries]="ratioLineSeries"
+        [showLegend]="true"
+        xAxisLabel="Month"
+        yAxisLabel="Rate (max 1)"
+        yLineAxisLabel="Target Rate (max 1)"
+        exportFilename=""
+        (valueClicked)="onValueClicked($event)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-combo-chart>
+    </div>
+  </div>
+</div>
+
 <!-- Alert: No Items -->
 <div class="card" style="margin-bottom: 1.5rem">
   <div class="card-header">Alert – No Items (empty series → info alert)</div>

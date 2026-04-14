@@ -213,6 +213,43 @@ export class ComboChartDemo {
     },
   ];
 
+  // ── Max Y = 1 demo data (ratio / probability values between 0 and 1) ─────────
+
+  protected readonly ratioBarSeries: ComboBarSeries[] = [
+    {
+      key: 'successRate',
+      label: 'Success Rate',
+      color: '#63AB78',
+      data: MONTHS.map((x, i) => ({
+        x,
+        xLabel: x,
+        value: Math.round((2.7 + Math.sin(i / 3) * 0.15) * 100) / 100,
+      })),
+    },
+    {
+      key: 'errorRate',
+      label: 'Error Rate',
+      color: '#EC3733',
+      data: MONTHS.map((x, i) => ({
+        x,
+        xLabel: x,
+        value: Math.round((0.05 + Math.abs(Math.cos(i / 2)) * 0.08) * 100) / 100,
+      })),
+    },
+  ];
+
+  protected readonly ratioLineSeries: ComboLineSeries[] = [
+    {
+      key: 'targetRate',
+      label: 'Target Rate',
+      color: '#5b40b2',
+      data: MONTHS.map((x, i) => ({
+        x,
+        value: Math.round(i * 0.01 * 100) / 100,
+      })),
+    },
+  ];
+
   // ── Actions ───────────────────────────────────────────────────────────────────
 
   public toggleLoading(): void {
