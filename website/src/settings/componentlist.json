@@ -151,6 +151,11 @@
       "type": "component"
     },
     {
+      "url": "tooltip",
+      "text": "Tooltip",
+      "type": "component"
+    },
+    {
       "url": "treetable",
       "text": "Treetable",
       "type": "component"

@@ -18,12 +18,13 @@ import { ClrIconModule, ClrTooltipModule } from '@clr/angular';
 import { CdkCopyToClipboard } from '@angular/cdk/clipboard';
 import { NgClass } from '@angular/common';
 import { ClarityIcons, copyToClipboardIcon, successStandardIcon } from '@cds/core/icon';
+import { ClrTooltipFitContentDirective } from '../tooltip';
 
 ClarityIcons.addIcons(copyToClipboardIcon, successStandardIcon);
 
 @Component({
   selector: 'clr-copy-to-clipboard',
-  imports: [CdkCopyToClipboard, NgClass, ClrIconModule, ClrTooltipModule],
+  imports: [CdkCopyToClipboard, NgClass, ClrIconModule, ClrTooltipModule, ClrTooltipFitContentDirective],
   templateUrl: './copy-to-clipboard.html',
   styleUrl: './copy-to-clipboard.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -131,6 +131,13 @@ const documentationRoutes: Routes = [
         },
       },
       {
+        path: 'tooltip',
+        loadChildren: () => import('./demos/tooltip/tooltip.demo.module').then(m => m.TooltipDemoModule),
+        data: {
+          browserTitle: 'Tooltip',
+        },
+      },
+      {
         path: 'treetable',
         loadChildren: () => import('./demos/treetable/treetable.demo.module').then(m => m.TreetableDemoModule),
         data: {

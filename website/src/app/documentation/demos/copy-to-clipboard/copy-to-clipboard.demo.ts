@@ -9,6 +9,8 @@ import { ClarityDocComponent } from '../clarity-doc';
 const DATAGRID_EXAMPLE = `<clr-datagrid>
   <clr-dg-column>ID</clr-dg-column>
   <clr-dg-column>Name</clr-dg-column>
+  <clr-dg-column>Email</clr-dg-column>
+  <clr-dg-column>Salary</clr-dg-column>
 
   @for (user of users; track user.id) {
     <clr-dg-row>
@@ -17,6 +19,14 @@ const DATAGRID_EXAMPLE = `<clr-datagrid>
         <clr-copy-to-clipboard [value]="user.id" [hiddenUntilHovered]="true"></clr-copy-to-clipboard>
       </clr-dg-cell>
       <clr-dg-cell>{{ user.name }}</clr-dg-cell>
+      <clr-dg-cell class="clr-copy-to-clipboard-container">
+        <a [href]="'mailto:' + user.email">{{ user.email }}</a>
+        <clr-copy-to-clipboard [value]="user.email" [hiddenUntilHovered]="true"></clr-copy-to-clipboard>
+      </clr-dg-cell>
+      <clr-dg-cell class="clr-copy-to-clipboard-container" style="justify-content: flex-end">
+        {{ user.salary | currency: 'EUR' : 'symbol' : '1.0' : 'en' }}
+        <clr-copy-to-clipboard [value]="user.salary.toString()" [hiddenUntilHovered]="true"></clr-copy-to-clipboard>
+      </clr-dg-cell>
     </clr-dg-row>
   }
 </clr-datagrid>`;
@@ -67,6 +77,7 @@ interface User {
   id: string;
   name: string;
   email: string;
+  salary: number;
 }
 
 interface TreeNode {
@@ -91,9 +102,9 @@ export class CopyToClipboardDemo extends ClarityDocComponent {
   alwaysVisibleExample = ALWAYS_VISIBLE_EXAMPLE;
 
   users: User[] = [
-    { id: 'USR-001', name: 'Alice Johnson', email: 'alice@example.com' },
-    { id: 'USR-002', name: 'Bob Smith', email: 'bob@example.com' },
-    { id: 'USR-003', name: 'Carol Williams', email: 'carol@example.com' },
+    { id: 'USR-001', name: 'Alice Johnson', email: 'alice@example.com', salary: 725 },
+    { id: 'USR-002', name: 'Bob Smith', email: 'bob@example.com', salary: 58900 },
+    { id: 'USR-003', name: 'Carol Williams', email: 'carol@example.com', salary: 0 },
   ];
 
   treeData: TreeNode[] = [

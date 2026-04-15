@@ -1,0 +1,104 @@
+<clr-doc-wrapper [title]="title" [showTabs]="false">
+  <article>
+    <h5 class="component-summary">
+      Clarity Addons extensions for the native Clarity <code class="clr-code">clr-tooltip</code> component.
+    </h5>
+
+    <p>
+      The native Clarity tooltip content renders at a fixed width (determined by
+      <code class="clr-code">[clrSize]</code>). The <code class="clr-code">clrTooltipFitContent</code> attribute
+      directive overrides this by applying <code class="clr-code">width: fit-content !important</code> directly on the
+      tooltip content element, so the bubble only takes as much space as its text needs.
+    </p>
+
+    <h3>Summary of Options</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="left">Directive / Input</th>
+          <th class="left clr-hidden-xs-down">Type</th>
+          <th class="clr-hidden-xs-down">Default</th>
+          <th class="left">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="left">
+            <b>clrTooltipFitContent</b>
+            <div class="clr-hidden-sm-up">Type: boolean</div>
+            <div class="clr-hidden-sm-up">Default: true</div>
+          </td>
+          <td class="left clr-hidden-xs-down">boolean</td>
+          <td class="clr-hidden-xs-down">true</td>
+          <td class="left">
+            Attribute directive applied to <code class="clr-code">&lt;clr-tooltip-content&gt;</code>. When
+            <code class="clr-code">true</code> (the default when the attribute is present without a binding), sets
+            <code class="clr-code">width: fit-content !important</code> on the tooltip bubble. Pass
+            <code class="clr-code">[clrTooltipFitContent]="false"</code> to disable it conditionally.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div id="code-examples">
+      <h3 id="examples">Code &amp; Examples</h3>
+
+      <h4>Side-by-side comparison</h4>
+      <p>
+        Hover both icons to compare the default fixed-width Clarity tooltip against the
+        <code class="clr-code">clrTooltipFitContent</code> variant.
+      </p>
+
+      <div style="display: flex; gap: 3rem; align-items: flex-start; flex-wrap: wrap">
+        <div>
+          <p class="p2"><strong>Default Clarity tooltip</strong> (fixed width)</p>
+          <clr-tooltip>
+            <cds-icon clrTooltipTrigger shape="info-standard" size="24"></cds-icon>
+            <clr-tooltip-content clrSize="sm" clrPosition="bottom-right" *clrIfOpen> Short tip </clr-tooltip-content>
+          </clr-tooltip>
+          <clr-code-snippet [clrCode]="withoutExample"></clr-code-snippet>
+        </div>
+
+        <div>
+          <p class="p2">
+            <strong>With <code class="clr-code">clrTooltipFitContent</code></strong>
+          </p>
+          <clr-tooltip>
+            <cds-icon clrTooltipTrigger shape="info-standard" size="24"></cds-icon>
+            <clr-tooltip-content clrTooltipFitContent clrSize="sm" clrPosition="bottom-right" *clrIfOpen>
+              Short tip
+            </clr-tooltip-content>
+          </clr-tooltip>
+          <clr-code-snippet [clrCode]="fitContentExample"></clr-code-snippet>
+        </div>
+      </div>
+
+      <h4>Conditional usage</h4>
+      <p>
+        Bind <code class="clr-code">[clrTooltipFitContent]</code> to a boolean expression to toggle the behaviour at
+        runtime.
+      </p>
+      <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem">
+        <clr-toggle-wrapper>
+          <input type="checkbox" clrToggle [(ngModel)]="isFitContent" id="fitContentToggle" />
+          <label for="fitContentToggle">Enable fit-content</label>
+        </clr-toggle-wrapper>
+        <clr-tooltip>
+          <cds-icon clrTooltipTrigger shape="info-standard" size="24"></cds-icon>
+          <clr-tooltip-content [clrTooltipFitContent]="isFitContent" clrSize="sm" clrPosition="bottom-right" *clrIfOpen>
+            Tooltip text
+          </clr-tooltip-content>
+        </clr-tooltip>
+      </div>
+      <clr-code-snippet [clrCode]="conditionalExample"></clr-code-snippet>
+
+      <h4>Real-world usage in <code class="clr-code">clr-copy-to-clipboard</code></h4>
+      <p>
+        The <code class="clr-code">clr-copy-to-clipboard</code> component applies
+        <code class="clr-code">clrTooltipFitContent</code> internally on its own
+        <code class="clr-code">clr-tooltip-content</code>, so the "Copy to clipboard" bubble is always sized to its text
+        rather than stretching to a fixed Clarity size. No extra input is needed on the component itself.
+      </p>
+    </div>
+  </article>
+</clr-doc-wrapper>
