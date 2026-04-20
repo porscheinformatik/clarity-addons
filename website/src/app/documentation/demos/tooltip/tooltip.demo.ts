@@ -6,28 +6,6 @@
 import { Component } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
 
-const FIT_CONTENT_EXAMPLE = `<clr-tooltip>
-  <cds-icon clrTooltipTrigger shape="info-standard"></cds-icon>
-  <clr-tooltip-content clrTooltipFitContent *clrIfOpen>
-    Short tip
-  </clr-tooltip-content>
-</clr-tooltip>`;
-
-const CONDITIONAL_EXAMPLE = `<clr-tooltip>
-  <cds-icon clrTooltipTrigger shape="info-standard"></cds-icon>
-  <clr-tooltip-content [clrTooltipFitContent]="isFitContent" *clrIfOpen>
-    Tooltip text
-  </clr-tooltip-content>
-</clr-tooltip>`;
-
-const WITHOUT_EXAMPLE = `<!-- Default Clarity tooltip — fixed width -->
-<clr-tooltip>
-  <cds-icon clrTooltipTrigger shape="info-standard"></cds-icon>
-  <clr-tooltip-content *clrIfOpen>
-    Short tip
-  </clr-tooltip-content>
-</clr-tooltip>`;
-
 @Component({
   selector: 'clr-tooltip-demo',
   templateUrl: './tooltip.demo.html',
@@ -38,12 +16,6 @@ const WITHOUT_EXAMPLE = `<!-- Default Clarity tooltip — fixed width -->
   standalone: false,
 })
 export class TooltipDemo extends ClarityDocComponent {
-  fitContentExample = FIT_CONTENT_EXAMPLE;
-  conditionalExample = CONDITIONAL_EXAMPLE;
-  withoutExample = WITHOUT_EXAMPLE;
-
-  isFitContent = true;
-
   constructor() {
     super('tooltip');
   }

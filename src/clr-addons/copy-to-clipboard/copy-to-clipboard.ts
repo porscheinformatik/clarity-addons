@@ -8,6 +8,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  computed,
   ElementRef,
   inject,
   input,
@@ -18,13 +19,12 @@ import { ClrIconModule, ClrTooltipModule } from '@clr/angular';
 import { CdkCopyToClipboard } from '@angular/cdk/clipboard';
 import { NgClass } from '@angular/common';
 import { ClarityIcons, copyToClipboardIcon, successStandardIcon } from '@cds/core/icon';
-import { ClrTooltipFitContentDirective } from '../tooltip';
 
 ClarityIcons.addIcons(copyToClipboardIcon, successStandardIcon);
 
 @Component({
   selector: 'clr-copy-to-clipboard',
-  imports: [CdkCopyToClipboard, NgClass, ClrIconModule, ClrTooltipModule, ClrTooltipFitContentDirective],
+  imports: [CdkCopyToClipboard, NgClass, ClrIconModule, ClrTooltipModule],
   templateUrl: './copy-to-clipboard.html',
   styleUrl: './copy-to-clipboard.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -36,6 +36,7 @@ ClarityIcons.addIcons(copyToClipboardIcon, successStandardIcon);
 })
 export class ClrCopyToClipboard implements OnInit, AfterViewInit, OnDestroy {
   public value = input.required<string>();
+  public trimmedValue = computed(() => this.value().trim());
   public tooltipText = input<string>('Copy to clipboard');
   public hiddenUntilHovered = input<boolean>(false);
 
@@ -52,13 +53,6 @@ export class ClrCopyToClipboard implements OnInit, AfterViewInit, OnDestroy {
   private parentLeaveListener?: () => void;
 
   public ngOnInit(): void {
-    const newSize = this.tooltipText && this.tooltipText().length < 15 ? 'sm' : 'md';
-
-    if (this.tooltipSize !== newSize) {
-      this.tooltipSize = newSize;
-      this.cdr.markForCheck();
-    }
-
     this.updateTooltipPosition();
   }
 

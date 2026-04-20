@@ -663,5 +663,9 @@ clr-control-helper.clr-warning {
   gap: 0.25rem;
 }
 
+clr-tooltip-content.clr-tooltip-fit-content {
+  width: fit-content !important;
+}
+
 // Has to be at the bottom to override the styles from the above properly
 @include meta.load-css('mobile');
