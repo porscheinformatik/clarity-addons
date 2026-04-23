@@ -107,14 +107,11 @@
           <clr-dg-cell>{{ user.name }}</clr-dg-cell>
           <clr-dg-cell class="clr-copy-to-clipboard-container">
             <a [href]="'mailto:' + user.email">{{ user.email }}</a>
-            <clr-copy-to-clipboard [value]="user.email" [hiddenUntilHovered]="false"></clr-copy-to-clipboard>
+            <clr-copy-to-clipboard [value]="user.email" [hiddenUntilHovered]="true"></clr-copy-to-clipboard>
           </clr-dg-cell>
           <clr-dg-cell class="clr-copy-to-clipboard-container" style="justify-content: flex-end">
             {{ user.salary | currency: 'EUR' : 'symbol' : '1.0' : 'en' }}
-            <clr-copy-to-clipboard
-              [value]="user.salary.toString()"
-              [hiddenUntilHovered]="false"
-            ></clr-copy-to-clipboard>
+            <clr-copy-to-clipboard [value]="user.salary.toString()" [hiddenUntilHovered]="true"></clr-copy-to-clipboard>
           </clr-dg-cell>
         </clr-dg-row>
         }
