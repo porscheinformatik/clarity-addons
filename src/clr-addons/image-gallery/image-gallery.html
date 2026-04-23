@@ -1,0 +1,94 @@
+<!--
+  ~ Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
+  ~ This software is released under MIT license.
+  ~ The full license information can be found in LICENSE in the root directory of this project.
+  -->
+
+<!-- Static gallery view -->
+<div class="clr-image-gallery" (click)="openModal(0)" [style.width.px]="spotlightSize()">
+  <!-- Spotlight image -->
+  <div class="clr-image-gallery__spotlight" [style.width.px]="spotlightSize()" [style.height.px]="spotlightSize()">
+    <img
+      *ngIf="images().length > 0"
+      [ngSrc]="images()[0].src"
+      [width]="spotlightSize()"
+      [height]="spotlightSize()"
+      [alt]="images()[0].alt || ''"
+      class="clr-image-gallery__spotlight-img"
+    />
+  </div>
+
+  <!-- Thumbnail row -->
+  <div class="clr-image-gallery__thumbs" *ngIf="images().length > 1">
+    <div
+      *ngFor="let img of staticThumbnails(); let i = index"
+      class="clr-image-gallery__thumb"
+      [style.width.px]="thumbnailSize()"
+      [style.height.px]="thumbnailSize()"
+    >
+      <img [src]="img.src" [alt]="img.alt || ''" class="clr-image-gallery__thumb-img" />
+      <!-- Overlay on last thumbnail when there are more images -->
+      <div class="clr-image-gallery__thumb-overlay" *ngIf="i === maxThumbnails - 1 && remainingCount() > 0">
+        <span>+{{ remainingCount() }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Carousel modal -->
+<div
+  class="clr-image-gallery-backdrop"
+  *ngIf="modalOpen()"
+  (click)="onBackdropClick($event)"
+  role="dialog"
+  aria-modal="true"
+>
+  <div class="clr-image-gallery-modal">
+    <!-- Modal header -->
+    <div class="clr-image-gallery-modal__header">
+      <span class="clr-image-gallery-modal__title">{{ productName() }}</span>
+      <button class="clr-image-gallery-modal__close" (click)="closeModal()" aria-label="Close">
+        <cds-icon shape="times"></cds-icon>
+      </button>
+    </div>
+
+    <!-- Modal spotlight -->
+    <div class="clr-image-gallery-modal__spotlight">
+      <button
+        class="clr-image-gallery-modal__arrow clr-image-gallery-modal__arrow--prev"
+        (click)="prev()"
+        aria-label="Previous"
+      >
+        <cds-icon shape="angle" direction="left"></cds-icon>
+      </button>
+
+      <div class="clr-image-gallery-modal__img-wrap">
+        <img
+          [src]="images()[activeIndex()].src"
+          [alt]="images()[activeIndex()].alt || ''"
+          class="clr-image-gallery-modal__img"
+        />
+      </div>
+
+      <button
+        class="clr-image-gallery-modal__arrow clr-image-gallery-modal__arrow--next"
+        (click)="next()"
+        aria-label="Next"
+      >
+        <cds-icon shape="angle" direction="right"></cds-icon>
+      </button>
+    </div>
+
+    <!-- Modal thumbnail strip -->
+    <div class="clr-image-gallery-modal__thumbs">
+      <div
+        *ngFor="let img of images(); let i = index"
+        class="clr-image-gallery-modal__thumb"
+        [class.clr-image-gallery-modal__thumb--active]="i === activeIndex()"
+        (click)="setActive(i)"
+      >
+        <img [src]="img.src" [alt]="img.alt || ''" class="clr-image-gallery-modal__thumb-img" />
+      </div>
+    </div>
+  </div>
+</div>

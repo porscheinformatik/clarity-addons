@@ -81,6 +81,12 @@
       "type": "component"
     },
     {
+      "url": "image-gallery",
+      "text": "Image Gallery",
+      "type": "component",
+      "isNew": true
+    },
+    {
       "url": "icon-avatar",
       "text": "Icon avatar",
       "type": "component"

@@ -48,3 +48,4 @@ export * from './signpost/index';
 export * from './focus-first-invalid-field/index';
 export * from './control-enter-submit/index';
 export * from './keyboard-nav/index';
+export * from './image-gallery/index';

@@ -1,0 +1,69 @@
+<!--
+  Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
+  This software is released under MIT license.
+  The full license information can be found in LICENSE in the root directory of this project.
+-->
+
+<h2>Image Gallery Demo</h2>
+
+<!-- Controls -->
+<div style="margin-bottom: 1.5rem; display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center">
+  <label style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem">
+    Product name:
+    <input
+      class="clr-input"
+      type="text"
+      [ngModel]="productName()"
+      (ngModelChange)="productName.set($event)"
+      style="width: 140px"
+    />
+  </label>
+  <label style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem">
+    Spotlight size (px):
+    <input
+      class="clr-input"
+      type="number"
+      min="100"
+      max="800"
+      [ngModel]="spotlightSize()"
+      (ngModelChange)="setSpotlightSize($event)"
+      style="width: 80px"
+    />
+  </label>
+</div>
+
+<!-- 7 images (overflow indicator visible) -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">7 images – last thumbnail shows overflow count</div>
+  <div class="card-block" style="padding: 1rem">
+    <clr-image-gallery
+      [images]="images"
+      [productName]="productName()"
+      [spotlightSize]="spotlightSize()"
+    ></clr-image-gallery>
+  </div>
+</div>
+
+<!-- 3 images (no overflow) -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">3 images – no overflow indicator</div>
+  <div class="card-block" style="padding: 1rem">
+    <clr-image-gallery
+      [images]="fewImages"
+      [productName]="'3-image set'"
+      [spotlightSize]="spotlightSize()"
+    ></clr-image-gallery>
+  </div>
+</div>
+
+<!-- Single image -->
+<div class="card">
+  <div class="card-header">Single image – no thumbnail row</div>
+  <div class="card-block" style="padding: 1rem">
+    <clr-image-gallery
+      [images]="singleImage"
+      [productName]="'Single image'"
+      [spotlightSize]="spotlightSize()"
+    ></clr-image-gallery>
+  </div>
+</div>

@@ -210,6 +210,10 @@ export const APP_ROUTES: Routes = [
     path: 'keyboard-nav',
     loadComponent: () => import('./keyboard-nav/keyboard-nav.demo').then(m => m.KeyboardNavDemo),
   },
+  {
+    path: 'image-gallery',
+    loadComponent: () => import('./image-gallery/image-gallery.demo').then(m => m.ImageGalleryDemo),
+  },
 ];
 
 export const ROUTING: ModuleWithProviders<RouterModule> = RouterModule.forRoot(APP_ROUTES);
