@@ -17,15 +17,10 @@ export class ImageGalleryDemo {
   protected readonly productName = signal('Porsche 911');
   protected readonly spotlightSize = signal(400);
 
-  protected images: ClrImageGalleryImage[] = [
-    { src: 'https://picsum.photos/seed/car1/800/600', alt: 'Car image 1' },
-    { src: 'https://picsum.photos/seed/car2/800/600', alt: 'Car image 2' },
-    { src: 'https://picsum.photos/seed/car3/800/600', alt: 'Car image 3' },
-    { src: 'https://picsum.photos/seed/car4/800/600', alt: 'Car image 4' },
-    { src: 'https://picsum.photos/seed/car5/800/600', alt: 'Car image 5' },
-    { src: 'https://picsum.photos/seed/car6/800/600', alt: 'Car image 6' },
-    { src: 'https://picsum.photos/seed/car7/800/600', alt: 'Car image 7' },
-  ];
+  protected images: ClrImageGalleryImage[] = Array.from({ length: 30 }, (_, i) => ({
+    src: `https://picsum.photos/seed/car${i + 1}/800/600`,
+    alt: `Car image ${i + 1}`,
+  }));
 
   protected fewImages: ClrImageGalleryImage[] = [
     { src: 'https://picsum.photos/seed/few1/800/600', alt: 'Image 1' },

@@ -29,7 +29,7 @@
       <img [src]="img.src" [alt]="img.alt || ''" class="clr-image-gallery__thumb-img" />
       <!-- Overlay on last thumbnail when there are more images -->
       <div class="clr-image-gallery__thumb-overlay" *ngIf="i === maxThumbnails - 1 && remainingCount() > 0">
-        <span>+{{ remainingCount() }}</span>
+        <span>{{ remainingCount() }}+</span>
       </div>
     </div>
   </div>
@@ -59,7 +59,7 @@
         (click)="prev()"
         aria-label="Previous"
       >
-        <cds-icon shape="angle" direction="left"></cds-icon>
+        <cds-icon shape="circle-arrow" direction="left" solid></cds-icon>
       </button>
 
       <div class="clr-image-gallery-modal__img-wrap">
@@ -75,19 +75,23 @@
         (click)="next()"
         aria-label="Next"
       >
-        <cds-icon shape="angle" direction="right"></cds-icon>
+        <cds-icon shape="circle-arrow" direction="right" solid></cds-icon>
       </button>
     </div>
 
     <!-- Modal thumbnail strip -->
-    <div class="clr-image-gallery-modal__thumbs">
-      <div
-        *ngFor="let img of images(); let i = index"
-        class="clr-image-gallery-modal__thumb"
-        [class.clr-image-gallery-modal__thumb--active]="i === activeIndex()"
-        (click)="setActive(i)"
-      >
-        <img [src]="img.src" [alt]="img.alt || ''" class="clr-image-gallery-modal__thumb-img" />
+    <div class="clr-image-gallery-modal__thumbs-wrap">
+      <div class="clr-image-gallery-modal__thumbs" #thumbStrip>
+        <span class="clr-image-gallery-modal__thumbs-spacer" [style.width.px]="spacerWidth()"></span>
+        <div
+          *ngFor="let img of images(); let i = index"
+          class="clr-image-gallery-modal__thumb"
+          [class.clr-image-gallery-modal__thumb--active]="i === activeIndex()"
+          (click)="setActive(i)"
+        >
+          <img [src]="img.src" [alt]="img.alt || ''" class="clr-image-gallery-modal__thumb-img" />
+        </div>
+        <span class="clr-image-gallery-modal__thumbs-spacer" [style.width.px]="spacerWidth()"></span>
       </div>
     </div>
   </div>
