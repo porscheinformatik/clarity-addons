@@ -32,7 +32,13 @@
       [style.height.px]="thumbnailSize()"
       (click)="openModal(i + 1)"
     >
-      <img [src]="img.src" [alt]="img.alt || ''" class="clr-image-gallery__thumb-img" />
+      <img
+        [ngSrc]="img.src"
+        [width]="thumbnailSize()"
+        [height]="thumbnailSize()"
+        [alt]="img.alt || ''"
+        class="clr-image-gallery__thumb-img"
+      />
       <!-- Overlay on last thumbnail when there are more images -->
       <div class="clr-image-gallery__thumb-overlay" *ngIf="i === maxThumbnails - 1 && remainingCount() > 0">
         <span>{{ remainingCount() }}+</span>
@@ -41,64 +47,20 @@
   </div>
 </div>
 
-<!-- Carousel modal -->
+<!-- Built-in modal (only when useBuiltInModal is true) -->
 <div
   class="clr-image-gallery-backdrop"
-  *ngIf="modalOpen()"
+  *ngIf="useBuiltInModal() && modalOpen()"
   (click)="onBackdropClick($event)"
   role="dialog"
   aria-modal="true"
 >
   <div class="clr-image-gallery-modal">
-    <!-- Modal header -->
-    <div class="clr-image-gallery-modal__header">
-      <span class="clr-image-gallery-modal__title">{{ productName() }}</span>
-      <button class="clr-image-gallery-modal__close" (click)="closeModal()" aria-label="Close">
-        <cds-icon shape="times"></cds-icon>
-      </button>
-    </div>
-
-    <!-- Modal spotlight -->
-    <div class="clr-image-gallery-modal__spotlight">
-      <button
-        class="clr-image-gallery-modal__arrow clr-image-gallery-modal__arrow--prev"
-        (click)="prev()"
-        aria-label="Previous"
-      >
-        <cds-icon shape="circle-arrow" direction="left" solid></cds-icon>
-      </button>
-
-      <div class="clr-image-gallery-modal__img-wrap">
-        <img
-          [src]="images()[activeIndex()].src"
-          [alt]="images()[activeIndex()].alt || ''"
-          class="clr-image-gallery-modal__img"
-        />
-      </div>
-
-      <button
-        class="clr-image-gallery-modal__arrow clr-image-gallery-modal__arrow--next"
-        (click)="next()"
-        aria-label="Next"
-      >
-        <cds-icon shape="circle-arrow" direction="right" solid></cds-icon>
-      </button>
-    </div>
-
-    <!-- Modal thumbnail strip -->
-    <div class="clr-image-gallery-modal__thumbs-wrap">
-      <div class="clr-image-gallery-modal__thumbs" #thumbStrip>
-        <span class="clr-image-gallery-modal__thumbs-spacer" [style.width.px]="spacerWidth()"></span>
-        <div
-          *ngFor="let img of images(); let i = index"
-          class="clr-image-gallery-modal__thumb"
-          [class.clr-image-gallery-modal__thumb--active]="i === activeIndex()"
-          (click)="setActive(i)"
-        >
-          <img [src]="img.src" [alt]="img.alt || ''" class="clr-image-gallery-modal__thumb-img" />
-        </div>
-        <span class="clr-image-gallery-modal__thumbs-spacer" [style.width.px]="spacerWidth()"></span>
-      </div>
-    </div>
+    <clr-image-carousel
+      [images]="images()"
+      [productName]="productName()"
+      [initialIndex]="activeIndex()"
+      (closeCarousel)="closeModal()"
+    ></clr-image-carousel>
   </div>
 </div>

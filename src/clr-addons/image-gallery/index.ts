@@ -5,4 +5,5 @@
  */
 
 export * from './image-gallery';
+export * from './image-carousel';
 export * from './image-gallery.module';

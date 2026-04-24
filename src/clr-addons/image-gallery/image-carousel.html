@@ -1,0 +1,51 @@
+<!--
+  ~ Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
+  ~ This software is released under MIT license.
+  ~ The full license information can be found in LICENSE in the root directory of this project.
+  -->
+
+<div class="clr-image-carousel">
+  <!-- Header -->
+  <div class="clr-image-carousel__header" *ngIf="!hideHeader()">
+    <span class="clr-image-carousel__title">{{ productName() }}</span>
+    <button class="clr-image-carousel__close" (click)="closeCarousel.emit()" aria-label="Close">
+      <cds-icon shape="times"></cds-icon>
+    </button>
+  </div>
+
+  <!-- Spotlight -->
+  <div class="clr-image-carousel__spotlight">
+    <div class="clr-image-carousel__img-wrap">
+      <button class="clr-image-carousel__arrow clr-image-carousel__arrow--prev" (click)="prev()" aria-label="Previous">
+        <cds-icon shape="circle-arrow" direction="left" solid></cds-icon>
+      </button>
+
+      <img
+        *ngIf="images().length > 0"
+        [src]="images()[activeIndex()].src"
+        [alt]="images()[activeIndex()].alt || ''"
+        class="clr-image-carousel__img"
+      />
+
+      <button class="clr-image-carousel__arrow clr-image-carousel__arrow--next" (click)="next()" aria-label="Next">
+        <cds-icon shape="circle-arrow" direction="right" solid></cds-icon>
+      </button>
+    </div>
+  </div>
+
+  <!-- Thumbnail strip -->
+  <div class="clr-image-carousel__thumbs-wrap">
+    <div class="clr-image-carousel__thumbs" #thumbStrip>
+      <span class="clr-image-carousel__thumbs-spacer" [style.width.px]="spacerWidth()"></span>
+      <div
+        *ngFor="let img of images(); let i = index"
+        class="clr-image-carousel__thumb"
+        [class.clr-image-carousel__thumb--active]="i === activeIndex()"
+        (click)="setActive(i)"
+      >
+        <img [src]="img.src" [alt]="img.alt || ''" class="clr-image-carousel__thumb-img" />
+      </div>
+      <span class="clr-image-carousel__thumbs-spacer" [style.width.px]="spacerWidth()"></span>
+    </div>
+  </div>
+</div>

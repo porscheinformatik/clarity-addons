@@ -1,0 +1,62 @@
+<!--
+  Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
+  This software is released under MIT license.
+  The full license information can be found in LICENSE in the root directory of this project.
+-->
+
+<h2>Image Gallery in Modal Demo</h2>
+<p>
+  The gallery is embedded inside a Clarity modal with <code>[useBuiltInModal]="false"</code>. Clicking an image replaces
+  the modal content with the carousel instead of opening a nested modal.
+</p>
+
+<button class="btn btn-primary" (click)="openModal()">Open Modal</button>
+
+<clr-modal [clrModalOpen]="modalOpen()" (clrModalOpenChange)="$event ? null : onModalClose()" clrModalSize="lg">
+  <h3 class="modal-title">
+    <button
+      *ngIf="showCarousel()"
+      class="btn btn-icon btn-link"
+      style="
+        margin: 0 4px 0 0;
+        padding: 0;
+        min-width: 0;
+        width: 24px;
+        height: 24px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        vertical-align: middle;
+      "
+      (click)="onCarouselClose()"
+      aria-label="Back"
+    >
+      <cds-icon shape="angle" direction="left" size="24"></cds-icon>
+    </button>
+    <span>Porsche 911 – Images</span>
+  </h3>
+
+  <div class="modal-body" style="padding: 0; overflow: hidden; display: flex; flex-direction: column">
+    <!-- Static gallery view -->
+    <div *ngIf="!showCarousel()" style="padding: 1rem">
+      <clr-image-gallery
+        [images]="images"
+        [productName]="'Porsche 911'"
+        [spotlightSize]="284"
+        [useBuiltInModal]="false"
+        (galleryOpen)="onGalleryOpen($event)"
+      ></clr-image-gallery>
+    </div>
+
+    <!-- Carousel replaces modal body (header hidden – Clarity modal provides title + close) -->
+    <clr-image-carousel
+      *ngIf="showCarousel()"
+      [images]="images"
+      [productName]="'Porsche 911'"
+      [initialIndex]="carouselIndex()"
+      [hideHeader]="true"
+      (closeCarousel)="onCarouselClose()"
+      style="flex: 1; min-height: 0; display: flex; flex-direction: column"
+    ></clr-image-carousel>
+  </div>
+</clr-modal>

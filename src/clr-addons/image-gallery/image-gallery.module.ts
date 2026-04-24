@@ -9,10 +9,11 @@ import { NgModule } from '@angular/core';
 import { ClarityModule } from '@clr/angular';
 
 import { ClrImageGallery } from './image-gallery';
+import { ClrImageCarousel } from './image-carousel';
 
 @NgModule({
   imports: [CommonModule, ClarityModule, NgOptimizedImage],
-  declarations: [ClrImageGallery],
-  exports: [ClrImageGallery],
+  declarations: [ClrImageGallery, ClrImageCarousel],
+  exports: [ClrImageGallery, ClrImageCarousel],
 })
 export class ClrImageGalleryModule {}

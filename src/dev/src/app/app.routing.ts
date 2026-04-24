@@ -214,6 +214,10 @@ export const APP_ROUTES: Routes = [
     path: 'image-gallery',
     loadComponent: () => import('./image-gallery/image-gallery.demo').then(m => m.ImageGalleryDemo),
   },
+  {
+    path: 'image-gallery-in-modal',
+    loadComponent: () => import('./image-gallery/image-gallery-in-modal.demo').then(m => m.ImageGalleryInModalDemo),
+  },
 ];
 
 export const ROUTING: ModuleWithProviders<RouterModule> = RouterModule.forRoot(APP_ROUTES);

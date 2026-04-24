@@ -58,7 +58,7 @@
   }
 }
 
-// ─── Modal backdrop ───────────────────────────────────────────────────────────
+// ─── Built-in modal backdrop ──────────────────────────────────────────────────
 
 .clr-image-gallery-backdrop {
   position: fixed;
@@ -70,23 +70,13 @@
   z-index: 10000;
 }
 
-// ─── Modal panel ─────────────────────────────────────────────────────────────
-// Modal is locked to 96vh. Image fills the remaining height after header and
-// thumbnail strip, maintaining a 1:1 aspect ratio. Modal width = image + 2×24px.
-//
-// Header:     24px top + ~20px text + 24px bottom  = 68px
-// Thumb row:  8px top  + 24px thumb + 24px bottom  = 56px
-// Image side: 96vh - 68px - 56px                   = calc(96vh - 124px)
-// Modal width: image + 2×24px                      = calc(96vh - 76px)
-
+// Modal shell – dimensions mirror image-carousel.scss so the carousel fills it.
 $modal-pad: 24px;
 $modal-header-h: 68px;
 $modal-thumb-size: 64px;
-$modal-thumb-gap: 8px;
 $modal-img-to-thumbs: 8px;
 $modal-bottom-pad: $modal-pad;
-$modal-thumb-row-h: $modal-img-to-thumbs + $modal-thumb-size + $modal-bottom-pad; // 96px
-$modal-img-side: calc(96vh - #{$modal-header-h} - #{$modal-thumb-row-h});
+$modal-thumb-row-h: $modal-img-to-thumbs + $modal-thumb-size + $modal-bottom-pad;
 $modal-width: calc(96vh - #{$modal-header-h} - #{$modal-thumb-row-h} + #{$modal-pad * 2});
 
 .clr-image-gallery-modal {
@@ -99,177 +89,4 @@ $modal-width: calc(96vh - #{$modal-header-h} - #{$modal-thumb-row-h} + #{$modal-
   max-width: 98vw;
   overflow: hidden;
   box-shadow: 0 4px 32px rgba(0, 0, 0, 0.35);
-
-  &__header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: $modal-header-h;
-    padding: 0 $modal-pad;
-    flex-shrink: 0;
-    box-sizing: border-box;
-  }
-
-  &__title {
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 24px;
-  }
-
-  &__close {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: inherit;
-
-    cds-icon {
-      --color: currentColor;
-      width: 18px;
-      height: 18px;
-    }
-
-    &:hover {
-      opacity: 0.7;
-    }
-  }
-
-  &__spotlight {
-    position: relative;
-    flex-shrink: 0;
-    padding: 0 $modal-pad;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  &__img-wrap {
-    width: $modal-img-side;
-    height: $modal-img-side;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    border-radius: 3px;
-  }
-
-  &__img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  &__arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 1;
-    background: none;
-    border: none;
-    padding: 0;
-    outline: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    opacity: 0.25;
-    transition: opacity 0.15s;
-
-    &:focus {
-      outline: none;
-    }
-
-    &:hover {
-      opacity: 1;
-    }
-
-    &--prev {
-      left: $modal-pad + 12px;
-    }
-
-    &--next {
-      right: $modal-pad + 12px;
-    }
-
-    cds-icon {
-      --color: white;
-      width: 56px;
-      height: 56px;
-    }
-  }
-
-  &__thumbs-wrap {
-    position: relative;
-    flex-shrink: 0;
-
-    &::before,
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 48px;
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    &::before {
-      left: 0;
-      background: linear-gradient(to right, var(--clr-modal-bg-color, #fff), transparent);
-    }
-
-    &::after {
-      right: 0;
-      background: linear-gradient(to left, var(--clr-modal-bg-color, #fff), transparent);
-    }
-  }
-
-  &__thumbs {
-    display: flex;
-    gap: $modal-thumb-gap;
-    padding: $modal-img-to-thumbs 0 $modal-bottom-pad 0;
-    overflow-x: auto;
-    flex-shrink: 0;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
-
-  &__thumbs-spacer {
-    flex-shrink: 0;
-  }
-
-  &__thumb {
-    width: $modal-thumb-size;
-    height: $modal-thumb-size;
-    flex-shrink: 0;
-    overflow: hidden;
-    cursor: pointer;
-    border-radius: 3px;
-    outline: 4px solid transparent;
-    outline-offset: -4px;
-    transition: outline-color 0.15s;
-
-    &--active {
-      outline-color: #14a1a9;
-    }
-
-    &:hover:not(&--active) {
-      outline-color: var(--clr-color-neutral-400, #aaa);
-    }
-  }
-
-  &__thumb-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
 }
