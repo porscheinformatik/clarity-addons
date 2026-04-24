@@ -5,9 +5,14 @@
   -->
 
 <!-- Static gallery view -->
-<div class="clr-image-gallery" (click)="openModal(0)" [style.width.px]="spotlightSize()">
+<div class="clr-image-gallery" [style.width.px]="spotlightSize()">
   <!-- Spotlight image -->
-  <div class="clr-image-gallery__spotlight" [style.width.px]="spotlightSize()" [style.height.px]="spotlightSize()">
+  <div
+    class="clr-image-gallery__spotlight"
+    [style.width.px]="spotlightSize()"
+    [style.height.px]="spotlightSize()"
+    (click)="openModal(0)"
+  >
     <img
       *ngIf="images().length > 0"
       [ngSrc]="images()[0].src"
@@ -25,6 +30,7 @@
       class="clr-image-gallery__thumb"
       [style.width.px]="thumbnailSize()"
       [style.height.px]="thumbnailSize()"
+      (click)="openModal(i + 1)"
     >
       <img [src]="img.src" [alt]="img.alt || ''" class="clr-image-gallery__thumb-img" />
       <!-- Overlay on last thumbnail when there are more images -->
