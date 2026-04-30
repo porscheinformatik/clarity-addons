@@ -36,6 +36,11 @@ export class ClrImageGallery {
   /** Emitted when useBuiltInModal is false and the user clicks an image. */
   readonly galleryOpen = output<ClrImageGalleryOpenEvent>();
 
+  /** Size in pixels of the active image in the carousel. 0 (default) = auto-fit container width. */
+  readonly carouselImageSize = input(0);
+  /** Size in pixels of each thumbnail in the carousel. Defaults to 64px. */
+  readonly carouselThumbnailSize = input(64);
+
   protected modalOpen = signal(false);
   protected activeIndex = signal(0);
 

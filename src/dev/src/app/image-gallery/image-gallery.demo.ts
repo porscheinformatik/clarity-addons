@@ -14,28 +14,40 @@ import { ClrImageGalleryModule, ClrImageGalleryImage } from '@porscheinformatik/
   imports: [CommonModule, FormsModule, ClrImageGalleryModule],
 })
 export class ImageGalleryDemo {
-  protected readonly productName = signal('Porsche 911');
-  protected readonly spotlightSize = signal(400);
+  readonly productName = signal('Porsche 911');
+  readonly spotlightSize = signal(400);
+  readonly carouselImageSize = signal(0);
+  readonly carouselThumbnailSize = signal(64);
 
-  protected images: ClrImageGalleryImage[] = Array.from({ length: 30 }, (_, i) => ({
+  images: ClrImageGalleryImage[] = Array.from({ length: 30 }, (_, i) => ({
     src: `https://picsum.photos/seed/car${i + 1}/800/600`,
     alt: `Car image ${i + 1}`,
   }));
 
-  protected fewImages: ClrImageGalleryImage[] = [
+  fewImages: ClrImageGalleryImage[] = [
     { src: 'https://picsum.photos/seed/few1/800/600', alt: 'Image 1' },
     { src: 'https://picsum.photos/seed/few2/800/600', alt: 'Image 2' },
     { src: 'https://picsum.photos/seed/few3/800/600', alt: 'Image 3' },
   ];
 
-  protected singleImage: ClrImageGalleryImage[] = [
-    { src: 'https://picsum.photos/seed/single/800/600', alt: 'Single image' },
-  ];
+  singleImage: ClrImageGalleryImage[] = [{ src: 'https://picsum.photos/seed/single/800/600', alt: 'Single image' }];
 
   setSpotlightSize(val: string): void {
     const n = Number.parseInt(val);
     if (!Number.isNaN(n) && n > 0) {
       this.spotlightSize.set(n);
+    }
+  }
+
+  setCarouselImageSize(val: string): void {
+    const n = Number.parseInt(val);
+    this.carouselImageSize.set(!Number.isNaN(n) && n > 0 ? n : 0);
+  }
+
+  setCarouselThumbnailSize(val: string): void {
+    const n = Number.parseInt(val);
+    if (!Number.isNaN(n) && n > 0) {
+      this.carouselThumbnailSize.set(n);
     }
   }
 }

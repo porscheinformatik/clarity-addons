@@ -30,6 +30,30 @@
       style="width: 80px"
     />
   </label>
+  <label style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem">
+    Carousel image size (px, 0 = auto):
+    <input
+      class="clr-input"
+      type="number"
+      min="0"
+      max="1200"
+      [ngModel]="carouselImageSize()"
+      (ngModelChange)="setCarouselImageSize($event)"
+      style="width: 80px"
+    />
+  </label>
+  <label style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem">
+    Carousel thumbnail size (px):
+    <input
+      class="clr-input"
+      type="number"
+      min="16"
+      max="200"
+      [ngModel]="carouselThumbnailSize()"
+      (ngModelChange)="setCarouselThumbnailSize($event)"
+      style="width: 80px"
+    />
+  </label>
 </div>
 
 <!-- 7 images (overflow indicator visible) -->
@@ -40,6 +64,8 @@
       [images]="images"
       [productName]="productName()"
       [spotlightSize]="spotlightSize()"
+      [carouselImageSize]="carouselImageSize()"
+      [carouselThumbnailSize]="carouselThumbnailSize()"
     ></clr-image-gallery>
   </div>
 </div>

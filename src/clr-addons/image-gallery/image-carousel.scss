@@ -26,8 +26,10 @@ $carousel-img-side-fullscreen: calc(96vh - #{$carousel-header-h} - #{$carousel-t
 .clr-image-carousel {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  padding: 0 $carousel-pad;
+  box-sizing: border-box;
   width: 100%;
-  height: 100%;
   background: var(--clr-modal-bg-color, #fff);
   overflow: hidden;
 
@@ -36,9 +38,9 @@ $carousel-img-side-fullscreen: calc(96vh - #{$carousel-header-h} - #{$carousel-t
     align-items: center;
     justify-content: space-between;
     height: $carousel-header-h;
-    padding: 0 $carousel-pad;
     flex-shrink: 0;
     box-sizing: border-box;
+    align-self: stretch;
   }
 
   &__title {
@@ -68,10 +70,16 @@ $carousel-img-side-fullscreen: calc(96vh - #{$carousel-header-h} - #{$carousel-t
     }
   }
 
+  &__content {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    // Fills container in auto mode; overridden by inline style when imageSize > 0
+    width: 100%;
+  }
+
   &__spotlight {
-    flex: 1 1 auto;
-    min-height: 0;
-    padding: 0 $carousel-pad;
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -79,9 +87,9 @@ $carousel-img-side-fullscreen: calc(96vh - #{$carousel-header-h} - #{$carousel-t
 
   &__img-wrap {
     position: relative;
+    // Fills content width in auto mode; overridden by inline style when imageSize > 0
+    width: 100%;
     aspect-ratio: 1;
-    height: 100%;
-    max-width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -138,6 +146,8 @@ $carousel-img-side-fullscreen: calc(96vh - #{$carousel-header-h} - #{$carousel-t
   &__thumbs-wrap {
     position: relative;
     flex-shrink: 0;
+    width: 100%;
+    overflow: hidden;
 
     &::before,
     &::after {
@@ -148,6 +158,8 @@ $carousel-img-side-fullscreen: calc(96vh - #{$carousel-header-h} - #{$carousel-t
       width: 48px;
       z-index: 1;
       pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.15s;
     }
 
     &::before {
@@ -159,6 +171,14 @@ $carousel-img-side-fullscreen: calc(96vh - #{$carousel-header-h} - #{$carousel-t
       right: 0;
       background: linear-gradient(to left, var(--clr-modal-bg-color, #fff), transparent);
     }
+
+    &--fade-left::before {
+      opacity: 1;
+    }
+
+    &--fade-right::after {
+      opacity: 1;
+    }
   }
 
   &__thumbs {
@@ -167,11 +187,19 @@ $carousel-img-side-fullscreen: calc(96vh - #{$carousel-header-h} - #{$carousel-t
     padding: $carousel-img-to-thumbs 0 $carousel-bottom-pad 0;
     overflow-x: auto;
     flex-shrink: 0;
+    width: 100%;
+    box-sizing: border-box;
     scroll-behavior: smooth;
     scrollbar-width: none;
 
     &::-webkit-scrollbar {
       display: none;
+    }
+
+    // When all thumbnails fit, center them statically without scrolling
+    &--centered {
+      justify-content: center;
+      overflow-x: hidden;
     }
   }
 
@@ -180,8 +208,7 @@ $carousel-img-side-fullscreen: calc(96vh - #{$carousel-header-h} - #{$carousel-t
   }
 
   &__thumb {
-    width: $carousel-thumb-size;
-    height: $carousel-thumb-size;
+    // width/height set via inline style from thumbnailSize() input (default 64px)
     flex-shrink: 0;
     overflow: hidden;
     cursor: pointer;
