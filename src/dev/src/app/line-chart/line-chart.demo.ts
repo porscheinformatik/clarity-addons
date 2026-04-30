@@ -24,6 +24,8 @@ export class LineChartDemo {
   protected readonly showValues = signal(false);
   protected readonly showExportButton = signal(false);
   protected readonly lastClicked = signal<LineChartValue | undefined>(undefined);
+  protected readonly yMin = signal(0);
+  protected readonly autoscaleYAxis = signal(false);
 
   protected singleSeries: LineChartSeries[] = [
     {
@@ -79,5 +81,9 @@ export class LineChartDemo {
 
   public onValueClicked(value: LineChartValue): void {
     this.lastClicked.set(value);
+  }
+
+  public toggleAutoscaleYAxis(): void {
+    this.autoscaleYAxis.set(!this.autoscaleYAxis());
   }
 }
