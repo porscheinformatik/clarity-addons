@@ -386,6 +386,18 @@
           <td class="left">''</td>
           <td class="left">Optional axis description labels.</td>
         </tr>
+        <tr>
+          <td class="left"><code>autoscaleYAxis</code></td>
+          <td class="left">boolean</td>
+          <td class="left">false</td>
+          <td class="left">Autoscale Y-Axis depending on the smallest value in series</td>
+        </tr>
+        <tr>
+          <td class="left"><code>yMin</code></td>
+          <td class="left">number</td>
+          <td class="left">0</td>
+          <td class="left">If autoscale=false, this can be used to manually set the min value of the Y-Axis</td>
+        </tr>
       </tbody>
     </table>
 
@@ -440,6 +452,27 @@
       <clr-line-chart
         [series]="lineSeries"
         [showLegend]="true"
+        xAxisLabel="Month"
+        yAxisLabel="Revenue (€)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-line-chart>
+    </div>
+
+    <h3>Example – Autoscaling Y-Axis (<code>autoscaleYAxis</code>)</h3>
+    <p>
+      Setting <code class="clr-code">[autoscaleYAxis]="true"</code> scales the y-axis dynamically to the range of the
+      provide data points.
+    </p>
+    <clr-code-snippet
+      clrLanguage="html"
+      [clrCode]='&apos;<clr-line-chart\n  [series]="lineSeries"\n  [autoscaleYAxis]="true"\n  xAxisLabel="Month"\n  yAxisLabel="Value"\n  style="display:block;width:100%;height:300px;"\n></clr-line-chart>&apos;'
+    >
+    </clr-code-snippet>
+    <div style="height: 320px; width: 100%; margin-top: 1rem">
+      <clr-line-chart
+        [series]="lineSeries"
+        [showLegend]="true"
+        [autoscaleYAxis]="true"
         xAxisLabel="Month"
         yAxisLabel="Value"
         style="display: block; width: 100%; height: 100%"

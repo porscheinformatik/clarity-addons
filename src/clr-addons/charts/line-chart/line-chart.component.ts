@@ -4,6 +4,7 @@ import {
   format as d3format,
   line as d3line,
   max as d3max,
+  min as d3min,
   scaleLinear as d3scaleLinear,
   ScaleLinear,
   scalePoint as d3scalePoint,
@@ -56,6 +57,9 @@ export class LineChartComponent extends ChartBase<LineChartSelectedPoint> implem
   public readonly xAxisLabel = input<string>('');
   /** Optional label rendered rotated to the left of the Y axis. */
   public readonly yAxisLabel = input<string>('');
+
+  public readonly yMin = input<number>(0);
+  public readonly autoscaleYAxis = input<boolean>(false);
 
   public readonly valueClicked = output<XYChartValue>();
 
@@ -125,7 +129,8 @@ export class LineChartComponent extends ChartBase<LineChartSelectedPoint> implem
 
     const x = d3scalePoint<string>().domain(xKeys).range([0, width]).padding(0.5);
     const maxY = d3max(this.series().flatMap(s => s.data.map(d => d.value))) ?? 0;
-    const y = d3scaleLinear().domain([0, maxY]).nice().range([height, 0]);
+    const minY = this.autoscaleYAxis() ? d3min(this.series().flatMap(s => s.data.map(d => d.value))) ?? 0 : this.yMin();
+    const y = d3scaleLinear().domain([minY, maxY]).nice().range([height, 0]);
 
     const g = this.svg
       .attr('width', width)

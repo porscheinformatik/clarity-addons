@@ -25,6 +25,20 @@
       style="width: 130px"
     />
   </label>
+  <button class="btn btn-outline" (click)="toggleAutoscaleYAxis()">
+    Toggle Y-Axis Autoscaling (current: {{ autoscaleYAxis() }})
+  </button>
+  <label style="display: flex; align-items: center; gap: 0.25rem; font-size: 0.85rem">
+    Min value for y-axis:
+    <input
+      class="clr-input"
+      type="number"
+      step="10"
+      [ngModel]="yMin()"
+      (ngModelChange)="yMin.set($event)"
+      style="width: 130px"
+    />
+  </label>
 </div>
 
 @if (lastClicked()) {
@@ -51,6 +65,8 @@
         [showValues]="showValues()"
         [showExportButton]="showExportButton()"
         [exportFilename]="exportFilename()"
+        [yMin]="yMin()"
+        [autoscaleYAxis]="autoscaleYAxis()"
         (valueClicked)="onValueClicked($event)"
         style="display: block; width: 100%; height: 100%"
       ></clr-line-chart>
