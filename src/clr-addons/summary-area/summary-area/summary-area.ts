@@ -14,6 +14,7 @@ import {
   HostListener,
   inject,
   input,
+  linkedSignal,
   OnDestroy,
   OnInit,
   QueryList,
@@ -26,10 +27,10 @@ import { ClarityModule } from '@clr/angular';
 import { ClrSummaryAreaStateService, defaultSummaryAreaCollapsedKey } from './summary-area-state.service';
 import {
   ClrSummaryAreaColumns,
-  ClrSummaryAreaRows,
   ClrSummaryAreaError,
-  ClrSummaryAreaWarning,
   ClrSummaryAreaLoading,
+  ClrSummaryAreaRows,
+  ClrSummaryAreaWarning,
 } from './summary-area.model';
 
 @Component({
@@ -51,7 +52,7 @@ export class ClrSummaryArea implements OnInit, AfterViewInit, OnDestroy {
   public loading = input<ClrSummaryAreaLoading | undefined>();
 
   public currentColumns: ClrSummaryAreaColumns = 5;
-  public currentRows: ClrSummaryAreaRows = this.rows();
+  public currentRows = linkedSignal((): ClrSummaryAreaRows => this.rows());
   public panelHeight: string = '0px';
   public loadingPanelHeight: string = '0px';
   public loadingVisible = false;
@@ -285,7 +286,7 @@ export class ClrSummaryArea implements OnInit, AfterViewInit, OnDestroy {
       // If enough space, use as many columns as needed for the row constraint
       // If not enough space, reduce columns and allow more rows per column
       this.currentColumns = Math.max(1, Math.min(neededColumns, maxColumnsByWidth)) as ClrSummaryAreaColumns;
-      this.currentRows = Math.ceil(itemCount / this.currentColumns) as ClrSummaryAreaRows;
+      this.currentRows.set(Math.ceil(itemCount / this.currentColumns) as ClrSummaryAreaRows);
       this.cdr.detectChanges();
     }
   }
@@ -382,7 +383,7 @@ export class ClrSummaryArea implements OnInit, AfterViewInit, OnDestroy {
     }
 
     // For loading state, calculate based on current rows
-    const gridHeight = this.currentRows * itemHeight + (this.currentRows - 1) * rowGap;
+    const gridHeight = this.currentRows() * itemHeight + (this.currentRows() - 1) * rowGap;
     return gridHeight + gridPadding;
   }
 
