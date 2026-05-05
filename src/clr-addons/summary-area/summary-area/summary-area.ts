@@ -286,7 +286,7 @@ export class ClrSummaryArea implements OnInit, AfterViewInit, OnDestroy {
       // If enough space, use as many columns as needed for the row constraint
       // If not enough space, reduce columns and allow more rows per column
       this.currentColumns = Math.max(1, Math.min(neededColumns, maxColumnsByWidth)) as ClrSummaryAreaColumns;
-      this.currentRows.update(() => Math.ceil(itemCount / this.currentColumns) as ClrSummaryAreaRows);
+      this.currentRows.set(Math.ceil(itemCount / this.currentColumns) as ClrSummaryAreaRows);
       this.cdr.detectChanges();
     }
   }
