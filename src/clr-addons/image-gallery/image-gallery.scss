@@ -1,0 +1,92 @@
+/*
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
+ * This software is released under MIT license.
+ * The full license information can be found in LICENSE in the root directory of this project.
+ */
+
+// ─── Static gallery ──────────────────────────────────────────────────────────
+
+.clr-image-gallery {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+
+  &__spotlight {
+    overflow: hidden;
+    flex-shrink: 0;
+    border-radius: 3px;
+  }
+
+  &__spotlight-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  &__thumbs {
+    display: flex;
+    gap: 8px;
+  }
+
+  &__thumb {
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    border-radius: 3px;
+  }
+
+  &__thumb-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  &__thumb-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+  }
+}
+
+// ─── Built-in modal backdrop ──────────────────────────────────────────────────
+
+.clr-image-gallery-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+// Modal shell – dimensions mirror image-carousel.scss so the carousel fills it.
+$modal-pad: 24px;
+$modal-header-h: 68px;
+$modal-thumb-size: 64px;
+$modal-img-to-thumbs: 8px;
+$modal-bottom-pad: $modal-pad;
+$modal-thumb-row-h: $modal-img-to-thumbs + $modal-thumb-size + $modal-bottom-pad;
+$modal-width: calc(96vh - #{$modal-header-h} - #{$modal-thumb-row-h} + #{$modal-pad * 2});
+
+.clr-image-gallery-modal {
+  background: var(--clr-modal-bg-color, #fff);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  height: 96vh;
+  width: $modal-width;
+  max-width: 98vw;
+  overflow: hidden;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.35);
+}

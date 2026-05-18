@@ -294,6 +294,14 @@ const documentationRoutes: Routes = [
           browserTitle: 'Keyboard Navigation',
         },
       },
+      {
+        path: 'image-gallery',
+        loadChildren: () =>
+          import('./demos/image-gallery/image-gallery.demo.module').then(m => m.ImageGalleryDemoModule),
+        data: {
+          browserTitle: 'Image Gallery',
+        },
+      },
     ],
   },
 ];

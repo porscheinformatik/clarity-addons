@@ -1,0 +1,78 @@
+<!--
+  ~ Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
+  ~ This software is released under MIT license.
+  ~ The full license information can be found in LICENSE in the root directory of this project.
+  -->
+
+<clr-doc-wrapper [title]="title">
+  <article>
+    <h5 class="component-summary">
+      The Image Gallery displays a set of images in a compact static view and allows the user to browse them in a full
+      carousel modal.
+    </h5>
+
+    <div id="design-guidelines">
+      <h3>Summary of Options</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Input</th>
+            <th class="left clr-hidden-xs-down">Type</th>
+            <th class="clr-hidden-xs-down">Default</th>
+            <th class="left">Effect</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left">
+              <b>images</b>
+              <div class="clr-hidden-sm-up">Type: ClrImageGalleryImage[]</div>
+              <div class="clr-hidden-sm-up">Default: []</div>
+            </td>
+            <td class="left clr-hidden-xs-down">ClrImageGalleryImage[]</td>
+            <td class="clr-hidden-xs-down">[]</td>
+            <td class="left">Array of image objects with <code>src</code> and optional <code>alt</code> fields.</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>productName</b>
+              <div class="clr-hidden-sm-up">Type: string</div>
+              <div class="clr-hidden-sm-up">Default: ''</div>
+            </td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="clr-hidden-xs-down">''</td>
+            <td class="left">Title shown in the carousel modal header.</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>spotlightSize</b>
+              <div class="clr-hidden-sm-up">Type: number</div>
+              <div class="clr-hidden-sm-up">Default: 400</div>
+            </td>
+            <td class="left clr-hidden-xs-down">number</td>
+            <td class="clr-hidden-xs-down">400</td>
+            <td class="left">
+              Pixel size of the spotlight square in the static view. Thumbnails scale automatically to
+              <code>spotlightSize / 4</code>.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="code-examples">
+      <h3 id="examples">Code &amp; Examples</h3>
+
+      <h4>Default (7 images, spotlight 400 px)</h4>
+      <p>
+        Click the gallery to open the carousel modal. Use the arrow buttons or the thumbnail strip to navigate. Close
+        via the ✕ button or by clicking outside the modal.
+      </p>
+      <clr-image-gallery [images]="images" [productName]="'Porsche 911'" [spotlightSize]="400"></clr-image-gallery>
+      <clr-code-snippet [clrCode]="htmlExample"></clr-code-snippet>
+
+      <h4>Smaller spotlight (200 px)</h4>
+      <clr-image-gallery [images]="images" [productName]="'Porsche 911'" [spotlightSize]="200"></clr-image-gallery>
+    </div>
+  </article>
+</clr-doc-wrapper>

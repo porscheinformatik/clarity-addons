@@ -48,6 +48,7 @@ import { ClrControlEnterSubmitDirective } from './control-enter-submit';
 import { ClrSignpostAddonModule } from './signpost';
 import { ClrKeyboardNavCtrlArrowDirective } from './keyboard-nav/clr-keyboard-nav-ctrl-arrow.directive';
 import { ClrKeyboardNavAltMnemonicDirective } from './keyboard-nav/clr-keyboard-nav-alt-mnemonic.directive';
+import { ClrImageGalleryModule } from './image-gallery';
 
 @NgModule({
   imports: [
@@ -99,6 +100,7 @@ import { ClrKeyboardNavAltMnemonicDirective } from './keyboard-nav/clr-keyboard-
     ClrControlEnterSubmitDirective,
     ClrKeyboardNavCtrlArrowDirective,
     ClrKeyboardNavAltMnemonicDirective,
+    ClrImageGalleryModule,
   ],
 })
 export class ClrAddonsModule {}

@@ -1,0 +1,231 @@
+/*
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
+ * This software is released under MIT license.
+ * The full license information can be found in LICENSE in the root directory of this project.
+ */
+
+// ─── Carousel (inner content, no backdrop) ───────────────────────────────────
+// Dimensions match the built-in modal context (96vh tall, image fills remaining
+// space). When embedded inside a parent modal the host element should stretch to
+// fill available space; the carousel is a flex column that self-sizes.
+//
+// Sizing variables mirror image-gallery.scss so the two contexts look identical.
+
+$carousel-pad: 24px;
+$carousel-header-h: 68px;
+$carousel-thumb-size: 64px;
+$carousel-thumb-gap: 8px;
+$carousel-img-to-thumbs: 8px;
+$carousel-bottom-pad: $carousel-pad;
+$carousel-thumb-row-h: $carousel-img-to-thumbs + $carousel-thumb-size + $carousel-bottom-pad; // 96px
+
+.clr-image-carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 $carousel-pad;
+  box-sizing: border-box;
+  width: 100%;
+  background: var(--clr-modal-bg-color, #fff);
+  overflow: hidden;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: $carousel-header-h;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    align-self: stretch;
+  }
+
+  &__title {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+
+  &__close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: inherit;
+
+    cds-icon {
+      --color: currentColor;
+      width: 18px;
+      height: 18px;
+    }
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    // Fills container in auto mode; overridden by inline style when imageSize > 0
+    width: 100%;
+  }
+
+  &__spotlight {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__img-wrap {
+    position: relative;
+    // Fills content width in auto mode; overridden by inline style when imageSize > 0
+    width: 100%;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 3px;
+  }
+
+  &__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    background: none;
+    border: none;
+    padding: 0;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0.25;
+    transition: opacity 0.15s;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &--prev {
+      left: 12px;
+    }
+
+    &--next {
+      right: 12px;
+    }
+
+    cds-icon {
+      --color: white;
+      width: 56px;
+      height: 56px;
+    }
+  }
+
+  &__thumbs-wrap {
+    position: relative;
+    flex-shrink: 0;
+    width: 100%;
+    overflow: hidden;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 48px;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+
+    &::before {
+      left: 0;
+      background: linear-gradient(to right, var(--clr-modal-bg-color, #fff), transparent);
+    }
+
+    &::after {
+      right: 0;
+      background: linear-gradient(to left, var(--clr-modal-bg-color, #fff), transparent);
+    }
+
+    &--fade-left::before {
+      opacity: 1;
+    }
+
+    &--fade-right::after {
+      opacity: 1;
+    }
+  }
+
+  &__thumbs {
+    display: flex;
+    gap: $carousel-thumb-gap;
+    padding: $carousel-img-to-thumbs 0 $carousel-bottom-pad 0;
+    overflow-x: auto;
+    flex-shrink: 0;
+    width: 100%;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    // When all thumbnails fit, center them statically without scrolling
+    &--centered {
+      justify-content: center;
+      overflow-x: hidden;
+    }
+  }
+
+  &__thumbs-spacer {
+    flex-shrink: 0;
+  }
+
+  &__thumb {
+    // width/height set via inline style from thumbnailSize() input (default 64px)
+    flex-shrink: 0;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 3px;
+    outline: 4px solid transparent;
+    outline-offset: -4px;
+    transition: outline-color 0.15s;
+
+    &--active {
+      outline-color: #14a1a9;
+    }
+
+    &:hover:not(&--active) {
+      outline-color: var(--clr-color-neutral-400, #aaa);
+    }
+  }
+
+  &__thumb-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
