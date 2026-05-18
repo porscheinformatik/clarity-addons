@@ -5,16 +5,9 @@
  */
 
 import { Component, computed, input, output, signal } from '@angular/core';
+import { ClrImageGalleryImage, ClrImageGalleryOpenEvent } from './image-gallery.types';
 
-export interface ClrImageGalleryImage {
-  src: string;
-  alt?: string;
-}
-
-export interface ClrImageGalleryOpenEvent {
-  images: ClrImageGalleryImage[];
-  index: number;
-}
+export { ClrImageGalleryImage, ClrImageGalleryOpenEvent };
 
 @Component({
   selector: 'clr-image-gallery',

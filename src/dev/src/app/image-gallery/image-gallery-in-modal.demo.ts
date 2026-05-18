@@ -44,6 +44,10 @@ export class ImageGalleryInModalDemo {
   protected showCarousel = signal(false);
   protected carouselIndex = signal(0);
 
+  protected autoModalOpen = signal(false);
+  protected showAutoCarousel = signal(false);
+  protected autoCarouselIndex = signal(0);
+
   protected images: ClrImageGalleryImage[] = Array.from({ length: 10 }, (_, i) => ({
     src: `https://picsum.photos/seed/modal${i + 1}/800/600`,
     alt: `Image ${i + 1}`,
@@ -76,5 +80,24 @@ export class ImageGalleryInModalDemo {
   protected onModalClose(): void {
     this.showCarousel.set(false);
     this.modalOpen.set(false);
+  }
+
+  protected openAutoModal(): void {
+    this.showAutoCarousel.set(false);
+    this.autoModalOpen.set(true);
+  }
+
+  protected onAutoGalleryOpen(event: ClrImageGalleryOpenEvent): void {
+    this.autoCarouselIndex.set(event.index);
+    this.showAutoCarousel.set(true);
+  }
+
+  protected onAutoCarouselClose(): void {
+    this.showAutoCarousel.set(false);
+  }
+
+  protected onAutoModalClose(): void {
+    this.showAutoCarousel.set(false);
+    this.autoModalOpen.set(false);
   }
 }

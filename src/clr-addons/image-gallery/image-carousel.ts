@@ -6,7 +6,7 @@
 
 import { Component, effect, ElementRef, HostListener, input, output, signal, ViewChild } from '@angular/core';
 import { circleArrowIcon, timesIcon, ClarityIcons } from '@cds/core/icon';
-import { ClrImageGalleryImage } from './image-gallery';
+import { ClrImageGalleryImage } from './image-gallery.types';
 
 ClarityIcons.addIcons(circleArrowIcon, timesIcon);
 

@@ -19,10 +19,6 @@ $carousel-img-to-thumbs: 8px;
 $carousel-bottom-pad: $carousel-pad;
 $carousel-thumb-row-h: $carousel-img-to-thumbs + $carousel-thumb-size + $carousel-bottom-pad; // 96px
 
-// Image side used only in the built-in full-screen modal (96vh context).
-// When embedded inside a parent modal the spotlight stretches via flex instead.
-$carousel-img-side-fullscreen: calc(96vh - #{$carousel-header-h} - #{$carousel-thumb-row-h});
-
 .clr-image-carousel {
   display: flex;
   flex-direction: column;
