@@ -7,17 +7,17 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   ClrSummaryArea,
-  ClrSummaryItem,
-  ClrSummaryItemValue,
   ClrSummaryAreaError,
   ClrSummaryAreaLoading,
   ClrSummaryAreaWarning,
+  ClrSummaryItem,
   ClrSummaryItemError,
   ClrSummaryItemLoading,
+  ClrSummaryItemValue,
   ClrSummaryItemWarning,
   gasIcon,
 } from '@porscheinformatik/clr-addons';
-import { ClrIconModule, ClrModalModule } from '@clr/angular';
+import { ClrModalModule } from '@clr/angular';
 import {
   barsIcon,
   chatBubbleIcon,
@@ -27,7 +27,7 @@ import {
   pencilIcon,
   popOutIcon,
   wandIcon,
-} from '@cds/core/icon';
+} from '@clr/angular/icon';
 import { ProgressItemComponent } from './progress-item/progress-item.component';
 
 ClarityIcons.addIcons(
@@ -44,7 +44,7 @@ ClarityIcons.addIcons(
 @Component({
   selector: 'my-app-summary-area-demo',
   templateUrl: './summary-area.demo.html',
-  imports: [ClrSummaryArea, ClrSummaryItem, ClrSummaryItemValue, ClrIconModule, ProgressItemComponent, ClrModalModule],
+  imports: [ClrSummaryArea, ClrSummaryItem, ClrSummaryItemValue, ProgressItemComponent, ClrModalModule],
 })
 export class SummaryAreaDemo implements OnInit {
   public showProgressDetails = false;

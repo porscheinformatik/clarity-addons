@@ -5,11 +5,11 @@
  */
 
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { ClarityModule } from '@clr/angular';
 import { ClrKeyboardNavCtrlArrowDirective, ClrKeyboardNavAltMnemonicDirective } from '@porscheinformatik/clr-addons';
-import { ClarityIcons, homeIcon, cogIcon, userIcon, searchIcon, folderIcon, bellIcon } from '@cds/core/icon';
+import { ClarityIcons, homeIcon, cogIcon, userIcon, searchIcon, folderIcon, bellIcon } from '@clr/angular/icon';
 
 ClarityIcons.addIcons(homeIcon, cogIcon, userIcon, searchIcon, folderIcon, bellIcon);
 
@@ -111,13 +111,7 @@ export const COMBINED_EXAMPLE = `<!-- Both directives can be applied to the same
   selector: 'keyboard-nav-demo',
   templateUrl: './keyboard-nav.demo.html',
   standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    ClarityModule,
-    ClrKeyboardNavCtrlArrowDirective,
-    ClrKeyboardNavAltMnemonicDirective,
-  ],
+  imports: [FormsModule, ClarityModule, ClrKeyboardNavCtrlArrowDirective, ClrKeyboardNavAltMnemonicDirective],
 })
 export class KeyboardNavDemo {
   overlayActive = false;

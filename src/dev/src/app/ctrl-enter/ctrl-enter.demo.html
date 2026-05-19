@@ -20,13 +20,15 @@
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 
-  <div style="margin-top: 1rem" *ngIf="submitted">
+  @if (submitted) {
+  <div style="margin-top: 1rem">
     <clr-alert [clrAlertType]="'success'" [clrAlertAppLevel]="false">
       <clr-alert-item>
         <span class="alert-text">Form submitted at {{ lastSubmitTime }}</span>
       </clr-alert-item>
     </clr-alert>
   </div>
+  }
 </div>
 
 <h3>2. Without Tooltip</h3>
@@ -45,13 +47,15 @@
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 
-  <div style="margin-top: 1rem" *ngIf="submitted2">
+  @if (submitted2) {
+  <div style="margin-top: 1rem">
     <clr-alert [clrAlertType]="'success'" [clrAlertAppLevel]="false">
       <clr-alert-item>
         <span class="alert-text">Form submitted at {{ lastSubmitTime2 }}</span>
       </clr-alert-item>
     </clr-alert>
   </div>
+  }
 </div>
 
 <h3>3. Multiple Forms Example</h3>
@@ -67,13 +71,15 @@
       <input clrInput type="text" name="group1" [(ngModel)]="group1" />
     </clr-input-container>
     <button type="submit" class="btn btn-primary">Submit Group 1</button>
-    <div style="margin-top: 1rem" *ngIf="submittedGroups[0]">
+    @if (submittedGroups[0]) {
+    <div style="margin-top: 1rem">
       <clr-alert [clrAlertType]="'success'" [clrAlertAppLevel]="false">
         <clr-alert-item>
           <span class="alert-text">Group 1 submitted at {{ lastSubmitTimesGroups[0] }}</span>
         </clr-alert-item>
       </clr-alert>
     </div>
+    }
   </form>
   <form clrForm clrControlEnterSubmit (submit)="onSubmitGroup(1)">
     <clr-input-container>
@@ -81,12 +87,14 @@
       <input clrInput type="text" name="group2" [(ngModel)]="group2" />
     </clr-input-container>
     <button type="submit" class="btn btn-primary">Submit Group 2</button>
-    <div style="margin-top: 1rem" *ngIf="submittedGroups[1]">
+    @if (submittedGroups[1]) {
+    <div style="margin-top: 1rem">
       <clr-alert [clrAlertType]="'success'" [clrAlertAppLevel]="false">
         <clr-alert-item>
           <span class="alert-text">Group 2 submitted at {{ lastSubmitTimesGroups[1] }}</span>
         </clr-alert-item>
       </clr-alert>
     </div>
+    }
   </form>
 </div>

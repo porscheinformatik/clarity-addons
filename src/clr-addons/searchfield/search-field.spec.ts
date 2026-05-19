@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -54,7 +54,6 @@ describe('SearchComponent', () => {
       TestBed.configureTestingModule({
         imports: [ClarityModule, ClrSearchFieldModule, FormsModule],
         declarations: [TestComponent],
-        teardown: { destroyAfterEach: false },
       }).compileComponents();
 
       fixture = TestBed.createComponent(TestComponent);
@@ -99,7 +98,6 @@ describe('SearchComponent', () => {
       TestBed.configureTestingModule({
         imports: [ClarityModule, ClrSearchFieldModule, FormsModule],
         declarations: [TestWithoutModelComponent],
-        teardown: { destroyAfterEach: false },
       }).compileComponents();
 
       fixture = TestBed.createComponent(TestWithoutModelComponent);

@@ -112,7 +112,6 @@ import {
   customerIcon,
   customersCenterIcon,
   customerVipIcon,
-  deliveryDateIcon,
   customerWaitingIcon,
   dataCopyAppIcon,
   dataExpiredIcon,
@@ -123,6 +122,7 @@ import {
   dataTimeExtensionIcon,
   defogDefrostAutoAppIcon,
   defogDefrostIcon,
+  deliveryDateIcon,
   destinationAppIcon,
   directionIcon,
   dischargingAppIcon,
@@ -288,13 +288,11 @@ import {
   partAvailabilityUnknownIcon,
   partAvailabilityWarningIcon,
   partAvailabilityYesIcon,
-  partSuccessorIcon,
-  partPredecessorIcon,
-  partSuccessorPredecessorIcon,
   partIdenticalIcon,
   partIdenticalPredecessorIcon,
   partIdenticalSuccessorIcon,
   partIdenticalSuccpredecessorIcon,
+  partPredecessorIcon,
   partsChangelocationIcon,
   partsForwardIcon,
   partsIcon,
@@ -304,6 +302,8 @@ import {
   partsPickingIcon,
   partsPickingPlusIcon,
   partsReceivingIcon,
+  partSuccessorIcon,
+  partSuccessorPredecessorIcon,
   pauseIcon,
   payloadIcon,
   paymentAppIcon,
@@ -460,9 +460,8 @@ import {
   wlanHotspotIcon,
   wrenchForwardIcon,
 } from '@porscheinformatik/clr-addons';
-import { ClarityIcons, downloadIcon } from '@cds/core/icon';
+import { ClarityIcons, downloadIcon, IconShapeTuple } from '@clr/angular';
 import { debounceTime, Subject, takeUntil } from 'rxjs';
-import { IconShapeTuple } from '@cds/core/icon/interfaces/icon.interfaces';
 
 @Component({
   selector: 'icons-sets',
@@ -1018,7 +1017,7 @@ export class IconsSetsComponent {
     URL.revokeObjectURL(blobUrl);
   }
 
-  private encode(s: string): Uint8Array {
+  private encode(s: string): Uint8Array<ArrayBuffer> {
     const textEncoder = new TextEncoder();
     return textEncoder.encode(s);
   }

@@ -20,7 +20,7 @@ import {
   lineChartIcon,
   mapIcon,
   warningStandardIcon,
-} from '@cds/core/icon';
+} from '@clr/angular/icon';
 import { ClrNotificationService } from '@porscheinformatik/clr-addons';
 
 ClarityIcons.addIcons(

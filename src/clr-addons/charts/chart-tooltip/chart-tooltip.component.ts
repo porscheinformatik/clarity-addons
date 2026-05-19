@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
-import { ClrIconModule } from '@clr/angular';
+import { ClrIcon } from '@clr/angular';
 import { toChartColor } from '../utils';
 
 @Component({
@@ -7,7 +7,7 @@ import { toChartColor } from '../utils';
   templateUrl: './chart-tooltip.component.html',
   styleUrls: ['./chart-tooltip.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ClrIconModule],
+  imports: [ClrIcon],
 })
 export class ChartTooltipComponent {
   public readonly tooltipPosition = input.required<{ x: number; y: number }>();

@@ -1,8 +1,8 @@
 <!--
-  ~ Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
-  ~ This software is released under MIT license.
-  ~ The full license information can be found in LICENSE in the root directory of this project.
-  -->
+~ Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
+~ This software is released under MIT license.
+~ The full license information can be found in LICENSE in the root directory of this project.
+-->
 
 <h2>Treetable</h2>
 
@@ -68,10 +68,12 @@
     <clr-tt-cell>Vehicle configuration</clr-tt-cell>
     <clr-tt-cell class="text-right">18,519.99 EUR</clr-tt-cell>
 
-    <clr-tt-row *ngFor="let a of [1]">
+    @for (a of [1]; track a) {
+    <clr-tt-row>
       <clr-tt-cell>Audi A1 3-Türer Attraction 1.2 TFSI 63(86) kW(PS) 5-Gang</clr-tt-cell>
       <clr-tt-cell class="text-right">16,750.00 EUR</clr-tt-cell>
     </clr-tt-row>
+    }
 
     <clr-tt-row>
       <clr-tt-cell>
@@ -102,9 +104,11 @@
     <clr-tt-cell></clr-tt-cell>
     <clr-tt-cell></clr-tt-cell>
 
-    <ng-container ngProjectAs="clr-tt-row" *ngFor="let data of data$ | async">
+    @for (data of data$ | async; track data) {
+    <ng-container ngProjectAs="clr-tt-row">
       <ng-container *ngTemplateOutlet="singleNode; context: { $implicit: data }"></ng-container>
     </ng-container>
+    }
 
     <ng-template #singleNode let-data>
       <clr-tt-row [clrExpandable]="isExpandable(data)" [clrExpanded]="true">
@@ -114,7 +118,8 @@
         <clr-tt-cell>{{ data.col4 }}</clr-tt-cell>
         <clr-tt-cell>{{ data.col5 }}</clr-tt-cell>
         <clr-tt-cell>{{ data.col6 }}</clr-tt-cell>
-        <clr-tt-row *ngFor="let child1 of data.child">
+        @for (child1 of data.child; track child1) {
+        <clr-tt-row>
           <clr-tt-cell>{{ child1.col1 }}</clr-tt-cell>
           <clr-tt-cell>{{ child1.col2 }}</clr-tt-cell>
           <clr-tt-cell>{{ child1.col3 }}</clr-tt-cell>
@@ -122,6 +127,7 @@
           <clr-tt-cell>{{ child1.col5 }}</clr-tt-cell>
           <clr-tt-cell>{{ child1.col6 }}</clr-tt-cell>
         </clr-tt-row>
+        }
         <clr-tt-row [clrExpanded]="true" [clrExpandable]="true">
           <clr-tt-cell>Extras</clr-tt-cell>
           <clr-tt-cell></clr-tt-cell>
@@ -129,7 +135,8 @@
           <clr-tt-cell></clr-tt-cell>
           <clr-tt-cell></clr-tt-cell>
           <clr-tt-cell></clr-tt-cell>
-          <clr-tt-row *ngFor="let extra of data.extras">
+          @for (extra of data.extras; track extra) {
+          <clr-tt-row>
             <clr-tt-cell>{{ extra.col1 }}</clr-tt-cell>
             <clr-tt-cell>{{ extra.col2 }}</clr-tt-cell>
             <clr-tt-cell>{{ extra.col3 }}</clr-tt-cell>
@@ -137,6 +144,7 @@
             <clr-tt-cell>{{ extra.col5 }}</clr-tt-cell>
             <clr-tt-cell>{{ extra.col6 }}</clr-tt-cell>
           </clr-tt-row>
+          }
         </clr-tt-row>
       </clr-tt-row>
     </ng-template>
@@ -524,10 +532,12 @@
     <clr-tt-cell>Vehicle configuration</clr-tt-cell>
     <clr-tt-cell class="text-right">18,519.99 EUR</clr-tt-cell>
 
-    <clr-tt-row *ngFor="let a of [1]">
+    @for (a of [1]; track a) {
+    <clr-tt-row>
       <clr-tt-cell>Audi A1 3-Türer Attraction 1.2 TFSI 63(86) kW(PS) 5-Gang</clr-tt-cell>
       <clr-tt-cell class="text-right">16,750.00 EUR</clr-tt-cell>
     </clr-tt-row>
+    }
 
     <clr-tt-row>
       <clr-tt-cell>
@@ -646,11 +656,13 @@
   <clr-tt-column>Type</clr-tt-column>
   <clr-tt-column>Version</clr-tt-column>
 
-  <ng-container ngProjectAs="clr-tt-row" *ngFor="let node of root">
-    <ng-container *ngTemplateOutlet="singleNode; context: { $implicit: node }"></ng-container>
+  @for (node of root; track node) {
+  <ng-container ngProjectAs="clr-tt-row">
+    <ng-container *ngTemplateOutlet="singleDynamicNode; context: { $implicit: node }"></ng-container>
   </ng-container>
+  }
 
-  <ng-template #singleNode let-node>
+  <ng-template #singleDynamicNode let-node>
     <clr-tt-row [clrExpandable]="node.children?.length > 0" [clrExpanded]="true">
       <clr-tt-action-overflow>
         <button class="action-item">Test</button>
@@ -658,9 +670,11 @@
       <clr-tt-cell>{{ node.name }}</clr-tt-cell>
       <clr-tt-cell>{{ node.type }}</clr-tt-cell>
       <clr-tt-cell>{{ node.version }}</clr-tt-cell>
-      <ng-container ngProjectAs="clr-tt-row" *ngFor="let childNode of node.children">
-        <ng-container *ngTemplateOutlet="singleNode; context: { $implicit: childNode }"></ng-container>
+      @for (childNode of node.children; track childNode) {
+      <ng-container ngProjectAs="clr-tt-row">
+        <ng-container *ngTemplateOutlet="singleDynamicNode; context: { $implicit: childNode }"></ng-container>
       </ng-container>
+      }
     </clr-tt-row>
   </ng-template>
 </clr-treetable>
@@ -671,9 +685,11 @@
   <clr-tt-column>Type</clr-tt-column>
   <clr-tt-column>Version</clr-tt-column>
 
-  <ng-container ngProjectAs="clr-tt-row" *ngFor="let node of root">
+  @for (node of root; track node) {
+  <ng-container ngProjectAs="clr-tt-row">
     <ng-container *ngTemplateOutlet="truncateNode; context: { $implicit: node }"></ng-container>
   </ng-container>
+  }
 
   <ng-template #truncateNode let-node>
     <clr-tt-row [clrExpandable]="node.children?.length > 0" [clrExpanded]="true">
@@ -683,9 +699,11 @@
       <clr-tt-cell class="text-truncate">{{ node.name }} {{ veryLongString }}</clr-tt-cell>
       <clr-tt-cell class="text-truncate">{{ node.type }} {{ veryLongString }}</clr-tt-cell>
       <clr-tt-cell class="text-truncate">{{ node.version }} {{ veryLongString }}</clr-tt-cell>
-      <ng-container ngProjectAs="clr-tt-row" *ngFor="let childNode of node.children">
+      @for (childNode of node.children; track childNode) {
+      <ng-container ngProjectAs="clr-tt-row">
         <ng-container *ngTemplateOutlet="truncateNode; context: { $implicit: childNode }"></ng-container>
       </ng-container>
+      }
     </clr-tt-row>
   </ng-template>
 </clr-treetable>
@@ -696,9 +714,11 @@
   <clr-tt-column>Type</clr-tt-column>
   <clr-tt-column>Version</clr-tt-column>
 
-  <ng-container ngProjectAs="clr-tt-row" *ngFor="let node of root">
+  @for (node of root; track node) {
+  <ng-container ngProjectAs="clr-tt-row">
     <ng-container *ngTemplateOutlet="signpostNode; context: { $implicit: node }"></ng-container>
   </ng-container>
+  }
 
   <ng-template #signpostNode let-node>
     <clr-tt-row [clrExpandable]="node.children?.length > 0" [clrExpanded]="true">
@@ -707,10 +727,14 @@
       </clr-tt-action-overflow>
       <clr-tt-cell class="text-truncate"
         >{{ node.name }}
-        <clr-signpost-addon [targetAnchor]="'.treetable-grid'" iconShape="bell"
-          >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pellentesque dapibus orci vitae
-          bibendum.</clr-signpost-addon
-        >
+        <clr-signpost data-testid="clr-signpost-1599455073503533">
+          <button class="btn btn-icon btn-link btn-sm" type="button" clrSignpostTrigger>
+            <cds-icon [shape]="'bell'" size="24" style="vertical-align: initial"></cds-icon>
+          </button>
+          <clr-signpost-content *clrIfOpen>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pellentesque dapibus orci vitae bibendum.
+          </clr-signpost-content>
+        </clr-signpost>
       </clr-tt-cell>
       <clr-tt-cell class="text-truncate">{{ node.type }}</clr-tt-cell>
       <clr-tt-cell class="text-truncate">
@@ -719,9 +743,11 @@
           <clr-tooltip-content> {{ node.version + ' for reference' }} </clr-tooltip-content>
         </clr-tooltip>
       </clr-tt-cell>
-      <ng-container ngProjectAs="clr-tt-row" *ngFor="let childNode of node.children">
+      @for (childNode of node.children; track childNode) {
+      <ng-container ngProjectAs="clr-tt-row">
         <ng-container *ngTemplateOutlet="signpostNode; context: { $implicit: childNode }"></ng-container>
       </ng-container>
+      }
     </clr-tt-row>
     <clr-tt-row [clrExpandable]="node.children?.length > 0" [clrExpanded]="true">
       <clr-tt-action-overflow>
@@ -729,10 +755,14 @@
       </clr-tt-action-overflow>
       <clr-tt-cell class="text-truncate"
         >{{ node.name }}
-        <clr-signpost-addon [targetAnchor]="'.treetable-grid'" iconShape="error-standard"
-          >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pellentesque dapibus orci vitae
-          bibendum.</clr-signpost-addon
-        >
+        <clr-signpost data-testid="clr-signpost-1599455073503533">
+          <button class="btn btn-icon btn-link btn-sm" type="button" clrSignpostTrigger>
+            <cds-icon [shape]="'error-standard'" size="24"></cds-icon>
+          </button>
+          <clr-signpost-content *clrIfOpen>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pellentesque dapibus orci vitae bibendum.
+          </clr-signpost-content>
+        </clr-signpost>
       </clr-tt-cell>
       <clr-tt-cell class="text-truncate">{{ node.type }}</clr-tt-cell>
       <clr-tt-cell class="text-truncate">
@@ -741,9 +771,11 @@
           <clr-tooltip-content> {{ node.version + ' for reference' }} </clr-tooltip-content>
         </clr-tooltip>
       </clr-tt-cell>
-      <ng-container ngProjectAs="clr-tt-row" *ngFor="let childNode of node.children">
+      @for (childNode of node.children; track childNode) {
+      <ng-container ngProjectAs="clr-tt-row">
         <ng-container *ngTemplateOutlet="signpostNode; context: { $implicit: childNode }"></ng-container>
       </ng-container>
+      }
     </clr-tt-row>
   </ng-template>
 </clr-treetable>

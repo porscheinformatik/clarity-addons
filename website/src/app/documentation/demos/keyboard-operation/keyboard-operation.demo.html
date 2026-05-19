@@ -243,7 +243,8 @@
           <input [(ngModel)]="ctrlEnterModel" clrInput name="ctrlEnterModel" type="text" />
         </clr-input-container>
         <button class="btn btn-primary" type="submit">Submit</button>
-        <div *ngIf="ctrlEnterSubmitted" class="alert alert-success" style="margin-top: 12px">
+        @if (ctrlEnterSubmitted) {
+        <div class="alert alert-success" style="margin-top: 12px">
           <div class="alert-items">
             <div class="alert-item static">
               <div class="alert-icon-wrapper">
@@ -253,6 +254,7 @@
             </div>
           </div>
         </div>
+        }
       </form>
     </div>
     <h4 id="control-enter-multi-form">Global Multi-Form Submission</h4>
@@ -281,13 +283,15 @@
                 </clr-input-container>
                 <button class="btn btn-primary" type="submit">Submit Form 1</button>
               </form>
-              <div *ngIf="ctrlEnterForm1Submitted" class="alert alert-success alert-sm" style="margin-top: 12px">
+              @if (ctrlEnterForm1Submitted) {
+              <div class="alert alert-success alert-sm" style="margin-top: 12px">
                 <div class="alert-items">
                   <div class="alert-item static">
                     <span class="alert-text">Submitted!</span>
                   </div>
                 </div>
               </div>
+              }
             </div>
           </div>
         </div>
@@ -307,13 +311,15 @@
                 </clr-input-container>
                 <button class="btn btn-primary" type="submit">Submit Form 2</button>
               </form>
-              <div *ngIf="ctrlEnterForm2Submitted" class="alert alert-success alert-sm" style="margin-top: 12px">
+              @if (ctrlEnterForm2Submitted) {
+              <div class="alert alert-success alert-sm" style="margin-top: 12px">
                 <div class="alert-items">
                   <div class="alert-item static">
                     <span class="alert-text">Submitted!</span>
                   </div>
                 </div>
               </div>
+              }
             </div>
           </div>
         </div>

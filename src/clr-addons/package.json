@@ -2,10 +2,7 @@
   "name": "@porscheinformatik/clr-addons",
   "version": "19.21.2",
   "description": "Addon components for Clarity Angular",
-  "es2015": "esm2015/clr-addons.js",
   "homepage": "https://porscheinformatik.github.io/clarity-addons/",
-  "main": "bundles/clr-addons.umd.js",
-  "module": "esm5/clr-addons.js",
   "keywords": [
     "ng-add",
     "clarity",
@@ -18,12 +15,9 @@
     "url": "git@github.com:porscheinformatik/clarity-addons.git"
   },
   "peerDependencies": {
-    "@angular/common": "^19.0.0",
-    "@angular/core": "^19.0.0",
-    "@angular/compiler": "^19.0.0",
-    "@clr/angular": "^17.12.2",
-    "@cds/core": "^6.17.0",
-    "@clr/ui": "^17.12.2",
+    "@angular/core": "^21.0.0",
+    "@clr/angular": "^18.0.0",
+    "@clr/ui": "^18.0.0",
     "d3": ">=7.0.0",
     "ngx-skeleton-loader": ">=10.0.0"
   },

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -65,7 +65,7 @@ describe('Filters<Item>', () => {
     service = TestBed.inject(Filters<Item>);
     textFilter = new StringContainsFilter();
     numberFilter = new GreaterThanFilter();
-    TestBed.flushEffects();
+    TestBed.tick();
   });
 
   it('should have no active filters initially', () => {
@@ -75,7 +75,7 @@ describe('Filters<Item>', () => {
 
   it('should register a filter and keep it inactive until value set', () => {
     service.register(textFilter);
-    TestBed.flushEffects();
+    TestBed.tick();
 
     expect(service.activeFilters().length).toBe(0);
     expect(service.hasActiveFilters()).toBeFalse();
@@ -84,7 +84,7 @@ describe('Filters<Item>', () => {
   it('should activate filter after setting non-empty value', () => {
     service.register(textFilter);
     textFilter.set('alp');
-    TestBed.flushEffects();
+    TestBed.tick();
 
     expect(service.activeFilters().length).toBe(1);
     expect(service.hasActiveFilters()).toBeTrue();
@@ -93,10 +93,10 @@ describe('Filters<Item>', () => {
   it('should deactivate filter after setting empty value', () => {
     service.register(textFilter);
     textFilter.set('x');
-    TestBed.flushEffects();
+    TestBed.tick();
 
     textFilter.set(''); // empty -> inactive
-    TestBed.flushEffects();
+    TestBed.tick();
 
     expect(service.activeFilters().length).toBe(0);
     expect(service.hasActiveFilters()).toBeFalse();
@@ -107,16 +107,16 @@ describe('Filters<Item>', () => {
     const sub = service.changes$.subscribe(v => emissions.push(v));
 
     service.register(textFilter);
-    TestBed.flushEffects(); // no active filters -> []
+    TestBed.tick(); // no active filters -> []
 
     textFilter.set('a');
-    TestBed.flushEffects();
+    TestBed.tick();
 
     textFilter.set(''); // inactive
-    TestBed.flushEffects();
+    TestBed.tick();
 
     textFilter.set('b');
-    TestBed.flushEffects();
+    TestBed.tick();
 
     sub.unsubscribe();
 
@@ -133,9 +133,9 @@ describe('Filters<Item>', () => {
     service.register(textFilter);
 
     textFilter.set('x');
-    TestBed.flushEffects();
+    TestBed.tick();
     textFilter.set('x'); // same value -> no new emission
-    TestBed.flushEffects();
+    TestBed.tick();
 
     sub.unsubscribe();
     expect(emissions.length).toBe(2);
@@ -149,14 +149,14 @@ describe('Filters<Item>', () => {
 
     textFilter.set('a');
     numberFilter.set(10);
-    TestBed.flushEffects();
+    TestBed.tick();
 
     const values = service.activeFilters();
     expect(values.length).toBe(2);
 
     const emissions: unknown[][] = [];
     const sub = service.changes$.subscribe(v => emissions.push(v));
-    TestBed.flushEffects();
+    TestBed.tick();
 
     sub.unsubscribe();
     expect(emissions[0]).toEqual(['a', 10]);
@@ -168,12 +168,12 @@ describe('Filters<Item>', () => {
 
     textFilter.set('z');
     numberFilter.set(5);
-    TestBed.flushEffects();
+    TestBed.tick();
 
     expect(service.activeFilters().length).toBe(2);
 
     registeredText.unregister();
-    TestBed.flushEffects();
+    TestBed.tick();
 
     expect(service.activeFilters().length).toBe(1);
     expect(service.activeFilters()[0]).toBe(registeredNumber.filter);
@@ -185,11 +185,11 @@ describe('Filters<Item>', () => {
     const sub = service.changes$.subscribe(v => emissions.push(v));
 
     textFilter.set('   ');
-    TestBed.flushEffects();
+    TestBed.tick();
     textFilter.set('ok');
-    TestBed.flushEffects();
+    TestBed.tick();
     textFilter.set(''); // valid, since empty -> inactive
-    TestBed.flushEffects();
+    TestBed.tick();
 
     sub.unsubscribe();
     expect(emissions.length).toBe(3);

@@ -115,7 +115,7 @@ describe('DateFilterComponent', () => {
       expect(fixture.componentInstance.datagrid.rows.length).toBe(2);
 
       fixture.componentInstance.component.to = today;
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
 
       expect(fixture.componentInstance.datagrid.rows.length).toBe(1);
     });

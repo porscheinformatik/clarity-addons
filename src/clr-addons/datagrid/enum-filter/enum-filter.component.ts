@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 import { ClrDatagrid, ClrDatagridFilter, ClrDatagridFilterInterface } from '@clr/angular';
 import { Subject, takeUntil } from 'rxjs';
-import { ClarityIcons, trashIcon } from '@cds/core/icon';
+import { ClarityIcons, trashIcon } from '@clr/angular/icon';
 
 ClarityIcons.addIcons(trashIcon);
 

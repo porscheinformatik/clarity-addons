@@ -1,4 +1,6 @@
-<cds-icon *ngIf="iconShape" [attr.shape]="iconShape" [title]="iconTitle"></cds-icon>
+@if (iconShape) {
+<cds-icon [shape]="iconShape" [title]="iconTitle"></cds-icon>
+}
 <clr-location-bar-node
   (selectionChanged)="onSelectionChanged($event)"
   (searchItemChanged)="searchItemChanged.emit($event)"

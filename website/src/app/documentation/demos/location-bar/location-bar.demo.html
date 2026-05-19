@@ -306,8 +306,9 @@
           (clrSearchItemChanged)="searchChanged($event)"
         >
           <ng-template #searchResultItemRef let-searchResultItem>
-            {{searchResultItem.name}}
-            <span *ngIf="searchResultItem.label" class="label label-light-blue"> {{searchResultItem.label}}</span>
+            {{searchResultItem.name}} @if (searchResultItem.label) {
+            <span class="label label-light-blue"> {{searchResultItem.label}}</span>
+            }
           </ng-template>
         </clr-location-bar>
       </div>

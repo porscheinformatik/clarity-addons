@@ -61,7 +61,6 @@ describe('ColumnHiddenStatePersistenceDirective', () => {
     TestBed.configureTestingModule({
       imports: [ClarityModule, FormsModule, BrowserAnimationsModule, ClrDatagridStatePersistenceModule],
       declarations: [TestComponent],
-      teardown: { destroyAfterEach: false },
     }).compileComponents();
 
     fixture = TestBed.createComponent(TestComponent);

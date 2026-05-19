@@ -5,7 +5,7 @@
  */
 import { Component } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
-import { ClarityIcons, factoryIcon } from '@cds/core/icon';
+import { ClarityIcons, factoryIcon } from '@clr/angular/icon';
 
 const HTML_EXAMPLE = `
 <div class="parent">
@@ -38,7 +38,7 @@ const HTML_EXAMPLE3 = `
 `;
 
 const TYPESCRIPT1 = `
-import { ClarityIcons, factoryIcon } from '@cds/core/icon';
+import { ClarityIcons, factoryIcon } from '@clr/angular/icon';
 
 ClarityIcons.addIcons(factoryIcon);
 `;

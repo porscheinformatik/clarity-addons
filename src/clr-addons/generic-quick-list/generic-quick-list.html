@@ -2,34 +2,35 @@
 <div class="clr-control-container" [ngClass]="controlClasses">
   <ng-content select=".header-container"></ng-content>
 
-  <ng-container *ngFor="let item of allItems; index as i">
-    <div class="controls-wrapper">
-      <div class="controls-container" *ngIf="itemTemplate" #row>
-        <ng-container *ngTemplateOutlet="itemTemplate.get(0); context: {$implicit:item}"></ng-container>
-      </div>
-      <button
-        *ngIf="!(readonly || readonly === '')"
-        type="button"
-        class="btn btn-icon btn-link btn-trash"
-        [ngClass]="{'btn-trash-ext': !(compactMode && i === allItems.length - 1)}"
-        [disabled]="required && allItems.length === 1"
-        (click)="removeItem(item)"
-      >
-        <cds-icon shape="trash"></cds-icon>
-      </button>
-      <button
-        *ngIf="!(readonly || readonly === '') && compactMode && i === allItems.length - 1"
-        type="button"
-        class="btn btn-icon btn-link quick-list-addcompact"
-        (click)="addItem()"
-        [disabled]="!addPossible"
-      >
-        <cds-icon shape="plus-circle"></cds-icon>
-      </button>
+  @for (item of allItems; track item; let i = $index) {
+  <div class="controls-wrapper">
+    @if (itemTemplate) {
+    <div class="controls-container" #row>
+      <ng-container *ngTemplateOutlet="itemTemplate.get(0); context: {$implicit:item}"></ng-container>
     </div>
-  </ng-container>
+    } @if (!(readonly || readonly === '')) {
+    <button
+      type="button"
+      class="btn btn-icon btn-link btn-trash"
+      [ngClass]="{'btn-trash-ext': !(compactMode && i === allItems.length - 1)}"
+      [disabled]="required && allItems.length === 1"
+      (click)="removeItem(item)"
+    >
+      <cds-icon shape="trash"></cds-icon>
+    </button>
+    } @if (!(readonly || readonly === '') && compactMode && i === allItems.length - 1) {
+    <button
+      type="button"
+      class="btn btn-icon btn-link quick-list-addcompact"
+      (click)="addItem()"
+      [disabled]="!addPossible"
+    >
+      <cds-icon shape="plus-circle"></cds-icon>
+    </button>
+    }
+  </div>
+  } @if (!(readonly || readonly === '') && allItems.length === 0 && compactMode) {
   <button
-    *ngIf="!(readonly || readonly === '') && allItems.length === 0 && compactMode"
     type="button"
     class="btn btn-icon btn-link quick-list-addcompact"
     (click)="addItem()"
@@ -37,13 +38,9 @@
   >
     <cds-icon shape="plus-circle"></cds-icon>
   </button>
-  <button
-    *ngIf="!(readonly || readonly === '') && !compactMode"
-    type="button"
-    class="btn btn-link btn-sm btn-add"
-    (click)="addItem()"
-    [disabled]="!addPossible"
-  >
+  } @if (!(readonly || readonly === '') && !compactMode) {
+  <button type="button" class="btn btn-link btn-sm btn-add" (click)="addItem()" [disabled]="!addPossible">
     {{addLabel}}
   </button>
+  }
 </div>

@@ -14,7 +14,6 @@ readFile('./package.json', 'utf-8', (err, data) => {
   const addonsVersion = packageJson.version;
   let angularVersion = packageJson.dependencies['@angular/core'];
   let clarityVersion = packageJson.dependencies['@clr/angular'];
-  let cdsCoreVersion = packageJson.dependencies['@cds/core'];
 
   if (angularVersion.indexOf('.') > 0) {
     angularVersion = angularVersion.substring(0, angularVersion.indexOf('.')) + '.0.0';
@@ -22,7 +21,6 @@ readFile('./package.json', 'utf-8', (err, data) => {
 
   angularVersion = prependCaretIfMissing(angularVersion);
   clarityVersion = prependCaretIfMissing(clarityVersion);
-  cdsCoreVersion = prependCaretIfMissing(cdsCoreVersion);
 
   const envFile = './src/clr-addons/package.json';
   readFile(envFile, 'utf-8', (err, data) => {
@@ -30,7 +28,6 @@ readFile('./package.json', 'utf-8', (err, data) => {
     data = data.replaceAll('@VERSION', addonsVersion);
     data = data.replaceAll('@ANGULAR_VERSION', angularVersion);
     data = data.replaceAll('@CLARITY_VERSION', clarityVersion);
-    data = data.replaceAll('@CDS_CORE_VERSION', cdsCoreVersion);
     writeFile(envFile, data, 'utf-8', handleError);
   });
 });

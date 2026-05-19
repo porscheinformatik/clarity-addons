@@ -5,7 +5,7 @@
  */
 import { Component } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
-import { ClarityIcons, ellipsisVerticalIcon } from '@cds/core/icon';
+import { ClarityIcons, ellipsisVerticalIcon } from '@clr/angular/icon';
 
 const HTML_EXAMPLE = `
 <div class="clr-row">

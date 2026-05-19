@@ -45,7 +45,6 @@ import { ClrActionPanelModule } from './action-panel';
 import { ClrReadonlyDirectiveModule } from './readonly/readonly.module';
 import { ClrFocusFirstInvalidFieldDirective } from './focus-first-invalid-field';
 import { ClrControlEnterSubmitDirective } from './control-enter-submit';
-import { ClrSignpostAddonModule } from './signpost';
 import { ClrKeyboardNavCtrlArrowDirective } from './keyboard-nav/clr-keyboard-nav-ctrl-arrow.directive';
 import { ClrKeyboardNavAltMnemonicDirective } from './keyboard-nav/clr-keyboard-nav-alt-mnemonic.directive';
 import { ClrImageGalleryModule } from './image-gallery';
@@ -95,7 +94,6 @@ import { ClrImageGalleryModule } from './image-gallery';
     ClrActionPanelModule,
     ClrReadonlyDirectiveModule,
     ClrDatagridColumnReorderModule,
-    ClrSignpostAddonModule,
     ClrFocusFirstInvalidFieldDirective,
     ClrControlEnterSubmitDirective,
     ClrKeyboardNavCtrlArrowDirective,

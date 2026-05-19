@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
-import { ClrDropdownModule, ClrIconModule } from '@clr/angular';
+import { ClrDropdownModule, ClrIcon } from '@clr/angular';
 import { ChartExportService } from './chart-export.service';
-import { ClarityIcons, downloadIcon } from '@cds/core/icon';
+import { ClarityIcons, downloadIcon } from '@clr/angular/icon';
 import { ChartLegendItem } from '../chart-legend/chart-legend.component';
 
 ClarityIcons.addIcons(downloadIcon);
@@ -31,7 +31,7 @@ ClarityIcons.addIcons(downloadIcon);
       }
     `,
   ],
-  imports: [ClrDropdownModule, ClrIconModule],
+  imports: [ClrDropdownModule, ClrIcon],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChartExportButtonComponent {

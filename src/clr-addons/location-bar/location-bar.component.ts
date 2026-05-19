@@ -1,10 +1,8 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-import { ClarityIcons, organizationIcon } from '@cds/core/icon';
-import '@cds/core/icon/register.js';
+import { ClarityIcons, organizationIcon } from '@clr/angular/icon';
 import { ReplaySubject } from 'rxjs';
 import { LocationBarNode, NodeId } from './location-bar.model';
-import { SearchRequestModel } from './location-bar.search.model';
-import { SearchResultModel } from './location-bar.search.model';
+import { SearchRequestModel, SearchResultModel } from './location-bar.search.model';
 
 ClarityIcons.addIcons(organizationIcon);
 

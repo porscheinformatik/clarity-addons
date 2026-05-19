@@ -14,7 +14,7 @@ describe('toChartColor()', () => {
   });
 
   it('should wrap any --xxx token in var()', () => {
-    expect(toChartColor('--clr-color-action-600')).toBe('var(--clr-color-action-600)');
+    expect(toChartColor('--cds-global-color-blue-700')).toBe('var(--cds-global-color-blue-700)');
   });
 
   it('should return empty string for undefined', () => {

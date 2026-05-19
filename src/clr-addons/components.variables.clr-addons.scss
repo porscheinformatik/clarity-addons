@@ -1,4 +1,5 @@
 @use 'sass:map';
+
 $clr-grid-breakpoints: (
   xs: 0,
   sm: 576px,
@@ -55,7 +56,7 @@ $clr-highlight-neutral-50: #fafafa;
 $clr-highlight-neutral-200: #e8e8e8;
 
 :root {
-  --clr-border-color: var(--clr-color-neutral-400);
+  --clr-border-color: var(--clr-nav-box-shadow-color);
   --clr-card-default-border-color: rgba(215, 215, 215, 1);
   --clr-card-active-border-color: rgba(0, 148, 210, 1);
   --clr-header-height: 3rem;

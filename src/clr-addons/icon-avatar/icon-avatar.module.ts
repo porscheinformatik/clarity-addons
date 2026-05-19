@@ -6,12 +6,12 @@
 
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ClarityModule, ClrIconModule } from '@clr/angular';
+import { ClarityModule, ClrIcon } from '@clr/angular';
 
 import { ClrIconAvatar } from './icon-avatar';
 
 @NgModule({
-  imports: [CommonModule, ClarityModule, ClrIconModule],
+  imports: [CommonModule, ClarityModule, ClrIcon],
   declarations: [ClrIconAvatar],
   exports: [ClrIconAvatar],
 })

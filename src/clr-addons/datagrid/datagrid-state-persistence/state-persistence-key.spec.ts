@@ -130,7 +130,6 @@ describe('StatePersistenceKeyDirective', () => {
         CdkDrag,
       ],
       declarations: [TestComponent],
-      teardown: { destroyAfterEach: false },
     }).compileComponents();
 
     fixture = TestBed.createComponent(TestComponent);

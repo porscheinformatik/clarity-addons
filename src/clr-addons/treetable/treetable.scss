@@ -206,7 +206,7 @@ $indentation-increment: 1rem;
         }
 
         .treetable-expandable-caret-icon {
-          color: var(--clr-color-neutral-700);
+          color: var(--cds-global-color-gray-700);
 
           svg {
             transition: transform 0.2s ease-in-out;

@@ -6,7 +6,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { ClrFlowBar, ClrFlowBarStep } from '@porscheinformatik/clr-addons';
 import { of } from 'rxjs';
-import { angleIcon, ClarityIcons } from '@cds/core/icon';
+import { angleIcon, ClarityIcons } from '@clr/angular/icon';
 
 ClarityIcons.addIcons(angleIcon);
 

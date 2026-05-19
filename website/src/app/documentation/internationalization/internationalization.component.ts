@@ -16,7 +16,7 @@ import localePtPT from '@angular/common/locales/pt-PT';
 import localeSeSE from '@angular/common/locales/se-SE';
 
 import { registerLocaleData } from '@angular/common';
-import { ClarityIcons, infoCircleIcon } from '@cds/core/icon';
+import { ClarityIcons, infoCircleIcon } from '@clr/angular/icon';
 
 registerLocaleData(localeDe);
 registerLocaleData(localeDeAT);

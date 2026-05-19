@@ -1,5 +1,5 @@
 {
-  "$schema": "./node_modules/@angular-devkit/core/src/workspace/workspace-schema.json",
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "src",
   "projects": {
@@ -10,12 +10,13 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular/build:application",
           "options": {
-            "outputPath": "dist/dev",
+            "outputPath": {
+              "base": "dist/dev"
+            },
             "index": "src/dev/src/index.html",
-            "main": "src/dev/src/main.ts",
-            "polyfills": "src/dev/src/polyfills.ts",
+            "polyfills": ["src/dev/src/polyfills.ts"],
             "tsConfig": "src/dev/tsconfig.dev.json",
             "assets": [
               {
@@ -29,24 +30,16 @@
                 "output": "/assets"
               }
             ],
-            "styles": [
-              "node_modules/modern-normalize/modern-normalize.css",
-              "node_modules/@cds/core/global.min.css",
-              "node_modules/@cds/core/styles/theme.dark.min.css",
-              "node_modules/@clr/icons/clr-icons.min.css",
-              "node_modules/@clr/ui/clr-ui.min.css",
-              "dist/clr-addons/styles/clr-addons-phs.css"
-            ],
+            "styles": ["node_modules/@clr/ui/clr-ui.min.css", "dist/clr-addons/styles/clr-addons-phs.css"],
             "scripts": [
               "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js",
               "node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"
             ],
-            "vendorChunk": true,
             "extractLicenses": false,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "namedChunks": true
+            "namedChunks": true,
+            "browser": "src/dev/src/main.ts"
           },
           "configurations": {
             "production": {
@@ -66,15 +59,13 @@
               "outputHashing": "all",
               "sourceMap": false,
               "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true
+              "extractLicenses": true
             }
           },
           "defaultConfiguration": ""
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular/build:dev-server",
           "options": {
             "buildTarget": "dev:build"
           },
@@ -88,11 +79,12 @@
     },
     "clr-addons": {
       "root": "src/clr-addons",
+      "sourceRoot": "src/clr-addons",
       "projectType": "library",
       "prefix": "clr",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "builder": "@angular/build:ng-packagr",
           "options": {
             "project": "src/clr-addons/ng-package.json"
           },
@@ -106,11 +98,13 @@
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular/build:karma",
           "options": {
             "main": "tests/tests.entry.ts",
             "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js"
+            "karmaConfig": "karma.conf.js",
+            "polyfills": ["zone.js", "zone.js/testing"],
+            "styles": ["node_modules/@clr/ui/clr-ui.min.css", "dist/clr-addons/styles/clr-addons-phs.css"]
           }
         },
         "lint": {
@@ -124,7 +118,29 @@
   },
   "schematics": {
     "@schematics/angular:component": {
-      "style": "css"
+      "style": "css",
+      "type": "component"
+    },
+    "@schematics/angular:directive": {
+      "type": "directive"
+    },
+    "@schematics/angular:service": {
+      "type": "service"
+    },
+    "@schematics/angular:guard": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:interceptor": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:module": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:pipe": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:resolver": {
+      "typeSeparator": "."
     }
   },
   "cli": {

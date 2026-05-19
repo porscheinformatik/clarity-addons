@@ -15,26 +15,33 @@
 </form>
 <h2 class="icon-section-title">POI Custom Icons</h2>
 <section class="icon-sets-container">
-  <div *ngIf="shapes.length > 0" class="cds-icon-collection">
-    <div *ngFor="let shape of shapes; let i = index" class="icon-collection">
+  @if (shapes.length > 0) {
+  <div class="cds-icon-collection">
+    @for (shape of shapes; track shape; let i = $index) {
+    <div class="icon-collection">
       <button
         class="visible-icon"
         (click)="selectedShape = shape"
         [ngClass]="{ 'button-selected': selectedShape === shape }"
       >
-        <cds-icon [attr.shape]="shape" size="24" class="icon-shape" />
+        <cds-icon [shape]="shape" size="24" class="icon-shape" />
         <span class="icon-shape-name">{{ shape }}</span>
       </button>
-      <div *ngIf="selectedShape == shape" class="spacer"></div>
+      @if (selectedShape == shape) {
+      <div class="spacer"></div>
+      }
       <div [ngClass]="{ second: i % 3 === 1, third: i % 3 === 2 }">
         <ng-container *ngTemplateOutlet="title; context: { $implicit: shape }"></ng-container>
       </div>
     </div>
+    }
   </div>
+  }
 </section>
 
 <ng-template #title let-shape>
-  <div class="icon-detail-section" *ngIf="selectedShape == shape">
+  @if (selectedShape == shape) {
+  <div class="icon-detail-section">
     <div class="clr-col-12">
       <div class="card">
         <div class="card-block">
@@ -58,45 +65,58 @@
       </div>
     </div>
   </div>
+  }
 </ng-template>
 
 <h2 class="icon-section-title">Brand Icons</h2>
 <section class="icon-sets-container">
-  <div *ngIf="brandshapes.length > 0" class="cds-icon-collection">
-    <div *ngFor="let shape of brandshapes; let i = index" class="icon-collection">
+  @if (brandshapes.length > 0) {
+  <div class="cds-icon-collection">
+    @for (shape of brandshapes; track shape; let i = $index) {
+    <div class="icon-collection">
       <button
         class="visible-icon"
         (click)="selectedShape = shape"
         [ngClass]="{ 'button-selected': selectedShape === shape }"
       >
-        <cds-icon [attr.shape]="shape" size="24" class="icon-shape" />
+        <cds-icon [shape]="shape" size="24" class="icon-shape" />
         <span class="icon-shape-name">{{ shape }}</span>
       </button>
-      <div *ngIf="selectedShape == shape" class="spacer"></div>
+      @if (selectedShape == shape) {
+      <div class="spacer"></div>
+      }
       <div [ngClass]="{ second: i % 3 === 1, third: i % 3 === 2 }">
         <ng-container *ngTemplateOutlet="title; context: { $implicit: shape }"></ng-container>
       </div>
     </div>
+    }
   </div>
+  }
 </section>
 <h2 class="icon-section-title">D6 Icons</h2>
 <section class="icon-sets-container">
-  <div *ngIf="d6shapes.length > 0" class="cds-icon-collection">
-    <div *ngFor="let shape of d6shapes; let i = index" class="icon-collection">
+  @if (d6shapes.length > 0) {
+  <div class="cds-icon-collection">
+    @for (shape of d6shapes; track shape; let i = $index) {
+    <div class="icon-collection">
       <button
         class="visible-icon"
         (click)="selectedShape = shape"
         [ngClass]="{ 'button-selected': selectedShape === shape }"
       >
-        <cds-icon [attr.shape]="shape" size="24" class="icon-shape" />
+        <cds-icon [shape]="shape" size="24" class="icon-shape" />
         <span class="icon-shape-name">{{ shape }}</span>
       </button>
-      <div *ngIf="selectedShape == shape" class="spacer"></div>
+      @if (selectedShape == shape) {
+      <div class="spacer"></div>
+      }
       <div [ngClass]="{ second: i % 3 === 1, third: i % 3 === 2 }">
         <ng-container *ngTemplateOutlet="title; context: { $implicit: shape }"></ng-container>
       </div>
     </div>
+    }
   </div>
+  }
 </section>
 <section class="icon-sets-footer">
   <p>Clarity Addons Icons, © Volkswagen 2025</p>

@@ -57,11 +57,13 @@ Form valid: {{ form.valid }}
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of allItems">
+    @for (item of allItems; track item) {
+    <tr>
       <td>{{ item.id }}</td>
       <td>{{ item.firstname }}</td>
       <td>{{ item.lastname }}</td>
     </tr>
+    }
   </tbody>
 </table>
 
@@ -129,10 +131,12 @@ Form valid: {{ formV.valid }}
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of allItemsV">
+    @for (item of allItemsV; track item) {
+    <tr>
       <td>{{ item.id }}</td>
       <td>{{ item.firstname }}</td>
       <td>{{ item.lastname }}</td>
     </tr>
+    }
   </tbody>
 </table>

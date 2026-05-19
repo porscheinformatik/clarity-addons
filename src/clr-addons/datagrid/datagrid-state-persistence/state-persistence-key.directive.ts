@@ -272,7 +272,7 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
   }
 
   @HostListener('window:beforeunload')
-  private persistColumnWidths(): void {
+  public persistColumnWidths(): void {
     const columnWidthPersistenceEnabled = this.options?.persistColumnWidths ?? false;
     if (columnWidthPersistenceEnabled) {
       const state = this.getLocalStorageState();

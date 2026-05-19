@@ -1,7 +1,3 @@
-@use '../../node_modules/@cds/core/tokens/tokens';
-@use '../../node_modules/@clr/ui/src/utils/mixins';
-@use '../../node_modules/@clr/ui/src/utils/variables/variables.global' as variables;
-
 .align-values-right {
   clr-select-container {
     align-items: flex-end;
@@ -12,34 +8,34 @@ th clr-select-container {
   margin-top: 0 !important;
 }
 
-$contentTopMargin: calc(2 * var(tokens.$cds-global-space-15));
+$contentTopMargin: calc(2 * var(--cds-global-space-15));
 
 .table-of-contents {
   position: fixed;
   top: $contentTopMargin;
-  left: variables.$clr_baselineRem_2_66 + variables.$clr_baselineRem_48;
-  border-left: 1px solid tokens.$cds-alias-object-border-color;
+  left: 61rem;
+  border-left: 1px solid var(--cds-alias-object-border-color);
   z-index: 100000;
 
   .scroll-to-top {
     display: none;
     position: absolute;
-    color: tokens.$cds-alias-typography-color-100;
+    color: var(--cds-alias-typography-color-100);
     justify-content: center;
     align-items: center;
-    width: tokens.$cds-global-space-12;
-    height: tokens.$cds-global-space-12;
-    bottom: tokens.$cds-global-space-9;
-    right: tokens.$cds-global-space-9;
+    width: var(--cds-global-space-12);
+    height: var(--cds-global-space-12);
+    bottom: var(--cds-global-space-9);
+    right: var(--cds-global-space-9);
     border-width: 0;
-    border-radius: tokens.$cds-alias-object-border-radius-300;
-    background-color: tokens.$cds-alias-object-interaction-color;
-    box-shadow: tokens.$cds-alias-object-shadow-100;
+    border-radius: var(--cds-alias-object-border-radius-300);
+    background-color: var(--cds-alias-object-interaction-color);
+    box-shadow: var(--cds-alias-object-shadow-100);
     z-index: 100000;
 
     cds-icon {
-      width: tokens.$cds-global-space-9;
-      height: tokens.$cds-global-space-9;
+      width: var(--cds-global-space-9);
+      height: var(--cds-global-space-9);
     }
   }
 }
@@ -47,7 +43,7 @@ $contentTopMargin: calc(2 * var(tokens.$cds-global-space-15));
 @media (max-width: 1440px) {
   .table-of-contents {
     position: initial;
-    margin-top: tokens.$cds-global-space-10;
+    margin-top: var(--cds-global-space-10);
 
     .scroll-to-top {
       display: flex;
@@ -57,43 +53,43 @@ $contentTopMargin: calc(2 * var(tokens.$cds-global-space-15));
 
 .title {
   display: inline-block;
-  color: tokens.$cds-global-typography-color-400;
-  font-size: tokens.$cds-alias-typography-secondary-font-size;
-  font-weight: tokens.$cds-alias-typography-font-weight-semibold;
-  line-height: tokens.$cds-alias-typography-secondary-line-height;
-  letter-spacing: tokens.$cds-alias-typography-secondary-letter-spacing;
-  padding-left: tokens.$cds-global-space-7;
+  color: var(--cds-alias-typography-color-400);
+  font-size: var(--cds-alias-typography-secondary-font-size);
+  font-weight: var(--cds-alias-typography-font-weight-semibold);
+  line-height: var(--cds-alias-typography-secondary-line-height);
+  letter-spacing: var(--cds-alias-typography-secondary-letter-spacing);
+  padding-left: var(--cds-global-space-7);
   text-transform: uppercase;
 }
 
 .toc-list {
   overflow-y: auto;
-  $contentHeadingHeight: tokens.$cds-global-space-9;
-  margin-top: tokens.$cds-global-space-3;
+  $contentHeadingHeight: var(--cds-global-space-9);
+  margin-top: var(--cds-global-space-3);
   max-height: calc(100vh - $contentTopMargin - $contentHeadingHeight);
 
   li {
-    $activeBorderWidth: tokens.$cds-alias-object-border-width-300;
-    $globalSpaceToken: tokens.$cds-global-space-11;
+    $activeBorderWidth: var(--cds-alias-object-border-width-300);
+    $globalSpaceToken: var(--cds-global-space-11);
 
     a {
       display: block;
-      color: tokens.$cds-alias-object-interaction-color;
-      font-weight: tokens.$cds-alias-typography-font-weight-regular;
+      color: var(--cds-alias-object-interaction-color);
+      font-weight: var(--cds-alias-typography-font-weight-regular);
       border-left: $activeBorderWidth solid transparent;
-      padding: tokens.$cds-global-space-3 tokens.$cds-global-space-7;
-      padding-left: calc(var(tokens.$cds-global-space-7) - $activeBorderWidth);
+      padding: var(--cds-global-space-3) var(--cds-global-space-7);
+      padding-left: calc(var(--cds-global-space-7) - $activeBorderWidth);
       transition: border-left-color 200ms ease-in;
       text-decoration: none;
 
       &.active {
-        color: tokens.$cds-alias-object-interaction-color-active;
-        border-left-color: tokens.$cds-alias-object-interaction-background-highlight;
+        color: var(--cds-alias-object-interaction-color-active);
+        border-left-color: var(--cds-alias-object-interaction-background-highlight);
       }
 
       &:hover {
-        color: tokens.$cds-alias-object-interaction-color-hover;
-        background-color: tokens.$cds-alias-object-interaction-background-hover;
+        color: var(--cds-alias-object-interaction-color-hover);
+        background-color: var(--cds-alias-object-interaction-background-hover);
       }
     }
 

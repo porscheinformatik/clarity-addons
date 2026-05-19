@@ -9,7 +9,6 @@ export * from './interfaces/timerange.interface';
 export * from './interfaces/timerange-preset.interface';
 export * from './models/day.model';
 export * from './models/time.model';
-export * from './models/popover-positions.model';
 export * from './validators/daterange-max.validator';
 export * from './validators/daterange-min.validator';
 export * from './validators/daterange-order.validator';

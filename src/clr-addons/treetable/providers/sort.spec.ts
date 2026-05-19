@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -25,7 +25,7 @@ describe('Sort<Item>', () => {
     service = TestBed.inject(Sort<Item>);
     comparator = new IdComparator();
 
-    TestBed.flushEffects();
+    TestBed.tick();
   });
 
   it('should have initial empty sort state', () => {
@@ -92,27 +92,27 @@ describe('Sort<Item>', () => {
     });
 
     // Initial (unsorted)
-    TestBed.flushEffects();
+    TestBed.tick();
 
     // Set comparator (ASC)
     service.toggle(comparator);
-    TestBed.flushEffects();
+    TestBed.tick();
 
     // Toggle reverse (DESC)
     service.toggle(comparator);
-    TestBed.flushEffects();
+    TestBed.tick();
 
     // Force reverse stays true
     service.toggle(comparator, true);
-    TestBed.flushEffects();
+    TestBed.tick();
 
     // Force reverse false (ASC)
     service.toggle(comparator, false);
-    TestBed.flushEffects();
+    TestBed.tick();
 
     // Clear comparator (UNSORTED)
     service.clear();
-    TestBed.flushEffects();
+    TestBed.tick();
 
     sub.unsubscribe();
 

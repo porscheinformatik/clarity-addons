@@ -31,13 +31,18 @@
 
       <h6>Selectable card (Clarity Addons)</h6>
       <div class="clr-row">
-        <div class="clr-col-4" *ngFor="let card of cards;let index = index;">
+        @for (card of cards; track card; let index = $index) {
+        <div class="clr-col-4">
           <div class="card selectable" [class.card-active]="card.active" (click)="activateCard(index)">
             <div class="card-header">{{card.title}}</div>
-            <div class="card-block" *ngIf="!card.active">Click to select me</div>
-            <div class="card-block" *ngIf="card.active">I am the selected card</div>
+            @if (!card.active) {
+            <div class="card-block">Click to select me</div>
+            } @if (card.active) {
+            <div class="card-block">I am the selected card</div>
+            }
           </div>
         </div>
+        }
       </div>
 
       <h3>Usage</h3>

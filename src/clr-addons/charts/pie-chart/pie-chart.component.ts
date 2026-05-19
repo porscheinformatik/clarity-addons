@@ -177,7 +177,7 @@ export class PieChartComponent extends ChartBase<PieChartData> implements OnChan
         .attr('dy', '-0.1em')
         .style('font-size', '1.4rem')
         .style('font-weight', '600')
-        .style('fill', 'var(--clr-color-neutral-900, #21333b)')
+        .style('fill', 'var(--cds-global-color-gray-900, #21333b)')
         .text(d3format('~s')(this.total()));
 
       g.append('text')
@@ -185,7 +185,7 @@ export class PieChartComponent extends ChartBase<PieChartData> implements OnChan
         .attr('text-anchor', 'middle')
         .attr('dy', '1.2em')
         .style('font-size', '0.65rem')
-        .style('fill', 'var(--clr-color-neutral-600, #666)')
+        .style('fill', 'var(--cds-global-color-construction-400, #666)')
         .style('text-transform', 'uppercase')
         .style('letter-spacing', '0.05em')
         .text('Total');

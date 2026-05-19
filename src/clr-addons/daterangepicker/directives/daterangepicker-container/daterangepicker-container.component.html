@@ -1,12 +1,14 @@
 <ng-content select="label"></ng-content>
-<label *ngIf="!this.labelComponent && this.addLayoutGrid"></label>
+@if (!this.labelComponent && this.addLayoutGrid) {
+<label></label>
+}
 <div
   [class.clr-col-12]="this.addLayoutGrid"
   [class.clr-col-md-10]="this.addLayoutGrid"
   [class.clr-error]="this.isInvalid"
   class="clr-control-container"
 >
-  <div class="clr-input-wrapper" clrPopoverAnchor>
+  <div class="clr-input-wrapper">
     <div
       [class.clr-focus]="this.focus"
       class="custom-input-group clr-input-group"
@@ -19,29 +21,25 @@
         [title]="this.friendlyDaterange"
         class="clr-input-group-icon-action"
         clrPopoverOpenCloseButton
+        clrPopoverOrigin
         type="button"
       >
         <cds-icon shape="calendar" status="info"></cds-icon>
       </button>
     </div>
-    <cds-icon
-      *ngIf="this.isInvalid"
-      aria-hidden="true"
-      class="clr-validate-icon"
-      shape="exclamation-circle"
-      status="danger"
-    ></cds-icon>
-    <cds-icon
-      *ngIf="!this.isInvalid"
-      aria-hidden="true"
-      class="clr-validate-icon"
-      shape="check-circle"
-      status="success"
-    ></cds-icon>
+    @if (this.isInvalid) {
+    <cds-icon aria-hidden="true" class="clr-validate-icon" shape="exclamation-circle" status="danger"></cds-icon>
+    } @if (!this.isInvalid) {
+    <cds-icon aria-hidden="true" class="clr-validate-icon" shape="check-circle" status="success"></cds-icon>
+    }
   </div>
-  <ng-content *ngIf="this.showHelper" select="clr-control-helper"></ng-content>
-  <ng-content *ngIf="this.showInvalid" select="clr-control-error"></ng-content>
-  <ng-content *ngIf="this.showValid" select="clr-control-success"></ng-content>
+  @if (this.showHelper) {
+  <ng-content select="clr-control-helper"></ng-content>
+  } @if (this.showInvalid) {
+  <ng-content select="clr-control-error"></ng-content>
+  } @if (this.showValid) {
+  <ng-content select="clr-control-success"></ng-content>
+  }
 
   <div
     *clrPopoverContent="this.open; at: this.popoverPosition; outsideClickToClose: true; scrollToClose: true"
@@ -75,14 +73,15 @@
             class="clr-datepicker"
           >
           </clr-datepicker>
+          @if (_timeSelection) {
           <clr-timepicker
-            *ngIf="_timeSelection"
             class="timepicker"
             (valueChange)="this.onTimeFromChange($event)"
             [value]="this.timeFrom"
             [activateSeconds]="_activateSeconds"
           >
           </clr-timepicker>
+          }
         </div>
         <div class="datetime-container datetime-container-to">
           <clr-datepicker
@@ -94,30 +93,34 @@
             class="clr-datepicker"
           >
           </clr-datepicker>
+          @if (_timeSelection) {
           <clr-timepicker
-            *ngIf="_timeSelection"
             class="timepicker"
             (valueChange)="this.onTimeToChange($event)"
             [value]="this.timeTo"
             [activateSeconds]="_activateSeconds"
           >
           </clr-timepicker>
+          }
         </div>
       </form>
-      <div *ngIf="this.presets?.length > 0" class="clr-daterangepicker-container-popup-content-presets">
-        <ng-container *ngFor="let preset of this.presets">
-          <button (click)="this.applyPreset(preset)" class="btn btn-outline btn-sm btn-block" type="button">
-            {{ preset.text }}
-          </button>
-        </ng-container>
+      @if (this.presets?.length > 0) {
+      <div class="clr-daterangepicker-container-popup-content-presets">
+        @for (preset of this.presets; track preset) {
+        <button (click)="this.applyPreset(preset)" class="btn btn-outline btn-sm btn-block" type="button">
+          {{ preset.text }}
+        </button>
+        }
       </div>
-      <div *ngIf="this.presetsDateTime?.length > 0" class="clr-daterangepicker-container-popup-content-presets">
-        <ng-container *ngFor="let preset of this.presetsDateTime">
-          <button (click)="this.applyPresetTime(preset)" class="btn btn-outline btn-sm btn-block" type="button">
-            {{ preset.text }}
-          </button>
-        </ng-container>
+      } @if (this.presetsDateTime?.length > 0) {
+      <div class="clr-daterangepicker-container-popup-content-presets">
+        @for (preset of this.presetsDateTime; track preset) {
+        <button (click)="this.applyPresetTime(preset)" class="btn btn-outline btn-sm btn-block" type="button">
+          {{ preset.text }}
+        </button>
+        }
       </div>
+      }
     </div>
   </div>
 </div>

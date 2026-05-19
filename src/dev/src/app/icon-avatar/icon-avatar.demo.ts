@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component } from '@angular/core';
-import { ClarityIcons, factoryIcon } from '@cds/core/icon';
+import { ClarityIcons, factoryIcon } from '@clr/angular/icon';
 
 ClarityIcons.addIcons(factoryIcon);
 

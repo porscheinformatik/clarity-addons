@@ -82,12 +82,12 @@ describe('ClrDaterangepickerDirective', () => {
 
   it('should set placeholder text based on the configuration', () => {
     directive.placeholder = 'Custom Placeholder';
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
     expect(directive.placeholderText).toBe('Custom Placeholder');
 
     directive.placeholder = undefined;
     daterangeService.timeActive = false;
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
     expect(directive.placeholderText).toContain('MM/DD/YYYY');
   });
 

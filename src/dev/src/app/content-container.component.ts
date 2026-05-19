@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -20,26 +20,26 @@ import { takeUntil } from 'rxjs/operators';
     </main>
 
     <clr-vertical-nav [clrVerticalNavCollapsible]="true" [clrVerticalNavCollapsed]="false" [clr-nav-level]="2">
-      <ng-container *ngFor="let route of routes">
-        <a clrVerticalNavLink *ngIf="route.path != ''" [routerLink]="[route.path]" [routerLinkActive]="['active']">
-          {{ route.path }}
-        </a>
-      </ng-container>
+      @for (route of routes; track route) { @if (route.path != '') {
+      <a clrVerticalNavLink [routerLink]="[route.path]" [routerLinkActive]="['active']">
+        {{ route.path }}
+      </a>
+      } }
     </clr-vertical-nav>
 
     <!--DO NOT DELETE THE COMMENTS BELOW. Needed for testing the Vertical Nav-->
     <!--<clr-vertical-nav [clrVerticalNavCollapsible]="true" [clrVerticalNavCollapsed]="false" [clr-nav-level]="2">
-        <clr-vertical-nav-group>
-            <clr-icon shape="home" clrVerticalNavIcon></clr-icon>
-            Home
-            <ng-container *ngFor="let route of routes" ngProjectAs="[clrVerticalNavLink]">
-                <a clrVerticalNavLink *ngIf="route.path != ''"
-                   [routerLink]="[route.path]"
-                   [routerLinkActive]="['active']">
-                    {{route.path}}
-                </a>
-            </ng-container>
-        </clr-vertical-nav-group>
+    <clr-vertical-nav-group>
+      <clr-icon shape="home" clrVerticalNavIcon></clr-icon>
+      Home
+      <ng-container *ngFor="let route of routes" ngProjectAs="[clrVerticalNavLink]">
+        <a clrVerticalNavLink *ngIf="route.path != ''"
+          [routerLink]="[route.path]"
+          [routerLinkActive]="['active']">
+          {{route.path}}
+        </a>
+      </ng-container>
+    </clr-vertical-nav-group>
     </clr-vertical-nav>-->
   `,
   standalone: false,

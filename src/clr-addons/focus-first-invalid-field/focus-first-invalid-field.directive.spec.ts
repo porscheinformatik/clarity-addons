@@ -1,10 +1,9 @@
 import { ClrFocusFirstInvalidFieldDirective } from './focus-first-invalid-field.directive';
-import { Component, DebugElement } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { ClrDatagridModule, ClrInputModule, ClrSelectModule } from '@clr/angular';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 /**
@@ -101,7 +100,6 @@ describe('ClrFocusFirstInvalidFieldDirective', () => {
       declarations: [TestComponent],
       providers: [provideAnimations()],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      teardown: { destroyAfterEach: false },
     }).compileComponents();
   });
 
@@ -124,9 +122,9 @@ describe('ClrFocusFirstInvalidFieldDirective', () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (fixture.componentInstance as any)[key] = value;
     });
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
     await fixture.whenStable();
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
   }
 
   describe('Directive instantiation', () => {
@@ -237,9 +235,9 @@ describe('ClrFocusFirstInvalidFieldDirective', () => {
       // Fill datagrid fields
       fixture.componentInstance.dataDatagrid[0].text = 'filled';
       fixture.componentInstance.dataDatagrid[0].selectValue = 'option1';
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
       await fixture.whenStable();
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
 
       // Blur everything so activeElement is body
       (document.activeElement as HTMLElement)?.blur();
@@ -264,9 +262,9 @@ describe('ClrFocusFirstInvalidFieldDirective', () => {
       // Fill datagrid fields
       fixture.componentInstance.dataDatagrid[0].text = 'filled';
       fixture.componentInstance.dataDatagrid[0].selectValue = 'option1';
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
       await fixture.whenStable();
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
 
       expect(() => submitForm()).not.toThrow();
     });
@@ -300,13 +298,13 @@ describe('ClrFocusFirstInvalidFieldDirective', () => {
       });
 
       fixture.componentInstance.dataDatagrid[0].text = 'filled';
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
       await fixture.whenStable();
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
 
       submitForm();
       await fixture.whenStable();
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
 
       const datagridSelect: HTMLSelectElement = directiveElement.nativeElement.querySelector(
         '[data-testid="datagrid-select-field"]'

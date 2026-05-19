@@ -58,12 +58,14 @@
         </clr-input-container>
       </form>
 
-      <div class="card" *ngFor="let item of pagedItems">
+      @for (item of pagedItems; track item) {
+      <div class="card">
         <div class="card-header">{{ item }}</div>
         <div class="card-block">
           <div class="card-text">This is an example card.</div>
         </div>
       </div>
+      }
 
       <clr-dot-pager [clrPages]="pages" [clrCurrentPage]="currentPage" (clrCurrentPageChange)="onPageChanged($event)">
       </clr-dot-pager>
@@ -136,7 +138,8 @@
         </clr-input-container>
       </form>
 
-      <div class="clr-row" *ngFor="let item of pagedItems">
+      @for (item of pagedItems; track item) {
+      <div class="clr-row">
         <div class="clr-col-lg-6 clr-col-md-8 clr-col-12">
           <div class="card">
             <div class="card-header">{{ item }}</div>
@@ -146,6 +149,7 @@
           </div>
         </div>
       </div>
+      }
 
       <div class="margin-top-24">
         <clr-pager

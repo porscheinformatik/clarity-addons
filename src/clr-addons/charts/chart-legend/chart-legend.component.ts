@@ -30,7 +30,7 @@ export interface ChartLegendItem {
         gap: 0.25rem 1rem;
         padding: 0.5rem 0 0.25rem;
         font-size: 11px;
-        color: var(--clr-color-neutral-600, #666);
+        color: var(--cds-global-color-construction-400, #666);
       }
 
       .legend-item {

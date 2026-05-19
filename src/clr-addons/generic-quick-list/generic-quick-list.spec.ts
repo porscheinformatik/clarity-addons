@@ -53,7 +53,6 @@ describe('GenericQuickListComponent', () => {
     TestBed.configureTestingModule({
       declarations: [TestComponent],
       imports: [CommonModule, ClarityModule, FormsModule, ClrGenericQuickListModule],
-      teardown: { destroyAfterEach: false },
     }).compileComponents();
   }));
 
@@ -89,21 +88,21 @@ describe('GenericQuickListComponent', () => {
     expect(addButton.disabled).toBeFalsy();
 
     fixture.componentInstance.isAddPossible = false;
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
 
     expect(addButton.disabled).toBeTruthy();
   });
 
   it('disable remove button on last item when required', () => {
     fixture.componentInstance.allItems = [fixture.componentInstance.allItems[0]];
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
 
     const trashButtons = fixture.debugElement.queryAll(By.css('.btn-trash'));
     expect(trashButtons.length).toBe(1);
     expect(trashButtons[0].nativeElement.disabled).toBeFalsy();
 
     fixture.componentInstance.isRequired = true;
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
 
     expect(trashButtons[0].nativeElement.disabled).toBeTruthy();
   });

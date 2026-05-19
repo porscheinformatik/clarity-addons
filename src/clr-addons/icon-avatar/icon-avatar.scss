@@ -1,5 +1,4 @@
 @use '../mixins';
-@import '@cds/core/global.min.css';
 
 @include mixins.exports('icon-avatar.clr-addons') {
   .avatar-circle {

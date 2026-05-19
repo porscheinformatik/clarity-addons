@@ -1,16 +1,13 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
-import { ClrDateContainer, ClrPopoverToggleService } from '@clr/angular';
-import { Subscription } from 'rxjs';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 
 import { DayModel, NullableDayModel } from '../../models/day.model';
-import { OpenedDatepickersTrackerService } from '../../providers/opened-datepickers-tracker.service';
 
 @Component({
   selector: 'clr-datepicker',
   templateUrl: './datepicker.component.html',
   standalone: false,
 })
-export class ClrDatepickerComponent implements AfterViewInit, OnDestroy {
+export class ClrDatepickerComponent {
   /**
    * Input value.
    */
@@ -43,12 +40,6 @@ export class ClrDatepickerComponent implements AfterViewInit, OnDestroy {
    */
   @ViewChild('inputElm')
   private inputElm!: ElementRef<HTMLInputElement>;
-
-  /**
-   * Clarity datepicker container.
-   */
-  @ViewChild(ClrDateContainer)
-  private clrDateContainer!: ClrDateContainer;
 
   /**
    * Event triggered when value changes.
@@ -86,25 +77,6 @@ export class ClrDatepickerComponent implements AfterViewInit, OnDestroy {
    */
   protected get maxDateAttr(): string | undefined | null {
     return this.maxDate?.toHTML5SpecDateString();
-  }
-
-  /** List of subscriptions to later destroy. */
-  private subscriptions: Array<Subscription> = [];
-
-  public constructor(private readonly openedDatepickersTrackerService: OpenedDatepickersTrackerService) {}
-
-  public ngAfterViewInit(): void {
-    // eslint-disable-next-line dot-notation -- Need access to this private property.
-    const toggleService = this.clrDateContainer['toggleService'] as ClrPopoverToggleService;
-    this.subscriptions.push(
-      toggleService.openChange.subscribe(openState => {
-        this.openedDatepickersTrackerService.track(openState);
-      })
-    );
-  }
-
-  public ngOnDestroy(): void {
-    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
   /**

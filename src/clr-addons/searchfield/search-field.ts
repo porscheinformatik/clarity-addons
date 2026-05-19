@@ -1,14 +1,25 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { AfterViewInit, Directive, ElementRef, OnDestroy, OnInit, Optional, Renderer2 } from '@angular/core';
+import {
+  AfterViewInit,
+  ComponentRef,
+  Directive,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  Optional,
+  Renderer2,
+  ViewContainerRef,
+} from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { ClarityIcons, searchIcon, timesIcon } from '@cds/core/icon';
+import { ClarityIcons, searchIcon, timesIcon } from '@clr/angular/icon';
+import { ClrIcon } from '@clr/angular';
 
 ClarityIcons.addIcons(timesIcon, searchIcon);
 
@@ -20,13 +31,18 @@ ClarityIcons.addIcons(timesIcon, searchIcon);
 export class ClrSearchField implements OnInit, OnDestroy, AfterViewInit {
   private keyupListener: () => void;
 
-  private deleteSymbol: HTMLElement;
+  private deleteIconRef: ComponentRef<ClrIcon>;
+  private searchIconRef: ComponentRef<ClrIcon>;
   private deleteButton: HTMLElement;
-  private searchSymbol: HTMLElement;
 
   destroyed = new Subject<void>();
 
-  constructor(private renderer: Renderer2, private inputEl: ElementRef, @Optional() private ngControl: NgControl) {}
+  constructor(
+    private renderer: Renderer2,
+    private inputEl: ElementRef,
+    private viewContainerRef: ViewContainerRef,
+    @Optional() private ngControl: NgControl
+  ) {}
 
   ngOnInit(): void {
     this.setHasValueClass(!!this.inputEl.nativeElement.value);
@@ -51,13 +67,14 @@ export class ClrSearchField implements OnInit, OnDestroy, AfterViewInit {
     this.detachListener();
     this.destroyed.next();
     this.destroyed.complete();
+    this.deleteIconRef?.destroy();
+    this.searchIconRef?.destroy();
   }
 
   clearSearchInput(): void {
     this.renderer.setProperty(this.inputEl.nativeElement, 'value', '');
     this.setHasValueClass(false);
-    const event = document.createEvent('Event');
-    event.initEvent('input', false, false);
+    const event = new CustomEvent('input', { bubbles: false, cancelable: false });
     this.inputEl.nativeElement.dispatchEvent(event);
     this.inputEl.nativeElement.focus();
   }
@@ -71,10 +88,9 @@ export class ClrSearchField implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private injectDeleteIcon(): void {
-    // Get the input wrapper and apply necessary styles
     const inputWrapper = this.inputEl.nativeElement.parentNode;
 
-    if (!this.deleteSymbol) {
+    if (!this.deleteIconRef) {
       this.deleteButton = this.renderer.createElement('button');
       this.renderer.setAttribute(this.deleteButton, 'type', 'button');
       this.renderer.addClass(this.deleteButton, 'btn');
@@ -83,9 +99,10 @@ export class ClrSearchField implements OnInit, OnDestroy, AfterViewInit {
       this.renderer.addClass(this.deleteButton, 'delete-button');
       this.deleteButton.addEventListener('click', () => this.clearSearchInput());
 
-      this.deleteSymbol = this.renderer.createElement('cds-icon');
-      this.renderer.setAttribute(this.deleteSymbol, 'shape', 'times');
-      this.renderer.appendChild(this.deleteButton, this.deleteSymbol);
+      this.deleteIconRef = this.viewContainerRef.createComponent(ClrIcon);
+      this.deleteIconRef.instance.shape = 'times';
+      const deleteIconEl = this.deleteIconRef.location.nativeElement;
+      this.renderer.appendChild(this.deleteButton, deleteIconEl);
       this.renderer.appendChild(inputWrapper, this.deleteButton);
     }
   }
@@ -93,12 +110,12 @@ export class ClrSearchField implements OnInit, OnDestroy, AfterViewInit {
   private injectSearchIcon(): void {
     const inputWrapper = this.inputEl.nativeElement.parentNode;
 
-    // Create the icon and apply necessary styles
-    if (!this.searchSymbol) {
-      this.searchSymbol = this.renderer.createElement('cds-icon');
-      this.renderer.addClass(this.searchSymbol, 'search-symbol');
-      this.renderer.setAttribute(this.searchSymbol, 'shape', 'search');
-      this.renderer.insertBefore(inputWrapper, this.searchSymbol, this.inputEl.nativeElement);
+    if (!this.searchIconRef) {
+      this.searchIconRef = this.viewContainerRef.createComponent(ClrIcon);
+      this.searchIconRef.instance.shape = 'search';
+      const searchIconEl = this.searchIconRef.location.nativeElement;
+      this.renderer.addClass(searchIconEl, 'search-symbol');
+      this.renderer.insertBefore(inputWrapper, searchIconEl, this.inputEl.nativeElement);
     }
   }
 

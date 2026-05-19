@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -11,16 +11,11 @@ import { ClrTreetableSortOrder } from './enums/sort-order.enum';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { combineLatest, map } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import {
-  ClrPopoverEventsService,
-  ClrPopoverHostDirective,
-  ClrPopoverPositionService,
-  ClrPopoverToggleService,
-} from '@clr/angular';
+import { ClrPopoverService } from '@clr/angular';
 
 @Component({
   selector: 'clr-tt-column',
-  providers: [ClrPopoverToggleService, ClrPopoverEventsService, ClrPopoverPositionService],
+  providers: [ClrPopoverService],
   template: `
     @if (isSortable()) {
     <button type="button" class="treetable-column-title" data-testId="clrTtSortButton" (click)="sort()">
@@ -31,7 +26,7 @@ import {
         aria-hidden="true"
         class="sort-icon"
         data-testId="clrTtSortIndicator"
-        [attr.direction]="sortDirection()"
+        [direction]="sortDirection()"
       />
       }
     </button>
@@ -47,7 +42,6 @@ import {
       <ng-content />
     </ng-template>
   `,
-  hostDirectives: [ClrPopoverHostDirective],
   host: {
     '[class.treetable-column]': 'true',
     '[attr.aria-sort]': 'ariaSort()',

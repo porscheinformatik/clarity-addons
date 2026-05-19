@@ -1,33 +1,25 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
 import { ChangeDetectionStrategy, Component, input, NgZone } from '@angular/core';
-import {
-  ClrAlignment,
-  ClrAxis,
-  ClrPopoverEventsService,
-  ClrPopoverPosition,
-  ClrPopoverPositionService,
-  ClrPopoverToggleService,
-  ClrSide,
-} from '@clr/angular';
+import { ClrPopoverPosition, ClrPopoverService } from '@clr/angular';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'clr-tt-action-overflow',
-  providers: [ClrPopoverToggleService, ClrPopoverEventsService, ClrPopoverPositionService],
+  providers: [ClrPopoverService],
   template: `
     @if (!empty()) {
     <ng-container>
-      <button class="treetable-action-trigger" clrPopoverAnchor clrPopoverOpenCloseButton>
+      <button class="treetable-action-trigger" clrPopoverOrigin clrPopoverOpenCloseButton>
         <cds-icon shape="ellipsis-vertical"></cds-icon>
       </button>
       <div
         class="datagrid-action-overflow"
-        clrFocusTrap
+        cdkTrapFocus
         (click)="closeOverflowContent($event)"
         *clrPopoverContent="false; at: smartPosition; outsideClickToClose: true; scrollToClose: true"
       >
@@ -47,14 +39,9 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 export class ClrTreetableActionOverflow {
   empty = input(false);
 
-  public smartPosition: ClrPopoverPosition = {
-    axis: ClrAxis.HORIZONTAL,
-    side: ClrSide.AFTER,
-    anchor: ClrAlignment.CENTER,
-    content: ClrAlignment.CENTER,
-  };
+  public smartPosition = ClrPopoverPosition.RIGHT_MIDDLE;
 
-  constructor(private smartToggleService: ClrPopoverToggleService, private zone: NgZone) {
+  constructor(private smartToggleService: ClrPopoverService, private zone: NgZone) {
     this.smartToggleService.openChange.pipe(takeUntilDestroyed()).subscribe(openState => {
       if (openState) {
         this.focusFirstButton();

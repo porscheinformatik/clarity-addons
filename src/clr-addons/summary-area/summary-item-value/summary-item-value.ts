@@ -19,15 +19,15 @@ import {
   output,
   ViewChild,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { RouterModule } from '@angular/router';
-import { ClarityModule, ClrIconModule } from '@clr/angular';
+import { ClarityModule, ClrIcon } from '@clr/angular';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'clr-summary-item-value',
   standalone: true,
-  imports: [CommonModule, RouterModule, ClarityModule, ClrIconModule],
+  imports: [RouterModule, ClarityModule, ClrIcon],
   providers: [provideAnimations()],
   templateUrl: './summary-item-value.html',
   styleUrls: ['./summary-item-value.scss'],

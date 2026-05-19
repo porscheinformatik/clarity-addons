@@ -1,8 +1,8 @@
 <!--
-  ~ Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
-  ~ This software is released under MIT license.
-  ~ The full license information can be found in LICENSE in the root directory of this project.
-  -->
+~ Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
+~ This software is released under MIT license.
+~ The full license information can be found in LICENSE in the root directory of this project.
+-->
 
 <!-- Static gallery view -->
 <div class="clr-image-gallery" [style.width.px]="spotlightSize()">
@@ -13,20 +13,22 @@
     [style.height.px]="spotlightSize()"
     (click)="openModal(0)"
   >
+    @if (images().length > 0) {
     <img
-      *ngIf="images().length > 0"
       [ngSrc]="images()[0].src"
       [width]="spotlightSize()"
       [height]="spotlightSize()"
       [alt]="images()[0].alt || ''"
       class="clr-image-gallery__spotlight-img"
     />
+    }
   </div>
 
   <!-- Thumbnail row -->
-  <div class="clr-image-gallery__thumbs" *ngIf="images().length > 1">
+  @if (images().length > 1) {
+  <div class="clr-image-gallery__thumbs">
+    @for (img of staticThumbnails(); track img; let i = $index) {
     <div
-      *ngFor="let img of staticThumbnails(); let i = index"
       class="clr-image-gallery__thumb"
       [style.width.px]="thumbnailSize()"
       [style.height.px]="thumbnailSize()"
@@ -40,21 +42,20 @@
         class="clr-image-gallery__thumb-img"
       />
       <!-- Overlay on last thumbnail when there are more images -->
-      <div class="clr-image-gallery__thumb-overlay" *ngIf="i === maxThumbnails - 1 && remainingCount() > 0">
+      @if (i === maxThumbnails - 1 && remainingCount() > 0) {
+      <div class="clr-image-gallery__thumb-overlay">
         <span>{{ remainingCount() }}+</span>
       </div>
+      }
     </div>
+    }
   </div>
+  }
 </div>
 
 <!-- Built-in modal (only when useBuiltInModal is true) -->
-<div
-  class="clr-image-gallery-backdrop"
-  *ngIf="useBuiltInModal() && modalOpen()"
-  (click)="onBackdropClick($event)"
-  role="dialog"
-  aria-modal="true"
->
+@if (useBuiltInModal() && modalOpen()) {
+<div class="clr-image-gallery-backdrop" (click)="onBackdropClick($event)" role="dialog" aria-modal="true">
   <div class="clr-image-gallery-modal">
     <clr-image-carousel
       [images]="images()"
@@ -66,3 +67,4 @@
     ></clr-image-carousel>
   </div>
 </div>
+}

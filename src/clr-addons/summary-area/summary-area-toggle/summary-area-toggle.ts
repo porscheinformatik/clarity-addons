@@ -4,10 +4,10 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component, HostListener, computed, inject, input, output, AfterViewInit } from '@angular/core';
-import { ClrIconModule, ClrTooltipModule } from '@clr/angular';
+import { ClrIcon, ClrTooltipModule } from '@clr/angular';
 
 import { ClrSummaryAreaStateService, defaultSummaryAreaCollapsedKey } from '../summary-area/summary-area-state.service';
-import { angleDoubleIcon, ClarityIcons } from '@cds/core/icon';
+import { angleDoubleIcon, ClarityIcons } from '@clr/angular/icon';
 
 ClarityIcons.addIcons(angleDoubleIcon);
 
@@ -16,7 +16,7 @@ ClarityIcons.addIcons(angleDoubleIcon);
   standalone: true,
   templateUrl: './summary-area-toggle.html',
   styleUrl: './summary-area-toggle.scss',
-  imports: [ClrIconModule, ClrTooltipModule],
+  imports: [ClrIcon, ClrTooltipModule],
 })
 export class ClrSummaryAreaToggle implements AfterViewInit {
   public readonly summaryToggle = output<void>();

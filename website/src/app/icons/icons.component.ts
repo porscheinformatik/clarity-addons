@@ -105,7 +105,7 @@ import {
   windscreenWashIcon,
   wrenchForwardIcon,
 } from '@porscheinformatik/clr-addons';
-import { ClarityIcons } from '@cds/core/icon';
+import { ClarityIcons } from '@clr/angular/icon';
 
 @Component({
   selector: 'icons',

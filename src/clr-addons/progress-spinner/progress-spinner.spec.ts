@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -42,7 +42,6 @@ describe('ProgressSpinnerDirective', () => {
     TestBed.configureTestingModule({
       declarations: [TestComponent],
       imports: [CommonModule, ClarityModule, ClrProgressSpinnerComponentTestModule],
-      teardown: { destroyAfterEach: false },
     }).compileComponents();
   }));
 
@@ -73,7 +72,7 @@ describe('ProgressSpinnerDirective', () => {
 
   it('should be visible after setting the input to true', () => {
     component.loadingState = true;
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
     const loadingOverlay: HTMLLinkElement = fixture.nativeElement.querySelector('.progress-spinner-overlay');
     expect(loadingOverlay).not.toBe(null);
   });
@@ -81,13 +80,13 @@ describe('ProgressSpinnerDirective', () => {
   it('should be invisible after the minimal visible time', () => {
     jasmine.clock().mockDate();
     component.loadingState = true;
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
     component.loadingState = false;
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
     let loadingOverlay: HTMLLinkElement = fixture.nativeElement.querySelector('.progress-spinner-overlay');
     expect(loadingOverlay).not.toBe(null); // the spinner should be visible at least 200 ms
     jasmine.clock().tick(200);
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
     loadingOverlay = fixture.nativeElement.querySelector('.progress-spinner-overlay');
     expect(loadingOverlay).toBe(null);
   });

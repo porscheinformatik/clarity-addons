@@ -5,14 +5,16 @@
  */
 
 import { Component, linkedSignal, OnInit, signal } from '@angular/core';
-import { bellIcon, ClarityIcons, infoStandardIcon } from '@cds/core/icon';
+import { bellIcon, ClarityIcons, infoStandardIcon } from '@clr/angular/icon';
 import { of, tap } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { ClrTreetableComparatorInterface } from '../../../../clr-addons/treetable/interfaces/comparator.interface';
-import { ClrTreetableSortOrder } from '../../../../clr-addons/treetable/enums/sort-order.enum';
+import {
+  ClrTreetableComparatorInterface,
+  ClrTreetableSortOrder,
+  ClrTreetableState,
+  ClrTreetableStringFilterFunction,
+} from '@porscheinformatik/clr-addons';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { ClrTreetableStringFilterFunction } from '../../../../clr-addons/treetable/interfaces/filter-model';
-import { ClrTreetableState } from '../../../../clr-addons/treetable/interfaces/treetable-state-model';
 
 ClarityIcons.addIcons(infoStandardIcon);
 ClarityIcons.addIcons(bellIcon);

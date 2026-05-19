@@ -2,13 +2,13 @@
   "compileOnSave": false,
   "compilerOptions": {
     "importHelpers": true,
-    "module": "es2020",
     "outDir": "./dist/out-tsc",
     "rootDir": "./",
+    "esModuleInterop": true,
     "baseUrl": "./",
     "sourceMap": true,
     "declaration": false,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "alwaysStrict": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
@@ -21,11 +21,12 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es2022",
+    "lib": ["es2022", "dom", "dom.iterable"],
+    "module": "es2022",
     "typeRoots": ["node_modules/@types"],
     "paths": {
       "@porscheinformatik/clr-addons": ["src/clr-addons"]
     },
-    "lib": ["es2018", "dom"],
     "useDefineForClassFields": false
   },
   "angularCompilerOptions": {

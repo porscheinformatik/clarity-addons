@@ -14,7 +14,7 @@ import {
   mobileIcon,
   mapMarkerIcon,
   loginIcon,
-} from '@cds/core/icon';
+} from '@clr/angular/icon';
 
 ClarityIcons.addIcons(userIcon, envelopeIcon, pencilIcon, administratorIcon, mobileIcon, mapMarkerIcon, loginIcon);
 

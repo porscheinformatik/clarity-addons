@@ -310,7 +310,7 @@ export class FunnelChartComponent extends ChartBase<FunnelDataPoint> implements 
         .attr('y', labelY)
         .attr('text-anchor', 'start')
         .style('font-size', '12px')
-        .style('fill', 'var(--clr-color-neutral-600, #666)')
+        .style('fill', 'var(--cds-global-color-construction-400, #666)')
         .text(`-${this.round(d.deltaPercentage)}% (${d.delta})`);
     });
   }
@@ -331,7 +331,7 @@ export class FunnelChartComponent extends ChartBase<FunnelDataPoint> implements 
         .attr('text-anchor', 'end')
         .style('font-size', '13px')
         .style('font-weight', '600')
-        .style('fill', 'var(--clr-color-neutral-900, #21333b)')
+        .style('fill', 'var(--cds-global-color-gray-900, #21333b)')
         .style('cursor', 'pointer')
         .text(d.label)
         .on('click', () => this.valueClicked.emit({ value: d.value, label: d.label, key: d.key }))
@@ -353,7 +353,7 @@ export class FunnelChartComponent extends ChartBase<FunnelDataPoint> implements 
         .attr('y1', labelY - 5)
         .attr('x2', this.textSize() - iconSpacing)
         .attr('y2', labelY - 5)
-        .attr('stroke', 'var(--clr-color-neutral-600, #666)')
+        .attr('stroke', 'var(--cds-global-color-construction-400, #666)')
         .attr('stroke-width', 2)
         .attr('stroke-dasharray', '2,2');
 
@@ -363,7 +363,7 @@ export class FunnelChartComponent extends ChartBase<FunnelDataPoint> implements 
         .attr('y', labelY + 10)
         .attr('text-anchor', 'end')
         .style('font-size', '12px')
-        .style('fill', 'var(--clr-color-neutral-600, #666)')
+        .style('fill', 'var(--cds-global-color-construction-400, #666)')
         .text(`${this.round(d.percentage)}% (${d.value})`);
     });
 
@@ -584,7 +584,7 @@ export class FunnelChartComponent extends ChartBase<FunnelDataPoint> implements 
         .attr('text-anchor', 'end')
         .style('font-size', '13px')
         .style('font-weight', '600')
-        .style('fill', 'var(--clr-color-neutral-900, #21333b)')
+        .style('fill', 'var(--cds-global-color-gray-900, #21333b)')
         .style('cursor', 'pointer')
         .text(d.label)
         .on('click', () => this.valueClicked.emit({ value: d.value, label: d.label, key: d.key }))
@@ -600,7 +600,7 @@ export class FunnelChartComponent extends ChartBase<FunnelDataPoint> implements 
         .attr('y1', cy - 5)
         .attr('x2', -iconSpacing)
         .attr('y2', cy - 5)
-        .attr('stroke', 'var(--clr-color-neutral-600, #666)')
+        .attr('stroke', 'var(--cds-global-color-construction-400, #666)')
         .attr('stroke-width', 2)
         .attr('stroke-dasharray', '2,2');
 
@@ -609,7 +609,7 @@ export class FunnelChartComponent extends ChartBase<FunnelDataPoint> implements 
         .attr('y', cy + 10)
         .attr('text-anchor', 'end')
         .style('font-size', '12px')
-        .style('fill', 'var(--clr-color-neutral-600, #666)')
+        .style('fill', 'var(--cds-global-color-construction-400, #666)')
         .text(`${this.round(d.percentage)}% (${d.value})`);
     });
 
@@ -650,7 +650,7 @@ export class FunnelChartComponent extends ChartBase<FunnelDataPoint> implements 
         .attr('y', cy)
         .attr('text-anchor', 'start')
         .style('font-size', '12px')
-        .style('fill', 'var(--clr-color-neutral-600, #666)')
+        .style('fill', 'var(--cds-global-color-construction-400, #666)')
         .text(`-${this.round(d.deltaPercentage)}% (${d.delta})`);
     });
   }

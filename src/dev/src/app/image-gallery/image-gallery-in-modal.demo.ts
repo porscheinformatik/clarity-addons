@@ -4,9 +4,9 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component, effect, signal, ViewEncapsulation } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { ClarityModule } from '@clr/angular';
-import { angleIcon, ClarityIcons } from '@cds/core/icon';
+import { angleIcon, ClarityIcons } from '@clr/angular/icon';
 import { ClrImageGalleryModule, ClrImageGalleryImage, ClrImageGalleryOpenEvent } from '@porscheinformatik/clr-addons';
 
 ClarityIcons.addIcons(angleIcon);
@@ -14,7 +14,7 @@ ClarityIcons.addIcons(angleIcon);
 @Component({
   selector: 'clr-image-gallery-in-modal-demo',
   templateUrl: './image-gallery-in-modal.demo.html',
-  imports: [CommonModule, ClarityModule, ClrImageGalleryModule],
+  imports: [ClarityModule, ClrImageGalleryModule],
   encapsulation: ViewEncapsulation.None,
   styles: [
     `

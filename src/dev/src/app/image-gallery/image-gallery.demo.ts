@@ -4,14 +4,14 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { ClrImageGalleryModule, ClrImageGalleryImage } from '@porscheinformatik/clr-addons';
 
 @Component({
   selector: 'clr-image-gallery-demo',
   templateUrl: './image-gallery.demo.html',
-  imports: [CommonModule, FormsModule, ClrImageGalleryModule],
+  imports: [FormsModule, ClrImageGalleryModule],
 })
 export class ImageGalleryDemo {
   readonly productName = signal('Porsche 911');

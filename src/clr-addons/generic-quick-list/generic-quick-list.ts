@@ -19,7 +19,7 @@ import {
   TemplateRef,
   ViewChildren,
 } from '@angular/core';
-import { ClarityIcons, plusCircleIcon, trashIcon } from '@cds/core/icon';
+import { ClarityIcons, plusCircleIcon, trashIcon } from '@clr/angular/icon';
 
 ClarityIcons.addIcons(trashIcon, plusCircleIcon);
 

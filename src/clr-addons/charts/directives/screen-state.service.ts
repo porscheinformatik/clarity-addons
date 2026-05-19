@@ -1,5 +1,4 @@
-import { DOCUMENT } from '@angular/common';
-import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable, DOCUMENT } from '@angular/core';
 import { Observable, ReplaySubject, Subject } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
 

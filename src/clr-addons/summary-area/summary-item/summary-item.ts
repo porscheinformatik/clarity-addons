@@ -17,7 +17,7 @@ import {
   TemplateRef,
   ViewChild,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { ClarityModule } from '@clr/angular';
 import { ClrSummaryItemValue } from '../summary-item-value/summary-item-value';
 import {
@@ -31,7 +31,7 @@ import { ClrCopyToClipboard } from '../../copy-to-clipboard';
 @Component({
   selector: 'clr-summary-item',
   standalone: true,
-  imports: [CommonModule, ClarityModule, ClrSummaryItemValue, ClrCopyToClipboard],
+  imports: [ClarityModule, ClrSummaryItemValue, ClrCopyToClipboard],
   templateUrl: './summary-item.html',
   styleUrls: ['./summary-item.scss'],
 })

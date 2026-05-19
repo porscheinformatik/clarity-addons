@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { ClrAlertModule } from '@clr/angular';
 import { ClrChartsModule, LineChartSeries, LineChartValue } from '@porscheinformatik/clr-addons/charts';
@@ -14,7 +14,7 @@ const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 @Component({
   selector: 'clr-line-chart-demo',
   templateUrl: './line-chart.demo.html',
-  imports: [CommonModule, FormsModule, ClrAlertModule, ClrChartsModule],
+  imports: [FormsModule, ClrAlertModule, ClrChartsModule],
 })
 export class LineChartDemo {
   protected readonly loading = signal(false);

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -116,7 +116,6 @@ describe('Multilingual Textarea', () => {
       TestBed.configureTestingModule({
         imports: [ClarityModule, FormsModule, ClrMultilingualModule],
         declarations: [TestComponentAllValid],
-        teardown: { destroyAfterEach: false },
       }).compileComponents();
 
       fixture = TestBed.createComponent(TestComponentAllValid);
@@ -140,7 +139,7 @@ describe('Multilingual Textarea', () => {
 
     it('change text of different lang', () => {
       fixture.componentInstance.selectedLang = 'DE';
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
 
       sendInput(inputEl, fixture, 'anderer deutscher text');
       expect(fixture.componentInstance.data.get('DE')).toBe('anderer deutscher text');
@@ -166,7 +165,6 @@ describe('Multilingual Textarea', () => {
       TestBed.configureTestingModule({
         imports: [ClarityModule, FormsModule, ClrMultilingualModule],
         declarations: [TestComponentOneValid],
-        teardown: { destroyAfterEach: false },
       }).compileComponents();
 
       fixture = TestBed.createComponent(TestComponentOneValid);
@@ -185,7 +183,7 @@ describe('Multilingual Textarea', () => {
       inputEl.dispatchEvent(new Event('blur'));
       sendInput(inputEl, fixture, '');
       fixture.componentInstance.selectedLang = 'DE';
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
       validationShown(false, fixture);
 
       sendInput(inputEl, fixture, '');
@@ -202,7 +200,6 @@ describe('Multilingual Textarea', () => {
       TestBed.configureTestingModule({
         imports: [ClarityModule, FormsModule, ClrMultilingualModule],
         declarations: [TestComponentComplex],
-        teardown: { destroyAfterEach: false },
       }).compileComponents();
 
       fixture = TestBed.createComponent(TestComponentComplex);
@@ -217,10 +214,10 @@ describe('Multilingual Textarea', () => {
       });
     }));
 
-    it('show missing prefix -> fallback lang not present', () => {
+    it('show missing prefix -> fallback lang not present', waitForAsync(() => {
       fixture.componentInstance.data.delete('FR');
       fixture.componentInstance.data = new Map(fixture.componentInstance.data);
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
 
       fixture.whenStable().then(() => {
         expect(fixture.componentInstance.data.size).toBe(2);
@@ -228,14 +225,14 @@ describe('Multilingual Textarea', () => {
         expect(fixture.componentInstance.data.get('DE')).toBe('deutscher text');
 
         langSelector.click();
-        fixture.detectChanges();
+        fixture.changeDetectorRef.detectChanges();
 
         const langSelectorElements = getLanguageSelectorElements(fixture);
         expect(langSelectorElements.size).toBe(2);
         expect(langSelectorElements.get('DE')).toBe('deutscher text');
         expect(langSelectorElements.get('PT')).toBe('<na> deutscher text');
       });
-    });
+    }));
 
     it('show missing prefix -> hidden language', () => {
       expect(fixture.componentInstance.data.size).toBe(3);
@@ -282,7 +279,6 @@ describe('Multilingual Textarea', () => {
       TestBed.configureTestingModule({
         imports: [ClarityModule, FormsModule, ClrMultilingualModule],
         declarations: [TestComponentPrefix],
-        teardown: { destroyAfterEach: false },
       }).compileComponents();
 
       fixture = TestBed.createComponent(TestComponentPrefix);
@@ -299,7 +295,7 @@ describe('Multilingual Textarea', () => {
       expect(fixture.componentInstance.data.get('EN')).toBe('english text');
       expect(fixture.componentInstance.data.get('DE')).toBe('<na> english text');
       fixture.componentInstance.selectedLang = 'DE';
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
 
       sendInput(inputEl, fixture, 'new text');
       expect(fixture.componentInstance.data.get('DE')).toBe('new text');
@@ -321,7 +317,7 @@ describe('Multilingual Textarea', () => {
   function sendInput(inputEl: HTMLInputElement, fixture: ComponentFixture<any>, text: string): void {
     inputEl.value = text;
     inputEl.dispatchEvent(new Event('input'));
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
   }
 
   function getLanguageSelectorElements(fixture: ComponentFixture<any>): Map<string, string> {

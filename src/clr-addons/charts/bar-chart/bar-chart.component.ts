@@ -422,7 +422,7 @@ export class BarChartComponent extends ChartBase<BarChartDataPoint> implements O
   }
 
   private addTextCommonInfo(g: Selection<BaseType, any, BaseType, any>): void {
-    g.style('font-size', '11px').style('fill', 'var(--clr-color-neutral-600, #666)');
+    g.style('font-size', '11px').style('fill', 'var(--cds-global-color-construction-400, #666)');
   }
 
   private addTextHoverHandlers(g: Selection<BaseType, BarChartData, SVGGElement, undefined>): void {
@@ -493,7 +493,7 @@ export class BarChartComponent extends ChartBase<BarChartDataPoint> implements O
   }
 
   private styleGridLines(g: Selection<SVGGElement, unknown, null, undefined>) {
-    g.selectAll('.tick line').style('stroke', 'var(--clr-color-neutral-200, #e8e8e8)');
+    g.selectAll('.tick line').style('stroke', 'var(--cds-global-color-gray-200, #e8e8e8)');
   }
 
   private addVerticalBarRectangle(
@@ -545,7 +545,7 @@ export class BarChartComponent extends ChartBase<BarChartDataPoint> implements O
       .append('text')
       .attr('text-anchor', 'middle')
       .style('font-size', '12px')
-      .style('fill', 'var(--clr-color-neutral-600, #666)')
+      .style('fill', 'var(--cds-global-color-construction-400, #666)')
       .text(text)
       .attr('x', x)
       .attr('y', y);

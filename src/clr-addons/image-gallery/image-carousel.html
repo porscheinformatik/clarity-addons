@@ -1,17 +1,19 @@
 <!--
-  ~ Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
-  ~ This software is released under MIT license.
-  ~ The full license information can be found in LICENSE in the root directory of this project.
-  -->
+~ Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
+~ This software is released under MIT license.
+~ The full license information can be found in LICENSE in the root directory of this project.
+-->
 
 <div class="clr-image-carousel">
   <!-- Header -->
-  <div class="clr-image-carousel__header" *ngIf="!hideHeader()">
+  @if (!hideHeader()) {
+  <div class="clr-image-carousel__header">
     <span class="clr-image-carousel__title">{{ productName() }}</span>
     <button class="clr-image-carousel__close" (click)="closeCarousel.emit()" aria-label="Close">
       <cds-icon shape="times"></cds-icon>
     </button>
   </div>
+  }
 
   <!-- Spotlight + thumbnails, constrained to image width -->
   <div class="clr-image-carousel__content" [style.width.px]="imageSize() > 0 ? imageSize() : null">
@@ -30,12 +32,13 @@
           <cds-icon shape="circle-arrow" direction="left" solid></cds-icon>
         </button>
 
+        @if (images().length > 0) {
         <img
-          *ngIf="images().length > 0"
           [src]="images()[activeIndex()].src"
           [alt]="images()[activeIndex()].alt || ''"
           class="clr-image-carousel__img"
         />
+        }
 
         <button class="clr-image-carousel__arrow clr-image-carousel__arrow--next" (click)="next()" aria-label="Next">
           <cds-icon shape="circle-arrow" direction="right" solid></cds-icon>
@@ -55,8 +58,8 @@
         (scroll)="onThumbStripScroll()"
         #thumbStrip
       >
+        @for (img of images(); track img; let i = $index) {
         <div
-          *ngFor="let img of images(); let i = index"
           class="clr-image-carousel__thumb"
           [style.width.px]="thumbnailSize()"
           [style.height.px]="thumbnailSize()"
@@ -65,6 +68,7 @@
         >
           <img [src]="img.src" [alt]="img.alt || ''" class="clr-image-carousel__thumb-img" />
         </div>
+        }
       </div>
     </div>
   </div>

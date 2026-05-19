@@ -195,7 +195,7 @@ const COLOR_TS = `colorData: BarChartData[] = [
   { key: 'b', label: 'Hex #00828b',                    value:  85, color: '#00828b' },
 
   // CSS custom property – automatically wrapped in var(…)
-  { key: 'c', label: '--clr-color-action-600',          value: 160, color: '--clr-color-action-600' },
+  { key: 'c', label: '--cds-global-color-blue-700',          value: 160, color: '--cds-global-color-blue-700' },
   { key: 'd', label: '--cds-global-color-lavender-1000',value: 110, color: '--cds-global-color-lavender-1000' },
   { key: 'e', label: '--cds-global-color-green-800',    value: 200, color: '--cds-global-color-green-800' },
 ];`;
@@ -359,7 +359,7 @@ export class ChartsDemo extends ClarityDocComponent {
   colorData: BarChartData[] = [
     { key: 'a', label: 'Hex #e57200', value: 120, color: '#e57200' },
     { key: 'b', label: 'Hex #00828b', value: 85, color: '#00828b' },
-    { key: 'c', label: '--clr-color-action-600', value: 160, color: '--clr-color-action-600' },
+    { key: 'c', label: '--cds-global-color-blue-700', value: 160, color: '--cds-global-color-blue-700' },
     { key: 'd', label: '--cds-global-color-lavender-1000', value: 110, color: '--cds-global-color-lavender-1000' },
     { key: 'e', label: '--cds-global-color-green-800', value: 200, color: '--cds-global-color-green-800' },
   ];

@@ -5,13 +5,17 @@
   </button>
   <clr-dropdown-menu [clrPosition]="position" *clrIfOpen>
     <label class="dropdown-header" aria-hidden="true">{{ dropdownHeader }}</label>
-    <button type="button" clrDropdownItem *ngFor="let history of historyElements$ | async" (click)="select(history)">
-      {{ history.title }}
-    </button>
-    <div *ngIf="pinActive" class="dropdown-divider" role="separator" aria-hidden="true"></div>
+    @for (history of historyElements$ | async; track history) {
+    <button type="button" clrDropdownItem (click)="select(history)">{{ history.title }}</button>
+    } @if (pinActive) {
+    <div class="dropdown-divider" role="separator" aria-hidden="true"></div>
+    }
     <button clrDropdownItem (click)="togglePinHistory()">
-      <span *ngIf="pinActive && !pinActivated">{{ dropdownPin }}</span>
-      <span *ngIf="pinActive && pinActivated">{{ dropdownUnpin }}</span>
+      @if (pinActive && !pinActivated) {
+      <span>{{ dropdownPin }}</span>
+      } @if (pinActive && pinActivated) {
+      <span>{{ dropdownUnpin }}</span>
+      }
     </button>
   </clr-dropdown-menu>
 </clr-dropdown>

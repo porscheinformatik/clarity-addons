@@ -50,7 +50,6 @@ describe('ColumnReorderDirective', () => {
     TestBed.configureTestingModule({
       imports: [ClarityModule, FormsModule, BrowserAnimationsModule, ClrDatagridColumnReorderModule, CdkDropList],
       declarations: [TestComponent],
-      teardown: { destroyAfterEach: false },
     }).compileComponents();
 
     fixture = TestBed.createComponent(TestComponent);

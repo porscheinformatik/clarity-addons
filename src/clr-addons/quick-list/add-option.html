@@ -1,20 +1,17 @@
-<div *ngIf="!(readonly || readonly === ''); else readonlyView" class="clr-select-wrapper quick-list-input">
+@if (!(readonly || readonly === '')) {
+<div class="clr-select-wrapper quick-list-input">
   <select #select clr-select class="quick-list-select" name="options" [(ngModel)]="selectedValue" [disabled]="disabled">
-    <option *ngIf="blankOption.id === selectedValue" [selected]="true" [disabled]="true" [ngValue]="blankOption.id">
-      {{blankOption.label}}
-    </option>
-    <option *ngFor="let val of getValues()" [selected]="val.id === selectedValue" [ngValue]="val.id">
-      {{val.label}}
-    </option>
+    @if (blankOption.id === selectedValue) {
+    <option [selected]="true" [disabled]="true" [ngValue]="blankOption.id">{{blankOption.label}}</option>
+    } @for (val of getValues(); track val) {
+    <option [selected]="val.id === selectedValue" [ngValue]="val.id">{{val.label}}</option>
+    }
   </select>
 </div>
-
-<ng-template #readonlyView>
-  <span>{{value.label}}</span>
-</ng-template>
-
+} @else {
+<span>{{value.label}}</span>
+} @if (!(readonly || readonly === '')) {
 <button
-  *ngIf="!(readonly || readonly === '')"
   type="button"
   class="btn btn-icon btn-link quick-list-trash"
   [ngClass]="{'quick-list-trash-ext': !showAddButton}"
@@ -23,8 +20,8 @@
 >
   <cds-icon shape="trash"></cds-icon>
 </button>
+} @if (!(readonly || readonly === '') && showAddButton) {
 <button
-  *ngIf="!(readonly || readonly === '') && showAddButton"
   type="button"
   class="btn btn-icon btn-link quick-list-addcompact"
   (click)="add.emit()"
@@ -32,3 +29,4 @@
 >
   <cds-icon shape="plus-circle"></cds-icon>
 </button>
+}

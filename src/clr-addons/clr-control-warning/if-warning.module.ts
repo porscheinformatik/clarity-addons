@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ClrIfWarning } from './if-warning.directive';
-import { ClarityIcons, exclamationTriangleIcon } from '@cds/core/icon';
+import { ClarityIcons, exclamationTriangleIcon } from '@clr/angular/icon';
 
 ClarityIcons.addIcons(exclamationTriangleIcon);
 

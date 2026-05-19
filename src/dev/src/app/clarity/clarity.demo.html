@@ -1251,16 +1251,19 @@
 <h4>Tree View</h4>
 <div class="section">
   <clr-tree>
-    <clr-tree-node *ngFor="let directory of rootDirectory" [(clrExpanded)]="directory.expanded">
-      <cds-icon [attr.shape]="directory.icon"></cds-icon>
-      {{ directory.name }}
-      <clr-tree-node *ngFor="let file of directory.files">
+    @for (directory of rootDirectory; track directory) {
+    <clr-tree-node [(clrExpanded)]="directory.expanded">
+      <cds-icon [shape]="directory.icon"></cds-icon>
+      {{ directory.name }} @for (file of directory.files; track file) {
+      <clr-tree-node>
         <button class="clr-treenode-link" [class.active]="file.active">
-          <cds-icon [attr.shape]="file.icon"></cds-icon>
+          <cds-icon [shape]="file.icon"></cds-icon>
           {{ file.name }}
         </button>
       </clr-tree-node>
+      }
     </clr-tree-node>
+    }
   </clr-tree>
 </div>
 

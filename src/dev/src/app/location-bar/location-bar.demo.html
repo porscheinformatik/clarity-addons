@@ -1,8 +1,8 @@
 <!--
-  ~ Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
-  ~ This software is released under MIT license.
-  ~ The full license information can be found in LICENSE in the root directory of this project.
-  -->
+~ Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
+~ This software is released under MIT license.
+~ The full license information can be found in LICENSE in the root directory of this project.
+-->
 <h2>Location Bar</h2>
 
 <div class="clr-example">
@@ -20,8 +20,9 @@
       (clrSearchItemChanged)="searchChanged($event)"
     >
       <ng-template #searchResultItemRef let-searchResultItem>
-        {{searchResultItem.name}}
-        <span *ngIf="searchResultItem.label" class="label label-light-blue"> {{searchResultItem.label}}</span>
+        {{searchResultItem.name}} @if (searchResultItem.label) {
+        <span class="label label-light-blue"> {{searchResultItem.label}}</span>
+        }
       </ng-template>
     </clr-location-bar>
   </div>

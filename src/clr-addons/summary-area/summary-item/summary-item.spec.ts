@@ -1,15 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ClrSummaryItem } from './summary-item';
 import { ClrSummaryItemValue } from '../summary-item-value/summary-item-value';
 import {
-  ClrSummaryItemError,
-  ClrSummaryItemWarning,
-  ClrSummaryItemLoading,
   ClrSummaryItemEditConfig,
+  ClrSummaryItemError,
+  ClrSummaryItemLoading,
+  ClrSummaryItemWarning,
 } from './summary-item.model';
 import { ClarityModule } from '@clr/angular';
 import { ClrSummaryArea } from '../summary-area/summary-area';
@@ -33,7 +33,7 @@ import { ClrSummaryArea } from '../summary-area/summary-area';
     </clr-summary-item>
   `,
   standalone: true,
-  imports: [CommonModule, ClrSummaryItem, ClrSummaryItemValue, ClarityModule],
+  imports: [ClrSummaryItem, ClrSummaryItemValue, ClarityModule],
 })
 class TestHostComponent {
   @ViewChild(ClrSummaryItem) summaryItem!: ClrSummaryItem;
@@ -73,7 +73,7 @@ class TestHostComponent {
     </clr-summary-area>
   `,
   standalone: true,
-  imports: [CommonModule, ClrSummaryArea, ClrSummaryItem, ClrSummaryItemValue, ClarityModule],
+  imports: [ClrSummaryArea, ClrSummaryItem, ClrSummaryItemValue, ClarityModule],
 })
 class TestHostWithAreaComponent {
   @ViewChild(ClrSummaryItem) summaryItem!: ClrSummaryItem;
@@ -103,7 +103,7 @@ class TestHostWithAreaComponent {
     </clr-summary-area>
   `,
   standalone: true,
-  imports: [CommonModule, ClrSummaryArea, ClrSummaryItem, ClrSummaryItemValue],
+  imports: [ClrSummaryArea, ClrSummaryItem, ClrSummaryItemValue],
 })
 class MultiValueTestHostComponent {
   @ViewChild(ClrSummaryItem) summaryItem!: ClrSummaryItem;
@@ -124,7 +124,7 @@ class MultiValueTestHostComponent {
     </clr-summary-item>
   `,
   standalone: true,
-  imports: [CommonModule, ClrSummaryItem, ClrSummaryItemValue],
+  imports: [ClrSummaryItem, ClrSummaryItemValue],
 })
 class InvalidIconTestHostComponent {
   @ViewChild(ClrSummaryItem) summaryItem!: ClrSummaryItem;
@@ -191,38 +191,38 @@ describe('SummaryItemComponent', () => {
 
     it('should have hasError as false when error is set but not active', () => {
       hostComponent.error = { active: false, text: 'Error text' };
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
       expect(component.hasError).toBe(false);
     });
 
     it('should have hasError as true when error is active', () => {
       hostComponent.error = { active: true, text: 'Error text' };
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
       expect(component.hasError).toBe(true);
     });
 
     it('should use default error text when not provided', () => {
       hostComponent.error = { active: true };
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
       expect(component.errorText).toBe('Error');
     });
 
     it('should use custom error text when provided', () => {
       hostComponent.error = { active: true, text: 'Custom error message' };
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
       expect(component.errorText).toBe('Custom error message');
     });
 
     it('should have errorClick as undefined when no click handler', () => {
       hostComponent.error = { active: true, text: 'Error' };
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
       expect(component.errorClick).toBeUndefined();
     });
 
     it('should have errorClick defined when click handler is provided', () => {
       const clickFn = (): void => {};
       hostComponent.error = { active: true, text: 'Error', click: clickFn };
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
       expect(component.errorClick).toBe(clickFn);
     });
   });
@@ -249,45 +249,45 @@ describe('SummaryItemComponent', () => {
 
     it('should have hasWarning as false when warning is set but not active', () => {
       hostComponent.warning = { active: false, text: 'Warning text' };
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
       expect(component.hasWarning).toBe(false);
     });
 
     it('should have hasWarning as true when warning is active', () => {
       hostComponent.warning = { active: true, text: 'Warning text' };
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
       expect(component.hasWarning).toBe(true);
     });
 
     it('should use default warning text when not provided', () => {
       hostComponent.warning = { active: true };
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
       expect(component.warningText).toBe('Warning');
     });
 
     it('should use custom warning text when provided', () => {
       hostComponent.warning = { active: true, text: 'Custom warning message' };
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
       expect(component.warningText).toBe('Custom warning message');
     });
 
     it('should have warningClick as undefined when no click handler', () => {
       hostComponent.warning = { active: true, text: 'Warning' };
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
       expect(component.warningClick).toBeUndefined();
     });
 
     it('should have warningClick defined when click handler is provided', () => {
       const clickFn = (): void => {};
       hostComponent.warning = { active: true, text: 'Warning', click: clickFn };
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
       expect(component.warningClick).toBe(clickFn);
     });
 
     it('should prioritize error over warning', () => {
       hostComponent.error = { active: true, text: 'Error' };
       hostComponent.warning = { active: true, text: 'Warning' };
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
 
       expect(component.hasError).toBe(true);
       expect(component.hasWarning).toBe(false);
@@ -316,32 +316,32 @@ describe('SummaryItemComponent', () => {
 
     it('should have hasLoading as false when loading is set but not active', () => {
       hostComponent.loading = { active: false };
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
       expect(component.hasLoading).toBe(false);
     });
 
     it('should have hasLoading as true when loading is active', () => {
       hostComponent.loading = { active: true };
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
       expect(component.hasLoading).toBe(true);
     });
 
     it('should use default loading text when not provided', () => {
       hostComponent.loading = { active: true };
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
       expect(component.loadingText).toBe('Loading...');
     });
 
     it('should use custom loading text when provided', () => {
       hostComponent.loading = { active: true, text: 'Fetching data...' };
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
       expect(component.loadingText).toBe('Fetching data...');
     });
 
     it('should prioritize loading over error', () => {
       hostComponent.loading = { active: true };
       hostComponent.error = { active: true, text: 'Error' };
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
 
       expect(component.hasLoading).toBe(true);
       expect(component.hasError).toBe(false);
@@ -350,7 +350,7 @@ describe('SummaryItemComponent', () => {
     it('should prioritize loading over warning', () => {
       hostComponent.loading = { active: true };
       hostComponent.warning = { active: true, text: 'Warning' };
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
 
       expect(component.hasLoading).toBe(true);
       expect(component.hasWarning).toBe(false);
@@ -359,13 +359,13 @@ describe('SummaryItemComponent', () => {
     it('should show error when loading becomes inactive', () => {
       hostComponent.loading = { active: true };
       hostComponent.error = { active: true, text: 'Error' };
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
 
       expect(component.hasLoading).toBe(true);
       expect(component.hasError).toBe(false);
 
       hostComponent.loading = { active: false };
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
 
       expect(component.hasLoading).toBe(false);
       expect(component.hasError).toBe(true);
@@ -394,13 +394,13 @@ describe('SummaryItemComponent', () => {
 
     it('should have showEditButton as false when editConfig is disabled', () => {
       hostComponent.editConfig = { enabled: false, click: (): void => {} };
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
       expect(component.showEditButton).toBe(false);
     });
 
     it('should have showEditButton as true when editConfig is enabled and no content', () => {
       hostComponent.editConfig = { enabled: true, click: (): void => {} };
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
       expect(component.showEditButton).toBe(true);
     });
 
@@ -408,13 +408,13 @@ describe('SummaryItemComponent', () => {
 
     it('should use default edit text when not provided', () => {
       hostComponent.editConfig = { enabled: true, click: (): void => {} };
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
       expect(component.editText).toBe('Edit');
     });
 
     it('should use custom edit text when provided', () => {
       hostComponent.editConfig = { enabled: true, text: 'Custom Edit', click: (): void => {} };
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
       expect(component.editText).toBe('Custom Edit');
     });
 
@@ -425,28 +425,28 @@ describe('SummaryItemComponent', () => {
     it('should have editClick defined when editConfig has click handler', () => {
       const clickFn = (): void => {};
       hostComponent.editConfig = { enabled: true, click: clickFn };
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
       expect(component.editClick).toBe(clickFn);
     });
 
     it('should not show edit button when loading is active', () => {
       hostComponent.editConfig = { enabled: true, click: (): void => {} };
       hostComponent.loading = { active: true };
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
       expect(component.showEditButton).toBe(false);
     });
 
     it('should not show edit button when error is active', () => {
       hostComponent.editConfig = { enabled: true, click: (): void => {} };
       hostComponent.error = { active: true, text: 'Error' };
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
       expect(component.showEditButton).toBe(false);
     });
 
     it('should not show edit button when warning is active', () => {
       hostComponent.editConfig = { enabled: true, click: (): void => {} };
       hostComponent.warning = { active: true, text: 'Warning' };
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
       expect(component.showEditButton).toBe(false);
     });
   });
@@ -469,8 +469,8 @@ describe('SummaryItemComponent', () => {
     let hostComponent: TestHostWithAreaComponent;
     let fixture: ComponentFixture<TestHostWithAreaComponent>;
 
-    beforeEach(async () => {
-      await TestBed.configureTestingModule({
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
         imports: [
           TestHostWithAreaComponent,
           ClrSummaryArea,
@@ -485,12 +485,12 @@ describe('SummaryItemComponent', () => {
       hostComponent = fixture.componentInstance;
       fixture.detectChanges(); // First cycle - creates component
       fixture.detectChanges(); // Second cycle - renders ContentChildren and templates
-    });
+    }));
 
     describe('label', () => {
       it('should render label correctly', () => {
         hostComponent.label = 'Status';
-        fixture.detectChanges();
+        fixture.changeDetectorRef.detectChanges();
 
         const labelElement = fixture.debugElement.query(By.css('.summary-item-label'));
         expect(labelElement).toBeTruthy();
@@ -499,7 +499,7 @@ describe('SummaryItemComponent', () => {
 
       it('should update label when changed', () => {
         hostComponent.label = 'New Label';
-        fixture.detectChanges();
+        fixture.changeDetectorRef.detectChanges();
 
         const labelElement = fixture.debugElement.query(By.css('.summary-item-label'));
         expect(labelElement.nativeElement.textContent.trim()).toBe('New Label:');
@@ -511,7 +511,7 @@ describe('SummaryItemComponent', () => {
         hostComponent.showOnEmptyValue = true;
         hostComponent.showValue = false;
         hostComponent.projectedContent = undefined;
-        fixture.detectChanges();
+        fixture.changeDetectorRef.detectChanges();
 
         const placeholder = fixture.debugElement.query(By.css('.value-placeholder'));
         expect(placeholder).toBeTruthy();
@@ -521,7 +521,7 @@ describe('SummaryItemComponent', () => {
       it('should not show placeholder when content exists', () => {
         hostComponent.showValue = true;
         hostComponent.value = 'Test Value';
-        fixture.detectChanges();
+        fixture.changeDetectorRef.detectChanges();
 
         const placeholder = fixture.debugElement.query(By.css('.value-placeholder'));
         expect(placeholder).toBeFalsy();
@@ -529,7 +529,7 @@ describe('SummaryItemComponent', () => {
 
       it('should not show placeholder when projected text content exists', () => {
         hostComponent.projectedContent = 'Some text';
-        fixture.detectChanges();
+        fixture.changeDetectorRef.detectChanges();
 
         const placeholder = fixture.debugElement.query(By.css('.value-placeholder'));
         expect(placeholder).toBeFalsy();
@@ -552,7 +552,7 @@ describe('SummaryItemComponent', () => {
         hostComponent.showOnEmptyValue = false;
         hostComponent.showValue = false;
         hostComponent.projectedContent = undefined;
-        fixture.detectChanges();
+        fixture.changeDetectorRef.detectChanges();
 
         const summaryItem = fixture.debugElement.query(By.css('.summary-item'));
         expect(summaryItem.nativeElement.classList.contains('hidden')).toBe(true);
@@ -562,7 +562,7 @@ describe('SummaryItemComponent', () => {
         hostComponent.showOnEmptyValue = false;
         hostComponent.showValue = true;
         hostComponent.value = 'Test Value';
-        fixture.detectChanges();
+        fixture.changeDetectorRef.detectChanges();
 
         const summaryItem = fixture.debugElement.query(By.css('.summary-item'));
         expect(summaryItem.nativeElement.classList.contains('hidden')).toBe(false);
@@ -572,7 +572,7 @@ describe('SummaryItemComponent', () => {
     describe('error rendering', () => {
       it('should render error icon and error text when error is active', () => {
         hostComponent.error = { active: true, text: 'Error occurred' };
-        fixture.detectChanges();
+        fixture.changeDetectorRef.detectChanges();
 
         const errorIcon = fixture.debugElement.query(By.css('clr-summary-item-value.error cds-icon'));
         expect(errorIcon).toBeTruthy();
@@ -585,7 +585,7 @@ describe('SummaryItemComponent', () => {
         hostComponent.showValue = true;
         hostComponent.value = 'Test Value';
         hostComponent.error = { active: true, text: 'Error' };
-        fixture.detectChanges();
+        fixture.changeDetectorRef.detectChanges();
 
         const errorElements = fixture.debugElement.queryAll(By.css('clr-summary-item-value.error'));
         expect(errorElements.length).toBe(2);
@@ -595,7 +595,7 @@ describe('SummaryItemComponent', () => {
     describe('warning rendering', () => {
       it('should render warning icon when warning is active', () => {
         hostComponent.warning = { active: true, text: 'Warning occurred' };
-        fixture.detectChanges();
+        fixture.changeDetectorRef.detectChanges();
 
         const warningIcon = fixture.debugElement.query(By.css('clr-summary-item-value.warning cds-icon'));
         expect(warningIcon).toBeTruthy();
@@ -622,7 +622,7 @@ describe('SummaryItemComponent', () => {
         hostComponent.showOnEmptyValue = false;
         hostComponent.showValue = false;
         hostComponent.projectedContent = undefined;
-        fixture.detectChanges();
+        fixture.changeDetectorRef.detectChanges();
 
         const summaryItem = fixture.debugElement.query(By.css('.summary-item'));
         expect(summaryItem.nativeElement.classList.contains('hidden')).toBe(true);
@@ -633,7 +633,7 @@ describe('SummaryItemComponent', () => {
       it('should project summary-item-value components', () => {
         hostComponent.showValue = true;
         hostComponent.value = 'Projected Value';
-        fixture.detectChanges();
+        fixture.changeDetectorRef.detectChanges();
 
         const valueComponent = fixture.debugElement.query(By.directive(ClrSummaryItemValue));
         expect(valueComponent).toBeTruthy();
@@ -641,7 +641,7 @@ describe('SummaryItemComponent', () => {
 
       it('should project text content', () => {
         hostComponent.projectedContent = 'Direct text content';
-        fixture.detectChanges();
+        fixture.changeDetectorRef.detectChanges();
 
         const valuesContainer = fixture.debugElement.query(By.css('.summary-item-values'));
         expect(valuesContainer.nativeElement.textContent).toContain('Direct text content');
@@ -651,7 +651,7 @@ describe('SummaryItemComponent', () => {
         hostComponent.showValue = true;
         hostComponent.value = 'Value';
         hostComponent.projectedContent = 'Text';
-        fixture.detectChanges();
+        fixture.changeDetectorRef.detectChanges();
 
         const valueComponent = fixture.debugElement.query(By.directive(ClrSummaryItemValue));
         const valuesContainer = fixture.debugElement.query(By.css('.summary-item-values'));
@@ -672,7 +672,7 @@ describe('SummaryItemComponent', () => {
         </clr-summary-area>
       `,
       standalone: true,
-      imports: [CommonModule, ClrSummaryArea, ClrSummaryItem],
+      imports: [ClrSummaryArea, ClrSummaryItem],
     })
     class CustomElementTestComponent {
       @ViewChild(ClrSummaryItem) summaryItem!: ClrSummaryItem;
@@ -684,8 +684,8 @@ describe('SummaryItemComponent', () => {
     let customFixture: ComponentFixture<CustomElementTestComponent>;
     let customComponent: ClrSummaryItem;
 
-    beforeEach(async () => {
-      await TestBed.configureTestingModule({
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
         imports: [CustomElementTestComponent, ClrSummaryArea, ClrSummaryItem, NoopAnimationsModule],
       }).compileComponents();
 
@@ -693,7 +693,7 @@ describe('SummaryItemComponent', () => {
       customFixture.detectChanges();
       customFixture.detectChanges(); // Second cycle for template rendering
       customComponent = customFixture.componentInstance.component;
-    });
+    }));
 
     it('should detect custom element as content', () => {
       expect(customComponent.hasProjectedContent).toBe(true);
@@ -710,8 +710,8 @@ describe('SummaryItemComponent', () => {
     let fixture: ComponentFixture<MultiValueTestHostComponent>;
     let component: ClrSummaryItem;
 
-    beforeEach(async () => {
-      await TestBed.configureTestingModule({
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
         imports: [
           MultiValueTestHostComponent,
           ClrSummaryArea,
@@ -725,12 +725,12 @@ describe('SummaryItemComponent', () => {
       hostComponent = fixture.componentInstance;
       fixture.detectChanges();
       component = hostComponent.component;
-    });
+    }));
 
     it('should detect content when at least one value child has content', () => {
       hostComponent.value1 = 'First Value';
       hostComponent.value2 = undefined;
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
 
       expect(component.hasProjectedContent).toBe(true);
     });

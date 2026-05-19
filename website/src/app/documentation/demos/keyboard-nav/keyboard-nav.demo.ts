@@ -7,7 +7,7 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { share } from 'rxjs';
 import { ClarityDocComponent } from '../clarity-doc';
-import { ClarityIcons, homeIcon, cogIcon, userIcon, searchIcon, folderIcon, bellIcon } from '@cds/core/icon';
+import { ClarityIcons, homeIcon, cogIcon, userIcon, searchIcon, folderIcon, bellIcon } from '@clr/angular/icon';
 import {
   CTRL_ARROW_BASIC_EXAMPLE,
   ALT_MNEMONIC_BASIC_EXAMPLE,

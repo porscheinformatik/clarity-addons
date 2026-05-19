@@ -1,11 +1,11 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
 import { Component, ElementRef, HostBinding, Input, Renderer2, ViewChild } from '@angular/core';
-import { ClarityIcons } from '@cds/core/icon';
+import { ClarityIcons } from '@clr/angular/icon';
 import {
   audiBrandIcon,
   cupraBrandIcon,
@@ -51,7 +51,7 @@ export class ClrBrandAvatar {
   @HostBinding('class.clr-brand-avatar') avatar = true;
 
   @Input('clrBrand') brand: string;
-  @Input('clrSize') size = 24;
+  @Input('clrSize') size: number = 24;
 
   @ViewChild('avatar', { static: true }) avatarElement: ElementRef;
 

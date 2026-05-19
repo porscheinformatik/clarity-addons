@@ -1,20 +1,23 @@
-<div class="btn-group" *ngIf="last > 1">
+@if (last > 1) {
+<div class="btn-group">
   <button class="btn pagination-previous" (click)="previous()" [disabled]="page == 1">
     <cds-icon shape="angle" direction="left"></cds-icon>
   </button>
-  <button *ngIf="page > 2" class="btn" (click)="page = 1">1</button>
-  <button *ngIf="page > 3" class="btn" disabled>...</button>
-
-  <ng-container *ngFor="let pageNum of middlePages">
-    <button *ngIf="pageNum !== page; else activePage" class="btn" (click)="page = pageNum">{{pageNum}}</button>
-    <ng-template #activePage>
-      <button class="btn btn-primary" type="button">{{pageNum}}</button>
-    </ng-template>
-  </ng-container>
-
-  <button *ngIf="page < last - 2" class="btn" disabled>...</button>
-  <button *ngIf="page < last - 1" class="btn" (click)="page = last">{{last}}</button>
+  @if (page > 2) {
+  <button class="btn" (click)="page = 1">1</button>
+  } @if (page > 3) {
+  <button class="btn" disabled>...</button>
+  } @for (pageNum of middlePages; track pageNum) { @if (pageNum !== page) {
+  <button class="btn" (click)="page = pageNum">{{pageNum}}</button>
+  } @else {
+  <button class="btn btn-primary" type="button">{{pageNum}}</button>
+  } } @if (page < last - 2) {
+  <button class="btn" disabled>...</button>
+  } @if (page < last - 1) {
+  <button class="btn" (click)="page = last">{{last}}</button>
+  }
   <button class="btn pagination-next" (click)="next()" [disabled]="page == last">
     <cds-icon shape="angle" direction="right"></cds-icon>
   </button>
 </div>
+}

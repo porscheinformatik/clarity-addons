@@ -1,13 +1,8 @@
-import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/core';
-import {
-  ClrCommonStringsService,
-  ClrDatagridFilter,
-  ClrDatagridFilterInterface,
-  ClrPopoverEventsService,
-} from '@clr/angular';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ClrCommonStringsService, ClrDatagridFilter, ClrDatagridFilterInterface } from '@clr/angular';
 import { Observable, Subject } from 'rxjs';
 import { NestedProperty } from './nested-property';
-import { ClarityIcons, trashIcon } from '@cds/core/icon';
+import { ClarityIcons, trashIcon } from '@clr/angular/icon';
 
 ClarityIcons.addIcons(trashIcon);
 
@@ -17,10 +12,8 @@ ClarityIcons.addIcons(trashIcon);
   styleUrls: ['./date-filter.component.scss'],
   standalone: false,
 })
-export class ClrDateFilterComponent<T extends { [key: string]: any }>
-  implements ClrDatagridFilterInterface<T>, AfterViewInit
-{
-  private nestedProp: NestedProperty<any>;
+export class ClrDateFilterComponent<T extends { [key: string]: any }> implements ClrDatagridFilterInterface<T> {
+  private nestedProp: NestedProperty;
   @Input()
   timeActive = false;
   @Input()
@@ -36,16 +29,8 @@ export class ClrDateFilterComponent<T extends { [key: string]: any }>
     return this.nestedProp.prop;
   }
 
-  constructor(
-    private commonStrings: ClrCommonStringsService,
-    private clrPopoverEventsService: ClrPopoverEventsService,
-    filterContainer: ClrDatagridFilter
-  ) {
+  constructor(private commonStrings: ClrCommonStringsService, filterContainer: ClrDatagridFilter) {
     filterContainer.setFilter(this);
-  }
-
-  public ngAfterViewInit(): void {
-    this.clrPopoverEventsService.outsideClickClose = false;
   }
 
   /**

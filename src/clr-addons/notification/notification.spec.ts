@@ -1,11 +1,11 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
 import { Component, ViewChild } from '@angular/core';
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClarityModule } from '@clr/angular';
@@ -36,7 +36,6 @@ describe('NotificationComponent', () => {
       providers: [ClrNotificationService],
       imports: [ClarityModule, FormsModule, BrowserAnimationsModule, ClrNotificationModule],
       declarations: [TestComponent],
-      teardown: { destroyAfterEach: false },
     }).compileComponents();
 
     fixture = TestBed.createComponent(TestComponent);
@@ -45,6 +44,7 @@ describe('NotificationComponent', () => {
   });
 
   function checkNotification(notificationType: string, progressbar: boolean, dismissable: boolean): void {
+    tick();
     const notifEl = document.getElementsByTagName('clr-notification').item(0);
 
     expect(notifEl.querySelector('.alert.alert-' + notificationType)).toBeTruthy();
@@ -71,46 +71,46 @@ describe('NotificationComponent', () => {
   it('with timeout', fakeAsync(() => {
     notificationService.openNotification(fixture.componentInstance.notification, { timeout: 100 });
 
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
     expect(document.getElementsByTagName('clr-notification').length).toEqual(1);
 
     tick(400);
 
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
     expect(document.getElementsByTagName('clr-notification').length).toEqual(0);
   }));
 
   it('with progressbar', fakeAsync(() => {
     notificationService.openNotification(fixture.componentInstance.notification, { timeout: 100, progressbar: true });
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
 
     checkNotification('info', true, false);
 
     tick(400);
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
   }));
 
-  it('with progressbar but no timeout', () => {
+  it('with progressbar but no timeout', fakeAsync(() => {
     const notifRef = notificationService.openNotification(fixture.componentInstance.notification, {
       timeout: 0,
       progressbar: true,
     });
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
 
     checkNotification('info', false, false);
 
     notifRef.close();
-    fixture.detectChanges();
-  });
+    fixture.changeDetectorRef.detectChanges();
+  }));
 
   it('dismissable', fakeAsync(() => {
     notificationService.openNotification(fixture.componentInstance.notification, { timeout: 100, dismissable: true });
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
 
     checkNotification('info', false, true);
 
     tick(400);
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
   }));
 
   it('info', fakeAsync(() => {
@@ -118,12 +118,12 @@ describe('NotificationComponent', () => {
       notificationType: 'info',
       timeout: 100,
     });
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
 
     checkNotification('info', false, false);
 
     tick(400);
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
   }));
 
   it('success', fakeAsync(() => {
@@ -131,12 +131,12 @@ describe('NotificationComponent', () => {
       notificationType: 'success',
       timeout: 100,
     });
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
 
     checkNotification('success', false, false);
 
     tick(400);
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
   }));
 
   it('warning', fakeAsync(() => {
@@ -144,12 +144,12 @@ describe('NotificationComponent', () => {
       notificationType: 'warning',
       timeout: 100,
     });
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
 
     checkNotification('warning', false, false);
 
     tick(400);
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
   }));
 
   it('danger', fakeAsync(() => {
@@ -157,11 +157,11 @@ describe('NotificationComponent', () => {
       notificationType: 'danger',
       timeout: 100,
     });
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
 
     checkNotification('danger', false, false);
 
     tick(400);
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
   }));
 });

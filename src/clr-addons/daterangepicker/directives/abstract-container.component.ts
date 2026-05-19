@@ -1,5 +1,5 @@
 import { ContentChild, Directive, HostBinding, Optional } from '@angular/core';
-import { ClrControlError, ClrControlHelper, ClrControlSuccess, ClrLabel, ClrLayout } from '@clr/angular';
+import { ClrControlError, ClrControlHelper, ClrControlSuccess, ClrControlLabel, ClrLayout } from '@clr/angular';
 import { DaterangeControlStateService } from '../providers/daterange-control-state.service';
 
 @Directive()
@@ -15,7 +15,7 @@ export abstract class ClrAbstractContainer {
   }
 
   /** Label component. */
-  @ContentChild(ClrLabel) protected labelComponent: ClrLabel;
+  @ContentChild(ClrControlLabel) protected labelComponent: ClrControlLabel;
 
   /** Helper control component. */
   @ContentChild(ClrControlHelper) protected controlHelperComponent: ClrControlHelper;

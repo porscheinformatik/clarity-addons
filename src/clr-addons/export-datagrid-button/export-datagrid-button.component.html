@@ -10,9 +10,11 @@
       <cds-icon shape="angle" direction="down" size="12"></cds-icon>
     </button>
     <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-      <button *ngFor="let exportType of exportTypesFiltered()" (click)="onExport(exportType.type)" clrDropdownItem>
+      @for (exportType of exportTypesFiltered(); track exportType) {
+      <button (click)="onExport(exportType.type)" clrDropdownItem>
         {{ exportType.value }}
       </button>
+      }
     </clr-dropdown-menu>
   </clr-dropdown>
 </div>

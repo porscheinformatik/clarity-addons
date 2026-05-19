@@ -7,7 +7,7 @@
  */
 
 import { clrIconSVG } from './svg-tag-generator';
-import { IconShapeCollection, IconShapeTuple } from '@cds/core/icon/interfaces/icon.interfaces';
+import { IconShapeCollection, IconShapeTuple } from '@clr/angular/icon';
 
 // To support badges, alerts or the is-solid, the SVGs would need to be extended.
 

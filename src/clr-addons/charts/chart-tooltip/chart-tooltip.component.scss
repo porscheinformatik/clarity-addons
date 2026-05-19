@@ -1,7 +1,7 @@
 .tooltip-container {
   position: absolute;
-  background: var(--clr-color-neutral-0, #fff);
-  border: 1px solid var(--clr-color-neutral-400, #ccc);
+  background: var(--cds-global-color-gray-0, #fff);
+  border: 1px solid var(--cds-global-color-gray-400, #ccc);
   border-radius: 4px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   padding: 12px 16px;
@@ -24,7 +24,7 @@
     margin: 0;
     font-size: 14px;
     font-weight: 600;
-    color: var(--clr-color-neutral-1000, #000);
+    color: var(--cds-global-color-gray-1000, #000);
     flex-grow: 1;
     max-width: 200px;
   }
@@ -48,7 +48,7 @@
 
 .tooltip-content {
   font-size: 12px;
-  color: var(--clr-color-neutral-700, #565656);
+  color: var(--cds-global-color-gray-700, #565656);
 }
 
 hr:has(+ .tooltip-footer:empty) {

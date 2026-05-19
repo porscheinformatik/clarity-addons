@@ -15,10 +15,10 @@ import {
   plusIcon,
   successStandardIcon,
   warningStandardIcon,
-} from '@cds/core/icon';
+} from '@clr/angular/icon';
 import { ActivatedRoute } from '@angular/router';
 import { DynamicColumn } from '@porscheinformatik/clr-addons';
-import { ClrIconModule } from '@clr/angular';
+import { ClrIcon } from '@clr/angular';
 import { ClrDatagrid } from '@clr/angular';
 
 interface ExportableEntry {
@@ -366,7 +366,7 @@ type UserItem = {
     }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ClrIconModule],
+  imports: [ClrIcon],
 })
 class IsSubscribedComponent {
   item = input<UserItem>();

@@ -1,8 +1,8 @@
 <!--
-  ~ Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
-  ~ This software is released under MIT license.
-  ~ The full license information can be found in LICENSE in the root directory of this project.
-  -->
+~ Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
+~ This software is released under MIT license.
+~ The full license information can be found in LICENSE in the root directory of this project.
+-->
 
 <h2>Date Time Container</h2>
 
@@ -111,7 +111,9 @@
     <label>Template Datalist</label>
     <input class="clr-col-2" minlength="4" name="Option" required clrDatalistInput [(ngModel)]="dataList" />
     <datalist>
-      <option *ngFor="let item of values$ | async" [value]="item"></option>
+      @for (item of values$ | async; track item) {
+      <option [value]="item"></option>
+      }
     </datalist>
     <clr-control-helper>Helper text</clr-control-helper>
     <clr-control-error>There was an error</clr-control-error>
@@ -290,7 +292,9 @@
         <label>Combobox</label>
         <clr-combobox [(ngModel)]="comboboxOption" name="combobox" required>
           <clr-options>
-            <clr-option *ngFor="let option of values$ | async" [clrValue]="option">{{option}}</clr-option>
+            @for (option of values$ | async; track option) {
+            <clr-option [clrValue]="option">{{option}}</clr-option>
+            }
           </clr-options>
           <clr-control-error>Select a value</clr-control-error>
         </clr-combobox>

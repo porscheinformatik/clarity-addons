@@ -3,9 +3,9 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { DOCUMENT } from '@angular/common';
-import { Component, Inject } from '@angular/core';
-import { ClarityIcons, angleIcon, applicationsIcon, cogIcon, userIcon, shoppingCartIcon } from '@cds/core/icon';
+
+import { Component, Inject, DOCUMENT } from '@angular/core';
+import { ClarityIcons, angleIcon, applicationsIcon, cogIcon, userIcon, shoppingCartIcon } from '@clr/angular/icon';
 
 ClarityIcons.addIcons(cogIcon, applicationsIcon, angleIcon, userIcon, shoppingCartIcon);
 

@@ -1,11 +1,11 @@
 <!--
-  ~ Copyright (c) 2018-2023 Porsche Informatik. All Rights Reserved.
-  ~ This software is released under MIT license.
-  ~ The full license information can be found in LICENSE in the root directory of this project.
-  -->
+~ Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
+~ This software is released under MIT license.
+~ The full license information can be found in LICENSE in the root directory of this project.
+-->
 
 <div class="main-container" style="border: 1px solid black">
-  <clr-header class="header-6">
+  <clr-header class="header-1">
     <div class="branding">
       <a href="#" class="nav-link">
         <span class="title">Clarity Addons</span>
@@ -45,14 +45,15 @@
   ></clr-flow-bar>
   <div class="content-container clr-flex-column">
     <div class="content-area">
-      <h3 *ngIf="!activeStep?.subSteps || activeStep?.subSteps.length === 0">
-        {{activeStep?.title | async}} {{flowBarSteps.indexOf(activeStep) + 1}}
-      </h3>
-      <h3 *ngIf="activeStep?.subSteps && activeStep?.subSteps.length > 0">
+      @if (!activeStep?.subSteps || activeStep?.subSteps.length === 0) {
+      <h3>{{activeStep?.title | async}} {{flowBarSteps.indexOf(activeStep) + 1}}</h3>
+      } @if (activeStep?.subSteps && activeStep?.subSteps.length > 0) {
+      <h3>
         {{activeStep?.title | async}} {{flowBarSteps.indexOf(activeStep) + 1}} - {{activeStep?.activeSubStep?.title |
         async}}
       </h3>
-      <p *ngFor="let i of [1, 2, 3, 4, 5, 6]">
+      } @for (i of [1, 2, 3, 4, 5, 6]; track i) {
+      <p>
         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
         dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
         clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
@@ -60,40 +61,40 @@
         diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
         takimata sanctus est Lorem ipsum dolor sit amet.
       </p>
+      }
     </div>
     <div class="content-area-footer">
       <div class="clr-row clr-flex-fill clr-justify-content-between clr-align-items-center">
         <div class="clr-col">Current Step Info</div>
         <div class="clr-col-auto">
-          <button type="button" class="btn btn-link" (click)="flowBar.previous()" *ngIf="flowBar.isPreviousAvailable()">
-            Previous
-          </button>
-          <clr-dropdown *ngIf="activeStep?.subSteps?.length > 0">
+          @if (flowBar.isPreviousAvailable()) {
+          <button type="button" class="btn btn-link" (click)="flowBar.previous()">Previous</button>
+          } @if (activeStep?.subSteps?.length > 0) {
+          <clr-dropdown>
             <button type="button" class="btn btn-outline-primary" clrDropdownTrigger>
               {{activeStep?.activeSubStep?.title | async}}
               <cds-icon shape="angle" direction="down"></cds-icon>
             </button>
             <clr-dropdown-menu clrPosition="top-left" *clrIfOpen>
-              <button
-                class="btn"
-                clrDropdownItem
-                *ngFor="let subStep of activeStep?.subSteps"
-                (click)="flowBar.changeActiveSubStep(subStep)"
-              >
+              @for (subStep of activeStep?.subSteps; track subStep) {
+              <button class="btn" clrDropdownItem (click)="flowBar.changeActiveSubStep(subStep)">
                 {{subStep.title | async}}
               </button>
+              }
             </clr-dropdown-menu>
           </clr-dropdown>
+          } @if (!flowBar.isLastStep()) {
           <button
             type="button"
             class="btn btn-primary"
             (click)="flowBar.next()"
             [disabled]="!flowBar.isNextAvailable()"
-            *ngIf="!flowBar.isLastStep()"
           >
             Next
           </button>
-          <button type="button" class="btn btn-success" *ngIf="flowBar.isLastStep()">Finish</button>
+          } @if (flowBar.isLastStep()) {
+          <button type="button" class="btn btn-success">Finish</button>
+          }
         </div>
       </div>
     </div>

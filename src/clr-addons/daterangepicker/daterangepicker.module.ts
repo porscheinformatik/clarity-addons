@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ClarityModule, ClrDatepickerModule, ClrIconModule } from '@clr/angular';
+import { ClarityModule, ClrDatepickerModule, ClrIcon } from '@clr/angular';
 
 import { ClrDatepickerComponent } from './directives/datepicker/datepicker.component';
 import { ClrDaterangepickerContainerComponent } from './directives/daterangepicker-container/daterangepicker-container.component';
@@ -14,7 +14,7 @@ import { ClrDaterangeRequiredValidator } from './validators/daterange-required.v
 import { ClrTimepickerComponent } from './directives/timepicker/timepicker.component';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, ClarityModule, ClrDatepickerModule, ClrIconModule],
+  imports: [CommonModule, FormsModule, ClarityModule, ClrDatepickerModule, ClrIcon],
   declarations: [
     ClrDatepickerComponent,
     ClrDaterangeMaxValidator,

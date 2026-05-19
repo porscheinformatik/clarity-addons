@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { ClrAlertModule } from '@clr/angular';
 import { ClrChartsModule, PieChartData, PieChartValue } from '@porscheinformatik/clr-addons/charts';
@@ -14,7 +14,7 @@ const COLORS = ['#e57200', '#00828b', '#c1326e', '#5b40b2', '#007cba', '#006b4a'
 @Component({
   selector: 'clr-pie-chart-demo',
   templateUrl: './pie-chart.demo.html',
-  imports: [CommonModule, FormsModule, ClrAlertModule, ClrChartsModule],
+  imports: [FormsModule, ClrAlertModule, ClrChartsModule],
 })
 export class PieChartDemo {
   protected readonly loading = signal(false);

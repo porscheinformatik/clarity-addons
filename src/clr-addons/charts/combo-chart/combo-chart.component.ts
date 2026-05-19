@@ -246,11 +246,14 @@ export class ComboChartComponent extends ChartBase<SelectedComboItem> implements
         .append('g')
         .attr('transform', `translate(${width},0)`)
         .call(d3axisRight(yLine).tickValues(lineTickValues).tickFormat(lineTickFormat).tickSize(-width));
-      rightAxisG.selectAll('text').style('font-size', '11px').style('fill', 'var(--clr-color-neutral-600, #666)');
+      rightAxisG
+        .selectAll('text')
+        .style('font-size', '11px')
+        .style('fill', 'var(--cds-global-color-construction-400, #666)');
       // Style the line-axis grid lines with a distinct dashed color
       rightAxisG
         .selectAll('.tick line')
-        .style('stroke', 'var(--clr-color-neutral-400, #b3b3b3)')
+        .style('stroke', 'var(--cds-global-color-gray-400, #b3b3b3)')
         .style('stroke-dasharray', '4 3')
         .style('stroke-opacity', '0.8');
       // Remove the default domain line so it doesn't overlap the chart
@@ -263,7 +266,7 @@ export class ComboChartComponent extends ChartBase<SelectedComboItem> implements
           .attr('y', width + extraRight - 4)
           .attr('text-anchor', 'middle')
           .style('font-size', '12px')
-          .style('fill', 'var(--clr-color-neutral-600, #666)')
+          .style('fill', 'var(--cds-global-color-construction-400, #666)')
           .text(this.yLineAxisLabel());
       }
     }

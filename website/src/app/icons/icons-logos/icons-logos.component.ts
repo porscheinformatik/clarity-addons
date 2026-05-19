@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ClarityIcons, downloadIcon } from '@cds/core/icon';
+import { ClarityIcons, downloadIcon } from '@clr/angular/icon';
 import {
   logoCommissionModuleFavIcon,
   logoCommissionModuleIcon,
@@ -168,7 +168,7 @@ export class IconsLogosComponent {
   }
 
   download(filename: string) {
-    let svgData = this.icons.find(item => (item[0] as string) === filename);
+    const svgData = this.icons.find(item => (item[0] as string) === filename);
     const data = this.encode(String(svgData[1]));
 
     const blob = new Blob([data]);
@@ -188,7 +188,7 @@ export class IconsLogosComponent {
     URL.revokeObjectURL(blobUrl);
   }
 
-  private encode(s: string): Uint8Array {
+  private encode(s: string): Uint8Array<ArrayBuffer> {
     const textEncoder = new TextEncoder();
     return textEncoder.encode(s);
   }

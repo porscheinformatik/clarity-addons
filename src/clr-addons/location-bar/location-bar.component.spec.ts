@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { ClrDropdownModule, ClrIconModule } from '@clr/angular';
+import { ClrDropdownModule, ClrIcon } from '@clr/angular';
 import { Observable, of } from 'rxjs';
 import { LocationBarNodeComponent } from './location-bar-node/location-bar-node.component';
 import { LocationBarComponent } from './location-bar.component';
@@ -33,9 +33,8 @@ describe('LocationBarComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [LocationBarComponent, LocationBarNodeComponent],
-      imports: [ClrIconModule, ClrDropdownModule],
+      imports: [ClrIcon, ClrDropdownModule],
       providers: [{ provide: CONTENT_PROVIDER, useClass: TestContentProvider }],
-      teardown: { destroyAfterEach: false },
     }).compileComponents();
 
     /* create component and test fixture */
