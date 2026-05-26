@@ -36,7 +36,7 @@ ClarityIcons.addIcons(angleIcon, pencilIcon);
       ]),
     ]),
     trigger('rotateIcon', [
-      state('true', style({ transform: 'rotate(0)' })),
+      state('true', style({ transform: 'rotate(90deg)' })),
       state('false', style({ transform: 'rotate(180deg)' })),
       transition('true => false', animate('300ms ease-out')),
       transition('false => true', animate('300ms ease-in')),
