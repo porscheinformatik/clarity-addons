@@ -4,6 +4,8 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
+import { ClarityIcons, IconShapeTuple } from '@clr/angular/icon';
+
 export * from './shapes';
 export * from './svg-tag-generator';
 
@@ -36,7 +38,7 @@ export * from './svg-tag-generator';
  * Arguments that getShape cannot classify are still passed to the original addIcons
  * so unknown icon payload formats are not dropped.
  */
-/*
+
 function patchClarityIconsAddIcons(): void {
   const patchedKey = '__serviceBaseClarityIconsAddIconsPatched';
   const registeredKey = '__serviceBaseClarityIconShapesRegistered';
@@ -57,6 +59,7 @@ function patchClarityIconsAddIcons(): void {
     if (Array.isArray(icon) && typeof icon[0] === 'string') {
       return icon[0];
     }
+    return undefined;
   };
 
   // Keep the signature compatible with ClarityIcons.addIcons.
@@ -82,4 +85,5 @@ function patchClarityIconsAddIcons(): void {
 
   ClarityIcons.addIcons = wrappedAddIcons;
 }
-*/
+
+patchClarityIconsAddIcons();

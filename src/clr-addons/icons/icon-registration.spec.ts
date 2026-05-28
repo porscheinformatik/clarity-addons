@@ -15,6 +15,6 @@ describe('Icon Registration patch', () => {
     expect(stateUpdates).toBe(1);
 
     ClarityIcons.addIcons(infoCircleIcon);
-    expect(stateUpdates).toBe(2);
+    expect(stateUpdates).toBe(1);
   });
 });
