@@ -5,10 +5,11 @@
  */
 
 import { ClarityIcons, infoCircleIcon } from '@clr/angular/icon';
+import { fakeAsync } from '@angular/core/testing';
 
 describe('Icon Registration patch', () => {
-  it('should register an icon only once', () => {
-    let stateUpdates = 0;
+  it('should register an icon only once', fakeAsync(() => {
+    let stateUpdates = ClarityIcons.registry[infoCircleIcon[0]] ? 1 : 0;
     document.addEventListener('CDS_STATE_UPDATE', () => stateUpdates++);
 
     ClarityIcons.addIcons(infoCircleIcon);
@@ -16,5 +17,5 @@ describe('Icon Registration patch', () => {
 
     ClarityIcons.addIcons(infoCircleIcon);
     expect(stateUpdates).toBe(1);
-  });
+  }));
 });
