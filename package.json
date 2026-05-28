@@ -28,7 +28,7 @@
     "lint:fix": "eslint --fix \"src/clr-addons/**/*.ts\" \"src/dev/**/*.ts\"",
     "test": "ng test clr-addons --watch false",
     "test:watch": "ng test clr-addons --watch",
-    "test:ci": "npm-run-all test:format lint test build",
+    "test:ci": "npm-run-all test:format lint build test",
     "license:fix": "node scripts/update-license",
     "publish": "npm publish ./dist/clr-addons --access public",
     "prepare": "husky install",
