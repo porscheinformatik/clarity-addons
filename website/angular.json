@@ -9,14 +9,13 @@
       "projectType": "application",
       "architect": {
         "build": {
-          "builder": "@angular/build:application",
+          "builder": "@angular-devkit/build-angular:browser-esbuild",
           "options": {
-            "outputPath": {
-              "base": "dist"
-            },
+            "outputPath": "dist/browser",
             "index": "src/index.html",
+            "main": "src/main.ts",
             "tsConfig": "src/tsconfig.app.json",
-            "polyfills": ["src/polyfills.ts"],
+            "polyfills": "src/polyfills.ts",
             "preserveSymlinks": true,
             "assets": [
               "src/assets",
@@ -54,10 +53,10 @@
               "node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"
             ],
             "extractLicenses": false,
+            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "namedChunks": true,
-            "browser": "src/main.ts"
+            "namedChunks": true
           },
           "configurations": {
             "production": {
