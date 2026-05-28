@@ -13,12 +13,13 @@
     }
   }
 
-  .ces-caret-btn {
+  .btn.btn-link.ces-caret-btn {
     line-height: 1rem;
-  }
+    color: var(--cds-alias-typography-color-300);
 
-  .ces-caret-icon {
-    color: var(--clr-icon-color);
+    cds-icon.ces-caret-icon {
+      color: var(--cds-alias-typography-color-300);
+    }
   }
 
   .disabled-header-styles {
