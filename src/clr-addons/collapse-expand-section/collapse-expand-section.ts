@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -25,7 +25,7 @@ ClarityIcons.addIcons(angleIcon);
       ]),
     ]),
     trigger('rotateIcon', [
-      state('true', style({ transform: 'rotate(0)' })),
+      state('true', style({ transform: 'rotate(90deg)' })),
       state('false', style({ transform: 'rotate(180deg)' })),
       transition('true => false', animate('300ms ease-out')),
       transition('false => true', animate('300ms ease-in')),
