@@ -37,8 +37,12 @@
     }
   }
 
-  .ces-caret-icon {
-    color: var(--clr-icon-color);
+  .btn.btn-link.ces-caret-btn {
+    color: var(--cds-alias-typography-color-300);
+
+    cds-icon.ces-caret-icon {
+      color: var(--cds-alias-typography-color-300);
+    }
   }
 
   .ves-action,
