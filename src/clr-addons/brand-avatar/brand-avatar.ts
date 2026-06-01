@@ -55,7 +55,7 @@ export class ClrBrandAvatar {
 
   @ViewChild('avatar', { static: true }) avatarElement: ElementRef;
 
-  static DEFAULT_ICON_SHAPE = 'new-car-private';
+  static DEFAULT_ICON_SHAPE = 'ca-new-car-private';
 
   constructor(private renderer: Renderer2) {}
 
@@ -67,7 +67,7 @@ export class ClrBrandAvatar {
   getShape(): string {
     const brandName = ClrBrandAvatar.getCleanBrandName(this.brand);
     if (brandName in AcceptedBrands) {
-      return 'brand-' + brandName.toLowerCase();
+      return 'ca-brand-' + brandName.toLowerCase();
     }
     return this.getDefaultIcon();
   }
