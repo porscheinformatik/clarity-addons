@@ -1,6 +1,6 @@
 /**
  * Problem:
- * ClarityIcons.addIcons from @cds/core/icon merges icons into one global registry
+ * ClarityIcons.addIcons from @clr/angular/icon merges icons into one global registry
  * (GlobalStateService.state.iconRegistry). Many @clr/angular NgModule classes call
  * ClarityIcons.addIcons in their constructors the first time Angular constructs
  * that module (forms, tabs, vertical nav, datepicker, etc.). @porscheinformatik/clr-addons
@@ -13,19 +13,12 @@
  *
  * Fix (this function):
  * One-time monkey-patch: keep a reference to the real addIcons and replace
- * ClarityIcons.addIcons with a wrapper that maintains a registered set of shape names on
- * globalThis so the patch is singleton.
+ * ClarityIcons.addIcons with this wrapper which adds a flag to globalThis so the patch is singleton.
  *
- * registerCdsIcons runs immediately after this and performs the large startup
- * registration; every shape passed in is recorded in registered.
- *
- * When a Clr NgModule constructor calls addIcons again with only shapes already in
- * registered, the wrapper omits them. If nothing remains, it returns without calling the
+ * When anything calls addIcons it checks the internal registry and filters existing ones.
+ * If nothing remains, it returns without calling the
  * original addIcons, so there is no extra iconRegistry assignment and no duplicate CDS
  * state churn (same intent as the guard proposed in the issue).
- *
- * Arguments that getShape cannot classify are still passed to the original addIcons
- * so unknown icon payload formats are not dropped.
  */
 import { ClarityIcons, IconShapeTuple } from '@clr/angular/icon';
 
