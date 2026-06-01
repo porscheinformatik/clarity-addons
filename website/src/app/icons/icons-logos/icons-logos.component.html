@@ -14,8 +14,10 @@
   </clr-input-container>
 </form>
 <section class="icon-sets-container">
-  <div *ngIf="shapes.length > 0" class="cds-icon-collection">
-    <div *ngFor="let shape of shapes; let i = index" class="icon-collection">
+  @if (shapes.length > 0) {
+  <div class="cds-icon-collection">
+    @for (shape of shapes; track shape; let i = $index) {
+    <div class="icon-collection">
       <button
         class="visible-icon"
         (click)="selectedShape = shape"
@@ -25,17 +27,23 @@
             selectedShape === shape && (shape.endsWith('-negative') || shape.endsWith('-negative-favicon'))
         }"
       >
-        <cds-icon [attr.shape]="shape" size="{{ shape.endsWith('favicon') ? 48 : 96 }}" class="icon-shape" />
+        <cds-icon [shape]="shape" size="{{ shape.endsWith('favicon') ? 48 : 96 }}" class="icon-shape" />
         <span class="icon-shape-name">{{ shape }}</span>
       </button>
-      <div *ngIf="shape.endsWith('-negative')" class="darker-bg"></div>
-      <div *ngIf="shape.endsWith('-negative-favicon')" class="darker-bg-smaller"></div>
-      <div *ngIf="selectedShape == shape" class="spacer"></div>
+      @if (shape.endsWith('-negative')) {
+      <div class="darker-bg"></div>
+      } @if (shape.endsWith('-negative-favicon')) {
+      <div class="darker-bg-smaller"></div>
+      } @if (selectedShape == shape) {
+      <div class="spacer"></div>
+      }
       <div [ngClass]="{ second: i % 2 === 1 }">
         <ng-container *ngTemplateOutlet="title; context: { $implicit: shape }"></ng-container>
       </div>
     </div>
+    }
   </div>
+  }
 </section>
 <section class="icon-sets-footer">
   <p>Clarity Addons Icons, © Volkswagen 2025</p>
@@ -47,7 +55,8 @@
 </section>
 
 <ng-template #title let-shape>
-  <div class="icon-detail-section" *ngIf="selectedShape == shape">
+  @if (selectedShape == shape) {
+  <div class="icon-detail-section">
     <div class="clr-col-12">
       <div class="card">
         <div class="card-block">
@@ -71,4 +80,5 @@
       </div>
     </div>
   </div>
+  }
 </ng-template>

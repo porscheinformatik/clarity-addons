@@ -22,12 +22,16 @@
       <th>Date & Time</th>
       <th>
         <select clrSelect id="locale-1" [(ngModel)]="firstLocale">
-          <option *ngFor="let locale of supportedLocales" [ngValue]="locale">{{ getLocaleId(locale) }}</option>
+          @for (locale of supportedLocales; track locale) {
+          <option [ngValue]="locale">{{ getLocaleId(locale) }}</option>
+          }
         </select>
       </th>
       <th>
         <select clrSelect id="locale-2" [(ngModel)]="secondLocale">
-          <option *ngFor="let locale of supportedLocales" [ngValue]="locale">{{ getLocaleId(locale) }}</option>
+          @for (locale of supportedLocales; track locale) {
+          <option [ngValue]="locale">{{ getLocaleId(locale) }}</option>
+          }
         </select>
       </th>
     </thead>
@@ -316,12 +320,16 @@
       <th>Number</th>
       <th>
         <select clrSelect id="locale-3" [(ngModel)]="firstLocale">
-          <option *ngFor="let locale of supportedLocales" [ngValue]="locale">{{ getLocaleId(locale) }}</option>
+          @for (locale of supportedLocales; track locale) {
+          <option [ngValue]="locale">{{ getLocaleId(locale) }}</option>
+          }
         </select>
       </th>
       <th>
         <select clrSelect id="locale-4" [(ngModel)]="secondLocale">
-          <option *ngFor="let locale of supportedLocales" [ngValue]="locale">{{ getLocaleId(locale) }}</option>
+          @for (locale of supportedLocales; track locale) {
+          <option [ngValue]="locale">{{ getLocaleId(locale) }}</option>
+          }
         </select>
       </th>
     </thead>
@@ -407,12 +415,16 @@
       <th>Currency</th>
       <th>
         <select clrSelect id="locale-5" [(ngModel)]="firstLocale">
-          <option *ngFor="let locale of supportedLocales" [ngValue]="locale">{{ getLocaleId(locale) }}</option>
+          @for (locale of supportedLocales; track locale) {
+          <option [ngValue]="locale">{{ getLocaleId(locale) }}</option>
+          }
         </select>
       </th>
       <th>
         <select clrSelect id="locale-6" [(ngModel)]="secondLocale">
-          <option *ngFor="let locale of supportedLocales" [ngValue]="locale">{{ getLocaleId(locale) }}</option>
+          @for (locale of supportedLocales; track locale) {
+          <option [ngValue]="locale">{{ getLocaleId(locale) }}</option>
+          }
         </select>
       </th>
     </thead>

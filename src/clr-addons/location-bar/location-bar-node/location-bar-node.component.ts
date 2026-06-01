@@ -9,8 +9,7 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import { angleIcon, ClarityIcons, treeViewIcon } from '@cds/core/icon';
-import '@cds/core/icon/register.js';
+import { angleIcon, ClarityIcons, treeViewIcon } from '@clr/angular/icon';
 import { of } from 'rxjs';
 import { LocationBarNode, NodeId } from '../location-bar.model';
 import { CONTENT_PROVIDER, LocationBarContentProvider } from '../location-bar.provider';

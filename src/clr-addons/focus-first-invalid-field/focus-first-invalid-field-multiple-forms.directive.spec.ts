@@ -67,7 +67,7 @@ describe('ClrFocusFirstInvalidFieldDirective - Multiple independent forms on sam
   it('should handle independent validation - only validate the submitted form', async () => {
     // Fill form 1 but not form 2
     fixture.componentInstance.form1InputValue = 'filled';
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
     await fixture.whenStable();
 
     // Submit form 2 - should focus on form 2 input, not use form 1 state

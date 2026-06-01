@@ -6,7 +6,7 @@
 
 import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { angleIcon, ClarityIcons } from '@cds/core/icon';
+import { angleIcon, ClarityIcons } from '@clr/angular/icon';
 
 ClarityIcons.addIcons(angleIcon);
 

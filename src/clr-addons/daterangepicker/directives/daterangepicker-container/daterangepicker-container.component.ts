@@ -16,16 +16,13 @@ import {
   exclamationCircleIcon,
   trashIcon,
   windowCloseIcon,
-} from '@cds/core/icon';
-import '@cds/core/icon/register.js';
+} from '@clr/angular/icon';
 import {
   ClrCommonStrings,
   ClrCommonStringsService,
   ClrLayout,
-  ClrPopoverEventsService,
   ClrPopoverPosition,
-  ClrPopoverPositionService,
-  ClrPopoverToggleService,
+  ClrPopoverService,
 } from '@clr/angular';
 import { Subscription } from 'rxjs';
 
@@ -34,11 +31,9 @@ import { TRANSLATIONS } from '../../daterange.constants';
 import { DaterangePreset } from '../../interfaces/daterange-preset.interface';
 import { NullableDaterange } from '../../interfaces/daterange.interface';
 import { NullableDayModel } from '../../models/day.model';
-import { PopoverPositions } from '../../models/popover-positions.model';
 import { DaterangeControlStateService } from '../../providers/daterange-control-state.service';
 import { DaterangeParsingService } from '../../providers/daterange-parsing.service';
 import { DaterangeService } from '../../providers/daterange.service';
-import { OpenedDatepickersTrackerService } from '../../providers/opened-datepickers-tracker.service';
 import { ClrAbstractContainer } from '../abstract-container.component';
 import { ClrDatepickerComponent } from '../datepicker/datepicker.component';
 import { ClrDaterangepickerDirective } from '../daterangepicker/daterangepicker.directive';
@@ -55,15 +50,7 @@ ClarityIcons.addIcons(calendarIcon, exclamationCircleIcon, checkCircleIcon, wind
   selector: 'clr-daterangepicker-container',
   templateUrl: './daterangepicker-container.component.html',
   styleUrls: ['./daterangepicker-container.component.scss'],
-  providers: [
-    ClrPopoverToggleService,
-    ClrPopoverEventsService,
-    ClrPopoverPositionService,
-    DaterangeControlStateService,
-    DaterangeService,
-    OpenedDatepickersTrackerService,
-    ControlIdService,
-  ],
+  providers: [ClrPopoverService, DaterangeControlStateService, DaterangeService, ControlIdService],
   standalone: false,
 })
 export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer implements AfterViewInit, OnDestroy {
@@ -94,14 +81,10 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
   }
 
   /**
-   * Set popover position.
+   * Popover position config.
    */
-  @Input()
-  public set clrPosition(position: string) {
-    if (position && (PopoverPositions as Record<string, any>)[position]) {
-      this.popoverPosition = (PopoverPositions as Record<string, any>)[position];
-    }
-  }
+  @Input('clrPosition')
+  public popoverPosition = ClrPopoverPosition.BOTTOM_LEFT;
 
   /**
    * Text for the 'from' label.
@@ -131,11 +114,6 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
    * Popover open state.
    */
   protected open = false;
-
-  /**
-   * Popover position config.
-   */
-  protected popoverPosition: ClrPopoverPosition = PopoverPositions['bottom-left'];
 
   /**
    * Date from.
@@ -201,12 +179,10 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
   private subscriptions: Array<Subscription> = [];
 
   public constructor(
-    private readonly clrPopoverEventsService: ClrPopoverEventsService,
-    private readonly clrPopoverToggleService: ClrPopoverToggleService,
+    private readonly clrPopoverToggleService: ClrPopoverService,
     private readonly clrCommonStringsService: ClrCommonStringsService,
     @Optional() protected readonly clrLayout: ClrLayout,
     protected readonly daterangeControlStateService: DaterangeControlStateService,
-    private readonly openedDatepickersTrackerService: OpenedDatepickersTrackerService,
     protected readonly daterangeService: DaterangeService,
     private readonly daterangeParsingService: DaterangeParsingService
   ) {
@@ -218,7 +194,6 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
       throw new Error('`ClrDaterangepickerContainerComponent` requires an child `ClrDaterangepickerDirective`');
     }
     this.listenForDaterangeValueChanges();
-    this.listenForOpenedDatepickersTrackerChanges();
     this.listenForPopoverToggleChanges();
   }
 
@@ -236,31 +211,6 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
           daterange,
           this.daterangepickerDirective.separatorText
         );
-      })
-    );
-  }
-
-  /**
-   * Listen for any opened datepickers tracker state changes.
-   */
-  private listenForOpenedDatepickersTrackerChanges(): void {
-    this.subscriptions.push(
-      this.openedDatepickersTrackerService.valueChange.subscribe(hasOpenDatePickers => {
-        // When choosing an date in the DatePicker calender, all popovers are closed. Even our own popover.
-        // Therefor we have to remove the ability to close our own popover.
-        // Simply changing the `outsideClickClose` property after initialization does nothing.
-        // We need to manually remove the listener, change the `outsideClickClose` property and re-attach the click listener.
-        // Steps to reproduce with 2 daterangepickers:
-        // 1. Click on second daterangepicker action icon to open the popover.
-        // 2. Click on one of the datepickers to open calender.
-        // 3. Close datepicker.
-        // 4. Click on first daterangepicker action icon. Error.
-        this.clrPopoverEventsService.removeClickListener();
-        this.clrPopoverEventsService.outsideClickClose = !hasOpenDatePickers;
-        // We need to wait before we attach the click listener.
-        requestAnimationFrame(() => {
-          this.clrPopoverEventsService.addClickListener();
-        });
       })
     );
   }

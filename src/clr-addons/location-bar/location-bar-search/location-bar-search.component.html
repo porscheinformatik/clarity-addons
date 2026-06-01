@@ -13,9 +13,11 @@
         (keydown.Space)="preventDropdownActions($event)"
         [formControl]="searchControl"
       />
-      <clr-control-helper *ngIf="displayWarning" class="min-text-warning">{{
+      @if (displayWarning) {
+      <clr-control-helper class="min-text-warning">{{
         searchRequest?.minCharacterText ?? getMinCharactersText()
       }}</clr-control-helper>
+      }
     </clr-input-container>
   </form>
 </div>

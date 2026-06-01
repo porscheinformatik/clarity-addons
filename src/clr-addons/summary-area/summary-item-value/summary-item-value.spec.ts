@@ -4,7 +4,6 @@ import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ClrSummaryItemValue } from './summary-item-value';
 import { ClarityModule } from '@clr/angular';
-import { CommonModule } from '@angular/common';
 
 @Component({
   template: `
@@ -21,7 +20,7 @@ import { CommonModule } from '@angular/common';
     </clr-summary-item-value>
   `,
   standalone: true,
-  imports: [CommonModule, ClrSummaryItemValue, ClarityModule],
+  imports: [ClrSummaryItemValue, ClarityModule],
 })
 class TestHostComponent {
   @ViewChild(ClrSummaryItemValue) component!: ClrSummaryItemValue;
@@ -36,7 +35,7 @@ class TestHostComponent {
 @Component({
   template: ` <clr-summary-item-value [icon]="'pencil'" [value]="'Test Value'"></clr-summary-item-value> `,
   standalone: true,
-  imports: [CommonModule, ClrSummaryItemValue, ClarityModule],
+  imports: [ClrSummaryItemValue, ClarityModule],
 })
 class TestHostInvalidComponent {
   @ViewChild(ClrSummaryItemValue) component!: ClrSummaryItemValue;
@@ -145,9 +144,9 @@ describe('SummaryItemValue', () => {
       hostComponent.icon = undefined;
       hostComponent.value = undefined;
       hostComponent.projectedContent = 'Projected Text';
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
       component.checkProjectedContent(); // Manually trigger content check since MutationObserver doesn't fire in tests
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
       expect(component.hasMeaningfulContent).toBe(true);
     });
 
@@ -181,9 +180,9 @@ describe('SummaryItemValue', () => {
       hostComponent.projectedContent = 'Projected Text';
       hostComponent.icon = undefined;
       hostComponent.value = undefined;
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
       component.checkProjectedContent(); // Manually trigger content check since MutationObserver doesn't fire in tests
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
       expect(component.shouldHide).toBe(false);
     });
 
@@ -313,9 +312,9 @@ describe('SummaryItemValue', () => {
       hostComponent.icon = undefined;
       hostComponent.value = undefined;
       hostComponent.projectedContent = 'Projected Text';
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
       component.checkProjectedContent(); // Manually trigger content check since MutationObserver doesn't fire in tests
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
       expect(component.hasMeaningfulContent).toBe(true);
     });
 

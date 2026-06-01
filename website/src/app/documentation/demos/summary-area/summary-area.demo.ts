@@ -6,7 +6,7 @@
 
 import { ClarityDocComponent } from '../clarity-doc';
 import { Component, signal } from '@angular/core';
-import { ClarityIcons, checkCircleIcon, flagIcon, folderIcon, userIcon, usersIcon } from '@cds/core/icon';
+import { ClarityIcons, checkCircleIcon, flagIcon, folderIcon, userIcon, usersIcon } from '@clr/angular/icon';
 
 ClarityIcons.addIcons(userIcon, usersIcon, flagIcon, folderIcon, checkCircleIcon);
 

@@ -135,7 +135,7 @@ describe('EnumFilterComponent', () => {
       expect(fixture.componentInstance.component.possibleValues.length).toBe(2);
 
       fixture.componentInstance.component.onChange({ value: 'TestValue1', displayValue: 'TestValue1' }, true);
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
 
       expect(fixture.componentInstance.datagrid.rows.length).toBe(1);
     });
@@ -166,7 +166,7 @@ describe('EnumFilterComponent', () => {
       expect(fixture.componentInstance.component.possibleValues.length).toBe(3);
 
       fixture.componentInstance.component.onChange({ value: 'TestValue1', displayValue: 'TestValue1' }, true);
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
 
       expect(fixture.componentInstance.datagrid.rows.length).toBe(1);
     });
@@ -203,7 +203,7 @@ describe('EnumFilterComponent', () => {
       expect(fixture.componentInstance.component.possibleValues.length).toBe(3);
 
       fixture.componentInstance.component.onChange({ value: 'TestValue1', displayValue: 'TestValue1' }, true);
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
 
       expect(fixture.componentInstance.datagrid.rows.length).toBe(1);
     });

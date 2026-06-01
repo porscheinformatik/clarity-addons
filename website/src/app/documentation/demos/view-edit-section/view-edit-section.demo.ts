@@ -6,7 +6,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ClarityDocComponent } from '../clarity-doc';
-import { ClarityIcons, ellipsisVerticalIcon } from '@cds/core/icon';
+import { ClarityIcons, ellipsisVerticalIcon } from '@clr/angular/icon';
 
 ClarityIcons.addIcons(ellipsisVerticalIcon);
 

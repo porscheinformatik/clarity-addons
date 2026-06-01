@@ -1,12 +1,12 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
-import { Component, ViewChild, signal } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { Component, signal, ViewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ClrSummaryArea } from './summary-area';
 import { ClrSummaryItem } from '../summary-item/summary-item';
 import { ClrSummaryItemValue } from '../summary-item-value/summary-item-value';
 import { ClrSummaryAreaStateService } from './summary-area-state.service';
-import { ClrSummaryAreaError, ClrSummaryAreaWarning, ClrSummaryAreaLoading } from './summary-area.model';
+import { ClrSummaryAreaError, ClrSummaryAreaLoading, ClrSummaryAreaWarning } from './summary-area.model';
 import { ClarityModule } from '@clr/angular';
 
 class MockSummaryAreaStateService {
@@ -540,13 +540,13 @@ describe('SummaryAreaComponent', () => {
     it('should show error when loading becomes inactive', () => {
       hostComponent.loading = { active: true };
       hostComponent.error = { active: signal(true), text: 'Error' };
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
 
       expect(component.hasLoading).toBe(true);
       expect(component.hasError).toBe(false);
 
       hostComponent.loading = { active: false };
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
 
       expect(component.hasLoading).toBe(false);
       expect(component.hasError).toBe(true);

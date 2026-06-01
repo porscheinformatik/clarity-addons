@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { ClrDatagridModule, ClrIconModule } from '@clr/angular';
-import { ClarityIcons } from '@cds/core/icon';
+import { ClrDatagridModule, ClrIcon } from '@clr/angular';
+import { ClarityIcons } from '@clr/angular/icon';
 import { Rider } from './model';
-import { crownIcon, starIcon, airplaneIcon, carIcon } from '@cds/core/icon';
+import { crownIcon, starIcon, airplaneIcon, carIcon } from '@clr/angular/icon';
 
 ClarityIcons.addIcons(crownIcon, starIcon, airplaneIcon, carIcon);
 
@@ -10,11 +10,11 @@ ClarityIcons.addIcons(crownIcon, starIcon, airplaneIcon, carIcon);
   selector: 'clr-trophies',
   template: `
     @for (trophy of item().trophies; track trophy) {
-    <cds-icon [attr.shape]="trophy" />
+    <cds-icon [shape]="trophy" />
     } @empty { - }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ClrIconModule, ClrDatagridModule],
+  imports: [ClrIcon, ClrDatagridModule],
 })
 export class TrophiesComponent {
   item = input<Rider>();

@@ -5,9 +5,9 @@
       on a month, week or day view.
     </h5>
     <!-- <p>
-      Source:
-      <a href="https://github.com/mattlewis92/angular-calendar">https://github.com/mattlewis92/angular-calendar</a>
-    </p> -->
+    Source:
+    <a href="https://github.com/mattlewis92/angular-calendar">https://github.com/mattlewis92/angular-calendar</a>
+  </p> -->
     <h2>Installation</h2>
     <p>
       Clarity Addons provides clarity specific custom styles for the angular calendar component. The component itself is
@@ -86,9 +86,9 @@
         let-dragEnter="dragEnter"
       >
         <div class="cal-day-headers" role="row">
+          @for (day of days; track trackByWeekDayHeaderDate($index, day)) {
           <div
             class="cal-header"
-            *ngFor="let day of days; trackBy: trackByWeekDayHeaderDate"
             [class.cal-past]="day.isPast"
             [class.cal-today]="day.isToday"
             [class.cal-future]="day.isFuture"
@@ -111,6 +111,7 @@
             <br />
             <span>{{ day.date | date : "dd" }}</span>
           </div>
+          }
         </div>
       </ng-template>
 

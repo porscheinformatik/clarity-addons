@@ -15,7 +15,6 @@ describe('IconAvatarComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ClrIconAvatar],
-      teardown: { destroyAfterEach: false },
     }).compileComponents();
   }));
 

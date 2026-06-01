@@ -1,13 +1,14 @@
 <ng-content select="label"></ng-content>
 <div class="clr-control-container" [ngClass]="controlClasses">
+  @if (showLanguageSelector()) {
   <clr-multilingual-selector
-    *ngIf="showLanguageSelector()"
     [disabled]="disabled"
     [texts]="shownTexts"
     [selectedLang]="selectedLang"
     (selectedLangChange)="changeLanguage($event)"
   >
   </clr-multilingual-selector>
+  }
   <div class="clr-multi-input-wrapper">
     <div class="clr-textarea-wrapper">
       <textarea
@@ -22,10 +23,15 @@
         [rows]="rows || 1"
         #input
       ></textarea>
-      <cds-icon *ngIf="showError" class="clr-validate-icon" shape="exclamation-circle" aria-hidden="true"></cds-icon>
+      @if (showError) {
+      <cds-icon class="clr-validate-icon" shape="exclamation-circle" aria-hidden="true"></cds-icon>
+      }
     </div>
-    <ng-content select="clr-control-helper" *ngIf="!showError"></ng-content>
-    <ng-content select="clr-control-error" *ngIf="showError"></ng-content>
+    @if (!showError) {
+    <ng-content select="clr-control-helper"></ng-content>
+    } @if (showError) {
+    <ng-content select="clr-control-error"></ng-content>
+    }
     <ng-content></ng-content>
   </div>
 </div>

@@ -7,7 +7,7 @@
  */
 
 import { clrIconSVG } from './svg-tag-generator';
-import { IconShapeCollection, IconShapeTuple } from '@cds/core/icon/interfaces/icon.interfaces';
+import { IconShapeCollection, IconShapeTuple } from '@clr/angular/icon';
 
 // To support badges, alerts or the is-solid, the SVGs would need to be extended.
 
@@ -6357,661 +6357,682 @@ export const walking_filled_app = clrIconSVG(
   '0 0 24 24'
 );
 
-export const accessoryPartsIcon: IconShapeTuple = ['accessory-parts', AccessoryPartsShape];
-export const acceptanceDateIcon: IconShapeTuple = ['acceptance-date', AcceptanceDateShape];
-export const californiaServiceIcon: IconShapeTuple = ['california-service', CaliforniaServiceShape];
-export const carOffSite: IconShapeTuple = ['car-off-site', CarOffSite];
-export const carOnSite: IconShapeTuple = ['car-on-site', CarOnSite];
-export const completedByDateIcon: IconShapeTuple = ['completed-by-date', CompletedByDateShape];
-export const deliveryDateIcon: IconShapeTuple = ['delivery-date', DeliveryDate];
-export const dieselIcon: IconShapeTuple = ['diesel', DieselShape];
-export const energyIcon: IconShapeTuple = ['energy', EnergyShape];
+export const accessoryPartsIcon = buildIconShapeTuple('accessory-parts', AccessoryPartsShape);
+export const acceptanceDateIcon = buildIconShapeTuple('acceptance-date', AcceptanceDateShape);
+export const californiaServiceIcon = buildIconShapeTuple('california-service', CaliforniaServiceShape);
+export const carOffSite = buildIconShapeTuple('car-off-site', CarOffSite);
+export const carOnSite = buildIconShapeTuple('car-on-site', CarOnSite);
+export const completedByDateIcon = buildIconShapeTuple('completed-by-date', CompletedByDateShape);
+export const deliveryDateIcon = buildIconShapeTuple('delivery-date', DeliveryDate);
+export const dieselIcon = buildIconShapeTuple('diesel', DieselShape);
+export const energyIcon = buildIconShapeTuple('energy', EnergyShape);
 
-export const gasIcon: IconShapeTuple = ['gas', GasShape];
-export const gasCarsServiceIcon: IconShapeTuple = ['gas-cars-service', GasCarsServiceShape];
-export const newCarUtilityVehicleIcon: IconShapeTuple = ['new-car-utility-vehicle', NewCarUtilityVehicleShape];
-export const plusServiceIcon: IconShapeTuple = ['plus-service', PlusServiceShape];
-export const priceTypeSwitchIcon: IconShapeTuple = ['price-type-switch', PriceTypeSwitchShape];
-export const returnDateIcon: IconShapeTuple = ['return-date', ReturnDateShape];
-export const repeatRepairIcon: IconShapeTuple = ['repeat-repair', RepeatRepairCollection];
-export const replacementVehicleIcon: IconShapeTuple = ['replacement-vehicle', ReplacementVehicleCollection];
-export const touaregServiceIcon: IconShapeTuple = ['touareg-service', TouaregServiceShape];
-export const vehicleConversionIcon: IconShapeTuple = ['vehicle-conversion', VehicleConversionShape];
-export const volkswagenIcon: IconShapeTuple = ['volkswagen', VWShape];
-export const audiBrandIcon: IconShapeTuple = ['brand-audi', AudiBrandShape];
-export const cupraBrandIcon: IconShapeTuple = ['brand-cupra', CupraBrandShape];
-export const dwaBrandIcon: IconShapeTuple = ['brand-dwa', DWABrandShape];
-export const porscheBrandIcon: IconShapeTuple = ['brand-porsche', PorscheBrandShape];
-export const seatBrandIcon: IconShapeTuple = ['brand-seat', SeatBrandShape];
-export const skodaBrandIcon: IconShapeTuple = ['brand-skoda', SkodaBrandShape];
-export const vwBrandIcon: IconShapeTuple = ['brand-vw', VWBrandShape];
-export const vwnBrandIcon: IconShapeTuple = ['brand-vwn', VWNBrandShape];
-export const wrenchForwardIcon: IconShapeTuple = ['wrench-fwd', WrenchForward];
-export const topcardIcon: IconShapeTuple = ['topcard', TopcardShape];
-export const taskAndAppointmentIcon: IconShapeTuple = ['task-appointment', TaskAndAppointment];
-export const parkingLocationIcon: IconShapeTuple = ['parking-location', ParkingLocation];
-export const partsIcon: IconShapeTuple = ['parts', PartsShape];
-export const partsForwardIcon: IconShapeTuple = ['parts-fwd', PartsForwardShape];
-export const partsNonStockIcon: IconShapeTuple = ['parts-nonstock', PartsNonStockShape];
-export const partsNonStockForwardIcon: IconShapeTuple = ['parts-nonstock-fwd', PartNonStockForwardShape];
-export const partAvailabilityInfoIcon: IconShapeTuple = ['part-availability-info', PartAvailabilityInfoShape];
-export const partAvailabilityNoIcon: IconShapeTuple = ['part-availability-no', PartAvailabilityNoShape];
-export const partAvailabilityUnknownIcon: IconShapeTuple = ['part-availability-unknown', PartAvailabilityUnknownShape];
-export const partAvailabilityWarningIcon: IconShapeTuple = ['part-availability-warning', PartAvailabilityWarningShape];
-export const partAvailabilityYesIcon: IconShapeTuple = ['part-availability-yes', PartAvailabilityYesShape];
-export const partSuccessorIcon: IconShapeTuple = ['part-successor', PartSuccessorShape];
-export const partPredecessorIcon: IconShapeTuple = ['part-predecessor', PartPredecessorShape];
-export const partSuccessorPredecessorIcon: IconShapeTuple = [
+export const gasIcon = buildIconShapeTuple('gas', GasShape);
+export const gasCarsServiceIcon = buildIconShapeTuple('gas-cars-service', GasCarsServiceShape);
+export const newCarUtilityVehicleIcon = buildIconShapeTuple('new-car-utility-vehicle', NewCarUtilityVehicleShape);
+export const plusServiceIcon = buildIconShapeTuple('plus-service', PlusServiceShape);
+export const priceTypeSwitchIcon = buildIconShapeTuple('price-type-switch', PriceTypeSwitchShape);
+export const returnDateIcon = buildIconShapeTuple('return-date', ReturnDateShape);
+export const repeatRepairIcon = buildIconShapeTuple('repeat-repair', RepeatRepairCollection);
+export const replacementVehicleIcon = buildIconShapeTuple('replacement-vehicle', ReplacementVehicleCollection);
+export const touaregServiceIcon = buildIconShapeTuple('touareg-service', TouaregServiceShape);
+export const vehicleConversionIcon = buildIconShapeTuple('vehicle-conversion', VehicleConversionShape);
+export const volkswagenIcon = buildIconShapeTuple('volkswagen', VWShape);
+export const audiBrandIcon = buildIconShapeTuple('brand-audi', AudiBrandShape);
+export const cupraBrandIcon = buildIconShapeTuple('brand-cupra', CupraBrandShape);
+export const dwaBrandIcon = buildIconShapeTuple('brand-dwa', DWABrandShape);
+export const porscheBrandIcon = buildIconShapeTuple('brand-porsche', PorscheBrandShape);
+export const seatBrandIcon = buildIconShapeTuple('brand-seat', SeatBrandShape);
+export const skodaBrandIcon = buildIconShapeTuple('brand-skoda', SkodaBrandShape);
+export const vwBrandIcon = buildIconShapeTuple('brand-vw', VWBrandShape);
+export const vwnBrandIcon = buildIconShapeTuple('brand-vwn', VWNBrandShape);
+export const wrenchForwardIcon = buildIconShapeTuple('wrench-fwd', WrenchForward);
+export const topcardIcon = buildIconShapeTuple('topcard', TopcardShape);
+export const taskAndAppointmentIcon = buildIconShapeTuple('task-appointment', TaskAndAppointment);
+export const parkingLocationIcon = buildIconShapeTuple('parking-location', ParkingLocation);
+export const partsIcon = buildIconShapeTuple('parts', PartsShape);
+export const partsForwardIcon = buildIconShapeTuple('parts-fwd', PartsForwardShape);
+export const partsNonStockIcon = buildIconShapeTuple('parts-nonstock', PartsNonStockShape);
+export const partsNonStockForwardIcon = buildIconShapeTuple('parts-nonstock-fwd', PartNonStockForwardShape);
+export const partAvailabilityInfoIcon = buildIconShapeTuple('part-availability-info', PartAvailabilityInfoShape);
+export const partAvailabilityNoIcon = buildIconShapeTuple('part-availability-no', PartAvailabilityNoShape);
+export const partAvailabilityUnknownIcon = buildIconShapeTuple(
+  'part-availability-unknown',
+  PartAvailabilityUnknownShape
+);
+export const partAvailabilityWarningIcon = buildIconShapeTuple(
+  'part-availability-warning',
+  PartAvailabilityWarningShape
+);
+export const partAvailabilityYesIcon = buildIconShapeTuple('part-availability-yes', PartAvailabilityYesShape);
+export const partSuccessorIcon = buildIconShapeTuple('part-successor', PartSuccessorShape);
+export const partPredecessorIcon = buildIconShapeTuple('part-predecessor', PartPredecessorShape);
+export const partSuccessorPredecessorIcon = buildIconShapeTuple(
   'part-successorpredecessor',
-  PartSuccessorPredecessorShape,
-];
-export const partIdenticalIcon: IconShapeTuple = ['part-identical', PartIdenticalShape];
-export const partIdenticalPredecessorIcon: IconShapeTuple = [
+  PartSuccessorPredecessorShape
+);
+export const partIdenticalIcon = buildIconShapeTuple('part-identical', PartIdenticalShape);
+export const partIdenticalPredecessorIcon = buildIconShapeTuple(
   'part-identical-predecessor',
-  PartIdenticalPredecessorShape,
-];
-export const partIdenticalSuccessorIcon: IconShapeTuple = ['part-identical-successor', PartIdenticalSuccessorShape];
-export const partIdenticalSuccpredecessorIcon: IconShapeTuple = [
+  PartIdenticalPredecessorShape
+);
+export const partIdenticalSuccessorIcon = buildIconShapeTuple('part-identical-successor', PartIdenticalSuccessorShape);
+export const partIdenticalSuccpredecessorIcon = buildIconShapeTuple(
   'part-identical-succpredecessor',
-  PartIdenticalSuccpredecessorShape,
-];
-export const paintMaterialIcon: IconShapeTuple = ['paint-material', PaintMaterialShape];
-export const paintMaterialForwardIcon: IconShapeTuple = ['paint-material-fwd', PaintMaterialForwardShape];
-export const itemsRecieveIcon: IconShapeTuple = ['items-receive', ItemsReceiveShape];
-export const itemsForwardIcon: IconShapeTuple = ['items-forward', ItemsForwardShape];
-export const dollarBillPartialIcon: IconShapeTuple = ['money-partial', DollarBillPartialShape];
-export const dollarBillForwardIcon: IconShapeTuple = ['money-fwd', DollarBillForwardShape];
-export const blocksGroupForwardIcon: IconShapeTuple = ['blocksgroup-fwd', BlocksGroupForwardShape];
-export const textForwardIcon: IconShapeTuple = ['text-fwd', TextForward];
-export const calculatorForwardIcon: IconShapeTuple = ['calculator-fwd', CalculatorForwardShape];
-export const bundleForwardIcon: IconShapeTuple = ['bundle-fwd', BundleForwardShape];
-export const internalPartForwardIcon: IconShapeTuple = ['part-return', InternalPartForwardShape];
-export const invoiceIcon: IconShapeTuple = ['invoice', InvoiceShape];
-export const invoiceReadyIcon: IconShapeTuple = ['invoice-ready', InvoiceReadyShape];
-export const externalPartForwardIcon: IconShapeTuple = ['part-return-fwd', ExternalPartForwardShape];
-export const businessPartnerWithCarIcon: IconShapeTuple = ['bp-with-car', BusinessPartnerWithCar];
-export const campaignOutdatedIcon: IconShapeTuple = ['campaign-outdated', CampaignOutdatedShape];
-export const campaignIcon: IconShapeTuple = ['campaign', CampaignShape];
-export const vinIcon: IconShapeTuple = ['vin', VinShape];
-export const wcpIcon: IconShapeTuple = ['wcp', WCPShape];
-export const vsfSearchIcon: IconShapeTuple = ['vsf-search', VsfSearchShape];
-export const vsfSearch48Icon: IconShapeTuple = ['vsf-search48', VsfSearchShape48];
-export const partsChangelocationIcon: IconShapeTuple = ['parts-changelocation', PartsChangelocation];
-export const partsInventoryIcon: IconShapeTuple = ['parts-inventory', PartsInventory];
-export const partsPickingIcon: IconShapeTuple = ['parts-picking', PartsPicking];
-export const partsPickingPlusIcon: IconShapeTuple = ['parts-picking-plus', PartsPickingPlus];
-export const partsReceivingIcon: IconShapeTuple = ['parts-receiving', PartsReceiving];
-export const logoCommissionModuleNegativeIcon: IconShapeTuple = [
+  PartIdenticalSuccpredecessorShape
+);
+export const paintMaterialIcon = buildIconShapeTuple('paint-material', PaintMaterialShape);
+export const paintMaterialForwardIcon = buildIconShapeTuple('paint-material-fwd', PaintMaterialForwardShape);
+export const itemsRecieveIcon = buildIconShapeTuple('items-receive', ItemsReceiveShape);
+export const itemsForwardIcon = buildIconShapeTuple('items-forward', ItemsForwardShape);
+export const dollarBillPartialIcon = buildIconShapeTuple('money-partial', DollarBillPartialShape);
+export const dollarBillForwardIcon = buildIconShapeTuple('money-fwd', DollarBillForwardShape);
+export const blocksGroupForwardIcon = buildIconShapeTuple('blocksgroup-fwd', BlocksGroupForwardShape);
+export const textForwardIcon = buildIconShapeTuple('text-fwd', TextForward);
+export const calculatorForwardIcon = buildIconShapeTuple('calculator-fwd', CalculatorForwardShape);
+export const bundleForwardIcon = buildIconShapeTuple('bundle-fwd', BundleForwardShape);
+export const internalPartForwardIcon = buildIconShapeTuple('part-return', InternalPartForwardShape);
+export const invoiceIcon = buildIconShapeTuple('invoice', InvoiceShape);
+export const invoiceReadyIcon = buildIconShapeTuple('invoice-ready', InvoiceReadyShape);
+export const externalPartForwardIcon = buildIconShapeTuple('part-return-fwd', ExternalPartForwardShape);
+export const businessPartnerWithCarIcon = buildIconShapeTuple('bp-with-car', BusinessPartnerWithCar);
+export const campaignOutdatedIcon = buildIconShapeTuple('campaign-outdated', CampaignOutdatedShape);
+export const campaignIcon = buildIconShapeTuple('campaign', CampaignShape);
+export const vinIcon = buildIconShapeTuple('vin', VinShape);
+export const wcpIcon = buildIconShapeTuple('wcp', WCPShape);
+export const vsfSearchIcon = buildIconShapeTuple('vsf-search', VsfSearchShape);
+export const vsfSearch48Icon = buildIconShapeTuple('vsf-search48', VsfSearchShape48);
+export const partsChangelocationIcon = buildIconShapeTuple('parts-changelocation', PartsChangelocation);
+export const partsInventoryIcon = buildIconShapeTuple('parts-inventory', PartsInventory);
+export const partsPickingIcon = buildIconShapeTuple('parts-picking', PartsPicking);
+export const partsPickingPlusIcon = buildIconShapeTuple('parts-picking-plus', PartsPickingPlus);
+export const partsReceivingIcon = buildIconShapeTuple('parts-receiving', PartsReceiving);
+export const logoCommissionModuleNegativeIcon = buildIconShapeTuple(
   'logo-commission-module-negative',
-  LogoCommissionModuleNegative,
-];
-export const logoCommissionModuleIcon: IconShapeTuple = ['logo-commission-module', LogoCommissionModule];
-export const logoCommissionModuleNegativeFavIcon: IconShapeTuple = [
+  LogoCommissionModuleNegative
+);
+export const logoCommissionModuleIcon = buildIconShapeTuple('logo-commission-module', LogoCommissionModule);
+export const logoCommissionModuleNegativeFavIcon = buildIconShapeTuple(
   'logo-commission-module-negative-favicon',
-  LogoCommissionModuleNegativeFavIcon,
-];
-export const logoCommissionModuleFavIcon: IconShapeTuple = [
+  LogoCommissionModuleNegativeFavIcon
+);
+export const logoCommissionModuleFavIcon = buildIconShapeTuple(
   'logo-commission-module-favicon',
-  LogoCommissionModuleFavIcon,
-];
-export const logoCostApprovalIcon: IconShapeTuple = ['logo-cost-approval', LogoCostApproval];
-export const logoCostApprovalNegativeIcon: IconShapeTuple = ['logo-cost-approval-negative', LogoCostApprovalNegative];
-export const logoCostApprovalFavIcon: IconShapeTuple = ['logo-cost-approval-favicon', LogoCostApprovalFavIcon];
-export const logoCostApprovalNegativeFavIcon: IconShapeTuple = [
+  LogoCommissionModuleFavIcon
+);
+export const logoCostApprovalIcon = buildIconShapeTuple('logo-cost-approval', LogoCostApproval);
+export const logoCostApprovalNegativeIcon = buildIconShapeTuple(
+  'logo-cost-approval-negative',
+  LogoCostApprovalNegative
+);
+export const logoCostApprovalFavIcon = buildIconShapeTuple('logo-cost-approval-favicon', LogoCostApprovalFavIcon);
+export const logoCostApprovalNegativeFavIcon = buildIconShapeTuple(
   'logo-cost-approval-negative-favicon',
-  LogoCostApprovalNegativeFavIcon,
-];
-export const logoCrossControllingIcon: IconShapeTuple = ['logo-cross-controlling', LogoCostControlling];
-export const logoCrossControllingNegativeIcon: IconShapeTuple = [
+  LogoCostApprovalNegativeFavIcon
+);
+export const logoCrossControllingIcon = buildIconShapeTuple('logo-cross-controlling', LogoCostControlling);
+export const logoCrossControllingNegativeIcon = buildIconShapeTuple(
   'logo-cross-controlling-negative',
-  LogoCostControllingNegative,
-];
-export const logoCrossControllingFavIcon: IconShapeTuple = [
+  LogoCostControllingNegative
+);
+export const logoCrossControllingFavIcon = buildIconShapeTuple(
   'logo-cross-controlling-favicon',
-  LogoCostControllingFavIcon,
-];
-export const logoCrossControllingNegativeFavIcon: IconShapeTuple = [
+  LogoCostControllingFavIcon
+);
+export const logoCrossControllingNegativeFavIcon = buildIconShapeTuple(
   'logo-cross-controlling-negative-favicon',
-  LogoCostControllingNegativeFavIcon,
-];
-export const logoDocFlowIcon: IconShapeTuple = ['logo-doc-flow', LogoDocFlow];
-export const logoDocFlowNegativeIcon: IconShapeTuple = ['logo-doc-flow-negative', LogoDocFlowNegative];
-export const logoDocFlowFavIcon: IconShapeTuple = ['logo-doc-flow-favicon', LogoDocFlowFavIcon];
-export const logoDocFlowNegativeFavIcon: IconShapeTuple = [
+  LogoCostControllingNegativeFavIcon
+);
+export const logoDocFlowIcon = buildIconShapeTuple('logo-doc-flow', LogoDocFlow);
+export const logoDocFlowNegativeIcon = buildIconShapeTuple('logo-doc-flow-negative', LogoDocFlowNegative);
+export const logoDocFlowFavIcon = buildIconShapeTuple('logo-doc-flow-favicon', LogoDocFlowFavIcon);
+export const logoDocFlowNegativeFavIcon = buildIconShapeTuple(
   'logo-doc-flow-negative-favicon',
-  LogoDocFlowNegativeFavIcon,
-];
-export const logoDocScanIcon: IconShapeTuple = ['logo-doc-scan', LogoDocScan];
-export const logoDocScanNegativeIcon: IconShapeTuple = ['logo-doc-scan-negative', LogoDocScanNegative];
-export const logoDocScanFavIcon: IconShapeTuple = ['logo-doc-scan-favicon', LogoDocScanFavIcon];
-export const logoDocScanNegativeFavIcon: IconShapeTuple = [
+  LogoDocFlowNegativeFavIcon
+);
+export const logoDocScanIcon = buildIconShapeTuple('logo-doc-scan', LogoDocScan);
+export const logoDocScanNegativeIcon = buildIconShapeTuple('logo-doc-scan-negative', LogoDocScanNegative);
+export const logoDocScanFavIcon = buildIconShapeTuple('logo-doc-scan-favicon', LogoDocScanFavIcon);
+export const logoDocScanNegativeFavIcon = buildIconShapeTuple(
   'logo-doc-scan-negative-favicon',
-  LogoDocScanNegativeFavIcon,
-];
-export const logoDocStoreIcon: IconShapeTuple = ['logo-doc-store', LogoDocStore];
-export const logoDocStoreNegativeIcon: IconShapeTuple = ['logo-doc-store-negative', LogoDocStoreNegative];
-export const logoDocStoreFavIcon: IconShapeTuple = ['logo-doc-store-favicon', LogoDocStoreFavIcon];
-export const logoDocStoreNegativeFavIcon: IconShapeTuple = [
+  LogoDocScanNegativeFavIcon
+);
+export const logoDocStoreIcon = buildIconShapeTuple('logo-doc-store', LogoDocStore);
+export const logoDocStoreNegativeIcon = buildIconShapeTuple('logo-doc-store-negative', LogoDocStoreNegative);
+export const logoDocStoreFavIcon = buildIconShapeTuple('logo-doc-store-favicon', LogoDocStoreFavIcon);
+export const logoDocStoreNegativeFavIcon = buildIconShapeTuple(
   'logo-doc-store-negative-favicon',
-  LogoDocStoreNegativeFavIcon,
-];
-export const logoEBillingIcon: IconShapeTuple = ['logo-ebilling', LogoEBilling];
-export const logoEBillingNegativeIcon: IconShapeTuple = ['logo-ebilling-negative', LogoEBillingNegative];
-export const logoEBillingFavIcon: IconShapeTuple = ['logo-ebilling-favicon', LogoEBillingFavIcon];
-export const logoEBillingNegativeFavIcon: IconShapeTuple = [
+  LogoDocStoreNegativeFavIcon
+);
+export const logoEBillingIcon = buildIconShapeTuple('logo-ebilling', LogoEBilling);
+export const logoEBillingNegativeIcon = buildIconShapeTuple('logo-ebilling-negative', LogoEBillingNegative);
+export const logoEBillingFavIcon = buildIconShapeTuple('logo-ebilling-favicon', LogoEBillingFavIcon);
+export const logoEBillingNegativeFavIcon = buildIconShapeTuple(
   'logo-ebilling-negative-favicon',
-  LogoEBillingNegativeFavIcon,
-];
-export const logoEPaymentIcon: IconShapeTuple = ['logo-epayment', LogoEPayment];
-export const logoEPaymentNegativeIcon: IconShapeTuple = ['logo-epayment-negative', LogoEPaymentNegative];
-export const logoEPaymentFavIcon: IconShapeTuple = ['logo-epayment-favicon', LogoEPaymentFavIcon];
-export const logoEPaymentNegativeFavIcon: IconShapeTuple = [
+  LogoEBillingNegativeFavIcon
+);
+export const logoEPaymentIcon = buildIconShapeTuple('logo-epayment', LogoEPayment);
+export const logoEPaymentNegativeIcon = buildIconShapeTuple('logo-epayment-negative', LogoEPaymentNegative);
+export const logoEPaymentFavIcon = buildIconShapeTuple('logo-epayment-favicon', LogoEPaymentFavIcon);
+export const logoEPaymentNegativeFavIcon = buildIconShapeTuple(
   'logo-epayment-negative-favicon',
-  LogoEPaymentNegativeFavIcon,
-];
-export const logoMobilityPlannerIcon: IconShapeTuple = ['logo-mobility-planner', LogoMobilityPlanner];
-export const logoMobilityPlannerNegativeIcon: IconShapeTuple = [
+  LogoEPaymentNegativeFavIcon
+);
+export const logoMobilityPlannerIcon = buildIconShapeTuple('logo-mobility-planner', LogoMobilityPlanner);
+export const logoMobilityPlannerNegativeIcon = buildIconShapeTuple(
   'logo-mobility-planner-negative',
-  LogoMobilityPlannerNegative,
-];
-export const logoMobilityPlannerFavIcon: IconShapeTuple = ['logo-mobility-planner-favicon', LogoMobilityPlannerFavIcon];
-export const logoMobilityPlannerNegativeFavIcon: IconShapeTuple = [
+  LogoMobilityPlannerNegative
+);
+export const logoMobilityPlannerFavIcon = buildIconShapeTuple(
+  'logo-mobility-planner-favicon',
+  LogoMobilityPlannerFavIcon
+);
+export const logoMobilityPlannerNegativeFavIcon = buildIconShapeTuple(
   'logo-mobility-planner-negative-favicon',
-  LogoMobilityPlannerNegativeFavIcon,
-];
-export const logoDigitalServiceReceptionIcon: IconShapeTuple = [
+  LogoMobilityPlannerNegativeFavIcon
+);
+export const logoDigitalServiceReceptionIcon = buildIconShapeTuple(
   'logo-digital-service-reception',
-  LogoDigitalServiceReception,
-];
-export const logoDigitalServiceReceptionNegativeIcon: IconShapeTuple = [
+  LogoDigitalServiceReception
+);
+export const logoDigitalServiceReceptionNegativeIcon = buildIconShapeTuple(
   'logo-digital-service-reception-negative',
-  LogoDigitalServiceReceptionNegative,
-];
-export const logoDigitalServiceReceptionFavIcon: IconShapeTuple = [
+  LogoDigitalServiceReceptionNegative
+);
+export const logoDigitalServiceReceptionFavIcon = buildIconShapeTuple(
   'logo-digital-service-reception-favicon',
-  LogoDigitalServiceReceptionFavIcon,
-];
-export const logoDigitalServiceReceptionNegativeFavIcon: IconShapeTuple = [
+  LogoDigitalServiceReceptionFavIcon
+);
+export const logoDigitalServiceReceptionNegativeFavIcon = buildIconShapeTuple(
   'logo-digital-service-reception-negative-favicon',
-  LogoDigitalServiceReceptionNegativeFavIcon,
-];
-export const logoPartsMobileIcon: IconShapeTuple = ['logo-parts-mobile', LogoPartsMobile];
-export const logoPartsMobileNegativeIcon: IconShapeTuple = ['logo-parts-mobile-negative', LogoPartsMobileNegative];
-export const logoPartsMobileFavIcon: IconShapeTuple = ['logo-parts-mobile-favicon', LogoPartsMobileFavIcon];
-export const logoPartsMobileNegativeFavIcon: IconShapeTuple = [
+  LogoDigitalServiceReceptionNegativeFavIcon
+);
+export const logoPartsMobileIcon = buildIconShapeTuple('logo-parts-mobile', LogoPartsMobile);
+export const logoPartsMobileNegativeIcon = buildIconShapeTuple('logo-parts-mobile-negative', LogoPartsMobileNegative);
+export const logoPartsMobileFavIcon = buildIconShapeTuple('logo-parts-mobile-favicon', LogoPartsMobileFavIcon);
+export const logoPartsMobileNegativeFavIcon = buildIconShapeTuple(
   'logo-parts-mobile-negative-favicon',
-  LogoPartsMobileNegativeFavIcon,
-];
-export const logoSBOIcon: IconShapeTuple = ['logo-sbo', LogoSBO];
-export const logoSBONegativeIcon: IconShapeTuple = ['logo-sbo-negative', LogoSBONegative];
-export const logoSBOFavIcon: IconShapeTuple = ['logo-sbo-favicon', LogoSBOFavIcon];
-export const logoSBONegativeFavIcon: IconShapeTuple = ['logo-sbo-negative-favicon', LogoSBONegativeFavIcon];
-export const logoServiceCubeIcon: IconShapeTuple = ['logo-service-cube', LogoServiceCube];
-export const logoServiceCubeNegativeIcon: IconShapeTuple = ['logo-service-cube-negative', LogoServiceCubeNegative];
-export const logoServiceCubeFavIcon: IconShapeTuple = ['logo-service-cube-favicon', LogoServiceCubeFavIcon];
-export const logoServiceCubeNegativeFavIcon: IconShapeTuple = [
+  LogoPartsMobileNegativeFavIcon
+);
+export const logoSBOIcon = buildIconShapeTuple('logo-sbo', LogoSBO);
+export const logoSBONegativeIcon = buildIconShapeTuple('logo-sbo-negative', LogoSBONegative);
+export const logoSBOFavIcon = buildIconShapeTuple('logo-sbo-favicon', LogoSBOFavIcon);
+export const logoSBONegativeFavIcon = buildIconShapeTuple('logo-sbo-negative-favicon', LogoSBONegativeFavIcon);
+export const logoServiceCubeIcon = buildIconShapeTuple('logo-service-cube', LogoServiceCube);
+export const logoServiceCubeNegativeIcon = buildIconShapeTuple('logo-service-cube-negative', LogoServiceCubeNegative);
+export const logoServiceCubeFavIcon = buildIconShapeTuple('logo-service-cube-favicon', LogoServiceCubeFavIcon);
+export const logoServiceCubeNegativeFavIcon = buildIconShapeTuple(
   'logo-service-cube-negative-favicon',
-  LogoServiceCubeNegativeFavIcon,
-];
-export const logoWCPIcon: IconShapeTuple = ['logo-wcp', LogoWCP];
-export const logoWCPNegativeIcon: IconShapeTuple = ['logo-wcp-negative', LogoWCPNegative];
-export const logoWCPFavIcon: IconShapeTuple = ['logo-wcp-favicon', LogoWCPFavIcon];
-export const logoWCPNegativeFavIcon: IconShapeTuple = ['logo-wcp-negative-favicon', LogoWCPNegativeFavIcon];
-export const logoWorkshopOrderTrackerIcon: IconShapeTuple = ['logo-workshop-order-tracker', LogoWorkshopOrderTracker];
-export const logoWorkshopOrderTrackerNegativeIcon: IconShapeTuple = [
+  LogoServiceCubeNegativeFavIcon
+);
+export const logoWCPIcon = buildIconShapeTuple('logo-wcp', LogoWCP);
+export const logoWCPNegativeIcon = buildIconShapeTuple('logo-wcp-negative', LogoWCPNegative);
+export const logoWCPFavIcon = buildIconShapeTuple('logo-wcp-favicon', LogoWCPFavIcon);
+export const logoWCPNegativeFavIcon = buildIconShapeTuple('logo-wcp-negative-favicon', LogoWCPNegativeFavIcon);
+export const logoWorkshopOrderTrackerIcon = buildIconShapeTuple(
+  'logo-workshop-order-tracker',
+  LogoWorkshopOrderTracker
+);
+export const logoWorkshopOrderTrackerNegativeIcon = buildIconShapeTuple(
   'logo-workshop-order-tracker-negative',
-  LogoWorkshopOrderTrackerNegative,
-];
-export const logoWorkshopOrderTrackerFavIcon: IconShapeTuple = [
+  LogoWorkshopOrderTrackerNegative
+);
+export const logoWorkshopOrderTrackerFavIcon = buildIconShapeTuple(
   'logo-workshop-order-tracker-favicon',
-  LogoWorkshopOrderTrackerFavIcon,
-];
-export const logoWorkshopOrderTrackerNegativeFavIcon: IconShapeTuple = [
+  LogoWorkshopOrderTrackerFavIcon
+);
+export const logoWorkshopOrderTrackerNegativeFavIcon = buildIconShapeTuple(
   'logo-workshop-order-tracker-negative-favicon',
-  LogoWorkshopOrderTrackerNegativeFavIcon,
-];
-export const circleFilledIcon: IconShapeTuple = ['circle-filled', CircleFilled];
-export const circleHalfFilledIcon: IconShapeTuple = ['circle-half-filled', CircleHalfFilled];
-export const circleQuarterFilledIcon: IconShapeTuple = ['circle-quarter-filled', CircleQuarterFilled];
-export const circleThreeQuartersFilledIcon: IconShapeTuple = ['circle-threequarters-filled', CircleThreeQuartersFilled];
-export const customerIcon: IconShapeTuple = ['customer', Customer];
-export const customerWaitingIcon: IconShapeTuple = ['customer-waiting', CustomerWaitingCollection];
-export const customerVipIcon: IconShapeTuple = ['customer-vip', CustomerVipCollection];
-export const firstRegistrationDateIcon: IconShapeTuple = ['first-registration-date', FirstRegistrationDate];
-export const mechanicIcon: IconShapeTuple = ['mechanic', Mechanic];
-export const serviceAdvisorIcon: IconShapeTuple = ['service-advisor', ServiceAdvisor];
-export const number0Icon: IconShapeTuple = ['number0', Number0];
-export const number1Icon: IconShapeTuple = ['number1', Number1];
-export const number2Icon: IconShapeTuple = ['number2', Number2];
-export const number3Icon: IconShapeTuple = ['number3', Number3];
-export const number4Icon: IconShapeTuple = ['number4', Number4];
-export const number5Icon: IconShapeTuple = ['number5', Number5];
-export const number6Icon: IconShapeTuple = ['number6', Number6];
-export const number7Icon: IconShapeTuple = ['number7', Number7];
-export const number8Icon: IconShapeTuple = ['number8', Number8];
-export const number9Icon: IconShapeTuple = ['number9', Number9];
-export const number10Icon: IconShapeTuple = ['number10', Number10];
-export const number11Icon: IconShapeTuple = ['number11', Number11];
-export const number12Icon: IconShapeTuple = ['number12', Number12];
-export const number13Icon: IconShapeTuple = ['number13', Number13];
-export const number14Icon: IconShapeTuple = ['number14', Number14];
-export const number15Icon: IconShapeTuple = ['number15', Number15];
-export const number16Icon: IconShapeTuple = ['number16', Number16];
-export const number17Icon: IconShapeTuple = ['number17', Number17];
-export const number18Icon: IconShapeTuple = ['number18', Number18];
-export const number19Icon: IconShapeTuple = ['number19', Number19];
-export const number20Icon: IconShapeTuple = ['number20', Number20];
-export const orderIcon: IconShapeTuple = ['order', OrderShape];
-export const orderStatusIcon: IconShapeTuple = ['order-status', OrderStatusShape];
-export const invoiceRecipientIcon: IconShapeTuple = ['invoice-recipient', InvoiceRecipient];
-export const faqIcon: IconShapeTuple = ['faq', faq];
-export const gteIcon: IconShapeTuple = ['gte', gte];
-export const motIcon: IconShapeTuple = ['mot', mot];
-export const wcAppIcon: IconShapeTuple = ['wc-app', wc_app];
-export const accelerationIcon: IconShapeTuple = ['acceleration', acceleration];
-export const accessoriesIcon: IconShapeTuple = ['accessories', accessories];
-export const adblueAppIcon: IconShapeTuple = ['adblue-app', adblue_app];
-export const addIcon: IconShapeTuple = ['add', add];
-export const airConditionerIcon: IconShapeTuple = ['air-conditioner', air_conditioning];
-export const alertIcon: IconShapeTuple = ['alert', alert];
-export const ambientLightAppIcon: IconShapeTuple = ['ambient-light-app', ambient_light_app];
-export const amplifierIcon: IconShapeTuple = ['amplifier', amplifier];
-export const appConnectAppIcon: IconShapeTuple = ['app-connect-app', app_connect_app];
-export const archiveIcon: IconShapeTuple = ['archive', archive];
-export const arrowDownIcon: IconShapeTuple = ['arrow-down', arrow_down];
-export const arrowLeftAlignedAppIcon: IconShapeTuple = ['arrow-left-aligned-app', arrow_left_aligned_app];
-export const arrowLeftIcon: IconShapeTuple = ['arrow-left', arrow_left];
-export const arrowRightIcon: IconShapeTuple = ['arrow-right', arrow_right];
-export const arrowSliderAppIcon: IconShapeTuple = ['arrow-slider-app', arrow_slider_app];
-export const arrowUpIcon: IconShapeTuple = ['arrow-up', arrow_up];
-export const attachmentIcon: IconShapeTuple = ['attachment', attachment];
-export const authentQrAppIcon: IconShapeTuple = ['authent_qr-app', authent_qr_app];
-export const authentRfidAppIcon: IconShapeTuple = ['authent_rfid-app', authent_rfid_app];
-export const authentTouchidAppIcon: IconShapeTuple = ['authent_touch-id-app', authent_touch_id_app];
-export const authentPlugChargeAppIcon: IconShapeTuple = ['authent_plug-charge-app', authent_plug_charge_app];
-export const automaticTempAppIcon: IconShapeTuple = ['automatic-temp-app', automatic_temp_app];
-export const awardWinnerPremiumIcon: IconShapeTuple = ['award-winner-premium', award_winner_premium];
-export const backIcon: IconShapeTuple = ['back', back];
-export const batteryIcon: IconShapeTuple = ['battery', battery];
-export const batterySocChargingAppIcon: IconShapeTuple = ['battery-soc-charging-app', battery_soc_charging_app];
-export const batterySocDepartureAppIcon: IconShapeTuple = ['battery-soc-departure-app', battery_soc_departure_app];
-export const batterySocDestinationAppIcon: IconShapeTuple = [
+  LogoWorkshopOrderTrackerNegativeFavIcon
+);
+export const circleFilledIcon = buildIconShapeTuple('circle-filled', CircleFilled);
+export const circleHalfFilledIcon = buildIconShapeTuple('circle-half-filled', CircleHalfFilled);
+export const circleQuarterFilledIcon = buildIconShapeTuple('circle-quarter-filled', CircleQuarterFilled);
+export const circleThreeQuartersFilledIcon = buildIconShapeTuple(
+  'circle-threequarters-filled',
+  CircleThreeQuartersFilled
+);
+export const customerIcon = buildIconShapeTuple('customer', Customer);
+export const customerWaitingIcon = buildIconShapeTuple('customer-waiting', CustomerWaitingCollection);
+export const customerVipIcon = buildIconShapeTuple('customer-vip', CustomerVipCollection);
+export const firstRegistrationDateIcon = buildIconShapeTuple('first-registration-date', FirstRegistrationDate);
+export const mechanicIcon = buildIconShapeTuple('mechanic', Mechanic);
+export const serviceAdvisorIcon = buildIconShapeTuple('service-advisor', ServiceAdvisor);
+export const number0Icon = buildIconShapeTuple('number0', Number0);
+export const number1Icon = buildIconShapeTuple('number1', Number1);
+export const number2Icon = buildIconShapeTuple('number2', Number2);
+export const number3Icon = buildIconShapeTuple('number3', Number3);
+export const number4Icon = buildIconShapeTuple('number4', Number4);
+export const number5Icon = buildIconShapeTuple('number5', Number5);
+export const number6Icon = buildIconShapeTuple('number6', Number6);
+export const number7Icon = buildIconShapeTuple('number7', Number7);
+export const number8Icon = buildIconShapeTuple('number8', Number8);
+export const number9Icon = buildIconShapeTuple('number9', Number9);
+export const number10Icon = buildIconShapeTuple('number10', Number10);
+export const number11Icon = buildIconShapeTuple('number11', Number11);
+export const number12Icon = buildIconShapeTuple('number12', Number12);
+export const number13Icon = buildIconShapeTuple('number13', Number13);
+export const number14Icon = buildIconShapeTuple('number14', Number14);
+export const number15Icon = buildIconShapeTuple('number15', Number15);
+export const number16Icon = buildIconShapeTuple('number16', Number16);
+export const number17Icon = buildIconShapeTuple('number17', Number17);
+export const number18Icon = buildIconShapeTuple('number18', Number18);
+export const number19Icon = buildIconShapeTuple('number19', Number19);
+export const number20Icon = buildIconShapeTuple('number20', Number20);
+export const orderIcon = buildIconShapeTuple('order', OrderShape);
+export const orderStatusIcon = buildIconShapeTuple('order-status', OrderStatusShape);
+export const invoiceRecipientIcon = buildIconShapeTuple('invoice-recipient', InvoiceRecipient);
+export const faqIcon = buildIconShapeTuple('faq', faq);
+export const gteIcon = buildIconShapeTuple('gte', gte);
+export const motIcon = buildIconShapeTuple('mot', mot);
+export const wcAppIcon = buildIconShapeTuple('wc-app', wc_app);
+export const accelerationIcon = buildIconShapeTuple('acceleration', acceleration);
+export const accessoriesIcon = buildIconShapeTuple('accessories', accessories);
+export const adblueAppIcon = buildIconShapeTuple('adblue-app', adblue_app);
+export const addIcon = buildIconShapeTuple('add', add);
+export const airConditionerIcon = buildIconShapeTuple('air-conditioner', air_conditioning);
+export const alertIcon = buildIconShapeTuple('alert', alert);
+export const ambientLightAppIcon = buildIconShapeTuple('ambient-light-app', ambient_light_app);
+export const amplifierIcon = buildIconShapeTuple('amplifier', amplifier);
+export const appConnectAppIcon = buildIconShapeTuple('app-connect-app', app_connect_app);
+export const archiveIcon = buildIconShapeTuple('archive', archive);
+export const arrowDownIcon = buildIconShapeTuple('arrow-down', arrow_down);
+export const arrowLeftAlignedAppIcon = buildIconShapeTuple('arrow-left-aligned-app', arrow_left_aligned_app);
+export const arrowLeftIcon = buildIconShapeTuple('arrow-left', arrow_left);
+export const arrowRightIcon = buildIconShapeTuple('arrow-right', arrow_right);
+export const arrowSliderAppIcon = buildIconShapeTuple('arrow-slider-app', arrow_slider_app);
+export const arrowUpIcon = buildIconShapeTuple('arrow-up', arrow_up);
+export const attachmentIcon = buildIconShapeTuple('attachment', attachment);
+export const authentQrAppIcon = buildIconShapeTuple('authent_qr-app', authent_qr_app);
+export const authentRfidAppIcon = buildIconShapeTuple('authent_rfid-app', authent_rfid_app);
+export const authentTouchidAppIcon = buildIconShapeTuple('authent_touch-id-app', authent_touch_id_app);
+export const authentPlugChargeAppIcon = buildIconShapeTuple('authent_plug-charge-app', authent_plug_charge_app);
+export const automaticTempAppIcon = buildIconShapeTuple('automatic-temp-app', automatic_temp_app);
+export const awardWinnerPremiumIcon = buildIconShapeTuple('award-winner-premium', award_winner_premium);
+export const backIcon = buildIconShapeTuple('back', back);
+export const batteryIcon = buildIconShapeTuple('battery', battery);
+export const batterySocChargingAppIcon = buildIconShapeTuple('battery-soc-charging-app', battery_soc_charging_app);
+export const batterySocDepartureAppIcon = buildIconShapeTuple('battery-soc-departure-app', battery_soc_departure_app);
+export const batterySocDestinationAppIcon = buildIconShapeTuple(
   'battery-soc-destination-app',
-  battery_soc_destination_app,
-];
-export const binIcon: IconShapeTuple = ['bin', bin];
-export const bluetoothIcon: IconShapeTuple = ['bluetooth', bluetooth];
-export const bookmarkIcon: IconShapeTuple = ['bookmark', bookmark];
-export const brakeAppIcon: IconShapeTuple = ['brake-app', brake_app];
-export const brochureIcon: IconShapeTuple = ['brochure', brochure];
-export const bulletpointAppIcon: IconShapeTuple = ['bulletpoint-app', bulletpoint_app];
-export const businessCustomersCommercialIcon: IconShapeTuple = [
+  battery_soc_destination_app
+);
+export const binIcon = buildIconShapeTuple('bin', bin);
+export const bluetoothIcon = buildIconShapeTuple('bluetooth', bluetooth);
+export const bookmarkIcon = buildIconShapeTuple('bookmark', bookmark);
+export const brakeAppIcon = buildIconShapeTuple('brake-app', brake_app);
+export const brochureIcon = buildIconShapeTuple('brochure', brochure);
+export const bulletpointAppIcon = buildIconShapeTuple('bulletpoint-app', bulletpoint_app);
+export const businessCustomersCommercialIcon = buildIconShapeTuple(
   'business-customers-commercial',
-  business_customers_commercial,
-];
-export const businessCustomersPrivateIcon: IconShapeTuple = ['business-customers-private', business_customers_private];
-export const calcIcon: IconShapeTuple = ['calc', calc];
-export const calendarCustomIcon: IconShapeTuple = ['calender-custom', calendar];
-export const californiaSpecialistIcon: IconShapeTuple = ['california-specialist', california_specialist];
-export const cameraScanIcon: IconShapeTuple = ['camera-scan', camera_scan];
-export const carDocumentsIcon: IconShapeTuple = ['car-documents', car_documents];
-export const carErrorAppIcon: IconShapeTuple = ['car-error-app', car_error_app];
-export const carInsuranceIcon: IconShapeTuple = ['car-insurance', car_insurance];
-export const carPickupServiceIcon: IconShapeTuple = ['car-pickup-service', car_pickup_service];
-export const carPlusIcon: IconShapeTuple = ['car-plus', car_plus];
-export const carSettingsIcon: IconShapeTuple = ['car-settings', car_settings];
-export const carVerifiedAppIcon: IconShapeTuple = ['car-verified-app', car_verified_app];
-export const carWheelAppIcon: IconShapeTuple = ['car-wheel-app', car_wheel_app];
-export const carWashIcon: IconShapeTuple = ['car-wash', carwash];
-export const certifiedRepairIcon: IconShapeTuple = ['certified-repair', certified_repair];
-export const certifiedRetailerIcon: IconShapeTuple = ['certified-retailer', certified_retailer];
-export const challengeAppIcon: IconShapeTuple = ['challenge-app', challenge_app];
-export const chargingPduAppIcon: IconShapeTuple = ['charging-pdu-app', charging_pdu_app];
-export const chargingStationIcon: IconShapeTuple = ['charging-station', charging_station];
-export const chargingTarifOverviewAppIcon: IconShapeTuple = [
+  business_customers_commercial
+);
+export const businessCustomersPrivateIcon = buildIconShapeTuple(
+  'business-customers-private',
+  business_customers_private
+);
+export const calcIcon = buildIconShapeTuple('calc', calc);
+export const calendarCustomIcon = buildIconShapeTuple('calender-custom', calendar);
+export const californiaSpecialistIcon = buildIconShapeTuple('california-specialist', california_specialist);
+export const cameraScanIcon = buildIconShapeTuple('camera-scan', camera_scan);
+export const carDocumentsIcon = buildIconShapeTuple('car-documents', car_documents);
+export const carErrorAppIcon = buildIconShapeTuple('car-error-app', car_error_app);
+export const carInsuranceIcon = buildIconShapeTuple('car-insurance', car_insurance);
+export const carPickupServiceIcon = buildIconShapeTuple('car-pickup-service', car_pickup_service);
+export const carPlusIcon = buildIconShapeTuple('car-plus', car_plus);
+export const carSettingsIcon = buildIconShapeTuple('car-settings', car_settings);
+export const carVerifiedAppIcon = buildIconShapeTuple('car-verified-app', car_verified_app);
+export const carWheelAppIcon = buildIconShapeTuple('car-wheel-app', car_wheel_app);
+export const carWashIcon = buildIconShapeTuple('car-wash', carwash);
+export const certifiedRepairIcon = buildIconShapeTuple('certified-repair', certified_repair);
+export const certifiedRetailerIcon = buildIconShapeTuple('certified-retailer', certified_retailer);
+export const challengeAppIcon = buildIconShapeTuple('challenge-app', challenge_app);
+export const chargingPduAppIcon = buildIconShapeTuple('charging-pdu-app', charging_pdu_app);
+export const chargingStationIcon = buildIconShapeTuple('charging-station', charging_station);
+export const chargingTarifOverviewAppIcon = buildIconShapeTuple(
   'charging-tarif-overview-app',
-  charging_tarif_overview_app,
-];
-export const chargingIcon: IconShapeTuple = ['charging', charging];
-export const chatAppIcon: IconShapeTuple = ['chat-app', chat_app];
-export const chatIcon: IconShapeTuple = ['chat', chat];
-export const checkboxCheckedAppIcon: IconShapeTuple = ['checkbox-checked-app', checkbox_checked_app];
-export const checkboxCheckedIcon: IconShapeTuple = ['checkbox-checked', checkbox_checked];
-export const checkboxUncheckedAppIcon: IconShapeTuple = ['checkbox-unchecked-app', checkbox_unchecked_app];
-export const checkboxUncheckedIcon: IconShapeTuple = ['checkbox-unchecked', checkbox_unchecked];
-export const checkmarkAppIcon: IconShapeTuple = ['checkmark-app', checkmark_app];
-export const checkmarkIcon: IconShapeTuple = ['checkmark', checkmark];
-export const chevronLeftAlignedappIcon: IconShapeTuple = ['chevron-left-alignedapp', chevron_left_alignedapp];
-export const chevronRightAlignedappIcon: IconShapeTuple = ['chevron-right-alignedapp', chevron_right_alignedapp];
-export const chevronSmallLeftAlignedappIcon: IconShapeTuple = [
+  charging_tarif_overview_app
+);
+export const chargingIcon = buildIconShapeTuple('charging', charging);
+export const chatAppIcon = buildIconShapeTuple('chat-app', chat_app);
+export const chatIcon = buildIconShapeTuple('chat', chat);
+export const checkboxCheckedAppIcon = buildIconShapeTuple('checkbox-checked-app', checkbox_checked_app);
+export const checkboxCheckedIcon = buildIconShapeTuple('checkbox-checked', checkbox_checked);
+export const checkboxUncheckedAppIcon = buildIconShapeTuple('checkbox-unchecked-app', checkbox_unchecked_app);
+export const checkboxUncheckedIcon = buildIconShapeTuple('checkbox-unchecked', checkbox_unchecked);
+export const checkmarkAppIcon = buildIconShapeTuple('checkmark-app', checkmark_app);
+export const checkmarkIcon = buildIconShapeTuple('checkmark', checkmark);
+export const chevronLeftAlignedappIcon = buildIconShapeTuple('chevron-left-alignedapp', chevron_left_alignedapp);
+export const chevronRightAlignedappIcon = buildIconShapeTuple('chevron-right-alignedapp', chevron_right_alignedapp);
+export const chevronSmallLeftAlignedappIcon = buildIconShapeTuple(
   'chevron-small-left-alignedapp',
-  chevron_small_left_alignedapp,
-];
-export const chevronSmallRightAlignedappIcon: IconShapeTuple = [
+  chevron_small_left_alignedapp
+);
+export const chevronSmallRightAlignedappIcon = buildIconShapeTuple(
   'chevron-small-right-alignedapp',
-  chevron_small_right_alignedapp,
-];
-export const chevronDownIcon: IconShapeTuple = ['chevron-down', chevron_down];
-export const chevronLeftIcon: IconShapeTuple = ['chevron-left', chevron_left];
-export const chevronRightIcon: IconShapeTuple = ['chevron-right', chevron_right];
-export const chevronUpIcon: IconShapeTuple = ['chevron-up', chevron_up];
-export const cityIcon: IconShapeTuple = ['city', city];
-export const clearRightAlignedappIcon: IconShapeTuple = ['clear-right-alignedapp', clear_right_alignedapp];
-export const clearAppIcon: IconShapeTuple = ['clear-app', clear_app];
-export const clockIcon: IconShapeTuple = ['clock', clock];
-export const closeLeftAlignedappIcon: IconShapeTuple = ['close-left-alignedapp', close_left_alignedapp];
-export const closeRightAlignedappIcon: IconShapeTuple = ['close-right-alignedapp', close_right_alignedapp];
-export const closeAppIcon: IconShapeTuple = ['close-app', close_app];
-export const closeCircleIcon: IconShapeTuple = ['close-circle', close_circle];
-export const closeIcon: IconShapeTuple = ['close', close];
-export const compassAppIcon: IconShapeTuple = ['compass-app', compass_app];
-export const configuratorCommercialIcon: IconShapeTuple = ['configurator-commercial', configurator_commercial];
-export const configuratorPrivateIcon: IconShapeTuple = ['configurator-private', configurator_private];
-export const constructionIcon: IconShapeTuple = ['construction', construction];
-export const consumptionIcon: IconShapeTuple = ['consumption', consumption_fuel];
-export const contactDealerIcon: IconShapeTuple = ['contact-dealer', contact_dealer];
-export const contactIcon: IconShapeTuple = ['contact', contact];
-export const countryRoadIcon: IconShapeTuple = ['country-road', country_road];
-export const craftIcon: IconShapeTuple = ['craft', craft];
-export const customersCenterIcon: IconShapeTuple = ['customers-center', customers_center];
-export const dataCopyAppIcon: IconShapeTuple = ['data-copy-app', data_copy_app];
-export const dataExpiredIcon: IconShapeTuple = ['data-expired', data_expired];
-export const dataFilledIcon: IconShapeTuple = ['data-filled', data_filled];
-export const dataInputIcon: IconShapeTuple = ['data-input', data_input];
-export const dataPlugAppIcon: IconShapeTuple = ['data-plug-app', data_plug_app];
-export const dataSearchIcon: IconShapeTuple = ['data-search', data_search];
-export const dataTimeExtensionIcon: IconShapeTuple = ['data-time-extension', data_time_extension];
-export const defogDefrostAutoAppIcon: IconShapeTuple = ['defog-defrost-auto-app', defog_defrost_auto_app];
-export const defogDefrostIcon: IconShapeTuple = ['defog-defrost', defog_defrost];
-export const destinationAppIcon: IconShapeTuple = ['destination-app', destination_app];
-export const directionIcon: IconShapeTuple = ['direction', direction];
-export const dischargingAppIcon: IconShapeTuple = ['discharging-app', discharging_app];
-export const discountAppIcon: IconShapeTuple = ['discount-app', discount_app];
-export const discoveryAppIcon: IconShapeTuple = ['discovery-app', discovery_app];
-export const downloadCustomIcon: IconShapeTuple = ['download-custom', download];
-export const dragIndicatorIcon: IconShapeTuple = ['drag-indicator', drag_indicator];
-export const driversAssistanceIcon: IconShapeTuple = ['drivers-assistance', drivers_assistance];
-export const ecoIcon: IconShapeTuple = ['eco', eco];
-export const editSmallRightAlignedAppIcon: IconShapeTuple = [
+  chevron_small_right_alignedapp
+);
+export const chevronDownIcon = buildIconShapeTuple('chevron-down', chevron_down);
+export const chevronLeftIcon = buildIconShapeTuple('chevron-left', chevron_left);
+export const chevronRightIcon = buildIconShapeTuple('chevron-right', chevron_right);
+export const chevronUpIcon = buildIconShapeTuple('chevron-up', chevron_up);
+export const cityIcon = buildIconShapeTuple('city', city);
+export const clearRightAlignedappIcon = buildIconShapeTuple('clear-right-alignedapp', clear_right_alignedapp);
+export const clearAppIcon = buildIconShapeTuple('clear-app', clear_app);
+export const clockIcon = buildIconShapeTuple('clock', clock);
+export const closeLeftAlignedappIcon = buildIconShapeTuple('close-left-alignedapp', close_left_alignedapp);
+export const closeRightAlignedappIcon = buildIconShapeTuple('close-right-alignedapp', close_right_alignedapp);
+export const closeAppIcon = buildIconShapeTuple('close-app', close_app);
+export const closeCircleIcon = buildIconShapeTuple('close-circle', close_circle);
+export const closeIcon = buildIconShapeTuple('close', close);
+export const compassAppIcon = buildIconShapeTuple('compass-app', compass_app);
+export const configuratorCommercialIcon = buildIconShapeTuple('configurator-commercial', configurator_commercial);
+export const configuratorPrivateIcon = buildIconShapeTuple('configurator-private', configurator_private);
+export const constructionIcon = buildIconShapeTuple('construction', construction);
+export const consumptionIcon = buildIconShapeTuple('consumption', consumption_fuel);
+export const contactDealerIcon = buildIconShapeTuple('contact-dealer', contact_dealer);
+export const contactIcon = buildIconShapeTuple('contact', contact);
+export const countryRoadIcon = buildIconShapeTuple('country-road', country_road);
+export const craftIcon = buildIconShapeTuple('craft', craft);
+export const customersCenterIcon = buildIconShapeTuple('customers-center', customers_center);
+export const dataCopyAppIcon = buildIconShapeTuple('data-copy-app', data_copy_app);
+export const dataExpiredIcon = buildIconShapeTuple('data-expired', data_expired);
+export const dataFilledIcon = buildIconShapeTuple('data-filled', data_filled);
+export const dataInputIcon = buildIconShapeTuple('data-input', data_input);
+export const dataPlugAppIcon = buildIconShapeTuple('data-plug-app', data_plug_app);
+export const dataSearchIcon = buildIconShapeTuple('data-search', data_search);
+export const dataTimeExtensionIcon = buildIconShapeTuple('data-time-extension', data_time_extension);
+export const defogDefrostAutoAppIcon = buildIconShapeTuple('defog-defrost-auto-app', defog_defrost_auto_app);
+export const defogDefrostIcon = buildIconShapeTuple('defog-defrost', defog_defrost);
+export const destinationAppIcon = buildIconShapeTuple('destination-app', destination_app);
+export const directionIcon = buildIconShapeTuple('direction', direction);
+export const dischargingAppIcon = buildIconShapeTuple('discharging-app', discharging_app);
+export const discountAppIcon = buildIconShapeTuple('discount-app', discount_app);
+export const discoveryAppIcon = buildIconShapeTuple('discovery-app', discovery_app);
+export const downloadCustomIcon = buildIconShapeTuple('download-custom', download);
+export const dragIndicatorIcon = buildIconShapeTuple('drag-indicator', drag_indicator);
+export const driversAssistanceIcon = buildIconShapeTuple('drivers-assistance', drivers_assistance);
+export const ecoIcon = buildIconShapeTuple('eco', eco);
+export const editSmallRightAlignedAppIcon = buildIconShapeTuple(
   'edit-small-right-aligned-app',
-  edit_small_right_aligned_app,
-];
-export const editIcon: IconShapeTuple = ['edit', edit];
-export const efficiencyIcon: IconShapeTuple = ['efficiency', efficiency];
-export const electricCarsServiceIcon: IconShapeTuple = ['electric-cars-service', electric_cars_service];
-export const electricCarsIcon: IconShapeTuple = ['electric-cars', electric_cars];
-export const electricityIcon: IconShapeTuple = ['electricity', electricity];
-export const emergencyIcon: IconShapeTuple = ['emergency', emergency];
-export const emissionIcon: IconShapeTuple = ['emission', emission];
-export const engineIcon: IconShapeTuple = ['engine', engine];
-export const entertainmentIcon: IconShapeTuple = ['entertainment', entertainment];
-export const exportAppIcon: IconShapeTuple = ['export-app', export_app];
-export const expressServiceIcon: IconShapeTuple = ['express-service', express_service];
-export const exterior360Icon: IconShapeTuple = ['exterior-360', exterior_360];
-export const exteriorIcon: IconShapeTuple = ['exterior', exterior];
-export const fastForwardIcon: IconShapeTuple = ['fast-forward', fast_forward];
-export const faxIcon: IconShapeTuple = ['fax', fax];
-export const filterIcon: IconShapeTuple = ['filter', filter];
-export const findACarIcon: IconShapeTuple = ['find-a-car', find_a_car];
-export const findADealerIcon: IconShapeTuple = ['find-a-dealer', find_a_dealer];
-export const fleetServiceCommercialIcon: IconShapeTuple = ['fleet-service-commercial', fleet_service_commercial];
-export const fleetServicePrivateIcon: IconShapeTuple = ['fleet-service-private', fleet_service_private];
-export const fullscreenEnterIcon: IconShapeTuple = ['fullscreen-enter', fullscreen_enter];
-export const fullscreenExitIcon: IconShapeTuple = ['fullscreen-exit', fullscreen_exit];
-export const galleryIcon: IconShapeTuple = ['gallery', gallery];
-export const garageAppIcon: IconShapeTuple = ['garage-app', garage_app];
-export const gasAppIcon: IconShapeTuple = ['gas-app', gas_app];
-export const glassDamageAppIcon: IconShapeTuple = ['glass-damage-app', glass_damage_app];
-export const heartIcon: IconShapeTuple = ['heart', heart];
-export const heightAppIcon: IconShapeTuple = ['height-app', height_app];
-export const highwayRoadIcon: IconShapeTuple = ['highway-road', highway_road];
-export const historyIcon: IconShapeTuple = ['history', history];
-export const homeAppIcon: IconShapeTuple = ['home-app', home_app];
-export const homeEnergyAppIcon: IconShapeTuple = ['home-energy-app', home_energy_app];
-export const hornAppIcon: IconShapeTuple = ['horn-app', horn_app];
-export const hybridIcon: IconShapeTuple = ['hybrid', hybrid];
-export const immediateChargingAppIcon: IconShapeTuple = ['immediate-charging-app', immediate_charging_app];
-export const infoIcon: IconShapeTuple = ['info', info];
-export const inputHideIcon: IconShapeTuple = ['input-hide', input_hide];
-export const inputShowIcon: IconShapeTuple = ['input-show', input_show];
-export const interior360Icon: IconShapeTuple = ['interior-360', interior_360];
-export const interiorIcon: IconShapeTuple = ['interior', interior];
-export const internetIcon: IconShapeTuple = ['internet', internet];
-export const invitationAppIcon: IconShapeTuple = ['invitation-app', invitation_app];
-export const jobportalIcon: IconShapeTuple = ['jobportal', jobportal];
-export const keyAppIcon: IconShapeTuple = ['key-app', key_app];
-export const keyCardAppIcon: IconShapeTuple = ['key-card-app', key_card_app];
-export const keyDigitalAppIcon: IconShapeTuple = ['key-digital-app', key_digital_app];
-export const keyboardAppIcon: IconShapeTuple = ['keyboard-app', keyboard_app];
-export const layerCollapseAppIcon: IconShapeTuple = ['layer-collapse-app', layer_collapse_app];
-export const layerExpandAppIcon: IconShapeTuple = ['layer-expand-app', layer_expand_app];
-export const layersAppIcon: IconShapeTuple = ['layers-app', layers_app];
-export const legalTermsAndConditionsAppIcon: IconShapeTuple = [
+  edit_small_right_aligned_app
+);
+export const editIcon = buildIconShapeTuple('edit', edit);
+export const efficiencyIcon = buildIconShapeTuple('efficiency', efficiency);
+export const electricCarsServiceIcon = buildIconShapeTuple('electric-cars-service', electric_cars_service);
+export const electricCarsIcon = buildIconShapeTuple('electric-cars', electric_cars);
+export const electricityIcon = buildIconShapeTuple('electricity', electricity);
+export const emergencyIcon = buildIconShapeTuple('emergency', emergency);
+export const emissionIcon = buildIconShapeTuple('emission', emission);
+export const engineIcon = buildIconShapeTuple('engine', engine);
+export const entertainmentIcon = buildIconShapeTuple('entertainment', entertainment);
+export const exportAppIcon = buildIconShapeTuple('export-app', export_app);
+export const expressServiceIcon = buildIconShapeTuple('express-service', express_service);
+export const exterior360Icon = buildIconShapeTuple('exterior-360', exterior_360);
+export const exteriorIcon = buildIconShapeTuple('exterior', exterior);
+export const fastForwardIcon = buildIconShapeTuple('fast-forward', fast_forward);
+export const faxIcon = buildIconShapeTuple('fax', fax);
+export const filterIcon = buildIconShapeTuple('filter', filter);
+export const findACarIcon = buildIconShapeTuple('find-a-car', find_a_car);
+export const findADealerIcon = buildIconShapeTuple('find-a-dealer', find_a_dealer);
+export const fleetServiceCommercialIcon = buildIconShapeTuple('fleet-service-commercial', fleet_service_commercial);
+export const fleetServicePrivateIcon = buildIconShapeTuple('fleet-service-private', fleet_service_private);
+export const fullscreenEnterIcon = buildIconShapeTuple('fullscreen-enter', fullscreen_enter);
+export const fullscreenExitIcon = buildIconShapeTuple('fullscreen-exit', fullscreen_exit);
+export const galleryIcon = buildIconShapeTuple('gallery', gallery);
+export const garageAppIcon = buildIconShapeTuple('garage-app', garage_app);
+export const gasAppIcon = buildIconShapeTuple('gas-app', gas_app);
+export const glassDamageAppIcon = buildIconShapeTuple('glass-damage-app', glass_damage_app);
+export const heartIcon = buildIconShapeTuple('heart', heart);
+export const heightAppIcon = buildIconShapeTuple('height-app', height_app);
+export const highwayRoadIcon = buildIconShapeTuple('highway-road', highway_road);
+export const historyIcon = buildIconShapeTuple('history', history);
+export const homeAppIcon = buildIconShapeTuple('home-app', home_app);
+export const homeEnergyAppIcon = buildIconShapeTuple('home-energy-app', home_energy_app);
+export const hornAppIcon = buildIconShapeTuple('horn-app', horn_app);
+export const hybridIcon = buildIconShapeTuple('hybrid', hybrid);
+export const immediateChargingAppIcon = buildIconShapeTuple('immediate-charging-app', immediate_charging_app);
+export const infoIcon = buildIconShapeTuple('info', info);
+export const inputHideIcon = buildIconShapeTuple('input-hide', input_hide);
+export const inputShowIcon = buildIconShapeTuple('input-show', input_show);
+export const interior360Icon = buildIconShapeTuple('interior-360', interior_360);
+export const interiorIcon = buildIconShapeTuple('interior', interior);
+export const internetIcon = buildIconShapeTuple('internet', internet);
+export const invitationAppIcon = buildIconShapeTuple('invitation-app', invitation_app);
+export const jobportalIcon = buildIconShapeTuple('jobportal', jobportal);
+export const keyAppIcon = buildIconShapeTuple('key-app', key_app);
+export const keyCardAppIcon = buildIconShapeTuple('key-card-app', key_card_app);
+export const keyDigitalAppIcon = buildIconShapeTuple('key-digital-app', key_digital_app);
+export const keyboardAppIcon = buildIconShapeTuple('keyboard-app', keyboard_app);
+export const layerCollapseAppIcon = buildIconShapeTuple('layer-collapse-app', layer_collapse_app);
+export const layerExpandAppIcon = buildIconShapeTuple('layer-expand-app', layer_expand_app);
+export const layersAppIcon = buildIconShapeTuple('layers-app', layers_app);
+export const legalTermsAndConditionsAppIcon = buildIconShapeTuple(
   'legal-terms-and-conditions-app',
-  legal_terms_and_conditions_app,
-];
-export const licencePlateAppIcon: IconShapeTuple = ['licence-plate-app', licence_plate_app];
-export const lightAssistappIcon: IconShapeTuple = ['light-assistapp', light_assistapp];
-export const lightingAppIcon: IconShapeTuple = ['lighting-app', lighting_app];
-export const linkExternAppIcon: IconShapeTuple = ['link-extern-app', link_extern_app];
-export const listIcon: IconShapeTuple = ['list', list];
-export const loadingVolumeIcon: IconShapeTuple = ['loading-volume', loading_volume];
-export const localBusinessIcon: IconShapeTuple = ['local-business', local_business];
-export const locateIcon: IconShapeTuple = ['locate', locate];
-export const lockOpenIcon: IconShapeTuple = ['lock-open', lock_open];
-export const lockIcon: IconShapeTuple = ['lock', lock];
-export const loginIcon: IconShapeTuple = ['login', login];
-export const logisticIcon: IconShapeTuple = ['logistic', logistic];
-export const logoutIcon: IconShapeTuple = ['logout', logout];
-export const magnifierMinusIcon: IconShapeTuple = ['magnifier-minus', magnifier_minus];
-export const magnifierPlusIcon: IconShapeTuple = ['magnifier-plus', magnifier_plus];
-export const magnifierIcon: IconShapeTuple = ['magnifier', magnifier];
-export const mailResendAppIcon: IconShapeTuple = ['mail-resend-app', mail_resend_app];
-export const mailIcon: IconShapeTuple = ['mail', mail];
-export const manualIcon: IconShapeTuple = ['manual', manual];
-export const mapIcon: IconShapeTuple = ['map', map];
-export const mediaIcon: IconShapeTuple = ['media', media];
-export const menuAppAppIcon: IconShapeTuple = ['menu-app-app', menu_app_app];
-export const menuIcon: IconShapeTuple = ['menu', menu];
-export const microphoneAppIcon: IconShapeTuple = ['microphone-app', microphone_app];
-export const mobileIcon: IconShapeTuple = ['mobile', mobile];
-export const moreAppIcon: IconShapeTuple = ['more-app', more_app];
-export const moreAppbarAppIcon: IconShapeTuple = ['more-appbar-app', more_appbar_app];
-export const motabilityIcon: IconShapeTuple = ['motability', motability];
-export const navigateIcon: IconShapeTuple = ['navigate', navigate];
-export const newCarCommercialIcon: IconShapeTuple = ['new-car-commercial', new_car_commercial];
-export const newCarPrivateIcon: IconShapeTuple = ['new-car-private', new_car_private];
-export const nightServiceIcon: IconShapeTuple = ['night-service', night_service];
-export const notificationIcon: IconShapeTuple = ['notification', notification];
-export const offersIcon: IconShapeTuple = ['offers', offers];
-export const officeAppIcon: IconShapeTuple = ['office-app', office_app];
-export const oilLevelWarningIcon: IconShapeTuple = ['oil-level-warning', oil_level_warning];
-export const oilLevelIcon: IconShapeTuple = ['oil-level', oil_level];
-export const oilTemperatureAppIcon: IconShapeTuple = ['oil-temperature-app', oil_temperature_app];
-export const onCallDutyIcon: IconShapeTuple = ['on-call-duty', on_call_duty];
-export const openSatIcon: IconShapeTuple = ['open-sat', open_sat];
-export const paintShopIcon: IconShapeTuple = ['paint-shop', paint_shop];
-export const paragraphAppIcon: IconShapeTuple = ['paragraph-app', paragraph_app];
-export const parkHeaterAppIcon: IconShapeTuple = ['park-heater-app', park_heater_app];
-export const parkingGarageAppIcon: IconShapeTuple = ['parking-garage-app', parking_garage_app];
-export const parkingRouteAppIcon: IconShapeTuple = ['parking-route-app', parking_route_app];
-export const parkingValetAppIcon: IconShapeTuple = ['parking-valet-app', parking_valet_app];
-export const parkingIcon: IconShapeTuple = ['parking', parking];
-export const pauseIcon: IconShapeTuple = ['pause', pause];
-export const payloadIcon: IconShapeTuple = ['payload', payload];
-export const paymentAppIcon: IconShapeTuple = ['payment-app', payment_app];
-export const paymentCashAppIcon: IconShapeTuple = ['payment-cash-app', payment_cash_app];
-export const paymentChargingCardAppIcon: IconShapeTuple = ['payment-charging-card-app', payment_charging_card_app];
-export const paymentCreditcardAppIcon: IconShapeTuple = ['payment-creditcard-app', payment_creditcard_app];
-export const paymentMachineAppIcon: IconShapeTuple = ['payment-machine-app', payment_machine_app];
-export const performanceIcon: IconShapeTuple = ['performance', performance];
-export const petrolIcon: IconShapeTuple = ['petrol', petrol];
-export const phoneIcon: IconShapeTuple = ['phone', phone];
-export const pinIcon: IconShapeTuple = ['pin', pin];
-export const playIcon: IconShapeTuple = ['play', play];
-export const plugChargeAppIcon: IconShapeTuple = ['plug-charge-app', plug_charge_app];
-export const plugCcsAppIcon: IconShapeTuple = ['plug-ccs-app', plug_ccs_app];
-export const plugChademoAppIcon: IconShapeTuple = ['plug-chademo-app', plug_chademo_app];
-export const plugSchukoAppIcon: IconShapeTuple = ['plug-schuko-app', plug_schuko_app];
-export const plugGenericAppIcon: IconShapeTuple = ['plug-generic-app', plug_generic_app];
-export const plugType1AppIcon: IconShapeTuple = ['plug-type1-app', plug_type1_app];
-export const plugType2AppIcon: IconShapeTuple = ['plug-type2-app', plug_type2_app];
-export const powerIcon: IconShapeTuple = ['power', power];
-export const powerTrainIcon: IconShapeTuple = ['powertrain', powertrain];
-export const preHeaterAppIcon: IconShapeTuple = ['pre-heater-app', pre_heater_app];
-export const preciseLaneNavigationAppIcon: IconShapeTuple = [
+  legal_terms_and_conditions_app
+);
+export const licencePlateAppIcon = buildIconShapeTuple('licence-plate-app', licence_plate_app);
+export const lightAssistappIcon = buildIconShapeTuple('light-assistapp', light_assistapp);
+export const lightingAppIcon = buildIconShapeTuple('lighting-app', lighting_app);
+export const linkExternAppIcon = buildIconShapeTuple('link-extern-app', link_extern_app);
+export const listIcon = buildIconShapeTuple('list', list);
+export const loadingVolumeIcon = buildIconShapeTuple('loading-volume', loading_volume);
+export const localBusinessIcon = buildIconShapeTuple('local-business', local_business);
+export const locateIcon = buildIconShapeTuple('locate', locate);
+export const lockOpenIcon = buildIconShapeTuple('lock-open', lock_open);
+export const lockIcon = buildIconShapeTuple('lock', lock);
+export const loginIcon = buildIconShapeTuple('login', login);
+export const logisticIcon = buildIconShapeTuple('logistic', logistic);
+export const logoutIcon = buildIconShapeTuple('logout', logout);
+export const magnifierMinusIcon = buildIconShapeTuple('magnifier-minus', magnifier_minus);
+export const magnifierPlusIcon = buildIconShapeTuple('magnifier-plus', magnifier_plus);
+export const magnifierIcon = buildIconShapeTuple('magnifier', magnifier);
+export const mailResendAppIcon = buildIconShapeTuple('mail-resend-app', mail_resend_app);
+export const mailIcon = buildIconShapeTuple('mail', mail);
+export const manualIcon = buildIconShapeTuple('manual', manual);
+export const mapIcon = buildIconShapeTuple('map', map);
+export const mediaIcon = buildIconShapeTuple('media', media);
+export const menuAppAppIcon = buildIconShapeTuple('menu-app-app', menu_app_app);
+export const menuIcon = buildIconShapeTuple('menu', menu);
+export const microphoneAppIcon = buildIconShapeTuple('microphone-app', microphone_app);
+export const mobileIcon = buildIconShapeTuple('mobile', mobile);
+export const moreAppIcon = buildIconShapeTuple('more-app', more_app);
+export const moreAppbarAppIcon = buildIconShapeTuple('more-appbar-app', more_appbar_app);
+export const motabilityIcon = buildIconShapeTuple('motability', motability);
+export const navigateIcon = buildIconShapeTuple('navigate', navigate);
+export const newCarCommercialIcon = buildIconShapeTuple('new-car-commercial', new_car_commercial);
+export const newCarPrivateIcon = buildIconShapeTuple('new-car-private', new_car_private);
+export const nightServiceIcon = buildIconShapeTuple('night-service', night_service);
+export const notificationIcon = buildIconShapeTuple('notification', notification);
+export const offersIcon = buildIconShapeTuple('offers', offers);
+export const officeAppIcon = buildIconShapeTuple('office-app', office_app);
+export const oilLevelWarningIcon = buildIconShapeTuple('oil-level-warning', oil_level_warning);
+export const oilLevelIcon = buildIconShapeTuple('oil-level', oil_level);
+export const oilTemperatureAppIcon = buildIconShapeTuple('oil-temperature-app', oil_temperature_app);
+export const onCallDutyIcon = buildIconShapeTuple('on-call-duty', on_call_duty);
+export const openSatIcon = buildIconShapeTuple('open-sat', open_sat);
+export const paintShopIcon = buildIconShapeTuple('paint-shop', paint_shop);
+export const paragraphAppIcon = buildIconShapeTuple('paragraph-app', paragraph_app);
+export const parkHeaterAppIcon = buildIconShapeTuple('park-heater-app', park_heater_app);
+export const parkingGarageAppIcon = buildIconShapeTuple('parking-garage-app', parking_garage_app);
+export const parkingRouteAppIcon = buildIconShapeTuple('parking-route-app', parking_route_app);
+export const parkingValetAppIcon = buildIconShapeTuple('parking-valet-app', parking_valet_app);
+export const parkingIcon = buildIconShapeTuple('parking', parking);
+export const pauseIcon = buildIconShapeTuple('pause', pause);
+export const payloadIcon = buildIconShapeTuple('payload', payload);
+export const paymentAppIcon = buildIconShapeTuple('payment-app', payment_app);
+export const paymentCashAppIcon = buildIconShapeTuple('payment-cash-app', payment_cash_app);
+export const paymentChargingCardAppIcon = buildIconShapeTuple('payment-charging-card-app', payment_charging_card_app);
+export const paymentCreditcardAppIcon = buildIconShapeTuple('payment-creditcard-app', payment_creditcard_app);
+export const paymentMachineAppIcon = buildIconShapeTuple('payment-machine-app', payment_machine_app);
+export const performanceIcon = buildIconShapeTuple('performance', performance);
+export const petrolIcon = buildIconShapeTuple('petrol', petrol);
+export const phoneIcon = buildIconShapeTuple('phone', phone);
+export const pinIcon = buildIconShapeTuple('pin', pin);
+export const playIcon = buildIconShapeTuple('play', play);
+export const plugChargeAppIcon = buildIconShapeTuple('plug-charge-app', plug_charge_app);
+export const plugCcsAppIcon = buildIconShapeTuple('plug-ccs-app', plug_ccs_app);
+export const plugChademoAppIcon = buildIconShapeTuple('plug-chademo-app', plug_chademo_app);
+export const plugSchukoAppIcon = buildIconShapeTuple('plug-schuko-app', plug_schuko_app);
+export const plugGenericAppIcon = buildIconShapeTuple('plug-generic-app', plug_generic_app);
+export const plugType1AppIcon = buildIconShapeTuple('plug-type1-app', plug_type1_app);
+export const plugType2AppIcon = buildIconShapeTuple('plug-type2-app', plug_type2_app);
+export const powerIcon = buildIconShapeTuple('power', power);
+export const powerTrainIcon = buildIconShapeTuple('powertrain', powertrain);
+export const preHeaterAppIcon = buildIconShapeTuple('pre-heater-app', pre_heater_app);
+export const preciseLaneNavigationAppIcon = buildIconShapeTuple(
   'precise-lane-navigation-app',
-  precise_lane_navigation_app,
-];
-export const presentAppIcon: IconShapeTuple = ['present-app', present_app];
-export const printerIcon: IconShapeTuple = ['printer', printer];
-export const privacyAppIcon: IconShapeTuple = ['privacy-app', privacy_app];
-export const profileRegisterAppIcon: IconShapeTuple = ['profile-register-app', profile_register_app];
-export const profileVerifiedIcon: IconShapeTuple = ['profile-verified', profile_verified];
-export const profileIcon: IconShapeTuple = ['profile', profile];
-export const publicServiceIcon: IconShapeTuple = ['public-service', public_service];
-export const publicTransportAppIcon: IconShapeTuple = ['public-transport-app', public_transport_app];
-export const qualifiedWorkshopIcon: IconShapeTuple = ['qualified-workshop', qualified_workshop];
-export const questionnaireAppIcon: IconShapeTuple = ['questionnaire-app', questionnaire_app];
-export const radioButtonInselectedIcon: IconShapeTuple = ['radio-button-inselected', radio_button_inselected];
-export const radioButtonSelectedForDefIcon: IconShapeTuple = [
+  precise_lane_navigation_app
+);
+export const presentAppIcon = buildIconShapeTuple('present-app', present_app);
+export const printerIcon = buildIconShapeTuple('printer', printer);
+export const privacyAppIcon = buildIconShapeTuple('privacy-app', privacy_app);
+export const profileRegisterAppIcon = buildIconShapeTuple('profile-register-app', profile_register_app);
+export const profileVerifiedIcon = buildIconShapeTuple('profile-verified', profile_verified);
+export const profileIcon = buildIconShapeTuple('profile', profile);
+export const publicServiceIcon = buildIconShapeTuple('public-service', public_service);
+export const publicTransportAppIcon = buildIconShapeTuple('public-transport-app', public_transport_app);
+export const qualifiedWorkshopIcon = buildIconShapeTuple('qualified-workshop', qualified_workshop);
+export const questionnaireAppIcon = buildIconShapeTuple('questionnaire-app', questionnaire_app);
+export const radioButtonInselectedIcon = buildIconShapeTuple('radio-button-inselected', radio_button_inselected);
+export const radioButtonSelectedForDefIcon = buildIconShapeTuple(
   'radio-button-selected-for-dev',
-  radio_button_selected_for_development,
-];
-export const radioButtonSelectedIcon: IconShapeTuple = ['radio-button-selected', radio_button_selected];
-export const radioIcon: IconShapeTuple = ['radio', radio];
-export const rangeIcon: IconShapeTuple = ['range', range];
-export const reloadIcon: IconShapeTuple = ['reload', reload];
-export const removeIcon: IconShapeTuple = ['remove', remove];
-export const repeatIcon: IconShapeTuple = ['repeat', repeat];
-export const rewindIcon: IconShapeTuple = ['rewind', rewind];
-export const roadsideAssistanceIcon: IconShapeTuple = ['roadside-assistance', roadside_assistance];
-export const routeArrowAppIcon: IconShapeTuple = ['route-arrow-app', route_arrow_app];
-export const routeIcon: IconShapeTuple = ['route', route];
-export const routesHistoryAppIcon: IconShapeTuple = ['routes-history-app', routes_history_app];
-export const rssIcon: IconShapeTuple = ['rss', rss];
-export const safetyIcon: IconShapeTuple = ['safety', safety];
-export const saveAppIcon: IconShapeTuple = ['save-[app]', save_app];
-export const saveIcon: IconShapeTuple = ['save', save];
-export const seatAirIcon: IconShapeTuple = ['seat-air', seat_air];
-export const seatIcon: IconShapeTuple = ['seat', seat];
-export const secretTipAppIcon: IconShapeTuple = ['secret-tip-app', secret_tip_app];
-export const selectedPartnerNetworkAppIcon: IconShapeTuple = [
+  radio_button_selected_for_development
+);
+export const radioButtonSelectedIcon = buildIconShapeTuple('radio-button-selected', radio_button_selected);
+export const radioIcon = buildIconShapeTuple('radio', radio);
+export const rangeIcon = buildIconShapeTuple('range', range);
+export const reloadIcon = buildIconShapeTuple('reload', reload);
+export const removeIcon = buildIconShapeTuple('remove', remove);
+export const repeatIcon = buildIconShapeTuple('repeat', repeat);
+export const rewindIcon = buildIconShapeTuple('rewind', rewind);
+export const roadsideAssistanceIcon = buildIconShapeTuple('roadside-assistance', roadside_assistance);
+export const routeArrowAppIcon = buildIconShapeTuple('route-arrow-app', route_arrow_app);
+export const routeIcon = buildIconShapeTuple('route', route);
+export const routesHistoryAppIcon = buildIconShapeTuple('routes-history-app', routes_history_app);
+export const rssIcon = buildIconShapeTuple('rss', rss);
+export const safetyIcon = buildIconShapeTuple('safety', safety);
+export const saveAppIcon = buildIconShapeTuple('save-[app]', save_app);
+export const saveIcon = buildIconShapeTuple('save', save);
+export const seatAirIcon = buildIconShapeTuple('seat-air', seat_air);
+export const seatIcon = buildIconShapeTuple('seat', seat);
+export const secretTipAppIcon = buildIconShapeTuple('secret-tip-app', secret_tip_app);
+export const selectedPartnerNetworkAppIcon = buildIconShapeTuple(
   'selected-partner-network-app',
-  selected_partner_network_app,
-];
-export const selectedIcon: IconShapeTuple = ['selected', selected];
-export const sendToCarAppIcon: IconShapeTuple = ['send-to-car-app', send_to_car_app];
-export const serviceBellIcon: IconShapeTuple = ['service-bell', service_bell];
-export const serviceIcon: IconShapeTuple = ['service', service];
-export const settingsIcon: IconShapeTuple = ['settings', settings];
-export const shareAndroidIcon: IconShapeTuple = ['share-android', share_android];
-export const shareIosIcon: IconShapeTuple = ['share-ios', share_ios];
-export const shoppingCartIcon: IconShapeTuple = ['shopping-cart', shopping_cart];
-export const shuffleIcon: IconShapeTuple = ['shuffle', shuffle];
-export const sizeIcon: IconShapeTuple = ['size', size];
-export const skillAppIcon: IconShapeTuple = ['skill-app', skill_app];
-export const skipBackwardIcon: IconShapeTuple = ['skip-backward', skip_backward];
-export const skipForwardIcon: IconShapeTuple = ['skip-forward', skip_forward];
-export const softwareDownloadAppIcon: IconShapeTuple = ['software-download-app', software_download_app];
-export const sortingAppIcon: IconShapeTuple = ['sorting-app', sorting_app];
-export const soundIcon: IconShapeTuple = ['sound', sound];
-export const standardEquipmentIcon: IconShapeTuple = ['standard-equipment', standard_equipment];
-export const starOutlineIcon: IconShapeTuple = ['star-outline', star_outline];
-export const statisticAppIcon: IconShapeTuple = ['statistic-app', statistic_app];
-export const stockLocatorCommercialIcon: IconShapeTuple = ['stock-locator-commercial', stock_locator_commercial];
-export const stockLocatorPrivateIcon: IconShapeTuple = ['stock-locator-private', stock_locator_private];
-export const stopIcon: IconShapeTuple = ['stop', stop];
-export const switchPositionAppIcon: IconShapeTuple = ['switch-position-app', switch_position_app];
-export const syncAppIcon: IconShapeTuple = ['sync-app', sync_app];
-export const taxiDealerIcon: IconShapeTuple = ['taxi-dealer', taxi_dealer];
-export const technicalSpecificationIcon: IconShapeTuple = ['technical-specification', technical_specification];
-export const temperatureAppIcon: IconShapeTuple = ['temperature-app', temperature_app];
-export const testDriveIcon: IconShapeTuple = ['test-drive', test_drive];
-export const thumbsdownAppIcon: IconShapeTuple = ['thumbsdown-app', thumbsdown_app];
-export const thumbsupAppIcon: IconShapeTuple = ['thumbsup-app', thumbsup_app];
-export const timeClimatisationAppIcon: IconShapeTuple = ['time-climatisation-app', time_climatisation_app];
-export const timePreferredAppIcon: IconShapeTuple = ['time-preferred-app', time_preferred_app];
-export const timerIcon: IconShapeTuple = ['timer', timer];
-export const transcriptDownloadIcon: IconShapeTuple = ['transcript-download', transcript_download];
-export const transmissionAutomaticIcon: IconShapeTuple = ['transmission-automatic', transmission_automatic];
-export const transmissionManualIcon: IconShapeTuple = ['transmission-manual', transmission_manual];
-export const tripAppIcon: IconShapeTuple = ['trip-app', trip_app];
-export const tripLongAppIcon: IconShapeTuple = ['trip-long-app', trip_long_app];
-export const tripPartedAppIcon: IconShapeTuple = ['trip-parted-app', trip_parted_app];
-export const tripShortAppIcon: IconShapeTuple = ['trip-short-app', trip_short_app];
-export const turnSignalsIcon: IconShapeTuple = ['turn-signals', turn_signals];
-export const unselectedIcon: IconShapeTuple = ['unselected', unselected];
-export const updateRefreshAppIcon: IconShapeTuple = ['update-refresh-app', update_refresh_app];
-export const uploadAppIcon: IconShapeTuple = ['upload-app', upload_app];
-export const uploadCustomIcon: IconShapeTuple = ['upload-custom', upload];
-export const usedCarCommercialIcon: IconShapeTuple = ['used-car-commercial', used_car_commercial];
-export const usedCarPrivateIcon: IconShapeTuple = ['used-car-private', used_car_private];
-export const vehicleAmarokIcon: IconShapeTuple = ['vehicle-amarok', vehicle_amarok];
-export const vehicleCaddyIcon: IconShapeTuple = ['vehicle-caddy', vehicle_caddy];
-export const vehicleCrafterIcon: IconShapeTuple = ['vehicle-crafter', vehicle_crafter];
-export const vehicleHightIcon: IconShapeTuple = ['vehicle-hight', vehicle_hight];
-export const vehicleIdBuzzIcon: IconShapeTuple = ['vehicle-idbuzz', vehicle_idbuzz];
-export const vehicleMultivanIcon: IconShapeTuple = ['vehicle-multivan', vehicle_multivan];
-export const vehicleTransporterIcon: IconShapeTuple = ['vehicle-transporter', vehicle_transporter];
-export const videoChatIcon: IconShapeTuple = ['video-chat', video_chat];
-export const view360Icon: IconShapeTuple = ['view-360', view_360];
-export const virtualRealityIcon: IconShapeTuple = ['virtual-reality', virtual_reality];
-export const voiceMessageAppIcon: IconShapeTuple = ['voice-message-app', voice_message_app];
-export const volkswagenAppIcon: IconShapeTuple = ['volkswagen-app', volkswagen_app];
-export const volumeMaximumIcon: IconShapeTuple = ['volume-maximum', volume_maximum];
-export const volumeMediumIcon: IconShapeTuple = ['volume-medium', volume_medium];
-export const volumeMuteIcon: IconShapeTuple = ['volume-mute', volume_mute];
-export const vwConnectLicenseAppIcon: IconShapeTuple = ['vw-connect-license-app', vw_connect_license_app];
-export const walkingAppIcon: IconShapeTuple = ['walking-app', walking_app];
-export const wallboxIcon: IconShapeTuple = ['wallbox', wallbox];
-export const weAssistAppIcon: IconShapeTuple = ['we-assist-app', we_assist_app];
-export const weChargeAppIcon: IconShapeTuple = ['we-charge-app', we_charge_app];
-export const weDeliverAppIcon: IconShapeTuple = ['we-deliver-app', we_deliver_app];
-export const weExperienceAppIcon: IconShapeTuple = ['we-experience-app', we_experience_app];
-export const weParkAppIcon: IconShapeTuple = ['we-park-app', we_park_app];
-export const weUpgradeAppIcon: IconShapeTuple = ['we-upgrade-app', we_upgrade_app];
-export const weatherSunAppIcon: IconShapeTuple = ['weather-sun-app', weather_sun_app];
-export const wheelToWheelIcon: IconShapeTuple = ['wheel-to-wheel', wheel_to_wheel];
-export const windscreenWashIcon: IconShapeTuple = ['windscreen-wash', windscreen_wash];
-export const wlanHotspotIcon: IconShapeTuple = ['wlan-hotspot', wlan_hotspot];
+  selected_partner_network_app
+);
+export const selectedIcon = buildIconShapeTuple('selected', selected);
+export const sendToCarAppIcon = buildIconShapeTuple('send-to-car-app', send_to_car_app);
+export const serviceBellIcon = buildIconShapeTuple('service-bell', service_bell);
+export const serviceIcon = buildIconShapeTuple('service', service);
+export const settingsIcon = buildIconShapeTuple('settings', settings);
+export const shareAndroidIcon = buildIconShapeTuple('share-android', share_android);
+export const shareIosIcon = buildIconShapeTuple('share-ios', share_ios);
+export const shoppingCartIcon = buildIconShapeTuple('shopping-cart', shopping_cart);
+export const shuffleIcon = buildIconShapeTuple('shuffle', shuffle);
+export const sizeIcon = buildIconShapeTuple('size', size);
+export const skillAppIcon = buildIconShapeTuple('skill-app', skill_app);
+export const skipBackwardIcon = buildIconShapeTuple('skip-backward', skip_backward);
+export const skipForwardIcon = buildIconShapeTuple('skip-forward', skip_forward);
+export const softwareDownloadAppIcon = buildIconShapeTuple('software-download-app', software_download_app);
+export const sortingAppIcon = buildIconShapeTuple('sorting-app', sorting_app);
+export const soundIcon = buildIconShapeTuple('sound', sound);
+export const standardEquipmentIcon = buildIconShapeTuple('standard-equipment', standard_equipment);
+export const starOutlineIcon = buildIconShapeTuple('star-outline', star_outline);
+export const statisticAppIcon = buildIconShapeTuple('statistic-app', statistic_app);
+export const stockLocatorCommercialIcon = buildIconShapeTuple('stock-locator-commercial', stock_locator_commercial);
+export const stockLocatorPrivateIcon = buildIconShapeTuple('stock-locator-private', stock_locator_private);
+export const stopIcon = buildIconShapeTuple('stop', stop);
+export const switchPositionAppIcon = buildIconShapeTuple('switch-position-app', switch_position_app);
+export const syncAppIcon = buildIconShapeTuple('sync-app', sync_app);
+export const taxiDealerIcon = buildIconShapeTuple('taxi-dealer', taxi_dealer);
+export const technicalSpecificationIcon = buildIconShapeTuple('technical-specification', technical_specification);
+export const temperatureAppIcon = buildIconShapeTuple('temperature-app', temperature_app);
+export const testDriveIcon = buildIconShapeTuple('test-drive', test_drive);
+export const thumbsdownAppIcon = buildIconShapeTuple('thumbsdown-app', thumbsdown_app);
+export const thumbsupAppIcon = buildIconShapeTuple('thumbsup-app', thumbsup_app);
+export const timeClimatisationAppIcon = buildIconShapeTuple('time-climatisation-app', time_climatisation_app);
+export const timePreferredAppIcon = buildIconShapeTuple('time-preferred-app', time_preferred_app);
+export const timerIcon = buildIconShapeTuple('timer', timer);
+export const transcriptDownloadIcon = buildIconShapeTuple('transcript-download', transcript_download);
+export const transmissionAutomaticIcon = buildIconShapeTuple('transmission-automatic', transmission_automatic);
+export const transmissionManualIcon = buildIconShapeTuple('transmission-manual', transmission_manual);
+export const tripAppIcon = buildIconShapeTuple('trip-app', trip_app);
+export const tripLongAppIcon = buildIconShapeTuple('trip-long-app', trip_long_app);
+export const tripPartedAppIcon = buildIconShapeTuple('trip-parted-app', trip_parted_app);
+export const tripShortAppIcon = buildIconShapeTuple('trip-short-app', trip_short_app);
+export const turnSignalsIcon = buildIconShapeTuple('turn-signals', turn_signals);
+export const unselectedIcon = buildIconShapeTuple('unselected', unselected);
+export const updateRefreshAppIcon = buildIconShapeTuple('update-refresh-app', update_refresh_app);
+export const uploadAppIcon = buildIconShapeTuple('upload-app', upload_app);
+export const uploadCustomIcon = buildIconShapeTuple('upload-custom', upload);
+export const usedCarCommercialIcon = buildIconShapeTuple('used-car-commercial', used_car_commercial);
+export const usedCarPrivateIcon = buildIconShapeTuple('used-car-private', used_car_private);
+export const vehicleAmarokIcon = buildIconShapeTuple('vehicle-amarok', vehicle_amarok);
+export const vehicleCaddyIcon = buildIconShapeTuple('vehicle-caddy', vehicle_caddy);
+export const vehicleCrafterIcon = buildIconShapeTuple('vehicle-crafter', vehicle_crafter);
+export const vehicleHightIcon = buildIconShapeTuple('vehicle-hight', vehicle_hight);
+export const vehicleIdBuzzIcon = buildIconShapeTuple('vehicle-idbuzz', vehicle_idbuzz);
+export const vehicleMultivanIcon = buildIconShapeTuple('vehicle-multivan', vehicle_multivan);
+export const vehicleTransporterIcon = buildIconShapeTuple('vehicle-transporter', vehicle_transporter);
+export const videoChatIcon = buildIconShapeTuple('video-chat', video_chat);
+export const view360Icon = buildIconShapeTuple('view-360', view_360);
+export const virtualRealityIcon = buildIconShapeTuple('virtual-reality', virtual_reality);
+export const voiceMessageAppIcon = buildIconShapeTuple('voice-message-app', voice_message_app);
+export const volkswagenAppIcon = buildIconShapeTuple('volkswagen-app', volkswagen_app);
+export const volumeMaximumIcon = buildIconShapeTuple('volume-maximum', volume_maximum);
+export const volumeMediumIcon = buildIconShapeTuple('volume-medium', volume_medium);
+export const volumeMuteIcon = buildIconShapeTuple('volume-mute', volume_mute);
+export const vwConnectLicenseAppIcon = buildIconShapeTuple('vw-connect-license-app', vw_connect_license_app);
+export const walkingAppIcon = buildIconShapeTuple('walking-app', walking_app);
+export const wallboxIcon = buildIconShapeTuple('wallbox', wallbox);
+export const weAssistAppIcon = buildIconShapeTuple('we-assist-app', we_assist_app);
+export const weChargeAppIcon = buildIconShapeTuple('we-charge-app', we_charge_app);
+export const weDeliverAppIcon = buildIconShapeTuple('we-deliver-app', we_deliver_app);
+export const weExperienceAppIcon = buildIconShapeTuple('we-experience-app', we_experience_app);
+export const weParkAppIcon = buildIconShapeTuple('we-park-app', we_park_app);
+export const weUpgradeAppIcon = buildIconShapeTuple('we-upgrade-app', we_upgrade_app);
+export const weatherSunAppIcon = buildIconShapeTuple('weather-sun-app', weather_sun_app);
+export const wheelToWheelIcon = buildIconShapeTuple('wheel-to-wheel', wheel_to_wheel);
+export const windscreenWashIcon = buildIconShapeTuple('windscreen-wash', windscreen_wash);
+export const wlanHotspotIcon = buildIconShapeTuple('wlan-hotspot', wlan_hotspot);
 
-export const folderFilledAppIcon: IconShapeTuple = ['folder-filled-app', folder_filled_app];
-export const alertFilledAppIcon: IconShapeTuple = ['alert-filled-app', alert_filled_app];
-export const alertNotificationFilledAppIcon: IconShapeTuple = [
+export const folderFilledAppIcon = buildIconShapeTuple('folder-filled-app', folder_filled_app);
+export const alertFilledAppIcon = buildIconShapeTuple('alert-filled-app', alert_filled_app);
+export const alertNotificationFilledAppIcon = buildIconShapeTuple(
   'alert-notification-filled-app',
-  alert_notification_filled_app,
-];
-export const bookmarkFilledIcon: IconShapeTuple = ['bookmark-filled', bookmark_filled];
-export const checkmarkFilledAppIcon: IconShapeTuple = ['checkmark-filled-app', checkmark_filled_app];
-export const coffeeFilledAppIcon: IconShapeTuple = ['coffee-filled-app', coffee_filled_app];
-export const consumptionFuelFilledAppIcon: IconShapeTuple = [
+  alert_notification_filled_app
+);
+export const bookmarkFilledIcon = buildIconShapeTuple('bookmark-filled', bookmark_filled);
+export const checkmarkFilledAppIcon = buildIconShapeTuple('checkmark-filled-app', checkmark_filled_app);
+export const coffeeFilledAppIcon = buildIconShapeTuple('coffee-filled-app', coffee_filled_app);
+export const consumptionFuelFilledAppIcon = buildIconShapeTuple(
   'consumption-fuel-filled-app',
-  consumption_fuel_filled_app,
-];
-export const contactDealerFilledAppIcon: IconShapeTuple = ['contact-dealer-filled-app', contact_dealer_filled_app];
-export const dropFilledAppIcon: IconShapeTuple = ['drop-filled-app', drop_filled_app];
-export const electricityFilledAppIcon: IconShapeTuple = ['electricity-filled-app', electricity_filled_app];
-export const foodFilledAppIcon: IconShapeTuple = ['food-filled-app', food_filled_app];
-export const heartFilledAppIcon: IconShapeTuple = ['heart-filled-app', heart_filled_app];
-export const homeFilledAppIcon: IconShapeTuple = ['home-filled-app', home_filled_app];
-export const hornFilledAppIcon: IconShapeTuple = ['horn-filled-app', horn_filled_app];
-export const infoFilledIcon: IconShapeTuple = ['info-filled', info_filled];
-export const navigateFilledAppIcon: IconShapeTuple = ['navigate-filled-app', navigate_filled_app];
-export const newCarPrivateFilledAppIcon: IconShapeTuple = ['new-car-private-filled-app', new_car_private_filled_app];
-export const notificationFilledIcon: IconShapeTuple = ['notification-filled', notification_filled];
-export const offersFilledAppIcon: IconShapeTuple = ['offers-filled-app', offers_filled_app];
-export const officeFilledAppIcon: IconShapeTuple = ['office-filled-app', office_filled_app];
-export const parkingFilledAppIcon: IconShapeTuple = ['parking-filled-app', parking_filled_app];
-export const pinFilledAppIcon: IconShapeTuple = ['pin-filled-app', pin_filled_app];
-export const pinGenericFilledAppIcon: IconShapeTuple = ['pin-generic-filled-app', pin_generic_filled_app];
-export const secretTipFilledAppIcon: IconShapeTuple = ['secret-tip-filled-app', secret_tip_filled_app];
-export const serviceFilledAppIcon: IconShapeTuple = ['service-filled-app', service_filled_app];
-export const shoppingCartFilledAppIcon: IconShapeTuple = ['shopping-cart-filled-app', shopping_cart_filled_app];
-export const starFilledIcon: IconShapeTuple = ['star-filled', star_filled];
-export const thumbsdownFilledAppIcon: IconShapeTuple = ['thumbsdown-filled-app', thumbsdown_filled_app];
-export const thumbsupFilledAppIcon: IconShapeTuple = ['thumbsup-filled-app', thumbsup_filled_app];
-export const walkingFilledAppIcon: IconShapeTuple = ['walking-filled-app', walking_filled_app];
+  consumption_fuel_filled_app
+);
+export const contactDealerFilledAppIcon = buildIconShapeTuple('contact-dealer-filled-app', contact_dealer_filled_app);
+export const dropFilledAppIcon = buildIconShapeTuple('drop-filled-app', drop_filled_app);
+export const electricityFilledAppIcon = buildIconShapeTuple('electricity-filled-app', electricity_filled_app);
+export const foodFilledAppIcon = buildIconShapeTuple('food-filled-app', food_filled_app);
+export const heartFilledAppIcon = buildIconShapeTuple('heart-filled-app', heart_filled_app);
+export const homeFilledAppIcon = buildIconShapeTuple('home-filled-app', home_filled_app);
+export const hornFilledAppIcon = buildIconShapeTuple('horn-filled-app', horn_filled_app);
+export const infoFilledIcon = buildIconShapeTuple('info-filled', info_filled);
+export const navigateFilledAppIcon = buildIconShapeTuple('navigate-filled-app', navigate_filled_app);
+export const newCarPrivateFilledAppIcon = buildIconShapeTuple('new-car-private-filled-app', new_car_private_filled_app);
+export const notificationFilledIcon = buildIconShapeTuple('notification-filled', notification_filled);
+export const offersFilledAppIcon = buildIconShapeTuple('offers-filled-app', offers_filled_app);
+export const officeFilledAppIcon = buildIconShapeTuple('office-filled-app', office_filled_app);
+export const parkingFilledAppIcon = buildIconShapeTuple('parking-filled-app', parking_filled_app);
+export const pinFilledAppIcon = buildIconShapeTuple('pin-filled-app', pin_filled_app);
+export const pinGenericFilledAppIcon = buildIconShapeTuple('pin-generic-filled-app', pin_generic_filled_app);
+export const secretTipFilledAppIcon = buildIconShapeTuple('secret-tip-filled-app', secret_tip_filled_app);
+export const serviceFilledAppIcon = buildIconShapeTuple('service-filled-app', service_filled_app);
+export const shoppingCartFilledAppIcon = buildIconShapeTuple('shopping-cart-filled-app', shopping_cart_filled_app);
+export const starFilledIcon = buildIconShapeTuple('star-filled', star_filled);
+export const thumbsdownFilledAppIcon = buildIconShapeTuple('thumbsdown-filled-app', thumbsdown_filled_app);
+export const thumbsupFilledAppIcon = buildIconShapeTuple('thumbsup-filled-app', thumbsup_filled_app);
+export const walkingFilledAppIcon = buildIconShapeTuple('walking-filled-app', walking_filled_app);
 
 export const allIcons: IconShapeTuple[] = [
   accessoryPartsIcon,
@@ -7580,3 +7601,7 @@ export const allIcons: IconShapeTuple[] = [
   thumbsupFilledAppIcon,
   walkingFilledAppIcon,
 ];
+
+function buildIconShapeTuple(name: string, icon: string | IconShapeCollection): IconShapeTuple {
+  return ['ca-' + name, icon];
+}

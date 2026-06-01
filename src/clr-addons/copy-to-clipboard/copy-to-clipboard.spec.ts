@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { ClrCopyToClipboard } from './copy-to-clipboard';
@@ -36,6 +36,7 @@ describe('ClrCopyToClipboard', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(ClrCopyToClipboard);
+    fixture.componentRef.setInput('value', 'Test');
     component = fixture.componentInstance;
   });
 
@@ -154,7 +155,7 @@ describe('ClrCopyToClipboard', () => {
 
     it('should update when host component value changes', () => {
       hostComponent.testValue = 'New Value';
-      hostFixture.detectChanges();
+      hostFixture.changeDetectorRef.detectChanges();
 
       const buttonComponent = buttonDebugElement.componentInstance;
       expect(buttonComponent.value()).toBe('New Value');

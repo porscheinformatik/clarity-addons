@@ -49,13 +49,13 @@
       background: var(--clr-global-selection-color);
     }
 
-    .no-result-text {
-      font-size: 0.6rem;
-      padding: 0 var(--cds-global-space-7);
-    }
-
     .dropdown-menu {
       max-width: calc(1080 * (1rem / var(--cds-global-base)));
     }
+  }
+
+  .no-result-text {
+    font-size: 0.6rem;
+    padding: 0 var(--cds-global-space-7);
   }
 }

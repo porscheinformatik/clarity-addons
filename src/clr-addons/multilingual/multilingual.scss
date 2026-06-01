@@ -20,22 +20,22 @@
       }
     }
 
-    .clr-multilingual-dd-entry {
-      padding-left: 0.5rem;
-      padding-right: 0.5rem;
-
-      .label {
-        text-transform: uppercase;
-        width: 2rem;
-      }
-    }
-
     clr-multilingual-selector {
       margin-right: 0.3rem;
     }
 
     .clr-multi-input-wrapper {
       width: 100%;
+    }
+  }
+
+  .clr-multilingual-dd-entry {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+
+    .label {
+      text-transform: uppercase;
+      width: 2rem;
     }
   }
 }

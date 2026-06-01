@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -10,16 +10,15 @@ module.exports = function (karma) {
   const config = {
     autoWatch: true,
     basePath: '',
-    frameworks: ['jasmine', 'jasmine-matchers', '@angular-devkit/build-angular'],
+    frameworks: ['jasmine', 'jasmine-matchers'],
     plugins: [
       // Frameworks
       require('karma-jasmine'),
       require('karma-jasmine-matchers'),
-      require('@angular-devkit/build-angular/plugins/karma'),
+
       require('@alasdair/karma-scss-preprocessor'),
       // Reporters
       require('karma-jasmine-html-reporter'),
-      require('karma-htmlfile-reporter'),
       require('karma-coverage-istanbul-reporter'),
       require('karma-mocha-reporter'),
       require('karma-notify-reporter'),
@@ -30,12 +29,6 @@ module.exports = function (karma) {
       // Custom Elements
       {
         pattern: './node_modules/@webcomponents/custom-elements/custom-elements.min.js',
-        included: true,
-        watched: false,
-      },
-      // Clarity Core
-      {
-        pattern: './node_modules/@cds/core/global.min.css',
         included: true,
         watched: false,
       },
@@ -54,6 +47,12 @@ module.exports = function (karma) {
 
       // Entry point to all our spec files
       { pattern: './tests/tests.entry.ts', watched: false },
+      './node_modules/zone.js/fesm2015/long-stack-trace-zone.js',
+      './node_modules/zone.js/fesm2015/proxy.js',
+      './node_modules/zone.js/fesm2015/sync-test.js',
+      './node_modules/zone.js/fesm2015/jasmine-patch.js',
+      './node_modules/zone.js/fesm2015/async-test.js',
+      './node_modules/zone.js/fesm2015/fake-async-test.js',
     ],
     preprocessors: {
       'src/**/*.scss': ['scss'],
@@ -61,7 +60,7 @@ module.exports = function (karma) {
     client: {
       clearContext: false, // leave Jasmine Spec Runner output visible in browser
     },
-    reporters: ['mocha', 'coverage-istanbul', 'html', 'notify'],
+    reporters: ['mocha', 'coverage-istanbul', 'notify'],
     htmlReporter: {
       outputFile: './reports/unit/index.html',
       useLegacyStyle: true,

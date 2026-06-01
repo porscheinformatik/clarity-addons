@@ -6,7 +6,7 @@
 
 import { NgModule } from '@angular/core';
 import { CommonModule, DecimalPipe } from '@angular/common';
-import { ClrAlertModule, ClrIconModule, ClrSignpostModule } from '@clr/angular';
+import { ClrAlertModule, ClrIcon, ClrSignpostModule } from '@clr/angular';
 
 import { AreaChartComponent } from './area-chart/area-chart.component';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
@@ -36,7 +36,7 @@ const CLR_CHARTS_DECLARATIONS = [
     CommonModule,
     DecimalPipe,
     ClrAlertModule,
-    ClrIconModule,
+    ClrIcon,
     ClrSignpostModule,
     // standalone helpers consumed by the non-standalone chart components
     ChartAlertOverlayComponent,

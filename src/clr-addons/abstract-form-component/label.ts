@@ -23,7 +23,7 @@ export class ClrAddonsLabel implements OnInit, OnDestroy {
 
     if (this.controlIdService && !(this.el.nativeElement as HTMLLabelElement).getAttribute('for')) {
       this.controlIdService.idChange.pipe(takeUntil(this.destroyed$)).subscribe(id =>
-        // setTimeout needed, otherwise the ClrLabel directive of clarity will remove this via HostBinding again
+        // setTimeout needed, otherwise the ClrControlLabel directive of clarity will remove this via HostBinding again
         setTimeout(() => this.renderer.setAttribute(this.el.nativeElement, 'for', id))
       );
     }

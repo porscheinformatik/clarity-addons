@@ -1,8 +1,8 @@
 <!--
-  ~ Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
-  ~ This software is released under MIT license.
-  ~ The full license information can be found in LICENSE in the root directory of this project.
-  -->
+~ Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
+~ This software is released under MIT license.
+~ The full license information can be found in LICENSE in the root directory of this project.
+-->
 
 <h2>Copy to Clipboard</h2>
 <p>
@@ -18,7 +18,8 @@
   <clr-dg-column>Email</clr-dg-column>
   <clr-dg-column>Role</clr-dg-column>
 
-  <clr-dg-row *ngFor="let user of users">
+  @for (user of users; track user) {
+  <clr-dg-row>
     <clr-dg-cell class="clr-copy-to-clipboard-container">
       {{ user.id }}
       <clr-copy-to-clipboard [value]="user.id" [hiddenUntilHovered]="true"></clr-copy-to-clipboard>
@@ -30,6 +31,7 @@
     </clr-dg-cell>
     <clr-dg-cell>{{ user.role }}</clr-dg-cell>
   </clr-dg-row>
+  }
 
   <clr-dg-footer>{{ users.length }} users</clr-dg-footer>
 </clr-datagrid>
@@ -71,12 +73,14 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let row of tableRows">
+    @for (row of tableRows; track row) {
+    <tr>
       <td>{{ row.label }}</td>
       <td class="clr-copy-to-clipboard-container clr-justify-content-center">
         {{ row.value }}
         <clr-copy-to-clipboard [value]="row.value" [hiddenUntilHovered]="true"></clr-copy-to-clipboard>
       </td>
     </tr>
+    }
   </tbody>
 </table>

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -73,7 +73,6 @@ describe('ViewEditSectionComponent', () => {
     TestBed.configureTestingModule({
       declarations: [TestComponent, EditIconComponent, EditModeComponent, NotEditableComponent],
       imports: [ClarityModule, ClrViewEditSectionModule, BrowserAnimationsModule],
-      teardown: { destroyAfterEach: false },
     }).compileComponents();
   }));
 
@@ -202,7 +201,7 @@ describe('ViewEditSectionComponent', () => {
 
   it('should have no collapse icon when in edit mode', () => {
     component.onEdit();
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
     expect(fixture.nativeElement.querySelector('.ces-caret-btn')).toBeNull();
   });
 });

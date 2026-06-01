@@ -5,7 +5,7 @@
  */
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
-import { ClarityIcons, checkIcon } from '@cds/core/icon';
+import { ClarityIcons, checkIcon } from '@clr/angular/icon';
 import { share } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import {

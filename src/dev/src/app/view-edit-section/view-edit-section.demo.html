@@ -1,8 +1,8 @@
 <!--
-  ~ Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
-  ~ This software is released under MIT license.
-  ~ The full license information can be found in LICENSE in the root directory of this project.
-  -->
+~ Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
+~ This software is released under MIT license.
+~ The full license information can be found in LICENSE in the root directory of this project.
+-->
 
 <h2>View Edit Section</h2>
 
@@ -85,7 +85,8 @@
         [clrViewRef]="viewBlock2"
       >
         <div action-block>
-          <clr-dropdown *ngIf="!editMode">
+          @if (!editMode) {
+          <clr-dropdown>
             <button type="button" class="btn btn-icon btn-link ves-action dropdown-toggle" clrDropdownTrigger>
               <cds-icon shape="ellipsis-vertical"></cds-icon>
             </button>
@@ -95,6 +96,7 @@
               <button type="button" clrDropdownItem>Delete</button>
             </clr-dropdown-menu>
           </clr-dropdown>
+          }
         </div>
 
         <ng-template #viewBlock2>

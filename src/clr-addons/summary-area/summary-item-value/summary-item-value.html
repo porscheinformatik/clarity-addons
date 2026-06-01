@@ -2,7 +2,7 @@
 <clr-tooltip>
   <cds-icon
     clrTooltipTrigger
-    [attr.shape]="icon()"
+    [shape]="icon()"
     class="value-icon value-link"
     tabindex="0"
     (click)="handleClick()"
@@ -14,7 +14,7 @@
 </clr-tooltip>
 } @else {
 <cds-icon
-  [attr.shape]="icon()"
+  [shape]="icon()"
   class="value-icon value-link"
   tabindex="0"
   (click)="handleClick()"
@@ -22,13 +22,13 @@
 ></cds-icon>
 } } @else { @if (tooltip()) {
 <clr-tooltip>
-  <cds-icon clrTooltipTrigger [attr.shape]="icon()" class="value-icon value-icon-neutral"></cds-icon>
+  <cds-icon clrTooltipTrigger [shape]="icon()" class="value-icon value-icon-neutral"></cds-icon>
   <clr-tooltip-content [clrSize]="tooltipSize" [clrPosition]="tooltipPosition" *clrIfOpen>
     {{ tooltip() }}</clr-tooltip-content
   >
 </clr-tooltip>
 } @else {
-<cds-icon [attr.shape]="icon()" class="value-icon value-icon-neutral"></cds-icon>
+<cds-icon [shape]="icon()" class="value-icon value-icon-neutral"></cds-icon>
 } } } @else if (value() !== undefined && value() !== null && value() !== '') { @if (hasClickHandler) {
 <clr-tooltip>
   <span

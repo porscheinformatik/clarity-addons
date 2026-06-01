@@ -4,11 +4,11 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component, EventEmitter, Output } from '@angular/core';
-import { ClrAlertModule, ClrDatagridModule, ClrIconModule, ClrModalModule, ClrProgressBarModule } from '@clr/angular';
+import { ClrAlertModule, ClrDatagridModule, ClrModalModule, ClrProgressBarModule } from '@clr/angular';
 
 @Component({
   selector: 'app-progress-item',
-  imports: [ClrDatagridModule, ClrIconModule, ClrModalModule, ClrAlertModule, ClrProgressBarModule],
+  imports: [ClrDatagridModule, ClrModalModule, ClrAlertModule, ClrProgressBarModule],
   templateUrl: './progress-item.component.html',
   styleUrl: './progress-item.component.scss',
 })

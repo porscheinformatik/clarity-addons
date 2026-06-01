@@ -82,9 +82,8 @@ describe('ClrAddonsLabel', () => {
   it('provides a host binding on the for attribute', function () {
     TestBed.configureTestingModule({ declarations: [ClrAddonsLabel, ExplicitForTest], providers: [ControlIdService] });
     const fixture = TestBed.createComponent(ExplicitForTest);
-    fixture.detectChanges();
     fixture.componentInstance.forValue = 'updatedFor';
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
     const label = fixture.nativeElement.querySelector('label');
     expect(label.getAttribute('for')).toBe('updatedFor');
   });

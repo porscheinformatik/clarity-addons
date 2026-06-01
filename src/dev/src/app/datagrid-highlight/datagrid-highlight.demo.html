@@ -1,6 +1,6 @@
 <h2>Highlighting</h2>
 
-<clr-datagrid [(clrDgSelected)]="selected">
+<clr-datagrid [(clrDgSelected)]="selected" clrDgSelectionType="multi">
   <clr-dg-column [clrDgField]="'name'">Name</clr-dg-column>
   <clr-dg-column [clrDgField]="'text'">Description</clr-dg-column>
   <clr-dg-column [clrDgField]="'status'"> Status</clr-dg-column>
@@ -15,7 +15,7 @@
     <clr-dg-cell>{{ item.name }}</clr-dg-cell>
     <clr-dg-cell>{{ item.text }}</clr-dg-cell>
     <clr-dg-cell [ngClass]="getTextColoring(item.status)">
-      <cds-icon status="info" [attr.shape]="getIcon(item.status)"></cds-icon>
+      <cds-icon status="info" [shape]="getIcon(item.status)"></cds-icon>
       {{ item.status }}
     </clr-dg-cell>
   </clr-dg-row>

@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, DOCUMENT, Inject, OnInit } from '@angular/core';
 import { Route } from '@angular/router';
 import { APP_ROUTES } from './app.routing';
-import { DOCUMENT } from '@angular/common';
+
 import { RouteHistoryService } from './route-history.service';
-import { angleIcon, ClarityIcons, cogIcon, shoppingCartIcon, userIcon } from '@cds/core/icon';
+import { angleIcon, ClarityIcons, cogIcon, shoppingCartIcon, userIcon } from '@clr/angular/icon';
 
 ClarityIcons.addIcons(angleIcon, cogIcon, userIcon, shoppingCartIcon);
 
@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
     this.routeHistoryService.init();
   }
 
-  setTheme(theme: { cdsTheme: string; href: string }): void {
+  setTheme(theme: { cdsTheme: string; name: string }): void {
     this.document.body.setAttribute('cds-theme', theme.cdsTheme);
   }
 }

@@ -1,24 +1,23 @@
 <ng-content select="label"></ng-content>
 <div class="clr-control-container" [ngClass]="controlClasses">
-  <ng-container *ngFor="let value of values; index as i">
-    <clr-add-option
-      [allValues]="allValues"
-      [excludedValues]="values"
-      (remove)="onRemoveValue(i)"
-      (add)="addBlankOption()"
-      [value]="value"
-      (valueChanged)="onValueChanged($event, i)"
-      [blankOption]="blankOption"
-      [mandatory]="mandatory"
-      [readonly]="readonly"
-      [disabled]="disabled"
-      [disableAddButton]="addNotPossible() || disabled"
-      [showAddButton]="compactMode && i === values.length - 1"
-    >
-    </clr-add-option>
-  </ng-container>
+  @for (value of values; track value; let i = $index) {
+  <clr-add-option
+    [allValues]="allValues"
+    [excludedValues]="values"
+    (remove)="onRemoveValue(i)"
+    (add)="addBlankOption()"
+    [value]="value"
+    (valueChanged)="onValueChanged($event, i)"
+    [blankOption]="blankOption"
+    [mandatory]="mandatory"
+    [readonly]="readonly"
+    [disabled]="disabled"
+    [disableAddButton]="addNotPossible() || disabled"
+    [showAddButton]="compactMode && i === values.length - 1"
+  >
+  </clr-add-option>
+  } @if (!(readonly || readonly === '') && values.length === 0 && compactMode) {
   <button
-    *ngIf="!(readonly || readonly === '') && values.length === 0 && compactMode"
     type="button"
     class="btn btn-icon btn-link quick-list-addcompact"
     (click)="addBlankOption()"
@@ -26,8 +25,8 @@
   >
     <cds-icon shape="plus-circle"></cds-icon>
   </button>
+  } @if (!(readonly || readonly === '') && !compactMode) {
   <button
-    *ngIf="!(readonly || readonly === '') && !compactMode"
     type="button"
     class="btn btn-link btn-sm quick-list-add"
     (click)="addBlankOption()"
@@ -35,4 +34,5 @@
   >
     {{addLabel}}
   </button>
+  }
 </div>

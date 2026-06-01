@@ -9,7 +9,7 @@
       "projectType": "application",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:browser-esbuild",
           "options": {
             "outputPath": "dist/browser",
             "index": "src/index.html",
@@ -43,9 +43,6 @@
               }
             ],
             "styles": [
-              "node_modules/modern-normalize/modern-normalize.css",
-              "node_modules/@cds/core/global.min.css",
-              "node_modules/@cds/core/styles/theme.dark.min.css",
               "node_modules/@clr/ui/clr-ui.min.css",
               "node_modules/angular-calendar/css/angular-calendar.css",
               "node_modules/@porscheinformatik/clr-addons/styles/clr-addons-phs.min.css",
@@ -55,7 +52,6 @@
               "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js",
               "node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"
             ],
-            "vendorChunk": true,
             "extractLicenses": false,
             "buildOptimizer": false,
             "sourceMap": true,
@@ -75,8 +71,6 @@
               "sourceMap": false,
               "namedChunks": false,
               "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "baseHref": "/clarity-addons/",
               "fileReplacements": [
                 {
@@ -100,7 +94,7 @@
           }
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "@angular/build:extract-i18n",
           "options": {
             "buildTarget": "clarity:build"
           }
@@ -115,21 +109,34 @@
     "@schematics/angular:component": {
       "skipTests": true,
       "prefix": "app",
-      "style": "scss"
+      "style": "scss",
+      "type": "component"
     },
     "@schematics/angular:directive": {
       "skipTests": true,
-      "prefix": "app"
+      "prefix": "app",
+      "type": "directive"
     },
     "@schematics/angular:guard": {
-      "skipTests": true
+      "skipTests": true,
+      "typeSeparator": "."
     },
-    "@schematics/angular:module": {},
+    "@schematics/angular:module": {
+      "typeSeparator": "."
+    },
     "@schematics/angular:pipe": {
-      "skipTests": true
+      "skipTests": true,
+      "typeSeparator": "."
     },
     "@schematics/angular:service": {
-      "skipTests": true
+      "skipTests": true,
+      "type": "service"
+    },
+    "@schematics/angular:interceptor": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:resolver": {
+      "typeSeparator": "."
     }
   },
   "cli": {

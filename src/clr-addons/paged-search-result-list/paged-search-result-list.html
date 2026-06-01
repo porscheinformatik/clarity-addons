@@ -1,12 +1,18 @@
-<div *ngIf="clrPagerPosition === 'top' || clrPagerPosition === 'both'">
+@if (clrPagerPosition === 'top' || clrPagerPosition === 'both') {
+<div>
   <ng-container [ngTemplateOutlet]="pager" [ngTemplateOutletContext]="{ $implicit: 'top' }"> </ng-container>
 </div>
-<ng-container *ngFor="let item of items" [ngTemplateOutlet]="itemTemplate" [ngTemplateOutletContext]="{item: item}">
-  <div *ngIf="!itemTemplate">Item template input is undefined!</div>
+} @for (item of items; track item) {
+<ng-container [ngTemplateOutlet]="itemTemplate" [ngTemplateOutletContext]="{item: item}">
+  @if (!itemTemplate) {
+  <div>Item template input is undefined!</div>
+  }
 </ng-container>
-<div *ngIf="clrPagerPosition === 'bottom' || clrPagerPosition === 'both'">
+} @if (clrPagerPosition === 'bottom' || clrPagerPosition === 'both') {
+<div>
   <ng-container [ngTemplateOutlet]="pager" [ngTemplateOutletContext]="{ $implicit: 'bottom' }"> </ng-container>
 </div>
+}
 <ng-template #pager let-position>
   <div class="clr-row">
     <div [class.pager-top]="position === 'top'" [class.pager-bottom]="position === 'bottom'">
@@ -21,7 +27,8 @@
   </div>
 </ng-template>
 <ng-template #pageSizeDropdown>
-  <div *ngIf="pageSizeOptions?.length > 1">
+  @if (pageSizeOptions?.length > 1) {
+  <div>
     <clr-dropdown>
       <button type="button" class="btn btn-link options-text-button btn-no-capitalized" clrDropdownTrigger>
         {{pageSizeLabel}}: {{pageSize}}
@@ -32,10 +39,11 @@
         <cds-icon shape="angle" direction="down"></cds-icon>
       </button>
       <clr-dropdown-menu class="spinner-in-front" clrPosition="top-right">
-        <ng-container *ngFor="let sizeOption of pageSizeOptions">
-          <button type="button" clrDropdownItem (click)="pageSizeChange.emit(sizeOption)">{{sizeOption}}</button>
-        </ng-container>
+        @for (sizeOption of pageSizeOptions; track sizeOption) {
+        <button type="button" clrDropdownItem (click)="pageSizeChange.emit(sizeOption)">{{sizeOption}}</button>
+        }
       </clr-dropdown-menu>
     </clr-dropdown>
   </div>
+  }
 </ng-template>

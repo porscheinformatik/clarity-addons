@@ -2,13 +2,13 @@
   "compileOnSave": false,
   "compilerOptions": {
     "module": "es2020",
+    "esModuleInterop": true,
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "experimentalDecorators": true,
     "target": "es2022",
-    "typeRoots": ["node_modules/@types"],
-    "lib": ["es2017", "dom"]
+    "typeRoots": ["node_modules/@types"]
   }
 }

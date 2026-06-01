@@ -218,7 +218,7 @@ $carousel-thumb-row-h: $carousel-img-to-thumbs + $carousel-thumb-size + $carouse
     }
 
     &:hover:not(&--active) {
-      outline-color: var(--clr-color-neutral-400, #aaa);
+      outline-color: var(--cds-global-color-gray-400, #aaa);
     }
   }
 

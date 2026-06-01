@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -49,7 +49,6 @@ describe('NumericComponent', () => {
     TestBed.configureTestingModule({
       imports: [ClarityModule, FormsModule, BrowserAnimationsModule, ClrNumericFieldModule],
       declarations: [TestComponent],
-      teardown: { destroyAfterEach: false },
     }).compileComponents();
 
     fixture = TestBed.createComponent(TestComponent);
@@ -164,12 +163,12 @@ describe('NumericComponent', () => {
 
   it('No Decimal places, prevent entering decimal separator', () => {
     fixture.componentInstance.decimalPlaces = 0;
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
     addKey('1', 49);
     addKey('2', 50);
     addKey('3', 51);
     addKey(',', 188);
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
 
     expect(fixture.componentInstance.component.displayValue).toBe('123');
     expect(fixture.componentInstance.input).toBe(123);
@@ -177,12 +176,12 @@ describe('NumericComponent', () => {
 
   it('Autofill decimal places without separator', () => {
     fixture.componentInstance.autofill = true;
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
     addKey('1', 49);
     addKey('2', 50);
     addKey('3', 51);
     inputEl.triggerEventHandler('blur', { target: inputEl.nativeElement });
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
 
     expect(fixture.componentInstance.component.displayValue).toBe('123,000');
     expect(fixture.componentInstance.input).toBe(123);
@@ -190,14 +189,14 @@ describe('NumericComponent', () => {
 
   it('Autofill decimal places with separator', () => {
     fixture.componentInstance.autofill = true;
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
     addKey('1', 49);
     addKey('2', 50);
     addKey('3', 51);
     addKey(',', 188);
     addKey('2', 50);
     inputEl.triggerEventHandler('blur', { target: inputEl.nativeElement });
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
 
     expect(fixture.componentInstance.component.displayValue).toBe('123,200');
     expect(fixture.componentInstance.input).toBe(123.2);
@@ -205,11 +204,11 @@ describe('NumericComponent', () => {
 
   it('Autofill zero before decimal separator, positive value', () => {
     fixture.componentInstance.autofill = true;
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
     addKey(',', 188);
     addKey('2', 50);
     inputEl.triggerEventHandler('blur', { target: inputEl.nativeElement });
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
 
     expect(fixture.componentInstance.component.displayValue).toBe('0,200');
     expect(fixture.componentInstance.input).toBe(0.2);
@@ -217,12 +216,12 @@ describe('NumericComponent', () => {
 
   it('Autofill zero before decimal separator, negative value', () => {
     fixture.componentInstance.autofill = true;
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
     addKey('-', 189);
     addKey(',', 188);
     addKey('2', 50);
     inputEl.triggerEventHandler('blur', { target: inputEl.nativeElement });
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
 
     expect(fixture.componentInstance.component.displayValue).toBe('-0,200');
     expect(fixture.componentInstance.input).toBe(-0.2);
@@ -233,7 +232,7 @@ describe('NumericComponent', () => {
     fixture.componentInstance.input = 123.99999;
     fixture.componentInstance.rounded = false;
     fixture.componentInstance.autofill = true;
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
 
     tick(10);
 
@@ -242,7 +241,7 @@ describe('NumericComponent', () => {
     expect(fixture.componentInstance.input).toBe(123.99999);
 
     inputEl.triggerEventHandler('blur', { target: inputEl.nativeElement });
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
 
     expect(inputEl.nativeElement.value).toBe('123,99');
     expect(fixture.componentInstance.component.displayValue).toBe('123,99');
@@ -260,7 +259,7 @@ describe('NumericComponent', () => {
     fixture.componentInstance.input = 123.99999;
     fixture.componentInstance.rounded = true;
     fixture.componentInstance.autofill = true;
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
 
     tick(10);
 
@@ -269,7 +268,7 @@ describe('NumericComponent', () => {
     expect(fixture.componentInstance.input).toBe(123.99999);
 
     inputEl.triggerEventHandler('blur', { target: inputEl.nativeElement });
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
 
     expect(inputEl.nativeElement.value).toBe('124,00');
     expect(fixture.componentInstance.component.displayValue).toBe('124,00');
@@ -287,7 +286,7 @@ describe('NumericComponent', () => {
     fixture.componentInstance.input = 4.1;
     fixture.componentInstance.rounded = false;
     fixture.componentInstance.autofill = true;
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
 
     tick(10);
 
@@ -301,7 +300,7 @@ describe('NumericComponent', () => {
     fixture.componentInstance.input = 5.1;
     fixture.componentInstance.rounded = false;
     fixture.componentInstance.autofill = true;
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
 
     tick(10);
 
@@ -315,7 +314,7 @@ describe('NumericComponent', () => {
     fixture.componentInstance.input = 1.13;
     fixture.componentInstance.rounded = false;
     fixture.componentInstance.autofill = true;
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
 
     tick(10);
 
@@ -326,10 +325,10 @@ describe('NumericComponent', () => {
 
   it('Simulate pasted value from clipboard', () => {
     fixture.componentInstance.autofill = true;
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
     inputEl.nativeElement.value = '123,2';
     inputEl.triggerEventHandler('blur', { target: inputEl.nativeElement });
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
 
     expect(fixture.componentInstance.component.displayValue).toBe('123,200');
     expect(fixture.componentInstance.input).toBe(123.2);

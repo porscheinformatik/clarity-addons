@@ -1,19 +1,12 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
 import { ChangeDetectionStrategy, Component, computed, inject, input, OnDestroy, OnInit, signal } from '@angular/core';
 import { ClrTreetableFilterInterface } from './interfaces/filter-model';
-import {
-  ClrAlignment,
-  ClrAxis,
-  ClrCommonStringsService,
-  ClrPopoverPosition,
-  ClrPopoverToggleService,
-  ClrSide,
-} from '@clr/angular';
+import { ClrCommonStringsService, ClrPopoverPosition, ClrPopoverService } from '@clr/angular';
 import { Filters, RegisteredTreetableFilter } from './providers/filters';
 import { toSignal } from '@angular/core/rxjs-interop';
 
@@ -22,7 +15,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
   template: `
     <button
       type="button"
-      clrPopoverAnchor
+      clrPopoverOrigin
       clrPopoverOpenCloseButton
       class="treetable-filter-toggle"
       data-testId="clrTtToggleFilterButton"
@@ -31,8 +24,8 @@ import { toSignal } from '@angular/core/rxjs-interop';
       [attr.aria-expanded]="open()"
     >
       <cds-icon
-        [attr.status]="active() ? 'info' : null"
-        [attr.shape]="active() ? 'filter-grid-circle' : 'filter-grid'"
+        [status]="active() ? 'info' : null"
+        [shape]="active() ? 'filter-grid-circle' : 'filter-grid'"
         solid
       ></cds-icon>
     </button>
@@ -58,16 +51,11 @@ import { toSignal } from '@angular/core/rxjs-interop';
 })
 export class ClrTreetableFilter<T extends object> implements OnInit, OnDestroy {
   protected readonly commonStringsService = inject(ClrCommonStringsService);
-  private readonly smartToggleService = inject(ClrPopoverToggleService);
+  private readonly smartToggleService = inject(ClrPopoverService);
   private readonly filterProvider = inject(Filters<T>);
 
   // Smart Popover
-  protected readonly smartPosition: ClrPopoverPosition = {
-    axis: ClrAxis.VERTICAL,
-    side: ClrSide.AFTER,
-    anchor: ClrAlignment.END,
-    content: ClrAlignment.END,
-  };
+  protected readonly smartPosition = ClrPopoverPosition.BOTTOM_LEFT;
 
   clrTtFilter = input.required<ClrTreetableFilterInterface<T>>();
 

@@ -5,19 +5,18 @@
  */
 import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
 import { CodeHighlight } from './code-highlight';
-import { ClarityIcons, copyIcon } from '@cds/core/icon';
+import { ClarityIcons, copyIcon } from '@clr/angular/icon';
 
 ClarityIcons.addIcons(copyIcon);
 
 @Component({
   selector: 'clr-code-snippet',
   template: `
-    <ng-container *ngIf="!disablePrism">
-      <pre><code [clr-code-highlight]="'language-'+language">{{ code.trim() }}</code></pre>
-    </ng-container>
-    <ng-container *ngIf="disablePrism">
-      <pre><code class="clr-code">{{ code.trim() }}</code></pre>
-    </ng-container>
+    @if (!disablePrism) {
+    <pre><code [clr-code-highlight]="'language-'+language">{{ code.trim() }}</code></pre>
+    } @if (disablePrism) {
+    <pre><code class="clr-code">{{ code.trim() }}</code></pre>
+    }
     <div class="code-addons">
       <button (click)="copyToClipboard()" class="btn btn-link">
         <cds-icon shape="copy"></cds-icon>

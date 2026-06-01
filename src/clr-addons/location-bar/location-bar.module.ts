@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ClarityModule, ClrDropdownModule, ClrIconModule } from '@clr/angular';
+import { ClarityModule, ClrDropdownModule, ClrIcon } from '@clr/angular';
 import { LocationBarComponent } from './location-bar.component';
 import { LocationBarNodeComponent } from './location-bar-node/location-bar-node.component';
 import { ClrDropdownOverflowModule } from '../dropdown';
@@ -14,7 +14,7 @@ import { LocationBarSearchComponent } from './location-bar-search/location-bar-s
   declarations: [LocationBarComponent, LocationBarNodeComponent, LocationBarSearchComponent],
   imports: [
     CommonModule,
-    ClrIconModule,
+    ClrIcon,
     ClrDropdownModule,
     ClrDropdownOverflowModule,
     ClarityModule,

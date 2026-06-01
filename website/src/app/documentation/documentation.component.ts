@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { ClarityIcons, gridChartIcon, helpInfoIcon, libraryIcon, updateIcon, worldIcon } from '@cds/core/icon';
+import { ClarityIcons, gridChartIcon, helpInfoIcon, libraryIcon, updateIcon, worldIcon } from '@clr/angular/icon';
 
 ClarityIcons.addIcons(helpInfoIcon, worldIcon, gridChartIcon, libraryIcon, updateIcon);
 

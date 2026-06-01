@@ -1,8 +1,8 @@
 <!--
-  ~ Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
-  ~ This software is released under MIT license.
-  ~ The full license information can be found in LICENSE in the root directory of this project.
-  -->
+~ Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
+~ This software is released under MIT license.
+~ The full license information can be found in LICENSE in the root directory of this project.
+-->
 
 <div class="treetable">
   <div class="treetable-grid" role="grid">
@@ -16,9 +16,9 @@
           (change)="toggleSelectAll()"
         />
       </div>
+      } @if (hasActionOverflow()) {
+      <div class="treetable-row-actions treetable-column">&nbsp;</div>
       }
-
-      <div *ngIf="hasActionOverflow()" class="treetable-row-actions treetable-column">&nbsp;</div>
       <div class="treetable-row-scrollable" role="row">
         <ng-content select="clr-tt-column" />
       </div>

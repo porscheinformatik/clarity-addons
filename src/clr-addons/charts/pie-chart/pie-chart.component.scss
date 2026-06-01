@@ -45,12 +45,12 @@ cng-bar-chart-skeleton {
 .center-label {
   font-size: 1.4rem;
   font-weight: 600;
-  fill: var(--clr-color-neutral-900, #21333b);
+  fill: var(--cds-global-color-gray-900, #21333b);
 }
 
 .center-sublabel {
   font-size: 0.65rem;
-  fill: var(--clr-color-neutral-600, #666);
+  fill: var(--cds-global-color-construction-400, #666);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }

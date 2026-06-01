@@ -1,13 +1,14 @@
 /*
- * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { DOCUMENT } from '@angular/common';
+
 import {
   ApplicationRef,
   ComponentFactoryResolver,
   ComponentRef,
+  DOCUMENT,
   Inject,
   Injectable,
   Injector,
@@ -31,10 +32,10 @@ export class ClrNotificationService {
   private elements = new Set<ClrNotification>();
 
   constructor(
-    private _injector: Injector,
-    private _applicationRef: ApplicationRef,
-    private _componentFactoryResolver: ComponentFactoryResolver,
-    @Inject(DOCUMENT) private _document: Document
+    private readonly _injector: Injector,
+    private readonly _applicationRef: ApplicationRef,
+    private readonly _componentFactoryResolver: ComponentFactoryResolver,
+    @Inject(DOCUMENT) private readonly _document: Document
   ) {}
 
   openNotification(content: TemplateRef<unknown> | string, options: ClrNotificationOptions = {}): ClrNotificationRef {

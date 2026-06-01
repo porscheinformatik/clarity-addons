@@ -1,6 +1,6 @@
 import { CommonModule, NgTemplateOutlet } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ClarityModule, ClrIconModule } from '@clr/angular';
+import { ClarityModule, ClrIcon } from '@clr/angular';
 import { UtilsModule } from '../utils/utils.module';
 import { IconsGetStartedComponent } from './icons-get-started/icons-get-started.component';
 import { IconsRoutingModule } from './icons-routing.module';
@@ -17,7 +17,7 @@ import { FormsModule } from '@angular/forms';
     IconsRoutingModule,
     UtilsModule,
     FormsModule,
-    ClrIconModule,
+    ClrIcon,
     NgTemplateOutlet,
     NgTemplateOutlet,
   ],

@@ -4,7 +4,7 @@
     class="copy-to-clipboard-icon"
     [cdkCopyToClipboard]="trimmedValue()"
     (cdkCopyToClipboardCopied)="onCopied($event)"
-    [attr.shape]="showCopiedIcon ? 'success-standard' : 'copy-to-clipboard'"
+    [shape]="showCopiedIcon ? 'success-standard' : 'copy-to-clipboard'"
     [ngClass]="{ 'attribute-was-copied-color': showCopiedIcon }"
     (click)="$event.stopPropagation()"
     (keydown.enter)="$event.stopPropagation()"

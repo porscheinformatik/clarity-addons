@@ -25,12 +25,17 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngIf="selectedHActivityResults.length===0 || !selectedHActivityResults[0].value">
+    @if (selectedHActivityResults.length===0 || !selectedHActivityResults[0].value) {
+    <tr>
       <td class="left">no option selected</td>
     </tr>
-    <tr *ngFor="let result of selectedHActivityResults">
-      <td *ngIf="result.value" class="left">{{result.value}}</td>
+    } @for (result of selectedHActivityResults; track result) {
+    <tr>
+      @if (result.value) {
+      <td class="left">{{result.value}}</td>
+      }
     </tr>
+    }
   </tbody>
 </table>
 
@@ -60,12 +65,17 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngIf="!form.controls['option'].value.length || !form.controls['option'].value[0].value">
+    @if (!form.controls['option'].value.length || !form.controls['option'].value[0].value) {
+    <tr>
       <td class="left">no option selected</td>
     </tr>
-    <tr *ngFor="let result of form.controls['option'].value">
-      <td *ngIf="result.value" class="left">{{result.value}}</td>
+    } @for (result of form.controls['option'].value; track result) {
+    <tr>
+      @if (result.value) {
+      <td class="left">{{result.value}}</td>
+      }
     </tr>
+    }
   </tbody>
 </table>
 
@@ -114,11 +124,16 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngIf="selectedVActivityResults.length===0 || !selectedVActivityResults[0].value">
+    @if (selectedVActivityResults.length===0 || !selectedVActivityResults[0].value) {
+    <tr>
       <td class="left">no option selected</td>
     </tr>
-    <tr *ngFor="let result of selectedVActivityResults">
-      <td *ngIf="result.value" class="left">{{result.value}}</td>
+    } @for (result of selectedVActivityResults; track result) {
+    <tr>
+      @if (result.value) {
+      <td class="left">{{result.value}}</td>
+      }
     </tr>
+    }
   </tbody>
 </table>

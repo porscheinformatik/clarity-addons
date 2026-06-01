@@ -3,7 +3,7 @@
   "compilerOptions": {
     "outDir": "dist/out-tsc/spec",
     "types": ["jasmine", "node"],
-    "module": "commonjs",
+    "module": "es2022",
     "noImplicitAny": false,
     "noImplicitThis": false
   },

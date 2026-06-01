@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { angleIcon, ClarityIcons } from '@cds/core/icon';
+import { angleIcon, ClarityIcons } from '@clr/angular/icon';
 
 ClarityIcons.addIcons(angleIcon);
 
@@ -18,17 +18,12 @@ ClarityIcons.addIcons(angleIcon);
           <cds-icon shape="angle" direction="down"></cds-icon>
         </button>
         <clr-dropdown-menu *clrIfOpen>
-          <ng-container *ngFor="let text of texts | keyvalue">
-            <div
-              *ngIf="text.key !== selectedLang"
-              class="clr-multilingual-dd-entry"
-              clrDropdownItem
-              (click)="selectedLangChange.emit(text.key)"
-            >
-              <span class="label">{{ text.key }}</span
-              >{{ text.value }}
-            </div>
-          </ng-container>
+          @for (text of texts | keyvalue; track text) { @if (text.key !== selectedLang) {
+          <div class="clr-multilingual-dd-entry" clrDropdownItem (click)="selectedLangChange.emit(text.key)">
+            <span class="label">{{ text.key }}</span
+            >{{ text.value }}
+          </div>
+          } }
         </clr-dropdown-menu>
       </clr-dropdown>
     </div>

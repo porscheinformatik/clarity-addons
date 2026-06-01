@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -69,7 +69,6 @@ describe('ClrTreetableStringFilter', () => {
     TestBed.configureTestingModule({
       declarations: [HostTestComponent],
       imports: [ClarityModule, FormsModule, ClrTreetableModule],
-      teardown: { destroyAfterEach: false },
     }).compileComponents();
   }));
 
@@ -116,7 +115,7 @@ describe('ClrTreetableStringFilter', () => {
     const sub = filterComponent.changes.subscribe(v => emissions.push(v));
 
     tick(DEBOUNCE);
-    TestBed.flushEffects();
+    TestBed.tick();
 
     expect(emissions.length).toBe(1);
     expect(emissions[0]).toBe('hello');
@@ -132,7 +131,7 @@ describe('ClrTreetableStringFilter', () => {
     input.value = 'abc';
     input.dispatchEvent(new Event('input'));
     tick(DEBOUNCE);
-    TestBed.flushEffects();
+    TestBed.tick();
 
     expect(filterComponent.isActive()).toBeTrue();
   }));
@@ -153,7 +152,7 @@ describe('ClrTreetableStringFilter', () => {
     input.dispatchEvent(new Event('input'));
 
     tick(DEBOUNCE);
-    TestBed.flushEffects();
+    TestBed.tick();
 
     expect(emissions.length).toBe(1);
     expect(emissions[0]).toBe('abc');
@@ -174,7 +173,7 @@ describe('ClrTreetableStringFilter', () => {
     const clearBtn = queryClearBtn();
     clearBtn.click();
     tick(DEBOUNCE);
-    TestBed.flushEffects();
+    TestBed.tick();
 
     expect(filterComponent.isActive()).toBeFalse();
     expect(host.initialValue()).toBe('');
@@ -202,7 +201,7 @@ describe('ClrTreetableStringFilter', () => {
     input.value = 'ap';
     input.dispatchEvent(new Event('input'));
     tick(DEBOUNCE);
-    TestBed.flushEffects();
+    TestBed.tick();
 
     expect(filterComponent.isActive()).toBeTrue();
     const results = items.map(i => filterComponent.accepts(i));

@@ -14,7 +14,7 @@ import {
   mapMarkerIcon,
   loginIcon,
   lightbulbIcon,
-} from '@cds/core/icon';
+} from '@clr/angular/icon';
 import { Router } from '@angular/router';
 import {
   ClrSummaryItemWarning,

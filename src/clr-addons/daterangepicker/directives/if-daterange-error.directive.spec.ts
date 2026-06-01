@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormControl, Validators } from '@angular/forms';
-import { ClrPopoverEventsService, ClrPopoverToggleService } from '@clr/angular';
+import { ClrPopoverService } from '@clr/angular';
 
 import { ClrDaterangepickerModule } from '../daterangepicker.module';
 import { DaterangeControlStateService } from '../providers/daterange-control-state.service';
@@ -21,13 +21,7 @@ class InvalidUseTestComponent {}
 
 @Component({
   template: `<clr-control-error *clrIfDaterangeError>${errorMessage}</clr-control-error>`,
-  providers: [
-    ClrDaterangepickerContainerComponent,
-    ClrPopoverEventsService,
-    ClrPopoverToggleService,
-    DaterangeControlStateService,
-    DaterangeService,
-  ],
+  providers: [ClrDaterangepickerContainerComponent, ClrPopoverService, DaterangeControlStateService, DaterangeService],
   standalone: false,
 })
 class GeneralErrorTestComponent {}
@@ -42,8 +36,8 @@ class GeneralErrorTestComponent {}
   `,
   providers: [
     ClrDaterangepickerContainerComponent,
-    ClrPopoverEventsService,
-    ClrPopoverToggleService,
+    ClrPopoverService,
+    ClrPopoverService,
     DaterangeControlStateService,
     DaterangeService,
   ],
@@ -168,7 +162,7 @@ describe('Directive: ClrIfDaterangeErrorDirective', () => {
       // Act.
       daterangeControlStateService.updateStatus(control);
       tick();
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
 
       // Assert.
       expect(fixture.nativeElement.innerHTML).toContain(`${maxLengthMessage}-5-6`);
@@ -177,7 +171,7 @@ describe('Directive: ClrIfDaterangeErrorDirective', () => {
       control.setValue('abcdefg');
       daterangeControlStateService.updateStatus(control);
       tick();
-      fixture.detectChanges();
+      fixture.changeDetectorRef.detectChanges();
 
       // Assert.
       expect(fixture.nativeElement.innerHTML).toContain(`${maxLengthMessage}-5-7`);

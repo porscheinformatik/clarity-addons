@@ -1,6 +1,6 @@
 @use 'variables.color';
 
-// Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+// Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
 // This software is released under MIT license.
 // The full license information can be found in LICENSE in the root directory of this project.
 
@@ -224,10 +224,10 @@
   --clr-header-bg-color: var(--cds-alias-object-interaction-background);
   --clr-header-2-bg-color: var(--cds-alias-object-interaction-background);
   --clr-header-3-bg-color: var(--cds-alias-object-interaction-background);
-  --clr-header-4-bg-color: var(--cds-alias-object-interaction-background);
-  --clr-header-5-bg-color: var(--cds-alias-object-interaction-background);
-  --clr-header-6-bg-color: var(--cds-alias-object-interaction-background);
-  --clr-header-7-bg-color: var(--cds-alias-object-interaction-background);
+  --clr-header-3-bg-color: var(--cds-alias-object-interaction-background);
+  --clr-header-3-bg-color: var(--cds-alias-object-interaction-background);
+  --clr-header-1-bg-color: var(--cds-alias-object-interaction-background);
+  --clr-header-2-bg-color: var(--cds-alias-object-interaction-background);
   --clr-header-divider-color: transparent;
 
   // since the header is white, the search field must be readable
@@ -331,5 +331,5 @@
 
   // Toggle
   --clr-toggle-bg-color-on: var(--cds-alias-status-success);
-  --clr-toggle-bg-color-off: var(--clr-color-neutral-600);
+  --clr-toggle-bg-color-off: var(--cds-global-color-construction-400);
 }

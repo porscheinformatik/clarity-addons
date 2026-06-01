@@ -1,7 +1,7 @@
 import { Component, computed, effect, ElementRef, EventEmitter, input, OnDestroy, Output, signal } from '@angular/core';
 import { ClarityModule, ClrDatagrid } from '@clr/angular';
 import { ExportDatagridService } from './export-datagrid.service';
-import { NgClass, NgForOf } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { ExportType, ExportTypeEnum } from './export-type.model';
 import { delay, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -11,7 +11,7 @@ import { takeUntil } from 'rxjs/operators';
   templateUrl: './export-datagrid-button.component.html',
   styleUrl: './export-datagrid-button.component.scss',
   standalone: true,
-  imports: [ClarityModule, NgForOf, NgClass],
+  imports: [ClarityModule, NgClass],
 })
 export class ExportDatagridButtonComponent implements OnDestroy {
   /* input signals */

@@ -1,15 +1,10 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import {
-  DaterangePreset,
-  DayModel,
-  NullableDaterange,
-  PopoverPosition,
-  PopoverPositions,
-} from '../../../../clr-addons/daterangepicker';
+import { DaterangePreset, DayModel, NullableDaterange } from '../../../../clr-addons/daterangepicker';
 import { NullableTimerange } from '../../../../clr-addons/daterangepicker/interfaces/timerange.interface';
 import { TimeModel } from '../../../../clr-addons/daterangepicker/models/time.model';
 import { DateTimerangePreset } from '../../../../clr-addons/daterangepicker/interfaces/timerange-preset.interface';
+import { ClrPopoverPosition, DROPDOWN_POSITIONS } from '@clr/angular';
 
 @Component({
   selector: 'clr-daterangepicker-demo',
@@ -53,8 +48,8 @@ export class DaterangepickerDemo {
     },
   ];
 
-  position: PopoverPosition = 'top-right';
-  positions = PopoverPositions.options;
+  position = ClrPopoverPosition.TOP_RIGHT;
+  positions = DROPDOWN_POSITIONS;
 
   public updateReactiveForm(): void {
     this.reactiveForm.patchValue({

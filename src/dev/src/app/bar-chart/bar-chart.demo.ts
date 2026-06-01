@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component, computed, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { ClrAlertModule } from '@clr/angular';
 import { BarChartData, BarChartValue, ClrChartsModule } from '@porscheinformatik/clr-addons/charts';
@@ -15,7 +15,7 @@ const COLORS = ['--cds-global-color-lavender-400', '#00828b', '#c1326e', '#5b40b
 @Component({
   selector: 'clr-bar-chart-demo',
   templateUrl: './bar-chart.demo.html',
-  imports: [CommonModule, FormsModule, ClrAlertModule, ClrChartsModule],
+  imports: [FormsModule, ClrAlertModule, ClrChartsModule],
 })
 export class BarChartDemo {
   protected readonly orientation = signal<'horizontal' | 'vertical'>('vertical');

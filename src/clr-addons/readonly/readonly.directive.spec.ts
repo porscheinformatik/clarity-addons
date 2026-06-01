@@ -133,7 +133,6 @@ describe('ClrReadonlyDirective', () => {
     TestBed.configureTestingModule({
       declarations: [TestComponent],
       imports: [ReactiveFormsModule, ClarityModule, FormsModule, ClrReadonlyDirectiveModule],
-      teardown: { destroyAfterEach: false },
     });
 
     fixture = TestBed.createComponent(TestComponent);
@@ -188,7 +187,7 @@ describe('ClrReadonlyDirective', () => {
 
   it('should not replace the input with a span when clrReadOnly is false', () => {
     fixture.componentInstance.isReadOnly = false;
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
 
     const input = fixture.debugElement.query(By.css('#input'));
     const span = input.nativeElement.parentElement.querySelector('span.clr-readonly');

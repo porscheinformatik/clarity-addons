@@ -84,7 +84,7 @@ export function drawXYAxes(
     .call(d3axisBottom(x).tickFormat((d: string) => xLabelMap.get(d) ?? d))
     .selectAll('text')
     .style('font-size', '11px')
-    .style('fill', 'var(--clr-color-neutral-600, #666)');
+    .style('fill', 'var(--cds-global-color-construction-400, #666)');
 
   // Y axis
   const tickValues = computeYTickValues(y);
@@ -93,7 +93,7 @@ export function drawXYAxes(
     .call(d3axisLeft(y).tickValues(tickValues).tickSize(-width).tickFormat(tickFormat))
     .selectAll('text')
     .style('font-size', '11px')
-    .style('fill', 'var(--clr-color-neutral-600, #666)');
+    .style('fill', 'var(--cds-global-color-construction-400, #666)');
 
   // Optional X axis description label
   if (xAxisLabel) {
@@ -102,7 +102,7 @@ export function drawXYAxes(
       .attr('y', height + 40)
       .attr('text-anchor', 'middle')
       .style('font-size', '12px')
-      .style('fill', 'var(--clr-color-neutral-600, #666)')
+      .style('fill', 'var(--cds-global-color-construction-400, #666)')
       .text(xAxisLabel);
   }
 
@@ -114,7 +114,7 @@ export function drawXYAxes(
       .attr('y', -(effectiveLeft / 2))
       .attr('text-anchor', 'middle')
       .style('font-size', '12px')
-      .style('fill', 'var(--clr-color-neutral-600, #666)')
+      .style('fill', 'var(--cds-global-color-construction-400, #666)')
       .text(yAxisLabel);
   }
 }
@@ -123,5 +123,5 @@ export function drawXYAxes(
  * Styles all D3 grid tick lines inside `g` with the neutral chart grid color.
  */
 export function styleGridLines(g: Selection<SVGGElement, unknown, null, undefined>): void {
-  g.selectAll('.tick line').style('stroke', 'var(--clr-color-neutral-200, #e8e8e8)');
+  g.selectAll('.tick line').style('stroke', 'var(--cds-global-color-gray-200, #e8e8e8)');
 }

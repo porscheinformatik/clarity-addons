@@ -134,11 +134,11 @@
   <button type="button" class="btn btn-success-outline" (click)="triggerSuccess()">Trigger success</button>
   <pre>{{ validationForm.value | json }}</pre>
   <pre>
-{{
-      {
-        touched: validationForm.controls.daterange.touched,
-        errors: validationForm.controls.daterange.errors
-      } | json
+    {{
+    {
+    touched: validationForm.controls.daterange.touched,
+    errors: validationForm.controls.daterange.errors
+    } | json
     }}
   </pre>
 </form>
@@ -162,7 +162,9 @@
   </clr-daterangepicker-container>
   <clr-select-container>
     <select clrSelect name="daterange-positions" [(ngModel)]="position">
-      <option *ngFor="let option of positions" [value]="option">{{ option }}</option>
+      @for (option of positions; track option) {
+      <option [value]="option">{{ option }}</option>
+      }
     </select>
   </clr-select-container>
   <clr-daterangepicker-container>

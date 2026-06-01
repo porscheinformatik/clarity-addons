@@ -15,7 +15,7 @@ import {
   TemplateRef,
 } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { angleIcon, ClarityIcons, pencilIcon } from '@cds/core/icon';
+import { angleIcon, ClarityIcons, pencilIcon } from '@clr/angular/icon';
 import { ClrViewEditSectionTitleTextFontWeight, ClrViewEditSectionTitleTextStyle } from './view-edit-section.types';
 import { ClrCommonStringsService } from '@clr/angular';
 

@@ -71,9 +71,9 @@
     <div class="summary-area-panel__body">
       <div class="summary-area-container">
         <div class="summary-grid" [style.--columns]="currentColumns" [style.--rows]="currentRows()">
-          <ng-container *ngFor="let item of visibleItems">
-            <ng-container *ngTemplateOutlet="item.template"></ng-container>
-          </ng-container>
+          @for (item of visibleItems; track item) {
+          <ng-container *ngTemplateOutlet="item.template"></ng-container>
+          }
         </div>
       </div>
     </div>

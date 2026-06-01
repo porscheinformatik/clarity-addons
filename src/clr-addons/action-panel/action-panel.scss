@@ -60,7 +60,7 @@
     bottom: 0;
     right: 0;
     left: 0;
-    background-color: var(--clr-color-neutral-900);
+    background-color: var(--cds-global-color-gray-900);
     opacity: 0.85;
     z-index: map.get(variables.$clr-layers, sidepanel-bg) - 2;
 

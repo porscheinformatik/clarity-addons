@@ -5,7 +5,7 @@
  */
 import { Component } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
-import { ClarityIcons, displayIcon } from '@cds/core/icon';
+import { ClarityIcons, displayIcon } from '@clr/angular/icon';
 import { share } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 

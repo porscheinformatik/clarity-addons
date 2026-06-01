@@ -26,13 +26,15 @@
     </clr-dg-filter>
   </clr-dg-column>
 
-  <clr-dg-row *ngFor="let item of data$ | async" [clrDgItem]="item">
+  @for (item of data$ | async; track item) {
+  <clr-dg-row [clrDgItem]="item">
     <clr-dg-cell>{{ item.hideableCol }}</clr-dg-cell>
     <clr-dg-cell>{{ item.hideableCol2 }}</clr-dg-cell>
     <clr-dg-cell>{{ item.numericCol }}</clr-dg-cell>
     <clr-dg-cell>{{ item.dateCol | date }}</clr-dg-cell>
     <clr-dg-cell>{{ item.enumCol }}</clr-dg-cell>
   </clr-dg-row>
+  }
 
   <clr-dg-footer>
     <clr-dg-pagination [clrDgTotalItems]="total" [clrDgPageSize]="15">

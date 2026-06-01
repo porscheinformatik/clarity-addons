@@ -3,6 +3,14 @@ import { ClrDatagrid, ClrDatagridStateInterface } from '@clr/angular';
 import { debounceTime, of, Subject } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
+interface DatagridType {
+  hideableCol: string;
+  hideableCol2: string;
+  numericCol: number;
+  dateCol: Date;
+  enumCol: string;
+}
+
 @Component({
   selector: 'clr-datagrid-state-persistence-demo',
   templateUrl: './datagrid-state-persistence.demo.html',
@@ -11,7 +19,7 @@ import { delay } from 'rxjs/operators';
 export class DatagridStatePersistenceDemo {
   now = new Date();
 
-  data$ = new Subject();
+  data$ = new Subject<DatagridType[]>();
   frontendData$ = of(
     [...Array(100).keys()].map(i => ({
       hideableCol: 'item' + i,

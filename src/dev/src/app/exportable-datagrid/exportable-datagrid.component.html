@@ -13,7 +13,12 @@
       (backendExport)="onBackendExport($event)"
     >
     </clr-export-datagrid-button>
-    <clr-datagrid #datagrid class="datagrid-full-width datagrid-full-height" [(clrDgSelected)]="selected">
+    <clr-datagrid
+      #datagrid
+      class="datagrid-full-width datagrid-full-height"
+      [(clrDgSelected)]="selected"
+      clrDgSelectionType="multi"
+    >
       <clr-dg-column [clrDgField]="'column1'">
         <ng-container *clrDgHideableColumn="{ hidden: false }">Column 1</ng-container>
       </clr-dg-column>

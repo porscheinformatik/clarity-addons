@@ -249,7 +249,7 @@
       datagrid header.
     </p>
 
-    <clr-datagrid class="datagrid-no-select-all" [(clrDgSelected)]="selected">
+    <clr-datagrid class="datagrid-no-select-all" [(clrDgSelected)]="selected" clrDgSelectionType="multi">
       <clr-dg-column>Description</clr-dg-column>
       <clr-dg-row clrDgItem="1">
         <clr-dg-cell>Item 1</clr-dg-cell>
@@ -507,7 +507,7 @@
       When the status is very important, for example an error or warning state need to grab the users attention, the
       following pattern should be used:
     </p>
-    <clr-datagrid [(clrDgSelected)]="selected">
+    <clr-datagrid [(clrDgSelected)]="selected" clrDgSelectionType="multi">
       <clr-dg-column [clrDgField]="'name'">Name</clr-dg-column>
       <clr-dg-column [clrDgField]="'text'">Description</clr-dg-column>
       <clr-dg-column [clrDgField]="'status'"> Status</clr-dg-column>
@@ -556,7 +556,7 @@
       <li><code class="clr-code">highlight-text-warning</code> for the yellow warning state</li>
     </ul>
 
-    <clr-datagrid [(clrDgSelected)]="selectedMinor">
+    <clr-datagrid [(clrDgSelected)]="selectedMinor" clrDgSelectionType="multi">
       <clr-dg-column [clrDgField]="'name'">Name</clr-dg-column>
       <clr-dg-column [clrDgField]="'text'">Description</clr-dg-column>
       <clr-dg-column [clrDgField]="'status'"> Status</clr-dg-column>
@@ -636,7 +636,12 @@
         [exportButtonPosition]="'right'"
       >
       </clr-export-datagrid-button>
-      <clr-datagrid #datagrid class="datagrid-full-width datagrid-full-height" [(clrDgSelected)]="selectedEntry">
+      <clr-datagrid
+        #datagrid
+        class="datagrid-full-width datagrid-full-height"
+        [(clrDgSelected)]="selectedEntry"
+        clrDgSelectionType="multi"
+      >
         <clr-dg-column [clrDgField]="'column1'">
           <ng-container *clrDgHideableColumn="{ hidden: false }">Column 1</ng-container>
         </clr-dg-column>

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -9,7 +9,7 @@ import { CLR_BLANK_OPTION, ClrQuickListValue } from './add-option.service';
 import { ClrAddOption } from './add-option';
 import { ClrAbstractFormComponent } from '../abstract-form-component/abstract-form-component';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { ClarityIcons, plusCircleIcon } from '@cds/core/icon';
+import { ClarityIcons, plusCircleIcon } from '@clr/angular/icon';
 
 ClarityIcons.addIcons(plusCircleIcon);
 

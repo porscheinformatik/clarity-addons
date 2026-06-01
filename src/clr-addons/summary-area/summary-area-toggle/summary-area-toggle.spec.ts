@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, ViewChild, signal } from '@angular/core';
+import { Component, signal, ViewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ClrSummaryAreaToggle } from './summary-area-toggle';
@@ -412,7 +412,7 @@ describe('SummaryAreaToggleComponent - localStorageKey tests', () => {
 
     // Change to different key
     hostComponent.storageKey = 'clrSummaryAreaCollapsed';
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
 
     expect(component.collapsed()).toBe(false);
   });

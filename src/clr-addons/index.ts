@@ -44,7 +44,6 @@ export * from './readonly/index';
 export * from './export-datagrid-button/index';
 export * from './copy-to-clipboard/index';
 export * from './summary-area/index';
-export * from './signpost/index';
 export * from './focus-first-invalid-field/index';
 export * from './control-enter-submit/index';
 export * from './keyboard-nav/index';

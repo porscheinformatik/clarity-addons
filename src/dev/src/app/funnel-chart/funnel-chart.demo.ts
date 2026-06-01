@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { ClrAlertModule } from '@clr/angular';
 import { ClrChartsModule, FunnelChartData, FunnelValue } from '@porscheinformatik/clr-addons/charts';
 
@@ -83,7 +83,7 @@ const MINIMAL_DATA: FunnelChartData[] = [
 @Component({
   selector: 'clr-funnel-chart-demo',
   templateUrl: './funnel-chart.demo.html',
-  imports: [CommonModule, ClrAlertModule, ClrChartsModule],
+  imports: [ClrAlertModule, ClrChartsModule],
 })
 export class FunnelChartDemo {
   protected readonly loading = signal(false);

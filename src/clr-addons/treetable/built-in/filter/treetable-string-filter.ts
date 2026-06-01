@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -16,7 +16,7 @@ import {
 } from '@angular/core';
 import { ClrTreetableFilterInterface, ClrTreetableStringFilterFunction } from '../../interfaces/filter-model';
 import { debounceTime, merge, Observable, Subject, take, tap } from 'rxjs';
-import { ClrCommonStringsService, ClrPopoverToggleService } from '@clr/angular';
+import { ClrCommonStringsService, ClrPopoverService } from '@clr/angular';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { filter } from 'rxjs/operators';
 
@@ -53,7 +53,7 @@ const DEBOUNCE_TIME = 300 as const;
   styles: `
     .btn-trash {
       position: absolute;
-      top: 10px;
+      top: 15px;
       right: 40px;
       padding: 0;
     }
@@ -62,7 +62,7 @@ const DEBOUNCE_TIME = 300 as const;
   standalone: false,
 })
 export class ClrTreetableStringFilter<T extends object> implements ClrTreetableFilterInterface<T, string> {
-  private readonly smartToggleService = inject(ClrPopoverToggleService);
+  private readonly smartToggleService = inject(ClrPopoverService);
   private readonly commonStrings = inject(ClrCommonStringsService);
   private readonly elementRef = inject(ElementRef);
 

@@ -1,12 +1,12 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, EventEmitter, Output } from '@angular/core';
-import { ClarityIcons, timesIcon } from '@cds/core/icon';
+import { ClarityIcons, timesIcon } from '@clr/angular/icon';
 
 ClarityIcons.addIcons(timesIcon);
 

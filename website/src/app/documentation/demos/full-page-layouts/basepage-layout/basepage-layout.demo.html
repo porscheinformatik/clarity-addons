@@ -1,63 +1,69 @@
 <clr-main-container>
   <clr-demo-menu></clr-demo-menu>
-  <clr-history-pinned
-    *ngIf="withHistory"
-    [clrUsername]="'admin'"
-    [clrDomain]="'porscheinformatik.github.io'"
-  ></clr-history-pinned>
+  @if (withHistory) {
+  <clr-history-pinned [clrUsername]="'admin'" [clrDomain]="'porscheinformatik.github.io'"></clr-history-pinned>
+  }
   <div class="content-header">
     <clr-back-button></clr-back-button>
     <h2>
-      <span *ngIf="!withCommandBar && !withContentPanel && !withActionPanel">Base Page Layout</span>
-      <span *ngIf="withCommandBar && !withContentPanel && !withActionPanel">Command bar</span>
-      <span *ngIf="withCommandBar && withContentPanel">Content Panel</span>
-      <span *ngIf="withActionPanel">Action Panel</span>
+      @if (!withCommandBar && !withContentPanel && !withActionPanel) {
+      <span>Base Page Layout</span>
+      } @if (withCommandBar && !withContentPanel && !withActionPanel) {
+      <span>Command bar</span>
+      } @if (withCommandBar && withContentPanel) {
+      <span>Content Panel</span>
+      } @if (withActionPanel) {
+      <span>Action Panel</span>
+      }
     </h2>
     <div class="command-bar">
+      @if (withHistory) {
       <clr-history
         style="margin-top: 6px"
-        *ngIf="withHistory"
         [clrUsername]="'admin'"
         [clrDomain]="'porscheinformatik.github.io'"
       ></clr-history>
-      <clr-button-group [clrMenuPosition]="'bottom-right'" *ngIf="withCommandBar">
-        <clr-button *ngIf="!withContentPanel">Command1</clr-button>
-        <clr-button *ngIf="!withContentPanel">Command2</clr-button>
-        <clr-button [clrInMenu]="true" *ngIf="!withContentPanel">Command3</clr-button>
+      } @if (withCommandBar) {
+      <clr-button-group [clrMenuPosition]="'bottom-right'">
+        @if (!withContentPanel) {
+        <clr-button>Command1</clr-button>
+        } @if (!withContentPanel) {
+        <clr-button>Command2</clr-button>
+        } @if (!withContentPanel) {
+        <clr-button [clrInMenu]="true">Command3</clr-button>
+        }
       </clr-button-group>
-      <button
-        type="button"
-        class="btn btn-outline-primary"
-        (click)="togglePanel(true)"
-        style="margin-right: 0"
-        *ngIf="withContentPanel"
-      >
+      } @if (withContentPanel) {
+      <button type="button" class="btn btn-outline-primary" (click)="togglePanel(true)" style="margin-right: 0">
         Offers
       </button>
+      } @if (withContentPanel) {
       <button
         type="button"
         class="btn btn-outline-primary"
         (click)="togglePanel(false)"
         style="margin-left: 10px; margin-right: 0"
-        *ngIf="withContentPanel"
       >
         Financing
       </button>
+      } @if (withActionPanel) {
       <button
         type="button"
         class="btn btn-icon btn-outline-primary"
         (click)="toggleActionPanel()"
         style="margin-left: 10px; margin-right: 0"
-        *ngIf="withActionPanel"
       >
         <cds-icon shape="view-columns"></cds-icon>
       </button>
+      }
     </div>
   </div>
-  <div class="content-container" *ngIf="!withContentPanel && !withActionPanel">
+  @if (!withContentPanel && !withActionPanel) {
+  <div class="content-container">
     <div class="content-area">
-      This is the page content<span *ngIf="id"> for submenu {{ id }}</span>
-
+      This is the page content@if (id) {
+      <span> for submenu {{ id }}</span>
+      }
       <p>
         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
         dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
@@ -116,7 +122,8 @@
       </p>
     </div>
   </div>
-  <clr-content-panel-container *ngIf="withContentPanel">
+  } @if (withContentPanel) {
+  <clr-content-panel-container>
     <clr-content-panel-container-content>
       <ul>
         <li>Use the content panel to provide supplementary content without interrupting the main content</li>
@@ -130,7 +137,8 @@
     <clr-content-panel #contentPanelOffer>
       <ng-container clr-content-panel-title>Offers</ng-container>
       <ng-container clr-content-panel-content>
-        <div class="card" *ngFor="let i of [1,2,3]">
+        @for (i of [1,2,3]; track i) {
+        <div class="card">
           <div class="card-block">
             <div class="card-text">
               <br />
@@ -139,12 +147,14 @@
             </div>
           </div>
         </div>
+        }
       </ng-container>
     </clr-content-panel>
     <clr-content-panel #contentPanelFinancing>
       <ng-container clr-content-panel-title>Financing</ng-container>
       <ng-container clr-content-panel-content>
-        <div class="card" *ngFor="let i of [1,2,3,4,5]">
+        @for (i of [1,2,3,4,5]; track i) {
+        <div class="card">
           <div class="card-block">
             <div class="card-text">
               <br /><br />
@@ -152,11 +162,12 @@
             </div>
           </div>
         </div>
+        }
       </ng-container>
     </clr-content-panel>
   </clr-content-panel-container>
-
-  <clr-action-panel-container *ngIf="withActionPanel">
+  } @if (withActionPanel) {
+  <clr-action-panel-container>
     <clr-action-panel-container-content>
       <ul>
         <li>Use when lot of actions are required</li>
@@ -183,4 +194,5 @@
       </ng-container>
     </clr-action-panel>
   </clr-action-panel-container>
+  }
 </clr-main-container>

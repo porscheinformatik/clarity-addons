@@ -1,4 +1,4 @@
-<clr-header class="header-5">
+<clr-header class="header-3">
   <div class="branding">
     <a routerLink="/" class="logo-and-title">
       <span class="cds-icon clarity-logo"></span>
@@ -93,9 +93,9 @@
         <cds-icon shape="cog"></cds-icon>
       </button>
       <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
-        <button type="button" *ngFor="let theme of themes" (click)="setTheme(theme)" clrDropdownItem>
-          {{theme.name}}
-        </button>
+        @for (theme of themes; track theme) {
+        <button type="button" (click)="setTheme(theme)" clrDropdownItem>{{theme.name}}</button>
+        }
       </clr-dropdown-menu>
     </clr-dropdown>
 

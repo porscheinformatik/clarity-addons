@@ -1,8 +1,8 @@
-import { Component, ElementRef, Inject, InjectionToken, OnInit, PLATFORM_ID, Renderer2 } from '@angular/core';
+import { Component, ElementRef, Inject, InjectionToken, OnInit, PLATFORM_ID, Renderer2, DOCUMENT } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { DOCUMENT } from '@angular/common';
-import { ClarityIcons, cogIcon } from '@cds/core/icon';
+
+import { ClarityIcons, cogIcon } from '@clr/angular/icon';
 
 ClarityIcons.addIcons(cogIcon);
 

@@ -34,7 +34,7 @@ import { OrganizationUnitMember, Role, RoleEnum } from './treetable.demo';
   styles: `
     .btn-trash {
       position: absolute;
-      top: 10px;
+      top: 15px;
       right: 40px;
       padding: 0;
     }

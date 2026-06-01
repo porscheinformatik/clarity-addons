@@ -1,14 +1,14 @@
 <ng-content select="label"></ng-content>
 <div class="clr-control-container" [ngClass]="controlClasses">
+  @if (showLanguageSelector()) {
   <clr-multilingual-selector
-    *ngIf="showLanguageSelector()"
     [disabled]="disabled"
     [texts]="shownTexts"
     [selectedLang]="selectedLang"
     (selectedLangChange)="changeLanguage($event)"
   >
   </clr-multilingual-selector>
-  @if (readonly || readonly === '') {
+  } @if (readonly || readonly === '') {
   <span [title]="!!shownTexts && !!selectedLang ? shownTexts.get(selectedLang) : ''" class="text-truncate">
     {{ !!shownTexts && !!selectedLang ? shownTexts.get(selectedLang) : '' }}
   </span>
@@ -27,10 +27,15 @@
         [maxlength]="maxlength || null"
         #input
       />
-      <cds-icon *ngIf="showError" class="clr-validate-icon" shape="exclamation-circle" aria-hidden="true"></cds-icon>
+      @if (showError) {
+      <cds-icon class="clr-validate-icon" shape="exclamation-circle" aria-hidden="true"></cds-icon>
+      }
     </div>
-    <ng-content select="clr-control-helper" *ngIf="!showError"></ng-content>
-    <ng-content select="clr-control-error" *ngIf="showError"></ng-content>
+    @if (!showError) {
+    <ng-content select="clr-control-helper"></ng-content>
+    } @if (showError) {
+    <ng-content select="clr-control-error"></ng-content>
+    }
   </div>
   }
 </div>
