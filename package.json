@@ -72,7 +72,7 @@
   "devDependencies": {
     "@alasdair/karma-scss-preprocessor": "5.0.0-3",
     "@angular-devkit/core": "21.2.11",
-    "@angular-eslint/builder": "21.0.1",
+    "@angular-eslint/builder": "21.4.0",
     "@angular/build": "^21.2.11",
     "@angular/cli": "21.2.11",
     "@angular/compiler-cli": "21.2.13",
