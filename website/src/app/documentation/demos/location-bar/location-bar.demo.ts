@@ -1,12 +1,12 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component, OnInit } from '@angular/core';
-import { LocationBarNode, SearchResultModel, SearchResponseModel } from '@porscheinformatik/clr-addons';
+import { LocationBarNode, SearchResponseModel, SearchResultModel } from '@porscheinformatik/clr-addons';
 import { ClarityDocComponent } from '../clarity-doc';
-import { DemoLocationBarNodeId, DemoLocationBarComplexNodeId } from './model';
+import { DemoLocationBarComplexNodeId, DemoLocationBarNodeId } from './model';
 import { DemoLocationBarContentProvider } from './content-provider';
 
 const STANDARD_EXAMPLE = `
@@ -121,11 +121,11 @@ const SEARCH_EXAMPLE = `
 const SEARCH_TS_EXAMPLE = `
  ngOnInit() {
     this.buildSearchableRoot();
-    
+
     /* receive search event */
     this.contentProvider.getSearchPerformed().subscribe(response => this.onSearch(response));
   }
-  
+
    private buildSearchableRoot(): void {
     const child1 = new LocationBarNode<DemoLocationBarComplexNodeId>(new DemoLocationBarComplexNodeId('1', 'Searchable child 1', 'child 1 code'), 'Searchable child 1');
     const child11 = new LocationBarNode<DemoLocationBarComplexNodeId>(new DemoLocationBarComplexNodeId('11', 'Searchable child 1 child 1', 'child 11 code'), 'Searchable child 1 child 1');
@@ -269,7 +269,7 @@ export class LocationBarDemo extends ClarityDocComponent implements OnInit {
     this.buildRoots1();
     this.buildRoots2();
     this.buildRootsLazy();
-    this.buildSearchableRoot();
+    this.buildSearchableRoot([]);
 
     this.contentProvider.getSearchPerformed().subscribe(response => this.onSearch(response));
   }
@@ -315,27 +315,37 @@ export class LocationBarDemo extends ClarityDocComponent implements OnInit {
     this.rootsLazy = [l1];
   }
 
-  private buildSearchableRoot(): void {
+  private buildSearchableRoot(preselectedIds: string[]): void {
     const child1 = new LocationBarNode<DemoLocationBarComplexNodeId>(
       new DemoLocationBarComplexNodeId('1', 'Searchable child 1', 'child 1 code'),
-      'Searchable child 1'
+      'Searchable child 1',
+      true,
+      preselectedIds.some(id => id === '1')
     );
     const child11 = new LocationBarNode<DemoLocationBarComplexNodeId>(
       new DemoLocationBarComplexNodeId('11', 'Searchable child 1 child 1', 'child 11 code'),
-      'Searchable child 1 child 1'
+      'Searchable child 1 child 1',
+      true,
+      preselectedIds.some(id => id === '11')
     );
     const child12 = new LocationBarNode<DemoLocationBarComplexNodeId>(
       new DemoLocationBarComplexNodeId('12', 'Searchable child 1 child 2', 'child 12 code'),
-      'Searchable child 1 child 2'
+      'Searchable child 1 child 2',
+      true,
+      preselectedIds.some(id => id === '12')
     );
 
     const child2 = new LocationBarNode<DemoLocationBarComplexNodeId>(
       new DemoLocationBarComplexNodeId('2', 'Searchable child 2', 'child 2 code'),
-      'Searchable child 2'
+      'Searchable child 2',
+      true,
+      preselectedIds.some(id => id === '2')
     );
     const child21 = new LocationBarNode<DemoLocationBarComplexNodeId>(
       new DemoLocationBarComplexNodeId('21', 'Searchable child 2 child 1', 'child 21 code'),
-      'Searchable child 2 child 1'
+      'Searchable child 2 child 1',
+      true,
+      preselectedIds.some(id => id === '21')
     );
 
     const root = new LocationBarNode<DemoLocationBarComplexNodeId>(
@@ -403,6 +413,26 @@ export class LocationBarDemo extends ClarityDocComponent implements OnInit {
   }
 
   searchChanged(item: SearchResultModel) {
-    console.log('Searched item: ' + item);
+    console.log('Searched item:', JSON.stringify(item));
+    this.buildSearchableRoot(this.getSelectedNodes(this.searchableRoot[0], item));
+  }
+
+  private getSelectedNodes(
+    currentNode: LocationBarNode<DemoLocationBarComplexNodeId>,
+    item: SearchResultModel
+  ): string[] {
+    if (!currentNode.getChildren()) {
+      return [];
+    }
+
+    for (const childNode of currentNode.getChildren()) {
+      const selectedNodes = this.getSelectedNodes(childNode, item);
+      if (childNode.id.id === item['id'] || selectedNodes.length > 0) {
+        selectedNodes.push(childNode.id.id);
+        return selectedNodes;
+      }
+    }
+
+    return [];
   }
 }

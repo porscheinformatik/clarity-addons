@@ -1,13 +1,12 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component, OnInit } from '@angular/core';
-import { LocationBarNode, SearchResultModel } from '@porscheinformatik/clr-addons';
+import { LocationBarNode, SearchResponseModel, SearchResultModel } from '@porscheinformatik/clr-addons';
 import { DemoLocationBarComplexNodeId, DemoLocationBarNodeId } from './model';
 import { DemoLocationBarContentProvider } from './content-provider';
-import { SearchResponseModel } from '@porscheinformatik/clr-addons';
 
 @Component({
   selector: 'clr-location-bar-demo',
@@ -33,7 +32,7 @@ export class LocationBarDemo implements OnInit {
     this.buildRootsLazy();
     this.buildRootsLongTexts();
     this.buildRootsManyItems();
-    this.buildSearchableRoot();
+    this.buildSearchableRoot([]);
   }
 
   private buildRoots1() {
@@ -125,27 +124,37 @@ export class LocationBarDemo implements OnInit {
     this.rootsManyItems = [l1];
   }
 
-  private buildSearchableRoot(): void {
+  private buildSearchableRoot(preselectedIds: string[]): void {
     const child1 = new LocationBarNode<DemoLocationBarComplexNodeId>(
       new DemoLocationBarComplexNodeId('1', 'Searchable child 1', 'child 1 code'),
-      'Searchable child 1'
+      'Searchable child 1',
+      true,
+      preselectedIds.some(id => id === '1')
     );
     const child11 = new LocationBarNode<DemoLocationBarComplexNodeId>(
       new DemoLocationBarComplexNodeId('11', 'Searchable child 1 child 1', 'child 11 code'),
-      'Searchable child 1 child 1'
+      'Searchable child 1 child 1',
+      true,
+      preselectedIds.some(id => id === '11')
     );
     const child12 = new LocationBarNode<DemoLocationBarComplexNodeId>(
       new DemoLocationBarComplexNodeId('12', 'Searchable child 1 child 2', 'child 12 code'),
-      'Searchable child 1 child 2'
+      'Searchable child 1 child 2',
+      true,
+      preselectedIds.some(id => id === '12')
     );
 
     const child2 = new LocationBarNode<DemoLocationBarComplexNodeId>(
       new DemoLocationBarComplexNodeId('2', 'Searchable child 2', 'child 2 code'),
-      'Searchable child 2'
+      'Searchable child 2',
+      true,
+      preselectedIds.some(id => id === '2')
     );
     const child21 = new LocationBarNode<DemoLocationBarComplexNodeId>(
       new DemoLocationBarComplexNodeId('21', 'Searchable child 2 child 1', 'child 21 code'),
-      'Searchable child 2 child 1'
+      'Searchable child 2 child 1',
+      true,
+      preselectedIds.some(id => id === '21')
     );
 
     const root = new LocationBarNode<DemoLocationBarComplexNodeId>(
@@ -213,6 +222,26 @@ export class LocationBarDemo implements OnInit {
   }
 
   searchChanged(item: SearchResultModel) {
-    console.log('Searched item: ' + item);
+    console.log('Searched item:', JSON.stringify(item));
+    this.buildSearchableRoot(this.getSelectedNodes(this.searchableRoot[0], item));
+  }
+
+  private getSelectedNodes(
+    currentNode: LocationBarNode<DemoLocationBarComplexNodeId>,
+    item: SearchResultModel
+  ): string[] {
+    if (!currentNode.getChildren()) {
+      return [];
+    }
+
+    for (const childNode of currentNode.getChildren()) {
+      const selectedNodes = this.getSelectedNodes(childNode, item);
+      if (childNode.id.id === item['id'] || selectedNodes.length > 0) {
+        selectedNodes.push(childNode.id.id);
+        return selectedNodes;
+      }
+    }
+
+    return [];
   }
 }
