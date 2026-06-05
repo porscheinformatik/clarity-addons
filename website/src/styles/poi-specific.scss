@@ -13,7 +13,7 @@ $contentTopMargin: calc(2 * var(--cds-global-space-15));
 .table-of-contents {
   position: fixed;
   top: $contentTopMargin;
-  left: 61rem;
+  left: 57rem;
   border-left: 1px solid var(--cds-alias-object-border-color);
   z-index: 100000;
 

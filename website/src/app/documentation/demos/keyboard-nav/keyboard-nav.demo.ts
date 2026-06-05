@@ -7,15 +7,58 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { share } from 'rxjs';
 import { ClarityDocComponent } from '../clarity-doc';
-import { ClarityIcons, homeIcon, cogIcon, userIcon, searchIcon, folderIcon, bellIcon } from '@clr/angular/icon';
 import {
-  CTRL_ARROW_BASIC_EXAMPLE,
+  bellIcon,
+  blocksGroupIcon,
+  boltIcon,
+  calendarIcon,
+  circleIcon,
+  ClarityIcons,
+  clockIcon,
+  cogIcon,
+  flagIcon,
+  folderIcon,
+  fuelIcon,
+  heartIcon,
+  homeIcon,
+  inboxIcon,
+  mapIcon,
+  searchIcon,
+  shieldIcon,
+  starIcon,
+  terminalIcon,
+  userIcon,
+  wrenchIcon,
+} from '@clr/angular/icon';
+import {
   ALT_MNEMONIC_BASIC_EXAMPLE,
   COMBINED_EXAMPLE,
+  CTRL_ARROW_BASIC_EXAMPLE,
   IMPORT_EXAMPLE,
 } from './keyboard-nav-examples.demo';
 
-ClarityIcons.addIcons(homeIcon, cogIcon, userIcon, searchIcon, folderIcon, bellIcon);
+ClarityIcons.addIcons(
+  homeIcon,
+  cogIcon,
+  userIcon,
+  searchIcon,
+  folderIcon,
+  bellIcon,
+  starIcon,
+  heartIcon,
+  boltIcon,
+  flagIcon,
+  calendarIcon,
+  mapIcon,
+  terminalIcon,
+  shieldIcon,
+  clockIcon,
+  wrenchIcon,
+  blocksGroupIcon,
+  inboxIcon,
+  circleIcon,
+  fuelIcon
+);
 
 export interface TocEntry {
   id: string;
