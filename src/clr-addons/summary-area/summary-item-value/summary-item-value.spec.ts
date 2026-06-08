@@ -13,6 +13,8 @@ import { ClarityModule } from '@clr/angular';
       [clickable]="clickable"
       (clicked)="clickedFn()"
       [tooltip]="tooltip"
+      [href]="href"
+      [target]="target"
     >
       @if (projectedContent) {
       <span>{{ projectedContent }}</span>
@@ -30,6 +32,8 @@ class TestHostComponent {
   clickable: boolean | undefined;
   clickedFn: () => void;
   projectedContent: string | undefined;
+  href: string | undefined;
+  target: string | undefined;
 }
 
 @Component({
@@ -259,6 +263,53 @@ describe('SummaryItemValue', () => {
       const iconElement = fixture.debugElement.query(By.css('cds-icon.value-icon-neutral'));
       expect(iconElement).toBeTruthy();
     });
+
+    it('should render icon wrapped in <a> when href is provided', () => {
+      hostComponent.icon = 'pencil';
+      hostComponent.href = 'https://example.com';
+      fixture.detectChanges();
+
+      const anchorElement = fixture.debugElement.query(By.css('a.value-icon-link'));
+      const iconElement = fixture.debugElement.query(By.css('a.value-icon-link cds-icon'));
+      expect(anchorElement).toBeTruthy();
+      expect(anchorElement.attributes['href']).toBe('https://example.com');
+      expect(iconElement).toBeTruthy();
+    });
+
+    it('should set target on icon <a> wrapper when target is provided', () => {
+      hostComponent.icon = 'pencil';
+      hostComponent.href = 'https://example.com';
+      hostComponent.target = '_blank';
+      fixture.detectChanges();
+
+      const anchorElement = fixture.debugElement.query(By.css('a.value-icon-link'));
+      expect(anchorElement.attributes['target']).toBe('_blank');
+    });
+
+    it('should emit clicked when icon href and clickable are both set', () => {
+      const clickSpy = jasmine.createSpy('clickedFn');
+      hostComponent.icon = 'pencil';
+      hostComponent.href = 'https://example.com';
+      hostComponent.clickable = true;
+      hostComponent.clickedFn = clickSpy;
+      fixture.detectChanges();
+
+      const anchorElement = fixture.debugElement.query(By.css('a.value-icon-link'));
+      anchorElement.nativeElement.click();
+      expect(clickSpy).toHaveBeenCalled();
+    });
+
+    it('should render tooltip on icon <a> wrapper when href and tooltip are both provided', () => {
+      hostComponent.icon = 'pencil';
+      hostComponent.href = 'https://example.com';
+      hostComponent.tooltip = 'Edit';
+      fixture.detectChanges();
+
+      const tooltipElement = fixture.debugElement.query(By.css('clr-tooltip'));
+      const anchorElement = fixture.debugElement.query(By.css('a.value-icon-link'));
+      expect(tooltipElement).toBeTruthy();
+      expect(anchorElement).toBeTruthy();
+    });
   });
 
   describe('value rendering', () => {
@@ -304,6 +355,89 @@ describe('SummaryItemValue', () => {
 
       const linkElement = fixture.debugElement.query(By.css('.value-link'));
       expect(linkElement).toBeFalsy();
+    });
+  });
+
+  describe('href / target rendering', () => {
+    it('should render an <a> element when href is provided', () => {
+      hostComponent.value = 'Link Value';
+      hostComponent.href = 'https://example.com';
+      fixture.detectChanges();
+
+      const anchorElement = fixture.debugElement.query(By.css('a.value.value-link'));
+      expect(anchorElement).toBeTruthy();
+      expect(anchorElement.attributes['href']).toBe('https://example.com');
+    });
+
+    it('should set target attribute on <a> when target is provided', () => {
+      hostComponent.value = 'Link Value';
+      hostComponent.href = 'https://example.com';
+      hostComponent.target = '_blank';
+      fixture.detectChanges();
+
+      const anchorElement = fixture.debugElement.query(By.css('a.value.value-link'));
+      expect(anchorElement).toBeTruthy();
+      expect(anchorElement.attributes['target']).toBe('_blank');
+    });
+
+    it('should not set target attribute when target is not provided', () => {
+      hostComponent.value = 'Link Value';
+      hostComponent.href = 'https://example.com';
+      hostComponent.target = undefined;
+      fixture.detectChanges();
+
+      const anchorElement = fixture.debugElement.query(By.css('a.value.value-link'));
+      expect(anchorElement).toBeTruthy();
+      expect(anchorElement.attributes['target']).toBeFalsy();
+    });
+
+    it('should emit clicked when href and clickable are both set and link is clicked', () => {
+      const clickSpy = jasmine.createSpy('clickedFn');
+      hostComponent.value = 'Link Value';
+      hostComponent.href = 'https://example.com';
+      hostComponent.clickable = true;
+      hostComponent.clickedFn = clickSpy;
+      fixture.detectChanges();
+
+      const anchorElement = fixture.debugElement.query(By.css('a.value.value-link'));
+      anchorElement.nativeElement.click();
+      expect(clickSpy).toHaveBeenCalled();
+    });
+
+    it('should not emit clicked when href is set but clickable is false', () => {
+      const clickSpy = jasmine.createSpy('clickedFn');
+      hostComponent.value = 'Link Value';
+      hostComponent.href = 'https://example.com';
+      hostComponent.clickable = false;
+      hostComponent.clickedFn = clickSpy;
+      fixture.detectChanges();
+
+      const anchorElement = fixture.debugElement.query(By.css('a.value.value-link'));
+      anchorElement.nativeElement.click();
+      expect(clickSpy).not.toHaveBeenCalled();
+    });
+
+    it('should render tooltip on <a> element when href and tooltip are both provided', () => {
+      hostComponent.value = 'Link Value';
+      hostComponent.href = 'https://example.com';
+      hostComponent.tooltip = 'Open link';
+      fixture.detectChanges();
+
+      const tooltipElement = fixture.debugElement.query(By.css('clr-tooltip'));
+      const anchorElement = fixture.debugElement.query(By.css('a.value.value-link'));
+      expect(tooltipElement).toBeTruthy();
+      expect(anchorElement).toBeTruthy();
+    });
+
+    it('should render <span> (not <a>) when href is not provided', () => {
+      hostComponent.value = 'Plain Value';
+      hostComponent.href = undefined;
+      fixture.detectChanges();
+
+      const anchorElement = fixture.debugElement.query(By.css('a.value'));
+      const spanElement = fixture.debugElement.query(By.css('span.value'));
+      expect(anchorElement).toBeFalsy();
+      expect(spanElement).toBeTruthy();
     });
   });
 

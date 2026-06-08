@@ -78,14 +78,6 @@ export class SidebarPageLayoutDemo implements OnInit {
     }, 10000);
   }
 
-  navigateInternally(page: string) {
-    this.router.navigate(['/full-page-layouts/sidebarpage-layout', { outlets: { fullpage: page } }]);
-  }
-
-  openReferencesWebsite() {
-    window.open('https://www.porscheinformatik.com/', '_blank');
-  }
-
   sendEmail(email: string) {
     globalThis.location.href = `mailto:${email}`;
   }

@@ -1,4 +1,17 @@
-@if (icon() !== undefined && icon() !== null && icon() !== '') { @if (hasClickHandler) { @if (tooltip()) {
+@if (icon() !== undefined && icon() !== null && icon() !== '') { @if (href()) { @if (tooltip()) {
+<clr-tooltip>
+  <a clrTooltipTrigger class="value-icon-link" [href]="href()" [attr.target]="target() ?? null" (click)="handleClick()">
+    <cds-icon [shape]="icon()" class="value-icon value-link"></cds-icon>
+  </a>
+  <clr-tooltip-content [clrSize]="tooltipSize" [clrPosition]="tooltipPosition" *clrIfOpen>
+    {{ tooltip() }}</clr-tooltip-content
+  >
+</clr-tooltip>
+} @else {
+<a class="value-icon-link" [href]="href()" [attr.target]="target() ?? null" (click)="handleClick()">
+  <cds-icon [shape]="icon()" class="value-icon value-link"></cds-icon>
+</a>
+} } @else if (hasClickHandler) { @if (tooltip()) {
 <clr-tooltip>
   <cds-icon
     clrTooltipTrigger
@@ -29,7 +42,27 @@
 </clr-tooltip>
 } @else {
 <cds-icon [shape]="icon()" class="value-icon value-icon-neutral"></cds-icon>
-} } } @else if (value() !== undefined && value() !== null && value() !== '') { @if (hasClickHandler) {
+} } } @else if (value() !== undefined && value() !== null && value() !== '') { @if (href()) { @if (effectiveTooltip) {
+<clr-tooltip>
+  <a
+    #valueElement
+    class="value value-link"
+    clrTooltipTrigger
+    [href]="href()"
+    [attr.target]="target() ?? null"
+    (click)="handleClick()"
+  >
+    {{ value() }}
+  </a>
+  <clr-tooltip-content [clrSize]="tooltipSize" [clrPosition]="tooltipPosition" *clrIfOpen>
+    {{ effectiveTooltip }}</clr-tooltip-content
+  >
+</clr-tooltip>
+} @else {
+<a #valueElement class="value value-link" [href]="href()" [attr.target]="target() ?? null" (click)="handleClick()">
+  {{ value() }}
+</a>
+} } @else if (hasClickHandler) {
 <clr-tooltip>
   <span
     #valueElement

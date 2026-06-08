@@ -6,9 +6,17 @@
 
 import { ClarityDocComponent } from '../clarity-doc';
 import { Component, signal } from '@angular/core';
-import { ClarityIcons, checkCircleIcon, flagIcon, folderIcon, userIcon, usersIcon } from '@clr/angular/icon';
+import {
+  ClarityIcons,
+  checkCircleIcon,
+  flagIcon,
+  folderIcon,
+  userIcon,
+  usersIcon,
+  popOutIcon,
+} from '@clr/angular/icon';
 
-ClarityIcons.addIcons(userIcon, usersIcon, flagIcon, folderIcon, checkCircleIcon);
+ClarityIcons.addIcons(userIcon, usersIcon, flagIcon, folderIcon, checkCircleIcon, popOutIcon);
 
 const BASIC_EXAMPLE = `<clr-summary-area [rows]="3">
     <clr-summary-item label="Customer Name">
@@ -58,7 +66,7 @@ const CLICKABLE_EXAMPLE = `<clr-summary-area [rows]="1">
         (clicked)="handleValueClick()"
       ></clr-summary-item-value>
     </clr-summary-item>
-    <clr-summary-item label="External Link">
+    <clr-summary-item label="External Link (via clicked)">
       <clr-summary-item-value
         value="Open Documentation"
         [clickable]="true"
@@ -67,6 +75,48 @@ const CLICKABLE_EXAMPLE = `<clr-summary-area [rows]="1">
       ></clr-summary-item-value>
     </clr-summary-item>
   </clr-summary-area>`;
+
+const HREF_EXAMPLE = `<!-- External link — opens in a new tab, supports right-click "Open in new tab" -->
+<clr-summary-area [rows]="3">
+  <clr-summary-item label="Documentation">
+    <clr-summary-item-value
+      value="Clarity Design"
+      href="https://clarity.design"
+      target="_blank"
+      tooltip="Opens Clarity Design in a new tab"
+    ></clr-summary-item-value>
+  </clr-summary-item>
+  <clr-summary-item label="Internal Page">
+    <clr-summary-item-value
+      value="Go to Page layouts"
+      href="/documentation/latest/page-layouts"
+    ></clr-summary-item-value>
+  </clr-summary-item>
+  <!-- Icons also support href — wraps cds-icon in a native <a> element -->
+  <clr-summary-item label="Icon Link">
+    <clr-summary-item-value
+      icon="pop-out"
+      href="https://clarity.design"
+      target="_blank"
+      tooltip="Open Clarity Design"
+    ></clr-summary-item-value>
+    <clr-summary-item-value
+      value="Clarity Design"
+      href="https://clarity.design"
+      target="_blank"
+    ></clr-summary-item-value>
+  </clr-summary-item>
+  <!-- href and clickable can be combined: navigates via href AND emits (clicked) -->
+  <clr-summary-item label="Combined">
+    <clr-summary-item-value
+      value="Open & Track"
+      href="https://clarity.design"
+      target="_blank"
+      [clickable]="true"
+      (clicked)="onLinkClicked()"
+    ></clr-summary-item-value>
+  </clr-summary-item>
+</clr-summary-area>`;
 
 const MULTIPLE_VALUES_EXAMPLE = `<clr-summary-area [rows]="1">
     <clr-summary-item label="Tags" [valueCopyable]="true">
@@ -292,6 +342,7 @@ export class SummaryAreaDemo extends ClarityDocComponent {
   basicExample = BASIC_EXAMPLE;
   iconExample = ICON_EXAMPLE;
   clickableExample = CLICKABLE_EXAMPLE;
+  hrefExample = HREF_EXAMPLE;
   multipleValuesExample = MULTIPLE_VALUES_EXAMPLE;
   tooltipExample = TOOLTIP_EXAMPLE;
   emptyValueExample = EMPTY_VALUE_EXAMPLE;
@@ -319,6 +370,10 @@ export class SummaryAreaDemo extends ClarityDocComponent {
 
   openExternalLink(): void {
     window.open('https://clarity.design', '_blank');
+  }
+
+  onLinkClicked(): void {
+    console.log('Link clicked event emitted alongside href navigation');
   }
 
   viewCustomer(): void {

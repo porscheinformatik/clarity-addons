@@ -21,12 +21,15 @@
     <clr-summary-item-value value="John Doe (with tooltip)" tooltip="Name: John Doe"></clr-summary-item-value>
   </clr-summary-item>
   <clr-summary-item label="Label3">
-    <clr-summary-item-value icon="color-palette"></clr-summary-item-value>
+    <!-- NOTE: Icon with href opens a link natively (supports right-click "Open in new tab") -->
     <clr-summary-item-value
-      value="Clarity Colors"
-      [clickable]="true"
-      (clicked)="goToClarityRoute()"
+      icon="color-palette"
+      href="https://clarity.design"
+      target="_blank"
+      tooltip="Open Clarity Design"
     ></clr-summary-item-value>
+    <clr-summary-item-value value="Clarity Colors" href="https://clarity.design" target="_blank">
+    </clr-summary-item-value>
   </clr-summary-item>
   <clr-summary-item label="Label4" [valueCopyable]="true">
     <clr-summary-item-value value="Text item1"></clr-summary-item-value>
@@ -76,23 +79,23 @@
   <clr-summary-item label="Two links13" [valueCopyable]="true" [editConfig]="{enabled: true, click: onEditClick}">
     <clr-summary-item-value
       [icon]="'wand'"
-      [clickable]="true"
-      (clicked)="goToIconsPage()"
+      href="/icons"
       [tooltip]="'navigate to /icons route'"
     ></clr-summary-item-value>
     <clr-summary-item-value
       value="Navigate internally"
-      [clickable]="true"
-      (clicked)="goToPagerRoute()"
+      href="/pager"
       [tooltip]="'navigate to /pager route'"
     ></clr-summary-item-value>
   </clr-summary-item>
   <clr-summary-item label="External link14" [valueCopyable]="true">
+    <!-- NOTE: Using href + target="_blank" opens the link natively in a new tab,
+       including support for right-click "Open in new tab" from the context menu -->
     <clr-summary-item-value
       value="External App Jump"
       tooltip="Navigate to external app"
-      [clickable]="true"
-      (clicked)="goToExternalApp()"
+      href="https://external-app.example.com"
+      target="_blank"
     ></clr-summary-item-value>
   </clr-summary-item>
   <clr-summary-item label="Long Text15" [valueCopyable]="true" [copyButtonTooltip]="'Click to copy complete long text'">

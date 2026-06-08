@@ -34,6 +34,28 @@ cds-icon {
   flex-shrink: 0;
 }
 
+// Wrapper <a> used when an icon has an href. Resets browser anchor defaults so
+// only the inner cds-icon carries the visual link styling.
+.value-icon-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+
+  cds-icon {
+    color: var(--cds-alias-typography-link-color);
+  }
+}
+
+.value-icon-link:hover cds-icon,
+.value-icon-link:focus cds-icon {
+  color: var(--cds-alias-typography-link-color-hover);
+}
+
+.value-icon-link:visited cds-icon {
+  color: var(--cds-alias-typography-link-color-visited);
+}
+
 .value-icon {
   height: 20px;
   width: 20px;
