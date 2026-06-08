@@ -6,14 +6,14 @@
   <div class="content-header">
     <clr-back-button></clr-back-button>
     <h2>
-      @if (!withCommandBar && !withContentPanel && !withActionPanel) {
-      <span>Base Page Layout</span>
-      } @if (withCommandBar && !withContentPanel && !withActionPanel) {
-      <span>Command bar</span>
-      } @if (withCommandBar && withContentPanel) {
-      <span>Content Panel</span>
-      } @if (withActionPanel) {
+      @if (withActionPanel) {
       <span>Action Panel</span>
+      } @else if (withContentPanel) {
+      <span>Content Panel</span>
+      } @else if (withCommandBar) {
+      <span>Command bar</span>
+      } @else {
+      <span>Base Page Layout</span>
       }
     </h2>
     <div class="command-bar">
@@ -23,20 +23,15 @@
         [clrUsername]="'admin'"
         [clrDomain]="'porscheinformatik.github.io'"
       ></clr-history>
-      } @if (withCommandBar) {
-      <clr-button-group [clrMenuPosition]="'bottom-right'">
-        @if (!withContentPanel) {
-        <clr-button>Command1</clr-button>
-        } @if (!withContentPanel) {
-        <clr-button>Command2</clr-button>
-        } @if (!withContentPanel) {
-        <clr-button [clrInMenu]="true">Command3</clr-button>
-        }
-      </clr-button-group>
       } @if (withContentPanel) {
       <button type="button" class="btn btn-outline-primary" (click)="togglePanel(true)">Offers</button>
-      } @if (withContentPanel) {
       <button type="button" class="btn btn-outline-primary" (click)="togglePanel(false)">Financing</button>
+      } @else if (withCommandBar) {
+      <clr-button-group [clrMenuPosition]="'bottom-right'">
+        <clr-button>Command1</clr-button>
+        <clr-button>Command2</clr-button>
+        <clr-button [clrInMenu]="true">Command3</clr-button>
+      </clr-button-group>
       } @if (withActionPanel) {
       <button type="button" class="btn btn-icon btn-outline-primary" (click)="toggleActionPanel()">
         <cds-icon shape="view-columns"></cds-icon>
@@ -44,7 +39,79 @@
       }
     </div>
   </div>
-  @if (!withContentPanel && !withActionPanel) {
+  @if (withContentPanel) {
+  <clr-content-panel-container>
+    <clr-content-panel-container-content>
+      <ul>
+        <li>Use the content panel to provide supplementary content without interrupting the main content</li>
+        <li>If just actions are required use the action-panel instead</li>
+        <li>
+          Multiple content panels might be called from within a page (eg. offers, financing, ... referring to a vehicle
+          in the main content)
+        </li>
+      </ul>
+    </clr-content-panel-container-content>
+    <clr-content-panel #contentPanelOffer>
+      <ng-container clr-content-panel-title>Offers</ng-container>
+      <ng-container clr-content-panel-content>
+        @for (i of [1, 2, 3]; track i) {
+        <div class="card">
+          <div class="card-block">
+            <div class="card-text">
+              <br />
+              <br />
+              <br />
+            </div>
+          </div>
+        </div>
+        }
+      </ng-container>
+    </clr-content-panel>
+    <clr-content-panel #contentPanelFinancing>
+      <ng-container clr-content-panel-title>Financing</ng-container>
+      <ng-container clr-content-panel-content>
+        @for (i of [1, 2, 3, 4, 5]; track i) {
+        <div class="card">
+          <div class="card-block">
+            <div class="card-text">
+              <br /><br />
+              <br /><br /><br />
+            </div>
+          </div>
+        </div>
+        }
+      </ng-container>
+    </clr-content-panel>
+  </clr-content-panel-container>
+  } @else if (withActionPanel) {
+  <clr-action-panel-container>
+    <clr-action-panel-container-content>
+      <ul>
+        <li>Use when lot of actions are required</li>
+        <li>Group similar actions using Captions and Spacer.</li>
+        <li>Don't use when only a few actions are required, consider using Command bar then.</li>
+        <li>The history-button is the left-most button in the command-bar.</li>
+        <li>The action-panel-button is the right-most button in the command-bar.</li>
+      </ul>
+    </clr-action-panel-container-content>
+    <clr-action-panel #actionPanel>
+      <ng-container clr-action-panel-content>
+        <h3>Caption 1</h3>
+        <ul class="list action-panel-list">
+          <li><a href=".">Action-Link</a></li>
+          <li><a href=".">Action-Link</a></li>
+          <li><a href=".">Action-Link</a></li>
+        </ul>
+        <h3>Caption 2</h3>
+        <ul class="list action-panel-list">
+          <li><a href=".">Action-Link</a></li>
+          <li><a href=".">Action-Link</a></li>
+          <li><a href=".">Action-Link</a></li>
+        </ul>
+      </ng-container>
+    </clr-action-panel>
+  </clr-action-panel-container>
+  } @else {
   <div class="content-container">
     <div class="content-area">
       This is the page content@if (id) {
@@ -108,77 +175,5 @@
       </p>
     </div>
   </div>
-  } @if (withContentPanel) {
-  <clr-content-panel-container>
-    <clr-content-panel-container-content>
-      <ul>
-        <li>Use the content panel to provide supplementary content without interrupting the main content</li>
-        <li>If just actions are required use the action-panel instead</li>
-        <li>
-          Multiple content panels might be called from within a page (eg. offers, financing, ... referring to a vehicle
-          in the main content)
-        </li>
-      </ul>
-    </clr-content-panel-container-content>
-    <clr-content-panel #contentPanelOffer>
-      <ng-container clr-content-panel-title>Offers</ng-container>
-      <ng-container clr-content-panel-content>
-        @for (i of [1, 2, 3]; track i) {
-        <div class="card">
-          <div class="card-block">
-            <div class="card-text">
-              <br />
-              <br />
-              <br />
-            </div>
-          </div>
-        </div>
-        }
-      </ng-container>
-    </clr-content-panel>
-    <clr-content-panel #contentPanelFinancing>
-      <ng-container clr-content-panel-title>Financing</ng-container>
-      <ng-container clr-content-panel-content>
-        @for (i of [1, 2, 3, 4, 5]; track i) {
-        <div class="card">
-          <div class="card-block">
-            <div class="card-text">
-              <br /><br />
-              <br /><br /><br />
-            </div>
-          </div>
-        </div>
-        }
-      </ng-container>
-    </clr-content-panel>
-  </clr-content-panel-container>
-  } @if (withActionPanel) {
-  <clr-action-panel-container>
-    <clr-action-panel-container-content>
-      <ul>
-        <li>Use when lot of actions are required</li>
-        <li>Group similar actions using Captions and Spacer.</li>
-        <li>Don't use when only a few actions are required, consider using Command bar then.</li>
-        <li>The history-button is the left-most button in the command-bar.</li>
-        <li>The action-panel-button is the right-most button in the command-bar.</li>
-      </ul>
-    </clr-action-panel-container-content>
-    <clr-action-panel #actionPanel>
-      <ng-container clr-action-panel-content>
-        <h3>Caption 1</h3>
-        <ul class="list action-panel-list">
-          <li><a href=".">Action-Link</a></li>
-          <li><a href=".">Action-Link</a></li>
-          <li><a href=".">Action-Link</a></li>
-        </ul>
-        <h3>Caption 2</h3>
-        <ul class="list action-panel-list">
-          <li><a href=".">Action-Link</a></li>
-          <li><a href=".">Action-Link</a></li>
-          <li><a href=".">Action-Link</a></li>
-        </ul>
-      </ng-container>
-    </clr-action-panel>
-  </clr-action-panel-container>
   }
 </clr-main-container>
