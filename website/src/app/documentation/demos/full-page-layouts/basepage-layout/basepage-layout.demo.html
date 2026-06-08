@@ -19,7 +19,7 @@
     <div class="command-bar">
       @if (withHistory) {
       <clr-history
-        style="margin-top: 6px"
+        style="margin-top: 4px"
         [clrUsername]="'admin'"
         [clrDomain]="'porscheinformatik.github.io'"
       ></clr-history>
@@ -34,25 +34,11 @@
         }
       </clr-button-group>
       } @if (withContentPanel) {
-      <button type="button" class="btn btn-outline-primary" (click)="togglePanel(true)" style="margin-right: 0">
-        Offers
-      </button>
+      <button type="button" class="btn btn-outline-primary" (click)="togglePanel(true)">Offers</button>
       } @if (withContentPanel) {
-      <button
-        type="button"
-        class="btn btn-outline-primary"
-        (click)="togglePanel(false)"
-        style="margin-left: 10px; margin-right: 0"
-      >
-        Financing
-      </button>
+      <button type="button" class="btn btn-outline-primary" (click)="togglePanel(false)">Financing</button>
       } @if (withActionPanel) {
-      <button
-        type="button"
-        class="btn btn-icon btn-outline-primary"
-        (click)="toggleActionPanel()"
-        style="margin-left: 10px; margin-right: 0"
-      >
+      <button type="button" class="btn btn-icon btn-outline-primary" (click)="toggleActionPanel()">
         <cds-icon shape="view-columns"></cds-icon>
       </button>
       }
@@ -137,7 +123,7 @@
     <clr-content-panel #contentPanelOffer>
       <ng-container clr-content-panel-title>Offers</ng-container>
       <ng-container clr-content-panel-content>
-        @for (i of [1,2,3]; track i) {
+        @for (i of [1, 2, 3]; track i) {
         <div class="card">
           <div class="card-block">
             <div class="card-text">
@@ -153,7 +139,7 @@
     <clr-content-panel #contentPanelFinancing>
       <ng-container clr-content-panel-title>Financing</ng-container>
       <ng-container clr-content-panel-content>
-        @for (i of [1,2,3,4,5]; track i) {
+        @for (i of [1, 2, 3, 4, 5]; track i) {
         <div class="card">
           <div class="card-block">
             <div class="card-text">

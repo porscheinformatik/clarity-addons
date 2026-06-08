@@ -13,8 +13,8 @@
     .header-nav .nav-link {
       text-align: left;
 
-      &:first-of-type::before,
-      &:last-of-type::after {
+      &::before,
+      &::after {
         display: none;
       }
     }
@@ -73,12 +73,12 @@
           text-overflow: ellipsis;
 
           &:hover {
-            background-color: var(--clr-dropdown-bg-hover-color);
+            background-color: var(--clr-dropdown-item-hover-bg-color);
           }
 
           &.active {
-            background: var(--clr-dropdown-selection-color);
-            color: var(--clr-dropdown-active-text-color);
+            background: var(--clr-dropdown-item-active-bg-color);
+            color: var(--clr-dropdown-item-active-color);
           }
         }
       }
@@ -171,6 +171,7 @@
           border: 0;
           box-shadow: 0 0;
           padding: 0;
+          width: 100%;
 
           .nav-link {
             padding: 0 1.5rem 0 2rem;
