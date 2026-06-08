@@ -295,7 +295,7 @@ describe('SummaryItemValue', () => {
       fixture.detectChanges();
 
       const anchorElement = fixture.debugElement.query(By.css('a.value-icon-link'));
-      anchorElement.nativeElement.click();
+      anchorElement.triggerEventHandler('click', new MouseEvent('click'));
       expect(clickSpy).toHaveBeenCalled();
     });
 
@@ -400,7 +400,7 @@ describe('SummaryItemValue', () => {
       fixture.detectChanges();
 
       const anchorElement = fixture.debugElement.query(By.css('a.value.value-link'));
-      anchorElement.nativeElement.click();
+      anchorElement.triggerEventHandler('click', new MouseEvent('click'));
       expect(clickSpy).toHaveBeenCalled();
     });
 
@@ -413,7 +413,7 @@ describe('SummaryItemValue', () => {
       fixture.detectChanges();
 
       const anchorElement = fixture.debugElement.query(By.css('a.value.value-link'));
-      anchorElement.nativeElement.click();
+      anchorElement.triggerEventHandler('click', new MouseEvent('click'));
       expect(clickSpy).not.toHaveBeenCalled();
     });
 
