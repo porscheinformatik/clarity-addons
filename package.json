@@ -30,7 +30,7 @@
     "test:watch": "ng test clr-addons --watch",
     "test:ci": "npm-run-all test:format lint test build",
     "license:fix": "node scripts/update-license",
-    "publish": "npm publish ./dist/clr-addons --access public",
+    "publish": "npm publish ./dist/clr-addons --access public --tag latest-19",
     "prepare": "husky install",
     "ng": "ng"
   },
