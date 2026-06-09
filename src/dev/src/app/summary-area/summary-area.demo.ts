@@ -3,8 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, inject, OnInit, signal } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, signal } from '@angular/core';
 import {
   ClrSummaryArea,
   ClrSummaryItem,
@@ -87,8 +86,6 @@ export class SummaryAreaDemo implements OnInit {
     alert('Handle warning clicked!');
   }
 
-  private readonly router: Router = inject(Router);
-
   public ngOnInit(): void {
     // Simulate general loading state
     setTimeout(() => {
@@ -120,22 +117,6 @@ export class SummaryAreaDemo implements OnInit {
   public onEditClick = (): void => {
     alert('Edit clicked!');
   };
-
-  public goToIconsPage(): void {
-    this.router.navigate(['/icons']);
-  }
-
-  public goToPagerRoute(): void {
-    this.router.navigate(['/pager']);
-  }
-
-  public goToClarityRoute(): void {
-    this.router.navigate(['/clarity']);
-  }
-
-  public goToExternalApp(): void {
-    window.open('https://external-app.example.com', '_blank');
-  }
 
   public openProgressDetails() {
     this.showProgressDetails = true;

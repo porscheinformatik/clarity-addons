@@ -50,8 +50,7 @@
     <clr-summary-item label="Role">
       <clr-summary-item-value
         icon="administrator"
-        [clickable]="true"
-        (clicked)="navigateInternally('settings')"
+        href="/full-page-layouts/sidebarpage-layout/(fullpage:settings)"
         tooltip="Navigate to settings"
       ></clr-summary-item-value>
       <clr-summary-item-value value="Admin"></clr-summary-item-value>
@@ -68,16 +67,14 @@
     <clr-summary-item label="Manager" [valueCopyable]="true">
       <clr-summary-item-value
         value="Jane Smith"
-        [clickable]="true"
-        (clicked)="navigateInternally('profile')"
+        href="/full-page-layouts/sidebarpage-layout/(fullpage:profile)"
         tooltip="Navigate to profile"
       ></clr-summary-item-value>
     </clr-summary-item>
     <clr-summary-item label="Tasks" [loading]="itemLoadingState">
       <clr-summary-item-value
         value="5 open Tasks"
-        [clickable]="true"
-        (clicked)="navigateInternally('tasks')"
+        href="/full-page-layouts/sidebarpage-layout/(fullpage:tasks)"
       ></clr-summary-item-value>
     </clr-summary-item>
     <clr-summary-item label="Quota">
@@ -91,8 +88,8 @@
     <clr-summary-item label="References">
       <clr-summary-item-value
         value="Porsche Informatik"
-        [clickable]="true"
-        (clicked)="openReferencesWebsite()"
+        href="https://www.porscheinformatik.com/"
+        target="_blank"
       ></clr-summary-item-value>
     </clr-summary-item>
   </clr-summary-area>

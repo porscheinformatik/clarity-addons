@@ -77,6 +77,18 @@
         <code class="clr-code">(clicked)</code> event.
       </p>
 
+      <h4 class="sub-section-title">External and Internal Links via href</h4>
+      <p class="section">
+        Use the <code class="clr-code">[href]</code> input to render the value as a native
+        <code class="clr-code">&lt;a&gt;</code> element. This enables browser-native link behaviour such as
+        right-clicking to open the link in a new tab, middle-click support, and URL previews in the status bar — none of
+        which are available when using <code class="clr-code">[clickable]</code> with a
+        <code class="clr-code">(clicked)</code> handler. Use the optional <code class="clr-code">[target]</code> input
+        to control where the link opens (e.g. <code class="clr-code">target="_blank"</code> for a new tab). Both
+        <code class="clr-code">[href]</code> and <code class="clr-code">[clickable]</code> can be combined when you need
+        both native navigation and a custom side-effect.
+      </p>
+
       <h4 class="sub-section-title">Copy to Clipboard</h4>
       <p class="section">
         Items can be configured with the input <code class="clr-code">[valueCopyable]</code> to show a copy button that
@@ -321,6 +333,33 @@
             <td class="left clr-hidden-xs-down">EventEmitter&lt;void&gt;</td>
             <td class="clr-hidden-xs-down">—</td>
             <td class="left">Emitted when a clickable value is clicked</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[href]</b>
+              <div class="clr-hidden-sm-up">Type: string</div>
+            </td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="clr-hidden-xs-down">undefined</td>
+            <td class="left">
+              When set, renders the value as a native <code class="clr-code">&lt;a&gt;</code> element with this URL.
+              Enables right-click "Open in new tab" and other browser-native link behaviours. Can be combined with
+              <code class="clr-code">[clickable]</code> to also emit the <code class="clr-code">(clicked)</code> event.
+            </td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[target]</b>
+              <div class="clr-hidden-sm-up">Type: string</div>
+            </td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="clr-hidden-xs-down">undefined</td>
+            <td class="left">
+              Sets the <code class="clr-code">target</code> attribute on the rendered
+              <code class="clr-code">&lt;a&gt;</code> element. Only has effect when
+              <code class="clr-code">[href]</code> is also provided. Use <code class="clr-code">"_blank"</code> to open
+              in a new tab.
+            </td>
           </tr>
         </tbody>
       </table>
@@ -801,7 +840,58 @@
 
       <clr-code-snippet [clrCode]="clickableExample"></clr-code-snippet>
 
-      <h4 class="sub-section-title">Multiple Values</h4>
+      <h4 class="sub-section-title">External and Internal Links via href</h4>
+      <p class="section">
+        Using <code class="clr-code">[href]</code> renders a native anchor element, enabling right-click "Open in new
+        tab", middle-click, and status-bar URL preview — unlike the <code class="clr-code">[clickable]</code> approach
+        which uses a <code class="clr-code">&lt;span&gt;</code>. Combine with
+        <code class="clr-code">target="_blank"</code> for external links.
+      </p>
+      <br />
+
+      <!-- External link — opens in a new tab, supports right-click "Open in new tab" -->
+      <clr-summary-area [rows]="3">
+        <clr-summary-item label="Documentation">
+          <clr-summary-item-value
+            value="Clarity Design"
+            href="https://clarity.design"
+            target="_blank"
+            tooltip="Opens Clarity Design in a new tab"
+          ></clr-summary-item-value>
+        </clr-summary-item>
+        <clr-summary-item label="Internal Page">
+          <clr-summary-item-value
+            value="Go to Page layouts"
+            href="/documentation/latest/page-layouts"
+          ></clr-summary-item-value>
+        </clr-summary-item>
+        <!-- Icons also support href — wraps cds-icon in a native <a> element -->
+        <clr-summary-item label="Icon Link">
+          <clr-summary-item-value
+            icon="pop-out"
+            href="https://clarity.design"
+            target="_blank"
+            tooltip="Open Clarity Design"
+          ></clr-summary-item-value>
+          <clr-summary-item-value
+            value="Clarity Design"
+            href="https://clarity.design"
+            target="_blank"
+          ></clr-summary-item-value>
+        </clr-summary-item>
+        <!-- href and clickable can be combined: navigates via href AND emits (clicked) -->
+        <clr-summary-item label="Combined">
+          <clr-summary-item-value
+            value="Open & Track"
+            href="https://clarity.design"
+            target="_blank"
+            [clickable]="true"
+            (clicked)="onLinkClicked()"
+          ></clr-summary-item-value>
+        </clr-summary-item>
+      </clr-summary-area>
+
+      <clr-code-snippet [clrCode]="hrefExample"></clr-code-snippet>
       <p class="section">A Summary Item can contain multiple text values, displayed in sequence.</p>
       <br />
 

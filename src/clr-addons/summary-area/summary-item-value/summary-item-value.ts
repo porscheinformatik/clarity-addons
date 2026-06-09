@@ -40,6 +40,8 @@ export class ClrSummaryItemValue implements OnInit, AfterContentInit, AfterViewI
   public readonly icon = input<string | undefined>();
   public readonly tooltip = input<string | undefined>();
   public readonly clickable = input<boolean>(false);
+  public readonly href = input<string | undefined>();
+  public readonly target = input<string | undefined>();
   public readonly clicked = output<void>();
 
   public hasProjectedContent = false;
