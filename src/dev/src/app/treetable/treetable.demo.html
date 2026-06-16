@@ -22,7 +22,7 @@
   [clrTtAutoParentSelection]="autoParentSelection()"
   (clrTtRefresh)="logState($event)"
 >
-  <clr-tt-column [clrTtSortBy]="comperator" [(clrTtSortOrder)]="sortOrder">
+  <clr-tt-column [clrTtSortBy]="comperator" [(clrTtSortOrder)]="sortOrder" style="min-width: 1300px">
     Name
     <clr-tt-string-filter [clrTtStringFilter]="treeNameFilter" [clrTtFilterPlaceholder]="'Name'"></clr-tt-string-filter>
   </clr-tt-column>
@@ -42,7 +42,7 @@
       <button class="action-item" (click)="testAction()">Test Action</button>
     </clr-tt-action-overflow>
 
-    <clr-tt-cell>{{ node.value.name }}</clr-tt-cell>
+    <clr-tt-cell style="min-width: 1300px">{{ node.value.name }}</clr-tt-cell>
     <clr-tt-cell>{{ node.id }}</clr-tt-cell>
     <clr-tt-cell>{{ node.parent?.id || 'No Parent' }}</clr-tt-cell>
   </clr-tt-row>

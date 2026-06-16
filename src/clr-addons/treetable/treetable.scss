@@ -168,7 +168,8 @@ $indentation-increment: 1rem;
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
       -ms-overflow-style: -ms-autohiding-scrollbar;
-      overflow: auto;
+      overflow-x: auto;
+      overflow-y: auto;
       flex: 1 1 auto;
       margin-top: 0.5rem;
 
@@ -254,6 +255,9 @@ $indentation-increment: 1rem;
         display: flex;
         flex-flow: row nowrap;
         flex: 1 1 auto;
+        width: 100%;
+        min-width: max-content;
+        position: relative;
 
         :first-child {
           /* Add padding of 1.5 rem to account for the expendable icon in the rows below*/
@@ -421,14 +425,20 @@ $indentation-increment: 1rem;
             border-top: var(--clr-global-borderwidth) solid var(--clr-table-border-color);
             display: flex;
             flex: 1 1 auto;
+            width: 100%;
+            min-width: max-content;
             flex-flow: row nowrap;
+            position: relative;
           }
 
           .treetable-scrolling-cells {
             display: flex;
             flex: 1 1 auto;
             flex-flow: row nowrap;
+            width: 100%;
+            min-width: max-content;
             overflow: hidden;
+            position: relative;
 
             .treetable-cell {
               text-align: left;
