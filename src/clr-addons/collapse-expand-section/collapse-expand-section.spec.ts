@@ -75,4 +75,16 @@ describe('CollapseExpandSectionComponent', () => {
     expect(textContent).toContain('Test Subtitle');
     expect(textContent).toContain('Test Content');
   });
+
+  it('should toggle when clicking the title', () => {
+    const hostFixture = TestBed.createComponent(CollapseExpandSectionHostComponent);
+    const section = hostFixture.debugElement.children[0].componentInstance as ClrCollapseExpandSection;
+    hostFixture.detectChanges();
+
+    expect(section.isCollapsed).toBeFalse();
+
+    hostFixture.nativeElement.querySelector('.ces-title-trigger').click();
+
+    expect(section.isCollapsed).toBeTrue();
+  });
 });

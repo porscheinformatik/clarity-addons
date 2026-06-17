@@ -1,11 +1,22 @@
 <div class="card view-edit-section" (keyup.escape)="onCancel()">
   <div class="card-block">
     <div class="card-title" [attr.cds-text]="_titleTextStyle + ' ' + _titleTextFontWeight">
-      {{ _title }} @if (_isCollapsible && !editMode) {
+      @if (_isCollapsible && !editMode) {
+      <span
+        class="ces-title-trigger"
+        (click)="onCollapseExpand()"
+        (keydown.enter)="onCollapseExpand()"
+        (keydown.space)="onCollapseExpand(); $event.preventDefault()"
+        tabindex="0"
+        role="button"
+        [attr.aria-expanded]="!_isCollapsed"
+      >
+        {{ _title }}
+      </span>
       <button type="button" (click)="onCollapseExpand()" class="btn btn-icon btn-link ces-caret-btn">
         <cds-icon shape="angle" size="20" class="ces-caret-icon" [@rotateIcon]="_isCollapsed"></cds-icon>
       </button>
-      }
+      } @else { {{ _title }} }
       <div class="ves-actions">
         @if (_editable && !editMode && actionBlock.children.length == 0) {
         <button type="button" (click)="onEdit()" class="btn btn-icon btn-link ves-action">

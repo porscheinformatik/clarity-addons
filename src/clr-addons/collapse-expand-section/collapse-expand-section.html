@@ -2,11 +2,31 @@
   <div class="ces-title" [class.disabled-header-styles]="disableHeaderStyles">
     @if (!disableHeaderStyles) {
     <h2>
-      <ng-content select="[clr-ces-title]"></ng-content>
+      <span
+        class="ces-title-trigger"
+        (click)="onCollapseExpand()"
+        (keydown.enter)="onCollapseExpand()"
+        (keydown.space)="onCollapseExpand(); $event.preventDefault()"
+        tabindex="0"
+        role="button"
+        [attr.aria-expanded]="!isCollapsed"
+      >
+        <ng-content select="[clr-ces-title]"></ng-content>
+      </span>
       <ng-container *ngTemplateOutlet="caretBtn"></ng-container>
     </h2>
     } @else {
-    <ng-content select="[clr-ces-title]"></ng-content>
+    <span
+      class="ces-title-trigger"
+      (click)="onCollapseExpand()"
+      (keydown.enter)="onCollapseExpand()"
+      (keydown.space)="onCollapseExpand(); $event.preventDefault()"
+      tabindex="0"
+      role="button"
+      [attr.aria-expanded]="!isCollapsed"
+    >
+      <ng-content select="[clr-ces-title]"></ng-content>
+    </span>
     <ng-container *ngTemplateOutlet="caretBtn"></ng-container>
     }
     <ng-template #caretBtn>
