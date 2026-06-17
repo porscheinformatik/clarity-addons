@@ -4,6 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
+import { Component } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { ClarityModule } from '@clr/angular';
@@ -11,13 +12,25 @@ import { ClarityModule } from '@clr/angular';
 import { ClrCollapseExpandSection } from './collapse-expand-section';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+@Component({
+  template: `
+    <clr-collapse-expand-section [clrIsCollapsed]="false">
+      <ng-container clr-ces-title>Test Title</ng-container>
+      <ng-container clr-ces-subtitle>Test Subtitle</ng-container>
+      <ng-container clr-ces-content>Test Content</ng-container>
+    </clr-collapse-expand-section>
+  `,
+  standalone: false,
+})
+class CollapseExpandSectionHostComponent {}
+
 describe('CollapseExpandSectionComponent', () => {
   let component: ClrCollapseExpandSection;
   let fixture: ComponentFixture<ClrCollapseExpandSection>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ClrCollapseExpandSection],
+      declarations: [ClrCollapseExpandSection, CollapseExpandSectionHostComponent],
       imports: [ClarityModule, FormsModule, BrowserAnimationsModule],
     }).compileComponents();
   }));
@@ -50,5 +63,16 @@ describe('CollapseExpandSectionComponent', () => {
     spyOn(component.collapsed, 'emit');
     component.onCollapseExpand();
     expect(component.collapsed.emit).toHaveBeenCalledTimes(1);
+  });
+
+  it('should project title, subtitle and content', () => {
+    const hostFixture = TestBed.createComponent(CollapseExpandSectionHostComponent);
+    hostFixture.detectChanges();
+
+    const textContent = hostFixture.nativeElement.textContent;
+
+    expect(textContent).toContain('Test Title');
+    expect(textContent).toContain('Test Subtitle');
+    expect(textContent).toContain('Test Content');
   });
 });
