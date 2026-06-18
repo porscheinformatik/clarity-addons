@@ -1,5 +1,7 @@
 .filter-selection {
-  margin-top: 0.5rem;
+  display: block;
+  max-height: calc(100dvh - 4rem);
+  overflow-y: auto;
 }
 
 .btn-trash {
