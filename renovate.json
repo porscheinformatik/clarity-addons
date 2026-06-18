@@ -13,7 +13,7 @@
       "matchSourceUrls": [
         "https://github.com/angular/angular",
         "https://github.com/angular/angular-cli"
-      ]
+      ],
       "matchPackageNames": [
         "@angular/**",
         "@angular/common",
