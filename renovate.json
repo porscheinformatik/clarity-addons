@@ -12,6 +12,10 @@
     {
       "matchPackageNames": [
         "@angular/**",
+        "@angular/common",
+        "@angular/compiler",
+        "@angular/core",
+        "@angular/platform-server",
         "@angular-devkit/**",
         "ng-packagr"
       ],
