@@ -204,4 +204,12 @@ describe('ViewEditSectionComponent', () => {
     fixture.changeDetectorRef.detectChanges();
     expect(fixture.nativeElement.querySelector('.ces-caret-btn')).toBeNull();
   });
+
+  it('should toggle when clicking the title', () => {
+    expect(component._isCollapsed).toBeFalse();
+
+    fixture.nativeElement.querySelector('.ces-title-trigger').click();
+
+    expect(component._isCollapsed).toBeTrue();
+  });
 });
