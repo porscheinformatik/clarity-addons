@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { ChangeDetectionStrategy, Component, input, ElementRef, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, input, ViewChild } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
 import { of, share } from 'rxjs';
 import { delay } from 'rxjs/operators';
@@ -18,8 +18,7 @@ import {
 } from '@clr/angular/icon';
 import { ActivatedRoute } from '@angular/router';
 import { DynamicColumn } from '@porscheinformatik/clr-addons';
-import { ClrIcon } from '@clr/angular';
-import { ClrDatagrid } from '@clr/angular';
+import { ClrDatagrid, ClrIcon } from '@clr/angular';
 
 interface ExportableEntry {
   column1: string;
@@ -436,6 +435,15 @@ export class DatagridDemo extends ClarityDocComponent {
   ];
 
   dataListWithEmpty = [{ name: 'TestValue1' }, { name: 'TestValue2' }, { name: '' }];
+
+  dataListWithManyItems = (() => {
+    const values: string[] = [];
+    for (let counter = 1; counter <= 30; counter++) {
+      values.push(`TestValue ${counter}`);
+    }
+
+    return values;
+  })();
 
   customPossibleValues = ['TestValue1', 'TestValue2', 'TestValue3', 'TestValue4'];
   preselectedValues = ['TestValue1', 'TestValue3'];

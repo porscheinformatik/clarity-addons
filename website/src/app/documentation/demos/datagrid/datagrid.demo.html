@@ -172,6 +172,20 @@
 
     <clr-code-snippet [clrCode]="enumFilterEmptyExample"></clr-code-snippet>
 
+    <h4>Many entries do show scrolling inside the filter</h4>
+    <clr-datagrid>
+      <clr-dg-column [clrDgField]="'name'"
+        >Name
+        <clr-dg-filter>
+          <clr-enum-filter clrProperty="name" [clrPossibleValues]="dataListWithManyItems"></clr-enum-filter>
+        </clr-dg-filter>
+      </clr-dg-column>
+
+      <clr-dg-row *clrDgItems="let data of dataListWithManyItems" [clrDgItem]="data">
+        <clr-dg-cell>{{ data }}</clr-dg-cell>
+      </clr-dg-row>
+    </clr-datagrid>
+
     <!-- DATE FILTER -->
     <h3 id="date-filter">Date filter</h3>
     <p>

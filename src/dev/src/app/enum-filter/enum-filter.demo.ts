@@ -10,7 +10,14 @@ export class EnumFilterDemo {
   dataList = [{ name: 'TestValue2' }, { name: 'TestValue1' }];
   dataListWithEmpty = [{ name: 'TestValue2' }, { name: 'TestValue1' }, { name: '' }];
 
-  customPossibleValues = ['TestValue2', 'TestValue1', 'TestValue3'];
+  customPossibleValues = (() => {
+    const values: string[] = [];
+    for (let counter = 1; counter <= 30; counter++) {
+      values.push(`TestValueTestValueTestValueTestValue${counter}`);
+    }
+
+    return values;
+  })();
   customPossibleValuesWithDisplayNames = [
     { value: 'v1', displayValue: 'TestValue1' },
     { value: 'v2', displayValue: 'TestValue2' },
