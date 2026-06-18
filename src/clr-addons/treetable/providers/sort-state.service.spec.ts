@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Sort, TreetableSortState } from './sort';
+import { SortStateService, TreetableSortState } from './sort-state.service';
 import { ClrTreetableComparatorInterface } from '../interfaces/comparator.interface';
 import { TestBed } from '@angular/core/testing';
 
@@ -17,12 +17,12 @@ class IdComparator implements ClrTreetableComparatorInterface<Item> {
 }
 
 describe('Sort<Item>', () => {
-  let service: Sort<Item>;
+  let service: SortStateService<Item>;
   let comparator: IdComparator;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({ providers: [Sort] });
-    service = TestBed.inject(Sort<Item>);
+    TestBed.configureTestingModule({ providers: [SortStateService] });
+    service = TestBed.inject(SortStateService<Item>);
     comparator = new IdComparator();
 
     TestBed.tick();

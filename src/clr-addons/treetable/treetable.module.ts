@@ -31,13 +31,19 @@ import {
 import { ClrTreetableStringFilter } from './built-in/filter/treetable-string-filter';
 import { ClrTreetableRecursiveRows } from './treetable-recursive-rows';
 import { ClrTreetableRowCheckbox } from './treetable-row-checkbox';
+import { ClrTreetableFooter } from './treetable-footer';
+import { ClrTreetableColumnManagerMenuComponent } from './treetable-column-manager-menu.component';
+import { ClrTreetableHideableColumn } from './treetable-hideable-column.directive';
 
 const CLR_TREETABLE_DIRECTIVES: Type<any>[] = [
   ClrTreetable,
   ClrTreetableRow,
   ClrTreetableCell,
   ClrTreetableColumn,
+  ClrTreetableHideableColumn,
+  ClrTreetableFooter,
   ClrTreetablePlaceholder,
+  ClrTreetableColumnManagerMenuComponent,
   ClrTreetableActionOverflow,
   TreetableMainRenderer,
   TreetableHeaderRenderer,

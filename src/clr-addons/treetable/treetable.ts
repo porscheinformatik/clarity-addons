@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -7,21 +7,28 @@
 import { ChangeDetectionStrategy, Component, computed, contentChildren, effect, inject, input } from '@angular/core';
 import { ClrTreetableRow } from './treetable-row';
 import { SelectionType } from './enums/selection-type';
-import { Sort, TreetableDataStateService } from './providers';
+import { SortStateService, TreetableDataStateService } from './providers';
 import { outputFromObservable, toObservable } from '@angular/core/rxjs-interop';
 import { ClrTreetableActionOverflow } from './treetable-action-overflow';
-import { Filters } from './providers/filters';
+import { FilterStateService } from './providers/filter-state.service';
 import {
   ClrTreetableRecursionService,
   TREETABLE_RECURSION_SERVICE_PROVIDER,
 } from './providers/treetable-recursion.service';
 import { ClrTreetableState } from './interfaces/treetable-state-model';
+import { TreetableColumnStateService } from './providers/treetable-column-state.service';
 
 @Component({
   selector: 'clr-treetable',
   templateUrl: './treetable.html',
   host: { '[class.empty]': 'empty()', '[class.treetable-host]': 'true' },
-  providers: [TREETABLE_RECURSION_SERVICE_PROVIDER, TreetableDataStateService, Sort, Filters],
+  providers: [
+    TREETABLE_RECURSION_SERVICE_PROVIDER,
+    TreetableDataStateService,
+    TreetableColumnStateService,
+    SortStateService,
+    FilterStateService,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })

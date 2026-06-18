@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -14,7 +14,7 @@ export interface TreetableSortState<T extends object> {
 }
 
 @Injectable()
-export class Sort<T extends object> {
+export class SortStateService<T extends object> {
   private readonly _comparator = signal<ClrTreetableComparatorInterface<T> | null>(null);
   private readonly _reverse = signal<boolean>(false);
 

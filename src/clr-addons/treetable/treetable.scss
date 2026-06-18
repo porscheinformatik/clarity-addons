@@ -48,21 +48,29 @@ $indentation-increment: 1rem;
 
     #{$th},
     #{$td} {
-      font-size: 0.65rem;
-      line-height: 0.7rem;
+      font-size: var(--clr-base-typography-font-size-default);
+      font-weight: var(--cds-alias-typography-body-font-weight);
+      line-height: var(--clr-base-typography-line-height-16);
+      letter-spacing: calc(-0.1 * (1rem / var(--cds-global-base)));
+
+      min-width: var(--cds-global-layout-space-xxl);
+      padding: 0.55rem 0.6rem;
+
+      text-align: center;
+      vertical-align: top;
+
       border-top-style: solid;
       border-top-width: var(--clr-table-borderwidth);
       border-top-color: var(--clr-tablerow-bordercolor);
-      padding: 0.55rem 0.6rem;
-      text-align: center;
-      vertical-align: top;
     }
 
     #{$th} {
+      font-size: var(--clr-base-typography-font-size-caption);
+      font-weight: var(--cds-alias-typography-font-weight-semibold);
+      line-height: var(--clr-base-typography-line-height-16);
+      letter-spacing: calc(0.2 * (1rem / var(--cds-global-base)));
+
       color: var(--clr-thead-color);
-      font-size: 0.55rem;
-      font-weight: 600;
-      letter-spacing: 0.03rem;
       background-color: var(--clr-thead-bgcolor);
       vertical-align: bottom;
       border-bottom-style: solid;
@@ -137,6 +145,13 @@ $indentation-increment: 1rem;
   box-shadow: var(--cds-alias-object-shadow-100);
 }
 
+@mixin subsection-16-exp {
+  font-size: var(--cds-global-space-7);
+  font-weight: var(--cds-alias-typography-subsection-font-weight);
+  line-height: var(--cds-global-space-9);
+  letter-spacing: mixins.baselinePx(-0.2);
+}
+
 @include mixins.exports('treetable.clr-addons') {
   @include basic-table(
     '.treetable',
@@ -156,8 +171,16 @@ $indentation-increment: 1rem;
     .treetable-body,
     .treetable-row,
     .treetable-column,
-    .treetable-cell {
+    .treetable-cell,
+    .treetable-footer {
       display: block;
+    }
+
+    .treetable-hidden-column {
+      &.treetable-column,
+      &.treetable-cell {
+        display: none !important;
+      }
     }
 
     .clr-row-clickable {
@@ -181,6 +204,7 @@ $indentation-increment: 1rem;
         min-height: 3rem; // Includes header and space for a single (non existing) row
         height: 100%;
         overflow: auto;
+        border-bottom: var(--clr-table-borderwidth) solid var(--clr-table-border-color);
       }
 
       .treetable-action-trigger {
@@ -271,7 +295,6 @@ $indentation-increment: 1rem;
           display: flex;
           flex: 1 1 auto;
           vertical-align: top;
-          border: none;
 
           &:last-of-type {
             padding-right: 1rem;
@@ -398,6 +421,10 @@ $indentation-increment: 1rem;
           min-height: 0;
           height: 0;
         }
+
+        .treetable-column {
+          border: none;
+        }
       }
 
       .treetable-body {
@@ -455,6 +482,102 @@ $indentation-increment: 1rem;
         }
       }
 
+      .treetable-footer {
+        font-size: var(--clr-base-typography-font-size-caption);
+        font-weight: var(--cds-alias-typography-caption-font-weight);
+        line-height: var(--clr-base-typography-line-height-12);
+        letter-spacing: calc(0.2 * (1rem / var(--cds-global-base)));
+
+        display: flex;
+        flex: 0 0 auto;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--clr-base-gap-m);
+
+        min-height: var(--clr-base-row-height-l);
+        padding: 0 var(--clr-base-horizontal-offset-l);
+        background-color: var(--clr-thead-bgcolor);
+
+        .clr-form-control-disabled
+          .treetable-footer-select
+          .clr-checkbox-wrapper
+          input[type='checkbox']:checked
+          + label {
+          top: 0;
+        }
+
+        .clr-form-control-disabled
+          .treetable-footer-select
+          .clr-checkbox-wrapper
+          input[type='checkbox']:checked
+          + label {
+          cursor: default;
+
+          &::before {
+            background-color: var(--cds-alias-typography-disabled);
+          }
+        }
+
+        .column-manager-menu {
+          position: relative;
+          flex: 0 0 auto;
+          display: flex;
+          align-items: center;
+
+          .column-manager-menu-open {
+            // I'm overriding .btn/.btn-link here but am not confident this is the correct way to do it.
+            min-width: var(--cds-global-space-8);
+            text-transform: capitalize;
+            padding: var(--cds-global-space-5);
+            border-color: var(--cds-alias-object-interaction-border-color);
+            background-color: var(--cds-alias-object-opacity-0);
+            color: var(--cds-alias-typography-color-400);
+            margin: 0;
+
+            &.disabled,
+            &:disabled,
+            &.disabled:hover,
+            &:disabled:hover,
+            &.disabled:active,
+            &:disabled:active {
+              cursor: not-allowed;
+              border-color: var(--cds-alias-typography-disabled);
+              color: var(--cds-alias-typography-disabled);
+              background-color: var(--cds-alias-object-opacity-0);
+            }
+
+            &:hover {
+              border-color: var(--cds-alias-object-interaction-color-active);
+              background-color: var(--cds-alias-object-interaction-background);
+              color: var(--cds-alias-typography-color-50);
+            }
+
+            &:active,
+            &:focus {
+              box-shadow: none;
+              border-color: var(--cds-alias-object-interaction-border-color);
+              background-color: var(--cds-alias-object-opacity-0);
+              color: var(--cds-alias-typography-color-400);
+            }
+          }
+        }
+
+        .clr-form-control-disabled {
+          display: flex;
+          align-items: center;
+        }
+
+        .treetable-footer-description {
+          flex: 1 1 auto;
+          flex-wrap: nowrap;
+          white-space: nowrap;
+          display: block;
+          text-align: right;
+          margin: auto 0;
+        }
+      }
+
       .treetable-spinner {
         position: absolute;
         display: flex;
@@ -502,6 +625,97 @@ $indentation-increment: 1rem;
         background-size: contain;
         background-position: center;
         background-image: mixins.generateEmptyTreetablePlaceholder();
+      }
+    }
+  }
+  /**
+   * Smart popover contents
+   */
+  .column-switch {
+    @include clr-treetable-popover;
+
+    border-radius: var(--cds-global-space-3);
+    background-color: var(--cds-alias-object-container-background);
+    border-width: var(--cds-alias-object-border-width-100);
+    border-style: solid;
+    border-color: var(--cds-alias-object-border-color);
+
+    width: mixins.baselinePx(250);
+    display: flex;
+    flex-direction: column;
+    z-index: map.get(variables.$clr-layers, column-switch); // Keeps the popup above the datagrid header.
+
+    .switch-header {
+      display: flex;
+      justify-content: space-between;
+
+      @include subsection-16-exp;
+
+      padding: var(--cds-global-space-7) var(--cds-global-space-7) 0 var(--cds-global-space-7);
+
+      // From accessibility perspective we let use of header tags inside the switch header,
+      // but want not to be affected from the global header styles so this is a workaround.
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        @include subsection-16-exp;
+        color: var(--clr-p1-color);
+        margin: 0;
+      }
+
+      button {
+        min-width: var(--cds-global-space-7);
+        margin: 0;
+        padding: 0;
+
+        cds-icon,
+        clr-icon {
+          color: var(--cds-alias-object-interaction-color);
+
+          &:hover {
+            color: var(--cds-alias-object-interaction-color-hover);
+          }
+
+          &:active {
+            color: var(--cds-alias-object-interaction-color-active);
+          }
+        }
+      }
+    }
+
+    ul.switch-content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--cds-global-space-3);
+      max-height: mixins.baselinePx(300);
+      overflow-y: auto;
+      min-height: var(--clr-table-row-height);
+
+      // Increase specificity
+      &.list-unstyled {
+        padding: var(--cds-global-space-4) var(--cds-global-space-7);
+      }
+
+      li {
+        line-height: unset;
+        padding-left: var(--cds-global-space-3);
+      }
+    }
+
+    .switch-footer {
+      padding: 0 var(--cds-global-space-7) var(--cds-global-space-7) var(--cds-global-space-7);
+
+      .btn {
+        margin: 0;
+        padding: 0;
+      }
+
+      .action-right {
+        display: flex;
+        justify-content: flex-end;
       }
     }
   }

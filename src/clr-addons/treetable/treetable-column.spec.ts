@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -7,7 +7,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ClrTreetableColumn } from './treetable-column';
 import { ClrTreetableComparatorInterface } from './interfaces/comparator.interface';
-import { Sort } from './providers';
+import { SortStateService } from './providers';
 import { ClrTreetableSortOrder } from './enums/sort-order.enum';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
@@ -18,7 +18,7 @@ type TestObject = { id: string; number: number };
 describe('ClrTreetableColumn', () => {
   let component: ClrTreetableColumn<TestObject>;
   let fixture: ComponentFixture<ClrTreetableColumn<TestObject>>;
-  let sortProvider: Sort<TestObject>;
+  let sortProvider: SortStateService<TestObject>;
 
   let sortProviderToggleSpy: SpyObj<unknown>;
   let sortOrderChangedSpy: SpyObj<unknown>;
@@ -31,10 +31,10 @@ describe('ClrTreetableColumn', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [ClrTreetableColumn],
-      providers: [Sort],
+      providers: [SortStateService],
     });
 
-    sortProvider = TestBed.inject(Sort);
+    sortProvider = TestBed.inject(SortStateService);
 
     fixture = TestBed.createComponent(ClrTreetableColumn<TestObject>);
     component = fixture.componentInstance;

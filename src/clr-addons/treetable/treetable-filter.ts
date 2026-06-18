@@ -5,10 +5,21 @@
  */
 
 import { ChangeDetectionStrategy, Component, computed, inject, input, OnDestroy, OnInit, signal } from '@angular/core';
-import { ClrTreetableFilterInterface } from './interfaces/filter-model';
-import { ClrCommonStringsService, ClrPopoverPosition, ClrPopoverService } from '@clr/angular';
-import { Filters, RegisteredTreetableFilter } from './providers/filters';
 import { toSignal } from '@angular/core/rxjs-interop';
+import {
+  ClrAlignment,
+  ClrAxis,
+  ClrCommonStringsService,
+  ClrCommonStringsService,
+  ClrPopoverPosition,
+  ClrPopoverPosition,
+  ClrPopoverService,
+  ClrPopoverToggleService,
+  ClrSide,
+} from '@clr/angular';
+import { ClrTreetableFilterInterface } from './interfaces/filter-model';
+import { FilterStateService, RegisteredTreetableFilter } from './providers/filter-state.service';
+import { Filters, RegisteredTreetableFilter } from './providers/filters';
 
 @Component({
   selector: 'clr-tt-filter',
@@ -52,7 +63,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 export class ClrTreetableFilter<T extends object> implements OnInit, OnDestroy {
   protected readonly commonStringsService = inject(ClrCommonStringsService);
   private readonly smartToggleService = inject(ClrPopoverService);
-  private readonly filterProvider = inject(Filters<T>);
+  private readonly filterProvider = inject(FilterStateService<T>);
 
   // Smart Popover
   protected readonly smartPosition = ClrPopoverPosition.BOTTOM_LEFT;

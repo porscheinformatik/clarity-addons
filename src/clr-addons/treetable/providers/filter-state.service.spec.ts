@@ -5,7 +5,7 @@
  */
 
 import { TestBed } from '@angular/core/testing';
-import { Filters } from './filters';
+import { FilterStateService } from './filter-state.service';
 import { ClrTreetableFilterInterface } from '../interfaces/filter-model';
 import { Subject } from 'rxjs';
 
@@ -56,13 +56,13 @@ class GreaterThanFilter implements ClrTreetableFilterInterface<Item, number> {
 }
 
 describe('Filters<Item>', () => {
-  let service: Filters<Item>;
+  let service: FilterStateService<Item>;
   let textFilter: StringContainsFilter;
   let numberFilter: GreaterThanFilter;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({ providers: [Filters] });
-    service = TestBed.inject(Filters<Item>);
+    TestBed.configureTestingModule({ providers: [FilterStateService] });
+    service = TestBed.inject(FilterStateService<Item>);
     textFilter = new StringContainsFilter();
     numberFilter = new GreaterThanFilter();
     TestBed.tick();

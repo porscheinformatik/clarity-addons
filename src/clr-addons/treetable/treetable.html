@@ -23,16 +23,20 @@
         <ng-content select="clr-tt-column" />
       </div>
     </div>
+
     <div class="treetable-body">
       @if (isRecursionMode()) {
       <clr-tt-recursive-rows [children]="displayedNodes()" />
       } @else {
       <ng-content select="clr-tt-row" />
-      } @if (empty()) {
+      } @if (empty() && !clrTtLoading()) {
       <ng-content select="clr-tt-placeholder" />
       }
     </div>
   </div>
+
+  <ng-content select="clr-tt-footer"></ng-content>
+
   @if (clrTtLoading()) {
   <div class="treetable-spinner">
     <clr-spinner clrMedium />
