@@ -10,6 +10,10 @@
       "groupName": "clarity monorepo"
     },
     {
+      "matchSourceUrls": [
+        "https://github.com/angular/angular",
+        "https://github.com/angular/angular-cli"
+      ]
       "matchPackageNames": [
         "@angular/**",
         "@angular/common",
@@ -19,7 +23,7 @@
         "@angular-devkit/**",
         "ng-packagr"
       ],
-      "groupName": "angular+cli monorepo"
+      "groupName": "angular + cli monorepo"
     },
     {
       "matchPackageNames": [
