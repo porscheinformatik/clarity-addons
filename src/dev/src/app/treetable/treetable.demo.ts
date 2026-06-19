@@ -4,17 +4,17 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, linkedSignal, OnInit, signal } from '@angular/core';
+import { Component, computed, linkedSignal, OnInit, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { bellIcon, ClarityIcons, infoStandardIcon } from '@clr/angular/icon';
-import { of, tap } from 'rxjs';
-import { delay } from 'rxjs/operators';
 import {
   ClrTreetableComparatorInterface,
   ClrTreetableSortOrder,
   ClrTreetableState,
   ClrTreetableStringFilterFunction,
 } from '@porscheinformatik/clr-addons';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { of, tap } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 ClarityIcons.addIcons(infoStandardIcon);
 ClarityIcons.addIcons(bellIcon);
@@ -33,6 +33,7 @@ export type Tree = {
 @Component({
   selector: 'treetable-demo',
   templateUrl: './treetable.demo.html',
+  styleUrls: ['./treetable.demo.scss'],
   standalone: false,
 })
 export class TreetableDemo implements OnInit {
@@ -164,7 +165,7 @@ export class TreetableDemo implements OnInit {
     });
   }
 
-  myTree: Tree[] = this.buildTree(3);
+  myTree: Tree[] = this.buildTree(1);
 
   treeIdFilter: ClrTreetableStringFilterFunction<Tree> = (item: Tree, search: string): boolean => {
     return item.id.toLowerCase().includes(search.toLowerCase());
@@ -174,13 +175,27 @@ export class TreetableDemo implements OnInit {
     return item?.value?.name?.toLowerCase().includes(search.toLowerCase());
   };
 
-  rootNodes = linkedSignal<Tree[]>(toSignal(of(this.myTree).pipe(delay(2000))));
-  selected = signal<Tree[]>([]);
+  test = signal(true);
+  testHidable = computed(() => ({ hidden: this.test() }));
   loading = signal(false);
+  rootNodes = linkedSignal<Tree[]>(
+    toSignal(
+      of(this.myTree).pipe(
+        tap(() => this.loading.set(true)),
+        delay(2000),
+        tap(() => this.loading.set(false))
+      )
+    )
+  );
+  selected = signal<Tree[]>([]);
   autoParentSelection = signal(true);
 
   getChildren(node: Tree): Tree[] {
     return node?.children || [];
+  }
+
+  toggleTest(): void {
+    this.test.update(value => !value);
   }
 
   ngOnInit(): void {

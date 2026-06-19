@@ -6,7 +6,7 @@
 
 import { NgModule, Type } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ClarityModule } from '@clr/angular';
+import { CdkTrapFocusModule, ClarityModule } from '@clr/angular';
 import { ClrTreetableRow } from './treetable-row';
 import { ClrTreetable } from './treetable';
 import { ClrTreetableCell } from './treetable-cell';
@@ -55,7 +55,7 @@ const CLR_TREETABLE_DIRECTIVES: Type<any>[] = [
 ];
 
 @NgModule({
-  imports: [CommonModule, ClarityModule, ReactiveFormsModule, FormsModule],
+  imports: [CommonModule, ClarityModule, ReactiveFormsModule, FormsModule, CdkTrapFocusModule],
   declarations: [CLR_TREETABLE_DIRECTIVES, ClrTreetableRecursiveRows, ClrTreetableRowCheckbox],
   exports: [CLR_TREETABLE_DIRECTIVES],
 })

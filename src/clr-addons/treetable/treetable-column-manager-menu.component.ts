@@ -1,12 +1,10 @@
 import { ChangeDetectionStrategy, Component, computed, effect, inject } from '@angular/core';
 import {
-  ClrAlignment,
-  ClrAxis,
   ClrCommonStringsService,
   ClrPopoverHostDirective,
   ClrPopoverPosition,
-  ClrPopoverToggleService,
-  ClrSide,
+  ClrPopoverService,
+  ClrPopoverType,
 } from '@clr/angular';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { TreetableColumnStateService } from './providers/treetable-column-state.service';
@@ -20,7 +18,7 @@ let id = 0;
       role="button"
       type="button"
       class="btn btn-sm column-manager-menu-open"
-      clrPopoverAnchor
+      clrPopoverOrigin
       clrPopoverOpenCloseButton
       [attr.aria-controls]="popoverId"
       [attr.aria-expanded]="open()"
@@ -34,7 +32,14 @@ let id = 0;
       [attr.aria-label]="commonStrings.showColumnsMenuDescription"
       [id]="popoverId"
       cdkTrapFocus
-      *clrPopoverContent="open(); at: smartPosition; outsideClickToClose: true; scrollToClose: true"
+      cdkTrapFocusAutoCapture
+      *clrPopoverContent="
+        open();
+        at: popoverPosition;
+        type: popoverType;
+        outsideClickToClose: true;
+        scrollToClose: true
+      "
     >
       <div class="switch-header">
         <div class="clr-sr-only" tabindex="-1" #allSelected>{{ commonStrings.allColumnsSelected }}</div>
@@ -68,7 +73,12 @@ let id = 0;
         }
       </ul>
       <div class="switch-footer">
-        <button type="button" class="btn btn-sm btn-link switch-button" (click)="selectAll()">
+        <button
+          type="button"
+          class="btn btn-sm btn-link switch-button"
+          [disabled]="areAllColumnsVisible()"
+          (click)="selectAll()"
+        >
           {{ commonStrings.selectAll }}
         </button>
         <button type="button" class="btn btn-sm btn-link switch-button" (click)="resetAllToInitial()">
@@ -79,6 +89,7 @@ let id = 0;
   `,
   host: {
     '[class.column-manager-menu]': 'true',
+    '[class.active]': 'open()',
   },
   hostDirectives: [ClrPopoverHostDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -88,30 +99,30 @@ export class ClrTreetableColumnManagerMenuComponent {
   protected readonly popoverId = `clr-column-manager-menu-id-${id++}`;
 
   private readonly _commonStringsService = inject(ClrCommonStringsService);
-  private readonly _smartToggleService = inject(ClrPopoverToggleService);
+  private readonly _popoverService = inject(ClrPopoverService);
   private readonly _columnService = inject(TreetableColumnStateService);
 
-  // Smart Popover
-  protected readonly smartPosition: ClrPopoverPosition = {
-    axis: ClrAxis.VERTICAL,
-    side: ClrSide.BEFORE,
-    anchor: ClrAlignment.START,
-    content: ClrAlignment.START,
-  };
+  // Template constants
+  protected readonly popoverPosition = ClrPopoverPosition.TOP_LEFT;
+  protected readonly popoverType = ClrPopoverType.DROPDOWN;
   protected readonly commonStrings = this._commonStringsService.keys;
 
-  protected readonly open = toSignal(this._smartToggleService.openChange);
+  protected readonly open = toSignal<boolean>(this._popoverService.openChange);
   protected readonly hideableColumns = this._columnService.hideableColumns;
   protected readonly hasOnlyOneVisibleColumn = computed(
     () =>
       this._columnService.visibleColumns()?.length === 0 &&
-      this._columnService.hideableColumns().filter(column => !column.hidden).length === 1
+      this._columnService.hideableColumns().filter(column => !column.hidden)?.length === 1
+  );
+  protected readonly areAllColumnsVisible = computed(
+    () => this._columnService.visibleColumns()?.length === this._columnService.columns()?.length
   );
 
   constructor() {
     effect(() => {
       console.log('Hideable columns:', this.hideableColumns());
       console.log('Has only one visible column:', this.hasOnlyOneVisibleColumn());
+      console.log('Popover open:', this.open());
     });
   }
 
@@ -120,7 +131,15 @@ export class ClrTreetableColumnManagerMenuComponent {
     this._columnService.toggleHidden(id);
   }
 
-  protected selectAll() {}
+  protected selectAll() {
+    console.log(`Showing all columns`);
+    if (!this.areAllColumnsVisible()) {
+      this._columnService.displayAllColumns();
+    }
+  }
 
-  protected resetAllToInitial() {}
+  protected resetAllToInitial() {
+    console.log(`Resetting hideable columns`);
+    this._columnService.resetToInitialHidden();
+  }
 }

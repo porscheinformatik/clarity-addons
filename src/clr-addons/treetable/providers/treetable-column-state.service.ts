@@ -62,6 +62,23 @@ export class TreetableColumnStateService {
     share()
   );
 
+  private readonly _changeHiddenForAllAction$ = this._changeHiddenForAll$.pipe(
+    tap(change => {
+      this._columnState.update(current =>
+        Object.fromEntries(
+          Object.entries(current).map(([id, column]) => [
+            id,
+            {
+              ...column,
+              hidden: change,
+            },
+          ])
+        )
+      );
+    }),
+    share()
+  );
+
   private readonly _resetHiddenAction$ = this._resetHidden$.pipe(
     tap(() => {
       this._columnState.update(current =>
@@ -84,6 +101,7 @@ export class TreetableColumnStateService {
   readonly changes$: Observable<TreetableColumnUpdate> = merge(
     this._changeWidthAction$.pipe(map(() => TreetableColumnUpdate.WIDTH)),
     this._changeHideableAction$.pipe(map(() => TreetableColumnUpdate.HIDDEN)),
+    this._changeHiddenForAllAction$.pipe(map(() => TreetableColumnUpdate.HIDDEN)),
     this._changeHiddenAction$.pipe(map(() => TreetableColumnUpdate.HIDDEN)),
     this._resetHiddenAction$.pipe(map(() => TreetableColumnUpdate.HIDDEN))
   );
@@ -95,6 +113,7 @@ export class TreetableColumnStateService {
 
     this._changeWidthAction$.pipe(takeUntilDestroyed()).subscribe();
     this._changeHideableAction$.pipe(takeUntilDestroyed()).subscribe();
+    this._changeHiddenForAllAction$.pipe(takeUntilDestroyed()).subscribe();
     this._changeHiddenAction$.pipe(takeUntilDestroyed()).subscribe();
     this._resetHiddenAction$.pipe(takeUntilDestroyed()).subscribe();
   }
@@ -170,12 +189,16 @@ export class TreetableColumnStateService {
     this._changeHiddenForAll$.next(hidden);
   }
 
+  public displayAllColumns(): void {
+    this.changeHiddenForAll(false);
+  }
+
   public toggleHidden(id: string): void {
     const current = this.getColumn(id);
     this._changeHidden$.next({ id, hidden: !current.hidden });
   }
 
-  public resetHidden(): void {
+  public resetToInitialHidden(): void {
     this._resetHidden$.next();
   }
 

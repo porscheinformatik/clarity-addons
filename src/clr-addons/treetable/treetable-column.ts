@@ -5,38 +5,24 @@
  */
 
 import {
-    ChangeDetectionStrategy,
-    Component,
-    computed,
-    inject,
-    input,
-    OnDestroy,
-    OnInit,
-    TemplateRef,
-    viewChild,
-    ChangeDetectionStrategy,
-    Component,
-    computed,
-    inject,
-    input,
-    OnDestroy,
-    OnInit,
-    TemplateRef,
-    viewChild,
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  input,
+  OnDestroy,
+  OnInit,
+  TemplateRef,
+  viewChild,
 } from '@angular/core';
 import { outputFromObservable, takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
-import {
-    ClrPopoverEventsService,
-    ClrPopoverHostDirective,
-    ClrPopoverPositionService, ClrPopoverService, ClrPopoverToggleService
-} from '@clr/angular';
+import { ClrPopoverService } from '@clr/angular';
 import { combineLatest, map } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { ClrTreetableSortOrderClrTreetableSortOrder } from '../enums/sort-order.enumenums/sort-order.enum';
-import { ClrTreetableComparatorInterface  ClrTreetableComparatorInterface } from '../interfaces/comparator.interface';
-import { SortStateService } from './providersinterfaces/comparator.interface';
+import { ClrTreetableSortOrder } from './enums/sort-order.enum';
 import { SortStateService } from './providers';
 import { TreetableColumnStateService } from './providers/treetable-column-state.service';
+import { ClrTreetableComparatorInterface } from './interfaces/comparator.interface';
 
 let columnId = 0;
 
