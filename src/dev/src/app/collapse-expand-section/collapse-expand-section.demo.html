@@ -54,3 +54,72 @@
     >
   </ng-container>
 </clr-collapse-expand-section>
+
+<br />
+
+<h3>Disabled header styles (<code>clrDisableHeaderStyles</code>)</h3>
+
+<p>
+  When <code>[clrDisableHeaderStyles]="true"</code> the title is rendered without an <code>h2</code> wrapper, giving
+  full control over the header appearance through the projected content and host-level CSS.
+</p>
+
+<br />
+
+<!-- Example 1: plain usage, no h2 wrapper -->
+<clr-collapse-expand-section [clrDisableHeaderStyles]="true" [clrDisableSubtitle]="true">
+  <ng-container clr-ces-title><h5>Plain title — no h2 wrapper</h5></ng-container>
+  <ng-container clr-ces-content>
+    <span
+      >Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+      dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita
+      kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</span
+    >
+  </ng-container>
+</clr-collapse-expand-section>
+
+<br />
+
+<!-- Example 2: smaller, lighter font via inline style on the projected title element -->
+<clr-collapse-expand-section [clrDisableHeaderStyles]="true" [clrDisableSubtitle]="true">
+  <ng-container clr-ces-title>
+    <span style="font-size: 0.75rem; font-weight: 500; letter-spacing: 0.02em"
+      >Compact title (0.75 rem, medium weight)</span
+    >
+  </ng-container>
+  <ng-container clr-ces-content>
+    <span
+      >Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+      dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita
+      kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</span
+    >
+  </ng-container>
+</clr-collapse-expand-section>
+
+<br />
+
+<!-- Example 3: custom arrow color via a scoped CSS class on the host element -->
+<style>
+  /*
+   * Target the caret icon on a specific CES instance.
+   * clrDisableHeaderStyles removes the h2 wrapper; without it the title
+   * and arrow sit inline, making it easy to theme them independently.
+   */
+  .ces-demo-orange-arrow .btn.btn-link.ces-caret-btn cds-icon.ces-caret-icon {
+    color: darkorange;
+  }
+</style>
+
+<clr-collapse-expand-section class="ces-demo-orange-arrow" [clrDisableHeaderStyles]="true">
+  <ng-container clr-ces-title>
+    <span style="font-size: 0.75rem; font-weight: 500">Custom arrow color (darkorange)</span>
+  </ng-container>
+  <ng-container clr-ces-subtitle>Optional subtitle also works with disabled header styles</ng-container>
+  <ng-container clr-ces-content>
+    <span
+      >Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+      dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita
+      kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</span
+    >
+  </ng-container>
+</clr-collapse-expand-section>

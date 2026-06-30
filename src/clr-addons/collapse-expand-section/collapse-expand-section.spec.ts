@@ -24,13 +24,29 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 })
 class CollapseExpandSectionHostComponent {}
 
+@Component({
+  template: `
+    <clr-collapse-expand-section [clrIsCollapsed]="false" [clrDisableHeaderStyles]="true">
+      <ng-container clr-ces-title>Test Title Disabled</ng-container>
+      <ng-container clr-ces-subtitle>Test Subtitle Disabled</ng-container>
+      <ng-container clr-ces-content>Test Content Disabled</ng-container>
+    </clr-collapse-expand-section>
+  `,
+  standalone: false,
+})
+class CollapseExpandSectionDisabledHeaderHostComponent {}
+
 describe('CollapseExpandSectionComponent', () => {
   let component: ClrCollapseExpandSection;
   let fixture: ComponentFixture<ClrCollapseExpandSection>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ClrCollapseExpandSection, CollapseExpandSectionHostComponent],
+      declarations: [
+        ClrCollapseExpandSection,
+        CollapseExpandSectionHostComponent,
+        CollapseExpandSectionDisabledHeaderHostComponent,
+      ],
       imports: [ClarityModule, FormsModule, BrowserAnimationsModule],
     }).compileComponents();
   }));
@@ -86,5 +102,23 @@ describe('CollapseExpandSectionComponent', () => {
     hostFixture.nativeElement.querySelector('.ces-title-trigger').click();
 
     expect(section.isCollapsed).toBeTrue();
+  });
+
+  it('should project title, subtitle and content when clrDisableHeaderStyles is true', () => {
+    const hostFixture = TestBed.createComponent(CollapseExpandSectionDisabledHeaderHostComponent);
+    hostFixture.detectChanges();
+
+    const textContent = hostFixture.nativeElement.textContent;
+
+    expect(textContent).toContain('Test Title Disabled');
+    expect(textContent).toContain('Test Subtitle Disabled');
+    expect(textContent).toContain('Test Content Disabled');
+  });
+
+  it('should not wrap title in h2 when clrDisableHeaderStyles is true', () => {
+    const hostFixture = TestBed.createComponent(CollapseExpandSectionDisabledHeaderHostComponent);
+    hostFixture.detectChanges();
+
+    expect(hostFixture.nativeElement.querySelector('h2')).toBeNull();
   });
 });
