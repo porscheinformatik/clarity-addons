@@ -52,6 +52,9 @@
       "automerge": true
     }
   ],
+  "vulnerabilityAlerts": {
+    "vulnerabilityFixStrategy": "highest"
+  },
   "baseBranches": ["master"],
   "prHourlyLimit": 5,
   "prConcurrentLimit": 0
