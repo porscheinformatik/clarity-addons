@@ -12,7 +12,8 @@
     {
       "matchSourceUrls": [
         "https://github.com/angular/angular",
-        "https://github.com/angular/angular-cli"
+        "https://github.com/angular/angular-cli",
+        "https://github.com/angular/components"
       ],
       "matchPackageNames": [
         "@angular/**",
