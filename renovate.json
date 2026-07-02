@@ -53,7 +53,7 @@
     }
   ],
   "vulnerabilityAlerts": {
-    "vulnerabilityFixStrategy": "highest"
+    "enabled": false
   },
   "baseBranches": ["master"],
   "prHourlyLimit": 5,
