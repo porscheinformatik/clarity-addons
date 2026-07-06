@@ -12,7 +12,8 @@
     {
       "matchSourceUrls": [
         "https://github.com/angular/angular",
-        "https://github.com/angular/angular-cli"
+        "https://github.com/angular/angular-cli",
+        "https://github.com/angular/components"
       ],
       "matchPackageNames": [
         "@angular/**",
@@ -51,6 +52,9 @@
       "automerge": true
     }
   ],
+  "vulnerabilityAlerts": {
+    "enabled": false
+  },
   "baseBranches": ["master"],
   "prHourlyLimit": 5,
   "prConcurrentLimit": 0
