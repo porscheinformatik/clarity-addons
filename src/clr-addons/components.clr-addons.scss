@@ -587,6 +587,12 @@ clr-dropdown-menu .dropdown-header {
   min-height: 0.9rem;
 }
 
+.clr-popover-content > .dropdown-menu .dropdown-header,
+.clr-popover-content > .dropdown-menu .dropdown-item,
+.clr-popover-content > .dropdown-menu .dropdown > .dropdown-item {
+  min-height: 30px !important;
+}
+
 //custom alignment of the badge counter on filter
 .clr-custom-filter-counter-badge {
   position: absolute;
