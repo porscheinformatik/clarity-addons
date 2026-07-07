@@ -8,7 +8,7 @@ $indentation-increment: 1rem;
 
 @mixin row-indentation($level) {
   .treetable-scrolling-cells {
-    .treetable-cell:first-of-type {
+    .treetable-cell:nth-child(1 of .treetable-cell:not(.treetable-hidden-column)) {
       padding-left: $base-cell-indentation + $level * $indentation-increment;
     }
 
