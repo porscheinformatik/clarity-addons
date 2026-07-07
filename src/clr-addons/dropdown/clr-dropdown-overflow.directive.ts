@@ -59,7 +59,7 @@ export class ClrDropdownOverflowDirective implements AfterViewChecked, OnDestroy
   private applyDropdownOverflowStyles(): void {
     // the vertical position of our element in the current window
     const rect = this.elRef.nativeElement.getBoundingClientRect();
-    const y = rect.y === 0 ? rect.heigh : rect.y;
+    const y = rect.y === 0 ? rect.height : rect.y;
     if (y !== 0 && !this.alreadyChecked) {
       const itemMinHeightPx = this.getItemMinHeight(this.clrDropdownMenuItemMinHeight);
       // see https://stackoverflow.com/questions/22754315/for-loop-for-htmlcollection-elements
