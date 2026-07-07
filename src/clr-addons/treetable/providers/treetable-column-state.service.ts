@@ -1,4 +1,4 @@
-import { computed, effect, Injectable, signal, TemplateRef } from '@angular/core';
+import { computed, Injectable, signal, TemplateRef } from '@angular/core';
 import { ColumnState } from '../interfaces/column-model';
 import { distinctUntilChanged, map, merge, Observable, share, Subject, tap } from 'rxjs';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
@@ -107,10 +107,6 @@ export class TreetableColumnStateService {
   );
 
   constructor() {
-    effect(() => {
-      console.log('Column state changed:', this._columnState());
-    });
-
     this._changeWidthAction$.pipe(takeUntilDestroyed()).subscribe();
     this._changeHideableAction$.pipe(takeUntilDestroyed()).subscribe();
     this._changeHiddenForAllAction$.pipe(takeUntilDestroyed()).subscribe();

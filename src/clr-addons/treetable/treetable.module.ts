@@ -43,7 +43,6 @@ const CLR_TREETABLE_DIRECTIVES: Type<any>[] = [
   ClrTreetableHideableColumn,
   ClrTreetableFooter,
   ClrTreetablePlaceholder,
-  ClrTreetableColumnManagerMenuComponent,
   ClrTreetableActionOverflow,
   TreetableMainRenderer,
   TreetableHeaderRenderer,
@@ -56,7 +55,12 @@ const CLR_TREETABLE_DIRECTIVES: Type<any>[] = [
 
 @NgModule({
   imports: [CommonModule, ClarityModule, ReactiveFormsModule, FormsModule, CdkTrapFocusModule],
-  declarations: [CLR_TREETABLE_DIRECTIVES, ClrTreetableRecursiveRows, ClrTreetableRowCheckbox],
+  declarations: [
+    CLR_TREETABLE_DIRECTIVES,
+    ClrTreetableRecursiveRows,
+    ClrTreetableRowCheckbox,
+    ClrTreetableColumnManagerMenuComponent,
+  ],
   exports: [CLR_TREETABLE_DIRECTIVES],
 })
 export class ClrTreetableModule {

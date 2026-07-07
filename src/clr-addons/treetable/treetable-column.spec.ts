@@ -21,7 +21,7 @@ describe('ClrTreetableColumn', () => {
   let sortProvider: SortStateService<TestObject>;
 
   let sortProviderToggleSpy: SpyObj<unknown>;
-  let sortOrderChangedSpy: SpyObj<unknown>;
+  let sortOrderChangedSpy: jasmine.Spy;
 
   const ComponentInputs = { sortBy: 'clrTtSortBy', sortOrder: 'clrTtSortOrder' } as const;
   const testComparator: ClrTreetableComparatorInterface<TestObject> = {
@@ -41,7 +41,8 @@ describe('ClrTreetableColumn', () => {
     fixture.autoDetectChanges();
 
     sortProviderToggleSpy = spyOn(sortProvider, 'toggle').and.callThrough();
-    sortOrderChangedSpy = spyOn(component.clrTtSortOrderChange, 'emit');
+    sortOrderChangedSpy = jasmine.createSpy('sortOrderChanged');
+    component.clrTtSortOrderChange.subscribe(sortOrderChangedSpy);
   });
 
   function getSortButton(): DebugElement | null {

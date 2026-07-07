@@ -7,6 +7,7 @@
 export * from './treetable';
 export * from './treetable-row';
 export * from './treetable-column';
+export * from './treetable-footer';
 export * from './treetable-hideable-column.directive';
 export * from './treetable-filter';
 export * from './treetable-cell';

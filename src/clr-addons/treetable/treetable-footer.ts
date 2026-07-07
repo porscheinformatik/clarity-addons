@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 import { TreetableColumnStateService } from './providers/treetable-column-state.service';
 import { TreetableDataStateService } from './providers';
 import { ClrCommonStringsService } from '@clr/angular';
@@ -15,7 +15,7 @@ import { ClrCommonStringsService } from '@clr/angular';
       </clr-checkbox-wrapper>
     </div>
     } @if (hasHideableColumns()) {
-    <clr-tt-column-manager-menu />
+    <clr-tt-column-manager-menu [resetLabel]="clrResetLabel()" />
     }
 
     <div class="treetable-footer-description">
@@ -34,6 +34,8 @@ export class ClrTreetableFooter {
   private readonly _dataService = inject(TreetableDataStateService);
 
   protected readonly commonStrings = this._commonStringsService.keys;
+
+  clrResetLabel = input<string>('RESET');
 
   protected readonly hasHideableColumns = this._columnService.hasHideableColumns;
   protected readonly selectedRows = this._dataService.selectedNodes;

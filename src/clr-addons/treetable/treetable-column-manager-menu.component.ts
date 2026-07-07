@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, effect, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 import {
   ClrCommonStringsService,
   ClrPopoverHostDirective,
@@ -63,7 +63,7 @@ let id = 0;
               type="checkbox"
               [disabled]="hasOnlyOneVisibleColumn() && !column.hidden"
               [ngModel]="!column.hidden"
-              (ngModelChange)="toggleColumnState(column.id, !$event)"
+              (ngModelChange)="toggleColumnState(column.id)"
             />
             <label>
               <ng-template [ngTemplateOutlet]="column.titleTemplateRef"></ng-template>
@@ -81,8 +81,13 @@ let id = 0;
         >
           {{ commonStrings.selectAll }}
         </button>
-        <button type="button" class="btn btn-sm btn-link switch-button" (click)="resetAllToInitial()">
-          {{ commonStrings.neutral }}
+        <button
+          type="button"
+          class="btn btn-sm btn-link switch-button"
+          [disabled]="areAllColumnsReset()"
+          (click)="resetAllToInitial()"
+        >
+          {{ resetLabel() }}
         </button>
       </div>
     </div>
@@ -107,39 +112,33 @@ export class ClrTreetableColumnManagerMenuComponent {
   protected readonly popoverType = ClrPopoverType.DROPDOWN;
   protected readonly commonStrings = this._commonStringsService.keys;
 
+  resetLabel = input.required<string>();
+
   protected readonly open = toSignal<boolean>(this._popoverService.openChange);
   protected readonly hideableColumns = this._columnService.hideableColumns;
   protected readonly hasOnlyOneVisibleColumn = computed(
     () =>
-      this._columnService.visibleColumns()?.length === 0 &&
-      this._columnService.hideableColumns().filter(column => !column.hidden)?.length === 1
+      this._columnService.columns().length === this._columnService.hideableColumns().length &&
+      this._columnService.visibleColumns().length === 1
   );
   protected readonly areAllColumnsVisible = computed(
-    () => this._columnService.visibleColumns()?.length === this._columnService.columns()?.length
+    () => this._columnService.visibleColumns().length === this._columnService.columns().length
+  );
+  protected readonly areAllColumnsReset = computed(() =>
+    this._columnService.hideableColumns().every(column => column.hidden === column.initialHidden)
   );
 
-  constructor() {
-    effect(() => {
-      console.log('Hideable columns:', this.hideableColumns());
-      console.log('Has only one visible column:', this.hasOnlyOneVisibleColumn());
-      console.log('Popover open:', this.open());
-    });
-  }
-
-  protected toggleColumnState(id: string, value: boolean) {
-    console.log(`Toggling column with id ${id} to ${value ? 'visible' : 'hidden'}`);
+  protected toggleColumnState(id: string) {
     this._columnService.toggleHidden(id);
   }
 
   protected selectAll() {
-    console.log(`Showing all columns`);
     if (!this.areAllColumnsVisible()) {
       this._columnService.displayAllColumns();
     }
   }
 
   protected resetAllToInitial() {
-    console.log(`Resetting hideable columns`);
     this._columnService.resetToInitialHidden();
   }
 }
