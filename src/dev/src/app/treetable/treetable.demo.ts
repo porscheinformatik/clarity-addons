@@ -33,7 +33,6 @@ export type Tree = {
 @Component({
   selector: 'treetable-demo',
   templateUrl: './treetable.demo.html',
-  styleUrls: ['./treetable.demo.scss'],
   standalone: false,
 })
 export class TreetableDemo implements OnInit {
@@ -42,7 +41,7 @@ export class TreetableDemo implements OnInit {
     ' This is a very long string which should show that text will be truncated properly and not overflow its parent';
 
   data$ = of(
-    [...Array(30).keys()].map(() => ({
+    [...new Array(30).keys()].map(() => ({
       col1: 'Vehicle configuration',
       col2: '',
       col3: '18,519.99EUR',
@@ -175,8 +174,8 @@ export class TreetableDemo implements OnInit {
     return item?.value?.name?.toLowerCase().includes(search.toLowerCase());
   };
 
-  test = signal(true);
-  testHidable = computed(() => ({ hidden: this.test() }));
+  testHidden = signal(false);
+  testHidable = computed(() => ({ hidden: this.testHidden() }));
   loading = signal(false);
   rootNodes = linkedSignal<Tree[]>(
     toSignal(
@@ -188,6 +187,7 @@ export class TreetableDemo implements OnInit {
     )
   );
   selected = signal<Tree[]>([]);
+  selectedDg = signal<Tree[]>([]);
   autoParentSelection = signal(true);
 
   getChildren(node: Tree): Tree[] {
@@ -195,7 +195,7 @@ export class TreetableDemo implements OnInit {
   }
 
   toggleTest(): void {
-    this.test.update(value => !value);
+    this.testHidden.update(value => !value);
   }
 
   ngOnInit(): void {
@@ -273,6 +273,10 @@ export class TreetableDemo implements OnInit {
       }
     });
     return expandable;
+  }
+
+  getChild(node: any): any[] {
+    return node?.child ?? [];
   }
 }
 
