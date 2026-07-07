@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -58,7 +58,8 @@ export class ClrDropdownOverflowDirective implements AfterViewChecked, OnDestroy
 
   private applyDropdownOverflowStyles(): void {
     // the vertical position of our element in the current window
-    const y = this.elRef.nativeElement.getBoundingClientRect().y;
+    const rect = this.elRef.nativeElement.getBoundingClientRect();
+    const y = rect.y === 0 ? rect.height : rect.y;
     if (y !== 0 && !this.alreadyChecked) {
       const itemMinHeightPx = this.getItemMinHeight(this.clrDropdownMenuItemMinHeight);
       // see https://stackoverflow.com/questions/22754315/for-loop-for-htmlcollection-elements
