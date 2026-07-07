@@ -11,7 +11,7 @@
         role="button"
         [attr.aria-expanded]="!isCollapsed"
       >
-        <ng-content select="[clr-ces-title]"></ng-content>
+        <ng-container *ngTemplateOutlet="titleContent"></ng-container>
       </span>
       <ng-container *ngTemplateOutlet="caretBtn"></ng-container>
     </h2>
@@ -25,10 +25,13 @@
       role="button"
       [attr.aria-expanded]="!isCollapsed"
     >
-      <ng-content select="[clr-ces-title]"></ng-content>
+      <ng-container *ngTemplateOutlet="titleContent"></ng-container>
     </span>
     <ng-container *ngTemplateOutlet="caretBtn"></ng-container>
     }
+    <ng-template #titleContent>
+      <ng-content select="[clr-ces-title]"></ng-content>
+    </ng-template>
     <ng-template #caretBtn>
       <button type="button" (click)="onCollapseExpand()" class="btn btn-icon btn-link ces-caret-btn">
         <cds-icon
@@ -45,11 +48,14 @@
   <div class="ces-subtitle">
     @if (!disableHeaderStyles) {
     <h4>
-      <ng-content select="[clr-ces-subtitle]"></ng-content>
+      <ng-container *ngTemplateOutlet="subtitleContent"></ng-container>
     </h4>
     } @else {
-    <ng-content select="[clr-ces-subtitle]"></ng-content>
+    <ng-container *ngTemplateOutlet="subtitleContent"></ng-container>
     }
+    <ng-template #subtitleContent>
+      <ng-content select="[clr-ces-subtitle]"></ng-content>
+    </ng-template>
   </div>
   } @if (!isCollapsed) {
   <div [@collapseExpandAnimation]="isCollapsed" [@.disabled]="disableAnimation">

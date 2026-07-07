@@ -24,13 +24,29 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 })
 class CollapseExpandSectionHostComponent {}
 
+@Component({
+  template: `
+    <clr-collapse-expand-section [clrIsCollapsed]="false" [clrDisableHeaderStyles]="true">
+      <ng-container clr-ces-title>Test Title</ng-container>
+      <ng-container clr-ces-subtitle>Test Subtitle</ng-container>
+      <ng-container clr-ces-content>Test Content</ng-container>
+    </clr-collapse-expand-section>
+  `,
+  standalone: false,
+})
+class CollapseExpandSectionDisabledHeaderStylesHostComponent {}
+
 describe('CollapseExpandSectionComponent', () => {
   let component: ClrCollapseExpandSection;
   let fixture: ComponentFixture<ClrCollapseExpandSection>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ClrCollapseExpandSection, CollapseExpandSectionHostComponent],
+      declarations: [
+        ClrCollapseExpandSection,
+        CollapseExpandSectionHostComponent,
+        CollapseExpandSectionDisabledHeaderStylesHostComponent,
+      ],
       imports: [ClarityModule, FormsModule, BrowserAnimationsModule],
     }).compileComponents();
   }));
@@ -67,6 +83,17 @@ describe('CollapseExpandSectionComponent', () => {
 
   it('should project title, subtitle and content', () => {
     const hostFixture = TestBed.createComponent(CollapseExpandSectionHostComponent);
+    hostFixture.detectChanges();
+
+    const textContent = hostFixture.nativeElement.textContent;
+
+    expect(textContent).toContain('Test Title');
+    expect(textContent).toContain('Test Subtitle');
+    expect(textContent).toContain('Test Content');
+  });
+
+  it('should project title and subtitle when clrDisableHeaderStyles is true', () => {
+    const hostFixture = TestBed.createComponent(CollapseExpandSectionDisabledHeaderStylesHostComponent);
     hostFixture.detectChanges();
 
     const textContent = hostFixture.nativeElement.textContent;
