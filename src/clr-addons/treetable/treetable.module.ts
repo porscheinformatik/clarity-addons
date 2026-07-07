@@ -12,10 +12,12 @@ import { ClrTreetable } from './treetable';
 import { ClrTreetableCell } from './treetable-cell';
 import { ClrTreetableColumn } from './treetable-column';
 import { ClrTreetablePlaceholder } from './treetable-placeholder';
-import { TreetableHeaderRenderer } from './renderer/header-renderer';
-import { TreetableMainRenderer } from './renderer/main-renderer';
-import { TreetableRowRenderer } from './renderer/row-renderer';
-import { TreetableCellRenderer } from './renderer/cell-renderer';
+import {
+  TreetableCellRenderer,
+  TreetableHeaderRenderer,
+  TreetableMainRenderer,
+  TreetableRowRenderer,
+} from './renderer';
 import { ClrTreetableActionOverflow } from './treetable-action-overflow';
 import { TreetableItemsDirective } from './treetable-items';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';

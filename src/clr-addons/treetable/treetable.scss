@@ -499,26 +499,6 @@ $indentation-increment: 1rem;
         padding: 0 var(--clr-base-horizontal-offset-l);
         background-color: var(--clr-thead-bgcolor);
 
-        .clr-form-control-disabled
-          .treetable-footer-select
-          .clr-checkbox-wrapper
-          input[type='checkbox']:checked
-          + label {
-          top: 0;
-        }
-
-        .clr-form-control-disabled
-          .treetable-footer-select
-          .clr-checkbox-wrapper
-          input[type='checkbox']:checked
-          + label {
-          cursor: default;
-
-          &::before {
-            background-color: var(--cds-alias-typography-disabled);
-          }
-        }
-
         .column-manager-menu {
           position: relative;
           flex: 0 0 auto;
