@@ -11,6 +11,7 @@ import { SortStateService } from './providers';
 import { ClrTreetableSortOrder } from './enums/sort-order.enum';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import { TreetableColumnStateService } from './providers/treetable-column-state.service';
 import SpyObj = jasmine.SpyObj;
 
 type TestObject = { id: string; number: number };
@@ -31,7 +32,7 @@ describe('ClrTreetableColumn', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [ClrTreetableColumn],
-      providers: [SortStateService],
+      providers: [SortStateService, TreetableColumnStateService],
     });
 
     sortProvider = TestBed.inject(SortStateService);
@@ -43,6 +44,7 @@ describe('ClrTreetableColumn', () => {
     sortProviderToggleSpy = spyOn(sortProvider, 'toggle').and.callThrough();
     sortOrderChangedSpy = jasmine.createSpy('sortOrderChanged');
     component.clrTtSortOrderChange.subscribe(sortOrderChangedSpy);
+    sortOrderChangedSpy.calls.reset();
   });
 
   function getSortButton(): DebugElement | null {
