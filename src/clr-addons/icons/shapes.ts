@@ -2091,6 +2091,17 @@ export const sound = clrIconSVG(
   '<g id="24px/sound"> <path id="Shape" fill-rule="evenodd" clip-rule="evenodd" d="M13.3599 1.21002C15.0665 1.37858 16.59 2.35211 17.4599 3.83002C18.1999 5.21002 17.9999 7.63002 16.8799 11.22L15.6099 10.82C16.8599 6.85002 16.6699 5.17002 16.2899 4.45002C15.7749 3.56072 14.9123 2.92648 13.9099 2.70002V18.91C13.9188 20.7431 12.6468 22.3336 10.8566 22.7279C9.06647 23.1222 7.24395 22.2132 6.48196 20.546C5.71997 18.8788 6.22531 16.9058 7.69496 15.8102C9.1646 14.7146 11.1997 14.7937 12.5799 16V1.08002L13.3599 1.21002ZM7.4199 18.89C7.4199 20.3149 8.57501 21.47 9.9999 21.47C11.4225 21.4645 12.5744 20.3126 12.5799 18.89C12.5799 17.4651 11.4248 16.31 9.9999 16.31C8.57501 16.31 7.4199 17.4651 7.4199 18.89Z" /> </g>  ',
   '0 0 24 24'
 );
+export const sparkles = clrIconSVG(
+  '<g id="36px/sparkles" transform="matrix(2.145977,0,0,1.979201,-9.797101,-5.151016)">\n' +
+    '        <g transform="matrix(0.583979,0,0,0.633187,0.601632,-0.765988)">\n' +
+    '            <path d="M21.151,10.108C21.151,12.187 21.828,14.944 23.859,16.975C25.89,19.006 28.647,19.683 30.726,19.683C28.647,19.683 25.89,20.36 23.859,22.392C21.828,24.423 21.151,27.179 21.151,29.259C21.151,27.179 20.473,24.423 18.442,22.392C16.411,20.36 13.655,19.683 11.575,19.683C13.655,19.683 16.411,19.006 18.442,16.975C20.473,14.944 21.151,12.187 21.151,10.108Z" style="fill:none;stroke:black;stroke-width:1.6px;"/>\n' +
+    '        </g>\n' +
+    '        <g transform="matrix(0.179686,0,0,0.194827,13.023949,12.059837)">\n' +
+    '            <path d="M21.151,10.108C21.151,12.187 21.828,14.944 23.859,16.975C25.89,19.006 28.647,19.683 30.726,19.683C28.647,19.683 25.89,20.36 23.859,22.392C21.828,24.423 21.151,27.179 21.151,29.259C21.151,27.179 20.473,24.423 18.442,22.392C16.411,20.36 13.655,19.683 11.575,19.683C13.655,19.683 16.411,19.006 18.442,16.975C20.473,14.944 21.151,12.187 21.151,10.108Z" style="fill:none;stroke:black;stroke-width:5.19px;"/>\n' +
+    '        </g>\n' +
+    '    </g>',
+  '0 0 36 36'
+);
 
 export const standard_equipment = clrIconSVG(
   '<g id="24px/standard equipment"> <path id="Shape" fill-rule="evenodd" clip-rule="evenodd" d="M17.1562 3.15H18.2053C19.3996 3.15116 20.3677 4.11875 20.3695 5.3131V20.8239C20.3682 22.0186 19.4 22.9867 18.2054 22.988H5.86405C4.66938 22.9867 3.70122 22.0186 3.69995 20.8239V5.3132C3.7016 4.11883 4.66968 3.15116 5.86405 3.15H7.00105V2H17.1562V3.15ZM15.8262 3.33H8.33105V3.66C8.33116 4.21162 8.77834 4.65874 9.32995 4.6588H14.8274C15.379 4.6588 15.8262 4.21162 15.8262 3.66V3.33ZM19.0393 20.8238C19.0388 21.2842 18.6657 21.6574 18.2053 21.6578H5.86405C5.40363 21.6574 5.03049 21.2842 5.03005 20.8238V5.3131C5.03093 4.85302 5.40397 4.48043 5.86405 4.4801H7.15735C7.49727 5.38579 8.36218 5.98663 9.32955 5.9891H14.8274C15.7947 5.98659 16.6595 5.38576 16.9995 4.4801H18.2052C18.6652 4.48043 19.0383 4.85302 19.0392 5.3131V20.8238H19.0393ZM9.98135 16.6212L11.4854 17.8622L14.5334 14.8242L15.4724 15.7662L11.5694 19.6552L9.13535 17.6472L9.98135 16.6212ZM7.80405 8.351H16.8041V9.651H7.80405V8.351ZM16.8041 11.6512H7.80405V12.9512H16.8041V11.6512Z" /> </g>  ',
@@ -6937,6 +6948,7 @@ export const skipForwardIcon = buildIconShapeTuple('skip-forward', skip_forward)
 export const softwareDownloadAppIcon = buildIconShapeTuple('software-download-app', software_download_app);
 export const sortingAppIcon = buildIconShapeTuple('sorting-app', sorting_app);
 export const soundIcon = buildIconShapeTuple('sound', sound);
+export const sparklesIcon = buildIconShapeTuple('sparkles', sparkles);
 export const standardEquipmentIcon = buildIconShapeTuple('standard-equipment', standard_equipment);
 export const starOutlineIcon = buildIconShapeTuple('star-outline', star_outline);
 export const statisticAppIcon = buildIconShapeTuple('statistic-app', statistic_app);
@@ -7511,6 +7523,7 @@ export const allIcons: IconShapeTuple[] = [
   softwareDownloadAppIcon,
   sortingAppIcon,
   soundIcon,
+  sparklesIcon,
   standardEquipmentIcon,
   starOutlineIcon,
   statisticAppIcon,
