@@ -4,14 +4,27 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { ChangeDetectionStrategy, Component, computed, effect, inject, input, output } from '@angular/core';
-import { ClrTreetableComparatorInterface } from './interfaces/comparator.interface';
-import { Sort } from './providers';
-import { ClrTreetableSortOrder } from './enums/sort-order.enum';
-import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  input,
+  OnDestroy,
+  OnInit,
+  TemplateRef,
+  viewChild,
+} from '@angular/core';
+import { outputFromObservable, takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
+import { ClrPopoverService } from '@clr/angular';
 import { combineLatest, map } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { ClrPopoverService } from '@clr/angular';
+import { ClrTreetableSortOrder } from './enums/sort-order.enum';
+import { SortStateService } from './providers';
+import { TreetableColumnStateService } from './providers/treetable-column-state.service';
+import { ClrTreetableComparatorInterface } from './interfaces/comparator.interface';
+
+let columnId = 0;
 
 @Component({
   selector: 'clr-tt-column',
@@ -50,12 +63,14 @@ import { ClrPopoverService } from '@clr/angular';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
-export class ClrTreetableColumn<T extends object> {
-  private readonly _sort = inject(Sort<T>);
+export class ClrTreetableColumn<T extends object> implements OnInit, OnDestroy {
+  public readonly columnId = `clr-tt-col-${columnId++}`;
+
+  private readonly _columnTitleRef = viewChild('columnTitle', { read: TemplateRef });
+  private readonly _columnState = inject(TreetableColumnStateService);
+  private readonly _sort = inject(SortStateService<T>);
 
   clrTtSortBy = input<ClrTreetableComparatorInterface<T> | null>(null);
-  clrTtSortOrder = input(ClrTreetableSortOrder.UNSORTED);
-  clrTtSortOrderChange = output<ClrTreetableSortOrder>();
 
   private readonly _internalSortOrder = computed(() => {
     const sortState = this._sort.sortState();
@@ -67,6 +82,9 @@ export class ClrTreetableColumn<T extends object> {
 
     return sortState.reverse ? ClrTreetableSortOrder.DESC : ClrTreetableSortOrder.ASC;
   });
+
+  clrTtSortOrder = input(ClrTreetableSortOrder.UNSORTED);
+  clrTtSortOrderChange = outputFromObservable<ClrTreetableSortOrder>(toObservable(this._internalSortOrder));
 
   protected readonly isSortable = computed(() => !!this.clrTtSortBy());
   protected readonly sortDirection = computed(() => {
@@ -88,6 +106,14 @@ export class ClrTreetableColumn<T extends object> {
         return 'none';
     }
   });
+
+  ngOnInit() {
+    this._columnState.register({ id: this.columnId, titleTemplateRef: this._columnTitleRef() });
+  }
+
+  ngOnDestroy() {
+    this._columnState.unregister(this.columnId);
+  }
 
   constructor() {
     // Handle incoming sort order changes
@@ -134,12 +160,6 @@ export class ClrTreetableColumn<T extends object> {
             break;
         }
       });
-
-    // Emit sort order changes of the column
-    effect(() => {
-      const internalSortOrder = this._internalSortOrder();
-      this.clrTtSortOrderChange.emit(internalSortOrder);
-    });
   }
 
   protected sort(reverse?: boolean) {

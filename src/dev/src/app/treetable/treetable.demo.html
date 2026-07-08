@@ -14,6 +14,7 @@
   <clr-button (click)="toggleLoading()">Toggle loading</clr-button>
   <clr-button (click)="toggleAutoParentSelection()">Toggle auto parent selection</clr-button>
   <clr-button (click)="toggleExternallySelected()">Toggle externally selected</clr-button>
+  <clr-button (click)="toggleTest()">Test</clr-button>
 </clr-button-group>
 
 <clr-treetable
@@ -22,38 +23,80 @@
   [clrTtAutoParentSelection]="autoParentSelection()"
   (clrTtRefresh)="logState($event)"
 >
-  <clr-tt-column [clrTtSortBy]="comperator" [(clrTtSortOrder)]="sortOrder" style="min-width: 1300px">
-    Name
+  <clr-tt-column [clrTtSortBy]="comperator" [(clrTtSortOrder)]="sortOrder">
+    <ng-content *clrTtHideableColumn="{ hidden: testHidden(), initial: false }">Name</ng-content>
     <clr-tt-string-filter [clrTtStringFilter]="treeNameFilter" [clrTtFilterPlaceholder]="'Name'"></clr-tt-string-filter>
   </clr-tt-column>
   <clr-tt-column [clrTtSortBy]="comperator2" [(clrTtSortOrder)]="sortOrder2">
-    ID
+    <ng-content *clrTtHideableColumn="{ hidden: testHidden(), initial: false }">ID</ng-content>
     <clr-tt-string-filter [clrTtStringFilter]="treeIdFilter"></clr-tt-string-filter>
   </clr-tt-column>
-  <clr-tt-column>Parent</clr-tt-column>
+  <clr-tt-column>
+    <ng-content *clrTtHideableColumn="testHidable()">Parent</ng-content>
+  </clr-tt-column>
+  <clr-tt-column>
+    <ng-content *clrTtHideableColumn="{ hidden: testHidden(), initial: false }">Test</ng-content>
+  </clr-tt-column>
 
   <clr-tt-row
     *clrTtItems="let node of rootNodes(); getChildren: getChildren; isLeaf as isLeaf; clrTtNode as item"
     [clrExpandable]="!isLeaf"
-    [clrExpanded]="true"
+    [clrExpanded]="false"
     [clrTtItem]="item"
   >
     <clr-tt-action-overflow>
       <button class="action-item" (click)="testAction()">Test Action</button>
     </clr-tt-action-overflow>
 
-    <clr-tt-cell style="min-width: 1300px">{{ node.value.name }}</clr-tt-cell>
+    <clr-tt-cell>{{ node.value.name }}</clr-tt-cell>
     <clr-tt-cell>{{ node.id }}</clr-tt-cell>
     <clr-tt-cell>{{ node.parent?.id || 'No Parent' }}</clr-tt-cell>
+    <clr-tt-cell>{{ `Test with id ${node.id}` }}</clr-tt-cell>
   </clr-tt-row>
 
-  <clr-tt-placeholder>No users found</clr-tt-placeholder>
+  <clr-tt-placeholder>No rootNodes found</clr-tt-placeholder>
+
+  <clr-tt-footer>{{ rootNodes()?.length }} root nodes</clr-tt-footer>
 </clr-treetable>
 
 <br />
 <div>Selected: {{ selected() | json }}</div>
 <div>Sort order col1: {{ sortOrder }}</div>
 <div>Auto parent selection: {{ autoParentSelection() }}</div>
+
+<h5>Comparable datagrid</h5>
+<clr-datagrid [(clrDgSelected)]="selectedDg" [clrDgSelectionType]="'multi'" [clrDgLoading]="loading()">
+  <clr-dg-column>
+    <ng-container *clrDgHideableColumn="{ hidden: false }">Name</ng-container>
+  </clr-dg-column>
+  <clr-dg-column>
+    <ng-container *clrDgHideableColumn="{ hidden: testHidden() }">ID</ng-container>
+  </clr-dg-column>
+  <clr-dg-column>
+    <ng-container *clrDgHideableColumn="{ hidden: testHidden() }">Parent</ng-container>
+  </clr-dg-column>
+  <clr-dg-column>
+    <ng-container *clrDgHideableColumn="{ hidden: testHidden() }">Test</ng-container>
+  </clr-dg-column>
+
+  @for (node of rootNodes(); track node.id) {
+  <clr-dg-row [clrDgItem]="node">
+    <clr-dg-action-overflow>
+      <button class="action-item" (click)="testAction()">Test Action</button>
+    </clr-dg-action-overflow>
+
+    <clr-dg-cell>{{ node.value.name }}</clr-dg-cell>
+    <clr-dg-cell>{{ node.id }}</clr-dg-cell>
+    <clr-dg-cell>{{ node.parent?.id || 'No Parent' }}</clr-dg-cell>
+    <clr-dg-cell>{{ `Test with id ${node.id}` }}</clr-dg-cell>
+  </clr-dg-row>
+  }
+
+  <clr-dg-placeholder>No users found</clr-dg-placeholder>
+
+  <clr-dg-footer>{{ rootNodes()?.length }} root nodes</clr-dg-footer>
+</clr-datagrid>
+
 <br />
 
 <h4>Treetable with actions</h4>
@@ -118,7 +161,7 @@
         <clr-tt-cell>{{ data.col4 }}</clr-tt-cell>
         <clr-tt-cell>{{ data.col5 }}</clr-tt-cell>
         <clr-tt-cell>{{ data.col6 }}</clr-tt-cell>
-        @for (child1 of data.child; track child1) {
+        @for (child1 of getChild(data); track child1) {
         <clr-tt-row>
           <clr-tt-cell>{{ child1.col1 }}</clr-tt-cell>
           <clr-tt-cell>{{ child1.col2 }}</clr-tt-cell>
@@ -151,7 +194,7 @@
   </clr-tt-row>
 </clr-treetable>
 
-<!-- TODO: check if we can hide that, because it makes the ui very buggy
+<!-- TODO: check if we can hide that, because it makes the ui very buggy -->
 <!--<h4>Treetable with large amount of data</h4>-->
 <!--<clr-treetable>-->
 <!--  <clr-tt-column>Col1</clr-tt-column>-->

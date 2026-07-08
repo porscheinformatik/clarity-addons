@@ -239,6 +239,64 @@ const HTML_EXAMPLE_CUSTOM_FILTER = `
 </clr-treetable>
 `;
 
+const HTML_EXAMPLE_HIDE_SHOW = `
+<clr-treetable>
+  <clr-tt-column>
+    <ng-container *clrTtHideableColumn>Name</ng-container>
+  </clr-tt-column>
+  <clr-tt-column>
+    <ng-container *clrTtHideableColumn="{ hidden: false }">Role</ng-container>
+  </clr-tt-column>
+  <clr-tt-column>
+    <ng-container *clrTtHideableColumn="{ hidden: true, initial: false }">Type</ng-container>
+  </clr-tt-column>
+
+  <clr-tt-row clrExpandable="true">
+    <clr-tt-cell>Bob</clr-tt-cell>
+    <clr-tt-cell>CEO</clr-tt-cell>
+    <clr-tt-cell>Lead</clr-tt-cell>
+
+    <clr-tt-row clrExpandable="true">
+      <clr-tt-cell>Alice</clr-tt-cell>
+      <clr-tt-cell>Head of Sales</clr-tt-cell>
+      <clr-tt-cell>Lead</clr-tt-cell>
+
+      <clr-tt-row>
+        <clr-tt-cell>Frank</clr-tt-cell>
+        <clr-tt-cell>Sales Manager 1</clr-tt-cell>
+        <clr-tt-cell>Manager</clr-tt-cell>
+      </clr-tt-row>
+
+      <clr-tt-row>
+        <clr-tt-cell>Charlie</clr-tt-cell>
+        <clr-tt-cell>Sales Manager 2</clr-tt-cell>
+        <clr-tt-cell>Manager</clr-tt-cell>
+      </clr-tt-row>
+    </clr-tt-row>
+
+    <clr-tt-row clrExpandable="true">
+      <clr-tt-cell>Grace</clr-tt-cell>
+      <clr-tt-cell>Head of Engineering</clr-tt-cell>
+      <clr-tt-cell>Lead</clr-tt-cell>
+
+      <clr-tt-row>
+        <clr-tt-cell>Hank</clr-tt-cell>
+        <clr-tt-cell>Engineering Manager 1</clr-tt-cell>
+        <clr-tt-cell>Manager</clr-tt-cell>
+      </clr-tt-row>
+
+      <clr-tt-row>
+        <clr-tt-cell>Karen</clr-tt-cell>
+        <clr-tt-cell>Engineering Manager 2</clr-tt-cell>
+        <clr-tt-cell>Manager</clr-tt-cell>
+      </clr-tt-row>
+    </clr-tt-row>
+  </clr-tt-row>
+
+  <clr-tt-footer></clr-tt-footer>
+</clr-treetable>
+`;
+
 const TS_EXAMPLE_CUSTOM_FILTER = `
 const RoleEnum = {
   Ceo: 'CEO',
@@ -370,6 +428,7 @@ export class TreetableDemo extends ClarityDocComponent {
   tsExampleBuiltInFilterFunction = TS_EXAMPLE_BUILT_IN_FILTER_FUNCTION;
   htmlExampleCustomFilter = HTML_EXAMPLE_CUSTOM_FILTER;
   tsExampleCustomFilter = TS_EXAMPLE_CUSTOM_FILTER;
+  htmlExampleHideShow = HTML_EXAMPLE_HIDE_SHOW;
 
   constructor() {
     super('treetable');

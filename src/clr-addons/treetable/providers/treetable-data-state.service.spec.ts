@@ -6,8 +6,8 @@
 
 import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { TreetableDataStateService } from './treetable-data-state.service';
-import { Filters } from './filters';
-import { Sort } from './sort';
+import { FilterStateService } from './filter-state.service';
+import { SortStateService } from './sort-state.service';
 import { ClrTreetableComparatorInterface } from '../interfaces/comparator.interface';
 import { ClrTreetableFilterInterface } from '../interfaces/filter-model';
 import { ClrTreetableSelectedState } from '../enums/selection-type';
@@ -58,8 +58,8 @@ function flatten(nodes: ClrTreetableTreeNode<Item>[]): ClrTreetableTreeNode<Item
 
 describe('TreetableDataStateService', () => {
   let service: TreetableDataStateService<Item>;
-  let filters: Filters<Item>;
-  let sort: Sort<Item>;
+  let filters: FilterStateService<Item>;
+  let sort: SortStateService<Item>;
 
   const items: Item[] = [
     { id: 3, name: 'Gamma' },
@@ -78,11 +78,11 @@ describe('TreetableDataStateService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [TreetableDataStateService, Filters, Sort],
+      providers: [TreetableDataStateService, FilterStateService, SortStateService],
     });
     service = TestBed.inject(TreetableDataStateService<Item>);
-    filters = TestBed.inject(Filters<Item>);
-    sort = TestBed.inject(Sort<Item>);
+    filters = TestBed.inject(FilterStateService<Item>);
+    sort = TestBed.inject(SortStateService<Item>);
   });
 
   it('should contain initial state without data source', () => {

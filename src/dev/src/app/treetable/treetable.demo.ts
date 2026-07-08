@@ -4,17 +4,17 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, linkedSignal, OnInit, signal } from '@angular/core';
+import { Component, computed, linkedSignal, OnInit, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { bellIcon, ClarityIcons, infoStandardIcon } from '@clr/angular/icon';
-import { of, tap } from 'rxjs';
-import { delay } from 'rxjs/operators';
 import {
   ClrTreetableComparatorInterface,
   ClrTreetableSortOrder,
   ClrTreetableState,
   ClrTreetableStringFilterFunction,
 } from '@porscheinformatik/clr-addons';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { of, tap } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 ClarityIcons.addIcons(infoStandardIcon);
 ClarityIcons.addIcons(bellIcon);
@@ -41,7 +41,7 @@ export class TreetableDemo implements OnInit {
     ' This is a very long string which should show that text will be truncated properly and not overflow its parent';
 
   data$ = of(
-    [...Array(30).keys()].map(() => ({
+    [...new Array(30).keys()].map(() => ({
       col1: 'Vehicle configuration',
       col2: '',
       col3: '18,519.99EUR',
@@ -164,7 +164,7 @@ export class TreetableDemo implements OnInit {
     });
   }
 
-  myTree: Tree[] = this.buildTree(3);
+  myTree: Tree[] = this.buildTree(1);
 
   treeIdFilter: ClrTreetableStringFilterFunction<Tree> = (item: Tree, search: string): boolean => {
     return item.id.toLowerCase().includes(search.toLowerCase());
@@ -174,13 +174,28 @@ export class TreetableDemo implements OnInit {
     return item?.value?.name?.toLowerCase().includes(search.toLowerCase());
   };
 
-  rootNodes = linkedSignal<Tree[]>(toSignal(of(this.myTree).pipe(delay(2000))));
-  selected = signal<Tree[]>([]);
+  testHidden = signal(false);
+  testHidable = computed(() => ({ hidden: this.testHidden() }));
   loading = signal(false);
+  rootNodes = linkedSignal<Tree[]>(
+    toSignal(
+      of(this.myTree).pipe(
+        tap(() => this.loading.set(true)),
+        delay(2000),
+        tap(() => this.loading.set(false))
+      )
+    )
+  );
+  selected = signal<Tree[]>([]);
+  selectedDg = signal<Tree[]>([]);
   autoParentSelection = signal(true);
 
   getChildren(node: Tree): Tree[] {
     return node?.children || [];
+  }
+
+  toggleTest(): void {
+    this.testHidden.update(value => !value);
   }
 
   ngOnInit(): void {
@@ -258,6 +273,10 @@ export class TreetableDemo implements OnInit {
       }
     });
     return expandable;
+  }
+
+  getChild(node: any): any[] {
+    return node?.child ?? [];
   }
 }
 

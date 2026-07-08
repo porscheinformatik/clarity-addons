@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -27,7 +27,7 @@ type TreetableFilterState<T> = Record<string, { filter: RegisteredFilter<T>; val
 type FilterValueUpdate = { filterId: string; value: unknown };
 
 @Injectable()
-export class Filters<T> {
+export class FilterStateService<T> {
   private readonly _destroyRef = inject(DestroyRef);
 
   private filterId = 0;

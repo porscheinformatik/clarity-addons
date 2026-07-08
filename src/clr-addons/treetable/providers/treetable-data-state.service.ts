@@ -1,13 +1,13 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
 import { computed, inject, Injectable, signal } from '@angular/core';
-import { Sort } from './sort';
+import { SortStateService } from './sort-state.service';
 import { ClrTreetableChildrenFunction, ClrTreetableTreeNode, mapToInternalTree } from '../interfaces/treetable-model';
-import { Filters } from './filters';
+import { FilterStateService } from './filter-state.service';
 import { auditTime, combineLatest, distinctUntilChanged, map, Observable, shareReplay, skip } from 'rxjs';
 import { ClrTreetableSelectedState } from '../enums/selection-type';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
@@ -18,8 +18,8 @@ import { areTreetableStatesEqual } from '../util/treetable-state-util';
 
 @Injectable()
 export class TreetableDataStateService<T extends object> {
-  private readonly _filters = inject(Filters<T>);
-  private readonly _sort = inject(Sort<T>);
+  private readonly _filters = inject(FilterStateService<T>);
+  private readonly _sort = inject(SortStateService<T>);
 
   private readonly _dataSource = signal<{ items: T[]; getChildren: ClrTreetableChildrenFunction<T> }>(undefined);
   private readonly _stickyIndeterminate = signal(false);
