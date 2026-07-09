@@ -71,10 +71,10 @@
   },
   "devDependencies": {
     "@alasdair/karma-scss-preprocessor": "5.0.0-3",
-    "@angular-devkit/core": "21.2.18",
+    "@angular-devkit/core": "21.2.19",
     "@angular-eslint/builder": "21.4.0",
     "@angular/build": "^21.2.11",
-    "@angular/cli": "21.2.18",
+    "@angular/cli": "21.2.19",
     "@angular/compiler-cli": "21.2.18",
     "@types/d3": "7.4.3",
     "@types/jasmine": "6.0.0",
