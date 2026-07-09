@@ -14,13 +14,13 @@ import { ClrDatagridColumnReorderModule, DynamicColumn } from '@porscheinformati
       (clrDatagridColumnOrderChanged)="columns = $event.columns"
     >
       @for (col of columns; track col.name) {
-      <clr-dg-column [clrDgField]="col.name" cdkDrag>
-        {{ col.title }}
-      </clr-dg-column>
+        <clr-dg-column [clrDgField]="col.name" cdkDrag>
+          {{ col.title }}
+        </clr-dg-column>
       }
       <clr-dg-row *clrDgItems="let item of items" [clrDgItem]="item" [clrDgSelectable]="true">
         @for (col of columns; track col.name) {
-        <clr-dg-cell>{{ item }}</clr-dg-cell>
+          <clr-dg-cell>{{ item }}</clr-dg-cell>
         }
       </clr-dg-row>
     </clr-datagrid>

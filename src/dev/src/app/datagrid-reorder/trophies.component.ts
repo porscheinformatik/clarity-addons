@@ -10,8 +10,10 @@ ClarityIcons.addIcons(crownIcon, starIcon, airplaneIcon, carIcon);
   selector: 'clr-trophies',
   template: `
     @for (trophy of item().trophies; track trophy) {
-    <cds-icon [shape]="trophy" />
-    } @empty { - }
+      <cds-icon [shape]="trophy" />
+    } @empty {
+      -
+    }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ClrIcon, ClrDatagridModule],

@@ -5,7 +5,10 @@ import { Directive, ElementRef, Renderer2 } from '@angular/core';
   standalone: false,
 })
 export class ClrMainNavGroupItem {
-  constructor(private el: ElementRef<HTMLElement>, private renderer: Renderer2) {
+  constructor(
+    private el: ElementRef<HTMLElement>,
+    private renderer: Renderer2
+  ) {
     renderer.setAttribute(el.nativeElement, 'tabindex', '-1');
   }
 

@@ -11,10 +11,10 @@ export interface ChartLegendItem {
   template: `
     <div class="chart-legend">
       @for (item of items(); track item.label) {
-      <div class="legend-item">
-        <span class="legend-color-square" [style.background-color]="toChartColor(item.color)"></span>
-        <span class="legend-label">{{ item.label }}</span>
-      </div>
+        <div class="legend-item">
+          <span class="legend-color-square" [style.background-color]="toChartColor(item.color)"></span>
+          <span class="legend-label">{{ item.label }}</span>
+        </div>
       }
     </div>
   `,

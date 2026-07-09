@@ -148,8 +148,7 @@ export class ClrKeyboardNavAltMnemonicDirective implements AfterViewInit, OnDest
       // Find first cds-icon that is not a structural/functional icon.
       const excludedIcons = new Set(Array.from(item.querySelectorAll(EXCLUDED_ICON_SELECTOR)));
       const icon = Array.from(item.querySelectorAll('cds-icon')).find(el => !excludedIcons.has(el)) as
-        | HTMLElement
-        | undefined;
+        HTMLElement | undefined;
 
       if (icon) {
         // Wrap the icon so the badge can be absolutely positioned inside it.

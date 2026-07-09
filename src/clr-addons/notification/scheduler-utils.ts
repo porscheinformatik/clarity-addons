@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -12,7 +12,10 @@ import { observeOn } from 'rxjs/operators';
  * Scheduler that runs outside the angular zone
  */
 class OutsideAngularZoneScheduler implements SchedulerLike {
-  constructor(private zone: NgZone, private scheduler: SchedulerLike) {}
+  constructor(
+    private zone: NgZone,
+    private scheduler: SchedulerLike
+  ) {}
 
   now(): number {
     return this.scheduler.now();
@@ -28,7 +31,10 @@ class OutsideAngularZoneScheduler implements SchedulerLike {
  * Scheduler that runs inside the angular zone
  */
 class InsideAngularZoneScheduler implements SchedulerLike {
-  constructor(private zone: NgZone, private scheduler: SchedulerLike) {}
+  constructor(
+    private zone: NgZone,
+    private scheduler: SchedulerLike
+  ) {}
 
   now(): number {
     return this.scheduler.now();

@@ -26,9 +26,10 @@ import { ClrSummaryArea } from '../summary-area/summary-area';
       [showOnEmptyValue]="showOnEmptyValue"
     >
       @if (showValue) {
-      <clr-summary-item-value [value]="value" [icon]="icon"></clr-summary-item-value>
-      } @if (projectedContent) {
-      <span>{{ projectedContent }}</span>
+        <clr-summary-item-value [value]="value" [icon]="icon"></clr-summary-item-value>
+      }
+      @if (projectedContent) {
+        <span>{{ projectedContent }}</span>
       }
     </clr-summary-item>
   `,
@@ -65,9 +66,10 @@ class TestHostComponent {
         [showOnEmptyValue]="showOnEmptyValue"
       >
         @if (showValue) {
-        <clr-summary-item-value [value]="value" [icon]="icon"></clr-summary-item-value>
-        } @if (projectedContent) {
-        <span>{{ projectedContent }}</span>
+          <clr-summary-item-value [value]="value" [icon]="icon"></clr-summary-item-value>
+        }
+        @if (projectedContent) {
+          <span>{{ projectedContent }}</span>
         }
       </clr-summary-item>
     </clr-summary-area>

@@ -17,7 +17,7 @@ import { ClarityModule } from '@clr/angular';
       [target]="target"
     >
       @if (projectedContent) {
-      <span>{{ projectedContent }}</span>
+        <span>{{ projectedContent }}</span>
       }
     </clr-summary-item-value>
   `,

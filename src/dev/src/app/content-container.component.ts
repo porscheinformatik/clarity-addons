@@ -20,11 +20,13 @@ import { takeUntil } from 'rxjs/operators';
     </main>
 
     <clr-vertical-nav [clrVerticalNavCollapsible]="true" [clrVerticalNavCollapsed]="false" [clr-nav-level]="2">
-      @for (route of routes; track route) { @if (route.path != '') {
-      <a clrVerticalNavLink [routerLink]="[route.path]" [routerLinkActive]="['active']">
-        {{ route.path }}
-      </a>
-      } }
+      @for (route of routes; track route) {
+        @if (route.path != '') {
+          <a clrVerticalNavLink [routerLink]="[route.path]" [routerLinkActive]="['active']">
+            {{ route.path }}
+          </a>
+        }
+      }
     </clr-vertical-nav>
 
     <!--DO NOT DELETE THE COMMENTS BELOW. Needed for testing the Vertical Nav-->
@@ -51,7 +53,10 @@ export class AppContentContainerComponent implements OnDestroy {
   public routes: Route[] = APP_ROUTES;
   destroyed = new Subject<void>();
 
-  constructor(private breadcrumbService: ClrBreadcrumbService, private router: Router) {
+  constructor(
+    private breadcrumbService: ClrBreadcrumbService,
+    private router: Router
+  ) {
     this.router.events.pipe(takeUntil(this.destroyed)).subscribe(val => {
       if (val instanceof NavigationEnd) {
         this.breadcrumbService.updateBreadcrumb([

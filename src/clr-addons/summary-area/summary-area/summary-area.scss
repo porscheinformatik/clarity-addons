@@ -79,7 +79,9 @@ clr-alert ::ng-deep > .alert-lightweight {
   visibility: hidden;
   overflow: hidden;
   margin: 0 0 9px 0;
-  transition: height $transition-duration $transition-timing, opacity $transition-duration-grid $transition-timing-grid,
+  transition:
+    height $transition-duration $transition-timing,
+    opacity $transition-duration-grid $transition-timing-grid,
     visibility $transition-duration-grid $transition-timing-grid;
 
   &.is-active {
@@ -87,7 +89,8 @@ clr-alert ::ng-deep > .alert-lightweight {
     pointer-events: auto;
     visibility: visible;
     overflow: visible;
-    transition: height $transition-duration $transition-timing,
+    transition:
+      height $transition-duration $transition-timing,
       opacity $transition-duration-grid $transition-timing-grid,
       visibility $transition-duration-grid $transition-timing-grid;
   }

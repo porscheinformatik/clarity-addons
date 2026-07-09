@@ -5,7 +5,10 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class RouteHistoryService {
-  constructor(private readonly router: Router, private readonly historyService: ClrHistoryService) {}
+  constructor(
+    private readonly router: Router,
+    private readonly historyService: ClrHistoryService
+  ) {}
 
   init(): void {
     this.router.events

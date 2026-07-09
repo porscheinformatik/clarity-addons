@@ -13,19 +13,19 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   providers: [ClrPopoverService],
   template: `
     @if (!empty()) {
-    <ng-container>
-      <button class="treetable-action-trigger" clrPopoverOrigin clrPopoverOpenCloseButton>
-        <cds-icon shape="ellipsis-vertical"></cds-icon>
-      </button>
-      <div
-        class="datagrid-action-overflow"
-        cdkTrapFocus
-        (click)="closeOverflowContent($event)"
-        *clrPopoverContent="false; at: smartPosition; outsideClickToClose: true; scrollToClose: true"
-      >
-        <ng-content></ng-content>
-      </div>
-    </ng-container>
+      <ng-container>
+        <button class="treetable-action-trigger" clrPopoverOrigin clrPopoverOpenCloseButton>
+          <cds-icon shape="ellipsis-vertical"></cds-icon>
+        </button>
+        <div
+          class="datagrid-action-overflow"
+          cdkTrapFocus
+          (click)="closeOverflowContent($event)"
+          *clrPopoverContent="false; at: smartPosition; outsideClickToClose: true; scrollToClose: true"
+        >
+          <ng-content></ng-content>
+        </div>
+      </ng-container>
     }
   `,
   host: {
@@ -41,7 +41,10 @@ export class ClrTreetableActionOverflow {
 
   public smartPosition = ClrPopoverPosition.RIGHT_MIDDLE;
 
-  constructor(private smartToggleService: ClrPopoverService, private zone: NgZone) {
+  constructor(
+    private smartToggleService: ClrPopoverService,
+    private zone: NgZone
+  ) {
     this.smartToggleService.openChange.pipe(takeUntilDestroyed()).subscribe(openState => {
       if (openState) {
         this.focusFirstButton();

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -9,7 +9,7 @@ import { ClrNotification } from './notification';
 import { take } from 'rxjs/operators';
 
 /*
- * Copyright (c) 2018-2021 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -22,7 +22,11 @@ import { take } from 'rxjs/operators';
 export class ClrActiveNotification {}
 
 export class ClrContentRef {
-  constructor(public nodes: any[], public viewRef?: ViewRef, public componentRef?: ComponentRef<any>) {}
+  constructor(
+    public nodes: any[],
+    public viewRef?: ViewRef,
+    public componentRef?: ComponentRef<any>
+  ) {}
 }
 
 /**
@@ -36,7 +40,10 @@ export class ClrNotificationRef {
    */
   result: Promise<any>;
 
-  constructor(private _notificationCmptRef: ComponentRef<ClrNotification>, private _contentRef: ClrContentRef) {
+  constructor(
+    private _notificationCmptRef: ComponentRef<ClrNotification>,
+    private _contentRef: ClrContentRef
+  ) {
     _notificationCmptRef.instance.closed.pipe(take(1)).subscribe(() => {
       this.close();
     });

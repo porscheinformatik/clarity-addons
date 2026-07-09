@@ -17,7 +17,7 @@ const PERSISTENCE_KEY = 'ColumnHiddenStatePersistenceDirective';
         persistHiddenColumns,
         persistSort: false,
         persistPagination: false,
-        persistFilters: false
+        persistFilters: false,
       }"
     >
       <clr-dg-column id="column1" [clrDgField]="'column1'">

@@ -129,7 +129,9 @@ export class LineChartComponent extends ChartBase<LineChartSelectedPoint> implem
 
     const x = d3scalePoint<string>().domain(xKeys).range([0, width]).padding(0.5);
     const maxY = d3max(this.series().flatMap(s => s.data.map(d => d.value))) ?? 0;
-    const minY = this.autoscaleYAxis() ? d3min(this.series().flatMap(s => s.data.map(d => d.value))) ?? 0 : this.yMin();
+    const minY = this.autoscaleYAxis()
+      ? (d3min(this.series().flatMap(s => s.data.map(d => d.value))) ?? 0)
+      : this.yMin();
     const y = d3scaleLinear().domain([minY, maxY]).nice().range([height, 0]);
 
     const g = this.svg

@@ -29,7 +29,10 @@ export class ClrDateFilterComponent<T extends { [key: string]: any }> implements
     return this.nestedProp.prop;
   }
 
-  constructor(private commonStrings: ClrCommonStringsService, filterContainer: ClrDatagridFilter) {
+  constructor(
+    private commonStrings: ClrCommonStringsService,
+    filterContainer: ClrDatagridFilter
+  ) {
     filterContainer.setFilter(this);
   }
 

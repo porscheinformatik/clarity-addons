@@ -180,7 +180,7 @@ export class BarChartComponent extends ChartBase<BarChartDataPoint> implements O
     if (!item) {
       return undefined;
     }
-    return this.stacks()?.length ? this.keysByStack()[item.stackKey] ?? [] : [item.key];
+    return this.stacks()?.length ? (this.keysByStack()[item.stackKey] ?? []) : [item.key];
   });
 
   protected readonly tooltipLabel = computed<string | undefined>(() => {
@@ -196,7 +196,7 @@ export class BarChartComponent extends ChartBase<BarChartDataPoint> implements O
     if (!item) {
       return undefined;
     }
-    return this.stacks()?.length ? this.totalByStack()[item.stackKey] ?? 0 : item.value;
+    return this.stacks()?.length ? (this.totalByStack()[item.stackKey] ?? 0) : item.value;
   });
 
   /** Slices belonging to the currently selected stack – used by the tooltip @for loop. */
