@@ -28,6 +28,14 @@
     },
     {
       "matchPackageNames": [
+        "pretty-quick",
+        "prettier"
+      ],
+      "groupName": "prettier bundle",
+      "automerge": true
+    },
+    {
+      "matchPackageNames": [
         "@angular-eslint/builder",
         "@types/jasmine",
         "@types/node",
@@ -45,7 +53,6 @@
         "npm-run-all2",
         "postcss",
         "postcss-cli",
-        "pretty-quick",
         "sass",
         "ts-loader"
       ],
