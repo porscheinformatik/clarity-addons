@@ -103,7 +103,9 @@ body,
     cursor: default;
     text-decoration: none;
     transform: translateY(-2px);
-    transition: border 0.2s ease, transform 0.2s ease;
+    transition:
+      border 0.2s ease,
+      transform 0.2s ease;
 
     &.clickable:hover {
       cursor: default;
@@ -157,7 +159,9 @@ body,
       border-style: solid;
       cursor: pointer;
       transform: translateY(-2px);
-      transition: border 0.2s ease, transform 0.2s ease;
+      transition:
+        border 0.2s ease,
+        transform 0.2s ease;
       z-index: 1;
 
       &.card-active:hover {

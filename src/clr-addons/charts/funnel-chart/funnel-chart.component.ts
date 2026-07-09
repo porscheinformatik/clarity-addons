@@ -257,7 +257,7 @@ export class FunnelChartComponent extends ChartBase<FunnelDataPoint> implements 
         const cssColor = toChartColor(rawColor);
         const hoverColor = rawColor.startsWith('--')
           ? cssColor
-          : d3color(rawColor)?.darker(0.5)?.formatHex() ?? cssColor;
+          : (d3color(rawColor)?.darker(0.5)?.formatHex() ?? cssColor);
         const textColor = s.textColor ?? DEFAULT_TEXT_COLORS[si % DEFAULT_TEXT_COLORS.length];
         const sWidth = widthScale(s.value);
 
@@ -730,7 +730,7 @@ export class FunnelChartComponent extends ChartBase<FunnelDataPoint> implements 
     const cssBarColor = toChartColor(rawBarColor);
     const hoverBarColor = rawBarColor.startsWith('--')
       ? cssBarColor
-      : d3color(rawBarColor)?.darker(0.5)?.formatHex() ?? cssBarColor;
+      : (d3color(rawBarColor)?.darker(0.5)?.formatHex() ?? cssBarColor);
 
     const bars = g
       .selectAll<SVGGElement, CenteredDataPoint>('.c-bar')
@@ -782,7 +782,7 @@ export class FunnelChartComponent extends ChartBase<FunnelDataPoint> implements 
     const cssSpacerColor = toChartColor(rawSpacerColor);
     const hoverSpacerColor = rawSpacerColor.startsWith('--')
       ? cssSpacerColor
-      : d3color(rawSpacerColor)?.darker(0.2)?.formatHex() ?? cssSpacerColor;
+      : (d3color(rawSpacerColor)?.darker(0.2)?.formatHex() ?? cssSpacerColor);
 
     g.selectAll<SVGPolygonElement, SpacerDataPoint>('.c-spacer')
       .data(spacerPoints)

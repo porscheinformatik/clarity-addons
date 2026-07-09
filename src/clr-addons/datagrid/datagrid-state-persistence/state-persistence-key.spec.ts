@@ -30,7 +30,7 @@ import { ClrDatagridStatePersistenceModel } from './datagrid-state-persistence-m
         persistSort,
         persistColumnWidths,
         persistColumnOrder,
-        persistColumnOrderTransformer
+        persistColumnOrderTransformer,
       }"
       [clrPaginationDescription]="'{{first}} - {{last}} of {{total}} entries'"
       [clrDatagridColumnReorder]="columns"
@@ -38,9 +38,9 @@ import { ClrDatagridStatePersistenceModel } from './datagrid-state-persistence-m
       (clrDgRefresh)="refreshHandler.next($event)"
     >
       @for (col of columns; track col.name) {
-      <clr-dg-column [clrDgField]="col.name" cdkDrag>
-        <ng-container *clrDgHideableColumn="{ hidden: col.hidden }">{{ col.title }}</ng-container>
-      </clr-dg-column>
+        <clr-dg-column [clrDgField]="col.name" cdkDrag>
+          <ng-container *clrDgHideableColumn="{ hidden: col.hidden }">{{ col.title }}</ng-container>
+        </clr-dg-column>
       }
       <clr-dg-column id="column1" [clrDgField]="'column1'" [clrDgSortBy]="'column1'">
         <ng-template clrDgHideableColumn><span>column1</span></ng-template>

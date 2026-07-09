@@ -5,15 +5,15 @@ import { DynamicColumn } from './dynamic-column';
   selector: 'clr-dg-dynamic-cell-content',
   template: `
     @if (col().component) {
-    <ng-container *ngComponentOutlet="col().component; inputs: { item: item() }" />
+      <ng-container *ngComponentOutlet="col().component; inputs: { item: item() }" />
     } @else if (col().template) {
-    <ng-container *ngTemplateOutlet="col().template; context: { $implicit: item() }" />
+      <ng-container *ngTemplateOutlet="col().template; context: { $implicit: item() }" />
     } @else if (col().formatter) {
-    {{ col().formatter(item()) }}
+      {{ col().formatter(item()) }}
     } @else if (col().displayField) {
-    {{ item()[col().displayField] }}
+      {{ item()[col().displayField] }}
     } @else {
-    {{ defaultDisplayValue() }}
+      {{ defaultDisplayValue() }}
     }
   `,
   standalone: false,

@@ -24,9 +24,9 @@ class MockSummaryAreaStateService {
   template: `
     <clr-summary-area [rows]="rows" [error]="error" [warning]="warning" [loading]="loading">
       @for (item of items; track item.label) {
-      <clr-summary-item [label]="item.label">
-        <clr-summary-item-value [value]="item.value"></clr-summary-item-value>
-      </clr-summary-item>
+        <clr-summary-item [label]="item.label">
+          <clr-summary-item-value [value]="item.value"></clr-summary-item-value>
+        </clr-summary-item>
       }
     </clr-summary-area>
   `,
@@ -50,10 +50,10 @@ class TestHostComponent {
 @Component({
   template: `
     <clr-summary-area [rows]="3">
-      @for(i of manyItems; track i) {
-      <clr-summary-item [label]="'Item ' + i">
-        <clr-summary-item-value [value]="'Value ' + i"></clr-summary-item-value>
-      </clr-summary-item>
+      @for (i of manyItems; track i) {
+        <clr-summary-item [label]="'Item ' + i">
+          <clr-summary-item-value [value]="'Value ' + i"></clr-summary-item-value>
+        </clr-summary-item>
       }
     </clr-summary-area>
   `,

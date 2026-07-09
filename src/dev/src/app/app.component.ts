@@ -26,7 +26,10 @@ export class AppComponent implements OnInit {
     { name: 'Clarity (dark)', cdsTheme: 'dark' },
   ];
 
-  constructor(@Inject(DOCUMENT) private document: Document, private routeHistoryService: RouteHistoryService) {}
+  constructor(
+    @Inject(DOCUMENT) private document: Document,
+    private routeHistoryService: RouteHistoryService
+  ) {}
 
   ngOnInit(): void {
     this.routeHistoryService.init();
