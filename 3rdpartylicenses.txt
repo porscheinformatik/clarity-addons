@@ -564,12 +564,22 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 --------------------------------------------------------------------------------
-Package: @angular/common
+Package: ngx-skeleton-loader
 License: "MIT"
 
-The MIT License
 
-Copyright (c) 2010-2026 Google LLC. https://angular.dev/license
+--------------------------------------------------------------------------------
+Package: @porscheinformatik/clr-addons
+License: "MIT"
+
+
+--------------------------------------------------------------------------------
+Package: prismjs
+License: "MIT"
+
+MIT LICENSE
+
+Copyright (c) 2012 Lea Verou
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -590,22 +600,12 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 --------------------------------------------------------------------------------
-Package: ngx-skeleton-loader
+Package: @angular/common
 License: "MIT"
 
+The MIT License
 
---------------------------------------------------------------------------------
-Package: @porscheinformatik/clr-addons
-License: "MIT"
-
-
---------------------------------------------------------------------------------
-Package: prismjs
-License: "MIT"
-
-MIT LICENSE
-
-Copyright (c) 2012 Lea Verou
+Copyright (c) 2010-2026 Google LLC. https://angular.dev/license
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
