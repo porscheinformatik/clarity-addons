@@ -52,7 +52,6 @@ describe('NumericComponent', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(TestComponent);
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
     fixture.componentInstance.component.onTouched = (): void => {};
     inputEl = fixture.debugElement.query(By.css('input'));
     fixture.detectChanges();
