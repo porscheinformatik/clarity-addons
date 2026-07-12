@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
-import { endOfDay, endOfYesterday, startOfDay, startOfYesterday, subHours } from 'date-fns';
+import { addHours, endOfDay, startOfDay, startOfYesterday, subHours } from 'date-fns';
 import { CalendarEvent } from 'angular-calendar';
-import { addHours } from 'date-fns/esm';
 
 @Component({
   selector: 'clr-angular-calendar-demo',
