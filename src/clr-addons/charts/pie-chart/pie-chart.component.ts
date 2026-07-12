@@ -116,11 +116,9 @@ export class PieChartComponent extends ChartBase<PieChartData> implements OnChan
       .attr('stroke-width', 2)
       .style('cursor', 'pointer')
       .on('mouseover', (e: PointerEvent) => {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         d3select(e.currentTarget as SVGPathElement).attr('d', hoverArc as any);
       })
       .on('mouseout', (e: PointerEvent) => {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         d3select(e.currentTarget as SVGPathElement).attr('d', this.arcGen as any);
       })
       .on('click', (event: PointerEvent, d: PieArcDatum<PieChartData>) => {

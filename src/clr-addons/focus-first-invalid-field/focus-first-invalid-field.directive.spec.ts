@@ -119,7 +119,6 @@ describe('ClrFocusFirstInvalidFieldDirective', () => {
 
   async function setInputsAndStabilize(fields: Record<string, string>): Promise<void> {
     Object.entries(fields).forEach(([key, value]) => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (fixture.componentInstance as any)[key] = value;
     });
     fixture.changeDetectorRef.detectChanges();

@@ -93,9 +93,7 @@ export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked, Con
   private allowedKeys = new Set(NUMBERS);
 
   /* Control Values Accessor Stuff below */
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   onChange = (_: number): void => {};
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   onTouched = (): void => {};
 
   registerOnChange(fn: (_: number) => void): void {

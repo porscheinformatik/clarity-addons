@@ -307,7 +307,6 @@ export class BarChartComponent extends ChartBase<BarChartDataPoint> implements O
       .selectAll<SVGTextElement, BarChartLabel>('text');
     this.labelSelection = labelSelection
       .data(labels)
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .call(this.addTextCommonInfo as any)
       .style('cursor', 'pointer')
       .call(this.addTextAndTitle.bind(this), x.bandwidth())
@@ -320,7 +319,6 @@ export class BarChartComponent extends ChartBase<BarChartDataPoint> implements O
       .append('g')
       .call(d3axisLeft(y).tickValues(tickValues).tickSize(-width).tickFormat(d3format('~s')))
       .selectAll('text');
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     yAxis.call(this.addTextCommonInfo as any);
 
     this.createBarSelectionGroups(g);
@@ -366,7 +364,6 @@ export class BarChartComponent extends ChartBase<BarChartDataPoint> implements O
       .attr('transform', `translate(0,${height})`)
       .call(d3axisBottom(x).tickValues(tickValues).tickSize(-height).tickFormat(d3format('~s')))
       .selectAll('text');
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     xAxis.call(this.addTextCommonInfo as any);
 
     // Y Axis
@@ -377,7 +374,6 @@ export class BarChartComponent extends ChartBase<BarChartDataPoint> implements O
       .selectAll<SVGTextElement, BarChartData>('text');
     this.labelSelection = labelSelection
       .data(labels)
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .call(this.addTextCommonInfo as any)
       .style('cursor', 'pointer')
       .call(this.addTextAndTitle.bind(this), this.MARGIN.left - 10)
