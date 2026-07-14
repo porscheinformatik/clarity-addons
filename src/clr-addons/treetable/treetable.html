@@ -8,18 +8,25 @@
   <div class="treetable-grid" role="grid">
     <div class="treetable-header" role="rowgroup" [class.hide-header]="clrHideHeader()">
       @if (showSelection() && !empty()) {
-      <div class="clr-checkbox-wrapper treetable-row-selection treetable-column" role="row">
-        <input
-          type="checkbox"
-          data-testId="clrTtSelectAll"
-          [checked]="areAllRowsSelected()"
-          (change)="toggleSelectAll()"
-        />
+      <div class="treetable-row-selection treetable-column" role="columnheader">
+        <div class="clr-checkbox-wrapper">
+          <input
+            type="checkbox"
+            data-testId="clrTtSelectAll"
+            [id]="selectAllId"
+            [checked]="areAllRowsSelected()"
+            (change)="toggleSelectAll()"
+          />
+          <!-- Usage of class clr-col-null here prevents clr-col-* classes from being added when a treetable is wrapped inside clrForm -->
+          <label [for]="selectAllId" class="clr-control-label clr-col-null">
+            <span class="clr-sr-only">{{ commonStrings.selectAll }}</span>
+          </label>
+        </div>
       </div>
       } @if (hasActionOverflow()) {
       <div class="treetable-row-actions treetable-column">&nbsp;</div>
       }
-      <div class="treetable-row-scrollable" role="row">
+      <div class="treetable-row-scrollable">
         <ng-content select="clr-tt-column" />
       </div>
     </div>
