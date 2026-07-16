@@ -409,6 +409,11 @@ clr-date-container .clr-control-container {
   }
 }
 
+//Set the width of all inputs by type
+.clr-input-group:has(input[type='time']) {
+  max-width: 4rem;
+}
+
 // Set the width of text areas and selects to 100%
 .clr-control-container {
   .clr-textarea-wrapper {
