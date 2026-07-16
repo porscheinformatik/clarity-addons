@@ -65,13 +65,50 @@ class EditIconComponent {
 })
 class NotEditableComponent {}
 
+@Component({
+  template: `
+    <clr-view-edit-section
+      clrTitle="Badge title"
+      [clrShowBadge]="showBadge"
+      [clrBadgeContent]="badgeContent"
+      [clrBadgeClass]="badgeClass"
+    >
+    </clr-view-edit-section>
+  `,
+  standalone: false,
+})
+class StringBadgeComponent {
+  showBadge = true;
+  badgeContent = 'Badge content';
+  badgeClass: string | string[] = 'label label-primary';
+}
+
+@Component({
+  template: `
+    <clr-view-edit-section clrTitle="Badge title" [clrShowBadge]="showBadge">
+      <span badge class="custom-projected-badge">Projected</span>
+    </clr-view-edit-section>
+  `,
+  standalone: false,
+})
+class ProjectedBadgeComponent {
+  showBadge = true;
+}
+
 describe('ViewEditSectionComponent', () => {
   let fixture: ComponentFixture<TestComponent>;
   let component: ClrViewEditSection;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [TestComponent, EditIconComponent, EditModeComponent, NotEditableComponent],
+      declarations: [
+        TestComponent,
+        EditIconComponent,
+        EditModeComponent,
+        NotEditableComponent,
+        StringBadgeComponent,
+        ProjectedBadgeComponent,
+      ],
       imports: [ClarityModule, ClrViewEditSectionModule, BrowserAnimationsModule],
     }).compileComponents();
   }));
@@ -211,5 +248,56 @@ describe('ViewEditSectionComponent', () => {
     fixture.nativeElement.querySelector('.ces-title-trigger').click();
 
     expect(component._isCollapsed).toBeTrue();
+  });
+
+  it('shows the string badge with default class', () => {
+    const badgeFixture: ComponentFixture<StringBadgeComponent> = TestBed.createComponent(StringBadgeComponent);
+    badgeFixture.detectChanges();
+
+    const badge = badgeFixture.nativeElement.querySelector('.ves-badge');
+    expect(badge).not.toBeNull();
+    expect(badge.textContent).toContain('Badge content');
+    expect(badge.classList).toContain('label');
+    expect(badge.classList).toContain('label-primary');
+    badgeFixture.destroy();
+  });
+
+  it('applies a custom badge class', () => {
+    const badgeFixture: ComponentFixture<StringBadgeComponent> = TestBed.createComponent(StringBadgeComponent);
+    badgeFixture.componentInstance.badgeClass = 'label label-warning';
+    badgeFixture.detectChanges();
+
+    const badge = badgeFixture.nativeElement.querySelector('.ves-badge');
+    expect(badge.classList).toContain('label-warning');
+    expect(badge.classList).not.toContain('label-primary');
+    badgeFixture.destroy();
+  });
+
+  it('does not render the string badge when clrShowBadge is false', () => {
+    const badgeFixture: ComponentFixture<StringBadgeComponent> = TestBed.createComponent(StringBadgeComponent);
+    badgeFixture.componentInstance.showBadge = false;
+    badgeFixture.detectChanges();
+
+    expect(badgeFixture.nativeElement.querySelector('.ves-badge')).toBeNull();
+    badgeFixture.destroy();
+  });
+
+  it('renders a projected badge when clrShowBadge is true', () => {
+    const badgeFixture: ComponentFixture<ProjectedBadgeComponent> = TestBed.createComponent(ProjectedBadgeComponent);
+    badgeFixture.detectChanges();
+
+    const projected = badgeFixture.nativeElement.querySelector('[badge].custom-projected-badge');
+    expect(projected).not.toBeNull();
+    expect(projected.textContent).toContain('Projected');
+    badgeFixture.destroy();
+  });
+
+  it('does not render a projected badge when clrShowBadge is false', () => {
+    const badgeFixture: ComponentFixture<ProjectedBadgeComponent> = TestBed.createComponent(ProjectedBadgeComponent);
+    badgeFixture.componentInstance.showBadge = false;
+    badgeFixture.detectChanges();
+
+    expect(badgeFixture.nativeElement.querySelector('[badge].custom-projected-badge')).toBeNull();
+    badgeFixture.destroy();
   });
 });
