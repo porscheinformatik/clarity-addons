@@ -409,7 +409,7 @@ clr-date-container .clr-control-container {
   }
 }
 
-//Set the width of all inputs with the class time-width
+//Set the width of all inputs by type
 .clr-input-group:has(input[type='time']) {
   max-width: 4rem;
 }
