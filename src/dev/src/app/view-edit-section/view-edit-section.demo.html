@@ -206,5 +206,78 @@
         </ng-template>
       </clr-view-edit-section>
     </div>
+
+    <div class="clr-col-12">
+      <clr-view-edit-section
+        clrTitle="With badge"
+        [clrEditable]="false"
+        [clrViewRef]="viewBlock5"
+        [clrShowBadge]="true"
+        clrBadgeContent="Badge content"
+      >
+        <ng-template #viewBlock5>
+          <form clrForm clrLayout="horizontal">
+            <div class="clr-form-control clr-row">
+              <label class="clr-col-md-2 clr-control-label">Hobby</label>
+              <span class="text-truncate clr-col-md-10">Computer</span>
+            </div>
+            <div class="clr-form-control clr-row">
+              <label class="clr-col-md-2 clr-control-label">Driving licence number</label>
+              <span class="text-truncate clr-col-md-10">12345</span>
+            </div>
+          </form>
+        </ng-template>
+      </clr-view-edit-section>
+    </div>
+
+    <div class="clr-col-12">
+      <clr-view-edit-section
+        clrTitle="With custom-styled badge"
+        [clrEditable]="false"
+        [clrViewRef]="viewBlock5"
+        [clrShowBadge]="true"
+        clrBadgeContent="Warning"
+        clrBadgeClass="label label-warning"
+      >
+        <ng-template #viewBlock5>
+          <form clrForm clrLayout="horizontal">
+            <div class="clr-form-control clr-row">
+              <label class="clr-col-md-2 clr-control-label">Hobby</label>
+              <span class="text-truncate clr-col-md-10">Computer</span>
+            </div>
+            <div class="clr-form-control clr-row">
+              <label class="clr-col-md-2 clr-control-label">Driving licence number</label>
+              <span class="text-truncate clr-col-md-10">12345</span>
+            </div>
+          </form>
+        </ng-template>
+      </clr-view-edit-section>
+    </div>
+
+    <div class="clr-col-12">
+      <clr-view-edit-section
+        clrTitle="With projected badge"
+        [clrEditable]="false"
+        [clrShowBadge]="true"
+        [clrViewRef]="viewBlock5"
+      >
+        <span badge class="label label-success">
+          <cds-icon shape="check"></cds-icon>
+          Verified
+        </span>
+        <ng-template #viewBlock5>
+          <form clrForm clrLayout="horizontal">
+            <div class="clr-form-control clr-row">
+              <label class="clr-col-md-2 clr-control-label">Hobby</label>
+              <span class="text-truncate clr-col-md-10">Computer</span>
+            </div>
+            <div class="clr-form-control clr-row">
+              <label class="clr-col-md-2 clr-control-label">Driving licence number</label>
+              <span class="text-truncate clr-col-md-10">12345</span>
+            </div>
+          </form>
+        </ng-template>
+      </clr-view-edit-section>
+    </div>
   </div>
 </div>

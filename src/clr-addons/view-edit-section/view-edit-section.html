@@ -1,6 +1,13 @@
 <div class="card view-edit-section" (keyup.escape)="onCancel()">
   <div class="card-block">
     <div class="card-title" [attr.cds-text]="_titleTextStyle + ' ' + _titleTextFontWeight">
+      <ng-template #titleContainer>
+        {{ _title }} @if (_showBadge) { @if (_badgeContent) {
+        <span class="ves-badge" [ngClass]="_badgeClass">{{ _badgeContent }}</span>
+        }
+        <ng-content select="[badge]"></ng-content>
+        }
+      </ng-template>
       @if (_isCollapsible && !editMode) {
       <span
         class="ces-title-trigger"
@@ -11,12 +18,14 @@
         role="button"
         [attr.aria-expanded]="!_isCollapsed"
       >
-        {{ _title }}
+        <ng-template [ngTemplateOutlet]="titleContainer"></ng-template>
       </span>
       <button type="button" (click)="onCollapseExpand()" class="btn btn-icon btn-link ces-caret-btn">
         <cds-icon shape="angle" size="20" class="ces-caret-icon" [@rotateIcon]="_isCollapsed"></cds-icon>
       </button>
-      } @else { {{ _title }} }
+      } @else {
+      <ng-template [ngTemplateOutlet]="titleContainer"></ng-template>
+      }
       <div class="ves-actions">
         @if (_editable && !editMode && actionBlock.children.length == 0) {
         <button type="button" (click)="onEdit()" class="btn btn-icon btn-link ves-action">
