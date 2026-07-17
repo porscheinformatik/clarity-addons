@@ -57,6 +57,9 @@ export class ClrViewEditSection implements AfterViewInit {
   @Input('clrIsCollapsed') _isCollapsed = false;
   @Input('clrTitleTextStyle') _titleTextStyle: ClrViewEditSectionTitleTextStyle = 'subsection';
   @Input('clrTitleTextFontWeight') _titleTextFontWeight: ClrViewEditSectionTitleTextFontWeight = 'medium';
+  @Input('clrShowBadge') _showBadge = false;
+  @Input('clrBadgeContent') _badgeContent: string;
+  @Input('clrBadgeClass') _badgeClass: string | string[] = 'label label-primary';
 
   @Input('clrViewRef') viewRef: TemplateRef<any>;
   @Input('clrEditRef') editRef: TemplateRef<any>;

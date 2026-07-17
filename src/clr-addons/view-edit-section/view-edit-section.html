@@ -2,6 +2,12 @@
   <div class="card-block">
     <div class="card-title" [attr.cds-text]="_titleTextStyle + ' ' + _titleTextFontWeight">
       {{ _title }}
+      <ng-container *ngIf="_showBadge">
+        <ng-container *ngIf="_badgeContent">
+          <span class="ves-badge" [ngClass]="_badgeClass">{{ _badgeContent }}</span>
+        </ng-container>
+        <ng-content select="[badge]"></ng-content>
+      </ng-container>
       <button
         type="button"
         (click)="onCollapseExpand()"
