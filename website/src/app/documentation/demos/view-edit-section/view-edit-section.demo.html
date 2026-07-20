@@ -207,6 +207,55 @@
           </tr>
           <tr>
             <td class="left">
+              <b>[clrShowBadge]</b>
+              <div class="clr-hidden-sm-up">Type: boolean</div>
+              <div class="clr-hidden-sm-up">Default: false</div>
+            </td>
+            <td class="left clr-hidden-xs-down">true, false</td>
+            <td class="clr-hidden-xs-down">false</td>
+            <td class="left">
+              Shows the built-in string badge next to the title (used together with
+              <code class="clr-code">clrBadgeContent</code>)
+            </td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[clrBadgeContent]</b>
+              <div class="clr-hidden-sm-up">Type: String</div>
+              <div class="clr-hidden-sm-up">Default: undefined</div>
+            </td>
+            <td class="left clr-hidden-xs-down">any string</td>
+            <td class="clr-hidden-xs-down">undefined</td>
+            <td class="left">Text content of the built-in string badge</td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[clrBadgeClass]</b>
+              <div class="clr-hidden-sm-up">Type: string | string[]</div>
+              <div class="clr-hidden-sm-up">Default: "label label-primary"</div>
+            </td>
+            <td class="left clr-hidden-xs-down">any CSS class(es)</td>
+            <td class="clr-hidden-xs-down">"label label-primary"</td>
+            <td class="left">
+              CSS class(es) applied to the built-in string badge, allowing its style to be customized (e.g.
+              <code class="clr-code">label label-warning</code>)
+            </td>
+          </tr>
+          <tr>
+            <td class="left">
+              <b>[clrBadgeRef]</b>
+              <div class="clr-hidden-sm-up">Type: TemplateRef</div>
+              <div class="clr-hidden-sm-up">Default: undefined</div>
+            </td>
+            <td class="left clr-hidden-xs-down">any template reference</td>
+            <td class="clr-hidden-xs-down">undefined</td>
+            <td class="left">
+              Template rendered as the badge. Takes precedence over <code class="clr-code">clrBadgeContent</code> and
+              allows fully customized badge markup
+            </td>
+          </tr>
+          <tr>
+            <td class="left">
               <b>(clrSectionSubmitted)</b>
               <div class="clr-hidden-sm-up">Type: EventEmitter</div>
               <div class="clr-hidden-sm-up"></div>
@@ -228,6 +277,12 @@
         </tbody>
       </table>
       <p>To define custom actions simply put the attribute <code class="clr-code">action-block</code> to an element.</p>
+      <p>
+        To show a fully customized badge next to the title, project any element with the attribute
+        <code class="clr-code">badge</code>. For simple text badges the <code class="clr-code">clrShowBadge</code> /
+        <code class="clr-code">clrBadgeContent</code> inputs can be used, and their style can be adjusted via
+        <code class="clr-code">clrBadgeClass</code>.
+      </p>
     </div>
 
     <div id="code-examples">
