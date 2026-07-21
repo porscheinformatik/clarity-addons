@@ -51,6 +51,8 @@ let columnId = 0;
 
     <ng-content select="clr-tt-filter, clr-tt-string-filter" />
 
+    <clr-tt-column-separator [columnId]="columnId" />
+
     <ng-template #columnTitle>
       <ng-content />
     </ng-template>

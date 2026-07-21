@@ -38,7 +38,7 @@ export class TreetableHeaderRenderer {
   public getColumnClasses(): string[] {
     const classes: string[] = [];
     this.elementRef.nativeElement.classList.forEach((className: string) => {
-      if (className.indexOf('clr-col') !== -1) {
+      if (className.includes('clr-col')) {
         classes.push(className);
       }
     });
@@ -47,5 +47,19 @@ export class TreetableHeaderRenderer {
 
   public setDefaultColumnClass(): void {
     this.renderer.addClass(this.elementRef.nativeElement, 'clr-col');
+  }
+
+  public setWidth(width: number): void {
+    const el = this.elementRef.nativeElement;
+    this.renderer.setStyle(el, 'width', `${width}px`);
+    this.renderer.setStyle(el, 'max-width', `${width}px`);
+    this.renderer.setStyle(el, 'flex', '0 0 auto');
+  }
+
+  public clearWidth(): void {
+    const el = this.elementRef.nativeElement;
+    this.renderer.removeStyle(el, 'width');
+    this.renderer.removeStyle(el, 'max-width');
+    this.renderer.removeStyle(el, 'flex');
   }
 }

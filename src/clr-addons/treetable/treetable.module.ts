@@ -36,6 +36,7 @@ import { ClrTreetableRowCheckbox } from './treetable-row-checkbox';
 import { ClrTreetableFooter } from './treetable-footer';
 import { ClrTreetableColumnManagerMenuComponent } from './treetable-column-manager-menu.component';
 import { ClrTreetableHideableColumn } from './treetable-hideable-column.directive';
+import { ClrTreetableColumnSeparator } from './treetable-column-separator';
 
 const CLR_TREETABLE_DIRECTIVES: Type<any>[] = [
   ClrTreetable,
@@ -62,6 +63,7 @@ const CLR_TREETABLE_DIRECTIVES: Type<any>[] = [
     ClrTreetableRecursiveRows,
     ClrTreetableRowCheckbox,
     ClrTreetableColumnManagerMenuComponent,
+    ClrTreetableColumnSeparator,
   ],
   exports: [CLR_TREETABLE_DIRECTIVES],
 })

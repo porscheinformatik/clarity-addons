@@ -6,6 +6,8 @@ $base-cell-indentation: 2rem;
 $base-caret-indentation: 0.1rem;
 $indentation-increment: 1rem;
 
+$cell-min-width: var(--cds-global-space-12);
+
 @mixin row-indentation($level) {
   .treetable-scrolling-cells {
     .treetable-cell:nth-child(1 of .treetable-cell:not(.treetable-hidden-column)) {
@@ -322,21 +324,24 @@ $indentation-increment: 1rem;
         min-width: max-content;
         position: relative;
 
-        :first-child {
-          /* Add padding of base-cell-indentation to account for the expendable icon in the rows below*/
-          padding-left: $base-cell-indentation;
-        }
-
         .treetable-column {
+          position: relative;
           text-align: left;
-          min-width: 4rem;
+          min-width: $cell-min-width;
           line-height: var(--cds-alias-typography-caption-line-height);
           display: flex;
           flex: 1 1 auto;
           vertical-align: top;
 
-          &:last-of-type {
-            padding-right: 1rem;
+          &:nth-child(1 of .treetable-column:not(.treetable-hidden-column)) {
+            /* Add padding of base-cell-indentation to account for the expendable icon in the rows below*/
+            padding-left: $base-cell-indentation;
+          }
+
+          &:nth-last-child(1 of .treetable-column:not(.treetable-hidden-column)) {
+            .treetable-column-separator {
+              display: none;
+            }
           }
 
           .treetable-column-title {
@@ -430,6 +435,59 @@ $indentation-increment: 1rem;
             flex: 0 0 auto;
           }
 
+          .treetable-column-separator {
+            display: flex;
+            align-items: center;
+            flex: 0 0 auto;
+            width: var(--cds-alias-object-border-width-100);
+            order: 100;
+            margin-left: auto;
+            height: 100%;
+
+            &::after {
+              content: '';
+              width: var(--cds-global-space-1);
+              height: calc(100% - var(--cds-global-space-5));
+              position: absolute;
+              right: 0;
+              align-self: center;
+              background-color: var(--cds-alias-object-interaction-border-color);
+            }
+
+            .treetable-column-handle {
+              appearance: none;
+              margin: 0;
+              padding: 0;
+              border: none;
+              border-radius: 0;
+              box-shadow: none;
+              background: none;
+
+              position: absolute;
+              width: calc(var(--cds-global-space-6) + var(--cds-global-space-1));
+              right: calc(-1 * var(--cds-global-space-4));
+              top: 0;
+              cursor: col-resize;
+              height: 100%;
+              z-index: 501;
+            }
+
+            .treetable-column-resize-tracker {
+              position: absolute;
+              top: calc(-1 * var(--cds-global-space-6));
+              display: none;
+              width: var(--cds-global-space-1);
+              height: 0;
+              border-right: var(--cds-alias-object-border-width-100) dotted var(--cds-global-color-blue-300);
+              transform: translateX(0);
+              cursor: col-resize;
+
+              .on-arrow-key-resize {
+                transition: transform 0.2s ease-out;
+              }
+            }
+          }
+
           .treetable-column-flex {
             display: flex;
             flex: 1 1 auto;
@@ -508,7 +566,7 @@ $indentation-increment: 1rem;
 
             .treetable-cell {
               text-align: left;
-              min-width: 4rem;
+              min-width: $cell-min-width;
               border-color: var(--clr-table-border-color);
 
               &:last-of-type {

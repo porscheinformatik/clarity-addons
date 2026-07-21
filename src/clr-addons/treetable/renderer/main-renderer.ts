@@ -43,6 +43,7 @@ export class TreetableMainRenderer {
 
   private readonly rules: readonly ColumnRule[] = [
     this.createClassesRule(),
+    this.createColumnWidthRule(),
     this.createFirstColumnWidthRule(),
     this.createDisplayRule(),
   ];
@@ -73,7 +74,7 @@ export class TreetableMainRenderer {
           this.renderAllRules(headers, rows); // resetHidden etc.
           break;
         case TreetableColumnUpdate.WIDTH:
-          this.renderRuleByKey('first-column-width', headers, rows);
+          this.renderRulesByKeys(['column-width', 'first-column-width'], headers, rows);
           break;
         default:
           this.renderAllRules(headers, rows);
@@ -201,13 +202,32 @@ export class TreetableMainRenderer {
       key: 'first-column-width',
       layoutPhase: 'stable',
       prepareData: ctx => {
-        if (!ctx.isFirstVisible || !ctx.header) {
+        if (!ctx.isFirstVisible || !ctx.header || ctx.state?.width) {
           return null;
         }
         return { width: ctx.header.getWidth() };
       },
       applyCell: (cell, data) => {
         cell.setMaxWidth(data.width);
+      },
+    };
+  }
+
+  private createColumnWidthRule(): ColumnRule<{ width: number }> {
+    return {
+      key: 'column-width',
+      layoutPhase: 'unstable',
+      prepareData: ctx => {
+        if (!ctx.state?.width) {
+          return null;
+        }
+        return { width: ctx.state.width };
+      },
+      applyHeader: (header, data) => {
+        header.setWidth(data.width);
+      },
+      applyCell: (cell, data) => {
+        cell.setWidth(data.width);
       },
     };
   }
