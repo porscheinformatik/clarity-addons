@@ -4,7 +4,6 @@ import {
   Component,
   ElementRef,
   inject,
-  input,
   NgZone,
   OnDestroy,
   Renderer2,
@@ -12,6 +11,7 @@ import {
 } from '@angular/core';
 import { TreetableColumnStateService } from './providers/treetable-column-state.service';
 import { KEYBOARD_RESIZE_LENGTH, MIN_COLUMN_WIDTH } from './constants';
+import { ClrTreetableColumn } from './treetable-column';
 
 @Component({
   selector: 'clr-tt-column-separator',
@@ -26,9 +26,8 @@ import { KEYBOARD_RESIZE_LENGTH, MIN_COLUMN_WIDTH } from './constants';
   standalone: false,
 })
 export class ClrTreetableColumnSeparator implements AfterViewInit, OnDestroy {
-  readonly columnId = input.required<string>();
-
   private readonly _columnState = inject(TreetableColumnStateService);
+  private readonly _column = inject(ClrTreetableColumn);
   private readonly _renderer = inject(Renderer2);
   private readonly _ngZone = inject(NgZone);
   private readonly _el = inject(ElementRef);
@@ -150,9 +149,11 @@ export class ClrTreetableColumnSeparator implements AfterViewInit, OnDestroy {
 
   private _endResize(): void {
     const newWidth = Math.max(this._widthBeforeResize + this._resizedBy, this._minContentWidth);
-    this._ngZone.run(() => {
-      this._columnState.changeWidth(this.columnId(), newWidth);
-    });
+    if (newWidth != this._widthBeforeResize) {
+      this._ngZone.run(() => {
+        this._columnState.changeWidth(this._column.columnId, newWidth);
+      });
+    }
   }
 
   // --- Tracker visual ---
