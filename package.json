@@ -106,7 +106,7 @@
     "karma-jasmine-matchers": "5.0.0",
     "karma-mocha-reporter": "2.2.5",
     "karma-notify-reporter": "1.3.0",
-    "ng-packagr": "21.2.5",
+    "ng-packagr": "22.0.1",
     "ngx-skeleton-loader": "13.0.0",
     "npm-run-all2": "9.0.2",
     "postcss": "8.5.20",
