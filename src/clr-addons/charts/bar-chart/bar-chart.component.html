@@ -1,6 +1,6 @@
 <div class="chart-container">
   <div class="chart-area" #container (cngWindowResize)="updateChart()" [class.pt-3]="alertMessageAndType()">
-    <svg [class.d-none]="loading() || !data()?.length" #chart></svg>
+    <svg [class.d-none]="loading() || !data()?.length || allValuesZero()" #chart></svg>
 
     @if (tooltipPosition()) {
     <cng-chart-tooltip
@@ -42,14 +42,14 @@
       </p>
       } }
     </cng-chart-tooltip>
-    } @if (loading() || !data()?.length) {
+    } @if (loading() || !data()?.length || allValuesZero()) {
     <cng-bar-chart-skeleton [orientation]="orientation()" [skeletonType]="loading() ? 'loading' : 'placeholder'" />
     } @if (alertMessageAndType()) {
     <cng-chart-alert-overlay [alertType]="alertMessageAndType()[1]" [alertMessage]="alertMessageAndType()[0]" />
     }
   </div>
 
-  @if (showLegend() && !loading() && legendItems().length) {
+  @if (showLegend() && !loading() && legendItems().length && !allValuesZero()) {
   <cng-chart-legend [items]="legendItems()" />
   } @if (showExportButton() && !loading() && data()?.length) {
   <cng-chart-export-button

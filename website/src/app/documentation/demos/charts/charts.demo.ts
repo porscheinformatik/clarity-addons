@@ -187,6 +187,49 @@ const MONTHS = [
   'December',
 ];
 
+const COUNTRIES = [
+  'Austria',
+  'Belgium',
+  'Croatia',
+  'Denmark',
+  'Estonia',
+  'Finland',
+  'Germany',
+  'Hungary',
+  'Ireland',
+  'Italy',
+  'Latvia',
+  'Lithuania',
+  'Malta',
+  'Netherlands',
+  'Poland',
+  'Portugal',
+  'Romania',
+  'Slovakia',
+  'Slovenia',
+  'Spain',
+  'Sweden',
+  'Czechia',
+  'Bulgaria',
+  'Cyprus',
+  'France',
+  'Greece',
+  'Luxembourg',
+  'Ukraine',
+  'Switzerland',
+  'Norway',
+  'Serbia',
+  'Albania',
+  'Bosnia',
+  'Montenegro',
+  'Moldova',
+  'Belarus',
+  'Turkey',
+  'Georgia',
+  'Armenia',
+  'Azerbaijan',
+];
+
 // ── Color Handling ─────────────────────────────────────────────────────────────
 
 const COLOR_TS = `colorData: BarChartData[] = [
@@ -204,6 +247,22 @@ const COLOR_HTML = `<clr-bar-chart
   [data]="colorData"
   orientation="vertical"
   [showLegend]="true"
+  style="display:block;width:100%;height:300px;"
+></clr-bar-chart>`;
+
+// ── Too Many Items & Groups Example ────────────────────────────────────────
+const TOO_MANY_ITEMS_TS = `// Data with many items - only first items will be displayed
+barDataLarge: BarChartData[] = [
+  { key: 'jan', label: 'January', value: 120, color: '#e57200' },
+  { key: 'feb', label: 'February', value: 85, color: '#00828b' },
+  // ... 25 total items ...
+];`;
+
+const TOO_MANY_ITEMS_HTML = `<clr-bar-chart
+  [data]="barDataLarge"
+  orientation="vertical"
+  [showLegend]="false"
+  [tooManyItemsMessage]="'Showing {{showingAmount}} of {{totalAmount}} items'"
   style="display:block;width:100%;height:300px;"
 ></clr-bar-chart>`;
 
@@ -374,6 +433,46 @@ export class ChartsDemo extends ClarityDocComponent {
     { key: 'jun', label: 'June', value: 310, color: '#006b4a' },
   ];
 
+  barDataLarge: BarChartData[] = [
+    { key: 'jan', label: 'January', value: 120, color: '#e57200' },
+    { key: 'feb', label: 'February', value: 85, color: '#00828b' },
+    { key: 'mar', label: 'March', value: 210, color: '#c1326e' },
+    { key: 'apr', label: 'April', value: 165, color: '#5b40b2' },
+    { key: 'may', label: 'May', value: 95, color: '#007cba' },
+    { key: 'jun', label: 'June', value: 310, color: '#006b4a' },
+    { key: 'jul', label: 'July', value: 175, color: '#b5491b' },
+    { key: 'aug', label: 'August', value: 230, color: '#00617a' },
+    { key: 'sep', label: 'September', value: 145, color: '#8b2252' },
+    { key: 'oct', label: 'October', value: 280, color: '#3d2880' },
+    { key: 'nov', label: 'November', value: 190, color: '#005a8a' },
+    { key: 'dec', label: 'December', value: 350, color: '#004d35' },
+    { key: 'q1-2024', label: 'Q1 2024', value: 415, color: '#e57200' },
+    { key: 'q2-2024', label: 'Q2 2024', value: 570, color: '#00828b' },
+    { key: 'q3-2024', label: 'Q3 2024', value: 550, color: '#c1326e' },
+    { key: 'q4-2024', label: 'Q4 2024', value: 820, color: '#5b40b2' },
+    { key: 'product-a', label: 'Product A', value: 640, color: '#007cba' },
+    { key: 'product-b', label: 'Product B', value: 480, color: '#006b4a' },
+    { key: 'product-c', label: 'Product C', value: 320, color: '#b5491b' },
+    { key: 'product-d', label: 'Product D', value: 755, color: '#00617a' },
+    { key: 'product-e', label: 'Product E', value: 290, color: '#8b2252' },
+    { key: 'region-eu', label: 'Europe', value: 1200, color: '#3d2880' },
+    { key: 'region-us', label: 'North America', value: 980, color: '#005a8a' },
+    { key: 'region-apac', label: 'Asia Pacific', value: 1450, color: '#004d35' },
+    { key: 'region-latam', label: 'Latin America', value: 430, color: '#e57200' },
+  ];
+
+  stackedDataLarge: BarChartData[] = COUNTRIES.flatMap((country, i) => [
+    { key: `${country}-revenue`, label: 'Revenue', value: 100 + i * 10, color: '#e57200', stackKey: country },
+    { key: `${country}-costs`, label: 'Costs', value: 50 + i * 5, color: '#00828b', stackKey: country },
+    { key: `${country}-profit`, label: 'Profit', value: 30 + i * 3, color: '#c1326e', stackKey: country },
+    { key: `${country}-tax`, label: 'Tax', value: 20 + i * 2, color: '#5b40b2', stackKey: country },
+  ]);
+
+  stacksLarge: BarChartLabel[] = COUNTRIES.map(country => ({
+    stackKey: country,
+    label: country,
+  }));
+
   stackedData: BarChartData[] = [
     { key: 'jan-a', label: 'Revenue', value: 120, color: '#e57200', stackKey: 'jan' },
     { key: 'jan-b', label: 'Costs', value: 60, color: '#00828b', stackKey: 'jan' },
@@ -523,6 +622,9 @@ export class ChartsDemo extends ClarityDocComponent {
   ];
 
   activeFragment;
+
+  tooManyItemsTs = TOO_MANY_ITEMS_TS;
+  tooManyItemsHtml = TOO_MANY_ITEMS_HTML;
 
   constructor(public route: ActivatedRoute) {
     super('charts');

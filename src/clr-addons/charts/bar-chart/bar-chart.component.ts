@@ -24,6 +24,7 @@ import {
   sum as d3sum,
 } from 'd3';
 import {
+  ALL_ITEMS_ZERO_MESSAGE,
   NO_ITEMS_ALERT_TYPE,
   NO_ITEMS_MESSAGE,
   TOO_MANY_ITEMS_ALERT_TYPE,
@@ -79,11 +80,14 @@ export class BarChartComponent extends ChartBase<BarChartDataPoint> implements O
   public readonly noItemsMessage = input<string>(NO_ITEMS_MESSAGE);
   public readonly tooManyItemsMessage = input<string>(TOO_MANY_ITEMS_MESSAGE);
   public readonly tooManyItemsGroupedMessage = input<string>(TOO_MANY_ITEMS_GROUPED_MESSAGE);
+  public readonly allValuesZeroMessage = input<string>(ALL_ITEMS_ZERO_MESSAGE);
 
   public readonly showLegend = input(true);
   public readonly showExportButton = input(false);
   public readonly exportButtonTitle = input<string>('Export');
   public readonly exportFilename = input<string>('bar-chart');
+
+  protected readonly allValuesZero = computed(() => !!this.data()?.length && this.data().every(d => d.value === 0));
 
   /** Optional label rendered below the X axis. */
   public readonly xAxisLabel = input<string>('');
@@ -141,13 +145,17 @@ export class BarChartComponent extends ChartBase<BarChartDataPoint> implements O
       return undefined;
     }
 
+    if (this.allValuesZero()) {
+      return [this.allValuesZeroMessage(), NO_ITEMS_ALERT_TYPE];
+    }
+
     if (!this.showingBarCount()) {
       return [this.noItemsMessage(), NO_ITEMS_ALERT_TYPE];
     } else if (this.totalBarCount() !== this.showingBarCount()) {
-      return [
-        this.stacks() ? this.tooManyItemsGroupedMessage() : this.tooManyItemsMessage(),
-        TOO_MANY_ITEMS_ALERT_TYPE,
-      ];
+      const message = (this.stacks() ? this.tooManyItemsGroupedMessage() : this.tooManyItemsMessage())
+        .replace('{{totalAmount}}', String(this.totalBarCount()))
+        .replace('{{showingAmount}}', String(this.showingBarCount()));
+      return [message, TOO_MANY_ITEMS_ALERT_TYPE];
     }
 
     return undefined;
@@ -450,15 +458,18 @@ export class BarChartComponent extends ChartBase<BarChartDataPoint> implements O
   }
 
   private addTextClickHandler(g: Selection<SVGTextElement, BarChartLabel, SVGElement, undefined>) {
-    // no click handler for labels in stacked charts
-    if (this.stacks()?.length) {
-      return;
-    }
-
     g.on('click', (event: PointerEvent, d: BarChartLabel) => {
       event.stopPropagation();
-      // Note: In non-stacked charts, the stackKey is equal to the key, so this works - but the logic is confusing [VU3REQ-4790]
-      this.openTooltipByKey(d.stackKey);
+      if (this.stacks()?.length) {
+        //For stacked charts find the first item that belongs to that stack group and use it's key
+        const firstInStack = this.slicedDataPoints().find(item => item.stackKey === d.stackKey);
+
+        if (firstInStack) {
+          this.openTooltipByKey(firstInStack.key);
+        }
+      } else {
+        this.openTooltipByKey(d.stackKey);
+      }
     });
   }
 

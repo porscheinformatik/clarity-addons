@@ -250,6 +250,24 @@
           <td class="left">''</td>
           <td class="left">Optional axis description labels.</td>
         </tr>
+        <tr>
+          <td class="left"><code>allValuesZeroMessage</code></td>
+          <td class="left">string</td>
+          <td class="left">all chart values are 0</td>
+          <td class="left">Message shown in the info-alert when all the values inside the chart are 0</td>
+        </tr>
+        <tr>
+          <td class="left"><code>tooManyItemsMessage</code></td>
+          <td class="left">string</td>
+          <td class="left">Showing 'showingAmount' of 'totalAmount' items</td>
+          <td class="left">Custom message shown when not all items fit. Supports placeholders.</td>
+        </tr>
+        <tr>
+          <td class="left"><code>tooManyItemsGroupedMessage</code></td>
+          <td class="left">string</td>
+          <td class="left">Showing 'showingAmount' of 'totalAmount' groups</td>
+          <td class="left">Custom message shown when using stacks and not all groups fit.</td>
+        </tr>
       </tbody>
     </table>
 
@@ -337,6 +355,47 @@
         yAxisLabel="Month"
         xAxisLabel="Revenue (€)"
         [showLegend]="true"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-bar-chart>
+    </div>
+
+    <!-- ================================================================== -->
+    <!-- TOO MANY ITEMS & GROUPS                                             -->
+    <!-- ================================================================== -->
+    <h3>Example – Too Many Items (<code>tooManyItemsMessage</code>)</h3>
+    <p>
+      When the bar chart has more items than can fit in the available space, only a subset is displayed and a warning
+      alert appears. Customize this message using
+      <code class="clr-code">[tooManyItemsMessage]</code>. The placeholders
+      <code class="clr-code">{{ '{{' }}showingAmount{{ '}}' }}</code> and
+      <code class="clr-code">{{ '{{' }}totalAmount{{ '}}' }}</code> are automatically replaced with the actual counts.
+    </p>
+    <clr-code-snippet [clrCode]="tooManyItemsTs" clrLanguage="typescript"></clr-code-snippet>
+    <clr-code-snippet [clrCode]="tooManyItemsHtml" clrLanguage="html"></clr-code-snippet>
+
+    <div style="height: 300px; width: 100%; margin-top: 1rem">
+      <clr-bar-chart
+        [data]="barDataLarge"
+        orientation="vertical"
+        [showLegend]="false"
+        [tooManyItemsMessage]="'Showing {{showingAmount}} of {{totalAmount}} items'"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-bar-chart>
+    </div>
+
+    <h3>Example – Grouped Bars (<code>stacks</code> + <code>tooManyItemsGroupedMessage</code>)</h3>
+    <p>
+      When using <code class="clr-code">[stacks]</code> to group bars together, the warning message automatically uses
+      <code class="clr-code">[tooManyItemsGroupedMessage]</code> instead, counting <em>groups</em> rather than
+      individual items. Both messages support the same placeholders.
+    </p>
+    <div style="height: 320px; width: 100%; margin-top: 1rem">
+      <clr-bar-chart
+        [data]="stackedDataLarge"
+        [stacks]="stacksLarge"
+        orientation="vertical"
+        [showLegend]="false"
+        [tooManyItemsGroupedMessage]="'Showing {{showingAmount}} of {{totalAmount}} groups'"
         style="display: block; width: 100%; height: 100%"
       ></clr-bar-chart>
     </div>
