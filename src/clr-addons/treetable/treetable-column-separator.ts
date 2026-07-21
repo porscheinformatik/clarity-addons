@@ -132,7 +132,7 @@ export class ClrTreetableColumnSeparator implements AfterViewInit, OnDestroy {
     this._resizedBy = 0;
     this._isWithinMaxResizeRange = true;
     const columnEl = this._getColumnElement();
-    this._widthBeforeResize = columnEl ? columnEl.getBoundingClientRect().width : 0;
+    this._widthBeforeResize = columnEl ? Math.round(columnEl.getBoundingClientRect().width) : 0;
     this._minContentWidth = this._measureMinContentWidth(columnEl);
   }
 
@@ -198,8 +198,8 @@ export class ClrTreetableColumnSeparator implements AfterViewInit, OnDestroy {
   }
 
   /**
-   * Measures the intrinsic `min-content` width (incl. padding & border, sub-pixel
-   * precise) of the given column by temporarily forcing `width: min-content`
+   * Measures the intrinsic `min-content` width (incl. padding & border, rounded
+   * to whole pixels) of the given column by temporarily forcing `width: min-content`
    * directly on the element, then restoring the previous inline value.
    *
    * `.treetable-column` already declares `min-width: min-content`; forcing the
@@ -215,7 +215,7 @@ export class ClrTreetableColumnSeparator implements AfterViewInit, OnDestroy {
     const prevWidth = columnEl.style.width;
 
     this._renderer.setStyle(columnEl, 'width', 'min-content');
-    const measuredWidth = columnEl.getBoundingClientRect().width;
+    const measuredWidth = Math.round(columnEl.getBoundingClientRect().width);
 
     if (prevWidth) {
       this._renderer.setStyle(columnEl, 'width', prevWidth);
