@@ -326,12 +326,13 @@ $cell-min-width: var(--cds-global-space-12);
 
         .treetable-column {
           position: relative;
-          text-align: left;
-          min-width: $cell-min-width;
-          line-height: var(--cds-alias-typography-caption-line-height);
           display: flex;
+          align-items: center;
+          text-align: left;
+          min-width: min-content;
+          line-height: var(--cds-alias-typography-caption-line-height);
           flex: 1 1 auto;
-          vertical-align: top;
+          vertical-align: middle;
 
           &:nth-child(1 of .treetable-column:not(.treetable-hidden-column)) {
             /* Add padding of base-cell-indentation to account for the expendable icon in the rows below*/
@@ -345,6 +346,10 @@ $cell-min-width: var(--cds-global-space-12);
           }
 
           .treetable-column-title {
+            display: flex;
+            flex: 1 1 auto;
+            align-items: center;
+            text-align: left;
             margin: 0;
             padding: 0;
             border: none;
@@ -352,24 +357,13 @@ $cell-min-width: var(--cds-global-space-12);
             box-shadow: none;
             background: none;
             color: var(--clr-table-font-color);
-            text-align: left;
-            flex: 1 1 auto;
-            display: flex;
             width: 100%;
 
             .sort-icon {
-              color: var(--cds-alias-object-interaction-color);
+              color: var(--cds-alias-status-primary);
               margin-left: auto;
               vertical-align: middle;
               padding: 0;
-
-              &:hover {
-                color: var(--cds-alias-object-interaction-color-hover);
-              }
-
-              &:active {
-                color: var(--cds-alias-object-interaction-color-active);
-              }
             }
 
             .signpost .signpost-action.btn {
@@ -412,14 +406,14 @@ $cell-min-width: var(--cds-global-space-12);
             &:hover {
               cds-icon,
               clr-icon {
-                color: var(--cds-alias-object-interaction-color-hover);
+                color: var(--cds-alias-status-primary);
               }
             }
 
             &.treetable-filter-open {
               cds-icon,
               clr-icon {
-                color: var(--cds-alias-object-interaction-color-active);
+                color: var(--cds-alias-status-primary);
               }
             }
 

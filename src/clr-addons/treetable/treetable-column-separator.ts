@@ -36,6 +36,7 @@ export class ClrTreetableColumnSeparator implements AfterViewInit, OnDestroy {
   private readonly _resizeTracker = viewChild.required<ElementRef>('resizeTracker');
   private readonly _columnHandle = viewChild.required<ElementRef>('columnHandle');
 
+  private _minContentWidth = MIN_COLUMN_WIDTH;
   private _widthBeforeResize = 0;
   private _resizedBy = 0;
   private _isWithinMaxResizeRange = true;
@@ -133,10 +134,11 @@ export class ClrTreetableColumnSeparator implements AfterViewInit, OnDestroy {
     this._isWithinMaxResizeRange = true;
     const columnEl = this._getColumnElement();
     this._widthBeforeResize = columnEl ? columnEl.getBoundingClientRect().width : 0;
+    this._minContentWidth = this._measureMinContentWidth(columnEl);
   }
 
   private _calculateResize(movedBy: number): void {
-    const maxShrink = this._widthBeforeResize - MIN_COLUMN_WIDTH;
+    const maxShrink = this._widthBeforeResize - this._minContentWidth;
     if (movedBy < -maxShrink) {
       this._resizedBy = -maxShrink;
       this._isWithinMaxResizeRange = false;
@@ -147,12 +149,10 @@ export class ClrTreetableColumnSeparator implements AfterViewInit, OnDestroy {
   }
 
   private _endResize(): void {
-    const newWidth = this._widthBeforeResize + this._resizedBy;
-    if (newWidth > 0) {
-      this._ngZone.run(() => {
-        this._columnState.changeWidth(this.columnId(), newWidth);
-      });
-    }
+    const newWidth = Math.max(this._widthBeforeResize + this._resizedBy, this._minContentWidth);
+    this._ngZone.run(() => {
+      this._columnState.changeWidth(this.columnId(), newWidth);
+    });
   }
 
   // --- Tracker visual ---
@@ -194,5 +194,36 @@ export class ClrTreetableColumnSeparator implements AfterViewInit, OnDestroy {
 
   private _isArrowHorizontal(event: KeyboardEvent): boolean {
     return event.key === 'ArrowLeft' || event.key === 'ArrowRight';
+  }
+
+  /**
+   * Measures the intrinsic `min-content` width (incl. padding & border, sub-pixel
+   * precise) of the given column by temporarily forcing `width: min-content`
+   * directly on the element, then restoring the previous inline value.
+   *
+   * `.treetable-column` already declares `min-width: min-content`; forcing the
+   * `width` collapses it so `getBoundingClientRect()` reports the min-content box.
+   *
+   * Falls back to (and is floored at) the MIN_COLUMN_WIDTH constant.
+   */
+  private _measureMinContentWidth(columnEl: HTMLElement | null): number {
+    if (!columnEl) {
+      return MIN_COLUMN_WIDTH;
+    }
+
+    const prevWidth = columnEl.style.width;
+
+    this._renderer.setStyle(columnEl, 'width', 'min-content');
+    const measuredWidth = columnEl.getBoundingClientRect().width;
+
+    if (prevWidth) {
+      this._renderer.setStyle(columnEl, 'width', prevWidth);
+    } else {
+      this._renderer.removeStyle(columnEl, 'width');
+    }
+
+    return Number.isFinite(measuredWidth) && measuredWidth > 0
+      ? Math.max(measuredWidth, MIN_COLUMN_WIDTH)
+      : MIN_COLUMN_WIDTH;
   }
 }
