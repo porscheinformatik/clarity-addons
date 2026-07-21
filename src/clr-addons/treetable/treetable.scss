@@ -475,10 +475,10 @@ $cell-min-width: var(--cds-global-space-12);
               border-right: var(--cds-alias-object-border-width-100) dotted var(--cds-global-color-blue-300);
               transform: translateX(0);
               cursor: col-resize;
+            }
 
-              .on-arrow-key-resize {
-                transition: transform 0.2s ease-out;
-              }
+            .exceeded-max {
+              border-right: var(--cds-alias-object-border-width-100) dotted var(--cds-alias-status-danger-dark);
             }
           }
 

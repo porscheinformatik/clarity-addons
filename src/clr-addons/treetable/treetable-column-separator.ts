@@ -12,11 +12,20 @@ import {
 import { TreetableColumnStateService } from './providers/treetable-column-state.service';
 import { KEYBOARD_RESIZE_LENGTH, MIN_COLUMN_WIDTH } from './constants';
 import { ClrTreetableColumn } from './treetable-column';
+import { ClrCommonStringsService } from '@clr/angular';
 
 @Component({
   selector: 'clr-tt-column-separator',
   template: `
-    <button type="button" class="treetable-column-handle" aria-label="Resize column" #columnHandle></button>
+    <button
+      type="button"
+      class="treetable-column-handle"
+      [aria-label]="commonStrings.columnSeparatorAriaLabel"
+      #columnHandle
+    ></button>
+    <span class="clr-sr-only">
+      {{ commonStrings.columnSeparatorDescription }}
+    </span>
     <div class="treetable-column-resize-tracker" #resizeTracker></div>
   `,
   host: {
@@ -28,18 +37,22 @@ import { ClrTreetableColumn } from './treetable-column';
 export class ClrTreetableColumnSeparator implements AfterViewInit, OnDestroy {
   private readonly _columnState = inject(TreetableColumnStateService);
   private readonly _column = inject(ClrTreetableColumn);
+  private readonly _commonStringsService = inject(ClrCommonStringsService);
   private readonly _renderer = inject(Renderer2);
   private readonly _ngZone = inject(NgZone);
-  private readonly _el = inject(ElementRef);
+  private readonly _el = inject(ElementRef<HTMLElement>);
 
-  private readonly _resizeTracker = viewChild.required<ElementRef>('resizeTracker');
-  private readonly _columnHandle = viewChild.required<ElementRef>('columnHandle');
+  private readonly _resizeTracker = viewChild.required<ElementRef<HTMLElement>>('resizeTracker');
+  private readonly _columnHandle = viewChild.required<ElementRef<HTMLButtonElement>>('columnHandle');
+
+  protected readonly commonStrings = this._commonStringsService.keys;
 
   private _minContentWidth = MIN_COLUMN_WIDTH;
   private _widthBeforeResize = 0;
   private _resizedBy = 0;
   private _isWithinMaxResizeRange = true;
   private _resizeStartedOnKeyDown = false;
+
   private readonly _unlisteners: (() => void)[] = [];
 
   ngAfterViewInit(): void {
@@ -71,6 +84,8 @@ export class ClrTreetableColumnSeparator implements AfterViewInit, OnDestroy {
     this._startResize();
     this._showTracker();
 
+    const dragUnlisteners: (() => void)[] = [];
+
     const onMove = (e: PointerEvent) => {
       this._calculateResize(e.clientX - event.clientX);
       this._moveTracker();
@@ -80,19 +95,14 @@ export class ClrTreetableColumnSeparator implements AfterViewInit, OnDestroy {
       handleEl.releasePointerCapture(event.pointerId);
       this._hideTracker();
       this._endResize();
-      this._renderer.listen(handleEl, 'pointermove', () => {})(); // noop to keep TS happy
-      unlisten();
+      dragUnlisteners.forEach(unlisten => unlisten());
     };
 
-    const unlistenMove = this._renderer.listen(handleEl, 'pointermove', onMove);
-    const unlistenUp = this._renderer.listen(handleEl, 'pointerup', onUp);
-    const unlistenCancel = this._renderer.listen(handleEl, 'pointercancel', onUp);
-
-    const unlisten = () => {
-      unlistenMove();
-      unlistenUp();
-      unlistenCancel();
-    };
+    dragUnlisteners.push(
+      this._renderer.listen(handleEl, 'pointermove', onMove),
+      this._renderer.listen(handleEl, 'pointerup', onUp),
+      this._renderer.listen(handleEl, 'pointercancel', onUp)
+    );
   }
 
   // --- Keyboard-based resize ---
