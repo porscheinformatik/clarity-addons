@@ -37,6 +37,7 @@ export class ClrDropdownOverflowDirective implements AfterViewChecked, OnDestroy
   private alreadyChecked = false;
   private marginBottomPx = 2;
   private deferredCheckPending = false;
+  private requestAnimationFrameRetry = 0;
 
   private nestedDropdownSubscription: Subscription;
 
@@ -73,8 +74,15 @@ export class ClrDropdownOverflowDirective implements AfterViewChecked, OnDestroy
     // Note: @clr/angular v18+ switched from Renderer2 (synchronous) to CDK Overlay (async rAF),
     // so positioning is no longer guaranteed to be complete by the time ngAfterViewChecked runs.
     // Defer the check to allow async positioning (e.g. CDK Overlay) to complete.
-    if (rect.x === 0 && rect.y === 0 && !this.alreadyChecked && !this.deferredCheckPending) {
+    if (
+      rect.x === 0 &&
+      rect.y === 0 &&
+      !this.alreadyChecked &&
+      !this.deferredCheckPending &&
+      this.requestAnimationFrameRetry < 10
+    ) {
       this.deferredCheckPending = true;
+      this.requestAnimationFrameRetry++;
       this.ngZone.runOutsideAngular(() => {
         requestAnimationFrame(() => {
           this.deferredCheckPending = false;
@@ -107,6 +115,7 @@ export class ClrDropdownOverflowDirective implements AfterViewChecked, OnDestroy
     this.elRef.nativeElement.style.maxHeight = null;
     this.elRef.nativeElement.style.overflowY = null;
     this.alreadyChecked = false;
+    this.requestAnimationFrameRetry = 0;
   }
 
   private getAllChildDropdownMenuItems() {
