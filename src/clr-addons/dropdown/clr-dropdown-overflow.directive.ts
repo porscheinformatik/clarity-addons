@@ -4,7 +4,16 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { AfterViewChecked, ContentChildren, Directive, ElementRef, Input, OnDestroy, QueryList } from '@angular/core';
+import {
+  AfterViewChecked,
+  ContentChildren,
+  Directive,
+  ElementRef,
+  Input,
+  NgZone,
+  OnDestroy,
+  QueryList,
+} from '@angular/core';
 import { ClrDropdown } from '@clr/angular';
 import { Subscription } from 'rxjs';
 
@@ -21,16 +30,21 @@ export class ClrDropdownOverflowDirective implements AfterViewChecked, OnDestroy
     this.marginBottomPx = this.convertToPixels(value);
   }
 
-  @ContentChildren(ClrDropdown, { descendants: true }) private nestedDropdownChildren: QueryList<ClrDropdown>;
+  @ContentChildren(ClrDropdown, { descendants: true }) private readonly nestedDropdownChildren: QueryList<ClrDropdown>;
 
   public readonly defaultItemMinHeightRem = 1.5;
 
   private alreadyChecked = false;
   private marginBottomPx = 2;
+  private deferredCheckPending = false;
+  private requestAnimationFrameRetry = 0;
 
   private nestedDropdownSubscription: Subscription;
 
-  public constructor(private elRef: ElementRef) {}
+  public constructor(
+    private readonly elRef: ElementRef,
+    private readonly ngZone: NgZone
+  ) {}
 
   ngAfterViewChecked(): void {
     // first trigger manually because the subscription lower only triggers after first change
@@ -59,13 +73,34 @@ export class ClrDropdownOverflowDirective implements AfterViewChecked, OnDestroy
   private applyDropdownOverflowStyles(): void {
     // the vertical position of our element in the current window
     const rect = this.elRef.nativeElement.getBoundingClientRect();
-    const y = rect.y === 0 ? rect.height : rect.y;
-    if (y !== 0 && !this.alreadyChecked) {
+    // If the element is at position 0,0 it may not yet be positioned by the popover/CDK overlay system.
+    // Note: @clr/angular v18+ switched from Renderer2 (synchronous) to CDK Overlay (async rAF),
+    // so positioning is no longer guaranteed to be complete by the time ngAfterViewChecked runs.
+    // Defer the check to allow async positioning (e.g. CDK Overlay) to complete.
+    if (
+      rect.x === 0 &&
+      rect.y === 0 &&
+      !this.alreadyChecked &&
+      !this.deferredCheckPending &&
+      this.requestAnimationFrameRetry < 10
+    ) {
+      this.deferredCheckPending = true;
+      this.requestAnimationFrameRetry++;
+      this.ngZone.runOutsideAngular(() => {
+        requestAnimationFrame(() => {
+          this.deferredCheckPending = false;
+          this.ngZone.run(() => this.applyDropdownOverflowStyles());
+        });
+      });
+      return;
+    }
+    if (!this.alreadyChecked) {
       const itemMinHeightPx = this.getItemMinHeight(this.clrDropdownMenuItemMinHeight);
       // see https://stackoverflow.com/questions/22754315/for-loop-for-htmlcollection-elements
       for (const item of this.getAllChildDropdownMenuItems()) {
         item.style.minHeight = itemMinHeightPx + 'px';
       }
+      const y = this.elRef.nativeElement.getBoundingClientRect().y;
       const height = window.innerHeight - y;
       const maxHeight = this.getMenuMaxHeight(this.clrDropdownMenuMaxHeight, height - this.marginBottomPx);
       this.elRef.nativeElement.style.maxHeight = maxHeight + 'px';
@@ -83,6 +118,7 @@ export class ClrDropdownOverflowDirective implements AfterViewChecked, OnDestroy
     this.elRef.nativeElement.style.maxHeight = null;
     this.elRef.nativeElement.style.overflowY = null;
     this.alreadyChecked = false;
+    this.requestAnimationFrameRetry = 0;
   }
 
   private getAllChildDropdownMenuItems() {
