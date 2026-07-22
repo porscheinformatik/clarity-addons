@@ -41,7 +41,10 @@ export class ClrDropdownOverflowDirective implements AfterViewChecked, OnDestroy
 
   private nestedDropdownSubscription: Subscription;
 
-  public constructor(private readonly elRef: ElementRef, private readonly ngZone: NgZone) {}
+  public constructor(
+    private readonly elRef: ElementRef,
+    private readonly ngZone: NgZone
+  ) {}
 
   ngAfterViewChecked(): void {
     // first trigger manually because the subscription lower only triggers after first change
