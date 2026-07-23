@@ -56,20 +56,20 @@ let id = 0;
       </div>
       <ul class="switch-content list-unstyled">
         @for (column of hideableColumns(); track column.id) {
-          <li>
-            <clr-checkbox-wrapper>
-              <input
-                clrCheckbox
-                type="checkbox"
-                [disabled]="hasOnlyOneVisibleColumn() && !column.hidden"
-                [ngModel]="!column.hidden"
-                (ngModelChange)="toggleColumnState(column.id)"
-              />
-              <label>
-                <ng-template [ngTemplateOutlet]="column.titleTemplateRef"></ng-template>
-              </label>
-            </clr-checkbox-wrapper>
-          </li>
+        <li>
+          <clr-checkbox-wrapper>
+            <input
+              clrCheckbox
+              type="checkbox"
+              [disabled]="hasOnlyOneVisibleColumn() && !column.hidden"
+              [ngModel]="!column.hidden"
+              (ngModelChange)="toggleColumnState(column.id)"
+            />
+            <label>
+              <ng-template [ngTemplateOutlet]="column.titleTemplateRef"></ng-template>
+            </label>
+          </clr-checkbox-wrapper>
+        </li>
         }
       </ul>
       <div class="switch-footer">

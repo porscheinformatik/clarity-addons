@@ -19,10 +19,7 @@ import { areFiltersDistinct, isValidFilterValue } from '../util/treetable-filter
  * @property unregister Callback to remove this filter from the Filters service.
  */
 export class RegisteredTreetableFilter<T, F extends ClrTreetableFilterInterface<T>> {
-  constructor(
-    public filter: F,
-    public unregister: () => void
-  ) {}
+  constructor(public filter: F, public unregister: () => void) {}
 }
 
 type RegisteredFilter<T> = RegisteredTreetableFilter<T, ClrTreetableFilterInterface<T>>;

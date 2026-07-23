@@ -74,10 +74,12 @@ export class TreetableDataStateService<T extends object> {
     this._filters.changes$,
     this._sort.changes$,
   ]).pipe(
-    map(([filterValues, sortState]): ClrTreetableState<T> => ({
-      sort: sortState.comparator ? { comparator: sortState.comparator, reverse: sortState.reverse } : null,
-      filters: filterValues,
-    })),
+    map(
+      ([filterValues, sortState]): ClrTreetableState<T> => ({
+        sort: sortState.comparator ? { comparator: sortState.comparator, reverse: sortState.reverse } : null,
+        filters: filterValues,
+      })
+    ),
     skip(1),
     auditTime(500),
     distinctUntilChanged((a, b) => areTreetableStatesEqual(a, b)),
