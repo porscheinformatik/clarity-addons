@@ -20,8 +20,7 @@ export const TreetableColumnUpdate = {
 export type TreetableColumnUpdate = (typeof TreetableColumnUpdate)[keyof typeof TreetableColumnUpdate];
 
 type TreetableColumnUpdateById =
-  | { id: string; type: 'WIDTH'; width: number }
-  | { id: string; type: 'HIDDEN'; hidden: boolean };
+  { id: string; type: 'WIDTH'; width: number } | { id: string; type: 'HIDDEN'; hidden: boolean };
 
 @Injectable()
 export class TreetableColumnStateService {
@@ -216,24 +215,20 @@ export class TreetableColumnStateService {
       this._changeHiddenForAllAction$,
       this._resetHiddenAction$
     ).pipe(
-      map(
-        (): TreetableColumnUpdateById => ({
-          id,
-          type: TreetableColumnUpdate.HIDDEN,
-          hidden: this.getColumn(id)?.hidden ?? false,
-        })
-      )
+      map((): TreetableColumnUpdateById => ({
+        id,
+        type: TreetableColumnUpdate.HIDDEN,
+        hidden: this.getColumn(id)?.hidden ?? false,
+      }))
     );
 
     const widthChanges$ = this._changeWidthAction$.pipe(
       filter(change => change.id === id),
-      map(
-        (change): TreetableColumnUpdateById => ({
-          id,
-          type: TreetableColumnUpdate.WIDTH,
-          width: change.width,
-        })
-      )
+      map((change): TreetableColumnUpdateById => ({
+        id,
+        type: TreetableColumnUpdate.WIDTH,
+        width: change.width,
+      }))
     );
 
     return merge(widthChanges$, hiddenChanges$);
