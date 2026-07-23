@@ -39,6 +39,7 @@ export class TreetableColumnStateService {
   readonly hasHideableColumns = computed(() => this.hideableColumns().length > 0);
 
   private readonly _changeWidthAction$ = this._changeWidth$.pipe(
+    filter(({ id, width }) => this.getColumn(id)?.width != width),
     tap(({ id, width }) => this.update(id, { width })),
     share()
   );

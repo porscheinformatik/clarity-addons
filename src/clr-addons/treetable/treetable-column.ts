@@ -8,6 +8,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
   inject,
   input,
   OnDestroy,
@@ -51,7 +52,7 @@ let columnId = 0;
 
     <ng-content select="clr-tt-filter, clr-tt-string-filter" />
 
-    <clr-tt-column-separator />
+    <clr-tt-column-separator [columnId]="columnId" />
 
     <ng-template #columnTitle>
       <ng-content />
@@ -87,6 +88,8 @@ export class ClrTreetableColumn<T extends object> implements OnInit, OnDestroy {
 
   clrTtSortOrder = input(ClrTreetableSortOrder.UNSORTED);
   clrTtSortOrderChange = outputFromObservable<ClrTreetableSortOrder>(toObservable(this._internalSortOrder));
+
+  clrTtColumnSize = input<number | null>(null);
   clrTtColumnResize = outputFromObservable<number>(
     this._columnState.getColumnChangesById(this.columnId).pipe(
       filter(data => data.type === TreetableColumnUpdate.WIDTH),
@@ -168,6 +171,13 @@ export class ClrTreetableColumn<T extends object> implements OnInit, OnDestroy {
             break;
         }
       });
+
+    effect(() => {
+      const size = this.clrTtColumnSize();
+      if (size) {
+        this._columnState.changeWidth(this.columnId, size);
+      }
+    });
   }
 
   protected sort(reverse?: boolean) {

@@ -4,6 +4,7 @@ import {
   Component,
   ElementRef,
   inject,
+  input,
   NgZone,
   OnDestroy,
   Renderer2,
@@ -11,7 +12,6 @@ import {
 } from '@angular/core';
 import { TreetableColumnStateService } from './providers/treetable-column-state.service';
 import { KEYBOARD_RESIZE_LENGTH, MIN_COLUMN_WIDTH } from './constants';
-import { ClrTreetableColumn } from './treetable-column';
 import { ClrCommonStringsService } from '@clr/angular';
 
 @Component({
@@ -35,8 +35,9 @@ import { ClrCommonStringsService } from '@clr/angular';
   standalone: false,
 })
 export class ClrTreetableColumnSeparator implements AfterViewInit, OnDestroy {
+  columnId = input.required<string>();
+
   private readonly _columnState = inject(TreetableColumnStateService);
-  private readonly _column = inject(ClrTreetableColumn);
   private readonly _commonStringsService = inject(ClrCommonStringsService);
   private readonly _renderer = inject(Renderer2);
   private readonly _ngZone = inject(NgZone);
@@ -143,7 +144,7 @@ export class ClrTreetableColumnSeparator implements AfterViewInit, OnDestroy {
     this._isWithinMaxResizeRange = true;
     const columnEl = this._getColumnElement();
     this._widthBeforeResize = columnEl ? Math.round(columnEl.getBoundingClientRect().width) : 0;
-    this._minContentWidth = this._measureMinContentWidth(columnEl);
+    this._minContentWidth = this.measureMinContentWidth(columnEl);
   }
 
   private _calculateResize(movedBy: number): void {
@@ -161,7 +162,7 @@ export class ClrTreetableColumnSeparator implements AfterViewInit, OnDestroy {
     const newWidth = Math.max(this._widthBeforeResize + this._resizedBy, this._minContentWidth);
     if (newWidth != this._widthBeforeResize) {
       this._ngZone.run(() => {
-        this._columnState.changeWidth(this._column.columnId, newWidth);
+        this._columnState.changeWidth(this.columnId(), newWidth);
       });
     }
   }
@@ -217,20 +218,24 @@ export class ClrTreetableColumnSeparator implements AfterViewInit, OnDestroy {
    *
    * Falls back to (and is floored at) the MIN_COLUMN_WIDTH constant.
    */
-  private _measureMinContentWidth(columnEl: HTMLElement | null): number {
+  private measureMinContentWidth(columnEl: HTMLElement | null): number {
     if (!columnEl) {
       return MIN_COLUMN_WIDTH;
     }
 
     const prevWidth = columnEl.style.width;
+    const prevMaxWidth = columnEl.style.maxWidth;
 
     this._renderer.setStyle(columnEl, 'width', 'min-content');
+    this._renderer.setStyle(columnEl, 'max-width', 'min-content');
     const measuredWidth = Math.round(columnEl.getBoundingClientRect().width);
 
-    if (prevWidth) {
+    if (prevWidth || prevMaxWidth) {
       this._renderer.setStyle(columnEl, 'width', prevWidth);
+      this._renderer.setStyle(columnEl, 'max-width', prevMaxWidth);
     } else {
       this._renderer.removeStyle(columnEl, 'width');
+      this._renderer.removeStyle(columnEl, 'max-width');
     }
 
     return Number.isFinite(measuredWidth) && measuredWidth > 0
