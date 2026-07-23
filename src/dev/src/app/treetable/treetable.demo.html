@@ -3,7 +3,6 @@
 ~ This software is released under MIT license.
 ~ The full license information can be found in LICENSE in the root directory of this project.
 -->
-
 <h2>Treetable</h2>
 
 <h4>DataTreeTable With Recursive Loops</h4>
@@ -15,6 +14,7 @@
   <clr-button (click)="toggleAutoParentSelection()">Toggle auto parent selection</clr-button>
   <clr-button (click)="toggleExternallySelected()">Toggle externally selected</clr-button>
   <clr-button (click)="toggleTest()">Test</clr-button>
+  <clr-button (click)="resetNameColumnWidth()">Reset custom width</clr-button>
 </clr-button-group>
 
 <clr-treetable
@@ -23,12 +23,26 @@
   [clrTtAutoParentSelection]="autoParentSelection()"
   (clrTtRefresh)="logState($event)"
 >
-  <clr-tt-column [clrTtSortBy]="comperator" [(clrTtSortOrder)]="sortOrder">
-    <ng-content *clrTtHideableColumn="{ hidden: testHidden(), initial: false }">Name</ng-content>
+  <clr-tt-column
+    [clrTtSortBy]="comperator"
+    [(clrTtSortOrder)]="sortOrder"
+    [clrTtColumnSize]="nameColumnWidth()"
+    (clrTtColumnResize)="nameColumnSizeChange($event)"
+  >
+    <ng-content *clrTtHideableColumn="{ hidden: testHidden(), initial: false }">A Really Long Name</ng-content>
     <clr-tt-string-filter [clrTtStringFilter]="treeNameFilter" [clrTtFilterPlaceholder]="'Name'"></clr-tt-string-filter>
   </clr-tt-column>
-  <clr-tt-column [clrTtSortBy]="comperator2" [(clrTtSortOrder)]="sortOrder2">
-    <ng-content *clrTtHideableColumn="{ hidden: testHidden(), initial: false }">ID</ng-content>
+  <clr-tt-column
+    [clrTtSortBy]="comperator2"
+    [(clrTtSortOrder)]="sortOrder2"
+    (clrTtColumnResize)="logValues('resize', $event)"
+  >
+    <ng-template
+      [clrTtHideableColumn]="{ hidden: testHidden(), initial: false }"
+      (clrTtHiddenChange)="logValues('hidden change', $event)"
+    >
+      ID
+    </ng-template>
     <clr-tt-string-filter [clrTtStringFilter]="treeIdFilter"></clr-tt-string-filter>
   </clr-tt-column>
   <clr-tt-column>
@@ -64,13 +78,19 @@
 <div>Sort order col1: {{ sortOrder }}</div>
 <div>Auto parent selection: {{ autoParentSelection() }}</div>
 
-<h5>Comparable datagrid</h5>
+<h5>Comparable Datagrid</h5>
 <clr-datagrid [(clrDgSelected)]="selectedDg" [clrDgSelectionType]="'multi'" [clrDgLoading]="loading()">
-  <clr-dg-column>
-    <ng-container *clrDgHideableColumn="{ hidden: false }">Name</ng-container>
+  <clr-dg-column
+    [clrDgSortBy]="datagridComperator"
+    [clrDgSortOrder]="datagridSortOrder"
+    (clrDgColumnResize)="logValues('datagrid', $event)"
+  >
+    <ng-container *clrDgHideableColumn="{ hidden: false }">A Really Long Name</ng-container>
+    <clr-dg-string-filter [clrDgStringFilter]="datagridTreeNameFilter"></clr-dg-string-filter>
   </clr-dg-column>
   <clr-dg-column>
     <ng-container *clrDgHideableColumn="{ hidden: testHidden() }">ID</ng-container>
+    <clr-dg-string-filter [clrDgStringFilter]="datagridTreeIdFilter"></clr-dg-string-filter>
   </clr-dg-column>
   <clr-dg-column>
     <ng-container *clrDgHideableColumn="{ hidden: testHidden() }">Parent</ng-container>
