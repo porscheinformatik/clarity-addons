@@ -11,7 +11,7 @@ import { HIDDEN_COLUMN_CSS_CLASS } from '../constants';
   standalone: false,
 })
 export class TreetableCellRenderer {
-  private readonly elementRef = inject(ElementRef);
+  private readonly elementRef = inject(ElementRef<HTMLElement>);
   private readonly renderer = inject(Renderer2);
 
   public setColumnClasses(columnClasses: string[]): void {
@@ -40,12 +40,5 @@ export class TreetableCellRenderer {
     this.renderer.setStyle(el, 'width', `${width}px`);
     this.renderer.setStyle(el, 'max-width', `${width}px`);
     this.renderer.setStyle(el, 'flex', '0 0 auto');
-  }
-
-  public clearWidth(): void {
-    const el = this.elementRef.nativeElement;
-    this.renderer.removeStyle(el, 'width');
-    this.renderer.removeStyle(el, 'max-width');
-    this.renderer.removeStyle(el, 'flex');
   }
 }

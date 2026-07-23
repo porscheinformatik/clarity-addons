@@ -4,21 +4,21 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Directive, ElementRef, inject, Renderer2 } from '@angular/core';
-import { HIDDEN_COLUMN_CSS_CLASS } from '../constants';
+import { DEFAULT_COLUMN_CSS_CLASS, HIDDEN_COLUMN_CSS_CLASS } from '../constants';
 
 @Directive({
   selector: 'clr-tt-column',
   standalone: false,
 })
 export class TreetableHeaderRenderer {
-  private readonly elementRef = inject(ElementRef);
+  private readonly elementRef = inject(ElementRef<HTMLElement>);
   private readonly renderer = inject(Renderer2);
 
   /**
    * Returns the client width of the header cell.
    */
   public getWidth(): number {
-    return this.elementRef.nativeElement.clientWidth;
+    return this.elementRef.nativeElement.getBoundingClientRect().width;
   }
 
   public hide(): void {
@@ -38,7 +38,7 @@ export class TreetableHeaderRenderer {
   public getColumnClasses(): string[] {
     const classes: string[] = [];
     this.elementRef.nativeElement.classList.forEach((className: string) => {
-      if (className.includes('clr-col')) {
+      if (className.includes(DEFAULT_COLUMN_CSS_CLASS)) {
         classes.push(className);
       }
     });
@@ -46,7 +46,7 @@ export class TreetableHeaderRenderer {
   }
 
   public setDefaultColumnClass(): void {
-    this.renderer.addClass(this.elementRef.nativeElement, 'clr-col');
+    this.renderer.addClass(this.elementRef.nativeElement, DEFAULT_COLUMN_CSS_CLASS);
   }
 
   public setWidth(width: number): void {
@@ -54,12 +54,5 @@ export class TreetableHeaderRenderer {
     this.renderer.setStyle(el, 'width', `${width}px`);
     this.renderer.setStyle(el, 'max-width', `${width}px`);
     this.renderer.setStyle(el, 'flex', '0 0 auto');
-  }
-
-  public clearWidth(): void {
-    const el = this.elementRef.nativeElement;
-    this.renderer.removeStyle(el, 'width');
-    this.renderer.removeStyle(el, 'max-width');
-    this.renderer.removeStyle(el, 'flex');
   }
 }

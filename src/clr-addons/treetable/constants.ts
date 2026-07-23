@@ -1,4 +1,9 @@
 /**
+ * The default CSS column class.
+ */
+export const DEFAULT_COLUMN_CSS_CLASS = 'clr-col';
+
+/**
  * The CSS class to use to hide a column and its related cells in the treetable.
  */
 export const HIDDEN_COLUMN_CSS_CLASS = 'treetable-hidden-column';
