@@ -14,7 +14,7 @@ import { ClrTreetableRecursionService } from './providers/treetable-recursion.se
   template: `
     <ng-container>
       @for (child of parent()?.children || children(); track child.id) {
-      <ng-container *ngTemplateOutlet="template(); context: getContext(child)" />
+        <ng-container *ngTemplateOutlet="template(); context: getContext(child)" />
       }
     </ng-container>
   `,

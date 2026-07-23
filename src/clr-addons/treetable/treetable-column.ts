@@ -32,22 +32,22 @@ let columnId = 0;
   providers: [ClrPopoverService],
   template: `
     @if (isSortable()) {
-    <button type="button" class="treetable-column-title" data-testId="clrTtSortButton" (click)="sort()">
-      <ng-container *ngTemplateOutlet="columnTitle" />
-      @if (sortDirection()) {
-      <cds-icon
-        shape="arrow"
-        aria-hidden="true"
-        class="sort-icon"
-        data-testId="clrTtSortIndicator"
-        [direction]="sortDirection()"
-      />
-      }
-    </button>
+      <button type="button" class="treetable-column-title" data-testId="clrTtSortButton" (click)="sort()">
+        <ng-container *ngTemplateOutlet="columnTitle" />
+        @if (sortDirection()) {
+          <cds-icon
+            shape="arrow"
+            aria-hidden="true"
+            class="sort-icon"
+            data-testId="clrTtSortIndicator"
+            [direction]="sortDirection()"
+          />
+        }
+      </button>
     } @else {
-    <div class="treetable-column-title">
-      <ng-container *ngTemplateOutlet="columnTitle" />
-    </div>
+      <div class="treetable-column-title">
+        <ng-container *ngTemplateOutlet="columnTitle" />
+      </div>
     }
 
     <ng-content select="clr-tt-filter, clr-tt-string-filter" />

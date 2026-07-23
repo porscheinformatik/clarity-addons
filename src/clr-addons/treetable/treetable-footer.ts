@@ -7,15 +7,16 @@ import { ClrCommonStringsService } from '@clr/angular';
   selector: 'clr-tt-footer',
   template: `
     @if (hasSelectedRows()) {
-    <div class="clr-form-control-disabled">
-      <clr-checkbox-wrapper class="treetable-footer-select">
-        <input clrCheckbox type="checkbox" checked="checked" disabled />
-        <label>{{ selectedRows().length }}</label>
-        <span class="clr-sr-only">{{ commonStrings.selectedRows }}</span>
-      </clr-checkbox-wrapper>
-    </div>
-    } @if (hasHideableColumns()) {
-    <clr-tt-column-manager-menu [resetLabel]="clrResetLabel()" />
+      <div class="clr-form-control-disabled">
+        <clr-checkbox-wrapper class="treetable-footer-select">
+          <input clrCheckbox type="checkbox" checked="checked" disabled />
+          <label>{{ selectedRows().length }}</label>
+          <span class="clr-sr-only">{{ commonStrings.selectedRows }}</span>
+        </clr-checkbox-wrapper>
+      </div>
+    }
+    @if (hasHideableColumns()) {
+      <clr-tt-column-manager-menu [resetLabel]="clrResetLabel()" />
     }
 
     <div class="treetable-footer-description">
