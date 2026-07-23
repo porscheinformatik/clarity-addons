@@ -8,12 +8,14 @@ import localeEn from '@angular/common/locales/en';
 import localeEnBE from '@angular/common/locales/en-BE';
 import localeEnGB from '@angular/common/locales/en-GB';
 import localeEnSE from '@angular/common/locales/en-SE';
+import localeEnRo from '@angular/common/locales/en-RO';
 import localeFr from '@angular/common/locales/fr';
 import localeFrBE from '@angular/common/locales/fr-BE';
 import localeNl from '@angular/common/locales/nl';
 import localeNlBE from '@angular/common/locales/nl-BE';
 import localePtPT from '@angular/common/locales/pt-PT';
 import localeSeSE from '@angular/common/locales/se-SE';
+import localeRo from '@angular/common/locales/ro';
 
 import { registerLocaleData } from '@angular/common';
 import { ClarityIcons, infoCircleIcon } from '@clr/angular/icon';
@@ -25,12 +27,14 @@ registerLocaleData(localeEn);
 registerLocaleData(localeEnBE);
 registerLocaleData(localeEnGB);
 registerLocaleData(localeEnSE);
+registerLocaleData(localeEnRo);
 registerLocaleData(localeFr);
 registerLocaleData(localeFrBE);
 registerLocaleData(localeNl);
 registerLocaleData(localeNlBE);
 registerLocaleData(localePtPT);
 registerLocaleData(localeSeSE);
+registerLocaleData(localeRo);
 
 ClarityIcons.addIcons(infoCircleIcon);
 
@@ -77,12 +81,14 @@ export class InternationalizationComponent {
     localeEnBE,
     localeEnGB,
     localeEnSE,
+    localeEnRo,
     localeFr,
     localeFrBE,
     localeNl,
     localeNlBE,
     localePtPT,
     localeSeSE,
+    localeRo,
   ];
   firstLocale = localeDe;
   secondLocale = localeEnGB;

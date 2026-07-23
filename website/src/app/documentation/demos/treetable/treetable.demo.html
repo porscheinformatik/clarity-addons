@@ -174,6 +174,16 @@
               <td class="clr-hidden-xs-down">ClrTreetableSortOrder.UNSORTED</td>
               <td class="left">The order the column is sorted in</td>
             </tr>
+            <tr>
+              <td class="left">
+                <strong>(clrTtColumnResize)</strong>
+                <div class="clr-hidden-sm-up">Type: number</div>
+                <div class="clr-hidden-sm-up">Default: n/a</div>
+              </td>
+              <td class="left clr-hidden-xs-down">number</td>
+              <td class="clr-hidden-xs-down">n/a</td>
+              <td class="left">Emitted with the new column width (px) when the column is resized (min width 48px)</td>
+            </tr>
           </tbody>
         </table>
 
@@ -612,6 +622,65 @@
         <clr-code-snippet [clrCode]="htmlExampleCustomSize"></clr-code-snippet>
       </section>
 
+      <section aria-labelledby="custom-column-resizing">
+        <h4 id="custom-column-resizing">Column resizing</h4>
+
+        <p>
+          The <code class="clr-code">clr-tt-column</code> but the last displayed component automatically renders a
+          resize handle. Users can resize columns via drag-and-drop or by using the arrow keys while the handle is
+          focused. Columns will not shrink below their <code class="clr-code">min-content</code> width, with an absolute
+          minimum of <code class="clr-code">48px</code>.
+        </p>
+        <p>
+          To set a custom (initial/max) width use <code class="clr-code">[clrTtColumnSize]</code> on the
+          <code class="clr-code">clr-tt-column</code>. The cells in the body will adjust accordingly automatically. To
+          react to resizing, use the <code class="clr-code">(clrTtColumnResize)</code> output on the same element. It
+          emits the new column width in px as a <code class="clr-code">number</code>.
+        </p>
+
+        <clr-treetable>
+          <clr-tt-column [clrTtColumnSize]="width()" (clrTtColumnResize)="onColumnResize($event)">
+            Some column
+          </clr-tt-column>
+          <clr-tt-column [clrTtColumnSize]="400"> Some other column</clr-tt-column>
+
+          <clr-tt-row clrExpandable="true">
+            <clr-tt-cell>Lorem ipsum dolor sit amet</clr-tt-cell>
+            <clr-tt-cell>2</clr-tt-cell>
+
+            <clr-tt-row>
+              <clr-tt-cell>Lorem ipsum dolor sit amet</clr-tt-cell>
+              <clr-tt-cell>3</clr-tt-cell>
+            </clr-tt-row>
+          </clr-tt-row>
+
+          <clr-tt-row>
+            <clr-tt-cell>Lorem ipsum dolor sit amet</clr-tt-cell>
+            <clr-tt-cell>1</clr-tt-cell>
+          </clr-tt-row>
+        </clr-treetable>
+
+        <p cds-layout="m-t:md">Last resized width: {{ width() }}px</p>
+        <button class="btn btn-sm btn-secondary" cds-layout="m-t:sm" (click)="onResetResize()">Reset</button>
+
+        <div cds-layout="m-t:md">
+          <clr-tabs>
+            <clr-tab>
+              <button clrTabLink>HTML</button>
+              <clr-tab-content *clrIfActive>
+                <clr-code-snippet [clrCode]="htmlExampleColumnResizing"></clr-code-snippet>
+              </clr-tab-content>
+            </clr-tab>
+            <clr-tab>
+              <button clrTabLink>TS</button>
+              <clr-tab-content *clrIfActive>
+                <clr-code-snippet [clrCode]="tsExampleColumnResizing" [clrLanguage]="'typescript'" />
+              </clr-tab-content>
+            </clr-tab>
+          </clr-tabs>
+        </div>
+      </section>
+
       <section aria-labelledby="smart-iterator">
         <h4 id="smart-iterator">Recursive smart iterator</h4>
 
@@ -930,6 +999,12 @@
           manager's reset button — if omitted, it defaults to the value of <code class="clr-code">hidden</code>.
         </p>
         <p>
+          To react to visibility changes—for example (e.g., for local storage syncing) you must wrap the column title in
+          an <code class="clr-code">ng-template</code> instead. Apply the directive as an attribute (
+          <code class="clr-code">[clrTtHideableColumn]</code>) and listen for state changes using the
+          <code class="clr-code">(clrTtHiddenChange)</code> output event.
+        </p>
+        <p>
           The column manager is rendered automatically inside <code class="clr-code">clr-tt-footer</code> whenever at
           least one column has the <code class="clr-code">*clrTtHideableColumn</code> directive applied. No additional
           configuration is required — simply add <code class="clr-code">&lt;clr-tt-footer&gt;</code> to the treetable.
@@ -941,10 +1016,12 @@
 
         <clr-treetable>
           <clr-tt-column>
-            <ng-container *clrTtHideableColumn>Name</ng-container>
+            <ng-container *clrTtHideableColumn="{ hidden: false }">Name</ng-container>
           </clr-tt-column>
           <clr-tt-column>
-            <ng-container *clrTtHideableColumn="{ hidden: false }">Role</ng-container>
+            <ng-template [clrTtHideableColumn]="{ hidden: false }" (clrTtHiddenChange)="log('HiddenChange', $event)">
+              Role
+            </ng-template>
           </clr-tt-column>
           <clr-tt-column>
             <ng-container *clrTtHideableColumn="{ hidden: true, initial: false }">Type</ng-container>
