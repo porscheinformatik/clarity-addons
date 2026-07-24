@@ -17,6 +17,9 @@ import {
 } from './providers/treetable-recursion.service';
 import { ClrTreetableState } from './interfaces/treetable-state-model';
 import { TreetableColumnStateService } from './providers/treetable-column-state.service';
+import { ClrCommonStringsService } from '@clr/angular';
+
+let treetableId = 0;
 
 @Component({
   selector: 'clr-treetable',
@@ -33,8 +36,14 @@ import { TreetableColumnStateService } from './providers/treetable-column-state.
   standalone: false,
 })
 export class ClrTreetable<T extends object> {
+  public readonly treetableId = `clr-treetable-${++treetableId}`;
+  protected readonly selectAllId = `clr-tt-select-all${treetableId}`;
+
   private readonly _dataStateService = inject(TreetableDataStateService<T>);
   private readonly _recursionService = inject(ClrTreetableRecursionService<T>);
+  private readonly _commonStringsService = inject(ClrCommonStringsService);
+
+  protected readonly commonStrings = this._commonStringsService.keys;
 
   clrClickableRows = input(true);
   clrHideHeader = input(false);

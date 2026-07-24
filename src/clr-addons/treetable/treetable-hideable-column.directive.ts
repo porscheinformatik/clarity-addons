@@ -4,22 +4,13 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import {
-  computed,
-  Directive,
-  inject,
-  input,
-  OnDestroy,
-  OnInit,
-  output,
-  TemplateRef,
-  ViewContainerRef,
-} from '@angular/core';
-import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
-import { skip } from 'rxjs/operators';
+import { computed, Directive, inject, input, OnDestroy, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
+import { outputFromObservable, takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
+import { filter, skip } from 'rxjs/operators';
 
-import { TreetableColumnStateService } from './providers/treetable-column-state.service';
+import { TreetableColumnStateService, TreetableColumnUpdate } from './providers/treetable-column-state.service';
 import { ClrTreetableColumn } from './treetable-column';
+import { map } from 'rxjs';
 
 /**
  * A structural directive meant to be used inside a clr-tt-column component.
@@ -48,7 +39,12 @@ export class ClrTreetableHideableColumn implements OnInit, OnDestroy {
   private readonly _column = inject(ClrTreetableColumn);
 
   clrTtHideableColumn = input<{ hidden: boolean; initial?: boolean } | string>('');
-  clrTtHiddenChange = output();
+  clrTtHiddenChange = outputFromObservable<boolean>(
+    this._columnState.getColumnChangesById(this._column.columnId).pipe(
+      filter(data => data.type === TreetableColumnUpdate.HIDDEN),
+      map(data => data.hidden)
+    )
+  );
 
   private readonly resolvedHidden = computed(() => {
     const value = this.clrTtHideableColumn();

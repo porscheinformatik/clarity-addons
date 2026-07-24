@@ -19,6 +19,9 @@ export const TreetableColumnUpdate = {
 } as const;
 export type TreetableColumnUpdate = (typeof TreetableColumnUpdate)[keyof typeof TreetableColumnUpdate];
 
+type TreetableColumnUpdateById =
+  { id: string; type: 'WIDTH'; width: number } | { id: string; type: 'HIDDEN'; hidden: boolean };
+
 @Injectable()
 export class TreetableColumnStateService {
   private readonly _changeWidth$ = new Subject<{ id: string; width: number }>();
@@ -32,9 +35,10 @@ export class TreetableColumnStateService {
   readonly columns = computed(() => Object.values(this._columnState()).sort((a, b) => a.columnIndex - b.columnIndex));
   readonly visibleColumns = computed(() => this.columns().filter(column => !column.hidden));
   readonly hideableColumns = computed(() => this.columns().filter(column => column.hideable));
-  readonly hasHideableColumns = computed(() => this.hideableColumns()?.length > 0);
+  readonly hasHideableColumns = computed(() => this.hideableColumns().length > 0);
 
   private readonly _changeWidthAction$ = this._changeWidth$.pipe(
+    filter(({ id, width }) => this.getColumn(id)?.width != width),
     tap(({ id, width }) => this.update(id, { width })),
     share()
   );
@@ -203,6 +207,31 @@ export class TreetableColumnStateService {
       map(columns => columns[id]),
       distinctUntilChanged()
     );
+  }
+
+  public getColumnChangesById(id: string): Observable<TreetableColumnUpdateById> {
+    const hiddenChanges$ = merge(
+      this._changeHiddenAction$.pipe(filter(change => change.id === id)),
+      this._changeHiddenForAllAction$,
+      this._resetHiddenAction$
+    ).pipe(
+      map((): TreetableColumnUpdateById => ({
+        id,
+        type: TreetableColumnUpdate.HIDDEN,
+        hidden: this.getColumn(id)?.hidden ?? false,
+      }))
+    );
+
+    const widthChanges$ = this._changeWidthAction$.pipe(
+      filter(change => change.id === id),
+      map((change): TreetableColumnUpdateById => ({
+        id,
+        type: TreetableColumnUpdate.WIDTH,
+        width: change.width,
+      }))
+    );
+
+    return merge(widthChanges$, hiddenChanges$);
   }
 
   private getColumn(id: string): ColumnState | undefined {

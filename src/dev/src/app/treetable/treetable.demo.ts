@@ -15,6 +15,7 @@ import {
 } from '@porscheinformatik/clr-addons';
 import { of, tap } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { ClrDatagridComparatorInterface, ClrDatagridSortOrder, ClrDatagridStringFilterInterface } from '@clr/angular';
 
 ClarityIcons.addIcons(infoStandardIcon);
 ClarityIcons.addIcons(bellIcon);
@@ -174,6 +175,11 @@ export class TreetableDemo implements OnInit {
     return item?.value?.name?.toLowerCase().includes(search.toLowerCase());
   };
 
+  datagridComperator = new DatagridTestComparator();
+  datagridSortOrder = ClrDatagridSortOrder.DESC;
+  datagridTreeIdFilter = new DatagridTreeIdFilter();
+  datagridTreeNameFilter = new DatagridTreeNameFilter();
+
   testHidden = signal(false);
   testHidable = computed(() => ({ hidden: this.testHidden() }));
   loading = signal(false);
@@ -190,12 +196,23 @@ export class TreetableDemo implements OnInit {
   selectedDg = signal<Tree[]>([]);
   autoParentSelection = signal(true);
 
-  getChildren(node: Tree): Tree[] {
+  private readonly DEFAULT_CUSTOM_WIDTH: number = 400;
+  protected readonly nameColumnWidth = signal(this.DEFAULT_CUSTOM_WIDTH);
+
+  protected getChildren(node: Tree): Tree[] {
     return node?.children || [];
   }
 
-  toggleTest(): void {
+  protected toggleTest(): void {
     this.testHidden.update(value => !value);
+  }
+
+  protected nameColumnSizeChange(width: number): void {
+    this.nameColumnWidth.set(width);
+  }
+
+  protected resetNameColumnWidth(): void {
+    this.nameColumnWidth.set(this.DEFAULT_CUSTOM_WIDTH);
   }
 
   ngOnInit(): void {
@@ -229,6 +246,10 @@ export class TreetableDemo implements OnInit {
 
   logState(state: ClrTreetableState<Tree>) {
     console.log('Treetable | state', state);
+  }
+
+  logValues(...values: unknown[]): void {
+    console.log('Treetable | values', ...values);
   }
 
   toggleLoading() {
@@ -289,5 +310,23 @@ class TestComparator implements ClrTreetableComparatorInterface<Tree> {
 class TestComparator2 implements ClrTreetableComparatorInterface<Tree> {
   compare(a: Tree, b: Tree): number {
     return a.id.localeCompare(b.id);
+  }
+}
+
+class DatagridTestComparator implements ClrDatagridComparatorInterface<Tree> {
+  compare(a: Tree, b: Tree): number {
+    return a.value.name.localeCompare(b.value.name);
+  }
+}
+
+class DatagridTreeIdFilter implements ClrDatagridStringFilterInterface<Tree> {
+  accepts(item: Tree, search: string): boolean {
+    return item.id.toLowerCase().includes(search.toLowerCase());
+  }
+}
+
+class DatagridTreeNameFilter implements ClrDatagridStringFilterInterface<Tree> {
+  accepts(item: Tree, search: string): boolean {
+    return item?.value?.name?.toLowerCase().includes(search.toLowerCase());
   }
 }

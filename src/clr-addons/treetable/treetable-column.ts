@@ -8,6 +8,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
   inject,
   input,
   OnDestroy,
@@ -21,7 +22,7 @@ import { combineLatest, map } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { ClrTreetableSortOrder } from './enums/sort-order.enum';
 import { SortStateService } from './providers';
-import { TreetableColumnStateService } from './providers/treetable-column-state.service';
+import { TreetableColumnStateService, TreetableColumnUpdate } from './providers/treetable-column-state.service';
 import { ClrTreetableComparatorInterface } from './interfaces/comparator.interface';
 
 let columnId = 0;
@@ -50,6 +51,8 @@ let columnId = 0;
     }
 
     <ng-content select="clr-tt-filter, clr-tt-string-filter" />
+
+    <clr-tt-column-separator [columnId]="columnId" />
 
     <ng-template #columnTitle>
       <ng-content />
@@ -85,6 +88,14 @@ export class ClrTreetableColumn<T extends object> implements OnInit, OnDestroy {
 
   clrTtSortOrder = input(ClrTreetableSortOrder.UNSORTED);
   clrTtSortOrderChange = outputFromObservable<ClrTreetableSortOrder>(toObservable(this._internalSortOrder));
+
+  clrTtColumnSize = input<number | null>(null);
+  clrTtColumnResize = outputFromObservable<number>(
+    this._columnState.getColumnChangesById(this.columnId).pipe(
+      filter(data => data.type === TreetableColumnUpdate.WIDTH),
+      map(data => data.width)
+    )
+  );
 
   protected readonly isSortable = computed(() => !!this.clrTtSortBy());
   protected readonly sortDirection = computed(() => {
@@ -160,6 +171,13 @@ export class ClrTreetableColumn<T extends object> implements OnInit, OnDestroy {
             break;
         }
       });
+
+    effect(() => {
+      const size = this.clrTtColumnSize();
+      if (size) {
+        this._columnState.changeWidth(this.columnId, size);
+      }
+    });
   }
 
   protected sort(reverse?: boolean) {

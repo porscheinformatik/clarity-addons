@@ -10,7 +10,7 @@ import {
   ClrTreetableStringFilterFunction,
 } from '@porscheinformatik/clr-addons';
 import { ClarityDocComponent } from '../clarity-doc';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 const HTML_EXAMPLE_CLICKABLE_ROWS = `
 <clr-treetable>
@@ -64,6 +64,43 @@ const HTML_EXAMPLE_CUSTOM_SIZE = `
         ...
     </clr-tt-row>
 </clr-treetable>`;
+
+const HTML_EXAMPLE_COLUMN_RESIZING = `
+<clr-treetable>
+  <clr-tt-column
+    [clrTtColumnSize]="width()"
+    (clrTtColumnResize)="onColumnResize($event)"
+  >
+    Some column
+  </clr-tt-column>
+  <clr-tt-column [clrTtColumnSize]="400"> Some other column </clr-tt-column>
+
+  <clr-tt-row clrExpandable="true">
+    <clr-tt-cell>Lorem ipsum dolor sit amet</clr-tt-cell>
+    <clr-tt-cell>2</clr-tt-cell>
+
+    <clr-tt-row>
+      <clr-tt-cell>Lorem ipsum dolor sit amet</clr-tt-cell>
+      <clr-tt-cell>3</clr-tt-cell>
+    </clr-tt-row>
+  </clr-tt-row>
+
+  <clr-tt-row>
+    <clr-tt-cell>Lorem ipsum dolor sit amet</clr-tt-cell>
+    <clr-tt-cell>1</clr-tt-cell>
+  </clr-tt-row>
+</clr-treetable>
+`;
+
+const TS_EXAMPLE_COLUMN_RESIZING = `
+export class TreetableDemo {
+  protected readonly width = signal(400);
+
+  protected onColumnResize(width: number): void {
+    // width is the new column width in px (min 48px)
+    this.width.set(width);
+  }
+}`;
 
 const HTML_EXAMPLE_SINGLE_ROW_ACTION = `
 <clr-treetable>
@@ -242,10 +279,12 @@ const HTML_EXAMPLE_CUSTOM_FILTER = `
 const HTML_EXAMPLE_HIDE_SHOW = `
 <clr-treetable>
   <clr-tt-column>
-    <ng-container *clrTtHideableColumn>Name</ng-container>
+    <ng-container *clrTtHideableColumn="{ hidden: false }">Name</ng-container>
   </clr-tt-column>
   <clr-tt-column>
-    <ng-container *clrTtHideableColumn="{ hidden: false }">Role</ng-container>
+    <ng-template [clrTtHideableColumn]="{ hidden: false }" (clrTtHiddenChange)="log('HiddenChange', $event)">
+      Role
+    </ng-template>
   </clr-tt-column>
   <clr-tt-column>
     <ng-container *clrTtHideableColumn="{ hidden: true, initial: false }">Type</ng-container>
@@ -418,6 +457,8 @@ export class TreetableDemo extends ClarityDocComponent {
   htmlExampleClickableRows = HTML_EXAMPLE_CLICKABLE_ROWS;
   htmlExampleClickableCaret = HTML_EXAMPLE_CLICKABLE_CARET;
   htmlExampleCustomSize = HTML_EXAMPLE_CUSTOM_SIZE;
+  htmlExampleColumnResizing = HTML_EXAMPLE_COLUMN_RESIZING;
+  tsExampleColumnResizing = TS_EXAMPLE_COLUMN_RESIZING;
   htmlExampleSingleRowAction = HTML_EXAMPLE_SINGLE_ROW_ACTION;
   htmlExampleSmartIterator = HTML_EXAMPLE_SMART_ITERATOR;
   htmlExampleSelection = HTML_EXAMPLE_SELECTION;
@@ -485,18 +526,31 @@ export class TreetableDemo extends ClarityDocComponent {
     },
   ];
 
-  selected = [];
-  nameComparator = new NameComparator();
-  sortOrder = 0;
-  descOrder = ClrTreetableSortOrder.DESC;
+  protected selected = [];
+  protected nameComparator = new NameComparator();
+  protected sortOrder = 0;
+  protected descOrder = ClrTreetableSortOrder.DESC;
+  protected readonly width = signal(400);
 
-  getChildren = (node: OrganizationUnitMember): OrganizationUnitMember[] => node?.children ?? [];
-  orgUnitMemberNameFilter: ClrTreetableStringFilterFunction<OrganizationUnitMember> = (
+  protected readonly getChildren = (node: OrganizationUnitMember): OrganizationUnitMember[] => node?.children ?? [];
+  protected readonly orgUnitMemberNameFilter: ClrTreetableStringFilterFunction<OrganizationUnitMember> = (
     item: OrganizationUnitMember,
     search: string
   ): boolean => item?.value?.name?.toLowerCase().includes(search.toLowerCase());
-  orgUnitMemberRoleFilter: ClrTreetableStringFilterFunction<OrganizationUnitMember> = (
+  protected readonly orgUnitMemberRoleFilter: ClrTreetableStringFilterFunction<OrganizationUnitMember> = (
     item: OrganizationUnitMember,
     search: string
   ): boolean => item?.value?.role?.toLowerCase().includes(search.toLowerCase());
+
+  protected onColumnResize(width: number): void {
+    this.width.set(width);
+  }
+
+  protected onResetResize(): void {
+    this.width.set(400);
+  }
+
+  protected log(description: string, ...values: unknown[]): void {
+    console.log(`Log: ${description}`, ...values);
+  }
 }

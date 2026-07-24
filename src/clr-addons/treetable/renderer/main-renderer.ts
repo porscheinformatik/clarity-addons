@@ -43,14 +43,15 @@ export class TreetableMainRenderer {
 
   private readonly rules: readonly ColumnRule[] = [
     this.createClassesRule(),
-    this.createFirstColumnWidthRule(),
+    this.createColumnResizeWidthRule(),
+    this.createColumnCellWidthRule(),
     this.createDisplayRule(),
   ];
 
   constructor() {
     fromEvent(window, 'resize')
       .pipe(debounceTime(200), takeUntilDestroyed())
-      .subscribe(() => this.renderRuleByKey('first-column-width', this.headers(), this.rows()));
+      .subscribe(() => this.renderRuleByKey('column-cell-width', this.headers(), this.rows()));
 
     afterRenderEffect(() => {
       const headers = this.headers();
@@ -67,13 +68,13 @@ export class TreetableMainRenderer {
 
       switch (event) {
         case TreetableColumnUpdate.HIDDEN:
-          this.renderRulesByKeys(['display', 'first-column-width'], headers, rows);
+          this.renderRulesByKeys(['display', 'column-cell-width'], headers, rows);
           break;
         case TreetableColumnUpdate.RESET_HIDDEN:
           this.renderAllRules(headers, rows); // resetHidden etc.
           break;
         case TreetableColumnUpdate.WIDTH:
-          this.renderRuleByKey('first-column-width', headers, rows);
+          this.renderRulesByKeys(['column-cell-width', 'column-resize-width'], headers, rows);
           break;
         default:
           this.renderAllRules(headers, rows);
@@ -196,18 +197,34 @@ export class TreetableMainRenderer {
     };
   }
 
-  private createFirstColumnWidthRule(): ColumnRule<{ width: number }> {
+  private createColumnCellWidthRule(): ColumnRule<{ width: number }> {
     return {
-      key: 'first-column-width',
+      key: 'column-cell-width',
       layoutPhase: 'stable',
       prepareData: ctx => {
-        if (!ctx.isFirstVisible || !ctx.header) {
-          return null;
-        }
         return { width: ctx.header.getWidth() };
       },
       applyCell: (cell, data) => {
         cell.setMaxWidth(data.width);
+      },
+    };
+  }
+
+  private createColumnResizeWidthRule(): ColumnRule<{ width: number }> {
+    return {
+      key: 'column-resize-width',
+      layoutPhase: 'unstable',
+      prepareData: ctx => {
+        if (!ctx.state?.width) {
+          return null;
+        }
+        return { width: ctx.state.width };
+      },
+      applyHeader: (header, data) => {
+        header.setWidth(data.width);
+      },
+      applyCell: (cell, data) => {
+        cell.setWidth(data.width);
       },
     };
   }
