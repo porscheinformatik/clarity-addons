@@ -1,6 +1,6 @@
 @if (clrPagerPosition === 'top' || clrPagerPosition === 'both') {
 <div>
-  <ng-container [ngTemplateOutlet]="pager" [ngTemplateOutletContext]="{ $implicit: 'top' }"> </ng-container>
+  <ng-container [ngTemplateOutlet]="pager" [ngTemplateOutletContext]="{ $implicit: 'top' }"></ng-container>
 </div>
 } @for (item of items; track item) {
 <ng-container [ngTemplateOutlet]="itemTemplate" [ngTemplateOutletContext]="{item: item}">
@@ -10,7 +10,7 @@
 </ng-container>
 } @if (clrPagerPosition === 'bottom' || clrPagerPosition === 'both') {
 <div>
-  <ng-container [ngTemplateOutlet]="pager" [ngTemplateOutletContext]="{ $implicit: 'bottom' }"> </ng-container>
+  <ng-container [ngTemplateOutlet]="pager" [ngTemplateOutletContext]="{ $implicit: 'bottom' }"></ng-container>
 </div>
 }
 <ng-template #pager let-position>
@@ -30,17 +30,14 @@
   @if (pageSizeOptions?.length > 1) {
   <div>
     <clr-dropdown>
-      <button type="button" class="btn btn-link options-text-button btn-no-capitalized" clrDropdownTrigger>
-        {{pageSizeLabel}}: {{pageSize}}
-        <cds-icon shape="angle" direction="down"></cds-icon>
-      </button>
-      <button type="button" class="btn btn-link options-icon-button" clrDropdownTrigger>
-        <cds-icon shape="cog"></cds-icon>
+      <button type="button" class="btn btn-link btn-no-capitalized" clrDropdownTrigger>
+        <span class="options-text-button">{{ pageSizeLabel }}: {{ pageSize }}</span>
+        <cds-icon class="options-icon-button" shape="cog"></cds-icon>
         <cds-icon shape="angle" direction="down"></cds-icon>
       </button>
       <clr-dropdown-menu class="spinner-in-front" clrPosition="top-right">
         @for (sizeOption of pageSizeOptions; track sizeOption) {
-        <button type="button" clrDropdownItem (click)="pageSizeChange.emit(sizeOption)">{{sizeOption}}</button>
+        <button type="button" clrDropdownItem (click)="pageSizeChange.emit(sizeOption)">{{ sizeOption }}</button>
         }
       </clr-dropdown-menu>
     </clr-dropdown>
