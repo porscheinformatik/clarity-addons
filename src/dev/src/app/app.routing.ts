@@ -14,6 +14,10 @@ export const APP_ROUTES: Routes = [
     loadComponent: () => import('./bar-chart/bar-chart.demo').then(m => m.BarChartDemo),
   },
   {
+    path: 'grouped-bar-chart',
+    loadComponent: () => import('./grouped-bar-chart/grouped-bar-chart.demo').then(m => m.GroupedBarChartDemo),
+  },
+  {
     path: 'line-chart',
     loadComponent: () => import('./line-chart/line-chart.demo').then(m => m.LineChartDemo),
   },

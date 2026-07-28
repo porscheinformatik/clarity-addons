@@ -7,12 +7,14 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { share } from 'rxjs';
 import { ClarityDocComponent } from '../clarity-doc';
-import {
+import type {
   BarChartData,
   BarChartLabel,
   ComboBarSeries,
   ComboLineSeries,
   FunnelChartData,
+  GroupedBarChartData,
+  GroupedBarChartGroup,
   PieChartData,
   XYChartSeries,
 } from '@porscheinformatik/clr-addons/charts';
@@ -52,6 +54,30 @@ const STACKED_BAR_HTML = `<clr-bar-chart
   [showLegend]="true"
   style="display:block;width:100%;height:300px;"
 ></clr-bar-chart>`;
+
+const GROUPED_BAR_TS = `groupedBarGroups: GroupedBarChartGroup[] = [
+  { key: 'q1', label: 'Q1' },
+  { key: 'q2', label: 'Q2' },
+  { key: 'q3', label: 'Q3' },
+];
+
+groupedBarData: GroupedBarChartData[] = [
+  { key: 'q1-revenue', groupKey: 'q1', label: 'Revenue', value: 120, color: '#e57200' },
+  { key: 'q1-costs', groupKey: 'q1', label: 'Costs', value: 60, color: '#00828b' },
+  { key: 'q2-revenue', groupKey: 'q2', label: 'Revenue', value: 165, color: '#e57200' },
+  { key: 'q2-costs', groupKey: 'q2', label: 'Costs', value: 80, color: '#00828b' },
+];`;
+
+const GROUPED_BAR_HTML = `<clr-grouped-bar-chart
+  [data]="groupedBarData"
+  [groups]="groupedBarGroups"
+  orientation="horizontal"
+  [barSizePx]="12"
+  xAxisLabel="Amount"
+  yAxisLabel="Quarter"
+  [showLegend]="true"
+  style="display:block;width:100%;height:340px;"
+></clr-grouped-bar-chart>`;
 
 const LINE_CHART_TS = `lineSeries: XYChartSeries[] = [
   {
@@ -396,6 +422,8 @@ export class ChartsDemo extends ClarityDocComponent {
   barChartHtml = BAR_CHART_HTML;
   stackedBarTs = STACKED_BAR_TS;
   stackedBarHtml = STACKED_BAR_HTML;
+  groupedBarTs = GROUPED_BAR_TS;
+  groupedBarHtml = GROUPED_BAR_HTML;
   lineChartTs = LINE_CHART_TS;
   lineChartHtml = LINE_CHART_HTML;
   areaChartTs = AREA_CHART_TS;
@@ -486,6 +514,29 @@ export class ChartsDemo extends ClarityDocComponent {
     { stackKey: 'jan', label: 'January' },
     { stackKey: 'feb', label: 'February' },
     { stackKey: 'mar', label: 'March' },
+  ];
+
+  // ── Grouped Bar Chart ───────────────────────────────────────────────────────
+  groupedBarGroups: GroupedBarChartGroup[] = [
+    { key: 'q1', label: 'Q1' },
+    { key: 'q2', label: 'Q2' },
+    { key: 'q3', label: 'Q3' },
+    { key: 'q4', label: 'Q4' },
+  ];
+
+  groupedBarData: GroupedBarChartData[] = [
+    { key: 'q1-revenue', groupKey: 'q1', label: 'Revenue', value: 120, color: '#e57200' },
+    { key: 'q1-costs', groupKey: 'q1', label: 'Costs', value: 60, color: '#00828b' },
+    { key: 'q1-profit', groupKey: 'q1', label: 'Profit', value: 35, color: '#c1326e' },
+    { key: 'q2-revenue', groupKey: 'q2', label: 'Revenue', value: 165, color: '#e57200' },
+    { key: 'q2-costs', groupKey: 'q2', label: 'Costs', value: 80, color: '#00828b' },
+    { key: 'q2-profit', groupKey: 'q2', label: 'Profit', value: 55, color: '#c1326e' },
+    { key: 'q3-revenue', groupKey: 'q3', label: 'Revenue', value: 140, color: '#e57200' },
+    { key: 'q3-costs', groupKey: 'q3', label: 'Costs', value: 90, color: '#00828b' },
+    { key: 'q3-profit', groupKey: 'q3', label: 'Profit', value: 42, color: '#c1326e' },
+    { key: 'q4-revenue', groupKey: 'q4', label: 'Revenue', value: 220, color: '#e57200' },
+    { key: 'q4-costs', groupKey: 'q4', label: 'Costs', value: 130, color: '#00828b' },
+    { key: 'q4-profit', groupKey: 'q4', label: 'Profit', value: 75, color: '#c1326e' },
   ];
 
   // ── Line / Area Chart ──────────────────────────────────────────────────────
