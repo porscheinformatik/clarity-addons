@@ -39,6 +39,7 @@ export class ClrCopyToClipboard implements OnInit, AfterViewInit, OnDestroy {
   public trimmedValue = computed(() => this.value().trim());
   public tooltipText = input<string>('Copy to clipboard');
   public hiddenUntilHovered = input<boolean>(false);
+  public showTooltipText = input<boolean>(true);
 
   public showCopiedIcon = false;
   public parentHovered = false;

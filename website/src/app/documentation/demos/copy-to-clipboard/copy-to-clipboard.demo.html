@@ -209,6 +209,17 @@
         </clr-copy-to-clipboard>
       </div>
       <clr-code-snippet [clrCode]="alwaysVisibleExample"></clr-code-snippet>
+
+      <h4>Always Visible with no tooltip</h4>
+      <p>
+        Without <code class="clr-code">[hiddenUntilHovered]</code>, the icon is always visible but the tooltip is not
+        shown. This is the default behavior for the generic-card.
+      </p>
+      <div class="clr-copy-to-clipboard-container">
+        <span>Some copyable value</span>
+        <clr-copy-to-clipboard [value]="'Some copyable value'" [showTooltipText]="false"></clr-copy-to-clipboard>
+      </div>
+      <clr-code-snippet [clrCode]="hideTooltipExample"></clr-code-snippet>
     </div>
   </article>
 </clr-doc-wrapper>

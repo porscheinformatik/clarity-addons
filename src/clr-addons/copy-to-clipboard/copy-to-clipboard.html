@@ -10,11 +10,14 @@
     (keydown.enter)="$event.stopPropagation()"
     (mousedown)="$event.preventDefault()"
   ></cds-icon>
+  @if (showTooltipText()) {
   <clr-tooltip-content
     class="clr-tooltip-fit-content"
     [clrSize]="tooltipSize"
     [clrPosition]="tooltipPosition"
     *clrIfOpen
-    >{{ tooltipText() }}</clr-tooltip-content
   >
+    {{ tooltipText() }}
+  </clr-tooltip-content>
+  }
 </clr-tooltip>

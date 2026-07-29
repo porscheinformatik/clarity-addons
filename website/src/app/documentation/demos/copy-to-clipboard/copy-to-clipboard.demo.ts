@@ -72,6 +72,7 @@ const TABLE_EXAMPLE = `<table class="table">
 </table>`;
 
 const ALWAYS_VISIBLE_EXAMPLE = `<clr-copy-to-clipboard [value]="'some value'" [tooltipText]="'Copy ID'"></clr-copy-to-clipboard>`;
+const HIDE_TOOLTIP_EXAMPLE = `<clr-copy-to-clipboard [value]="'some value'" [showTooltipText]]="false"></clr-copy-to-clipboard>`;
 
 interface User {
   id: string;
@@ -100,6 +101,7 @@ export class CopyToClipboardDemo extends ClarityDocComponent {
   treetableExample = TREETABLE_EXAMPLE;
   tableExample = TABLE_EXAMPLE;
   alwaysVisibleExample = ALWAYS_VISIBLE_EXAMPLE;
+  hideTooltipExample = HIDE_TOOLTIP_EXAMPLE;
 
   users: User[] = [
     { id: 'USR-001', name: 'Alice Johnson', email: 'alice@example.com', salary: 725 },
