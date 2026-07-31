@@ -279,5 +279,28 @@
         </ng-template>
       </clr-view-edit-section>
     </div>
+
+    <div class="clr-col-12">
+      <clr-view-edit-section
+        clrTitle="With header style"
+        [clrEditable]="false"
+        [clrShowBadge]="true"
+        [clrViewRef]="viewBlock5"
+        [clrTitleTextStyle]="'headline'"
+      >
+        <ng-template #viewBlock5>
+          <form clrForm clrLayout="horizontal">
+            <div class="clr-form-control clr-row">
+              <label class="clr-col-md-2 clr-control-label">Hobby</label>
+              <span class="text-truncate clr-col-md-10">Computer</span>
+            </div>
+            <div class="clr-form-control clr-row">
+              <label class="clr-col-md-2 clr-control-label">Driving licence number</label>
+              <span class="text-truncate clr-col-md-10">12345</span>
+            </div>
+          </form>
+        </ng-template>
+      </clr-view-edit-section>
+    </div>
   </div>
 </div>
