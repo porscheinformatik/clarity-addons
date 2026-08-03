@@ -1,0 +1,78 @@
+<!--
+~ Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
+~ This software is released under MIT license.
+~ The full license information can be found in LICENSE in the root directory of this project.
+-->
+
+<h2>Control Warning</h2>
+
+<div class="clr-example">
+  <div>
+    <button (click)="showTextInputWarnings()" class="btn btn-primary">
+      {{ showingInputWarnings ? 'Hide' : 'Show' }} all warnings
+    </button>
+    <button (click)="toggleInputFormValidation()" class="btn btn-primary">
+      {{ isInputFormValidating ? 'Validate' : 'Reset' }} form
+    </button>
+  </div>
+  <form [formGroup]="inputForm" clrForm>
+    <clr-input-container class="clr-col-12">
+      <label class="clr-required-mark">Input label</label>
+      <input class="clr-col-5" clrInput formControlName="input" minlength="5" name="inputName" required type="text" />
+      <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
+      <clr-control-helper *clrIfWarning="showingInputWarnings" id="inputWarning">This is a warning </clr-control-helper>
+    </clr-input-container>
+
+    <clr-textarea-container class="clr-col-12">
+      <label class="clr-required-mark">Textarea label</label>
+      <textarea class="clr-col-7" clrTextarea formControlName="textArea" name="description" required></textarea>
+      <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
+      <clr-control-helper *clrIfWarning="showingInputWarnings">This is a warning</clr-control-helper>
+    </clr-textarea-container>
+
+    <clr-date-container class="clr-col-12">
+      <label class="clr-required-mark">Date label</label>
+      <input class="clr-col-5" clrDate formControlName="date" name="date" required type="text" />
+      <clr-control-helper *clrIfWarning="showingInputWarnings">This is a warning</clr-control-helper>
+      <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
+    </clr-date-container>
+
+    <clr-input-container class="clr-col-12">
+      <label class="clr-required-mark">Time label</label>
+      <input class="time-width" clrInput formControlName="time" name="time" required type="time" />
+      <clr-control-helper *clrIfWarning="showingInputWarnings">This is a warning</clr-control-helper>
+      <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
+    </clr-input-container>
+
+    <clr-select-container class="clr-col-12">
+      <label class="clr-required-mark">Select label</label>
+      <select class="clr-col-5" clrSelect formControlName="select" name="options" required>
+        <option value="one">One</option>
+        <option value="two">Two</option>
+        <option value="three">Three</option>
+      </select>
+      <clr-control-helper *clrIfWarning="showingInputWarnings">This is a warning</clr-control-helper>
+      <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
+    </clr-select-container>
+    <clr-combobox-container class="clr-col-12">
+      <label>Single Select Combobox</label>
+      <clr-combobox class="clr-col-5 custom-clrbox" formControlName="comboSingle" name="combobox" required>
+        <clr-options>
+          <clr-option *clrOptionItems="let option of values$ | async" [clrValue]="option">{{ option }}</clr-option>
+        </clr-options>
+      </clr-combobox>
+      <clr-control-error *clrIfError="'required'">Error message about being required</clr-control-error>
+      <clr-control-helper *clrIfWarning="showingInputWarnings">{{ comboBoxWarningString }}</clr-control-helper>
+    </clr-combobox-container>
+
+    <clr-checkbox-container class="clr-col-12">
+      <label>Checkbox label</label>
+      <clr-checkbox-wrapper>
+        <label class="clr-col-12">Option</label>
+        <input clrCheckbox formControlName="checkbox" name="checkboxName" required type="checkbox" />
+      </clr-checkbox-wrapper>
+      <clr-control-error *clrIfError="'required'">This is required</clr-control-error>
+      <clr-control-helper *clrIfWarning="showingInputWarnings">This is a warning</clr-control-helper>
+    </clr-checkbox-container>
+  </form>
+</div>

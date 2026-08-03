@@ -655,10 +655,13 @@ clr-control-helper.clr-warning {
 
 .clr-control-warning-icon {
   color: components.$clr-highlight-warning-800;
-  height: 1.2rem;
-  width: 1.2rem;
-  min-height: 1.2rem;
-  min-width: 1.2rem;
+  // Match the sizing Clarity uses for the clr-control-error icon
+  // (.clr-validate-icon), so warning and error rows line up visually.
+  height: var(--clr-forms-icon-size);
+  width: var(--clr-forms-icon-size);
+  min-height: var(--clr-forms-icon-size);
+  min-width: var(--clr-forms-icon-size);
+  flex-shrink: 0;
 }
 
 .clr-copy-to-clipboard-container:has(clr-copy-to-clipboard) {
