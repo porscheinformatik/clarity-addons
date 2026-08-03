@@ -14,6 +14,16 @@
       margin-bottom: 0;
     }
 
+    .ves-title-text {
+      display: inline-block;
+    }
+
+    .ces-title-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
     .card-text {
       padding-right: 10px;
     }
