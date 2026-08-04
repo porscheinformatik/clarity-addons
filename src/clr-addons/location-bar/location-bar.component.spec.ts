@@ -73,7 +73,7 @@ describe('LocationBarComponent', () => {
     /* THEN */
     fixture.whenStable().then(() => {
       fixture.detectChanges();
-      const span = fixture.debugElement.query(By.css('.unselectable-node'));
+      const span = fixture.debugElement.query(By.css('.locationbar-unselectable-node'));
       expect(span).toBeTruthy();
       const button: HTMLSpanElement = span.nativeElement;
       expect(button.textContent).toContain('Global Root Node');
