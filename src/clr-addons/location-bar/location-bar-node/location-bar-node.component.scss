@@ -1,61 +1,55 @@
 @use '../../mixins';
 
 @include mixins.exports('location-bar-node.clr-addons') {
-  .clr-dropdown-container {
-    .btn {
-      margin-top: 0;
-      margin-bottom: 0;
-    }
+  .locationbar-caret-icon {
+    top: 30%;
+  }
+  .locationbar-btn {
+    margin-top: 0;
+    margin-bottom: 0;
+    min-width: unset;
 
-    .unselectable-node {
-      display: inline-block;
-      line-height: 1rem;
-      padding: 0 0.5rem;
-      text-transform: uppercase;
-      font-size: 0.4rem;
-      font-weight: 500;
-      letter-spacing: 0.073em;
-      vertical-align: middle;
-      max-width: 18rem;
-    }
-
-    .last-level {
+    &:focus {
+      outline: none;
       font-weight: 700;
-    }
+      color: var(--clr-btn-default-hover-color);
 
-    .btn {
-      min-width: unset;
-
-      &:focus {
-        outline: none;
-        font-weight: 700;
+      .unselected {
         color: var(--clr-btn-default-hover-color);
-
-        .unselected {
-          color: var(--clr-btn-default-hover-color);
-        }
       }
-    }
-
-    .dropdown .dropdown-toggle .caret-icon {
-      top: 30%;
-    }
-
-    .unselected {
-      margin-top: -0.14rem;
-    }
-
-    .selected-child {
-      background: var(--clr-global-selection-color);
-    }
-
-    .dropdown-menu {
-      max-width: calc(1080 * (1rem / var(--cds-global-base)));
     }
   }
 
-  .no-result-text {
+  .locationbar-selected-child {
+    background: var(--clr-global-selection-color);
+  }
+
+  .locationbar-clr-dropdown-menu {
+    max-width: calc(1080 * (1rem / var(--cds-global-base)));
+  }
+
+  .locationbar-unselected {
+    margin-top: -0.14rem;
+  }
+
+  .locationbar-last-level {
+    font-weight: 700;
+  }
+
+  .locationbar-no-result-text {
     font-size: 0.6rem;
     padding: 0 var(--cds-global-space-7);
+  }
+
+  .locationbar-unselectable-node {
+    display: inline-block;
+    line-height: 1rem;
+    padding: 0 0.5rem;
+    text-transform: uppercase;
+    font-size: 0.4rem;
+    font-weight: 500;
+    letter-spacing: 0.073em;
+    vertical-align: middle;
+    max-width: 18rem;
   }
 }

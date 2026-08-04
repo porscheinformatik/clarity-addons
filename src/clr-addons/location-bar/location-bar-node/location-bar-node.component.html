@@ -15,17 +15,22 @@
           <span
             (click)="resetSearch()"
             class="text-truncate"
-            [class.last-level]="!parentNode.getSelectedChild().getSelectedChild()"
+            [class.locationbar-last-level]="!parentNode.getSelectedChild().getSelectedChild()"
             title="{{ node.label }}"
           >
             {{ node.label }}
           </span>
           <cds-icon shape="angle" direction="down" size="xs" class="caret-icon"></cds-icon>
         } @else {
-          <cds-icon class="unselected" size="18" [solid]="focus" shape="tree-view"></cds-icon>&nbsp;...
+          <cds-icon class="locationbar-unselected" size="18" [solid]="focus" shape="tree-view"></cds-icon>&nbsp;...
         }
       </button>
-      <clr-dropdown-menu [clrPosition]="'bottom-left'" [clrDropdownMenuItemMinHeight]="'24px'" *clrIfOpen>
+      <clr-dropdown-menu
+        class="locationbar-clr-dropdown-menu"
+        [clrPosition]="'bottom-left'"
+        [clrDropdownMenuItemMinHeight]="'24px'"
+        *clrIfOpen
+      >
         @if (searchRequest) {
           <clr-location-bar-search
             #locationBarSearch
@@ -48,7 +53,7 @@
               </button>
             }
           } @else {
-            <span class="no-result-text">
+            <span class="locationbar-no-result-text">
               {{ searchRequest?.noResultsText ?? 'No search result found.' }}
             </span>
           }
@@ -58,7 +63,7 @@
               type="button"
               clrDropdownItem
               class="text-truncate"
-              [class.selected-child]="item.id === parentNode.getSelectedChild()?.id"
+              [class.locationbar-selected-child]="item.id === parentNode.getSelectedChild()?.id"
               (click)="selectNode(item)"
               title="{{ item.label }}"
             >
@@ -72,17 +77,17 @@
     @if (parentNode.getSelectedChild()) {
       @if (parentNode.getSelectedChild().selectable) {
         <button
-          class="btn btn-link btn-sm"
+          class="btn btn-link btn-sm locationbar-btn"
           (click)="selectNode(parentNode.getSelectedChild())"
-          [class.last-level]="!parentNode.getSelectedChild().getSelectedChild()"
+          [class.locationbar-last-level]="!parentNode.getSelectedChild().getSelectedChild()"
           title="{{ parentNode.getSelectedChild().label }}"
         >
           {{ parentNode.getSelectedChild().label }}
         </button>
       } @else {
         <span
-          class="unselectable-node text-truncate"
-          [class.last-level]="!parentNode.getSelectedChild().getSelectedChild()"
+          class="locationbar-unselectable-node text-truncate"
+          [class.locationbar-last-level]="!parentNode.getSelectedChild().getSelectedChild()"
           title="{{ parentNode.getSelectedChild().label }}"
         >
           {{ parentNode.getSelectedChild().label }}
