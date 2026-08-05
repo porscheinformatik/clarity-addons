@@ -45,7 +45,7 @@ let columnId = 0;
         }
       </button>
     } @else {
-      <div class="treetable-column-title">
+      <div class="treetable-column-title" data-testid="treetable-column-header-{{ columnId }}">
         <ng-container *ngTemplateOutlet="columnTitle" />
       </div>
     }
@@ -61,6 +61,7 @@ let columnId = 0;
   host: {
     '[class.treetable-column]': 'true',
     '[attr.aria-sort]': 'ariaSort()',
+    '[attr.data-testid]': '"treetable-column-" + columnId',
     role: 'columnheader',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,

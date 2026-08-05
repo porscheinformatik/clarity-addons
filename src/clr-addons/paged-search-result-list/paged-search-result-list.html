@@ -14,14 +14,19 @@
 </div>
 }
 <ng-template #pager let-position>
-  <div class="clr-row">
-    <div [class.pager-top]="position === 'top'" [class.pager-bottom]="position === 'bottom'">
+  <div class="clr-row" data-testid="paged-search-result-list-pager-row-{{ position }}">
+    <div
+      [class.pager-top]="position === 'top'"
+      [class.pager-bottom]="position === 'bottom'"
+      data-testid="paged-search-result-list-pager-container-{{ position }}"
+    >
       <ng-container *ngTemplateOutlet="pageSizeDropdown"></ng-container>
       <clr-pager
         [clrPage]="currentPage"
         [clrPageSize]="pageSize"
         [clrTotalItems]="totalItems"
         (clrPageChange)="pageChange.emit($event)"
+        data-testid="paged-search-result-list-pager-{{ position }}"
       ></clr-pager>
     </div>
   </div>
@@ -30,14 +35,32 @@
   @if (pageSizeOptions?.length > 1) {
   <div>
     <clr-dropdown>
-      <button type="button" class="btn btn-link btn-no-capitalized" clrDropdownTrigger>
-        <span class="options-text-button">{{ pageSizeLabel }}: {{ pageSize }}</span>
+      <button
+        type="button"
+        class="btn btn-link btn-no-capitalized"
+        clrDropdownTrigger
+        data-testid="paged-search-result-list-page-size-trigger"
+      >
+        <span class="options-text-button" data-testid="paged-search-result-list-page-size-label">
+          {{ pageSizeLabel }}: {{ pageSize }}
+        </span>
         <cds-icon class="options-icon-button" shape="cog"></cds-icon>
         <cds-icon shape="angle" direction="down"></cds-icon>
       </button>
-      <clr-dropdown-menu class="spinner-in-front" clrPosition="top-right">
+      <clr-dropdown-menu
+        class="spinner-in-front"
+        clrPosition="top-right"
+        data-testid="paged-search-result-list-page-size-menu"
+      >
         @for (sizeOption of pageSizeOptions; track sizeOption) {
-        <button type="button" clrDropdownItem (click)="pageSizeChange.emit(sizeOption)">{{ sizeOption }}</button>
+        <button
+          type="button"
+          clrDropdownItem
+          (click)="pageSizeChange.emit(sizeOption)"
+          data-testid="paged-search-result-list-page-size-option-{{ sizeOption }}"
+        >
+          {{ sizeOption }}
+        </button>
         }
       </clr-dropdown-menu>
     </clr-dropdown>

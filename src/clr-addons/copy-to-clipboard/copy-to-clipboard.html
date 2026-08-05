@@ -2,6 +2,7 @@
   <cds-icon
     clrTooltipTrigger
     class="copy-to-clipboard-icon"
+    data-testid="copy-to-clipboard-button"
     [cdkCopyToClipboard]="trimmedValue()"
     (cdkCopyToClipboardCopied)="onCopied($event)"
     [shape]="showCopiedIcon ? 'success-standard' : 'copy-to-clipboard'"
@@ -12,6 +13,7 @@
   ></cds-icon>
   <clr-tooltip-content
     class="clr-tooltip-fit-content"
+    data-testid="copy-to-clipboard-tooltip"
     [clrSize]="tooltipSize"
     [clrPosition]="tooltipPosition"
     *clrIfOpen

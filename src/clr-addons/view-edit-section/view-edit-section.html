@@ -1,10 +1,16 @@
-<div class="card view-edit-section" (keyup.escape)="onCancel()">
+<div class="card view-edit-section" (keyup.escape)="onCancel()" data-testid="view-edit-section">
   <div class="card-block">
     <div class="card-title">
       <ng-template #titleContainer>
-        <span class="ves-title-text" [attr.cds-text]="_titleTextStyle + ' ' + _titleTextFontWeight">
+        <span
+          class="ves-title-text"
+          [attr.cds-text]="_titleTextStyle + ' ' + _titleTextFontWeight"
+          data-testid="view-edit-section-title"
+        >
           {{ _title }} @if (_showBadge) { @if (_badgeContent) {
-          <span class="ves-badge" [ngClass]="_badgeClass">{{ _badgeContent }}</span>
+          <span class="ves-badge" [ngClass]="_badgeClass" data-testid="view-edit-section-badge">
+            {{ _badgeContent }}
+          </span>
           }
           <ng-content select="[badge]"></ng-content>
           }
@@ -14,6 +20,7 @@
       <span class="ces-title-row">
         <span
           class="ces-title-trigger"
+          data-testid="view-edit-section-title-trigger"
           (click)="onCollapseExpand()"
           (keydown.enter)="onCollapseExpand()"
           (keydown.space)="onCollapseExpand(); $event.preventDefault()"
@@ -23,7 +30,12 @@
         >
           <ng-template [ngTemplateOutlet]="titleContainer"></ng-template>
         </span>
-        <button type="button" (click)="onCollapseExpand()" class="btn btn-icon btn-link ces-caret-btn">
+        <button
+          type="button"
+          (click)="onCollapseExpand()"
+          class="btn btn-icon btn-link ces-caret-btn"
+          data-testid="view-edit-section-caret-button"
+        >
           <cds-icon shape="angle" size="20" class="ces-caret-icon" [@rotateIcon]="_isCollapsed"></cds-icon>
         </button>
       </span>
@@ -32,7 +44,12 @@
       }
       <div class="ves-actions">
         @if (_editable && !editMode && actionBlock.children.length == 0) {
-        <button type="button" (click)="onEdit()" class="btn btn-icon btn-link ves-action">
+        <button
+          type="button"
+          (click)="onEdit()"
+          class="btn btn-icon btn-link ves-action"
+          data-testid="view-edit-section-edit-button"
+        >
           <cds-icon class="ves-edit-icon" [shape]="_editIcon" size="20"></cds-icon>
         </button>
         }
@@ -42,15 +59,19 @@
       </div>
     </div>
     @if (!(_isCollapsed && _isCollapsible)) {
-    <div class="card-text" [@collapseExpandAnimation]="initialized">
+    <div class="card-text" [@collapseExpandAnimation]="initialized" data-testid="view-edit-section-content">
       @if (!editMode) {
       <ng-template [ngTemplateOutlet]="viewRef"></ng-template>
       } @if (editMode) {
       <ng-template [ngTemplateOutlet]="editRef"></ng-template>
       } @if (editMode) {
-      <form clrForm (ngSubmit)="onSubmit()" class="button-bar">
-        <button class="btn btn-primary ves-save" type="submit">{{ _saveText }}</button>
-        <button class="btn ves-cancel" (click)="onCancel()" type="button">{{ _cancelText }}</button>
+      <form clrForm (ngSubmit)="onSubmit()" class="button-bar" data-testid="view-edit-section-form">
+        <button class="btn btn-primary ves-save" type="submit" data-testid="view-edit-section-save-button">
+          {{ _saveText }}
+        </button>
+        <button class="btn ves-cancel" (click)="onCancel()" type="button" data-testid="view-edit-section-cancel-button">
+          {{ _cancelText }}
+        </button>
       </form>
       }
     </div>

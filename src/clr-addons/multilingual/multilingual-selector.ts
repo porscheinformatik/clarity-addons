@@ -13,14 +13,20 @@ ClarityIcons.addIcons(angleIcon);
           class="btn btn-outline btn-sm clr-multilingual-button"
           clrDropdownTrigger
           [disabled]="disabled"
+          data-testid="multilingual-selector-trigger"
         >
           {{ selectedLang }}
           <cds-icon shape="angle" direction="down"></cds-icon>
         </button>
-        <clr-dropdown-menu *clrIfOpen>
+        <clr-dropdown-menu *clrIfOpen data-testid="multilingual-selector-menu">
           @for (text of texts | keyvalue; track text) {
             @if (text.key !== selectedLang) {
-              <div class="clr-multilingual-dd-entry" clrDropdownItem (click)="selectedLangChange.emit(text.key)">
+              <div
+                class="clr-multilingual-dd-entry"
+                clrDropdownItem
+                (click)="selectedLangChange.emit(text.key)"
+                data-testid="multilingual-selector-option-{{ text.key }}"
+              >
                 <span class="label">{{ text.key }}</span
                 >{{ text.value }}
               </div>

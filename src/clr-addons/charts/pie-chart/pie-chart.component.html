@@ -1,9 +1,16 @@
-<div class="chart-container">
-  <div class="chart-area" #container (cngWindowResize)="updateChart()" [class.pt-3]="alertMessageAndType()">
+<div class="chart-container" data-testid="pie-chart">
+  <div
+    class="chart-area"
+    data-testid="pie-chart-area"
+    #container
+    (cngWindowResize)="updateChart()"
+    [class.pt-3]="alertMessageAndType()"
+  >
     <svg [class.d-none]="loading() || !hasData()" #chart></svg>
 
     @if (tooltipPosition()) {
     <cng-chart-tooltip
+      data-testid="pie-chart-tooltip"
       [tooltipPosition]="tooltipPosition()"
       [tooltipOrientation]="tooltipOrientation()"
       [squareColor]="selectedItem()?.color"
@@ -21,22 +28,31 @@
         ({{ selectedItem().value }}) {{ selectedItem().fullLabel || selectedItem().label }}
       </ng-container>
 
-      <p class="mt-0">
+      <p class="mt-0" data-testid="pie-chart-tooltip-percentage">
         {{ (100 * selectedItem().value) / total() | number : '1.0-2' }}%
         {{ tooltipPercentOfTotal() }}
       </p>
     </cng-chart-tooltip>
     } @if (loading() || !hasData()) {
-    <cng-bar-chart-skeleton orientation="vertical" [skeletonType]="loading() ? 'loading' : 'placeholder'" />
+    <cng-bar-chart-skeleton
+      data-testid="pie-chart-skeleton"
+      orientation="vertical"
+      [skeletonType]="loading() ? 'loading' : 'placeholder'"
+    />
     } @if (alertMessageAndType()) {
-    <cng-chart-alert-overlay [alertType]="alertMessageAndType()[1]" [alertMessage]="alertMessageAndType()[0]" />
+    <cng-chart-alert-overlay
+      data-testid="pie-chart-alert-overlay"
+      [alertType]="alertMessageAndType()[1]"
+      [alertMessage]="alertMessageAndType()[0]"
+    />
     }
   </div>
 
   @if (showLegend() && !loading() && legendItems().length) {
-  <cng-chart-legend [items]="legendItems()" />
+  <cng-chart-legend data-testid="pie-chart-legend" [items]="legendItems()" />
   } @if (showExportButton() && !loading() && hasData()) {
   <cng-chart-export-button
+    data-testid="pie-chart-export"
     [svgRef]="svgElement()"
     [filename]="exportFilename()"
     [buttonTitle]="exportButtonTitle()"

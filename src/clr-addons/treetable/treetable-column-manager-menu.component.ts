@@ -20,6 +20,7 @@ let id = 0;
       class="btn btn-sm column-manager-menu-open"
       clrPopoverOrigin
       clrPopoverOpenCloseButton
+      data-testid="treetable-column-manager-toggle"
       [attr.aria-controls]="popoverId"
       [attr.aria-expanded]="open()"
       [attr.aria-haspopup]="'menu'"
@@ -30,6 +31,7 @@ let id = 0;
       class="column-switch"
       role="dialog"
       [attr.aria-label]="commonStrings.showColumnsMenuDescription"
+      data-testid="treetable-column-manager-menu"
       [id]="popoverId"
       cdkTrapFocus
       cdkTrapFocusAutoCapture
@@ -42,12 +44,15 @@ let id = 0;
       "
     >
       <div class="switch-header">
-        <div class="clr-sr-only" tabindex="-1" #allSelected>{{ commonStrings.allColumnsSelected }}</div>
-        <h2>{{ commonStrings.showColumns }}</h2>
+        <div class="clr-sr-only" tabindex="-1" data-testid="treetable-column-manager-all-selected" #allSelected>
+          {{ commonStrings.allColumnsSelected }}
+        </div>
+        <h2 data-testid="treetable-column-manager-title">{{ commonStrings.showColumns }}</h2>
         <button
           class="btn btn-sm btn-link-neutral toggle-switch-close-button"
           clrPopoverCloseButton
           type="button"
+          data-testid="treetable-column-manager-close"
           [attr.aria-label]="commonStrings.close"
         >
           <cds-icon shape="window-close" aria-hidden="true" [attr.title]="commonStrings.close"></cds-icon>
@@ -56,16 +61,17 @@ let id = 0;
       </div>
       <ul class="switch-content list-unstyled">
         @for (column of hideableColumns(); track column.id) {
-          <li>
-            <clr-checkbox-wrapper>
+          <li data-testid="treetable-column-manager-item-{{ column.id }}">
+            <clr-checkbox-wrapper data-testid="treetable-column-manager-checkbox-wrapper-{{ column.id }}">
               <input
                 clrCheckbox
                 type="checkbox"
+                data-testid="treetable-column-manager-checkbox-{{ column.id }}"
                 [disabled]="hasOnlyOneVisibleColumn() && !column.hidden"
                 [ngModel]="!column.hidden"
                 (ngModelChange)="toggleColumnState(column.id)"
               />
-              <label>
+              <label data-testid="treetable-column-manager-label-{{ column.id }}">
                 <ng-template [ngTemplateOutlet]="column.titleTemplateRef"></ng-template>
               </label>
             </clr-checkbox-wrapper>
@@ -76,6 +82,7 @@ let id = 0;
         <button
           type="button"
           class="btn btn-sm btn-link switch-button"
+          data-testid="treetable-column-manager-select-all"
           [disabled]="areAllColumnsVisible()"
           (click)="selectAll()"
         >
@@ -84,6 +91,7 @@ let id = 0;
         <button
           type="button"
           class="btn btn-sm btn-link switch-button"
+          data-testid="treetable-column-manager-reset"
           [disabled]="areAllColumnsReset()"
           (click)="resetAllToInitial()"
         >

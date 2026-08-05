@@ -33,8 +33,8 @@ const DEBOUNCE_TIME = 300 as const;
       >
         <cds-icon shape="trash"></cds-icon>
       </button>
-      <clr-input-container>
-        <label for="filter">{{ filterLabel() }}</label>
+      <clr-input-container data-testid="treetable-string-filter-container">
+        <label for="filter" data-testid="treetable-string-filter-label">{{ filterLabel() }}</label>
         <input
           #input
           clrInput

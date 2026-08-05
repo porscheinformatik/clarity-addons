@@ -5,13 +5,14 @@
 -->
 
 <!-- Static gallery view -->
-<div class="clr-image-gallery" [style.width.px]="spotlightSize()">
+<div class="clr-image-gallery" [style.width.px]="spotlightSize()" data-testid="image-gallery">
   <!-- Spotlight image -->
   <div
     class="clr-image-gallery__spotlight"
     [style.width.px]="spotlightSize()"
     [style.height.px]="spotlightSize()"
     (click)="openModal(0)"
+    data-testid="image-gallery-spotlight"
   >
     @if (images().length > 0) {
     <img
@@ -20,19 +21,21 @@
       [height]="spotlightSize()"
       [alt]="images()[0].alt || ''"
       class="clr-image-gallery__spotlight-img"
+      data-testid="image-gallery-spotlight-image"
     />
     }
   </div>
 
   <!-- Thumbnail row -->
   @if (images().length > 1) {
-  <div class="clr-image-gallery__thumbs">
+  <div class="clr-image-gallery__thumbs" data-testid="image-gallery-thumbnails">
     @for (img of staticThumbnails(); track img; let i = $index) {
     <div
       class="clr-image-gallery__thumb"
       [style.width.px]="thumbnailSize()"
       [style.height.px]="thumbnailSize()"
       (click)="openModal(i + 1)"
+      data-testid="image-gallery-thumbnail-{{ i + 1 }}"
     >
       <img
         [ngSrc]="img.src"
@@ -40,11 +43,12 @@
         [height]="thumbnailSize()"
         [alt]="img.alt || ''"
         class="clr-image-gallery__thumb-img"
+        data-testid="image-gallery-thumbnail-image-{{ i + 1 }}"
       />
       <!-- Overlay on last thumbnail when there are more images -->
       @if (i === maxThumbnails - 1 && remainingCount() > 0) {
-      <div class="clr-image-gallery__thumb-overlay">
-        <span>{{ remainingCount() }}+</span>
+      <div class="clr-image-gallery__thumb-overlay" data-testid="image-gallery-remaining-overlay">
+        <span data-testid="image-gallery-remaining-count">{{ remainingCount() }}+</span>
       </div>
       }
     </div>
@@ -55,9 +59,16 @@
 
 <!-- Built-in modal (only when useBuiltInModal is true) -->
 @if (useBuiltInModal() && modalOpen()) {
-<div class="clr-image-gallery-backdrop" (click)="onBackdropClick($event)" role="dialog" aria-modal="true">
-  <div class="clr-image-gallery-modal">
+<div
+  class="clr-image-gallery-backdrop"
+  (click)="onBackdropClick($event)"
+  role="dialog"
+  aria-modal="true"
+  data-testid="image-gallery-dialog"
+>
+  <div class="clr-image-gallery-modal" data-testid="image-gallery-modal">
     <clr-image-carousel
+      data-testid="image-gallery-carousel"
       [images]="images()"
       [productName]="productName()"
       [initialIndex]="activeIndex()"

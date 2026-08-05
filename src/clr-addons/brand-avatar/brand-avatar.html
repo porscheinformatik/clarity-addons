@@ -1,6 +1,7 @@
 <div class="brand-avatar-rectangle">
   <div #avatar class="brand-avatar-icon-container">
     <cds-icon
+      data-testid="brand-avatar-icon"
       [size]="'' + size"
       [shape]="getShape()"
       [ngClass]="{'default-icon': getShape() === getDefaultIcon()}"

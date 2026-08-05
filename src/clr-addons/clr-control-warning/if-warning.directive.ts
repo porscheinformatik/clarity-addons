@@ -38,6 +38,7 @@ export class ClrIfWarning {
           this.renderer.addClass(this.iconRef.location.nativeElement, 'clr-control-warning-icon');
         }
         const iconEl = this.iconRef.location.nativeElement;
+        this.renderer.setAttribute(iconEl, 'data-testid', 'clr-control-warning-icon');
 
         const parent = this.helperElement.parentElement;
 

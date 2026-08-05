@@ -1,43 +1,63 @@
 <ng-template #itemTemplate>
   <div
     class="summary-item"
+    data-testid="summary-item-{{ label() }}"
     [class.hidden]="
       !hasProjectedContent && !hasLoading && !hasError && !hasWarning && !showEditButton && !showOnEmptyValue()
     "
   >
-    <span class="summary-item-label">{{ label() }}:</span>
-    <div class="summary-item-values" #valuesContainer>
+    <span class="summary-item-label" data-testid="summary-item-label-{{ label() }}">{{ label() }}:</span>
+    <div class="summary-item-values" #valuesContainer data-testid="summary-item-values-{{ label() }}">
       @if (hasLoading) {
-      <div class="summary-item-loading">
-        <span class="spinner spinner-inline"></span>
-        <span>{{ loadingText }}</span>
+      <div class="summary-item-loading" data-testid="summary-item-loading-{{ label() }}">
+        <span class="spinner spinner-inline" data-testid="summary-item-loading-spinner-{{ label() }}"></span>
+        <span data-testid="summary-item-loading-text-{{ label() }}">{{ loadingText }}</span>
       </div>
       } @else if (hasError) {
-      <clr-summary-item-value icon="error-standard" class="error"></clr-summary-item-value>
+      <clr-summary-item-value
+        icon="error-standard"
+        class="error"
+        data-testid="summary-item-error-icon-{{ label() }}"
+      ></clr-summary-item-value>
       <clr-summary-item-value
         [value]="errorText"
         [clickable]="true"
         (clicked)="errorClick()"
         class="error"
+        data-testid="summary-item-error-{{ label() }}"
       ></clr-summary-item-value>
       } @else if (hasWarning) {
-      <clr-summary-item-value icon="warning-standard" class="warning"></clr-summary-item-value>
+      <clr-summary-item-value
+        icon="warning-standard"
+        class="warning"
+        data-testid="summary-item-warning-icon-{{ label() }}"
+      ></clr-summary-item-value>
       <clr-summary-item-value
         [value]="warningText"
         [clickable]="true"
         (clicked)="warningClick()"
         class="warning"
+        data-testid="summary-item-warning-{{ label() }}"
       ></clr-summary-item-value>
       } @else {
       <ng-content select="clr-summary-item-value"></ng-content>
       @if (showCopyButton) {
-      <clr-copy-to-clipboard [value]="copyableValue" [tooltipText]="copyButtonTooltip()"></clr-copy-to-clipboard>
+      <clr-copy-to-clipboard
+        [value]="copyableValue"
+        [tooltipText]="copyButtonTooltip()"
+        data-testid="summary-item-copy-button-{{ label() }}"
+      ></clr-copy-to-clipboard>
       }
       <ng-content></ng-content>
       @if (showEditButton) {
-      <clr-summary-item-value [value]="editText" [clickable]="true" (clicked)="editClick()"></clr-summary-item-value>
+      <clr-summary-item-value
+        [value]="editText"
+        [clickable]="true"
+        (clicked)="editClick()"
+        data-testid="summary-item-edit-{{ label() }}"
+      ></clr-summary-item-value>
       } @else if (!hasProjectedContent) {
-      <span class="value value-placeholder">&mdash;</span>
+      <span class="value value-placeholder" data-testid="summary-item-placeholder-{{ label() }}">&mdash;</span>
       } }
     </div>
   </div>

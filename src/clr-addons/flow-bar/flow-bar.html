@@ -6,6 +6,7 @@
       [disabled]="!step.enabled"
       [class.active]="step === _activeStep"
       (click)="changeActiveStep(step)"
+      data-testid="flow-bar-step-{{ step.title | async }}"
     >
       {{index + 1}}. {{(step.title | async)}}
     </button>
@@ -15,14 +16,21 @@
   </div>
   }
 </div>
-<clr-dropdown class="flow-bar-dropdown clr-flex-fill">
-  <button type="button" class="btn btn-outline-primary" clrDropdownTrigger>
+<clr-dropdown class="flow-bar-dropdown clr-flex-fill" data-testid="flow-bar-dropdown">
+  <button type="button" class="btn btn-outline-primary" clrDropdownTrigger data-testid="flow-bar-dropdown-trigger">
     {{_steps.indexOf(_activeStep) + 1}}. {{_activeStep?.title | async}}
     <cds-icon shape="angle" direction="down"></cds-icon>
   </button>
   <clr-dropdown-menu>
     @for (step of _steps; track step; let index = $index; let last = $last) {
-    <button clrDropdownItem type="button" class="btn" [disabled]="!step.enabled" (click)="changeActiveStep(step)">
+    <button
+      clrDropdownItem
+      type="button"
+      class="btn"
+      [disabled]="!step.enabled"
+      (click)="changeActiveStep(step)"
+      data-testid="flow-bar-dropdown-step-{{ step.title | async }}"
+    >
       {{index + 1}}. {{step.title | async}}
     </button>
     }

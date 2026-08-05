@@ -8,10 +8,18 @@ import { ClrCommonStringsService } from '@clr/angular';
   template: `
     @if (hasSelectedRows()) {
       <div class="clr-form-control-disabled">
-        <clr-checkbox-wrapper class="treetable-footer-select">
-          <input clrCheckbox type="checkbox" checked="checked" disabled />
-          <label>{{ selectedRows().length }}</label>
-          <span class="clr-sr-only">{{ commonStrings.selectedRows }}</span>
+        <clr-checkbox-wrapper class="treetable-footer-select" data-testid="treetable-footer-selected-wrapper">
+          <input
+            clrCheckbox
+            type="checkbox"
+            data-testid="treetable-footer-selected-checkbox"
+            checked="checked"
+            disabled
+          />
+          <label data-testid="treetable-footer-selected-count">{{ selectedRows().length }}</label>
+          <span class="clr-sr-only" data-testid="treetable-footer-selected-label">
+            {{ commonStrings.selectedRows }}
+          </span>
         </clr-checkbox-wrapper>
       </div>
     }
@@ -19,7 +27,7 @@ import { ClrCommonStringsService } from '@clr/angular';
       <clr-tt-column-manager-menu [resetLabel]="clrResetLabel()" />
     }
 
-    <div class="treetable-footer-description">
+    <div class="treetable-footer-description" data-testid="treetable-footer-description">
       <ng-content />
     </div>
   `,

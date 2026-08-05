@@ -1,4 +1,11 @@
 <clr-input-container class="clr-input-time">
   <label class="clr-control-label">&nbsp;</label>
-  <input clrInput #inputElm [(ngModel)]="this.time" type="time" step="{{ activateSeconds ? 1 : 60 }}" />
+  <input
+    clrInput
+    #inputElm
+    [(ngModel)]="this.time"
+    type="time"
+    step="{{ activateSeconds ? 1 : 60 }}"
+    data-testid="timepicker-input"
+  />
 </clr-input-container>

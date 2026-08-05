@@ -11,6 +11,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   template: '<ng-content></ng-content>',
   host: {
     '[class.treetable-cell]': 'true',
+    'data-testid': 'treetable-cell',
     role: 'gridcell',
   },
   standalone: false,

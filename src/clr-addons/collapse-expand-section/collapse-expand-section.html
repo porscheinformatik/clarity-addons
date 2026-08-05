@@ -1,4 +1,4 @@
-<div class="ces">
+<div class="ces" data-testid="collapse-expand-section">
   <ng-template #titleContent>
     <ng-content select="[clr-ces-title]"></ng-content>
   </ng-template>
@@ -7,6 +7,7 @@
     <h2>
       <span
         class="ces-title-trigger"
+        data-testid="collapse-expand-section-title-trigger"
         (click)="onCollapseExpand()"
         (keydown.enter)="onCollapseExpand()"
         (keydown.space)="onCollapseExpand(); $event.preventDefault()"
@@ -21,6 +22,7 @@
     } @else {
     <span
       class="ces-title-trigger"
+      data-testid="collapse-expand-section-title-trigger-unstyled"
       (click)="onCollapseExpand()"
       (keydown.enter)="onCollapseExpand()"
       (keydown.space)="onCollapseExpand(); $event.preventDefault()"
@@ -33,7 +35,12 @@
     <ng-container *ngTemplateOutlet="caretBtn"></ng-container>
     }
     <ng-template #caretBtn>
-      <button type="button" (click)="onCollapseExpand()" class="btn btn-icon btn-link ces-caret-btn">
+      <button
+        type="button"
+        (click)="onCollapseExpand()"
+        class="btn btn-icon btn-link ces-caret-btn"
+        data-testid="collapse-expand-section-caret-button"
+      >
         <cds-icon
           shape="angle"
           size="28"
@@ -48,7 +55,7 @@
     <ng-content select="[clr-ces-subtitle]"></ng-content>
   </ng-template>
   @if (!disableSubtitle) {
-  <div class="ces-subtitle">
+  <div class="ces-subtitle" data-testid="collapse-expand-section-subtitle">
     @if (!disableHeaderStyles) {
     <h4>
       <ng-container *ngTemplateOutlet="subtitleContent"></ng-container>
@@ -58,7 +65,11 @@
     }
   </div>
   } @if (!isCollapsed) {
-  <div [@collapseExpandAnimation]="isCollapsed" [@.disabled]="disableAnimation">
+  <div
+    data-testid="collapse-expand-section-content"
+    [@collapseExpandAnimation]="isCollapsed"
+    [@.disabled]="disableAnimation"
+  >
     <ng-content select="[clr-ces-content]"></ng-content>
   </div>
   }

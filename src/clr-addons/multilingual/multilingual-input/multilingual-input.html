@@ -2,6 +2,7 @@
 <div class="clr-control-container" [ngClass]="controlClasses">
   @if (showLanguageSelector()) {
   <clr-multilingual-selector
+    data-testid="multilingual-input-language-selector"
     [disabled]="disabled"
     [texts]="shownTexts"
     [selectedLang]="selectedLang"
@@ -9,7 +10,11 @@
   >
   </clr-multilingual-selector>
   } @if (readonly || readonly === '') {
-  <span [title]="!!shownTexts && !!selectedLang ? shownTexts.get(selectedLang) : ''" class="text-truncate">
+  <span
+    data-testid="multilingual-input-readonly-value-{{ selectedLang }}"
+    [title]="!!shownTexts && !!selectedLang ? shownTexts.get(selectedLang) : ''"
+    class="text-truncate"
+  >
     {{ !!shownTexts && !!selectedLang ? shownTexts.get(selectedLang) : '' }}
   </span>
   } @else {
@@ -24,6 +29,7 @@
         (blur)="onTouch()"
         [disabled]="disabled"
         autocomplete="off"
+        data-testid="multilingual-input-text-{{ selectedLang }}"
         [maxlength]="maxlength || null"
         #input
       />

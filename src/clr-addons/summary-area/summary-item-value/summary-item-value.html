@@ -1,14 +1,32 @@
 @if (icon() !== undefined && icon() !== null && icon() !== '') { @if (href()) { @if (tooltip()) {
 <clr-tooltip>
-  <a clrTooltipTrigger class="value-icon-link" [href]="href()" [attr.target]="target() ?? null" (click)="handleClick()">
+  <a
+    clrTooltipTrigger
+    class="value-icon-link"
+    [href]="href()"
+    [attr.target]="target() ?? null"
+    (click)="handleClick()"
+    data-testid="summary-item-value-icon-link"
+  >
     <cds-icon [shape]="icon()" class="value-icon value-link"></cds-icon>
   </a>
-  <clr-tooltip-content [clrSize]="tooltipSize" [clrPosition]="tooltipPosition" *clrIfOpen>
+  <clr-tooltip-content
+    [clrSize]="tooltipSize"
+    [clrPosition]="tooltipPosition"
+    *clrIfOpen
+    data-testid="summary-item-value-icon-link-tooltip"
+  >
     {{ tooltip() }}</clr-tooltip-content
   >
 </clr-tooltip>
 } @else {
-<a class="value-icon-link" [href]="href()" [attr.target]="target() ?? null" (click)="handleClick()">
+<a
+  class="value-icon-link"
+  [href]="href()"
+  [attr.target]="target() ?? null"
+  (click)="handleClick()"
+  data-testid="summary-item-value-icon-link-plain"
+>
   <cds-icon [shape]="icon()" class="value-icon value-link"></cds-icon>
 </a>
 } } @else if (hasClickHandler) { @if (tooltip()) {
@@ -20,8 +38,14 @@
     tabindex="0"
     (click)="handleClick()"
     (keydown.enter)="handleClick()"
+    data-testid="summary-item-value-icon-action"
   ></cds-icon>
-  <clr-tooltip-content [clrSize]="tooltipSize" [clrPosition]="tooltipPosition" *clrIfOpen>
+  <clr-tooltip-content
+    [clrSize]="tooltipSize"
+    [clrPosition]="tooltipPosition"
+    *clrIfOpen
+    data-testid="summary-item-value-icon-action-tooltip"
+  >
     {{ tooltip() }}</clr-tooltip-content
   >
 </clr-tooltip>
@@ -32,16 +56,27 @@
   tabindex="0"
   (click)="handleClick()"
   (keydown.enter)="handleClick()"
+  data-testid="summary-item-value-icon-action-plain"
 ></cds-icon>
 } } @else { @if (tooltip()) {
 <clr-tooltip>
-  <cds-icon clrTooltipTrigger [shape]="icon()" class="value-icon value-icon-neutral"></cds-icon>
-  <clr-tooltip-content [clrSize]="tooltipSize" [clrPosition]="tooltipPosition" *clrIfOpen>
+  <cds-icon
+    clrTooltipTrigger
+    [shape]="icon()"
+    class="value-icon value-icon-neutral"
+    data-testid="summary-item-value-icon"
+  ></cds-icon>
+  <clr-tooltip-content
+    [clrSize]="tooltipSize"
+    [clrPosition]="tooltipPosition"
+    *clrIfOpen
+    data-testid="summary-item-value-icon-tooltip"
+  >
     {{ tooltip() }}</clr-tooltip-content
   >
 </clr-tooltip>
 } @else {
-<cds-icon [shape]="icon()" class="value-icon value-icon-neutral"></cds-icon>
+<cds-icon [shape]="icon()" class="value-icon value-icon-neutral" data-testid="summary-item-value-icon-plain"></cds-icon>
 } } } @else if (value() !== undefined && value() !== null && value() !== '') { @if (href()) { @if (effectiveTooltip) {
 <clr-tooltip>
   <a
@@ -51,15 +86,28 @@
     [href]="href()"
     [attr.target]="target() ?? null"
     (click)="handleClick()"
+    data-testid="summary-item-value-link"
   >
     {{ value() }}
   </a>
-  <clr-tooltip-content [clrSize]="tooltipSize" [clrPosition]="tooltipPosition" *clrIfOpen>
+  <clr-tooltip-content
+    [clrSize]="tooltipSize"
+    [clrPosition]="tooltipPosition"
+    *clrIfOpen
+    data-testid="summary-item-value-link-tooltip"
+  >
     {{ effectiveTooltip }}</clr-tooltip-content
   >
 </clr-tooltip>
 } @else {
-<a #valueElement class="value value-link" [href]="href()" [attr.target]="target() ?? null" (click)="handleClick()">
+<a
+  #valueElement
+  class="value value-link"
+  [href]="href()"
+  [attr.target]="target() ?? null"
+  (click)="handleClick()"
+  data-testid="summary-item-value-link-plain"
+>
   {{ value() }}
 </a>
 } } @else if (hasClickHandler) {
@@ -70,26 +118,37 @@
     clrTooltipTrigger
     (click)="handleClick()"
     (keydown.enter)="handleClick()"
+    data-testid="summary-item-value-action"
   >
     {{ value() }}
   </span>
   @if (effectiveTooltip) {
-  <clr-tooltip-content [clrSize]="tooltipSize" [clrPosition]="tooltipPosition" *clrIfOpen>
+  <clr-tooltip-content
+    [clrSize]="tooltipSize"
+    [clrPosition]="tooltipPosition"
+    *clrIfOpen
+    data-testid="summary-item-value-action-tooltip"
+  >
     {{ effectiveTooltip }}</clr-tooltip-content
   >
   }
 </clr-tooltip>
 } @else if(effectiveTooltip) {
 <clr-tooltip>
-  <span #valueElement class="value" clrTooltipTrigger>{{ value() }}</span>
-  <clr-tooltip-content [clrSize]="tooltipSize" [clrPosition]="tooltipPosition" *clrIfOpen>
+  <span #valueElement class="value" clrTooltipTrigger data-testid="summary-item-value">{{ value() }}</span>
+  <clr-tooltip-content
+    [clrSize]="tooltipSize"
+    [clrPosition]="tooltipPosition"
+    *clrIfOpen
+    data-testid="summary-item-value-tooltip"
+  >
     {{ effectiveTooltip }}</clr-tooltip-content
   >
 </clr-tooltip>
 } @else {
-<span #valueElement class="value">{{ value() }}</span>
+<span #valueElement class="value" data-testid="summary-item-value-plain">{{ value() }}</span>
 } } @else {
-<span class="projected-wrapper" #projectedContent>
+<span class="projected-wrapper" #projectedContent data-testid="summary-item-value-projected">
   <ng-content></ng-content>
 </span>
 }

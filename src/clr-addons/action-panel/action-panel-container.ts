@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'clr-action-panel-container',
   template: `
-    <div class="action-panel-outer-wrapper">
+    <div class="action-panel-outer-wrapper" data-testid="action-panel-container">
       <ng-content select="clr-action-panel-container-content"></ng-content>
       <ng-content select="clr-action-panel-container-footer"></ng-content>
     </div>
