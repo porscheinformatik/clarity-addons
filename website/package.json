@@ -35,7 +35,7 @@
     "@webcomponents/custom-elements": "1.6.0",
     "@webcomponents/webcomponentsjs": "2.8.0",
     "angular-calendar": "0.32.2",
-    "core-js": "3.49.0",
+    "core-js": "3.50.0",
     "date-fns": "4.4.0",
     "intl": "1.2.5",
     "jump.js": "1.0.2",
@@ -45,9 +45,9 @@
     "zone.js": "0.16.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "21.2.19",
-    "@angular/build": "21.2.19",
-    "@angular/cli": "21.2.19",
+    "@angular-devkit/build-angular": "21.2.20",
+    "@angular/build": "21.2.20",
+    "@angular/cli": "21.2.20",
     "@angular/compiler-cli": "21.2.19",
     "@angular/language-service": "21.2.19",
     "@types/node": "24.13.3",
