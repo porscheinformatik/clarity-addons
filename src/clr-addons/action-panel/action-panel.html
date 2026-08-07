@@ -1,6 +1,12 @@
 @if (_open) {
-<div [@slideIn] class="action-panel-action-wrapper" (@slideIn.done)="resizeWindow()">
+<div data-testid="action-panel" [@slideIn] class="action-panel-action-wrapper" (@slideIn.done)="resizeWindow()">
   <ng-content select="[clr-action-panel-content]"></ng-content>
 </div>
-<div [@fade] class="action-panel-backdrop" (click)="close()" (@fade.done)="resizeWindow()"></div>
+<div
+  data-testid="action-panel-backdrop"
+  [@fade]
+  class="action-panel-backdrop"
+  (click)="close()"
+  (@fade.done)="resizeWindow()"
+></div>
 }

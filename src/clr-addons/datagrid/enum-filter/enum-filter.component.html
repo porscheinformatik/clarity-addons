@@ -1,4 +1,4 @@
-<button class="btn btn-sm btn-icon btn-link btn-trash" (click)="clearFilters()">
+<button class="btn btn-sm btn-icon btn-link btn-trash" (click)="clearFilters()" data-testid="enum-filter-clear-button">
   <cds-icon shape="trash"></cds-icon>
 </button>
 <clr-checkbox-container class="filter-selection">
@@ -11,8 +11,11 @@
       name="possibleValue"
       [ngModel]="containsFilterValue(filteredValues, possibleValue)"
       (ngModelChange)="onChange(possibleValue, $event)"
+      data-testid="enum-filter-option-{{ possibleValue.value }}"
     />
-    <label>{{ possibleValue.displayValue ?? possibleValue }}</label>
+    <label data-testid="enum-filter-option-label-{{ possibleValue.value }}">
+      {{ possibleValue.displayValue ?? possibleValue }}
+    </label>
   </clr-checkbox-wrapper>
   }
 </clr-checkbox-container>

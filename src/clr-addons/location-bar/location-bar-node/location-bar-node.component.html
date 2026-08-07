@@ -3,13 +3,14 @@
     <ng-content></ng-content>
   }
   @if ((selectableChilds.length > 0 && !parentNode.getSelectedChild()) || selectableChilds.length > 1) {
-    <clr-dropdown>
+    <clr-dropdown data-testid="location-bar-dropdown">
       <button
         class="btn btn-link btn-sm"
         (blur)="focus = false"
         (focus)="focus = true"
         (click)="resetSearch()"
         clrDropdownTrigger
+        data-testid="location-bar-dropdown-trigger"
       >
         @if (parentNode.getSelectedChild(); as node) {
           <span
@@ -17,12 +18,19 @@
             class="text-truncate"
             [class.locationbar-last-level]="!parentNode.getSelectedChild().getSelectedChild()"
             title="{{ node.label }}"
+            data-testid="location-bar-selected-node-{{ node.label }}"
           >
             {{ node.label }}
           </span>
           <cds-icon shape="angle" direction="down" size="xs" class="caret-icon"></cds-icon>
         } @else {
-          <cds-icon class="locationbar-unselected" size="18" [solid]="focus" shape="tree-view"></cds-icon>&nbsp;...
+          <cds-icon
+            class="locationbar-unselected"
+            size="18"
+            [solid]="focus"
+            shape="tree-view"
+            data-testid="location-bar-unselected-icon"
+          ></cds-icon>&nbsp;...
         }
       </button>
       <clr-dropdown-menu
@@ -40,12 +48,13 @@
         }
         @if (displaySearchResult()) {
           @if (searchResultItems.length !== 0) {
-            @for (searchResultItem of searchResultItems; track searchResultItem) {
+            @for (searchResultItem of searchResultItems; track searchResultItem; let index = $index) {
               <button
                 type="button"
                 clrDropdownItem
                 class="text-truncate"
                 (click)="onSearchItemChanged(searchResultItem)"
+                data-testid="location-bar-search-result-{{ index }}"
               >
                 <ng-container
                   *ngTemplateOutlet="searchRequest?.searchResultItemRef; context: { $implicit: searchResultItem }"
@@ -53,7 +62,7 @@
               </button>
             }
           } @else {
-            <span class="locationbar-no-result-text">
+            <span class="locationbar-no-result-text" data-testid="location-bar-no-results-text">
               {{ searchRequest?.noResultsText ?? 'No search result found.' }}
             </span>
           }
@@ -66,6 +75,7 @@
               [class.locationbar-selected-child]="item.id === parentNode.getSelectedChild()?.id"
               (click)="selectNode(item)"
               title="{{ item.label }}"
+              data-testid="location-bar-child-{{ item.label }}"
             >
               {{ item.label }}
             </button>
@@ -81,6 +91,7 @@
           (click)="selectNode(parentNode.getSelectedChild())"
           [class.locationbar-last-level]="!parentNode.getSelectedChild().getSelectedChild()"
           title="{{ parentNode.getSelectedChild().label }}"
+          data-testid="location-bar-selected-button-{{ parentNode.getSelectedChild().label }}"
         >
           {{ parentNode.getSelectedChild().label }}
         </button>
@@ -89,6 +100,7 @@
           class="locationbar-unselectable-node text-truncate"
           [class.locationbar-last-level]="!parentNode.getSelectedChild().getSelectedChild()"
           title="{{ parentNode.getSelectedChild().label }}"
+          data-testid="location-bar-unselectable-node-{{ parentNode.getSelectedChild().label }}"
         >
           {{ parentNode.getSelectedChild().label }}
         </span>
@@ -103,7 +115,7 @@
       (selectionChanged)="onSelectionChanged($event)"
       (searchItemChanged)="onSearchItemChanged(null)"
     >
-      <span>/</span>
+      <span data-testid="location-bar-separator">/</span>
     </clr-location-bar-node>
   }
 }

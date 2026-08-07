@@ -2,6 +2,7 @@
 <div class="clr-control-container" [ngClass]="controlClasses">
   @for (value of values; track value; let i = $index) {
   <clr-add-option
+    data-testid="quick-list-option-row-{{ value.id || i }}"
     [allValues]="allValues"
     [excludedValues]="values"
     (remove)="onRemoveValue(i)"
@@ -22,6 +23,7 @@
     class="btn btn-icon btn-link quick-list-addcompact"
     (click)="addBlankOption()"
     [disabled]="addNotPossible() || disabled"
+    data-testid="quick-list-add-compact-button-empty"
   >
     <cds-icon shape="plus-circle"></cds-icon>
   </button>
@@ -31,6 +33,7 @@
     class="btn btn-link btn-sm quick-list-add"
     (click)="addBlankOption()"
     [disabled]="addNotPossible() || disabled"
+    data-testid="quick-list-add-button"
   >
     {{addLabel}}
   </button>

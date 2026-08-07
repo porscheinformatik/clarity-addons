@@ -9,11 +9,11 @@ export interface ChartLegendItem {
 @Component({
   selector: 'cng-chart-legend',
   template: `
-    <div class="chart-legend">
+    <div class="chart-legend" data-testid="chart-legend">
       @for (item of items(); track item.label) {
-        <div class="legend-item">
+        <div class="legend-item" data-testid="chart-legend-item-{{ item.label }}">
           <span class="legend-color-square" [style.background-color]="toChartColor(item.color)"></span>
-          <span class="legend-label">{{ item.label }}</span>
+          <span class="legend-label" data-testid="chart-legend-label-{{ item.label }}">{{ item.label }}</span>
         </div>
       }
     </div>

@@ -2,7 +2,14 @@
 <clr-radio-container clrInline>
   @for (a of pageArray(); track a; let page = $index) {
   <clr-radio-wrapper>
-    <input clrRadio type="radio" [value]="page+1" [(ngModel)]="currentPage" name="{{uniqueName}}" />
+    <input
+      clrRadio
+      type="radio"
+      [value]="page+1"
+      [(ngModel)]="currentPage"
+      name="{{uniqueName}}"
+      data-testid="dot-pager-dot-{{ page + 1 }}"
+    />
     <label>&nbsp;</label>
   </clr-radio-wrapper>
   }

@@ -8,14 +8,19 @@ ClarityIcons.addIcons(downloadIcon);
 @Component({
   selector: 'cng-chart-export-button',
   template: `
-    <clr-dropdown>
-      <button class="btn btn-sm btn-icon btn-link export-trigger" clrDropdownTrigger title="Export chart">
+    <clr-dropdown data-testid="chart-export-dropdown">
+      <button
+        class="btn btn-sm btn-icon btn-link export-trigger"
+        data-testid="chart-export-button"
+        clrDropdownTrigger
+        title="Export chart"
+      >
         <cds-icon shape="download" size="16"></cds-icon>
         {{ buttonTitle() }}
       </button>
-      <clr-dropdown-menu *clrIfOpen clrPosition="bottom-left">
-        <button clrDropdownItem (click)="export('svg')">SVG</button>
-        <button clrDropdownItem (click)="export('png')">PNG</button>
+      <clr-dropdown-menu *clrIfOpen clrPosition="bottom-left" data-testid="chart-export-menu">
+        <button clrDropdownItem data-testid="chart-export-svg-button" (click)="export('svg')">SVG</button>
+        <button clrDropdownItem data-testid="chart-export-png-button" (click)="export('png')">PNG</button>
       </clr-dropdown-menu>
     </clr-dropdown>
   `,

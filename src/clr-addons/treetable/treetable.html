@@ -4,9 +4,9 @@
 ~ The full license information can be found in LICENSE in the root directory of this project.
 -->
 
-<div class="treetable">
-  <div class="treetable-grid" role="grid">
-    <div class="treetable-header" role="rowgroup" [class.hide-header]="clrHideHeader()">
+<div class="treetable" data-testid="treetable">
+  <div class="treetable-grid" role="grid" data-testid="treetable-grid">
+    <div class="treetable-header" role="rowgroup" data-testid="treetable-header" [class.hide-header]="clrHideHeader()">
       @if (showSelection() && !empty()) {
       <div class="treetable-row-selection treetable-column" role="columnheader">
         <div class="clr-checkbox-wrapper">
@@ -18,20 +18,20 @@
             (change)="toggleSelectAll()"
           />
           <!-- Usage of class clr-col-null here prevents clr-col-* classes from being added when a treetable is wrapped inside clrForm -->
-          <label [for]="selectAllId" class="clr-control-label clr-col-null">
-            <span class="clr-sr-only">{{ commonStrings.selectAll }}</span>
+          <label [for]="selectAllId" class="clr-control-label clr-col-null" data-testid="treetable-select-all-label">
+            <span class="clr-sr-only" data-testid="treetable-select-all-text">{{ commonStrings.selectAll }}</span>
           </label>
         </div>
       </div>
       } @if (hasActionOverflow()) {
-      <div class="treetable-row-actions treetable-column">&nbsp;</div>
+      <div class="treetable-row-actions treetable-column" data-testid="treetable-action-header">&nbsp;</div>
       }
-      <div class="treetable-row-scrollable">
+      <div class="treetable-row-scrollable" data-testid="treetable-column-headers">
         <ng-content select="clr-tt-column" />
       </div>
     </div>
 
-    <div class="treetable-body">
+    <div class="treetable-body" data-testid="treetable-body">
       @if (isRecursionMode()) {
       <clr-tt-recursive-rows [children]="displayedNodes()" />
       } @else {
@@ -45,8 +45,8 @@
   <ng-content select="clr-tt-footer"></ng-content>
 
   @if (clrTtLoading()) {
-  <div class="treetable-spinner">
-    <clr-spinner clrMedium />
+  <div class="treetable-spinner" data-testid="treetable-loading">
+    <clr-spinner clrMedium data-testid="treetable-loading-spinner" />
   </div>
   }
 </div>

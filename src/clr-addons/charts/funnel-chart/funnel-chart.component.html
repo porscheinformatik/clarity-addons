@@ -1,19 +1,32 @@
-<div class="funnel-container" #container (cngWindowResize)="updateChart()">
+<div class="funnel-container" data-testid="funnel-chart" #container (cngWindowResize)="updateChart()">
   <svg [class.d-none]="loading() || !hasData()" #chart></svg>
 
   @if (!loading()) { @for (pos of sectionTooltips(); track pos.key) {
-  <clr-signpost [style.left.px]="pos.x" [style.top.px]="pos.y">
-    <cds-icon clrSignpostTrigger shape="info-circle" size="18" />
-    <clr-signpost-content clrPosition="bottom-left">
-      <p class="mt-0">{{ pos.description }}</p>
+  <clr-signpost
+    data-testid="funnel-chart-section-signpost-{{ pos.key }}"
+    [style.left.px]="pos.x"
+    [style.top.px]="pos.y"
+  >
+    <cds-icon
+      clrSignpostTrigger
+      data-testid="funnel-chart-section-signpost-trigger-{{ pos.key }}"
+      shape="info-circle"
+      size="18"
+    />
+    <clr-signpost-content
+      clrPosition="bottom-left"
+      data-testid="funnel-chart-section-signpost-content-{{ pos.key }}"
+    >
+      <p class="mt-0" data-testid="funnel-chart-section-description-{{ pos.key }}">{{ pos.description }}</p>
     </clr-signpost-content>
   </clr-signpost>
   } } @if (loading()) {
-  <cng-bar-chart-skeleton orientation="vertical" skeletonType="loading" />
+  <cng-bar-chart-skeleton data-testid="funnel-chart-skeleton" orientation="vertical" skeletonType="loading" />
   } @if (tooltipPosition()) { @if (orientation() === 'centered') {
 
   <!-- ── Centered mode tooltip ─────────────────────────────────────────── -->
   <cng-chart-tooltip
+    data-testid="funnel-chart-centered-tooltip"
     [tooltipPosition]="tooltipPosition()"
     tooltipOrientation="bottom"
     [squareColor]="selectedSpacerItem() ? centeredSpacerCssColor() : centeredBarCssColor()"
@@ -38,17 +51,21 @@
     </ng-container>
 
     @if (selectedSpacerItem()) {
-    <p class="mt-0">
+    <p class="mt-0" data-testid="funnel-chart-centered-tooltip-transition">
       <strong
         >{{ data()[selectedSpacerItem().index].value }} → {{ data()[selectedSpacerItem().index + 1].value }}</strong
       >
     </p>
     @for (section of (data()[selectedSpacerItem().index].sections ?? []); track section.key) { @let drillable =
     section.value > 0;
-    <p class="tooltip-row mt-0 mt-0-5 d-flex">
+    <p
+      class="tooltip-row mt-0 mt-0-5 d-flex"
+      data-testid="funnel-chart-centered-tooltip-section-{{ section.key }}"
+    >
       <strong>{{ section.label }}:&nbsp;</strong>
       <span
         class="row-right"
+        data-testid="funnel-chart-centered-tooltip-section-value-{{ section.key }}"
         [class.has-more-info]="drillable"
         (click)="
                   drillable && valueClicked.emit({
@@ -63,7 +80,9 @@
       &nbsp;({{ pct(section.value, data()[selectedSpacerItem().index].value) }}%)
     </p>
     } } @else {
-    <p class="mt-0">{{ pct(selectedItem().value, total()) }}% {{ resolvedChartLabels().all }}</p>
+    <p class="mt-0" data-testid="funnel-chart-centered-tooltip-percentage">
+      {{ pct(selectedItem().value, total()) }}% {{ resolvedChartLabels().all }}
+    </p>
     }
   </cng-chart-tooltip>
 
@@ -71,6 +90,7 @@
 
   <!-- ── Default mode tooltip ──────────────────────────────────────────── -->
   <cng-chart-tooltip
+    data-testid="funnel-chart-default-tooltip"
     [tooltipPosition]="tooltipPosition()"
     tooltipOrientation="bottom"
     [squareColor]="undefined"
@@ -80,13 +100,17 @@
   >
     <ng-container ngProjectAs="cng-title">{{ selectedItemLabel() }}</ng-container>
     @for (section of selectedItem().sections; track section.key) { @let drillable = section.value > 0;
-    <p class="tooltip-row mt-0 mt-0-5 d-flex">
+    <p
+      class="tooltip-row mt-0 mt-0-5 d-flex"
+      data-testid="funnel-chart-default-tooltip-section-{{ section.key }}"
+    >
       <span>
         <div class="color-square mr-0-5" [style.background-color]="section.cssColor"></div>
       </span>
       <strong>{{ section.label }}:&nbsp;</strong>
       <span
         class="row-right"
+        data-testid="funnel-chart-default-tooltip-section-value-{{ section.key }}"
         [class.has-more-info]="drillable"
         (click)="
                 drillable && valueClicked.emit({
@@ -102,10 +126,11 @@
     </p>
     }
 
-    <p class="tooltip-row mt-0-5">
+    <p class="tooltip-row mt-0-5" data-testid="funnel-chart-default-tooltip-total">
       <strong>{{ resolvedChartLabels().total }}:&nbsp;</strong>
       <span
         class="has-more-info"
+        data-testid="funnel-chart-default-tooltip-total-value"
         (click)="
           valueClicked.emit({
             value: selectedItem().value,
@@ -119,9 +144,9 @@
     </p>
 
     <ng-container ngProjectAs="cng-footer">
-      <p class="tooltip-row mt-0">
+      <p class="tooltip-row mt-0" data-testid="funnel-chart-default-tooltip-all">
         <strong>{{ resolvedChartLabels().all }}:&nbsp;</strong>
-        <span class="row-right">{{ total() }}</span>
+        <span class="row-right" data-testid="funnel-chart-default-tooltip-all-value">{{ total() }}</span>
       </p>
     </ng-container>
   </cng-chart-tooltip>
@@ -129,6 +154,7 @@
   } } @if (showExportButton() && !loading() && hasData()) {
   <cng-chart-export-button
     class="funnel-export-btn"
+    data-testid="funnel-chart-export"
     [svgRef]="svgElement()"
     [filename]="exportFilename()"
     [buttonTitle]="exportButtonTitle()"

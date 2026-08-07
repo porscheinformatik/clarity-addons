@@ -1,4 +1,4 @@
-<button class="btn btn-sm btn-icon btn-link btn-trash" (click)="clearFilter()">
+<button class="btn btn-sm btn-icon btn-link btn-trash" (click)="clearFilter()" data-testid="date-filter-clear-button">
   <cds-icon shape="trash"></cds-icon>
 </button>
 @if (!timeActive) {
@@ -11,6 +11,7 @@
     [(clrDate)]="from"
     [placeholder]="minPlaceholderValue"
     [attr.aria-label]="minPlaceholderValue"
+    data-testid="date-filter-from-date-input"
   />
 </clr-date-container>
 <clr-date-container class="filter-selection">
@@ -21,10 +22,13 @@
     [(clrDate)]="to"
     [placeholder]="maxPlaceholderValue"
     [attr.aria-label]="maxPlaceholderValue"
+    data-testid="date-filter-to-date-input"
   />
 </clr-date-container>
 @if (valError) {
-<clr-control-error>{{ dateValidationError || 'Date "from" must be before date "to"!' }} </clr-control-error>
+<clr-control-error data-testid="date-filter-validation-error">
+  {{ dateValidationError || 'Date "from" must be before date "to"!' }}
+</clr-control-error>
 } } @if (timeActive) {
 <clr-date-time-container class="filter-selection">
   <clr-date-container class="time-filter-active">
@@ -36,9 +40,17 @@
       [(clrDate)]="from"
       [placeholder]="minPlaceholderValue"
       [attr.aria-label]="minPlaceholderValue"
+      data-testid="date-filter-from-date-input"
     />
   </clr-date-container>
-  <input clrTime type="time" class="time-filter-input" step="60" [(ngModel)]="fromTime" />
+  <input
+    clrTime
+    type="time"
+    class="time-filter-input"
+    step="60"
+    [(ngModel)]="fromTime"
+    data-testid="date-filter-from-time-input"
+  />
 </clr-date-time-container>
 <clr-date-time-container>
   <clr-date-container class="time-filter-active">
@@ -49,10 +61,20 @@
       [(clrDate)]="to"
       [placeholder]="maxPlaceholderValue"
       [attr.aria-label]="maxPlaceholderValue"
+      data-testid="date-filter-to-date-input"
     />
   </clr-date-container>
-  <input clrTime type="time" class="time-filter-input" step="60" [(ngModel)]="toTime" />
+  <input
+    clrTime
+    type="time"
+    class="time-filter-input"
+    step="60"
+    [(ngModel)]="toTime"
+    data-testid="date-filter-to-time-input"
+  />
 </clr-date-time-container>
 @if (valError) {
-<clr-control-error>{{ dateValidationError || 'Date "from" must be before date "to"!' }} </clr-control-error>
+<clr-control-error data-testid="date-filter-validation-error">
+  {{ dateValidationError || 'Date "from" must be before date "to"!' }}
+</clr-control-error>
 } }
