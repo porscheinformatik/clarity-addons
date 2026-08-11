@@ -12,6 +12,7 @@ import { AreaChartComponent } from './area-chart/area-chart.component';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { ComboChartComponent } from './combo-chart/combo-chart.component';
 import { FunnelChartComponent } from './funnel-chart/funnel-chart.component';
+import { GroupedBarChartComponent } from './grouped-bar-chart/grouped-bar-chart.component';
 import { LineChartComponent } from './line-chart/line-chart.component';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
 
@@ -27,6 +28,7 @@ const CLR_CHARTS_DECLARATIONS = [
   BarChartComponent,
   ComboChartComponent,
   FunnelChartComponent,
+  GroupedBarChartComponent,
   LineChartComponent,
   PieChartComponent,
 ];
