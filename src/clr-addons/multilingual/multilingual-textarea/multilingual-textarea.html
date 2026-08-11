@@ -21,7 +21,7 @@
         [disabled]="disabled"
         [readonly]="readonly || readonly === ''"
         [maxlength]="maxlength || null"
-        data-testid="multilingual-textarea-text-{{ selectedLang }}"
+        [attr.data-testid]="'multilingual-textarea-text-' + (selectedLang)"
         [rows]="rows || 1"
         #input
       ></textarea>

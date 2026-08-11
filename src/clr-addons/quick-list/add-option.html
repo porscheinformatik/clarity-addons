@@ -7,21 +7,25 @@
     name="options"
     [(ngModel)]="selectedValue"
     [disabled]="disabled"
-    data-testid="quick-list-select-{{ value.id }}"
+    [attr.data-testid]="'quick-list-select-' + (value.id)"
   >
     @if (blankOption.id === selectedValue) {
     <option [selected]="true" [disabled]="true" [ngValue]="blankOption.id" data-testid="quick-list-blank-option">
       {{blankOption.label}}
     </option>
     } @for (val of getValues(); track val) {
-    <option [selected]="val.id === selectedValue" [ngValue]="val.id" data-testid="quick-list-option-{{ val.id }}">
+    <option
+      [selected]="val.id === selectedValue"
+      [ngValue]="val.id"
+      [attr.data-testid]="'quick-list-option-' + (val.id)"
+    >
       {{val.label}}
     </option>
     }
   </select>
 </div>
 } @else {
-<span data-testid="quick-list-readonly-value-{{ value.id }}">{{value.label}}</span>
+<span [attr.data-testid]="'quick-list-readonly-value-' + (value.id)">{{value.label}}</span>
 } @if (!(readonly || readonly === '')) {
 <button
   type="button"
@@ -29,7 +33,7 @@
   [ngClass]="{'quick-list-trash-ext': !showAddButton}"
   [disabled]="trashDisabled() || disabled"
   (click)="remove.emit()"
-  data-testid="quick-list-remove-button-{{ value.id }}"
+  [attr.data-testid]="'quick-list-remove-button-' + (value.id)"
 >
   <cds-icon shape="trash"></cds-icon>
 </button>

@@ -18,7 +18,7 @@
             class="text-truncate"
             [class.locationbar-last-level]="!parentNode.getSelectedChild().getSelectedChild()"
             title="{{ node.label }}"
-            data-testid="location-bar-selected-node-{{ node.label }}"
+            [attr.data-testid]="'location-bar-selected-node-' + node.label"
           >
             {{ node.label }}
           </span>
@@ -30,7 +30,8 @@
             [solid]="focus"
             shape="tree-view"
             data-testid="location-bar-unselected-icon"
-          ></cds-icon>&nbsp;...
+          ></cds-icon
+          >&nbsp;...
         }
       </button>
       <clr-dropdown-menu
@@ -54,7 +55,7 @@
                 clrDropdownItem
                 class="text-truncate"
                 (click)="onSearchItemChanged(searchResultItem)"
-                data-testid="location-bar-search-result-{{ index }}"
+                [attr.data-testid]="'location-bar-search-result-' + index"
               >
                 <ng-container
                   *ngTemplateOutlet="searchRequest?.searchResultItemRef; context: { $implicit: searchResultItem }"
@@ -75,7 +76,7 @@
               [class.locationbar-selected-child]="item.id === parentNode.getSelectedChild()?.id"
               (click)="selectNode(item)"
               title="{{ item.label }}"
-              data-testid="location-bar-child-{{ item.label }}"
+              [attr.data-testid]="'location-bar-child-' + item.label"
             >
               {{ item.label }}
             </button>
@@ -91,7 +92,7 @@
           (click)="selectNode(parentNode.getSelectedChild())"
           [class.locationbar-last-level]="!parentNode.getSelectedChild().getSelectedChild()"
           title="{{ parentNode.getSelectedChild().label }}"
-          data-testid="location-bar-selected-button-{{ parentNode.getSelectedChild().label }}"
+          [attr.data-testid]="'location-bar-selected-button-' + parentNode.getSelectedChild().label"
         >
           {{ parentNode.getSelectedChild().label }}
         </button>
@@ -100,7 +101,7 @@
           class="locationbar-unselectable-node text-truncate"
           [class.locationbar-last-level]="!parentNode.getSelectedChild().getSelectedChild()"
           title="{{ parentNode.getSelectedChild().label }}"
-          data-testid="location-bar-unselectable-node-{{ parentNode.getSelectedChild().label }}"
+          [attr.data-testid]="'location-bar-unselectable-node-' + parentNode.getSelectedChild().label"
         >
           {{ parentNode.getSelectedChild().label }}
         </span>

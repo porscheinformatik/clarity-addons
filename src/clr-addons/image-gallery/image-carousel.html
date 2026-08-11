@@ -78,13 +78,13 @@
           [style.height.px]="thumbnailSize()"
           [class.clr-image-carousel__thumb--active]="i === activeIndex()"
           (click)="setActive(i)"
-          data-testid="image-carousel-thumbnail-{{ i }}"
+          [attr.data-testid]="'image-carousel-thumbnail-' + (i)"
         >
           <img
             [src]="img.src"
             [alt]="img.alt || ''"
             class="clr-image-carousel__thumb-img"
-            data-testid="image-carousel-thumbnail-image-{{ i }}"
+            [attr.data-testid]="'image-carousel-thumbnail-image-' + (i)"
           />
         </div>
         }

@@ -4,8 +4,10 @@
     <!-- dummy entry with no visible content to reserve space for the history header -->
     <li>&nbsp;</li>
     @for (historyItem of historyElements$ | async; track historyItem) { @if (historyItem.url) {
-    <li class="history-item" data-testid="history-pinned-entry-{{ historyItem.title }}">
-      <a [href]="historyItem.url" data-testid="history-pinned-link-{{ historyItem.title }}">{{ historyItem.title }}</a>
+    <li class="history-item" [attr.data-testid]="'history-pinned-entry-' + (historyItem.title)">
+      <a [href]="historyItem.url" [attr.data-testid]="'history-pinned-link-' + (historyItem.title)"
+        >{{ historyItem.title }}</a
+      >
     </li>
     } }
   </ol>

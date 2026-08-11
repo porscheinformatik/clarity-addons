@@ -20,16 +20,16 @@ import { ClrCommonStringsService } from '@clr/angular';
     <button
       type="button"
       class="treetable-column-handle"
-      data-testid="treetable-column-resize-handle-{{ columnId() }}"
+      [attr.data-testid]="'treetable-column-resize-handle-' + columnId()"
       [aria-label]="commonStrings.columnSeparatorAriaLabel"
       #columnHandle
     ></button>
-    <span class="clr-sr-only" data-testid="treetable-column-resize-description-{{ columnId() }}">
+    <span class="clr-sr-only" [attr.data-testid]="'treetable-column-resize-description-' + columnId()">
       {{ commonStrings.columnSeparatorDescription }}
     </span>
     <div
       class="treetable-column-resize-tracker"
-      data-testid="treetable-column-resize-tracker-{{ columnId() }}"
+      [attr.data-testid]="'treetable-column-resize-tracker-' + columnId()"
       #resizeTracker
     ></div>
   `,

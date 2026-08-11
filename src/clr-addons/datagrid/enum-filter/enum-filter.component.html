@@ -3,19 +3,19 @@
 </button>
 <clr-checkbox-container class="filter-selection">
   @for (possibleValue of possibleValues; track possibleValue) {
-  <clr-checkbox-wrapper>
-    <input
-      type="checkbox"
-      clrCheckbox
-      value="{{ possibleValue.displayValue ?? possibleValue }}"
-      name="possibleValue"
-      [ngModel]="containsFilterValue(filteredValues, possibleValue)"
-      (ngModelChange)="onChange(possibleValue, $event)"
-      data-testid="enum-filter-option-{{ possibleValue.value }}"
-    />
-    <label data-testid="enum-filter-option-label-{{ possibleValue.value }}">
-      {{ possibleValue.displayValue ?? possibleValue }}
-    </label>
-  </clr-checkbox-wrapper>
+    <clr-checkbox-wrapper>
+      <input
+        type="checkbox"
+        clrCheckbox
+        value="{{ possibleValue.displayValue ?? possibleValue }}"
+        name="possibleValue"
+        [ngModel]="containsFilterValue(filteredValues, possibleValue)"
+        (ngModelChange)="onChange(possibleValue, $event)"
+        [attr.data-testid]="'enum-filter-option-' + possibleValue.value"
+      />
+      <label [attr.data-testid]="'enum-filter-option-label-' + possibleValue.value">
+        {{ possibleValue.displayValue ?? possibleValue }}
+      </label>
+    </clr-checkbox-wrapper>
   }
 </clr-checkbox-container>

@@ -6,7 +6,7 @@
       [disabled]="!step.enabled"
       [class.active]="step === _activeStep"
       (click)="changeActiveStep(step)"
-      data-testid="flow-bar-step-{{ step.title | async }}"
+      [attr.data-testid]="'flow-bar-step-' + (step.title | async)"
     >
       {{index + 1}}. {{(step.title | async)}}
     </button>
@@ -29,7 +29,7 @@
       class="btn"
       [disabled]="!step.enabled"
       (click)="changeActiveStep(step)"
-      data-testid="flow-bar-dropdown-step-{{ step.title | async }}"
+      [attr.data-testid]="'flow-bar-dropdown-step-' + (step.title | async)"
     >
       {{index + 1}}. {{step.title | async}}
     </button>

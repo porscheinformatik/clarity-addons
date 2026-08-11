@@ -11,7 +11,7 @@
   </clr-multilingual-selector>
   } @if (readonly || readonly === '') {
   <span
-    data-testid="multilingual-input-readonly-value-{{ selectedLang }}"
+    [attr.data-testid]="'multilingual-input-readonly-value-' + (selectedLang)"
     [title]="!!shownTexts && !!selectedLang ? shownTexts.get(selectedLang) : ''"
     class="text-truncate"
   >
@@ -29,7 +29,7 @@
         (blur)="onTouch()"
         [disabled]="disabled"
         autocomplete="off"
-        data-testid="multilingual-input-text-{{ selectedLang }}"
+        [attr.data-testid]="'multilingual-input-text-' + (selectedLang)"
         [maxlength]="maxlength || null"
         #input
       />

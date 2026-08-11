@@ -1,6 +1,6 @@
 <ng-content select="label"></ng-content>
 @if (!this.labelComponent && this.addLayoutGrid) {
-<label></label>
+  <label></label>
 }
 <div
   [class.clr-col-12]="this.addLayoutGrid"
@@ -29,17 +29,20 @@
       </button>
     </div>
     @if (this.isInvalid) {
-    <cds-icon aria-hidden="true" class="clr-validate-icon" shape="exclamation-circle" status="danger"></cds-icon>
-    } @if (!this.isInvalid) {
-    <cds-icon aria-hidden="true" class="clr-validate-icon" shape="check-circle" status="success"></cds-icon>
+      <cds-icon aria-hidden="true" class="clr-validate-icon" shape="exclamation-circle" status="danger"></cds-icon>
+    }
+    @if (!this.isInvalid) {
+      <cds-icon aria-hidden="true" class="clr-validate-icon" shape="check-circle" status="success"></cds-icon>
     }
   </div>
   @if (this.showHelper) {
-  <ng-content select="clr-control-helper"></ng-content>
-  } @if (this.showInvalid) {
-  <ng-content select="clr-control-error"></ng-content>
-  } @if (this.showValid) {
-  <ng-content select="clr-control-success"></ng-content>
+    <ng-content select="clr-control-helper"></ng-content>
+  }
+  @if (this.showInvalid) {
+    <ng-content select="clr-control-error"></ng-content>
+  }
+  @if (this.showValid) {
+    <ng-content select="clr-control-success"></ng-content>
   }
 
   <div
@@ -79,14 +82,14 @@
           >
           </clr-datepicker>
           @if (_timeSelection) {
-          <clr-timepicker
-            class="timepicker"
-            (valueChange)="this.onTimeFromChange($event)"
-            [value]="this.timeFrom"
-            [activateSeconds]="_activateSeconds"
-            data-testid="daterangepicker-time-from"
-          >
-          </clr-timepicker>
+            <clr-timepicker
+              class="timepicker"
+              (valueChange)="this.onTimeFromChange($event)"
+              [value]="this.timeFrom"
+              [activateSeconds]="_activateSeconds"
+              data-testid="daterangepicker-time-from"
+            >
+            </clr-timepicker>
           }
         </div>
         <div class="datetime-container datetime-container-to">
@@ -101,43 +104,44 @@
           >
           </clr-datepicker>
           @if (_timeSelection) {
-          <clr-timepicker
-            class="timepicker"
-            (valueChange)="this.onTimeToChange($event)"
-            [value]="this.timeTo"
-            [activateSeconds]="_activateSeconds"
-            data-testid="daterangepicker-time-to"
-          >
-          </clr-timepicker>
+            <clr-timepicker
+              class="timepicker"
+              (valueChange)="this.onTimeToChange($event)"
+              [value]="this.timeTo"
+              [activateSeconds]="_activateSeconds"
+              data-testid="daterangepicker-time-to"
+            >
+            </clr-timepicker>
           }
         </div>
       </form>
       @if (this.presets?.length > 0) {
-      <div class="clr-daterangepicker-container-popup-content-presets">
-        @for (preset of this.presets; track preset) {
-        <button
-          (click)="this.applyPreset(preset)"
-          class="btn btn-outline btn-sm btn-block"
-          type="button"
-          data-testid="daterangepicker-preset-{{ preset.text }}"
-        >
-          {{ preset.text }}
-        </button>
-        }
-      </div>
-      } @if (this.presetsDateTime?.length > 0) {
-      <div class="clr-daterangepicker-container-popup-content-presets">
-        @for (preset of this.presetsDateTime; track preset) {
-        <button
-          (click)="this.applyPresetTime(preset)"
-          class="btn btn-outline btn-sm btn-block"
-          type="button"
-          data-testid="daterangepicker-time-preset-{{ preset.text }}"
-        >
-          {{ preset.text }}
-        </button>
-        }
-      </div>
+        <div class="clr-daterangepicker-container-popup-content-presets">
+          @for (preset of this.presets; track preset) {
+            <button
+              (click)="this.applyPreset(preset)"
+              class="btn btn-outline btn-sm btn-block"
+              type="button"
+              [attr.data-testid]="'daterangepicker-preset-' + preset.text"
+            >
+              {{ preset.text }}
+            </button>
+          }
+        </div>
+      }
+      @if (this.presetsDateTime?.length > 0) {
+        <div class="clr-daterangepicker-container-popup-content-presets">
+          @for (preset of this.presetsDateTime; track preset) {
+            <button
+              (click)="this.applyPresetTime(preset)"
+              class="btn btn-outline btn-sm btn-block"
+              type="button"
+              [attr.data-testid]="'daterangepicker-time-preset-' + preset.text"
+            >
+              {{ preset.text }}
+            </button>
+          }
+        </div>
       }
     </div>
   </div>

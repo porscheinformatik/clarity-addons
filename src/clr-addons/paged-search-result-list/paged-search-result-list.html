@@ -14,11 +14,11 @@
 </div>
 }
 <ng-template #pager let-position>
-  <div class="clr-row" data-testid="paged-search-result-list-pager-row-{{ position }}">
+  <div class="clr-row" [attr.data-testid]="'paged-search-result-list-pager-row-' + (position)">
     <div
       [class.pager-top]="position === 'top'"
       [class.pager-bottom]="position === 'bottom'"
-      data-testid="paged-search-result-list-pager-container-{{ position }}"
+      [attr.data-testid]="'paged-search-result-list-pager-container-' + (position)"
     >
       <ng-container *ngTemplateOutlet="pageSizeDropdown"></ng-container>
       <clr-pager
@@ -26,7 +26,7 @@
         [clrPageSize]="pageSize"
         [clrTotalItems]="totalItems"
         (clrPageChange)="pageChange.emit($event)"
-        data-testid="paged-search-result-list-pager-{{ position }}"
+        [attr.data-testid]="'paged-search-result-list-pager-' + (position)"
       ></clr-pager>
     </div>
   </div>
@@ -57,7 +57,7 @@
           type="button"
           clrDropdownItem
           (click)="pageSizeChange.emit(sizeOption)"
-          data-testid="paged-search-result-list-page-size-option-{{ sizeOption }}"
+          [attr.data-testid]="'paged-search-result-list-page-size-option-' + (sizeOption)"
         >
           {{ sizeOption }}
         </button>
