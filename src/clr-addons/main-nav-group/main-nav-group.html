@@ -5,10 +5,15 @@
   (keydown.space)="onClick($event)"
   [class.active]="isActive()"
   tabindex="0"
-  data-testid="main-nav-group-toggle-{{ id }}"
+  [attr.data-testid]="'main-nav-group-toggle-' + (id)"
 >
-  <input id="{{prefix}}{{id}}" type="checkbox" [checked]="isChecked()" data-testid="main-nav-group-checkbox-{{ id }}" />
-  <label class="nav-text nav-trigger" for="{{prefix}}{{id}}" data-testid="main-nav-group-label-{{ id }}">
+  <input
+    id="{{prefix}}{{id}}"
+    type="checkbox"
+    [checked]="isChecked()"
+    [attr.data-testid]="'main-nav-group-checkbox-' + (id)"
+  />
+  <label class="nav-text nav-trigger" for="{{prefix}}{{id}}" [attr.data-testid]="'main-nav-group-label-' + (id)">
     @if (icon) {
     <cds-icon class="title-icon" [shape]="icon"></cds-icon>
     } {{title}}

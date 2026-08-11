@@ -6,14 +6,14 @@
 
 <div
   class="clr-tt-node-content treetable-row"
-  data-testid="treetable-row-{{ clrTtItem()?.id || 'item' }}"
+  [attr.data-testid]="'treetable-row-' + (clrTtItem()?.id || 'item')"
   [class.clr-row-clickable]="showClickClass()"
   [class.treetable-selected]="isSelected()"
   (click)="onRowClick($event)"
 >
   @if (showSelection()) {
   <clr-tt-row-checkbox
-    data-testid="treetable-row-checkbox-{{ clrTtItem()?.id || 'item' }}"
+    [attr.data-testid]="'treetable-row-checkbox-' + (clrTtItem()?.id || 'item')"
     [clrTtSelectionState]="clrTtItem().selected()"
     (clrTtSelectionStateChange)="toggleSelection($event)"
     (click)="$event.stopPropagation()"

@@ -8,7 +8,7 @@
       [value]="page+1"
       [(ngModel)]="currentPage"
       name="{{uniqueName}}"
-      data-testid="dot-pager-dot-{{ page + 1 }}"
+      [attr.data-testid]="'dot-pager-dot-' + (page + 1)"
     />
     <label>&nbsp;</label>
   </clr-radio-wrapper>

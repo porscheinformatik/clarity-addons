@@ -2,7 +2,7 @@
 <div class="clr-control-container" [ngClass]="controlClasses">
   @for (value of values; track value; let i = $index) {
   <clr-add-option
-    data-testid="quick-list-option-row-{{ value.id || i }}"
+    [attr.data-testid]="'quick-list-option-row-' + (value.id || i)"
     [allValues]="allValues"
     [excludedValues]="values"
     (remove)="onRemoveValue(i)"

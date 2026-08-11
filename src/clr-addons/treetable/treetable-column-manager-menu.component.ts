@@ -61,17 +61,17 @@ let id = 0;
       </div>
       <ul class="switch-content list-unstyled">
         @for (column of hideableColumns(); track column.id) {
-          <li data-testid="treetable-column-manager-item-{{ column.id }}">
-            <clr-checkbox-wrapper data-testid="treetable-column-manager-checkbox-wrapper-{{ column.id }}">
+          <li [attr.data-testid]="'treetable-column-manager-item-' + column.id">
+            <clr-checkbox-wrapper [attr.data-testid]="'treetable-column-manager-checkbox-wrapper-' + column.id">
               <input
                 clrCheckbox
                 type="checkbox"
-                data-testid="treetable-column-manager-checkbox-{{ column.id }}"
+                [attr.data-testid]="'treetable-column-manager-checkbox-' + column.id"
                 [disabled]="hasOnlyOneVisibleColumn() && !column.hidden"
                 [ngModel]="!column.hidden"
                 (ngModelChange)="toggleColumnState(column.id)"
               />
-              <label data-testid="treetable-column-manager-label-{{ column.id }}">
+              <label [attr.data-testid]="'treetable-column-manager-label-' + column.id">
                 <ng-template [ngTemplateOutlet]="column.titleTemplateRef"></ng-template>
               </label>
             </clr-checkbox-wrapper>

@@ -45,7 +45,7 @@ let columnId = 0;
         }
       </button>
     } @else {
-      <div class="treetable-column-title" data-testid="treetable-column-header-{{ columnId }}">
+      <div class="treetable-column-title" [attr.data-testid]="'treetable-column-header-' + columnId">
         <ng-container *ngTemplateOutlet="columnTitle" />
       </div>
     }

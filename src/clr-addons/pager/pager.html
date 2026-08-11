@@ -13,13 +13,15 @@
   } @if (page > 3) {
   <button class="btn" disabled data-testid="pager-leading-ellipsis">...</button>
   } @for (pageNum of middlePages; track pageNum) { @if (pageNum !== page) {
-  <button class="btn" (click)="page = pageNum" data-testid="pager-page-{{ pageNum }}">{{pageNum}}</button>
+  <button class="btn" (click)="page = pageNum" [attr.data-testid]="'pager-page-' + (pageNum)">{{pageNum}}</button>
   } @else {
-  <button class="btn btn-primary" type="button" data-testid="pager-current-page-{{ pageNum }}">{{pageNum}}</button>
+  <button class="btn btn-primary" type="button" [attr.data-testid]="'pager-current-page-' + (pageNum)">
+    {{pageNum}}
+  </button>
   } } @if (page < last - 2) {
   <button class="btn" disabled data-testid="pager-trailing-ellipsis">...</button>
   } @if (page < last - 1) {
-  <button class="btn" (click)="page = last" data-testid="pager-page-{{ last }}">{{last}}</button>
+  <button class="btn" (click)="page = last" [attr.data-testid]="'pager-page-' + (last)">{{last}}</button>
   }
   <button class="btn pagination-next" (click)="next()" [disabled]="page == last" data-testid="pager-next-button">
     <cds-icon shape="angle" direction="right"></cds-icon>

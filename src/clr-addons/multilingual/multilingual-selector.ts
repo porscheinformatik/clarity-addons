@@ -25,7 +25,7 @@ ClarityIcons.addIcons(angleIcon);
                 class="clr-multilingual-dd-entry"
                 clrDropdownItem
                 (click)="selectedLangChange.emit(text.key)"
-                data-testid="multilingual-selector-option-{{ text.key }}"
+                [attr.data-testid]="'multilingual-selector-option-' + text.key"
               >
                 <span class="label">{{ text.key }}</span
                 >{{ text.value }}

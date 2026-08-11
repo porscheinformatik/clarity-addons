@@ -35,7 +35,7 @@
       [style.width.px]="thumbnailSize()"
       [style.height.px]="thumbnailSize()"
       (click)="openModal(i + 1)"
-      data-testid="image-gallery-thumbnail-{{ i + 1 }}"
+      [attr.data-testid]="'image-gallery-thumbnail-' + (i + 1)"
     >
       <img
         [ngSrc]="img.src"
@@ -43,7 +43,7 @@
         [height]="thumbnailSize()"
         [alt]="img.alt || ''"
         class="clr-image-gallery__thumb-img"
-        data-testid="image-gallery-thumbnail-image-{{ i + 1 }}"
+        [attr.data-testid]="'image-gallery-thumbnail-image-' + (i + 1)"
       />
       <!-- Overlay on last thumbnail when there are more images -->
       @if (i === maxThumbnails - 1 && remainingCount() > 0) {

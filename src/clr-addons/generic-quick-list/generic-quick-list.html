@@ -3,9 +3,9 @@
   <ng-content select=".header-container"></ng-content>
 
   @for (item of allItems; track item; let i = $index) {
-  <div class="controls-wrapper" data-testid="generic-quick-list-item-{{ item.id || i }}">
+  <div class="controls-wrapper" [attr.data-testid]="'generic-quick-list-item-' + (item.id || i)">
     @if (itemTemplate) {
-    <div class="controls-container" #row data-testid="generic-quick-list-item-content-{{ item.id || i }}">
+    <div class="controls-container" #row [attr.data-testid]="'generic-quick-list-item-content-' + (item.id || i)">
       <ng-container *ngTemplateOutlet="itemTemplate.get(0); context: {$implicit:item}"></ng-container>
     </div>
     } @if (!(readonly || readonly === '')) {
@@ -15,7 +15,7 @@
       [ngClass]="{'btn-trash-ext': !(compactMode && i === allItems.length - 1)}"
       [disabled]="required && allItems.length === 1"
       (click)="removeItem(item)"
-      data-testid="generic-quick-list-remove-button-{{ item.id || i }}"
+      [attr.data-testid]="'generic-quick-list-remove-button-' + (item.id || i)"
     >
       <cds-icon shape="trash"></cds-icon>
     </button>
