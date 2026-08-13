@@ -46,6 +46,7 @@
         "eslint",
         "eslint-config-prettier",
         "gh-pages",
+        "globals",
         "husky",
         "JamesIves/github-pages-deploy-action",
         "jasmine-core",
