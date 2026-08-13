@@ -94,7 +94,7 @@
     "eslint": "10.8.1",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-jasmine": "4.2.2",
-    "globals": "17.10.0",
+    "globals": "17.11.0",
     "husky": "9.1.7",
     "jasmine-core": "6.3.0",
     "jasmine-spec-reporter": "7.0.0",
