@@ -45,7 +45,7 @@
     </ng-template>
     <clr-tt-string-filter [clrTtStringFilter]="treeIdFilter"></clr-tt-string-filter>
   </clr-tt-column>
-  <clr-tt-column>
+  <clr-tt-column [clrTtColumnSize]="250">
     <ng-content *clrTtHideableColumn="testHidable()">Parent</ng-content>
   </clr-tt-column>
   <clr-tt-column>
@@ -83,6 +83,7 @@
   <clr-dg-column
     [clrDgSortBy]="datagridComperator"
     [clrDgSortOrder]="datagridSortOrder"
+    [style.width.px]="nameColumnWidth()"
     (clrDgColumnResize)="logValues('datagrid', $event)"
   >
     <ng-container *clrDgHideableColumn="{ hidden: false }">A Really Long Name</ng-container>
@@ -92,7 +93,7 @@
     <ng-container *clrDgHideableColumn="{ hidden: testHidden() }">ID</ng-container>
     <clr-dg-string-filter [clrDgStringFilter]="datagridTreeIdFilter"></clr-dg-string-filter>
   </clr-dg-column>
-  <clr-dg-column>
+  <clr-dg-column [style.width.px]="250">
     <ng-container *clrDgHideableColumn="{ hidden: testHidden() }">Parent</ng-container>
   </clr-dg-column>
   <clr-dg-column>
