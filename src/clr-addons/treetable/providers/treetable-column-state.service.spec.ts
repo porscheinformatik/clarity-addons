@@ -440,10 +440,9 @@ describe('TreetableColumnStateService', () => {
       service.toggleHidden('a');
       await tickAsync();
 
-      expect(emissions.length).toBe(3);
+      expect(emissions.length).toBe(2);
       expect(emissions[0]).toBe(TreetableColumnUpdate.WIDTH);
       expect(emissions[1]).toBe(TreetableColumnUpdate.HIDDEN);
-      expect(emissions[2]).toBe(TreetableColumnUpdate.HIDDEN);
       sub.unsubscribe();
     });
   });

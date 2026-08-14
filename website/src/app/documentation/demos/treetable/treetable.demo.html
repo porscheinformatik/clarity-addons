@@ -240,30 +240,6 @@
             </tr>
           </tbody>
         </table>
-
-        <h4>clr-tt-footer</h4>
-        <table class="table">
-          <thead>
-            <tr>
-              <th class="left">Input/Output</th>
-              <th class="left clr-hidden-xs-down">Values</th>
-              <th class="clr-hidden-xs-down">Default</th>
-              <th class="left">Effect</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="left">
-                <strong>[clrResetLabel]</strong>
-                <div class="clr-hidden-sm-up">Type: string</div>
-                <div class="clr-hidden-sm-up">Default: RESET</div>
-              </td>
-              <td class="left clr-hidden-xs-down">string</td>
-              <td class="clr-hidden-xs-down">RESET</td>
-              <td class="left">Label for the reset button of the column manager</td>
-            </tr>
-          </tbody>
-        </table>
       </section>
     </section>
 
@@ -993,26 +969,25 @@
           the column header and the column manager toggle list.
         </p>
         <p>
-          The directive accepts an object with a <code class="clr-code">hidden</code> property and an optional
-          <code class="clr-code">initial</code> property. <code class="clr-code">hidden</code> controls whether the
-          column is currently visible. <code class="clr-code">initial</code> defines the reset state used by the column
-          manager's reset button — if omitted, it defaults to the value of <code class="clr-code">hidden</code>.
+          The directive accepts an object with a <code class="clr-code">hidden</code> property property.
+          <code class="clr-code">hidden</code> controls whether the column is currently visible.
         </p>
         <p>
           To react to visibility changes—for example (e.g., for local storage syncing) you must wrap the column title in
-          an <code class="clr-code">ng-template</code> instead. Apply the directive as an attribute (
-          <code class="clr-code">[clrTtHideableColumn]</code>) and listen for state changes using the
+          an <code class="clr-code">ng-template</code> instead. Apply the directive as an attribute
+          <code class="clr-code">[clrTtHideableColumn]</code> and listen for state changes using the
           <code class="clr-code">(clrTtHiddenChange)</code> output event.
         </p>
         <p>
           The column manager is rendered automatically inside <code class="clr-code">clr-tt-footer</code> whenever at
           least one column has the <code class="clr-code">*clrTtHideableColumn</code> directive applied. No additional
           configuration is required — simply add <code class="clr-code">&lt;clr-tt-footer&gt;</code> to the treetable.
-          <br />
-          In the manager the visibility of all hideable columns can be toggled. Additionally the
-          <code class="clr-code">SELECT ALL</code> button makes all columns visible and the
-          <code class="clr-code">RESET</code> button returns the columns to their initial visibility state.
         </p>
+        <p>
+          In the manager the visibility of all hideable columns can be toggled. Additionally the
+          <code class="clr-code">SELECT ALL</code> button makes all columns visible.
+        </p>
+        <br />
 
         <clr-treetable>
           <clr-tt-column>
@@ -1024,7 +999,7 @@
             </ng-template>
           </clr-tt-column>
           <clr-tt-column>
-            <ng-container *clrTtHideableColumn="{ hidden: true, initial: false }">Type</ng-container>
+            <ng-container *clrTtHideableColumn="{ hidden: true }">Type</ng-container>
           </clr-tt-column>
 
           <clr-tt-row clrExpandable="true">
