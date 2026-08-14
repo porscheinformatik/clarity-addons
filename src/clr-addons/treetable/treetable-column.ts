@@ -8,6 +8,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
+  HostAttributeToken,
   inject,
   input,
   OnDestroy,
@@ -60,7 +62,7 @@ let columnId = 0;
   host: {
     '[class.treetable-column]': 'true',
     '[attr.aria-sort]': 'ariaSort()',
-    '[attr.data-testid]': '"treetable-column-" + columnId',
+    '[attr.data-testid]': 'dataTestId',
     role: 'columnheader',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -68,6 +70,12 @@ let columnId = 0;
 })
 export class ClrTreetableColumn<T extends object> implements OnInit, OnDestroy {
   public readonly columnId = `clr-tt-col-${columnId++}`;
+
+  /* Keep a data-testid set by the consumer, and only fall back to the default when none was provided. */
+  private readonly _userDataTestId = inject(new HostAttributeToken('data-testid'), { optional: true });
+  protected get dataTestId(): string {
+    return this._userDataTestId ?? `treetable-column-${this.columnId}`;
+  }
 
   private readonly _columnTitleRef = viewChild('columnTitle', { read: TemplateRef });
   private readonly _columnState = inject(TreetableColumnStateService);

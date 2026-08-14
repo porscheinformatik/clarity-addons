@@ -4,17 +4,23 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostAttributeToken, inject } from '@angular/core';
 
 @Component({
   selector: 'clr-tt-cell',
   template: '<ng-content></ng-content>',
   host: {
     '[class.treetable-cell]': 'true',
-    'data-testid': 'treetable-cell',
+    '[attr.data-testid]': 'dataTestId',
     role: 'gridcell',
   },
   standalone: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ClrTreetableCell {}
+export class ClrTreetableCell {
+  /* Keep a data-testid set by the consumer, and only fall back to the default when none was provided. */
+  private readonly _userDataTestId = inject(new HostAttributeToken('data-testid'), { optional: true });
+  protected get dataTestId(): string {
+    return this._userDataTestId ?? 'treetable-cell';
+  }
+}
