@@ -469,6 +469,7 @@ $cell-min-width: var(--cds-global-space-12);
             .treetable-column-resize-tracker {
               position: absolute;
               top: calc(-1 * var(--cds-global-space-6));
+              right: 0;
               display: none;
               width: var(--cds-global-space-1);
               height: 0;

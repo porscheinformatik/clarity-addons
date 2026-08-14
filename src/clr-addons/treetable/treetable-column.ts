@@ -8,7 +8,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  effect,
   HostAttributeToken,
   inject,
   input,
@@ -20,7 +19,7 @@ import {
 import { outputFromObservable, takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { ClrPopoverService } from '@clr/angular';
 import { combineLatest, map } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { distinctUntilChanged, filter } from 'rxjs/operators';
 import { ClrTreetableSortOrder } from './enums/sort-order.enum';
 import { SortStateService } from './providers';
 import { TreetableColumnStateService, TreetableColumnUpdate } from './providers/treetable-column-state.service';
@@ -180,12 +179,15 @@ export class ClrTreetableColumn<T extends object> implements OnInit, OnDestroy {
         }
       });
 
-    effect(() => {
-      const size = this.clrTtColumnSize();
-      if (size) {
+    toObservable(this.clrTtColumnSize)
+      .pipe(
+        filter(size => size != null),
+        distinctUntilChanged(),
+        takeUntilDestroyed()
+      )
+      .subscribe(size => {
         this._columnState.changeWidth(this.columnId, size);
-      }
-    });
+      });
   }
 
   protected sort(reverse?: boolean) {
