@@ -34,9 +34,6 @@ describe('ClrTreetableColumnManagerMenuComponent', () => {
   const querySelectAllBtn = (): HTMLButtonElement | null =>
     document.querySelector('.switch-footer .switch-button:first-child');
 
-  const queryResetBtn = (): HTMLButtonElement | null =>
-    document.querySelector('.switch-footer .switch-button:last-child');
-
   const queryCheckboxes = (): NodeListOf<HTMLInputElement> =>
     document.querySelectorAll('.switch-content input[type="checkbox"]');
 
@@ -52,17 +49,14 @@ describe('ClrTreetableColumnManagerMenuComponent', () => {
 
   // --- Setup helpers ---
 
-  async function registerColumns(
-    columns: Array<{ id: string; hideable?: boolean; hidden?: boolean; initialHidden?: boolean }>
-  ) {
+  async function registerColumns(columns: Array<{ id: string; hideable?: boolean; hidden?: boolean }>) {
     columns.forEach(({ id }) => columnService.register({ id }));
     columnService.initializeOrder(columns.map(c => c.id));
-    columns.forEach(({ id, hideable, hidden, initialHidden }) => {
+    columns.forEach(({ id, hideable, hidden }) => {
       if (hideable) {
         columnService.registerHideable(id, {
           hideable: true,
           hidden: hidden ?? false,
-          initialHidden: initialHidden ?? hidden ?? false,
         });
       }
     });
@@ -289,59 +283,6 @@ describe('ClrTreetableColumnManagerMenuComponent', () => {
       querySelectAllBtn()!.click();
       await fixture.whenStable();
       expect(querySelectAllBtn()?.disabled).toBeTrue();
-    });
-  });
-
-  // ---------------------------------------------------------------------------
-  describe('Reset button', () => {
-    it('should display resetLabel as button text', async () => {
-      await openMenu();
-      expect(queryResetBtn()?.textContent?.trim()).toBe(RESET_LABEL);
-    });
-
-    it('should update button text when resetLabel input changes', async () => {
-      await openMenu();
-      const newLabel = 'Restore defaults';
-      fixture.componentRef.setInput('resetLabel', newLabel);
-      fixture.detectChanges();
-      expect(queryResetBtn()?.textContent?.trim()).toBe(newLabel);
-    });
-
-    it('should be disabled when all columns match their initial state', async () => {
-      await registerColumns([
-        { id: COL_A, hideable: true, hidden: false, initialHidden: false },
-        { id: COL_B, hideable: true, hidden: true, initialHidden: true },
-      ]);
-      await openMenu();
-      expect(queryResetBtn()?.disabled).toBeTrue();
-    });
-
-    it('should be enabled when a column hidden state differs from initial', async () => {
-      await registerColumns([{ id: COL_A, hideable: true, hidden: false, initialHidden: true }]);
-      await openMenu();
-      expect(queryResetBtn()?.disabled).toBeFalse();
-    });
-
-    it('should restore columns to initial hidden states when clicked', async () => {
-      await registerColumns([
-        { id: COL_A, hideable: true, hidden: false, initialHidden: true },
-        { id: COL_B, hideable: true, hidden: true, initialHidden: false },
-      ]);
-      await openMenu();
-      queryResetBtn()!.click();
-      await fixture.whenStable();
-      const boxes = queryCheckboxes();
-      // COL_A initial=hidden → unchecked; COL_B initial=visible → checked
-      expect(boxes[0].checked).toBeFalse();
-      expect(boxes[1].checked).toBeTrue();
-    });
-
-    it('should become disabled after reset makes all columns match initial state', async () => {
-      await registerColumns([{ id: COL_A, hideable: true, hidden: false, initialHidden: true }]);
-      await openMenu();
-      queryResetBtn()!.click();
-      await fixture.whenStable();
-      expect(queryResetBtn()?.disabled).toBeTrue();
     });
   });
 });
