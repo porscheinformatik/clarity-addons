@@ -8,7 +8,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  effect,
   HostAttributeToken,
   inject,
   input,
