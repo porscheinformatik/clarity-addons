@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import {
   ClrCommonStringsService,
   ClrPopoverHostDirective,
@@ -88,15 +88,6 @@ let id = 0;
         >
           {{ commonStrings.selectAll }}
         </button>
-        <button
-          type="button"
-          class="btn btn-sm btn-link switch-button"
-          data-testid="treetable-column-manager-reset"
-          [disabled]="areAllColumnsReset()"
-          (click)="resetAllToInitial()"
-        >
-          {{ resetLabel() }}
-        </button>
       </div>
     </div>
   `,
@@ -120,8 +111,6 @@ export class ClrTreetableColumnManagerMenuComponent {
   protected readonly popoverType = ClrPopoverType.DROPDOWN;
   protected readonly commonStrings = this._commonStringsService.keys;
 
-  resetLabel = input.required<string>();
-
   protected readonly open = toSignal<boolean>(this._popoverService.openChange);
   protected readonly hideableColumns = this._columnService.hideableColumns;
   protected readonly hasOnlyOneVisibleColumn = computed(
@@ -132,9 +121,6 @@ export class ClrTreetableColumnManagerMenuComponent {
   protected readonly areAllColumnsVisible = computed(
     () => this._columnService.visibleColumns().length === this._columnService.columns().length
   );
-  protected readonly areAllColumnsReset = computed(() =>
-    this._columnService.hideableColumns().every(column => column.hidden === column.initialHidden)
-  );
 
   protected toggleColumnState(id: string) {
     this._columnService.toggleHidden(id);
@@ -144,9 +130,5 @@ export class ClrTreetableColumnManagerMenuComponent {
     if (!this.areAllColumnsVisible()) {
       this._columnService.displayAllColumns();
     }
-  }
-
-  protected resetAllToInitial() {
-    this._columnService.resetToInitialHidden();
   }
 }

@@ -287,7 +287,7 @@ const HTML_EXAMPLE_HIDE_SHOW = `
     </ng-template>
   </clr-tt-column>
   <clr-tt-column>
-    <ng-container *clrTtHideableColumn="{ hidden: true, initial: false }">Type</ng-container>
+    <ng-container *clrTtHideableColumn="{ hidden: true }">Type</ng-container>
   </clr-tt-column>
 
   <clr-tt-row clrExpandable="true">
