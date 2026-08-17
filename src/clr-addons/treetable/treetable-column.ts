@@ -127,15 +127,7 @@ export class ClrTreetableColumn<T extends object> implements OnInit, OnDestroy, 
   }
 
   ngAfterViewInit(): void {
-    /*
-     * Only apply a default data-testid when the consumer hasn't provided one.
-     * See ClrTreetableCell for why this is checked against the live DOM
-     * attribute instead of using HostAttributeToken: HostAttributeToken can
-     * only read attribute values that are static string literals at compile
-     * time, not values set via [attr.data-testid], which is required for a
-     * unique testid per column inside an @for loop. This also runs only
-     * once, so it never overwrites a value set by the consumer.
-     */
+    // Only set a default testid if the consumer didn't already provide one.
     const host = this._elementRef.nativeElement;
     if (!host.hasAttribute('data-testid')) {
       this._renderer.setAttribute(host, 'data-testid', `treetable-column-${this.columnId}`);
