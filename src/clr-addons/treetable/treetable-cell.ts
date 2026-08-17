@@ -4,23 +4,29 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { ChangeDetectionStrategy, Component, HostAttributeToken, inject } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, inject, Renderer2 } from '@angular/core';
+
+const DEFAULT_TEST_ID = 'treetable-cell';
 
 @Component({
   selector: 'clr-tt-cell',
   template: '<ng-content></ng-content>',
   host: {
     '[class.treetable-cell]': 'true',
-    '[attr.data-testid]': 'dataTestId',
     role: 'gridcell',
   },
   standalone: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ClrTreetableCell {
-  /* Keep a data-testid set by the consumer, and only fall back to the default when none was provided. */
-  private readonly _userDataTestId = inject(new HostAttributeToken('data-testid'), { optional: true });
-  protected get dataTestId(): string {
-    return this._userDataTestId ?? 'treetable-cell';
+export class ClrTreetableCell implements AfterViewInit {
+  private readonly _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+  private readonly _renderer = inject(Renderer2);
+
+  ngAfterViewInit(): void {
+    // Only set a default testid if the consumer didn't already provide one.
+    const host = this._elementRef.nativeElement;
+    if (!host.hasAttribute('data-testid')) {
+      this._renderer.setAttribute(host, 'data-testid', DEFAULT_TEST_ID);
+    }
   }
 }
