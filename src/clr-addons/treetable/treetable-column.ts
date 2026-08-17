@@ -5,14 +5,16 @@
  */
 
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   computed,
-  HostAttributeToken,
+  ElementRef,
   inject,
   input,
   OnDestroy,
   OnInit,
+  Renderer2,
   TemplateRef,
   viewChild,
 } from '@angular/core';
@@ -61,21 +63,16 @@ let columnId = 0;
   host: {
     '[class.treetable-column]': 'true',
     '[attr.aria-sort]': 'ariaSort()',
-    '[attr.data-testid]': 'dataTestId',
     role: 'columnheader',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
-export class ClrTreetableColumn<T extends object> implements OnInit, OnDestroy {
+export class ClrTreetableColumn<T extends object> implements OnInit, OnDestroy, AfterViewInit {
   public readonly columnId = `clr-tt-col-${columnId++}`;
 
-  /* Keep a data-testid set by the consumer, and only fall back to the default when none was provided. */
-  private readonly _userDataTestId = inject(new HostAttributeToken('data-testid'), { optional: true });
-  protected get dataTestId(): string {
-    return this._userDataTestId ?? `treetable-column-${this.columnId}`;
-  }
-
+  private readonly _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+  private readonly _renderer = inject(Renderer2);
   private readonly _columnTitleRef = viewChild('columnTitle', { read: TemplateRef });
   private readonly _columnState = inject(TreetableColumnStateService);
   private readonly _sort = inject(SortStateService<T>);
@@ -127,6 +124,22 @@ export class ClrTreetableColumn<T extends object> implements OnInit, OnDestroy {
 
   ngOnInit() {
     this._columnState.register({ id: this.columnId, titleTemplateRef: this._columnTitleRef() });
+  }
+
+  ngAfterViewInit(): void {
+    /*
+     * Only apply a default data-testid when the consumer hasn't provided one.
+     * See ClrTreetableCell for why this is checked against the live DOM
+     * attribute instead of using HostAttributeToken: HostAttributeToken can
+     * only read attribute values that are static string literals at compile
+     * time, not values set via [attr.data-testid], which is required for a
+     * unique testid per column inside an @for loop. This also runs only
+     * once, so it never overwrites a value set by the consumer.
+     */
+    const host = this._elementRef.nativeElement;
+    if (!host.hasAttribute('data-testid')) {
+      this._renderer.setAttribute(host, 'data-testid', `treetable-column-${this.columnId}`);
+    }
   }
 
   ngOnDestroy() {
