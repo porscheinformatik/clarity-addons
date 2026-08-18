@@ -30,18 +30,16 @@ import { ClrDatagridStatePersistenceModel } from './datagrid-state-persistence-m
         persistSort,
         persistColumnWidths,
         persistColumnOrder,
-        persistColumnOrderTransformer,
+        persistColumnOrderTransformer
       }"
       [clrPaginationDescription]="'{{first}} - {{last}} of {{total}} entries'"
       [clrDatagridColumnReorder]="columns"
       (clrDatagridColumnOrderChanged)="columns = $event.columns"
       (clrDgRefresh)="refreshHandler.next($event)"
     >
-      @for (col of columns; track col.name) {
-        <clr-dg-column [clrDgField]="col.name" cdkDrag>
-          <ng-container *clrDgHideableColumn="{ hidden: col.hidden }">{{ col.title }}</ng-container>
-        </clr-dg-column>
-      }
+      <clr-dg-column *ngFor="let col of columns" [clrDgField]="col.name" cdkDrag>
+        <ng-container *clrDgHideableColumn="{ hidden: col.hidden }">{{ col.title }}</ng-container>
+      </clr-dg-column>
       <clr-dg-column id="column1" [clrDgField]="'column1'" [clrDgSortBy]="'column1'">
         <ng-template clrDgHideableColumn><span>column1</span></ng-template>
       </clr-dg-column>
@@ -130,6 +128,7 @@ describe('StatePersistenceKeyDirective', () => {
         CdkDrag,
       ],
       declarations: [TestComponent],
+      teardown: { destroyAfterEach: false },
     }).compileComponents();
 
     fixture = TestBed.createComponent(TestComponent);
@@ -492,6 +491,19 @@ describe('StatePersistenceKeyDirective', () => {
     it('should init column order if enabled', () => {
       const storageKey = PERSISTENCE_KEY + '-should-init-order';
       localStorage.setItem(storageKey, '{"columns":{"dynamic-column-2":{"order":0},"dynamic-column-1":{"order":1}}}');
+      fixture.componentInstance.persistColumnOrder = true;
+      fixture.componentInstance.storageKey = storageKey;
+      fixture.detectChanges();
+
+      expect(fixture.componentInstance.columns.map(c => c.name)).toEqual(['dynamic-column-2', 'dynamic-column-1']);
+    });
+
+    it('should ignore columns without order when initializing column order', () => {
+      const storageKey = PERSISTENCE_KEY + '-should-ignore-columns-without-order';
+      localStorage.setItem(
+        storageKey,
+        '{"columns":{"dynamic-column-2":{"order":0},"dynamic-column-1":{"width":"118px"}}}'
+      );
       fixture.componentInstance.persistColumnOrder = true;
       fixture.componentInstance.storageKey = storageKey;
       fixture.detectChanges();

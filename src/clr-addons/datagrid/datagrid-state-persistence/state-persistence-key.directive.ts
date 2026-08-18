@@ -227,7 +227,9 @@ export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy
 
   private initColumnOrder(savedState: ClrDatagridStatePersistenceModel): void {
     if (savedState?.columns) {
-      const entries = Object.entries(savedState.columns).map(([key, value]) => [key, value.order] as const);
+      const entries = Object.entries(savedState.columns)
+        .filter(([, value]) => typeof value.order === 'number')
+        .map(([key, value]) => [key, value.order] as const);
       this.reorderDirective.initializeColumnOrder(Object.fromEntries(entries));
     }
   }
