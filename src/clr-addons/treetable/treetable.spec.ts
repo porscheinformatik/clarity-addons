@@ -20,6 +20,7 @@ import { By } from '@angular/platform-browser';
 import { ClrTreetableSelectedState, SelectionType } from './enums/selection-type';
 import { ExpectedRowSelectionState, expectRowsToHaveSelectionStates } from './treetable-row.spec';
 import { ClrTreetableRowCheckbox } from './treetable-row-checkbox';
+import { TreetableColumnStateService } from './providers/treetable-column-state.service';
 
 type Item = { id: number; name?: string; subItems?: Item[] };
 
@@ -108,6 +109,30 @@ class SelectionTestComponent {
   getSubItems = (item: Item) => item.subItems ?? [];
 }
 
+@Component({
+  template: `
+    <clr-treetable>
+      <clr-tt-column>A</clr-tt-column>
+      @if (showMiddle()) {
+        <clr-tt-column>Mid</clr-tt-column>
+      }
+      <clr-tt-column>B</clr-tt-column>
+
+      <clr-tt-row>
+        <clr-tt-cell>a</clr-tt-cell>
+        @if (showMiddle()) {
+          <clr-tt-cell>m</clr-tt-cell>
+        }
+        <clr-tt-cell>b</clr-tt-cell>
+      </clr-tt-row>
+    </clr-treetable>
+  `,
+  standalone: false,
+})
+class AsyncColumnTestComponent {
+  readonly showMiddle = signal(false);
+}
+
 describe('ClrTreetable', () => {
   const TreetableInputs: Record<string, string> = {
     loading: 'clrTtLoading',
@@ -129,6 +154,7 @@ describe('ClrTreetable', () => {
         ClickableRowTestComponent,
         ActionOverflowTestComponent,
         SelectionTestComponent,
+        AsyncColumnTestComponent,
       ],
       imports: [ClarityModule, FormsModule, ClrTreetableModule, BrowserAnimationsModule],
     }).compileComponents();
@@ -461,6 +487,71 @@ describe('ClrTreetable', () => {
 
       const rows = fixture.debugElement.queryAll(By.directive(ClrTreetableRow));
       expectRowsToHaveSelectionStates(rows, expectedCheckBoxStates);
+    });
+  });
+
+  describe('async / dynamic columns', () => {
+    let fixture: ComponentFixture<AsyncColumnTestComponent>;
+
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(AsyncColumnTestComponent);
+      fixture.autoDetectChanges();
+      await fixture.whenStable();
+    });
+
+    function columnState(): TreetableColumnStateService {
+      const treetable = fixture.debugElement.query(By.directive(ClrTreetable));
+      return treetable.injector.get(TreetableColumnStateService);
+    }
+
+    function domColumnIds(): string[] {
+      return fixture.debugElement
+        .queryAll(By.directive(ClrTreetableColumn))
+        .map(de => (de.componentInstance as ClrTreetableColumn<object>).columnId);
+    }
+
+    it('should keep state columnIndex aligned with DOM order initially', () => {
+      const ids = domColumnIds();
+      expect(ids.length).toBe(2);
+
+      const state = columnState();
+      ids.forEach((id, idx) => {
+        expect(state.columns().find(c => c.id === id).columnIndex).toBe(idx);
+      });
+    });
+
+    it('should assign correct index when a column appears asynchronously', async () => {
+      fixture.componentInstance.showMiddle.set(true);
+      await fixture.whenStable();
+
+      const ids = domColumnIds();
+      expect(ids.length).toBe(3);
+
+      const state = columnState();
+      // every DOM column maps to its own state entry at the matching index
+      ids.forEach((id, idx) => {
+        const col = state.columns().find(c => c.id === id);
+        expect(col).withContext(`state entry for column at DOM index ${idx}`).toBeDefined();
+        expect(col.columnIndex).toBe(idx);
+        expect(col.columnIndex).not.toBe(Number.MAX_SAFE_INTEGER);
+      });
+    });
+
+    it('should reindex remaining columns contiguously when a column disappears', async () => {
+      fixture.componentInstance.showMiddle.set(true);
+      await fixture.whenStable();
+
+      expect(domColumnIds().length).toBe(3);
+
+      fixture.componentInstance.showMiddle.set(false);
+      await fixture.whenStable();
+
+      const ids = domColumnIds();
+      expect(ids.length).toBe(2);
+
+      const state = columnState();
+      const indices = ids.map(id => state.columns().find(c => c.id === id).columnIndex);
+      expect(indices).toEqual([0, 1]);
     });
   });
 });
