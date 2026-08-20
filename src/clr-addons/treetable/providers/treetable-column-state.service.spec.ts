@@ -25,7 +25,7 @@ describe('TreetableColumnStateService', () => {
 
   function regOrdered(columns: Array<{ id: string; hideable?: boolean; hidden?: boolean }>) {
     columns.forEach(({ id, ...opts }) => reg(id, opts));
-    service.initializeOrder(columns.map(c => c.id));
+    service.setColumnOrder(columns.map(c => c.id));
   }
 
   beforeEach(() => {
@@ -141,11 +141,11 @@ describe('TreetableColumnStateService', () => {
   });
 
   // ---------------------------------------------------------------------------
-  describe('initializeOrder', () => {
+  describe('setColumnOrder', () => {
     it('should set columnIndex based on array position', async () => {
       service.register({ id: 'a' });
       service.register({ id: 'b' });
-      service.initializeOrder(['a', 'b']);
+      service.setColumnOrder(['a', 'b']);
       await tickAsync();
 
       const cols = service.columns();
@@ -157,7 +157,7 @@ describe('TreetableColumnStateService', () => {
       service.register({ id: 'a' });
       service.register({ id: 'b' });
       service.register({ id: 'c' });
-      service.initializeOrder(['c', 'a', 'b']);
+      service.setColumnOrder(['c', 'a', 'b']);
       await tickAsync();
 
       const ids = service.columns().map(c => c.id);
@@ -166,11 +166,91 @@ describe('TreetableColumnStateService', () => {
 
     it('should ignore ids not present in state', async () => {
       service.register({ id: 'a' });
-      service.initializeOrder(['a', 'unknown']);
+      service.setColumnOrder(['a', 'unknown']);
       await tickAsync();
 
       expect(service.columns().length).toBe(1);
       expect(service.columns()[0].columnIndex).toBe(0);
+    });
+
+    it('should reindex columns on reorder with unchanged length', async () => {
+      service.register({ id: 'a' });
+      service.register({ id: 'b' });
+      service.register({ id: 'c' });
+      service.setColumnOrder(['a', 'b', 'c']);
+      await tickAsync();
+
+      service.setColumnOrder(['c', 'b', 'a']);
+      await tickAsync();
+
+      const cols = service.columns();
+      expect(cols.find(c => c.id === 'c').columnIndex).toBe(0);
+      expect(cols.find(c => c.id === 'b').columnIndex).toBe(1);
+      expect(cols.find(c => c.id === 'a').columnIndex).toBe(2);
+      expect(service.columns().map(c => c.id)).toEqual(['c', 'b', 'a']);
+    });
+
+    it('should assign a real index to a column registered asynchronously after initial order', async () => {
+      service.register({ id: 'a' });
+      service.register({ id: 'b' });
+      service.setColumnOrder(['a', 'b']);
+      await tickAsync();
+
+      // async column appears later
+      service.register({ id: 'c' });
+      service.setColumnOrder(['a', 'b', 'c']);
+      await tickAsync();
+
+      const c = service.columns().find(col => col.id === 'c');
+      expect(c.columnIndex).toBe(2);
+      expect(c.columnIndex).not.toBe(Number.MAX_SAFE_INTEGER);
+    });
+
+    it('should shift following columns when a column is inserted in the middle', async () => {
+      service.register({ id: 'a' });
+      service.register({ id: 'b' });
+      service.setColumnOrder(['a', 'b']);
+      await tickAsync();
+
+      service.register({ id: 'x' });
+      service.setColumnOrder(['a', 'x', 'b']);
+      await tickAsync();
+
+      const cols = service.columns();
+      expect(cols.find(c => c.id === 'a').columnIndex).toBe(0);
+      expect(cols.find(c => c.id === 'x').columnIndex).toBe(1);
+      expect(cols.find(c => c.id === 'b').columnIndex).toBe(2);
+    });
+
+    it('should reindex remaining columns after a column is unregistered', async () => {
+      service.register({ id: 'a' });
+      service.register({ id: 'b' });
+      service.register({ id: 'c' });
+      service.setColumnOrder(['a', 'b', 'c']);
+      await tickAsync();
+
+      service.unregister('b');
+      service.setColumnOrder(['a', 'c']);
+      await tickAsync();
+
+      const cols = service.columns();
+      expect(cols.length).toBe(2);
+      expect(cols.find(c => c.id === 'a').columnIndex).toBe(0);
+      expect(cols.find(c => c.id === 'c').columnIndex).toBe(1);
+    });
+
+    it('should be a no-op (same signal reference) when order is unchanged', async () => {
+      service.register({ id: 'a' });
+      service.register({ id: 'b' });
+      service.setColumnOrder(['a', 'b']);
+      await tickAsync();
+
+      const before = service.columns();
+      service.setColumnOrder(['a', 'b']);
+      await tickAsync();
+
+      // no redundant state write -> computed returns the same array reference
+      expect(service.columns()).toBe(before);
     });
   });
 

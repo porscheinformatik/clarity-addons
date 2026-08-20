@@ -45,9 +45,11 @@
     </ng-template>
     <clr-tt-string-filter [clrTtStringFilter]="treeIdFilter"></clr-tt-string-filter>
   </clr-tt-column>
+  @if (testAsync()) {
   <clr-tt-column [clrTtColumnSize]="250">
     <ng-content *clrTtHideableColumn="testHidable()">Parent</ng-content>
   </clr-tt-column>
+  }
   <clr-tt-column>
     <ng-content *clrTtHideableColumn="{ hidden: testHidden(), initial: false }">Test</ng-content>
   </clr-tt-column>
@@ -64,7 +66,9 @@
 
     <clr-tt-cell>{{ node.value.name }}</clr-tt-cell>
     <clr-tt-cell>{{ node.id }}</clr-tt-cell>
+    @if (testAsync()) {
     <clr-tt-cell>{{ node.parent?.id || 'No Parent' }}</clr-tt-cell>
+    }
     <clr-tt-cell>{{ `Test with id ${node.id}` }}</clr-tt-cell>
   </clr-tt-row>
 
@@ -93,9 +97,11 @@
     <ng-container *clrDgHideableColumn="{ hidden: testHidden() }">ID</ng-container>
     <clr-dg-string-filter [clrDgStringFilter]="datagridTreeIdFilter"></clr-dg-string-filter>
   </clr-dg-column>
+  @if (testAsync()) {
   <clr-dg-column [style.width.px]="250">
     <ng-container *clrDgHideableColumn="{ hidden: testHidden() }">Parent</ng-container>
   </clr-dg-column>
+  }
   <clr-dg-column>
     <ng-container *clrDgHideableColumn="{ hidden: testHidden() }">Test</ng-container>
   </clr-dg-column>
@@ -108,7 +114,9 @@
 
     <clr-dg-cell>{{ node.value.name }}</clr-dg-cell>
     <clr-dg-cell>{{ node.id }}</clr-dg-cell>
+    @if (testAsync()) {
     <clr-dg-cell>{{ node.parent?.id || 'No Parent' }}</clr-dg-cell>
+    }
     <clr-dg-cell>{{ `Test with id ${node.id}` }}</clr-dg-cell>
   </clr-dg-row>
   }

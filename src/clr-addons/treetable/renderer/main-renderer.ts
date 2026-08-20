@@ -8,10 +8,10 @@ import { afterRenderEffect, contentChildren, Directive, inject } from '@angular/
 import { ClrTreetableColumn } from '../treetable-column';
 import { TreetableHeaderRenderer } from './header-renderer';
 import { TreetableRowRenderer } from './row-renderer';
-import { first, fromEvent } from 'rxjs';
+import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { TreetableColumnStateService, TreetableColumnUpdate } from '../providers/treetable-column-state.service';
-import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TreetableCellRenderer } from './cell-renderer';
 import { ColumnState } from '../interfaces/column-model';
 
@@ -54,8 +54,13 @@ export class TreetableMainRenderer {
       .subscribe(() => this.renderRuleByKey('column-cell-width', this.headers(), this.rows()));
 
     afterRenderEffect(() => {
+      const columns = this.columns();
       const headers = this.headers();
       const rows = this.rows();
+
+      if (columns.length > 0) {
+        this._columnState.setColumnOrder(columns.map(column => column.columnId));
+      }
 
       if (headers.length > 0) {
         this.renderAllRules(headers, rows);
@@ -80,18 +85,6 @@ export class TreetableMainRenderer {
           this.renderAllRules(headers, rows);
       }
     });
-
-    toObservable(this.columns)
-      .pipe(first())
-      .subscribe(columns => this.initializeColumnOrder(columns));
-  }
-
-  /**
-   * Initializes the index order of the columns as they are rendered.
-   */
-  private initializeColumnOrder(columns: Readonly<ClrTreetableColumn<any>[]>): void {
-    const idsInOrder = columns.map(column => column.columnId);
-    this._columnState.initializeOrder(idsInOrder);
   }
 
   private renderAllRules(headers: readonly TreetableHeaderRenderer[], rows: readonly TreetableRowRenderer[]): void {

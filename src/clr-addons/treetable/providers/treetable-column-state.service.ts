@@ -136,8 +136,14 @@ export class TreetableColumnStateService {
     });
   }
 
-  public initializeOrder(idsInRenderOrder: string[]): void {
+  public setColumnOrder(idsInRenderOrder: string[]): void {
     this._columnState.update(current => {
+      const needsUpdate = idsInRenderOrder.some((id, i) => current[id] && current[id].columnIndex !== i);
+
+      if (!needsUpdate) {
+        return current;
+      }
+
       const next = { ...current };
 
       idsInRenderOrder.forEach((id, index) => {

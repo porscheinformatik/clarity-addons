@@ -51,7 +51,7 @@ describe('ClrTreetableColumnManagerMenuComponent', () => {
 
   async function registerColumns(columns: Array<{ id: string; hideable?: boolean; hidden?: boolean }>) {
     columns.forEach(({ id }) => columnService.register({ id }));
-    columnService.initializeOrder(columns.map(c => c.id));
+    columnService.setColumnOrder(columns.map(c => c.id));
     columns.forEach(({ id, hideable, hidden }) => {
       if (hideable) {
         columnService.registerHideable(id, {

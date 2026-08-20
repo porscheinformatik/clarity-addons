@@ -13,7 +13,7 @@ import {
   ClrTreetableState,
   ClrTreetableStringFilterFunction,
 } from '@porscheinformatik/clr-addons';
-import { of, tap } from 'rxjs';
+import { map, of, tap, timer } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { ClrDatagridComparatorInterface, ClrDatagridSortOrder, ClrDatagridStringFilterInterface } from '@clr/angular';
 
@@ -198,6 +198,7 @@ export class TreetableDemo implements OnInit {
 
   private readonly DEFAULT_CUSTOM_WIDTH: number = 400;
   protected readonly nameColumnWidth = signal(this.DEFAULT_CUSTOM_WIDTH);
+  protected readonly testAsync = toSignal(timer(1000).pipe(map(() => true)), { initialValue: false });
 
   protected getChildren(node: Tree): Tree[] {
     return node?.children || [];
