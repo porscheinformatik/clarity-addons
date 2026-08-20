@@ -500,6 +500,19 @@ describe('StatePersistenceKeyDirective', () => {
       expect(fixture.componentInstance.columns.map(c => c.name)).toEqual(['dynamic-column-2', 'dynamic-column-1']);
     });
 
+    it('should ignore columns without order when initializing column order', () => {
+      const storageKey = PERSISTENCE_KEY + '-should-ignore-columns-without-order';
+      localStorage.setItem(
+        storageKey,
+        '{"columns":{"dynamic-column-2":{"order":0},"dynamic-column-1":{"width":"118px"}}}'
+      );
+      fixture.componentInstance.persistColumnOrder = true;
+      fixture.componentInstance.storageKey = storageKey;
+      fixture.detectChanges();
+
+      expect(fixture.componentInstance.columns.map(c => c.name)).toEqual(['dynamic-column-2', 'dynamic-column-1']);
+    });
+
     it('should not init column order if disabled', () => {
       const storageKey = PERSISTENCE_KEY + '-should-not-init-order';
       localStorage.setItem(storageKey, '{"columns":{"dynamic-column-2":{"order":0},"dynamic-column-1":{"order":1}}}');
