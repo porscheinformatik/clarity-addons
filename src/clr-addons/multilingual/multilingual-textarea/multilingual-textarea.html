@@ -4,6 +4,7 @@
     *ngIf="showLanguageSelector()"
     [disabled]="disabled"
     [texts]="shownTexts"
+    [icons]="languageIcons"
     [selectedLang]="selectedLang"
     (selectedLangChange)="changeLanguage($event)"
   >

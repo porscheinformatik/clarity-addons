@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -104,6 +104,32 @@ class TestComponentPrefix implements OnInit {
   ngOnInit(): void {
     this.data.set('EN', 'english text');
     this.data.set('DE', '<na> english text');
+  }
+}
+
+@Component({
+  template: `
+    <clr-multilingual-textarea
+      [clrSelectedLang]="selectedLang"
+      [clrLanguages]="languages"
+      [clrLanguageIcons]="icons"
+      [(ngModel)]="data"
+      name="test"
+    >
+      <label>Test</label>
+    </clr-multilingual-textarea>
+  `,
+  standalone: false,
+})
+class TestComponentWithIcons implements OnInit {
+  selectedLang = 'EN';
+  languages = ['EN', 'DE'];
+  data = new Map();
+  icons = new Map<string, string>([['DE', 'flag']]);
+
+  ngOnInit(): void {
+    this.data.set('EN', 'english text');
+    this.data.set('DE', 'deutscher text');
   }
 }
 
@@ -303,6 +329,38 @@ describe('Multilingual Textarea', () => {
 
       sendInput(inputEl, fixture, 'new text');
       expect(fixture.componentInstance.data.get('DE')).toBe('new text');
+    });
+  });
+
+  describe('Language icon support', () => {
+    let fixture: ComponentFixture<TestComponentWithIcons>;
+    let langSelector: HTMLButtonElement;
+
+    beforeEach(() => {
+      TestBed.configureTestingModule({
+        imports: [ClarityModule, FormsModule, ClrMultilingualModule],
+        declarations: [TestComponentWithIcons],
+      }).compileComponents();
+
+      fixture = TestBed.createComponent(TestComponentWithIcons);
+      fixture.detectChanges();
+    });
+
+    beforeEach(waitForAsync(() => {
+      fixture.whenStable().then(() => {
+        fixture.detectChanges();
+        langSelector = fixture.debugElement.query(By.css('.clr-multilingual-button')).nativeElement;
+      });
+    }));
+
+    it('renders configured language icon in selector entry', () => {
+      langSelector.click();
+      fixture.detectChanges();
+
+      const iconElement = fixture.debugElement.query(
+        By.css('.clr-multilingual-dd-entry .label cds-icon[shape="flag"]')
+      );
+      expect(iconElement).toBeTruthy();
     });
   });
 

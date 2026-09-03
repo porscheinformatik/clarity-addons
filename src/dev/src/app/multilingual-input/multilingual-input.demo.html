@@ -90,6 +90,27 @@
     <input class="clr-col-md-9 clr-col-lg-10" clrInput type="text" />
   </clr-input-container>
 
+  <clr-multilingual-input
+    class="clr-col-12 clr-row"
+    clrSelectedLang="en"
+    [(ngModel)]="templateWithIcons"
+    [clrLanguageIcons]="languageIcons"
+    clrControlClasses="clr-col-md-9 clr-col-lg-10"
+    name="templateWithIcons"
+  >
+    <label class="clr-col-md-3 clr-col-lg-2">Language icons</label>
+  </clr-multilingual-input>
+  <clr-multilingual-textarea
+    class="clr-col-12 clr-row"
+    clrSelectedLang="en"
+    [(ngModel)]="templateTextareaWithIcons"
+    [clrLanguageIcons]="languageIcons"
+    clrControlClasses="clr-col-md-9 clr-col-lg-10"
+    name="templateTextareaWithIcons"
+  >
+    <label class="clr-col-md-3 clr-col-lg-2">Language icons textarea</label>
+  </clr-multilingual-textarea>
+
   <clr-textarea-container class="clr-col-12">
     <label class="clr-col-md-3 clr-col-lg-2">Normal Textarea</label>
     <textarea clrTextarea class="clr-col-md-9 clr-col-lg-10"></textarea>
