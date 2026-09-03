@@ -8,7 +8,6 @@ export interface RegisterColumnOptions {
   id: string;
   hideable?: boolean;
   hidden?: boolean;
-  initialHidden?: boolean;
   titleTemplateRef?: TemplateRef<unknown>;
 }
 
@@ -28,7 +27,6 @@ export class TreetableColumnStateService {
   private readonly _changeHideable$ = new Subject<{ id: string; hideable: boolean; hidden: boolean }>();
   private readonly _changeHiddenForAll$ = new Subject<boolean>();
   private readonly _changeHidden$ = new Subject<{ id: string; hidden: boolean }>();
-  private readonly _resetHidden$ = new Subject<void>();
 
   private readonly _columnState = signal<Record<string, ColumnState>>({});
 
@@ -48,11 +46,11 @@ export class TreetableColumnStateService {
       const current = this.getColumn(patch.id);
 
       if (current.hideable && !patch.hideable) {
-        this.update(patch.id, { hideable: false, hidden: false, initialHidden: false });
+        this.update(patch.id, { hideable: false, hidden: false });
       }
 
       if (!current.hideable && patch.hideable) {
-        this.update(patch.id, { hideable: true, hidden: patch.hidden, initialHidden: patch.hidden });
+        this.update(patch.id, { hideable: true, hidden: patch.hidden });
       }
 
       this.update(patch.id, { hidden: patch.hidden });
@@ -83,31 +81,11 @@ export class TreetableColumnStateService {
     share()
   );
 
-  private readonly _resetHiddenAction$ = this._resetHidden$.pipe(
-    tap(() => {
-      this._columnState.update(current =>
-        Object.fromEntries(
-          Object.entries(current).map(([id, column]) => [
-            id,
-            column.hideable
-              ? {
-                  ...column,
-                  hidden: column.initialHidden,
-                }
-              : column,
-          ])
-        )
-      );
-    }),
-    share()
-  );
-
   readonly changes$: Observable<TreetableColumnUpdate> = merge(
     this._changeWidthAction$.pipe(map(() => TreetableColumnUpdate.WIDTH)),
     this._changeHideableAction$.pipe(map(() => TreetableColumnUpdate.HIDDEN)),
     this._changeHiddenForAllAction$.pipe(map(() => TreetableColumnUpdate.HIDDEN)),
-    this._changeHiddenAction$.pipe(map(() => TreetableColumnUpdate.HIDDEN)),
-    this._resetHiddenAction$.pipe(map(() => TreetableColumnUpdate.HIDDEN))
+    this._changeHiddenAction$.pipe(map(() => TreetableColumnUpdate.HIDDEN))
   );
 
   constructor() {
@@ -115,7 +93,6 @@ export class TreetableColumnStateService {
     this._changeHideableAction$.pipe(takeUntilDestroyed()).subscribe();
     this._changeHiddenForAllAction$.pipe(takeUntilDestroyed()).subscribe();
     this._changeHiddenAction$.pipe(takeUntilDestroyed()).subscribe();
-    this._resetHiddenAction$.pipe(takeUntilDestroyed()).subscribe();
   }
 
   public register(options: RegisterColumnOptions): void {
@@ -145,7 +122,6 @@ export class TreetableColumnStateService {
           ...existing,
           hideable: options.hideable,
           hidden: options.hidden,
-          initialHidden: options.initialHidden ?? options.hidden,
           titleTemplateRef: options.titleTemplateRef,
         },
       };
@@ -160,8 +136,14 @@ export class TreetableColumnStateService {
     });
   }
 
-  public initializeOrder(idsInRenderOrder: string[]): void {
+  public setColumnOrder(idsInRenderOrder: string[]): void {
     this._columnState.update(current => {
+      const needsUpdate = idsInRenderOrder.some((id, i) => current[id] && current[id].columnIndex !== i);
+
+      if (!needsUpdate) {
+        return current;
+      }
+
       const next = { ...current };
 
       idsInRenderOrder.forEach((id, index) => {
@@ -198,10 +180,6 @@ export class TreetableColumnStateService {
     this._changeHidden$.next({ id, hidden: !current.hidden });
   }
 
-  public resetToInitialHidden(): void {
-    this._resetHidden$.next();
-  }
-
   public getColumnState(id: string): Observable<ColumnState> {
     return toObservable(this._columnState).pipe(
       map(columns => columns[id]),
@@ -212,8 +190,7 @@ export class TreetableColumnStateService {
   public getColumnChangesById(id: string): Observable<TreetableColumnUpdateById> {
     const hiddenChanges$ = merge(
       this._changeHiddenAction$.pipe(filter(change => change.id === id)),
-      this._changeHiddenForAllAction$,
-      this._resetHiddenAction$
+      this._changeHiddenForAllAction$
     ).pipe(
       map((): TreetableColumnUpdateById => ({
         id,

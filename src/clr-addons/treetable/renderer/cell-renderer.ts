@@ -37,8 +37,8 @@ export class TreetableCellRenderer {
 
   public setWidth(width: number): void {
     const el = this.elementRef.nativeElement;
-    this.renderer.setStyle(el, 'width', `${width}px`);
     this.renderer.setStyle(el, 'max-width', `${width}px`);
+    this.renderer.setStyle(el, 'width', `${width}px`);
     this.renderer.setStyle(el, 'flex', '0 0 auto');
   }
 }

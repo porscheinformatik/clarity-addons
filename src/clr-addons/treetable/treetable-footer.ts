@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { TreetableColumnStateService } from './providers/treetable-column-state.service';
 import { TreetableDataStateService } from './providers';
 import { ClrCommonStringsService } from '@clr/angular';
@@ -8,18 +8,26 @@ import { ClrCommonStringsService } from '@clr/angular';
   template: `
     @if (hasSelectedRows()) {
       <div class="clr-form-control-disabled">
-        <clr-checkbox-wrapper class="treetable-footer-select">
-          <input clrCheckbox type="checkbox" checked="checked" disabled />
-          <label>{{ selectedRows().length }}</label>
-          <span class="clr-sr-only">{{ commonStrings.selectedRows }}</span>
+        <clr-checkbox-wrapper class="treetable-footer-select" data-testid="treetable-footer-selected-wrapper">
+          <input
+            clrCheckbox
+            type="checkbox"
+            data-testid="treetable-footer-selected-checkbox"
+            checked="checked"
+            disabled
+          />
+          <label data-testid="treetable-footer-selected-count">{{ selectedRows().length }}</label>
+          <span class="clr-sr-only" data-testid="treetable-footer-selected-label">
+            {{ commonStrings.selectedRows }}
+          </span>
         </clr-checkbox-wrapper>
       </div>
     }
     @if (hasHideableColumns()) {
-      <clr-tt-column-manager-menu [resetLabel]="clrResetLabel()" />
+      <clr-tt-column-manager-menu />
     }
 
-    <div class="treetable-footer-description">
+    <div class="treetable-footer-description" data-testid="treetable-footer-description">
       <ng-content />
     </div>
   `,
@@ -35,8 +43,6 @@ export class ClrTreetableFooter {
   private readonly _dataService = inject(TreetableDataStateService);
 
   protected readonly commonStrings = this._commonStringsService.keys;
-
-  clrResetLabel = input<string>('RESET');
 
   protected readonly hasHideableColumns = this._columnService.hasHideableColumns;
   protected readonly selectedRows = this._dataService.selectedNodes;

@@ -1,12 +1,14 @@
 <div
   #panelsRef
   class="summary-area-panels"
+  data-testid="summary-area-panels"
   [class.is-active]="!isCollapsed()"
   [class.loading-active]="hasLoading"
   [style.height]="panelHeight"
 >
   <div
     class="summary-area-panel summary-area-panel--state"
+    data-testid="summary-area-state-panel"
     [class.is-active]="!isCollapsed() && (hasLoading || hasError || hasWarning)"
     [class.is-error]="hasError"
     [class.is-warning]="hasWarning"
@@ -17,43 +19,65 @@
     <div class="summary-area-panel__body">
       <div
         class="summary-area-loading"
+        data-testid="summary-area-loading"
         [class.is-visible]="loadingVisible"
         [attr.aria-hidden]="!hasLoading"
         [style.height]="loadingPanelHeight"
       >
-        <clr-spinner [clrMedium]="true"></clr-spinner>
-        <span class="loading-text">{{ loadingText }}</span>
+        <clr-spinner [clrMedium]="true" data-testid="summary-area-loading-spinner"></clr-spinner>
+        <span class="loading-text" data-testid="summary-area-loading-text">{{ loadingText }}</span>
       </div>
       @if (hasError) {
-      <div class="summary-area-alert">
-        <clr-alert [clrAlertLightweight]="true" [clrAlertType]="'danger'">
+      <div class="summary-area-alert" data-testid="summary-area-error-alert">
+        <clr-alert [clrAlertLightweight]="true" [clrAlertType]="'danger'" data-testid="summary-area-error">
           <clr-alert-item>
             @if (errorLinkText && errorClick) {
-            <span class="alert-text">{{ errorText }}</span>
-            <span class="alert-action" (click)="errorClick()" (keydown.enter)="errorClick()">{{ errorLinkText }}</span>
+            <span class="alert-text" data-testid="summary-area-error-text">{{ errorText }}</span>
+            <span
+              class="alert-action"
+              (click)="errorClick()"
+              (keydown.enter)="errorClick()"
+              data-testid="summary-area-error-action"
+              >{{ errorLinkText }}</span
+            >
             } @else if (errorClick) {
-            <span class="alert-action" (click)="errorClick()" (keydown.enter)="errorClick()">{{ errorText }}</span>
+            <span
+              class="alert-action"
+              (click)="errorClick()"
+              (keydown.enter)="errorClick()"
+              data-testid="summary-area-error-text-action"
+              >{{ errorText }}</span
+            >
             } @else {
-            <span class="alert-text">{{ errorText }}</span>
+            <span class="alert-text" data-testid="summary-area-error-text-only">{{ errorText }}</span>
             }
           </clr-alert-item>
         </clr-alert>
       </div>
       } @else if (hasWarning) {
-      <div class="summary-area-alert">
-        <clr-alert [clrAlertLightweight]="true" [clrAlertType]="'warning'">
+      <div class="summary-area-alert" data-testid="summary-area-warning-alert">
+        <clr-alert [clrAlertLightweight]="true" [clrAlertType]="'warning'" data-testid="summary-area-warning">
           <clr-alert-item>
             @if (warningLinkText && warningClick) {
-            <span class="alert-text">{{ warningText }}</span>
-            <span class="alert-action" (click)="warningClick()" (keydown.enter)="warningClick()">
+            <span class="alert-text" data-testid="summary-area-warning-text">{{ warningText }}</span>
+            <span
+              class="alert-action"
+              (click)="warningClick()"
+              (keydown.enter)="warningClick()"
+              data-testid="summary-area-warning-action"
+            >
               {{ warningLinkText }}
             </span>
             } @else if (warningClick) {
-            <span class="alert-action" (click)="warningClick()" (keydown.enter)="warningClick()"
+            <span
+              class="alert-action"
+              (click)="warningClick()"
+              (keydown.enter)="warningClick()"
+              data-testid="summary-area-warning-text-action"
               >{{ warningText }}</span
             >
             } @else {
-            <span class="alert-text">{{ warningText }}</span>
+            <span class="alert-text" data-testid="summary-area-warning-text-only">{{ warningText }}</span>
             }
           </clr-alert-item>
         </clr-alert>
@@ -64,13 +88,19 @@
 
   <div
     class="summary-area-panel summary-area-panel--grid"
+    data-testid="summary-area-grid-panel"
     [class.is-active]="!isCollapsed() && !hasError && !hasWarning && !hasLoading"
     [attr.aria-hidden]="isCollapsed() || hasError || hasWarning || hasLoading ? 'true' : 'false'"
     [attr.inert]="isCollapsed() || hasError || hasWarning || hasLoading ? '' : null"
   >
     <div class="summary-area-panel__body">
       <div class="summary-area-container">
-        <div class="summary-grid" [style.--columns]="currentColumns" [style.--rows]="currentRows()">
+        <div
+          class="summary-grid"
+          [style.--columns]="currentColumns"
+          [style.--rows]="currentRows()"
+          data-testid="summary-area-grid"
+        >
           @for (item of visibleItems; track item) {
           <ng-container *ngTemplateOutlet="item.template"></ng-container>
           }

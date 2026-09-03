@@ -1,20 +1,32 @@
 <clr-dropdown>
-  <button type="button" class="btn btn-icon btn-outline-primary history-button" clrDropdownTrigger>
+  <button
+    type="button"
+    class="btn btn-icon btn-outline-primary history-button"
+    clrDropdownTrigger
+    data-testid="history-trigger"
+  >
     <cds-icon shape="history" size="16"></cds-icon>
     <cds-icon shape="angle" direction="down" size="12"></cds-icon>
   </button>
-  <clr-dropdown-menu [clrPosition]="position" *clrIfOpen>
-    <label class="dropdown-header" aria-hidden="true">{{ dropdownHeader }}</label>
+  <clr-dropdown-menu [clrPosition]="position" *clrIfOpen data-testid="history-menu">
+    <label class="dropdown-header" aria-hidden="true" data-testid="history-header">{{ dropdownHeader }}</label>
     @for (history of historyElements$ | async; track history) {
-    <button type="button" clrDropdownItem (click)="select(history)">{{ history.title }}</button>
+    <button
+      type="button"
+      clrDropdownItem
+      (click)="select(history)"
+      [attr.data-testid]="'history-option-' + (history.title)"
+    >
+      {{ history.title }}
+    </button>
     } @if (pinActive) {
     <div class="dropdown-divider" role="separator" aria-hidden="true"></div>
     }
-    <button clrDropdownItem (click)="togglePinHistory()">
+    <button clrDropdownItem (click)="togglePinHistory()" data-testid="history-pin-toggle">
       @if (pinActive && !pinActivated) {
-      <span>{{ dropdownPin }}</span>
+      <span data-testid="history-pin-label">{{ dropdownPin }}</span>
       } @if (pinActive && pinActivated) {
-      <span>{{ dropdownUnpin }}</span>
+      <span data-testid="history-unpin-label">{{ dropdownUnpin }}</span>
       }
     </button>
   </clr-dropdown-menu>

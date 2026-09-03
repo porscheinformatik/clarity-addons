@@ -1,62 +1,90 @@
-<div class="chart-container">
-  <div class="chart-area" #container (cngWindowResize)="updateChart()" [class.pt-3]="alertMessageAndType()">
+<div class="chart-container" data-testid="bar-chart">
+  <div
+    class="chart-area"
+    data-testid="bar-chart-area"
+    #container
+    (cngWindowResize)="updateChart()"
+    [class.pt-3]="alertMessageAndType()"
+  >
     <svg [class.d-none]="loading() || !data()?.length || allValuesZero()" #chart></svg>
 
     @if (tooltipPosition()) {
-    <cng-chart-tooltip
-      [tooltipPosition]="tooltipPosition()"
-      [tooltipOrientation]="tooltipOrientation()"
-      [squareColor]="!stacks() ? selectedItem()?.color : undefined"
-      (tooltipClosed)="resetTooltip()"
-      (cngOutsideClick)="resetTooltip()"
-      (tooltipHeaderClicked)="valueClicked.emit({ key: tooltipKey(), label: tooltipLabel(), value: tooltipValue() })"
-    >
-      <ng-container ngProjectAs="cng-title"> ({{ tooltipValue() }}) {{ tooltipLabel() }}</ng-container>
+      <cng-chart-tooltip
+        data-testid="bar-chart-tooltip"
+        [tooltipPosition]="tooltipPosition()"
+        [tooltipOrientation]="tooltipOrientation()"
+        [squareColor]="!stacks() ? selectedItem()?.color : undefined"
+        (tooltipClosed)="resetTooltip()"
+        (cngOutsideClick)="resetTooltip()"
+        (tooltipHeaderClicked)="valueClicked.emit({ key: tooltipKey(), label: tooltipLabel(), value: tooltipValue() })"
+      >
+        <ng-container ngProjectAs="cng-title"> ({{ tooltipValue() }}) {{ tooltipLabel() }}</ng-container>
 
-      <p class="mt-0">
-        {{ (100 * tooltipValue()) / total() | number : '1.0-2' }}%
-        {{ tooltipPercentOfTotal() }}
-      </p>
+        <p class="mt-0" data-testid="bar-chart-tooltip-percentage">
+          {{ (100 * tooltipValue()) / total() | number: '1.0-2' }}%
+          {{ tooltipPercentOfTotal() }}
+        </p>
 
-      @if (stacks()) { @for (slice of selectedStackSlices(); track slice.key) {
-      <div class="mt-0-5 d-flex">
-        <div class="color-square mr-0-5" [style.background-color]="toChartColor(slice.color)"></div>
-        <strong>{{ slice.fullLabel || slice.label }}:&nbsp;</strong>
-        <span
-          class="has-more-info"
-          (click)="
+        @if (stacks()) {
+          @for (slice of selectedStackSlices(); track slice.key) {
+            <div
+              class="mt-0-5 d-flex"
+              [attr.data-testid]="'bar-chart-tooltip-stack-slice-' + (slice.fullLabel || slice.label)"
+            >
+              <div class="color-square mr-0-5" [style.background-color]="toChartColor(slice.color)"></div>
+              <strong>{{ slice.fullLabel || slice.label }}:&nbsp;</strong>
+              <span
+                class="has-more-info"
+                [attr.data-testid]="'bar-chart-tooltip-stack-value-' + (slice.fullLabel || slice.label)"
+                (click)="
                   valueClicked.emit({
                     key: [slice.key],
                     label: slice.fullLabel || slice.label,
                     value: slice.value,
                   })
                 "
-        >
-          {{ slice.value }}
-        </span>
-      </div>
-      <p class="mt-0-25 percentage-info">
-        {{ (100 * slice.value) / total() | number : '1.0-2' }}%
-        {{ tooltipPercentOfTotal() }}
-        {{ slice.percentageOfStack | number : '1.0-2' }}% {{ tooltipPercentOf() }} "{{ tooltipLabel() }}"
-      </p>
-      } }
-    </cng-chart-tooltip>
-    } @if (loading() || !data()?.length || allValuesZero()) {
-    <cng-bar-chart-skeleton [orientation]="orientation()" [skeletonType]="loading() ? 'loading' : 'placeholder'" />
-    } @if (alertMessageAndType()) {
-    <cng-chart-alert-overlay [alertType]="alertMessageAndType()[1]" [alertMessage]="alertMessageAndType()[0]" />
+              >
+                {{ slice.value }}
+              </span>
+            </div>
+            <p
+              class="mt-0-25 percentage-info"
+              [attr.data-testid]="'bar-chart-tooltip-stack-percentage-' + (slice.fullLabel || slice.label)"
+            >
+              {{ (100 * slice.value) / total() | number: '1.0-2' }}%
+              {{ tooltipPercentOfTotal() }}
+              {{ slice.percentageOfStack | number: '1.0-2' }}% {{ tooltipPercentOf() }} "{{ tooltipLabel() }}"
+            </p>
+          }
+        }
+      </cng-chart-tooltip>
+    }
+    @if (loading() || !data()?.length || allValuesZero()) {
+      <cng-bar-chart-skeleton
+        data-testid="bar-chart-skeleton"
+        [orientation]="orientation()"
+        [skeletonType]="loading() ? 'loading' : 'placeholder'"
+      />
+    }
+    @if (alertMessageAndType()) {
+      <cng-chart-alert-overlay
+        data-testid="bar-chart-alert-overlay"
+        [alertType]="alertMessageAndType()[1]"
+        [alertMessage]="alertMessageAndType()[0]"
+      />
     }
   </div>
 
   @if (showLegend() && !loading() && legendItems().length && !allValuesZero()) {
-  <cng-chart-legend [items]="legendItems()" />
-  } @if (showExportButton() && !loading() && data()?.length) {
-  <cng-chart-export-button
-    [svgRef]="svgElement()"
-    [filename]="exportFilename()"
-    [buttonTitle]="exportButtonTitle()"
-    [legendItems]="legendItems()"
-  />
+    <cng-chart-legend data-testid="bar-chart-legend" [items]="legendItems()" />
+  }
+  @if (showExportButton() && !loading() && data()?.length) {
+    <cng-chart-export-button
+      data-testid="bar-chart-export"
+      [svgRef]="svgElement()"
+      [filename]="exportFilename()"
+      [buttonTitle]="exportButtonTitle()"
+      [legendItems]="legendItems()"
+    />
   }
 </div>

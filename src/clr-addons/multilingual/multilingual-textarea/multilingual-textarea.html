@@ -2,6 +2,7 @@
 <div class="clr-control-container" [ngClass]="controlClasses">
   @if (showLanguageSelector()) {
   <clr-multilingual-selector
+    data-testid="multilingual-textarea-language-selector"
     [disabled]="disabled"
     [texts]="shownTexts"
     [icons]="languageIcons"
@@ -21,6 +22,7 @@
         [disabled]="disabled"
         [readonly]="readonly || readonly === ''"
         [maxlength]="maxlength || null"
+        [attr.data-testid]="'multilingual-textarea-text-' + (selectedLang)"
         [rows]="rows || 1"
         #input
       ></textarea>

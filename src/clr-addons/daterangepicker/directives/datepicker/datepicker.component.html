@@ -1,4 +1,11 @@
 <clr-date-container>
-  <label>{{ this.label }}</label>
-  <input #inputElm clrDate [(clrDate)]="this.date" [min]="this.minDateAttr" [max]="this.maxDateAttr" />
+  <label data-testid="datepicker-label">{{ this.label }}</label>
+  <input
+    #inputElm
+    clrDate
+    [(clrDate)]="this.date"
+    [min]="this.minDateAttr"
+    [max]="this.maxDateAttr"
+    data-testid="datepicker-input"
+  />
 </clr-date-container>

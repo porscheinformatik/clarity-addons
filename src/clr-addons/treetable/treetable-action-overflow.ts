@@ -14,11 +14,17 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   template: `
     @if (!empty()) {
       <ng-container>
-        <button class="treetable-action-trigger" clrPopoverOrigin clrPopoverOpenCloseButton>
+        <button
+          class="treetable-action-trigger"
+          data-testid="treetable-action-overflow-toggle"
+          clrPopoverOrigin
+          clrPopoverOpenCloseButton
+        >
           <cds-icon shape="ellipsis-vertical"></cds-icon>
         </button>
         <div
           class="datagrid-action-overflow"
+          data-testid="treetable-action-overflow-menu"
           cdkTrapFocus
           (click)="closeOverflowContent($event)"
           *clrPopoverContent="false; at: smartPosition; outsideClickToClose: true; scrollToClose: true"

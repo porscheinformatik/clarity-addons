@@ -50,11 +50,11 @@ export class ClrTreetableHideableColumn implements OnInit, OnDestroy {
     const value = this.clrTtHideableColumn();
 
     if (typeof value === 'string') {
-      return { hidden: false, initialHidden: false };
+      return { hidden: false };
     }
 
     const hidden = value?.hidden ?? false;
-    return { hidden: hidden, initialHidden: value?.initial ?? hidden };
+    return { hidden: hidden };
   });
 
   constructor() {
@@ -75,7 +75,6 @@ export class ClrTreetableHideableColumn implements OnInit, OnDestroy {
     this._columnState.registerHideable(this._column.columnId, {
       hideable: true,
       hidden: resolvedHidden.hidden,
-      initialHidden: resolvedHidden.initialHidden,
       titleTemplateRef: this._titleTemplateRef,
     });
   }

@@ -3,9 +3,9 @@
   <ng-content select=".header-container"></ng-content>
 
   @for (item of allItems; track item; let i = $index) {
-  <div class="controls-wrapper">
+  <div class="controls-wrapper" [attr.data-testid]="'generic-quick-list-item-' + (item.id || i)">
     @if (itemTemplate) {
-    <div class="controls-container" #row>
+    <div class="controls-container" #row [attr.data-testid]="'generic-quick-list-item-content-' + (item.id || i)">
       <ng-container *ngTemplateOutlet="itemTemplate.get(0); context: {$implicit:item}"></ng-container>
     </div>
     } @if (!(readonly || readonly === '')) {
@@ -15,6 +15,7 @@
       [ngClass]="{'btn-trash-ext': !(compactMode && i === allItems.length - 1)}"
       [disabled]="required && allItems.length === 1"
       (click)="removeItem(item)"
+      [attr.data-testid]="'generic-quick-list-remove-button-' + (item.id || i)"
     >
       <cds-icon shape="trash"></cds-icon>
     </button>
@@ -24,6 +25,7 @@
       class="btn btn-icon btn-link quick-list-addcompact"
       (click)="addItem()"
       [disabled]="!addPossible"
+      data-testid="generic-quick-list-add-compact-button"
     >
       <cds-icon shape="plus-circle"></cds-icon>
     </button>
@@ -35,11 +37,18 @@
     class="btn btn-icon btn-link quick-list-addcompact"
     (click)="addItem()"
     [disabled]="!addPossible"
+    data-testid="generic-quick-list-add-compact-button-empty"
   >
     <cds-icon shape="plus-circle"></cds-icon>
   </button>
   } @if (!(readonly || readonly === '') && !compactMode) {
-  <button type="button" class="btn btn-link btn-sm btn-add" (click)="addItem()" [disabled]="!addPossible">
+  <button
+    type="button"
+    class="btn btn-link btn-sm btn-add"
+    (click)="addItem()"
+    [disabled]="!addPossible"
+    data-testid="generic-quick-list-add-button"
+  >
     {{addLabel}}
   </button>
   }

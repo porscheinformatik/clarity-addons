@@ -127,7 +127,7 @@ export class LocationBarDemo implements OnInit {
   private buildSearchableRoot(preselectedIds: string[]): void {
     const child1 = new LocationBarNode<DemoLocationBarComplexNodeId>(
       new DemoLocationBarComplexNodeId('1', 'Searchable child 1', 'child 1 code'),
-      'Searchable child 1',
+      'Searchable child 1 with extra long text to check width',
       true,
       preselectedIds.some(id => id === '1')
     );

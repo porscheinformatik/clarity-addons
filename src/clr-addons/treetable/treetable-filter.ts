@@ -33,12 +33,13 @@ import { FilterStateService, RegisteredTreetableFilter } from './providers/filte
     <div
       class="treetable-filter"
       role="dialog"
+      data-testid="treetable-filter-dialog"
       cdkTrapFocus
       *clrPopoverContent="open(); at: popoverPosition; outsideClickToClose: true; scrollToClose: true"
       [attr.aria-label]="commonStrings.datagridFilterDialogAriaLabel"
     >
       <div class="treetable-filter-close-wrapper">
-        <button type="button" class="close" clrPopoverCloseButton>
+        <button type="button" class="close" data-testid="treetable-filter-close" clrPopoverCloseButton>
           <cds-icon shape="window-close" [attr.aria-label]="commonStrings.close"></cds-icon>
         </button>
       </div>

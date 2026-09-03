@@ -1,12 +1,16 @@
 @if (breadcrumbElements.length) {
-<nav aria-label="breadcrumb">
+<nav aria-label="breadcrumb" data-testid="breadcrumb-nav">
   <ol class="breadcrumb">
     @for (breadcrumbItem of breadcrumbElements; track breadcrumbItem) { @if (breadcrumbItem.url) {
     <li class="breadcrumb-item">
-      <a [routerLink]="breadcrumbItem.url">{{breadcrumbItem.label}}</a>
+      <a [routerLink]="breadcrumbItem.url" [attr.data-testid]="'breadcrumb-item-' + (breadcrumbItem.label)">
+        {{breadcrumbItem.label}}
+      </a>
     </li>
     } @if (!breadcrumbItem.url) {
-    <li class="breadcrumb-item active">{{breadcrumbItem.label}}</li>
+    <li class="breadcrumb-item active" [attr.data-testid]="'breadcrumb-active-item-' + (breadcrumbItem.label)">
+      {{breadcrumbItem.label}}
+    </li>
     } }
   </ol>
 </nav>

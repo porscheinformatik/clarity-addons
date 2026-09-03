@@ -11,7 +11,7 @@ import { ClrTreetableSelectedState } from './enums/selection-type';
   selector: 'clr-tt-row-checkbox',
   styleUrl: './treetable-row.scss',
   template: `
-    <div class="clr-checkbox-wrapper">
+    <div class="clr-checkbox-wrapper" data-testid="treetable-row-checkbox-wrapper">
       <input
         type="checkbox"
         data-testId="clrTtRowCheckbox"

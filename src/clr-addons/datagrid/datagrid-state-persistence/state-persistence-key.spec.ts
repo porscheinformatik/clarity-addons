@@ -130,6 +130,7 @@ describe('StatePersistenceKeyDirective', () => {
         CdkDrag,
       ],
       declarations: [TestComponent],
+      teardown: { destroyAfterEach: false },
     }).compileComponents();
 
     fixture = TestBed.createComponent(TestComponent);
@@ -492,6 +493,19 @@ describe('StatePersistenceKeyDirective', () => {
     it('should init column order if enabled', () => {
       const storageKey = PERSISTENCE_KEY + '-should-init-order';
       localStorage.setItem(storageKey, '{"columns":{"dynamic-column-2":{"order":0},"dynamic-column-1":{"order":1}}}');
+      fixture.componentInstance.persistColumnOrder = true;
+      fixture.componentInstance.storageKey = storageKey;
+      fixture.detectChanges();
+
+      expect(fixture.componentInstance.columns.map(c => c.name)).toEqual(['dynamic-column-2', 'dynamic-column-1']);
+    });
+
+    it('should ignore columns without order when initializing column order', () => {
+      const storageKey = PERSISTENCE_KEY + '-should-ignore-columns-without-order';
+      localStorage.setItem(
+        storageKey,
+        '{"columns":{"dynamic-column-2":{"order":0},"dynamic-column-1":{"width":"118px"}}}'
+      );
       fixture.componentInstance.persistColumnOrder = true;
       fixture.componentInstance.storageKey = storageKey;
       fixture.detectChanges();

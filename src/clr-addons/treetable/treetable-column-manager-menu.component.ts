@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import {
   ClrCommonStringsService,
   ClrPopoverHostDirective,
@@ -20,6 +20,7 @@ let id = 0;
       class="btn btn-sm column-manager-menu-open"
       clrPopoverOrigin
       clrPopoverOpenCloseButton
+      data-testid="treetable-column-manager-toggle"
       [attr.aria-controls]="popoverId"
       [attr.aria-expanded]="open()"
       [attr.aria-haspopup]="'menu'"
@@ -30,6 +31,7 @@ let id = 0;
       class="column-switch"
       role="dialog"
       [attr.aria-label]="commonStrings.showColumnsMenuDescription"
+      data-testid="treetable-column-manager-menu"
       [id]="popoverId"
       cdkTrapFocus
       cdkTrapFocusAutoCapture
@@ -42,12 +44,15 @@ let id = 0;
       "
     >
       <div class="switch-header">
-        <div class="clr-sr-only" tabindex="-1" #allSelected>{{ commonStrings.allColumnsSelected }}</div>
-        <h2>{{ commonStrings.showColumns }}</h2>
+        <div class="clr-sr-only" tabindex="-1" data-testid="treetable-column-manager-all-selected" #allSelected>
+          {{ commonStrings.allColumnsSelected }}
+        </div>
+        <h2 data-testid="treetable-column-manager-title">{{ commonStrings.showColumns }}</h2>
         <button
           class="btn btn-sm btn-link-neutral toggle-switch-close-button"
           clrPopoverCloseButton
           type="button"
+          data-testid="treetable-column-manager-close"
           [attr.aria-label]="commonStrings.close"
         >
           <cds-icon shape="window-close" aria-hidden="true" [attr.title]="commonStrings.close"></cds-icon>
@@ -56,16 +61,17 @@ let id = 0;
       </div>
       <ul class="switch-content list-unstyled">
         @for (column of hideableColumns(); track column.id) {
-          <li>
-            <clr-checkbox-wrapper>
+          <li [attr.data-testid]="'treetable-column-manager-item-' + column.id">
+            <clr-checkbox-wrapper [attr.data-testid]="'treetable-column-manager-checkbox-wrapper-' + column.id">
               <input
                 clrCheckbox
                 type="checkbox"
+                [attr.data-testid]="'treetable-column-manager-checkbox-' + column.id"
                 [disabled]="hasOnlyOneVisibleColumn() && !column.hidden"
                 [ngModel]="!column.hidden"
                 (ngModelChange)="toggleColumnState(column.id)"
               />
-              <label>
+              <label [attr.data-testid]="'treetable-column-manager-label-' + column.id">
                 <ng-template [ngTemplateOutlet]="column.titleTemplateRef"></ng-template>
               </label>
             </clr-checkbox-wrapper>
@@ -76,18 +82,11 @@ let id = 0;
         <button
           type="button"
           class="btn btn-sm btn-link switch-button"
+          data-testid="treetable-column-manager-select-all"
           [disabled]="areAllColumnsVisible()"
           (click)="selectAll()"
         >
           {{ commonStrings.selectAll }}
-        </button>
-        <button
-          type="button"
-          class="btn btn-sm btn-link switch-button"
-          [disabled]="areAllColumnsReset()"
-          (click)="resetAllToInitial()"
-        >
-          {{ resetLabel() }}
         </button>
       </div>
     </div>
@@ -112,8 +111,6 @@ export class ClrTreetableColumnManagerMenuComponent {
   protected readonly popoverType = ClrPopoverType.DROPDOWN;
   protected readonly commonStrings = this._commonStringsService.keys;
 
-  resetLabel = input.required<string>();
-
   protected readonly open = toSignal<boolean>(this._popoverService.openChange);
   protected readonly hideableColumns = this._columnService.hideableColumns;
   protected readonly hasOnlyOneVisibleColumn = computed(
@@ -124,9 +121,6 @@ export class ClrTreetableColumnManagerMenuComponent {
   protected readonly areAllColumnsVisible = computed(
     () => this._columnService.visibleColumns().length === this._columnService.columns().length
   );
-  protected readonly areAllColumnsReset = computed(() =>
-    this._columnService.hideableColumns().every(column => column.hidden === column.initialHidden)
-  );
 
   protected toggleColumnState(id: string) {
     this._columnService.toggleHidden(id);
@@ -136,9 +130,5 @@ export class ClrTreetableColumnManagerMenuComponent {
     if (!this.areAllColumnsVisible()) {
       this._columnService.displayAllColumns();
     }
-  }
-
-  protected resetAllToInitial() {
-    this._columnService.resetToInitialHidden();
   }
 }

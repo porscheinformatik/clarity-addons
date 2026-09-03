@@ -9,8 +9,8 @@ import { ChangeDetectorRef, Component, Input, OnDestroy } from '@angular/core';
   selector: 'clr-progress-spinner',
   template: `
     @if (_showSpinner) {
-      <span [class]="'spinner-' + size + ' spinner'"></span>
-      <span>&nbsp;<ng-content></ng-content></span>
+      <span [class]="'spinner-' + size + ' spinner'" data-testid="progress-spinner"></span>
+      <span data-testid="progress-spinner-content">&nbsp;<ng-content></ng-content></span>
     }
   `,
   host: {

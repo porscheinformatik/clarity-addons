@@ -29,6 +29,11 @@
         >
       </li>
       <li>
+        <a routerLink="." fragment="grouped-bar-chart" [class.active]="(activeFragment | async) === 'grouped-bar-chart'"
+          >Grouped Bar Chart</a
+        >
+      </li>
+      <li>
         <a routerLink="." fragment="line-chart" [class.active]="(activeFragment | async) === 'line-chart'"
           >Line Chart</a
         >
@@ -398,6 +403,97 @@
         [tooManyItemsGroupedMessage]="'Showing {{showingAmount}} of {{totalAmount}} groups'"
         style="display: block; width: 100%; height: 100%"
       ></clr-bar-chart>
+    </div>
+
+    <!-- ================================================================== -->
+    <!-- GROUPED HORIZONTAL BAR CHART                                        -->
+    <!-- ================================================================== -->
+    <h2 id="grouped-bar-chart">Grouped Bar Chart <code class="clr-code">&lt;clr-grouped-bar-chart&gt;</code></h2>
+    <p>
+      Renders multiple bars side by side inside each group. Use it when values should be compared within the same
+      category without stacking them into a total. Both horizontal and vertical orientations are supported.
+    </p>
+
+    <h3>Inputs</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="left">Input</th>
+          <th class="left">Type</th>
+          <th class="left">Default</th>
+          <th class="left">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="left"><code>data</code> <em>(required)</em></td>
+          <td class="left">GroupedBarChartData[]</td>
+          <td class="left">—</td>
+          <td class="left">Array of grouped bar values to display.</td>
+        </tr>
+        <tr>
+          <td class="left"><code>groups</code></td>
+          <td class="left">GroupedBarChartGroup[]</td>
+          <td class="left">undefined</td>
+          <td class="left">Optional explicit group order and labels. Derived from data when omitted.</td>
+        </tr>
+        <tr>
+          <td class="left"><code>orientation</code></td>
+          <td class="left">'horizontal' | 'vertical'</td>
+          <td class="left">'horizontal'</td>
+          <td class="left">Direction of the grouped bars.</td>
+        </tr>
+        <tr>
+          <td class="left"><code>barSizePx</code></td>
+          <td class="left">number</td>
+          <td class="left">12</td>
+          <td class="left">Thickness of each individual bar in pixels.</td>
+        </tr>
+        <tr>
+          <td class="left"><code>xAxisLabel</code> / <code>yAxisLabel</code></td>
+          <td class="left">string</td>
+          <td class="left">''</td>
+          <td class="left">Optional axis description labels.</td>
+        </tr>
+        <tr>
+          <td class="left"><code>tooManyItemsGroupedMessage</code></td>
+          <td class="left">string</td>
+          <td class="left">showing {{ '{{' }}showingAmount{{ '}}' }} of {{ '{{' }}totalAmount{{ '}}' }} groups</td>
+          <td class="left">Custom message shown when not all groups fit in the available height.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Usage</h3>
+    <clr-code-snippet [clrCode]="groupedBarTs" clrLanguage="typescript"></clr-code-snippet>
+    <clr-code-snippet [clrCode]="groupedBarHtml" clrLanguage="html"></clr-code-snippet>
+
+    <h3>Example – Horizontal</h3>
+    <div style="height: 340px; width: 100%">
+      <clr-grouped-bar-chart
+        [data]="groupedBarData"
+        [groups]="groupedBarGroups"
+        orientation="horizontal"
+        [barSizePx]="12"
+        xAxisLabel="Amount"
+        yAxisLabel="Quarter"
+        [showLegend]="true"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-grouped-bar-chart>
+    </div>
+
+    <h3>Example – Vertical</h3>
+    <div style="height: 320px; width: 100%; margin-top: 1.5rem">
+      <clr-grouped-bar-chart
+        [data]="groupedBarData"
+        [groups]="groupedBarGroups"
+        orientation="vertical"
+        [barSizePx]="12"
+        xAxisLabel="Quarter"
+        yAxisLabel="Amount"
+        [showLegend]="true"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-grouped-bar-chart>
     </div>
 
     <!-- ================================================================== -->

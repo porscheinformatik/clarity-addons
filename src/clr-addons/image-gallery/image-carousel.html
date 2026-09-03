@@ -4,12 +4,17 @@
 ~ The full license information can be found in LICENSE in the root directory of this project.
 -->
 
-<div class="clr-image-carousel">
+<div class="clr-image-carousel" data-testid="image-carousel">
   <!-- Header -->
   @if (!hideHeader()) {
   <div class="clr-image-carousel__header">
-    <span class="clr-image-carousel__title">{{ productName() }}</span>
-    <button class="clr-image-carousel__close" (click)="closeCarousel.emit()" aria-label="Close">
+    <span class="clr-image-carousel__title" data-testid="image-carousel-title">{{ productName() }}</span>
+    <button
+      class="clr-image-carousel__close"
+      (click)="closeCarousel.emit()"
+      aria-label="Close"
+      data-testid="image-carousel-close-button"
+    >
       <cds-icon shape="times"></cds-icon>
     </button>
   </div>
@@ -28,6 +33,7 @@
           class="clr-image-carousel__arrow clr-image-carousel__arrow--prev"
           (click)="prev()"
           aria-label="Previous"
+          data-testid="image-carousel-prev-button"
         >
           <cds-icon shape="circle-arrow" direction="left" solid></cds-icon>
         </button>
@@ -37,10 +43,16 @@
           [src]="images()[activeIndex()].src"
           [alt]="images()[activeIndex()].alt || ''"
           class="clr-image-carousel__img"
+          data-testid="image-carousel-active-image"
         />
         }
 
-        <button class="clr-image-carousel__arrow clr-image-carousel__arrow--next" (click)="next()" aria-label="Next">
+        <button
+          class="clr-image-carousel__arrow clr-image-carousel__arrow--next"
+          (click)="next()"
+          aria-label="Next"
+          data-testid="image-carousel-next-button"
+        >
           <cds-icon shape="circle-arrow" direction="right" solid></cds-icon>
         </button>
       </div>
@@ -57,6 +69,7 @@
         [class.clr-image-carousel__thumbs--centered]="!needsScroll()"
         (scroll)="onThumbStripScroll()"
         #thumbStrip
+        data-testid="image-carousel-thumbnails"
       >
         @for (img of images(); track img; let i = $index) {
         <div
@@ -65,8 +78,14 @@
           [style.height.px]="thumbnailSize()"
           [class.clr-image-carousel__thumb--active]="i === activeIndex()"
           (click)="setActive(i)"
+          [attr.data-testid]="'image-carousel-thumbnail-' + (i)"
         >
-          <img [src]="img.src" [alt]="img.alt || ''" class="clr-image-carousel__thumb-img" />
+          <img
+            [src]="img.src"
+            [alt]="img.alt || ''"
+            class="clr-image-carousel__thumb-img"
+            [attr.data-testid]="'image-carousel-thumbnail-image-' + (i)"
+          />
         </div>
         }
       </div>

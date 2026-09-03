@@ -13,20 +13,19 @@ describe('TreetableColumnStateService', () => {
 
   // --- Setup helpers ---
 
-  function reg(id: string, opts?: { hideable?: boolean; hidden?: boolean; initialHidden?: boolean }) {
+  function reg(id: string, opts?: { hideable?: boolean; hidden?: boolean }) {
     service.register({ id });
     if (opts?.hideable) {
       service.registerHideable(id, {
         hideable: true,
         hidden: opts.hidden ?? false,
-        initialHidden: opts.initialHidden ?? opts.hidden ?? false,
       });
     }
   }
 
-  function regOrdered(columns: Array<{ id: string; hideable?: boolean; hidden?: boolean; initialHidden?: boolean }>) {
+  function regOrdered(columns: Array<{ id: string; hideable?: boolean; hidden?: boolean }>) {
     columns.forEach(({ id, ...opts }) => reg(id, opts));
-    service.initializeOrder(columns.map(c => c.id));
+    service.setColumnOrder(columns.map(c => c.id));
   }
 
   beforeEach(() => {
@@ -67,7 +66,6 @@ describe('TreetableColumnStateService', () => {
       expect(col.id).toBe('a');
       expect(col.hideable).toBeFalse();
       expect(col.hidden).toBeFalse();
-      expect(col.initialHidden).toBeFalse();
     });
 
     it('should set columnIndex to MAX_SAFE_INTEGER on register', async () => {
@@ -96,22 +94,13 @@ describe('TreetableColumnStateService', () => {
       expect(service.columns()[0].hideable).toBeTrue();
     });
 
-    it('should default initialHidden to hidden when initialHidden not provided', async () => {
-      service.register({ id: 'a' });
-      service.registerHideable('a', { hideable: true, hidden: true });
-      await tickAsync();
-
-      expect(service.columns()[0].initialHidden).toBeTrue();
-    });
-
     it('should set initialHidden independently when provided', async () => {
       service.register({ id: 'a' });
-      service.registerHideable('a', { hideable: true, hidden: false, initialHidden: true });
+      service.registerHideable('a', { hideable: true, hidden: false });
       await tickAsync();
 
       const col = service.columns()[0];
       expect(col.hidden).toBeFalse();
-      expect(col.initialHidden).toBeTrue();
     });
 
     it('should be a no-op when column is not registered', async () => {
@@ -152,11 +141,11 @@ describe('TreetableColumnStateService', () => {
   });
 
   // ---------------------------------------------------------------------------
-  describe('initializeOrder', () => {
+  describe('setColumnOrder', () => {
     it('should set columnIndex based on array position', async () => {
       service.register({ id: 'a' });
       service.register({ id: 'b' });
-      service.initializeOrder(['a', 'b']);
+      service.setColumnOrder(['a', 'b']);
       await tickAsync();
 
       const cols = service.columns();
@@ -168,7 +157,7 @@ describe('TreetableColumnStateService', () => {
       service.register({ id: 'a' });
       service.register({ id: 'b' });
       service.register({ id: 'c' });
-      service.initializeOrder(['c', 'a', 'b']);
+      service.setColumnOrder(['c', 'a', 'b']);
       await tickAsync();
 
       const ids = service.columns().map(c => c.id);
@@ -177,11 +166,91 @@ describe('TreetableColumnStateService', () => {
 
     it('should ignore ids not present in state', async () => {
       service.register({ id: 'a' });
-      service.initializeOrder(['a', 'unknown']);
+      service.setColumnOrder(['a', 'unknown']);
       await tickAsync();
 
       expect(service.columns().length).toBe(1);
       expect(service.columns()[0].columnIndex).toBe(0);
+    });
+
+    it('should reindex columns on reorder with unchanged length', async () => {
+      service.register({ id: 'a' });
+      service.register({ id: 'b' });
+      service.register({ id: 'c' });
+      service.setColumnOrder(['a', 'b', 'c']);
+      await tickAsync();
+
+      service.setColumnOrder(['c', 'b', 'a']);
+      await tickAsync();
+
+      const cols = service.columns();
+      expect(cols.find(c => c.id === 'c').columnIndex).toBe(0);
+      expect(cols.find(c => c.id === 'b').columnIndex).toBe(1);
+      expect(cols.find(c => c.id === 'a').columnIndex).toBe(2);
+      expect(service.columns().map(c => c.id)).toEqual(['c', 'b', 'a']);
+    });
+
+    it('should assign a real index to a column registered asynchronously after initial order', async () => {
+      service.register({ id: 'a' });
+      service.register({ id: 'b' });
+      service.setColumnOrder(['a', 'b']);
+      await tickAsync();
+
+      // async column appears later
+      service.register({ id: 'c' });
+      service.setColumnOrder(['a', 'b', 'c']);
+      await tickAsync();
+
+      const c = service.columns().find(col => col.id === 'c');
+      expect(c.columnIndex).toBe(2);
+      expect(c.columnIndex).not.toBe(Number.MAX_SAFE_INTEGER);
+    });
+
+    it('should shift following columns when a column is inserted in the middle', async () => {
+      service.register({ id: 'a' });
+      service.register({ id: 'b' });
+      service.setColumnOrder(['a', 'b']);
+      await tickAsync();
+
+      service.register({ id: 'x' });
+      service.setColumnOrder(['a', 'x', 'b']);
+      await tickAsync();
+
+      const cols = service.columns();
+      expect(cols.find(c => c.id === 'a').columnIndex).toBe(0);
+      expect(cols.find(c => c.id === 'x').columnIndex).toBe(1);
+      expect(cols.find(c => c.id === 'b').columnIndex).toBe(2);
+    });
+
+    it('should reindex remaining columns after a column is unregistered', async () => {
+      service.register({ id: 'a' });
+      service.register({ id: 'b' });
+      service.register({ id: 'c' });
+      service.setColumnOrder(['a', 'b', 'c']);
+      await tickAsync();
+
+      service.unregister('b');
+      service.setColumnOrder(['a', 'c']);
+      await tickAsync();
+
+      const cols = service.columns();
+      expect(cols.length).toBe(2);
+      expect(cols.find(c => c.id === 'a').columnIndex).toBe(0);
+      expect(cols.find(c => c.id === 'c').columnIndex).toBe(1);
+    });
+
+    it('should be a no-op (same signal reference) when order is unchanged', async () => {
+      service.register({ id: 'a' });
+      service.register({ id: 'b' });
+      service.setColumnOrder(['a', 'b']);
+      await tickAsync();
+
+      const before = service.columns();
+      service.setColumnOrder(['a', 'b']);
+      await tickAsync();
+
+      // no redundant state write -> computed returns the same array reference
+      expect(service.columns()).toBe(before);
     });
   });
 
@@ -267,7 +336,6 @@ describe('TreetableColumnStateService', () => {
 
       const col = service.columns()[0];
       expect(col.hidden).toBeTrue();
-      expect(col.initialHidden).toBeTrue();
     });
 
     it('should make a hideable column non-hideable and reset hidden/initialHidden', async () => {
@@ -278,7 +346,6 @@ describe('TreetableColumnStateService', () => {
       const col = service.columns()[0];
       expect(col.hideable).toBeFalse();
       expect(col.hidden).toBeFalse();
-      expect(col.initialHidden).toBeFalse();
     });
 
     it('should update hidden on already-hideable column without changing hideable flag', async () => {
@@ -371,45 +438,6 @@ describe('TreetableColumnStateService', () => {
   });
 
   // ---------------------------------------------------------------------------
-  describe('resetToInitialHidden', () => {
-    it('should restore hideable columns to their initialHidden state', async () => {
-      regOrdered([
-        { id: 'a', hideable: true, hidden: false, initialHidden: true },
-        { id: 'b', hideable: true, hidden: true, initialHidden: false },
-      ]);
-      service.resetToInitialHidden();
-      await tickAsync();
-
-      const cols = service.columns();
-      expect(cols.find(c => c.id === 'a').hidden).toBeTrue();
-      expect(cols.find(c => c.id === 'b').hidden).toBeFalse();
-    });
-
-    it('should not affect non-hideable columns', async () => {
-      regOrdered([{ id: 'a' }]);
-      service.changeHiddenForAll(true); // force hidden on non-hideable
-      service.resetToInitialHidden();
-      await tickAsync();
-
-      // non-hideable column is not reset by resetToInitialHidden
-      expect(service.columns()[0].hidden).toBeTrue();
-    });
-
-    it('should emit HIDDEN via changes$', async () => {
-      regOrdered([{ id: 'a', hideable: true, hidden: false, initialHidden: false }]);
-
-      const emissions: TreetableColumnUpdate[] = [];
-      const sub = service.changes$.subscribe(v => emissions.push(v));
-
-      service.resetToInitialHidden();
-      await tickAsync();
-
-      expect(emissions).toEqual([TreetableColumnUpdate.HIDDEN]);
-      sub.unsubscribe();
-    });
-  });
-
-  // ---------------------------------------------------------------------------
   describe('getColumnState', () => {
     it('should emit current state of specified column', async () => {
       regOrdered([{ id: 'a', hideable: true, hidden: false }]);
@@ -469,19 +497,6 @@ describe('TreetableColumnStateService', () => {
       sub.unsubscribe();
     });
 
-    it('should emit HIDDEN for resetToInitialHidden', async () => {
-      regOrdered([{ id: 'a', hideable: true, hidden: false, initialHidden: false }]);
-
-      const emissions: TreetableColumnUpdate[] = [];
-      const sub = service.changes$.subscribe(v => emissions.push(v));
-
-      service.resetToInitialHidden();
-      await tickAsync();
-
-      expect(emissions).toEqual([TreetableColumnUpdate.HIDDEN]);
-      sub.unsubscribe();
-    });
-
     it('should emit HIDDEN for changeHiddenForAll', async () => {
       regOrdered([{ id: 'a', hideable: true, hidden: false }]);
 
@@ -503,13 +518,11 @@ describe('TreetableColumnStateService', () => {
 
       service.changeWidth('a', 100);
       service.toggleHidden('a');
-      service.resetToInitialHidden();
       await tickAsync();
 
-      expect(emissions.length).toBe(3);
+      expect(emissions.length).toBe(2);
       expect(emissions[0]).toBe(TreetableColumnUpdate.WIDTH);
       expect(emissions[1]).toBe(TreetableColumnUpdate.HIDDEN);
-      expect(emissions[2]).toBe(TreetableColumnUpdate.HIDDEN);
       sub.unsubscribe();
     });
   });

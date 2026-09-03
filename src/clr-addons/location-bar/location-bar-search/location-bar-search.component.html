@@ -12,9 +12,10 @@
         name="search"
         (keydown.Space)="preventDropdownActions($event)"
         [formControl]="searchControl"
+        data-testid="location-bar-search-input"
       />
       @if (displayWarning) {
-      <clr-control-helper class="min-text-warning">{{
+      <clr-control-helper class="min-text-warning" data-testid="location-bar-search-min-warning">{{
         searchRequest?.minCharacterText ?? getMinCharactersText()
       }}</clr-control-helper>
       }

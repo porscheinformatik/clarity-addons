@@ -1,22 +1,29 @@
 @if (last > 1) {
 <div class="btn-group">
-  <button class="btn pagination-previous" (click)="previous()" [disabled]="page == 1">
+  <button
+    class="btn pagination-previous"
+    (click)="previous()"
+    [disabled]="page == 1"
+    data-testid="pager-previous-button"
+  >
     <cds-icon shape="angle" direction="left"></cds-icon>
   </button>
   @if (page > 2) {
-  <button class="btn" (click)="page = 1">1</button>
+  <button class="btn" (click)="page = 1" data-testid="pager-page-1">1</button>
   } @if (page > 3) {
-  <button class="btn" disabled>...</button>
+  <button class="btn" disabled data-testid="pager-leading-ellipsis">...</button>
   } @for (pageNum of middlePages; track pageNum) { @if (pageNum !== page) {
-  <button class="btn" (click)="page = pageNum">{{pageNum}}</button>
+  <button class="btn" (click)="page = pageNum" [attr.data-testid]="'pager-page-' + (pageNum)">{{pageNum}}</button>
   } @else {
-  <button class="btn btn-primary" type="button">{{pageNum}}</button>
+  <button class="btn btn-primary" type="button" [attr.data-testid]="'pager-current-page-' + (pageNum)">
+    {{pageNum}}
+  </button>
   } } @if (page < last - 2) {
-  <button class="btn" disabled>...</button>
+  <button class="btn" disabled data-testid="pager-trailing-ellipsis">...</button>
   } @if (page < last - 1) {
-  <button class="btn" (click)="page = last">{{last}}</button>
+  <button class="btn" (click)="page = last" [attr.data-testid]="'pager-page-' + (last)">{{last}}</button>
   }
-  <button class="btn pagination-next" (click)="next()" [disabled]="page == last">
+  <button class="btn pagination-next" (click)="next()" [disabled]="page == last" data-testid="pager-next-button">
     <cds-icon shape="angle" direction="right"></cds-icon>
   </button>
 </div>

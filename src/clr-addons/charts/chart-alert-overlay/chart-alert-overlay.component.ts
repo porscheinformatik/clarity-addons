@@ -4,14 +4,19 @@ import { ClrAlertModule } from '@clr/angular';
 @Component({
   selector: 'cng-chart-alert-overlay',
   template: `
-    <clr-alert [clrAlertSizeSmall]="true" [clrAlertClosable]="false" [clrAlertType]="alertType()">
+    <clr-alert
+      data-testid="chart-alert-overlay"
+      [clrAlertSizeSmall]="true"
+      [clrAlertClosable]="false"
+      [clrAlertType]="alertType()"
+    >
       <clr-alert-item>
-        <span class="alert-text">
+        <span class="alert-text" data-testid="chart-alert-overlay-message">
           {{ alertMessage() }}
         </span>
       </clr-alert-item>
     </clr-alert>
-    <div class="overlay"></div>
+    <div class="overlay" data-testid="chart-alert-overlay-gradient"></div>
   `,
   styles: `
     :host {

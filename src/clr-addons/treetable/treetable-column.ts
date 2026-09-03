@@ -5,21 +5,23 @@
  */
 
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   computed,
-  effect,
+  ElementRef,
   inject,
   input,
   OnDestroy,
   OnInit,
+  Renderer2,
   TemplateRef,
   viewChild,
 } from '@angular/core';
 import { outputFromObservable, takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { ClrPopoverService } from '@clr/angular';
 import { combineLatest, map } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { distinctUntilChanged, filter } from 'rxjs/operators';
 import { ClrTreetableSortOrder } from './enums/sort-order.enum';
 import { SortStateService } from './providers';
 import { TreetableColumnStateService, TreetableColumnUpdate } from './providers/treetable-column-state.service';
@@ -45,7 +47,7 @@ let columnId = 0;
         }
       </button>
     } @else {
-      <div class="treetable-column-title">
+      <div class="treetable-column-title" [attr.data-testid]="'treetable-column-header-' + columnId">
         <ng-container *ngTemplateOutlet="columnTitle" />
       </div>
     }
@@ -66,9 +68,11 @@ let columnId = 0;
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
-export class ClrTreetableColumn<T extends object> implements OnInit, OnDestroy {
+export class ClrTreetableColumn<T extends object> implements OnInit, OnDestroy, AfterViewInit {
   public readonly columnId = `clr-tt-col-${columnId++}`;
 
+  private readonly _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+  private readonly _renderer = inject(Renderer2);
   private readonly _columnTitleRef = viewChild('columnTitle', { read: TemplateRef });
   private readonly _columnState = inject(TreetableColumnStateService);
   private readonly _sort = inject(SortStateService<T>);
@@ -122,6 +126,14 @@ export class ClrTreetableColumn<T extends object> implements OnInit, OnDestroy {
     this._columnState.register({ id: this.columnId, titleTemplateRef: this._columnTitleRef() });
   }
 
+  ngAfterViewInit(): void {
+    // Only set a default testid if the consumer didn't already provide one.
+    const host = this._elementRef.nativeElement;
+    if (!host.hasAttribute('data-testid')) {
+      this._renderer.setAttribute(host, 'data-testid', `treetable-column-${this.columnId}`);
+    }
+  }
+
   ngOnDestroy() {
     this._columnState.unregister(this.columnId);
   }
@@ -172,12 +184,15 @@ export class ClrTreetableColumn<T extends object> implements OnInit, OnDestroy {
         }
       });
 
-    effect(() => {
-      const size = this.clrTtColumnSize();
-      if (size) {
+    toObservable(this.clrTtColumnSize)
+      .pipe(
+        filter(size => size != null),
+        distinctUntilChanged(),
+        takeUntilDestroyed()
+      )
+      .subscribe(size => {
         this._columnState.changeWidth(this.columnId, size);
-      }
-    });
+      });
   }
 
   protected sort(reverse?: boolean) {
