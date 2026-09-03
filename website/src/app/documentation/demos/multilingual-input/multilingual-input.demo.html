@@ -102,6 +102,16 @@
             <td class="clr-hidden-xs-down">""</td>
             <td class="left">Defines the prefix which will be shown when a text in a language is missing.</td>
           </tr>
+          <tr>
+            <td class="left">
+              <b>[clrLanguageIcons]</b>
+              <div class="clr-hidden-sm-up">Type: Map&lt;string, string&gt;</div>
+              <div class="clr-hidden-sm-up">Default: undefined</div>
+            </td>
+            <td class="left clr-hidden-xs-down">Map of language and Clarity icon shape</td>
+            <td class="clr-hidden-xs-down">undefined</td>
+            <td class="left">Optionally defines an icon per language key to render in the language selector.</td>
+          </tr>
         </tbody>
       </table>
 
@@ -251,6 +261,38 @@
         <clr-code-snippet [clrCode]="na2Example"></clr-code-snippet>
         <clr-code-snippet [clrCode]="na2TSExample" clrLanguage="typescript"></clr-code-snippet>
       </form>
+
+      <h3>Language icon support</h3>
+      <p>
+        You can optionally provide <code class="clr-code">clrLanguageIcons</code> to render icons per language in the
+        selector.
+      </p>
+      <form clrForm>
+        <clr-multilingual-input
+          class="clr-col-12 clr-row"
+          clrControlClasses="clr-col-md-5"
+          name="iconsExample"
+          clrSelectedLang="EN"
+          [(ngModel)]="iconsData"
+          [clrLanguageIcons]="languageIcons"
+        >
+          <label class="clr-col-md-2">Language Icons</label>
+        </clr-multilingual-input>
+        <clr-multilingual-textarea
+          class="clr-col-12 clr-row"
+          clrControlClasses="clr-col-md-5"
+          name="iconsTextareaExample"
+          clrSelectedLang="EN"
+          [(ngModel)]="iconsTextareaData"
+          [clrLanguageIcons]="languageIcons"
+          [rows]="3"
+        >
+          <label class="clr-col-md-2">Language Icons Textarea</label>
+        </clr-multilingual-textarea>
+      </form>
+      <clr-code-snippet [clrCode]="iconsExample"></clr-code-snippet>
+      <clr-code-snippet [clrCode]="iconsTextareaExample"></clr-code-snippet>
+      <clr-code-snippet [clrCode]="iconsTSExample" clrLanguage="typescript"></clr-code-snippet>
     </div>
   </article>
 </clr-doc-wrapper>

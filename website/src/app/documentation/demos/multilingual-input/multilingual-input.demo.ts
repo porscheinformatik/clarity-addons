@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ClrMultilingualInputValidators } from '@porscheinformatik/clr-addons';
 import { ClarityDocComponent } from '../clarity-doc';
+import { ClarityIcons, flagIcon, linkIcon, unlinkIcon } from '@clr/angular/icon';
+
+ClarityIcons.addIcons(flagIcon, linkIcon, unlinkIcon);
 
 const TEMPLATE_EXAMPLE = `
 <clr-multilingual-input class="clr-col-12 clr-row" clrSelectedLang="EN" [(ngModel)]="data1"
@@ -92,6 +95,36 @@ this.templateNa2.set("EN", "english text");
 this.templateNa2.set("FR", "texte français");
 `;
 
+const ICONS_EXAMPLE = `
+<clr-multilingual-input class="clr-col-12 clr-row" clrControlClasses="clr-col-md-5" name="iconsExample"
+  clrSelectedLang="EN" [(ngModel)]="iconsData" [clrLanguageIcons]="languageIcons">
+    <label class="clr-col-md-2">Language Icons</label>
+</clr-multilingual-input>
+`;
+
+const ICONS_TEXTAREA_EXAMPLE = `
+<clr-multilingual-textarea class="clr-col-12 clr-row" clrControlClasses="clr-col-md-5" name="iconsTextareaExample"
+  clrSelectedLang="EN" [(ngModel)]="iconsTextareaData" [clrLanguageIcons]="languageIcons" [rows]="3">
+    <label class="clr-col-md-2">Language Icons Textarea</label>
+</clr-multilingual-textarea>
+`;
+
+const ICONS_TS_EXAMPLE = `
+iconsData = new Map();
+iconsTextareaData = new Map();
+languageIcons = new Map<string, string>();
+
+this.iconsData.set("EN", "english text");
+this.iconsData.set("DE", "deutscher text");
+this.iconsData.set("FR", "texte français");
+this.iconsTextareaData.set("EN", "english text\\nsecond line");
+this.iconsTextareaData.set("DE", "deutscher text\\nzweite zeile");
+this.iconsTextareaData.set("FR", "texte français\\ndeuxième ligne");
+this.languageIcons.set("DE", "link");
+this.languageIcons.set("FR", "flag");
+this.languageIcons.set("EN", "unlink");
+`;
+
 @Component({
   selector: 'clr-multilingual-demo',
   templateUrl: './multilingual-input.demo.html',
@@ -110,6 +143,9 @@ export class MultilingualInputDemo extends ClarityDocComponent implements OnInit
   naTSExample = NA_TS_EXAMPLE;
   na2Example = NA2_EXAMPLE;
   na2TSExample = NA2_TS_EXAMPLE;
+  iconsExample = ICONS_EXAMPLE;
+  iconsTextareaExample = ICONS_TEXTAREA_EXAMPLE;
+  iconsTSExample = ICONS_TS_EXAMPLE;
 
   data1 = new Map();
   data2 = new Map();
@@ -117,6 +153,9 @@ export class MultilingualInputDemo extends ClarityDocComponent implements OnInit
   reactiveData2 = new Map<string, string>();
   templateNa = new Map();
   templateNa2 = new Map();
+  iconsData = new Map();
+  iconsTextareaData = new Map();
+  languageIcons = new Map<string, string>();
   languagesNa = ['EN', 'DE'];
   languagesNa2 = ['EN', 'DE'];
 
@@ -151,5 +190,14 @@ export class MultilingualInputDemo extends ClarityDocComponent implements OnInit
     this.templateNa.set('EN', 'english text');
     this.templateNa2.set('EN', 'english text');
     this.templateNa2.set('FR', 'texte français');
+    this.iconsData.set('EN', 'english text');
+    this.iconsData.set('DE', 'deutscher text');
+    this.iconsData.set('FR', 'texte français');
+    this.iconsTextareaData.set('EN', 'english text\nsecond line');
+    this.iconsTextareaData.set('DE', 'deutscher text\nzweite zeile');
+    this.iconsTextareaData.set('FR', 'texte français\ndeuxième ligne');
+    this.languageIcons.set('DE', 'link');
+    this.languageIcons.set('FR', 'flag');
+    this.languageIcons.set('EN', 'unlink');
   }
 }
