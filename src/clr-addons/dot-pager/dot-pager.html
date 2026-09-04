@@ -1,6 +1,6 @@
 @if (pages > 0) {
 <clr-radio-container clrInline>
-  @for (a of pageArray(); track a; let page = $index) {
+  @for (page of pageArray; track page) {
   <clr-radio-wrapper>
     <input
       clrRadio
