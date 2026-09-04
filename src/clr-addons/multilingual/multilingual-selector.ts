@@ -18,7 +18,7 @@ ClarityIcons.addIcons(angleIcon);
           <cds-icon
             *ngIf="getIconShape(selectedLang) as selectedIconShape"
             class="clr-multilingual-dd-icon"
-            [shape]="selectedIconShape"
+            [attr.shape]="selectedIconShape"
           ></cds-icon>
           <cds-icon shape="angle" direction="down"></cds-icon>
         </button>
@@ -36,7 +36,7 @@ ClarityIcons.addIcons(angleIcon);
                   <cds-icon
                     *ngIf="getIconShape(text.key) as iconShape"
                     class="clr-multilingual-dd-icon"
-                    [shape]="iconShape"
+                    [attr.shape]="iconShape"
                   ></cds-icon></span
                 >{{ text.value }}
               </div>
