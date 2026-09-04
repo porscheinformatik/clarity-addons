@@ -48,3 +48,6 @@ export * from './focus-first-invalid-field/index';
 export * from './control-enter-submit/index';
 export * from './keyboard-nav/index';
 export * from './image-gallery/index';
+export * from './progress-bar/index';
+export * from './progress-circle/index';
+export * from './input-suffix/index';

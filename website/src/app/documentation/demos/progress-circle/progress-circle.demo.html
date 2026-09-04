@@ -1,0 +1,160 @@
+<clr-doc-wrapper [title]="title">
+  <article>
+    <h5 class="component-summary">
+      The progress circle renders one or more progress values (each between 0 and 1) as circular rings. Use the
+      <b>layered</b> layout to stack rings on top of each other, or the <b>concentric</b> layout to draw them as nested
+      rings with a reducing radius.
+    </h5>
+
+    <div id="design-guidelines">
+      <h3>Summary of Options</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="left">Input</th>
+            <th class="left clr-hidden-xs-down">Type</th>
+            <th class="clr-hidden-xs-down">Default</th>
+            <th class="left">Effect</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left"><b>progress</b></td>
+            <td class="left clr-hidden-xs-down">number[]</td>
+            <td class="clr-hidden-xs-down">[0]</td>
+            <td class="left">
+              Array of progress values between 0 and 1. Each entry becomes a ring. Values above 1 are capped at 100%.
+            </td>
+          </tr>
+          <tr>
+            <td class="left"><b>colors</b></td>
+            <td class="left clr-hidden-xs-down">string[]</td>
+            <td class="clr-hidden-xs-down">['#4caf50', '#2196f3', '#ff9800']</td>
+            <td class="left">
+              Colors for the rings. If there are fewer colors than progress values, the color array cycles.
+            </td>
+          </tr>
+          <tr>
+            <td class="left"><b>backgroundColorCircle</b></td>
+            <td class="left clr-hidden-xs-down">string</td>
+            <td class="clr-hidden-xs-down">var(--cds-global-color-gray-100)</td>
+            <td class="left">Color of the background ring behind the progress ring(s).</td>
+          </tr>
+          <tr>
+            <td class="left"><b>size</b></td>
+            <td class="left clr-hidden-xs-down">number</td>
+            <td class="clr-hidden-xs-down">100</td>
+            <td class="left">
+              Diameter of the circle in pixels. Ring thickness is derived automatically from the size and layout.
+            </td>
+          </tr>
+          <tr>
+            <td class="left"><b>label</b></td>
+            <td class="left clr-hidden-xs-down">number | string</td>
+            <td class="clr-hidden-xs-down">undefined</td>
+            <td class="left">
+              Text shown in the center of the circle. Numeric values are formatted as a percentage (e.g.
+              <code>0.72 → "72%"</code>). String values are shown as-is. If not set, no label is rendered.
+            </td>
+          </tr>
+          <tr>
+            <td class="left"><b>layoutStrategy</b></td>
+            <td class="left clr-hidden-xs-down">'layered' | 'concentric'</td>
+            <td class="clr-hidden-xs-down">'layered'</td>
+            <td class="left">
+              <b>layered</b>: all rings share the same radius and overlap. Best for comparing progress values against
+              the same reference. <b>concentric</b>: rings are nested with reducing radius. Best for showing multiple
+              independent progress values in one visual.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="code-examples">
+      <h3 id="examples">Code &amp; Examples</h3>
+
+      <h4>Basic</h4>
+      <p>Minimal usage — a single progress value with defaults.</p>
+      <cng-circle-progress-bar [progress]="[0.6]"></cng-circle-progress-bar>
+      <clr-code-snippet [clrCode]="htmlBasic"></clr-code-snippet>
+
+      <h4>Numeric label (auto-formatted as %)</h4>
+      <p>When <code>label</code> is a number, it is rendered as a percentage.</p>
+      <cng-circle-progress-bar [size]="160" [progress]="[0.72]" [label]="0.72" [colors]="['#4caf50']">
+      </cng-circle-progress-bar>
+      <clr-code-snippet [clrCode]="htmlNumericLabel"></clr-code-snippet>
+
+      <h4>Custom string label</h4>
+      <p>Any string can be shown in the center.</p>
+      <cng-circle-progress-bar [size]="160" [progress]="[0.35]" [label]="'Loading'" [colors]="['#1976d2']">
+      </cng-circle-progress-bar>
+      <clr-code-snippet [clrCode]="htmlStringLabel"></clr-code-snippet>
+
+      <h4>Layered layout</h4>
+      <p>All rings share the same radius. Useful when comparing multiple values against the same reference.</p>
+      <cng-circle-progress-bar
+        [size]="180"
+        [progress]="[0.75, 0.4, 0.2]"
+        [label]="'Layered'"
+        [colors]="['#4caf50', '#2196f3', '#ff9800']"
+      >
+      </cng-circle-progress-bar>
+      <clr-code-snippet [clrCode]="htmlLayered"></clr-code-snippet>
+
+      <h4>Concentric layout</h4>
+      <p>Rings are nested with reducing radius. Good for showing several independent metrics at once.</p>
+      <cng-circle-progress-bar
+        [size]="200"
+        [progress]="[0.75, 0.4, 0.2]"
+        [label]="'Concentric'"
+        [colors]="['#4caf50', '#2196f3', '#ff9800']"
+        [layoutStrategy]="'concentric'"
+      >
+      </cng-circle-progress-bar>
+      <clr-code-snippet [clrCode]="htmlConcentric"></clr-code-snippet>
+
+      <h4>Cycling colors</h4>
+      <p>If there are fewer colors than progress values, the color array cycles.</p>
+      <cng-circle-progress-bar
+        [size]="200"
+        [progress]="[0.9, 0.7, 0.5, 0.3]"
+        [colors]="['#1976d2', '#4caf50']"
+        [layoutStrategy]="'concentric'"
+      >
+      </cng-circle-progress-bar>
+      <clr-code-snippet [clrCode]="htmlCyclingColors"></clr-code-snippet>
+
+      <h4>Custom background color</h4>
+      <p>Match the background ring to your palette.</p>
+      <cng-circle-progress-bar
+        [size]="160"
+        [progress]="[0.55]"
+        [label]="0.55"
+        [colors]="['#f44336']"
+        [backgroundColorCircle]="'#ffe0e0'"
+      >
+      </cng-circle-progress-bar>
+      <clr-code-snippet [clrCode]="htmlCustomBackground"></clr-code-snippet>
+
+      <h4>Different sizes</h4>
+      <p>Ring thickness is derived automatically from <code>size</code>.</p>
+      <div style="display: flex; align-items: center; gap: 1rem">
+        <cng-circle-progress-bar [size]="80" [progress]="[0.6]"></cng-circle-progress-bar>
+        <cng-circle-progress-bar [size]="140" [progress]="[0.6]"></cng-circle-progress-bar>
+        <cng-circle-progress-bar [size]="220" [progress]="[0.6]"></cng-circle-progress-bar>
+      </div>
+      <clr-code-snippet [clrCode]="htmlSizes"></clr-code-snippet>
+
+      <h4>Empty / zero state</h4>
+      <cng-circle-progress-bar [size]="160" [progress]="[0]" [label]="0" [colors]="['#1976d2']">
+      </cng-circle-progress-bar>
+      <clr-code-snippet [clrCode]="htmlZero"></clr-code-snippet>
+
+      <h4>Values above 1 are capped</h4>
+      <cng-circle-progress-bar [size]="160" [progress]="[1.4]" [label]="1" [colors]="['#4caf50']">
+      </cng-circle-progress-bar>
+      <clr-code-snippet [clrCode]="htmlFull"></clr-code-snippet>
+    </div>
+  </article>
+</clr-doc-wrapper>

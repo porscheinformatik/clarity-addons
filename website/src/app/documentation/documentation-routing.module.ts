@@ -146,6 +146,21 @@ const documentationRoutes: Routes = [
         },
       },
       {
+        path: 'progress-bar',
+        loadChildren: () => import('./demos/progress-bar/progress-bar.demo.module').then(m => m.ProgressBarDemoModule),
+        data: {
+          browserTitle: 'Progress Bar',
+        },
+      },
+      {
+        path: 'progress-circle',
+        loadChildren: () =>
+          import('./demos/progress-circle/progress-circle.demo.module').then(m => m.ProgressCircleDemoModule),
+        data: {
+          browserTitle: 'Progress Circle',
+        },
+      },
+      {
         path: 'quick-list',
         loadChildren: () => import('./demos/quick-list/quick-list.demo.module').then(m => m.QuickListDemoModule),
         data: {

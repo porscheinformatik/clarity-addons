@@ -48,6 +48,9 @@ import { ClrControlEnterSubmitDirective } from './control-enter-submit';
 import { ClrKeyboardNavCtrlArrowDirective } from './keyboard-nav/clr-keyboard-nav-ctrl-arrow.directive';
 import { ClrKeyboardNavAltMnemonicDirective } from './keyboard-nav/clr-keyboard-nav-alt-mnemonic.directive';
 import { ClrImageGalleryModule } from './image-gallery';
+import { ClrProgressBarModule } from './progress-bar';
+import { ClrProgressCircleModule } from './progress-circle';
+import { CngInputSuffixDirective } from './input-suffix';
 
 @NgModule({
   imports: [
@@ -55,6 +58,7 @@ import { ClrImageGalleryModule } from './image-gallery';
     ClrControlEnterSubmitDirective,
     ClrKeyboardNavCtrlArrowDirective,
     ClrKeyboardNavAltMnemonicDirective,
+    CngInputSuffixDirective,
   ],
   declarations: [],
   exports: [
@@ -99,6 +103,9 @@ import { ClrImageGalleryModule } from './image-gallery';
     ClrKeyboardNavCtrlArrowDirective,
     ClrKeyboardNavAltMnemonicDirective,
     ClrImageGalleryModule,
+    ClrProgressBarModule,
+    ClrProgressCircleModule,
+    CngInputSuffixDirective,
   ],
 })
 export class ClrAddonsModule {}
