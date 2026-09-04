@@ -1,0 +1,57 @@
+<div class="d-flex clr-align-items-center" [style.gap.px]="gap()">
+  <svg
+    class="clr-display-block"
+    [attr.width]="size()"
+    [attr.height]="layoutStrategy() == 'horizontal-stacked' ? barWidth() : barWidth() * segments().length"
+  >
+    <defs>
+      <clipPath [attr.id]="clipId">
+        <rect
+          x="0"
+          y="0"
+          [attr.width]="size()"
+          [attr.height]="layoutStrategy() == 'horizontal-stacked' ? barWidth() : barWidth() * segments().length"
+          [attr.rx]="cornerRadius()"
+        />
+      </clipPath>
+    </defs>
+
+    <g [attr.clip-path]="'url(#' + clipId + ')'">
+      <rect
+        x="0"
+        y="0"
+        [attr.width]="size()"
+        [attr.height]="layoutStrategy() == 'horizontal-stacked' ? barWidth() : barWidth() * segments().length"
+        [attr.fill]="backgroundColor()"
+      />
+
+      @for (segment of segments(); track $index; let i = $index) {
+        @if (layoutStrategy() == ProgressBarPositionStrategy.HORIZONTAL_STACKED) {
+          <rect
+            x="0"
+            y="0"
+            [attr.width]="segment.width"
+            [attr.height]="barWidth()"
+            [attr.fill]="segment.color"
+            class="progress-bar-fill"
+          />
+        } @else if (layoutStrategy() == ProgressBarPositionStrategy.HORIZONTAL_MULTILINE) {
+          <g [attr.transform]="'translate(0, ' + barWidth() * i + ')'">
+            <g class="progress-bar-animated">
+              <rect x="0" y="0" [attr.width]="segment.width" [attr.height]="barWidth()" [attr.fill]="segment.color" />
+            </g>
+          </g>
+        }
+      }
+    </g>
+  </svg>
+
+  <span
+    class="bold-text text-right clr-display-inline-block"
+    [style.font-size.px]="fontSize()"
+    [style.color]="labelColor()"
+    [style.min-width.px]="labelMinWidth()"
+  >
+    {{ label() }}
+  </span>
+</div>

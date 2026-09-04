@@ -1,0 +1,12 @@
+﻿@keyframes progress-in {
+  from {
+    stroke-dasharray: 0 9999;
+  }
+}
+
+.progress-ring {
+  transform: rotate(-90deg);
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: progress-in 0.5s ease forwards;
+}

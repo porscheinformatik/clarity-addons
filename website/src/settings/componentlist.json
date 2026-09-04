@@ -131,6 +131,16 @@
       "type": "component"
     },
     {
+      "url": "progress-bar",
+      "text": "Progress Bar",
+      "type": "component"
+    },
+    {
+      "url": "progress-circle",
+      "text": "Progress Circle",
+      "type": "component"
+    },
+    {
       "url": "quick-list",
       "text": "Quick List",
       "type": "component"

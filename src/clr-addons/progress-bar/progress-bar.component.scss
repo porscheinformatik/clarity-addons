@@ -1,0 +1,19 @@
+@keyframes progress-bar-in {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.progress-bar-animated {
+  animation: progress-bar-in 0.5s ease forwards;
+
+  transform-origin: left;
+  transform-box: fill-box;
+}
+
+.progress-bar-fill {
+  animation: progress-bar-in 0.5s ease forwards;
+}
