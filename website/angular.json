@@ -32,11 +32,6 @@
                 "output": "/assets/styles"
               },
               {
-                "glob": "prism-solarizedlight.css",
-                "input": "node_modules/prismjs/themes",
-                "output": "/assets/styles"
-              },
-              {
                 "glob": "prism-tomorrow.css",
                 "input": "node_modules/prismjs/themes",
                 "output": "/assets/styles"
