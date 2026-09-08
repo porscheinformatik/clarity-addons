@@ -10,7 +10,7 @@ const HTML_NUMERIC_LABEL = `
   style="--cng-circle-progress-bar-size: 160px"
   [progress]="[0.72]"
   [label]="0.72"
-  [colors]="['#4caf50']">
+  [colors]="['var(--cds-alias-status-success)']">
 </cng-circle-progress-bar>
 `;
 
@@ -19,7 +19,7 @@ const HTML_STRING_LABEL = `
   style="--cng-circle-progress-bar-size: 160px"
   [progress]="[0.35]"
   [label]="'Loading'"
-  [colors]="['#1976d2']">
+  [colors]="['var(--cds-alias-status-info)']">
 </cng-circle-progress-bar>
 `;
 
@@ -28,7 +28,7 @@ const HTML_LAYERED = `
   style="--cng-circle-progress-bar-size: 160px"
   [progress]="[0.75, 0.4, 0.2]"
   [label]="'Layered'"
-  [colors]="['#4caf50', '#2196f3', '#ff9800']">
+  [colors]="['var(--cds-alias-status-success)', 'var(--cds-alias-status-info)', 'var(--cds-alias-status-warning)']">
 </cng-circle-progress-bar>
 `;
 
@@ -37,7 +37,7 @@ const HTML_CONCENTRIC = `
   style="--cng-circle-progress-bar-size: 200px"
   [progress]="[0.75, 0.4, 0.2]"
   [label]="'Concentric'"
-  [colors]="['#4caf50', '#2196f3', '#ff9800']"
+  [colors]="['var(--cds-alias-status-success)', 'var(--cds-alias-status-info)', 'var(--cds-alias-status-warning)']"
   [layoutStrategy]="'concentric'">
 </cng-circle-progress-bar>
 `;
@@ -46,7 +46,7 @@ const HTML_CYCLING_COLORS = `
 <cng-circle-progress-bar
   style="--cng-circle-progress-bar-size: 200px"
   [progress]="[0.9, 0.7, 0.5, 0.3]"
-  [colors]="['#1976d2', '#4caf50']"
+  [colors]="['var(--cds-alias-status-info)', 'var(--cds-alias-status-success)']"
   [layoutStrategy]="'concentric'">
 </cng-circle-progress-bar>
 `;
@@ -56,8 +56,8 @@ const HTML_CUSTOM_BACKGROUND = `
   style="--cng-circle-progress-bar-size: 160px"
   [progress]="[0.55]"
   [label]="0.55"
-  [colors]="['#f44336']"
-  [backgroundColorCircle]="'#ffe0e0'">
+  [colors]="['var(--cds-alias-status-danger)']"
+  [backgroundColorCircle]="'var(--cds-alias-status-danger-tint)'">
 </cng-circle-progress-bar>
 `;
 
@@ -66,7 +66,7 @@ const HTML_ZERO = `
   style="--cng-circle-progress-bar-size: 160px"
   [progress]="[0]"
   [label]="0"
-  [colors]="['#1976d2']">
+  [colors]="['var(--cds-alias-status-info)']">
 </cng-circle-progress-bar>
 `;
 
@@ -75,7 +75,7 @@ const HTML_FULL = `
   style="--cng-circle-progress-bar-size: 160px"
   [progress]="[1.4]"
   [label]="1"
-  [colors]="['#4caf50']">
+  [colors]="['var(--cds-alias-status-success)']">
 </cng-circle-progress-bar>
 `;
 
