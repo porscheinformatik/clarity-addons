@@ -1,7 +1,7 @@
-﻿<svg class="clr-display-block" [attr.width]="size()" [attr.height]="size()" [attr.viewBox]="viewBox()">
+﻿<svg class="cng-circle-progress-bar clr-display-block" [attr.viewBox]="viewBox">
   <circle
-    [attr.cx]="center()"
-    [attr.cy]="center()"
+    [attr.cx]="center"
+    [attr.cy]="center"
     [attr.r]="radius()"
     [attr.stroke-width]="bgStrokeWidth()"
     [attr.stroke]="backgroundColorCircle()"
@@ -10,8 +10,8 @@
 
   @for (segment of segments(); track $index) {
     <circle
-      [attr.cx]="center()"
-      [attr.cy]="center()"
+      [attr.cx]="center"
+      [attr.cy]="center"
       [attr.r]="segment.radius"
       [attr.stroke-width]="strokeWidth()"
       [attr.stroke]="segment.color"
@@ -22,7 +22,7 @@
     />
   }
 
-  <text [attr.x]="center()" [attr.y]="center()" text-anchor="middle" dominant-baseline="central" font-weight="bold">
+  <text [attr.x]="center" [attr.y]="center" text-anchor="middle" dominant-baseline="central" font-weight="bold">
     {{ label() }}
   </text>
 </svg>

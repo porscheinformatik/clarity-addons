@@ -1,4 +1,13 @@
-﻿@keyframes progress-in {
+﻿:host {
+  display: inline-block;
+}
+
+.cng-circle-progress-bar {
+  width: var(--cng-circle-progress-bar-size, 100px);
+  height: var(--cng-circle-progress-bar-size, 100px);
+}
+
+@keyframes progress-in {
   from {
     stroke-dasharray: 0 9999;
   }

@@ -7,7 +7,7 @@ const HTML_BASIC = `
 
 const HTML_NUMERIC_LABEL = `
 <cng-circle-progress-bar
-  [size]="160"
+  style="--cng-circle-progress-bar-size: 160px"
   [progress]="[0.72]"
   [label]="0.72"
   [colors]="['#4caf50']">
@@ -16,7 +16,7 @@ const HTML_NUMERIC_LABEL = `
 
 const HTML_STRING_LABEL = `
 <cng-circle-progress-bar
-  [size]="160"
+  style="--cng-circle-progress-bar-size: 160px"
   [progress]="[0.35]"
   [label]="'Loading'"
   [colors]="['#1976d2']">
@@ -25,7 +25,7 @@ const HTML_STRING_LABEL = `
 
 const HTML_LAYERED = `
 <cng-circle-progress-bar
-  [size]="180"
+  style="--cng-circle-progress-bar-size: 160px"
   [progress]="[0.75, 0.4, 0.2]"
   [label]="'Layered'"
   [colors]="['#4caf50', '#2196f3', '#ff9800']">
@@ -34,7 +34,7 @@ const HTML_LAYERED = `
 
 const HTML_CONCENTRIC = `
 <cng-circle-progress-bar
-  [size]="200"
+  style="--cng-circle-progress-bar-size: 200px"
   [progress]="[0.75, 0.4, 0.2]"
   [label]="'Concentric'"
   [colors]="['#4caf50', '#2196f3', '#ff9800']"
@@ -44,7 +44,7 @@ const HTML_CONCENTRIC = `
 
 const HTML_CYCLING_COLORS = `
 <cng-circle-progress-bar
-  [size]="200"
+  style="--cng-circle-progress-bar-size: 200px"
   [progress]="[0.9, 0.7, 0.5, 0.3]"
   [colors]="['#1976d2', '#4caf50']"
   [layoutStrategy]="'concentric'">
@@ -53,7 +53,7 @@ const HTML_CYCLING_COLORS = `
 
 const HTML_CUSTOM_BACKGROUND = `
 <cng-circle-progress-bar
-  [size]="160"
+  style="--cng-circle-progress-bar-size: 160px"
   [progress]="[0.55]"
   [label]="0.55"
   [colors]="['#f44336']"
@@ -63,7 +63,7 @@ const HTML_CUSTOM_BACKGROUND = `
 
 const HTML_ZERO = `
 <cng-circle-progress-bar
-  [size]="160"
+  style="--cng-circle-progress-bar-size: 160px"
   [progress]="[0]"
   [label]="0"
   [colors]="['#1976d2']">
@@ -72,7 +72,7 @@ const HTML_ZERO = `
 
 const HTML_FULL = `
 <cng-circle-progress-bar
-  [size]="160"
+  style="--cng-circle-progress-bar-size: 160px"
   [progress]="[1.4]"
   [label]="1"
   [colors]="['#4caf50']">
@@ -80,9 +80,9 @@ const HTML_FULL = `
 `;
 
 const HTML_SIZES = `
-<cng-circle-progress-bar [size]="80"  [progress]="[0.6]"></cng-circle-progress-bar>
-<cng-circle-progress-bar [size]="140" [progress]="[0.6]"></cng-circle-progress-bar>
-<cng-circle-progress-bar [size]="220" [progress]="[0.6]"></cng-circle-progress-bar>
+<cng-circle-progress-bar style="--cng-circle-progress-bar-size: 80px"  [progress]="[0.6]"></cng-circle-progress-bar>
+<cng-circle-progress-bar style="--cng-circle-progress-bar-size: 140px" [progress]="[0.6]"></cng-circle-progress-bar>
+<cng-circle-progress-bar style="--cng-circle-progress-bar-size: 220px" [progress]="[0.6]"></cng-circle-progress-bar>
 `;
 
 @Component({

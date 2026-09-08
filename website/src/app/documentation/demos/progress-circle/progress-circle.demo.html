@@ -29,7 +29,10 @@
           <tr>
             <td class="left"><b>colors</b></td>
             <td class="left clr-hidden-xs-down">string[]</td>
-            <td class="clr-hidden-xs-down">['#4caf50', '#2196f3', '#ff9800']</td>
+            <td class="clr-hidden-xs-down">
+              ['var(--cds-global-color-green-100)', 'var(--cds-global-color-blue-100)',
+              'var(--cds-global-color-red-100)']
+            </td>
             <td class="left">
               Colors for the rings. If there are fewer colors than progress values, the color array cycles.
             </td>
@@ -41,11 +44,12 @@
             <td class="left">Color of the background ring behind the progress ring(s).</td>
           </tr>
           <tr>
-            <td class="left"><b>size</b></td>
-            <td class="left clr-hidden-xs-down">number</td>
-            <td class="clr-hidden-xs-down">100</td>
+            <td class="left"><b>--cng-circle-progress-bar-size</b></td>
+            <td class="left clr-hidden-xs-down">CSS length</td>
+            <td class="clr-hidden-xs-down">100px</td>
             <td class="left">
-              Diameter of the circle in pixels. Ring thickness is derived automatically from the size and layout.
+              Diameter of the circle, set via CSS (any unit: px, %, rem, …). Ring thickness is derived automatically
+              from the size and layout.
             </td>
           </tr>
           <tr>
@@ -81,20 +85,30 @@
 
       <h4>Numeric label (auto-formatted as %)</h4>
       <p>When <code>label</code> is a number, it is rendered as a percentage.</p>
-      <cng-circle-progress-bar [size]="160" [progress]="[0.72]" [label]="0.72" [colors]="['#4caf50']">
+      <cng-circle-progress-bar
+        style="--cng-circle-progress-bar-size: 160px"
+        [progress]="[0.72]"
+        [label]="0.72"
+        [colors]="['#4caf50']"
+      >
       </cng-circle-progress-bar>
       <clr-code-snippet [clrCode]="htmlNumericLabel"></clr-code-snippet>
 
       <h4>Custom string label</h4>
       <p>Any string can be shown in the center.</p>
-      <cng-circle-progress-bar [size]="160" [progress]="[0.35]" [label]="'Loading'" [colors]="['#1976d2']">
+      <cng-circle-progress-bar
+        style="--cng-circle-progress-bar-size: 160px"
+        [progress]="[0.35]"
+        [label]="'Loading'"
+        [colors]="['#1976d2']"
+      >
       </cng-circle-progress-bar>
       <clr-code-snippet [clrCode]="htmlStringLabel"></clr-code-snippet>
 
       <h4>Layered layout</h4>
       <p>All rings share the same radius. Useful when comparing multiple values against the same reference.</p>
       <cng-circle-progress-bar
-        [size]="180"
+        style="--cng-circle-progress-bar-size: 180px"
         [progress]="[0.75, 0.4, 0.2]"
         [label]="'Layered'"
         [colors]="['#4caf50', '#2196f3', '#ff9800']"
@@ -105,7 +119,7 @@
       <h4>Concentric layout</h4>
       <p>Rings are nested with reducing radius. Good for showing several independent metrics at once.</p>
       <cng-circle-progress-bar
-        [size]="200"
+        style="--cng-circle-progress-bar-size: 200px"
         [progress]="[0.75, 0.4, 0.2]"
         [label]="'Concentric'"
         [colors]="['#4caf50', '#2196f3', '#ff9800']"
@@ -117,7 +131,7 @@
       <h4>Cycling colors</h4>
       <p>If there are fewer colors than progress values, the color array cycles.</p>
       <cng-circle-progress-bar
-        [size]="200"
+        style="--cng-circle-progress-bar-size: 200px"
         [progress]="[0.9, 0.7, 0.5, 0.3]"
         [colors]="['#1976d2', '#4caf50']"
         [layoutStrategy]="'concentric'"
@@ -128,7 +142,7 @@
       <h4>Custom background color</h4>
       <p>Match the background ring to your palette.</p>
       <cng-circle-progress-bar
-        [size]="160"
+        style="--cng-circle-progress-bar-size: 160px"
         [progress]="[0.55]"
         [label]="0.55"
         [colors]="['#f44336']"
@@ -138,21 +152,40 @@
       <clr-code-snippet [clrCode]="htmlCustomBackground"></clr-code-snippet>
 
       <h4>Different sizes</h4>
-      <p>Ring thickness is derived automatically from <code>size</code>.</p>
+      <p>Ring thickness is derived automatically from <code>--cng-circle-progress-bar-size</code>.</p>
       <div style="display: flex; align-items: center; gap: 1rem">
-        <cng-circle-progress-bar [size]="80" [progress]="[0.6]"></cng-circle-progress-bar>
-        <cng-circle-progress-bar [size]="140" [progress]="[0.6]"></cng-circle-progress-bar>
-        <cng-circle-progress-bar [size]="220" [progress]="[0.6]"></cng-circle-progress-bar>
+        <cng-circle-progress-bar
+          style="--cng-circle-progress-bar-size: 80px"
+          [progress]="[0.6]"
+        ></cng-circle-progress-bar>
+        <cng-circle-progress-bar
+          style="--cng-circle-progress-bar-size: 140px"
+          [progress]="[0.6]"
+        ></cng-circle-progress-bar>
+        <cng-circle-progress-bar
+          style="--cng-circle-progress-bar-size: 220px"
+          [progress]="[0.6]"
+        ></cng-circle-progress-bar>
       </div>
       <clr-code-snippet [clrCode]="htmlSizes"></clr-code-snippet>
 
       <h4>Empty / zero state</h4>
-      <cng-circle-progress-bar [size]="160" [progress]="[0]" [label]="0" [colors]="['#1976d2']">
+      <cng-circle-progress-bar
+        style="--cng-circle-progress-bar-size: 160px"
+        [progress]="[0]"
+        [label]="0"
+        [colors]="['#1976d2']"
+      >
       </cng-circle-progress-bar>
       <clr-code-snippet [clrCode]="htmlZero"></clr-code-snippet>
 
       <h4>Values above 1 are capped</h4>
-      <cng-circle-progress-bar [size]="160" [progress]="[1.4]" [label]="1" [colors]="['#4caf50']">
+      <cng-circle-progress-bar
+        style="--cng-circle-progress-bar-size: 160px"
+        [progress]="[1.4]"
+        [label]="1"
+        [colors]="['#4caf50']"
+      >
       </cng-circle-progress-bar>
       <clr-code-snippet [clrCode]="htmlFull"></clr-code-snippet>
     </div>

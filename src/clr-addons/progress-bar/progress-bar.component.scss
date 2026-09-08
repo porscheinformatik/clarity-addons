@@ -1,3 +1,24 @@
+:host {
+  display: block;
+}
+
+.cng-progress-bar-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--cng-progress-bar-gap, 4px);
+}
+
+.cng-progress-bar {
+  width: var(--cng-progress-bar-width, 100%);
+  height: var(--cng-progress-bar-height, 10px);
+  border-radius: var(--cng-progress-bar-radius, 9999px);
+  overflow: hidden;
+}
+
+.cng-progress-bar-label {
+  min-width: var(--cng-progress-bar-label-min-width, 40px);
+}
+
 @keyframes progress-bar-in {
   from {
     transform: scaleX(0);
