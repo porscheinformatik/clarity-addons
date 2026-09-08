@@ -323,3 +323,9 @@
 .datagrid-filter .clr-form-control {
   padding: var(--clr-base-vertical-offset-multi-row-s);
 }
+
+// Ensure datagrid columns with sort icons or filter toggles have enough width to display them properly
+.datagrid-table .datagrid-column:has(.sort-icon),
+.datagrid-table .datagrid-column:has(.datagrid-filter-toggle) {
+  min-width: calc(2 * var(--cds-global-space-15)) !important;
+}
