@@ -318,3 +318,8 @@
 .datagrid-detail-pane .pagination {
   width: auto;
 }
+
+// Checkboxes inside datagrid enum filters shouldn't be cut off
+.datagrid-filter .clr-form-control {
+  padding: var(--clr-base-vertical-offset-multi-row-s)
+}
