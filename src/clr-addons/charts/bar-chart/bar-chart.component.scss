@@ -25,6 +25,8 @@
 svg {
   height: 100%;
   width: 100%;
+  position: absolute;
+  inset: 0;
 }
 
 cng-bar-chart-skeleton {
