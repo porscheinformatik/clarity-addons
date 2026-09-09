@@ -4,10 +4,11 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, computed, linkedSignal, OnInit, signal } from '@angular/core';
+import { Component, computed, ElementRef, linkedSignal, OnInit, signal, viewChild } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { bellIcon, ClarityIcons, infoStandardIcon } from '@clr/angular/icon';
 import {
+  ClrTreetable,
   ClrTreetableComparatorInterface,
   ClrTreetableSortOrder,
   ClrTreetableState,
@@ -15,7 +16,12 @@ import {
 } from '@porscheinformatik/clr-addons';
 import { map, of, tap, timer } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { ClrDatagridComparatorInterface, ClrDatagridSortOrder, ClrDatagridStringFilterInterface } from '@clr/angular';
+import {
+  ClrDatagrid,
+  ClrDatagridComparatorInterface,
+  ClrDatagridSortOrder,
+  ClrDatagridStringFilterInterface,
+} from '@clr/angular';
 
 ClarityIcons.addIcons(infoStandardIcon);
 ClarityIcons.addIcons(bellIcon);
@@ -28,15 +34,30 @@ export type Tree = {
   id: string;
   value?: Elem;
   parent?: Tree | null;
+  exportNumber?: number;
   children?: Tree[];
 };
 
 @Component({
   selector: 'treetable-demo',
   templateUrl: './treetable.demo.html',
+  styles: `
+    .treetable-button-row {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+  `,
   standalone: false,
 })
 export class TreetableDemo implements OnInit {
+  readonly treetable = viewChild<ClrTreetable<Tree>>('treetableEl');
+  readonly treetableRef = viewChild('treetableEl', { read: ElementRef });
+
+  readonly datagrid = viewChild<ClrDatagrid<Tree>>('datagridEl');
+  readonly datagridRef = viewChild('datagridEl', { read: ElementRef });
+
   root = [] as any[];
   veryLongString =
     ' This is a very long string which should show that text will be truncated properly and not overflow its parent';
@@ -121,31 +142,37 @@ export class TreetableDemo implements OnInit {
         id: rootId,
         value: { name: `Group ${idx}` },
         parent: null,
+        exportNumber: 35.5,
         children: [
           {
             id: `${rootId}.1`,
             value: { name: 'B' },
             parent: { id: `1.${idx + 1}` },
+            exportNumber: 27.4,
             children: [
               {
                 id: `${rootId}.1.1`,
                 value: { name: 'C' },
                 parent: { id: `1.${idx + 1}.1` },
+                exportNumber: 80.003,
               },
               {
                 id: `${rootId}.1.2`,
                 value: { name: 'D' },
                 parent: { id: `1.${idx + 1}.1` },
+                exportNumber: 34.05,
                 children: [
                   {
                     id: `${rootId}.1.2.1`,
                     value: { name: 'E' },
                     parent: { id: `1.${idx + 1}.1.2` },
+                    exportNumber: 103.69,
                   },
                   {
                     id: `${rootId}.1.2.2`,
                     value: { name: 'F' },
                     parent: { id: `1.${idx + 1}.1.2` },
+                    exportNumber: 5,
                   },
                 ],
               },
@@ -165,7 +192,7 @@ export class TreetableDemo implements OnInit {
     });
   }
 
-  myTree: Tree[] = this.buildTree(1);
+  myTree: Tree[] = this.buildTree(3);
 
   treeIdFilter: ClrTreetableStringFilterFunction<Tree> = (item: Tree, search: string): boolean => {
     return item.id.toLowerCase().includes(search.toLowerCase());

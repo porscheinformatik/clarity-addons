@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { TreetableDataStateService } from './treetable-data-state.service';
 import { FilterStateService } from './filter-state.service';
 import { SortStateService } from './sort-state.service';
@@ -88,7 +88,42 @@ describe('TreetableDataStateService', () => {
   it('should contain initial state without data source', () => {
     expect(service.displayedNodes().length).toBe(0);
     expect(service.selectedNodes().length).toBe(0);
+    expect(service.displayedItems().length).toBe(0);
     expect(service.areAllNodesSelected()).toBeTrue(); // .every on empty array => true
+  });
+
+  it('should flatten the displayed nodes depth first into displayedItems', () => {
+    service.setDataSource(items, getSubItems);
+
+    expect(service.displayedItems().map(item => item.id)).toEqual([3, 1, 2, 5, 4]);
+  });
+
+  it('should only contain the filtered nodes in displayedItems', () => {
+    service.setDataSource(items, getSubItems);
+
+    const filter = new NameFilter();
+    filters.register(filter);
+    filter.set('Alpha');
+
+    expect(service.displayedItems().map(item => item.id)).toEqual([1]);
+  });
+
+  it('should ignore active filters in allItems', () => {
+    service.setDataSource(items, getSubItems);
+
+    const filter = new NameFilter();
+    filters.register(filter);
+    filter.set('Alpha');
+
+    expect(service.allItems().map(item => item.id)).toEqual([3, 1, 2, 5, 4]);
+  });
+
+  it('should apply the active sort to allItems', () => {
+    service.setDataSource(items, getSubItems);
+
+    sort.toggle(new IdComparator(), false);
+
+    expect(service.allItems().map(item => item.id)).toEqual([1, 2, 5, 3, 4]);
   });
 
   it('should set data source and create nodes', () => {
