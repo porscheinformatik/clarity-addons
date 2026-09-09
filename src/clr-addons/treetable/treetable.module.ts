@@ -37,6 +37,7 @@ import { ClrTreetableFooter } from './treetable-footer';
 import { ClrTreetableColumnManagerMenuComponent } from './treetable-column-manager-menu.component';
 import { ClrTreetableHideableColumn } from './treetable-hideable-column.directive';
 import { ClrTreetableColumnSeparator } from './treetable-column-separator';
+import { ExportTreetableButtonComponent } from './treetable-export-button.component';
 
 const CLR_TREETABLE_DIRECTIVES: Type<any>[] = [
   ClrTreetable,
@@ -54,6 +55,7 @@ const CLR_TREETABLE_DIRECTIVES: Type<any>[] = [
   TreetableItemsDirective,
   ClrTreetableFilter,
   ClrTreetableStringFilter,
+  ExportTreetableButtonComponent,
 ];
 
 @NgModule({

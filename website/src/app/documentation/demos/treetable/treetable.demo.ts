@@ -5,12 +5,13 @@
  */
 
 import {
+  ClrTreetable,
   ClrTreetableComparatorInterface,
   ClrTreetableSortOrder,
   ClrTreetableStringFilterFunction,
 } from '@porscheinformatik/clr-addons';
 import { ClarityDocComponent } from '../clarity-doc';
-import { Component, signal } from '@angular/core';
+import { Component, ElementRef, signal, viewChild } from '@angular/core';
 
 const HTML_EXAMPLE_CLICKABLE_ROWS = `
 <clr-treetable>
@@ -276,6 +277,33 @@ const HTML_EXAMPLE_CUSTOM_FILTER = `
 </clr-treetable>
 `;
 
+const HTML_EXAMPLE_EXPORT = `
+<clr-export-treetable-button [treetable]="treetable()" [treetableRef]="treetableRef()" exportTitlePrefix="employees" />
+
+<clr-treetable #exportTreetable [(clrTtSelected)]="selectedForExport">
+  <clr-tt-column clrTtField="value.name">Name</clr-tt-column>
+  <clr-tt-column clrTtField="value.role">Role</clr-tt-column>
+  <clr-tt-column clrTtField="value.roleType">Type</clr-tt-column>
+
+  <clr-tt-row
+    *clrTtItems="let member of orgUnitMemberHierarchy; getChildren: getChildren; clrTtNode as item"
+    [clrExpandable]="!!member.children?.length"
+    [clrTtItem]="item"
+  >
+    <clr-tt-cell>{{ member.value.name }}</clr-tt-cell>
+    <clr-tt-cell>{{ member.value.role }}</clr-tt-cell>
+    <clr-tt-cell>{{ member.value.roleType }}</clr-tt-cell>
+  </clr-tt-row>
+</clr-treetable>
+`;
+
+const TS_EXAMPLE_EXPORT = `
+export class MyComponent {
+  readonly treetable = viewChild<ClrTreetable<OrganizationUnitMember>>('exportTreetable');
+  readonly treetableRef = viewChild('exportTreetable', { read: ElementRef });
+}
+`;
+
 const HTML_EXAMPLE_HIDE_SHOW = `
 <clr-treetable>
   <clr-tt-column>
@@ -470,6 +498,11 @@ export class TreetableDemo extends ClarityDocComponent {
   htmlExampleCustomFilter = HTML_EXAMPLE_CUSTOM_FILTER;
   tsExampleCustomFilter = TS_EXAMPLE_CUSTOM_FILTER;
   htmlExampleHideShow = HTML_EXAMPLE_HIDE_SHOW;
+  htmlExampleExport = HTML_EXAMPLE_EXPORT;
+  tsExampleExport = TS_EXAMPLE_EXPORT;
+
+  readonly treetable = viewChild<ClrTreetable<OrganizationUnitMember>>('exportTreetable');
+  readonly treetableRef = viewChild('exportTreetable', { read: ElementRef });
 
   constructor() {
     super('treetable');
@@ -527,6 +560,7 @@ export class TreetableDemo extends ClarityDocComponent {
   ];
 
   protected selected = [];
+  protected selectedForExport = [];
   protected nameComparator = new NameComparator();
   protected sortOrder = 0;
   protected descOrder = ClrTreetableSortOrder.DESC;
