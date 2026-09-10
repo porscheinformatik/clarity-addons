@@ -56,9 +56,9 @@ const STACKED_BAR_HTML = `<clr-bar-chart
 ></clr-bar-chart>`;
 
 const GROUPED_BAR_TS = `groupedBarGroups: GroupedBarChartGroup[] = [
-  { key: 'q1', label: 'Q1' },
-  { key: 'q2', label: 'Q2' },
-  { key: 'q3', label: 'Q3' },
+  { key: 'q1', label: 'Quarter 1' },
+  { key: 'q2', label: 'Quarter 2' },
+  { key: 'q3', label: 'Quarter 3' },
 ];
 
 groupedBarData: GroupedBarChartData[] = [
@@ -73,6 +73,7 @@ const GROUPED_BAR_HTML = `<clr-grouped-bar-chart
   [groups]="groupedBarGroups"
   orientation="horizontal"
   [barSizePx]="12"
+  [yAxisLabelWidthPx]="120"
   xAxisLabel="Amount"
   yAxisLabel="Quarter"
   [showLegend]="true"
@@ -518,10 +519,10 @@ export class ChartsDemo extends ClarityDocComponent {
 
   // ── Grouped Bar Chart ───────────────────────────────────────────────────────
   groupedBarGroups: GroupedBarChartGroup[] = [
-    { key: 'q1', label: 'Q1' },
-    { key: 'q2', label: 'Q2' },
-    { key: 'q3', label: 'Q3' },
-    { key: 'q4', label: 'Q4' },
+    { key: 'q1', label: 'Quarter 1' },
+    { key: 'q2', label: 'Quarter 2' },
+    { key: 'q3', label: 'Quarter 3' },
+    { key: 'q4', label: 'Quarter 4' },
   ];
 
   groupedBarData: GroupedBarChartData[] = [

@@ -24,6 +24,7 @@ const COLORS = ['--cds-global-color-lavender-400', '#00828b', '#c1326e', '#5b40b
 export class GroupedBarChartDemo {
   protected readonly orientation = signal<'horizontal' | 'vertical'>('horizontal');
   protected readonly barSizePx = signal(12);
+  protected readonly yAxisLabelWidthPx = signal(70);
   protected readonly exportFilename = signal('grouped-bar-chart');
   protected readonly loading = signal(false);
   protected readonly showLegend = signal(true);
@@ -31,10 +32,10 @@ export class GroupedBarChartDemo {
   protected readonly lastClicked = signal<GroupedBarChartValue | undefined>(undefined);
 
   protected readonly groups: GroupedBarChartGroup[] = [
-    { key: 'q1', label: 'Q1' },
-    { key: 'q2', label: 'Q2' },
-    { key: 'q3', label: 'Q3' },
-    { key: 'q4', label: 'Q4' },
+    { key: 'q1', label: 'Quarter 1 but it is extra long' },
+    { key: 'q2', label: 'Quarter 2' },
+    { key: 'q3', label: 'Quarter 3' },
+    { key: 'q4', label: 'Quarter 4' },
   ];
 
   protected readonly data: GroupedBarChartData[] = [

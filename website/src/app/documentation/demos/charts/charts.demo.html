@@ -450,6 +450,12 @@
           <td class="left">Thickness of each individual bar in pixels.</td>
         </tr>
         <tr>
+          <td class="left"><code>yAxisLabelWidthPx</code></td>
+          <td class="left">number</td>
+          <td class="left">70</td>
+          <td class="left">Width reserved for horizontal Y-axis group labels in pixels.</td>
+        </tr>
+        <tr>
           <td class="left"><code>xAxisLabel</code> / <code>yAxisLabel</code></td>
           <td class="left">string</td>
           <td class="left">''</td>
@@ -475,6 +481,7 @@
         [groups]="groupedBarGroups"
         orientation="horizontal"
         [barSizePx]="12"
+        [yAxisLabelWidthPx]="120"
         xAxisLabel="Amount"
         yAxisLabel="Quarter"
         [showLegend]="true"
