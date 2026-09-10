@@ -86,6 +86,10 @@
   --cds-global-typography-font-family: var(--clr-display-font);
 
   // Specific overrides for typography
+  // Clarity 18 removed the CDS typography token for light headings.
+  // Reintroduce the legacy token ourselves so the old behavior stays intact in apps that
+  // still reference the previous typography variables.
+  --cds-global-typography-font-weight-light: 300;
   --clr-h1-font-weight: var(--cds-global-typography-font-weight-light);
   --clr-h2-font-weight: var(--cds-global-typography-font-weight-light);
   --clr-h3-font-weight: var(--cds-global-typography-font-weight-light);
