@@ -1,21 +1,23 @@
-﻿:host {
+:host {
   display: inline-block;
+  width: 100px;
+  height: 100px;
 }
 
-.cng-circle-progress-bar {
-  width: var(--cng-circle-progress-bar-size, 100px);
-  height: var(--cng-circle-progress-bar-size, 100px);
+.clr-circle-progress-bar {
+  width: 100%;
+  height: 100%;
 }
 
-@keyframes progress-in {
+@keyframes clr-circle-progress-bar-in {
   from {
     stroke-dasharray: 0 9999;
   }
 }
 
-.progress-ring {
+.clr-circle-progress-bar-ring {
   transform: rotate(-90deg);
   transform-origin: center;
   transform-box: fill-box;
-  animation: progress-in 0.5s ease forwards;
+  animation: clr-circle-progress-bar-in 0.5s ease forwards;
 }

@@ -10,11 +10,15 @@ export enum ProgressBarPositionStrategy {
 }
 
 @Component({
-  selector: 'cng-progress-bar',
+  selector: 'clr-multi-progress-bar',
   templateUrl: './progress-bar.component.html',
   styleUrl: './progress-bar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
+  host: {
+    '[class.clr-multi-progress-bar--has-label]': 'label() != null',
+    '[style.min-height.px]': 'label() != null ? fontSize() * 1.5 : null',
+  },
 })
 export class ProgressBarComponent {
   public readonly fontSize = input<number>(13);

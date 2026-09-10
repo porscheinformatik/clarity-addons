@@ -1,6 +1,6 @@
-﻿import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
-const SIZE = 100;
+const VIEWBOX_SIZE = 100;
 const DEFAULT_PROGRESS_COLORS = [
   'var(--cds-global-color-green-100)',
   'var(--cds-global-color-blue-100)',
@@ -14,7 +14,7 @@ export enum CircleProgressLayout {
 }
 
 @Component({
-  selector: 'cng-circle-progress-bar',
+  selector: 'clr-circle-progress-bar',
   templateUrl: './circle-progress-bar.component.html',
   styleUrl: './circle-progress-bar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -37,16 +37,16 @@ export class CircleProgressBarComponent {
   public readonly isSafeLayered = computed(
     () => this.layoutStrategy() === CircleProgressLayout.LAYERED || !this.progress().length
   );
-  public readonly bgStrokeWidth = computed(() => SIZE * this.defaultWidthRatio());
+  public readonly bgStrokeWidth = computed(() => VIEWBOX_SIZE * this.defaultWidthRatio());
   public readonly strokeWidth = computed(() =>
     this.isSafeLayered() ? this.bgStrokeWidth() : this.bgStrokeWidth() / this.progress().length
   );
-  protected readonly viewBox = `0 0 ${SIZE} ${SIZE}`;
-  protected readonly radius = computed(() => SIZE - this.bgStrokeWidth() / 2);
-  protected readonly center = SIZE / 2;
+  protected readonly viewBox = `0 0 ${VIEWBOX_SIZE} ${VIEWBOX_SIZE}`;
+  protected readonly radius = computed(() => VIEWBOX_SIZE - this.bgStrokeWidth() / 2);
+  protected readonly center = VIEWBOX_SIZE / 2;
   protected readonly segments = computed(() => {
     const sw = this.strokeWidth();
-    const baseRadius = (SIZE - sw) / 2;
+    const baseRadius = (VIEWBOX_SIZE - sw) / 2;
 
     return this.progress().map((progress, i) => {
       const currentRadius = this.isSafeLayered() ? baseRadius : baseRadius - i * sw;

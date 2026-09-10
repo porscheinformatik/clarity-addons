@@ -41,36 +41,6 @@
             <td class="left">Color of the unfilled bar background.</td>
           </tr>
           <tr>
-            <td class="left"><b>--cng-progress-bar-width</b></td>
-            <td class="left clr-hidden-xs-down">CSS length</td>
-            <td class="clr-hidden-xs-down">100%</td>
-            <td class="left">Total width of the bar. Any CSS unit (px, %, vw, clamp(), …).</td>
-          </tr>
-          <tr>
-            <td class="left"><b>--cng-progress-bar-height</b></td>
-            <td class="left clr-hidden-xs-down">CSS length</td>
-            <td class="clr-hidden-xs-down">10px</td>
-            <td class="left">Total height of the bar. In multiline layout it is split evenly across rows.</td>
-          </tr>
-          <tr>
-            <td class="left"><b>--cng-progress-bar-radius</b></td>
-            <td class="left clr-hidden-xs-down">CSS length</td>
-            <td class="clr-hidden-xs-down">9999px</td>
-            <td class="left">Corner radius of the bar (default fully rounded/pill).</td>
-          </tr>
-          <tr>
-            <td class="left"><b>--cng-progress-bar-gap</b></td>
-            <td class="left clr-hidden-xs-down">CSS length</td>
-            <td class="clr-hidden-xs-down">4px</td>
-            <td class="left">Gap between the bar and the label.</td>
-          </tr>
-          <tr>
-            <td class="left"><b>--cng-progress-bar-label-min-width</b></td>
-            <td class="left clr-hidden-xs-down">CSS length</td>
-            <td class="clr-hidden-xs-down">40px</td>
-            <td class="left">Reserved minimum width for the label so layout doesn't shift.</td>
-          </tr>
-          <tr>
             <td class="left"><b>label</b></td>
             <td class="left clr-hidden-xs-down">number | string</td>
             <td class="clr-hidden-xs-down">undefined</td>
@@ -100,6 +70,16 @@
               <b>horizontal-multiline</b>: each segment gets its own line, stacked vertically.
             </td>
           </tr>
+          <tr>
+            <td class="left"><b>Styling (CSS)</b></td>
+            <td class="left clr-hidden-xs-down">width / height</td>
+            <td class="clr-hidden-xs-down">100% / 10px</td>
+            <td class="left">
+              Size the bar by setting <code>width</code> and <code>height</code> on the
+              <code>clr-multi-progress-bar</code> element with plain CSS (any unit: px, %, vw, clamp(), …). The bar
+              fills the element; in multiline layout the height is split evenly across rows.
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -109,13 +89,13 @@
 
       <h4>Basic</h4>
       <p>Minimal usage — a single progress value with defaults.</p>
-      <cng-progress-bar [progress]="[0.6]" />
+      <clr-multi-progress-bar [progress]="[0.6]" />
       <clr-code-snippet [clrCode]="htmlBasic"></clr-code-snippet>
 
       <h4>Numeric label (auto-formatted as %)</h4>
       <p>When <code>label</code> is a number, it is rendered as a percentage.</p>
-      <cng-progress-bar
-        style="--cng-progress-bar-width: 240px; --cng-progress-bar-height: 14px"
+      <clr-multi-progress-bar
+        style="width: 240px; height: 14px"
         [progress]="[0.72]"
         [label]="0.72"
         [colors]="['var(--cds-alias-status-success)']"
@@ -124,9 +104,9 @@
 
       <h4>Custom string label</h4>
       <p>Any string can be shown next to the bar.</p>
-      <cng-progress-bar
-        style="--cng-progress-bar-width: 280px; --cng-progress-bar-height: 2px"
-        [progress]="[0.35]"
+      <clr-multi-progress-bar
+        style="width: 350px; height: 20px"
+        [progress]="[0.99]"
         [label]="'Uploading…'"
         [colors]="['var(--cds-alias-status-info)']"
       />
@@ -134,8 +114,8 @@
 
       <h4>Stacked (multiple segments on one line)</h4>
       <p>Multiple progress values render as stacked segments. Useful for breakdowns (e.g. task groups).</p>
-      <cng-progress-bar
-        style="--cng-progress-bar-width: 280px; --cng-progress-bar-height: 18px"
+      <clr-multi-progress-bar
+        style="width: 400px; height: 35px"
         [progress]="[0.45, 0.2, 0.15]"
         [label]="'3 / 5 tasks'"
         [colors]="['var(--cds-alias-status-success)', 'var(--cds-alias-status-warning)', 'var(--cds-alias-status-danger)']"
@@ -146,8 +126,8 @@
       <p>
         Each progress value is drawn on its own row. Useful for showing several unrelated progress values in parallel.
       </p>
-      <cng-progress-bar
-        style="--cng-progress-bar-width: 280px; --cng-progress-bar-height: 36px"
+      <clr-multi-progress-bar
+        style="width: 280px; height: 60px"
         [progress]="[0.33, 0.5, 0.8]"
         [label]="'Progress overview'"
         [colors]="['var(--cds-alias-status-success)', 'var(--cds-alias-status-info)', 'var(--cds-alias-status-warning)']"
@@ -157,17 +137,17 @@
 
       <h4>Cycling colors</h4>
       <p>If there are fewer colors than segments, the color array cycles.</p>
-      <cng-progress-bar
-        style="--cng-progress-bar-width: 280px; --cng-progress-bar-height: 16px"
-        [progress]="[0.8, 0.6, 0.4, 0.2]"
+      <clr-multi-progress-bar
+        style="width: 280px; height: 16px"
+        [progress]="[0.2, 0.2, 0.2, 0.2]"
         [colors]="['var(--cds-alias-status-info)', 'var(--cds-alias-status-success)']"
       />
       <clr-code-snippet [clrCode]="htmlCyclingColors"></clr-code-snippet>
 
       <h4>Custom background color</h4>
       <p>Match the unfilled track to your palette.</p>
-      <cng-progress-bar
-        style="--cng-progress-bar-width: 280px; --cng-progress-bar-height: 16px"
+      <clr-multi-progress-bar
+        style="width: 280px; height: 16px"
         [progress]="[0.55]"
         [label]="0.55"
         [colors]="['var(--cds-alias-status-danger)']"
@@ -176,8 +156,8 @@
       <clr-code-snippet [clrCode]="htmlCustomBackground"></clr-code-snippet>
 
       <h4>Custom font size and label color</h4>
-      <cng-progress-bar
-        style="--cng-progress-bar-width: 280px; --cng-progress-bar-height: 16px"
+      <clr-multi-progress-bar
+        style="width: 280px; height: 16px"
         [progress]="[0.8]"
         [label]="0.8"
         [colors]="['var(--cds-alias-status-success)']"
@@ -187,20 +167,17 @@
       <clr-code-snippet [clrCode]="htmlCustomFont"></clr-code-snippet>
 
       <h4>Different sizes</h4>
-      <p>
-        Set <code>--cng-progress-bar-width</code> and <code>--cng-progress-bar-height</code> via CSS for a consistent
-        look.
-      </p>
+      <p>Set <code>width</code> and <code>height</code> on the element via CSS for a consistent look.</p>
       <div style="display: flex; flex-direction: column; gap: 0.75rem">
-        <cng-progress-bar style="--cng-progress-bar-width: 120px; --cng-progress-bar-height: 6px" [progress]="[0.6]" />
-        <cng-progress-bar style="--cng-progress-bar-width: 240px; --cng-progress-bar-height: 12px" [progress]="[0.6]" />
-        <cng-progress-bar style="--cng-progress-bar-width: 360px; --cng-progress-bar-height: 20px" [progress]="[0.6]" />
+        <clr-multi-progress-bar style="width: 120px; height: 6px" [progress]="[0.6]" />
+        <clr-multi-progress-bar style="width: 240px; height: 12px" [progress]="[0.6]" />
+        <clr-multi-progress-bar style="width: 360px; height: 20px" [progress]="[0.6]" />
       </div>
       <clr-code-snippet [clrCode]="htmlSizes"></clr-code-snippet>
 
       <h4>Empty / zero state</h4>
-      <cng-progress-bar
-        style="--cng-progress-bar-width: 240px; --cng-progress-bar-height: 14px"
+      <clr-multi-progress-bar
+        style="width: 240px; height: 14px"
         [progress]="[0]"
         [label]="0"
         [colors]="['var(--cds-alias-status-info)']"
@@ -208,8 +185,8 @@
       <clr-code-snippet [clrCode]="htmlZero"></clr-code-snippet>
 
       <h4>Values above 1 are capped</h4>
-      <cng-progress-bar
-        style="--cng-progress-bar-width: 240px; --cng-progress-bar-height: 14px"
+      <clr-multi-progress-bar
+        style="width: 240px; height: 14px"
         [progress]="[1.4]"
         [label]="1"
         [colors]="['var(--cds-alias-status-success)']"
