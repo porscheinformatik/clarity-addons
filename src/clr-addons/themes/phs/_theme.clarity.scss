@@ -86,16 +86,13 @@
   --cds-global-typography-font-family: var(--clr-display-font);
 
   // Specific overrides for typography
-  // Clarity 18 removed the CDS typography token for light headings.
-  // Reintroduce the legacy token ourselves so the old behavior stays intact in apps that
-  // still reference the previous typography variables.
-  --cds-global-typography-font-weight-light: 300;
-  --clr-h1-font-weight: var(--cds-global-typography-font-weight-light);
-  --clr-h2-font-weight: var(--cds-global-typography-font-weight-light);
-  --clr-h3-font-weight: var(--cds-global-typography-font-weight-light);
-  --clr-h4-font-weight: var(--cds-global-typography-font-weight-light);
-  --clr-h5-font-weight: var(--cds-global-typography-font-weight-light);
-  --clr-h6-font-weight: var(--cds-global-typography-font-weight-light);
+  // Clarity 18 moved "cds-global" to "cds-alias" for font-weight tokens
+  --clr-h1-font-weight: var(--cds-alias-typography-font-weight-light);
+  --clr-h2-font-weight: var(--cds-alias-typography-font-weight-light);
+  --clr-h3-font-weight: var(--cds-alias-typography-font-weight-light);
+  --clr-h4-font-weight: var(--cds-alias-typography-font-weight-light);
+  --clr-h5-font-weight: var(--cds-alias-typography-font-weight-light);
+  --clr-h6-font-weight: var(--cds-alias-typography-font-weight-light);
 
   // Color overrides as defined by https://clarity.design/documentation/color
   --cds-alias-status-info: #{variables.$phs-global-color-blue-700};
