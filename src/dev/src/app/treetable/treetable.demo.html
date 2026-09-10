@@ -7,23 +7,33 @@
 
 <h4>DataTreeTable With Recursive Loops</h4>
 
-<clr-button-group class="btn-sm" cds-layout="m-t:sm">
-  <clr-button (click)="sortOrder = 0" [disabled]="sortOrder === 0">Clear sort</clr-button>
-  <clr-button (click)="appendRootNode()">Append root node</clr-button>
-  <clr-button (click)="toggleLoading()">Toggle loading</clr-button>
-  <clr-button (click)="toggleAutoParentSelection()">Toggle auto parent selection</clr-button>
-  <clr-button (click)="toggleExternallySelected()">Toggle externally selected</clr-button>
-  <clr-button (click)="toggleTest()">Test</clr-button>
-  <clr-button (click)="resetNameColumnWidth()">Reset custom width</clr-button>
-</clr-button-group>
+<div class="treetable-button-row">
+  <clr-button-group class="btn-sm" cds-layout="m-t:sm">
+    <clr-button (click)="sortOrder = 0" [disabled]="sortOrder === 0">Clear sort</clr-button>
+    <clr-button (click)="appendRootNode()">Append root node</clr-button>
+    <clr-button (click)="toggleLoading()">Toggle loading</clr-button>
+    <clr-button (click)="toggleAutoParentSelection()">Toggle auto parent selection</clr-button>
+    <clr-button (click)="toggleExternallySelected()">Toggle externally selected</clr-button>
+    <clr-button (click)="toggleTest()">Test</clr-button>
+    <clr-button (click)="resetNameColumnWidth()">Reset custom width</clr-button>
+  </clr-button-group>
+
+  <clr-export-treetable-button
+    [treetable]="treetable()"
+    [treetableRef]="treetableRef()"
+    exportTitlePrefix="treetable"
+  />
+</div>
 
 <clr-treetable
+  #treetableEl
   [(clrTtSelected)]="selected"
   [clrTtLoading]="loading()"
   [clrTtAutoParentSelection]="autoParentSelection()"
   (clrTtRefresh)="logState($event)"
 >
   <clr-tt-column
+    clrTtField="value.name"
     [clrTtSortBy]="comperator"
     [(clrTtSortOrder)]="sortOrder"
     [clrTtColumnSize]="nameColumnWidth()"
@@ -33,6 +43,7 @@
     <clr-tt-string-filter [clrTtStringFilter]="treeNameFilter" [clrTtFilterPlaceholder]="'Name'"></clr-tt-string-filter>
   </clr-tt-column>
   <clr-tt-column
+    clrTtField="id"
     [clrTtSortBy]="comperator2"
     [(clrTtSortOrder)]="sortOrder2"
     (clrTtColumnResize)="logValues('resize', $event)"
@@ -46,12 +57,12 @@
     <clr-tt-string-filter [clrTtStringFilter]="treeIdFilter"></clr-tt-string-filter>
   </clr-tt-column>
   @if (testAsync()) {
-  <clr-tt-column [clrTtColumnSize]="250">
+  <clr-tt-column clrTtField="parent.id" [clrTtColumnSize]="250">
     <ng-content *clrTtHideableColumn="testHidable()">Parent</ng-content>
   </clr-tt-column>
   }
-  <clr-tt-column>
-    <ng-content *clrTtHideableColumn="{ hidden: testHidden(), initial: false }">Test</ng-content>
+  <clr-tt-column [clrTtField]="'exportNumber'" [clrTtColType]="'number'">
+    <ng-content *clrTtHideableColumn="{ hidden: testHidden(), initial: false }">Test number export</ng-content>
   </clr-tt-column>
 
   <clr-tt-row
@@ -69,7 +80,7 @@
     @if (testAsync()) {
     <clr-tt-cell>{{ node.parent?.id || 'No Parent' }}</clr-tt-cell>
     }
-    <clr-tt-cell>{{ `Test with id ${node.id}` }}</clr-tt-cell>
+    <clr-tt-cell>{{ node.exportNumber ?? `No test number for node with id ${node.id}` }}</clr-tt-cell>
   </clr-tt-row>
 
   <clr-tt-placeholder>No rootNodes found</clr-tt-placeholder>
@@ -83,8 +94,16 @@
 <div>Auto parent selection: {{ autoParentSelection() }}</div>
 
 <h5>Comparable Datagrid</h5>
-<clr-datagrid [(clrDgSelected)]="selectedDg" [clrDgSelectionType]="'multi'" [clrDgLoading]="loading()">
+
+<clr-export-datagrid-button
+  [datagrid]="datagrid()"
+  [datagridRef]="datagridRef()"
+  exportTitlePrefix="comparable-datagrid"
+/>
+
+<clr-datagrid #datagridEl [(clrDgSelected)]="selectedDg" [clrDgSelectionType]="'multi'" [clrDgLoading]="loading()">
   <clr-dg-column
+    [clrDgField]="'value.name'"
     [clrDgSortBy]="datagridComperator"
     [clrDgSortOrder]="datagridSortOrder"
     [style.width.px]="nameColumnWidth()"
@@ -93,21 +112,20 @@
     <ng-container *clrDgHideableColumn="{ hidden: false }">A Really Long Name</ng-container>
     <clr-dg-string-filter [clrDgStringFilter]="datagridTreeNameFilter"></clr-dg-string-filter>
   </clr-dg-column>
-  <clr-dg-column>
+  <clr-dg-column [clrDgField]="'id'">
     <ng-container *clrDgHideableColumn="{ hidden: testHidden() }">ID</ng-container>
     <clr-dg-string-filter [clrDgStringFilter]="datagridTreeIdFilter"></clr-dg-string-filter>
   </clr-dg-column>
   @if (testAsync()) {
-  <clr-dg-column [style.width.px]="250">
+  <clr-dg-column [style.width.px]="250" [clrDgField]="'parent.id'">
     <ng-container *clrDgHideableColumn="{ hidden: testHidden() }">Parent</ng-container>
   </clr-dg-column>
   }
-  <clr-dg-column>
-    <ng-container *clrDgHideableColumn="{ hidden: testHidden() }">Test</ng-container>
+  <clr-dg-column [clrDgField]="'exportNumber'" [clrDgColType]="'number'">
+    <ng-container *clrDgHideableColumn="{ hidden: testHidden() }">Test number export</ng-container>
   </clr-dg-column>
 
-  @for (node of rootNodes(); track node.id) {
-  <clr-dg-row [clrDgItem]="node">
+  <clr-dg-row *clrDgItems="let node of rootNodes()" [clrDgItem]="node">
     <clr-dg-action-overflow>
       <button class="action-item" (click)="testAction()">Test Action</button>
     </clr-dg-action-overflow>
@@ -117,9 +135,8 @@
     @if (testAsync()) {
     <clr-dg-cell>{{ node.parent?.id || 'No Parent' }}</clr-dg-cell>
     }
-    <clr-dg-cell>{{ `Test with id ${node.id}` }}</clr-dg-cell>
+    <clr-dg-cell>{{ node.exportNumber ?? `No test number for node with id ${node.id}` }}</clr-dg-cell>
   </clr-dg-row>
-  }
 
   <clr-dg-placeholder>No users found</clr-dg-placeholder>
 
@@ -812,7 +829,7 @@
       <clr-tt-cell class="text-truncate">
         <clr-tooltip>
           <span clrTooltipTrigger> {{ node.version }} </span>
-          <clr-tooltip-content> {{ node.version + ' for reference' }} </clr-tooltip-content>
+          <clr-tooltip-content> {{ node.version + ' for reference' }}</clr-tooltip-content>
         </clr-tooltip>
       </clr-tt-cell>
       @for (childNode of node.children; track childNode) {
@@ -840,7 +857,7 @@
       <clr-tt-cell class="text-truncate">
         <clr-tooltip>
           <span clrTooltipTrigger> {{ node.version }} </span>
-          <clr-tooltip-content> {{ node.version + ' for reference' }} </clr-tooltip-content>
+          <clr-tooltip-content> {{ node.version + ' for reference' }}</clr-tooltip-content>
         </clr-tooltip>
       </clr-tt-cell>
       @for (childNode of node.children; track childNode) {

@@ -26,6 +26,7 @@ import { ClrTreetableSortOrder } from './enums/sort-order.enum';
 import { SortStateService } from './providers';
 import { TreetableColumnStateService, TreetableColumnUpdate } from './providers/treetable-column-state.service';
 import { ClrTreetableComparatorInterface } from './interfaces/comparator.interface';
+import { ClrTreetableColumnType } from './interfaces/column-model';
 
 let columnId = 0;
 
@@ -63,6 +64,7 @@ let columnId = 0;
   host: {
     '[class.treetable-column]': 'true',
     '[attr.aria-sort]': 'ariaSort()',
+    '[attr.data-column-id]': 'columnId',
     role: 'columnheader',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -76,6 +78,21 @@ export class ClrTreetableColumn<T extends object> implements OnInit, OnDestroy, 
   private readonly _columnTitleRef = viewChild('columnTitle', { read: TemplateRef });
   private readonly _columnState = inject(TreetableColumnStateService);
   private readonly _sort = inject(SortStateService<T>);
+
+  /**
+   * Property path of the item rendered in this column, e.g. `name` or `address.city`.
+   *
+   * The treetable itself does not use this value for rendering. It is metadata consumed by features
+   * that need to map a column to a raw data property, most notably `clr-export-treetable-button`.
+   */
+  clrTtField = input<string | null>(null);
+
+  /**
+   * Type of the values rendered in this column.
+   *
+   * It is only used as metadata for the export, where it determines the type of the written cells.
+   */
+  clrTtColType = input<ClrTreetableColumnType>('string');
 
   clrTtSortBy = input<ClrTreetableComparatorInterface<T> | null>(null);
 
@@ -123,7 +140,12 @@ export class ClrTreetableColumn<T extends object> implements OnInit, OnDestroy, 
   });
 
   ngOnInit() {
-    this._columnState.register({ id: this.columnId, titleTemplateRef: this._columnTitleRef() });
+    this._columnState.register({
+      id: this.columnId,
+      titleTemplateRef: this._columnTitleRef(),
+      field: this.clrTtField() ?? undefined,
+      colType: this.clrTtColType(),
+    });
   }
 
   ngAfterViewInit(): void {

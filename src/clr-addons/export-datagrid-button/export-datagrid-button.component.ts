@@ -2,7 +2,7 @@ import { Component, computed, effect, ElementRef, EventEmitter, input, OnDestroy
 import { ClarityModule, ClrDatagrid } from '@clr/angular';
 import { ExportDatagridService } from './export-datagrid.service';
 import { NgClass } from '@angular/common';
-import { ExportType, ExportTypeEnum } from './export-type.model';
+import { ExportType, ExportTypeEnum } from '../shared';
 import { delay, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -96,7 +96,7 @@ export class ExportDatagridButtonComponent implements OnDestroy {
     // Map data rows for visible columns only
     const dataRows = rowsToExport.map(row =>
       visibleColumns.map(col => ({
-        value: String(row[col.field] ?? ''),
+        value: String(this.getValueByPath(row, col.field) ?? ''),
         type: col.colType,
       }))
     );
@@ -140,6 +140,17 @@ export class ExportDatagridButtonComponent implements OnDestroy {
       default:
         return [];
     }
+  }
+
+  /**
+   * Resolves a (possibly nested) property path like `address.city` on the given item.
+   */
+  private getValueByPath(item: any, path: string | undefined): unknown {
+    if (!path) {
+      return undefined;
+    }
+
+    return path.split('.').reduce((current: any, segment: string) => current?.[segment], item);
   }
 
   private getColumnsTitle(): string[] {

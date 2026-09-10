@@ -45,7 +45,7 @@ export class ClrDotPager {
     }
   }
 
-  pageArray(): any[] {
-    return Array(this._pages);
+  get pageArray(): number[] {
+    return [...Array(this._pages).keys()];
   }
 }

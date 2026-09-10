@@ -1,5 +1,5 @@
 import { computed, Injectable, signal, TemplateRef } from '@angular/core';
-import { ColumnState } from '../interfaces/column-model';
+import { ClrTreetableColumnType, ColumnState } from '../interfaces/column-model';
 import { distinctUntilChanged, map, merge, Observable, share, Subject, tap } from 'rxjs';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { filter } from 'rxjs/operators';
@@ -9,6 +9,8 @@ export interface RegisterColumnOptions {
   hideable?: boolean;
   hidden?: boolean;
   titleTemplateRef?: TemplateRef<unknown>;
+  field?: string;
+  colType?: ClrTreetableColumnType;
 }
 
 export const TreetableColumnUpdate = {
@@ -105,6 +107,8 @@ export class TreetableColumnStateService {
         hidden: false,
         initialHidden: false,
         titleTemplateRef: options.titleTemplateRef,
+        field: options.field,
+        colType: options.colType ?? 'string',
       },
     }));
   }
