@@ -1,0 +1,36 @@
+<div class="clr-multi-progress-bar-wrapper">
+  <svg class="clr-multi-progress-bar clr-display-block">
+    <rect x="0" y="0" width="100%" height="100%" [attr.fill]="backgroundColor()" />
+
+    @for (segment of segments(); track $index; let i = $index) {
+      @if (layoutStrategy() == ProgressBarPositionStrategy.HORIZONTAL_STACKED) {
+        <rect
+          [attr.x]="segment.offset"
+          y="0"
+          [attr.width]="segment.width"
+          height="100%"
+          [attr.fill]="segment.color"
+          class="clr-multi-progress-bar-fill"
+        />
+      } @else if (layoutStrategy() == ProgressBarPositionStrategy.HORIZONTAL_MULTILINE) {
+        <g class="clr-multi-progress-bar-animated">
+          <rect
+            x="0"
+            [attr.y]="(i * 100) / segments().length + '%'"
+            [attr.width]="segment.width"
+            [attr.height]="100 / segments().length + '%'"
+            [attr.fill]="segment.color"
+          />
+        </g>
+      }
+    }
+  </svg>
+
+  <span
+    class="bold-text text-right clr-display-inline-block clr-multi-progress-bar-label"
+    [style.font-size.px]="fontSize()"
+    [style.color]="labelColor()"
+  >
+    {{ label() }}
+  </span>
+</div>
