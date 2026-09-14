@@ -314,7 +314,7 @@
   }
 
   // Clarity 18 draws a left-edge highlight bar (a ::before with border-left) on nav/menu items for both
-  // :hover and .active using the same color. Keep the bar for the active item but suppress it on hover of non-active 
+  // :hover and .active using the same color. Keep the bar for the active item but suppress it on hover of non-active
   // & items that should not get this effect in the first place within the dropdown
   .nav-link:hover:not(.active)::before,
   .clr-vertical-nav .nav-group-content:hover::before,
