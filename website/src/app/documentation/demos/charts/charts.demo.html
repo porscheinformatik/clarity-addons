@@ -456,6 +456,12 @@
           <td class="left">Width reserved for horizontal Y-axis group labels in pixels.</td>
         </tr>
         <tr>
+          <td class="left"><code>showValues</code></td>
+          <td class="left">boolean</td>
+          <td class="left">false</td>
+          <td class="left">Displays all bar values directly next to the bars.</td>
+        </tr>
+        <tr>
           <td class="left"><code>showValueOnHover</code></td>
           <td class="left">boolean</td>
           <td class="left">false</td>
@@ -488,6 +494,7 @@
         orientation="horizontal"
         [barSizePx]="12"
         [yAxisLabelWidthPx]="120"
+        [showValues]="true"
         [showValueOnHover]="true"
         xAxisLabel="Amount"
         yAxisLabel="Quarter"
@@ -503,6 +510,7 @@
         [groups]="groupedBarGroups"
         orientation="vertical"
         [barSizePx]="12"
+        [showValues]="true"
         [showValueOnHover]="true"
         xAxisLabel="Quarter"
         yAxisLabel="Amount"

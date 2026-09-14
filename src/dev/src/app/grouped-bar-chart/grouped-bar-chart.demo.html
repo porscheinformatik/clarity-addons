@@ -13,6 +13,7 @@
     </button>
     <button class="btn btn-outline" (click)="toggleLoading()">Toggle Loading (current: {{ loading() }})</button>
     <button class="btn btn-outline" (click)="toggleLegend()">Toggle Legend (current: {{ showLegend() }})</button>
+    <button class="btn btn-outline" (click)="toggleValues()">Toggle Values (current: {{ showValues() }})</button>
     <button class="btn btn-outline" (click)="toggleValueOnHover()">
       Toggle Value on Hover (current: {{ showValueOnHover() }})
     </button>
@@ -77,6 +78,7 @@
         [yAxisLabelWidthPx]="yAxisLabelWidthPx()"
         [loading]="loading()"
         [showLegend]="showLegend()"
+        [showValues]="showValues()"
         [showValueOnHover]="showValueOnHover()"
         [showExportButton]="showExportButton()"
         [exportFilename]="exportFilename()"
@@ -99,6 +101,7 @@
         orientation="vertical"
         [barSizePx]="barSizePx()"
         [showLegend]="showLegend()"
+        [showValues]="showValues()"
         [showValueOnHover]="showValueOnHover()"
         xAxisLabel="Quarter"
         yAxisLabel="Amount"

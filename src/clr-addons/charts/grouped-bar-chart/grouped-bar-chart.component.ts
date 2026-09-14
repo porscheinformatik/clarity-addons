@@ -82,6 +82,7 @@ export class GroupedBarChartComponent extends ChartBase<GroupedBarChartDataPoint
   public readonly allValuesZeroMessage = input<string>(ALL_ITEMS_ZERO_MESSAGE);
 
   public readonly showLegend = input(true);
+  public readonly showValues = input(false);
   public readonly showValueOnHover = input(false);
   public readonly showExportButton = input(false);
   public readonly exportButtonTitle = input<string>('Export');
@@ -364,7 +365,7 @@ export class GroupedBarChartComponent extends ChartBase<GroupedBarChartDataPoint
     y0: ScaleBand<string>,
     y1: ScaleBand<string>
   ): void {
-    if (!this.showValueOnHover()) {
+    if (!this.showValues() && !this.showValueOnHover()) {
       return;
     }
 
@@ -389,7 +390,7 @@ export class GroupedBarChartComponent extends ChartBase<GroupedBarChartDataPoint
     x1: ScaleBand<string>,
     y: ScaleLinear<number, number>
   ): void {
-    if (!this.showValueOnHover()) {
+    if (!this.showValues() && !this.showValueOnHover()) {
       return;
     }
 
@@ -415,14 +416,18 @@ export class GroupedBarChartComponent extends ChartBase<GroupedBarChartDataPoint
       .attr('stroke-width', 3)
       .attr('paint-order', 'stroke fill')
       .style('pointer-events', 'none')
-      .style('opacity', (d: GroupedBarChartDataPoint) => (this.hoveredValueKey() === d.key ? '1' : '0'))
+      .style('opacity', (d: GroupedBarChartDataPoint) =>
+        this.showValues() || this.hoveredValueKey() === d.key ? '1' : '0'
+      )
       .text((d: GroupedBarChartDataPoint) => d3format('~s')(d.value));
   }
 
   private updateHoveredValueLabels(): void {
     this.svg
       .selectAll<SVGTextElement, GroupedBarChartDataPoint>('.value-label')
-      .style('opacity', (d: GroupedBarChartDataPoint) => (this.hoveredValueKey() === d.key ? '1' : '0'));
+      .style('opacity', (d: GroupedBarChartDataPoint) =>
+        this.showValues() || this.hoveredValueKey() === d.key ? '1' : '0'
+      );
   }
 
   private addHorizontalBarRectangle(

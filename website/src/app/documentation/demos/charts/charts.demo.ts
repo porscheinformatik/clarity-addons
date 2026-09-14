@@ -74,6 +74,7 @@ const GROUPED_BAR_HTML = `<clr-grouped-bar-chart
   orientation="horizontal"
   [barSizePx]="12"
   [yAxisLabelWidthPx]="120"
+  [showValues]="true"
   [showValueOnHover]="true"
   xAxisLabel="Amount"
   yAxisLabel="Quarter"
