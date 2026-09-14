@@ -28,6 +28,7 @@ export class GroupedBarChartDemo {
   protected readonly exportFilename = signal('grouped-bar-chart');
   protected readonly loading = signal(false);
   protected readonly showLegend = signal(true);
+  protected readonly showValueOnHover = signal(false);
   protected readonly showExportButton = signal(false);
   protected readonly lastClicked = signal<GroupedBarChartValue | undefined>(undefined);
 
@@ -76,6 +77,10 @@ export class GroupedBarChartDemo {
 
   protected toggleLegend(): void {
     this.showLegend.set(!this.showLegend());
+  }
+
+  protected toggleValueOnHover(): void {
+    this.showValueOnHover.set(!this.showValueOnHover());
   }
 
   protected toggleExportButton(): void {

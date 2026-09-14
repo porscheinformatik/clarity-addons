@@ -12,6 +12,9 @@
   <button class="btn btn-outline" (click)="toggleArea()">Toggle Area Fill (current: {{ showArea() }})</button>
   <button class="btn btn-outline" (click)="toggleLegend()">Toggle Legend (current: {{ showLegend() }})</button>
   <button class="btn btn-outline" (click)="toggleValues()">Toggle Values (current: {{ showValues() }})</button>
+  <button class="btn btn-outline" (click)="toggleValueOnHover()">
+    Toggle Value on Hover (current: {{ showValueOnHover() }})
+  </button>
   <button class="btn btn-outline" (click)="toggleExportButton()">
     Toggle Export Button (current: {{ showExportButton() }})
   </button>
@@ -63,6 +66,7 @@
         [showArea]="showArea()"
         [showLegend]="showLegend()"
         [showValues]="showValues()"
+        [showValueOnHover]="showValueOnHover()"
         [showExportButton]="showExportButton()"
         [exportFilename]="exportFilename()"
         [yMin]="yMin()"
@@ -85,6 +89,7 @@
         [showArea]="showArea()"
         [showLegend]="showLegend()"
         [showValues]="showValues()"
+        [showValueOnHover]="showValueOnHover()"
         [showExportButton]="showExportButton()"
         [exportFilename]="exportFilename()"
         (valueClicked)="onValueClicked($event)"
@@ -102,6 +107,23 @@
       <clr-line-chart
         [series]="multiSeries"
         [showValues]="true"
+        [showLegend]="true"
+        exportFilename=""
+        (valueClicked)="onValueClicked($event)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-line-chart>
+    </div>
+  </div>
+</div>
+
+<!-- Show Value on Hover -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">Show Value on Hover (<code>[showValueOnHover]="true"</code>)</div>
+  <div class="card-block">
+    <div style="height: 320px; width: 100%">
+      <clr-line-chart
+        [series]="multiSeries"
+        [showValueOnHover]="true"
         [showLegend]="true"
         exportFilename=""
         (valueClicked)="onValueClicked($event)"

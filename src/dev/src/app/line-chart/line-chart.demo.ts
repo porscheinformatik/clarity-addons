@@ -22,6 +22,7 @@ export class LineChartDemo {
   protected readonly showArea = signal(false);
   protected readonly showLegend = signal(true);
   protected readonly showValues = signal(false);
+  protected readonly showValueOnHover = signal(false);
   protected readonly showExportButton = signal(false);
   protected readonly lastClicked = signal<LineChartValue | undefined>(undefined);
   protected readonly yMin = signal(0);
@@ -73,6 +74,10 @@ export class LineChartDemo {
 
   public toggleValues(): void {
     this.showValues.set(!this.showValues());
+  }
+
+  public toggleValueOnHover(): void {
+    this.showValueOnHover.set(!this.showValueOnHover());
   }
 
   public toggleExportButton(): void {

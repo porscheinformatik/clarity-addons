@@ -74,6 +74,7 @@ const GROUPED_BAR_HTML = `<clr-grouped-bar-chart
   orientation="horizontal"
   [barSizePx]="12"
   [yAxisLabelWidthPx]="120"
+  [showValueOnHover]="true"
   xAxisLabel="Amount"
   yAxisLabel="Quarter"
   [showLegend]="true"
@@ -95,6 +96,7 @@ const LINE_CHART_HTML = `<clr-line-chart
   [series]="lineSeries"
   [showLegend]="true"
   [showExportButton]="true"
+  [showValueOnHover]="true"
   exportFilename="line-chart"
   style="display:block;width:100%;height:300px;"
 ></clr-line-chart>`;
