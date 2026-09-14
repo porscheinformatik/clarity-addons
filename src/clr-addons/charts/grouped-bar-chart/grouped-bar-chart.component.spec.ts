@@ -46,6 +46,7 @@ describe('GroupedBarChartComponent', () => {
     it('should default showExportButton to false', () => expect(component.showExportButton()).toBeFalse());
     it('should default orientation to "horizontal"', () => expect(component.orientation()).toBe('horizontal'));
     it('should default barSizePx to 12', () => expect(component.barSizePx()).toBe(12));
+    it('should default yAxisLabelWidthPx to 70', () => expect(component.yAxisLabelWidthPx()).toBe(70));
     it('should default exportFilename to "grouped-bar-chart"', () =>
       expect(component.exportFilename()).toBe('grouped-bar-chart'));
     it('should default tooltipOrientation to "top"', () => expect(component.tooltipOrientation()).toBe('top'));
@@ -64,6 +65,14 @@ describe('GroupedBarChartComponent', () => {
       componentRef.setInput('barSizePx', 18);
       fixture.detectChanges();
       expect(component.barSizePx()).toBe(18);
+    });
+  });
+
+  describe('yAxisLabelWidthPx input', () => {
+    it('should accept a custom y-axis label width', () => {
+      componentRef.setInput('yAxisLabelWidthPx', 140);
+      fixture.detectChanges();
+      expect(component.yAxisLabelWidthPx()).toBe(140);
     });
   });
 

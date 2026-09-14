@@ -66,6 +66,16 @@ describe('TreetableColumnStateService', () => {
       expect(col.id).toBe('a');
       expect(col.hideable).toBeFalse();
       expect(col.hidden).toBeFalse();
+      expect(col.field).toBeUndefined();
+      expect(col.colType).toBe('string');
+    });
+
+    it('should keep the registered field and colType', async () => {
+      service.register({ id: 'a', field: 'address.city', colType: 'number' });
+      await tickAsync();
+
+      expect(service.columns()[0].field).toBe('address.city');
+      expect(service.columns()[0].colType).toBe('number');
     });
 
     it('should set columnIndex to MAX_SAFE_INTEGER on register', async () => {

@@ -45,16 +45,24 @@ export class TreetableDataStateService<T extends object> {
     return this.filterTreeRecursively(treetableNodes, activeFilters);
   });
 
-  readonly displayedNodes = computed(() => {
-    const nodes = this._filteredNodes();
-    const { comparator } = this._sort.sortState();
+  readonly displayedNodes = computed(() => this.applySort(this._filteredNodes()));
 
-    if (!comparator) {
-      return nodes;
-    }
+  /**
+   * All nodes of the data source, ignoring the active filters. The active sort is applied, so the
+   * order matches the order of the displayed nodes.
+   */
+  readonly allNodes = computed(() => this.applySort(this._treetableNodes()));
 
-    return this.sortTreeRecursively(nodes);
-  });
+  /**
+   * All items of the data source as a flat, depth-first list. Active filters are ignored, the
+   * active sort is applied.
+   */
+  readonly allItems = computed(() => this.flatten(this.allNodes()));
+
+  /**
+   * All currently displayed items (filtered and sorted) as a flat, depth-first list.
+   */
+  readonly displayedItems = computed(() => this.flatten(this.displayedNodes()));
 
   readonly areAllNodesSelected = computed(() =>
     this.displayedNodes().every(node => node.selected() === ClrTreetableSelectedState.SELECTED)
@@ -185,6 +193,30 @@ export class TreetableDataStateService<T extends object> {
         result.push(newNode);
       }
     }
+    return result;
+  }
+
+  /**
+   * Applies the currently active sort to the given nodes. Returns them unchanged if no sort is active.
+   */
+  private applySort(nodes: ClrTreetableTreeNode<T>[]): ClrTreetableTreeNode<T>[] {
+    const { comparator } = this._sort.sortState();
+
+    if (!comparator) {
+      return nodes;
+    }
+
+    return this.sortTreeRecursively(nodes);
+  }
+
+  /**
+   * Flattens the given nodes into a depth-first list of their values.
+   */
+  private flatten(nodes: ClrTreetableTreeNode<T>[]): T[] {
+    const result: T[] = [];
+    this.traverseTreeNodes(nodes, (node: ClrTreetableTreeNode<T>) => {
+      result.push(node.value);
+    });
     return result;
   }
 

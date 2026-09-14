@@ -6,12 +6,21 @@ $base-cell-indentation: 2rem;
 $base-caret-indentation: 0.1rem;
 $indentation-increment: 1rem;
 
+/**
+ * Default horizontal padding of columns and cells.
+ */
+$cell-padding-x: 0.6rem;
+
 $cell-min-width: var(--cds-global-space-12);
 
 @mixin row-indentation($level) {
   .treetable-scrolling-cells {
-    .treetable-cell:nth-child(1 of .treetable-cell:not(.treetable-hidden-column)) {
+    .treetable-cell:not(.treetable-hidden-column) {
       padding-left: $base-cell-indentation + $level * $indentation-increment;
+    }
+
+    .treetable-cell:not(.treetable-hidden-column) ~ .treetable-cell:not(.treetable-hidden-column) {
+      padding-left: $cell-padding-x;
     }
 
     .treetable-expandable-caret {
@@ -56,7 +65,7 @@ $cell-min-width: var(--cds-global-space-12);
       letter-spacing: calc(-0.1 * (1rem / var(--cds-global-base)));
 
       min-width: var(--cds-global-layout-space-xxl);
-      padding: 0.55rem 0.6rem;
+      padding: 0.55rem $cell-padding-x;
 
       text-align: center;
       vertical-align: top;
@@ -334,12 +343,16 @@ $cell-min-width: var(--cds-global-space-12);
           flex: 1 1 auto;
           vertical-align: middle;
 
-          &:nth-child(1 of .treetable-column:not(.treetable-hidden-column)) {
+          &:not(.treetable-hidden-column) {
             /* Add padding of base-cell-indentation to account for the expendable icon in the rows below*/
             padding-left: $base-cell-indentation;
           }
 
-          &:nth-last-child(1 of .treetable-column:not(.treetable-hidden-column)) {
+          &:not(.treetable-hidden-column) ~ .treetable-column:not(.treetable-hidden-column) {
+            padding-left: $cell-padding-x;
+          }
+
+          &:not(.treetable-hidden-column):not(:has(~ .treetable-column:not(.treetable-hidden-column))) {
             .treetable-column-separator {
               display: none;
             }

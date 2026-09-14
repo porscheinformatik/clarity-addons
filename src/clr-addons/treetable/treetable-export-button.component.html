@@ -1,0 +1,24 @@
+<div
+  [class]="{
+    'export-btn-right': exportButtonPosition() === 'right',
+    'export-btn-left': exportButtonPosition() === 'left',
+  }"
+>
+  <clr-dropdown>
+    <button class="btn btn-sm btn-outline" clrDropdownTrigger type="button" data-testid="clr-tt-export-trigger">
+      {{ exportButtonText() }}
+      <cds-icon shape="angle" direction="down" size="12"></cds-icon>
+    </button>
+    <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+      @for (exportType of exportTypesFiltered(); track exportType.type) {
+        <button
+          (click)="onExport(exportType.type)"
+          clrDropdownItem
+          [attr.data-testid]="'clr-tt-export-' + exportType.type"
+        >
+          {{ exportType.value }}
+        </button>
+      }
+    </clr-dropdown-menu>
+  </clr-dropdown>
+</div>

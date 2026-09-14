@@ -40,6 +40,8 @@ export class ClrTreetable<T extends object> {
   protected readonly selectAllId = `clr-tt-select-all${treetableId}`;
 
   private readonly _dataStateService = inject(TreetableDataStateService<T>);
+  private readonly _columnStateService = inject(TreetableColumnStateService);
+  private readonly _filterStateService = inject(FilterStateService<T>);
   private readonly _recursionService = inject(ClrTreetableRecursionService<T>);
   private readonly _commonStringsService = inject(ClrCommonStringsService);
 
@@ -65,6 +67,35 @@ export class ClrTreetable<T extends object> {
   readonly showSelection = computed(() => this.selectionType() === SelectionType.Multi);
   readonly areAllRowsSelected = computed(() => this._dataStateService.areAllNodesSelected());
   readonly hasActionOverflow = computed(() => this._actionOverflow()?.length > 0);
+
+  /**
+   * All items of the data source as a flat, depth-first list. Active filters are ignored, the
+   * active sort is applied.
+   */
+  readonly allItems = this._dataStateService.allItems;
+
+  /**
+   * All currently displayed items (filtered and sorted) as a flat, depth-first list.
+   */
+  readonly displayedItems = this._dataStateService.displayedItems;
+
+  /**
+   * All currently selected items as a flat, depth-first list.
+   *
+   * Selection is tracked on the displayed nodes, so a selected item that is hidden by an active
+   * filter is not part of this list.
+   */
+  readonly selectedItems = this._dataStateService.selectedNodes;
+
+  /**
+   * True as long as at least one filter of the treetable is active.
+   */
+  readonly hasActiveFilters = this._filterStateService.hasActiveFilters;
+
+  /**
+   * State of all currently visible (not hidden) columns, in render order.
+   */
+  readonly visibleColumnStates = this._columnStateService.visibleColumns;
 
   constructor() {
     effect(() => {

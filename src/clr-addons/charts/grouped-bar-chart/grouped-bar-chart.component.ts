@@ -74,6 +74,8 @@ export class GroupedBarChartComponent extends ChartBase<GroupedBarChartDataPoint
 
   public readonly barSizePx = input<number>(12);
   public readonly groupAreaSizePx = input<number>(60);
+  /** Width reserved for horizontal Y-axis group labels (px). */
+  public readonly yAxisLabelWidthPx = input<number>(70);
 
   public readonly noItemsMessage = input<string>(NO_ITEMS_MESSAGE);
   public readonly tooManyItemsGroupedMessage = input<string>(TOO_MANY_ITEMS_GROUPED_MESSAGE);
@@ -181,7 +183,8 @@ export class GroupedBarChartComponent extends ChartBase<GroupedBarChartDataPoint
     const { width: containerWidth, height: containerHeight } = this.getContainerDimensions();
     const extraBottom = this.xAxisLabel() ? 16 : 0;
     const extraLeft = this.yAxisLabel() ? 16 : 0;
-    const leftMargin = (this.orientation() === 'horizontal' ? this.MARGIN.left : 30) + extraLeft;
+    const horizontalLabelMargin = this.yAxisLabelWidthPx() + 10;
+    const leftMargin = (this.orientation() === 'horizontal' ? horizontalLabelMargin : 30) + extraLeft;
     const width = containerWidth - leftMargin - this.MARGIN.right;
     const height = containerHeight - this.MARGIN.top - (this.MARGIN.bottom + extraBottom);
 
@@ -306,7 +309,7 @@ export class GroupedBarChartComponent extends ChartBase<GroupedBarChartDataPoint
       .selectAll<SVGTextElement, GroupedBarChartGroup>('text')
       .data(groups)
       .call(this.addTextCommonInfo as any)
-      .call(this.addTextAndTitle.bind(this), this.MARGIN.left - 10);
+      .call(this.addTextAndTitle.bind(this), this.yAxisLabelWidthPx());
 
     this.createBarSelectionGroups(g);
     this.addHorizontalBarRectangle(x, y0, y1, 2)
@@ -321,7 +324,7 @@ export class GroupedBarChartComponent extends ChartBase<GroupedBarChartDataPoint
       .style('fill', (d: GroupedBarChartDataPoint) => toChartColor(d.color));
 
     this.appendAxisLabel(g, xAxisLabel, width / 2, height + 40);
-    this.appendAxisLabel(g, yAxisLabel, -height / 2, -((this.MARGIN.left + leftMargin) / 2), 'rotate(-90)');
+    this.appendAxisLabel(g, yAxisLabel, -height / 2, -(leftMargin - this.yAxisLabelWidthPx() / 2), 'rotate(-90)');
   }
 
   private createBarSelectionGroups(g: Selection<SVGGElement, unknown, null, undefined>): void {

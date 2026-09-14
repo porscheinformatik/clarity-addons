@@ -114,6 +114,7 @@ export class NumericFieldDemo extends ClarityDocComponent {
   htmlExample4 = HTML_EXAMPLE4;
   tsExample = TS_EXAMPLE;
 
+  amount = 0;
   moneyTemplate: number;
   percentageTemplate: number;
 

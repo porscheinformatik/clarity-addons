@@ -1,5 +1,10 @@
 import { TemplateRef } from '@angular/core';
 
+/**
+ * Type of the values rendered in a treetable column. Used as metadata by the treetable export.
+ */
+export type ClrTreetableColumnType = 'string' | 'number';
+
 export interface ColumnState {
   id: string;
   columnIndex?: number;
@@ -11,4 +16,7 @@ export interface ColumnState {
   hidden?: boolean; // This is the state of column visibility
 
   titleTemplateRef?: TemplateRef<any>; // This is the template of the column content that will be used in the column toggle.
+
+  field?: string; // Property path of the item that is rendered in this column. Used e.g. by the export button.
+  colType?: ClrTreetableColumnType; // Type of the values of this column. Used e.g. by the export button.
 }

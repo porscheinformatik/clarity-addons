@@ -176,6 +176,35 @@
             </tr>
             <tr>
               <td class="left">
+                <strong>[clrTtField]</strong>
+                <div class="clr-hidden-sm-up">Type: string</div>
+                <div class="clr-hidden-sm-up">Default: null</div>
+              </td>
+              <td class="left clr-hidden-xs-down">string</td>
+              <td class="clr-hidden-xs-down">null</td>
+              <td class="left">
+                Property path of the item rendered in this column, e.g. <code>name</code> or <code>address.city</code>.
+                Not used for rendering, it is metadata consumed by <code>clr-export-treetable-button</code>. Setting it
+                is the opt-in for the export: only columns that declare <code>clrTtField</code> are exported, a column
+                without it is omitted entirely.
+              </td>
+            </tr>
+            <tr>
+              <td class="left">
+                <strong>[clrTtColType]</strong>
+                <div class="clr-hidden-sm-up">Type: 'string' | 'number'</div>
+                <div class="clr-hidden-sm-up">Default: 'string'</div>
+              </td>
+              <td class="left clr-hidden-xs-down">'string' | 'number'</td>
+              <td class="clr-hidden-xs-down">'string'</td>
+              <td class="left">
+                Type of the values of this column. Only used as metadata by
+                <code>clr-export-treetable-button</code>, where it determines the type of the exported cells. Unlike the
+                Clarity datagrid, it has no effect on filtering or sorting.
+              </td>
+            </tr>
+            <tr>
+              <td class="left">
                 <strong>(clrTtColumnResize)</strong>
                 <div class="clr-hidden-sm-up">Type: number</div>
                 <div class="clr-hidden-sm-up">Default: n/a</div>
@@ -1048,6 +1077,106 @@
         </clr-treetable>
 
         <clr-code-snippet [clrCode]="htmlExampleHideShow"></clr-code-snippet>
+      </section>
+
+      <section aria-labelledby="export-treetable-button">
+        <h3 id="export-treetable-button">Export Treetable Button</h3>
+        <p>
+          The <code class="clr-code">clr-export-treetable-button</code> component provides an excel export button for
+          the treetable. It is placed as a sibling of the treetable and receives the treetable instance and its
+          <code>ElementRef</code>. It is part of <code>ClrTreetableModule</code>, so no additional module import is
+          needed.
+        </p>
+        <p>The button offers the same export types as the datagrid export button:</p>
+        <ul>
+          <li><code>ALL</code>: all rows, ignoring active filters. The active sort is applied.</li>
+          <li>
+            <code>FILTERED</code>: the rows that pass the active filters. Only offered while at least one filter is
+            active, because it is identical to <code>ALL</code> otherwise.
+          </li>
+          <li>
+            <code>SELECTED</code>: the currently selected rows. Only offered while at least one row is selected.
+            Selection is tracked on the displayed rows, so a selected row that is hidden by an active filter is not part
+            of the export.
+          </li>
+        </ul>
+        <p>
+          The rows are written in the same depth-first order in which they are rendered, without an additional hierarchy
+          indicator.
+        </p>
+        <p>
+          <strong
+            ><code>clrTtField</code> is the opt-in for the export: only columns that declare it are exported.</strong
+          >
+          A column without <code>clrTtField</code> is omitted from the export entirely, header and values alike. Hidden
+          columns are excluded as well.
+        </p>
+        <p>
+          Column titles are read from the rendered treetable. Cell values are resolved via the
+          <code>clrTtField</code> property path of the corresponding column, which may be nested, e.g.
+          <code>address.city</code>. The type of the exported cells is taken from <code>clrTtColType</code> of the
+          column, which is <code>string</code> by default.
+        </p>
+        <p>The export requires the optional <code>zipcelx</code> dependency (<code>npm install zipcelx</code>).</p>
+        <ul>
+          <li>
+            <b>Inputs:</b>
+            <ul>
+              <li><code>treetable</code>: Reference to the <code>ClrTreetable</code> instance.</li>
+              <li><code>treetableRef</code>: <code>ElementRef</code> of the same treetable.</li>
+              <li>
+                <code>exportTypesToShow</code>: Array of export types to show (ALL, FILTERED, SELECTED). For each type a
+                custom display value (e.g. a translated label) can be provided.
+              </li>
+              <li>
+                <code>isBackendExport</code>: If true, emits an event for backend export; if false, exports on the
+                client.
+              </li>
+              <li>
+                <code>exportTitlePrefix</code>: File name of the exported file. Default is
+                <code>export-treetable</code>.
+              </li>
+              <li><code>exportButtonPosition</code>: Position of the export button ('left' or 'right').</li>
+              <li><code>exportButtonText</code>: Custom or translated text of the button, the default is 'EXPORT'.</li>
+            </ul>
+          </li>
+          <li>
+            <b>Outputs:</b>
+            <ul>
+              <li>
+                <code>backendExport</code>: Emitted when export is triggered and <code>isBackendExport</code> is true.
+                The event provides the requested export type.
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+        <clr-export-treetable-button
+          [treetable]="treetable()"
+          [treetableRef]="treetableRef()"
+          exportTitlePrefix="employees"
+        />
+
+        <clr-treetable #exportTreetable [(clrTtSelected)]="selectedForExport">
+          <clr-tt-column clrTtField="value.name">Name</clr-tt-column>
+          <clr-tt-column clrTtField="value.role">Role</clr-tt-column>
+          <clr-tt-column clrTtField="value.roleType">Type</clr-tt-column>
+
+          <clr-tt-row
+            *clrTtItems="let member of orgUnitMemberHierarchy; getChildren: getChildren; clrTtNode as item"
+            [clrExpandable]="!!member.children?.length"
+            [clrTtItem]="item"
+          >
+            <clr-tt-cell>{{ member.value.name }}</clr-tt-cell>
+            <clr-tt-cell>{{ member.value.role }}</clr-tt-cell>
+            <clr-tt-cell>{{ member.value.roleType | titlecase }}</clr-tt-cell>
+          </clr-tt-row>
+
+          <clr-tt-footer></clr-tt-footer>
+        </clr-treetable>
+
+        <clr-code-snippet [clrCode]="htmlExampleExport"></clr-code-snippet>
+        <clr-code-snippet [clrCode]="tsExampleExport"></clr-code-snippet>
       </section>
     </section>
   </article>

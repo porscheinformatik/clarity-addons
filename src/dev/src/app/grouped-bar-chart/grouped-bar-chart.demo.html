@@ -29,6 +29,17 @@
     />
   </label>
   <label style="display: flex; align-items: center; gap: 0.25rem; font-size: 0.85rem">
+    Y-axis label width:
+    <input
+      class="clr-input"
+      type="number"
+      min="1"
+      [ngModel]="yAxisLabelWidthPx()"
+      (ngModelChange)="yAxisLabelWidthPx.set($event)"
+      style="width: 80px"
+    />
+  </label>
+  <label style="display: flex; align-items: center; gap: 0.25rem; font-size: 0.85rem">
     Export filename:
     <input
       class="clr-input"
@@ -60,6 +71,7 @@
         [groups]="groups"
         [orientation]="orientation()"
         [barSizePx]="barSizePx()"
+        [yAxisLabelWidthPx]="yAxisLabelWidthPx()"
         [loading]="loading()"
         [showLegend]="showLegend()"
         [showExportButton]="showExportButton()"
@@ -115,6 +127,7 @@
         [groups]="manyGroups"
         [orientation]="orientation()"
         [barSizePx]="barSizePx()"
+        [yAxisLabelWidthPx]="yAxisLabelWidthPx()"
         [showLegend]="true"
         style="display: block; width: 100%; height: 100%"
       ></clr-grouped-bar-chart>

@@ -7,6 +7,7 @@
 export * from './treetable';
 export * from './treetable-row';
 export * from './treetable-column';
+export * from './treetable-export-button.component';
 export * from './treetable-footer';
 export * from './treetable-hideable-column.directive';
 export * from './treetable-filter';
@@ -19,6 +20,7 @@ export * from './providers';
 export * from './treetable-items';
 export * from './built-in/filter/treetable-string-filter';
 export * from './interfaces/comparator.interface';
+export * from './interfaces/column-model';
 export * from './interfaces/filter-model';
 export * from './interfaces/treetable-model';
 export * from './interfaces/treetable-state-model';
