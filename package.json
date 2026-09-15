@@ -1,6 +1,6 @@
 {
   "name": "clr-addons",
-  "version": "21.7.0",
+  "version": "21.9.1",
   "private": true,
   "scripts": {
     "build:ui:css": "sass --source-map --precision=8 ./src/clr-addons/themes/phs/phs-theme.scss ./dist/clr-addons/styles/clr-addons-phs.css",
@@ -71,10 +71,10 @@
   },
   "devDependencies": {
     "@alasdair/karma-scss-preprocessor": "5.0.0-3",
-    "@angular-devkit/core": "21.2.23",
+    "@angular-devkit/core": "21.2.24",
     "@angular-eslint/builder": "22.5.0",
     "@angular/build": "^21.2.11",
-    "@angular/cli": "21.2.23",
+    "@angular/cli": "21.2.24",
     "@angular/compiler-cli": "21.2.23",
     "@eslint/eslintrc": "3.3.7",
     "@eslint/js": "10.0.1",
@@ -86,7 +86,7 @@
     "@types/zipcelx": "1.5.2",
     "@typescript-eslint/eslint-plugin": "8.70.0",
     "@typescript-eslint/parser": "8.70.0",
-    "autoprefixer": "10.5.5",
+    "autoprefixer": "10.6.0",
     "cp-cli": "2.0.0",
     "csso-cli": "4.0.2",
     "d3": "7.9.0",
@@ -114,7 +114,7 @@
     "prettier": "3.9.6",
     "pretty-quick": "4.2.2",
     "replace": "1.2.2",
-    "sass": "1.104.0",
+    "sass": "1.104.1",
     "shx": "0.4.0",
     "typescript": "5.9.3",
     "zipcelx": "1.6.2"

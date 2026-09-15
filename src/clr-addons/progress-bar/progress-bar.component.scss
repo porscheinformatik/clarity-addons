@@ -1,0 +1,51 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 10px;
+}
+
+:host(.clr-multi-progress-bar--has-label) {
+  height: auto;
+}
+
+.clr-multi-progress-bar-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 100%;
+}
+
+.clr-multi-progress-bar {
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+:host(.clr-multi-progress-bar--has-label) .clr-multi-progress-bar {
+  min-height: 10px;
+}
+
+.clr-multi-progress-bar-label {
+  min-width: 40px;
+}
+
+@keyframes clr-multi-progress-bar-in {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.clr-multi-progress-bar-animated {
+  animation: clr-multi-progress-bar-in 0.5s ease forwards;
+
+  transform-origin: left;
+  transform-box: fill-box;
+}
+
+.clr-multi-progress-bar-fill {
+  animation: clr-multi-progress-bar-in 0.5s ease forwards;
+}

@@ -439,6 +439,19 @@
         </clr-input-container>
       </form>
       <clr-code-snippet [clrCode]="htmlExample4"></clr-code-snippet>
+
+      <h3 id="input-suffix">Suffix for non-standard containers</h3>
+      <p>
+        For input containers other than <code>clr-input-container</code> (e.g. <code>clr-number-input-container</code>)
+        use the <code>cngInputSuffix</code> directive.
+      </p>
+
+      <form clrForm clrLayout="horizontal">
+        <clr-number-input-container [cngInputSuffix]="'€'">
+          <label>Amount</label>
+          <input clrNumberInput type="number" name="amount" [(ngModel)]="amount" />
+        </clr-number-input-container>
+      </form>
     </div>
   </article>
 </clr-doc-wrapper>
