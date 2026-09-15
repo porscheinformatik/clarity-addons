@@ -456,6 +456,18 @@
           <td class="left">Width reserved for horizontal Y-axis group labels in pixels.</td>
         </tr>
         <tr>
+          <td class="left"><code>showValues</code></td>
+          <td class="left">boolean</td>
+          <td class="left">false</td>
+          <td class="left">Displays all bar values directly next to the bars.</td>
+        </tr>
+        <tr>
+          <td class="left"><code>showValueOnHover</code></td>
+          <td class="left">boolean</td>
+          <td class="left">false</td>
+          <td class="left">Displays only the hovered bar value directly next to the bar.</td>
+        </tr>
+        <tr>
           <td class="left"><code>xAxisLabel</code> / <code>yAxisLabel</code></td>
           <td class="left">string</td>
           <td class="left">''</td>
@@ -482,6 +494,8 @@
         orientation="horizontal"
         [barSizePx]="12"
         [yAxisLabelWidthPx]="120"
+        [showValues]="true"
+        [showValueOnHover]="true"
         xAxisLabel="Amount"
         yAxisLabel="Quarter"
         [showLegend]="true"
@@ -496,6 +510,8 @@
         [groups]="groupedBarGroups"
         orientation="vertical"
         [barSizePx]="12"
+        [showValues]="true"
+        [showValueOnHover]="true"
         xAxisLabel="Quarter"
         yAxisLabel="Amount"
         [showLegend]="true"
@@ -543,6 +559,12 @@
           <td class="left">Displays the numeric value next to each dot.</td>
         </tr>
         <tr>
+          <td class="left"><code>showValueOnHover</code></td>
+          <td class="left">boolean</td>
+          <td class="left">false</td>
+          <td class="left">Displays only the hovered data point value next to its dot.</td>
+        </tr>
+        <tr>
           <td class="left"><code>xAxisLabel</code> / <code>yAxisLabel</code></td>
           <td class="left">string</td>
           <td class="left">''</td>
@@ -572,7 +594,33 @@
         [series]="lineSeries"
         [showLegend]="true"
         [showExportButton]="true"
+        [showValueOnHover]="true"
         exportFilename="line-chart"
+        xAxisLabel="Month"
+        yAxisLabel="Revenue (€)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-line-chart>
+    </div>
+
+    <h3>Example – Show Value on Hover (<code>showValueOnHover</code>)</h3>
+    <p>
+      Setting <code class="clr-code">[showValueOnHover]="true"</code> renders only the hovered data point value next to
+      its dot. Unlike <code class="clr-code">showValues</code>, the chart keeps all other values hidden.
+    </p>
+    <clr-code-snippet
+      clrLanguage="html"
+      [clrCode]='&apos;<clr-line-chart
+  [series]="lineSeries"
+  [showValueOnHover]="true"
+  style="display:block;width:100%;height:300px;"
+></clr-line-chart>&apos;'
+    >
+    </clr-code-snippet>
+    <div style="height: 320px; width: 100%; margin-top: 1rem">
+      <clr-line-chart
+        [series]="lineSeries"
+        [showLegend]="true"
+        [showValueOnHover]="true"
         xAxisLabel="Month"
         yAxisLabel="Revenue (€)"
         style="display: block; width: 100%; height: 100%"

@@ -47,8 +47,17 @@ describe('LineChartComponent', () => {
     it('should default loading to false', () => expect(component.loading()).toBeFalse());
     it('should default showLegend to true', () => expect(component.showLegend()).toBeTrue());
     it('should default showArea to false', () => expect(component.showArea()).toBeFalse());
+    it('should default showValueOnHover to false', () => expect(component.showValueOnHover()).toBeFalse());
     it('should default exportFilename to "line-chart"', () => expect(component.exportFilename()).toBe('line-chart'));
     it('should default tooltipOrientation to "top"', () => expect(component.tooltipOrientation()).toBe('top'));
+  });
+
+  describe('showValueOnHover input', () => {
+    it('should accept showValueOnHover', () => {
+      componentRef.setInput('showValueOnHover', true);
+      fixture.detectChanges();
+      expect(component.showValueOnHover()).toBeTrue();
+    });
   });
 
   describe('alertMessageAndType()', () => {

@@ -1,4 +1,13 @@
-import { ChangeDetectionStrategy, Component, computed, input, OnChanges, output, SimpleChanges } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+  OnChanges,
+  output,
+  signal,
+  SimpleChanges,
+} from '@angular/core';
 import {
   curveMonotoneX,
   format as d3format,
@@ -46,6 +55,7 @@ export class LineChartComponent extends ChartBase<LineChartSelectedPoint> implem
   public readonly showArea = input(false);
   public readonly showLegend = input(true);
   public readonly showValues = input(false);
+  public readonly showValueOnHover = input(false);
   public readonly showExportButton = input(false);
   public readonly exportButtonTitle = input<string>('Export');
   public readonly exportFilename = input<string>('line-chart');
@@ -89,6 +99,7 @@ export class LineChartComponent extends ChartBase<LineChartSelectedPoint> implem
   });
 
   private svg: Selection<SVGSVGElement, unknown, null, undefined>;
+  private readonly hoveredValueKey = signal<string | undefined>(undefined);
 
   public ngOnChanges(_changes: SimpleChanges): void {
     if (!this.svg) {
@@ -104,6 +115,7 @@ export class LineChartComponent extends ChartBase<LineChartSelectedPoint> implem
 
   protected updateChart(): void {
     this.svg.selectAll('*').remove();
+    this.hoveredValueKey.set(undefined);
 
     if (this.loading()) {
       return;
@@ -189,16 +201,24 @@ export class LineChartComponent extends ChartBase<LineChartSelectedPoint> implem
         .attr('d', lineGenerator);
 
       // Dots
-      renderDots(g, series, x, y, (el, point, s) => this.openTooltip(el, point, s));
+      renderDots(
+        g,
+        series,
+        x,
+        y,
+        (el, point, s) => this.openTooltip(el, point, s),
+        point => this.setHoveredValueKey(this.getValueKey(series.key, point.x)),
+        () => this.setHoveredValueKey(undefined)
+      );
 
-      // Value labels above each dot
-      if (this.showValues()) {
+      if (this.showValues() || this.showValueOnHover()) {
         g.selectAll<SVGTextElement, XYChartPoint>(`.value-label-${series.key}`)
           .data(series.data, (d: XYChartPoint) => d.x)
           .join('text')
           .attr('class', `value-label value-label-${series.key}`)
           .attr('x', (d: XYChartPoint) => x(d.x) ?? 0)
           .attr('y', (d: XYChartPoint) => y(d.value) - 9)
+          .attr('data-value-key', (d: XYChartPoint) => this.getValueKey(series.key, d.x))
           .attr('text-anchor', 'middle')
           .style('font-size', '11px')
           .style('font-weight', '600')
@@ -207,9 +227,31 @@ export class LineChartComponent extends ChartBase<LineChartSelectedPoint> implem
           .attr('stroke-width', 3)
           .attr('paint-order', 'stroke fill')
           .style('pointer-events', 'none')
+          .style('opacity', (d: XYChartPoint) =>
+            this.showValues() || this.hoveredValueKey() === this.getValueKey(series.key, d.x) ? '1' : '0'
+          )
           .text((d: XYChartPoint) => d3format('~s')(d.value));
       }
     }
+  }
+
+  private getValueKey(seriesKey: string, x: string): string {
+    return `${seriesKey}:${x}`;
+  }
+
+  private setHoveredValueKey(key: string | undefined): void {
+    if (!this.showValueOnHover()) {
+      return;
+    }
+
+    this.hoveredValueKey.set(key);
+    this.updateHoveredValueLabels();
+  }
+
+  private updateHoveredValueLabels(): void {
+    this.svg.selectAll<SVGTextElement, XYChartPoint>('.value-label').style('opacity', (_d, index, nodes) => {
+      return this.showValues() || d3select(nodes[index]).attr('data-value-key') === this.hoveredValueKey() ? '1' : '0';
+    });
   }
 
   private openTooltip(el: SVGCircleElement, point: XYChartPoint, series: XYChartSeries): void {

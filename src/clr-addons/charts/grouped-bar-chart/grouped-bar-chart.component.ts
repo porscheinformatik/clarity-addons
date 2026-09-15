@@ -82,6 +82,8 @@ export class GroupedBarChartComponent extends ChartBase<GroupedBarChartDataPoint
   public readonly allValuesZeroMessage = input<string>(ALL_ITEMS_ZERO_MESSAGE);
 
   public readonly showLegend = input(true);
+  public readonly showValues = input(false);
+  public readonly showValueOnHover = input(false);
   public readonly showExportButton = input(false);
   public readonly exportButtonTitle = input<string>('Export');
   public readonly exportFilename = input<string>('grouped-bar-chart');
@@ -143,6 +145,7 @@ export class GroupedBarChartComponent extends ChartBase<GroupedBarChartDataPoint
   private readonly totalGroupCount = signal<number>(0);
   private readonly showingGroupCount = signal<number>(0);
   private readonly slicedDataPoints = signal<GroupedBarChartDataPoint[]>([]);
+  private readonly hoveredValueKey = signal<string | undefined>(undefined);
 
   private svg: Selection<SVGGElement, unknown, null, undefined>;
   private barSelection: Selection<SVGGElement, GroupedBarChartDataPoint, SVGElement, undefined> | null = null;
@@ -166,6 +169,7 @@ export class GroupedBarChartComponent extends ChartBase<GroupedBarChartDataPoint
 
   protected updateChart(): void {
     this.svg.selectAll('*').remove();
+    this.hoveredValueKey.set(undefined);
 
     if (this.loading()) {
       this.resetVisibleState();
@@ -269,6 +273,8 @@ export class GroupedBarChartComponent extends ChartBase<GroupedBarChartDataPoint
       .attr('class', 'bar')
       .style('fill', (d: GroupedBarChartDataPoint) => toChartColor(d.color));
 
+    this.addVerticalValueLabels(g, x0, x1, y);
+
     this.appendAxisLabel(g, xAxisLabel, width / 2, height + 40);
     this.appendAxisLabel(g, yAxisLabel, -height / 2, -(leftMargin - 10), 'rotate(-90)');
   }
@@ -323,6 +329,8 @@ export class GroupedBarChartComponent extends ChartBase<GroupedBarChartDataPoint
       .attr('class', 'bar')
       .style('fill', (d: GroupedBarChartDataPoint) => toChartColor(d.color));
 
+    this.addHorizontalValueLabels(g, x, y0, y1);
+
     this.appendAxisLabel(g, xAxisLabel, width / 2, height + 40);
     this.appendAxisLabel(g, yAxisLabel, -height / 2, -(leftMargin - this.yAxisLabelWidthPx() / 2), 'rotate(-90)');
   }
@@ -334,9 +342,92 @@ export class GroupedBarChartComponent extends ChartBase<GroupedBarChartDataPoint
       .join('g')
       .attr('class', 'bar-group')
       .style('cursor', 'pointer')
-      .on('mouseover', (_event: PointerEvent, d: GroupedBarChartDataPoint) => this.setHoverStyles(d, true))
-      .on('mouseout', (_event: PointerEvent, d: GroupedBarChartDataPoint) => this.setHoverStyles(d, false))
+      .on('mouseover', (_event: PointerEvent, d: GroupedBarChartDataPoint) => {
+        this.setHoverStyles(d, true);
+        if (this.showValueOnHover()) {
+          this.hoveredValueKey.set(d.key);
+          this.updateHoveredValueLabels();
+        }
+      })
+      .on('mouseout', (_event: PointerEvent, d: GroupedBarChartDataPoint) => {
+        this.setHoverStyles(d, false);
+        if (this.showValueOnHover()) {
+          this.hoveredValueKey.set(undefined);
+          this.updateHoveredValueLabels();
+        }
+      })
       .call(this.addBarClickHandler.bind(this));
+  }
+
+  private addHorizontalValueLabels(
+    g: Selection<SVGGElement, unknown, null, undefined>,
+    x: ScaleLinear<number, number>,
+    y0: ScaleBand<string>,
+    y1: ScaleBand<string>
+  ): void {
+    if (!this.showValues() && !this.showValueOnHover()) {
+      return;
+    }
+
+    const barHeight = Math.max(0, Math.min(this.barSizePx(), y1.bandwidth()));
+    const yOffset = (y1.bandwidth() - barHeight) / 2;
+    g.selectAll<SVGTextElement, GroupedBarChartDataPoint>('.value-label')
+      .data(this.slicedDataPoints(), (d: GroupedBarChartDataPoint) => d.key)
+      .join('text')
+      .attr('class', 'value-label')
+      .attr('x', (d: GroupedBarChartDataPoint) => x(d.value) + 5)
+      .attr('y', (d: GroupedBarChartDataPoint) => {
+        return (y0(d.groupKey) || 0) + (y1(d.fullLabel ?? d.label) || 0) + yOffset + barHeight / 2;
+      })
+      .attr('dominant-baseline', 'middle')
+      .attr('text-anchor', 'start')
+      .call(this.addValueLabelStyles.bind(this));
+  }
+
+  private addVerticalValueLabels(
+    g: Selection<SVGGElement, unknown, null, undefined>,
+    x0: ScaleBand<string>,
+    x1: ScaleBand<string>,
+    y: ScaleLinear<number, number>
+  ): void {
+    if (!this.showValues() && !this.showValueOnHover()) {
+      return;
+    }
+
+    const barWidth = Math.max(0, Math.min(this.barSizePx(), x1.bandwidth()));
+    const xOffset = (x1.bandwidth() - barWidth) / 2;
+    g.selectAll<SVGTextElement, GroupedBarChartDataPoint>('.value-label')
+      .data(this.slicedDataPoints(), (d: GroupedBarChartDataPoint) => d.key)
+      .join('text')
+      .attr('class', 'value-label')
+      .attr('x', (d: GroupedBarChartDataPoint) => {
+        return (x0(d.groupKey) || 0) + (x1(d.fullLabel ?? d.label) || 0) + xOffset + barWidth / 2;
+      })
+      .attr('y', (d: GroupedBarChartDataPoint) => y(d.value) - 6)
+      .attr('text-anchor', 'middle')
+      .call(this.addValueLabelStyles.bind(this));
+  }
+
+  private addValueLabelStyles(g: Selection<SVGTextElement, GroupedBarChartDataPoint, SVGElement, undefined>): void {
+    g.style('font-size', '11px')
+      .style('font-weight', '600')
+      .style('fill', (d: GroupedBarChartDataPoint) => toChartColor(d.color))
+      .attr('stroke', '#fff')
+      .attr('stroke-width', 3)
+      .attr('paint-order', 'stroke fill')
+      .style('pointer-events', 'none')
+      .style('opacity', (d: GroupedBarChartDataPoint) =>
+        this.showValues() || this.hoveredValueKey() === d.key ? '1' : '0'
+      )
+      .text((d: GroupedBarChartDataPoint) => d3format('~s')(d.value));
+  }
+
+  private updateHoveredValueLabels(): void {
+    this.svg
+      .selectAll<SVGTextElement, GroupedBarChartDataPoint>('.value-label')
+      .style('opacity', (d: GroupedBarChartDataPoint) =>
+        this.showValues() || this.hoveredValueKey() === d.key ? '1' : '0'
+      );
   }
 
   private addHorizontalBarRectangle(

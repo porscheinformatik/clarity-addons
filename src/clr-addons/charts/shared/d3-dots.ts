@@ -19,7 +19,9 @@ export function renderDots(
   series: XYChartSeries,
   x: ScalePoint<string>,
   y: ScaleLinear<number, number>,
-  onClick: (el: SVGCircleElement, point: XYChartPoint, series: XYChartSeries) => void
+  onClick: (el: SVGCircleElement, point: XYChartPoint, series: XYChartSeries) => void,
+  onHover?: (point: XYChartPoint, series: XYChartSeries) => void,
+  onHoverEnd?: () => void
 ): void {
   g.selectAll<SVGCircleElement, XYChartPoint>(`.dot-${series.key}`)
     .data(series.data, (d: XYChartPoint) => d.x)
@@ -32,11 +34,13 @@ export function renderDots(
     .attr('stroke', '#fff')
     .attr('stroke-width', 2)
     .style('cursor', 'pointer')
-    .on('mouseover', (e: PointerEvent) => {
+    .on('mouseover', (e: PointerEvent, d: XYChartPoint) => {
       d3select(e.currentTarget as SVGCircleElement).attr('r', 6);
+      onHover?.(d, series);
     })
     .on('mouseout', (e: PointerEvent) => {
       d3select(e.currentTarget as SVGCircleElement).attr('r', 4);
+      onHoverEnd?.();
     })
     .on('click', (event: PointerEvent, d: XYChartPoint) => {
       event.stopPropagation();
