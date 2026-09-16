@@ -17,6 +17,7 @@
         <clr-signpost-content
           clrPosition="bottom-left"
           [attr.data-testid]="'funnel-chart-section-signpost-content-' + pos.key"
+          *clrIfOpen
         >
           <p class="mt-0" [attr.data-testid]="'funnel-chart-section-description-' + pos.key">{{ pos.description }}</p>
         </clr-signpost-content>
@@ -24,7 +25,11 @@
     }
   }
   @if (loading()) {
-    <cng-bar-chart-skeleton data-testid="funnel-chart-skeleton" orientation="vertical" skeletonType="loading" />
+    @if (orientation() === 'centered') {
+      <cng-funnel-skeleton data-testid="funnel-chart-skeleton" [centered]="true" />
+    } @else {
+      <cng-funnel-skeleton data-testid="funnel-chart-skeleton" />
+    }
   }
   @if (tooltipPosition()) {
     @if (orientation() === 'centered') {
@@ -32,7 +37,7 @@
       <cng-chart-tooltip
         data-testid="funnel-chart-centered-tooltip"
         [tooltipPosition]="tooltipPosition()"
-        tooltipOrientation="bottom"
+        [tooltipOrientation]="tooltipOrientation()"
         [squareColor]="selectedSpacerItem() ? centeredSpacerCssColor() : centeredBarCssColor()"
         [tooltipClickable]="!selectedSpacerItem()"
         (tooltipClosed)="resetTooltip()"
@@ -77,7 +82,7 @@
                   drillable &&
                     valueClicked.emit({
                       value: section.value,
-                      label: data()[selectedSpacerItem().index].label + ': ' + section.label,
+                      label: data()[selectedSpacerItem().index].label + ' | ' + section.label,
                       key: data()[selectedSpacerItem().index].key,
                       section: section.key,
                     })
@@ -89,7 +94,7 @@
           }
         } @else {
           <p class="mt-0" data-testid="funnel-chart-centered-tooltip-percentage">
-            {{ pct(selectedItem().value, total()) }}% {{ resolvedChartLabels().all }}
+            {{ pct(selectedItem().value, total()) }}% {{ tooltipPercentOfTotal() || resolvedChartLabels().all }}
           </p>
         }
       </cng-chart-tooltip>
@@ -98,7 +103,7 @@
       <cng-chart-tooltip
         data-testid="funnel-chart-default-tooltip"
         [tooltipPosition]="tooltipPosition()"
-        tooltipOrientation="bottom"
+        [tooltipOrientation]="tooltipOrientation()"
         [squareColor]="undefined"
         [tooltipClickable]="false"
         (tooltipClosed)="resetTooltip()"
@@ -123,7 +128,7 @@
                 drillable &&
                   valueClicked.emit({
                     value: section.value,
-                    label: selectedItemLabel() + ': ' + section.label,
+                    label: selectedItemLabel() + ' | ' + section.label,
                     key: selectedItem().key,
                     section: section.key,
                   })
@@ -135,7 +140,12 @@
         }
 
         <p class="tooltip-row mt-0-5" data-testid="funnel-chart-default-tooltip-total">
-          <strong>{{ resolvedChartLabels().total }}:&nbsp;</strong>
+          <strong
+            >{{
+              (prefixTotalWithLabel() ? selectedItemLabel() + ' ' : '') + resolvedChartLabels().total
+            }}
+            :&nbsp;</strong
+          >
           <span
             class="has-more-info"
             data-testid="funnel-chart-default-tooltip-total-value"

@@ -139,6 +139,10 @@ export class FunnelChartComponent extends ChartBase<FunnelDataPoint> implements 
   /** Rendering mode. 'default' = horizontal bars with sections; 'centered' = centered trapezoid funnel. */
   public readonly orientation = input<'default' | 'centered'>('default');
 
+  public readonly tooltipOrientation = input<'top' | 'bottom'>('bottom');
+
+  public readonly prefixTotalWithLabel = input<boolean>(false);
+
   /** Width reserved on each side for labels (px). */
   public readonly textSize = input(200);
   /** Gap between funnel bars and their side-line labels (px). */
@@ -173,6 +177,8 @@ export class FunnelChartComponent extends ChartBase<FunnelDataPoint> implements 
    * the built-in default palette.
    */
   public readonly sectionColors = input<Record<string, string>>({});
+  public readonly tooltipPercentOfTotal = input<string>('');
+  public readonly emptyChartWhenNoData = input<boolean>(false);
 
   // ── Outputs ─────────────────────────────────────────────────────────────────
   public readonly valueClicked = output<FunnelValue>();
@@ -244,7 +250,10 @@ export class FunnelChartComponent extends ChartBase<FunnelDataPoint> implements 
 
   // ── Data calculation ─────────────────────────────────────────────────────────
   private calculateDataPoints(funnelWidth: number, barHeight: number): FunnelDataPoint[] {
-    const maxValue = d3max(this.data(), d => d.value) ?? 1;
+    const maxValue = this.emptyChartWhenNoData()
+      ? d3max(this.data(), d => d.value) || 1
+      : (d3max(this.data(), d => d.value) ?? 1);
+
     const widthScale = d3scaleLinear().domain([0, maxValue]).range([0, funnelWidth]);
     const sectionColorOverrides = this.sectionColors();
 
@@ -526,7 +535,9 @@ export class FunnelChartComponent extends ChartBase<FunnelDataPoint> implements 
     spacerHeight: number
   ): CenteredDataPoint[] {
     const total = this.data()[0]?.value ?? 1;
-    const maxValue = d3max(this.data(), d => d.value) ?? 1;
+    const maxValue = this.emptyChartWhenNoData()
+      ? d3max(this.data(), d => d.value) || 1
+      : (d3max(this.data(), d => d.value) ?? 1);
     const scale = d3scaleLinear().domain([0, maxValue]).range([0, maxFunnelWidth]);
 
     return this.data().map((d, i) => {

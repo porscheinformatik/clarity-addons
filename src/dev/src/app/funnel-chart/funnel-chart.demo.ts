@@ -80,6 +80,13 @@ const MINIMAL_DATA: FunnelChartData[] = [
   { key: 'd', label: 'Step D', value: 80 },
 ];
 
+const ZERO_DATA: FunnelChartData[] = [
+  { key: 'a', label: 'Step A', value: 0 },
+  { key: 'b', label: 'Step B', value: 0 },
+  { key: 'c', label: 'Step C', value: 0 },
+  { key: 'd', label: 'Step D', value: 0 },
+];
+
 @Component({
   selector: 'clr-funnel-chart-demo',
   templateUrl: './funnel-chart.demo.html',
@@ -92,6 +99,7 @@ export class FunnelChartDemo {
 
   protected readonly pipelineData = PIPELINE_DATA;
   protected readonly minimalData = MINIMAL_DATA;
+  protected readonly zeroData = ZERO_DATA;
   protected readonly emptyData: FunnelChartData[] = [];
 
   /** Override colors by section key via sectionColors input. */

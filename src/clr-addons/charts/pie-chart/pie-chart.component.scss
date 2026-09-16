@@ -13,8 +13,9 @@
 }
 
 .chart-area {
-  flex: 1;
-  min-height: 0;
+  flex: 1 1 auto; // fill only the space left after the legend
+  height: auto; // stop forcing full cell height
+  min-height: 0; // allow shrinking inside the flex column
   position: relative;
 }
 
@@ -23,7 +24,7 @@ svg {
   width: 100%;
 }
 
-cng-bar-chart-skeleton {
+cng-donut-chart-skeleton {
   height: 100%;
 }
 
@@ -48,9 +49,42 @@ cng-bar-chart-skeleton {
   fill: var(--cds-global-color-gray-900, #21333b);
 }
 
+.center-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  pointer-events: none;
+}
+
+.center-number {
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--clr-color-neutral-600, #666);
+  text-underline-offset: 3px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--cds-global-color-gray-900, #21333b);
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.center-sublabel-text {
+  font-size: 0.75rem;
+  color: var(--cds-global-color-construction-400, #666);
+  margin-top: 2px;
+}
+
 .center-sublabel {
   font-size: 0.65rem;
   fill: var(--cds-global-color-construction-400, #666);
   text-transform: uppercase;
   letter-spacing: 0.05em;
+}
+
+.legend-top {
+  order: -1;
 }

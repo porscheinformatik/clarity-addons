@@ -10,6 +10,9 @@
 <div style="margin-bottom: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center">
   <button class="btn btn-outline" (click)="toggleDonut()">Toggle Donut (current: {{ donut() }})</button>
   <button class="btn btn-outline" (click)="toggleLegend()">Toggle Legend (current: {{ showLegend() }})</button>
+  <button class="btn btn-outline" (click)="toggleLegendPosition()">
+    Toggle Legend position (current: {{ legendPosition() }})
+  </button>
   <button class="btn btn-outline" (click)="toggleLoading()">Toggle Loading (current: {{ loading() }})</button>
   <button class="btn btn-outline" (click)="toggleExportButton()">
     Toggle Export Button (current: {{ showExportButton() }})
@@ -46,8 +49,10 @@
       <clr-pie-chart
         [data]="simpleData"
         [donut]="donut()"
+        [centerValue]="321"
         [loading]="loading()"
         [showLegend]="showLegend()"
+        [legendPosition]="legendPosition()"
         [showExportButton]="showExportButton()"
         [exportFilename]="exportFilename()"
         (valueClicked)="onValueClicked($event)"

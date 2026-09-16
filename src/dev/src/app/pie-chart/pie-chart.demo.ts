@@ -21,6 +21,7 @@ export class PieChartDemo {
   protected readonly exportFilename = signal('pie-demo');
   protected readonly donut = signal(true);
   protected readonly showLegend = signal(true);
+  protected readonly legendPosition = signal('top');
   protected readonly showExportButton = signal(false);
   protected readonly lastClicked = signal<PieChartValue | undefined>(undefined);
 
@@ -45,6 +46,10 @@ export class PieChartDemo {
 
   public toggleLegend(): void {
     this.showLegend.set(!this.showLegend());
+  }
+
+  public toggleLegendPosition(): void {
+    this.legendPosition.set(this.legendPosition() === 'top' ? 'bottom' : 'top');
   }
 
   public toggleExportButton(): void {

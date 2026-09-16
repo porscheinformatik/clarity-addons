@@ -1,4 +1,13 @@
-import { ChangeDetectionStrategy, Component, computed, input, OnChanges, output, SimpleChanges } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+  OnChanges,
+  output,
+  signal,
+  SimpleChanges,
+} from '@angular/core';
 import { Arc, arc as d3arc, format as d3format, pie as d3pie, PieArcDatum, select as d3select, Selection } from 'd3';
 import { NO_ITEMS_ALERT_TYPE, NO_ITEMS_MESSAGE } from '../constants';
 import { toChartColor } from '../utils';
@@ -14,8 +23,8 @@ export interface PieChartData {
 }
 
 export interface PieChartValue {
-  key: string;
-  label: string;
+  key?: string;
+  label?: string;
   value: number;
 }
 
@@ -29,17 +38,24 @@ export interface PieChartValue {
 export class PieChartComponent extends ChartBase<PieChartData> implements OnChanges {
   public readonly data = input.required<PieChartData[]>();
   public readonly donut = input(true);
+  public readonly centerValue = input<number | undefined>(undefined);
+  public readonly centerLabel = input<string | undefined>(undefined);
+  public readonly formatCenterValue = input<boolean>(false);
+  public readonly formatSlices = input<boolean>(false);
   public readonly showLegend = input(true);
+  public readonly legendPosition = input<'top' | 'bottom'>('bottom');
   public readonly showExportButton = input(false);
   public readonly exportButtonTitle = input<string>('Export');
   public readonly exportFilename = input<string>('pie-chart');
   public readonly tooltipOrientation = input<'top' | 'bottom'>('top');
+  public readonly innerRadiusRatio = input<number>(0.5);
 
   public readonly noItemsMessage = input<string>(NO_ITEMS_MESSAGE);
   public readonly tooltipPercentOfTotal = input<string>('of total');
 
   public readonly valueClicked = output<PieChartValue>();
 
+  protected readonly showSkeleton = computed(() => this.loading() || !this.total());
   protected readonly hasData = computed(() => this.data()?.some(d => d.value > 0));
   protected readonly total = computed(() => this.data()?.reduce((acc, d) => acc + d.value, 0) ?? 0);
 
@@ -57,11 +73,15 @@ export class PieChartComponent extends ChartBase<PieChartData> implements OnChan
     if (!this.showLegend()) {
       return [];
     }
-    return (this.data() ?? []).filter(d => d.value > 0).map(d => ({ label: d.fullLabel ?? d.label, color: d.color }));
+    return (this.data() ?? [])
+      .filter(d => d.value >= 0)
+      .map(d => ({ label: d.fullLabel ?? d.label, color: d.color, key: d.key, value: d.value }));
   });
 
   private svg: Selection<SVGSVGElement, unknown, null, undefined>;
   private arcGen: Arc<any, PieArcDatum<PieChartData>>;
+  private hoverArcGen: Arc<any, PieArcDatum<PieChartData>>;
+  protected readonly hoveredIndex = signal<number | undefined>(undefined);
 
   public ngOnChanges(_changes: SimpleChanges): void {
     if (!this.svg) {
@@ -84,20 +104,18 @@ export class PieChartComponent extends ChartBase<PieChartData> implements OnChan
 
     const { width, height } = this.getContainerDimensions();
     const radius = Math.min(width, height) / 2;
-    const innerRadius = this.donut() ? radius * 0.55 : 0;
-    const outerRadius = radius * 0.9;
+    const innerRadius = this.donut() ? radius * this.innerRadiusRatio() : 0;
+    const outerRadius = radius - 5;
 
     this.arcGen = d3arc<PieArcDatum<PieChartData>>().innerRadius(innerRadius).outerRadius(outerRadius);
 
-    const hoverArc = d3arc<PieArcDatum<PieChartData>>()
-      .innerRadius(innerRadius)
-      .outerRadius(outerRadius * 1.06);
+    this.hoverArcGen = d3arc<PieArcDatum<PieChartData>>().innerRadius(innerRadius).outerRadius(radius);
 
     const pieGen = d3pie<PieChartData>()
       .value(d => d.value)
       .sort(null);
 
-    const arcs = pieGen(this.data().filter(d => d.value > 0));
+    const arcs = pieGen(this.data());
 
     const g = this.svg
       .attr('width', width)
@@ -111,15 +129,22 @@ export class PieChartComponent extends ChartBase<PieChartData> implements OnChan
       .join('path')
       .attr('class', 'slice')
       .attr('d', this.arcGen)
+      .style('display', (d: PieArcDatum<PieChartData>) => (d.data.value ? null : 'none'))
       .style('fill', (d: PieArcDatum<PieChartData>) => toChartColor(d.data.color))
       .attr('stroke', '#fff')
       .attr('stroke-width', 2)
       .style('cursor', 'pointer')
-      .on('mouseover', (e: PointerEvent) => {
-        d3select(e.currentTarget as SVGPathElement).attr('d', hoverArc as any);
+      .on('mouseover', (e: PointerEvent, d: PieArcDatum<PieChartData>) => {
+        d3select(e.currentTarget as SVGPathElement)
+          .attr('d', this.hoverArcGen as any)
+          .style('opacity', 0.8);
+        this.hoveredIndex.set(this.data().indexOf(d.data));
       })
       .on('mouseout', (e: PointerEvent) => {
-        d3select(e.currentTarget as SVGPathElement).attr('d', this.arcGen as any);
+        d3select(e.currentTarget as SVGPathElement)
+          .attr('d', this.arcGen as any)
+          .style('opacity', 1);
+        this.hoveredIndex.set(undefined);
       })
       .on('click', (event: PointerEvent, d: PieArcDatum<PieChartData>) => {
         event.stopPropagation();
@@ -155,7 +180,9 @@ export class PieChartComponent extends ChartBase<PieChartData> implements OnChan
       .style('font-weight', '600')
       .style('fill', '#fff')
       .style('pointer-events', 'none')
-      .text((d: PieArcDatum<PieChartData>) => d3format('~s')(d.data.value));
+      .text((d: PieArcDatum<PieChartData>) =>
+        this.formatSlices() ? d3format('~s')(d.data.value) : d.data.value || ''
+      );
 
     labelGroups
       .append('text')
@@ -168,7 +195,7 @@ export class PieChartComponent extends ChartBase<PieChartData> implements OnChan
       .text((d: PieArcDatum<PieChartData>) => `${((100 * d.data.value) / total).toFixed(1)}%`);
 
     // Center label (donut only)
-    if (this.donut()) {
+    if (this.donut() && this.centerValue() === undefined) {
       g.append('text')
         .attr('class', 'center-label')
         .attr('text-anchor', 'middle')
@@ -176,7 +203,7 @@ export class PieChartComponent extends ChartBase<PieChartData> implements OnChan
         .style('font-size', '1.4rem')
         .style('font-weight', '600')
         .style('fill', 'var(--cds-global-color-gray-900, #21333b)')
-        .text(d3format('~s')(this.total()));
+        .text(this.formatCenterValue() ? d3format('~s')(this.total()) : this.total());
 
       g.append('text')
         .attr('class', 'center-sublabel')
@@ -185,8 +212,7 @@ export class PieChartComponent extends ChartBase<PieChartData> implements OnChan
         .style('font-size', '0.65rem')
         .style('fill', 'var(--cds-global-color-construction-400, #666)')
         .style('text-transform', 'uppercase')
-        .style('letter-spacing', '0.05em')
-        .text('Total');
+        .style('letter-spacing', '0.05em');
     }
   }
 
@@ -197,5 +223,31 @@ export class PieChartComponent extends ChartBase<PieChartData> implements OnChan
       y: height / 2 + cy,
     });
     this.selectedItem.set(d.data);
+  }
+
+  private setHoverStylesByIndex(index: number): void {
+    this.svg
+      .selectAll<SVGPathElement, PieArcDatum<PieChartData>>('.slice')
+      .filter((_d, i) => i === index)
+      .attr('d', this.hoverArcGen as any)
+      .style('opacity', 0.8);
+    this.hoveredIndex.set(index);
+  }
+
+  private unsetHoverStylesByIndex(index: number): void {
+    this.svg
+      .selectAll<SVGPathElement, PieArcDatum<PieChartData>>('.slice')
+      .filter((_d, i) => i === index)
+      .attr('d', this.arcGen as any)
+      .style('opacity', 1);
+    this.hoveredIndex.set(undefined);
+  }
+
+  public onLegendHover(index: number, hover: boolean): void {
+    return hover ? this.setHoverStylesByIndex(index) : this.unsetHoverStylesByIndex(index);
+  }
+
+  public onLegendClick(item: ChartLegendItem): void {
+    this.valueClicked.emit({ key: item.key, label: item.label, value: item.value });
   }
 }
