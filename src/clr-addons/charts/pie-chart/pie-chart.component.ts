@@ -49,6 +49,7 @@ export class PieChartComponent extends ChartBase<PieChartData> implements OnChan
   public readonly exportFilename = input<string>('pie-chart');
   public readonly tooltipOrientation = input<'top' | 'bottom'>('top');
   public readonly innerRadiusRatio = input<number>(0.5);
+  public readonly excludeZeroItemValuesFromLegend = input<boolean>(true);
 
   public readonly noItemsMessage = input<string>(NO_ITEMS_MESSAGE);
   public readonly tooltipPercentOfTotal = input<string>('of total');
@@ -74,7 +75,7 @@ export class PieChartComponent extends ChartBase<PieChartData> implements OnChan
       return [];
     }
     return (this.data() ?? [])
-      .filter(d => d.value >= 0)
+      .filter(d => (this.excludeZeroItemValuesFromLegend() ? d.value > 0 : d.value >= 0))
       .map(d => ({ label: d.fullLabel ?? d.label, color: d.color, key: d.key, value: d.value }));
   });
 

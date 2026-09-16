@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ComponentRef } from '@angular/core';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { PieChartComponent, PieChartData } from './pie-chart.component';
-import { NO_ITEMS_MESSAGE, NO_ITEMS_ALERT_TYPE } from '../constants';
+import { NO_ITEMS_ALERT_TYPE, NO_ITEMS_MESSAGE } from '../constants';
 import { ClrChartsModule } from '../charts.module';
 
 const DATA: PieChartData[] = [
@@ -78,15 +78,25 @@ describe('PieChartComponent', () => {
       componentRef.setInput('showLegend', true);
       fixture.detectChanges();
       expect(component.legendItems().length).toBe(DATA.length);
-      expect(component.legendItems()[0]).toEqual({ label: 'January', color: '#e57200' });
+      expect(component.legendItems()[0]).toEqual({ label: 'January', color: '#e57200', key: 'jan', value: 120 });
     });
 
-    it('should exclude items with zero values from the legend', () => {
+    it('should exclude items with zero values when excludeZeroItemValuesFromLegend is true from the legend', () => {
       const dataWithZero: PieChartData[] = [...DATA, { key: 'zero', label: 'Zero', value: 0, color: '#fff' }];
       componentRef.setInput('data', dataWithZero);
       componentRef.setInput('showLegend', true);
+      componentRef.setInput('excludeZeroItemValuesFromLegend', true);
       fixture.detectChanges();
       expect(component.legendItems().length).toBe(DATA.length);
+    });
+
+    it('should not exclude items with zero values when excludeZeroItemValuesFromLegend is false from the legend', () => {
+      const dataWithZero: PieChartData[] = [...DATA, { key: 'zero', label: 'Zero', value: 0, color: '#fff' }];
+      componentRef.setInput('data', dataWithZero);
+      componentRef.setInput('showLegend', true);
+      componentRef.setInput('excludeZeroItemValuesFromLegend', false);
+      fixture.detectChanges();
+      expect(component.legendItems().length).toBe(DATA.length + 1);
     });
 
     it('should use fullLabel when provided', () => {

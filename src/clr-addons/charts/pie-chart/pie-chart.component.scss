@@ -13,9 +13,9 @@
 }
 
 .chart-area {
-  flex: 1 1 auto; // fill only the space left after the legend
-  height: auto; // stop forcing full cell height
-  min-height: 0; // allow shrinking inside the flex column
+  flex: 1 1 auto;
+  height: auto;
+  min-height: 0;
   position: relative;
 }
 
