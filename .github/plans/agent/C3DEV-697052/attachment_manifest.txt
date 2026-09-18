@@ -1,0 +1,2 @@
+screenshot-1.png  (11848 bytes, image/png) - Mockup for custom Text filter
+screenshot-2.png  (11680 bytes, image/png) - Mockup for custom Numeric filter

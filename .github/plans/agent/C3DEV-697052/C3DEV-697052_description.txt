@@ -1,0 +1,67 @@
+Ticket:  C3DEV-697052
+Summary: [CLRADD] Introduce custom "text" and "number" filter with recycle bin to clear filter contents
+Type:    Development Story
+Status:  To Do
+Parent:  (none directly; linked sub-task C3DEV-697096 "Analyze ..." has parent C3DEV-695166 "Technical Analysis - CoCap - R26.6/3" - a release container, not a design epic)
+
+As CoCap RE I want to have a user friendly text filter so that searching in our applications get's more comfortable.
+
+## ACCEPTANCE CRITERIA
+ * Custom "Text filter" with recycle bin in Clarity Addons
+ * Custom "Numeric filter" with recycle bin in Clarity Addons
+ * Custom filters documented in Clarity Addons
+ * Custom filters used in CoCap applications
+
+## SPECIFICATION
+
+### Custom "Text filter" with recycle bin in Clarity Addons
+Back in 2022 our colleague Christian Köberl sent a MR to Clarity:
+feat(datagrid): add possibility to clear filters by derkoe · Pull Request #246 · vmware-clarity/ng-clarity
+https://github.com/vmware-clarity/ng-clarity/pull/246
+
+But nothing happened in the last 4 years and now we'd like to implement our own solution.
+
+So the goal is simple: we want to implement our own text filter similar to the default Clarity one, just with the recycle bin :)
+
+To take into account:
+ * debounce the input - take care to not start filtering right after a keypress
+ * only close the filter when user explicitly closes it by clicking on X button
+ * persistence and restore of filter values working
+ * simple migration from default Clarity to custom Clarity Addons filter
+
+Mockup: screenshot-1.png
+
+### Custom "Numeric filter" with recycle bin in Clarity Addons
+The 2nd and last default filter offered by Clarity is the "numeric filter", it has the same problem as the text filter: no recycle bin and a demo of the amount of necessary steps to clear is included in the link to the MR above.
+
+So let's also add a custom numeric filter to Clarity Addons with a recycle bin.
+
+Mockup: screenshot-2.png
+
+### Custom filters documented in Clarity Addons
+Of course document the new filters in Clarity Addons with a small demo.
+
+### Custom filters used in CoCap applications
+Finally adjust all CoCap applications to use the new filters instead of the default ones.
+ * Configuration
+ * Scheduler
+ * Datahub
+ * Systemmanagement
+ * Communicator
+ * Outputmanager
+ * Dashboard
+
+## NOT IN FOCUS
+ * list not in focus here
+
+## TECHNICAL ANALYSIS
+ * we already have custom Filters like ClrDateFilterComponent, so add 2 new ones for string and number
+   * add Trash button ( btn-icon btn-link btn-trash ) → clearFilter().
+   * 500ms debounce on input via RxJS.
+   * Popover stays open until explicit close — default ClrDatagridFilter behavior, no extra work.
+   * Persistence: reuse existing ClrDatagridStatePersistenceModule.
+ * Check if some code can be shared within the 4 custom filters
+ * Think about a linting rule to automatically set the string filter if no filter is set
+
+## CONTACT
+Fischer Roland (POI - AT/Salzburg)

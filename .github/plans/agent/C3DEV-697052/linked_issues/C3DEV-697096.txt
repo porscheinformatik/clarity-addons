@@ -1,0 +1,9 @@
+Issue:   C3DEV-697096
+Summary: Analyze [C3DEV-697052] [CLRADD] Introduce custom "text" and "number" filter with recycle bin to clear filter contents
+Type:    Sub-task
+Status:  Review
+Parent:  C3DEV-695166 "Technical Analysis - CoCap - R26.6/3" (Documentation Story)
+Link:    relates to C3DEV-697052
+
+Description:
+C3DEV-697052 CLRADD Introduce custom "text" and "number" filter with recycle bin to clear filter contents - POI JIRA
