@@ -145,6 +145,43 @@
   </div>
 </div>
 
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">
+    Tooltip Customization (<code>[tooltipOrientation]="'top'"</code>, <code>[prefixTotalWithLabel]="true"</code>,
+    <code>[tooltipPercentOfTotal]</code>)
+  </div>
+  <div class="card-block">
+    <div style="height: 400px; width: 100%">
+      <clr-funnel-chart
+        [data]="pipelineData"
+        [tooltipOrientation]="'top'"
+        [prefixTotalWithLabel]="true"
+        [tooltipPercentOfTotal]="'of all leads'"
+        exportFilename=""
+        (valueClicked)="onValueClicked($event)"
+        style="display: block; width: 100%; height: 100%"
+      ></clr-funnel-chart>
+    </div>
+  </div>
+</div>
+
+<!-- Empty chart when no data -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">
+    Empty Chart When No Data (<code>[emptyChartWhenNoData]="true"</code> with all-zero values)
+  </div>
+  <div class="card-block">
+    <div style="height: 280px; width: 100%">
+      <clr-funnel-chart
+        [data]="zeroData"
+        [emptyChartWhenNoData]="true"
+        exportFilename=""
+        style="display: block; width: 100%; height: 100%"
+      ></clr-funnel-chart>
+    </div>
+  </div>
+</div>
+
 <!-- Loading state -->
 <div class="card" style="margin-bottom: 1.5rem">
   <div class="card-header">Loading State</div>

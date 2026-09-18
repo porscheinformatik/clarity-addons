@@ -19,9 +19,12 @@ import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { ChartAlertOverlayComponent } from './chart-alert-overlay/chart-alert-overlay.component';
 import { ChartExportButtonComponent } from './chart-export/chart-export-button.component';
 import { ChartLegendComponent } from './chart-legend/chart-legend.component';
-import { ChartSkeletonComponent } from './shared/chart-skeleton.component';
+import { ChartSkeletonComponent } from './shared/skeleton/bar-chart-skeleton/chart-skeleton.component';
 import { ChartTooltipComponent } from './chart-tooltip/chart-tooltip.component';
 import { OutsideClickDirective, WindowResizeDirective } from './directives';
+import { DonutChartSkeletonComponent } from './shared/skeleton/donut-chart-skeleton/donut-chart-skeleton.component';
+import { ChartLegendSkeletonComponent } from './shared/skeleton/chart-legend-skeleton/chart-legend-skeleton.component';
+import { FunnelSkeletonComponent } from './shared/skeleton/funnel-chart-skeleton/funnel-skeleton.component';
 
 const CLR_CHARTS_DECLARATIONS = [
   AreaChartComponent,
@@ -48,6 +51,9 @@ const CLR_CHARTS_DECLARATIONS = [
     ChartTooltipComponent,
     OutsideClickDirective,
     WindowResizeDirective,
+    DonutChartSkeletonComponent,
+    ChartLegendSkeletonComponent,
+    FunnelSkeletonComponent,
   ],
   declarations: [...CLR_CHARTS_DECLARATIONS],
   exports: [...CLR_CHARTS_DECLARATIONS],

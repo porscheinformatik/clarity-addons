@@ -173,6 +173,10 @@ const PIE_CHART_HTML = `<clr-pie-chart
   [data]="pieData"
   [donut]="true"
   [showLegend]="true"
+  [legendPosition]="'bottom'"
+  [centerValue]="415"
+  [centerLabel]="'Total'"
+  (valueClicked)="onSliceClicked($event)"
   style="display:block;width:100%;height:300px;"
 ></clr-pie-chart>`;
 

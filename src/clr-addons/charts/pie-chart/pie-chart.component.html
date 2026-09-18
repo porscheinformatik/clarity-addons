@@ -8,55 +8,86 @@
   >
     <svg [class.d-none]="loading() || !hasData()" #chart></svg>
 
+    @if (centerValue() != null && !showSkeleton()) {
+      <div class="center-text">
+        <div
+          class="center-number has-more-info"
+          (click)="
+            valueClicked.emit({
+              value: centerValue(),
+            })
+          "
+        >
+          {{ centerValue() }}
+        </div>
+        @if (centerLabel()) {
+          <div class="center-sublabel-text">{{ centerLabel() }}</div>
+        }
+      </div>
+    }
+
     @if (tooltipPosition()) {
-    <cng-chart-tooltip
-      data-testid="pie-chart-tooltip"
-      [tooltipPosition]="tooltipPosition()"
-      [tooltipOrientation]="tooltipOrientation()"
-      [squareColor]="selectedItem()?.color"
-      (tooltipClosed)="resetTooltip()"
-      (cngOutsideClick)="resetTooltip()"
-      (tooltipHeaderClicked)="
+      <cng-chart-tooltip
+        data-testid="pie-chart-tooltip"
+        [tooltipPosition]="tooltipPosition()"
+        [tooltipOrientation]="tooltipOrientation()"
+        [squareColor]="selectedItem()?.color"
+        (tooltipClosed)="resetTooltip()"
+        (cngOutsideClick)="resetTooltip()"
+        (tooltipHeaderClicked)="
           valueClicked.emit({
             key: selectedItem().key,
             label: selectedItem().fullLabel || selectedItem().label,
             value: selectedItem().value,
           })
         "
-    >
-      <ng-container ngProjectAs="cng-title">
-        ({{ selectedItem().value }}) {{ selectedItem().fullLabel || selectedItem().label }}
-      </ng-container>
+      >
+        <ng-container ngProjectAs="cng-title">
+          ({{ selectedItem().value }}) {{ selectedItem().fullLabel || selectedItem().label }}
+        </ng-container>
 
-      <p class="mt-0" data-testid="pie-chart-tooltip-percentage">
-        {{ (100 * selectedItem().value) / total() | number : '1.0-2' }}%
-        {{ tooltipPercentOfTotal() }}
-      </p>
-    </cng-chart-tooltip>
-    } @if (loading() || !hasData()) {
-    <cng-bar-chart-skeleton
-      data-testid="pie-chart-skeleton"
-      orientation="vertical"
-      [skeletonType]="loading() ? 'loading' : 'placeholder'"
-    />
-    } @if (alertMessageAndType()) {
-    <cng-chart-alert-overlay
-      data-testid="pie-chart-alert-overlay"
-      [alertType]="alertMessageAndType()[1]"
-      [alertMessage]="alertMessageAndType()[0]"
-    />
+        <p class="mt-0" data-testid="pie-chart-tooltip-percentage">
+          {{ (100 * selectedItem().value) / total() | number: '1.0-2' }}%
+          {{ tooltipPercentOfTotal() }}
+        </p>
+      </cng-chart-tooltip>
+    }
+    @if (loading() || !hasData()) {
+      <cng-donut-chart-skeleton
+        data-testid="pie-chart-skeleton"
+        [innerRadiusRatio]="0.55"
+        [skeletonType]="loading() ? 'loading' : 'placeholder'"
+        [class.pt-3]="!!alertMessageAndType()"
+      />
+    }
+    @if (alertMessageAndType()) {
+      <cng-chart-alert-overlay
+        data-testid="pie-chart-alert-overlay"
+        [alertType]="alertMessageAndType()[1]"
+        [alertMessage]="alertMessageAndType()[0]"
+      />
     }
   </div>
 
-  @if (showLegend() && !loading() && legendItems().length) {
-  <cng-chart-legend data-testid="pie-chart-legend" [items]="legendItems()" />
-  } @if (showExportButton() && !loading() && hasData()) {
-  <cng-chart-export-button
-    data-testid="pie-chart-export"
-    [svgRef]="svgElement()"
-    [filename]="exportFilename()"
-    [buttonTitle]="exportButtonTitle()"
-    [legendItems]="legendItems()"
-  />
+  @if (showLegend() && loading()) {
+    <cng-chart-legend-skeleton [count]="2" [skeletonType]="'loading'" [class.legend-top]="legendPosition() === 'top'" />
+  } @else if (showLegend() && !loading() && legendItems().length && !alertMessageAndType()) {
+    <cng-chart-legend
+      data-testid="pie-chart-legend"
+      [items]="legendItems()"
+      [hoveredIndex]="hoveredIndex() ?? -1"
+      (itemHover)="onLegendHover($event.index, $event.hover)"
+      (clicked)="onLegendClick($event)"
+      [class.legend-top]="legendPosition() === 'top'"
+    />
+  }
+  @if (showExportButton() && !loading() && hasData()) {
+    <cng-chart-export-button
+      data-testid="pie-chart-export"
+      [svgRef]="svgElement()"
+      [filename]="exportFilename()"
+      [buttonTitle]="exportButtonTitle()"
+      [legendItems]="legendItems()"
+    />
   }
 </div>
