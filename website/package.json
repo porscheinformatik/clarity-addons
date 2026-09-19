@@ -50,7 +50,7 @@
     "@angular/cli": "21.2.24",
     "@angular/compiler-cli": "21.2.23",
     "@angular/language-service": "21.2.23",
-    "@types/node": "24.13.5",
+    "@types/node": "24.13.6",
     "cp-cli": "2.0.0",
     "gh-pages": "6.3.0",
     "ts-loader": "9.6.2",
