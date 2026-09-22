@@ -1,3 +1,0 @@
-# Download Report
-# Status|Ticket|Filename|TargetPath|Error
-FAILED|C3DEV-697052|-|attachments|could not fetch issue json via jira CLI

@@ -1,4 +1,0 @@
-No direct parent/epic found on C3DEV-697052 itself.
-Linked sub-task C3DEV-697096 ("Analyze ...") has parent C3DEV-695166 "Technical Analysis - CoCap - R26.6/3",
-a Documentation Story that appears to be a release-cycle technical-analysis container (R26.6/3), not a
-feature-design epic. No additional design context to inherit from it.
