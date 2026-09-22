@@ -38,6 +38,8 @@ import {
   ClrDatagridStatePersistenceModule,
   ClrDateFilterModule,
   ClrEnumFilterModule,
+  ClrNumericFilterModule,
+  ClrStringFilterModule,
 } from './datagrid';
 import { ClrDaterangepickerModule } from './daterangepicker';
 import { ClrIfWarningModule } from './clr-control-warning/if-warning.module';
@@ -93,6 +95,8 @@ import { CngInputSuffixDirective } from './input-suffix';
     ClrDatagridStatePersistenceModule,
     ClrEnumFilterModule,
     ClrDateFilterModule,
+    ClrStringFilterModule,
+    ClrNumericFilterModule,
     ClrDaterangepickerModule,
     ClrIfWarningModule,
     ClrActionPanelModule,

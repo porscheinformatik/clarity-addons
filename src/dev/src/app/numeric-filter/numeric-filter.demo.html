@@ -1,0 +1,109 @@
+<h2>Numeric Filter</h2>
+
+<h3>Simple</h3>
+<clr-datagrid>
+  <clr-dg-column [clrDgField]="'name'">Name</clr-dg-column>
+  <clr-dg-column [clrDgField]="'amount'"
+    >Amount
+    <clr-dg-filter>
+      <clr-numeric-filter clrProperty="amount"></clr-numeric-filter>
+    </clr-dg-filter>
+  </clr-dg-column>
+
+  <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
+    <clr-dg-cell>{{ data.name }}</clr-dg-cell>
+    <clr-dg-cell>{{ data.amount }}</clr-dg-cell>
+  </clr-dg-row>
+</clr-datagrid>
+
+<h3>Two-way bound value with custom placeholders</h3>
+<clr-datagrid>
+  <clr-dg-column [clrDgField]="'name'">
+    Name
+    <clr-dg-filter>
+      <clr-string-filter clrProperty="name"></clr-string-filter>
+    </clr-dg-filter>
+  </clr-dg-column>
+  <clr-dg-column [clrDgField]="'amount'"
+    >Amount (filter={{ amountFilterValue | json }})
+    <clr-dg-filter>
+      <clr-numeric-filter
+        clrProperty="amount"
+        [(clrFilterValue)]="amountFilterValue"
+        clrFilterMinPlaceholder="From"
+        clrFilterMaxPlaceholder="To"
+      ></clr-numeric-filter>
+    </clr-dg-filter>
+  </clr-dg-column>
+
+  <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
+    <clr-dg-cell>{{ data.name }}</clr-dg-cell>
+    <clr-dg-cell>{{ data.amount }}</clr-dg-cell>
+  </clr-dg-row>
+</clr-datagrid>
+<button class="btn btn-sm" (click)="amountFilterValue = [5, 10]">Set filter to 5-10</button>
+<button class="btn btn-sm" (click)="amountFilterValue = [null, null]">Clear filter</button>
+
+<h3>Nested property</h3>
+<clr-datagrid>
+  <clr-dg-column [clrDgField]="'name'">Name</clr-dg-column>
+  <clr-dg-column [clrDgField]="'nested.amount'"
+    >Nested amount
+    <clr-dg-filter>
+      <clr-numeric-filter clrProperty="nested.amount"></clr-numeric-filter>
+    </clr-dg-filter>
+  </clr-dg-column>
+
+  <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
+    <clr-dg-cell>{{ data.name }}</clr-dg-cell>
+    <clr-dg-cell>{{ data.nested.amount }}</clr-dg-cell>
+  </clr-dg-row>
+</clr-datagrid>
+
+<h3>Size variants</h3>
+<p>Use <code>clrFilterSize</code> ('S', 'M' or 'L') to control the width of the min/max inputs.</p>
+<clr-datagrid>
+  <clr-dg-column [clrDgField]="'name'">Name</clr-dg-column>
+  <clr-dg-column [clrDgField]="'amount'"
+    >Amount (S)
+    <clr-dg-filter>
+      <clr-numeric-filter clrProperty="amount" clrFilterSize="S"></clr-numeric-filter>
+    </clr-dg-filter>
+  </clr-dg-column>
+  <clr-dg-column [clrDgField]="'amount'"
+    >Amount (M, default)
+    <clr-dg-filter>
+      <clr-numeric-filter clrProperty="amount" clrFilterSize="M"></clr-numeric-filter>
+    </clr-dg-filter>
+  </clr-dg-column>
+  <clr-dg-column [clrDgField]="'amount'"
+    >Amount (L)
+    <clr-dg-filter>
+      <clr-numeric-filter clrProperty="amount" clrFilterSize="L"></clr-numeric-filter>
+    </clr-dg-filter>
+  </clr-dg-column>
+
+  <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
+    <clr-dg-cell>{{ data.name }}</clr-dg-cell>
+    <clr-dg-cell>{{ data.amount }}</clr-dg-cell>
+    <clr-dg-cell>{{ data.amount }}</clr-dg-cell>
+    <clr-dg-cell>{{ data.amount }}</clr-dg-cell>
+  </clr-dg-row>
+</clr-datagrid>
+
+<h3>Server-driven (clrDgRefresh)</h3>
+<clr-datagrid (clrDgRefresh)="onClrDgRefresh($event)">
+  <clr-dg-column [clrDgField]="'name'">Name</clr-dg-column>
+  <clr-dg-column [clrDgField]="'amount'"
+    >Amount
+    <clr-dg-filter>
+      <clr-numeric-filter clrProperty="amount"></clr-numeric-filter>
+    </clr-dg-filter>
+  </clr-dg-column>
+
+  <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
+    <clr-dg-cell>{{ data.name }}</clr-dg-cell>
+    <clr-dg-cell>{{ data.amount }}</clr-dg-cell>
+  </clr-dg-row>
+</clr-datagrid>
+Current filter (from state): {{ currentFilterDisplayValue | json }}

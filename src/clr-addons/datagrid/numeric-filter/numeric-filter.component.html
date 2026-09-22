@@ -1,0 +1,27 @@
+<clr-filter-clear-button testId="numeric-filter-clear-button" (clear)="clearFilter()"></clr-filter-clear-button>
+<clr-number-input-container class="filter-selection">
+  <input
+    type="number"
+    clrNumberInput
+    name="low"
+    [(ngModel)]="lowInput"
+    (ngModelChange)="onLowInput($event)"
+    [placeholder]="minPlaceholderValue"
+    [attr.aria-label]="minPlaceholderValue"
+    [class]="inputSizeClass"
+    data-testid="numeric-filter-low-input"
+  />
+</clr-number-input-container>
+<clr-number-input-container class="filter-selection">
+  <input
+    type="number"
+    clrNumberInput
+    name="high"
+    [(ngModel)]="highInput"
+    (ngModelChange)="onHighInput($event)"
+    [placeholder]="maxPlaceholderValue"
+    [attr.aria-label]="maxPlaceholderValue"
+    [class]="inputSizeClass"
+    data-testid="numeric-filter-high-input"
+  />
+</clr-number-input-container>

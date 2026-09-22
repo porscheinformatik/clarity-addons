@@ -27,6 +27,11 @@ interface ExportableEntry {
   column4: string;
 }
 
+interface CustomFilterDemoItem {
+  name: string;
+  amount: number;
+}
+
 const NO_SELECT_ALL_HTML = `
 <clr-datagrid class="datagrid-no-select-all" [(clrDgSelected)]="selected">
     <clr-dg-column>Description</clr-dg-column>
@@ -284,6 +289,58 @@ const DATE_FILTER_PRESELECT = `
 </clr-datagrid>
 `;
 
+const STRING_FILTER_EXAMPLE = `
+<clr-datagrid>
+    <clr-dg-column [clrDgField]="'name'">
+        Name
+        <clr-dg-filter>
+            <clr-string-filter clrProperty="name"></clr-string-filter>
+        </clr-dg-filter>
+    </clr-dg-column>
+
+    <clr-dg-row *clrDgItems="let item of items">
+        <clr-dg-cell>{{ item.name }}</clr-dg-cell>
+    </clr-dg-row>
+</clr-datagrid>
+`;
+
+const NUMBER_FILTER_EXAMPLE = `
+<clr-datagrid>
+    <clr-dg-column [clrDgField]="'amount'">
+        Amount
+        <clr-dg-filter>
+            <clr-numeric-filter clrProperty="amount"></clr-numeric-filter>
+        </clr-dg-filter>
+    </clr-dg-column>
+
+    <clr-dg-row *clrDgItems="let item of items">
+        <clr-dg-cell>{{ item.amount }}</clr-dg-cell>
+    </clr-dg-row>
+</clr-datagrid>
+`;
+
+const NUMBER_FILTER_SIZE_EXAMPLE = `
+<clr-datagrid>
+    <clr-dg-column [clrDgField]="'amount'">
+        Amount (S)
+        <clr-dg-filter>
+            <clr-numeric-filter clrProperty="amount" clrFilterSize="S"></clr-numeric-filter>
+        </clr-dg-filter>
+    </clr-dg-column>
+    <clr-dg-column [clrDgField]="'amount'">
+        Amount (L)
+        <clr-dg-filter>
+            <clr-numeric-filter clrProperty="amount" clrFilterSize="L"></clr-numeric-filter>
+        </clr-dg-filter>
+    </clr-dg-column>
+
+    <clr-dg-row *clrDgItems="let item of items">
+        <clr-dg-cell>{{ item.amount }}</clr-dg-cell>
+        <clr-dg-cell>{{ item.amount }}</clr-dg-cell>
+    </clr-dg-row>
+</clr-datagrid>
+`;
+
 const COLUMN_REORDER_EXAMPLE_HTML = `
 <clr-datagrid
   cdkDropList
@@ -359,9 +416,9 @@ type UserItem = {
   selector: 'clr-demo-is-subscribed',
   template: `
     @if (item().subscribed) {
-    <cds-icon shape="success-standard" status="success" />
+      <cds-icon shape="success-standard" status="success" />
     } @else {
-    <cds-icon shape="minus" />
+      <cds-icon shape="minus" />
     }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -395,6 +452,9 @@ export class DatagridDemo extends ClarityDocComponent {
   dateFilterExample = DATE_FILTER;
   dateFilterTimeExample = DATETIME_FILTER;
   dateFilterPreselectExample = DATE_FILTER_PRESELECT;
+  stringFilterExample = STRING_FILTER_EXAMPLE;
+  numberFilterExample = NUMBER_FILTER_EXAMPLE;
+  numberFilterSizeExample = NUMBER_FILTER_SIZE_EXAMPLE;
   exportButtonExample = EXPORT_BUTTON_EXAMPLE;
   exportTypesDisplayExample = EXPORT_TYPES_DISPLAY;
   exportTypeBackend = EXPORT_TYPE_BACKEND;
@@ -435,6 +495,13 @@ export class DatagridDemo extends ClarityDocComponent {
   ];
 
   dataListWithEmpty = [{ name: 'TestValue1' }, { name: 'TestValue2' }, { name: '' }];
+
+  customFilterItems: CustomFilterDemoItem[] = [
+    { name: 'Alpha', amount: 1 },
+    { name: 'Beta', amount: 5 },
+    { name: 'Gamma', amount: 10 },
+    { name: 'Delta', amount: 25 },
+  ];
 
   dataListWithManyItems = (() => {
     const values: string[] = [];

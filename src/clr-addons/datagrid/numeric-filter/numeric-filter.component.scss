@@ -1,0 +1,20 @@
+.filter-selection {
+  margin-top: 0.5rem;
+}
+
+// Widths sized in `ch` (character width), with a buffer added for the
+// spinner arrows and so the "Min value" / "Max value" placeholder stays
+// readable when the field is empty. Digit counts match the largest
+// expected value per size: S: 99.999 (6 chars), M: 9.999.999 (9 chars),
+// L: 9.999.999.999 (13 chars).
+.filter-input-s {
+  width: 10ch !important;
+}
+
+.filter-input-m {
+  width: 13ch !important;
+}
+
+.filter-input-l {
+  width: 17ch !important;
+}

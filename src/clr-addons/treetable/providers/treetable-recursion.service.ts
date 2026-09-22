@@ -1,11 +1,11 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
 import { computed, Injectable, Optional, signal, SkipSelf, TemplateRef } from '@angular/core';
-import { ClrTreetableItemsContext } from '../treetable-items';
+import type { ClrTreetableItemsContext } from '../treetable-items';
 
 @Injectable()
 export class ClrTreetableRecursionService<T extends object> {
