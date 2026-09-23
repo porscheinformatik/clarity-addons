@@ -33,6 +33,7 @@ class TestComponent {
 
   @ViewChild(ClrStringFilterComponent) component: ClrStringFilterComponent<Item>;
   @ViewChild(ClrDatagrid) datagrid: ClrDatagrid;
+  @ViewChild(ClrDatagridFilter) filter: ClrDatagridFilter;
 }
 
 describe('ClrStringFilterComponent', () => {
@@ -138,5 +139,15 @@ describe('ClrStringFilterComponent', () => {
     expect(component.value).toBe('');
     expect(component.state.value).toBe('');
     expect(component.isActive()).toBeFalse();
+  }));
+
+  it('focuses the input when the filter is opened', fakeAsync(() => {
+    fixture.componentInstance.filter.open = true;
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+
+    const input: HTMLInputElement = document.querySelector('[data-testid="string-filter-input"]');
+    expect(document.activeElement).toBe(input);
   }));
 });

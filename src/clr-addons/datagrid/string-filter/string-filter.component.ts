@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
 import { ClrCommonStringsService, ClrDatagridFilter, ClrDatagridFilterInterface } from '@clr/angular';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
@@ -13,8 +13,10 @@ export const CLR_STRING_FILTER_DEBOUNCE_MS = 500;
   standalone: false,
 })
 export class ClrStringFilterComponent<T extends { [key: string]: any }>
-  implements ClrDatagridFilterInterface<T>, OnDestroy
+  implements ClrDatagridFilterInterface<T>, OnDestroy, AfterViewInit
 {
+  @ViewChild('input', { static: false }) private inputRef: ElementRef<HTMLInputElement>;
+
   private nestedProp: NestedProperty;
 
   @Input('clrProperty') set property(value: string) {
@@ -55,6 +57,8 @@ export class ClrStringFilterComponent<T extends { [key: string]: any }>
   private readonly inputChanges = new Subject<string>();
   private readonly _changes = new Subject<string>();
   private debounceSubscription: Subscription;
+  private openChangeSubscription: Subscription;
+  private isOpen = false;
 
   constructor(
     private commonStrings: ClrCommonStringsService,
@@ -62,6 +66,18 @@ export class ClrStringFilterComponent<T extends { [key: string]: any }>
   ) {
     filterContainer.setFilter(this);
     this.restartDebounce();
+    this.openChangeSubscription = filterContainer.openChange.subscribe((open: boolean) => {
+      this.isOpen = open;
+      if (open) {
+        this.focusInput();
+      }
+    });
+  }
+
+  ngAfterViewInit() {
+    if (this.isOpen) {
+      this.focusInput();
+    }
   }
 
   onInput(value: string) {
@@ -103,6 +119,16 @@ export class ClrStringFilterComponent<T extends { [key: string]: any }>
 
   ngOnDestroy() {
     this.debounceSubscription.unsubscribe();
+    this.openChangeSubscription.unsubscribe();
+  }
+
+  /**
+   * Focuses the filter input. Deferred to a microtask because the popover
+   * content (and therefore the input element) isn't rendered yet when the
+   * `openChange` event fires or during `ngAfterViewInit`.
+   */
+  private focusInput() {
+    Promise.resolve().then(() => this.inputRef?.nativeElement.focus());
   }
 
   /**
