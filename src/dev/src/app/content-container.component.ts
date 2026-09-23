@@ -20,12 +20,17 @@ import { takeUntil } from 'rxjs/operators';
     </main>
 
     <clr-vertical-nav [clrVerticalNavCollapsible]="true" [clrVerticalNavCollapsed]="false" [clr-nav-level]="2">
-      @for (route of routes; track route) {
-        @if (route.path != '') {
-          <a clrVerticalNavLink [routerLink]="[route.path]" [routerLinkActive]="['active']">
-            {{ route.path }}
-          </a>
-        }
+      @for (group of navGroups; track group.name) {
+        <clr-vertical-nav-group>
+          {{ group.name }}
+          <clr-vertical-nav-group-children>
+            @for (route of group.routes; track route) {
+              <a clrVerticalNavLink [routerLink]="[route.path]" [routerLinkActive]="['active']">
+                {{ route.path }}
+              </a>
+            }
+          </clr-vertical-nav-group-children>
+        </clr-vertical-nav-group>
       }
     </clr-vertical-nav>
 
@@ -51,7 +56,31 @@ export class AppContentContainerComponent implements OnDestroy {
   private static readonly TEST_BREADCRUMB_ELEMENT = { label: 'breadcrumb', url: 'breadcrumb' };
 
   public routes: Route[] = APP_ROUTES;
+  public navGroups: { name: string; routes: Route[] }[] = AppContentContainerComponent.buildNavGroups(APP_ROUTES);
   destroyed = new Subject<void>();
+
+  private static buildNavGroups(routes: Route[]): { name: string; routes: Route[] }[] {
+    const groups = new Map<string, Route[]>();
+
+    for (const route of routes) {
+      if (!route.path) {
+        continue;
+      }
+
+      const groupName = (route.data?.navGroup as string) ?? 'Misc';
+      const groupRoutes = groups.get(groupName) ?? [];
+
+      groupRoutes.push(route);
+      groups.set(groupName, groupRoutes);
+    }
+
+    return Array.from(groups.entries())
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([name, groupRoutes]) => ({
+        name,
+        routes: groupRoutes.sort((a, b) => (a.path ?? '').localeCompare(b.path ?? '')),
+      }));
+  }
 
   constructor(
     private breadcrumbService: ClrBreadcrumbService,
