@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
 import { ClrCommonStringsService, ClrDatagridFilter, ClrDatagridFilterInterface } from '@clr/angular';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
@@ -20,8 +20,10 @@ interface FilterInputChange {
   standalone: false,
 })
 export class ClrNumericFilterComponent<T extends { [key: string]: any }>
-  implements ClrDatagridFilterInterface<T>, OnDestroy
+  implements ClrDatagridFilterInterface<T>, OnDestroy, AfterViewInit
 {
+  @ViewChild('lowInputEl', { static: false }) private lowInputElRef: ElementRef<HTMLInputElement>;
+
   private nestedProp: NestedProperty;
 
   @Input('clrProperty') set property(value: string) {
@@ -101,6 +103,8 @@ export class ClrNumericFilterComponent<T extends { [key: string]: any }>
   private readonly inputChanges = new Subject<FilterInputChange>();
   private readonly _changes = new Subject<[number | null, number | null]>();
   private debounceSubscription: Subscription;
+  private openChangeSubscription: Subscription;
+  private isOpen = false;
 
   constructor(
     private commonStrings: ClrCommonStringsService,
@@ -108,6 +112,18 @@ export class ClrNumericFilterComponent<T extends { [key: string]: any }>
   ) {
     filterContainer.setFilter(this);
     this.restartDebounce();
+    this.openChangeSubscription = filterContainer.openChange.subscribe((open: boolean) => {
+      this.isOpen = open;
+      if (open) {
+        this.focusInput();
+      }
+    });
+  }
+
+  ngAfterViewInit() {
+    if (this.isOpen) {
+      this.focusInput();
+    }
   }
 
   onLowInput(value: number | null) {
@@ -176,6 +192,16 @@ export class ClrNumericFilterComponent<T extends { [key: string]: any }>
 
   ngOnDestroy() {
     this.debounceSubscription.unsubscribe();
+    this.openChangeSubscription.unsubscribe();
+  }
+
+  /**
+   * Focuses the low-value filter input. Deferred to a microtask because the
+   * popover content (and therefore the input element) isn't rendered yet
+   * when the `openChange` event fires or during `ngAfterViewInit`.
+   */
+  private focusInput() {
+    Promise.resolve().then(() => this.lowInputElRef?.nativeElement.focus());
   }
 
   /**

@@ -33,6 +33,7 @@ class TestComponent {
 
   @ViewChild(ClrNumericFilterComponent) component: ClrNumericFilterComponent<Item>;
   @ViewChild(ClrDatagrid) datagrid: ClrDatagrid;
+  @ViewChild(ClrDatagridFilter) filter: ClrDatagridFilter;
 }
 
 describe('ClrNumericFilterComponent', () => {
@@ -180,5 +181,15 @@ describe('ClrNumericFilterComponent', () => {
     expect(component.state.low).toBeNull();
     expect(component.state.high).toBeNull();
     expect(component.isActive()).toBeFalse();
+  }));
+
+  it('focuses the low input when the filter is opened', fakeAsync(() => {
+    fixture.componentInstance.filter.open = true;
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+
+    const input: HTMLInputElement = document.querySelector('[data-testid="numeric-filter-low-input"]');
+    expect(document.activeElement).toBe(input);
   }));
 });
