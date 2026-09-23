@@ -194,6 +194,14 @@ export const APP_ROUTES: Routes = [
     loadChildren: () => import('./enum-filter/enum-filter.demo.module').then(m => m.EnumFilterDemoModule),
   },
   {
+    path: 'string-filter',
+    loadChildren: () => import('./string-filter/string-filter.demo.module').then(m => m.StringFilterDemoModule),
+  },
+  {
+    path: 'numeric-filter',
+    loadChildren: () => import('./numeric-filter/numeric-filter.demo.module').then(m => m.NumericFilterDemoModule),
+  },
+  {
     path: 'daterangepicker',
     loadChildren: () => import('./daterangepicker/daterangepicker.demo.module').then(m => m.DaterangepickerDemoModule),
   },

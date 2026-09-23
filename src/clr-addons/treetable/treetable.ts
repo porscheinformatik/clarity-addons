@@ -4,7 +4,16 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { ChangeDetectionStrategy, Component, computed, contentChildren, effect, inject, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  contentChildren,
+  effect,
+  forwardRef,
+  inject,
+  input,
+} from '@angular/core';
 import { ClrTreetableRow } from './treetable-row';
 import { SelectionType } from './enums/selection-type';
 import { SortStateService, TreetableDataStateService } from './providers';
@@ -56,7 +65,11 @@ export class ClrTreetable<T extends object> {
   clrTtSelectedChange = outputFromObservable<T[]>(toObservable(this._dataStateService.selectedNodes));
   clrTtRefresh = outputFromObservable<ClrTreetableState<T>>(this._dataStateService.changes$);
 
-  private readonly _ttRows = contentChildren(ClrTreetableRow, { descendants: true });
+  // forwardRef breaks the runtime circular import with treetable-row.ts (ClrTreetableRow injects ClrTreetable back).
+  private readonly _ttRows = contentChildren(
+    forwardRef(() => ClrTreetableRow),
+    { descendants: true }
+  );
   private readonly _actionOverflow = contentChildren(ClrTreetableActionOverflow, { descendants: true });
 
   protected readonly empty = computed(() => !this._ttRows() || this._ttRows().length === 0);

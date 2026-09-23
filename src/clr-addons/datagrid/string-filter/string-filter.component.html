@@ -1,0 +1,14 @@
+<clr-filter-clear-button testId="string-filter-clear-button" (clear)="clearFilter()"></clr-filter-clear-button>
+<clr-input-container class="filter-selection">
+  <input
+    clrInput
+    type="text"
+    autocomplete="off"
+    name="value"
+    [(ngModel)]="inputValue"
+    (ngModelChange)="onInput($event)"
+    [placeholder]="placeholderValue"
+    [attr.aria-label]="placeholderValue"
+    data-testid="string-filter-input"
+  />
+</clr-input-container>

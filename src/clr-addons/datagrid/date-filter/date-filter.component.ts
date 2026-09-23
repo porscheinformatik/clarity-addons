@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ClrCommonStringsService, ClrDatagridFilter, ClrDatagridFilterInterface } from '@clr/angular';
 import { Observable, Subject } from 'rxjs';
-import { NestedProperty } from './nested-property';
+import { NestedProperty } from '../util/nested-property';
 import { ClarityIcons, trashIcon } from '@clr/angular/icon';
 
 ClarityIcons.addIcons(trashIcon);

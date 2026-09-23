@@ -26,6 +26,16 @@
           >
         </li>
         <li>
+          <a routerLink="." fragment="string-filter" [class.active]="(activeFragment | async) === 'string-filter'"
+            >String Filter</a
+          >
+        </li>
+        <li>
+          <a routerLink="." fragment="number-filter" [class.active]="(activeFragment | async) === 'number-filter'"
+            >Number Filter</a
+          >
+        </li>
+        <li>
           <a routerLink="." fragment="selection" [class.active]="(activeFragment | async) === 'selection'">Selection</a>
         </li>
         <li>
@@ -254,6 +264,79 @@
     </clr-datagrid>
 
     <clr-code-snippet [clrCode]="dateFilterPreselectExample"></clr-code-snippet>
+
+    <!-- STRING FILTER -->
+    <h3 id="string-filter">String Filter</h3>
+    <p>
+      When you need a text filter with a case-insensitive substring match on the bound property use the custom
+      <code class="clr-code">clr-string-filter</code>. It debounces input by 500ms while typing and provides a trash-can
+      button to clear the filter's contents. <code class="clr-code">clrProperty</code> supports dot-separated nested
+      properties, e.g. <code class="clr-code">clrProperty="address.city"</code>.
+    </p>
+    <clr-datagrid>
+      <clr-dg-column [clrDgField]="'name'">
+        Name
+        <clr-dg-filter>
+          <clr-string-filter clrProperty="name"></clr-string-filter>
+        </clr-dg-filter>
+      </clr-dg-column>
+
+      <clr-dg-row *clrDgItems="let item of customFilterItems">
+        <clr-dg-cell>{{ item.name }}</clr-dg-cell>
+      </clr-dg-row>
+    </clr-datagrid>
+
+    <clr-code-snippet [clrCode]="stringFilterExample"></clr-code-snippet>
+
+    <!-- NUMBER FILTER -->
+    <h3 id="number-filter">Number Filter</h3>
+    <p>
+      When you need a numeric filter with an inclusive low/high range match on the bound property use the custom
+      <code class="clr-code">clr-numeric-filter</code>. It debounces input by 500ms while typing and provides a
+      trash-can button to clear the filter's contents. <code class="clr-code">clrProperty</code> supports dot-separated
+      nested properties, e.g. <code class="clr-code">clrProperty="address.city"</code>. Use
+      <code class="clr-code">clrFilterSize</code> (<code class="clr-code">'S'</code>,
+      <code class="clr-code">'M'</code> or <code class="clr-code">'L'</code>, default <code class="clr-code">'M'</code>)
+      to control the width of the min/max inputs: S fits up to <code class="clr-code">99.999</code>, M up to
+      <code class="clr-code">9.999.999</code>, and L up to <code class="clr-code">9.999.999.999</code>.
+    </p>
+    <clr-datagrid>
+      <clr-dg-column [clrDgField]="'amount'">
+        Amount
+        <clr-dg-filter>
+          <clr-numeric-filter clrProperty="amount"></clr-numeric-filter>
+        </clr-dg-filter>
+      </clr-dg-column>
+
+      <clr-dg-row *clrDgItems="let item of customFilterItems">
+        <clr-dg-cell>{{ item.amount }}</clr-dg-cell>
+      </clr-dg-row>
+    </clr-datagrid>
+
+    <clr-code-snippet [clrCode]="numberFilterExample"></clr-code-snippet>
+
+    <h4>Size variants</h4>
+    <clr-datagrid>
+      <clr-dg-column [clrDgField]="'amount'">
+        Amount (S)
+        <clr-dg-filter>
+          <clr-numeric-filter clrProperty="amount" clrFilterSize="S"></clr-numeric-filter>
+        </clr-dg-filter>
+      </clr-dg-column>
+      <clr-dg-column [clrDgField]="'amount'">
+        Amount (L)
+        <clr-dg-filter>
+          <clr-numeric-filter clrProperty="amount" clrFilterSize="L"></clr-numeric-filter>
+        </clr-dg-filter>
+      </clr-dg-column>
+
+      <clr-dg-row *clrDgItems="let item of customFilterItems">
+        <clr-dg-cell>{{ item.amount }}</clr-dg-cell>
+        <clr-dg-cell>{{ item.amount }}</clr-dg-cell>
+      </clr-dg-row>
+    </clr-datagrid>
+
+    <clr-code-snippet [clrCode]="numberFilterSizeExample"></clr-code-snippet>
 
     <!-- SELECTION -->
     <h3 id="selection">Selection</h3>

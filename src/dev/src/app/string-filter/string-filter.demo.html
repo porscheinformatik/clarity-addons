@@ -1,0 +1,73 @@
+<h2>String Filter</h2>
+
+<h3>Simple</h3>
+<clr-datagrid>
+  <clr-dg-column [clrDgField]="'name'"
+    >Name
+    <clr-dg-filter>
+      <clr-string-filter clrProperty="name"></clr-string-filter>
+    </clr-dg-filter>
+  </clr-dg-column>
+  <clr-dg-column [clrDgField]="'address.city'"
+    >City
+    <clr-dg-filter>
+      <clr-string-filter clrProperty="address.city"></clr-string-filter>
+    </clr-dg-filter>
+  </clr-dg-column>
+
+  <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
+    <clr-dg-cell>{{ data.name }}</clr-dg-cell>
+    <clr-dg-cell>{{ data.address.city }}</clr-dg-cell>
+  </clr-dg-row>
+</clr-datagrid>
+
+<h3>Two-way bound value</h3>
+<clr-datagrid>
+  <clr-dg-column [clrDgField]="'name'"
+    >Name (filter={{ nameFilterValue }})
+    <clr-dg-filter>
+      <clr-string-filter clrProperty="name" [(clrFilterValue)]="nameFilterValue"></clr-string-filter>
+    </clr-dg-filter>
+  </clr-dg-column>
+  <clr-dg-column [clrDgField]="'address.city'">City</clr-dg-column>
+
+  <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
+    <clr-dg-cell>{{ data.name }}</clr-dg-cell>
+    <clr-dg-cell>{{ data.address.city }}</clr-dg-cell>
+  </clr-dg-row>
+</clr-datagrid>
+<button class="btn btn-sm" (click)="nameFilterValue = 'Beta'">Set filter to "Beta"</button>
+<button class="btn btn-sm" (click)="nameFilterValue = ''">Clear filter</button>
+
+<h3>Nested property</h3>
+<clr-datagrid>
+  <clr-dg-column [clrDgField]="'name'">Name</clr-dg-column>
+  <clr-dg-column [clrDgField]="'address.city'"
+    >City
+    <clr-dg-filter>
+      <clr-string-filter clrProperty="address.city"></clr-string-filter>
+    </clr-dg-filter>
+  </clr-dg-column>
+
+  <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
+    <clr-dg-cell>{{ data.name }}</clr-dg-cell>
+    <clr-dg-cell>{{ data.address.city }}</clr-dg-cell>
+  </clr-dg-row>
+</clr-datagrid>
+
+<h3>Server-driven (clrDgRefresh)</h3>
+<clr-datagrid (clrDgRefresh)="onClrDgRefresh($event)">
+  <clr-dg-column [clrDgField]="'name'"
+    >Name
+    <clr-dg-filter>
+      <clr-string-filter clrProperty="name"></clr-string-filter>
+    </clr-dg-filter>
+  </clr-dg-column>
+  <clr-dg-column [clrDgField]="'address.city'">City</clr-dg-column>
+
+  <clr-dg-row *clrDgItems="let data of dataList" [clrDgItem]="data">
+    <clr-dg-cell>{{ data.name }}</clr-dg-cell>
+    <clr-dg-cell>{{ data.address.city }}</clr-dg-cell>
+  </clr-dg-row>
+</clr-datagrid>
+Current filter (from state): {{ currentFilterDisplayValue }}
