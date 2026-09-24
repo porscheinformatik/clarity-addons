@@ -17,7 +17,7 @@ import {
   warningStandardIcon,
 } from '@clr/angular/icon';
 import { ActivatedRoute } from '@angular/router';
-import { DynamicColumn } from '@porscheinformatik/clr-addons';
+import { CustomExportType, DynamicColumn, ExportDatagridService, ExportTypeEnum } from '@porscheinformatik/clr-addons';
 import { ClrDatagrid, ClrIcon } from '@clr/angular';
 
 interface ExportableEntry {
@@ -103,10 +103,12 @@ const EXPORT_BUTTON_EXAMPLE = `
   [datagrid]="datagrid"
   [datagridRef]="datagridRef"
   [exportTypesToShow]="exportType"
+  [customExportTypes]="customExportType"
   [isBackendExport]="false"
   [exportTitlePrefix]="'MyExport'"
   [exportButtonPosition]="'right'"
-  (backendExport)="onBackendExport($event)">
+  (backendExport)="onBackendExport($event)"
+  (customBackendExport)="onCustomBackendExport($event)">
 </clr-export-datagrid-button>
 <clr-datagrid #datagrid class="datagrid-full-width datagrid-full-height" [(clrDgSelected)]="selected">
   <clr-dg-column [clrDgField]="'column1'">
@@ -142,6 +144,18 @@ const EXPORT_TYPES_DISPLAY = `exportType: ExportType[] = [
 ];
 `;
 
+const CUSTOM_EXPORT_TYPES_DISPLAY = `customExportType: CustomExportType[] = [
+  {
+    id: 'First_column',
+    // No value provided, will use the id
+  },
+  {
+    id: 'LAST_FIVE_ROWS',
+    value: 'Last five rows',
+  }
+];
+`;
+
 const EXPORT_TYPE_BACKEND = `onBackendExport(type: ExportTypeEnum): void {
   console.log("Exporting data for type: ", type);
   // example on how to provide data for backend export
@@ -152,6 +166,26 @@ const EXPORT_TYPE_BACKEND = `onBackendExport(type: ExportTypeEnum): void {
   );
 
   this.exportService.exportToExcel('backend-export', headerRow, dataRows);
+}`;
+
+const CUSTOM_EXPORT_TYPE_BACKEND = `onCustomBackendExport(id: string): void {
+  console.log('Exporting data for custom export: ', id);
+  // providing data for the 2 custom export examples
+  const entries = id === 'LAST_FIVE_ROWS'
+    ? this.exportableEntries.slice(this.exportableEntries.length - 5, this.exportableEntries.length)
+    : this.exportableEntries;
+
+  let columns = entries.length > 0 ? Object.keys(entries[0]) : [];
+  if (id === 'FIRST_COLUMN') {
+    columns = [columns[0]];
+  }
+
+  const headerRow = columns.map(col => ({ value: col, type: 'string' }));
+  const dataRows = entries.map(entry =>
+    columns.map(col => ({ value: entry[col as keyof ExportableEntry], type: 'string' }))
+  );
+
+  this.exportService.exportToExcel('custom-backend-export-' + id, headerRow, dataRows);
 }`;
 
 const ENUM_FILTER = `
@@ -457,7 +491,9 @@ export class DatagridDemo extends ClarityDocComponent {
   numberFilterSizeExample = NUMBER_FILTER_SIZE_EXAMPLE;
   exportButtonExample = EXPORT_BUTTON_EXAMPLE;
   exportTypesDisplayExample = EXPORT_TYPES_DISPLAY;
+  customExportTypesDisplayExample = CUSTOM_EXPORT_TYPES_DISPLAY;
   exportTypeBackend = EXPORT_TYPE_BACKEND;
+  customExportTypeBackend = CUSTOM_EXPORT_TYPE_BACKEND;
   activeFragment;
   selected: any[] = [];
   selectedMinor: any[] = [];
@@ -545,10 +581,23 @@ export class DatagridDemo extends ClarityDocComponent {
 
   selectedEntry: ExportableEntry[] = [];
 
+  customExportType: CustomExportType[] = [
+    {
+      id: 'First_column'
+    },
+    {
+      id: 'LAST_FIVE_ROWS',
+      value: 'Last five rows',
+    },
+  ];
+
   @ViewChild('datagrid', { static: false }) datagrid: ClrDatagrid | undefined;
   @ViewChild('datagrid', { static: false, read: ElementRef }) datagridRef?: ElementRef;
 
-  constructor(public route: ActivatedRoute) {
+  constructor(
+    public route: ActivatedRoute,
+    private exportService: ExportDatagridService
+  ) {
     super('datagrid');
     this.activeFragment = this.route.fragment.pipe(share());
   }
@@ -594,5 +643,26 @@ export class DatagridDemo extends ClarityDocComponent {
       default:
         return 'minus';
     }
+  }
+
+  onCustomBackendExport(id: string): void {
+    console.log('Exporting data for custom export: ', id);
+
+    const entries =
+      id === 'LAST_FIVE_ROWS'
+        ? this.exportableEntries.slice(this.exportableEntries.length - 5, this.exportableEntries.length)
+        : this.exportableEntries;
+
+    let columns = entries.length > 0 ? Object.keys(entries[0]) : [];
+    if (id === 'First_column') {
+      columns = [columns[0]];
+    }
+
+    const headerRow = columns.map(col => ({ value: col, type: 'string' }));
+    const dataRows = entries.map(entry =>
+      columns.map(col => ({ value: entry[col as keyof ExportableEntry], type: 'string' }))
+    );
+
+    this.exportService.exportToExcel('custom-backend-export-' + id, headerRow, dataRows);
   }
 }

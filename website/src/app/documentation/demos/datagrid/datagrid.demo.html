@@ -703,12 +703,19 @@
             these export types, you can provide custom display values (e.g., translated labels).
           </li>
           <li>
+            <code>customExportTypes</code>: Optional array of custom backend-handled export types. For each of these
+            export types, an id for differentiation across exports is required and you can provide custom display values
+            (e.g., translated labels).
+          </li>
+          <li>
             <code>isBackendExport</code>: If true, emits an event for backend export; if false, exports on the client.
+            Not relevant for the custom export types, which emit an event for custom backend export per default.
           </li>
           <li>
             <code>exportTitlePrefix</code>: Prefix for the exported file name. Default is <code>export-datagrid</code>.
           </li>
           <li><code>exportButtonPosition</code>: Position of the export button ('left' or 'right').</li>
+          <li><code>exportButtonSize</code>: Size of the export button ('small' or 'standard').</li>
           <li>
             <code>exportButtonText</code>: Custom or translated text for the Export button, the default is 'EXPORT'
           </li>
@@ -721,6 +728,10 @@
             <code>backendExport</code>: Emitted when export is triggered and <code>isBackendExport</code> is true. The
             event provides the type of export requested (e.g., ALL, FILTERED, SELECTED).
           </li>
+          <li>
+            <code>customBackendExport</code>: Emitted when a custom export (one of customExportTypes) is triggered.
+            The event provides the id of the selected custom export.
+          </li>
         </ul>
       </li>
     </ul>
@@ -731,6 +742,8 @@
         [isBackendExport]="false"
         [exportTitlePrefix]="'MyExport'"
         [exportButtonPosition]="'right'"
+        [customExportTypes]="customExportType"
+        (customBackendExport)="onCustomBackendExport($event)"
       >
       </clr-export-datagrid-button>
       <clr-datagrid
@@ -768,10 +781,24 @@
     </p>
     <clr-code-snippet [clrCode]="exportTypesDisplayExample"></clr-code-snippet>
     <p>
+      You can choose to offer custom export types to users (e.g., exports containing specified columns or rows, beyond
+      the grid filters and selections). For each export type, you need to provide an id using the <code>id</code>
+      property in order to detect which of the custom export types has been selected and you can define a custom
+      display value (such as a translated label) using the <code>value</code> property. If <code>value</code> is not
+      provided, the id will be used instead.
+    </p>
+    <clr-code-snippet [clrCode]="customExportTypesDisplayExample"></clr-code-snippet>
+    <p>
       The following is an example of how to trigger a backend export. When the export is triggered, you can prepare the
       data (e.g., fetch from backend, filter, or format as needed). Once the data is ready, call
       <code>ExportDatagridService</code> to execute the export and download the file.
     </p>
     <clr-code-snippet [clrCode]="exportTypeBackend"></clr-code-snippet>
+    <p>
+      The following is an example of how to trigger a custom backend export. When the export is triggered, you can
+      prepare the data (e.g., custom filter or custom selection). Once the data is ready, call
+      <code>ExportDatagridService</code> to execute the export and download the file.
+    </p>
+    <clr-code-snippet [clrCode]="customExportTypeBackend"></clr-code-snippet>
   </article>
 </clr-doc-wrapper>
