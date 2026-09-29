@@ -9,8 +9,11 @@
       [datagrid]="datagrid"
       [datagridRef]="datagridRef"
       [exportTypesToShow]="exportType"
+      [customExportTypes]="customExportType"
+      [exportButtonSize]="'small'"
       [isBackendExport]="false"
       (backendExport)="onBackendExport($event)"
+      (customBackendExport)="onCustomBackendExport($event)"
     >
     </clr-export-datagrid-button>
     <clr-datagrid

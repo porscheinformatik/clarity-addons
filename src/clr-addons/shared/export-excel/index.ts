@@ -6,3 +6,4 @@
 
 export * from './export-excel.service';
 export * from './export-type.model';
+export * from './custom-export-type.model';

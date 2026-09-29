@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ClrDatagrid } from '@clr/angular';
-import { ExportDatagridService, ExportType, ExportTypeEnum } from '@porscheinformatik/clr-addons';
+import { CustomExportType, ExportDatagridService, ExportType, ExportTypeEnum } from '@porscheinformatik/clr-addons';
 
 enum StatusEnum {
   ACTIVE = 'Active',
@@ -51,6 +51,17 @@ export class ExportableDatagridComponent {
     },
   ];
 
+  customExportType: CustomExportType[] = [
+    {
+      id: 'FIRST_COLUMN',
+      value: 'First column',
+    },
+    {
+      id: 'LAST_FIVE_ROWS',
+      value: 'Last five rows',
+    },
+  ];
+
   constructor(private readonly exportService: ExportDatagridService) {}
 
   @ViewChild('datagrid', { static: false }) datagrid: ClrDatagrid | undefined;
@@ -66,5 +77,26 @@ export class ExportableDatagridComponent {
     );
 
     this.exportService.exportToExcel('backend-export', headerRow, dataRows);
+  }
+
+  onCustomBackendExport(id: string): void {
+    console.log('Exporting data for custom export: ', id);
+
+    const entries =
+      id === 'LAST_FIVE_ROWS'
+        ? this.exportableEntries.slice(this.exportableEntries.length - 5, this.exportableEntries.length)
+        : this.exportableEntries;
+
+    let columns = entries.length > 0 ? Object.keys(entries[0]) : [];
+    if (id === 'FIRST_COLUMN') {
+      columns = [columns[0]];
+    }
+
+    const headerRow = columns.map(col => ({ value: col, type: 'string' }));
+    const dataRows = entries.map(entry =>
+      columns.map(col => ({ value: entry[col as keyof ExportableEntry], type: 'string' }))
+    );
+
+    this.exportService.exportToExcel('custom-backend-export-' + id, headerRow, dataRows);
   }
 }

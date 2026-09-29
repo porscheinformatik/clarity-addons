@@ -2,7 +2,7 @@ import { Component, computed, effect, ElementRef, EventEmitter, input, OnDestroy
 import { ClarityModule, ClrDatagrid } from '@clr/angular';
 import { ExportDatagridService } from './export-datagrid.service';
 import { NgClass } from '@angular/common';
-import { ExportType, ExportTypeEnum } from '../shared';
+import { CustomExportType, ExportType, ExportTypeEnum } from '../shared';
 import { delay, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -18,9 +18,11 @@ export class ExportDatagridButtonComponent implements OnDestroy {
   datagrid = input<ClrDatagrid | undefined>();
   datagridRef = input<ElementRef | undefined>();
   exportTypesToShow = input<ExportType[] | undefined>();
+  customExportTypes = input<CustomExportType[] | undefined>();
   isBackendExport = input(false);
   exportTitlePrefix = input('export-datagrid');
   exportButtonPosition = input<'left' | 'right'>('right');
+  exportButtonSize = input<'small' | 'standard'>('small');
   possibleExportTypes = signal<ExportTypeEnum[]>([ExportTypeEnum.ALL]);
   exportButtonText = input('EXPORT');
 
@@ -28,6 +30,7 @@ export class ExportDatagridButtonComponent implements OnDestroy {
 
   /* outputs */
   @Output() readonly backendExport: EventEmitter<ExportTypeEnum> = new EventEmitter<ExportTypeEnum>();
+  @Output() readonly customBackendExport: EventEmitter<string> = new EventEmitter<string>();
 
   readonly exportTypes: ExportType[] = [
     { type: ExportTypeEnum.ALL, value: 'All entries' },
@@ -110,6 +113,10 @@ export class ExportDatagridButtonComponent implements OnDestroy {
     } else {
       this.exportExcel(type);
     }
+  }
+
+  onCustomExport(exportId: string) {
+    this.customBackendExport.emit(exportId);
   }
 
   /**

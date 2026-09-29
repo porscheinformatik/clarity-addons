@@ -1,19 +1,34 @@
 <div
   [ngClass]="{
     'export-btn-right': exportButtonPosition() === 'right',
-    'export-btn-left': exportButtonPosition() === 'left'
+    'export-btn-left': exportButtonPosition() === 'left',
   }"
 >
   <clr-dropdown>
-    <button class="btn btn-sm btn-outline" clrDropdownTrigger type="button">
+    <button
+      class="btn btn-outline"
+      clrDropdownTrigger
+      type="button"
+      [ngClass]="{
+        'btn-sm': exportButtonSize() === 'small',
+      }"
+    >
       {{ exportButtonText() }}
       <cds-icon shape="angle" direction="down" size="12"></cds-icon>
     </button>
     <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
       @for (exportType of exportTypesFiltered(); track exportType) {
-      <button (click)="onExport(exportType.type)" clrDropdownItem>
-        {{ exportType.value }}
-      </button>
+        <button (click)="onExport(exportType.type)" clrDropdownItem>
+          {{ exportType.value }}
+        </button>
+      }
+      @if (customExportTypes()?.length) {
+        <div class="dropdown-divider" role="separator" aria-hidden="true"></div>
+        @for (customExportType of customExportTypes(); track customExportType.id) {
+          <button (click)="onCustomExport(customExportType.id)" clrDropdownItem>
+            {{ customExportType.value ?? customExportType.id }}
+          </button>
+        }
       }
     </clr-dropdown-menu>
   </clr-dropdown>
