@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -10,6 +10,8 @@ import { ClrHistoryService } from './history.service';
 import { BehaviorSubject, ReplaySubject, Subject, Subscription } from 'rxjs';
 import { HISTORY_PROVIDER, HistoryProvider } from './history.provider';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ClrHistoryNavigationService } from './history-navigation.service';
+import { isHistoryNavigationClick } from './history-navigation-click';
 
 @Component({
   selector: 'clr-history-pinned',
@@ -30,6 +32,7 @@ export class ClrHistoryPinned implements OnInit, OnDestroy {
   private settingsSubscription: Subscription;
 
   private readonly destroyRef = inject(DestroyRef);
+  private readonly navigationService = inject(ClrHistoryNavigationService);
 
   constructor(
     private readonly historyService: ClrHistoryService,
@@ -60,5 +63,14 @@ export class ClrHistoryPinned implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.settingsSubscription.unsubscribe();
+  }
+
+  select(history: ClrHistoryModel, event: MouseEvent, url = history.url): void {
+    if (!isHistoryNavigationClick(event)) {
+      return;
+    }
+
+    event.preventDefault();
+    this.navigationService.navigate(history, url);
   }
 }

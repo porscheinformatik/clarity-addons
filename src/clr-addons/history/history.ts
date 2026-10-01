@@ -12,6 +12,8 @@ import { takeUntil } from 'rxjs/operators';
 import { angleIcon, ClarityIcons, historyIcon } from '@clr/angular/icon';
 import { HISTORY_PROVIDER, HistoryProvider } from './history.provider';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ClrHistoryNavigationService } from './history-navigation.service';
+import { isHistoryNavigationClick } from './history-navigation-click';
 
 ClarityIcons.addIcons(historyIcon, angleIcon);
 
@@ -39,6 +41,7 @@ export class ClrHistory implements OnInit, OnDestroy {
   pinActivated = false;
   private readonly onDestroy$ = new Subject<void>();
   private readonly destroyRef = inject(DestroyRef);
+  private readonly navigationService = inject(ClrHistoryNavigationService);
 
   constructor(
     private readonly historyService: ClrHistoryService,
@@ -68,8 +71,13 @@ export class ClrHistory implements OnInit, OnDestroy {
     this.onDestroy$.complete();
   }
 
-  select(history: ClrHistoryModel): void {
-    window.location.href = history.url;
+  select(history: ClrHistoryModel, event?: MouseEvent): void {
+    if (event && !isHistoryNavigationClick(event)) {
+      return;
+    }
+
+    event?.preventDefault();
+    this.navigationService.navigate(history);
   }
 
   togglePinHistory(): void {

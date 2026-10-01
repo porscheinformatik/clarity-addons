@@ -11,14 +11,14 @@
   <clr-dropdown-menu [clrPosition]="position" *clrIfOpen data-testid="history-menu">
     <label class="dropdown-header" aria-hidden="true" data-testid="history-header">{{ dropdownHeader }}</label>
     @for (history of historyElements$ | async; track history) {
-    <button
-      type="button"
+    <a
+      [href]="history.url"
       clrDropdownItem
-      (click)="select(history)"
+      (click)="select(history, $event)"
       [attr.data-testid]="'history-option-' + (history.title)"
     >
       {{ history.title }}
-    </button>
+    </a>
     } @if (pinActive) {
     <div class="dropdown-divider" role="separator" aria-hidden="true"></div>
     }
