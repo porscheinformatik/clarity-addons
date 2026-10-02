@@ -38,3 +38,23 @@ A new version will be created whenever an important breaking change happens (e.g
 - MAJOR: following the respective Angular version
 - MINOR: on every new component/feature
 - PATCH: for bugfix only releases
+
+### Preparing a release from GitHub
+
+In **Actions → Prepare release → Run workflow**, select the `master` branch and choose
+`patch`, `minor`, or `release` (a major version bump). Major versions follow Angular,
+so only choose `release` when the corresponding Angular upgrade is ready.
+
+The workflow updates the root version, runs `npm i` and `npm run build`, then runs
+`npm i` in `website` to refresh the lockfile for the locally built library. The build
+updates `src/clr-addons/package.json` and `dist/clr-addons/package.json`; the package
+template in `npm/clr-addons/package.json` keeps its version placeholders.
+
+The updated root package and lockfile, generated source package, and website lockfile
+are committed to `master`. Repository rules must allow GitHub Actions to push this
+commit. Runs on other branches are skipped, and simultaneous release preparations
+are serialized.
+
+This prepares the release without publishing it. Create a GitHub release targeting
+the resulting commit to trigger the existing npm publication and website deployment
+workflow.

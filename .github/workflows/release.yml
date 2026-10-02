@@ -1,0 +1,61 @@
+name: Prepare release
+
+on:
+  workflow_dispatch:
+    inputs:
+      release-type:
+        description: 'Version bump: patch, minor, or release (major)'
+        required: true
+        default: patch
+        type: choice
+        options:
+          - patch
+          - minor
+          - release
+
+permissions:
+  contents: write
+
+concurrency:
+  group: prepare-release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    env:
+      HUSKY: '0'
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: master
+      - name: Use Node.js 24
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - name: Update root version
+        env:
+          RELEASE_TYPE: ${{ inputs.release-type }}
+        run: |
+          case "$RELEASE_TYPE" in
+            patch|minor) bump="$RELEASE_TYPE" ;;
+            release) bump=major ;;
+            *) echo "Unsupported release type"; exit 1 ;;
+          esac
+          npm version "$bump" --no-git-tag-version --ignore-scripts
+      - name: Install dependencies and build library
+        run: |
+          npm i
+          npm run build
+      - name: Update website lockfile
+        working-directory: website
+        run: npm i
+      - name: Commit release files
+        run: |
+          version="$(node -p "require('./package.json').version")"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package.json package-lock.json src/clr-addons/package.json website/package-lock.json
+          git commit -m "Version $version"
+          git push origin HEAD:master
