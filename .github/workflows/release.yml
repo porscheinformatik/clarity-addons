@@ -15,6 +15,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 concurrency:
   group: prepare-release-${{ github.ref }}
@@ -52,10 +53,14 @@ jobs:
         working-directory: website
         run: npm i
       - name: Commit release files
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           version="$(node -p "require('./package.json').version")"
+          branch="prepare-release/$version"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add package.json package-lock.json src/clr-addons/package.json website/package-lock.json
           git commit -m "Version $version"
-          git push origin HEAD:master
+          git push origin "HEAD:$branch"
+          gh pr create --base master --head "$branch" --title "Version $version" --body "Prepare release version $version."
