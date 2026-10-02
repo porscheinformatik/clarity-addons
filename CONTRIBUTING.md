@@ -51,9 +51,10 @@ updates `src/clr-addons/package.json` and `dist/clr-addons/package.json`; the pa
 template in `npm/clr-addons/package.json` keeps its version placeholders.
 
 The updated root package and lockfile, generated source package, and website lockfile
-are committed to `master`. Repository rules must allow GitHub Actions to push this
-commit. Runs on other branches are skipped, and simultaneous release preparations
-are serialized.
+are pushed to a `prepare-release/<version>` branch, and the workflow opens a pull
+request against `master`. Review and merge that pull request to prepare the release.
+Repository settings must allow GitHub Actions to create pull requests. Runs on other
+branches are skipped, and simultaneous release preparations are serialized.
 
 This prepares the release without publishing it. Create a GitHub release targeting
 the resulting commit to trigger the existing npm publication and website deployment
