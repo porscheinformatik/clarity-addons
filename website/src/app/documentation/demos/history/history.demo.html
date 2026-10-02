@@ -159,6 +159,19 @@
           </tr>
           <tr>
             <td class="left">
+              <b>ClrHistoryNavigationService</b>
+              <div class="clr-hidden-sm-up">Navigation service</div>
+              <div class="clr-hidden-sm-up">Browser navigation</div>
+            </td>
+            <td class="left clr-hidden-xs-down">Service provider</td>
+            <td class="clr-hidden-xs-down">Browser navigation</td>
+            <td class="left">
+              Injectable navigation handler used by both dropdown and pinned history. Override it to confirm, defer,
+              cancel, or route navigation in your application.
+            </td>
+          </tr>
+          <tr>
+            <td class="left">
               <b>HISTORY_NOTIFICATION_URL_PROVIDER</b>
               <div class="clr-hidden-sm-up">string</div>
               <div class="clr-hidden-sm-up"></div>
@@ -183,6 +196,10 @@
       </p>
 
       <clr-code-snippet [clrCode]="angularExample" [clrLanguage]="'typescript'"></clr-code-snippet>
+      <p>
+        Both examples below use a page-scoped navigation service to show a confirmation dialog before leaving. Without
+        an override, history navigates immediately, as before.
+      </p>
       <div class="clrweb-DoxMedia">
         <div class="clrweb-DoxMedia-block">
           <div class="clrweb-DoxMedia-img history-demo">
@@ -209,6 +226,65 @@
       </div>
       <p>To use the pinned feature simply place the angular component.</p>
       <clr-code-snippet [clrCode]="htmlExamplePinned"></clr-code-snippet>
+
+      <h4>Custom navigation and unsaved changes</h4>
+      <p>
+        Both <code class="clr-code">clr-history</code> and <code class="clr-code">clr-history-pinned</code> call
+        <code class="clr-code">ClrHistoryNavigationService.navigate(entry, url?)</code> with the original
+        <code class="clr-code">ClrHistoryModel</code>. The optional destination defaults to
+        <code class="clr-code">entry.url</code>; pinned history supplies the browser-resolved link URL to preserve
+        relative links and the document's base URL. The default service navigates to that destination using the browser.
+        History does not detect unsaved changes or provide an application-specific save/discard/cancel dialog.
+      </p>
+      <p>
+        Override the service to take ownership of navigation. This example records the entry and destination so your
+        dialog can call <code class="clr-code">continueNavigation(entry, url)</code> after confirmation, or
+        <code class="clr-code">cancelNavigation()</code> to stay on the current page.
+      </p>
+      <clr-code-snippet [clrCode]="navigationExample" [clrLanguage]="'typescript'"></clr-code-snippet>
+      <p>
+        Provide the override on a common ancestor of both history components, such as your page or layout.
+        <code class="clr-code">useExisting</code> shares the same instance with the dialog. Descendant components,
+        including wrappers containing history controls, inherit the override without forwarding callback inputs. You can
+        also provide it at application scope when navigation handling is shared across the application.
+      </p>
+      <clr-code-snippet [clrCode]="providerExample" [clrLanguage]="'typescript'"></clr-code-snippet>
+      <p>
+        Asynchronous confirmation and saving belong to your override: it can return immediately and navigate only after
+        the dialog or save operation completes successfully. The history components do not navigate again after
+        delegation. Manage subscription lifetimes and report errors in your application; a canceled dialog or failed
+        save must leave the current page unchanged. For internal Angular routes, your override can use
+        <code class="clr-code">Router.navigateByUrl</code> so route guards run, instead of calling the default browser
+        navigation.
+      </p>
+      <p>
+        Dropdown and pinned history entries are real <code class="clr-code">href</code> links. Open an entry in a new
+        tab using Ctrl/Cmd-click, middle-click, or the browser's "Open link in new tab" context-menu action. These
+        actions leave the current page open and do not call the same-tab navigation service.
+      </p>
+      <p>
+        Only ordinary same-tab activation, including keyboard activation, is delegated. Shift/Alt-click and other
+        non-primary clicks also retain native browser behavior. A click already canceled by another handler is not
+        delegated. Opening the dropdown and toggling the history pin do not request navigation; the pin action remains a
+        button.
+      </p>
     </div>
   </article>
 </clr-doc-wrapper>
+
+<clr-modal [clrModalOpen]="!!navigation.pendingNavigation()" (clrModalOpenChange)="navigation.cancelNavigation()">
+  <h3 class="modal-title">Confirm history navigation</h3>
+  <div class="modal-body">
+    @if (navigation.pendingNavigation(); as pending) {
+    <p>Leave this page and navigate to {{ pending.entry.title }}?</p>
+    }
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline" (click)="navigation.cancelNavigation()">Cancel</button>
+    @if (navigation.pendingNavigation(); as pending) {
+    <button type="button" class="btn btn-primary" (click)="navigation.continueNavigation(pending.entry, pending.url)">
+      Continue
+    </button>
+    }
+  </div>
+</clr-modal>

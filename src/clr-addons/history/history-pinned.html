@@ -5,7 +5,11 @@
     <li>&nbsp;</li>
     @for (historyItem of historyElements$ | async; track historyItem) { @if (historyItem.url) {
     <li class="history-item" [attr.data-testid]="'history-pinned-entry-' + (historyItem.title)">
-      <a [href]="historyItem.url" [attr.data-testid]="'history-pinned-link-' + (historyItem.title)"
+      <a
+        #historyLink
+        [href]="historyItem.url"
+        (click)="select(historyItem, $event, historyLink.href)"
+        [attr.data-testid]="'history-pinned-link-' + (historyItem.title)"
         >{{ historyItem.title }}</a
       >
     </li>
