@@ -136,6 +136,7 @@ export class FunnelChartComponent extends ChartBase<FunnelDataPoint> implements 
   public readonly showExportButton = input(false);
   public readonly exportButtonTitle = input<string>('Export');
   public readonly exportFilename = input<string>('funnel-chart');
+  public readonly hasError = input<boolean>(false);
   public readonly error = input<string | undefined>(undefined);
 
   /** Rendering mode. 'default' = horizontal bars with sections; 'centered' = centered trapezoid funnel. */
@@ -876,8 +877,8 @@ export class FunnelChartComponent extends ChartBase<FunnelDataPoint> implements 
   }
 
   public readonly alertMessageAndType = computed<[string, string] | undefined>(() => {
-    if (this.error()) {
-      return [ERROR_ALERT_MESSAGE.replace('{{errorRef}}', this.error() ?? ''), ERROR_ALERT_TYPE];
+    if (this.hasError()) {
+      return [this.error() ?? ERROR_ALERT_MESSAGE, ERROR_ALERT_TYPE];
     }
     return undefined;
   });

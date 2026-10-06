@@ -6,7 +6,7 @@
     (cngWindowResize)="updateChart()"
     [class.pt-3]="alertMessageAndType()"
   >
-    <svg [class.d-none]="loading() || !hasData() || error() != null" #chart></svg>
+    <svg [class.d-none]="loading() || !hasData() || hasError()" #chart></svg>
 
     @if (tooltipPosition()) {
       <cng-chart-tooltip
@@ -41,7 +41,7 @@
         </p>
       </cng-chart-tooltip>
     }
-    @if (loading() || !hasData() || error() != null) {
+    @if (loading() || !hasData() || hasError()) {
       <cng-bar-chart-skeleton
         data-testid="combo-chart-skeleton"
         orientation="vertical"
@@ -57,10 +57,10 @@
     }
   </div>
 
-  @if (showLegend() && !loading() && legendItems().length && error() == null) {
+  @if (showLegend() && !loading() && legendItems().length && !hasError()) {
     <cng-chart-legend data-testid="combo-chart-legend" [items]="legendItems()" />
   }
-  @if (showExportButton() && !loading() && hasData() && error() == null) {
+  @if (showExportButton() && !loading() && hasData() && !hasError()) {
     <cng-chart-export-button
       data-testid="combo-chart-export"
       [svgRef]="svgElement()"

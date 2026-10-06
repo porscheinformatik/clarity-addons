@@ -6,7 +6,7 @@
     (cngWindowResize)="updateChart()"
     [class.pt-3]="alertMessageAndType()"
   >
-    <svg [class.d-none]="loading() || !hasData() || error() != null" #chart></svg>
+    <svg [class.d-none]="loading() || !hasData() || hasError()" #chart></svg>
 
     @if (centerValue() != null && !showSkeleton()) {
       <div class="center-text">
@@ -52,7 +52,7 @@
         </p>
       </cng-chart-tooltip>
     }
-    @if (loading() || !hasData() || error() != null) {
+    @if (loading() || !hasData() || hasError()) {
       <cng-donut-chart-skeleton
         data-testid="pie-chart-skeleton"
         [innerRadiusRatio]="0.55"
@@ -69,9 +69,9 @@
     }
   </div>
 
-  @if (showLegend() && loading() && error() == null) {
+  @if (showLegend() && loading() && !hasError()) {
     <cng-chart-legend-skeleton [count]="2" [skeletonType]="'loading'" [class.legend-top]="legendPosition() === 'top'" />
-  } @else if (showLegend() && !loading() && legendItems().length && !alertMessageAndType() && error() == null) {
+  } @else if (showLegend() && !loading() && legendItems().length && !alertMessageAndType() && !hasError()) {
     <cng-chart-legend
       data-testid="pie-chart-legend"
       [items]="legendItems()"
@@ -81,7 +81,7 @@
       [class.legend-top]="legendPosition() === 'top'"
     />
   }
-  @if (showExportButton() && !loading() && hasData() && error() == null) {
+  @if (showExportButton() && !loading() && hasData() && !hasError()) {
     <cng-chart-export-button
       data-testid="pie-chart-export"
       [svgRef]="svgElement()"

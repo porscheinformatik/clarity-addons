@@ -47,7 +47,8 @@
       <clr-combo-chart
         [barSeries]="barSeries"
         [lineSeries]="lineSeries"
-        [error]="error() ? 'ErrorRef' : null"
+        [hasError]="error()"
+        [error]="error() ? 'Error loading data' : undefined"
         [loading]="loading()"
         [showLegend]="showLegend()"
         [showExportButton]="showExportButton()"
@@ -67,7 +68,8 @@
       <clr-combo-chart
         [barSeries]="barSeries"
         [lineSeries]="barsOnlyLineSeries"
-        [error]="error() ? 'ErrorRef' : null"
+        [hasError]="error()"
+        [error]="error() ? 'Error loading data' : undefined"
         [loading]="loading()"
         [showLegend]="showLegend()"
         [showExportButton]="showExportButton()"
@@ -87,7 +89,8 @@
       <clr-combo-chart
         [barSeries]="linesOnlyBarSeries"
         [lineSeries]="lineSeries"
-        [error]="error() ? 'ErrorRef' : null"
+        [hasError]="error()"
+        [error]="error() ? 'Error loading data' : undefined"
         [loading]="loading()"
         [showLegend]="showLegend()"
         [showExportButton]="showExportButton()"
@@ -107,7 +110,8 @@
       <clr-combo-chart
         [barSeries]="barSeries"
         [lineSeries]="lineSeries"
-        [error]="error() ? 'ErrorRef' : null"
+        [hasError]="error()"
+        [error]="error() ? 'Error loading data' : undefined"
         tooltipOrientation="bottom"
         [loading]="loading()"
         exportFilename=""
@@ -128,7 +132,8 @@
       <clr-combo-chart
         [barSeries]="rttBarSeries"
         [lineSeries]="rttLineSeries"
-        [error]="error() ? 'ErrorRef' : null"
+        [hasError]="error()"
+        [error]="error() ? 'Error loading data' : undefined"
         [showLegend]="true"
         xAxisLabel="Hour of Day"
         yAxisLabel="Number of Calls"
@@ -150,7 +155,8 @@
       <clr-combo-chart
         [barSeries]="barSeries"
         [lineSeries]="lineSeries"
-        [error]="error() ? 'ErrorRef' : null"
+        [hasError]="error()"
+        [error]="error() ? 'Error loading data' : undefined"
         [showLegend]="true"
         xAxisLabel="Month"
         yAxisLabel="Amount"
@@ -177,7 +183,8 @@
       <clr-combo-chart
         [barSeries]="barSeries"
         [lineSeries]="lineSeries"
-        [error]="error() ? 'ErrorRef' : null"
+        [hasError]="error()"
+        [error]="error() ? 'Error loading data' : undefined"
         [showLegend]="true"
         [yBarMax]="500"
         [yLineMax]="300"
@@ -206,7 +213,8 @@
       <clr-combo-chart
         [barSeries]="clippingBarSeries"
         [lineSeries]="clippingLineSeries"
-        [error]="error() ? 'ErrorRef' : null"
+        [hasError]="error()"
+        [error]="error() ? 'Error loading data' : undefined"
         [showLegend]="true"
         [yBarMax]="200"
         [yLineMax]="100"
@@ -235,7 +243,8 @@
       <clr-combo-chart
         [barSeries]="ratioBarSeries"
         [lineSeries]="ratioLineSeries"
-        [error]="error() ? 'ErrorRef' : null"
+        [hasError]="error()"
+        [error]="error() ? 'Error loading data' : undefined"
         [showLegend]="true"
         xAxisLabel="Month"
         yAxisLabel="Rate (max 1)"
@@ -256,7 +265,8 @@
       <clr-combo-chart
         [barSeries]="emptyBarSeries"
         [lineSeries]="emptyLineSeries"
-        [error]="error() ? 'ErrorRef' : null"
+        [hasError]="error()"
+        [error]="error() ? 'Error loading data' : undefined"
         exportFilename=""
         style="display: block; width: 100%; height: 100%"
       ></clr-combo-chart>

@@ -59,6 +59,7 @@ export class LineChartComponent extends ChartBase<LineChartSelectedPoint> implem
   public readonly showExportButton = input(false);
   public readonly exportButtonTitle = input<string>('Export');
   public readonly exportFilename = input<string>('line-chart');
+  public readonly hasError = input<boolean>(false);
   public readonly error = input<string | undefined>(undefined);
 
   public readonly noItemsMessage = input<string>(NO_ITEMS_MESSAGE);
@@ -83,8 +84,8 @@ export class LineChartComponent extends ChartBase<LineChartSelectedPoint> implem
   );
 
   public readonly alertMessageAndType = computed<[string, string] | undefined>(() => {
-    if (this.error() != null) {
-      return [ERROR_ALERT_MESSAGE.replace('{{errorRef}}', this.error()), ERROR_ALERT_TYPE];
+    if (this.hasError()) {
+      return [this.error() ?? ERROR_ALERT_MESSAGE, ERROR_ALERT_TYPE];
     }
     if (this.loading()) {
       return undefined;

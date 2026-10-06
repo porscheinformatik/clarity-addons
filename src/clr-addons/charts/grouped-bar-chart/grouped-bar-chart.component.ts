@@ -73,6 +73,7 @@ export class GroupedBarChartComponent extends ChartBase<GroupedBarChartDataPoint
   public readonly groups = input<GroupedBarChartGroup[] | undefined>(undefined);
   public readonly orientation = input<'horizontal' | 'vertical'>('horizontal');
   public readonly tooltipOrientation = input<'top' | 'bottom'>('top');
+  public readonly hasError = input<boolean>(false);
   public readonly error = input<string | undefined>(undefined);
 
   public readonly barSizePx = input<number>(12);
@@ -120,8 +121,8 @@ export class GroupedBarChartComponent extends ChartBase<GroupedBarChartDataPoint
   });
 
   public readonly alertMessageAndType = computed<[string, string] | undefined>(() => {
-    if (this.error() != null) {
-      return [ERROR_ALERT_MESSAGE.replace('{{errorRef}}', this.error()), ERROR_ALERT_TYPE];
+    if (this.hasError()) {
+      return [this.error() ?? ERROR_ALERT_MESSAGE, ERROR_ALERT_TYPE];
     }
     if (this.loading()) {
       return undefined;
