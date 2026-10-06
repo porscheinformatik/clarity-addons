@@ -93,6 +93,7 @@ const ZERO_DATA: FunnelChartData[] = [
   imports: [ClrAlertModule, ClrChartsModule],
 })
 export class FunnelChartDemo {
+  protected readonly error = signal(false);
   protected readonly loading = signal(false);
   protected readonly showExportButton = signal(false);
   protected readonly lastClicked = signal<FunnelValue | undefined>(undefined);
@@ -123,6 +124,10 @@ export class FunnelChartDemo {
     total: 'Gesamt',
     all: 'Alle',
   };
+
+  protected toggleError(): void {
+    this.error.set(!this.error());
+  }
 
   public toggleLoading(): void {
     this.loading.set(!this.loading());

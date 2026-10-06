@@ -11,7 +11,7 @@ import {
   select as d3select,
   Selection,
 } from 'd3';
-import { NO_ITEMS_ALERT_TYPE, NO_ITEMS_MESSAGE } from '../constants';
+import { NO_ITEMS_ALERT_TYPE, NO_ITEMS_MESSAGE, ERROR_ALERT_TYPE, ERROR_ALERT_MESSAGE } from '../constants';
 import { toChartColor } from '../utils';
 import { ChartLegendItem } from '../chart-legend/chart-legend.component';
 import { computeYTickFormat, computeYTickValues, drawXYAxes, styleGridLines } from '../shared/d3-chart-axes';
@@ -87,6 +87,7 @@ export class ComboChartComponent extends ChartBase<SelectedComboItem> implements
   public readonly exportFilename = input<string>('combo-chart');
 
   public readonly noItemsMessage = input<string>(NO_ITEMS_MESSAGE);
+  public readonly error = input<string | undefined>(undefined);
   public readonly tooltipPercentOfTotal = input<string>('of total');
 
   /** Optional label rendered below the X axis. */
@@ -118,6 +119,9 @@ export class ComboChartComponent extends ChartBase<SelectedComboItem> implements
   });
 
   public readonly alertMessageAndType = computed<[string, string] | undefined>(() => {
+    if (this.error()) {
+      return [ERROR_ALERT_MESSAGE.replace('{{errorRef}}', this.error() ?? ''), ERROR_ALERT_TYPE];
+    }
     if (this.loading()) {
       return undefined;
     }
@@ -157,7 +161,7 @@ export class ComboChartComponent extends ChartBase<SelectedComboItem> implements
   protected updateChart(): void {
     this.svg.selectAll('*').remove();
 
-    if (this.loading() || !this.hasData()) {
+    if (this.loading() || !this.hasData() || this.error() != null) {
       return;
     }
 

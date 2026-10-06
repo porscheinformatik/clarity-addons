@@ -8,6 +8,7 @@
 
 <div style="margin-bottom: 1rem; display: flex; flex-direction: column; gap: 0.5rem">
   <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center">
+    <button class="btn btn-outline" (click)="toggleError()">Toggle Error (current: {{ error() }})</button>
     <button class="btn btn-outline" (click)="toggleOrientation()">
       Toggle Orientation (current: {{ orientation() }})
     </button>
@@ -72,6 +73,7 @@
     <div [style.height]="orientation() === 'horizontal' ? '360px' : '320px'" style="width: 100%">
       <clr-grouped-bar-chart
         [data]="data"
+        [error]="error() ? 'ErrorRef' : null"
         [groups]="groups"
         [orientation]="orientation()"
         [barSizePx]="barSizePx()"
@@ -97,6 +99,7 @@
     <div style="height: 320px; width: 100%">
       <clr-grouped-bar-chart
         [data]="data"
+        [error]="error() ? 'ErrorRef' : null"
         [groups]="groups"
         orientation="vertical"
         [barSizePx]="barSizePx()"
@@ -118,6 +121,7 @@
     <div style="height: 340px; width: 100%">
       <clr-grouped-bar-chart
         [data]="data"
+        [error]="error() ? 'ErrorRef' : null"
         [groups]="groups"
         orientation="horizontal"
         [barSizePx]="barSizePx()"
@@ -139,6 +143,7 @@
     <div style="height: 220px; width: 100%">
       <clr-grouped-bar-chart
         [data]="emptyData"
+        [error]="error() ? 'ErrorRef' : null"
         [orientation]="orientation()"
         [barSizePx]="barSizePx()"
         style="display: block; width: 100%; height: 100%"
@@ -153,6 +158,7 @@
     <div style="height: 320px; width: 100%">
       <clr-grouped-bar-chart
         [data]="manyData"
+        [error]="error() ? 'ErrorRef' : null"
         [groups]="manyGroups"
         [orientation]="orientation()"
         [barSizePx]="barSizePx()"

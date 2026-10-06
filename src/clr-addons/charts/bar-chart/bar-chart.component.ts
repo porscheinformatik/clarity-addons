@@ -27,6 +27,8 @@ import {
   ALL_ITEMS_ZERO_MESSAGE,
   NO_ITEMS_ALERT_TYPE,
   NO_ITEMS_MESSAGE,
+  ERROR_ALERT_MESSAGE,
+  ERROR_ALERT_TYPE,
   TOO_MANY_ITEMS_ALERT_TYPE,
   TOO_MANY_ITEMS_GROUPED_MESSAGE,
   TOO_MANY_ITEMS_MESSAGE,
@@ -70,6 +72,7 @@ export class BarChartComponent extends ChartBase<BarChartDataPoint> implements O
   public readonly stacks = input<BarChartLabel[] | undefined>(undefined);
   public readonly orientation = input.required<'horizontal' | 'vertical'>();
   public readonly tooltipOrientation = input<'top' | 'bottom'>('top');
+  public readonly error = input<string | undefined>(undefined);
 
   public readonly barSizePx = input<number>(15);
   public readonly barAreaSizePx = input<number>(40);
@@ -141,7 +144,9 @@ export class BarChartComponent extends ChartBase<BarChartDataPoint> implements O
   );
 
   public readonly alertMessageAndType = computed<[string, string] | undefined>(() => {
-    if (this.loading()) {
+    if (this.error() != null) {
+      return [ERROR_ALERT_MESSAGE.replace('{{errorRef}}', this.error() ?? ''), ERROR_ALERT_TYPE];
+    } else if (this.loading()) {
       return undefined;
     }
 

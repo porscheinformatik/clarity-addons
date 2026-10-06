@@ -20,6 +20,7 @@ const COLORS = ['--cds-global-color-lavender-400', '#00828b', '#c1326e', '#5b40b
 export class BarChartDemo {
   protected readonly orientation = signal<'horizontal' | 'vertical'>('vertical');
   protected readonly exportFilename = signal('bar-chart');
+  protected readonly error = signal(false);
   protected readonly loading = signal(false);
   protected readonly showStacked = signal(false);
   protected readonly showLegend = signal(true);
@@ -117,6 +118,10 @@ export class BarChartDemo {
 
   protected toggleOrientation(): void {
     this.orientation.set(this.orientation() === 'vertical' ? 'horizontal' : 'vertical');
+  }
+
+  protected toggleError(): void {
+    this.error.set(!this.error());
   }
 
   protected toggleLoading(): void {

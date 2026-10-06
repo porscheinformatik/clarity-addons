@@ -21,7 +21,7 @@ import {
   select as d3select,
   Selection,
 } from 'd3';
-import { NO_ITEMS_ALERT_TYPE, NO_ITEMS_MESSAGE } from '../constants';
+import { ERROR_ALERT_MESSAGE, ERROR_ALERT_TYPE, NO_ITEMS_ALERT_TYPE, NO_ITEMS_MESSAGE } from '../constants';
 import { toChartColor } from '../utils';
 import { ChartLegendItem } from '../chart-legend/chart-legend.component';
 import { XYChartPoint, XYChartSeries, XYChartValue } from '../shared/xy-chart.types';
@@ -59,6 +59,7 @@ export class LineChartComponent extends ChartBase<LineChartSelectedPoint> implem
   public readonly showExportButton = input(false);
   public readonly exportButtonTitle = input<string>('Export');
   public readonly exportFilename = input<string>('line-chart');
+  public readonly error = input<string | undefined>(undefined);
 
   public readonly noItemsMessage = input<string>(NO_ITEMS_MESSAGE);
   public readonly tooltipPercentOfTotal = input<string>('of total');
@@ -82,6 +83,9 @@ export class LineChartComponent extends ChartBase<LineChartSelectedPoint> implem
   );
 
   public readonly alertMessageAndType = computed<[string, string] | undefined>(() => {
+    if (this.error() != null) {
+      return [ERROR_ALERT_MESSAGE.replace('{{errorRef}}', this.error()), ERROR_ALERT_TYPE];
+    }
     if (this.loading()) {
       return undefined;
     }

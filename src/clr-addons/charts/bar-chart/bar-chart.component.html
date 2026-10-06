@@ -6,7 +6,7 @@
     (cngWindowResize)="updateChart()"
     [class.pt-3]="alertMessageAndType()"
   >
-    <svg [class.d-none]="loading() || !data()?.length || allValuesZero()" #chart></svg>
+    <svg [class.d-none]="loading() || !data()?.length || allValuesZero() || error() != null" #chart></svg>
 
     @if (tooltipPosition()) {
       <cng-chart-tooltip
@@ -59,7 +59,7 @@
         }
       </cng-chart-tooltip>
     }
-    @if (loading() || !data()?.length || allValuesZero()) {
+    @if (loading() || !data()?.length || allValuesZero() || error() != null) {
       <cng-bar-chart-skeleton
         data-testid="bar-chart-skeleton"
         [orientation]="orientation()"
@@ -75,10 +75,10 @@
     }
   </div>
 
-  @if (showLegend() && !loading() && legendItems().length && !allValuesZero()) {
+  @if (showLegend() && !loading() && legendItems().length && !allValuesZero() && error() == null) {
     <cng-chart-legend data-testid="bar-chart-legend" [items]="legendItems()" />
   }
-  @if (showExportButton() && !loading() && data()?.length) {
+  @if (showExportButton() && !loading() && data()?.length && error() == null) {
     <cng-chart-export-button
       data-testid="bar-chart-export"
       [svgRef]="svgElement()"

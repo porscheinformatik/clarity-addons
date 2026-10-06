@@ -1,7 +1,7 @@
 <div class="chart-container">
   <div class="chart-area" #container (cngWindowResize)="updateChart()" [class.pt-3]="alertMessageAndType()">
     <svg
-      [class.d-none]="loading() || !data()?.length || allValuesZero()"
+      [class.d-none]="loading() || !data()?.length || allValuesZero() || error() != null"
       #chart
       role="img"
       [attr.aria-label]="xAxisLabel() || yAxisLabel() ? yAxisLabel() + ' by ' + xAxisLabel() : 'Grouped bar chart'"
@@ -23,7 +23,7 @@
         </p>
       </cng-chart-tooltip>
     }
-    @if (loading() || !data()?.length || allValuesZero()) {
+    @if (loading() || !data()?.length || allValuesZero() || error() != null) {
       <cng-bar-chart-skeleton [orientation]="orientation()" [skeletonType]="loading() ? 'loading' : 'placeholder'" />
     }
     @if (alertMessageAndType()) {
@@ -31,10 +31,10 @@
     }
   </div>
 
-  @if (showLegend() && !loading() && legendItems().length && !allValuesZero()) {
+  @if (showLegend() && !loading() && legendItems().length && !allValuesZero() && error() == null) {
     <cng-chart-legend [items]="legendItems()" />
   }
-  @if (showExportButton() && !loading() && data()?.length) {
+  @if (showExportButton() && !loading() && data()?.length && error() == null) {
     <cng-chart-export-button
       [svgRef]="svgElement()"
       [filename]="exportFilename()"

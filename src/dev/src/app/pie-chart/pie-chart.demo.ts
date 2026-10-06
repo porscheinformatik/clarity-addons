@@ -17,6 +17,7 @@ const COLORS = ['#e57200', '#00828b', '#c1326e', '#5b40b2', '#007cba', '#006b4a'
   imports: [FormsModule, ClrAlertModule, ClrChartsModule],
 })
 export class PieChartDemo {
+  protected readonly error = signal(false);
   protected readonly loading = signal(false);
   protected readonly exportFilename = signal('pie-demo');
   protected readonly donut = signal(true);
@@ -35,6 +36,10 @@ export class PieChartDemo {
   ];
 
   protected emptyData: PieChartData[] = [];
+
+  public toggleError(): void {
+    this.error.set(!this.error());
+  }
 
   public toggleLoading(): void {
     this.loading.set(!this.loading());

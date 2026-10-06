@@ -9,6 +9,7 @@
 <!-- Controls -->
 <div style="margin-bottom: 1rem; display: flex; flex-direction: column; gap: 0.5rem">
   <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center">
+    <button class="btn btn-outline" (click)="toggleError()">Toggle Error (current: {{ error() }})</button>
     <button class="btn btn-outline" (click)="toggleOrientation()">
       Toggle Orientation (current: {{ orientation() }})
     </button>
@@ -50,6 +51,7 @@
     <div [style.height]="orientation() === 'vertical' ? '300px' : '250px'" style="width: 100%">
       <clr-bar-chart
         [data]="activeData()"
+        [error]="error() ? 'ErrorRef' : null"
         [stacks]="activeStacks()"
         [orientation]="orientation()"
         [loading]="loading()"
@@ -70,6 +72,7 @@
     <div style="height: 300px; width: 100%">
       <clr-bar-chart
         [data]="simpleData"
+        [error]="error() ? 'ErrorRef' : null"
         orientation="vertical"
         [loading]="false"
         [showExportButton]="showExportButton()"
@@ -88,6 +91,7 @@
     <div style="height: 250px; width: 100%">
       <clr-bar-chart
         [data]="simpleData"
+        [error]="error() ? 'ErrorRef' : null"
         orientation="horizontal"
         [loading]="false"
         [showExportButton]="showExportButton()"
@@ -106,6 +110,7 @@
     <div style="height: 320px; width: 100%">
       <clr-bar-chart
         [data]="stackedData"
+        [error]="error() ? 'ErrorRef' : null"
         [stacks]="stacks"
         orientation="vertical"
         [loading]="false"
@@ -126,6 +131,7 @@
     <div style="height: 320px; width: 100%">
       <clr-bar-chart
         [data]="stackedData"
+        [error]="error() ? 'ErrorRef' : null"
         [stacks]="stacks"
         orientation="horizontal"
         [loading]="false"
@@ -146,6 +152,7 @@
     <div style="height: 340px; width: 100%">
       <clr-bar-chart
         [data]="multiValueData"
+        [error]="error() ? 'ErrorRef' : null"
         [stacks]="allMonthsStacks"
         orientation="vertical"
         [loading]="false"
@@ -164,6 +171,7 @@
     <div style="height: 300px; width: 100%">
       <clr-bar-chart
         [data]="simpleData"
+        [error]="error() ? 'ErrorRef' : null"
         orientation="vertical"
         [loading]="false"
         [showLegend]="true"
@@ -181,6 +189,7 @@
     <div style="height: 200px; width: 100%">
       <clr-bar-chart
         [data]="emptyData"
+        [error]="error() ? 'ErrorRef' : null"
         orientation="vertical"
         [loading]="false"
         style="display: block; width: 100%; height: 100%"
@@ -196,6 +205,7 @@
     <div style="height: 300px; width: 100%">
       <clr-bar-chart
         [data]="manyData"
+        [error]="error() ? 'ErrorRef' : null"
         orientation="vertical"
         [loading]="false"
         style="display: block; width: 100%; height: 100%"
@@ -211,6 +221,7 @@
     <div style="height: 320px; width: 100%">
       <clr-bar-chart
         [data]="simpleData"
+        [error]="error() ? 'ErrorRef' : null"
         orientation="vertical"
         [loading]="false"
         xAxisLabel="Month"
@@ -229,6 +240,7 @@
     <div style="height: 280px; width: 100%">
       <clr-bar-chart
         [data]="simpleData"
+        [error]="error() ? 'ErrorRef' : null"
         orientation="horizontal"
         [loading]="false"
         xAxisLabel="Revenue (€)"
@@ -247,6 +259,7 @@
     <div style="height: 250px; width: 100%">
       <clr-bar-chart
         [data]="simpleData"
+        [error]="error() ? 'ErrorRef' : null"
         orientation="vertical"
         [loading]="true"
         style="display: block; width: 100%; height: 100%"
