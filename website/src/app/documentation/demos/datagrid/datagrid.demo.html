@@ -309,7 +309,7 @@
       </clr-dg-column>
 
       <clr-dg-row *clrDgItems="let item of customFilterItems">
-        <clr-dg-cell>{{ item.amount }}</clr-dg-cell>
+        <clr-dg-cell class="text-right">{{ item.amount }}</clr-dg-cell>
       </clr-dg-row>
     </clr-datagrid>
 
@@ -331,8 +331,8 @@
       </clr-dg-column>
 
       <clr-dg-row *clrDgItems="let item of customFilterItems">
-        <clr-dg-cell>{{ item.amount }}</clr-dg-cell>
-        <clr-dg-cell>{{ item.amount }}</clr-dg-cell>
+        <clr-dg-cell class="text-right">{{ item.amount }}</clr-dg-cell>
+        <clr-dg-cell class="text-right">{{ item.amount }}</clr-dg-cell>
       </clr-dg-row>
     </clr-datagrid>
 
@@ -729,8 +729,8 @@
             event provides the type of export requested (e.g., ALL, FILTERED, SELECTED).
           </li>
           <li>
-            <code>customBackendExport</code>: Emitted when a custom export (one of customExportTypes) is triggered.
-            The event provides the id of the selected custom export.
+            <code>customBackendExport</code>: Emitted when a custom export (one of customExportTypes) is triggered. The
+            event provides the id of the selected custom export.
           </li>
         </ul>
       </li>
@@ -782,10 +782,10 @@
     <clr-code-snippet [clrCode]="exportTypesDisplayExample"></clr-code-snippet>
     <p>
       You can choose to offer custom export types to users (e.g., exports containing specified columns or rows, beyond
-      the grid filters and selections). For each export type, you need to provide an id using the <code>id</code>
-      property in order to detect which of the custom export types has been selected and you can define a custom
-      display value (such as a translated label) using the <code>value</code> property. If <code>value</code> is not
-      provided, the id will be used instead.
+      the grid filters and selections). For each export type, you need to provide an id using the
+      <code>id</code> property in order to detect which of the custom export types has been selected and you can define
+      a custom display value (such as a translated label) using the <code>value</code> property. If
+      <code>value</code> is not provided, the id will be used instead.
     </p>
     <clr-code-snippet [clrCode]="customExportTypesDisplayExample"></clr-code-snippet>
     <p>
