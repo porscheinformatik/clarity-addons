@@ -85,6 +85,7 @@ export class ClrBrandAvatar {
     output = output.replace('VOLKSWAGEN', 'VW');
     output = output.replace('VWPKW', 'VW');
     output = output.replace('NUTZFAHRZEUGE', 'N');
+    output = output.replace('COMMERCIAL', 'N');
     output = output.replace('DASWELTAUTO', 'DWA');
     output = output.replace('Š', 'S');
     return output;
