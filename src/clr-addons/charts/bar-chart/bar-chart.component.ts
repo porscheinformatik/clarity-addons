@@ -73,7 +73,7 @@ export class BarChartComponent extends ChartBase<BarChartDataPoint> implements O
   public readonly orientation = input.required<'horizontal' | 'vertical'>();
   public readonly tooltipOrientation = input<'top' | 'bottom'>('top');
   public readonly hasError = input<boolean>(false);
-  public readonly error = input<string | undefined>(undefined);
+  public readonly error = input<string>(ERROR_ALERT_MESSAGE);
 
   public readonly barSizePx = input<number>(15);
   public readonly barAreaSizePx = input<number>(40);
@@ -146,7 +146,7 @@ export class BarChartComponent extends ChartBase<BarChartDataPoint> implements O
 
   public readonly alertMessageAndType = computed<[string, string] | undefined>(() => {
     if (this.hasError()) {
-      return [this.error() ?? ERROR_ALERT_MESSAGE, ERROR_ALERT_TYPE];
+      return [this.error(), ERROR_ALERT_TYPE];
     } else if (this.loading()) {
       return undefined;
     }

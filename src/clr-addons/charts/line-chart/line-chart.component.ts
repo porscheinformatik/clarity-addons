@@ -60,7 +60,7 @@ export class LineChartComponent extends ChartBase<LineChartSelectedPoint> implem
   public readonly exportButtonTitle = input<string>('Export');
   public readonly exportFilename = input<string>('line-chart');
   public readonly hasError = input<boolean>(false);
-  public readonly error = input<string | undefined>(undefined);
+  public readonly error = input<string>(ERROR_ALERT_MESSAGE);
 
   public readonly noItemsMessage = input<string>(NO_ITEMS_MESSAGE);
   public readonly tooltipPercentOfTotal = input<string>('of total');
@@ -85,7 +85,7 @@ export class LineChartComponent extends ChartBase<LineChartSelectedPoint> implem
 
   public readonly alertMessageAndType = computed<[string, string] | undefined>(() => {
     if (this.hasError()) {
-      return [this.error() ?? ERROR_ALERT_MESSAGE, ERROR_ALERT_TYPE];
+      return [this.error(), ERROR_ALERT_TYPE];
     }
     if (this.loading()) {
       return undefined;
