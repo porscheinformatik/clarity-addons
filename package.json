@@ -74,7 +74,7 @@
     "@angular-devkit/core": "21.2.25",
     "@angular-eslint/builder": "22.5.0",
     "@angular/build": "^21.2.11",
-    "@angular/cli": "21.2.25",
+    "@angular/cli": "21.2.26",
     "@angular/compiler-cli": "21.2.25",
     "@eslint/eslintrc": "3.3.7",
     "@eslint/js": "10.0.1",
