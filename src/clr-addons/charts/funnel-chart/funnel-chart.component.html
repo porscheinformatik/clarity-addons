@@ -1,7 +1,15 @@
 <div class="funnel-container" data-testid="funnel-chart" #container (cngWindowResize)="updateChart()">
-  <svg [class.d-none]="loading() || !hasData()" #chart></svg>
+  <svg [class.d-none]="loading() || !hasData() || hasError()" #chart></svg>
 
-  @if (!loading()) {
+  @if (alertMessageAndType()) {
+    <cng-chart-alert-overlay
+      data-testid="combo-chart-alert-overlay"
+      [alertType]="alertMessageAndType()[1]"
+      [alertMessage]="alertMessageAndType()[0]"
+    />
+  }
+
+  @if (!loading() && !hasError()) {
     @for (pos of sectionTooltips(); track pos.key) {
       <clr-signpost
         [attr.data-testid]="'funnel-chart-section-signpost-' + pos.key"
@@ -24,7 +32,7 @@
       </clr-signpost>
     }
   }
-  @if (loading()) {
+  @if (loading() || hasError()) {
     @if (orientation() === 'centered') {
       <cng-funnel-skeleton data-testid="funnel-chart-skeleton" [centered]="true" />
     } @else {
@@ -170,7 +178,7 @@
       </cng-chart-tooltip>
     }
   }
-  @if (showExportButton() && !loading() && hasData()) {
+  @if (showExportButton() && !loading() && hasData() && !hasError()) {
     <cng-chart-export-button
       class="funnel-export-btn"
       data-testid="funnel-chart-export"

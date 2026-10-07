@@ -8,6 +8,7 @@
 
 <!-- Controls -->
 <div style="margin-bottom: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center">
+  <button class="btn btn-outline" (click)="toggleError()">Toggle Error (current: {{ error() }})</button>
   <button class="btn btn-outline" (click)="toggleLoading()">Toggle Loading (current: {{ loading() }})</button>
   <button class="btn btn-outline" (click)="toggleArea()">Toggle Area Fill (current: {{ showArea() }})</button>
   <button class="btn btn-outline" (click)="toggleLegend()">Toggle Legend (current: {{ showLegend() }})</button>
@@ -62,6 +63,8 @@
     <div style="height: 300px; width: 100%">
       <clr-line-chart
         [series]="singleSeries"
+        [hasError]="error()"
+        [error]="error() ? 'Error loading data' : undefined"
         [loading]="loading()"
         [showArea]="showArea()"
         [showLegend]="showLegend()"
@@ -85,6 +88,8 @@
     <div style="height: 300px; width: 100%">
       <clr-line-chart
         [series]="multiSeries"
+        [hasError]="error()"
+        [error]="error() ? 'Error loading data' : undefined"
         [loading]="loading()"
         [showArea]="showArea()"
         [showLegend]="showLegend()"
@@ -106,6 +111,8 @@
     <div style="height: 320px; width: 100%">
       <clr-line-chart
         [series]="multiSeries"
+        [hasError]="error()"
+        [error]="error() ? 'Error loading data' : undefined"
         [showValues]="true"
         [showLegend]="true"
         exportFilename=""
@@ -123,6 +130,8 @@
     <div style="height: 320px; width: 100%">
       <clr-line-chart
         [series]="multiSeries"
+        [hasError]="error()"
+        [error]="error() ? 'Error loading data' : undefined"
         [showValueOnHover]="true"
         [showLegend]="true"
         exportFilename=""
@@ -140,6 +149,8 @@
     <div style="height: 200px; width: 100%">
       <clr-line-chart
         [series]="emptySeries"
+        [hasError]="error()"
+        [error]="error() ? 'Error loading data' : undefined"
         [loading]="false"
         style="display: block; width: 100%; height: 100%"
       ></clr-line-chart>
@@ -154,6 +165,8 @@
     <div style="height: 320px; width: 100%">
       <clr-line-chart
         [series]="multiSeries"
+        [hasError]="error()"
+        [error]="error() ? 'Error loading data' : undefined"
         [showLegend]="true"
         xAxisLabel="Month"
         yAxisLabel="Revenue (€)"
@@ -171,6 +184,8 @@
     <div style="height: 250px; width: 100%">
       <clr-line-chart
         [series]="singleSeries"
+        [hasError]="error()"
+        [error]="error() ? 'Error loading data' : undefined"
         [loading]="true"
         style="display: block; width: 100%; height: 100%"
       ></clr-line-chart>

@@ -8,6 +8,7 @@
 
 <!-- Controls -->
 <div style="margin-bottom: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center">
+  <button class="btn btn-outline" (click)="toggleError()">Toggle Error (current: {{ error() }})</button>
   <button class="btn btn-outline" (click)="toggleLoading()">Toggle Loading (current: {{ loading() }})</button>
   <button class="btn btn-outline" (click)="toggleLegend()">Toggle Legend (current: {{ showLegend() }})</button>
   <button class="btn btn-outline" (click)="toggleExportButton()">
@@ -46,6 +47,8 @@
       <clr-combo-chart
         [barSeries]="barSeries"
         [lineSeries]="lineSeries"
+        [hasError]="error()"
+        [error]="error() ? 'Error loading data' : undefined"
         [loading]="loading()"
         [showLegend]="showLegend()"
         [showExportButton]="showExportButton()"
@@ -65,6 +68,8 @@
       <clr-combo-chart
         [barSeries]="barSeries"
         [lineSeries]="barsOnlyLineSeries"
+        [hasError]="error()"
+        [error]="error() ? 'Error loading data' : undefined"
         [loading]="loading()"
         [showLegend]="showLegend()"
         [showExportButton]="showExportButton()"
@@ -84,6 +89,8 @@
       <clr-combo-chart
         [barSeries]="linesOnlyBarSeries"
         [lineSeries]="lineSeries"
+        [hasError]="error()"
+        [error]="error() ? 'Error loading data' : undefined"
         [loading]="loading()"
         [showLegend]="showLegend()"
         [showExportButton]="showExportButton()"
@@ -103,6 +110,8 @@
       <clr-combo-chart
         [barSeries]="barSeries"
         [lineSeries]="lineSeries"
+        [hasError]="error()"
+        [error]="error() ? 'Error loading data' : undefined"
         tooltipOrientation="bottom"
         [loading]="loading()"
         exportFilename=""
@@ -123,6 +132,8 @@
       <clr-combo-chart
         [barSeries]="rttBarSeries"
         [lineSeries]="rttLineSeries"
+        [hasError]="error()"
+        [error]="error() ? 'Error loading data' : undefined"
         [showLegend]="true"
         xAxisLabel="Hour of Day"
         yAxisLabel="Number of Calls"
@@ -144,6 +155,8 @@
       <clr-combo-chart
         [barSeries]="barSeries"
         [lineSeries]="lineSeries"
+        [hasError]="error()"
+        [error]="error() ? 'Error loading data' : undefined"
         [showLegend]="true"
         xAxisLabel="Month"
         yAxisLabel="Amount"
@@ -170,6 +183,8 @@
       <clr-combo-chart
         [barSeries]="barSeries"
         [lineSeries]="lineSeries"
+        [hasError]="error()"
+        [error]="error() ? 'Error loading data' : undefined"
         [showLegend]="true"
         [yBarMax]="500"
         [yLineMax]="300"
@@ -198,6 +213,8 @@
       <clr-combo-chart
         [barSeries]="clippingBarSeries"
         [lineSeries]="clippingLineSeries"
+        [hasError]="error()"
+        [error]="error() ? 'Error loading data' : undefined"
         [showLegend]="true"
         [yBarMax]="200"
         [yLineMax]="100"
@@ -226,6 +243,8 @@
       <clr-combo-chart
         [barSeries]="ratioBarSeries"
         [lineSeries]="ratioLineSeries"
+        [hasError]="error()"
+        [error]="error() ? 'Error loading data' : undefined"
         [showLegend]="true"
         xAxisLabel="Month"
         yAxisLabel="Rate (max 1)"
@@ -246,6 +265,8 @@
       <clr-combo-chart
         [barSeries]="emptyBarSeries"
         [lineSeries]="emptyLineSeries"
+        [hasError]="error()"
+        [error]="error() ? 'Error loading data' : undefined"
         exportFilename=""
         style="display: block; width: 100%; height: 100%"
       ></clr-combo-chart>

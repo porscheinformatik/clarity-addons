@@ -17,6 +17,7 @@ const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
   imports: [FormsModule, ClrAlertModule, ClrChartsModule],
 })
 export class LineChartDemo {
+  protected readonly error = signal(false);
   protected readonly loading = signal(false);
   protected readonly exportFilename = signal('line-chart');
   protected readonly showArea = signal(false);
@@ -59,6 +60,10 @@ export class LineChartDemo {
   ];
 
   public emptySeries: LineChartSeries[] = [];
+
+  public toggleError(): void {
+    this.error.set(!this.error());
+  }
 
   public toggleLoading(): void {
     this.loading.set(!this.loading());

@@ -17,6 +17,7 @@ const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
   imports: [FormsModule, ClrAlertModule, ClrChartsModule],
 })
 export class AreaChartDemo {
+  protected readonly error = signal(false);
   protected readonly loading = signal(false);
   protected readonly exportFilename = signal('area-chart');
   protected readonly showLegend = signal(true);
@@ -54,6 +55,10 @@ export class AreaChartDemo {
   ];
 
   protected emptySeries: AreaChartSeries[] = [];
+
+  protected toggleError(): void {
+    this.error.set(!this.error());
+  }
 
   public toggleLoading(): void {
     this.loading.set(!this.loading());

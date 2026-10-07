@@ -14,6 +14,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { color as d3color, max as d3max, scaleLinear as d3scaleLinear, select as d3select, Selection } from 'd3';
+import { ERROR_ALERT_MESSAGE, ERROR_ALERT_TYPE } from '../constants';
 import { toChartColor } from '../utils';
 import { ChartBase } from '../shared/chart-base';
 
@@ -135,6 +136,8 @@ export class FunnelChartComponent extends ChartBase<FunnelDataPoint> implements 
   public readonly showExportButton = input(false);
   public readonly exportButtonTitle = input<string>('Export');
   public readonly exportFilename = input<string>('funnel-chart');
+  public readonly hasError = input<boolean>(false);
+  public readonly error = input<string>(ERROR_ALERT_MESSAGE);
 
   /** Rendering mode. 'default' = horizontal bars with sections; 'centered' = centered trapezoid funnel. */
   public readonly orientation = input<'default' | 'centered'>('default');
@@ -872,4 +875,11 @@ export class FunnelChartComponent extends ChartBase<FunnelDataPoint> implements 
     const factor = 10 ** decimals;
     return Math.round(factor * value) / factor;
   }
+
+  public readonly alertMessageAndType = computed<[string, string] | undefined>(() => {
+    if (this.hasError()) {
+      return [this.error(), ERROR_ALERT_TYPE];
+    }
+    return undefined;
+  });
 }

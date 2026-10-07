@@ -8,6 +8,7 @@
 
 <!-- Controls -->
 <div style="margin-bottom: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center">
+  <button class="btn btn-outline" (click)="toggleError()">Toggle Error (current: {{ error() }})</button>
   <button class="btn btn-outline" (click)="toggleLoading()">Toggle Loading (current: {{ loading() }})</button>
   <button class="btn btn-outline" (click)="toggleExportButton()">
     Toggle Export Button (current: {{ showExportButton() }})
@@ -32,6 +33,8 @@
     <div style="height: 400px; width: 100%">
       <clr-funnel-chart
         [data]="pipelineData"
+        [hasError]="error()"
+        [error]="error() ? 'Error loading data' : undefined"
         [loading]="loading()"
         [showExportButton]="showExportButton()"
         exportFilename="sales-pipeline"
@@ -51,6 +54,8 @@
     <div style="height: 450px; width: 100%">
       <clr-funnel-chart
         [data]="pipelineData"
+        [hasError]="error()"
+        [error]="error() ? 'Error loading data' : undefined"
         [loading]="loading()"
         [showExportButton]="showExportButton()"
         orientation="centered"
@@ -69,6 +74,8 @@
     <div style="height: 280px; width: 100%">
       <clr-funnel-chart
         [data]="minimalData"
+        [hasError]="error()"
+        [error]="error() ? 'Error loading data' : undefined"
         exportFilename=""
         (valueClicked)="onValueClicked($event)"
         style="display: block; width: 100%; height: 100%"
@@ -84,6 +91,8 @@
     <div style="height: 380px; width: 100%">
       <clr-funnel-chart
         [data]="pipelineData"
+        [hasError]="error()"
+        [error]="error() ? 'Error loading data' : undefined"
         [chartLabels]="germanChartLabels"
         exportFilename=""
         (valueClicked)="onValueClicked($event)"
@@ -100,6 +109,8 @@
     <div style="height: 380px; width: 100%">
       <clr-funnel-chart
         [data]="pipelineData"
+        [hasError]="error()"
+        [error]="error() ? 'Error loading data' : undefined"
         [barGap]="8"
         exportFilename=""
         (valueClicked)="onValueClicked($event)"
@@ -118,6 +129,8 @@
     <div style="height: 380px; width: 100%">
       <clr-funnel-chart
         [data]="pipelineData"
+        [hasError]="error()"
+        [error]="error() ? 'Error loading data' : undefined"
         [sectionColors]="customSectionColors"
         exportFilename=""
         (valueClicked)="onValueClicked($event)"
@@ -136,6 +149,8 @@
     <div style="height: 380px; width: 100%">
       <clr-funnel-chart
         [data]="pipelineData"
+        [hasError]="error()"
+        [error]="error() ? 'Error loading data' : undefined"
         [sectionColors]="cssVarColors"
         exportFilename=""
         (valueClicked)="onValueClicked($event)"
@@ -154,6 +169,8 @@
     <div style="height: 400px; width: 100%">
       <clr-funnel-chart
         [data]="pipelineData"
+        [hasError]="error()"
+        [error]="error() ? 'Error loading data' : undefined"
         [tooltipOrientation]="'top'"
         [prefixTotalWithLabel]="true"
         [tooltipPercentOfTotal]="'of all leads'"
@@ -174,6 +191,8 @@
     <div style="height: 280px; width: 100%">
       <clr-funnel-chart
         [data]="zeroData"
+        [hasError]="error()"
+        [error]="error() ? 'Error loading data' : undefined"
         [emptyChartWhenNoData]="true"
         exportFilename=""
         style="display: block; width: 100%; height: 100%"
@@ -189,6 +208,8 @@
     <div style="height: 300px; width: 100%">
       <clr-funnel-chart
         [data]="pipelineData"
+        [hasError]="error()"
+        [error]="error() ? 'Error loading data' : undefined"
         [loading]="true"
         exportFilename=""
         style="display: block; width: 100%; height: 100%"

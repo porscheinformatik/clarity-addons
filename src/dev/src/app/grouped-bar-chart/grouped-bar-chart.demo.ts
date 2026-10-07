@@ -22,6 +22,7 @@ const COLORS = ['--cds-global-color-lavender-400', '#00828b', '#c1326e', '#5b40b
   imports: [FormsModule, ClrAlertModule, ClrChartsModule],
 })
 export class GroupedBarChartDemo {
+  protected readonly error = signal(false);
   protected readonly orientation = signal<'horizontal' | 'vertical'>('horizontal');
   protected readonly barSizePx = signal(12);
   protected readonly yAxisLabelWidthPx = signal(70);
@@ -67,6 +68,10 @@ export class GroupedBarChartDemo {
     { key: `${group.key}-costs`, groupKey: group.key, label: 'Costs', value: 40 + i * 4, color: COLORS[1] },
     { key: `${group.key}-profit`, groupKey: group.key, label: 'Profit', value: 20 + i * 2, color: COLORS[2] },
   ]);
+
+  protected toggleError(): void {
+    this.error.set(!this.error());
+  }
 
   protected toggleLoading(): void {
     this.loading.set(!this.loading());

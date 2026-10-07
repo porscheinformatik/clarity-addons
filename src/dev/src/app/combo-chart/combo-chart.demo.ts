@@ -22,6 +22,7 @@ const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
   imports: [FormsModule, ClrAlertModule, ClrChartsModule],
 })
 export class ComboChartDemo {
+  protected readonly error = signal(false);
   protected readonly loading = signal(false);
   protected readonly showLegend = signal(true);
   protected readonly showExportButton = signal(false);
@@ -251,6 +252,10 @@ export class ComboChartDemo {
   ];
 
   // ── Actions ───────────────────────────────────────────────────────────────────
+
+  protected toggleError(): void {
+    this.error.set(!this.error());
+  }
 
   public toggleLoading(): void {
     this.loading.set(!this.loading());
