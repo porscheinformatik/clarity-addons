@@ -712,6 +712,8 @@ $cell-min-width: var(--cds-global-space-12);
         background-image: mixins.generateEmptyTreetablePlaceholder();
       }
     }
+
+    @include mixins.compact-placeholder('treetable');
   }
   /**
    * Smart popover contents

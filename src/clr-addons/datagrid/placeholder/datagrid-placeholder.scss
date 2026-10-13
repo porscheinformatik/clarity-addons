@@ -1,0 +1,7 @@
+@use '../../mixins';
+
+@include mixins.exports('datagrid-placeholder.clr-addons') {
+  .datagrid-host {
+    @include mixins.compact-placeholder('datagrid');
+  }
+}
