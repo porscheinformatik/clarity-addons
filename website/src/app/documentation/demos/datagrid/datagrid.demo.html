@@ -736,22 +736,24 @@
       </li>
     </ul>
     <div style="margin-bottom: 2rem">
-      <clr-export-datagrid-button
-        [datagrid]="datagrid"
-        [datagridRef]="datagridRef"
-        [isBackendExport]="false"
-        [exportTitlePrefix]="'MyExport'"
-        [exportButtonPosition]="'right'"
-        [customExportTypes]="customExportType"
-        (customBackendExport)="onCustomBackendExport($event)"
-      >
-      </clr-export-datagrid-button>
       <clr-datagrid
         #datagrid
         class="datagrid-full-width datagrid-full-height"
         [(clrDgSelected)]="selectedEntry"
         clrDgSelectionType="multi"
       >
+        <clr-dg-action-bar>
+          <clr-export-datagrid-button
+            [datagrid]="datagrid"
+            [datagridRef]="datagridRef"
+            [isBackendExport]="false"
+            [exportTitlePrefix]="'MyExport'"
+            [exportButtonPosition]="'right'"
+            [customExportTypes]="customExportType"
+            (customBackendExport)="onCustomBackendExport($event)"
+          >
+          </clr-export-datagrid-button>
+        </clr-dg-action-bar>
         <clr-dg-column [clrDgField]="'column1'">
           <ng-container *clrDgHideableColumn="{ hidden: false }">Column 1</ng-container>
         </clr-dg-column>
@@ -774,6 +776,64 @@
     </div>
     <!-- Code Example -->
     <clr-code-snippet [clrCode]="exportButtonExample"></clr-code-snippet>
+    <p>
+      To show additional action buttons together with the export button, place both inside the
+      <code>clr-dg-action-bar</code> of the datagrid.
+    </p>
+    <div style="margin-bottom: 2rem">
+      <clr-datagrid #toolbarDatagrid class="datagrid-full-width datagrid-full-height">
+        <clr-dg-action-bar>
+          <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-secondary">Grant</button>
+            <button type="button" class="btn btn-sm btn-secondary">Reject</button>
+            <button type="button" class="btn btn-sm btn-secondary">Revoke</button>
+          </div>
+          <clr-export-datagrid-button
+            [datagrid]="toolbarDatagrid"
+            [datagridRef]="toolbarDatagridRef"
+            [isBackendExport]="false"
+            [exportTitlePrefix]="'ToolbarExport'"
+            [exportButtonSize]="'small'"
+          >
+          </clr-export-datagrid-button>
+        </clr-dg-action-bar>
+        <clr-dg-column [clrDgField]="'column1'">Column 1</clr-dg-column>
+        <clr-dg-column [clrDgField]="'column2'">Column 2</clr-dg-column>
+        <clr-dg-column [clrDgField]="'column3'">Column 3</clr-dg-column>
+        <clr-dg-row *clrDgItems="let entry of exportableEntries" [clrDgItem]="entry">
+          <clr-dg-cell>{{ entry.column1 }}</clr-dg-cell>
+          <clr-dg-cell>{{ entry.column2 }}</clr-dg-cell>
+          <clr-dg-cell>{{ entry.column3 }}</clr-dg-cell>
+        </clr-dg-row>
+      </clr-datagrid>
+    </div>
+    <clr-code-snippet [clrCode]="exportToolbarExample"></clr-code-snippet>
+    <p>
+      Without an action bar, use <code>exportButtonPosition</code> to place the export button on the left side above the
+      datagrid:
+    </p>
+    <div style="margin-bottom: 2rem">
+      <clr-export-datagrid-button
+        [datagrid]="toolbarLeftDatagrid"
+        [datagridRef]="toolbarLeftDatagridRef"
+        [isBackendExport]="false"
+        [exportTitlePrefix]="'ToolbarLeftExport'"
+        [exportButtonPosition]="'left'"
+        [exportButtonSize]="'small'"
+      >
+      </clr-export-datagrid-button>
+      <clr-datagrid #toolbarLeftDatagrid class="datagrid-full-width datagrid-full-height">
+        <clr-dg-column [clrDgField]="'column1'">Column 1</clr-dg-column>
+        <clr-dg-column [clrDgField]="'column2'">Column 2</clr-dg-column>
+        <clr-dg-column [clrDgField]="'column3'">Column 3</clr-dg-column>
+        <clr-dg-row *clrDgItems="let entry of exportableEntries" [clrDgItem]="entry">
+          <clr-dg-cell>{{ entry.column1 }}</clr-dg-cell>
+          <clr-dg-cell>{{ entry.column2 }}</clr-dg-cell>
+          <clr-dg-cell>{{ entry.column3 }}</clr-dg-cell>
+        </clr-dg-row>
+      </clr-datagrid>
+    </div>
+    <clr-code-snippet [clrCode]="exportToolbarLeftExample"></clr-code-snippet>
     <p>
       You can choose to offer only specific export types to users (e.g., only ALL or FILTERED). For each export type,
       you can define a custom display value (such as a translated label) using the <code>value</code> property. If

@@ -99,18 +99,20 @@ const PERSISTED_STATE = `
 </clr-datagrid>`;
 
 const EXPORT_BUTTON_EXAMPLE = `
-<clr-export-datagrid-button
-  [datagrid]="datagrid"
-  [datagridRef]="datagridRef"
-  [exportTypesToShow]="exportType"
-  [customExportTypes]="customExportType"
-  [isBackendExport]="false"
-  [exportTitlePrefix]="'MyExport'"
-  [exportButtonPosition]="'right'"
-  (backendExport)="onBackendExport($event)"
-  (customBackendExport)="onCustomBackendExport($event)">
-</clr-export-datagrid-button>
 <clr-datagrid #datagrid class="datagrid-full-width datagrid-full-height" [(clrDgSelected)]="selected">
+  <clr-dg-action-bar>
+    <clr-export-datagrid-button
+      [datagrid]="datagrid"
+      [datagridRef]="datagridRef"
+      [exportTypesToShow]="exportType"
+      [customExportTypes]="customExportType"
+      [isBackendExport]="false"
+      [exportTitlePrefix]="'MyExport'"
+      [exportButtonPosition]="'right'"
+      (backendExport)="onBackendExport($event)"
+      (customBackendExport)="onCustomBackendExport($event)">
+    </clr-export-datagrid-button>
+  </clr-dg-action-bar>
   <clr-dg-column [clrDgField]="'column1'">
     <ng-container *clrDgHideableColumn="{ hidden: false }">Column 1</ng-container>
   </clr-dg-column>
@@ -131,6 +133,24 @@ const EXPORT_BUTTON_EXAMPLE = `
   </clr-dg-row>
 </clr-datagrid>
 `;
+
+const EXPORT_TOOLBAR = `<clr-datagrid #datagrid>
+  <clr-dg-action-bar>
+    <div class="btn-group">
+      <button type="button" class="btn btn-sm btn-secondary">Grant</button>
+      <button type="button" class="btn btn-sm btn-secondary">Reject</button>
+    </div>
+    <clr-export-datagrid-button [datagrid]="datagrid" [datagridRef]="datagridRef"></clr-export-datagrid-button>
+  </clr-dg-action-bar>
+  ...
+</clr-datagrid>`;
+
+const EXPORT_TOOLBAR_LEFT = `<clr-export-datagrid-button
+  [datagrid]="datagrid"
+  [datagridRef]="datagridRef"
+  [exportButtonPosition]="'left'"
+></clr-export-datagrid-button>
+<clr-datagrid #datagrid>...</clr-datagrid>`;
 
 const EXPORT_TYPES_DISPLAY = `exportType: ExportType[] = [
   {
@@ -490,6 +510,8 @@ export class DatagridDemo extends ClarityDocComponent {
   numberFilterExample = NUMBER_FILTER_EXAMPLE;
   numberFilterSizeExample = NUMBER_FILTER_SIZE_EXAMPLE;
   exportButtonExample = EXPORT_BUTTON_EXAMPLE;
+  exportToolbarExample = EXPORT_TOOLBAR;
+  exportToolbarLeftExample = EXPORT_TOOLBAR_LEFT;
   exportTypesDisplayExample = EXPORT_TYPES_DISPLAY;
   customExportTypesDisplayExample = CUSTOM_EXPORT_TYPES_DISPLAY;
   exportTypeBackend = EXPORT_TYPE_BACKEND;
@@ -583,7 +605,7 @@ export class DatagridDemo extends ClarityDocComponent {
 
   customExportType: CustomExportType[] = [
     {
-      id: 'First_column'
+      id: 'First_column',
     },
     {
       id: 'LAST_FIVE_ROWS',
@@ -593,6 +615,10 @@ export class DatagridDemo extends ClarityDocComponent {
 
   @ViewChild('datagrid', { static: false }) datagrid: ClrDatagrid | undefined;
   @ViewChild('datagrid', { static: false, read: ElementRef }) datagridRef?: ElementRef;
+  @ViewChild('toolbarDatagrid', { static: false }) toolbarDatagrid: ClrDatagrid | undefined;
+  @ViewChild('toolbarDatagrid', { static: false, read: ElementRef }) toolbarDatagridRef?: ElementRef;
+  @ViewChild('toolbarLeftDatagrid', { static: false }) toolbarLeftDatagrid: ClrDatagrid | undefined;
+  @ViewChild('toolbarLeftDatagrid', { static: false, read: ElementRef }) toolbarLeftDatagridRef?: ElementRef;
 
   constructor(
     public route: ActivatedRoute,
