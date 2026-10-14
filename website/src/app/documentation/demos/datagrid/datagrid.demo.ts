@@ -397,6 +397,20 @@ const COLUMN_REORDER_EXAMPLE_HTML = `
 </clr-datagrid>
 `;
 
+const EMPTY_PLACEHOLDER_EXAMPLE = `
+<clr-datagrid>
+    <clr-dg-column>Name</clr-dg-column>
+    <clr-dg-placeholder>We couldn't find any entries!</clr-dg-placeholder>
+</clr-datagrid>
+`;
+
+const EMPTY_PLACEHOLDER_WIDE_EXAMPLE = `
+<clr-datagrid class="datagrid-placeholder-wide">
+    <clr-dg-column>Name</clr-dg-column>
+    <clr-dg-placeholder>We couldn't find any entries!</clr-dg-placeholder>
+</clr-datagrid>
+`;
+
 const COLUMN_REORDER_EXAMPLE_TS = `
 @Component({
   ...
@@ -492,6 +506,8 @@ export class DatagridDemo extends ClarityDocComponent {
   exportButtonExample = EXPORT_BUTTON_EXAMPLE;
   exportTypesDisplayExample = EXPORT_TYPES_DISPLAY;
   customExportTypesDisplayExample = CUSTOM_EXPORT_TYPES_DISPLAY;
+  emptyPlaceholderExample = EMPTY_PLACEHOLDER_EXAMPLE;
+  emptyPlaceholderWideExample = EMPTY_PLACEHOLDER_WIDE_EXAMPLE;
   exportTypeBackend = EXPORT_TYPE_BACKEND;
   customExportTypeBackend = CUSTOM_EXPORT_TYPE_BACKEND;
   activeFragment;
@@ -583,7 +599,7 @@ export class DatagridDemo extends ClarityDocComponent {
 
   customExportType: CustomExportType[] = [
     {
-      id: 'First_column'
+      id: 'First_column',
     },
     {
       id: 'LAST_FIVE_ROWS',

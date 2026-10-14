@@ -37,7 +37,7 @@
       } @else {
       <ng-content select="clr-tt-row" />
       } @if (empty() && !clrTtLoading()) {
-      <ng-content select="clr-tt-placeholder" />
+      <ng-content select="clr-tt-placeholder"><clr-tt-placeholder /></ng-content>
       }
     </div>
   </div>

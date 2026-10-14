@@ -133,6 +133,17 @@ class AsyncColumnTestComponent {
   readonly showMiddle = signal(false);
 }
 
+@Component({
+  template: `
+    <clr-treetable>
+      <clr-tt-column>A</clr-tt-column>
+      <clr-tt-placeholder>Nothing here</clr-tt-placeholder>
+    </clr-treetable>
+  `,
+  standalone: false,
+})
+class CustomPlaceholderTestComponent {}
+
 describe('ClrTreetable', () => {
   const TreetableInputs: Record<string, string> = {
     loading: 'clrTtLoading',
@@ -155,6 +166,7 @@ describe('ClrTreetable', () => {
         ActionOverflowTestComponent,
         SelectionTestComponent,
         AsyncColumnTestComponent,
+        CustomPlaceholderTestComponent,
       ],
       imports: [ClarityModule, FormsModule, ClrTreetableModule, BrowserAnimationsModule],
     }).compileComponents();
@@ -188,6 +200,26 @@ describe('ClrTreetable', () => {
       expect(component.selectionType()).toBe(SelectionType.None);
       expect(component.showSelection()).toBe(false);
       expect(component.hasActionOverflow()).toBe(false);
+    });
+
+    it('should render the default placeholder icon without text when no placeholder is declared', () => {
+      const placeholder = fixture.debugElement.query(By.css('[data-testid="treetable-placeholder"]'));
+
+      expect(placeholder).toBeTruthy();
+      expect(placeholder.query(By.css('[data-testid="treetable-placeholder-image"]'))).toBeTruthy();
+      expect(placeholder.nativeElement.textContent.trim()).toBe('');
+    });
+  });
+
+  describe('custom placeholder', () => {
+    it('should render the declared placeholder text instead of the default one', () => {
+      const hostFixture = TestBed.createComponent(CustomPlaceholderTestComponent);
+      hostFixture.detectChanges();
+
+      const placeholders = hostFixture.debugElement.queryAll(By.css('[data-testid="treetable-placeholder"]'));
+
+      expect(placeholders.length).toBe(1);
+      expect(placeholders[0].nativeElement.textContent.trim()).toBe('Nothing here');
     });
   });
 

@@ -36,6 +36,14 @@
           >
         </li>
         <li>
+          <a
+            routerLink="."
+            fragment="empty-placeholder"
+            [class.active]="(activeFragment | async) === 'empty-placeholder'"
+            >Empty placeholder</a
+          >
+        </li>
+        <li>
           <a routerLink="." fragment="selection" [class.active]="(activeFragment | async) === 'selection'">Selection</a>
         </li>
         <li>
@@ -337,6 +345,30 @@
     </clr-datagrid>
 
     <clr-code-snippet [clrCode]="numberFilterSizeExample"></clr-code-snippet>
+
+    <!-- EMPTY PLACEHOLDER -->
+    <h3 id="empty-placeholder">Empty placeholder</h3>
+    <p>
+      An empty datagrid shows a compact placeholder (icon and text side by side) by default. To restore the wider
+      placeholder of the Clarity datagrid, add the class <code class="clr-code">datagrid-placeholder-wide</code> to the
+      <code class="clr-code">clr-datagrid</code>.
+    </p>
+
+    <h4>Compact (default)</h4>
+    <clr-datagrid>
+      <clr-dg-column>Name</clr-dg-column>
+      <clr-dg-placeholder>We couldn't find any entries!</clr-dg-placeholder>
+    </clr-datagrid>
+
+    <clr-code-snippet [clrCode]="emptyPlaceholderExample"></clr-code-snippet>
+
+    <h4>Wide</h4>
+    <clr-datagrid class="datagrid-placeholder-wide">
+      <clr-dg-column>Name</clr-dg-column>
+      <clr-dg-placeholder>We couldn't find any entries!</clr-dg-placeholder>
+    </clr-datagrid>
+
+    <clr-code-snippet [clrCode]="emptyPlaceholderWideExample"></clr-code-snippet>
 
     <!-- SELECTION -->
     <h3 id="selection">Selection</h3>

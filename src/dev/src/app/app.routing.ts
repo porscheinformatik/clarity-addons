@@ -235,6 +235,12 @@ export const APP_ROUTES: Routes = [
     data: { navGroup: 'Datagrid & Lists' },
   },
   {
+    path: 'datagrid-placeholder',
+    loadComponent: () =>
+      import('./datagrid-placeholder/datagrid-placeholder.demo').then(m => m.DatagridPlaceholderDemo),
+    data: { navGroup: 'Datagrid & Lists' },
+  },
+  {
     path: 'datagrid-reorder',
     loadComponent: () => import('./datagrid-reorder/datagrid-reorder.demo').then(m => m.DatagridReorderDemo),
     data: { navGroup: 'Datagrid & Lists' },

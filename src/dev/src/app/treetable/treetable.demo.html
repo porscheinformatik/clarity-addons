@@ -650,6 +650,22 @@
   <clr-tt-placeholder>No users found</clr-tt-placeholder>
 </clr-treetable>
 
+<h4>Empty treetable (default placeholder, icon only)</h4>
+<clr-treetable>
+  <clr-tt-column>User ID</clr-tt-column>
+  <clr-tt-column>Name</clr-tt-column>
+  <clr-tt-column>Creation date</clr-tt-column>
+</clr-treetable>
+
+<h4>Empty treetable (wide placeholder)</h4>
+<clr-treetable class="treetable-placeholder-wide">
+  <clr-tt-column>User ID</clr-tt-column>
+  <clr-tt-column>Name</clr-tt-column>
+  <clr-tt-column>Creation date</clr-tt-column>
+
+  <clr-tt-placeholder>No users found</clr-tt-placeholder>
+</clr-treetable>
+
 <h4>Fixed height</h4>
 <clr-treetable [clrClickableRows]="false" style="height: 250px">
   <clr-tt-column class="clr-col-lg-10 clr-col-md-8">Position<br />and more</clr-tt-column>
