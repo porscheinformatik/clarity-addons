@@ -119,4 +119,7 @@
       <span data-testid="location-bar-separator">/</span>
     </clr-location-bar-node>
   }
+  @if (loading()) {
+    <span class="spinner spinner-inline locationbar-spinner" data-testid="location-bar-loading-spinner"></span>
+  }
 }
