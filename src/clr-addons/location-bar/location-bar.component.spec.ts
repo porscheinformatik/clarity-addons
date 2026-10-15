@@ -167,4 +167,27 @@ describe('LocationBarComponent', () => {
       return fixture.whenStable();
     });
   }));
+
+  it('Ignores children of a previous parent that arrive late', waitForAsync(() => {
+    const provider = TestBed.inject(CONTENT_PROVIDER) as TestContentProvider;
+    const staleChildren$ = new Subject<LocationBarNode<TestNodeId>[]>();
+    const nodeFixture = TestBed.createComponent(LocationBarNodeComponent<TestNodeId>);
+    const nodeComponent = nodeFixture.componentInstance;
+    const parentA = new LocationBarNode(new TestNodeId('a'), 'A');
+    const parentB = new LocationBarNode(new TestNodeId('b'), 'B');
+    const childOfB = new LocationBarNode(new TestNodeId('childOfB'), 'Child of B');
+    parentB.setChildren([childOfB]);
+    spyOn(provider, 'getLazyChildren').and.returnValue(staleChildren$);
+
+    nodeComponent.parentNode = parentA;
+    nodeComponent.parentNode = parentB;
+
+    nodeFixture.whenStable().then(() => {
+      staleChildren$.next([new LocationBarNode(new TestNodeId('childOfA'), 'Child of A')]);
+      return nodeFixture.whenStable().then(() => {
+        expect(parentB.getChildren()).toEqual([childOfB]);
+        expect(nodeComponent.loading()).toBeFalse();
+      });
+    });
+  }));
 });

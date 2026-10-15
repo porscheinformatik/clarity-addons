@@ -59,10 +59,11 @@ export class LocationBarNodeComponent<T extends NodeId> implements OnChanges {
 
       this.loading.set(needsLoading);
       children$.toPromise().then(nodes => {
-        this.prepareChildren(nodes || []);
-        if (this._parentNode === parentNode) {
-          this.loading.set(false);
+        if (this._parentNode !== parentNode) {
+          return;
         }
+        this.prepareChildren(nodes || []);
+        this.loading.set(false);
       });
     }
   }
