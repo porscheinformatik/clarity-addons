@@ -66,6 +66,10 @@ export class ExportableDatagridComponent {
 
   @ViewChild('datagrid', { static: false }) datagrid: ClrDatagrid | undefined;
   @ViewChild('datagrid', { static: false, read: ElementRef }) datagridRef?: ElementRef;
+  @ViewChild('toolbarDatagrid', { static: false }) toolbarDatagrid: ClrDatagrid | undefined;
+  @ViewChild('toolbarDatagrid', { static: false, read: ElementRef }) toolbarDatagridRef?: ElementRef;
+  @ViewChild('toolbarLeftDatagrid', { static: false }) toolbarLeftDatagrid: ClrDatagrid | undefined;
+  @ViewChild('toolbarLeftDatagrid', { static: false, read: ElementRef }) toolbarLeftDatagridRef?: ElementRef;
 
   onBackendExport(type: ExportTypeEnum): void {
     console.log('Exporting data for type: ', type);
