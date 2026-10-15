@@ -6,11 +6,12 @@ import {
   OnChanges,
   Optional,
   Output,
+  signal,
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import { angleIcon, ClarityIcons, treeViewIcon } from '@clr/angular/icon';
-import { of } from 'rxjs';
+import { catchError, of } from 'rxjs';
 import { LocationBarNode, NodeId } from '../location-bar.model';
 import { CONTENT_PROVIDER, LocationBarContentProvider } from '../location-bar.provider';
 import { SearchRequestModel, SearchResultModel } from '../location-bar.search.model';
@@ -40,6 +41,8 @@ export class LocationBarNodeComponent<T extends NodeId> implements OnChanges {
 
   searchText: string;
 
+  readonly loading = signal(false);
+
   focus: boolean;
 
   readonly SEARCH_ITEM_STORAGE_KEY: string = 'searchedItem';
@@ -49,9 +52,19 @@ export class LocationBarNodeComponent<T extends NodeId> implements OnChanges {
   set parentNode(parentNode: LocationBarNode<T>) {
     this._parentNode = parentNode;
     if (this._parentNode) {
-      const children$ = this._parentNode.getChildren() ? of(this._parentNode.getChildren()) : this.getLazyChildren();
+      const needsLoading = !this._parentNode.getChildren();
+      const children$ = (needsLoading ? this.getLazyChildren() : of(this._parentNode.getChildren())).pipe(
+        catchError(() => of([]))
+      );
 
-      children$.toPromise().then(nodes => this.prepareChildren(nodes || []));
+      this.loading.set(needsLoading);
+      children$.toPromise().then(nodes => {
+        if (this._parentNode !== parentNode) {
+          return;
+        }
+        this.prepareChildren(nodes || []);
+        this.loading.set(false);
+      });
     }
   }
   @Input('clrSearchResultItems') searchResultItems: SearchResultModel[] = [];

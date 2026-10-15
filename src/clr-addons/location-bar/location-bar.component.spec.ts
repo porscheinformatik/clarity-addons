@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ClrDropdownModule, ClrIcon } from '@clr/angular';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject, throwError } from 'rxjs';
 import { LocationBarNodeComponent } from './location-bar-node/location-bar-node.component';
 import { LocationBarComponent } from './location-bar.component';
 import { LocationBarNode, NodeId } from './location-bar.model';
@@ -96,6 +96,98 @@ describe('LocationBarComponent', () => {
 
       /* THEN */
       expect(component.selectionChanged.emit).toHaveBeenCalledWith([nodeId]);
+    });
+  }));
+
+  it('Shows a spinner while lazy children are loading and hides it afterwards', waitForAsync(() => {
+    /* GIVEN */
+    const provider = TestBed.inject(CONTENT_PROVIDER) as TestContentProvider;
+    const children$ = new Subject<LocationBarNode<TestNodeId>[]>();
+    spyOn(provider, 'getLazyChildren').and.returnValue(children$);
+    component.roots = [new LocationBarNode(new TestNodeId('root'), 'Root')];
+
+    /* WHEN */
+    fixture.detectChanges();
+
+    /* THEN */
+    const loadingSelector = '[data-testid="location-bar-loading-spinner"]';
+    fixture
+      .whenStable()
+      .then(() => {
+        fixture.detectChanges();
+        expect(fixture.debugElement.query(By.css(loadingSelector))).toBeTruthy();
+
+        children$.next([new LocationBarNode(new TestNodeId('child'), 'Child')]);
+        children$.complete();
+        return fixture.whenStable();
+      })
+      .then(() => {
+        fixture.detectChanges();
+        expect(fixture.debugElement.query(By.css(loadingSelector))).toBeNull();
+      });
+  }));
+
+  it('Shows a spinner until roots are available, but not for an empty root list', () => {
+    const rootsSpinner = '[data-testid="location-bar-roots-spinner"]';
+    component.roots = null;
+    fixture.detectChanges();
+    expect(fixture.debugElement.query(By.css(rootsSpinner))).toBeTruthy();
+
+    component.roots = [];
+    fixture.detectChanges();
+    expect(fixture.debugElement.query(By.css(rootsSpinner))).toBeNull();
+
+    component.roots = [new LocationBarNode(new TestNodeId('root'), 'Root')];
+    fixture.detectChanges();
+    expect(fixture.debugElement.query(By.css(rootsSpinner))).toBeNull();
+  });
+
+  it('Hides the spinner when loading the children fails', waitForAsync(() => {
+    const provider = TestBed.inject(CONTENT_PROVIDER) as TestContentProvider;
+    spyOn(provider, 'getLazyChildren').and.returnValue(throwError(() => new Error('boom')));
+    component.roots = [new LocationBarNode(new TestNodeId('root'), 'Root')];
+    fixture.detectChanges();
+
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      expect(fixture.debugElement.query(By.css('[data-testid="location-bar-loading-spinner"]'))).toBeNull();
+    });
+  }));
+
+  it('Does not fail when the view is destroyed before the children arrive', waitForAsync(() => {
+    const provider = TestBed.inject(CONTENT_PROVIDER) as TestContentProvider;
+    const children$ = new Subject<LocationBarNode<TestNodeId>[]>();
+    spyOn(provider, 'getLazyChildren').and.returnValue(children$);
+    component.roots = [new LocationBarNode(new TestNodeId('root'), 'Root')];
+    fixture.detectChanges();
+
+    fixture.whenStable().then(() => {
+      fixture.destroy();
+      expect(() => children$.next([])).not.toThrow();
+      return fixture.whenStable();
+    });
+  }));
+
+  it('Ignores children of a previous parent that arrive late', waitForAsync(() => {
+    const provider = TestBed.inject(CONTENT_PROVIDER) as TestContentProvider;
+    const staleChildren$ = new Subject<LocationBarNode<TestNodeId>[]>();
+    const nodeFixture = TestBed.createComponent(LocationBarNodeComponent<TestNodeId>);
+    const nodeComponent = nodeFixture.componentInstance;
+    const parentA = new LocationBarNode(new TestNodeId('a'), 'A');
+    const parentB = new LocationBarNode(new TestNodeId('b'), 'B');
+    const childOfB = new LocationBarNode(new TestNodeId('childOfB'), 'Child of B');
+    parentB.setChildren([childOfB]);
+    spyOn(provider, 'getLazyChildren').and.returnValue(staleChildren$);
+
+    nodeComponent.parentNode = parentA;
+    nodeComponent.parentNode = parentB;
+
+    nodeFixture.whenStable().then(() => {
+      staleChildren$.next([new LocationBarNode(new TestNodeId('childOfA'), 'Child of A')]);
+      return nodeFixture.whenStable().then(() => {
+        expect(parentB.getChildren()).toEqual([childOfB]);
+        expect(nodeComponent.loading()).toBeFalse();
+      });
     });
   }));
 });

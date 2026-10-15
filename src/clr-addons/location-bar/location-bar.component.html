@@ -1,5 +1,5 @@
 @if (iconShape) {
-<cds-icon [shape]="iconShape" [title]="iconTitle" data-testid="location-bar-icon"></cds-icon>
+  <cds-icon [shape]="iconShape" [title]="iconTitle" data-testid="location-bar-icon"></cds-icon>
 }
 <clr-location-bar-node
   (selectionChanged)="onSelectionChanged($event)"
@@ -9,3 +9,6 @@
   [clrSearchResultItems]="searchResultItems"
 >
 </clr-location-bar-node>
+@if (!rootsLoaded) {
+  <span class="spinner spinner-inline locationbar-spinner" data-testid="location-bar-roots-spinner"></span>
+}
