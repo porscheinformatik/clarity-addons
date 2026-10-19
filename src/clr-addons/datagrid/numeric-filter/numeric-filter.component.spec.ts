@@ -8,7 +8,9 @@ import { ClrNumericFilterComponent } from './numeric-filter.component';
 
 interface Item {
   amount: number;
-  nested?: { amount: number };
+  nested?: {
+    amount: number;
+  };
 }
 
 @Component({
@@ -31,9 +33,12 @@ class TestComponent {
   dataList: Item[] = [{ amount: 1 }, { amount: 5 }, { amount: 10 }];
   filterValue: [number | null, number | null] = [null, null];
 
-  @ViewChild(ClrNumericFilterComponent) component: ClrNumericFilterComponent<Item>;
-  @ViewChild(ClrDatagrid) datagrid: ClrDatagrid;
-  @ViewChild(ClrDatagridFilter) filter: ClrDatagridFilter;
+  @ViewChild(ClrNumericFilterComponent)
+  component: ClrNumericFilterComponent<Item>;
+  @ViewChild(ClrDatagrid)
+  datagrid: ClrDatagrid;
+  @ViewChild(ClrDatagridFilter)
+  filter: ClrDatagridFilter;
 }
 
 describe('ClrNumericFilterComponent', () => {
@@ -99,7 +104,7 @@ describe('ClrNumericFilterComponent', () => {
     fixture.detectChanges();
 
     expect(fixture.componentInstance.datagrid.rows.length).toBe(3);
-    expect(fixture.componentInstance.component.isActive()).toBeFalse();
+    expect(fixture.componentInstance.component.isActive()).toBe(false);
   }));
 
   it('applies external clrFilterValue changes immediately, without debounce', fakeAsync(() => {
@@ -111,8 +116,8 @@ describe('ClrNumericFilterComponent', () => {
     component.value = [5, null];
     tick();
 
-    expect(component.accepts({ amount: 5 })).toBeTrue();
-    expect(component.accepts({ amount: 1 })).toBeFalse();
+    expect(component.accepts({ amount: 5 })).toBe(true);
+    expect(component.accepts({ amount: 1 })).toBe(false);
 
     component.ngOnDestroy();
   }));
@@ -123,8 +128,8 @@ describe('ClrNumericFilterComponent', () => {
     component.onLowInput(5);
     tick(500);
 
-    expect(component.accepts({ amount: 0, nested: { amount: 10 } })).toBeTrue();
-    expect(component.accepts({ amount: 0, nested: { amount: 1 } })).toBeFalse();
+    expect(component.accepts({ amount: 0, nested: { amount: 10 } })).toBe(true);
+    expect(component.accepts({ amount: 0, nested: { amount: 1 } })).toBe(false);
   }));
 
   it('exposes state for persistence', fakeAsync(() => {
@@ -163,7 +168,7 @@ describe('ClrNumericFilterComponent', () => {
     tick(500);
     fixture.detectChanges();
 
-    expect(fixture.componentInstance.component.isActive()).toBeFalse();
+    expect(fixture.componentInstance.component.isActive()).toBe(false);
     expect(fixture.componentInstance.datagrid.rows.length).toBe(3);
   }));
 
@@ -180,7 +185,7 @@ describe('ClrNumericFilterComponent', () => {
 
     expect(component.state.low).toBeNull();
     expect(component.state.high).toBeNull();
-    expect(component.isActive()).toBeFalse();
+    expect(component.isActive()).toBe(false);
   }));
 
   it('focuses the low input when the filter is opened', fakeAsync(() => {

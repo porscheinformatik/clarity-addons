@@ -1,3 +1,4 @@
+import type { MockedObject } from 'vitest';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ComponentRef } from '@angular/core';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
@@ -8,10 +9,13 @@ describe('ChartExportButtonComponent', () => {
   let fixture: ComponentFixture<ChartExportButtonComponent>;
   let component: ChartExportButtonComponent;
   let componentRef: ComponentRef<ChartExportButtonComponent>;
-  let exportService: jasmine.SpyObj<ChartExportService>;
+  let exportService: MockedObject<ChartExportService>;
 
   beforeEach(async () => {
-    const spy = jasmine.createSpyObj<ChartExportService>('ChartExportService', ['exportSvg', 'exportPng']);
+    const spy = {
+      exportSvg: vi.fn().mockName('ChartExportService.exportSvg'),
+      exportPng: vi.fn().mockName('ChartExportService.exportPng'),
+    };
 
     await TestBed.configureTestingModule({
       imports: [ChartExportButtonComponent],
@@ -21,7 +25,7 @@ describe('ChartExportButtonComponent', () => {
     fixture = TestBed.createComponent(ChartExportButtonComponent);
     component = fixture.componentInstance;
     componentRef = fixture.componentRef;
-    exportService = TestBed.inject(ChartExportService) as jasmine.SpyObj<ChartExportService>;
+    exportService = TestBed.inject(ChartExportService) as MockedObject<ChartExportService>;
     fixture.detectChanges();
   });
 
@@ -50,7 +54,8 @@ describe('ChartExportButtonComponent', () => {
       componentRef.setInput('svgRef', svg);
       componentRef.setInput('filename', 'bar-chart');
       component.export('svg');
-      expect(exportService.exportSvg).toHaveBeenCalledOnceWith(svg, 'bar-chart', undefined);
+      expect(exportService.exportSvg).toHaveBeenCalledTimes(1);
+      expect(exportService.exportSvg).toHaveBeenCalledWith(svg, 'bar-chart', undefined);
     });
 
     it('should call exportPng with the correct svg, filename and legendItems', () => {
@@ -58,7 +63,8 @@ describe('ChartExportButtonComponent', () => {
       componentRef.setInput('svgRef', svg);
       componentRef.setInput('filename', 'line-chart');
       component.export('png');
-      expect(exportService.exportPng).toHaveBeenCalledOnceWith(svg, 'line-chart', undefined);
+      expect(exportService.exportPng).toHaveBeenCalledTimes(1);
+      expect(exportService.exportPng).toHaveBeenCalledWith(svg, 'line-chart', undefined);
     });
   });
 });

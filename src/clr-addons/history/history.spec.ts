@@ -69,7 +69,7 @@ describe('ClrHistory', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should add', done => {
+  it('should add', async () => {
     const historyEntry: ClrHistoryModel = {
       username: 'admin',
       tenantId: '1',
@@ -83,11 +83,10 @@ describe('ClrHistory', () => {
       .pipe(take(1))
       .subscribe(history => {
         expect(history.length).toEqual(1);
-        done();
       });
   });
 
-  it('should remove', done => {
+  it('should remove', async () => {
     const historyEntry: ClrHistoryModel = {
       username: 'admin',
       tenantId: '1',
@@ -107,13 +106,12 @@ describe('ClrHistory', () => {
             .pipe(take(1))
             .subscribe(historyAfter => {
               expect(historyAfter.length).toEqual(0);
-              done();
             });
         });
       });
   });
 
-  it('encodeUTF8', done => {
+  it('encodeUTF8', async () => {
     const czech = 'Škoda v čínštině';
     const chinese = '斯柯达👾';
     const historyEntry: ClrHistoryModel = {
@@ -137,7 +135,6 @@ describe('ClrHistory', () => {
             const lastHistoryEntry = historyAfter[historyAfter.length - 1];
             expect(lastHistoryEntry.pageName).toEqual(czech);
             expect(lastHistoryEntry.title).toEqual(chinese);
-            done();
           });
       });
   });
@@ -147,12 +144,12 @@ describe('ClrHistory', () => {
     component.username = username;
     historyService.setHistoryPinned(username, true);
     tick(1);
-    expect(component.pinActivated).toBeTrue();
+    expect(component.pinActivated).toBe(true);
 
     component.ngOnDestroy();
 
     historyService.setHistoryPinned(username, false);
     tick(1);
-    expect(component.pinActivated).toBeTrue();
+    expect(component.pinActivated).toBe(true);
   }));
 });

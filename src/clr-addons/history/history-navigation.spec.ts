@@ -10,7 +10,6 @@ import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import {
   ClrHistory,
-  ClrHistoryHttpService,
   ClrHistoryModel,
   ClrHistoryModule,
   ClrHistoryNavigationService,
@@ -67,12 +66,12 @@ describe('History navigation provider scope', () => {
   }
 
   beforeEach(async () => {
-    const historyHttpService = jasmine.createSpyObj<ClrHistoryHttpService>('ClrHistoryHttpService', [
-      'getHistory',
-      'addHistoryEntry',
-      'removeFromHistory',
-    ]);
-    historyHttpService.getHistory.and.returnValue(of([historyEntry]));
+    const historyHttpService = {
+      getHistory: vi.fn().mockName('ClrHistoryHttpService.getHistory'),
+      addHistoryEntry: vi.fn().mockName('ClrHistoryHttpService.addHistoryEntry'),
+      removeFromHistory: vi.fn().mockName('ClrHistoryHttpService.removeFromHistory'),
+    };
+    historyHttpService.getHistory.mockReturnValue(of([historyEntry]));
 
     await TestBed.configureTestingModule({
       imports: [ClrHistoryModule],
@@ -95,7 +94,7 @@ describe('History navigation provider scope', () => {
 
     expect(navigation.pendingEntries).toEqual([historyEntry]);
     expect(window.location.href).toBe(currentUrl);
-    expect(event.defaultPrevented).toBeTrue();
+    expect(event.defaultPrevented).toBe(true);
     expect(TestBed.inject(ClrHistoryNavigationService)).not.toBe(navigation);
   });
 
@@ -105,8 +104,8 @@ describe('History navigation provider scope', () => {
     expect(link.tagName).toBe('A');
     expect(link.getAttribute('href')).toBe('/invoices/123?view=details#totals');
     expect(link.textContent.trim()).toBe('Invoice');
-    expect(link.classList.contains('dropdown-item')).toBeTrue();
-    expect(link.hasAttribute('target')).toBeFalse();
+    expect(link.classList.contains('dropdown-item')).toBe(true);
+    expect(link.hasAttribute('target')).toBe(false);
   });
 
   for (const testCase of [
@@ -123,7 +122,7 @@ describe('History navigation provider scope', () => {
 
       entry.triggerEventHandler('click', event);
 
-      expect(event.defaultPrevented).toBeFalse();
+      expect(event.defaultPrevented).toBe(false);
       expect(navigation.pendingEntries).toEqual([]);
     });
   }
@@ -157,7 +156,7 @@ describe('History navigation provider scope', () => {
       );
       expect(navigation.pendingEntries).toEqual([relativeEntry]);
       expect(navigation.pendingDestinations).toEqual(['invoices/123?view=details#totals']);
-      expect(event.defaultPrevented).toBeTrue();
+      expect(event.defaultPrevented).toBe(true);
     } finally {
       base.remove();
     }
@@ -200,7 +199,7 @@ describe('History navigation provider scope', () => {
       .triggerEventHandler('click', event);
 
     expect(navigation.pendingEntries).toEqual([historyEntry]);
-    expect(event.defaultPrevented).toBeTrue();
+    expect(event.defaultPrevented).toBe(true);
     expect(window.location.href).toBe(currentUrl);
   });
 
@@ -217,13 +216,15 @@ describe('History navigation provider scope', () => {
     ).nativeElement;
 
     expect(pinButton.tagName).toBe('BUTTON');
-    expect(pinButton.hasAttribute('href')).toBeFalse();
+    expect(pinButton.hasAttribute('href')).toBe(false);
   });
 
   it('surfaces dropdown navigation errors without performing a hard redirect', () => {
     const currentUrl = window.location.href;
     const error = new Error('Navigation failed');
-    spyOn(navigation, 'navigate').and.throwError(error);
+    vi.spyOn(navigation, 'navigate').mockImplementation(() => {
+      throw error;
+    });
     const history = fixture.debugElement.query(By.directive(ClrHistory)).injector.get(ClrHistory);
 
     expect(() => history.select(historyEntry)).toThrow(error);

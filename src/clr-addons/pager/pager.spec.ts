@@ -53,7 +53,7 @@ describe('PagerComponent', () => {
   });
 
   it('should fire page change event twice', () => {
-    spyOn(component.pageChange, 'emit');
+    vi.spyOn(component.pageChange, 'emit');
     component.totalItems = 20;
     component.pageSize = 5;
     component.next();

@@ -22,7 +22,11 @@ import { ExpectedRowSelectionState, expectRowsToHaveSelectionStates } from './tr
 import { ClrTreetableRowCheckbox } from './treetable-row-checkbox';
 import { TreetableColumnStateService } from './providers/treetable-column-state.service';
 
-type Item = { id: number; name?: string; subItems?: Item[] };
+type Item = {
+  id: number;
+  name?: string;
+  subItems?: Item[];
+};
 
 @Component({
   template: `
@@ -300,13 +304,13 @@ describe('ClrTreetable', () => {
     });
 
     it('should expand on click when clickableRows true', () => {
-      expect(ttRow.clrExpanded()).toBeFalse();
+      expect(ttRow.clrExpanded()).toBe(false);
 
       const row: HTMLElement = ttRowDe.query(By.css('.treetable-row')).nativeElement;
       row.click();
       fixture.detectChanges();
 
-      expect(ttRow.clrExpanded()).toBeTrue();
+      expect(ttRow.clrExpanded()).toBe(true);
     });
 
     it('should not expand on row click when clickableRows false but caret click works', () => {
@@ -316,12 +320,12 @@ describe('ClrTreetable', () => {
       const row: HTMLElement = ttRowDe.query(By.directive(ClrTreetableRow)).nativeElement;
       row.click();
       fixture.detectChanges();
-      expect(ttRow.clrExpanded()).toBeFalse();
+      expect(ttRow.clrExpanded()).toBe(false);
 
       const caretBtn: HTMLElement = ttRowDe.query(By.css(TEST_IDS.rowCaret)).nativeElement;
       caretBtn.click();
       fixture.detectChanges();
-      expect(ttRow.clrExpanded()).toBeTrue();
+      expect(ttRow.clrExpanded()).toBe(true);
     });
   });
 
@@ -338,13 +342,13 @@ describe('ClrTreetable', () => {
       expect(rows.length).toBe(3);
 
       const firstOverflow = rows[0].query(By.directive(ClrTreetableActionOverflow)).componentInstance;
-      expect(firstOverflow.empty()).toBeFalse();
+      expect(firstOverflow.empty()).toBe(false);
 
       const secondOverflow = rows[1].query(By.directive(ClrTreetableActionOverflow)).componentInstance;
-      expect(secondOverflow.empty()).toBeTrue();
+      expect(secondOverflow.empty()).toBe(true);
 
       const thirdOverflow = rows[2].query(By.directive(ClrTreetableActionOverflow)).componentInstance;
-      expect(thirdOverflow.empty()).toBeTrue();
+      expect(thirdOverflow.empty()).toBe(true);
     });
 
     it('should render action overflow column in header', () => {
@@ -355,13 +359,13 @@ describe('ClrTreetable', () => {
     it('should not expand when clicking action overflow trigger', () => {
       const firstRow = fixture.debugElement.query(By.directive(ClrTreetableRow));
       const firstRowComponent: ClrTreetableRow<object> = firstRow.componentInstance;
-      expect(firstRowComponent.clrExpanded()).toBeFalse();
+      expect(firstRowComponent.clrExpanded()).toBe(false);
 
       const trigger: HTMLElement = firstRow.query(By.css('.treetable-action-trigger')).nativeElement;
       trigger.click();
       fixture.detectChanges();
 
-      expect(firstRowComponent.clrExpanded()).toBeFalse();
+      expect(firstRowComponent.clrExpanded()).toBe(false);
     });
   });
 
@@ -563,7 +567,7 @@ describe('ClrTreetable', () => {
       // every DOM column maps to its own state entry at the matching index
       ids.forEach((id, idx) => {
         const col = state.columns().find(c => c.id === id);
-        expect(col).withContext(`state entry for column at DOM index ${idx}`).toBeDefined();
+        expect(col, `state entry for column at DOM index ${idx}`).toBeDefined();
         expect(col.columnIndex).toBe(idx);
         expect(col.columnIndex).not.toBe(Number.MAX_SAFE_INTEGER);
       });

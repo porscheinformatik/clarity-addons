@@ -15,7 +15,11 @@ import { Subject } from 'rxjs';
 import { ClrTreetableTreeNode } from '../interfaces/treetable-model';
 import { ClrTreetableState } from '../interfaces/treetable-state-model';
 
-type Item = { id: number; name?: string; subItems?: Item[] };
+type Item = {
+  id: number;
+  name?: string;
+  subItems?: Item[];
+};
 
 class IdComparator implements ClrTreetableComparatorInterface<Item> {
   compare(a: Item, b: Item): number {
@@ -89,7 +93,7 @@ describe('TreetableDataStateService', () => {
     expect(service.displayedNodes().length).toBe(0);
     expect(service.selectedNodes().length).toBe(0);
     expect(service.displayedItems().length).toBe(0);
-    expect(service.areAllNodesSelected()).toBeTrue(); // .every on empty array => true
+    expect(service.areAllNodesSelected()).toBe(true); // .every on empty array => true
   });
 
   it('should flatten the displayed nodes depth first into displayedItems', () => {
@@ -155,13 +159,13 @@ describe('TreetableDataStateService', () => {
 
   it('should select all nodes and deselects again', () => {
     service.setDataSource(items, getSubItems);
-    expect(service.areAllNodesSelected()).toBeFalse();
+    expect(service.areAllNodesSelected()).toBe(false);
 
     service.toggleSelectionForDisplayedNodes();
-    expect(service.areAllNodesSelected()).toBeTrue();
+    expect(service.areAllNodesSelected()).toBe(true);
 
     service.toggleSelectionForDisplayedNodes();
-    expect(service.areAllNodesSelected()).toBeFalse();
+    expect(service.areAllNodesSelected()).toBe(false);
   });
 
   it('should cascade selecting parent selects children', () => {

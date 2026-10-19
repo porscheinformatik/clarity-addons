@@ -12,7 +12,7 @@ import { of } from 'rxjs';
 import { ClrHistoryModel } from './history-model.interface';
 import { ClrHistoryNavigationService } from './history-navigation.service';
 import { ClrHistoryPinned } from './history-pinned';
-import { ClrHistoryHttpService, HISTORY_TOKEN } from './history.http.service';
+import { HISTORY_TOKEN } from './history.http.service';
 import { ClrHistoryService } from './history.service';
 
 describe('ClrHistoryPinned navigation', () => {
@@ -28,12 +28,12 @@ describe('ClrHistoryPinned navigation', () => {
   let selectedDestinations: string[];
 
   beforeEach(async () => {
-    const historyHttpService = jasmine.createSpyObj<ClrHistoryHttpService>('ClrHistoryHttpService', [
-      'getHistory',
-      'addHistoryEntry',
-      'removeFromHistory',
-    ]);
-    historyHttpService.getHistory.and.returnValue(of([historyEntry]));
+    const historyHttpService = {
+      getHistory: vi.fn().mockName('ClrHistoryHttpService.getHistory'),
+      addHistoryEntry: vi.fn().mockName('ClrHistoryHttpService.addHistoryEntry'),
+      removeFromHistory: vi.fn().mockName('ClrHistoryHttpService.removeFromHistory'),
+    };
+    historyHttpService.getHistory.mockReturnValue(of([historyEntry]));
     selectedEntries = [];
     selectedDestinations = [];
 
@@ -67,7 +67,7 @@ describe('ClrHistoryPinned navigation', () => {
 
     fixture.debugElement.query(By.css('a')).triggerEventHandler('click', event);
 
-    expect(event.defaultPrevented).toBeTrue();
+    expect(event.defaultPrevented).toBe(true);
     expect(selectedEntries).toEqual([historyEntry]);
   });
 
@@ -114,7 +114,7 @@ describe('ClrHistoryPinned navigation', () => {
 
     fixture.debugElement.query(By.css('a')).triggerEventHandler('click', event);
 
-    expect(event.defaultPrevented).toBeTrue();
+    expect(event.defaultPrevented).toBe(true);
     expect(selectedEntries).toEqual([historyEntry]);
   });
 
@@ -131,7 +131,7 @@ describe('ClrHistoryPinned navigation', () => {
 
       fixture.debugElement.query(By.css('a')).triggerEventHandler('click', event);
 
-      expect(event.defaultPrevented).toBeFalse();
+      expect(event.defaultPrevented).toBe(false);
       expect(selectedEntries).toEqual([]);
     });
   }
@@ -149,10 +149,12 @@ describe('ClrHistoryPinned navigation', () => {
     const error = new Error('Navigation failed');
     const currentUrl = window.location.href;
     const event = new MouseEvent('click', { button: 0, cancelable: true });
-    spyOn(TestBed.inject(ClrHistoryNavigationService), 'navigate').and.throwError(error);
+    vi.spyOn(TestBed.inject(ClrHistoryNavigationService), 'navigate').mockImplementation(() => {
+      throw error;
+    });
 
     expect(() => fixture.componentInstance.select(historyEntry, event)).toThrow(error);
-    expect(event.defaultPrevented).toBeTrue();
+    expect(event.defaultPrevented).toBe(true);
     expect(window.location.href).toBe(currentUrl);
   });
 });

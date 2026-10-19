@@ -8,7 +8,9 @@ import { ClrStringFilterComponent } from './string-filter.component';
 
 interface Item {
   name: string;
-  nested?: { name: string };
+  nested?: {
+    name: string;
+  };
 }
 
 @Component({
@@ -31,9 +33,12 @@ class TestComponent {
   dataList: Item[] = [{ name: 'Alpha' }, { name: 'Beta' }, { name: 'Gamma' }];
   filterValue = '';
 
-  @ViewChild(ClrStringFilterComponent) component: ClrStringFilterComponent<Item>;
-  @ViewChild(ClrDatagrid) datagrid: ClrDatagrid;
-  @ViewChild(ClrDatagridFilter) filter: ClrDatagridFilter;
+  @ViewChild(ClrStringFilterComponent)
+  component: ClrStringFilterComponent<Item>;
+  @ViewChild(ClrDatagrid)
+  datagrid: ClrDatagrid;
+  @ViewChild(ClrDatagridFilter)
+  filter: ClrDatagridFilter;
 }
 
 describe('ClrStringFilterComponent', () => {
@@ -82,7 +87,7 @@ describe('ClrStringFilterComponent', () => {
     fixture.detectChanges();
 
     expect(fixture.componentInstance.datagrid.rows.length).toBe(3);
-    expect(fixture.componentInstance.component.isActive()).toBeFalse();
+    expect(fixture.componentInstance.component.isActive()).toBe(false);
   }));
 
   it('applies external clrFilterValue changes immediately, without debounce', fakeAsync(() => {
@@ -94,8 +99,8 @@ describe('ClrStringFilterComponent', () => {
     component.value = 'beta';
     tick();
 
-    expect(component.accepts({ name: 'Beta' })).toBeTrue();
-    expect(component.accepts({ name: 'Gamma' })).toBeFalse();
+    expect(component.accepts({ name: 'Beta' })).toBe(true);
+    expect(component.accepts({ name: 'Gamma' })).toBe(false);
 
     component.ngOnDestroy();
   }));
@@ -106,8 +111,8 @@ describe('ClrStringFilterComponent', () => {
     component.onInput('al');
     tick(500);
 
-    expect(component.accepts({ name: 'x', nested: { name: 'Alpha' } })).toBeTrue();
-    expect(component.accepts({ name: 'x', nested: { name: 'Beta' } })).toBeFalse();
+    expect(component.accepts({ name: 'x', nested: { name: 'Alpha' } })).toBe(true);
+    expect(component.accepts({ name: 'x', nested: { name: 'Beta' } })).toBe(false);
   }));
 
   it('exposes state for persistence', fakeAsync(() => {
@@ -138,7 +143,7 @@ describe('ClrStringFilterComponent', () => {
 
     expect(component.value).toBe('');
     expect(component.state.value).toBe('');
-    expect(component.isActive()).toBeFalse();
+    expect(component.isActive()).toBe(false);
   }));
 
   it('focuses the input when the filter is opened', fakeAsync(() => {

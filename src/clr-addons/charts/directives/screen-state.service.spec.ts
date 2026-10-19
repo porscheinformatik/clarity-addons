@@ -15,7 +15,7 @@ describe('ScreenStateService', () => {
   });
 
   describe('getScreenWidthChanged()', () => {
-    it('should emit the current window width on subscription', done => {
+    it('should emit the current window width on subscription', async () => {
       // take(1) ensures done() is called only once (ReplaySubject replays last value)
       service
         .getScreenWidthChanged()
@@ -23,11 +23,10 @@ describe('ScreenStateService', () => {
         .subscribe(width => {
           expect(typeof width).toBe('number');
           expect(width).toBeGreaterThanOrEqual(0);
-          done();
         });
     });
 
-    it('should emit again when the window fires a resize event', done => {
+    it('should emit again when the window fires a resize event', async () => {
       let count = 0;
       // take(2): first emission = replayed initial value, second = the resize event
       service
@@ -38,7 +37,6 @@ describe('ScreenStateService', () => {
             count++;
             if (count === 2) {
               expect(typeof width).toBe('number');
-              done();
             }
           },
         });
@@ -52,13 +50,12 @@ describe('ScreenStateService', () => {
       expect(typeof obs.subscribe).toBe('function');
     });
 
-    it('should emit a boolean value', done => {
+    it('should emit a boolean value', async () => {
       service
         .getMobileStateChanged()
         .pipe(take(1))
         .subscribe(isMobile => {
           expect(typeof isMobile).toBe('boolean');
-          done();
         });
     });
   });

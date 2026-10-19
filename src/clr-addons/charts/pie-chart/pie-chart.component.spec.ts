@@ -34,9 +34,9 @@ describe('PieChartComponent', () => {
   });
 
   describe('inputs – defaults', () => {
-    it('should default loading to false', () => expect(component.loading()).toBeFalse());
-    it('should default showLegend to true', () => expect(component.showLegend()).toBeTrue());
-    it('should default donut to true', () => expect(component.donut()).toBeTrue());
+    it('should default loading to false', () => expect(component.loading()).toBe(false));
+    it('should default showLegend to true', () => expect(component.showLegend()).toBe(true));
+    it('should default donut to true', () => expect(component.donut()).toBe(true));
     it('should default exportFilename to "pie-chart"', () => expect(component.exportFilename()).toBe('pie-chart'));
     it('should default tooltipOrientation to "top"', () => expect(component.tooltipOrientation()).toBe('top'));
   });
@@ -119,11 +119,12 @@ describe('PieChartComponent', () => {
 
   describe('valueClicked output', () => {
     it('should emit when triggered', () => {
-      const spy = jasmine.createSpy();
+      const spy = vi.fn();
       component.valueClicked.subscribe(spy);
       const payload = { key: 'jan', label: 'January', value: 120 };
       component.valueClicked.emit(payload);
-      expect(spy).toHaveBeenCalledOnceWith(payload);
+      expect(spy).toHaveBeenCalledTimes(1);
+      expect(spy).toHaveBeenCalledWith(payload);
     });
   });
 });

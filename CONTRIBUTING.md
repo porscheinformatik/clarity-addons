@@ -23,6 +23,16 @@ Also provide some demo/documentation code in the website folder for the deployed
 
 Next, create the pull request and provide a description of the changes. Reference any issue numbers when the code change fixes a bug or implements an enhancement.
 
+### Unit tests
+
+Unit tests use [Vitest](https://vitest.dev) in browser mode (headless Chromium via Playwright), run through the Angular `unit-test` builder.
+
+- Install the browser once with `npx playwright install chromium`.
+- Run all tests with `npm test`, or watch mode with `npm run test:watch`.
+- Run a single spec with `npx ng test clr-addons --watch false --include "**/dot-pager/*.spec.ts"`.
+- Specs use the Vitest globals (`vi`, `describe`, `it`, `expect`); there is no Jasmine. Note that `vi.spyOn` calls through to the original method by default (unlike Jasmine's `spyOn`), so add `.mockImplementation(() => {})` to stub it.
+- Failure screenshots are written to `__screenshots__` folders, which are git-ignored.
+
 ### Testing the library locally
 
 To test the clarity-addons library locally you can start a dev environment via "npm run start", which starts the application located in /src/dev. Feel free to add demo pages to test your component. This will be seen by developers only so it's for functional testing and doesn't have to meet any styling standards.

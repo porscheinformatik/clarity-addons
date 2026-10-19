@@ -21,7 +21,7 @@ describe('Service: DaterangeControlStateService', () => {
   it('should return valid status and no errors, and emit status change event, when control is valid', () => {
     // Arrange.
     const sut = new DaterangeControlStateService();
-    const spy = jasmine.createSpy();
+    const spy = vi.fn();
     sut.statusChange.subscribe(spy);
     const control = new FormControl('abcdef', Validators.required);
     control.markAsTouched();
@@ -30,7 +30,7 @@ describe('Service: DaterangeControlStateService', () => {
     sut.updateStatus(control);
 
     // Assert.
-    expect(sut.invalid).toBeFalse();
+    expect(sut.invalid).toBe(false);
     expect(sut.errors).toBeNull();
     expect(spy).toHaveBeenCalledWith(false);
   });
@@ -38,7 +38,7 @@ describe('Service: DaterangeControlStateService', () => {
   it('should return invalid status and error, and emit status change event, when control is invalid', () => {
     // Arrange.
     const sut = new DaterangeControlStateService();
-    const spy = jasmine.createSpy();
+    const spy = vi.fn();
     sut.statusChange.subscribe(spy);
     const control = new FormControl('', Validators.required);
     control.markAsTouched();
@@ -50,7 +50,7 @@ describe('Service: DaterangeControlStateService', () => {
     sut.updateStatus(control);
 
     // Assert.
-    expect(sut.invalid).toBeTrue();
+    expect(sut.invalid).toBe(true);
     expect(sut.errors).toEqual(expectedErrors);
     expect(spy).toHaveBeenCalledWith(true);
   });
@@ -58,7 +58,7 @@ describe('Service: DaterangeControlStateService', () => {
   it('should not update status, errors and not emit event, when control status is not valid or invalid', () => {
     // Arrange.
     const sut = new DaterangeControlStateService();
-    const spy = jasmine.createSpy();
+    const spy = vi.fn();
     sut.statusChange.subscribe(spy);
     const control = new FormControl('', Validators.required);
     control.disable();
@@ -67,7 +67,7 @@ describe('Service: DaterangeControlStateService', () => {
     sut.updateStatus(control);
 
     // Assert.
-    expect(sut.invalid).toBeFalse();
+    expect(sut.invalid).toBe(false);
     expect(sut.errors).toBeNull();
     expect(spy).not.toHaveBeenCalled();
   });

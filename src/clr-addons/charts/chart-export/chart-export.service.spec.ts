@@ -30,15 +30,17 @@ describe('ChartExportService', () => {
 
   describe('exportSvg()', () => {
     it('should call download with an SVG blob and the correct filename', () => {
-      const downloadSpy = spyOn<any>(service, 'download');
+      const downloadSpy = vi.spyOn(service as any, 'download').mockImplementation(() => {});
       service.exportSvg(makeSvg(), 'my-chart');
-      expect(downloadSpy).toHaveBeenCalledOnceWith(jasmine.any(Blob), 'my-chart.svg');
+      expect(downloadSpy).toHaveBeenCalledTimes(1);
+      expect(downloadSpy).toHaveBeenCalledWith(expect.any(Blob), 'my-chart.svg');
     });
 
     it('should call download with an SVG blob when legend items are provided', () => {
-      const downloadSpy = spyOn<any>(service, 'download');
+      const downloadSpy = vi.spyOn(service as any, 'download').mockImplementation(() => {});
       service.exportSvg(makeSvg(), 'my-chart', LEGEND_ITEMS);
-      expect(downloadSpy).toHaveBeenCalledOnceWith(jasmine.any(Blob), 'my-chart.svg');
+      expect(downloadSpy).toHaveBeenCalledTimes(1);
+      expect(downloadSpy).toHaveBeenCalledWith(expect.any(Blob), 'my-chart.svg');
     });
   });
 
@@ -49,12 +51,14 @@ describe('ChartExportService', () => {
       const canvas = document.createElement('canvas');
       canvas.width = 10;
       canvas.height = 10;
-      const toCanvasSpy = spyOn<any>(service, 'toCanvas').and.returnValue(Promise.resolve(canvas));
-      spyOn<any>(service, 'download');
+      const toCanvasSpy = vi.spyOn(service as any, 'toCanvas').mockReturnValue(Promise.resolve(canvas));
+      vi.spyOn(service as any, 'download').mockImplementation(() => {});
 
       service.exportPng(makeSvg(), 'my-chart');
 
-      expect(toCanvasSpy).toHaveBeenCalledOnceWith(jasmine.any(SVGSVGElement));
+      expect(toCanvasSpy).toHaveBeenCalledTimes(1);
+
+      expect(toCanvasSpy).toHaveBeenCalledWith(expect.any(SVGSVGElement));
     });
 
     it('should call download with a PNG blob after canvas is resolved', async () => {
@@ -62,14 +66,16 @@ describe('ChartExportService', () => {
       const canvas = document.createElement('canvas');
       canvas.width = 10;
       canvas.height = 10;
-      spyOn(canvas, 'toBlob').and.callFake((cb: BlobCallback) => cb(blob));
-      spyOn<any>(service, 'toCanvas').and.returnValue(Promise.resolve(canvas));
-      const downloadSpy = spyOn<any>(service, 'download');
+      vi.spyOn(canvas, 'toBlob').mockImplementation((cb: BlobCallback) => cb(blob));
+      vi.spyOn(service as any, 'toCanvas').mockReturnValue(Promise.resolve(canvas));
+      const downloadSpy = vi.spyOn(service as any, 'download').mockImplementation(() => {});
 
       service.exportPng(makeSvg(), 'my-chart');
       await new Promise(r => setTimeout(r, 0));
 
-      expect(downloadSpy).toHaveBeenCalledOnceWith(blob, 'my-chart.png');
+      expect(downloadSpy).toHaveBeenCalledTimes(1);
+
+      expect(downloadSpy).toHaveBeenCalledWith(blob, 'my-chart.png');
     });
   });
 

@@ -73,12 +73,24 @@ describe('ColumnHiddenStatePersistenceDirective', () => {
   it('Nothing persisted', () => {
     fixture.detectChanges();
 
-    expect(fixture.debugElement.query(By.css('#column1')).nativeElement).not.toHaveClass('datagrid-hidden-column');
-    expect(fixture.debugElement.query(By.css('#column2')).nativeElement).not.toHaveClass('datagrid-hidden-column');
-    expect(fixture.debugElement.query(By.css('#column3')).nativeElement).not.toHaveClass('datagrid-hidden-column');
-    expect(fixture.debugElement.query(By.css('#column4')).nativeElement).not.toHaveClass('datagrid-hidden-column');
-    expect(fixture.debugElement.query(By.css('#column5')).nativeElement).toHaveClass('datagrid-hidden-column');
-    expect(fixture.debugElement.query(By.css('#column7')).nativeElement).not.toHaveClass('datagrid-hidden-column');
+    expect(
+      fixture.debugElement.query(By.css('#column1')).nativeElement.classList.contains('datagrid-hidden-column')
+    ).toBe(false);
+    expect(
+      fixture.debugElement.query(By.css('#column2')).nativeElement.classList.contains('datagrid-hidden-column')
+    ).toBe(false);
+    expect(
+      fixture.debugElement.query(By.css('#column3')).nativeElement.classList.contains('datagrid-hidden-column')
+    ).toBe(false);
+    expect(
+      fixture.debugElement.query(By.css('#column4')).nativeElement.classList.contains('datagrid-hidden-column')
+    ).toBe(false);
+    expect(
+      fixture.debugElement.query(By.css('#column5')).nativeElement.classList.contains('datagrid-hidden-column')
+    ).toBe(true);
+    expect(
+      fixture.debugElement.query(By.css('#column7')).nativeElement.classList.contains('datagrid-hidden-column')
+    ).toBe(false);
   });
 
   it('Loaded from storage', () => {
@@ -88,13 +100,27 @@ describe('ColumnHiddenStatePersistenceDirective', () => {
 
     fixture.detectChanges();
 
-    expect(fixture.debugElement.query(By.css('#column1')).nativeElement).toHaveClass('datagrid-hidden-column');
-    expect(fixture.debugElement.query(By.css('#column2')).nativeElement).not.toHaveClass('datagrid-hidden-column');
-    expect(fixture.debugElement.query(By.css('#column3')).nativeElement).not.toHaveClass('datagrid-hidden-column');
-    expect(fixture.debugElement.query(By.css('#column4')).nativeElement).not.toHaveClass('datagrid-hidden-column');
-    expect(fixture.debugElement.query(By.css('#column5')).nativeElement).toHaveClass('datagrid-hidden-column');
-    expect(fixture.debugElement.query(By.css('#column6')).nativeElement).not.toHaveClass('datagrid-hidden-column');
-    expect(fixture.debugElement.query(By.css('#column7')).nativeElement).toHaveClass('datagrid-hidden-column');
+    expect(
+      fixture.debugElement.query(By.css('#column1')).nativeElement.classList.contains('datagrid-hidden-column')
+    ).toBe(true);
+    expect(
+      fixture.debugElement.query(By.css('#column2')).nativeElement.classList.contains('datagrid-hidden-column')
+    ).toBe(false);
+    expect(
+      fixture.debugElement.query(By.css('#column3')).nativeElement.classList.contains('datagrid-hidden-column')
+    ).toBe(false);
+    expect(
+      fixture.debugElement.query(By.css('#column4')).nativeElement.classList.contains('datagrid-hidden-column')
+    ).toBe(false);
+    expect(
+      fixture.debugElement.query(By.css('#column5')).nativeElement.classList.contains('datagrid-hidden-column')
+    ).toBe(true);
+    expect(
+      fixture.debugElement.query(By.css('#column6')).nativeElement.classList.contains('datagrid-hidden-column')
+    ).toBe(false);
+    expect(
+      fixture.debugElement.query(By.css('#column7')).nativeElement.classList.contains('datagrid-hidden-column')
+    ).toBe(true);
   });
 
   it('Persisted to storage', () => {
@@ -105,12 +131,24 @@ describe('ColumnHiddenStatePersistenceDirective', () => {
     fixture.componentInstance.hideableColumnDirectives.get(3).clrDgHidden = false;
     fixture.componentInstance.hideableColumnDirectives.get(5).clrDgHidden = true;
 
-    expect(fixture.debugElement.query(By.css('#column1')).nativeElement).toHaveClass('datagrid-hidden-column');
-    expect(fixture.debugElement.query(By.css('#column2')).nativeElement).not.toHaveClass('datagrid-hidden-column');
-    expect(fixture.debugElement.query(By.css('#column3')).nativeElement).toHaveClass('datagrid-hidden-column');
-    expect(fixture.debugElement.query(By.css('#column4')).nativeElement).not.toHaveClass('datagrid-hidden-column');
-    expect(fixture.debugElement.query(By.css('#column5')).nativeElement).not.toHaveClass('datagrid-hidden-column');
-    expect(fixture.debugElement.query(By.css('#column7')).nativeElement).toHaveClass('datagrid-hidden-column');
+    expect(
+      fixture.debugElement.query(By.css('#column1')).nativeElement.classList.contains('datagrid-hidden-column')
+    ).toBe(true);
+    expect(
+      fixture.debugElement.query(By.css('#column2')).nativeElement.classList.contains('datagrid-hidden-column')
+    ).toBe(false);
+    expect(
+      fixture.debugElement.query(By.css('#column3')).nativeElement.classList.contains('datagrid-hidden-column')
+    ).toBe(true);
+    expect(
+      fixture.debugElement.query(By.css('#column4')).nativeElement.classList.contains('datagrid-hidden-column')
+    ).toBe(false);
+    expect(
+      fixture.debugElement.query(By.css('#column5')).nativeElement.classList.contains('datagrid-hidden-column')
+    ).toBe(false);
+    expect(
+      fixture.debugElement.query(By.css('#column7')).nativeElement.classList.contains('datagrid-hidden-column')
+    ).toBe(true);
 
     const storageModel = localStorage.getItem(PERSISTENCE_KEY);
     expect(storageModel).toBe(
@@ -124,8 +162,12 @@ describe('ColumnHiddenStatePersistenceDirective', () => {
     localStorage.setItem(PERSISTENCE_KEY, storageModel);
     fixture.detectChanges();
 
-    expect(fixture.debugElement.query(By.css('#column1')).nativeElement).not.toHaveClass('datagrid-hidden-column');
-    expect(fixture.debugElement.query(By.css('#column5')).nativeElement).toHaveClass('datagrid-hidden-column');
+    expect(
+      fixture.debugElement.query(By.css('#column1')).nativeElement.classList.contains('datagrid-hidden-column')
+    ).toBe(false);
+    expect(
+      fixture.debugElement.query(By.css('#column5')).nativeElement.classList.contains('datagrid-hidden-column')
+    ).toBe(true);
   });
 
   it("doesn't persist to storage when 'persistHiddenColumns' is set to false", () => {

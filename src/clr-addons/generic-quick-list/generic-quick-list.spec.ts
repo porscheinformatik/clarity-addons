@@ -36,7 +36,8 @@ import { ClrGenericQuickListModule } from './generic-quick-list.module';
   standalone: false,
 })
 class TestComponent {
-  @ViewChild(ClrGenericQuickList, { static: true }) quickList: ClrGenericQuickList<any>;
+  @ViewChild(ClrGenericQuickList, { static: true })
+  quickList: ClrGenericQuickList<any>;
 
   isRequired = false;
   isAddPossible = true;
@@ -66,7 +67,7 @@ describe('GenericQuickListComponent', () => {
   });
 
   it('clrRemoved event triggered when item removed', () => {
-    spyOn(fixture.componentInstance.quickList.removed, 'emit');
+    vi.spyOn(fixture.componentInstance.quickList.removed, 'emit');
     fixture.debugElement.query(By.css('.btn-trash')).nativeElement.click();
     fixture.detectChanges();
 
@@ -75,7 +76,7 @@ describe('GenericQuickListComponent', () => {
   });
 
   it('clrAdded event triggered when item added', () => {
-    spyOn(fixture.componentInstance.quickList.added, 'emit');
+    vi.spyOn(fixture.componentInstance.quickList.added, 'emit');
     fixture.debugElement.query(By.css('.btn-add')).nativeElement.click();
     fixture.detectChanges();
 

@@ -30,7 +30,7 @@ describe('ChartTooltipComponent', () => {
   });
 
   it('should have tooltipClickable true by default', () => {
-    expect(component.tooltipClickable()).toBeTrue();
+    expect(component.tooltipClickable()).toBe(true);
   });
 
   it('should position the container using the tooltipPosition input', () => {
@@ -64,21 +64,23 @@ describe('ChartTooltipComponent', () => {
   });
 
   it('should emit tooltipClosed when the close button is clicked', () => {
-    const spy = spyOn(component.tooltipClosed, 'emit');
+    const spy = vi.spyOn(component.tooltipClosed, 'emit');
     fixture.debugElement.query(By.css('.tooltip-close-btn')).triggerEventHandler('click', new MouseEvent('click'));
-    expect(spy).toHaveBeenCalledOnceWith();
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledWith();
   });
 
   it('should emit tooltipHeaderClicked when the header h5 is clicked and clickable', () => {
-    const spy = spyOn(component.tooltipHeaderClicked, 'emit');
+    const spy = vi.spyOn(component.tooltipHeaderClicked, 'emit');
     fixture.debugElement.query(By.css('h5')).triggerEventHandler('click', new MouseEvent('click'));
-    expect(spy).toHaveBeenCalledOnceWith();
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledWith();
   });
 
   it('should NOT emit tooltipHeaderClicked when tooltipClickable is false', () => {
     componentRef.setInput('tooltipClickable', false);
     fixture.detectChanges();
-    const spy = spyOn(component.tooltipHeaderClicked, 'emit');
+    const spy = vi.spyOn(component.tooltipHeaderClicked, 'emit');
     fixture.debugElement.query(By.css('h5')).triggerEventHandler('click', new MouseEvent('click'));
     expect(spy).not.toHaveBeenCalled();
   });

@@ -161,7 +161,7 @@ describe('ClrCopyToClipboard', () => {
       expect(buttonComponent.value()).toBe('New Value');
     });
 
-    it('should copy the correct value to clipboard when clicked', done => {
+    it('should copy the correct value to clipboard when clicked', async () => {
       const icon = buttonDebugElement.query(By.css('cds-icon'));
 
       // Click the icon
@@ -177,7 +177,6 @@ describe('ClrCopyToClipboard', () => {
       setTimeout(() => {
         hostFixture.detectChanges();
         expect(icon.nativeElement.getAttribute('shape')).toBe('copy-to-clipboard');
-        done();
       }, 1100);
     });
   });
@@ -188,7 +187,7 @@ describe('ClrCopyToClipboard', () => {
       expect(component.showCopiedIcon).toBe(false);
     });
 
-    it('should reset timer and keep icon visible on rapid repeated copy', done => {
+    it('should reset timer and keep icon visible on rapid repeated copy', async () => {
       component.onCopied(true);
       expect(component.showCopiedIcon).toBe(true);
       setTimeout(() => {
@@ -196,7 +195,6 @@ describe('ClrCopyToClipboard', () => {
         expect(component.showCopiedIcon).toBe(true);
         setTimeout(() => {
           expect(component.showCopiedIcon).toBe(false);
-          done();
         }, 1100);
       }, 500);
     });
@@ -248,7 +246,7 @@ describe('ClrCopyToClipboard', () => {
       }).not.toThrow();
     });
 
-    it('should reset copied icon if value changes while icon is shown', done => {
+    it('should reset copied icon if value changes while icon is shown', async () => {
       fixture.componentRef.setInput('value', 'A');
       component.onCopied(true);
       expect(component.showCopiedIcon).toBe(true);
@@ -257,7 +255,6 @@ describe('ClrCopyToClipboard', () => {
       // Should reset icon after timeout
       setTimeout(() => {
         expect(component.showCopiedIcon).toBe(false);
-        done();
       }, 1100);
     });
   });
@@ -309,12 +306,12 @@ describe('ClrCopyToClipboard', () => {
 
     it('should clean up parent listeners on destroy', () => {
       const parentEl = copyElement.nativeElement.parentElement;
-      const removeSpy = spyOn(parentEl, 'removeEventListener').and.callThrough();
+      const removeSpy = vi.spyOn(parentEl, 'removeEventListener');
 
       copyElement.componentInstance.ngOnDestroy();
 
-      expect(removeSpy).toHaveBeenCalledWith('mouseenter', jasmine.any(Function));
-      expect(removeSpy).toHaveBeenCalledWith('mouseleave', jasmine.any(Function));
+      expect(removeSpy).toHaveBeenCalledWith('mouseenter', expect.any(Function));
+      expect(removeSpy).toHaveBeenCalledWith('mouseleave', expect.any(Function));
     });
   });
 });

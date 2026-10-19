@@ -1,3 +1,4 @@
+import type { MockedObject } from 'vitest';
 import { ClrControlEnterSubmitDirective } from './clr-control-enter-submit.directive';
 import { Component, DebugElement } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -68,11 +69,15 @@ class TestComponentWithEmptyTooltip {}
 describe('ControlEnterDirective', () => {
   let fixture: ComponentFixture<TestComponent>;
   let directiveElement: DebugElement;
-  let clrFormMock: jasmine.SpyObj<ClrForm>;
-  let platformMock: { isBrowser: boolean };
+  let clrFormMock: Partial<MockedObject<ClrForm>>;
+  let platformMock: {
+    isBrowser: boolean;
+  };
 
   beforeEach(async () => {
-    clrFormMock = jasmine.createSpyObj('ClrForm', ['markAsTouched']);
+    clrFormMock = {
+      markAsTouched: vi.fn().mockName('ClrForm.markAsTouched'),
+    };
     platformMock = { isBrowser: true };
 
     await TestBed.configureTestingModule({
@@ -139,7 +144,7 @@ describe('ControlEnterDirective', () => {
 
   describe('Form submission on Ctrl+Enter', () => {
     it('should call requestSubmit() exactly once when Ctrl+Enter is dispatched', () => {
-      spyOn(directiveElement.nativeElement, 'requestSubmit');
+      vi.spyOn(directiveElement.nativeElement, 'requestSubmit').mockImplementation(() => {});
 
       dispatchKeydown();
 
@@ -147,7 +152,7 @@ describe('ControlEnterDirective', () => {
     });
 
     it('should NOT call requestSubmit() when only Enter is dispatched without ctrlKey', () => {
-      spyOn(directiveElement.nativeElement, 'requestSubmit');
+      vi.spyOn(directiveElement.nativeElement, 'requestSubmit').mockImplementation(() => {});
 
       dispatchKeydown({ ctrlKey: false });
 
@@ -155,7 +160,7 @@ describe('ControlEnterDirective', () => {
     });
 
     it('should NOT call requestSubmit() when Ctrl+A is dispatched (wrong key)', () => {
-      spyOn(directiveElement.nativeElement, 'requestSubmit');
+      vi.spyOn(directiveElement.nativeElement, 'requestSubmit').mockImplementation(() => {});
 
       dispatchKeydown({ key: 'a' });
 
@@ -163,7 +168,7 @@ describe('ControlEnterDirective', () => {
     });
 
     it('should NOT call requestSubmit() when Alt+Enter is dispatched (wrong modifier)', () => {
-      spyOn(directiveElement.nativeElement, 'requestSubmit');
+      vi.spyOn(directiveElement.nativeElement, 'requestSubmit').mockImplementation(() => {});
 
       dispatchKeydown({ ctrlKey: false, altKey: true });
 
@@ -171,7 +176,7 @@ describe('ControlEnterDirective', () => {
     });
 
     it('should NOT call requestSubmit() when Shift+Enter is dispatched (wrong modifier)', () => {
-      spyOn(directiveElement.nativeElement, 'requestSubmit');
+      vi.spyOn(directiveElement.nativeElement, 'requestSubmit').mockImplementation(() => {});
 
       dispatchKeydown({ ctrlKey: false, shiftKey: true });
 
@@ -179,7 +184,7 @@ describe('ControlEnterDirective', () => {
     });
 
     it('should NOT call requestSubmit() when Cmd+Shift+Enter is dispatched', () => {
-      spyOn(directiveElement.nativeElement, 'requestSubmit');
+      vi.spyOn(directiveElement.nativeElement, 'requestSubmit').mockImplementation(() => {});
 
       dispatchKeydown({ ctrlKey: false, metaKey: true, shiftKey: true });
 
@@ -187,7 +192,7 @@ describe('ControlEnterDirective', () => {
     });
 
     it('should NOT call requestSubmit() when Ctrl+Shift+Enter is dispatched', () => {
-      spyOn(directiveElement.nativeElement, 'requestSubmit');
+      vi.spyOn(directiveElement.nativeElement, 'requestSubmit').mockImplementation(() => {});
 
       dispatchKeydown({ ctrlKey: true, shiftKey: true });
 
@@ -197,7 +202,7 @@ describe('ControlEnterDirective', () => {
 
   describe('Event propagation is stopped', () => {
     it('should call event.stopPropagation() when Ctrl+Enter is dispatched', () => {
-      spyOn(directiveElement.nativeElement, 'requestSubmit');
+      vi.spyOn(directiveElement.nativeElement, 'requestSubmit').mockImplementation(() => {});
 
       const event = new KeyboardEvent('keydown', {
         key: 'Enter',
@@ -205,7 +210,7 @@ describe('ControlEnterDirective', () => {
         bubbles: true,
         cancelable: true,
       });
-      spyOn(event, 'stopPropagation').and.callThrough();
+      vi.spyOn(event, 'stopPropagation');
       directiveElement.nativeElement.dispatchEvent(event);
 
       expect(event.stopPropagation).toHaveBeenCalled();
@@ -227,7 +232,9 @@ describe('ControlEnterDirective with multiple forms', () => {
       providers: [
         {
           provide: ClrForm,
-          useValue: jasmine.createSpyObj('ClrForm', ['markAsTouched']),
+          useValue: {
+            markAsTouched: vi.fn().mockName('ClrForm.markAsTouched'),
+          },
         },
         {
           provide: Platform,
@@ -247,8 +254,8 @@ describe('ControlEnterDirective with multiple forms', () => {
     const form1 = directiveElements[0].nativeElement as HTMLFormElement;
     const form2 = directiveElements[1].nativeElement as HTMLFormElement;
 
-    spyOn(form1, 'requestSubmit');
-    spyOn(form2, 'requestSubmit');
+    vi.spyOn(form1, 'requestSubmit').mockImplementation(() => {});
+    vi.spyOn(form2, 'requestSubmit').mockImplementation(() => {});
 
     const event = new KeyboardEvent('keydown', {
       key: 'Enter',
@@ -275,7 +282,9 @@ describe('ControlEnterDirective Tooltip Behavior', () => {
       providers: [
         {
           provide: ClrForm,
-          useValue: jasmine.createSpyObj('ClrForm', ['markAsTouched']),
+          useValue: {
+            markAsTouched: vi.fn().mockName('ClrForm.markAsTouched'),
+          },
         },
         {
           provide: Platform,

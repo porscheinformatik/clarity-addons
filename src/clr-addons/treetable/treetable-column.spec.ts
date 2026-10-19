@@ -1,3 +1,4 @@
+import type { Mock, MockInstance } from 'vitest';
 /*
  * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
@@ -12,17 +13,19 @@ import { ClrTreetableSortOrder } from './enums/sort-order.enum';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { TreetableColumnStateService } from './providers/treetable-column-state.service';
-import SpyObj = jasmine.SpyObj;
 
-type TestObject = { id: string; number: number };
+type TestObject = {
+  id: string;
+  number: number;
+};
 
 describe('ClrTreetableColumn', () => {
   let component: ClrTreetableColumn<TestObject>;
   let fixture: ComponentFixture<ClrTreetableColumn<TestObject>>;
   let sortProvider: SortStateService<TestObject>;
 
-  let sortProviderToggleSpy: SpyObj<unknown>;
-  let sortOrderChangedSpy: jasmine.Spy;
+  let sortProviderToggleSpy: MockInstance;
+  let sortOrderChangedSpy: Mock;
 
   const ComponentInputs = { sortBy: 'clrTtSortBy', sortOrder: 'clrTtSortOrder' } as const;
   const testComparator: ClrTreetableComparatorInterface<TestObject> = {
@@ -41,10 +44,10 @@ describe('ClrTreetableColumn', () => {
     component = fixture.componentInstance;
     fixture.autoDetectChanges();
 
-    sortProviderToggleSpy = spyOn(sortProvider, 'toggle').and.callThrough();
-    sortOrderChangedSpy = jasmine.createSpy('sortOrderChanged');
+    sortProviderToggleSpy = vi.spyOn(sortProvider, 'toggle');
+    sortOrderChangedSpy = vi.fn();
     component.clrTtSortOrderChange.subscribe(sortOrderChangedSpy);
-    sortOrderChangedSpy.calls.reset();
+    sortOrderChangedSpy.mockClear();
   });
 
   function getSortButton(): DebugElement | null {
@@ -157,7 +160,7 @@ describe('ClrTreetableColumn', () => {
   });
 
   it(`should clear sorting when ${ComponentInputs.sortOrder} is set to UNSORTED`, async () => {
-    const sortProviderClearSpy = spyOn(sortProvider, 'clear').and.callThrough();
+    const sortProviderClearSpy = vi.spyOn(sortProvider, 'clear');
 
     fixture.componentRef.setInput(ComponentInputs.sortBy, testComparator);
     fixture.componentRef.setInput(ComponentInputs.sortOrder, ClrTreetableSortOrder.ASC);

@@ -1,5 +1,6 @@
+import type { MockedObject } from 'vitest';
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -10,7 +11,10 @@ import { TreetableItemsDirective } from './treetable-items';
 import { TreetableDataStateService } from './providers';
 import { ClrTreetableRecursionService } from './providers/treetable-recursion.service';
 
-type Item = { id: number; subItems: Item[] };
+type Item = {
+  id: number;
+  subItems: Item[];
+};
 
 @Component({
   template: `
@@ -32,12 +36,16 @@ describe('TreetableItemsDirective', () => {
   let component: TreetableItemsDirectiveTest;
   let fixture: ComponentFixture<TreetableItemsDirectiveTest>;
 
-  let mockDataState: jasmine.SpyObj<TreetableDataStateService<Item>>;
-  let mockRecursion: jasmine.SpyObj<ClrTreetableRecursionService<Item>>;
+  let mockDataState: Partial<MockedObject<TreetableDataStateService<Item>>>;
+  let mockRecursion: Partial<MockedObject<ClrTreetableRecursionService<Item>>>;
 
   beforeEach(() => {
-    mockDataState = jasmine.createSpyObj('TreetableDataStateService', ['setDataSource']);
-    mockRecursion = jasmine.createSpyObj('ClrTreetableRecursionService', ['setTemplate']);
+    mockDataState = {
+      setDataSource: vi.fn().mockName('TreetableDataStateService.setDataSource'),
+    };
+    mockRecursion = {
+      setTemplate: vi.fn().mockName('ClrTreetableRecursionService.setTemplate'),
+    };
 
     TestBed.configureTestingModule({
       declarations: [TreetableItemsDirective, TreetableItemsDirectiveTest],

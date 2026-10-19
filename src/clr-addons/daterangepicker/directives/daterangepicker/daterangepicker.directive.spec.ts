@@ -1,3 +1,4 @@
+import type { MockedObject } from 'vitest';
 import { Component, DebugElement, ElementRef, Renderer2 } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -39,23 +40,25 @@ describe('ClrDaterangepickerDirective', () => {
   let inputEl: DebugElement;
   let directive: ClrDaterangepickerDirective;
   const daterangeService = new DaterangeService();
-  let daterangeParsingService: jasmine.SpyObj<DaterangeParsingService>;
-  let daterangeControlStateService: jasmine.SpyObj<DaterangeControlStateService>;
-  let controlIdService: jasmine.SpyObj<ControlIdService>;
+  let daterangeParsingService: Partial<MockedObject<DaterangeParsingService>>;
+  let daterangeControlStateService: Partial<MockedObject<DaterangeControlStateService>>;
+  let controlIdService: Partial<MockedObject<ControlIdService>>;
 
   beforeEach(() => {
-    daterangeParsingService = jasmine.createSpyObj(
-      'DaterangeParsingService',
-      ['parse', 'toLocaleString', 'toLocaleStringWithTime'],
-      {
-        localeFormat: 'MM/DD/YYYY',
-      }
-    );
-    daterangeControlStateService = jasmine.createSpyObj('DaterangeControlStateService', ['updateStatus'], {
+    daterangeParsingService = {
+      parse: vi.fn().mockName('DaterangeParsingService.parse'),
+      toLocaleString: vi.fn().mockName('DaterangeParsingService.toLocaleString'),
+      toLocaleStringWithTime: vi.fn().mockName('DaterangeParsingService.toLocaleStringWithTime'),
+      localeFormat: 'MM/DD/YYYY',
+    };
+    daterangeControlStateService = {
+      updateStatus: vi.fn().mockName('DaterangeControlStateService.updateStatus'),
       disabled: false,
       focused: false,
-    });
-    controlIdService = jasmine.createSpyObj('ControlIdService', [], { id: 'test-id' });
+    };
+    controlIdService = {
+      id: 'test-id',
+    };
 
     TestBed.configureTestingModule({
       declarations: [ClrDaterangepickerDirective, TestHostComponent],
@@ -66,7 +69,12 @@ describe('ClrDaterangepickerDirective', () => {
         { provide: DaterangeControlStateService, useValue: daterangeControlStateService },
         { provide: ControlIdService, useValue: controlIdService },
         { provide: ElementRef, useValue: new ElementRef(document.createElement('input')) },
-        { provide: Renderer2, useValue: jasmine.createSpyObj('Renderer2', ['setProperty']) },
+        {
+          provide: Renderer2,
+          useValue: {
+            setProperty: vi.fn().mockName('Renderer2.setProperty'),
+          },
+        },
       ],
     });
 
@@ -94,7 +102,7 @@ describe('ClrDaterangepickerDirective', () => {
   it('should call blurEvent and set focused to false when input loses focus', () => {
     daterangeControlStateService.focused = true;
     inputEl.triggerEventHandler('blur', null);
-    expect(daterangeControlStateService.focused).toBeFalse();
+    expect(daterangeControlStateService.focused).toBe(false);
   });
 
   it('should be null on change', () => {

@@ -13,7 +13,13 @@ describe('TreetableColumnStateService', () => {
 
   // --- Setup helpers ---
 
-  function reg(id: string, opts?: { hideable?: boolean; hidden?: boolean }) {
+  function reg(
+    id: string,
+    opts?: {
+      hideable?: boolean;
+      hidden?: boolean;
+    }
+  ) {
     service.register({ id });
     if (opts?.hideable) {
       service.registerHideable(id, {
@@ -23,7 +29,13 @@ describe('TreetableColumnStateService', () => {
     }
   }
 
-  function regOrdered(columns: Array<{ id: string; hideable?: boolean; hidden?: boolean }>) {
+  function regOrdered(
+    columns: Array<{
+      id: string;
+      hideable?: boolean;
+      hidden?: boolean;
+    }>
+  ) {
     columns.forEach(({ id, ...opts }) => reg(id, opts));
     service.setColumnOrder(columns.map(c => c.id));
   }
@@ -52,7 +64,7 @@ describe('TreetableColumnStateService', () => {
     });
 
     it('should report hasHideableColumns as false', () => {
-      expect(service.hasHideableColumns()).toBeFalse();
+      expect(service.hasHideableColumns()).toBe(false);
     });
   });
 
@@ -64,8 +76,8 @@ describe('TreetableColumnStateService', () => {
 
       const col = service.columns()[0];
       expect(col.id).toBe('a');
-      expect(col.hideable).toBeFalse();
-      expect(col.hidden).toBeFalse();
+      expect(col.hideable).toBe(false);
+      expect(col.hidden).toBe(false);
       expect(col.field).toBeUndefined();
       expect(col.colType).toBe('string');
     });
@@ -101,7 +113,7 @@ describe('TreetableColumnStateService', () => {
       service.registerHideable('a', { hideable: true, hidden: false });
       await tickAsync();
 
-      expect(service.columns()[0].hideable).toBeTrue();
+      expect(service.columns()[0].hideable).toBe(true);
     });
 
     it('should set initialHidden independently when provided', async () => {
@@ -110,7 +122,7 @@ describe('TreetableColumnStateService', () => {
       await tickAsync();
 
       const col = service.columns()[0];
-      expect(col.hidden).toBeFalse();
+      expect(col.hidden).toBe(false);
     });
 
     it('should be a no-op when column is not registered', async () => {
@@ -294,14 +306,14 @@ describe('TreetableColumnStateService', () => {
       regOrdered([{ id: 'a', hideable: true }]);
       await tickAsync();
 
-      expect(service.hasHideableColumns()).toBeTrue();
+      expect(service.hasHideableColumns()).toBe(true);
     });
 
     it('hasHideableColumns() should be false when no hideable columns', async () => {
       regOrdered([{ id: 'a' }]);
       await tickAsync();
 
-      expect(service.hasHideableColumns()).toBeFalse();
+      expect(service.hasHideableColumns()).toBe(false);
     });
   });
 
@@ -336,7 +348,7 @@ describe('TreetableColumnStateService', () => {
       service.changeHideable('a', true, false);
       await tickAsync();
 
-      expect(service.columns()[0].hideable).toBeTrue();
+      expect(service.columns()[0].hideable).toBe(true);
     });
 
     it('should set hidden and initialHidden when making column hideable', async () => {
@@ -345,7 +357,7 @@ describe('TreetableColumnStateService', () => {
       await tickAsync();
 
       const col = service.columns()[0];
-      expect(col.hidden).toBeTrue();
+      expect(col.hidden).toBe(true);
     });
 
     it('should make a hideable column non-hideable and reset hidden/initialHidden', async () => {
@@ -354,8 +366,8 @@ describe('TreetableColumnStateService', () => {
       await tickAsync();
 
       const col = service.columns()[0];
-      expect(col.hideable).toBeFalse();
-      expect(col.hidden).toBeFalse();
+      expect(col.hideable).toBe(false);
+      expect(col.hidden).toBe(false);
     });
 
     it('should update hidden on already-hideable column without changing hideable flag', async () => {
@@ -364,8 +376,8 @@ describe('TreetableColumnStateService', () => {
       await tickAsync();
 
       const col = service.columns()[0];
-      expect(col.hideable).toBeTrue();
-      expect(col.hidden).toBeTrue();
+      expect(col.hideable).toBe(true);
+      expect(col.hidden).toBe(true);
     });
   });
 
@@ -376,7 +388,7 @@ describe('TreetableColumnStateService', () => {
       service.toggleHidden('a');
       await tickAsync();
 
-      expect(service.columns()[0].hidden).toBeTrue();
+      expect(service.columns()[0].hidden).toBe(true);
     });
 
     it('should flip hidden from true to false on a hideable column', async () => {
@@ -384,7 +396,7 @@ describe('TreetableColumnStateService', () => {
       service.toggleHidden('a');
       await tickAsync();
 
-      expect(service.columns()[0].hidden).toBeFalse();
+      expect(service.columns()[0].hidden).toBe(false);
     });
 
     it('should not affect a non-hideable column', async () => {
@@ -392,7 +404,7 @@ describe('TreetableColumnStateService', () => {
       service.toggleHidden('a');
       await tickAsync();
 
-      expect(service.columns()[0].hidden).toBeFalse();
+      expect(service.columns()[0].hidden).toBe(false);
     });
 
     it('should emit HIDDEN via changes$', async () => {
@@ -419,7 +431,7 @@ describe('TreetableColumnStateService', () => {
       service.changeHiddenForAll(true);
       await tickAsync();
 
-      expect(service.columns().every(c => c.hidden)).toBeTrue();
+      expect(service.columns().every(c => c.hidden)).toBe(true);
     });
 
     it('should show all columns via displayAllColumns()', async () => {
@@ -458,7 +470,13 @@ describe('TreetableColumnStateService', () => {
       await tickAsync();
 
       expect(states.length).toBeGreaterThan(0);
-      expect((states[states.length - 1] as { id: string }).id).toBe('a');
+      expect(
+        (
+          states[states.length - 1] as {
+            id: string;
+          }
+        ).id
+      ).toBe('a');
       sub.unsubscribe();
     });
 

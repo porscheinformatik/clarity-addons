@@ -60,10 +60,10 @@ describe('ClrMainNavGroupComponent', () => {
     const input = componentFixture.nativeElement.querySelector('input[type=checkbox]') as HTMLInputElement;
 
     if (isVisible) {
-      expect(input.checked).toBeTrue();
+      expect(input.checked).toBe(true);
       expect(displayStyle).toBe('visible');
     } else {
-      expect(input.checked).toBeFalse();
+      expect(input.checked).toBe(false);
       expect(displayStyle).toBe('hidden');
     }
   }
