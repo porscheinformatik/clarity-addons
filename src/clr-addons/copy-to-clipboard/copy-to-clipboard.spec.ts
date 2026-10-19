@@ -161,7 +161,7 @@ describe('ClrCopyToClipboard', () => {
       expect(buttonComponent.value()).toBe('New Value');
     });
 
-    it('should copy the correct value to clipboard when clicked', async () => {
+    it('should copy the correct value to clipboard when clicked', fakeAsync(() => {
       const icon = buttonDebugElement.query(By.css('cds-icon'));
 
       // Click the icon
@@ -174,11 +174,10 @@ describe('ClrCopyToClipboard', () => {
       expect(icon.nativeElement.getAttribute('shape')).toBe('success-standard');
 
       // Verify it reverts after timeout
-      setTimeout(() => {
-        hostFixture.detectChanges();
-        expect(icon.nativeElement.getAttribute('shape')).toBe('copy-to-clipboard');
-      }, 1100);
-    });
+      tick(1100);
+      hostFixture.detectChanges();
+      expect(icon.nativeElement.getAttribute('shape')).toBe('copy-to-clipboard');
+    }));
   });
 
   describe('Edge Cases and Robustness', () => {
@@ -187,17 +186,15 @@ describe('ClrCopyToClipboard', () => {
       expect(component.showCopiedIcon).toBe(false);
     });
 
-    it('should reset timer and keep icon visible on rapid repeated copy', async () => {
+    it('should reset timer and keep icon visible on rapid repeated copy', fakeAsync(() => {
       component.onCopied(true);
       expect(component.showCopiedIcon).toBe(true);
-      setTimeout(() => {
-        component.onCopied(true); // rapid second copy
-        expect(component.showCopiedIcon).toBe(true);
-        setTimeout(() => {
-          expect(component.showCopiedIcon).toBe(false);
-        }, 1100);
-      }, 500);
-    });
+      tick(500);
+      component.onCopied(true); // rapid second copy
+      expect(component.showCopiedIcon).toBe(true);
+      tick(1100);
+      expect(component.showCopiedIcon).toBe(false);
+    }));
 
     it('should set tooltip size to sm for short tooltip text', () => {
       fixture.componentRef.setInput('tooltipText', 'Short');
@@ -246,17 +243,16 @@ describe('ClrCopyToClipboard', () => {
       }).not.toThrow();
     });
 
-    it('should reset copied icon if value changes while icon is shown', async () => {
+    it('should reset copied icon if value changes while icon is shown', fakeAsync(() => {
       fixture.componentRef.setInput('value', 'A');
       component.onCopied(true);
       expect(component.showCopiedIcon).toBe(true);
       // Simulate value change
       fixture.componentRef.setInput('value', 'B');
       // Should reset icon after timeout
-      setTimeout(() => {
-        expect(component.showCopiedIcon).toBe(false);
-      }, 1100);
-    });
+      tick(1100);
+      expect(component.showCopiedIcon).toBe(false);
+    }));
   });
 
   describe('hiddenUntilHovered', () => {
