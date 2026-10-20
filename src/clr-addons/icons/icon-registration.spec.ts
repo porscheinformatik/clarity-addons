@@ -6,6 +6,7 @@
 
 import { ClarityIcons, infoCircleIcon } from '@clr/angular/icon';
 import { fakeAsync } from '@angular/core/testing';
+import './addIcons.patch';
 
 describe('Icon Registration patch', () => {
   it('should register an icon only once', fakeAsync(() => {

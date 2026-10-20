@@ -55,7 +55,7 @@ describe('QuickListComponent', () => {
   });
 
   it('should add be possible', () => {
-    spyOn(component.emptyOptionAdded, 'emit');
+    vi.spyOn(component.emptyOptionAdded, 'emit');
     component.allValues = allValues;
     component.values = allValues;
     component.onRemoveValue(0);

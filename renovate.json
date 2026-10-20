@@ -37,7 +37,6 @@
     {
       "matchPackageNames": [
         "@angular-eslint/builder",
-        "@types/jasmine",
         "@types/node",
         "@typescript-eslint/eslint-plugin",
         "@typescript-eslint/parser",
@@ -49,8 +48,6 @@
         "globals",
         "husky",
         "JamesIves/github-pages-deploy-action",
-        "jasmine-core",
-        "karma",
         "npm-run-all2",
         "postcss",
         "postcss-cli",

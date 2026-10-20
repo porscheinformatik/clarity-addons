@@ -14,7 +14,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClrTreetableRowCheckbox } from './treetable-row-checkbox';
 import { ClrTreetableSelectedState } from './enums/selection-type';
 
-type Item = { id: number; subItems: Item[] };
+type Item = {
+  id: number;
+  subItems: Item[];
+};
 
 @Component({
   template: `
@@ -140,9 +143,9 @@ describe('ClrTreetableRow', () => {
       const caretDe = ttRowDe.query(By.css(TEST_IDS.rowCaret));
       const childContainer: HTMLElement = ttRowDe.query(By.css(TEST_IDS.childContainer)).nativeElement;
 
-      expect(ttRow.clrExpanded()).toBeFalse();
-      expect(ttRow.clrExpandable()).toBeFalse();
-      expect(ttRow.clrClickable()).toBeTrue();
+      expect(ttRow.clrExpanded()).toBe(false);
+      expect(ttRow.clrExpandable()).toBe(false);
+      expect(ttRow.clrClickable()).toBe(true);
       expect(ttRow.clrTtItem()).toBeUndefined();
 
       expect(checkBoxDe).toBeFalsy();
@@ -178,9 +181,9 @@ describe('ClrTreetableRow', () => {
         expect(actionOverflowDe).toBeDefined();
 
         if (i === 0) {
-          expect(actionOverflowDe.componentInstance.empty()).toBeFalse();
+          expect(actionOverflowDe.componentInstance.empty()).toBe(false);
         } else {
-          expect(actionOverflowDe.componentInstance.empty()).toBeTrue();
+          expect(actionOverflowDe.componentInstance.empty()).toBe(true);
         }
       }
     });
@@ -206,13 +209,13 @@ describe('ClrTreetableRow', () => {
       const firstRowDe = ttRowDes[0];
       const rowComponent: ClrTreetableRow<object> = firstRowDe.componentInstance;
 
-      expect(rowComponent.clrExpanded()).toBeTrue(); // initial expanded in template
+      expect(rowComponent.clrExpanded()).toBe(true); // initial expanded in template
 
       const triggerBtn: HTMLElement = firstRowDe.query(By.css('.treetable-action-trigger')).nativeElement;
       triggerBtn.click();
       fixture.detectChanges();
 
-      expect(rowComponent.clrExpanded()).toBeTrue();
+      expect(rowComponent.clrExpanded()).toBe(true);
     });
   });
 
@@ -237,66 +240,66 @@ describe('ClrTreetableRow', () => {
     });
 
     it('should expand if row clicked, and is clickable', () => {
-      expect(ttRowComponent.clrExpanded()).toBeFalse();
-      expect(ttRowComponent.clrClickable()).toBeTrue();
+      expect(ttRowComponent.clrExpanded()).toBe(false);
+      expect(ttRowComponent.clrClickable()).toBe(true);
 
       const row: HTMLElement = fixture.debugElement.query(By.css('.treetable-row:first-of-type')).nativeElement;
       row.click();
       fixture.detectChanges();
 
-      expect(ttRowComponent.clrExpanded()).toBeTrue();
+      expect(ttRowComponent.clrExpanded()).toBe(true);
     });
 
     it('should expand if caret clicked, and row is clickable', () => {
-      expect(ttRowComponent.clrExpanded()).toBeFalse();
-      expect(ttRowComponent.clrClickable()).toBeTrue();
+      expect(ttRowComponent.clrExpanded()).toBe(false);
+      expect(ttRowComponent.clrClickable()).toBe(true);
 
       const caret: HTMLElement = ttRowDe.query(By.css(TEST_IDS.rowCaret)).nativeElement;
       caret.click();
       fixture.detectChanges();
 
-      expect(ttRowComponent.clrExpanded()).toBeTrue();
+      expect(ttRowComponent.clrExpanded()).toBe(true);
     });
 
     it('should not expand if row clicked, and is not clickable', () => {
       component.clickable.set(false);
       fixture.detectChanges();
 
-      expect(ttRowComponent.clrExpanded()).toBeFalse();
-      expect(ttRowComponent.clrClickable()).toBeFalse();
+      expect(ttRowComponent.clrExpanded()).toBe(false);
+      expect(ttRowComponent.clrClickable()).toBe(false);
 
       const row: HTMLElement = fixture.debugElement.query(By.css('.treetable-row:first-of-type')).nativeElement;
       row.click();
       fixture.detectChanges();
 
-      expect(ttRowComponent.clrExpanded()).toBeFalse();
+      expect(ttRowComponent.clrExpanded()).toBe(false);
     });
 
     it('should expand if caret clicked, and row is not clickable', () => {
       component.clickable.set(false);
       fixture.detectChanges();
 
-      expect(ttRowComponent.clrExpanded()).toBeFalse();
-      expect(ttRowComponent.clrClickable()).toBeFalse();
+      expect(ttRowComponent.clrExpanded()).toBe(false);
+      expect(ttRowComponent.clrClickable()).toBe(false);
 
       const caret: HTMLElement = ttRowDe.query(By.css(TEST_IDS.rowCaret)).nativeElement;
       caret.click();
       fixture.detectChanges();
 
-      expect(ttRowComponent.clrExpanded()).toBeTrue();
+      expect(ttRowComponent.clrExpanded()).toBe(true);
     });
 
     it('should collapse again when row clicked twice (toggle)', () => {
       const row: HTMLElement = fixture.debugElement.query(By.css('.treetable-row:first-of-type')).nativeElement;
-      expect(ttRowComponent.clrExpanded()).toBeFalse();
+      expect(ttRowComponent.clrExpanded()).toBe(false);
 
       row.click();
       fixture.detectChanges();
-      expect(ttRowComponent.clrExpanded()).toBeTrue();
+      expect(ttRowComponent.clrExpanded()).toBe(true);
 
       row.click();
       fixture.detectChanges();
-      expect(ttRowComponent.clrExpanded()).toBeFalse();
+      expect(ttRowComponent.clrExpanded()).toBe(false);
     });
 
     it('should update caret direction attribute on expand/collapse', () => {

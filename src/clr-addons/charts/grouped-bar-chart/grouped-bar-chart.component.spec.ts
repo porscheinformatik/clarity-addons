@@ -41,14 +41,14 @@ describe('GroupedBarChartComponent', () => {
   });
 
   describe('inputs – defaults', () => {
-    it('should default loading to false', () => expect(component.loading()).toBeFalse());
-    it('should default showLegend to true', () => expect(component.showLegend()).toBeTrue());
-    it('should default showExportButton to false', () => expect(component.showExportButton()).toBeFalse());
+    it('should default loading to false', () => expect(component.loading()).toBe(false));
+    it('should default showLegend to true', () => expect(component.showLegend()).toBe(true));
+    it('should default showExportButton to false', () => expect(component.showExportButton()).toBe(false));
     it('should default orientation to "horizontal"', () => expect(component.orientation()).toBe('horizontal'));
     it('should default barSizePx to 12', () => expect(component.barSizePx()).toBe(12));
     it('should default yAxisLabelWidthPx to 70', () => expect(component.yAxisLabelWidthPx()).toBe(70));
-    it('should default showValues to false', () => expect(component.showValues()).toBeFalse());
-    it('should default showValueOnHover to false', () => expect(component.showValueOnHover()).toBeFalse());
+    it('should default showValues to false', () => expect(component.showValues()).toBe(false));
+    it('should default showValueOnHover to false', () => expect(component.showValueOnHover()).toBe(false));
     it('should default exportFilename to "grouped-bar-chart"', () =>
       expect(component.exportFilename()).toBe('grouped-bar-chart'));
     it('should default tooltipOrientation to "top"', () => expect(component.tooltipOrientation()).toBe('top'));
@@ -74,7 +74,7 @@ describe('GroupedBarChartComponent', () => {
     it('should accept showValueOnHover', () => {
       componentRef.setInput('showValueOnHover', true);
       fixture.detectChanges();
-      expect(component.showValueOnHover()).toBeTrue();
+      expect(component.showValueOnHover()).toBe(true);
     });
   });
 
@@ -82,7 +82,7 @@ describe('GroupedBarChartComponent', () => {
     it('should accept showValues', () => {
       componentRef.setInput('showValues', true);
       fixture.detectChanges();
-      expect(component.showValues()).toBeTrue();
+      expect(component.showValues()).toBe(true);
     });
   });
 
@@ -137,7 +137,7 @@ describe('GroupedBarChartComponent', () => {
 
   describe('valueClicked output', () => {
     it('should emit when valueClicked is triggered', () => {
-      const spy = jasmine.createSpy('valueClicked');
+      const spy = vi.fn();
       component.valueClicked.subscribe(spy);
       component.valueClicked.emit({
         key: 'jan-revenue',
@@ -146,7 +146,8 @@ describe('GroupedBarChartComponent', () => {
         groupLabel: 'January',
         value: 120,
       });
-      expect(spy).toHaveBeenCalledOnceWith({
+      expect(spy).toHaveBeenCalledTimes(1);
+      expect(spy).toHaveBeenCalledWith({
         key: 'jan-revenue',
         label: 'Revenue',
         groupKey: 'jan',

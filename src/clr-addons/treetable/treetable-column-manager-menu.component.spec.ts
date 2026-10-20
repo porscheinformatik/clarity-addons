@@ -49,7 +49,13 @@ describe('ClrTreetableColumnManagerMenuComponent', () => {
 
   // --- Setup helpers ---
 
-  async function registerColumns(columns: Array<{ id: string; hideable?: boolean; hidden?: boolean }>) {
+  async function registerColumns(
+    columns: Array<{
+      id: string;
+      hideable?: boolean;
+      hidden?: boolean;
+    }>
+  ) {
     columns.forEach(({ id }) => columnService.register({ id }));
     columnService.setColumnOrder(columns.map(c => c.id));
     columns.forEach(({ id, hideable, hidden }) => {
@@ -183,7 +189,7 @@ describe('ClrTreetableColumnManagerMenuComponent', () => {
         { id: COL_B, hideable: true, hidden: true },
       ]);
       await openMenu();
-      expect(queryCheckboxes()[0].checked).toBeTrue();
+      expect(queryCheckboxes()[0].checked).toBe(true);
     });
 
     it('should render checkbox unchecked for hidden column', async () => {
@@ -192,7 +198,7 @@ describe('ClrTreetableColumnManagerMenuComponent', () => {
         { id: COL_B, hideable: true, hidden: true },
       ]);
       await openMenu();
-      expect(queryCheckboxes()[1].checked).toBeFalse();
+      expect(queryCheckboxes()[1].checked).toBe(false);
     });
 
     it('should disable the last visible checkbox when all columns are hideable', async () => {
@@ -202,8 +208,8 @@ describe('ClrTreetableColumnManagerMenuComponent', () => {
       ]);
       await openMenu();
       // COL_A is the only visible → must be disabled to prevent hiding all
-      expect(queryCheckboxes()[0].disabled).toBeTrue();
-      expect(queryCheckboxes()[1].disabled).toBeFalse();
+      expect(queryCheckboxes()[0].disabled).toBe(true);
+      expect(queryCheckboxes()[1].disabled).toBe(false);
     });
 
     it('should not disable checkboxes when multiple visible columns exist', async () => {
@@ -212,8 +218,8 @@ describe('ClrTreetableColumnManagerMenuComponent', () => {
         { id: COL_B, hideable: true, hidden: false },
       ]);
       await openMenu();
-      expect(queryCheckboxes()[0].disabled).toBeFalse();
-      expect(queryCheckboxes()[1].disabled).toBeFalse();
+      expect(queryCheckboxes()[0].disabled).toBe(false);
+      expect(queryCheckboxes()[1].disabled).toBe(false);
     });
 
     it('should hide column when visible checkbox is clicked', async () => {
@@ -224,7 +230,7 @@ describe('ClrTreetableColumnManagerMenuComponent', () => {
       await openMenu();
       queryCheckboxes()[0].click();
       await fixture.whenStable();
-      expect(queryCheckboxes()[0].checked).toBeFalse();
+      expect(queryCheckboxes()[0].checked).toBe(false);
     });
 
     it('should show column when hidden checkbox is clicked', async () => {
@@ -235,7 +241,7 @@ describe('ClrTreetableColumnManagerMenuComponent', () => {
       await openMenu();
       queryCheckboxes()[0].click();
       await fixture.whenStable();
-      expect(queryCheckboxes()[0].checked).toBeTrue();
+      expect(queryCheckboxes()[0].checked).toBe(true);
     });
   });
 
@@ -247,7 +253,7 @@ describe('ClrTreetableColumnManagerMenuComponent', () => {
         { id: COL_B, hideable: true, hidden: false },
       ]);
       await openMenu();
-      expect(querySelectAllBtn()?.disabled).toBeTrue();
+      expect(querySelectAllBtn()?.disabled).toBe(true);
     });
 
     it('should be enabled when some columns are hidden', async () => {
@@ -256,7 +262,7 @@ describe('ClrTreetableColumnManagerMenuComponent', () => {
         { id: COL_B, hideable: true, hidden: false },
       ]);
       await openMenu();
-      expect(querySelectAllBtn()?.disabled).toBeFalse();
+      expect(querySelectAllBtn()?.disabled).toBe(false);
     });
 
     it('should make all columns visible when clicked', async () => {
@@ -269,9 +275,9 @@ describe('ClrTreetableColumnManagerMenuComponent', () => {
       querySelectAllBtn()!.click();
       await fixture.whenStable();
       const boxes = queryCheckboxes();
-      expect(boxes[0].checked).toBeTrue();
-      expect(boxes[1].checked).toBeTrue();
-      expect(boxes[2].checked).toBeTrue();
+      expect(boxes[0].checked).toBe(true);
+      expect(boxes[1].checked).toBe(true);
+      expect(boxes[2].checked).toBe(true);
     });
 
     it('should become disabled after all columns are made visible', async () => {
@@ -282,7 +288,7 @@ describe('ClrTreetableColumnManagerMenuComponent', () => {
       await openMenu();
       querySelectAllBtn()!.click();
       await fixture.whenStable();
-      expect(querySelectAllBtn()?.disabled).toBeTrue();
+      expect(querySelectAllBtn()?.disabled).toBe(true);
     });
   });
 });

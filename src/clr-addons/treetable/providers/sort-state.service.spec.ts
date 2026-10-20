@@ -8,7 +8,10 @@ import { SortStateService, TreetableSortState } from './sort-state.service';
 import { ClrTreetableComparatorInterface } from '../interfaces/comparator.interface';
 import { TestBed } from '@angular/core/testing';
 
-type Item = { id: number; subItems?: Item[] };
+type Item = {
+  id: number;
+  subItems?: Item[];
+};
 
 class IdComparator implements ClrTreetableComparatorInterface<Item> {
   compare(a: Item, b: Item): number {
@@ -31,31 +34,31 @@ describe('Sort<Item>', () => {
   it('should have initial empty sort state', () => {
     const state = service.sortState();
     expect(state.comparator).toBeNull();
-    expect(state.reverse).toBeFalse();
+    expect(state.reverse).toBe(false);
   });
 
   it('should set comparator and default reverse=false', () => {
     service.toggle(comparator);
     const state = service.sortState();
     expect(state.comparator).toBe(comparator);
-    expect(state.reverse).toBeFalse();
+    expect(state.reverse).toBe(false);
   });
 
   it('should toggle reverse when same comparator was toggled again', () => {
     service.toggle(comparator);
     service.toggle(comparator);
-    expect(service.sortState().reverse).toBeTrue();
+    expect(service.sortState().reverse).toBe(true);
   });
 
   it('should force reverse=true for the first sort', () => {
     service.toggle(comparator, true);
-    expect(service.sortState().reverse).toBeTrue();
+    expect(service.sortState().reverse).toBe(true);
   });
 
   it('should force reverse=false even after a reverse=true', () => {
     service.toggle(comparator, true);
     service.toggle(comparator, false);
-    expect(service.sortState().reverse).toBeFalse();
+    expect(service.sortState().reverse).toBe(false);
   });
 
   it('should clear comparator', () => {

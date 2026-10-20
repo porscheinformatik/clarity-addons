@@ -47,26 +47,26 @@ describe('FlowBarComponent', () => {
   it('Next step not available', () => {
     component._activeStep = component._steps[2];
     const avail = component.isNextAvailable();
-    expect(avail).toBeFalse();
+    expect(avail).toBe(false);
   });
 
   it('Previous step not available', () => {
     const avail = component.isPreviousAvailable();
-    expect(avail).toBeFalse();
+    expect(avail).toBe(false);
   });
 
   it('Next step not available because disabled', () => {
     component._steps[1].enabled = false;
     component._steps[2].enabled = false;
     const avail = component.isNextAvailable();
-    expect(avail).toBeFalse();
+    expect(avail).toBe(false);
   });
 
   it('Previous step not available because disabled', () => {
     component._activeStep = component._steps[1];
     component._steps[0].enabled = false;
     const avail = component.isPreviousAvailable();
-    expect(avail).toBeFalse();
+    expect(avail).toBe(false);
   });
 
   it('Skip disabled steps', () => {

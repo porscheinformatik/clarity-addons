@@ -15,7 +15,13 @@ import { ExportDatagridButtonComponent } from './export-datagrid-button.componen
 import { ExportDatagridService } from './export-datagrid.service';
 import { ExportTypeEnum } from '../shared';
 
-type Item = { id: number; name: string; address: { city: string } };
+type Item = {
+  id: number;
+  name: string;
+  address: {
+    city: string;
+  };
+};
 
 const ITEMS: Item[] = [
   { id: 1, name: 'Alpha', address: { city: 'Salzburg' } },
@@ -23,8 +29,18 @@ const ITEMS: Item[] = [
 ];
 
 class ExportDatagridServiceMock {
-  headers: { value: string; type: string }[] | undefined;
-  rows: { value: string; type: any }[][] | undefined;
+  headers:
+    | {
+        value: string;
+        type: string;
+      }[]
+    | undefined;
+  rows:
+    | {
+        value: string;
+        type: any;
+      }[][]
+    | undefined;
 
   exportToExcel(_filename: string, headers: any[], rows: any[][]): void {
     this.headers = headers;
@@ -91,6 +107,6 @@ describe('ExportDatagridButtonComponent', () => {
   it('should export an empty value for columns without clrDgField', () => {
     button.onExport(ExportTypeEnum.ALL);
 
-    expect(exportService.rows.every(row => row[2].value === '')).toBeTrue();
+    expect(exportService.rows.every(row => row[2].value === '')).toBe(true);
   });
 });

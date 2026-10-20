@@ -32,7 +32,7 @@ describe('DotPagerComponent', () => {
   });
 
   it('should fire page change event', () => {
-    spyOn(component.currentPageChange, 'emit');
+    vi.spyOn(component.currentPageChange, 'emit');
     component.pages = 5;
     component.currentPage = 2;
     expect(component.currentPageChange.emit).toHaveBeenCalled();

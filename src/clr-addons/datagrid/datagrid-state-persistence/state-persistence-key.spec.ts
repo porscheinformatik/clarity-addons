@@ -204,7 +204,7 @@ describe('StatePersistenceKeyDirective', () => {
     });
   });
 
-  it('updates the pagination description', waitForAsync(() => {
+  it('updates the pagination description', fakeAsync(() => {
     fixture.componentInstance.persistPagination = true;
     const storageModel = '{"pageSize":50}';
     localStorage.setItem(PERSISTENCE_KEY, storageModel);
@@ -212,12 +212,11 @@ describe('StatePersistenceKeyDirective', () => {
     fixture.detectChanges();
 
     expect(fixture.componentInstance.pagination).toBeTruthy();
-    setTimeout(() => {
-      expect(fixture.componentInstance.pagination.page.size).toBe(50);
-      expect(fixture.debugElement.query(By.css('.pagination-description')).nativeElement.textContent).toEqual(
-        '1 - 50 of 0 entries'
-      );
-    }, 1);
+    tick(1);
+    expect(fixture.componentInstance.pagination.page.size).toBe(50);
+    expect(fixture.debugElement.query(By.css('.pagination-description')).nativeElement.textContent).toEqual(
+      '1 - 50 of 0 entries'
+    );
   }));
 
   describe('sort persistence', () => {

@@ -11,3 +11,14 @@
 .custom-button-export {
   margin: 0;
 }
+
+// Inside a clr-dg-action-bar the button flows next to the other action buttons, aligned to the right
+:host-context(.datagrid-action-bar) {
+  display: block;
+  float: right;
+
+  .export-btn-right,
+  .export-btn-left {
+    display: block;
+  }
+}

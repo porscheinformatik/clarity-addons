@@ -57,5 +57,53 @@
         </clr-dg-pagination>
       </clr-dg-footer>
     </clr-datagrid>
+
+    <h3>Export button with action buttons</h3>
+    <clr-datagrid #toolbarDatagrid class="datagrid-full-width datagrid-full-height">
+      <clr-dg-action-bar>
+        <div class="btn-group">
+          <button type="button" class="btn btn-sm btn-secondary">Grant</button>
+          <button type="button" class="btn btn-sm btn-secondary">Reject</button>
+          <button type="button" class="btn btn-sm btn-secondary">Revoke</button>
+        </div>
+        <clr-export-datagrid-button
+          [datagrid]="toolbarDatagrid"
+          [datagridRef]="toolbarDatagridRef"
+          [exportButtonSize]="'small'"
+          [isBackendExport]="false"
+        >
+        </clr-export-datagrid-button>
+      </clr-dg-action-bar>
+      <clr-dg-column [clrDgField]="'column1'">Column 1</clr-dg-column>
+      <clr-dg-column [clrDgField]="'column2'">Column 2</clr-dg-column>
+      <clr-dg-column [clrDgField]="'column3'">Column 3</clr-dg-column>
+
+      <clr-dg-row *clrDgItems="let entry of exportableEntries" [clrDgItem]="entry">
+        <clr-dg-cell>{{ entry.column1 }}</clr-dg-cell>
+        <clr-dg-cell>{{ entry.column2 }}</clr-dg-cell>
+        <clr-dg-cell>{{ entry.column3 }}</clr-dg-cell>
+      </clr-dg-row>
+    </clr-datagrid>
+
+    <h3>Export button on the left</h3>
+    <clr-export-datagrid-button
+      [datagrid]="toolbarLeftDatagrid"
+      [datagridRef]="toolbarLeftDatagridRef"
+      [exportButtonPosition]="'left'"
+      [exportButtonSize]="'small'"
+      [isBackendExport]="false"
+    >
+    </clr-export-datagrid-button>
+    <clr-datagrid #toolbarLeftDatagrid class="datagrid-full-width datagrid-full-height">
+      <clr-dg-column [clrDgField]="'column1'">Column 1</clr-dg-column>
+      <clr-dg-column [clrDgField]="'column2'">Column 2</clr-dg-column>
+      <clr-dg-column [clrDgField]="'column3'">Column 3</clr-dg-column>
+
+      <clr-dg-row *clrDgItems="let entry of exportableEntries" [clrDgItem]="entry">
+        <clr-dg-cell>{{ entry.column1 }}</clr-dg-cell>
+        <clr-dg-cell>{{ entry.column2 }}</clr-dg-cell>
+        <clr-dg-cell>{{ entry.column3 }}</clr-dg-cell>
+      </clr-dg-row>
+    </clr-datagrid>
   </div>
 </div>

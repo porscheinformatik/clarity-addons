@@ -33,7 +33,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   standalone: false,
 })
 class TestComponent {
-  @ViewChild(ClrViewEditSection, { static: true }) vesInstance: ClrViewEditSection;
+  @ViewChild(ClrViewEditSection, { static: true })
+  vesInstance: ClrViewEditSection;
   title = 'TestTitle';
   saveText = 'Test Save';
   cancelText = 'Test Cancel';
@@ -128,11 +129,11 @@ describe('ViewEditSectionComponent', () => {
     tick();
 
     if (isEditMode) {
-      expect(componentFixture.componentInstance.vesInstance.editMode).toBeTrue();
+      expect(componentFixture.componentInstance.vesInstance.editMode).toBe(true);
       expect(componentFixture.nativeElement.querySelector('.view-item')).toBeNull();
       expect(componentFixture.nativeElement.querySelector('.edit-item')).not.toBeNull();
     } else {
-      expect(componentFixture.componentInstance.vesInstance.editMode).toBeFalse();
+      expect(componentFixture.componentInstance.vesInstance.editMode).toBe(false);
       expect(componentFixture.nativeElement.querySelector('.view-item')).not.toBeNull();
       expect(componentFixture.nativeElement.querySelector('.edit-item')).toBeNull();
     }
@@ -163,8 +164,8 @@ describe('ViewEditSectionComponent', () => {
   }));
 
   it('switch from view to edit and cancel', fakeAsync(() => {
-    spyOn(fixture.componentInstance.vesInstance._editModeChanged, 'emit');
-    spyOn(fixture.componentInstance.vesInstance._cancelled, 'emit');
+    vi.spyOn(fixture.componentInstance.vesInstance._editModeChanged, 'emit');
+    vi.spyOn(fixture.componentInstance.vesInstance._cancelled, 'emit');
 
     checkMode(fixture, false);
 
@@ -179,8 +180,8 @@ describe('ViewEditSectionComponent', () => {
   }));
 
   it('switch from view to edit and save', fakeAsync(() => {
-    spyOn(fixture.componentInstance.vesInstance._submitted, 'emit');
-    spyOn(fixture.componentInstance.vesInstance._editModeChanged, 'emit');
+    vi.spyOn(fixture.componentInstance.vesInstance._submitted, 'emit');
+    vi.spyOn(fixture.componentInstance.vesInstance._editModeChanged, 'emit');
 
     checkMode(fixture, false);
 
@@ -222,13 +223,13 @@ describe('ViewEditSectionComponent', () => {
 
   it('should be expanded then collapsed', () => {
     component.onCollapseExpand();
-    expect(component._isCollapsed).toBeTrue();
+    expect(component._isCollapsed).toBe(true);
     component.onCollapseExpand();
-    expect(component._isCollapsed).toBeFalse();
+    expect(component._isCollapsed).toBe(false);
   });
 
   it('should fire collapse state changed event twice', () => {
-    spyOn(component._isCollapsedChange, 'emit');
+    vi.spyOn(component._isCollapsedChange, 'emit');
     component.onCollapseExpand();
     expect(component._isCollapsedChange.emit).toHaveBeenCalledWith(true);
     component.onCollapseExpand();
@@ -243,11 +244,11 @@ describe('ViewEditSectionComponent', () => {
   });
 
   it('should toggle when clicking the title', () => {
-    expect(component._isCollapsed).toBeFalse();
+    expect(component._isCollapsed).toBe(false);
 
     fixture.nativeElement.querySelector('.ces-title-trigger').click();
 
-    expect(component._isCollapsed).toBeTrue();
+    expect(component._isCollapsed).toBe(true);
   });
 
   it('shows the string badge with default class', () => {

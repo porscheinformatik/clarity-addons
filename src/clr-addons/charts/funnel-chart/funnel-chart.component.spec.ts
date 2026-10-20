@@ -76,7 +76,7 @@ describe('FunnelChartComponent', () => {
   // ── Input defaults ──────────────────────────────────────────────────────────
 
   describe('inputs – defaults', () => {
-    it('should default loading to false', () => expect(component.loading()).toBeFalse());
+    it('should default loading to false', () => expect(component.loading()).toBe(false));
     it('should default textSize to 200', () => expect(component.textSize()).toBe(200));
     it('should default barGap to 2', () => expect(component.barGap()).toBe(2));
     it('should default exportFilename to "funnel-chart"', () =>
@@ -106,13 +106,13 @@ describe('FunnelChartComponent', () => {
 
   describe('hasData()', () => {
     it('should be true when data is provided', () => {
-      expect((component as any).hasData()).toBeTrue();
+      expect((component as any).hasData()).toBe(true);
     });
 
     it('should be false when data is empty', () => {
       componentRef.setInput('data', []);
       fixture.detectChanges();
-      expect((component as any).hasData()).toBeFalse();
+      expect((component as any).hasData()).toBe(false);
     });
   });
 
@@ -181,10 +181,11 @@ describe('FunnelChartComponent', () => {
 
   describe('valueClicked output', () => {
     it('should emit a FunnelValue when triggered', () => {
-      const spy = jasmine.createSpy('valueClicked');
+      const spy = vi.fn();
       component.valueClicked.subscribe(spy);
       component.valueClicked.emit({ value: 1000, label: 'Stage 1', key: 'stage1', section: 'active' });
-      expect(spy).toHaveBeenCalledOnceWith({
+      expect(spy).toHaveBeenCalledTimes(1);
+      expect(spy).toHaveBeenCalledWith({
         value: 1000,
         label: 'Stage 1',
         key: 'stage1',
@@ -199,7 +200,7 @@ describe('FunnelChartComponent', () => {
     it('should accept true', () => {
       componentRef.setInput('loading', true);
       fixture.detectChanges();
-      expect(component.loading()).toBeTrue();
+      expect(component.loading()).toBe(true);
     });
   });
 

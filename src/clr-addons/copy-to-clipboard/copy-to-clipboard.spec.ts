@@ -161,7 +161,7 @@ describe('ClrCopyToClipboard', () => {
       expect(buttonComponent.value()).toBe('New Value');
     });
 
-    it('should copy the correct value to clipboard when clicked', done => {
+    it('should copy the correct value to clipboard when clicked', fakeAsync(() => {
       const icon = buttonDebugElement.query(By.css('cds-icon'));
 
       // Click the icon
@@ -174,12 +174,10 @@ describe('ClrCopyToClipboard', () => {
       expect(icon.nativeElement.getAttribute('shape')).toBe('success-standard');
 
       // Verify it reverts after timeout
-      setTimeout(() => {
-        hostFixture.detectChanges();
-        expect(icon.nativeElement.getAttribute('shape')).toBe('copy-to-clipboard');
-        done();
-      }, 1100);
-    });
+      tick(1100);
+      hostFixture.detectChanges();
+      expect(icon.nativeElement.getAttribute('shape')).toBe('copy-to-clipboard');
+    }));
   });
 
   describe('Edge Cases and Robustness', () => {
@@ -188,18 +186,15 @@ describe('ClrCopyToClipboard', () => {
       expect(component.showCopiedIcon).toBe(false);
     });
 
-    it('should reset timer and keep icon visible on rapid repeated copy', done => {
+    it('should reset timer and keep icon visible on rapid repeated copy', fakeAsync(() => {
       component.onCopied(true);
       expect(component.showCopiedIcon).toBe(true);
-      setTimeout(() => {
-        component.onCopied(true); // rapid second copy
-        expect(component.showCopiedIcon).toBe(true);
-        setTimeout(() => {
-          expect(component.showCopiedIcon).toBe(false);
-          done();
-        }, 1100);
-      }, 500);
-    });
+      tick(500);
+      component.onCopied(true); // rapid second copy
+      expect(component.showCopiedIcon).toBe(true);
+      tick(1100);
+      expect(component.showCopiedIcon).toBe(false);
+    }));
 
     it('should set tooltip size to sm for short tooltip text', () => {
       fixture.componentRef.setInput('tooltipText', 'Short');
@@ -248,18 +243,16 @@ describe('ClrCopyToClipboard', () => {
       }).not.toThrow();
     });
 
-    it('should reset copied icon if value changes while icon is shown', done => {
+    it('should reset copied icon if value changes while icon is shown', fakeAsync(() => {
       fixture.componentRef.setInput('value', 'A');
       component.onCopied(true);
       expect(component.showCopiedIcon).toBe(true);
       // Simulate value change
       fixture.componentRef.setInput('value', 'B');
       // Should reset icon after timeout
-      setTimeout(() => {
-        expect(component.showCopiedIcon).toBe(false);
-        done();
-      }, 1100);
-    });
+      tick(1100);
+      expect(component.showCopiedIcon).toBe(false);
+    }));
   });
 
   describe('hiddenUntilHovered', () => {
@@ -309,12 +302,12 @@ describe('ClrCopyToClipboard', () => {
 
     it('should clean up parent listeners on destroy', () => {
       const parentEl = copyElement.nativeElement.parentElement;
-      const removeSpy = spyOn(parentEl, 'removeEventListener').and.callThrough();
+      const removeSpy = vi.spyOn(parentEl, 'removeEventListener');
 
       copyElement.componentInstance.ngOnDestroy();
 
-      expect(removeSpy).toHaveBeenCalledWith('mouseenter', jasmine.any(Function));
-      expect(removeSpy).toHaveBeenCalledWith('mouseleave', jasmine.any(Function));
+      expect(removeSpy).toHaveBeenCalledWith('mouseenter', expect.any(Function));
+      expect(removeSpy).toHaveBeenCalledWith('mouseleave', expect.any(Function));
     });
   });
 });

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -33,28 +33,28 @@ describe('ClrTreetableRowCheckbox', () => {
 
   describe('input: clrTtSelectionState', () => {
     it('should set the checkbox to UNSELECTED if no input is given', () => {
-      expect(checkboxElement.checked).toBeFalse();
+      expect(checkboxElement.checked).toBe(false);
     });
 
     it('should set the checkbox to UNSELECTED if unselect is given as input', () => {
       const testState = ClrTreetableSelectedState.UNSELECTED;
       fixture.componentRef.setInput('clrTtSelectionState', testState);
-      expect(checkboxElement.checked).toBeFalse();
+      expect(checkboxElement.checked).toBe(false);
     });
 
     it('should set the checkbox to UNSELECTED and be INDETERMINATE if indeterminate is given as input', () => {
       const testState = ClrTreetableSelectedState.INDETERMINATE;
       fixture.componentRef.setInput('clrTtSelectionState', testState);
       fixture.detectChanges();
-      expect(checkboxElement.checked).toBeFalse();
-      expect(checkboxElement.indeterminate).toBeTrue();
+      expect(checkboxElement.checked).toBe(false);
+      expect(checkboxElement.indeterminate).toBe(true);
     });
 
     it('should set the checkbox to SELECTED if selected is given as input', () => {
       const testState = ClrTreetableSelectedState.SELECTED;
       fixture.componentRef.setInput('clrTtSelectionState', testState);
       fixture.detectChanges();
-      expect(checkboxElement.checked).toBeTrue();
+      expect(checkboxElement.checked).toBe(true);
     });
   });
 
