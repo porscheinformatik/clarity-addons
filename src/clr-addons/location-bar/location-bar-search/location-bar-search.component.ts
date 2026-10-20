@@ -3,6 +3,7 @@ import {
   Component,
   ElementRef,
   EventEmitter,
+  inject,
   Input,
   OnInit,
   Output,
@@ -10,6 +11,7 @@ import {
 } from '@angular/core';
 import { SearchRequestModel } from '../location-bar.search.model';
 import { FormControl } from '@angular/forms';
+import { DropdownFocusHandler, FocusService } from '@clr/angular';
 
 @Component({
   selector: 'clr-location-bar-search',
@@ -19,6 +21,9 @@ import { FormControl } from '@angular/forms';
   standalone: false,
 })
 export class LocationBarSearchComponent implements OnInit {
+  private readonly focusService = inject(FocusService);
+  private readonly dropdownFocusHandler = inject(DropdownFocusHandler);
+
   searchControl = new FormControl('');
   previousValue: string = '';
   displayWarning: boolean = false;
@@ -68,6 +73,14 @@ export class LocationBarSearchComponent implements OnInit {
     return this.searchRequest?.minCharacters !== undefined
       ? this.searchRequest.minCharacters
       : this.MIN_CHARACTERS_DEFAULT;
+  }
+
+  /**
+   * The results are re-created on every search, so the dropdown's keyboard handling still points at a result that
+   * no longer exists. Pointing it back at the dropdown makes the arrow key continue with the current first/last result.
+   */
+  resetDropdownFocus(): void {
+    this.focusService.reset(this.dropdownFocusHandler);
   }
 
   preventDropdownActions(event: Event) {
