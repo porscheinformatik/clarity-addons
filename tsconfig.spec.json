@@ -2,11 +2,11 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "dist/out-tsc/spec",
-    "types": ["jasmine", "node"],
+    "types": ["vitest/globals", "node"],
+    "typeRoots": ["node_modules/@types", "node_modules"],
     "module": "es2022",
     "noImplicitAny": false,
     "noImplicitThis": false
   },
-  "files": ["./tests/tests.entry.ts"],
-  "include": ["src/**/*.spec.ts", "src/**/*.d.ts"]
+  "include": ["src/**/*.spec.ts", "tests/**/*.ts", "src/**/*.d.ts"]
 }

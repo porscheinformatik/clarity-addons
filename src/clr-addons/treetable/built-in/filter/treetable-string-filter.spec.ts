@@ -12,7 +12,9 @@ import { By } from '@angular/platform-browser';
 import { ClrTreetableColumn, ClrTreetableModule } from '@porscheinformatik/clr-addons';
 import { ClrTreetableStringFilter } from './treetable-string-filter';
 
-type Item = { name: string };
+type Item = {
+  name: string;
+};
 
 @Component({
   template: `
@@ -89,7 +91,7 @@ describe('ClrTreetableStringFilter', () => {
     expect(input).toBeTruthy();
 
     const columnEl: HTMLElement = fixture.debugElement.query(By.directive(ClrTreetableColumn)).nativeElement;
-    expect(columnEl.contains(input)).toBeFalse();
+    expect(columnEl.contains(input)).toBe(false);
   });
 
   it('should create filter component after opening', () => {
@@ -101,7 +103,7 @@ describe('ClrTreetableStringFilter', () => {
   it('should be inactive initially without value', () => {
     openFilterPopover();
     const filterComponent = queryFilterComponent();
-    expect(filterComponent.isActive()).toBeFalse();
+    expect(filterComponent.isActive()).toBe(false);
   });
 
   it('should emit initial value once after opening and be active', fakeAsync(() => {
@@ -119,7 +121,7 @@ describe('ClrTreetableStringFilter', () => {
 
     expect(emissions.length).toBe(1);
     expect(emissions[0]).toBe('hello');
-    expect(filterComponent.isActive()).toBeTrue();
+    expect(filterComponent.isActive()).toBe(true);
     sub.unsubscribe();
   }));
 
@@ -133,7 +135,7 @@ describe('ClrTreetableStringFilter', () => {
     tick(DEBOUNCE);
     TestBed.tick();
 
-    expect(filterComponent.isActive()).toBeTrue();
+    expect(filterComponent.isActive()).toBe(true);
   }));
 
   it('should debounce rapid successive inputs and emit only last value', fakeAsync(() => {
@@ -168,14 +170,14 @@ describe('ClrTreetableStringFilter', () => {
     input.dispatchEvent(new Event('input'));
     tick(DEBOUNCE);
 
-    expect(filterComponent.isActive()).toBeTrue();
+    expect(filterComponent.isActive()).toBe(true);
 
     const clearBtn = queryClearBtn();
     clearBtn.click();
     tick(DEBOUNCE);
     TestBed.tick();
 
-    expect(filterComponent.isActive()).toBeFalse();
+    expect(filterComponent.isActive()).toBe(false);
     expect(host.initialValue()).toBe('');
   }));
 
@@ -185,9 +187,9 @@ describe('ClrTreetableStringFilter', () => {
     openFilterPopover();
     const filterComponent = queryFilterComponent();
 
-    expect(filterComponent.isActive()).toBeFalse();
+    expect(filterComponent.isActive()).toBe(false);
     for (const item of items) {
-      expect(filterComponent.accepts(item)).toBeTrue();
+      expect(filterComponent.accepts(item)).toBe(true);
     }
   });
 
@@ -203,7 +205,7 @@ describe('ClrTreetableStringFilter', () => {
     tick(DEBOUNCE);
     TestBed.tick();
 
-    expect(filterComponent.isActive()).toBeTrue();
+    expect(filterComponent.isActive()).toBe(true);
     const results = items.map(i => filterComponent.accepts(i));
     expect(results).toEqual([true, false, true]);
   }));

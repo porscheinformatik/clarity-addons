@@ -44,8 +44,8 @@ describe('AreaChartComponent', () => {
   });
 
   describe('inputs – defaults', () => {
-    it('should default loading to false', () => expect(component.loading()).toBeFalse());
-    it('should default showLegend to true', () => expect(component.showLegend()).toBeTrue());
+    it('should default loading to false', () => expect(component.loading()).toBe(false));
+    it('should default showLegend to true', () => expect(component.showLegend()).toBe(true));
     it('should default areaOpacity to 0.2', () => expect(component.areaOpacity()).toBe(0.2));
     it('should default exportFilename to "area-chart"', () => expect(component.exportFilename()).toBe('area-chart'));
     it('should default tooltipOrientation to "top"', () => expect(component.tooltipOrientation()).toBe('top'));
@@ -103,11 +103,12 @@ describe('AreaChartComponent', () => {
 
   describe('valueClicked output', () => {
     it('should emit when triggered', () => {
-      const spy = jasmine.createSpy();
+      const spy = vi.fn();
       component.valueClicked.subscribe(spy);
       const payload = { seriesKey: 'revenue', seriesLabel: 'Revenue', x: 'Jan', value: 100 };
       component.valueClicked.emit(payload);
-      expect(spy).toHaveBeenCalledOnceWith(payload);
+      expect(spy).toHaveBeenCalledTimes(1);
+      expect(spy).toHaveBeenCalledWith(payload);
     });
   });
 });

@@ -34,7 +34,8 @@ class MockSummaryAreaStateService {
   imports: [ClrSummaryArea, ClrSummaryItem, ClrSummaryItemValue, ClarityModule],
 })
 class TestHostComponent {
-  @ViewChild(ClrSummaryArea) component!: ClrSummaryArea;
+  @ViewChild(ClrSummaryArea)
+  component!: ClrSummaryArea;
   rows: 1 | 2 | 3 = 3;
   error: ClrSummaryAreaError | undefined;
   warning: ClrSummaryAreaWarning | undefined;
@@ -61,7 +62,8 @@ class TestHostComponent {
   imports: [ClrSummaryArea, ClrSummaryItem, ClrSummaryItemValue],
 })
 class ManyItemsTestHostComponent {
-  @ViewChild(ClrSummaryArea) component!: ClrSummaryArea;
+  @ViewChild(ClrSummaryArea)
+  component!: ClrSummaryArea;
   manyItems = Array.from({ length: 20 }, (_, i) => i + 1);
 }
 
@@ -787,7 +789,7 @@ describe('SummaryAreaComponent', () => {
     });
 
     it('should call onResize on window resize when not collapsed', () => {
-      spyOn(component, 'onResize').and.callThrough();
+      vi.spyOn(component, 'onResize');
       mockStateService.setCollapsed(false);
       fixture.detectChanges();
 
@@ -820,7 +822,7 @@ describe('SummaryAreaComponent', () => {
     });
 
     it('should call errorClick when alert action is clicked', () => {
-      const clickSpy = jasmine.createSpy('errorClick');
+      const clickSpy = vi.fn();
       hostComponent.error = { active: signal(true), text: 'Error', click: clickSpy };
       fixture.detectChanges();
 
@@ -831,7 +833,7 @@ describe('SummaryAreaComponent', () => {
     });
 
     it('should call warningClick when alert action is clicked', () => {
-      const clickSpy = jasmine.createSpy('warningClick');
+      const clickSpy = vi.fn();
       hostComponent.warning = { active: signal(true), text: 'Warning', click: clickSpy };
       fixture.detectChanges();
 
@@ -842,7 +844,7 @@ describe('SummaryAreaComponent', () => {
     });
 
     it('should call errorClick on Enter keydown', () => {
-      const clickSpy = jasmine.createSpy('errorClick');
+      const clickSpy = vi.fn();
       hostComponent.error = { active: signal(true), text: 'Error', click: clickSpy };
       fixture.detectChanges();
 

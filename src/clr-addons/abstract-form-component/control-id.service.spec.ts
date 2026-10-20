@@ -9,9 +9,9 @@ describe('ControlIdService', function () {
   it('generates a unique id by default', function () {
     const first = new ControlIdService();
     const second = new ControlIdService();
-    expect(first.id).toBeTruthy("The service doesn't generate an id");
-    expect(second.id).toBeTruthy("The service doesn't generate an id");
-    expect(first.id === second.id).toBe(false, "The id generated isn't unique");
+    expect(first.id, "The service doesn't generate an id").toBeTruthy();
+    expect(second.id, "The service doesn't generate an id").toBeTruthy();
+    expect(first.id === second.id, "The id generated isn't unique").toBe(false);
   });
 
   it('exposes an Observable for id changes', function () {

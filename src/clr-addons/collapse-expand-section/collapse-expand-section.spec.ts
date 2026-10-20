@@ -63,20 +63,20 @@ describe('CollapseExpandSectionComponent', () => {
 
   it('should be expanded then collapsed', () => {
     component.onCollapseExpand();
-    expect(component.isCollapsed).toBeFalse();
+    expect(component.isCollapsed).toBe(false);
     component.onCollapseExpand();
-    expect(component.isCollapsed).toBeTrue();
+    expect(component.isCollapsed).toBe(true);
   });
 
   it('should fire expand event', () => {
-    spyOn(component.expanded, 'emit');
+    vi.spyOn(component.expanded, 'emit');
     component.onCollapseExpand();
     expect(component.expanded.emit).toHaveBeenCalledTimes(1);
   });
 
   it('should fire collapse event', () => {
     component.isCollapsed = false;
-    spyOn(component.collapsed, 'emit');
+    vi.spyOn(component.collapsed, 'emit');
     component.onCollapseExpand();
     expect(component.collapsed.emit).toHaveBeenCalledTimes(1);
   });
@@ -97,11 +97,11 @@ describe('CollapseExpandSectionComponent', () => {
     const section = hostFixture.debugElement.children[0].componentInstance as ClrCollapseExpandSection;
     hostFixture.detectChanges();
 
-    expect(section.isCollapsed).toBeFalse();
+    expect(section.isCollapsed).toBe(false);
 
     hostFixture.nativeElement.querySelector('.ces-title-trigger').click();
 
-    expect(section.isCollapsed).toBeTrue();
+    expect(section.isCollapsed).toBe(true);
   });
 
   it('should project title, subtitle and content when clrDisableHeaderStyles is true', () => {

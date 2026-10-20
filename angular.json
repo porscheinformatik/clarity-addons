@@ -97,14 +97,28 @@
             }
           }
         },
-        "test": {
-          "builder": "@angular/build:karma",
+        "build-test": {
+          "builder": "@angular/build:application",
           "options": {
-            "main": "tests/tests.entry.ts",
+            "browser": "src/clr-addons/index.ts",
             "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
-            "polyfills": ["zone.js", "zone.js/testing"],
-            "styles": ["node_modules/@clr/ui/clr-ui.min.css", "dist/clr-addons/styles/clr-addons-phs.css"]
+            "polyfills": ["zone.js", "zone.js/testing", "zone.js/plugins/vitest-patch"],
+            "aot": false,
+            "styles": ["node_modules/@clr/ui/clr-ui.min.css", "dist/clr-addons/styles/clr-addons-phs.css"],
+            "sourceMap": true,
+            "optimization": false
+          }
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "runner": "vitest",
+            "buildTarget": "clr-addons:build-test",
+            "tsConfig": "tsconfig.spec.json",
+            "setupFiles": ["tests/test-setup.ts"],
+            "browsers": ["chromium"],
+            "headless": true,
+            "coverageReporters": ["html", "lcovonly", "cobertura"]
           }
         },
         "lint": {

@@ -18,7 +18,7 @@ describe('TextRenderer', () => {
 
     it('should truncate text and append "..." when too wide', () => {
       const result = renderer.render('A very long label text that will not fit', 20, 40);
-      expect(result.endsWith('...')).toBeTrue();
+      expect(result.endsWith('...')).toBe(true);
       expect(result.length).toBeLessThan('A very long label text that will not fit'.length);
     });
 

@@ -362,7 +362,7 @@ describe('Multilingual Textarea', () => {
 
   function validationShown(shouldBeVisible: boolean, fixture: ComponentFixture<any>): void {
     if (shouldBeVisible) {
-      expect(fixture.debugElement.query(By.css('clr-multilingual-textarea')).classes['clr-error']).toBeTrue();
+      expect(fixture.debugElement.query(By.css('clr-multilingual-textarea')).classes['clr-error']).toBe(true);
       expect(fixture.debugElement.query(By.css('clr-control-error'))).toBeTruthy();
       expect(fixture.debugElement.query(By.css('clr-control-helper'))).toBeFalsy();
     } else {

@@ -72,11 +72,11 @@ describe('ComboChartComponent', () => {
   // ── Input defaults ──────────────────────────────────────────────────────────
 
   describe('inputs – defaults', () => {
-    it('should default loading to false', () => expect(component.loading()).toBeFalse());
-    it('should default showLegend to true', () => expect(component.showLegend()).toBeTrue());
+    it('should default loading to false', () => expect(component.loading()).toBe(false));
+    it('should default showLegend to true', () => expect(component.showLegend()).toBe(true));
     it('should default tooltipOrientation to "top"', () => expect(component.tooltipOrientation()).toBe('top'));
     it('should default exportFilename to "combo-chart"', () => expect(component.exportFilename()).toBe('combo-chart'));
-    it('should default showExportButton to false', () => expect(component.showExportButton()).toBeFalse());
+    it('should default showExportButton to false', () => expect(component.showExportButton()).toBe(false));
     it('should default noItemsMessage to the shared constant', () =>
       expect(component.noItemsMessage()).toBe(NO_ITEMS_MESSAGE));
   });
@@ -85,33 +85,33 @@ describe('ComboChartComponent', () => {
 
   describe('hasData()', () => {
     it('should be true when both barSeries and lineSeries contain data', () => {
-      expect((component as any).hasData()).toBeTrue();
+      expect((component as any).hasData()).toBe(true);
     });
 
     it('should be true when only barSeries has data', () => {
       componentRef.setInput('lineSeries', []);
       fixture.detectChanges();
-      expect((component as any).hasData()).toBeTrue();
+      expect((component as any).hasData()).toBe(true);
     });
 
     it('should be true when only lineSeries has data', () => {
       componentRef.setInput('barSeries', []);
       fixture.detectChanges();
-      expect((component as any).hasData()).toBeTrue();
+      expect((component as any).hasData()).toBe(true);
     });
 
     it('should be false when both are empty', () => {
       componentRef.setInput('barSeries', []);
       componentRef.setInput('lineSeries', []);
       fixture.detectChanges();
-      expect((component as any).hasData()).toBeFalse();
+      expect((component as any).hasData()).toBe(false);
     });
 
     it('should be false when series arrays contain series with empty data arrays', () => {
       componentRef.setInput('barSeries', [{ key: 'a', label: 'A', color: '#000', data: [] }]);
       componentRef.setInput('lineSeries', [{ key: 'b', label: 'B', color: '#fff', data: [] }]);
       fixture.detectChanges();
-      expect((component as any).hasData()).toBeFalse();
+      expect((component as any).hasData()).toBe(false);
     });
   });
 
@@ -233,7 +233,7 @@ describe('ComboChartComponent', () => {
     it('should hide the export button when set to false', () => {
       componentRef.setInput('showExportButton', false);
       fixture.detectChanges();
-      expect(component.showExportButton()).toBeFalse();
+      expect(component.showExportButton()).toBe(false);
     });
   });
 
@@ -271,7 +271,7 @@ describe('ComboChartComponent', () => {
 
   describe('valueClicked output', () => {
     it('should emit a ComboChartValue when triggered', () => {
-      const spy = jasmine.createSpy('valueClicked');
+      const spy = vi.fn();
       component.valueClicked.subscribe(spy);
 
       const emitted: ComboChartValue = {
@@ -284,7 +284,9 @@ describe('ComboChartComponent', () => {
       };
       component.valueClicked.emit(emitted);
 
-      expect(spy).toHaveBeenCalledOnceWith(emitted);
+      expect(spy).toHaveBeenCalledTimes(1);
+
+      expect(spy).toHaveBeenCalledWith(emitted);
     });
   });
 

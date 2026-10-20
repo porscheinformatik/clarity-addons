@@ -47,9 +47,9 @@ describe('BarChartComponent', () => {
   });
 
   describe('inputs – defaults', () => {
-    it('should default loading to false', () => expect(component.loading()).toBeFalse());
-    it('should default showLegend to true', () => expect(component.showLegend()).toBeTrue());
-    it('should default showExportButton to false', () => expect(component.showExportButton()).toBeFalse());
+    it('should default loading to false', () => expect(component.loading()).toBe(false));
+    it('should default showLegend to true', () => expect(component.showLegend()).toBe(true));
+    it('should default showExportButton to false', () => expect(component.showExportButton()).toBe(false));
     it('should default exportFilename to "bar-chart"', () => expect(component.exportFilename()).toBe('bar-chart'));
     it('should default tooltipOrientation to "top"', () => expect(component.tooltipOrientation()).toBe('top'));
     it('should default stacks to undefined', () => expect(component.stacks()).toBeUndefined());
@@ -106,16 +106,17 @@ describe('BarChartComponent', () => {
     it('should hide the export button when set to false', () => {
       componentRef.setInput('showExportButton', false);
       fixture.detectChanges();
-      expect(component.showExportButton()).toBeFalse();
+      expect(component.showExportButton()).toBe(false);
     });
   });
 
   describe('valueClicked output', () => {
     it('should emit when valueClicked is triggered', () => {
-      const spy = jasmine.createSpy('valueClicked');
+      const spy = vi.fn();
       component.valueClicked.subscribe(spy);
       component.valueClicked.emit({ key: ['jan'], label: 'January', value: 120 });
-      expect(spy).toHaveBeenCalledOnceWith({ key: ['jan'], label: 'January', value: 120 });
+      expect(spy).toHaveBeenCalledTimes(1);
+      expect(spy).toHaveBeenCalledWith({ key: ['jan'], label: 'January', value: 120 });
     });
   });
 });

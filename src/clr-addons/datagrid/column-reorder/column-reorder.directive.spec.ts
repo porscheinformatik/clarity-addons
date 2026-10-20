@@ -28,10 +28,14 @@ import { ClrDatagridColumnReorderModule, DynamicColumn } from '@porscheinformati
   standalone: false,
 })
 class TestComponent {
-  @ViewChildren(ClrDatagridColumn) clrColumns: QueryList<ClrDatagridColumn>;
-  @ViewChildren(ClrDatagridColumn, { read: ElementRef }) clrColumnsElRefs: QueryList<ElementRef>;
-  @ViewChild(ClrDatagrid) datagrid: ClrDatagrid;
-  @ViewChild(CdkDropList) dropList: CdkDropList;
+  @ViewChildren(ClrDatagridColumn)
+  clrColumns: QueryList<ClrDatagridColumn>;
+  @ViewChildren(ClrDatagridColumn, { read: ElementRef })
+  clrColumnsElRefs: QueryList<ElementRef>;
+  @ViewChild(ClrDatagrid)
+  datagrid: ClrDatagrid;
+  @ViewChild(CdkDropList)
+  dropList: CdkDropList;
 
   columns: DynamicColumn<string>[] = [
     { name: 'column1', title: 'Column1', formatter: v => v },
@@ -60,14 +64,14 @@ describe('ColumnReorderDirective', () => {
     fixture.componentInstance.datagrid.detailService.open('Item 1');
     fixture.detectChanges();
 
-    expect(fixture.componentInstance.dropList.disabled).toBeTrue();
+    expect(fixture.componentInstance.dropList.disabled).toBe(true);
     let visibleColumnFields = fixture.componentInstance.clrColumns.filter(col => !col.isHidden).map(col => col.field);
     expect(visibleColumnFields).toEqual(['column1']);
 
     fixture.componentInstance.datagrid.detailService.close();
     fixture.detectChanges();
 
-    expect(fixture.componentInstance.dropList.disabled).toBeFalse();
+    expect(fixture.componentInstance.dropList.disabled).toBe(false);
     visibleColumnFields = fixture.componentInstance.clrColumns.filter(col => !col.isHidden).map(col => col.field);
     expect(visibleColumnFields).toEqual(['column1', 'column2', 'hidden', 'column4']);
   });

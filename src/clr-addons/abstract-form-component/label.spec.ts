@@ -25,7 +25,8 @@ class ExplicitForTest {
   standalone: false,
 })
 class ContainerizedTest {
-  @ViewChild(ClrAddonsLabel, { static: true }) label: ClrAddonsLabel;
+  @ViewChild(ClrAddonsLabel, { static: true })
+  label: ClrAddonsLabel;
 }
 
 describe('ClrAddonsLabel', () => {
@@ -41,9 +42,9 @@ describe('ClrAddonsLabel', () => {
     TestBed.configureTestingModule({ declarations: [ClrAddonsLabel, NoForTest] });
     const fixture = TestBed.createComponent(NoForTest);
     fixture.detectChanges();
-    expect(
-      fixture.debugElement.query(By.css('label')).nativeElement.classList.contains('clr-control-label')
-    ).toBeFalse();
+    expect(fixture.debugElement.query(By.css('label')).nativeElement.classList.contains('clr-control-label')).toBe(
+      false
+    );
   });
 
   it('does set the the class when its inside of a container', function () {
@@ -52,9 +53,9 @@ describe('ClrAddonsLabel', () => {
     });
     const fixture = TestBed.createComponent(ContainerizedTest);
     fixture.detectChanges();
-    expect(
-      fixture.debugElement.query(By.css('label')).nativeElement.classList.contains('clr-control-label')
-    ).toBeTrue();
+    expect(fixture.debugElement.query(By.css('label')).nativeElement.classList.contains('clr-control-label')).toBe(
+      true
+    );
   });
 
   it('sets the for attribute to the id given by the service', fakeAsync(() => {

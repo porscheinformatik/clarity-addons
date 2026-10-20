@@ -24,7 +24,7 @@ describe('Service: DaterangeService', () => {
     it('should keep track of selected daterange and emit value change event', () => {
       // Arrange.
       const sut = new DaterangeService();
-      const spy = jasmine.createSpy();
+      const spy = vi.fn();
       sut.valueChange.subscribe(spy);
       const daterange: NullableDaterange = {
         from: new DayModel(2022, 0, 1),
@@ -42,7 +42,7 @@ describe('Service: DaterangeService', () => {
     it('should keep track of selected daterange and not emit value change event, with disabled trigger event', () => {
       // Arrange.
       const sut = new DaterangeService();
-      const spy = jasmine.createSpy();
+      const spy = vi.fn();
       sut.valueChange.subscribe(spy);
       const daterange: NullableDaterange = {
         from: new DayModel(2022, 0, 1),
@@ -72,14 +72,17 @@ describe('Service: DaterangeService', () => {
       const result = sut.isValid();
 
       // Assert.
-      expect(result).toBeTrue();
+      expect(result).toBe(true);
     });
 
     const invalidDateranges = [
       { value: null, description: '`null` range' },
       { value: { from: null, to: new DayModel(2022, 0, 1) }, description: 'absent `from` date' },
       { value: { from: new DayModel(2022, 0, 1), to: null }, description: 'absent `to` date' },
-    ] as Array<{ value: NullableDaterange; description: string }>;
+    ] as Array<{
+      value: NullableDaterange;
+      description: string;
+    }>;
     invalidDateranges.forEach(test => {
       it(`should return false for invalid daterange with ${test.description}`, () => {
         // Arrange.
@@ -90,7 +93,7 @@ describe('Service: DaterangeService', () => {
         const result = sut.isValid();
 
         // Assert.
-        expect(result).toBeFalse();
+        expect(result).toBe(false);
       });
     });
   });

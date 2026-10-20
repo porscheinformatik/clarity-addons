@@ -34,24 +34,24 @@ describe('ContentPanelComponent', () => {
 
   it('should be opened', () => {
     component.open();
-    expect(component.isOpen()).toBeTrue();
+    expect(component.isOpen()).toBe(true);
   });
 
   it('should be closed', () => {
     component.open();
     component.close();
-    expect(component.isOpen()).toBeFalse();
+    expect(component.isOpen()).toBe(false);
   });
 
   it('should fire open event', () => {
-    spyOn(component.opened, 'emit');
+    vi.spyOn(component.opened, 'emit');
     component.open();
     expect(component.opened.emit).toHaveBeenCalledTimes(1);
   });
 
   it('should fire close event', () => {
     component.open();
-    spyOn(component.closed, 'emit');
+    vi.spyOn(component.closed, 'emit');
     component.close();
     expect(component.closed.emit).toHaveBeenCalledTimes(1);
   });

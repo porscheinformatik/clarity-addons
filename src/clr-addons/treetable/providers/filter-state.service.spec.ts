@@ -9,7 +9,11 @@ import { FilterStateService } from './filter-state.service';
 import { ClrTreetableFilterInterface } from '../interfaces/filter-model';
 import { Subject } from 'rxjs';
 
-type Item = { id: number; name: string; value: number };
+type Item = {
+  id: number;
+  name: string;
+  value: number;
+};
 
 class StringContainsFilter implements ClrTreetableFilterInterface<Item, string> {
   private readonly changesSubject = new Subject<string>();
@@ -70,7 +74,7 @@ describe('Filters<Item>', () => {
 
   it('should have no active filters initially', () => {
     expect(service.activeFilters().length).toBe(0);
-    expect(service.hasActiveFilters()).toBeFalse();
+    expect(service.hasActiveFilters()).toBe(false);
   });
 
   it('should register a filter and keep it inactive until value set', () => {
@@ -78,7 +82,7 @@ describe('Filters<Item>', () => {
     TestBed.tick();
 
     expect(service.activeFilters().length).toBe(0);
-    expect(service.hasActiveFilters()).toBeFalse();
+    expect(service.hasActiveFilters()).toBe(false);
   });
 
   it('should activate filter after setting non-empty value', () => {
@@ -87,7 +91,7 @@ describe('Filters<Item>', () => {
     TestBed.tick();
 
     expect(service.activeFilters().length).toBe(1);
-    expect(service.hasActiveFilters()).toBeTrue();
+    expect(service.hasActiveFilters()).toBe(true);
   });
 
   it('should deactivate filter after setting empty value', () => {
@@ -99,7 +103,7 @@ describe('Filters<Item>', () => {
     TestBed.tick();
 
     expect(service.activeFilters().length).toBe(0);
-    expect(service.hasActiveFilters()).toBeFalse();
+    expect(service.hasActiveFilters()).toBe(false);
   });
 
   it('should emit only active filter values via changes$', () => {

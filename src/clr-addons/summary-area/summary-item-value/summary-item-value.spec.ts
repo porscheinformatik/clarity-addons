@@ -25,7 +25,8 @@ import { ClarityModule } from '@clr/angular';
   imports: [ClrSummaryItemValue, ClarityModule],
 })
 class TestHostComponent {
-  @ViewChild(ClrSummaryItemValue) component!: ClrSummaryItemValue;
+  @ViewChild(ClrSummaryItemValue)
+  component!: ClrSummaryItemValue;
   icon: string | undefined;
   value: string | undefined;
   tooltip: string | undefined;
@@ -42,7 +43,8 @@ class TestHostComponent {
   imports: [ClrSummaryItemValue, ClarityModule],
 })
 class TestHostInvalidComponent {
-  @ViewChild(ClrSummaryItemValue) component!: ClrSummaryItemValue;
+  @ViewChild(ClrSummaryItemValue)
+  component!: ClrSummaryItemValue;
 }
 
 describe('SummaryItemValue', () => {
@@ -230,7 +232,7 @@ describe('SummaryItemValue', () => {
     });
 
     it('should render icon with click handler when clicked and clickable is provided', () => {
-      const clickSpy = jasmine.createSpy('clickedFn');
+      const clickSpy = vi.fn();
       hostComponent.icon = 'pencil';
       hostComponent.clickable = true;
       hostComponent.clickedFn = clickSpy;
@@ -244,7 +246,7 @@ describe('SummaryItemValue', () => {
     });
 
     it('should render icon without click styling when clicked handler without positive clickable value is provided', () => {
-      const clickSpy = jasmine.createSpy('clickedFn');
+      const clickSpy = vi.fn();
       hostComponent.icon = 'pencil';
       hostComponent.clickable = false;
       hostComponent.clickedFn = clickSpy;
@@ -287,7 +289,7 @@ describe('SummaryItemValue', () => {
     });
 
     it('should emit clicked when icon href and clickable are both set', () => {
-      const clickSpy = jasmine.createSpy('clickedFn');
+      const clickSpy = vi.fn();
       hostComponent.icon = 'pencil';
       hostComponent.href = 'https://example.com';
       hostComponent.clickable = true;
@@ -323,7 +325,7 @@ describe('SummaryItemValue', () => {
     });
 
     it('should render value as link when clicked handler and positive clickable value is provided', () => {
-      const clickSpy = jasmine.createSpy();
+      const clickSpy = vi.fn();
       hostComponent.value = 'Clickable Value';
       hostComponent.clickable = true;
       hostComponent.clickedFn = clickSpy;
@@ -337,7 +339,7 @@ describe('SummaryItemValue', () => {
     });
 
     it('should not render value as link when clicked handler but no positive clickable value is provided', () => {
-      const clickSpy = jasmine.createSpy('clickedFn');
+      const clickSpy = vi.fn();
       hostComponent.value = 'Plain Value';
       hostComponent.clickable = false;
       hostComponent.clickedFn = clickSpy;
@@ -392,7 +394,7 @@ describe('SummaryItemValue', () => {
     });
 
     it('should emit clicked when href and clickable are both set and link is clicked', () => {
-      const clickSpy = jasmine.createSpy('clickedFn');
+      const clickSpy = vi.fn();
       hostComponent.value = 'Link Value';
       hostComponent.href = 'https://example.com';
       hostComponent.clickable = true;
@@ -405,7 +407,7 @@ describe('SummaryItemValue', () => {
     });
 
     it('should not emit clicked when href is set but clickable is false', () => {
-      const clickSpy = jasmine.createSpy('clickedFn');
+      const clickSpy = vi.fn();
       hostComponent.value = 'Link Value';
       hostComponent.href = 'https://example.com';
       hostComponent.clickable = false;

@@ -37,7 +37,8 @@ class MockSummaryAreaStateService {
   imports: [ClrSummaryAreaToggle],
 })
 class TestHostComponent {
-  @ViewChild(ClrSummaryAreaToggle) component!: ClrSummaryAreaToggle;
+  @ViewChild(ClrSummaryAreaToggle)
+  component!: ClrSummaryAreaToggle;
   toggleCount = 0;
 
   onToggle(): void {
@@ -179,8 +180,10 @@ describe('SummaryAreaToggle', () => {
     });
 
     it('should prevent default event behavior', () => {
-      const mockEvent = jasmine.createSpyObj('Event', ['preventDefault']);
-      component.handleToggle(mockEvent);
+      const mockEvent = {
+        preventDefault: vi.fn().mockName('Event.preventDefault'),
+      };
+      component.handleToggle(mockEvent as unknown as Event);
       expect(mockEvent.preventDefault).toHaveBeenCalled();
     });
 
@@ -278,7 +281,7 @@ describe('SummaryAreaToggle', () => {
 
   describe('integration with SummaryAreaStateService', () => {
     it('should call state.toggle() when toggling', () => {
-      spyOn(mockStateService, 'toggle').and.callThrough();
+      vi.spyOn(mockStateService, 'toggle');
       component.handleToggle();
       expect(mockStateService.toggle).toHaveBeenCalled();
     });
@@ -332,7 +335,8 @@ describe('SummaryAreaToggleComponent - standalone tests', () => {
   imports: [ClrSummaryAreaToggle],
 })
 class LocalStorageKeyTestHostComponent {
-  @ViewChild(ClrSummaryAreaToggle) component!: ClrSummaryAreaToggle;
+  @ViewChild(ClrSummaryAreaToggle)
+  component!: ClrSummaryAreaToggle;
   storageKey = 'customStorageKey';
   toggleCount = 0;
 
@@ -373,7 +377,7 @@ describe('SummaryAreaToggleComponent - localStorageKey tests', () => {
   });
 
   it('should use custom localStorageKey when toggling', () => {
-    spyOn(mockStateService, 'toggle').and.callThrough();
+    vi.spyOn(mockStateService, 'toggle');
     component.handleToggle();
     expect(mockStateService.toggle).toHaveBeenCalledWith('customStorageKey');
   });

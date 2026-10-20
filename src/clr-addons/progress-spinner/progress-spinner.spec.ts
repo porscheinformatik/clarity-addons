@@ -36,7 +36,6 @@ class ClrProgressSpinnerComponentTestModule {}
 describe('ProgressSpinnerDirective', () => {
   let component: TestComponent;
   let fixture: ComponentFixture<TestComponent>;
-  let originalTimeout;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -49,16 +48,13 @@ describe('ProgressSpinnerDirective', () => {
     fixture = TestBed.createComponent(TestComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    jasmine.clock().uninstall();
-    jasmine.clock().install();
-    originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 300;
-    jasmine.clock().mockDate();
+    vi.useRealTimers();
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date());
   });
 
   afterEach(() => {
-    jasmine.clock().uninstall();
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
+    vi.useRealTimers();
   });
 
   it('should create', () => {
@@ -78,14 +74,14 @@ describe('ProgressSpinnerDirective', () => {
   });
 
   it('should be invisible after the minimal visible time', () => {
-    jasmine.clock().mockDate();
+    vi.setSystemTime(new Date());
     component.loadingState = true;
     fixture.changeDetectorRef.detectChanges();
     component.loadingState = false;
     fixture.changeDetectorRef.detectChanges();
     let loadingOverlay: HTMLLinkElement = fixture.nativeElement.querySelector('.progress-spinner-overlay');
     expect(loadingOverlay).not.toBe(null); // the spinner should be visible at least 200 ms
-    jasmine.clock().tick(200);
+    vi.advanceTimersByTime(200);
     fixture.changeDetectorRef.detectChanges();
     loadingOverlay = fixture.nativeElement.querySelector('.progress-spinner-overlay');
     expect(loadingOverlay).toBe(null);

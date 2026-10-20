@@ -4,6 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import {
+  DestroyRef,
   Injectable,
   Injector,
   Signal,
@@ -22,6 +23,7 @@ export class ClrSummaryAreaStateService {
   private readonly collapsedMap = new Map<string, WritableSignal<boolean>>();
   private readonly effectsInitialized = new Set<string>();
   private readonly injector = inject(Injector);
+  private readonly destroyRef = inject(DestroyRef);
 
   public collapsed(key?: string): Signal<boolean> {
     const storageKey = key || defaultSummaryAreaCollapsedKey;
@@ -46,7 +48,7 @@ export class ClrSummaryAreaStateService {
     this.effectsInitialized.add(storageKey);
 
     // Use setTimeout to ensure effect is created outside of any reactive context
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       runInInjectionContext(this.injector, () => {
         effect(() => {
           const value = collapsedSignal();
@@ -58,6 +60,7 @@ export class ClrSummaryAreaStateService {
         });
       });
     });
+    this.destroyRef.onDestroy(() => clearTimeout(timeoutId));
   }
 
   public toggle(key?: string): void {

@@ -40,7 +40,7 @@ describe('LocationBarComponent', () => {
     /* create component and test fixture */
     fixture = TestBed.createComponent<LocationBarComponent<TestNodeId>>(LocationBarComponent);
     component = fixture.componentInstance;
-    spyOn(component.selectionChanged, 'emit');
+    vi.spyOn(component.selectionChanged, 'emit');
   });
 
   it('Render selectable node', waitForAsync(() => {
@@ -103,7 +103,7 @@ describe('LocationBarComponent', () => {
     /* GIVEN */
     const provider = TestBed.inject(CONTENT_PROVIDER) as TestContentProvider;
     const children$ = new Subject<LocationBarNode<TestNodeId>[]>();
-    spyOn(provider, 'getLazyChildren').and.returnValue(children$);
+    vi.spyOn(provider, 'getLazyChildren').mockReturnValue(children$);
     component.roots = [new LocationBarNode(new TestNodeId('root'), 'Root')];
 
     /* WHEN */
@@ -144,7 +144,7 @@ describe('LocationBarComponent', () => {
 
   it('Hides the spinner when loading the children fails', waitForAsync(() => {
     const provider = TestBed.inject(CONTENT_PROVIDER) as TestContentProvider;
-    spyOn(provider, 'getLazyChildren').and.returnValue(throwError(() => new Error('boom')));
+    vi.spyOn(provider, 'getLazyChildren').mockReturnValue(throwError(() => new Error('boom')));
     component.roots = [new LocationBarNode(new TestNodeId('root'), 'Root')];
     fixture.detectChanges();
 
@@ -157,7 +157,7 @@ describe('LocationBarComponent', () => {
   it('Does not fail when the view is destroyed before the children arrive', waitForAsync(() => {
     const provider = TestBed.inject(CONTENT_PROVIDER) as TestContentProvider;
     const children$ = new Subject<LocationBarNode<TestNodeId>[]>();
-    spyOn(provider, 'getLazyChildren').and.returnValue(children$);
+    vi.spyOn(provider, 'getLazyChildren').mockReturnValue(children$);
     component.roots = [new LocationBarNode(new TestNodeId('root'), 'Root')];
     fixture.detectChanges();
 
@@ -177,7 +177,7 @@ describe('LocationBarComponent', () => {
     const parentB = new LocationBarNode(new TestNodeId('b'), 'B');
     const childOfB = new LocationBarNode(new TestNodeId('childOfB'), 'Child of B');
     parentB.setChildren([childOfB]);
-    spyOn(provider, 'getLazyChildren').and.returnValue(staleChildren$);
+    vi.spyOn(provider, 'getLazyChildren').mockReturnValue(staleChildren$);
 
     nodeComponent.parentNode = parentA;
     nodeComponent.parentNode = parentB;
@@ -186,7 +186,7 @@ describe('LocationBarComponent', () => {
       staleChildren$.next([new LocationBarNode(new TestNodeId('childOfA'), 'Child of A')]);
       return nodeFixture.whenStable().then(() => {
         expect(parentB.getChildren()).toEqual([childOfB]);
-        expect(nodeComponent.loading()).toBeFalse();
+        expect(nodeComponent.loading()).toBe(false);
       });
     });
   }));
