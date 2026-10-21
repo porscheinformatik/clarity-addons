@@ -25,18 +25,23 @@
       &.bar-1 {
         height: 60%;
       }
+
       &.bar-2 {
         height: 95%;
       }
+
       &.bar-3 {
         height: 40%;
       }
+
       &.bar-4 {
         height: 75%;
       }
+
       &.bar-5 {
         height: 50%;
       }
+
       &.bar-6 {
         height: 25%;
       }
@@ -53,21 +58,30 @@
       &.bar-1 {
         width: 60%;
       }
+
       &.bar-2 {
         width: 95%;
       }
+
       &.bar-3 {
         width: 40%;
       }
+
       &.bar-4 {
         width: 75%;
       }
+
       &.bar-5 {
         width: 50%;
       }
+
       &.bar-6 {
         width: 25%;
       }
     }
+  }
+
+  .clr-skeleton-loader {
+    height: 100%;
   }
 }

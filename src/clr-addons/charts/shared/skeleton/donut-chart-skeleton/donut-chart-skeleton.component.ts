@@ -7,6 +7,7 @@ import { NgxSkeletonLoaderComponent } from 'ngx-skeleton-loader';
     <div class="chart-skeleton">
       <div class="donut-wrapper">
         <ngx-skeleton-loader
+          class="clr-skeleton-loader"
           [class.placeholder-skeleton]="skeletonType() === 'placeholder'"
           [appearance]="'circle'"
           [animation]="animationStyle()"

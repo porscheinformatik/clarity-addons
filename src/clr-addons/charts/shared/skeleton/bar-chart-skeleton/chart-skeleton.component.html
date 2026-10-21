@@ -12,6 +12,7 @@
     @for (_item of [1, 2, 3, 4, 5, 6]; track $index) {
       <div class="skeleton-bar bar-{{ $index + 1 }}" [attr.data-testid]="'chart-skeleton-bar-' + ($index + 1)">
         <ngx-skeleton-loader
+          class="clr-skeleton-loader"
           [appearance]="'circle'"
           [count]="1"
           [animation]="animationStyle()"

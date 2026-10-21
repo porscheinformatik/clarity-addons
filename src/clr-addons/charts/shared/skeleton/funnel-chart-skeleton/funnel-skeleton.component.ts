@@ -1,15 +1,16 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { ClrSignpostModule } from '@clr/angular';
-import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { NgxSkeletonLoaderComponent } from 'ngx-skeleton-loader';
 
 @Component({
   selector: 'cng-funnel-skeleton',
-  imports: [NgxSkeletonLoaderModule, ClrSignpostModule],
+  imports: [NgxSkeletonLoaderComponent, ClrSignpostModule],
   template: `
     <div class="funnel-skeleton-container">
       @for (_ of [1, 2, 3, 4, 5, 6, 7, 8]; track $index) {
         <div class="funnel-bar bar-{{ $index + 1 }}" [class.centered]="centered()">
           <ngx-skeleton-loader
+            class="clr-skeleton-loader"
             [appearance]="'line'"
             [count]="1"
             [animation]="'pulse'"
