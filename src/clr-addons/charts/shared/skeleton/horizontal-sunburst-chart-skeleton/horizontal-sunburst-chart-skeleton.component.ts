@@ -9,6 +9,7 @@ import { NgxSkeletonLoaderComponent } from 'ngx-skeleton-loader';
         @for (_item of items(); track $index) {
           <div class="skeleton-row" [style.height.px]="barHeight()">
             <ngx-skeleton-loader
+              class="clr-skeleton-loader"
               [appearance]="'line'"
               [animation]="'pulse'"
               [theme]="{
@@ -22,6 +23,13 @@ import { NgxSkeletonLoaderComponent } from 'ngx-skeleton-loader';
       </div>
     </div>
   `,
+  styles: [
+    `
+      .clr-skeleton-loader {
+        height: 100%;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgxSkeletonLoaderComponent],
 })
