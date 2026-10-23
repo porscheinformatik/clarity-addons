@@ -93,7 +93,7 @@
     "eslint-config-prettier": "10.1.8",
     "globals": "17.13.0",
     "husky": "9.1.7",
-    "ng-packagr": "21.2.7",
+    "ng-packagr": "22.2.5",
     "ngx-skeleton-loader": "14.0.0",
     "npm-run-all2": "9.0.4",
     "playwright": "1.64.1",
