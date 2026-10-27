@@ -280,6 +280,12 @@ const HTML_EXAMPLE_CUSTOM_FILTER = `
 const HTML_EXAMPLE_EMPTY_PLACEHOLDER = `
 <clr-treetable>
   <clr-tt-column>Name</clr-tt-column>
+</clr-treetable>
+`;
+
+const HTML_EXAMPLE_EMPTY_PLACEHOLDER_CONTENT = `
+<clr-treetable>
+  <clr-tt-column>Name</clr-tt-column>
   <clr-tt-placeholder>No entries found</clr-tt-placeholder>
 </clr-treetable>
 `;
@@ -287,7 +293,6 @@ const HTML_EXAMPLE_EMPTY_PLACEHOLDER = `
 const HTML_EXAMPLE_EMPTY_PLACEHOLDER_WIDE = `
 <clr-treetable class="treetable-placeholder-wide">
   <clr-tt-column>Name</clr-tt-column>
-  <clr-tt-placeholder>No entries found</clr-tt-placeholder>
 </clr-treetable>
 `;
 
@@ -514,6 +519,7 @@ export class TreetableDemo extends ClarityDocComponent {
   htmlExampleHideShow = HTML_EXAMPLE_HIDE_SHOW;
   htmlExampleEmptyPlaceholder = HTML_EXAMPLE_EMPTY_PLACEHOLDER;
   htmlExampleEmptyPlaceholderWide = HTML_EXAMPLE_EMPTY_PLACEHOLDER_WIDE;
+  htmlExampleEmptyPlaceholderContent = HTML_EXAMPLE_EMPTY_PLACEHOLDER_CONTENT;
   htmlExampleExport = HTML_EXAMPLE_EXPORT;
   tsExampleExport = TS_EXAMPLE_EXPORT;
 

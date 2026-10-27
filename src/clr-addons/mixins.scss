@@ -35,7 +35,7 @@ $svg_data: 'data:image/svg+xml;charset=utf8';
 
 // Compact empty-state placeholder (inline icon and text) shared by datagrid and treetable.
 // Must be included inside the host element selector (e.g. `.datagrid-host`).
-// Adding the `<name>-placeholder-wide` class to the host restores the wide placeholder.
+// Adding the `<name>-placeholder-wide` class to the host restores the regular placeholder.
 @mixin compact-placeholder($name) {
   &:not(.#{$name}-placeholder-wide) .#{$name}-placeholder.#{$name}-empty {
     flex-flow: row nowrap;
@@ -43,6 +43,9 @@ $svg_data: 'data:image/svg+xml;charset=utf8';
     justify-content: center;
     gap: baselinePx(8);
     padding: baselinePx(8) baselinePx(12);
+    font-size: var(--clr-base-typography-font-size-default);
+    font-weight: var(--cds-alias-typography-body-font-weight);
+    line-height: var(--clr-base-typography-line-height-16);
 
     .#{$name}-placeholder-image {
       flex: 0 0 auto;

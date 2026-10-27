@@ -991,20 +991,25 @@
 
         <p>
           An empty treetable shows a compact placeholder (icon and text side by side) by default, consistent with the
-          datagrid. To use the wider placeholder, add the class
+          datagrid. To use the regular placeholder, add the class
           <code class="clr-code">treetable-placeholder-wide</code> to the <code class="clr-code">clr-treetable</code>.
         </p>
+
+        <clr-treetable>
+          <clr-tt-column>Name</clr-tt-column>
+        </clr-treetable>
+
+        <clr-code-snippet [clrCode]="htmlExampleEmptyPlaceholder"></clr-code-snippet>
 
         <clr-treetable>
           <clr-tt-column>Name</clr-tt-column>
           <clr-tt-placeholder>No entries found</clr-tt-placeholder>
         </clr-treetable>
 
-        <clr-code-snippet [clrCode]="htmlExampleEmptyPlaceholder"></clr-code-snippet>
+        <clr-code-snippet [clrCode]="htmlExampleEmptyPlaceholderContent"></clr-code-snippet>
 
         <clr-treetable class="treetable-placeholder-wide">
           <clr-tt-column>Name</clr-tt-column>
-          <clr-tt-placeholder>No entries found</clr-tt-placeholder>
         </clr-treetable>
 
         <clr-code-snippet [clrCode]="htmlExampleEmptyPlaceholderWide"></clr-code-snippet>

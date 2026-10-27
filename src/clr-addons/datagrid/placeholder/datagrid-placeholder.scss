@@ -3,5 +3,14 @@
 @include mixins.exports('datagrid-placeholder.clr-addons') {
   .datagrid-host {
     @include mixins.compact-placeholder('datagrid');
+
+    .datagrid-placeholder.datagrid-empty {
+      font-weight: var(--cds-alias-typography-body-font-weight);
+    }
+
+    // Text from commonStrings.datagridNoData, set by ClrDatagridPlaceholderText, if no clr-dg-placeholder content is given.
+    .datagrid-placeholder-content:empty::after {
+      content: var(--clr-addons-datagrid-placeholder-text);
+    }
   }
 }

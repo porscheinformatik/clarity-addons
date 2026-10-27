@@ -349,7 +349,7 @@
     <!-- EMPTY PLACEHOLDER -->
     <h3 id="empty-placeholder">Empty placeholder</h3>
     <p>
-      An empty datagrid shows a compact placeholder (icon and text side by side) by default. To restore the wider
+      An empty datagrid shows a compact placeholder (icon and text side by side) by default. To restore the regular
       placeholder of the Clarity datagrid, add the class <code class="clr-code">datagrid-placeholder-wide</code> to the
       <code class="clr-code">clr-datagrid</code>.
     </p>
@@ -357,15 +357,21 @@
     <h4>Compact (default)</h4>
     <clr-datagrid>
       <clr-dg-column>Name</clr-dg-column>
-      <clr-dg-placeholder>We couldn't find any entries!</clr-dg-placeholder>
     </clr-datagrid>
 
     <clr-code-snippet [clrCode]="emptyPlaceholderExample"></clr-code-snippet>
 
-    <h4>Wide</h4>
-    <clr-datagrid class="datagrid-placeholder-wide">
+    <h4>Custom content</h4>
+    <clr-datagrid>
       <clr-dg-column>Name</clr-dg-column>
       <clr-dg-placeholder>We couldn't find any entries!</clr-dg-placeholder>
+    </clr-datagrid>
+
+    <clr-code-snippet [clrCode]="emptyPlaceholderContentExample"></clr-code-snippet>
+
+    <h4>Regular</h4>
+    <clr-datagrid class="datagrid-placeholder-wide">
+      <clr-dg-column>Name</clr-dg-column>
     </clr-datagrid>
 
     <clr-code-snippet [clrCode]="emptyPlaceholderWideExample"></clr-code-snippet>
