@@ -34,7 +34,7 @@ jobs:
       - name: Use Node.js 24
         uses: actions/setup-node@v7
         with:
-          node-version: 24
+          node-version: 26
       - name: Update root version
         env:
           RELEASE_TYPE: ${{ inputs.release-type }}

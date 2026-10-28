@@ -78,7 +78,7 @@
     "@eslint/eslintrc": "3.3.7",
     "@eslint/js": "10.0.1",
     "@types/d3": "7.4.3",
-    "@types/node": "24.19.2",
+    "@types/node": "26.6.5",
     "@types/zipcelx": "1.5.2",
     "@typescript-eslint/eslint-plugin": "8.72.1",
     "@typescript-eslint/parser": "8.72.1",
