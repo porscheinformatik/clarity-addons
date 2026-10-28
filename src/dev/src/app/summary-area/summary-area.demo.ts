@@ -16,17 +16,17 @@ import {
   ClrSummaryItemWarning,
   gasIcon,
 } from '@porscheinformatik/clr-addons';
-import { ClrModalModule } from '@clr/angular';
 import {
   barsIcon,
   chatBubbleIcon,
   ClarityIcons,
+  ClrModalModule,
   colorPaletteIcon,
   infoStandardIcon,
   pencilIcon,
   popOutIcon,
   wandIcon,
-} from '@clr/angular/icon';
+} from '@clr/angular';
 import { ProgressItemComponent } from './progress-item/progress-item.component';
 
 ClarityIcons.addIcons(

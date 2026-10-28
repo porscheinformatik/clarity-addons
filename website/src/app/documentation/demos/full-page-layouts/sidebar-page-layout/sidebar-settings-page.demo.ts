@@ -1,5 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { ClrCheckboxModule, ClrCommonFormsModule, ClrInputModule, ClrSelectModule } from '@clr/angular';
+import { ClrAutocompleteOff, ClrAddonsLabel } from '@porscheinformatik/clr-addons';
 
 @Component({
   selector: 'clr-summary-area-settings-page-demo',
@@ -38,7 +41,15 @@ import { Router } from '@angular/router';
       </clr-input-container>
     </form>
   `,
-  standalone: false,
+  imports: [
+    FormsModule,
+    ClrCommonFormsModule,
+    ClrCheckboxModule,
+    ClrAutocompleteOff,
+    ClrAddonsLabel,
+    ClrSelectModule,
+    ClrInputModule,
+  ],
 })
 export class SidebarSettingsPageDemo {
   theme: string = 'light';

@@ -9,18 +9,16 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { ClarityModule } from '@clr/angular';
-import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
 import { NumericFilterDemo } from './numeric-filter.demo';
 
 @NgModule({
   imports: [
     CommonModule,
     ClarityModule,
-    ClrAddonsModule,
     FormsModule,
     RouterModule.forChild([{ path: '', component: NumericFilterDemo }]),
+    NumericFilterDemo,
   ],
-  declarations: [NumericFilterDemo],
   exports: [NumericFilterDemo],
 })
 export class NumericFilterDemoModule {}

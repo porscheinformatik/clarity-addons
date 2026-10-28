@@ -6,10 +6,7 @@
 import { Directive, ElementRef, inject, Renderer2 } from '@angular/core';
 import { HIDDEN_COLUMN_CSS_CLASS } from '../constants';
 
-@Directive({
-  selector: 'clr-tt-cell',
-  standalone: false,
-})
+@Directive({ selector: 'clr-tt-cell' })
 export class TreetableCellRenderer {
   private readonly elementRef = inject(ElementRef<HTMLElement>);
   private readonly renderer = inject(Renderer2);

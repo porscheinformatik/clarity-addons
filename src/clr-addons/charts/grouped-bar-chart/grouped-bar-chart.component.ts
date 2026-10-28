@@ -21,7 +21,7 @@ import {
   select as d3select,
   Selection,
 } from 'd3';
-import { ChartLegendItem } from '../chart-legend/chart-legend.component';
+import { ChartLegendItem, ChartLegendComponent } from '../chart-legend/chart-legend.component';
 import {
   ALL_ITEMS_ZERO_MESSAGE,
   ERROR_ALERT_MESSAGE,
@@ -33,6 +33,12 @@ import {
 } from '../constants';
 import { ChartBase } from '../shared/chart-base';
 import { TextRenderer, toChartColor } from '../utils';
+import { WindowResizeDirective } from '../directives/window-resize.directive';
+import { ChartTooltipComponent } from '../chart-tooltip/chart-tooltip.component';
+import { OutsideClickDirective } from '../directives/outside-click.directive';
+import { ChartSkeletonComponent } from '../shared/skeleton/bar-chart-skeleton/chart-skeleton.component';
+import { ChartAlertOverlayComponent } from '../chart-alert-overlay/chart-alert-overlay.component';
+import { ChartExportButtonComponent } from '../chart-export/chart-export-button.component';
 
 export interface GroupedBarChartData {
   key: string;
@@ -66,7 +72,15 @@ type GroupedBarChartDataPoint = GroupedBarChartData & {
   templateUrl: './grouped-bar-chart.component.html',
   styleUrls: ['./grouped-bar-chart.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
+  imports: [
+    WindowResizeDirective,
+    ChartTooltipComponent,
+    OutsideClickDirective,
+    ChartSkeletonComponent,
+    ChartAlertOverlayComponent,
+    ChartLegendComponent,
+    ChartExportButtonComponent,
+  ],
 })
 export class GroupedBarChartComponent extends ChartBase<GroupedBarChartDataPoint> implements OnChanges {
   public readonly data = input.required<GroupedBarChartData[]>();

@@ -54,6 +54,9 @@ import { ClrProgressBarModule } from './progress-bar';
 import { ClrProgressCircleModule } from './progress-circle';
 import { CngInputSuffixDirective } from './input-suffix';
 
+/**
+ * @deprecated Compatibility wrapper for NgModule-based consumers. Import the standalone components, directives and feature modules you need directly instead.
+ */
 @NgModule({
   imports: [
     ClrFocusFirstInvalidFieldDirective,
@@ -62,7 +65,6 @@ import { CngInputSuffixDirective } from './input-suffix';
     ClrKeyboardNavAltMnemonicDirective,
     CngInputSuffixDirective,
   ],
-  declarations: [],
   exports: [
     ClrViewEditSectionModule,
     ClrPagerModule,

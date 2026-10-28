@@ -16,8 +16,7 @@ describe('FlowBarComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ClrFlowBar],
-      imports: [ClarityModule],
+      imports: [ClarityModule, ClrFlowBar],
     }).compileComponents();
   }));
 

@@ -5,17 +5,44 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { ClrMultilingualInputValidators } from '@porscheinformatik/clr-addons';
-import { ClarityIcons, flagIcon, linkIcon } from '@clr/angular/icon';
-import { unlinkIcon } from '@clr/angular';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  ClrMultilingualInputValidators,
+  ClrMultilingualInput,
+  ClrRequiredAllMultilang,
+  ClrAddonsLabel,
+  ClrMultilingualTextarea,
+  ClrAutocompleteOff,
+} from '@porscheinformatik/clr-addons';
+import {
+  ClarityIcons,
+  ClrCheckboxModule,
+  ClrCommonFormsModule,
+  ClrInputModule,
+  ClrTextareaModule,
+  flagIcon,
+  linkIcon,
+  unlinkIcon,
+} from '@clr/angular';
 
 ClarityIcons.addIcons(flagIcon, linkIcon, unlinkIcon);
 
 @Component({
   selector: 'clr-multilingual-input-demo',
   templateUrl: './multilingual-input.demo.html',
-  standalone: false,
+  imports: [
+    FormsModule,
+    ClrCommonFormsModule,
+    ClrMultilingualInput,
+    ClrRequiredAllMultilang,
+    ClrAddonsLabel,
+    ClrMultilingualTextarea,
+    ClrCheckboxModule,
+    ClrAutocompleteOff,
+    ClrInputModule,
+    ClrTextareaModule,
+    ReactiveFormsModule,
+  ],
 })
 export class MultilingualInputDemo implements OnInit {
   template1 = new Map();

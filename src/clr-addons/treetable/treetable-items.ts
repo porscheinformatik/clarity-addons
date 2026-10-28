@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -22,10 +22,7 @@ export type ClrTreetableItemsContext<T extends object> = {
   clrTtNode: ClrTreetableTreeNode<T>;
 };
 
-@Directive({
-  selector: '[clrTtItems][clrTtItemsOf]',
-  standalone: false,
-})
+@Directive({ selector: '[clrTtItems][clrTtItemsOf]' })
 export class TreetableItemsDirective<T extends object> {
   private readonly _dataStateService = inject(TreetableDataStateService<T>);
   private readonly _recursionService = inject(ClrTreetableRecursionService<T>);

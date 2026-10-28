@@ -8,6 +8,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, input } from '@an
 import { ClrTreetableTreeNode } from './interfaces/treetable-model';
 import { ClrTreetableItemsContext } from './treetable-items';
 import { ClrTreetableRecursionService } from './providers/treetable-recursion.service';
+import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'clr-tt-recursive-rows',
@@ -22,7 +23,7 @@ import { ClrTreetableRecursionService } from './providers/treetable-recursion.se
     '[attr.role]': '"group"',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
+  imports: [NgTemplateOutlet],
 })
 export class ClrTreetableRecursiveRows<T extends object> {
   private readonly _recursionService = inject(ClrTreetableRecursionService<T>);

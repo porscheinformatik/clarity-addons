@@ -3,17 +3,40 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
+import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
+import { UtilsModule } from '../../../utils/utils.module';
+import {
+  checkIcon,
+  ClarityIcons,
+  ClarityModule,
+  ClrAlertModule,
+  ClrCommonFormsModule,
+  ClrFormsModule,
+  ClrIcon,
+  ClrInputModule,
+  ClrSelectModule,
+  ClrTextareaModule,
+} from '@clr/angular';
+import { CommonModule } from '@angular/common';
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
-import { ClarityIcons, checkIcon } from '@clr/angular/icon';
 import { share } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import {
   CONTROL_ENTER_BASIC_EXAMPLE,
   CONTROL_ENTER_TRANSLATION_EXAMPLE,
   FOCUS_FIRST_INVALID_EXAMPLE,
 } from './keyboard-operation-examples.demo';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DocWrapper } from '../_doc-wrapper/doc-wrapper';
+import { NgTemplateOutlet, AsyncPipe } from '@angular/common';
+import {
+  ClrFocusFirstInvalidFieldDirective,
+  ClrAddonsLabel,
+  ClrAutocompleteOff,
+  ClrControlEnterSubmitDirective,
+} from '@porscheinformatik/clr-addons';
+import { CodeSnippet } from '../../../utils/code-snippet';
 
 ClarityIcons.addIcons(checkIcon);
 
@@ -31,7 +54,30 @@ export interface TableOfContentsEntry {
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
-  standalone: false,
+  imports: [
+    DocWrapper,
+    NgTemplateOutlet,
+    FormsModule,
+    ClrFocusFirstInvalidFieldDirective,
+    ClrCommonFormsModule,
+    ClrInputModule,
+    ClrAddonsLabel,
+    ClrAutocompleteOff,
+    ClrTextareaModule,
+    ClrSelectModule,
+    CodeSnippet,
+    ClrControlEnterSubmitDirective,
+    ClrIcon,
+    ClrAlertModule,
+    ReactiveFormsModule,
+    RouterLink,
+    CommonModule,
+    ClarityModule,
+    ClrFormsModule,
+    UtilsModule,
+    DocWrapperModule,
+    AsyncPipe,
+  ],
 })
 export class KeyboardOperationDemo extends ClarityDocComponent implements OnInit {
   focusFirstInvalidExample = FOCUS_FIRST_INVALID_EXAMPLE;
@@ -65,7 +111,10 @@ export class KeyboardOperationDemo extends ClarityDocComponent implements OnInit
   ctrlEnterForm2Submitted = false;
   protected activeFragment;
   tableOfContents;
-  constructor(public route: ActivatedRoute, private elementRef: ElementRef) {
+  constructor(
+    public route: ActivatedRoute,
+    private elementRef: ElementRef
+  ) {
     super('keyboard-operation');
     const activeFragment = this.route.fragment.pipe(share());
     this.activeFragment = activeFragment;

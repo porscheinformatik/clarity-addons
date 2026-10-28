@@ -1,9 +1,6 @@
 import { Directive, Input } from '@angular/core';
 
-@Directive({
-  selector: '[clrDgField],[clrDgFieldKey]',
-  standalone: false,
-})
+@Directive({ selector: '[clrDgField],[clrDgFieldKey]' })
 export class DatagridFieldDirective {
   @Input()
   clrDgField: string;

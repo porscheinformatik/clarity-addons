@@ -4,15 +4,15 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ClarityModule, ClrIcon } from '@clr/angular';
 
 import { ClrIconAvatar } from './icon-avatar';
 
+/**
+ * @deprecated Compatibility wrapper for NgModule-based consumers. Import the standalone `ClrIconAvatar` directly instead.
+ */
 @NgModule({
-  imports: [CommonModule, ClarityModule, ClrIcon],
-  declarations: [ClrIconAvatar],
+  imports: [ClrIconAvatar],
   exports: [ClrIconAvatar],
 })
 export class ClrIconAvatarModule {}

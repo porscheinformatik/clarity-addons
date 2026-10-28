@@ -5,7 +5,14 @@
  */
 
 import { ChangeDetectionStrategy, Component, input, NgZone } from '@angular/core';
-import { ClrPopoverPosition, ClrPopoverService } from '@clr/angular';
+import {
+  CdkTrapFocusModule,
+  ClrIcon,
+  ClrPopoverContent,
+  ClrPopoverModuleNext,
+  ClrPopoverPosition,
+  ClrPopoverService,
+} from '@clr/angular';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
@@ -39,8 +46,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     '[class.treetable-cell]': 'true',
     role: 'cell',
   },
-  standalone: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [ClrPopoverModuleNext, ClrIcon, ClrPopoverContent, CdkTrapFocusModule],
 })
 export class ClrTreetableActionOverflow {
   empty = input(false);

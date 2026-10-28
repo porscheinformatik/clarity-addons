@@ -1,7 +1,23 @@
+import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
+import { UtilsModule } from '../../../utils/utils.module';
+import { ClarityModule, ClrFormsModule } from '@clr/angular';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
 import { addHours, endOfDay, startOfDay, startOfYesterday, subHours } from 'date-fns';
-import { CalendarEvent } from 'angular-calendar';
+import {
+  CalendarEvent,
+  CalendarWeekViewComponent,
+  ClickDirective,
+  CalendarMonthViewComponent,
+  CalendarDayViewComponent,
+} from 'angular-calendar';
+import { DocWrapper } from '../_doc-wrapper/doc-wrapper';
+import { CodeSnippet } from '../../../utils/code-snippet';
+import { DroppableDirective } from 'angular-draggable-droppable';
+import { NgClass, DatePipe } from '@angular/common';
 
 @Component({
   selector: 'clr-angular-calendar-demo',
@@ -10,7 +26,25 @@ import { CalendarEvent } from 'angular-calendar';
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
-  standalone: false,
+  imports: [
+    DocWrapper,
+    CodeSnippet,
+    CalendarWeekViewComponent,
+    DroppableDirective,
+    NgClass,
+    ClickDirective,
+    CalendarMonthViewComponent,
+    CalendarDayViewComponent,
+    CommonModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ClarityModule,
+    ClrFormsModule,
+    UtilsModule,
+    DocWrapperModule,
+    DatePipe,
+  ],
 })
 export class AngularCalendarDemo extends ClarityDocComponent {
   stylesImport = `"styles": [
@@ -55,13 +89,12 @@ export class AngularCalendarDemo extends ClarityDocComponent {
   let-locale="locale"
   let-dayHeaderClicked="dayHeaderClicked"
   let-eventDropped="eventDropped"
-  let-trackByWeekDayHeaderDate="trackByWeekDayHeaderDate"
   let-dragEnter="dragEnter"
 >
   <div class="cal-day-headers" role="row">
     <div
       class="cal-header"
-      *ngFor="let day of days; trackBy: trackByWeekDayHeaderDate"
+      *ngFor="let day of days"
       [class.cal-past]="day.isPast"
       [class.cal-today]="day.isToday"
       [class.cal-future]="day.isFuture"

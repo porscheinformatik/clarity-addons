@@ -10,7 +10,7 @@ import { ClarityModule } from '@clr/angular';
 
 import { BasepageLayoutDemo } from './basepage-layout';
 import { DemoMenuModule } from '../demo-menu/demo-menu.module';
-import { ClrAddonsModule, HISTORY_TOKEN } from '@porscheinformatik/clr-addons';
+import { HISTORY_TOKEN } from '@porscheinformatik/clr-addons';
 import { MockClrHistoryHttpService } from '../../history/_mocks/history.http.mock.service';
 
 @NgModule({
@@ -19,9 +19,8 @@ import { MockClrHistoryHttpService } from '../../history/_mocks/history.http.moc
     ClarityModule,
     DemoMenuModule,
     RouterModule.forChild([{ path: '', component: BasepageLayoutDemo, outlet: 'fullpage' }]),
-    ClrAddonsModule,
+    BasepageLayoutDemo,
   ],
-  declarations: [BasepageLayoutDemo],
   exports: [BasepageLayoutDemo],
   providers: [
     {

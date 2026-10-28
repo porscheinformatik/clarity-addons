@@ -1,11 +1,13 @@
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { TimeModel } from '../../models/time.model';
+import { ClrCommonFormsModule, ClrInputModule } from '@clr/angular';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'clr-timepicker',
   templateUrl: './timepicker.component.html',
   styleUrl: './timepicker.component.scss',
-  standalone: false,
+  imports: [ClrInputModule, ClrCommonFormsModule, FormsModule],
 })
 export class ClrTimepickerComponent {
   /**

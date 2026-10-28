@@ -4,6 +4,29 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component } from '@angular/core';
+import {
+  ClrCheckboxModule,
+  ClrCommonFormsModule,
+  ClrDatepickerModule,
+  ClrInputModule,
+  ClrMainContainerModule,
+  ClrNavigationModule,
+  ClrPasswordModule,
+  ClrRadioModule,
+  ClrSelectModule,
+  ClrTextareaModule,
+} from '@clr/angular';
+import { DemoMenu } from '../demo-menu/demo-menu';
+import {
+  ClrBackButton,
+  ClrViewEditSection,
+  ClrAddonsLabel,
+  ClrAutocompleteOff,
+  ClrDateTimeContainer,
+  ClrTimeInput,
+  ClrNumericField,
+} from '@porscheinformatik/clr-addons';
+import { CodeSnippet } from '../../../../utils/code-snippet';
 
 const CODE_EXAMPLE = `
 <clr-view-edit-section [clrTitle]="'Personal Data'" [(clrEditMode)]="editMode" [clrEditRef]="editBlock"
@@ -213,7 +236,27 @@ const CODE_EXAMPLE = `
 @Component({
   selector: 'clr-view-edit-section-layout-demo',
   templateUrl: './view-edit-section-layout.demo.html',
-  standalone: false,
+  imports: [
+    ClrMainContainerModule,
+    ClrNavigationModule,
+    DemoMenu,
+    ClrBackButton,
+    ClrViewEditSection,
+    ClrCommonFormsModule,
+    ClrAddonsLabel,
+    ClrInputModule,
+    ClrAutocompleteOff,
+    ClrRadioModule,
+    ClrSelectModule,
+    ClrDatepickerModule,
+    ClrPasswordModule,
+    ClrDateTimeContainer,
+    ClrTimeInput,
+    ClrNumericField,
+    ClrCheckboxModule,
+    ClrTextareaModule,
+    CodeSnippet,
+  ],
 })
 export class ViewEditSectionLayout {
   codeExample = CODE_EXAMPLE;

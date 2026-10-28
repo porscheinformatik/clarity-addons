@@ -3,7 +3,6 @@ import { ComponentRef } from '@angular/core';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { PieChartComponent, PieChartData } from './pie-chart.component';
 import { NO_ITEMS_ALERT_TYPE, NO_ITEMS_MESSAGE } from '../constants';
-import { ClrChartsModule } from '../charts.module';
 
 const DATA: PieChartData[] = [
   { key: 'jan', label: 'January', value: 120, color: '#e57200' },
@@ -18,7 +17,7 @@ describe('PieChartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ClrChartsModule],
+      imports: [],
       providers: [provideNoopAnimations()],
     }).compileComponents();
 

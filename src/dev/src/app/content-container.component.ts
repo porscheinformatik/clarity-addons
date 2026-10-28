@@ -4,12 +4,13 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component, OnDestroy } from '@angular/core';
-import { NavigationEnd, Route, Router } from '@angular/router';
+import { NavigationEnd, Route, Router, RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 
 import { APP_ROUTES } from './app.routing';
-import { ClrBreadcrumbService } from '@porscheinformatik/clr-addons';
+import { ClrBreadcrumbService, ClrBreadcrumb } from '@porscheinformatik/clr-addons';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { ClrNavigationModule, ClrStandaloneCdkTrapFocus, ClrVerticalNavModule } from '@clr/angular';
 
 @Component({
   selector: 'my-app-content-container',
@@ -49,7 +50,15 @@ import { takeUntil } from 'rxjs/operators';
     </clr-vertical-nav-group>
     </clr-vertical-nav>-->
   `,
-  standalone: false,
+  imports: [
+    ClrBreadcrumb,
+    RouterOutlet,
+    ClrVerticalNavModule,
+    ClrStandaloneCdkTrapFocus,
+    ClrNavigationModule,
+    RouterLink,
+    RouterLinkActive,
+  ],
 })
 export class AppContentContainerComponent implements OnDestroy {
   private static readonly ROOT_BREADCRUMB_ELEMENT = { label: 'Home', url: '/' };

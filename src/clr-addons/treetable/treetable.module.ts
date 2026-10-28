@@ -4,9 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { NgModule, Type } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { CdkTrapFocusModule, ClarityModule } from '@clr/angular';
+import { NgModule } from '@angular/core';
 import { ClrTreetableRow } from './treetable-row';
 import { ClrTreetable } from './treetable';
 import { ClrTreetableCell } from './treetable-cell';
@@ -20,26 +18,13 @@ import {
 } from './renderer';
 import { ClrTreetableActionOverflow } from './treetable-action-overflow';
 import { TreetableItemsDirective } from './treetable-items';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ClrTreetableFilter } from './treetable-filter';
-import {
-  angleIcon,
-  arrowIcon,
-  ClarityIcons,
-  ellipsisVerticalIcon,
-  filterGridCircleIcon,
-  filterGridIcon,
-} from '@clr/angular/icon';
 import { ClrTreetableStringFilter } from './built-in/filter/treetable-string-filter';
-import { ClrTreetableRecursiveRows } from './treetable-recursive-rows';
-import { ClrTreetableRowCheckbox } from './treetable-row-checkbox';
 import { ClrTreetableFooter } from './treetable-footer';
-import { ClrTreetableColumnManagerMenuComponent } from './treetable-column-manager-menu.component';
 import { ClrTreetableHideableColumn } from './treetable-hideable-column.directive';
-import { ClrTreetableColumnSeparator } from './treetable-column-separator';
 import { ExportTreetableButtonComponent } from './treetable-export-button.component';
 
-const CLR_TREETABLE_DIRECTIVES: Type<any>[] = [
+export const CLR_TREETABLE_DIRECTIVES = [
   ClrTreetable,
   ClrTreetableRow,
   ClrTreetableCell,
@@ -56,21 +41,13 @@ const CLR_TREETABLE_DIRECTIVES: Type<any>[] = [
   ClrTreetableFilter,
   ClrTreetableStringFilter,
   ExportTreetableButtonComponent,
-];
+] as const;
 
+/**
+ * @deprecated Compatibility wrapper for NgModule-based consumers. Import the standalone `CLR_TREETABLE_DIRECTIVES` directly instead.
+ */
 @NgModule({
-  imports: [CommonModule, ClarityModule, ReactiveFormsModule, FormsModule, CdkTrapFocusModule],
-  declarations: [
-    CLR_TREETABLE_DIRECTIVES,
-    ClrTreetableRecursiveRows,
-    ClrTreetableRowCheckbox,
-    ClrTreetableColumnManagerMenuComponent,
-    ClrTreetableColumnSeparator,
-  ],
-  exports: [CLR_TREETABLE_DIRECTIVES],
+  imports: [...CLR_TREETABLE_DIRECTIVES],
+  exports: [...CLR_TREETABLE_DIRECTIVES],
 })
-export class ClrTreetableModule {
-  constructor() {
-    ClarityIcons.addIcons(angleIcon, arrowIcon, ellipsisVerticalIcon, filterGridCircleIcon, filterGridIcon);
-  }
-}
+export class ClrTreetableModule {}

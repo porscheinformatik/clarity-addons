@@ -8,7 +8,6 @@ import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { ClarityModule } from '@clr/angular';
 
-import { ClrViewEditSectionModule } from './view-edit-section.module';
 import { ClrViewEditSection } from './view-edit-section';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -30,7 +29,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       </ng-template>
     </clr-view-edit-section>
   `,
-  standalone: false,
+  imports: [ClarityModule, ClrViewEditSection],
 })
 class TestComponent {
   @ViewChild(ClrViewEditSection, { static: true })
@@ -46,7 +45,7 @@ class TestComponent {
       <div action-block>Test</div>
     </clr-view-edit-section>
   `,
-  standalone: false,
+  imports: [ClarityModule, ClrViewEditSection],
 })
 class EditModeComponent {
   editMode = false;
@@ -54,7 +53,7 @@ class EditModeComponent {
 
 @Component({
   template: ` <clr-view-edit-section [clrEditIcon]="editIcon"></clr-view-edit-section> `,
-  standalone: false,
+  imports: [ClarityModule, ClrViewEditSection],
 })
 class EditIconComponent {
   editIcon = 'cog';
@@ -62,7 +61,7 @@ class EditIconComponent {
 
 @Component({
   template: ` <clr-view-edit-section [clrEditable]="false"></clr-view-edit-section> `,
-  standalone: false,
+  imports: [ClarityModule, ClrViewEditSection],
 })
 class NotEditableComponent {}
 
@@ -76,7 +75,7 @@ class NotEditableComponent {}
     >
     </clr-view-edit-section>
   `,
-  standalone: false,
+  imports: [ClarityModule, ClrViewEditSection],
 })
 class StringBadgeComponent {
   showBadge = true;
@@ -90,7 +89,7 @@ class StringBadgeComponent {
       <span badge class="custom-projected-badge">Projected</span>
     </clr-view-edit-section>
   `,
-  standalone: false,
+  imports: [ClarityModule, ClrViewEditSection],
 })
 class ProjectedBadgeComponent {
   showBadge = true;
@@ -102,7 +101,10 @@ describe('ViewEditSectionComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
+      imports: [
+        ClarityModule,
+        ClrViewEditSection,
+        BrowserAnimationsModule,
         TestComponent,
         EditIconComponent,
         EditModeComponent,
@@ -110,7 +112,6 @@ describe('ViewEditSectionComponent', () => {
         StringBadgeComponent,
         ProjectedBadgeComponent,
       ],
-      imports: [ClarityModule, ClrViewEditSectionModule, BrowserAnimationsModule],
     }).compileComponents();
   }));
 

@@ -8,10 +8,10 @@ import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ClrAlertModule } from '@clr/angular';
 import {
-  ClrChartsModule,
   GroupedBarChartData,
   GroupedBarChartGroup,
   GroupedBarChartValue,
+  CLR_CHARTS_DECLARATIONS,
 } from '@porscheinformatik/clr-addons/charts';
 
 const COLORS = ['--cds-global-color-lavender-400', '#00828b', '#c1326e', '#5b40b2'];
@@ -19,7 +19,7 @@ const COLORS = ['--cds-global-color-lavender-400', '#00828b', '#c1326e', '#5b40b
 @Component({
   selector: 'clr-grouped-bar-chart-demo',
   templateUrl: './grouped-bar-chart.demo.html',
-  imports: [FormsModule, ClrAlertModule, ClrChartsModule],
+  imports: [FormsModule, ClrAlertModule, ...CLR_CHARTS_DECLARATIONS],
 })
 export class GroupedBarChartDemo {
   protected readonly error = signal(false);

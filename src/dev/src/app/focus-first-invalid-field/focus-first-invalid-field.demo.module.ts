@@ -11,7 +11,6 @@ import { RouterModule } from '@angular/router';
 import { ClarityModule, ClrFormsModule } from '@clr/angular';
 
 import { FocusFirstInvalidFieldDemo } from './focus-first-invalid-field.demo';
-import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
 
 @NgModule({
   imports: [
@@ -19,7 +18,6 @@ import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
     ClarityModule,
     FormsModule,
     ClrFormsModule,
-    ClrAddonsModule,
     RouterModule.forChild([{ path: '', component: FocusFirstInvalidFieldDemo }]),
     ReactiveFormsModule,
   ],

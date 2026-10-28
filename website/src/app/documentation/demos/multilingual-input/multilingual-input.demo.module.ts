@@ -8,7 +8,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ClarityModule, ClrFormsModule } from '@clr/angular';
-import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
 import { UtilsModule } from '../../../utils/utils.module';
 import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
 
@@ -24,9 +23,8 @@ import { MultilingualInputDemo } from './multilingual-input.demo';
     UtilsModule,
     DocWrapperModule,
     RouterModule.forChild([{ path: '', component: MultilingualInputDemo }]),
-    ClrAddonsModule,
+    MultilingualInputDemo,
   ],
-  declarations: [MultilingualInputDemo],
   exports: [MultilingualInputDemo],
 })
 export class MultilingualInputDemoModule {}

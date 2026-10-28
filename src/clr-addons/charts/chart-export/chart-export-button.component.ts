@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
-import { ClrDropdownModule, ClrIcon } from '@clr/angular';
+import { ClarityIcons, ClrDropdownModule, ClrIcon, downloadIcon } from '@clr/angular';
 import { ChartExportService } from './chart-export.service';
-import { ClarityIcons, downloadIcon } from '@clr/angular/icon';
 import { ChartLegendItem } from '../chart-legend/chart-legend.component';
 
 ClarityIcons.addIcons(downloadIcon);

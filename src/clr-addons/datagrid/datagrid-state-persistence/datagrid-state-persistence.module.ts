@@ -3,8 +3,11 @@ import { ColumnHiddenStatePersistenceDirective } from './column-hidden-state-per
 import { DatagridFieldDirective } from './datagrid-field.directive';
 import { StatePersistenceKeyDirective } from './state-persistence-key.directive';
 
+/**
+ * @deprecated Compatibility wrapper for NgModule-based consumers. Import the standalone `ColumnHiddenStatePersistenceDirective`, `DatagridFieldDirective`, `StatePersistenceKeyDirective` directly instead.
+ */
 @NgModule({
-  declarations: [ColumnHiddenStatePersistenceDirective, DatagridFieldDirective, StatePersistenceKeyDirective],
+  imports: [ColumnHiddenStatePersistenceDirective, DatagridFieldDirective, StatePersistenceKeyDirective],
   exports: [ColumnHiddenStatePersistenceDirective, DatagridFieldDirective, StatePersistenceKeyDirective],
 })
 export class ClrDatagridStatePersistenceModule {}

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'home',
@@ -7,7 +8,7 @@ import { Component } from '@angular/core';
   host: {
     '[class.content-container]': 'true',
   },
-  standalone: false,
+  imports: [RouterLink],
 })
 export class HomeComponent {
   constructor() {}

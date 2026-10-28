@@ -1,3 +1,8 @@
+import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
+import { UtilsModule } from '../../../utils/utils.module';
+import { ClarityModule, ClrCommonFormsModule, ClrFormsModule } from '@clr/angular';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
 import {
@@ -6,7 +11,20 @@ import {
   NullableDaterange,
   NullableTimerange,
   TimeModel,
+  ClrDaterangepickerContainerComponent,
+  ClrAddonsLabel,
+  ClrAutocompleteOff,
+  ClrDaterangeOrderValidator,
+  ClrDaterangepickerDirective,
+  ClrDaterangeMinValidator,
+  ClrDaterangeMaxValidator,
+  ClrIfDaterangeErrorDirective,
+  ClrDaterangeRequiredValidator,
 } from '@porscheinformatik/clr-addons';
+import { DocWrapper } from '../_doc-wrapper/doc-wrapper';
+import { FormsModule } from '@angular/forms';
+import { CodeSnippet } from '../../../utils/code-snippet';
+import { DatePipe } from '@angular/common';
 
 const BASIC_DEMO = `
 <form clrForm>
@@ -241,7 +259,28 @@ const VALIDATION_DEMO = `
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
-  standalone: false,
+  imports: [
+    DocWrapper,
+    FormsModule,
+    ClrCommonFormsModule,
+    ClrDaterangepickerContainerComponent,
+    ClrAddonsLabel,
+    ClrAutocompleteOff,
+    ClrDaterangeOrderValidator,
+    ClrDaterangepickerDirective,
+    CodeSnippet,
+    ClrDaterangeMinValidator,
+    ClrDaterangeMaxValidator,
+    ClrIfDaterangeErrorDirective,
+    ClrDaterangeRequiredValidator,
+    CommonModule,
+    ReactiveFormsModule,
+    ClarityModule,
+    ClrFormsModule,
+    UtilsModule,
+    DocWrapperModule,
+    DatePipe,
+  ],
 })
 export class DaterangepickerDemo extends ClarityDocComponent {
   value: NullableDaterange;

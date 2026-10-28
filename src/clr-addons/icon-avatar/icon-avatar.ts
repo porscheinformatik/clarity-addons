@@ -4,12 +4,14 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
+import { ClarityModule, ClrIcon } from '@clr/angular';
+import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, HostBinding, Input, Renderer2, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'clr-icon-avatar',
   templateUrl: './icon-avatar.html',
-  standalone: false,
+  imports: [ClrIcon, CommonModule, ClarityModule, ClrIcon],
 })
 export class ClrIconAvatar implements AfterViewInit {
   @HostBinding('class.clr-avatar') avatar = true;

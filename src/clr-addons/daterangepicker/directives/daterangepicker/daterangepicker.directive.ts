@@ -27,10 +27,7 @@ import { TimeModel } from '../../models/time.model';
 /**
  * Daterangepicker.
  */
-@Directive({
-  selector: '[clrDaterangepicker]',
-  standalone: false,
-})
+@Directive({ selector: '[clrDaterangepicker]' })
 export class ClrDaterangepickerDirective implements OnInit, OnDestroy, ControlValueAccessor {
   /**
    * Minimum date that can be selected.

@@ -20,7 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       <ng-container clr-ces-content>Test Content</ng-container>
     </clr-collapse-expand-section>
   `,
-  standalone: false,
+  imports: [ClarityModule, FormsModule, ClrCollapseExpandSection],
 })
 class CollapseExpandSectionHostComponent {}
 
@@ -32,7 +32,7 @@ class CollapseExpandSectionHostComponent {}
       <ng-container clr-ces-content>Test Content Disabled</ng-container>
     </clr-collapse-expand-section>
   `,
-  standalone: false,
+  imports: [ClarityModule, FormsModule, ClrCollapseExpandSection],
 })
 class CollapseExpandSectionDisabledHeaderHostComponent {}
 
@@ -42,12 +42,14 @@ describe('CollapseExpandSectionComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
+      imports: [
+        ClarityModule,
+        FormsModule,
+        BrowserAnimationsModule,
         ClrCollapseExpandSection,
         CollapseExpandSectionHostComponent,
         CollapseExpandSectionDisabledHeaderHostComponent,
       ],
-      imports: [ClarityModule, FormsModule, BrowserAnimationsModule],
     }).compileComponents();
   }));
 

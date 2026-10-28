@@ -12,3 +12,4 @@ export * from './history.service';
 export * from './history-navigation.service';
 export * from './history.http.service';
 export * from './history.provider';
+export * from './history.providers';

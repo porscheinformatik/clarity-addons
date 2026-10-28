@@ -6,10 +6,7 @@ import { ClrDatagridStatePersistenceModel } from './datagrid-state-persistence-m
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-@Directive({
-  selector: '[clrDgHideableColumn]',
-  standalone: false,
-})
+@Directive({ selector: '[clrDgHideableColumn]' })
 export class ColumnHiddenStatePersistenceDirective implements OnInit, OnDestroy {
   destroy$ = new Subject<void>();
 

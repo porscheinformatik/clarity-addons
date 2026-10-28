@@ -9,7 +9,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { ClarityModule, ClrCommonFormsModule } from '@clr/angular';
-import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
 
 import { ControlWarningDemo } from './control-warning.demo';
 
@@ -18,12 +17,11 @@ import { ControlWarningDemo } from './control-warning.demo';
     CommonModule,
     ClarityModule,
     ClrCommonFormsModule,
-    ClrAddonsModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild([{ path: '', component: ControlWarningDemo }]),
+    ControlWarningDemo,
   ],
-  declarations: [ControlWarningDemo],
   exports: [ControlWarningDemo],
 })
 export class ControlWarningDemoModule {}

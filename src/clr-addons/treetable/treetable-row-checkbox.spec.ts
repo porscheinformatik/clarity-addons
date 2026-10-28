@@ -18,7 +18,7 @@ describe('ClrTreetableRowCheckbox', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ClrTreetableColumn],
+      imports: [ClrTreetableColumn],
     });
 
     fixture = TestBed.createComponent(ClrTreetableRowCheckbox);

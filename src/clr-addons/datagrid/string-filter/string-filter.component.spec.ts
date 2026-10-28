@@ -3,7 +3,6 @@ import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angul
 import { FormsModule } from '@angular/forms';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { ClarityModule, ClrCommonStringsService, ClrDatagrid, ClrDatagridFilter } from '@clr/angular';
-import { ClrFilterClearButtonModule } from '../util/filter-clear-button';
 import { ClrStringFilterComponent } from './string-filter.component';
 
 interface Item {
@@ -27,7 +26,7 @@ interface Item {
       </clr-dg-row>
     </clr-datagrid>
   `,
-  standalone: false,
+  imports: [ClarityModule, FormsModule, ClrStringFilterComponent],
 })
 class TestComponent {
   dataList: Item[] = [{ name: 'Alpha' }, { name: 'Beta' }, { name: 'Gamma' }];
@@ -46,8 +45,7 @@ describe('ClrStringFilterComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [ClarityModule, FormsModule, ClrFilterClearButtonModule],
-      declarations: [TestComponent, ClrStringFilterComponent],
+      imports: [ClarityModule, FormsModule, TestComponent, ClrStringFilterComponent],
       providers: [provideNoopAnimations()],
     }).compileComponents();
   }));

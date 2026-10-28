@@ -4,10 +4,12 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component, forwardRef, Injector, Input } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
 import { ControlIdService } from '../../abstract-form-component/control-id.service';
 import { ClrMultilingualAbstract } from '../abstract-multilingual';
-import { ClarityIcons, exclamationCircleIcon } from '@clr/angular/icon';
+import { ClarityIcons, ClrIcon, exclamationCircleIcon } from '@clr/angular';
+import { NgClass } from '@angular/common';
+import { ClrMultilingualSelector } from '../multilingual-selector';
 
 ClarityIcons.addIcons(exclamationCircleIcon);
 
@@ -22,7 +24,7 @@ ClarityIcons.addIcons(exclamationCircleIcon);
     },
     ControlIdService,
   ],
-  standalone: false,
+  imports: [NgClass, ClrMultilingualSelector, FormsModule, ClrIcon],
 })
 export class ClrMultilingualTextarea extends ClrMultilingualAbstract {
   @Input() rows: number;

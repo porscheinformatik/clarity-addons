@@ -1,16 +1,53 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DaterangePreset, DayModel, NullableDaterange } from '../../../../clr-addons/daterangepicker';
 import { NullableTimerange } from '../../../../clr-addons/daterangepicker/interfaces/timerange.interface';
 import { TimeModel } from '../../../../clr-addons/daterangepicker/models/time.model';
 import { DateTimerangePreset } from '../../../../clr-addons/daterangepicker/interfaces/timerange-preset.interface';
-import { ClrPopoverPosition, DROPDOWN_POSITIONS } from '@clr/angular';
+import {
+  ClrCommonFormsModule,
+  ClrDatepickerModule,
+  ClrInputModule,
+  ClrPopoverPosition,
+  ClrSelectModule,
+  DROPDOWN_POSITIONS,
+} from '@clr/angular';
+import { JsonPipe, DatePipe } from '@angular/common';
+import {
+  ClrDaterangepickerContainerComponent,
+  ClrAddonsLabel,
+  ClrAutocompleteOff,
+  ClrDaterangeOrderValidator,
+  ClrDaterangepickerDirective,
+  ClrDaterangeRequiredValidator,
+  ClrDaterangeMinValidator,
+  ClrDaterangeMaxValidator,
+  ClrIfDaterangeErrorDirective,
+} from '@porscheinformatik/clr-addons';
 
 @Component({
   selector: 'clr-daterangepicker-demo',
   templateUrl: './daterangepicker.demo.html',
   styleUrls: ['./daterangepicker.demo.scss'],
-  standalone: false,
+  imports: [
+    FormsModule,
+    ClrCommonFormsModule,
+    ReactiveFormsModule,
+    ClrDaterangepickerContainerComponent,
+    ClrAddonsLabel,
+    ClrAutocompleteOff,
+    ClrDaterangeOrderValidator,
+    ClrDaterangepickerDirective,
+    ClrDatepickerModule,
+    ClrInputModule,
+    ClrDaterangeRequiredValidator,
+    ClrDaterangeMinValidator,
+    ClrDaterangeMaxValidator,
+    ClrIfDaterangeErrorDirective,
+    ClrSelectModule,
+    JsonPipe,
+    DatePipe,
+  ],
 })
 export class DaterangepickerDemo {
   reactiveForm = new FormGroup({

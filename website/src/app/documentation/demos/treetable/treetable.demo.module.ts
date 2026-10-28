@@ -5,7 +5,6 @@
  */
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
 import { ClarityModule } from '@clr/angular';
 import { NgModule } from '@angular/core';
 import { UtilsModule } from '../../../utils/utils.module';
@@ -22,9 +21,9 @@ import { TreetableRoleTypeFilterComponent } from './treetable-demo-custom-filter
     RouterModule.forChild([{ path: '', component: TreetableDemo }]),
     FormsModule,
     ClarityModule,
-    ClrAddonsModule,
+    TreetableDemo,
+    TreetableRoleTypeFilterComponent,
   ],
-  declarations: [TreetableDemo, TreetableRoleTypeFilterComponent],
   exports: [TreetableDemo],
 })
 export class TreetableDemoModule {}

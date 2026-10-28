@@ -12,8 +12,7 @@ import { RouterModule } from '@angular/router';
 import { DocWrapper } from './doc-wrapper';
 
 @NgModule({
-  imports: [CommonModule, ClarityModule, UtilsModule, RouterModule],
-  declarations: [DocWrapper],
+  imports: [CommonModule, ClarityModule, UtilsModule, RouterModule, DocWrapper],
   exports: [DocWrapper],
 })
 export class DocWrapperModule {}

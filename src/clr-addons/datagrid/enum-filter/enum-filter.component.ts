@@ -1,7 +1,16 @@
 import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
-import { ClrDatagrid, ClrDatagridFilter, ClrDatagridFilterInterface } from '@clr/angular';
+import {
+  ClarityIcons,
+  ClrCheckboxModule,
+  ClrCommonFormsModule,
+  ClrDatagrid,
+  ClrDatagridFilter,
+  ClrDatagridFilterInterface,
+  ClrIcon,
+  trashIcon,
+} from '@clr/angular';
 import { Subject, takeUntil } from 'rxjs';
-import { ClarityIcons, trashIcon } from '@clr/angular/icon';
+import { FormsModule } from '@angular/forms';
 
 ClarityIcons.addIcons(trashIcon);
 
@@ -14,7 +23,7 @@ interface FilterValue {
   selector: 'clr-enum-filter',
   templateUrl: './enum-filter.component.html',
   styleUrls: ['./enum-filter.component.scss'],
-  standalone: false,
+  imports: [ClrIcon, ClrCheckboxModule, FormsModule, ClrCommonFormsModule],
 })
 export class ClrEnumFilterComponent<T extends { [key: string]: any }>
   implements ClrDatagridFilterInterface<T>, OnDestroy

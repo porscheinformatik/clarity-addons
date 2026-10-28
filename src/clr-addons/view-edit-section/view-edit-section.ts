@@ -15,9 +15,17 @@ import {
   TemplateRef,
 } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { angleIcon, ClarityIcons, pencilIcon } from '@clr/angular/icon';
+import {
+  angleIcon,
+  ClarityIcons,
+  ClrCommonFormsModule,
+  ClrCommonStringsService,
+  ClrIcon,
+  pencilIcon,
+} from '@clr/angular';
 import { ClrViewEditSectionTitleTextFontWeight, ClrViewEditSectionTitleTextStyle } from './view-edit-section.types';
-import { ClrCommonStringsService } from '@clr/angular';
+import { NgClass, NgTemplateOutlet } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 ClarityIcons.addIcons(angleIcon, pencilIcon);
 
@@ -42,7 +50,7 @@ ClarityIcons.addIcons(angleIcon, pencilIcon);
       transition('false => true', animate('300ms ease-in')),
     ]),
   ],
-  standalone: false,
+  imports: [NgClass, NgTemplateOutlet, ClrIcon, FormsModule, ClrCommonFormsModule],
 })
 export class ClrViewEditSection implements AfterViewInit {
   private readonly commonStrings = inject(ClrCommonStringsService);

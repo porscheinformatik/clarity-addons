@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { ClarityIcons, infoCircleIcon } from '@clr/angular/icon';
+import { ClarityIcons, infoCircleIcon } from '@clr/angular';
 import { fakeAsync } from '@angular/core/testing';
 import './addIcons.patch';
 

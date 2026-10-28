@@ -8,7 +8,8 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { ClarityModule } from '@clr/angular';
-import { ClrMultilingualModule } from '../multilingual.module';
+import { ClrMultilingualTextarea } from './multilingual-textarea';
+import { ClrRequiredOneMultilang, ClrRequiredAllMultilang } from '../multilingual-validators';
 
 @Component({
   template: `
@@ -18,7 +19,7 @@ import { ClrMultilingualModule } from '../multilingual.module';
       <clr-control-helper>Helper</clr-control-helper>
     </clr-multilingual-textarea>
   `,
-  standalone: false,
+  imports: [ClarityModule, FormsModule, ClrMultilingualTextarea, ClrRequiredOneMultilang, ClrRequiredAllMultilang],
 })
 class TestComponentAllValid implements OnInit {
   selectedLang = 'EN';
@@ -38,7 +39,7 @@ class TestComponentAllValid implements OnInit {
       <clr-control-helper>Helper</clr-control-helper>
     </clr-multilingual-textarea>
   `,
-  standalone: false,
+  imports: [ClarityModule, FormsModule, ClrMultilingualTextarea, ClrRequiredOneMultilang, ClrRequiredAllMultilang],
 })
 class TestComponentOneValid implements OnInit {
   selectedLang = 'EN';
@@ -65,7 +66,7 @@ class TestComponentOneValid implements OnInit {
       <clr-control-helper>Helper</clr-control-helper>
     </clr-multilingual-textarea>
   `,
-  standalone: false,
+  imports: [ClarityModule, FormsModule, ClrMultilingualTextarea, ClrRequiredOneMultilang, ClrRequiredAllMultilang],
 })
 class TestComponentComplex implements OnInit {
   selectedLang = 'EN';
@@ -94,7 +95,7 @@ class TestComponentComplex implements OnInit {
       <clr-control-helper>Helper</clr-control-helper>
     </clr-multilingual-textarea>
   `,
-  standalone: false,
+  imports: [ClarityModule, FormsModule, ClrMultilingualTextarea, ClrRequiredOneMultilang, ClrRequiredAllMultilang],
 })
 class TestComponentPrefix implements OnInit {
   selectedLang = 'EN';
@@ -119,7 +120,7 @@ class TestComponentPrefix implements OnInit {
       <label>Test</label>
     </clr-multilingual-textarea>
   `,
-  standalone: false,
+  imports: [ClarityModule, FormsModule, ClrMultilingualTextarea, ClrRequiredOneMultilang, ClrRequiredAllMultilang],
 })
 class TestComponentWithIcons implements OnInit {
   selectedLang = 'EN';
@@ -140,8 +141,14 @@ describe('Multilingual Textarea', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [ClarityModule, FormsModule, ClrMultilingualModule],
-        declarations: [TestComponentAllValid],
+        imports: [
+          ClarityModule,
+          FormsModule,
+          ClrMultilingualTextarea,
+          ClrRequiredOneMultilang,
+          ClrRequiredAllMultilang,
+          TestComponentAllValid,
+        ],
       }).compileComponents();
 
       fixture = TestBed.createComponent(TestComponentAllValid);
@@ -189,8 +196,14 @@ describe('Multilingual Textarea', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [ClarityModule, FormsModule, ClrMultilingualModule],
-        declarations: [TestComponentOneValid],
+        imports: [
+          ClarityModule,
+          FormsModule,
+          ClrMultilingualTextarea,
+          ClrRequiredOneMultilang,
+          ClrRequiredAllMultilang,
+          TestComponentOneValid,
+        ],
       }).compileComponents();
 
       fixture = TestBed.createComponent(TestComponentOneValid);
@@ -224,8 +237,14 @@ describe('Multilingual Textarea', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [ClarityModule, FormsModule, ClrMultilingualModule],
-        declarations: [TestComponentComplex],
+        imports: [
+          ClarityModule,
+          FormsModule,
+          ClrMultilingualTextarea,
+          ClrRequiredOneMultilang,
+          ClrRequiredAllMultilang,
+          TestComponentComplex,
+        ],
       }).compileComponents();
 
       fixture = TestBed.createComponent(TestComponentComplex);
@@ -303,8 +322,14 @@ describe('Multilingual Textarea', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [ClarityModule, FormsModule, ClrMultilingualModule],
-        declarations: [TestComponentPrefix],
+        imports: [
+          ClarityModule,
+          FormsModule,
+          ClrMultilingualTextarea,
+          ClrRequiredOneMultilang,
+          ClrRequiredAllMultilang,
+          TestComponentPrefix,
+        ],
       }).compileComponents();
 
       fixture = TestBed.createComponent(TestComponentPrefix);
@@ -334,8 +359,14 @@ describe('Multilingual Textarea', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [ClarityModule, FormsModule, ClrMultilingualModule],
-        declarations: [TestComponentWithIcons],
+        imports: [
+          ClarityModule,
+          FormsModule,
+          ClrMultilingualTextarea,
+          ClrRequiredOneMultilang,
+          ClrRequiredAllMultilang,
+          TestComponentWithIcons,
+        ],
       }).compileComponents();
 
       fixture = TestBed.createComponent(TestComponentWithIcons);

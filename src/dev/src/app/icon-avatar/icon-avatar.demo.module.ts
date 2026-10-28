@@ -9,7 +9,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { ClarityModule, ClrFormsModule } from '@clr/angular';
-import { ClrAddonsModule, ClrIconAvatarModule } from '@porscheinformatik/clr-addons';
 
 import { IconAvatarDemo } from './icon-avatar.demo';
 
@@ -18,13 +17,11 @@ import { IconAvatarDemo } from './icon-avatar.demo';
     CommonModule,
     ClarityModule,
     ClrFormsModule,
-    ClrAddonsModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild([{ path: '', component: IconAvatarDemo }]),
-    ClrIconAvatarModule,
+    IconAvatarDemo,
   ],
-  declarations: [IconAvatarDemo],
   exports: [IconAvatarDemo],
 })
 export class IconAvatarDemoModule {}

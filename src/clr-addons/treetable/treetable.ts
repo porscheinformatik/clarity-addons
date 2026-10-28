@@ -26,9 +26,23 @@ import {
 } from './providers/treetable-recursion.service';
 import { ClrTreetableState } from './interfaces/treetable-state-model';
 import { TreetableColumnStateService } from './providers/treetable-column-state.service';
-import { ClrCommonStringsService } from '@clr/angular';
+import {
+  angleIcon,
+  arrowIcon,
+  ClarityIcons,
+  ClrCommonFormsModule,
+  ClrCommonStringsService,
+  ClrSpinnerModule,
+  ellipsisVerticalIcon,
+  filterGridCircleIcon,
+  filterGridIcon,
+} from '@clr/angular';
+import { ClrTreetableRecursiveRows } from './treetable-recursive-rows';
+import { ClrTreetablePlaceholder } from './treetable-placeholder';
 
 let treetableId = 0;
+
+ClarityIcons.addIcons(angleIcon, arrowIcon, ellipsisVerticalIcon, filterGridCircleIcon, filterGridIcon);
 
 @Component({
   selector: 'clr-treetable',
@@ -42,7 +56,7 @@ let treetableId = 0;
     FilterStateService,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
+  imports: [ClrCommonFormsModule, ClrTreetableRecursiveRows, ClrTreetablePlaceholder, ClrSpinnerModule],
 })
 export class ClrTreetable<T extends object> {
   public readonly treetableId = `clr-treetable-${++treetableId}`;

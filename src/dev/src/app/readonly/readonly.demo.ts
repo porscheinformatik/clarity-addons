@@ -1,14 +1,45 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component } from '@angular/core';
+import {
+  ClrCheckboxModule,
+  ClrComboboxModule,
+  ClrCommonFormsModule,
+  ClrDatepickerModule,
+  ClrInputModule,
+  ClrRadioModule,
+  ClrSelectModule,
+  ClrTextareaModule,
+} from '@clr/angular';
+import { FormsModule } from '@angular/forms';
+import {
+  ClrAddonsLabel,
+  ClrAutocompleteOff,
+  ClrReadonlyDirective,
+  ClrNumericField,
+} from '@porscheinformatik/clr-addons';
 
 @Component({
   selector: 'clr-readonly-demo',
   templateUrl: './readonly.demo.html',
-  standalone: false,
+  imports: [
+    ClrRadioModule,
+    ClrCommonFormsModule,
+    ClrAddonsLabel,
+    ClrAutocompleteOff,
+    FormsModule,
+    ClrCheckboxModule,
+    ClrInputModule,
+    ClrReadonlyDirective,
+    ClrNumericField,
+    ClrSelectModule,
+    ClrComboboxModule,
+    ClrTextareaModule,
+    ClrDatepickerModule,
+  ],
 })
 export class ReadonlyDemo {
   radioValue = 1;

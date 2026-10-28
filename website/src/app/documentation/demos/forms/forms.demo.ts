@@ -3,9 +3,41 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
+import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
+import { UtilsModule } from '../../../utils/utils.module';
+import {
+  ClarityIcons,
+  ClarityModule,
+  ClrCheckboxModule,
+  ClrComboboxModule,
+  ClrCommonFormsModule,
+  ClrDatepickerModule,
+  ClrFormsModule,
+  ClrIcon,
+  ClrInputModule,
+  ClrPasswordModule,
+  ClrRadioModule,
+  ClrSelectModule,
+  ClrTextareaModule,
+  displayIcon,
+} from '@clr/angular';
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
-import { ClarityIcons, displayIcon } from '@clr/angular/icon';
+import { DocWrapper } from '../_doc-wrapper/doc-wrapper';
+import { FormsModule } from '@angular/forms';
+import {
+  ClrAddonsLabel,
+  ClrAutocompleteOff,
+  ClrTimeInput,
+  ClrDateTimeContainer,
+  ClrNumericField,
+  ClrMultilingualInput,
+  ClrRequiredAllMultilang,
+  ClrMultilingualTextarea,
+} from '@porscheinformatik/clr-addons';
+import { CodeSnippet } from '../../../utils/code-snippet';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 ClarityIcons.addIcons(displayIcon);
 
@@ -233,7 +265,36 @@ const CODE_EXAMPLE_RO_VERTICAL2 = `
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
-  standalone: false,
+  imports: [
+    DocWrapper,
+    FormsModule,
+    ClrCommonFormsModule,
+    ClrInputModule,
+    ClrAddonsLabel,
+    ClrAutocompleteOff,
+    ClrTextareaModule,
+    ClrPasswordModule,
+    ClrSelectModule,
+    ClrComboboxModule,
+    ClrRadioModule,
+    ClrDatepickerModule,
+    ClrTimeInput,
+    ClrDateTimeContainer,
+    ClrNumericField,
+    ClrCheckboxModule,
+    ClrMultilingualInput,
+    ClrRequiredAllMultilang,
+    ClrMultilingualTextarea,
+    CodeSnippet,
+    ClrIcon,
+    RouterLink,
+    RouterLinkActive,
+    CommonModule,
+    ClarityModule,
+    ClrFormsModule,
+    UtilsModule,
+    DocWrapperModule,
+  ],
 })
 export class FormsDemo extends ClarityDocComponent {
   codeExampleFullForm = CODE_EXAMPLE_FULL_FORM;

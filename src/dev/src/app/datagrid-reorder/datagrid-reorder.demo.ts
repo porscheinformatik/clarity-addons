@@ -8,7 +8,15 @@ import { CdkDrag, CdkDropList } from '@angular/cdk/drag-drop';
 import { TrophiesComponent } from './trophies.component';
 import { CommonModule } from '@angular/common';
 import { ClrDatagridModule } from '@clr/angular';
-import { ClrAddonsModule, DynamicColumn, StatePersistenceOptions } from '@porscheinformatik/clr-addons';
+import {
+  DynamicColumn,
+  StatePersistenceOptions,
+  ColumnHiddenStatePersistenceDirective,
+  DatagridFieldDirective,
+  StatePersistenceKeyDirective,
+  DatagridColumnReorderDirective,
+  DynamicCellContentComponent,
+} from '@porscheinformatik/clr-addons';
 import { FormsModule } from '@angular/forms';
 import { Rider } from './model';
 import { delay, Observable, of, tap } from 'rxjs';
@@ -16,7 +24,18 @@ import { delay, Observable, of, tap } from 'rxjs';
 @Component({
   selector: 'clr-datagrid-reorder-demo',
   templateUrl: './datagrid-reorder.demo.html',
-  imports: [CommonModule, ClrAddonsModule, FormsModule, CdkDropList, CdkDrag, ClrDatagridModule],
+  imports: [
+    CommonModule,
+    ColumnHiddenStatePersistenceDirective,
+    DatagridFieldDirective,
+    StatePersistenceKeyDirective,
+    DatagridColumnReorderDirective,
+    DynamicCellContentComponent,
+    FormsModule,
+    CdkDropList,
+    CdkDrag,
+    ClrDatagridModule,
+  ],
 })
 export class DatagridReorderDemo implements OnInit {
   selected: Rider[] = [];

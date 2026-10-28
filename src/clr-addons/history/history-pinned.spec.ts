@@ -38,8 +38,7 @@ describe('ClrHistoryPinned navigation', () => {
     selectedDestinations = [];
 
     await TestBed.configureTestingModule({
-      imports: [CommonModule, ClarityModule],
-      declarations: [ClrHistoryPinned],
+      imports: [CommonModule, ClarityModule, ClrHistoryPinned],
       providers: [
         ClrHistoryService,
         { provide: HISTORY_TOKEN, useValue: historyHttpService },

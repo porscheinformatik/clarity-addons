@@ -5,7 +5,7 @@
  */
 import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
 import { CodeHighlight } from './code-highlight';
-import { ClarityIcons, copyIcon } from '@clr/angular/icon';
+import { ClarityIcons, ClrIcon, copyIcon } from '@clr/angular';
 
 ClarityIcons.addIcons(copyIcon);
 
@@ -13,9 +13,10 @@ ClarityIcons.addIcons(copyIcon);
   selector: 'clr-code-snippet',
   template: `
     @if (!disablePrism) {
-    <pre><code [clr-code-highlight]="'language-'+language">{{ code.trim() }}</code></pre>
-    } @if (disablePrism) {
-    <pre><code class="clr-code">{{ code.trim() }}</code></pre>
+      <pre><code [clr-code-highlight]="'language-'+language">{{ code.trim() }}</code></pre>
+    }
+    @if (disablePrism) {
+      <pre><code class="clr-code">{{ code.trim() }}</code></pre>
     }
     <div class="code-addons">
       <button (click)="copyToClipboard()" class="btn btn-link">
@@ -24,7 +25,7 @@ ClarityIcons.addIcons(copyIcon);
       </button>
     </div>
   `,
-  standalone: false,
+  imports: [CodeHighlight, ClrIcon],
 })
 export class CodeSnippet implements AfterViewInit {
   @ViewChild(CodeHighlight) codeHighlight: CodeHighlight;

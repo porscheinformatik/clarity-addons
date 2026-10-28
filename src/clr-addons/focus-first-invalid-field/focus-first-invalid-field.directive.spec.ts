@@ -77,7 +77,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
       <button type="submit" class="btn btn-primary" data-testid="submit-button">Submit</button>
     </form>
   `,
-  standalone: false,
+  imports: [FormsModule, ClrDatagridModule, ClrInputModule, ClrSelectModule, ClrFocusFirstInvalidFieldDirective],
 })
 class TestComponent {
   inputValue1: string;
@@ -96,8 +96,14 @@ describe('ClrFocusFirstInvalidFieldDirective', () => {
   let directiveElement: DebugElement;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormsModule, ClrDatagridModule, ClrInputModule, ClrSelectModule, ClrFocusFirstInvalidFieldDirective],
-      declarations: [TestComponent],
+      imports: [
+        FormsModule,
+        ClrDatagridModule,
+        ClrInputModule,
+        ClrSelectModule,
+        ClrFocusFirstInvalidFieldDirective,
+        TestComponent,
+      ],
       providers: [provideAnimations()],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();

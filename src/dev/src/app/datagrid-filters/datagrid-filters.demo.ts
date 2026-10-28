@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
-import { ClrDatagridNumericFilterInterface, ClrDatagridStringFilterInterface } from '@clr/angular';
+import { ClrDatagridModule, ClrDatagridNumericFilterInterface, ClrDatagridStringFilterInterface } from '@clr/angular';
+import { JsonPipe, DatePipe } from '@angular/common';
+import {
+  StatePersistenceKeyDirective,
+  DatagridFieldDirective,
+  ClrDateFilterComponent,
+} from '@porscheinformatik/clr-addons';
 
 interface Item {
   name: string;
@@ -11,7 +17,14 @@ interface Item {
 @Component({
   selector: 'clr-datagrid-filters-demo',
   templateUrl: './clr-datagrid-filters-demo.html',
-  standalone: false,
+  imports: [
+    ClrDatagridModule,
+    StatePersistenceKeyDirective,
+    DatagridFieldDirective,
+    ClrDateFilterComponent,
+    JsonPipe,
+    DatePipe,
+  ],
 })
 export class DatagridFiltersDemo {
   items: Item[] = [

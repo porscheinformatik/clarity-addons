@@ -1,8 +1,15 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
-import { ClrCommonStringsService, ClrDatagridFilter, ClrDatagridFilterInterface } from '@clr/angular';
+import {
+  ClrCommonStringsService,
+  ClrDatagridFilter,
+  ClrDatagridFilterInterface,
+  ClrNumberInputModule,
+} from '@clr/angular';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { NestedProperty } from '../util';
+import { ClrFilterClearButtonComponent } from '../util/filter-clear-button/filter-clear-button.component';
+import { FormsModule } from '@angular/forms';
 
 export const CLR_NUMERIC_FILTER_DEBOUNCE_MS = 500;
 
@@ -17,7 +24,7 @@ interface FilterInputChange {
   selector: 'clr-numeric-filter',
   templateUrl: './numeric-filter.component.html',
   styleUrls: ['./numeric-filter.component.scss'],
-  standalone: false,
+  imports: [ClrFilterClearButtonComponent, ClrNumberInputModule, FormsModule],
 })
 export class ClrNumericFilterComponent<T extends { [key: string]: any }>
   implements ClrDatagridFilterInterface<T>, OnDestroy, AfterViewInit

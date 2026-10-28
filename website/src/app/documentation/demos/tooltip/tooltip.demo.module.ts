@@ -20,8 +20,8 @@ import { TooltipDemo } from './tooltip.demo';
     DocWrapperModule,
     UtilsModule,
     RouterModule.forChild([{ path: '', component: TooltipDemo }]),
+    TooltipDemo,
   ],
-  declarations: [TooltipDemo],
   exports: [TooltipDemo],
 })
 export class TooltipDemoModule {}

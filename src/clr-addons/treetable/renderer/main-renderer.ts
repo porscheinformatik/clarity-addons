@@ -30,10 +30,7 @@ interface ColumnRule<T = any> {
   applyCell?: (cell: TreetableCellRenderer, data: T, ctx: ColumnCtx) => void;
 }
 
-@Directive({
-  selector: 'clr-treetable',
-  standalone: false,
-})
+@Directive({ selector: 'clr-treetable' })
 export class TreetableMainRenderer {
   private readonly _columnState = inject(TreetableColumnStateService);
 

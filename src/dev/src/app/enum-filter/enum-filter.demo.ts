@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { ClrDatagridStateInterface } from '@clr/angular';
+import { ClrDatagridModule, ClrDatagridStateInterface } from '@clr/angular';
+import { DatagridFieldDirective, ClrEnumFilterComponent } from '@porscheinformatik/clr-addons';
 
 @Component({
   selector: 'clr-enum-filter-demo',
   templateUrl: './enum-filter.demo.html',
-  standalone: false,
+  imports: [ClrDatagridModule, DatagridFieldDirective, ClrEnumFilterComponent],
 })
 export class EnumFilterDemo {
   dataList = [{ name: 'TestValue2' }, { name: 'TestValue1' }];

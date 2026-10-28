@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { ClarityModule, ClrFormsModule } from '@clr/angular';
-import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
 
 import { DaterangepickerDemo } from './daterangepicker.demo';
 
@@ -13,12 +12,11 @@ import { DaterangepickerDemo } from './daterangepicker.demo';
     CommonModule,
     ClarityModule,
     ClrFormsModule,
-    ClrAddonsModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild([{ path: '', component: DaterangepickerDemo }]),
+    DaterangepickerDemo,
   ],
-  declarations: [DaterangepickerDemo],
   exports: [DaterangepickerDemo],
 })
 export class DaterangepickerDemoModule {}

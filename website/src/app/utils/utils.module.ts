@@ -8,8 +8,7 @@ import { CommonModule } from '@angular/common';
 import { CodeHighlight } from './code-highlight';
 
 @NgModule({
-  imports: [CommonModule, ClarityModule],
-  declarations: [HashListener, ScrollSpy, CodeSnippet, CodeHighlight],
+  imports: [CommonModule, ClarityModule, HashListener, ScrollSpy, CodeSnippet, CodeHighlight],
   exports: [HashListener, ScrollSpy, CodeSnippet],
 })
 export class UtilsModule {}

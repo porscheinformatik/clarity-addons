@@ -16,8 +16,7 @@ describe('DotPagerComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ClrDotPager],
-      imports: [ClarityModule, FormsModule],
+      imports: [ClarityModule, FormsModule, ClrDotPager],
     }).compileComponents();
   }));
 

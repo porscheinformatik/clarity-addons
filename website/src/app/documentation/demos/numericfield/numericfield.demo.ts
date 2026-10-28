@@ -3,10 +3,29 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
+import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
+import { UtilsModule } from '../../../utils/utils.module';
+import {
+  ClarityModule,
+  ClrAlertModule,
+  ClrCommonFormsModule,
+  ClrFormsModule,
+  ClrInputModule,
+  ClrNumberInputModule,
+} from '@clr/angular';
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ClrNumericFieldValidators } from '@porscheinformatik/clr-addons';
+import { FormControl, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  ClrNumericFieldValidators,
+  ClrAddonsLabel,
+  ClrAutocompleteOff,
+  ClrNumericField,
+  CngInputSuffixDirective,
+} from '@porscheinformatik/clr-addons';
 import { ClarityDocComponent } from '../clarity-doc';
+import { DocWrapper } from '../_doc-wrapper/doc-wrapper';
+import { CodeSnippet } from '../../../utils/code-snippet';
 
 const HTML_EXAMPLE = `
 <form clrForm clrLayout="vertical" [formGroup]="exampleForm">
@@ -106,7 +125,25 @@ exampleForm = new FormGroup({
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
-  standalone: false,
+  imports: [
+    DocWrapper,
+    FormsModule,
+    ClrCommonFormsModule,
+    ReactiveFormsModule,
+    ClrInputModule,
+    ClrAddonsLabel,
+    ClrAutocompleteOff,
+    ClrNumericField,
+    ClrAlertModule,
+    CodeSnippet,
+    ClrNumberInputModule,
+    CngInputSuffixDirective,
+    CommonModule,
+    ClarityModule,
+    ClrFormsModule,
+    UtilsModule,
+    DocWrapperModule,
+  ],
 })
 export class NumericFieldDemo extends ClarityDocComponent {
   htmlExample = HTML_EXAMPLE;

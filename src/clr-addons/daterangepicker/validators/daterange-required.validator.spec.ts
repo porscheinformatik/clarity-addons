@@ -3,10 +3,12 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
-import { ClrDaterangepickerModule } from '../daterangepicker.module';
 import { Daterange, NullableDaterange } from '../interfaces/daterange.interface';
 import { DayModel } from '../models/day.model';
 import { ClrDaterangeRequiredValidator } from './daterange-required.validator';
+import { ClrDaterangeOrderValidator } from './daterange-order.validator';
+import { ClrDaterangepickerContainerComponent } from '../directives/daterangepicker-container/daterangepicker-container.component';
+import { ClrDaterangepickerDirective } from '../directives/daterangepicker/daterangepicker.directive';
 
 type RequiredValidationError = {
   required: Daterange;
@@ -18,7 +20,13 @@ type RequiredValidationError = {
       <input type="date" clrDaterangepicker required [formControl]="this.formControl" />
     </clr-daterangepicker-container>
   `,
-  standalone: false,
+  imports: [
+    ReactiveFormsModule,
+    ClrDaterangeOrderValidator,
+    ClrDaterangepickerContainerComponent,
+    ClrDaterangepickerDirective,
+    ClrDaterangeRequiredValidator,
+  ],
 })
 class TestComponent {
   public readonly formControl = new FormControl<NullableDaterange>(null);
@@ -35,7 +43,13 @@ class TestComponent {
       />
     </clr-daterangepicker-container>
   `,
-  standalone: false,
+  imports: [
+    ReactiveFormsModule,
+    ClrDaterangeOrderValidator,
+    ClrDaterangepickerContainerComponent,
+    ClrDaterangepickerDirective,
+    ClrDaterangeRequiredValidator,
+  ],
 })
 class TestWithToggleableValidationComponent {
   public validationState: unknown;
@@ -48,8 +62,14 @@ describe('Validator: ClrDaterangeRequiredValidator', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [ReactiveFormsModule, ClrDaterangepickerModule],
-        declarations: [TestComponent],
+        imports: [
+          ReactiveFormsModule,
+          ClrDaterangeOrderValidator,
+          ClrDaterangepickerContainerComponent,
+          ClrDaterangepickerDirective,
+          ClrDaterangeRequiredValidator,
+          TestComponent,
+        ],
         schemas: [CUSTOM_ELEMENTS_SCHEMA],
       });
 
@@ -148,8 +168,14 @@ describe('Validator: ClrDaterangeRequiredValidator', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [ReactiveFormsModule, ClrDaterangepickerModule],
-        declarations: [TestWithToggleableValidationComponent],
+        imports: [
+          ReactiveFormsModule,
+          ClrDaterangeOrderValidator,
+          ClrDaterangepickerContainerComponent,
+          ClrDaterangepickerDirective,
+          ClrDaterangeRequiredValidator,
+          TestWithToggleableValidationComponent,
+        ],
         schemas: [CUSTOM_ELEMENTS_SCHEMA],
       });
 

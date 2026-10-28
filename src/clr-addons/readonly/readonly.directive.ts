@@ -2,10 +2,7 @@ import { AfterViewInit, Directive, ElementRef, Injector, Input, OnChanges, OnIni
 import { NgControl, NgModel } from '@angular/forms';
 import { formatNumber } from '../util';
 
-@Directive({
-  selector: '[clrReadonly]',
-  standalone: false,
-})
+@Directive({ selector: '[clrReadonly]' })
 export class ClrReadonlyDirective implements OnChanges, OnInit, AfterViewInit {
   /**
    * @deprecated Use {@link clrInputSuffix} or {@link clrInputPrefix} from Clarity instead.

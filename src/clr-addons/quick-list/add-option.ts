@@ -5,7 +5,9 @@
  */
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { ClrQuickListValue } from './add-option.service';
-import { ClarityIcons, plusCircleIcon, trashIcon } from '@clr/angular/icon';
+import { ClarityIcons, ClrIcon, plusCircleIcon, trashIcon } from '@clr/angular';
+import { FormsModule } from '@angular/forms';
+import { NgClass } from '@angular/common';
 
 ClarityIcons.addIcons(trashIcon, plusCircleIcon);
 
@@ -13,7 +15,7 @@ ClarityIcons.addIcons(trashIcon, plusCircleIcon);
   selector: 'clr-add-option',
   templateUrl: './add-option.html',
   host: { '[class.quick-list-option]': 'true' },
-  standalone: false,
+  imports: [FormsModule, NgClass, ClrIcon],
 })
 export class ClrAddOption<T> {
   @Input() blankOption: ClrQuickListValue<T>;

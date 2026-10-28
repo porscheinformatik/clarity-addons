@@ -3,8 +3,23 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
+import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
+import { UtilsModule } from '../../../utils/utils.module';
+import { ClarityModule, ClrCommonFormsModule, ClrInputModule } from '@clr/angular';
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
+import { DocWrapper } from '../_doc-wrapper/doc-wrapper';
+import { FormsModule } from '@angular/forms';
+import {
+  ClrAddonsLabel,
+  ClrAutocompleteOff,
+  ClrNumericField,
+  ClrDotPager,
+  ClrPager,
+  ClrPagedSearchResultList,
+} from '@porscheinformatik/clr-addons';
+import { CodeSnippet } from '../../../utils/code-snippet';
 
 const DOTPAGER_HTML_EXAMPLE = `
 <div class="card" *ngFor="let item of pagedItems">
@@ -108,7 +123,23 @@ const HTML_EXAMPLE = `
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
-  standalone: false,
+  imports: [
+    DocWrapper,
+    FormsModule,
+    ClrCommonFormsModule,
+    ClrInputModule,
+    ClrAddonsLabel,
+    ClrAutocompleteOff,
+    ClrNumericField,
+    ClrDotPager,
+    CodeSnippet,
+    ClrPager,
+    ClrPagedSearchResultList,
+    CommonModule,
+    ClarityModule,
+    UtilsModule,
+    DocWrapperModule,
+  ],
 })
 export class PagerDemo extends ClarityDocComponent implements OnInit {
   dotPagerHtmlExample = DOTPAGER_HTML_EXAMPLE;

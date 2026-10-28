@@ -6,9 +6,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { ClarityModule, ClrModalModule, ClrProgressBarModule } from '@clr/angular';
+import { ClarityModule, ClrModalModule } from '@clr/angular';
 import {
-  ClrAddonsModule,
   ClrSummaryAreaToggle,
   ClrSummaryArea,
   ClrSummaryItem,
@@ -28,7 +27,6 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     ClarityModule,
-    ClrAddonsModule,
     DemoMenuModule,
     RouterModule.forChild([
       {
@@ -49,10 +47,7 @@ import { FormsModule } from '@angular/forms';
     ClrSummaryArea,
     ClrSummaryItem,
     ClrSummaryItemValue,
-    ClrProgressBarModule,
     FormsModule,
-  ],
-  declarations: [
     SidebarPageLayoutDemo,
     SidebarOverviewPageDemo,
     SidebarProfilePageDemo,

@@ -27,7 +27,6 @@ import { ClrTreetableSelectedState } from './enums/selection-type';
     role: 'gridcell',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class ClrTreetableRowCheckbox {
   clrTtSelectionState = model(ClrTreetableSelectedState.UNSELECTED);

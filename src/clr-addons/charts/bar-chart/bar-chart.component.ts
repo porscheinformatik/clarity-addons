@@ -33,9 +33,16 @@ import {
   TOO_MANY_ITEMS_GROUPED_MESSAGE,
   TOO_MANY_ITEMS_MESSAGE,
 } from '../constants';
-import { ChartLegendItem } from '../chart-legend/chart-legend.component';
+import { ChartLegendItem, ChartLegendComponent } from '../chart-legend/chart-legend.component';
 import { TextRenderer, toChartColor } from '../utils';
 import { ChartBase } from '../shared/chart-base';
+import { WindowResizeDirective } from '../directives/window-resize.directive';
+import { ChartTooltipComponent } from '../chart-tooltip/chart-tooltip.component';
+import { OutsideClickDirective } from '../directives/outside-click.directive';
+import { ChartSkeletonComponent } from '../shared/skeleton/bar-chart-skeleton/chart-skeleton.component';
+import { ChartAlertOverlayComponent } from '../chart-alert-overlay/chart-alert-overlay.component';
+import { ChartExportButtonComponent } from '../chart-export/chart-export-button.component';
+import { DecimalPipe } from '@angular/common';
 
 export interface BarChartData {
   key: string;
@@ -65,7 +72,16 @@ export type BarChartLabel = { stackKey: string; label: string };
   templateUrl: './bar-chart.component.html',
   styleUrls: ['./bar-chart.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
+  imports: [
+    WindowResizeDirective,
+    ChartTooltipComponent,
+    OutsideClickDirective,
+    ChartSkeletonComponent,
+    ChartAlertOverlayComponent,
+    ChartLegendComponent,
+    ChartExportButtonComponent,
+    DecimalPipe,
+  ],
 })
 export class BarChartComponent extends ChartBase<BarChartDataPoint> implements OnChanges {
   public readonly data = input.required<BarChartData[]>();

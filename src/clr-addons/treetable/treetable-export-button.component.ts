@@ -9,6 +9,7 @@ import { ClrTreetable } from './treetable';
 import { ClrTreetableColumnType } from './interfaces/column-model';
 import { ExportExcelCell, ExportExcelService, ExportType, ExportTypeEnum } from '../shared';
 import { HIDDEN_COLUMN_CSS_CLASS } from './constants';
+import { ClrDropdownModule, ClrIcon, ClrIfOpen, ClrPopoverContent } from '@clr/angular';
 
 /**
  * Export button for the `clr-treetable`.
@@ -36,8 +37,8 @@ import { HIDDEN_COLUMN_CSS_CLASS } from './constants';
   selector: 'clr-export-treetable-button',
   templateUrl: './treetable-export-button.component.html',
   styleUrl: './treetable-export-button.component.scss',
-  standalone: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [ClrDropdownModule, ClrIcon, ClrIfOpen, ClrPopoverContent],
 })
 export class ExportTreetableButtonComponent {
   private readonly _exportService = inject(ExportExcelService);

@@ -4,7 +4,8 @@ import { ClarityModule, ClrDatagrid, ClrDatagridColumn } from '@clr/angular';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ClrDatagridColumnReorderModule, DynamicColumn } from '@porscheinformatik/clr-addons';
+import { DynamicColumn } from '@porscheinformatik/clr-addons';
+import { DatagridColumnReorderDirective } from './column-reorder.directive';
 
 @Component({
   template: `
@@ -25,7 +26,7 @@ import { ClrDatagridColumnReorderModule, DynamicColumn } from '@porscheinformati
       </clr-dg-row>
     </clr-datagrid>
   `,
-  standalone: false,
+  imports: [ClarityModule, FormsModule, DatagridColumnReorderDirective, CdkDropList],
 })
 class TestComponent {
   @ViewChildren(ClrDatagridColumn)
@@ -52,8 +53,14 @@ describe('ColumnReorderDirective', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ClarityModule, FormsModule, BrowserAnimationsModule, ClrDatagridColumnReorderModule, CdkDropList],
-      declarations: [TestComponent],
+      imports: [
+        ClarityModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        DatagridColumnReorderDirective,
+        CdkDropList,
+        TestComponent,
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TestComponent);

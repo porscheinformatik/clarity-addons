@@ -139,12 +139,12 @@ import {
   windscreenWashIcon,
   wrenchForwardIcon,
 } from '@porscheinformatik/clr-addons';
-import { ClarityIcons } from '@clr/angular/icon';
+import { ClarityIcons, ClrIcon } from '@clr/angular';
 
 @Component({
   selector: 'clr-icons-demo',
   templateUrl: './icons-demo.component.html',
-  standalone: false,
+  imports: [ClrIcon],
 })
 export class IconsDemo {
   icons = [

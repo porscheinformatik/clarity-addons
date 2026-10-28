@@ -19,7 +19,7 @@ import { provideNoopAnimations } from '@angular/platform-browser/animations';
       </clr-dg-row>
     </clr-datagrid>
   `,
-  standalone: false,
+  imports: [ClarityModule],
 })
 class DataGridComponent {
   selected: any[] = [];
@@ -32,8 +32,7 @@ describe('CustomCSS', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        declarations: [DataGridComponent],
-        imports: [ClarityModule],
+        imports: [ClarityModule, DataGridComponent],
         providers: [provideNoopAnimations()],
       }).compileComponents();
     }));

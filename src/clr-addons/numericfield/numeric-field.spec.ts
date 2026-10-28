@@ -12,8 +12,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClarityModule } from '@clr/angular';
 import { ClrNumericField } from './numeric-field';
 
-import { ClrNumericFieldModule } from './numeric-field.module';
-
 @Component({
   template: `
     <clr-input-container>
@@ -31,7 +29,7 @@ import { ClrNumericFieldModule } from './numeric-field.module';
       />
     </clr-input-container>
   `,
-  standalone: false,
+  imports: [ClarityModule, FormsModule, ClrNumericField],
 })
 class TestComponent {
   @ViewChild(ClrNumericField, { static: true }) component;
@@ -47,8 +45,7 @@ describe('NumericComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ClarityModule, FormsModule, BrowserAnimationsModule, ClrNumericFieldModule],
-      declarations: [TestComponent],
+      imports: [ClarityModule, FormsModule, BrowserAnimationsModule, ClrNumericField, TestComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TestComponent);

@@ -11,7 +11,6 @@ import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { ClarityModule } from '@clr/angular';
 import { ClrGenericQuickList } from './generic-quick-list';
-import { ClrGenericQuickListModule } from './generic-quick-list.module';
 
 @Component({
   template: `
@@ -33,7 +32,7 @@ import { ClrGenericQuickListModule } from './generic-quick-list.module';
       </clr-generic-quick-list>
     </form>
   `,
-  standalone: false,
+  imports: [CommonModule, ClarityModule, FormsModule, ClrGenericQuickList],
 })
 class TestComponent {
   @ViewChild(ClrGenericQuickList, { static: true })
@@ -52,8 +51,7 @@ describe('GenericQuickListComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [TestComponent],
-      imports: [CommonModule, ClarityModule, FormsModule, ClrGenericQuickListModule],
+      imports: [CommonModule, ClarityModule, FormsModule, ClrGenericQuickList, TestComponent],
     }).compileComponents();
   }));
 

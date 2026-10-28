@@ -1,8 +1,10 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
-import { ClrCommonStringsService, ClrDatagridFilter, ClrDatagridFilterInterface } from '@clr/angular';
+import { ClrCommonStringsService, ClrDatagridFilter, ClrDatagridFilterInterface, ClrInputModule } from '@clr/angular';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { NestedProperty } from '../util';
+import { ClrFilterClearButtonComponent } from '../util/filter-clear-button/filter-clear-button.component';
+import { FormsModule } from '@angular/forms';
 
 export const CLR_STRING_FILTER_DEBOUNCE_MS = 500;
 
@@ -10,7 +12,7 @@ export const CLR_STRING_FILTER_DEBOUNCE_MS = 500;
   selector: 'clr-string-filter',
   templateUrl: './string-filter.component.html',
   styleUrls: ['./string-filter.component.scss'],
-  standalone: false,
+  imports: [ClrFilterClearButtonComponent, ClrInputModule, FormsModule],
 })
 export class ClrStringFilterComponent<T extends { [key: string]: any }>
   implements ClrDatagridFilterInterface<T>, OnDestroy, AfterViewInit

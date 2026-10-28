@@ -4,15 +4,15 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ClarityModule } from '@clr/angular';
 
 import { ClrBrandAvatar } from './brand-avatar';
 
+/**
+ * @deprecated Compatibility wrapper for NgModule-based consumers. Import the standalone `ClrBrandAvatar` directly instead.
+ */
 @NgModule({
-  imports: [CommonModule, ClarityModule],
-  declarations: [ClrBrandAvatar],
+  imports: [ClrBrandAvatar],
   exports: [ClrBrandAvatar],
 })
 export class ClrBrandAvatarModule {}

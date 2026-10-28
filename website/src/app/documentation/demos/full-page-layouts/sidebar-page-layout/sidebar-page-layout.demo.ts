@@ -5,24 +5,36 @@
  */
 import { Component, inject, OnInit } from '@angular/core';
 import {
+  administratorIcon,
   ClarityIcons,
+  ClrButtonGroupModule,
+  ClrMainContainerModule,
+  ClrNavigationModule,
+  ClrProgressBarModule,
+  ClrStandaloneCdkTrapFocus,
+  ClrVerticalNavModule,
+  envelopeIcon,
+  lightbulbIcon,
+  loginIcon,
+  mapMarkerIcon,
+  mobileIcon,
   pencilIcon,
   userIcon,
-  envelopeIcon,
-  administratorIcon,
-  mobileIcon,
-  mapMarkerIcon,
-  loginIcon,
-  lightbulbIcon,
-} from '@clr/angular/icon';
-import { Router } from '@angular/router';
+} from '@clr/angular';
+import { Router, RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import {
   ClrSummaryItemWarning,
   ClrSummaryAreaLoading,
   ClrSummaryItemLoading,
   ClrSummaryItemError,
   ClrSummaryItemEditConfig,
+  ClrBackButton,
+  ClrSummaryAreaToggle,
+  ClrSummaryArea,
+  ClrSummaryItem,
+  ClrSummaryItemValue,
 } from '@porscheinformatik/clr-addons';
+import { DemoMenu } from '../demo-menu/demo-menu';
 
 ClarityIcons.addIcons(
   userIcon,
@@ -38,7 +50,23 @@ ClarityIcons.addIcons(
 @Component({
   selector: 'clr-summary-area-page-layout-demo',
   templateUrl: './sidebar-page-layout.demo.html',
-  standalone: false,
+  imports: [
+    ClrMainContainerModule,
+    ClrNavigationModule,
+    DemoMenu,
+    ClrBackButton,
+    ClrSummaryAreaToggle,
+    ClrButtonGroupModule,
+    ClrProgressBarModule,
+    ClrSummaryArea,
+    ClrSummaryItem,
+    ClrSummaryItemValue,
+    RouterOutlet,
+    ClrVerticalNavModule,
+    ClrStandaloneCdkTrapFocus,
+    RouterLink,
+    RouterLinkActive,
+  ],
 })
 export class SidebarPageLayoutDemo implements OnInit {
   public summaryAreaLoadingState: ClrSummaryAreaLoading = { active: true, text: 'Loading...' };

@@ -7,7 +7,7 @@
           routerLink="."
           fragment="setup"
           [class.active]="(activeFragment | async) === 'setup' || (activeFragment | async) === null"
-          >Module Setup</a
+          >Setup</a
         >
       </li>
       <li>
@@ -70,21 +70,21 @@
     <h5 class="component-summary">
       Clarity Addons provides six <a href="https://d3js.org/" target="_blank">D3-powered</a> chart components that are
       fully responsive, support CSS custom-property colours, legends, tooltips and SVG export. Import
-      <code class="clr-code">ClrChartsModule</code> to use them all at once. Pay attention that the charts have their
-      own entry point — <code class="clr-code">&#64;porscheinformatik/clr-addons/charts</code> — that is separate from
-      the main Addons module. This allows apps which don't use charts to avoid the extra bundle weight of D3 and its
-      dependencies.
+      <code class="clr-code">CLR_CHARTS_DECLARATIONS</code> to use them all at once. Pay attention that the charts have
+      their own entry point — <code class="clr-code">&#64;porscheinformatik/clr-addons/charts</code> — that is separate
+      from the main Addons entry point. This allows apps which don't use charts to avoid the extra bundle weight of D3
+      and its dependencies.
     </h5>
 
-    <!-- ── Module Setup ──────────────────────────────────────────────────── -->
-    <h2 id="setup">Module Setup</h2>
+    <!-- ── Setup ──────────────────────────────────────────────────── -->
+    <h2 id="setup">Setup</h2>
     <p>
-      Add <code class="clr-code">ClrChartsModule</code> to your <code class="clr-code">NgModule</code> imports (or
-      import the six standalone-wrapped components individually):
+      Spread <code class="clr-code">CLR_CHARTS_DECLARATIONS</code> into the <code class="clr-code">imports</code> of
+      your standalone component (or import the six standalone chart components individually):
     </p>
     <clr-code-snippet
       clrLanguage="typescript"
-      [clrCode]="'import { ClrChartsModule } from \'@porscheinformatik/clr-addons/charts\';\n\n@NgModule({\n  imports: [ClrChartsModule],\n})\nexport class AppModule {}'"
+      [clrCode]="'import { CLR_CHARTS_DECLARATIONS } from \'@porscheinformatik/clr-addons/charts\';\n\n@Component({\n  imports: [...CLR_CHARTS_DECLARATIONS],\n})\nexport class MyComponent {}'"
     ></clr-code-snippet>
 
     <!-- ── Shared Inputs ─────────────────────────────────────────────────── -->
@@ -1142,7 +1142,7 @@
     <h2 id="adding-charts">Adding Additional Charts</h2>
     <p>
       All chart components are built on a shared <code class="clr-code">ChartBase</code> abstract class and registered
-      through <code class="clr-code">ClrChartsModule</code>. Follow the steps below to add a new chart type that
+      through <code class="clr-code">CLR_CHARTS_DECLARATIONS</code>. Follow the steps below to add a new chart type that
       integrates seamlessly with the existing skeleton, tooltip, legend, and export infrastructure.
     </p>
 
@@ -1173,10 +1173,9 @@
     </p>
     <clr-code-snippet clrLanguage="html" [clrCode]="addChartHtml"></clr-code-snippet>
 
-    <h3>4. Register in <code class="clr-code">ClrChartsModule</code></h3>
+    <h3>4. Register in <code class="clr-code">CLR_CHARTS_DECLARATIONS</code></h3>
     <p>
-      Add the new component to the <code class="clr-code">declarations</code> and
-      <code class="clr-code">exports</code> arrays in
+      Add the new standalone component to the <code class="clr-code">CLR_CHARTS_DECLARATIONS</code> array in
       <code class="clr-code">src/clr-addons/charts/charts.module.ts</code>:
     </p>
     <clr-code-snippet clrLanguage="typescript" [clrCode]="addChartModuleTs"></clr-code-snippet>

@@ -6,5 +6,5 @@ import { ExportExcelService } from '../shared';
  *
  * It is a thin alias of the shared {@link ExportExcelService}.
  */
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ExportDatagridService extends ExportExcelService {}

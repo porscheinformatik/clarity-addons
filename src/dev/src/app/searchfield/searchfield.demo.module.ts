@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -9,7 +9,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { ClarityModule, ClrFormsModule } from '@clr/angular';
-import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
 
 import { SearchFieldDemo } from './searchfield.demo';
 
@@ -18,12 +17,11 @@ import { SearchFieldDemo } from './searchfield.demo';
     CommonModule,
     ClarityModule,
     ClrFormsModule,
-    ClrAddonsModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild([{ path: '', component: SearchFieldDemo }]),
+    SearchFieldDemo,
   ],
-  declarations: [SearchFieldDemo],
   exports: [SearchFieldDemo],
 })
 export class SearchFieldDemoModule {}

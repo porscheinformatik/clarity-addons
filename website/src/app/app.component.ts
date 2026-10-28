@@ -1,8 +1,7 @@
 import { Component, ElementRef, Inject, InjectionToken, OnInit, PLATFORM_ID, Renderer2, DOCUMENT } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
+import { ClarityIcons, ClarityModule, cogIcon } from '@clr/angular';
 import { Title } from '@angular/platform-browser';
-
-import { ClarityIcons, cogIcon } from '@clr/angular/icon';
 
 ClarityIcons.addIcons(cogIcon);
 
@@ -21,7 +20,7 @@ const PRISM_THEMES_PER_CDS_THEME = new Map([
 @Component({
   selector: 'root',
   templateUrl: './app.component.html',
-  standalone: false,
+  imports: [ClarityModule, RouterModule],
 })
 export class AppComponent implements OnInit {
   noHeader: boolean = false;

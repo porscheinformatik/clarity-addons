@@ -3,22 +3,48 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { ChangeDetectionStrategy, Component, ElementRef, input, ViewChild } from '@angular/core';
-import { ClarityDocComponent } from '../clarity-doc';
-import { of, share } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { UtilsModule } from '../../../utils/utils.module';
+import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
 import {
   ClarityIcons,
+  ClarityModule,
+  ClrAlertModule,
+  ClrDatagrid,
+  ClrDatagridModule,
+  ClrIcon,
   errorStandardIcon,
   infoStandardIcon,
   minusIcon,
   plusIcon,
   successStandardIcon,
   warningStandardIcon,
-} from '@clr/angular/icon';
-import { ActivatedRoute } from '@angular/router';
-import { CustomExportType, DynamicColumn, ExportDatagridService, ExportTypeEnum } from '@porscheinformatik/clr-addons';
-import { ClrDatagrid, ClrIcon } from '@clr/angular';
+} from '@clr/angular';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, ElementRef, input, ViewChild } from '@angular/core';
+import { ClarityDocComponent } from '../clarity-doc';
+import { of, share } from 'rxjs';
+import { delay } from 'rxjs/operators';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import {
+  CustomExportType,
+  DynamicColumn,
+  ExportDatagridService,
+  ExportTypeEnum,
+  DatagridFieldDirective,
+  ClrEnumFilterComponent,
+  ClrDateFilterComponent,
+  ClrStringFilterComponent,
+  ClrNumericFilterComponent,
+  DatagridColumnReorderDirective,
+  DynamicCellContentComponent,
+  StatePersistenceKeyDirective,
+  ColumnHiddenStatePersistenceDirective,
+  ExportDatagridButtonComponent,
+} from '@porscheinformatik/clr-addons';
+import { DocWrapper } from '../_doc-wrapper/doc-wrapper';
+import { CodeSnippet } from '../../../utils/code-snippet';
+import { NgStyle, NgClass, AsyncPipe, DatePipe } from '@angular/common';
+import { CdkDropList, CdkDrag } from '@angular/cdk/drag-drop';
 
 interface ExportableEntry {
   column1: string;
@@ -503,7 +529,35 @@ class IsSubscribedComponent {
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
-  standalone: false,
+  providers: [ExportDatagridService],
+  imports: [
+    DocWrapper,
+    RouterLink,
+    ClrDatagridModule,
+    DatagridFieldDirective,
+    ClrEnumFilterComponent,
+    CodeSnippet,
+    ClrDateFilterComponent,
+    ClrStringFilterComponent,
+    ClrNumericFilterComponent,
+    NgStyle,
+    CdkDropList,
+    DatagridColumnReorderDirective,
+    CdkDrag,
+    DynamicCellContentComponent,
+    ClrAlertModule,
+    StatePersistenceKeyDirective,
+    ColumnHiddenStatePersistenceDirective,
+    NgClass,
+    ClrIcon,
+    ExportDatagridButtonComponent,
+    CommonModule,
+    ClarityModule,
+    DocWrapperModule,
+    UtilsModule,
+    AsyncPipe,
+    DatePipe,
+  ],
 })
 export class DatagridDemo extends ClarityDocComponent {
   noSelectAllExample = NO_SELECT_ALL_HTML;

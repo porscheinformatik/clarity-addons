@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -22,6 +22,9 @@ import {
   TREETABLE_RECURSION_SERVICE_PROVIDER,
   ClrTreetableRecursionService,
 } from './providers/treetable-recursion.service';
+import { ClrTreetableRowCheckbox } from './treetable-row-checkbox';
+import { ClrIcon } from '@clr/angular';
+import { ClrTreetableRecursiveRows } from './treetable-recursive-rows';
 
 @Component({
   selector: 'clr-tt-row',
@@ -30,7 +33,7 @@ import {
   providers: [TREETABLE_RECURSION_SERVICE_PROVIDER],
   host: { '[class.treetable-row-wrapper]': 'true', '[class.treetable-selected]': 'isSelected()' },
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
+  imports: [ClrTreetableRowCheckbox, ClrTreetableActionOverflow, ClrIcon, ClrTreetableRecursiveRows],
 })
 export class ClrTreetableRow<T extends object> {
   private readonly _recursionService = inject(ClrTreetableRecursionService);

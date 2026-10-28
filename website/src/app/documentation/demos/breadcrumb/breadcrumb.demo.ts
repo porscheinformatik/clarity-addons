@@ -3,9 +3,15 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
+import { ClarityModule } from '@clr/angular';
+import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
+import { UtilsModule } from '../../../utils/utils.module';
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, Inject } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
-import { ClrBreadcrumbService, ClrBreadcrumbModel } from '@porscheinformatik/clr-addons';
+import { ClrBreadcrumbService, ClrBreadcrumbModel, ClrBreadcrumb } from '@porscheinformatik/clr-addons';
+import { DocWrapper } from '../_doc-wrapper/doc-wrapper';
+import { CodeSnippet } from '../../../utils/code-snippet';
 
 const HTML_EXAMPLE = `
 <clr-breadcrumb></clr-breadcrumb>
@@ -32,7 +38,7 @@ this.breadcrumbService.updateBreadcrumb([
     '.breadcrumb-demo-long > * { margin-top: -12px; }',
     '.clrweb-DoxMedia-block { min-height: 60px; }',
   ],
-  standalone: false,
+  imports: [DocWrapper, ClrBreadcrumb, CodeSnippet, CommonModule, UtilsModule, DocWrapperModule, ClarityModule],
 })
 export class BreadcrumbDemo extends ClarityDocComponent implements OnInit {
   htmlExample = HTML_EXAMPLE;

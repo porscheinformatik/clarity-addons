@@ -2,10 +2,10 @@ import { Component, provideZoneChangeDetection, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Observable, of } from 'rxjs';
-import { ClrLocationBarModule } from './location-bar.module';
 import { LocationBarNode, NodeId } from './location-bar.model';
 import { CONTENT_PROVIDER, LocationBarContentProvider } from './location-bar.provider';
 import { SearchResultModel } from './location-bar.search.model';
+import { LocationBarComponent } from './location-bar.component';
 
 class TestNodeId extends NodeId {
   constructor(public id: string) {
@@ -29,7 +29,7 @@ class TestContentProvider extends LocationBarContentProvider<TestNodeId> {
     [clrSearchRequest]="searchRequest"
     [clrSearchResultItems]="searchResultItems()"
   ></clr-location-bar>`,
-  standalone: false,
+  imports: [LocationBarComponent],
 })
 class HostComponent {
   searchRequest = { placeholder: 'Search' };
@@ -61,8 +61,7 @@ describe('LocationBar keyboard handling', () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      declarations: [HostComponent],
-      imports: [ClrLocationBarModule],
+      imports: [LocationBarComponent, HostComponent],
       providers: [provideZoneChangeDetection(), { provide: CONTENT_PROVIDER, useClass: TestContentProvider }],
     });
     fixture = TestBed.createComponent(HostComponent);

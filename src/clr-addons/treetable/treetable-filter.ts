@@ -6,7 +6,15 @@
 
 import { ChangeDetectionStrategy, Component, computed, inject, input, OnDestroy, OnInit, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { ClrCommonStringsService, ClrPopoverPosition, ClrPopoverService } from '@clr/angular';
+import {
+  CdkTrapFocusModule,
+  ClrCommonStringsService,
+  ClrIcon,
+  ClrPopoverContent,
+  ClrPopoverModuleNext,
+  ClrPopoverPosition,
+  ClrPopoverService,
+} from '@clr/angular';
 import { ClrTreetableFilterInterface } from './interfaces/filter-model';
 import { FilterStateService, RegisteredTreetableFilter } from './providers/filter-state.service';
 
@@ -48,7 +56,7 @@ import { FilterStateService, RegisteredTreetableFilter } from './providers/filte
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
+  imports: [ClrPopoverModuleNext, ClrIcon, ClrPopoverContent, CdkTrapFocusModule],
 })
 export class ClrTreetableFilter<T extends object> implements OnInit, OnDestroy {
   private readonly _commonStringsService = inject(ClrCommonStringsService);

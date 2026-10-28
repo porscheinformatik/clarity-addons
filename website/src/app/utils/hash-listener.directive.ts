@@ -12,10 +12,12 @@ import { Subscription } from 'rxjs';
   host: {
     // "[style.position]": "'relative'"
   },
-  standalone: false,
 })
 export class HashListener implements OnDestroy, OnInit {
-  constructor(private route: ActivatedRoute, @Inject(PLATFORM_ID) private platformId: Object) {
+  constructor(
+    private route: ActivatedRoute,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
     this.sub = this.route.fragment.subscribe(f => {
       this.scrollToAnchor(f, false);
     });

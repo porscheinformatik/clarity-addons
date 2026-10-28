@@ -9,18 +9,16 @@ import { ClarityModule } from '@clr/angular';
 
 import { DatagridHighlightDemo } from './datagrid-highlight.demo';
 import { RouterModule } from '@angular/router';
-import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     ClarityModule,
-    ClrAddonsModule,
     FormsModule,
     RouterModule.forChild([{ path: '', component: DatagridHighlightDemo }]),
+    DatagridHighlightDemo,
   ],
-  declarations: [DatagridHighlightDemo],
   exports: [DatagridHighlightDemo],
 })
 export class DatagridHighlightDemoModule {}

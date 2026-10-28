@@ -1,8 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { ClrDatagridModule, ClrIcon } from '@clr/angular';
-import { ClarityIcons } from '@clr/angular/icon';
+import { airplaneIcon, carIcon, ClarityIcons, ClrDatagridModule, ClrIcon, crownIcon, starIcon } from '@clr/angular';
 import { Rider } from './model';
-import { crownIcon, starIcon, airplaneIcon, carIcon } from '@clr/angular/icon';
 
 ClarityIcons.addIcons(crownIcon, starIcon, airplaneIcon, carIcon);
 

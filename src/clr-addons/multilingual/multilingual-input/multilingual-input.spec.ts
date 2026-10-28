@@ -8,7 +8,8 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { ClarityModule } from '@clr/angular';
-import { ClrMultilingualModule } from '../multilingual.module';
+import { ClrMultilingualInput } from './multilingual-input';
+import { ClrRequiredOneMultilang, ClrRequiredAllMultilang } from '../multilingual-validators';
 
 @Component({
   template: `
@@ -18,7 +19,7 @@ import { ClrMultilingualModule } from '../multilingual.module';
       <clr-control-helper>Helper</clr-control-helper>
     </clr-multilingual-input>
   `,
-  standalone: false,
+  imports: [ClarityModule, FormsModule, ClrMultilingualInput, ClrRequiredOneMultilang, ClrRequiredAllMultilang],
 })
 class TestComponentAllValid implements OnInit {
   selectedLang = 'EN';
@@ -38,7 +39,7 @@ class TestComponentAllValid implements OnInit {
       <clr-control-helper>Helper</clr-control-helper>
     </clr-multilingual-input>
   `,
-  standalone: false,
+  imports: [ClarityModule, FormsModule, ClrMultilingualInput, ClrRequiredOneMultilang, ClrRequiredAllMultilang],
 })
 class TestComponentOneValid implements OnInit {
   selectedLang = 'EN';
@@ -65,7 +66,7 @@ class TestComponentOneValid implements OnInit {
       <clr-control-helper>Helper</clr-control-helper>
     </clr-multilingual-input>
   `,
-  standalone: false,
+  imports: [ClarityModule, FormsModule, ClrMultilingualInput, ClrRequiredOneMultilang, ClrRequiredAllMultilang],
 })
 class TestComponentComplex implements OnInit {
   selectedLang = 'EN';
@@ -91,7 +92,7 @@ class TestComponentComplex implements OnInit {
       <label>Test</label>
     </clr-multilingual-input>
   `,
-  standalone: false,
+  imports: [ClarityModule, FormsModule, ClrMultilingualInput, ClrRequiredOneMultilang, ClrRequiredAllMultilang],
 })
 class TestComponentWithIcons implements OnInit {
   selectedLang = 'EN';
@@ -112,8 +113,14 @@ describe('Multilingual Input', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [ClarityModule, FormsModule, ClrMultilingualModule],
-        declarations: [TestComponentAllValid],
+        imports: [
+          ClarityModule,
+          FormsModule,
+          ClrMultilingualInput,
+          ClrRequiredOneMultilang,
+          ClrRequiredAllMultilang,
+          TestComponentAllValid,
+        ],
       }).compileComponents();
 
       fixture = TestBed.createComponent(TestComponentAllValid);
@@ -163,8 +170,14 @@ describe('Multilingual Input', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [ClarityModule, FormsModule, ClrMultilingualModule],
-        declarations: [TestComponentOneValid],
+        imports: [
+          ClarityModule,
+          FormsModule,
+          ClrMultilingualInput,
+          ClrRequiredOneMultilang,
+          ClrRequiredAllMultilang,
+          TestComponentOneValid,
+        ],
       }).compileComponents();
 
       fixture = TestBed.createComponent(TestComponentOneValid);
@@ -198,8 +211,14 @@ describe('Multilingual Input', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [ClarityModule, FormsModule, ClrMultilingualModule],
-        declarations: [TestComponentComplex],
+        imports: [
+          ClarityModule,
+          FormsModule,
+          ClrMultilingualInput,
+          ClrRequiredOneMultilang,
+          ClrRequiredAllMultilang,
+          TestComponentComplex,
+        ],
       }).compileComponents();
 
       fixture = TestBed.createComponent(TestComponentComplex);
@@ -281,8 +300,14 @@ describe('Multilingual Input', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [ClarityModule, FormsModule, ClrMultilingualModule],
-        declarations: [TestComponentWithIcons],
+        imports: [
+          ClarityModule,
+          FormsModule,
+          ClrMultilingualInput,
+          ClrRequiredOneMultilang,
+          ClrRequiredAllMultilang,
+          TestComponentWithIcons,
+        ],
       }).compileComponents();
 
       fixture = TestBed.createComponent(TestComponentWithIcons);

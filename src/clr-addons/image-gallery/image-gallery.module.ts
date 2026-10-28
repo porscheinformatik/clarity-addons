@@ -4,16 +4,16 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ClarityModule } from '@clr/angular';
 
 import { ClrImageGallery } from './image-gallery';
 import { ClrImageCarousel } from './image-carousel';
 
+/**
+ * @deprecated Compatibility wrapper for NgModule-based consumers. Import the standalone `ClrImageGallery`, `ClrImageCarousel` directly instead.
+ */
 @NgModule({
-  imports: [CommonModule, ClarityModule, NgOptimizedImage],
-  declarations: [ClrImageGallery, ClrImageCarousel],
+  imports: [ClrImageGallery, ClrImageCarousel],
   exports: [ClrImageGallery, ClrImageCarousel],
 })
 export class ClrImageGalleryModule {}

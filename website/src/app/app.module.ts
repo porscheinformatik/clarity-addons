@@ -2,7 +2,6 @@ import { APP_ID, NgModule } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClarityModule } from '@clr/angular';
-import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FullPageLayoutsRoutingModule } from './documentation/demos/full-page-layouts/full-page-layouts-routing.module';
@@ -17,15 +16,16 @@ import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-scss';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, PageNotFoundComponent],
   imports: [
+    AppComponent,
     BrowserModule,
     BrowserAnimationsModule,
     ClarityModule,
-    ClrAddonsModule,
     DocumentationModule,
     FullPageLayoutsRoutingModule,
     AppRoutingModule,
+    HomeComponent,
+    PageNotFoundComponent,
   ],
   providers: [
     Title,

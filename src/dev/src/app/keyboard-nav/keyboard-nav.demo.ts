@@ -7,26 +7,31 @@
 import { Component } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
-import { ClarityModule } from '@clr/angular';
+import {
+  bellIcon,
+  ClarityIcons,
+  ClarityModule,
+  cogIcon,
+  folderIcon,
+  homeIcon,
+  searchIcon,
+  userIcon,
+} from '@clr/angular';
 import { ClrKeyboardNavCtrlArrowDirective, ClrKeyboardNavAltMnemonicDirective } from '@porscheinformatik/clr-addons';
-import { ClarityIcons, homeIcon, cogIcon, userIcon, searchIcon, folderIcon, bellIcon } from '@clr/angular/icon';
 
 ClarityIcons.addIcons(homeIcon, cogIcon, userIcon, searchIcon, folderIcon, bellIcon);
 
-export const IMPORT_EXAMPLE = `// app.module.ts  (or any NgModule / standalone component)
+export const IMPORT_EXAMPLE = `// any standalone component
 import {
   ClrKeyboardNavCtrlArrowDirective,
   ClrKeyboardNavAltMnemonicDirective,
 } from '@porscheinformatik/clr-addons';
 
-@NgModule({
-  imports: [
-    ClrKeyboardNavCtrlArrowDirective,
-    ClrKeyboardNavAltMnemonicDirective,
-    // … or simply import ClrAddonsModule
-  ],
+@Component({
+  imports: [ClrKeyboardNavCtrlArrowDirective, ClrKeyboardNavAltMnemonicDirective],
+  // …
 })
-export class AppModule {}`;
+export class MyComponent {}`;
 
 export const CTRL_ARROW_BASIC_EXAMPLE = `<!-- Add clrKeyboardNavCtrlArrow to any Clarity navigation host -->
 

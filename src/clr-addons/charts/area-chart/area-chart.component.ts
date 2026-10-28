@@ -13,11 +13,18 @@ import {
 } from 'd3';
 import { NO_ITEMS_ALERT_TYPE, NO_ITEMS_MESSAGE, ERROR_ALERT_TYPE, ERROR_ALERT_MESSAGE } from '../constants';
 import { toChartColor } from '../utils';
-import { ChartLegendItem } from '../chart-legend/chart-legend.component';
+import { ChartLegendItem, ChartLegendComponent } from '../chart-legend/chart-legend.component';
 import { XYChartPoint, XYChartSeries, XYChartValue } from '../shared/xy-chart.types';
 import { renderDots } from '../shared/d3-dots';
 import { drawXYAxes, styleGridLines } from '../shared/d3-chart-axes';
 import { ChartBase } from '../shared/chart-base';
+import { WindowResizeDirective } from '../directives/window-resize.directive';
+import { ChartTooltipComponent } from '../chart-tooltip/chart-tooltip.component';
+import { OutsideClickDirective } from '../directives/outside-click.directive';
+import { ChartSkeletonComponent } from '../shared/skeleton/bar-chart-skeleton/chart-skeleton.component';
+import { ChartAlertOverlayComponent } from '../chart-alert-overlay/chart-alert-overlay.component';
+import { ChartExportButtonComponent } from '../chart-export/chart-export-button.component';
+import { DecimalPipe } from '@angular/common';
 
 // Re-exported as chart-specific aliases for backward compatibility
 export type {
@@ -36,8 +43,17 @@ type AreaChartSelectedPoint = XYChartPoint & {
   selector: 'clr-area-chart',
   templateUrl: './area-chart.component.html',
   styleUrls: ['./area-chart.component.scss'],
-  standalone: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    WindowResizeDirective,
+    ChartTooltipComponent,
+    OutsideClickDirective,
+    ChartSkeletonComponent,
+    ChartAlertOverlayComponent,
+    ChartLegendComponent,
+    ChartExportButtonComponent,
+    DecimalPipe,
+  ],
 })
 export class AreaChartComponent extends ChartBase<AreaChartSelectedPoint> implements OnChanges {
   public readonly series = input.required<XYChartSeries[]>();

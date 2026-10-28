@@ -3,9 +3,12 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
-import { ClrDaterangepickerModule } from '../daterangepicker.module';
 import { NullableDaterange } from '../interfaces/daterange.interface';
 import { DayModel } from '../models/day.model';
+import { ClrDaterangeMaxValidator } from './daterange-max.validator';
+import { ClrDaterangeOrderValidator } from './daterange-order.validator';
+import { ClrDaterangepickerContainerComponent } from '../directives/daterangepicker-container/daterangepicker-container.component';
+import { ClrDaterangepickerDirective } from '../directives/daterangepicker/daterangepicker.directive';
 
 const MAX_DATE = new Date(2022, 11, 31);
 
@@ -15,7 +18,13 @@ const MAX_DATE = new Date(2022, 11, 31);
       <input type="date" clrDaterangepicker [max]="this.maxDate" [formControl]="this.formControl" />
     </clr-daterangepicker-container>
   `,
-  standalone: false,
+  imports: [
+    ReactiveFormsModule,
+    ClrDaterangeMaxValidator,
+    ClrDaterangeOrderValidator,
+    ClrDaterangepickerContainerComponent,
+    ClrDaterangepickerDirective,
+  ],
 })
 class TestComponent {
   public readonly maxDate = MAX_DATE;
@@ -34,7 +43,13 @@ class TestComponent {
       />
     </clr-daterangepicker-container>
   `,
-  standalone: false,
+  imports: [
+    ReactiveFormsModule,
+    ClrDaterangeMaxValidator,
+    ClrDaterangeOrderValidator,
+    ClrDaterangepickerContainerComponent,
+    ClrDaterangepickerDirective,
+  ],
 })
 class TestWithToggleableValidationComponent {
   public readonly maxDate = MAX_DATE;
@@ -48,8 +63,14 @@ describe('Validator: ClrDaterangeMaxValidator', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [ReactiveFormsModule, ClrDaterangepickerModule],
-        declarations: [TestComponent],
+        imports: [
+          ReactiveFormsModule,
+          ClrDaterangeMaxValidator,
+          ClrDaterangeOrderValidator,
+          ClrDaterangepickerContainerComponent,
+          ClrDaterangepickerDirective,
+          TestComponent,
+        ],
         schemas: [CUSTOM_ELEMENTS_SCHEMA],
       });
 
@@ -113,8 +134,14 @@ describe('Validator: ClrDaterangeMaxValidator', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [ReactiveFormsModule, ClrDaterangepickerModule],
-        declarations: [TestWithToggleableValidationComponent],
+        imports: [
+          ReactiveFormsModule,
+          ClrDaterangeMaxValidator,
+          ClrDaterangeOrderValidator,
+          ClrDaterangepickerContainerComponent,
+          ClrDaterangepickerDirective,
+          TestWithToggleableValidationComponent,
+        ],
         schemas: [CUSTOM_ELEMENTS_SCHEMA],
       });
 

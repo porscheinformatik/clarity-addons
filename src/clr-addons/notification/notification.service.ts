@@ -27,7 +27,7 @@ export interface ClrNotificationOptions {
   ngTemplateOutletContext?: Record<string, unknown>;
 }
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ClrNotificationService {
   private elements = new Set<ClrNotification>();
 

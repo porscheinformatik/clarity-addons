@@ -22,7 +22,7 @@ import { NullableTimerange, TimeModel } from '@porscheinformatik/clr-addons';
     (valueChange)="onValueChange($event)"
     type="date"
   />`,
-  standalone: false,
+  imports: [ReactiveFormsModule, FormsModule, ClrDaterangepickerDirective],
 })
 class TestHostComponent {
   control = new FormControl();
@@ -61,8 +61,7 @@ describe('ClrDaterangepickerDirective', () => {
     };
 
     TestBed.configureTestingModule({
-      declarations: [ClrDaterangepickerDirective, TestHostComponent],
-      imports: [ReactiveFormsModule, FormsModule], // Import FormsModule and ReactiveFormsModule
+      imports: [ReactiveFormsModule, FormsModule, ClrDaterangepickerDirective, TestHostComponent], // Import FormsModule and ReactiveFormsModule
       providers: [
         { provide: DaterangeService, useValue: daterangeService },
         { provide: DaterangeParsingService, useValue: daterangeParsingService },

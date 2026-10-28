@@ -9,7 +9,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClarityModule } from '@clr/angular';
-import { ClrAddonsModule } from '../clr-addons.module';
+import { ClrAutocompleteOff } from './autocomplete-off.directive';
+import { ClrAddonsLabel } from '../abstract-form-component/label';
 
 @Component({
   template: `
@@ -22,7 +23,7 @@ import { ClrAddonsModule } from '../clr-addons.module';
       <input #hasAutoComplete autocomplete="name" clrInput type="text" />
     </clr-input-container>
   `,
-  standalone: false,
+  imports: [ClarityModule, FormsModule, ClrAutocompleteOff, ClrAddonsLabel],
 })
 class TestComponent {
   @ViewChild('noAutoComplete') noAutocomplete: ElementRef;
@@ -34,8 +35,7 @@ describe('AutocompleteOffDirective', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ClarityModule, FormsModule, BrowserAnimationsModule, ClrAddonsModule],
-      declarations: [TestComponent],
+      imports: [ClarityModule, FormsModule, BrowserAnimationsModule, ClrAutocompleteOff, ClrAddonsLabel, TestComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TestComponent);

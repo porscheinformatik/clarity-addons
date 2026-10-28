@@ -37,7 +37,6 @@ import { ClrCommonStringsService } from '@clr/angular';
     '[class.treetable-column-separator]': 'true',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class ClrTreetableColumnSeparator implements AfterViewInit, OnDestroy {
   columnId = input.required<string>();

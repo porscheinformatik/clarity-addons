@@ -17,8 +17,7 @@ describe('ContentPanelComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ClrActionPanel],
-      imports: [ClarityModule, FormsModule, BrowserAnimationsModule],
+      imports: [ClarityModule, FormsModule, BrowserAnimationsModule, ClrActionPanel],
     }).compileComponents();
   }));
 

@@ -6,7 +6,6 @@
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import {
-  ClrAddonsModule,
   ClrSummaryArea,
   ClrSummaryAreaStateService,
   ClrSummaryAreaToggle,
@@ -28,13 +27,12 @@ import { SummaryAreaDemo } from './summary-area.demo';
     RouterModule.forChild([{ path: '', component: SummaryAreaDemo }]),
     FormsModule,
     ClarityModule,
-    ClrAddonsModule,
     ClrSummaryArea,
     ClrSummaryItem,
     ClrSummaryItemValue,
     ClrSummaryAreaToggle,
+    SummaryAreaDemo,
   ],
-  declarations: [SummaryAreaDemo],
   exports: [SummaryAreaDemo],
   providers: [ClrSummaryAreaStateService],
 })

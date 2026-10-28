@@ -8,10 +8,10 @@ import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ClrAlertModule } from '@clr/angular';
 import {
-  ClrChartsModule,
   ComboBarSeries,
   ComboChartValue,
   ComboLineSeries,
+  CLR_CHARTS_DECLARATIONS,
 } from '@porscheinformatik/clr-addons/charts';
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -19,7 +19,7 @@ const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 @Component({
   selector: 'clr-combo-chart-demo',
   templateUrl: './combo-chart.demo.html',
-  imports: [FormsModule, ClrAlertModule, ClrChartsModule],
+  imports: [FormsModule, ClrAlertModule, ...CLR_CHARTS_DECLARATIONS],
 })
 export class ComboChartDemo {
   protected readonly error = signal(false);

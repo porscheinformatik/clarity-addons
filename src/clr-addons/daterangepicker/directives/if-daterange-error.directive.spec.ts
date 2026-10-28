@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormControl, Validators } from '@angular/forms';
-import { ClrPopoverService } from '@clr/angular';
+import { ClrFormsModule, ClrPopoverService } from '@clr/angular';
 
-import { ClrDaterangepickerModule } from '../daterangepicker.module';
 import { DaterangeControlStateService } from '../providers/daterange-control-state.service';
 import { DaterangeService } from '../providers/daterange.service';
 import { ClrDaterangepickerContainerComponent } from './daterangepicker-container/daterangepicker-container.component';
@@ -13,16 +12,13 @@ const errorMessage = 'ERROR_MESSAGE';
 const minLengthMessage = 'MIN_LENGTH_MESSAGE';
 const maxLengthMessage = 'MAX_LENGTH_MESSAGE';
 
-@Component({
-  template: `<div *clrIfDaterangeError></div>`,
-  standalone: false,
-})
+@Component({ template: `<div *clrIfDaterangeError></div>`, imports: [ClrIfDaterangeErrorDirective] })
 class InvalidUseTestComponent {}
 
 @Component({
   template: `<clr-control-error *clrIfDaterangeError>${errorMessage}</clr-control-error>`,
   providers: [ClrDaterangepickerContainerComponent, ClrPopoverService, DaterangeControlStateService, DaterangeService],
-  standalone: false,
+  imports: [ClrIfDaterangeErrorDirective, ClrIfDaterangeErrorDirective, ClrFormsModule],
 })
 class GeneralErrorTestComponent {}
 
@@ -41,7 +37,7 @@ class GeneralErrorTestComponent {}
     DaterangeControlStateService,
     DaterangeService,
   ],
-  standalone: false,
+  imports: [ClrIfDaterangeErrorDirective, ClrIfDaterangeErrorDirective, ClrFormsModule],
 })
 class SpecificErrorTestComponent {}
 
@@ -49,7 +45,7 @@ describe('Directive: ClrIfDaterangeErrorDirective', () => {
   describe('invalid use', () => {
     it('throws error when used outside of `ClrDaterangepickerContainerComponent`', () => {
       TestBed.configureTestingModule({
-        declarations: [ClrIfDaterangeErrorDirective, InvalidUseTestComponent],
+        imports: [ClrIfDaterangeErrorDirective, InvalidUseTestComponent],
       });
       expect(() => {
         const fixture = TestBed.createComponent(InvalidUseTestComponent);
@@ -66,8 +62,7 @@ describe('Directive: ClrIfDaterangeErrorDirective', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [ClrDaterangepickerModule],
-        declarations: [ClrIfDaterangeErrorDirective, GeneralErrorTestComponent],
+        imports: [ClrIfDaterangeErrorDirective, ClrIfDaterangeErrorDirective, GeneralErrorTestComponent],
       });
       fixture = TestBed.createComponent(GeneralErrorTestComponent);
       fixture.detectChanges();
@@ -100,8 +95,7 @@ describe('Directive: ClrIfDaterangeErrorDirective', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [ClrDaterangepickerModule],
-        declarations: [ClrIfDaterangeErrorDirective, SpecificErrorTestComponent],
+        imports: [ClrIfDaterangeErrorDirective, ClrIfDaterangeErrorDirective, SpecificErrorTestComponent],
       });
       fixture = TestBed.createComponent(SpecificErrorTestComponent);
       fixture.detectChanges();

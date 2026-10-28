@@ -3,7 +3,15 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
+import { RouterModule } from '@angular/router';
+import { UtilsModule } from '../../../utils/utils.module';
+import { ClarityModule } from '@clr/angular';
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { NgClass } from '@angular/common';
+import { ScrollSpy } from '../../../utils/scrollspy.directive';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { HashListener } from '../../../utils/hash-listener.directive';
 
 @Component({
   selector: 'clr-doc-wrapper',
@@ -11,7 +19,17 @@ import { Component, Input } from '@angular/core';
   host: {
     '[class.dox-wrapper]': 'true',
   },
-  standalone: false,
+  imports: [
+    NgClass,
+    ScrollSpy,
+    RouterLink,
+    RouterLinkActive,
+    HashListener,
+    CommonModule,
+    ClarityModule,
+    UtilsModule,
+    RouterModule,
+  ],
 })
 export class DocWrapper {
   @Input() title: string = '';

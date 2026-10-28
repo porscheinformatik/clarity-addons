@@ -64,7 +64,7 @@ class ExportDatagridServiceMock {
       </clr-dg-row>
     </clr-datagrid>
   `,
-  standalone: false,
+  imports: [ClarityModule, FormsModule, ExportDatagridButtonComponent],
 })
 class TestHostComponent {
   readonly items = signal<Item[]>(ITEMS);
@@ -83,8 +83,7 @@ describe('ExportDatagridButtonComponent', () => {
     exportService = new ExportDatagridServiceMock();
 
     TestBed.configureTestingModule({
-      imports: [ClarityModule, FormsModule, BrowserAnimationsModule, ExportDatagridButtonComponent],
-      declarations: [TestHostComponent],
+      imports: [ClarityModule, FormsModule, BrowserAnimationsModule, ExportDatagridButtonComponent, TestHostComponent],
       providers: [{ provide: ExportDatagridService, useValue: exportService }],
     }).compileComponents();
 

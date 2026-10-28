@@ -9,8 +9,9 @@ import { Component, signal } from '@angular/core';
 import { ClarityModule } from '@clr/angular';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { ClrTreetableColumn, ClrTreetableModule } from '@porscheinformatik/clr-addons';
+import { ClrTreetableColumn } from '@porscheinformatik/clr-addons';
 import { ClrTreetableStringFilter } from './treetable-string-filter';
+import { CLR_TREETABLE_DIRECTIVES } from '../../treetable.module';
 
 type Item = {
   name: string;
@@ -30,7 +31,7 @@ type Item = {
       </clr-tt-column>
     </clr-treetable>
   `,
-  standalone: false,
+  imports: [ClarityModule, FormsModule, ...CLR_TREETABLE_DIRECTIVES],
 })
 class HostTestComponent {
   readonly label = signal<string>('');
@@ -69,8 +70,7 @@ describe('ClrTreetableStringFilter', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [HostTestComponent],
-      imports: [ClarityModule, FormsModule, ClrTreetableModule],
+      imports: [ClarityModule, FormsModule, ...CLR_TREETABLE_DIRECTIVES, HostTestComponent],
     }).compileComponents();
   }));
 

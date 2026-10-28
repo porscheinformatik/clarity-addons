@@ -6,22 +6,50 @@
 
 import { Component, computed, ElementRef, linkedSignal, OnInit, signal, viewChild } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { bellIcon, ClarityIcons, infoStandardIcon } from '@clr/angular/icon';
+import {
+  bellIcon,
+  ClarityIcons,
+  ClrButtonGroupModule,
+  ClrDatagrid,
+  ClrDatagridComparatorInterface,
+  ClrDatagridModule,
+  ClrDatagridSortOrder,
+  ClrDatagridStringFilterInterface,
+  ClrIcon,
+  ClrIfOpen,
+  ClrPopoverContent,
+  ClrSignpostModule,
+  ClrTooltipModule,
+  infoStandardIcon,
+} from '@clr/angular';
 import {
   ClrTreetable,
   ClrTreetableComparatorInterface,
   ClrTreetableSortOrder,
   ClrTreetableState,
   ClrTreetableStringFilterFunction,
+  ExportTreetableButtonComponent,
+  TreetableMainRenderer,
+  ClrTreetableColumn,
+  TreetableHeaderRenderer,
+  ClrTreetableHideableColumn,
+  ClrTreetableStringFilter,
+  TreetableItemsDirective,
+  ClrTreetableRow,
+  TreetableRowRenderer,
+  ClrTreetableActionOverflow,
+  ClrTreetableCell,
+  TreetableCellRenderer,
+  ClrTreetablePlaceholder,
+  ClrTreetableFooter,
+  ExportDatagridButtonComponent,
+  DatagridFieldDirective,
+  ColumnHiddenStatePersistenceDirective,
 } from '@porscheinformatik/clr-addons';
 import { map, of, tap, timer } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import {
-  ClrDatagrid,
-  ClrDatagridComparatorInterface,
-  ClrDatagridSortOrder,
-  ClrDatagridStringFilterInterface,
-} from '@clr/angular';
+import { ExportDatagridService } from '@porscheinformatik/clr-addons';
+import { NgTemplateOutlet, AsyncPipe, JsonPipe } from '@angular/common';
 
 ClarityIcons.addIcons(infoStandardIcon);
 ClarityIcons.addIcons(bellIcon);
@@ -49,7 +77,37 @@ export type Tree = {
       align-items: flex-end;
     }
   `,
-  standalone: false,
+  providers: [ExportDatagridService],
+  imports: [
+    ClrButtonGroupModule,
+    ExportTreetableButtonComponent,
+    ClrTreetable,
+    TreetableMainRenderer,
+    ClrTreetableColumn,
+    TreetableHeaderRenderer,
+    ClrTreetableHideableColumn,
+    ClrTreetableStringFilter,
+    TreetableItemsDirective,
+    ClrTreetableRow,
+    TreetableRowRenderer,
+    ClrTreetableActionOverflow,
+    ClrTreetableCell,
+    TreetableCellRenderer,
+    ClrTreetablePlaceholder,
+    ClrTreetableFooter,
+    ExportDatagridButtonComponent,
+    ClrDatagridModule,
+    DatagridFieldDirective,
+    ColumnHiddenStatePersistenceDirective,
+    NgTemplateOutlet,
+    ClrSignpostModule,
+    ClrIcon,
+    ClrIfOpen,
+    ClrPopoverContent,
+    ClrTooltipModule,
+    AsyncPipe,
+    JsonPipe,
+  ],
 })
 export class TreetableDemo implements OnInit {
   readonly treetable = viewChild<ClrTreetable<Tree>>('treetableEl');

@@ -4,10 +4,9 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component, HostListener, computed, inject, input, output, AfterViewInit } from '@angular/core';
-import { ClrIcon, ClrTooltipModule } from '@clr/angular';
+import { angleDoubleIcon, ClarityIcons, ClrIcon, ClrTooltipModule } from '@clr/angular';
 
 import { ClrSummaryAreaStateService, defaultSummaryAreaCollapsedKey } from '../summary-area/summary-area-state.service';
-import { angleDoubleIcon, ClarityIcons } from '@clr/angular/icon';
 
 ClarityIcons.addIcons(angleDoubleIcon);
 

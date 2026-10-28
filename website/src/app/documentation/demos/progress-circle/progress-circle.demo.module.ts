@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { ClarityModule } from '@clr/angular';
 import { RouterModule } from '@angular/router';
 
-import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
 import { UtilsModule } from '../../../utils/utils.module';
 import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
 import { ProgressCircleDemo } from './progress-circle.demo';
@@ -16,10 +15,9 @@ import { ProgressCircleDemo } from './progress-circle.demo';
     ClarityModule,
     UtilsModule,
     DocWrapperModule,
-    ClrAddonsModule,
     RouterModule.forChild([{ path: '', component: ProgressCircleDemo }]),
+    ProgressCircleDemo,
   ],
-  declarations: [ProgressCircleDemo],
   exports: [ProgressCircleDemo],
 })
 export class ProgressCircleDemoModule {}

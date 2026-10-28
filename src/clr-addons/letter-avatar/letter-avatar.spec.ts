@@ -14,7 +14,7 @@ describe('LetterAvatarComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ClrLetterAvatar],
+      imports: [ClrLetterAvatar],
     }).compileComponents();
   }));
 

@@ -4,14 +4,39 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
+import { ClarityModule, ClrIfActive, ClrTabsModule } from '@clr/angular';
+import { FormsModule } from '@angular/forms';
+import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
+import { UtilsModule } from '../../../utils/utils.module';
+import { CommonModule } from '@angular/common';
 import {
   ClrTreetable,
   ClrTreetableComparatorInterface,
   ClrTreetableSortOrder,
   ClrTreetableStringFilterFunction,
+  TreetableMainRenderer,
+  ClrTreetableColumn,
+  TreetableHeaderRenderer,
+  ClrTreetableRow,
+  TreetableRowRenderer,
+  ClrTreetableCell,
+  TreetableCellRenderer,
+  ClrTreetableActionOverflow,
+  TreetableItemsDirective,
+  ClrTreetableStringFilter,
+  ClrTreetableFilter,
+  ClrTreetablePlaceholder,
+  ClrTreetableHideableColumn,
+  ClrTreetableFooter,
+  ExportTreetableButtonComponent,
+  CLR_TREETABLE_DIRECTIVES,
 } from '@porscheinformatik/clr-addons';
 import { ClarityDocComponent } from '../clarity-doc';
 import { Component, ElementRef, signal, viewChild } from '@angular/core';
+import { DocWrapper } from '../_doc-wrapper/doc-wrapper';
+import { CodeSnippet } from '../../../utils/code-snippet';
+import { TreetableRoleTypeFilterComponent } from './treetable-demo-custom-filter';
+import { TitleCasePipe } from '@angular/common';
 
 const HTML_EXAMPLE_CLICKABLE_ROWS = `
 <clr-treetable>
@@ -493,7 +518,36 @@ class NameComparator implements ClrTreetableComparatorInterface<OrganizationUnit
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
-  standalone: false,
+  imports: [
+    DocWrapper,
+    ClrTreetable,
+    TreetableMainRenderer,
+    ClrTreetableColumn,
+    TreetableHeaderRenderer,
+    ClrTreetableRow,
+    TreetableRowRenderer,
+    ClrTreetableCell,
+    TreetableCellRenderer,
+    CodeSnippet,
+    ClrTreetableActionOverflow,
+    ClrTabsModule,
+    ClrIfActive,
+    TreetableItemsDirective,
+    ClrTreetableStringFilter,
+    ClrTreetableFilter,
+    TreetableRoleTypeFilterComponent,
+    ClrTreetablePlaceholder,
+    ClrTreetableHideableColumn,
+    ClrTreetableFooter,
+    ExportTreetableButtonComponent,
+    CommonModule,
+    UtilsModule,
+    DocWrapperModule,
+    FormsModule,
+    ClarityModule,
+    ...CLR_TREETABLE_DIRECTIVES,
+    TitleCasePipe,
+  ],
 })
 export class TreetableDemo extends ClarityDocComponent {
   htmlExampleClickableRows = HTML_EXAMPLE_CLICKABLE_ROWS;

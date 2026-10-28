@@ -20,8 +20,7 @@ describe('QuickListComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ClrQuickList, ClrAddOption],
-      imports: [ClarityModule, FormsModule],
+      imports: [ClarityModule, FormsModule, ClrQuickList, ClrAddOption],
     }).compileComponents();
   }));
 

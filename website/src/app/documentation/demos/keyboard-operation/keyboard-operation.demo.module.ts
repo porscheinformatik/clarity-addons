@@ -8,7 +8,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ClarityModule, ClrFormsModule } from '@clr/angular';
-import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
 import { UtilsModule } from '../../../utils/utils.module';
 import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
 
@@ -20,13 +19,12 @@ import { KeyboardOperationDemo } from './keyboard-operation.demo';
     FormsModule,
     ClarityModule,
     ClrFormsModule,
-    ClrAddonsModule,
     UtilsModule,
     DocWrapperModule,
     RouterModule.forChild([{ path: '', component: KeyboardOperationDemo }]),
     ReactiveFormsModule,
+    KeyboardOperationDemo,
   ],
-  declarations: [KeyboardOperationDemo],
   exports: [KeyboardOperationDemo],
 })
 export class KeyboardOperationDemoModule {}

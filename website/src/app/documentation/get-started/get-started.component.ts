@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CodeSnippet } from '../../utils/code-snippet';
 
 const NODE_IMPORTS = `
 "styles": [
@@ -18,14 +19,10 @@ const PHS_THEME = `
 
 const NG_MODULE_EXAMPLE = `
 import { NgModule } from "@angular/core";
-import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
 import { AppComponent } from "./app.component";
 
 @NgModule({
-    imports: [
-        ClrAddonsModule,
-        ...
-     ],
+    imports: [...],
      declarations: [ AppComponent ],
      bootstrap: [ AppComponent ]
 })
@@ -38,7 +35,7 @@ export class AppModule { }
   host: {
     '[class.content-area]': 'true',
   },
-  standalone: false,
+  imports: [CodeSnippet],
 })
 export class GetStartedComponent {
   public nodeImports = NODE_IMPORTS;

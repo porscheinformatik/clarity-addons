@@ -3,6 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
+import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, Input, OnDestroy } from '@angular/core';
 
 @Component({
@@ -16,7 +17,7 @@ import { ChangeDetectorRef, Component, Input, OnDestroy } from '@angular/core';
   host: {
     '[class.progress-spinner-overlay]': '_showSpinner',
   },
-  standalone: false,
+  imports: [CommonModule],
 })
 export class ClrProgressSpinnerComponent implements OnDestroy {
   private static readonly MINIMUM_VISIBLE_DURATION = 200;

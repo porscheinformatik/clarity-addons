@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
-import { ClrDatagridStateInterface } from '@clr/angular';
+import { ClrDatagridModule, ClrDatagridStateInterface } from '@clr/angular';
+import { JsonPipe } from '@angular/common';
+import {
+  DatagridFieldDirective,
+  ClrNumericFilterComponent,
+  ClrStringFilterComponent,
+} from '@porscheinformatik/clr-addons';
 
 interface Item {
   name: string;
@@ -10,7 +16,7 @@ interface Item {
 @Component({
   selector: 'clr-numeric-filter-demo',
   templateUrl: './numeric-filter.demo.html',
-  standalone: false,
+  imports: [ClrDatagridModule, DatagridFieldDirective, ClrNumericFilterComponent, ClrStringFilterComponent, JsonPipe],
 })
 export class NumericFilterDemo {
   dataList: Item[] = [

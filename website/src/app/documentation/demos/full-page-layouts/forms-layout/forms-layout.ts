@@ -4,6 +4,28 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component } from '@angular/core';
+import {
+  ClrCheckboxModule,
+  ClrCommonFormsModule,
+  ClrDatepickerModule,
+  ClrInputModule,
+  ClrMainContainerModule,
+  ClrNavigationModule,
+  ClrPasswordModule,
+  ClrRadioModule,
+  ClrSelectModule,
+  ClrTextareaModule,
+} from '@clr/angular';
+import { DemoMenu } from '../demo-menu/demo-menu';
+import {
+  ClrBackButton,
+  ClrAddonsLabel,
+  ClrAutocompleteOff,
+  ClrDateTimeContainer,
+  ClrTimeInput,
+  ClrNumericField,
+} from '@porscheinformatik/clr-addons';
+import { CodeSnippet } from '../../../../utils/code-snippet';
 
 const CODE_EXAMPLE = `
 <form clrForm [clrLayout]="'horizontal'" class="clr-row">
@@ -96,7 +118,26 @@ const CODE_EXAMPLE = `
 @Component({
   selector: 'clr-forms-layout-demo',
   templateUrl: './forms-layout.demo.html',
-  standalone: false,
+  imports: [
+    ClrMainContainerModule,
+    ClrNavigationModule,
+    DemoMenu,
+    ClrBackButton,
+    ClrCommonFormsModule,
+    ClrInputModule,
+    ClrAddonsLabel,
+    ClrAutocompleteOff,
+    ClrRadioModule,
+    ClrSelectModule,
+    ClrDatepickerModule,
+    ClrPasswordModule,
+    ClrDateTimeContainer,
+    ClrTimeInput,
+    ClrNumericField,
+    ClrCheckboxModule,
+    ClrTextareaModule,
+    CodeSnippet,
+  ],
 })
 export class FormsLayout {
   codeExample = CODE_EXAMPLE;

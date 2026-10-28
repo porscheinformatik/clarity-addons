@@ -1,12 +1,11 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { ClarityModule } from '@clr/angular';
 import { ClrEnumFilterComponent } from './enum-filter.component';
 
+/**
+ * @deprecated Compatibility wrapper for NgModule-based consumers. Import the standalone `ClrEnumFilterComponent` directly instead.
+ */
 @NgModule({
-  imports: [ClarityModule, CommonModule, FormsModule],
-  declarations: [ClrEnumFilterComponent],
+  imports: [ClrEnumFilterComponent],
   exports: [ClrEnumFilterComponent],
 })
 export class ClrEnumFilterModule {}

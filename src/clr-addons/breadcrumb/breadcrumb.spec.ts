@@ -15,8 +15,7 @@ describe('ClrBreadcrumb', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
-      declarations: [ClrBreadcrumb],
+      imports: [RouterTestingModule, ClrBreadcrumb],
     }).compileComponents();
   }));
 

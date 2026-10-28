@@ -23,7 +23,6 @@ import { DaterangeService } from '../providers/daterange.service';
       multi: true,
     },
   ],
-  standalone: false,
 })
 export class ClrDaterangeMinValidator implements Validator {
   /** Validation error name. */

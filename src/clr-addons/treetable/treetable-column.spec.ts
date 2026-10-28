@@ -34,7 +34,7 @@ describe('ClrTreetableColumn', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ClrTreetableColumn],
+      imports: [ClrTreetableColumn],
       providers: [SortStateService, TreetableColumnStateService],
     });
 
@@ -91,7 +91,7 @@ describe('ClrTreetableColumn', () => {
 
     expect(sortProviderToggleSpy).toHaveBeenCalledWith(testComparator, undefined);
     expect(sortIndicator).toBeDefined();
-    expect(sortIndicator.nativeElement.direction).toBe('up');
+    expect(sortIndicator.nativeElement.getAttribute('direction')).toBe('up');
     expect(sortOrderChangedSpy).toHaveBeenCalledWith(ClrTreetableSortOrder.ASC);
   });
 
@@ -106,7 +106,7 @@ describe('ClrTreetableColumn', () => {
     expect(sortProviderToggleSpy).toHaveBeenCalledWith(testComparator, false);
     expect(sortBtn).toBeDefined();
     expect(sortIndicator).toBeDefined();
-    expect(sortIndicator.nativeElement.direction).toBe('up');
+    expect(sortIndicator.nativeElement.getAttribute('direction')).toBe('up');
     expect(sortOrderChangedSpy).toHaveBeenCalledWith(ClrTreetableSortOrder.ASC);
   });
 
@@ -123,7 +123,7 @@ describe('ClrTreetableColumn', () => {
 
     expect(sortProviderToggleSpy).toHaveBeenCalledWith(testComparator, undefined);
     expect(sortIndicator).toBeDefined();
-    expect(sortIndicator.nativeElement.direction).toBe('down');
+    expect(sortIndicator.nativeElement.getAttribute('direction')).toBe('down');
     expect(sortOrderChangedSpy).toHaveBeenCalledWith(ClrTreetableSortOrder.DESC);
   });
 
@@ -138,7 +138,7 @@ describe('ClrTreetableColumn', () => {
     expect(sortProviderToggleSpy).toHaveBeenCalledWith(testComparator, true);
     expect(sortBtn).toBeDefined();
     expect(sortIndicator).toBeDefined();
-    expect(sortIndicator.nativeElement.direction).toBe('down');
+    expect(sortIndicator.nativeElement.getAttribute('direction')).toBe('down');
     expect(sortOrderChangedSpy).toHaveBeenCalledWith(ClrTreetableSortOrder.DESC);
   });
 
@@ -155,7 +155,7 @@ describe('ClrTreetableColumn', () => {
 
     expect(sortProviderToggleSpy).toHaveBeenCalledWith(testComparator, undefined);
     expect(sortIndicator).toBeDefined();
-    expect(sortIndicator.nativeElement.direction).toBe('up');
+    expect(sortIndicator.nativeElement.getAttribute('direction')).toBe('up');
     expect(sortOrderChangedSpy).toHaveBeenCalledWith(ClrTreetableSortOrder.ASC);
   });
 

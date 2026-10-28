@@ -9,9 +9,9 @@ import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testin
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import {
-  ClrHistory,
   ClrHistoryModel,
-  ClrHistoryModule,
+  ClrHistory,
+  ClrHistoryPinned,
   ClrHistoryNavigationService,
   ClrHistoryService,
   HISTORY_TOKEN,
@@ -31,7 +31,7 @@ class DeferredHistoryNavigationService extends ClrHistoryNavigationService {
 @Component({
   selector: 'test-history-wrapper',
   template: `<clr-history [clrUsername]="'navigation-test'" [clrTenantId]="'1'"></clr-history>`,
-  standalone: false,
+  imports: [ClrHistory],
 })
 class HistoryWrapper {}
 
@@ -44,7 +44,7 @@ class HistoryWrapper {}
     DeferredHistoryNavigationService,
     { provide: ClrHistoryNavigationService, useExisting: DeferredHistoryNavigationService },
   ],
-  standalone: false,
+  imports: [ClrHistoryPinned, HistoryWrapper],
 })
 class HistoryNavigationHost {}
 
@@ -74,8 +74,7 @@ describe('History navigation provider scope', () => {
     historyHttpService.getHistory.mockReturnValue(of([historyEntry]));
 
     await TestBed.configureTestingModule({
-      imports: [ClrHistoryModule],
-      declarations: [HistoryWrapper, HistoryNavigationHost],
+      imports: [HistoryWrapper, HistoryNavigationHost],
       providers: [ClrHistoryService, { provide: HISTORY_TOKEN, useValue: historyHttpService }],
     }).compileComponents();
 

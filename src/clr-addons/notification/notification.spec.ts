@@ -10,7 +10,6 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClarityModule } from '@clr/angular';
 
-import { ClrNotificationModule } from './notification.module';
 import { ClrNotificationService } from './notification.service';
 
 @Component({
@@ -21,7 +20,7 @@ import { ClrNotificationService } from './notification.service';
       </ng-container>
     </ng-template>
   `,
-  standalone: false,
+  imports: [ClarityModule, FormsModule],
 })
 class TestComponent {
   @ViewChild('notification', { static: true }) notification;
@@ -34,8 +33,7 @@ describe('NotificationComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [ClrNotificationService],
-      imports: [ClarityModule, FormsModule, BrowserAnimationsModule, ClrNotificationModule],
-      declarations: [TestComponent],
+      imports: [ClarityModule, FormsModule, BrowserAnimationsModule, TestComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TestComponent);

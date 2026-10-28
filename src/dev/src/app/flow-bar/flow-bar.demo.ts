@@ -6,14 +6,42 @@
 import { Component } from '@angular/core';
 import { of } from 'rxjs';
 import { ClrFlowBarStep } from '../../../../clr-addons/flow-bar';
-import { angleIcon, ClarityIcons, cogIcon } from '@clr/angular/icon';
+import {
+  angleIcon,
+  ClarityIcons,
+  ClrButtonGroupModule,
+  ClrDropdownModule,
+  ClrIcon,
+  ClrIfOpen,
+  ClrNavigationModule,
+  ClrPopoverContent,
+  ClrStandaloneCdkTrapFocus,
+  cogIcon,
+} from '@clr/angular';
+import { RouterLinkActive, RouterLink } from '@angular/router';
+import { AsyncPipe } from '@angular/common';
+import { ClrMainNavGroup, ClrFlowBar, ClrDropdownOverflowDirective } from '@porscheinformatik/clr-addons';
 
 ClarityIcons.addIcons(cogIcon, angleIcon);
 
 @Component({
   selector: 'clr-flow-bar-demo',
   templateUrl: './flow-bar.demo.html',
-  standalone: false,
+  imports: [
+    ClrNavigationModule,
+    ClrStandaloneCdkTrapFocus,
+    ClrMainNavGroup,
+    RouterLinkActive,
+    RouterLink,
+    ClrDropdownModule,
+    ClrIcon,
+    ClrButtonGroupModule,
+    ClrFlowBar,
+    ClrIfOpen,
+    ClrPopoverContent,
+    ClrDropdownOverflowDirective,
+    AsyncPipe,
+  ],
 })
 export class FlowBarDemo {
   activeStep: ClrFlowBarStep;

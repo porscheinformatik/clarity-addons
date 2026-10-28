@@ -7,7 +7,6 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ClarityModule } from '@clr/angular';
-import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
 
 import { NotificationDemo } from './notification.demo';
 import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
@@ -18,13 +17,12 @@ import { UtilsModule } from '../../../utils/utils.module';
   imports: [
     CommonModule,
     ClarityModule,
-    ClrAddonsModule,
     UtilsModule,
     DocWrapperModule,
     RouterModule.forChild([{ path: '', component: NotificationDemo }]),
     FormsModule,
+    NotificationDemo,
   ],
-  declarations: [NotificationDemo],
   exports: [NotificationDemo],
   schemas: [NO_ERRORS_SCHEMA],
 })

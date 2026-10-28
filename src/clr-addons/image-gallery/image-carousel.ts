@@ -5,7 +5,7 @@
  */
 
 import { Component, effect, ElementRef, HostListener, input, output, signal, ViewChild } from '@angular/core';
-import { circleArrowIcon, timesIcon, ClarityIcons } from '@clr/angular/icon';
+import { circleArrowIcon, ClarityIcons, ClrIcon, timesIcon } from '@clr/angular';
 import { ClrImageGalleryImage } from './image-gallery.types';
 
 ClarityIcons.addIcons(circleArrowIcon, timesIcon);
@@ -14,7 +14,7 @@ ClarityIcons.addIcons(circleArrowIcon, timesIcon);
   selector: 'clr-image-carousel',
   templateUrl: './image-carousel.html',
   styleUrls: ['./image-carousel.scss'],
-  standalone: false,
+  imports: [ClrIcon],
 })
 export class ClrImageCarousel {
   @ViewChild('thumbStrip') private thumbStripRef?: ElementRef<HTMLElement>;

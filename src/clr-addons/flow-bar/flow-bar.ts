@@ -4,9 +4,13 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
+import { FormsModule } from '@angular/forms';
+import { angleIcon, ClarityIcons, ClarityModule, ClrDropdownModule, ClrIcon, ClrPopoverContent } from '@clr/angular';
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
-import { angleIcon, ClarityIcons } from '@clr/angular/icon';
+import { ClrDropdownOverflowDirective } from '../dropdown/clr-dropdown-overflow.directive';
+import { AsyncPipe } from '@angular/common';
 
 ClarityIcons.addIcons(angleIcon);
 
@@ -23,7 +27,16 @@ export interface ClrFlowBarStep {
   host: {
     '[class.flow-bar]': 'true',
   },
-  standalone: false,
+  imports: [
+    ClrIcon,
+    ClrDropdownModule,
+    ClrPopoverContent,
+    ClrDropdownOverflowDirective,
+    CommonModule,
+    ClarityModule,
+    FormsModule,
+    AsyncPipe,
+  ],
 })
 export class ClrFlowBar implements OnInit {
   @Input('clrSteps') _steps: ClrFlowBarStep[] = [];

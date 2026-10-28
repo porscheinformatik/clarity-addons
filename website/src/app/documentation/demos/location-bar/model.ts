@@ -11,7 +11,11 @@ export class DemoLocationBarNodeId extends NodeId {
 }
 
 export class DemoLocationBarComplexNodeId extends NodeId {
-  constructor(public id: string, public name: string, public code: string) {
+  constructor(
+    public id: string,
+    public name: string,
+    public code: string
+  ) {
     super();
   }
 

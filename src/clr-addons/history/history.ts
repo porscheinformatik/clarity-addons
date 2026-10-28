@@ -9,11 +9,22 @@ import { ClrHistoryModel } from './history-model.interface';
 import { ClrHistoryService } from './history.service';
 import { ReplaySubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { angleIcon, ClarityIcons, historyIcon } from '@clr/angular/icon';
+import {
+  angleIcon,
+  ClarityIcons,
+  ClrCommonFormsModule,
+  ClrDropdownModule,
+  ClrIcon,
+  ClrIfOpen,
+  ClrPopoverContent,
+  historyIcon,
+} from '@clr/angular';
 import { HISTORY_PROVIDER, HistoryProvider } from './history.provider';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ClrHistoryNavigationService } from './history-navigation.service';
 import { isHistoryNavigationClick } from './history-navigation-click';
+import { ClrDropdownOverflowDirective } from '../dropdown/clr-dropdown-overflow.directive';
+import { AsyncPipe } from '@angular/common';
 
 ClarityIcons.addIcons(historyIcon, angleIcon);
 
@@ -21,7 +32,15 @@ ClarityIcons.addIcons(historyIcon, angleIcon);
   selector: 'clr-history',
   templateUrl: './history.html',
   host: { class: 'clr-history' },
-  standalone: false,
+  imports: [
+    ClrDropdownModule,
+    ClrIcon,
+    ClrIfOpen,
+    ClrPopoverContent,
+    ClrDropdownOverflowDirective,
+    ClrCommonFormsModule,
+    AsyncPipe,
+  ],
 })
 export class ClrHistory implements OnInit, OnDestroy {
   @Input('clrUsername') username: string;

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ClrDatagridModule } from '@clr/angular';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'clr-summary-area-tasks-page-demo',
@@ -15,16 +17,16 @@ import { Component } from '@angular/core';
         <clr-dg-column>Due Date</clr-dg-column>
 
         @for (task of tasks; track task) {
-        <clr-dg-row>
-          <clr-dg-cell>{{ task.title }}</clr-dg-cell>
-          <clr-dg-cell>{{ task.status }}</clr-dg-cell>
-          <clr-dg-cell>{{ task.due | date : 'yyyy-MM-dd' }}</clr-dg-cell>
-        </clr-dg-row>
+          <clr-dg-row>
+            <clr-dg-cell>{{ task.title }}</clr-dg-cell>
+            <clr-dg-cell>{{ task.status }}</clr-dg-cell>
+            <clr-dg-cell>{{ task.due | date: 'yyyy-MM-dd' }}</clr-dg-cell>
+          </clr-dg-row>
         }
       </clr-datagrid>
     </div>
   `,
-  standalone: false,
+  imports: [ClrDatagridModule, DatePipe],
 })
 export class SidebarTasksPageDemo {
   tasks = [

@@ -7,7 +7,7 @@
 import { Component } from '@angular/core';
 
 import { ClarityModule } from '@clr/angular';
-import { ClrAddonsModule, ClrCopyToClipboard } from '@porscheinformatik/clr-addons';
+import { ClrCopyToClipboard, CLR_TREETABLE_DIRECTIVES } from '@porscheinformatik/clr-addons';
 
 interface User {
   id: string;
@@ -26,7 +26,7 @@ interface TreeNode {
   selector: 'copy-to-clipboard-demo',
   templateUrl: './copy-to-clipboard.demo.html',
   standalone: true,
-  imports: [ClarityModule, ClrAddonsModule, ClrCopyToClipboard],
+  imports: [ClarityModule, ...CLR_TREETABLE_DIRECTIVES, ClrCopyToClipboard],
 })
 export class CopyToClipboardDemo {
   users: User[] = [

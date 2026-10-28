@@ -4,16 +4,54 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component, ViewChild } from '@angular/core';
-import { ClrFlowBar, ClrFlowBarStep } from '@porscheinformatik/clr-addons';
+import {
+  ClrFlowBar,
+  ClrFlowBarStep,
+  ClrBackButton,
+  ClrContentPanelContainer,
+  ClrContentPanelContainerContent,
+  ClrContentPanelContainerFooter,
+  ClrDropdownOverflowDirective,
+  ClrContentPanel,
+} from '@porscheinformatik/clr-addons';
 import { of } from 'rxjs';
-import { angleIcon, ClarityIcons } from '@clr/angular/icon';
+import {
+  angleIcon,
+  ClarityIcons,
+  ClrButtonGroupModule,
+  ClrDropdownModule,
+  ClrIcon,
+  ClrIfOpen,
+  ClrMainContainerModule,
+  ClrNavigationModule,
+  ClrPopoverContent,
+} from '@clr/angular';
+import { DemoMenu } from '../demo-menu/demo-menu';
+import { AsyncPipe } from '@angular/common';
 
 ClarityIcons.addIcons(angleIcon);
 
 @Component({
   selector: 'clr-flow-bar-layout-demo',
   templateUrl: './flow-bar-layout.demo.html',
-  standalone: false,
+  imports: [
+    ClrMainContainerModule,
+    ClrNavigationModule,
+    DemoMenu,
+    ClrBackButton,
+    ClrButtonGroupModule,
+    ClrFlowBar,
+    ClrContentPanelContainer,
+    ClrContentPanelContainerContent,
+    ClrContentPanelContainerFooter,
+    ClrDropdownModule,
+    ClrIcon,
+    ClrIfOpen,
+    ClrPopoverContent,
+    ClrDropdownOverflowDirective,
+    ClrContentPanel,
+    AsyncPipe,
+  ],
 })
 export class FlowBarLayoutDemo {
   @ViewChild('flowBar', { static: true }) flowBar: ClrFlowBar;

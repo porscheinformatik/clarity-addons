@@ -6,14 +6,14 @@
 
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
-import { arrowIcon, ClarityIcons } from '@clr/angular/icon';
+import { arrowIcon, ClarityIcons, ClrIcon } from '@clr/angular';
 
 ClarityIcons.addIcons(arrowIcon);
 
 @Component({
   selector: 'clr-back-button',
   templateUrl: './back-button.html',
-  standalone: false,
+  imports: [ClrIcon],
 })
 export class ClrBackButton {
   constructor(private location: Location) {}

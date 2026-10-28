@@ -22,7 +22,7 @@ type Item = {
       <li #template *clrTtItems="let item of items(); getChildren: getSubItems">{{ item }}</li>
     </ul>
   `,
-  standalone: false,
+  imports: [TreetableItemsDirective],
 })
 class TreetableItemsDirectiveTest {
   items = signal<Item[]>([
@@ -48,7 +48,7 @@ describe('TreetableItemsDirective', () => {
     };
 
     TestBed.configureTestingModule({
-      declarations: [TreetableItemsDirective, TreetableItemsDirectiveTest],
+      imports: [TreetableItemsDirective, TreetableItemsDirectiveTest],
       providers: [
         { provide: TreetableDataStateService, useValue: mockDataState },
         { provide: ClrTreetableRecursionService, useValue: mockRecursion },

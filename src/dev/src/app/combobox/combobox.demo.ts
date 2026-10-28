@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 
 import { ClarityModule, ClrComboboxModule } from '@clr/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ClrFormModule } from '@porscheinformatik/clr-addons';
+import { ClrAddonsLabel } from '@porscheinformatik/clr-addons';
 
 @Component({
   selector: 'clr-combobox-demo',
   templateUrl: './combobox.demo.html',
-  imports: [ClarityModule, FormsModule, ReactiveFormsModule, ClrComboboxModule, ClrFormModule],
+  imports: [ClarityModule, FormsModule, ReactiveFormsModule, ClrComboboxModule, ClrAddonsLabel],
 })
 export class ComboboxDemo {
   public items: string[] = [
