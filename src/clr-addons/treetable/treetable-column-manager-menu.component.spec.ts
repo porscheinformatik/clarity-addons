@@ -71,8 +71,7 @@ describe('ClrTreetableColumnManagerMenuComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ClrTreetableColumnManagerMenuComponent],
-      imports: [ClarityModule, FormsModule, CdkTrapFocusModule],
+      imports: [ClarityModule, FormsModule, CdkTrapFocusModule, ClrTreetableColumnManagerMenuComponent],
       providers: [TreetableColumnStateService, ClrPopoverService],
     });
 

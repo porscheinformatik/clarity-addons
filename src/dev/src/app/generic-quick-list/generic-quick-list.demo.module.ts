@@ -6,7 +6,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GenericQuickListDemo } from './generic-quick-list.demo';
-import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
 import { ClrCheckboxModule, ClrInputModule } from '@clr/angular';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -14,13 +13,12 @@ import { FormsModule } from '@angular/forms';
 @NgModule({
   imports: [
     CommonModule,
-    ClrAddonsModule,
     ClrInputModule,
     ClrCheckboxModule,
     FormsModule,
     RouterModule.forChild([{ path: '', component: GenericQuickListDemo }]),
+    GenericQuickListDemo,
   ],
-  declarations: [GenericQuickListDemo],
   exports: [GenericQuickListDemo],
 })
 export class GenericQuickListModule {}

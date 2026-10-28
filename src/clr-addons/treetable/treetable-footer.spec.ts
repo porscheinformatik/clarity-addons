@@ -11,7 +11,7 @@ describe('TreetableFooterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ClrTreetableFooter],
+      imports: [ClrTreetableFooter],
       providers: [TreetableColumnStateService, TreetableDataStateService, FilterStateService, SortStateService],
     }).compileComponents();
 

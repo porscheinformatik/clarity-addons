@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ClarityModule } from '@clr/angular';
-import { ClrAddonsModule, ClrCopyToClipboard } from '@porscheinformatik/clr-addons';
+import { ClrCopyToClipboard } from '@porscheinformatik/clr-addons';
 import { UtilsModule } from '../../../utils/utils.module';
 import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
 import { CopyToClipboardDemo } from './copy-to-clipboard.demo';
@@ -16,13 +16,12 @@ import { CopyToClipboardDemo } from './copy-to-clipboard.demo';
   imports: [
     CommonModule,
     ClarityModule,
-    ClrAddonsModule,
     ClrCopyToClipboard,
     DocWrapperModule,
     UtilsModule,
     RouterModule.forChild([{ path: '', component: CopyToClipboardDemo }]),
+    CopyToClipboardDemo,
   ],
-  declarations: [CopyToClipboardDemo],
   exports: [CopyToClipboardDemo],
 })
 export class CopyToClipboardDemoModule {}

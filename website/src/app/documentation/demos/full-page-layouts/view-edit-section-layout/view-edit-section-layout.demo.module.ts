@@ -7,7 +7,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ClarityModule } from '@clr/angular';
-import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
 import { DemoMenuModule } from '../demo-menu/demo-menu.module';
 import { UtilsModule } from '../../../../utils/utils.module';
 
@@ -19,10 +18,9 @@ import { ViewEditSectionLayout } from './view-edit-section-layout';
     ClarityModule,
     DemoMenuModule,
     RouterModule.forChild([{ path: '', component: ViewEditSectionLayout, outlet: 'fullpage' }]),
-    ClrAddonsModule,
     UtilsModule,
+    ViewEditSectionLayout,
   ],
-  declarations: [ViewEditSectionLayout],
   exports: [ViewEditSectionLayout],
 })
 export class ViewEditSectionLayoutDemoModule {}

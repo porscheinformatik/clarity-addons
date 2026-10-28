@@ -18,15 +18,13 @@ import {
 import { NgControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { ClarityIcons, searchIcon, timesIcon } from '@clr/angular/icon';
-import { ClrIcon } from '@clr/angular';
+import { ClarityIcons, ClrIcon, searchIcon, timesIcon } from '@clr/angular';
 
 ClarityIcons.addIcons(timesIcon, searchIcon);
 
 @Directive({
   selector: '[clrSearch]',
   host: { '[class.search-input]': 'true' },
-  standalone: false,
 })
 export class ClrSearchField implements OnInit, OnDestroy, AfterViewInit {
   private keyupListener: () => void;

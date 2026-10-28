@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { TreetableColumnStateService } from './providers/treetable-column-state.service';
 import { TreetableDataStateService } from './providers';
-import { ClrCommonStringsService } from '@clr/angular';
+import { ClrCheckboxModule, ClrCommonFormsModule, ClrCommonStringsService } from '@clr/angular';
+import { ClrTreetableColumnManagerMenuComponent } from './treetable-column-manager-menu.component';
 
 @Component({
   selector: 'clr-tt-footer',
@@ -35,7 +36,7 @@ import { ClrCommonStringsService } from '@clr/angular';
     '[class.treetable-footer]': 'true',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
+  imports: [ClrCheckboxModule, ClrCommonFormsModule, ClrTreetableColumnManagerMenuComponent],
 })
 export class ClrTreetableFooter {
   private readonly _commonStringsService = inject(ClrCommonStringsService);

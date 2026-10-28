@@ -6,7 +6,7 @@
 import { Component, signal } from '@angular/core';
 
 import { ClrAlertModule } from '@clr/angular';
-import { ClrChartsModule, FunnelChartData, FunnelValue } from '@porscheinformatik/clr-addons/charts';
+import { FunnelChartData, FunnelValue, CLR_CHARTS_DECLARATIONS } from '@porscheinformatik/clr-addons/charts';
 
 const PIPELINE_DATA: FunnelChartData[] = [
   {
@@ -90,7 +90,7 @@ const ZERO_DATA: FunnelChartData[] = [
 @Component({
   selector: 'clr-funnel-chart-demo',
   templateUrl: './funnel-chart.demo.html',
-  imports: [ClrAlertModule, ClrChartsModule],
+  imports: [ClrAlertModule, ...CLR_CHARTS_DECLARATIONS],
 })
 export class FunnelChartDemo {
   protected readonly error = signal(false);

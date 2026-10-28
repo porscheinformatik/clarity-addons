@@ -4,9 +4,11 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
+import { FormsModule } from '@angular/forms';
+import { ClarityIcons, ClarityModule, timesIcon } from '@clr/angular';
+import { CommonModule } from '@angular/common';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, EventEmitter, Output } from '@angular/core';
-import { ClarityIcons, timesIcon } from '@clr/angular/icon';
 
 ClarityIcons.addIcons(timesIcon);
 
@@ -26,7 +28,7 @@ ClarityIcons.addIcons(timesIcon);
   host: {
     '[class.action-panel]': 'true',
   },
-  standalone: false,
+  imports: [CommonModule, ClarityModule, FormsModule],
 })
 export class ClrActionPanel {
   _open = false;

@@ -1,10 +1,7 @@
 import { ComponentRef, Directive, ElementRef, Input, Renderer2, TemplateRef, ViewContainerRef } from '@angular/core';
 import { ClrIcon } from '@clr/angular';
 
-@Directive({
-  selector: '[clrIfWarning]',
-  standalone: false,
-})
+@Directive({ selector: '[clrIfWarning]' })
 export class ClrIfWarning {
   private helperElement: Element;
   private formContainer: Element;

@@ -8,8 +8,8 @@ import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ClarityModule } from '@clr/angular';
-import { ClrSearchFieldModule } from './search-field.module';
 import { FormsModule } from '@angular/forms';
+import { ClrSearchField } from './search-field';
 
 @Component({
   template: `
@@ -18,7 +18,7 @@ import { FormsModule } from '@angular/forms';
       <input clrInput clrSearch type="text" name="search" [(ngModel)]="value" />
     </clr-input-container>
   `,
-  standalone: false,
+  imports: [ClarityModule, ClrSearchField, FormsModule],
 })
 class TestComponent {
   value: string;
@@ -26,7 +26,7 @@ class TestComponent {
 
 @Component({
   template: `<div><input clrInput clrSearch type="text" [value]="value" (input)="onInput($event)" /></div>`,
-  standalone: false,
+  imports: [ClarityModule, ClrSearchField, FormsModule],
 })
 class TestWithoutModelComponent {
   value = '';
@@ -52,8 +52,7 @@ describe('SearchComponent', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [ClarityModule, ClrSearchFieldModule, FormsModule],
-        declarations: [TestComponent],
+        imports: [ClarityModule, ClrSearchField, FormsModule, TestComponent],
       }).compileComponents();
 
       fixture = TestBed.createComponent(TestComponent);
@@ -96,8 +95,7 @@ describe('SearchComponent', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [ClarityModule, ClrSearchFieldModule, FormsModule],
-        declarations: [TestWithoutModelComponent],
+        imports: [ClarityModule, ClrSearchField, FormsModule, TestWithoutModelComponent],
       }).compileComponents();
 
       fixture = TestBed.createComponent(TestWithoutModelComponent);

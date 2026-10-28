@@ -4,12 +4,23 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ClrAlertModule, ClrCommonFormsModule, ClrInputModule } from '@clr/angular';
+import { ClrControlEnterSubmitDirective, ClrAddonsLabel, ClrAutocompleteOff } from '@porscheinformatik/clr-addons';
 
 @Component({
   selector: 'clr-ctrl-enter-demo',
   templateUrl: './ctrl-enter.demo.html',
   providers: [],
-  standalone: false,
+  imports: [
+    FormsModule,
+    ClrControlEnterSubmitDirective,
+    ClrCommonFormsModule,
+    ClrInputModule,
+    ClrAddonsLabel,
+    ClrAutocompleteOff,
+    ClrAlertModule,
+  ],
 })
 export class CtrlEnterDemo {
   name = '';

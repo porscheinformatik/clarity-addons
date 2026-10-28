@@ -15,7 +15,7 @@ import { Platform } from '@angular/cdk/platform';
       <button type="submit" class="submit-btn">Submit</button>
     </form>
   `,
-  standalone: false,
+  imports: [ReactiveFormsModule, ClrControlEnterSubmitDirective],
 })
 class TestComponent {}
 
@@ -25,7 +25,7 @@ class TestComponent {}
       <input name="input1" class="input1" />
     </form>
   `,
-  standalone: false,
+  imports: [ReactiveFormsModule, ClrControlEnterSubmitDirective],
 })
 class TestComponentNoButton {}
 
@@ -40,7 +40,7 @@ class TestComponentNoButton {}
       <button type="submit" class="submit-btn">Submit</button>
     </form>
   `,
-  standalone: false,
+  imports: [ReactiveFormsModule, ClrControlEnterSubmitDirective],
 })
 class TestMultipleFormsComponent {}
 
@@ -51,7 +51,7 @@ class TestMultipleFormsComponent {}
       <button type="submit" class="submit-btn">Submit</button>
     </form>
   `,
-  standalone: false,
+  imports: [ReactiveFormsModule, ClrControlEnterSubmitDirective],
 })
 class TestComponentWithTooltip {}
 
@@ -62,7 +62,7 @@ class TestComponentWithTooltip {}
       <button type="submit" class="submit-btn">Submit</button>
     </form>
   `,
-  standalone: false,
+  imports: [ReactiveFormsModule, ClrControlEnterSubmitDirective],
 })
 class TestComponentWithEmptyTooltip {}
 
@@ -81,8 +81,7 @@ describe('ControlEnterDirective', () => {
     platformMock = { isBrowser: true };
 
     await TestBed.configureTestingModule({
-      declarations: [TestComponent, TestComponentNoButton],
-      imports: [ReactiveFormsModule, ClrControlEnterSubmitDirective],
+      imports: [ReactiveFormsModule, ClrControlEnterSubmitDirective, TestComponent, TestComponentNoButton],
       providers: [
         {
           provide: ClrForm,
@@ -227,8 +226,7 @@ describe('ControlEnterDirective with multiple forms', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TestMultipleFormsComponent],
-      imports: [ReactiveFormsModule, ClrControlEnterSubmitDirective],
+      imports: [ReactiveFormsModule, ClrControlEnterSubmitDirective, TestMultipleFormsComponent],
       providers: [
         {
           provide: ClrForm,
@@ -277,8 +275,12 @@ describe('ControlEnterDirective Tooltip Behavior', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TestComponentWithTooltip, TestComponentWithEmptyTooltip],
-      imports: [ReactiveFormsModule, ClrControlEnterSubmitDirective],
+      imports: [
+        ReactiveFormsModule,
+        ClrControlEnterSubmitDirective,
+        TestComponentWithTooltip,
+        TestComponentWithEmptyTooltip,
+      ],
       providers: [
         {
           provide: ClrForm,

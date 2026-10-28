@@ -9,7 +9,6 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClarityModule } from '@clr/angular';
 import {
-  ClrAddonsModule,
   ClrHistoryService,
   ClrNotificationService,
   ClrSummaryAreaToggle,
@@ -24,16 +23,17 @@ import { MockClrHistoryHttpService } from './_mocks/history.http.mock.service';
 import { SummaryAreaDemo } from './summary-area/summary-area.demo';
 
 @NgModule({
-  declarations: [AppComponent, LandingComponent, AppContentContainerComponent],
   imports: [
+    AppComponent,
     BrowserAnimationsModule,
     CommonModule,
     FormsModule,
     ClarityModule,
-    ClrAddonsModule,
     ROUTING,
     SummaryAreaDemo,
     ClrSummaryAreaToggle,
+    LandingComponent,
+    AppContentContainerComponent,
   ],
   bootstrap: [AppComponent],
   providers: [

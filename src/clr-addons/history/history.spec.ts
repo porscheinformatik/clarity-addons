@@ -50,8 +50,7 @@ describe('ClrHistory', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       providers: [ClrHistoryService, { provide: HISTORY_TOKEN, useClass: MockClrHistoryHttpService }],
-      imports: [ClarityModule],
-      declarations: [ClrHistory],
+      imports: [ClarityModule, ClrHistory],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ClrHistory);

@@ -4,18 +4,45 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component, DOCUMENT, Inject, OnInit } from '@angular/core';
-import { Route } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { Route, RouterModule } from '@angular/router';
 import { APP_ROUTES } from './app.routing';
 
+import { angleIcon, ClarityIcons, ClarityModule, cogIcon, shoppingCartIcon, userIcon } from '@clr/angular';
+import {
+  ClrSummaryAreaToggle,
+  ClrMainNavGroup,
+  ClrMainNavGroupItem,
+  ClrBackButton,
+  ClrHistory,
+  ClrHistoryPinned,
+  ClrDropdownOverflowDirective,
+} from '@porscheinformatik/clr-addons';
+import { AppContentContainerComponent } from './content-container.component';
 import { RouteHistoryService } from './route-history.service';
-import { angleIcon, ClarityIcons, cogIcon, shoppingCartIcon, userIcon } from '@clr/angular/icon';
+import { SummaryAreaDemo } from './summary-area/summary-area.demo';
 
 ClarityIcons.addIcons(angleIcon, cogIcon, userIcon, shoppingCartIcon);
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  standalone: false,
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterModule,
+    ClarityModule,
+    ClrMainNavGroup,
+    ClrMainNavGroupItem,
+    ClrBackButton,
+    ClrHistory,
+    ClrHistoryPinned,
+    ClrDropdownOverflowDirective,
+    ClrSummaryAreaToggle,
+    SummaryAreaDemo,
+    AppContentContainerComponent,
+  ],
 })
 export class AppComponent implements OnInit {
   public routes: Route[] = APP_ROUTES;

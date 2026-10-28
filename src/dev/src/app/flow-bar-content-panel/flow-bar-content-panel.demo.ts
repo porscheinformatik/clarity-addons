@@ -4,16 +4,47 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component } from '@angular/core';
-import { ClrFlowBarStep } from '@porscheinformatik/clr-addons';
+import {
+  ClrFlowBarStep,
+  ClrMainNavGroup,
+  ClrFlowBar,
+  ClrContentPanelContainer,
+  ClrContentPanelContainerContent,
+  ClrContentPanelContainerFooter,
+  ClrContentPanel,
+} from '@porscheinformatik/clr-addons';
 import { of } from 'rxjs';
-import { ClarityIcons, cogIcon } from '@clr/angular/icon';
+import {
+  ClarityIcons,
+  ClrButtonGroupModule,
+  ClrDropdownModule,
+  ClrIcon,
+  ClrNavigationModule,
+  ClrStandaloneCdkTrapFocus,
+  cogIcon,
+} from '@clr/angular';
+import { RouterLinkActive, RouterLink } from '@angular/router';
 
 ClarityIcons.addIcons(cogIcon);
 
 @Component({
   selector: 'clr-flow-bar-content-panel-demo',
   templateUrl: './flow-bar-content-panel.demo.html',
-  standalone: false,
+  imports: [
+    ClrNavigationModule,
+    ClrStandaloneCdkTrapFocus,
+    ClrMainNavGroup,
+    RouterLinkActive,
+    RouterLink,
+    ClrDropdownModule,
+    ClrIcon,
+    ClrButtonGroupModule,
+    ClrFlowBar,
+    ClrContentPanelContainer,
+    ClrContentPanelContainerContent,
+    ClrContentPanelContainerFooter,
+    ClrContentPanel,
+  ],
 })
 export class FlowBarContentPanelDemo {
   myActiveStep: ClrFlowBarStep;

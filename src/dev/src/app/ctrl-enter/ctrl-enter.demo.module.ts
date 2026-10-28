@@ -9,7 +9,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { ClarityModule, ClrFormsModule } from '@clr/angular';
-import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
 
 import { CtrlEnterDemo } from './ctrl-enter.demo';
 
@@ -19,11 +18,10 @@ import { CtrlEnterDemo } from './ctrl-enter.demo';
     FormsModule,
     ClarityModule,
     ClrFormsModule,
-    ClrAddonsModule,
     ReactiveFormsModule,
     RouterModule.forChild([{ path: '', component: CtrlEnterDemo }]),
+    CtrlEnterDemo,
   ],
-  declarations: [CtrlEnterDemo],
   exports: [CtrlEnterDemo],
 })
 export class CtrlEnterDemoModule {}

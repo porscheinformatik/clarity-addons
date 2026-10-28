@@ -4,6 +4,9 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
+import { FormsModule } from '@angular/forms';
+import { ClarityModule, ClrFormsModule } from '@clr/angular';
+import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, Renderer2, TemplateRef, ViewChild } from '@angular/core';
 
 @Component({
@@ -20,7 +23,7 @@ import { AfterViewInit, Component, ElementRef, Renderer2, TemplateRef, ViewChild
   host: {
     '[class.date-time-container]': 'true',
   },
-  standalone: false,
+  imports: [CommonModule, ClarityModule, ClrFormsModule, FormsModule],
 })
 export class ClrDateTimeContainer implements AfterViewInit {
   @ViewChild('timeInput', { static: true }) timeInput: TemplateRef<any>;

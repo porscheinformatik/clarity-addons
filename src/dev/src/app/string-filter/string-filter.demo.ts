@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { ClrDatagridStateInterface } from '@clr/angular';
+import { ClrDatagridModule, ClrDatagridStateInterface } from '@clr/angular';
+import { DatagridFieldDirective, ClrStringFilterComponent } from '@porscheinformatik/clr-addons';
 
 interface Item {
   name: string;
@@ -9,7 +10,7 @@ interface Item {
 @Component({
   selector: 'clr-string-filter-demo',
   templateUrl: './string-filter.demo.html',
-  standalone: false,
+  imports: [ClrDatagridModule, DatagridFieldDirective, ClrStringFilterComponent],
 })
 export class StringFilterDemo {
   dataList: Item[] = [

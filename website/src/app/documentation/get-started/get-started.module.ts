@@ -17,8 +17,7 @@ const route: Routes = [
 ];
 
 @NgModule({
-  declarations: [GetStartedComponent],
-  imports: [CommonModule, ClarityModule, UtilsModule, RouterModule.forChild(route)],
+  imports: [CommonModule, ClarityModule, UtilsModule, RouterModule.forChild(route), GetStartedComponent],
   providers: [],
 })
 export class GetStartedModule {}

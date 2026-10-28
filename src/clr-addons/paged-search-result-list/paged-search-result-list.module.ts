@@ -1,20 +1,18 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { ClarityModule } from '@clr/angular';
 
 import { ClrPagedSearchResultList } from './paged-search-result-list';
-import { ClrPagerModule } from '../pager/pager.module';
 
+/**
+ * @deprecated Compatibility wrapper for NgModule-based consumers. Import the standalone `ClrPagedSearchResultList` directly instead.
+ */
 @NgModule({
-  imports: [CommonModule, ClarityModule, FormsModule, ClrPagerModule],
-  declarations: [ClrPagedSearchResultList],
+  imports: [ClrPagedSearchResultList],
   exports: [ClrPagedSearchResultList],
 })
 export class ClrPagedSearchResultListModule {}

@@ -7,7 +7,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ClarityModule, ClrFormsModule } from '@clr/angular';
-import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
 
 import { ViewEditSectionDemo } from './view-edit-section.demo';
 import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
@@ -24,9 +23,8 @@ import { UtilsModule } from '../../../utils/utils.module';
     FormsModule,
     ClrFormsModule,
     ClarityModule,
-    ClrAddonsModule,
+    ViewEditSectionDemo,
   ],
-  declarations: [ViewEditSectionDemo],
   exports: [ViewEditSectionDemo],
 })
 export class ViewEditSectionDemoModule {}

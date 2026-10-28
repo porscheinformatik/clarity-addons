@@ -7,14 +7,14 @@ import { Component, signal } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 import { ClrAlertModule } from '@clr/angular';
-import { ClrChartsModule, LineChartSeries, LineChartValue } from '@porscheinformatik/clr-addons/charts';
+import { LineChartSeries, LineChartValue, CLR_CHARTS_DECLARATIONS } from '@porscheinformatik/clr-addons/charts';
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 @Component({
   selector: 'clr-line-chart-demo',
   templateUrl: './line-chart.demo.html',
-  imports: [FormsModule, ClrAlertModule, ClrChartsModule],
+  imports: [FormsModule, ClrAlertModule, ...CLR_CHARTS_DECLARATIONS],
 })
 export class LineChartDemo {
   protected readonly error = signal(false);

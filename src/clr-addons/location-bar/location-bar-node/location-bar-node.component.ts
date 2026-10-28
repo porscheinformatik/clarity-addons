@@ -10,12 +10,22 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import { angleIcon, ClarityIcons, treeViewIcon } from '@clr/angular/icon';
+import {
+  angleIcon,
+  ClarityIcons,
+  ClrDropdownModule,
+  ClrIcon,
+  ClrIfOpen,
+  ClrPopoverContent,
+  treeViewIcon,
+} from '@clr/angular';
 import { catchError, of } from 'rxjs';
 import { LocationBarNode, NodeId } from '../location-bar.model';
 import { CONTENT_PROVIDER, LocationBarContentProvider } from '../location-bar.provider';
 import { SearchRequestModel, SearchResultModel } from '../location-bar.search.model';
 import { LocationBarSearchComponent } from '../location-bar-search/location-bar-search.component';
+import { ClrDropdownOverflowDirective } from '../../dropdown/clr-dropdown-overflow.directive';
+import { NgTemplateOutlet } from '@angular/common';
 
 ClarityIcons.addIcons(treeViewIcon, angleIcon);
 
@@ -26,7 +36,15 @@ ClarityIcons.addIcons(treeViewIcon, angleIcon);
   selector: 'clr-location-bar-node',
   templateUrl: './location-bar-node.component.html',
   host: { '[class.location-bar-node]': 'true' },
-  standalone: false,
+  imports: [
+    ClrDropdownModule,
+    ClrIcon,
+    ClrIfOpen,
+    ClrPopoverContent,
+    ClrDropdownOverflowDirective,
+    LocationBarSearchComponent,
+    NgTemplateOutlet,
+  ],
 })
 export class LocationBarNodeComponent<T extends NodeId> implements OnChanges {
   /**

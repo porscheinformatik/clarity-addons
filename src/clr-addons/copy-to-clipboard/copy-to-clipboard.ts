@@ -15,10 +15,9 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import { ClrIcon, ClrTooltipModule } from '@clr/angular';
+import { ClarityIcons, ClrIcon, ClrTooltipModule, copyToClipboardIcon, successStandardIcon } from '@clr/angular';
 import { CdkCopyToClipboard } from '@angular/cdk/clipboard';
 import { NgClass } from '@angular/common';
-import { ClarityIcons, copyToClipboardIcon, successStandardIcon } from '@clr/angular/icon';
 
 ClarityIcons.addIcons(copyToClipboardIcon, successStandardIcon);
 

@@ -1,6 +1,20 @@
+import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
+import { UtilsModule } from '../../../utils/utils.module';
+import { ClarityModule, ClrCommonFormsModule, ClrInputModule, ClrSelectModule } from '@clr/angular';
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
-import { ClrGenericQuickListItem, ClrQuickListValue } from '@porscheinformatik/clr-addons';
+import {
+  ClrGenericQuickListItem,
+  ClrQuickListValue,
+  ClrQuickList,
+  ClrAddonsLabel,
+  ClrGenericQuickList,
+  ClrAutocompleteOff,
+} from '@porscheinformatik/clr-addons';
+import { DocWrapper } from '../_doc-wrapper/doc-wrapper';
+import { FormsModule } from '@angular/forms';
+import { CodeSnippet } from '../../../utils/code-snippet';
 
 const HTML_EXAMPLE1 = `
 <clr-quick-list
@@ -94,7 +108,22 @@ interface ClrNameQuickListItem extends ClrGenericQuickListItem {
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
-  standalone: false,
+  imports: [
+    DocWrapper,
+    FormsModule,
+    ClrCommonFormsModule,
+    ClrQuickList,
+    ClrAddonsLabel,
+    CodeSnippet,
+    ClrGenericQuickList,
+    ClrSelectModule,
+    ClrInputModule,
+    ClrAutocompleteOff,
+    CommonModule,
+    ClarityModule,
+    UtilsModule,
+    DocWrapperModule,
+  ],
 })
 export class QuickListDemo extends ClarityDocComponent {
   htmlExample1 = HTML_EXAMPLE1;

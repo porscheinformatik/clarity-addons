@@ -3,12 +3,18 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, TemplateRef, ViewChild } from '@angular/core';
-import { ClarityDocComponent } from '../clarity-doc';
+import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
+import { UtilsModule } from '../../../utils/utils.module';
 import {
-  ClarityIcons,
   calendarIcon,
   checkIcon,
+  ClarityIcons,
+  ClarityModule,
+  ClrAlertModule,
+  ClrFormsModule,
+  ClrIcon,
+  ClrStackViewModule,
+  ClrTreeViewModule,
   cogIcon,
   dashboardIcon,
   errorStandardIcon,
@@ -20,8 +26,13 @@ import {
   lineChartIcon,
   mapIcon,
   warningStandardIcon,
-} from '@clr/angular/icon';
+} from '@clr/angular';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { ClarityDocComponent } from '../clarity-doc';
 import { ClrNotificationService } from '@porscheinformatik/clr-addons';
+import { DocWrapper } from '../_doc-wrapper/doc-wrapper';
 
 ClarityIcons.addIcons(
   homeIcon,
@@ -47,7 +58,19 @@ ClarityIcons.addIcons(
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
-  standalone: false,
+  imports: [
+    DocWrapper,
+    ClrAlertModule,
+    ClrIcon,
+    ClrStackViewModule,
+    ClrTreeViewModule,
+    CommonModule,
+    FormsModule,
+    ClarityModule,
+    ClrFormsModule,
+    UtilsModule,
+    DocWrapperModule,
+  ],
 })
 export class ColorsDemo extends ClarityDocComponent {
   readonly rootDirectory: readonly any[] = [

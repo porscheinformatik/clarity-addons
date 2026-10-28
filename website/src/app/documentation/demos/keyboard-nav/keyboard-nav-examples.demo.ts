@@ -91,17 +91,14 @@ export const COMBINED_EXAMPLE = `<!-- Both directives can be applied to the same
   Overlay active
 </label>`;
 
-export const IMPORT_EXAMPLE = `// app.module.ts  (or any NgModule / standalone component)
+export const IMPORT_EXAMPLE = `// any standalone component
 import {
   ClrKeyboardNavCtrlArrowDirective,
   ClrKeyboardNavAltMnemonicDirective,
 } from '@porscheinformatik/clr-addons';
 
-@NgModule({
-  imports: [
-    ClrKeyboardNavCtrlArrowDirective,
-    ClrKeyboardNavAltMnemonicDirective,
-    // … or simply import ClrAddonsModule
-  ],
+@Component({
+  imports: [ClrKeyboardNavCtrlArrowDirective, ClrKeyboardNavAltMnemonicDirective],
+  // …
 })
-export class AppModule {}`;
+export class MyComponent {}`;

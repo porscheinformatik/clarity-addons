@@ -6,6 +6,8 @@
 
 import { Component, computed, input, output, signal } from '@angular/core';
 import { ClrImageGalleryImage, ClrImageGalleryOpenEvent } from './image-gallery.types';
+import { NgOptimizedImage } from '@angular/common';
+import { ClrImageCarousel } from './image-carousel';
 
 export { ClrImageGalleryImage, ClrImageGalleryOpenEvent };
 
@@ -13,7 +15,7 @@ export { ClrImageGalleryImage, ClrImageGalleryOpenEvent };
   selector: 'clr-image-gallery',
   templateUrl: './image-gallery.html',
   styleUrls: ['./image-gallery.scss'],
-  standalone: false,
+  imports: [NgOptimizedImage, ClrImageCarousel],
 })
 export class ClrImageGallery {
   readonly images = input<ClrImageGalleryImage[]>([]);

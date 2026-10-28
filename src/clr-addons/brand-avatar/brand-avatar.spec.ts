@@ -15,8 +15,7 @@ describe('BrandAvatarComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [ClrIcon],
-      declarations: [ClrBrandAvatar],
+      imports: [ClrIcon, ClrBrandAvatar],
     }).compileComponents();
   }));
 

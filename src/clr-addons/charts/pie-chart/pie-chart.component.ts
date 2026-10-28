@@ -11,8 +11,16 @@ import {
 import { Arc, arc as d3arc, format as d3format, pie as d3pie, PieArcDatum, select as d3select, Selection } from 'd3';
 import { NO_ITEMS_ALERT_TYPE, NO_ITEMS_MESSAGE, ERROR_ALERT_TYPE, ERROR_ALERT_MESSAGE } from '../constants';
 import { toChartColor } from '../utils';
-import { ChartLegendItem } from '../chart-legend/chart-legend.component';
+import { ChartLegendItem, ChartLegendComponent } from '../chart-legend/chart-legend.component';
 import { ChartBase } from '../shared/chart-base';
+import { WindowResizeDirective } from '../directives/window-resize.directive';
+import { ChartTooltipComponent } from '../chart-tooltip/chart-tooltip.component';
+import { OutsideClickDirective } from '../directives/outside-click.directive';
+import { DonutChartSkeletonComponent } from '../shared/skeleton/donut-chart-skeleton/donut-chart-skeleton.component';
+import { ChartAlertOverlayComponent } from '../chart-alert-overlay/chart-alert-overlay.component';
+import { ChartLegendSkeletonComponent } from '../shared/skeleton/chart-legend-skeleton/chart-legend-skeleton.component';
+import { ChartExportButtonComponent } from '../chart-export/chart-export-button.component';
+import { DecimalPipe } from '@angular/common';
 
 export interface PieChartData {
   key: string;
@@ -32,8 +40,18 @@ export interface PieChartValue {
   selector: 'clr-pie-chart',
   templateUrl: './pie-chart.component.html',
   styleUrls: ['./pie-chart.component.scss'],
-  standalone: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    WindowResizeDirective,
+    ChartTooltipComponent,
+    OutsideClickDirective,
+    DonutChartSkeletonComponent,
+    ChartAlertOverlayComponent,
+    ChartLegendSkeletonComponent,
+    ChartLegendComponent,
+    ChartExportButtonComponent,
+    DecimalPipe,
+  ],
 })
 export class PieChartComponent extends ChartBase<PieChartData> implements OnChanges {
   public readonly data = input.required<PieChartData[]>();

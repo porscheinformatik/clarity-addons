@@ -4,14 +4,19 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component, OnInit } from '@angular/core';
-import { LocationBarNode, SearchResponseModel, SearchResultModel } from '@porscheinformatik/clr-addons';
+import {
+  LocationBarNode,
+  SearchResponseModel,
+  SearchResultModel,
+  LocationBarComponent,
+} from '@porscheinformatik/clr-addons';
 import { DemoLocationBarComplexNodeId, DemoLocationBarNodeId } from './model';
 import { DemoLocationBarContentProvider } from './content-provider';
 
 @Component({
   selector: 'clr-location-bar-demo',
   templateUrl: './location-bar.demo.html',
-  standalone: false,
+  imports: [LocationBarComponent],
 })
 export class LocationBarDemo implements OnInit {
   roots1: LocationBarNode<DemoLocationBarNodeId>[];

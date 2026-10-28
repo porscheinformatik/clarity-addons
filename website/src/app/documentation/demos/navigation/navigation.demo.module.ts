@@ -19,8 +19,8 @@ import { UtilsModule } from '../../../utils/utils.module';
     UtilsModule,
     DocWrapperModule,
     RouterModule.forChild([{ path: '', component: NavigationDemo }]),
+    NavigationDemo,
   ],
-  declarations: [NavigationDemo],
   exports: [NavigationDemo],
 })
 export class NavigationDemoModule {}

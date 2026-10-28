@@ -4,14 +4,52 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component } from '@angular/core';
-import { ClarityIcons, ellipsisVerticalIcon } from '@clr/angular/icon';
+import {
+  ClarityIcons,
+  ClrCheckboxModule,
+  ClrCommonFormsModule,
+  ClrDatepickerModule,
+  ClrDropdownModule,
+  ClrIcon,
+  ClrIfOpen,
+  ClrInputModule,
+  ClrPopoverContent,
+  ClrRadioModule,
+  ClrSelectModule,
+  ellipsisVerticalIcon,
+} from '@clr/angular';
+import { FormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
+import {
+  ClrViewEditSection,
+  ClrAddonsLabel,
+  ClrAutocompleteOff,
+  ClrDropdownOverflowDirective,
+} from '@porscheinformatik/clr-addons';
 
 ClarityIcons.addIcons(ellipsisVerticalIcon);
 
 @Component({
   selector: 'clr-view-edit-section-demo',
   templateUrl: './view-edit-section.demo.html',
-  standalone: false,
+  imports: [
+    ClrViewEditSection,
+    FormsModule,
+    ClrCommonFormsModule,
+    ClrAddonsLabel,
+    ClrDatepickerModule,
+    ClrAutocompleteOff,
+    ClrSelectModule,
+    ClrRadioModule,
+    ClrCheckboxModule,
+    ClrDropdownModule,
+    ClrIcon,
+    ClrIfOpen,
+    ClrPopoverContent,
+    ClrDropdownOverflowDirective,
+    ClrInputModule,
+    DatePipe,
+  ],
 })
 export class ViewEditSectionDemo {
   birthdate: string;

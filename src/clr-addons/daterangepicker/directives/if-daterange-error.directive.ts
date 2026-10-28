@@ -13,10 +13,7 @@ import { ClrDaterangepickerContainerComponent } from './daterangepicker-containe
  *
  * Altered version from https://github.com/vmware-clarity/ng-clarity/blob/138a6dd95fdc4ffb67b054391c44ce5fa3c44660/projects/angular/src/forms/common/if-control-state/if-error.ts
  */
-@Directive({
-  selector: '[clrIfDaterangeError]',
-  standalone: false,
-})
+@Directive({ selector: '[clrIfDaterangeError]' })
 export class ClrIfDaterangeErrorDirective implements OnDestroy {
   /** Error name. */
   @Input()

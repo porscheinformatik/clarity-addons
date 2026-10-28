@@ -5,16 +5,20 @@
  */
 import { Component, effect, signal, ViewEncapsulation } from '@angular/core';
 
-import { ClarityModule } from '@clr/angular';
-import { angleIcon, ClarityIcons } from '@clr/angular/icon';
-import { ClrImageGalleryModule, ClrImageGalleryImage, ClrImageGalleryOpenEvent } from '@porscheinformatik/clr-addons';
+import { angleIcon, ClarityIcons, ClarityModule } from '@clr/angular';
+import {
+  ClrImageGalleryImage,
+  ClrImageGalleryOpenEvent,
+  ClrImageGallery,
+  ClrImageCarousel,
+} from '@porscheinformatik/clr-addons';
 
 ClarityIcons.addIcons(angleIcon);
 
 @Component({
   selector: 'clr-image-gallery-in-modal-demo',
   templateUrl: './image-gallery-in-modal.demo.html',
-  imports: [ClarityModule, ClrImageGalleryModule],
+  imports: [ClarityModule, ClrImageGallery, ClrImageCarousel],
   encapsulation: ViewEncapsulation.None,
   styles: [
     `

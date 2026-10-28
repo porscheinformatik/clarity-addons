@@ -1,23 +1,27 @@
 import { Component, Input } from '@angular/core';
+import { ClrVerticalNavModule } from '@clr/angular';
+import { RouterLinkActive, RouterLink } from '@angular/router';
 
 const COMPONENTS = require('../../settings/componentlist.json');
 
 @Component({
   selector: 'documentation-nav-links',
   template: `
-    @for (component of components; track component) { @if (component.url && !component.noDemo && component.type == type)
-    {
-    <a clrVerticalNavLink class="nav-link" [routerLink]="component.url" routerLinkActive="active">
-      {{ component.text }}
-      @if (component.isNew) {
-      <span class="new nav-link-tag">New!</span>
-      } @if (component.isUpdated) {
-      <span class="updated nav-link-tag">Updated</span>
+    @for (component of components; track component) {
+      @if (component.url && !component.noDemo && component.type == type) {
+        <a clrVerticalNavLink class="nav-link" [routerLink]="component.url" routerLinkActive="active">
+          {{ component.text }}
+          @if (component.isNew) {
+            <span class="new nav-link-tag">New!</span>
+          }
+          @if (component.isUpdated) {
+            <span class="updated nav-link-tag">Updated</span>
+          }
+        </a>
       }
-    </a>
-    } }
+    }
   `,
-  standalone: false,
+  imports: [ClrVerticalNavModule, RouterLinkActive, RouterLink],
 })
 export class DocumentationNavLinksComponent {
   components = COMPONENTS.list;

@@ -11,8 +11,17 @@ import { DocumentationNavLinksComponent } from './documentation-nav-links.compon
 import { InternationalizationComponent } from './internationalization/internationalization.component';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, UtilsModule, ClarityModule, HttpClientModule, DocumentationRoutingModule],
-  declarations: [DocumentationComponent, DocumentationNavLinksComponent, InternationalizationComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    UtilsModule,
+    ClarityModule,
+    HttpClientModule,
+    DocumentationRoutingModule,
+    DocumentationComponent,
+    DocumentationNavLinksComponent,
+    InternationalizationComponent,
+  ],
   providers: [DatePipe, CurrencyPipe, DecimalPipe],
 })
 export class DocumentationModule {}

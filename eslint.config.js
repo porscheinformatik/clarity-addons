@@ -43,6 +43,13 @@ module.exports = defineConfig([
 
     rules: {
       curly: 'error',
+      'no-restricted-syntax': [
+        'error',
+        {
+          selector: "Property[key.name='standalone'][value.value=false]",
+          message: 'Use standalone components, directives and pipes (standalone: false is not allowed).',
+        },
+      ],
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-unused-vars': 'off',
       '@typescript-eslint/no-use-before-define': 'off',

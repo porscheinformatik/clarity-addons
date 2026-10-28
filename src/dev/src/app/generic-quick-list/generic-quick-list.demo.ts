@@ -5,8 +5,15 @@
  */
 
 import { Component } from '@angular/core';
-import { ClrGenericQuickListItem } from '@porscheinformatik/clr-addons';
+import {
+  ClrGenericQuickListItem,
+  ClrGenericQuickList,
+  ClrAddonsLabel,
+  ClrAutocompleteOff,
+} from '@porscheinformatik/clr-addons';
 import { Observable, of } from 'rxjs';
+import { FormsModule } from '@angular/forms';
+import { ClrCheckboxModule, ClrCommonFormsModule, ClrInputModule } from '@clr/angular';
 
 interface QuickListItem extends ClrGenericQuickListItem {
   firstname: string;
@@ -16,7 +23,15 @@ interface QuickListItem extends ClrGenericQuickListItem {
 @Component({
   selector: 'app-generic-quick-list-demo',
   templateUrl: './generic-quick-list.demo.html',
-  standalone: false,
+  imports: [
+    FormsModule,
+    ClrCommonFormsModule,
+    ClrGenericQuickList,
+    ClrAddonsLabel,
+    ClrInputModule,
+    ClrAutocompleteOff,
+    ClrCheckboxModule,
+  ],
 })
 export class GenericQuickListDemo {
   readonly = false;

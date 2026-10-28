@@ -4,13 +4,33 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component } from '@angular/core';
-import { ClarityIcons, cogIcon } from '@clr/angular/icon';
+import {
+  ClarityIcons,
+  ClrButtonGroupModule,
+  ClrDropdownModule,
+  ClrIcon,
+  ClrNavigationModule,
+  ClrStandaloneCdkTrapFocus,
+  cogIcon,
+} from '@clr/angular';
+import { RouterLinkActive, RouterLink } from '@angular/router';
+import { ClrMainNavGroup, ClrBackButton } from '@porscheinformatik/clr-addons';
 
 ClarityIcons.addIcons(cogIcon);
 
 @Component({
   selector: 'clr-back-button-demo',
   templateUrl: './back-button.demo.html',
-  standalone: false,
+  imports: [
+    ClrNavigationModule,
+    ClrStandaloneCdkTrapFocus,
+    ClrMainNavGroup,
+    RouterLinkActive,
+    RouterLink,
+    ClrDropdownModule,
+    ClrIcon,
+    ClrBackButton,
+    ClrButtonGroupModule,
+  ],
 })
 export class BackButtonDemo {}

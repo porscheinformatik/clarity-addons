@@ -4,7 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClarityModule, ClrDatagridHideableColumn } from '@clr/angular';
 import { By } from '@angular/platform-browser';
-import { ClrDatagridStatePersistenceModule } from './datagrid-state-persistence.module';
+import { ColumnHiddenStatePersistenceDirective } from './column-hidden-state-persistence.directive';
+import { DatagridFieldDirective } from './datagrid-field.directive';
+import { StatePersistenceKeyDirective } from './state-persistence-key.directive';
 
 const PERSISTENCE_KEY = 'ColumnHiddenStatePersistenceDirective';
 
@@ -43,7 +45,13 @@ const PERSISTENCE_KEY = 'ColumnHiddenStatePersistenceDirective';
       </clr-dg-column>
     </clr-datagrid>
   `,
-  standalone: false,
+  imports: [
+    ClarityModule,
+    FormsModule,
+    ColumnHiddenStatePersistenceDirective,
+    DatagridFieldDirective,
+    StatePersistenceKeyDirective,
+  ],
 })
 class TestComponent {
   @ViewChildren(ClrDatagridHideableColumn)
@@ -59,8 +67,15 @@ describe('ColumnHiddenStatePersistenceDirective', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ClarityModule, FormsModule, BrowserAnimationsModule, ClrDatagridStatePersistenceModule],
-      declarations: [TestComponent],
+      imports: [
+        ClarityModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        ColumnHiddenStatePersistenceDirective,
+        DatagridFieldDirective,
+        StatePersistenceKeyDirective,
+        TestComponent,
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TestComponent);

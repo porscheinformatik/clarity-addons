@@ -3,9 +3,16 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
+import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
+import { UtilsModule } from '../../../utils/utils.module';
+import { ClarityIcons, ClarityModule, factoryIcon } from '@clr/angular';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
-import { ClarityIcons, factoryIcon } from '@clr/angular/icon';
+import { DocWrapper } from '../_doc-wrapper/doc-wrapper';
+import { ClrIconAvatar } from '@porscheinformatik/clr-addons';
+import { CodeSnippet } from '../../../utils/code-snippet';
 
 const HTML_EXAMPLE = `
 <div class="parent">
@@ -38,7 +45,6 @@ const HTML_EXAMPLE3 = `
 `;
 
 const TYPESCRIPT1 = `
-import { ClarityIcons, factoryIcon } from '@clr/angular/icon';
 
 ClarityIcons.addIcons(factoryIcon);
 `;
@@ -53,7 +59,16 @@ ClarityIcons.addIcons(factoryIcon);
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
-  standalone: false,
+  imports: [
+    DocWrapper,
+    ClrIconAvatar,
+    CodeSnippet,
+    CommonModule,
+    FormsModule,
+    ClarityModule,
+    UtilsModule,
+    DocWrapperModule,
+  ],
 })
 export class IconAvatarDemo extends ClarityDocComponent {
   htmlExample = HTML_EXAMPLE;

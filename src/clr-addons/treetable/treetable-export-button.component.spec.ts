@@ -13,13 +13,13 @@ import { FormsModule } from '@angular/forms';
 import { Subject } from 'rxjs';
 
 import { ClrTreetable } from './treetable';
-import { ClrTreetableModule } from './treetable.module';
 import { ClrTreetableFilterInterface } from './interfaces/filter-model';
 import { ClrTreetableComparatorInterface } from './interfaces/comparator.interface';
 import { FilterStateService } from './providers/filter-state.service';
 import { SortStateService } from './providers/sort-state.service';
 import { ExportExcelCell, ExportExcelService, ExportType, ExportTypeEnum } from '../shared';
 import { ExportTreetableButtonComponent } from './treetable-export-button.component';
+import { CLR_TREETABLE_DIRECTIVES } from './treetable.module';
 
 type Item = { id: number; name: string; address: { city: string }; subItems?: Item[] };
 
@@ -106,7 +106,7 @@ class NameComparator implements ClrTreetableComparatorInterface<Item> {
       </clr-tt-row>
     </clr-treetable>
   `,
-  standalone: false,
+  imports: [ClarityModule, FormsModule, ...CLR_TREETABLE_DIRECTIVES],
 })
 class TestHostComponent {
   readonly items = signal<Item[]>(ITEMS);
@@ -135,8 +135,7 @@ describe('ExportTreetableButtonComponent', () => {
     exportService = new ExportExcelServiceMock();
 
     TestBed.configureTestingModule({
-      imports: [ClarityModule, FormsModule, BrowserAnimationsModule, ClrTreetableModule],
-      declarations: [TestHostComponent],
+      imports: [ClarityModule, FormsModule, BrowserAnimationsModule, ...CLR_TREETABLE_DIRECTIVES, TestHostComponent],
       providers: [{ provide: ExportExcelService, useValue: exportService }],
     }).compileComponents();
 

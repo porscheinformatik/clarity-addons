@@ -1,8 +1,25 @@
+import { UtilsModule } from '../../../utils/utils.module';
+import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
+import {
+  ClarityModule,
+  ClrCheckboxModule,
+  ClrComboboxModule,
+  ClrCommonFormsModule,
+  ClrDatepickerModule,
+  ClrInputModule,
+  ClrSelectModule,
+  ClrTextareaModule,
+} from '@clr/angular';
+import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { ClarityDocComponent } from '../clarity-doc';
+import { DocWrapper } from '../_doc-wrapper/doc-wrapper';
+import { ClrAddonsLabel, ClrAutocompleteOff, ClrIfWarning } from '@porscheinformatik/clr-addons';
+import { CodeSnippet } from '../../../utils/code-snippet';
+import { AsyncPipe } from '@angular/common';
 
 const INPUT_EXAMPLE = `
 <form [formGroup]="inputForm">
@@ -24,7 +41,27 @@ const INPUT_EXAMPLE = `
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
-  standalone: false,
+  imports: [
+    DocWrapper,
+    FormsModule,
+    ClrCommonFormsModule,
+    ReactiveFormsModule,
+    ClrInputModule,
+    ClrAddonsLabel,
+    ClrAutocompleteOff,
+    ClrIfWarning,
+    ClrTextareaModule,
+    ClrDatepickerModule,
+    ClrSelectModule,
+    ClrComboboxModule,
+    ClrCheckboxModule,
+    CodeSnippet,
+    CommonModule,
+    ClarityModule,
+    DocWrapperModule,
+    UtilsModule,
+    AsyncPipe,
+  ],
 })
 export class ControlWarningDemo extends ClarityDocComponent implements AfterViewInit {
   inputExample = INPUT_EXAMPLE;

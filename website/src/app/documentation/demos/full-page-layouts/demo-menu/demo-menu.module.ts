@@ -7,13 +7,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ClarityModule } from '@clr/angular';
-import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
 
 import { DemoMenu } from './demo-menu';
 
 @NgModule({
-  imports: [CommonModule, RouterModule, ClarityModule, ClrAddonsModule],
-  declarations: [DemoMenu],
+  imports: [CommonModule, RouterModule, ClarityModule, DemoMenu],
   exports: [DemoMenu],
 })
 export class DemoMenuModule {}

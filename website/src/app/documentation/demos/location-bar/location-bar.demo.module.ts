@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2022 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ClarityModule } from '@clr/angular';
-import { ClrAddonsModule, CONTENT_PROVIDER } from '@porscheinformatik/clr-addons';
+import { CONTENT_PROVIDER } from '@porscheinformatik/clr-addons';
 import { UtilsModule } from '../../../utils/utils.module';
 import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
 import { DemoLocationBarContentProvider } from './content-provider';
@@ -17,12 +17,11 @@ import { LocationBarDemo } from './location-bar.demo';
   imports: [
     CommonModule,
     ClarityModule,
-    ClrAddonsModule,
     UtilsModule,
     DocWrapperModule,
     RouterModule.forChild([{ path: '', component: LocationBarDemo }]),
+    LocationBarDemo,
   ],
-  declarations: [LocationBarDemo],
   exports: [LocationBarDemo],
   providers: [{ provide: CONTENT_PROVIDER, useExisting: DemoLocationBarContentProvider }],
 })

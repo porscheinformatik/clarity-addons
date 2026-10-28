@@ -4,8 +4,10 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
+import { FormsModule } from '@angular/forms';
+import { angleIcon, ClarityIcons, ClarityModule, ClrIcon } from '@clr/angular';
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { angleIcon, ClarityIcons } from '@clr/angular/icon';
 /**
  * Custom pager component because clarity's pager component can only be used inside a data grid.
  * Currently a requested feature, see here: https://github.com/vmware/clarity/issues/2268
@@ -18,7 +20,7 @@ ClarityIcons.addIcons(angleIcon);
   selector: 'clr-pager',
   templateUrl: './pager.html',
   host: { '[class.pager]': 'true' },
-  standalone: false,
+  imports: [ClrIcon, CommonModule, ClarityModule, FormsModule],
 })
 export class ClrPager {
   @Output('clrPageChange') pageChange: EventEmitter<any> = new EventEmitter(false);

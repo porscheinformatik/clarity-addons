@@ -3,7 +3,6 @@ import { ComponentRef } from '@angular/core';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { GroupedBarChartComponent, GroupedBarChartData, GroupedBarChartGroup } from './grouped-bar-chart.component';
 import { ALL_ITEMS_ZERO_MESSAGE, NO_ITEMS_ALERT_TYPE, NO_ITEMS_MESSAGE } from '../constants';
-import { ClrChartsModule } from '../charts.module';
 
 const GROUPED_DATA: GroupedBarChartData[] = [
   { key: 'jan-revenue', groupKey: 'jan', label: 'Revenue', value: 120, color: '#e57200' },
@@ -24,7 +23,7 @@ describe('GroupedBarChartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ClrChartsModule],
+      imports: [],
       providers: [provideNoopAnimations()],
     }).compileComponents();
 

@@ -3,9 +3,24 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
+import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
+import { UtilsModule } from '../../../utils/utils.module';
+import {
+  ClarityIcons,
+  ClarityModule,
+  ClrDropdownModule,
+  ClrIcon,
+  ClrIfOpen,
+  ClrPopoverContent,
+  ellipsisVerticalIcon,
+} from '@clr/angular';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
-import { ClarityIcons, ellipsisVerticalIcon } from '@clr/angular/icon';
+import { DocWrapper } from '../_doc-wrapper/doc-wrapper';
+import { CodeSnippet } from '../../../utils/code-snippet';
+import { ClrDropdownOverflowDirective } from '@porscheinformatik/clr-addons';
 
 const HTML_EXAMPLE = `
 <div class="clr-row">
@@ -89,7 +104,20 @@ interface Card {
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
-  standalone: false,
+  imports: [
+    DocWrapper,
+    CodeSnippet,
+    ClrDropdownModule,
+    ClrIcon,
+    ClrIfOpen,
+    ClrPopoverContent,
+    ClrDropdownOverflowDirective,
+    CommonModule,
+    FormsModule,
+    ClarityModule,
+    UtilsModule,
+    DocWrapperModule,
+  ],
 })
 export class CardsDemo extends ClarityDocComponent {
   htmlExample = HTML_EXAMPLE;

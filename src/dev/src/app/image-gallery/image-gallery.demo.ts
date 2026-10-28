@@ -6,12 +6,12 @@
 import { Component, signal } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
-import { ClrImageGalleryModule, ClrImageGalleryImage } from '@porscheinformatik/clr-addons';
+import { ClrImageGalleryImage, ClrImageGallery } from '@porscheinformatik/clr-addons';
 
 @Component({
   selector: 'clr-image-gallery-demo',
   templateUrl: './image-gallery.demo.html',
-  imports: [FormsModule, ClrImageGalleryModule],
+  imports: [FormsModule, ClrImageGallery],
 })
 export class ImageGalleryDemo {
   readonly productName = signal('Porsche 911');

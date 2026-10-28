@@ -36,10 +36,7 @@ interface FilterValueWithMetadata {
   value: unknown;
 }
 
-@Directive({
-  selector: '[clrStatePersistenceKey]',
-  standalone: false,
-})
+@Directive({ selector: '[clrStatePersistenceKey]' })
 export class StatePersistenceKeyDirective implements AfterContentInit, OnDestroy {
   /**
    * Configuration options for the persistence.

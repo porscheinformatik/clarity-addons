@@ -8,7 +8,6 @@ import { ComponentRef } from '@angular/core';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { ComboChartComponent, ComboBarSeries, ComboLineSeries, ComboChartValue } from './combo-chart.component';
 import { NO_ITEMS_MESSAGE, NO_ITEMS_ALERT_TYPE } from '../constants';
-import { ClrChartsModule } from '../charts.module';
 
 const BAR_SERIES: ComboBarSeries[] = [
   {
@@ -53,7 +52,7 @@ describe('ComboChartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ClrChartsModule],
+      imports: [],
       providers: [provideNoopAnimations()],
     }).compileComponents();
 

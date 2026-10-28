@@ -10,13 +10,16 @@ import {
   ClrDatagridStateInterface,
   DatagridPropertyComparator,
 } from '@clr/angular';
-import { ClrDatagridStatePersistenceModule } from './datagrid-state-persistence.module';
-import { ClrDatagridColumnReorderModule, DynamicColumn } from '../column-reorder';
+import { DynamicColumn } from '../column-reorder';
 import { By } from '@angular/platform-browser';
 import { BehaviorSubject } from 'rxjs';
-import { ClrEnumFilterComponent, ClrEnumFilterModule } from '../enum-filter';
+import { ClrEnumFilterComponent } from '../enum-filter';
 import { CdkDrag, CdkDragDrop, CdkDropList } from '@angular/cdk/drag-drop';
 import { ClrDatagridStatePersistenceModel } from './datagrid-state-persistence-model.interface';
+import { ColumnHiddenStatePersistenceDirective } from './column-hidden-state-persistence.directive';
+import { DatagridFieldDirective } from './datagrid-field.directive';
+import { StatePersistenceKeyDirective } from './state-persistence-key.directive';
+import { DatagridColumnReorderDirective } from '../column-reorder/column-reorder.directive';
 
 @Component({
   template: `
@@ -73,7 +76,17 @@ import { ClrDatagridStatePersistenceModel } from './datagrid-state-persistence-m
       </clr-dg-footer>
     </clr-datagrid>
   `,
-  standalone: false,
+  imports: [
+    ClarityModule,
+    FormsModule,
+    ColumnHiddenStatePersistenceDirective,
+    DatagridFieldDirective,
+    StatePersistenceKeyDirective,
+    DatagridColumnReorderDirective,
+    ClrEnumFilterComponent,
+    CdkDropList,
+    CdkDrag,
+  ],
 })
 class TestComponent {
   @ViewChild(ClrDatagridPagination)
@@ -123,13 +136,15 @@ describe('StatePersistenceKeyDirective', () => {
         ClarityModule,
         FormsModule,
         BrowserAnimationsModule,
-        ClrDatagridStatePersistenceModule,
-        ClrDatagridColumnReorderModule,
-        ClrEnumFilterModule,
+        ColumnHiddenStatePersistenceDirective,
+        DatagridFieldDirective,
+        StatePersistenceKeyDirective,
+        DatagridColumnReorderDirective,
+        ClrEnumFilterComponent,
         CdkDropList,
         CdkDrag,
+        TestComponent,
       ],
-      declarations: [TestComponent],
       teardown: { destroyAfterEach: false },
     }).compileComponents();
 

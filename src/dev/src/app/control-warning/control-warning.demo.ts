@@ -4,15 +4,40 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { AfterViewInit, Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import {
+  ClrCheckboxModule,
+  ClrComboboxModule,
+  ClrCommonFormsModule,
+  ClrDatepickerModule,
+  ClrInputModule,
+  ClrSelectModule,
+  ClrTextareaModule,
+} from '@clr/angular';
+import { AsyncPipe } from '@angular/common';
+import { ClrAddonsLabel, ClrAutocompleteOff, ClrIfWarning } from '@porscheinformatik/clr-addons';
 
 @Component({
   selector: 'clr-control-warning-demo',
   templateUrl: './control-warning.demo.html',
   styleUrl: './control-warning.demo.scss',
-  standalone: false,
+  imports: [
+    FormsModule,
+    ClrCommonFormsModule,
+    ReactiveFormsModule,
+    ClrInputModule,
+    ClrAddonsLabel,
+    ClrAutocompleteOff,
+    ClrIfWarning,
+    ClrTextareaModule,
+    ClrDatepickerModule,
+    ClrSelectModule,
+    ClrComboboxModule,
+    ClrCheckboxModule,
+    AsyncPipe,
+  ],
 })
 export class ControlWarningDemo implements AfterViewInit {
   values$ = of([

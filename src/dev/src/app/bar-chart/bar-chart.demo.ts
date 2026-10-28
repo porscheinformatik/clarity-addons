@@ -7,7 +7,7 @@ import { Component, computed, signal } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 import { ClrAlertModule } from '@clr/angular';
-import { BarChartData, BarChartValue, ClrChartsModule } from '@porscheinformatik/clr-addons/charts';
+import { BarChartData, BarChartValue, CLR_CHARTS_DECLARATIONS } from '@porscheinformatik/clr-addons/charts';
 import { BarChartLabel } from '../../../../clr-addons/charts';
 
 const COLORS = ['--cds-global-color-lavender-400', '#00828b', '#c1326e', '#5b40b2', '#007cba', '#006b4a', '#9e3b00'];
@@ -15,7 +15,7 @@ const COLORS = ['--cds-global-color-lavender-400', '#00828b', '#c1326e', '#5b40b
 @Component({
   selector: 'clr-bar-chart-demo',
   templateUrl: './bar-chart.demo.html',
-  imports: [FormsModule, ClrAlertModule, ClrChartsModule],
+  imports: [FormsModule, ClrAlertModule, ...CLR_CHARTS_DECLARATIONS],
 })
 export class BarChartDemo {
   protected readonly orientation = signal<'horizontal' | 'vertical'>('vertical');

@@ -8,7 +8,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ClarityModule, ClrFormsModule } from '@clr/angular';
-import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
 
 import { ClarityDemo } from './clarity.demo';
 
@@ -18,10 +17,9 @@ import { ClarityDemo } from './clarity.demo';
     FormsModule,
     ClarityModule,
     ClrFormsModule,
-    ClrAddonsModule,
     RouterModule.forChild([{ path: '', component: ClarityDemo }]),
+    ClarityDemo,
   ],
-  declarations: [ClarityDemo],
   exports: [ClarityDemo],
 })
 export class ClarityDemoModule {}

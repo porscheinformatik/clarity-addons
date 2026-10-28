@@ -105,12 +105,13 @@ import {
   windscreenWashIcon,
   wrenchForwardIcon,
 } from '@porscheinformatik/clr-addons';
-import { ClarityIcons } from '@clr/angular/icon';
+import { ClarityIcons, ClrVerticalNavModule } from '@clr/angular';
+import { RouterLinkActive, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'icons',
   templateUrl: 'icons.component.html',
-  standalone: false,
+  imports: [ClrVerticalNavModule, RouterLinkActive, RouterLink, RouterOutlet],
 })
 export class IconsComponent {
   icons = [

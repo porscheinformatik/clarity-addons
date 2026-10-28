@@ -3,7 +3,6 @@ import { ComponentRef } from '@angular/core';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { BarChartComponent, BarChartData, BarChartLabel } from './bar-chart.component';
 import { NO_ITEMS_ALERT_TYPE, NO_ITEMS_MESSAGE } from '../constants';
-import { ClrChartsModule } from '../charts.module';
 
 const SIMPLE_DATA: BarChartData[] = [
   { key: 'jan', label: 'January', value: 120, color: '#e57200' },
@@ -30,7 +29,7 @@ describe('BarChartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ClrChartsModule],
+      imports: [],
       providers: [provideNoopAnimations()],
     }).compileComponents();
 

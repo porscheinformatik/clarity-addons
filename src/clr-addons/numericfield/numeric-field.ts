@@ -41,7 +41,6 @@ const NUMBERS = new Set(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']);
       multi: true,
     },
   ],
-  standalone: false,
 })
 export class ClrNumericField implements OnInit, OnDestroy, AfterViewChecked, ControlValueAccessor {
   @Input('clrTextAlign') textAlign = 'right';

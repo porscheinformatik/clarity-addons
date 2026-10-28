@@ -19,7 +19,7 @@ import {
   viewChild,
 } from '@angular/core';
 import { outputFromObservable, takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
-import { ClrPopoverService } from '@clr/angular';
+import { ClrIcon, ClrPopoverService } from '@clr/angular';
 import { combineLatest, map } from 'rxjs';
 import { distinctUntilChanged, filter } from 'rxjs/operators';
 import { ClrTreetableSortOrder } from './enums/sort-order.enum';
@@ -27,6 +27,8 @@ import { SortStateService } from './providers';
 import { TreetableColumnStateService, TreetableColumnUpdate } from './providers/treetable-column-state.service';
 import { ClrTreetableComparatorInterface } from './interfaces/comparator.interface';
 import { ClrTreetableColumnType } from './interfaces/column-model';
+import { NgTemplateOutlet } from '@angular/common';
+import { ClrTreetableColumnSeparator } from './treetable-column-separator';
 
 let columnId = 0;
 
@@ -68,7 +70,7 @@ let columnId = 0;
     role: 'columnheader',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
+  imports: [NgTemplateOutlet, ClrIcon, ClrTreetableColumnSeparator],
 })
 export class ClrTreetableColumn<T extends object> implements OnInit, OnDestroy, AfterViewInit {
   public readonly columnId = `clr-tt-col-${columnId++}`;

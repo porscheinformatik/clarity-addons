@@ -1,29 +1,11 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ClarityModule, ClrDropdownModule, ClrIcon } from '@clr/angular';
 import { LocationBarComponent } from './location-bar.component';
-import { LocationBarNodeComponent } from './location-bar-node/location-bar-node.component';
-import { ClrDropdownOverflowModule } from '../dropdown';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ClrAutocompleteOffModule } from '../autocomplete-off';
-import { ClrFormModule } from '../abstract-form-component';
-import { ClrSearchFieldModule } from '../searchfield';
-import { LocationBarSearchComponent } from './location-bar-search/location-bar-search.component';
 
+/**
+ * @deprecated Compatibility wrapper for NgModule-based consumers. Import the standalone `LocationBarComponent` directly instead.
+ */
 @NgModule({
-  declarations: [LocationBarComponent, LocationBarNodeComponent, LocationBarSearchComponent],
-  imports: [
-    CommonModule,
-    ClrIcon,
-    ClrDropdownModule,
-    ClrDropdownOverflowModule,
-    ClarityModule,
-    FormsModule,
-    ClrAutocompleteOffModule,
-    ClrFormModule,
-    ClrSearchFieldModule,
-    ReactiveFormsModule,
-  ],
+  imports: [LocationBarComponent],
   exports: [LocationBarComponent],
 })
 export class ClrLocationBarModule {}

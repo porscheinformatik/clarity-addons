@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ClarityIcons, downloadIcon } from '@clr/angular/icon';
+import { ClarityIcons, ClrCommonFormsModule, ClrIcon, ClrInputModule, downloadIcon } from '@clr/angular';
 import {
   logoCommissionModuleFavIcon,
   logoCommissionModuleIcon,
@@ -63,12 +63,15 @@ import {
   logoWorkshopOrderTrackerNegativeIcon,
 } from '@porscheinformatik/clr-addons';
 import { debounceTime, Subject, takeUntil } from 'rxjs';
+import { FormsModule } from '@angular/forms';
+import { NgClass, NgTemplateOutlet } from '@angular/common';
+import { CodeSnippet } from '../../utils/code-snippet';
 
 @Component({
   selector: 'clr-icons-logos',
   templateUrl: './icons-logos.component.html',
   styleUrl: 'icons-logos.component.scss',
-  standalone: false,
+  imports: [FormsModule, ClrCommonFormsModule, ClrInputModule, NgClass, ClrIcon, NgTemplateOutlet, CodeSnippet],
 })
 export class IconsLogosComponent {
   icons = [

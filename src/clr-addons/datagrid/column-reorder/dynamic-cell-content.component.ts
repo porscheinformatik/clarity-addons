@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { DynamicColumn } from './dynamic-column';
+import { NgComponentOutlet, NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'clr-dg-dynamic-cell-content',
@@ -16,8 +17,8 @@ import { DynamicColumn } from './dynamic-column';
       {{ defaultDisplayValue() }}
     }
   `,
-  standalone: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [NgComponentOutlet, NgTemplateOutlet],
 })
 export class DynamicCellContentComponent<T> {
   public readonly col = input<DynamicColumn<T>>();

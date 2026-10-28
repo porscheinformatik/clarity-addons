@@ -3,9 +3,16 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
+import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
+import { UtilsModule } from '../../../utils/utils.module';
+import { ClarityModule, ClrCheckboxModule, ClrCommonFormsModule, ClrInputModule, ClrSelectModule } from '@clr/angular';
+import { CommonModule } from '@angular/common';
 import { Component, ViewChildren, QueryList } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
-import { ClrNotificationService } from '@porscheinformatik/clr-addons';
+import { ClrNotificationService, ClrAddonsLabel, ClrAutocompleteOff } from '@porscheinformatik/clr-addons';
+import { DocWrapper } from '../_doc-wrapper/doc-wrapper';
+import { CodeSnippet } from '../../../utils/code-snippet';
+import { FormsModule } from '@angular/forms';
 
 const CODE_EXAMPLE = `
 
@@ -48,7 +55,21 @@ openString(): void {
   },
   providers: [ClrNotificationService],
   styleUrls: ['./notification.demo.scss'],
-  standalone: false,
+  imports: [
+    DocWrapper,
+    CodeSnippet,
+    FormsModule,
+    ClrCommonFormsModule,
+    ClrInputModule,
+    ClrAddonsLabel,
+    ClrAutocompleteOff,
+    ClrSelectModule,
+    ClrCheckboxModule,
+    CommonModule,
+    ClarityModule,
+    UtilsModule,
+    DocWrapperModule,
+  ],
 })
 export class NotificationDemo extends ClarityDocComponent {
   codeExample = CODE_EXAMPLE;

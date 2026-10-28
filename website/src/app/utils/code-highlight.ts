@@ -8,16 +8,17 @@ import { Directive, ElementRef, Inject, Input, PLATFORM_ID, Renderer2, AfterCont
 
 declare var Prism: any;
 
-@Directive({
-  selector: 'code[clr-code-highlight]',
-  standalone: false,
-})
+@Directive({ selector: 'code[clr-code-highlight]' })
 export class CodeHighlight implements AfterContentInit {
   private _highlight: string = '';
 
   // Had to use renderer because I wanted to add to existing classes on the code block
   // Didn't want to override them completely
-  constructor(private _el: ElementRef, private renderer: Renderer2, @Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(
+    private _el: ElementRef,
+    private renderer: Renderer2,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
   ngAfterContentInit(): void {
     this.redraw();

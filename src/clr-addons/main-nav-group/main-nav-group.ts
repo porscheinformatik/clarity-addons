@@ -3,6 +3,9 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
+import { angleIcon, ClarityIcons, ClarityModule, ClrCommonFormsModule, ClrIcon } from '@clr/angular';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import {
   Component,
   ContentChildren,
@@ -15,7 +18,6 @@ import {
   Renderer2,
 } from '@angular/core';
 import { ClrMainNavGroupItem } from './main-nav-group-item';
-import { angleIcon, ClarityIcons } from '@clr/angular/icon';
 
 let instances = 0;
 
@@ -30,7 +32,7 @@ ClarityIcons.addIcons(angleIcon);
   selector: 'clr-main-nav-group',
   templateUrl: './main-nav-group.html',
   host: { '[class.main-nav-group]': 'true' },
-  standalone: false,
+  imports: [ClrCommonFormsModule, ClrIcon, CommonModule, RouterModule, ClarityModule],
 })
 export class ClrMainNavGroup implements OnInit, OnDestroy {
   @Input('clrTitle') title: string;

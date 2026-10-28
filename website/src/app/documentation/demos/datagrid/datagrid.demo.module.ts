@@ -11,23 +11,20 @@ import { DatagridDemo } from './datagrid.demo';
 import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
 import { RouterModule } from '@angular/router';
 import { UtilsModule } from '../../../utils/utils.module';
-import { ClrAddonsModule, ClrExportDatagridButtonModule } from '@porscheinformatik/clr-addons';
 import { CdkDrag, CdkDropList } from '@angular/cdk/drag-drop';
 
 @NgModule({
   imports: [
     CommonModule,
     ClarityModule,
-    ClrAddonsModule,
-    ClrExportDatagridButtonModule,
     DocWrapperModule,
     UtilsModule,
     RouterModule.forChild([{ path: '', component: DatagridDemo }]),
     DatePipe,
     CdkDropList,
     CdkDrag,
+    DatagridDemo,
   ],
-  declarations: [DatagridDemo],
   exports: [DatagridDemo],
 })
 export class DatagridDemoModule {}

@@ -16,8 +16,7 @@ describe('PagerComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ClrPager],
-      imports: [ClarityModule, FormsModule],
+      imports: [ClarityModule, FormsModule, ClrPager],
     }).compileComponents();
   }));
 

@@ -3,10 +3,8 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, ElementRef, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { share } from 'rxjs';
-import { ClarityDocComponent } from '../clarity-doc';
+import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
+import { UtilsModule } from '../../../utils/utils.module';
 import {
   bellIcon,
   blocksGroupIcon,
@@ -14,7 +12,13 @@ import {
   calendarIcon,
   circleIcon,
   ClarityIcons,
+  ClarityModule,
   clockIcon,
+  ClrCommonFormsModule,
+  ClrIcon,
+  ClrIfActive,
+  ClrTabsModule,
+  ClrVerticalNavModule,
   cogIcon,
   flagIcon,
   folderIcon,
@@ -29,13 +33,28 @@ import {
   terminalIcon,
   userIcon,
   wrenchIcon,
-} from '@clr/angular/icon';
+} from '@clr/angular';
+import { CommonModule } from '@angular/common';
+import { Component, ElementRef, OnInit } from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { share } from 'rxjs';
+import { ClarityDocComponent } from '../clarity-doc';
 import {
   ALT_MNEMONIC_BASIC_EXAMPLE,
   COMBINED_EXAMPLE,
   CTRL_ARROW_BASIC_EXAMPLE,
   IMPORT_EXAMPLE,
 } from './keyboard-nav-examples.demo';
+import { DocWrapper } from '../_doc-wrapper/doc-wrapper';
+import { NgTemplateOutlet, AsyncPipe } from '@angular/common';
+import { CodeSnippet } from '../../../utils/code-snippet';
+import {
+  ClrKeyboardNavCtrlArrowDirective,
+  ClrKeyboardNavAltMnemonicDirective,
+  ClrAddonsLabel,
+  ClrAutocompleteOff,
+} from '@porscheinformatik/clr-addons';
+import { FormsModule } from '@angular/forms';
 
 ClarityIcons.addIcons(
   homeIcon,
@@ -73,7 +92,27 @@ export interface TocEntry {
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
-  standalone: false,
+  imports: [
+    DocWrapper,
+    NgTemplateOutlet,
+    CodeSnippet,
+    ClrTabsModule,
+    ClrKeyboardNavCtrlArrowDirective,
+    ClrIcon,
+    ClrIfActive,
+    ClrKeyboardNavAltMnemonicDirective,
+    ClrVerticalNavModule,
+    ClrCommonFormsModule,
+    ClrAddonsLabel,
+    ClrAutocompleteOff,
+    FormsModule,
+    RouterLink,
+    CommonModule,
+    ClarityModule,
+    UtilsModule,
+    DocWrapperModule,
+    AsyncPipe,
+  ],
 })
 export class KeyboardNavDemo extends ClarityDocComponent implements OnInit {
   ctrlArrowExample = CTRL_ARROW_BASIC_EXAMPLE;
@@ -89,7 +128,10 @@ export class KeyboardNavDemo extends ClarityDocComponent implements OnInit {
 
   private headingSelector = 'h2[id],h3[id]';
 
-  constructor(public route: ActivatedRoute, private elementRef: ElementRef) {
+  constructor(
+    public route: ActivatedRoute,
+    private elementRef: ElementRef
+  ) {
     super('keyboard-nav');
     this.activeFragment = this.route.fragment.pipe(share());
   }

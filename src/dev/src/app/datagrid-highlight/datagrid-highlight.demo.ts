@@ -6,13 +6,17 @@
 import { Component } from '@angular/core';
 import {
   ClarityIcons,
+  ClrDatagridModule,
+  ClrIcon,
   errorStandardIcon,
   infoStandardIcon,
   minusIcon,
   plusIcon,
   successStandardIcon,
   warningStandardIcon,
-} from '@clr/angular/icon';
+} from '@clr/angular';
+import { NgClass } from '@angular/common';
+import { DatagridFieldDirective } from '@porscheinformatik/clr-addons';
 
 ClarityIcons.addIcons(
   errorStandardIcon,
@@ -26,7 +30,7 @@ ClarityIcons.addIcons(
 @Component({
   selector: 'clr-datagrid-highlight-demo',
   templateUrl: './datagrid-highlight.demo.html',
-  standalone: false,
+  imports: [ClrDatagridModule, DatagridFieldDirective, NgClass, ClrIcon],
 })
 export class DatagridHighlightDemo {
   selected: unknown[] = [];

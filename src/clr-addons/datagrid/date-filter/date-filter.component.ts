@@ -1,8 +1,19 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ClrCommonStringsService, ClrDatagridFilter, ClrDatagridFilterInterface } from '@clr/angular';
+import {
+  ClarityIcons,
+  ClrCommonFormsModule,
+  ClrCommonStringsService,
+  ClrDatagridFilter,
+  ClrDatagridFilterInterface,
+  ClrDatepickerModule,
+  ClrIcon,
+  trashIcon,
+} from '@clr/angular';
 import { Observable, Subject } from 'rxjs';
 import { NestedProperty } from '../util/nested-property';
-import { ClarityIcons, trashIcon } from '@clr/angular/icon';
+import { ClrDateTimeContainer } from '../../date-time-container/date-time-container';
+import { FormsModule } from '@angular/forms';
+import { ClrTimeInput } from '../../date-time-container/time-input';
 
 ClarityIcons.addIcons(trashIcon);
 
@@ -10,7 +21,7 @@ ClarityIcons.addIcons(trashIcon);
   selector: 'clr-date-filter',
   templateUrl: './date-filter.component.html',
   styleUrls: ['./date-filter.component.scss'],
-  standalone: false,
+  imports: [ClrIcon, ClrDatepickerModule, ClrCommonFormsModule, ClrDateTimeContainer, FormsModule, ClrTimeInput],
 })
 export class ClrDateFilterComponent<T extends { [key: string]: any }> implements ClrDatagridFilterInterface<T> {
   private nestedProp: NestedProperty;

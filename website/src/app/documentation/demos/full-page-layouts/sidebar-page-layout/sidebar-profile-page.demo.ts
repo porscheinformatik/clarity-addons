@@ -1,5 +1,15 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import {
+  ClrCommonFormsModule,
+  ClrDatepickerModule,
+  ClrInputModule,
+  ClrRadioModule,
+  ClrSelectModule,
+  ClrTextareaModule,
+} from '@clr/angular';
+import { ClrAddonsLabel, ClrAutocompleteOff, ClrDateTimeContainer, ClrTimeInput } from '@porscheinformatik/clr-addons';
 
 @Component({
   selector: 'clr-summary-area-profile-page-demo',
@@ -86,6 +96,18 @@ import { Router } from '@angular/router';
       </form>
     </div>
   `,
-  standalone: false,
+  imports: [
+    FormsModule,
+    ClrCommonFormsModule,
+    ClrInputModule,
+    ClrAddonsLabel,
+    ClrAutocompleteOff,
+    ClrRadioModule,
+    ClrSelectModule,
+    ClrDatepickerModule,
+    ClrDateTimeContainer,
+    ClrTimeInput,
+    ClrTextareaModule,
+  ],
 })
 export class SidebarProfilePageDemo {}

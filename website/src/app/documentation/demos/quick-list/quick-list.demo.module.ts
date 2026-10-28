@@ -11,7 +11,6 @@ import { ClarityModule } from '@clr/angular';
 import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
 import { RouterModule } from '@angular/router';
 import { UtilsModule } from '../../../utils/utils.module';
-import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
 import { QuickListDemo } from './quick-list.demo';
 
 @NgModule({
@@ -22,9 +21,8 @@ import { QuickListDemo } from './quick-list.demo';
     UtilsModule,
     DocWrapperModule,
     RouterModule.forChild([{ path: '', component: QuickListDemo }]),
-    ClrAddonsModule,
+    QuickListDemo,
   ],
-  declarations: [QuickListDemo],
   exports: [QuickListDemo],
 })
 export class QuickListDemoModule {}

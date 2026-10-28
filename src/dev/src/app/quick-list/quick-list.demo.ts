@@ -1,17 +1,26 @@
 /*
- * Copyright (c) 2018-2025 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { ClrQuickListValue } from '@porscheinformatik/clr-addons';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ClrQuickListValue, ClrQuickList, ClrAddonsLabel, ClrAutocompleteOff } from '@porscheinformatik/clr-addons';
+import { ClrCommonFormsModule, ClrInputModule } from '@clr/angular';
 
 @Component({
   selector: 'app-quick-list-demo',
   templateUrl: './quick-list.demo.html',
-  standalone: false,
+  imports: [
+    FormsModule,
+    ClrCommonFormsModule,
+    ClrQuickList,
+    ClrAddonsLabel,
+    ClrInputModule,
+    ClrAutocompleteOff,
+    ReactiveFormsModule,
+  ],
 })
 export class QuickListDemo {
   options: Array<string> = [

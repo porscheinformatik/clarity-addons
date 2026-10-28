@@ -3,9 +3,22 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
+import { ClarityModule, ClrModalModule } from '@clr/angular';
+import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
+import { UtilsModule } from '../../../utils/utils.module';
+import { CommonModule } from '@angular/common';
 import { Component, inject, Injectable, OnInit, signal } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
-import { ClrHistoryModel, ClrHistoryNavigationService, ClrHistoryService } from '@porscheinformatik/clr-addons';
+import {
+  ClrHistoryModel,
+  ClrHistoryNavigationService,
+  ClrHistoryService,
+  ClrHistory,
+  ClrHistoryPinned,
+} from '@porscheinformatik/clr-addons';
+import { DocWrapper } from '../_doc-wrapper/doc-wrapper';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { CodeSnippet } from '../../../utils/code-snippet';
 
 const HTML_EXAMPLE = `
 <clr-history [clrUsername]="'admin'" [clrTenantId]="'1'"></clr-history>
@@ -49,14 +62,13 @@ export class ConfirmHistoryNavigationService extends ClrHistoryNavigationService
 
 const PROVIDER_EXAMPLE = `
 import { Component, inject } from '@angular/core';
-import { ClarityModule } from '@clr/angular';
-import { ClrHistoryModule, ClrHistoryNavigationService } from '@porscheinformatik/clr-addons';
+import { ClrHistory, ClrHistoryNavigationService } from '@porscheinformatik/clr-addons';
 import { ConfirmHistoryNavigationService } from './confirm-history-navigation.service';
 
 @Component({
   selector: 'app-page',
   templateUrl: './page.html',
-  imports: [ClarityModule, ClrHistoryModule],
+  imports: [ClarityModule, ClrHistory],
   providers: [
     ConfirmHistoryNavigationService,
     { provide: ClrHistoryNavigationService, useExisting: ConfirmHistoryNavigationService },
@@ -97,7 +109,19 @@ export class HistoryDemoNavigationService extends ClrHistoryNavigationService {
     { provide: ClrHistoryNavigationService, useExisting: HistoryDemoNavigationService },
   ],
   styles: ['.history-demo > * { display: block; margin-top: -12px; }', '.clrweb-DoxMedia-block { min-height: 60px; }'],
-  standalone: false,
+  imports: [
+    DocWrapper,
+    RouterLink,
+    RouterLinkActive,
+    CodeSnippet,
+    ClrHistory,
+    ClrHistoryPinned,
+    ClrModalModule,
+    CommonModule,
+    UtilsModule,
+    DocWrapperModule,
+    ClarityModule,
+  ],
 })
 export class HistoryDemo extends ClarityDocComponent implements OnInit {
   htmlExample = HTML_EXAMPLE;

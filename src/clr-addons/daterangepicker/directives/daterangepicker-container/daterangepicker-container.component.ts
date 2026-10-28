@@ -13,16 +13,18 @@ import {
   calendarIcon,
   checkCircleIcon,
   ClarityIcons,
+  ClrCommonFormsModule,
+  ClrCommonStrings,
+  ClrCommonStringsService,
+  ClrIcon,
+  ClrLayout,
+  ClrPopoverContent,
+  ClrPopoverModuleNext,
+  ClrPopoverPosition,
+  ClrPopoverService,
   exclamationCircleIcon,
   trashIcon,
   windowCloseIcon,
-} from '@clr/angular/icon';
-import {
-  ClrCommonStrings,
-  ClrCommonStringsService,
-  ClrLayout,
-  ClrPopoverPosition,
-  ClrPopoverService,
 } from '@clr/angular';
 import { Subscription } from 'rxjs';
 
@@ -40,6 +42,9 @@ import { ClrDaterangepickerDirective } from '../daterangepicker/daterangepicker.
 import { DateTimerangePreset } from '../../interfaces/timerange-preset.interface';
 import { NullableTimeModel } from '../../models/time.model';
 import { NullableTimerange } from '../../interfaces/timerange.interface';
+import { NgClass } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { ClrTimepickerComponent } from '../timepicker/timepicker.component';
 
 ClarityIcons.addIcons(calendarIcon, exclamationCircleIcon, checkCircleIcon, windowCloseIcon, trashIcon);
 
@@ -51,7 +56,16 @@ ClarityIcons.addIcons(calendarIcon, exclamationCircleIcon, checkCircleIcon, wind
   templateUrl: './daterangepicker-container.component.html',
   styleUrls: ['./daterangepicker-container.component.scss'],
   providers: [ClrPopoverService, DaterangeControlStateService, DaterangeService, ControlIdService],
-  standalone: false,
+  imports: [
+    ClrCommonFormsModule,
+    NgClass,
+    ClrPopoverModuleNext,
+    ClrIcon,
+    ClrPopoverContent,
+    FormsModule,
+    ClrDatepickerComponent,
+    ClrTimepickerComponent,
+  ],
 })
 export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer implements AfterViewInit, OnDestroy {
   /**

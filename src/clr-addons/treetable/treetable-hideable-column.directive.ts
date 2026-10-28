@@ -28,10 +28,7 @@ import { map } from 'rxjs';
  * The structural directive captures its content as a TemplateRef (without ng-content),
  * which allows it to be safely instantiated in multiple places (header + menu).
  */
-@Directive({
-  selector: '[clrTtHideableColumn]',
-  standalone: false,
-})
+@Directive({ selector: '[clrTtHideableColumn]' })
 export class ClrTreetableHideableColumn implements OnInit, OnDestroy {
   private readonly _titleTemplateRef: TemplateRef<any> = inject(TemplateRef);
   private readonly _viewContainerRef = inject(ViewContainerRef);

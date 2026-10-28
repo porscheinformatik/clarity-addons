@@ -3,11 +3,30 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
+import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
+import { UtilsModule } from '../../../utils/utils.module';
+import {
+  ClarityIcons,
+  ClarityModule,
+  ClrCommonFormsModule,
+  ClrFormsModule,
+  flagIcon,
+  linkIcon,
+  unlinkIcon,
+} from '@clr/angular';
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { ClrMultilingualInputValidators } from '@porscheinformatik/clr-addons';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  ClrMultilingualInputValidators,
+  ClrMultilingualInput,
+  ClrAddonsLabel,
+  ClrMultilingualTextarea,
+  ClrRequiredAllMultilang,
+} from '@porscheinformatik/clr-addons';
 import { ClarityDocComponent } from '../clarity-doc';
-import { ClarityIcons, flagIcon, linkIcon, unlinkIcon } from '@clr/angular/icon';
+import { DocWrapper } from '../_doc-wrapper/doc-wrapper';
+import { CodeSnippet } from '../../../utils/code-snippet';
 
 ClarityIcons.addIcons(flagIcon, linkIcon, unlinkIcon);
 
@@ -132,7 +151,22 @@ this.languageIcons.set("EN", "unlink");
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
-  standalone: false,
+  imports: [
+    DocWrapper,
+    FormsModule,
+    ClrCommonFormsModule,
+    ReactiveFormsModule,
+    ClrMultilingualInput,
+    ClrAddonsLabel,
+    ClrMultilingualTextarea,
+    CodeSnippet,
+    ClrRequiredAllMultilang,
+    CommonModule,
+    ClarityModule,
+    ClrFormsModule,
+    UtilsModule,
+    DocWrapperModule,
+  ],
 })
 export class MultilingualInputDemo extends ClarityDocComponent implements OnInit {
   templateExample = TEMPLATE_EXAMPLE;

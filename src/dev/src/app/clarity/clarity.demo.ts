@@ -3,11 +3,16 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component } from '@angular/core';
 import {
-  ClarityIcons,
   calendarIcon,
   checkIcon,
+  ClarityIcons,
+  ClarityModule,
+  ClrAlertModule,
+  ClrFormsModule,
+  ClrIcon,
+  ClrStackViewModule,
+  ClrTreeViewModule,
   cogIcon,
   dashboardIcon,
   errorStandardIcon,
@@ -19,7 +24,10 @@ import {
   lineChartIcon,
   mapIcon,
   warningStandardIcon,
-} from '@clr/angular/icon';
+} from '@clr/angular';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 
 ClarityIcons.addIcons(
   homeIcon,
@@ -45,7 +53,16 @@ ClarityIcons.addIcons(
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
-  standalone: false,
+  imports: [
+    ClrAlertModule,
+    ClrIcon,
+    ClrStackViewModule,
+    ClrTreeViewModule,
+    CommonModule,
+    FormsModule,
+    ClarityModule,
+    ClrFormsModule,
+  ],
 })
 export class ClarityDemo {
   readonly rootDirectory: readonly any[] = [

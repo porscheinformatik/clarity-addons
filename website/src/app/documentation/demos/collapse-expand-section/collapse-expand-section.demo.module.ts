@@ -12,7 +12,6 @@ import { CollapseExpandSectionDemo } from './collapse-expand-section.demo';
 import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
 import { RouterModule } from '@angular/router';
 import { UtilsModule } from '../../../utils/utils.module';
-import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
 
 @NgModule({
   imports: [
@@ -22,9 +21,8 @@ import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
     UtilsModule,
     DocWrapperModule,
     RouterModule.forChild([{ path: '', component: CollapseExpandSectionDemo }]),
-    ClrAddonsModule,
+    CollapseExpandSectionDemo,
   ],
-  declarations: [CollapseExpandSectionDemo],
   exports: [CollapseExpandSectionDemo],
 })
 export class CollapseExpandSectionDemoModule {}

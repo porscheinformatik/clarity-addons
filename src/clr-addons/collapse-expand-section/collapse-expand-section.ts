@@ -6,7 +6,8 @@
 
 import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { angleIcon, ClarityIcons } from '@clr/angular/icon';
+import { angleIcon, ClarityIcons, ClrIcon } from '@clr/angular';
+import { NgTemplateOutlet } from '@angular/common';
 
 ClarityIcons.addIcons(angleIcon);
 
@@ -31,7 +32,7 @@ ClarityIcons.addIcons(angleIcon);
       transition('false => true', animate('300ms ease-in')),
     ]),
   ],
-  standalone: false,
+  imports: [NgTemplateOutlet, ClrIcon],
 })
 export class ClrCollapseExpandSection implements AfterViewInit {
   @Input('clrIsCollapsed') isCollapsed = true;

@@ -4,11 +4,13 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { ClrTreetableFilterInterface } from '@porscheinformatik/clr-addons';
+import { ClrTreetableFilterInterface, ClrAutocompleteOff, ClrAddonsLabel } from '@porscheinformatik/clr-addons';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { OrganizationUnitMember, Role, RoleEnum } from './treetable.demo';
+import { ClrCheckboxModule, ClrCommonFormsModule, ClrIcon } from '@clr/angular';
+import { TitleCasePipe, KeyValuePipe } from '@angular/common';
 
 @Component({
   selector: 'clr-role-type-filter',
@@ -18,16 +20,16 @@ import { OrganizationUnitMember, Role, RoleEnum } from './treetable.demo';
     </button>
     <clr-checkbox-container cds-layout="m-t:xs">
       @for (role of RoleEnum | keyvalue; track $index) {
-      <clr-checkbox-wrapper>
-        <input
-          type="checkbox"
-          clrCheckbox
-          [name]="role.key"
-          [checked]="isSelected(role.value)"
-          (change)="toggleSelection(role.value)"
-        />
-        <label [for]="role.key">{{ role.key | titlecase }}</label>
-      </clr-checkbox-wrapper>
+        <clr-checkbox-wrapper>
+          <input
+            type="checkbox"
+            clrCheckbox
+            [name]="role.key"
+            [checked]="isSelected(role.value)"
+            (change)="toggleSelection(role.value)"
+          />
+          <label [for]="role.key">{{ role.key | titlecase }}</label>
+        </clr-checkbox-wrapper>
       }
     </clr-checkbox-container>
   `,
@@ -40,7 +42,15 @@ import { OrganizationUnitMember, Role, RoleEnum } from './treetable.demo';
     }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
+  imports: [
+    ClrIcon,
+    ClrCheckboxModule,
+    ClrAutocompleteOff,
+    ClrCommonFormsModule,
+    ClrAddonsLabel,
+    TitleCasePipe,
+    KeyValuePipe,
+  ],
 })
 export class TreetableRoleTypeFilterComponent implements ClrTreetableFilterInterface<OrganizationUnitMember, Role[]> {
   protected readonly RoleEnum = RoleEnum;

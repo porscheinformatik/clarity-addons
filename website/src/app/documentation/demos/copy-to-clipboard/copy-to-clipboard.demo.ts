@@ -3,8 +3,28 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
+import { UtilsModule } from '../../../utils/utils.module';
+import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
+import { ClarityModule, ClrAlertModule, ClrDatagridModule, ClrIcon } from '@clr/angular';
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
+import { DocWrapper } from '../_doc-wrapper/doc-wrapper';
+import {
+  ClrCopyToClipboard,
+  ClrTreetable,
+  TreetableMainRenderer,
+  ClrTreetableColumn,
+  TreetableHeaderRenderer,
+  ClrTreetableRow,
+  TreetableRowRenderer,
+  ClrTreetableCell,
+  TreetableCellRenderer,
+  ClrTreetablePlaceholder,
+  CLR_TREETABLE_DIRECTIVES,
+} from '@porscheinformatik/clr-addons';
+import { CodeSnippet } from '../../../utils/code-snippet';
+import { CurrencyPipe } from '@angular/common';
 
 const DATAGRID_EXAMPLE = `<clr-datagrid>
   <clr-dg-column>ID</clr-dg-column>
@@ -93,7 +113,29 @@ interface TreeNode {
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
-  standalone: false,
+  imports: [
+    DocWrapper,
+    ClrIcon,
+    ClrAlertModule,
+    ClrDatagridModule,
+    ClrCopyToClipboard,
+    CodeSnippet,
+    ClrTreetable,
+    TreetableMainRenderer,
+    ClrTreetableColumn,
+    TreetableHeaderRenderer,
+    ClrTreetableRow,
+    TreetableRowRenderer,
+    ClrTreetableCell,
+    TreetableCellRenderer,
+    ClrTreetablePlaceholder,
+    CommonModule,
+    ClarityModule,
+    ...CLR_TREETABLE_DIRECTIVES,
+    DocWrapperModule,
+    UtilsModule,
+    CurrencyPipe,
+  ],
 })
 export class CopyToClipboardDemo extends ClarityDocComponent {
   datagridExample = DATAGRID_EXAMPLE;

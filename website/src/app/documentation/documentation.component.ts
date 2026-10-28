@@ -1,6 +1,17 @@
 import { Component } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { ClarityIcons, gridChartIcon, helpInfoIcon, libraryIcon, updateIcon, worldIcon } from '@clr/angular/icon';
+import {
+  ClarityIcons,
+  ClrIcon,
+  ClrVerticalNavModule,
+  gridChartIcon,
+  helpInfoIcon,
+  libraryIcon,
+  updateIcon,
+  worldIcon,
+} from '@clr/angular';
+import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { DocumentationNavLinksComponent } from './documentation-nav-links.component';
 
 ClarityIcons.addIcons(helpInfoIcon, worldIcon, gridChartIcon, libraryIcon, updateIcon);
 
@@ -10,7 +21,7 @@ ClarityIcons.addIcons(helpInfoIcon, worldIcon, gridChartIcon, libraryIcon, updat
   host: {
     '[class.content-container]': 'true',
   },
-  standalone: false,
+  imports: [RouterOutlet, ClrVerticalNavModule, RouterLink, RouterLinkActive, ClrIcon, DocumentationNavLinksComponent],
 })
 export class DocumentationComponent {
   environment = environment;

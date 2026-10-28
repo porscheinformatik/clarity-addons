@@ -10,7 +10,6 @@ import { ClarityModule } from '@clr/angular';
 
 import { StickyFooterLayoutDemo } from './sticky-footer-layout.demo';
 import { DemoMenuModule } from '../demo-menu/demo-menu.module';
-import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
 
 @NgModule({
   imports: [
@@ -18,9 +17,8 @@ import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
     ClarityModule,
     DemoMenuModule,
     RouterModule.forChild([{ path: '', component: StickyFooterLayoutDemo, outlet: 'fullpage' }]),
-    ClrAddonsModule,
+    StickyFooterLayoutDemo,
   ],
-  declarations: [StickyFooterLayoutDemo],
   exports: [StickyFooterLayoutDemo],
 })
 export class StickyFooterLayoutDemoModule {}

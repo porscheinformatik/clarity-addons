@@ -12,7 +12,6 @@ import { PagerDemo } from './pager.demo';
 import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
 import { RouterModule } from '@angular/router';
 import { UtilsModule } from '../../../utils/utils.module';
-import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
 
 @NgModule({
   imports: [
@@ -22,9 +21,8 @@ import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
     UtilsModule,
     DocWrapperModule,
     RouterModule.forChild([{ path: '', component: PagerDemo }]),
-    ClrAddonsModule,
+    PagerDemo,
   ],
-  declarations: [PagerDemo],
   exports: [PagerDemo],
 })
 export class PagerDemoModule {}

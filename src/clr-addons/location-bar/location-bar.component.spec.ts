@@ -32,8 +32,7 @@ describe('LocationBarComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [LocationBarComponent, LocationBarNodeComponent],
-      imports: [ClrIcon, ClrDropdownModule],
+      imports: [ClrIcon, ClrDropdownModule, LocationBarComponent, LocationBarNodeComponent],
       providers: [{ provide: CONTENT_PROVIDER, useClass: TestContentProvider }],
     }).compileComponents();
 

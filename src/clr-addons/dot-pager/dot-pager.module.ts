@@ -1,19 +1,18 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { ClarityModule } from '@clr/angular';
 
 import { ClrDotPager } from './dot-pager';
 
+/**
+ * @deprecated Compatibility wrapper for NgModule-based consumers. Import the standalone `ClrDotPager` directly instead.
+ */
 @NgModule({
-  imports: [CommonModule, ClarityModule, FormsModule],
-  declarations: [ClrDotPager],
+  imports: [ClrDotPager],
   exports: [ClrDotPager],
 })
 export class ClrDotPagerModule {}

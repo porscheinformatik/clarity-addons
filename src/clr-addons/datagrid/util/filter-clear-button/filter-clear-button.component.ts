@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ClarityIcons, trashIcon } from '@clr/angular/icon';
+import { ClarityIcons, ClrIcon, trashIcon } from '@clr/angular';
 
 ClarityIcons.addIcons(trashIcon);
 
@@ -12,7 +12,7 @@ ClarityIcons.addIcons(trashIcon);
   selector: 'clr-filter-clear-button',
   templateUrl: './filter-clear-button.component.html',
   styleUrls: ['./filter-clear-button.component.scss'],
-  standalone: false,
+  imports: [ClrIcon],
 })
 export class ClrFilterClearButtonComponent {
   @Input() testId = 'filter-clear-button';

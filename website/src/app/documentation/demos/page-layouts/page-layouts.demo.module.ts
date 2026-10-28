@@ -19,8 +19,8 @@ import { UtilsModule } from '../../../utils/utils.module';
     UtilsModule,
     DocWrapperModule,
     RouterModule.forChild([{ path: '', component: PageLayoutsDemo }]),
+    PageLayoutsDemo,
   ],
-  declarations: [PageLayoutsDemo],
   exports: [PageLayoutsDemo],
 })
 export class PageLayoutsDemoModule {}

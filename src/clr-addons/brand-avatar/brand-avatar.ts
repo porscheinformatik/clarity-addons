@@ -4,8 +4,9 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
+import { ClarityIcons, ClarityModule, ClrIcon } from '@clr/angular';
+import { CommonModule } from '@angular/common';
 import { Component, ElementRef, HostBinding, Input, Renderer2, ViewChild } from '@angular/core';
-import { ClarityIcons } from '@clr/angular/icon';
 import {
   audiBrandIcon,
   cupraBrandIcon,
@@ -17,6 +18,7 @@ import {
   vwBrandIcon,
   vwnBrandIcon,
 } from '../icons';
+import { NgClass } from '@angular/common';
 
 export enum AcceptedBrands {
   AUDI,
@@ -45,7 +47,7 @@ ClarityIcons.addIcons(
 @Component({
   selector: 'clr-brand-avatar',
   templateUrl: './brand-avatar.html',
-  standalone: false,
+  imports: [ClrIcon, NgClass, CommonModule, ClarityModule],
 })
 export class ClrBrandAvatar {
   @HostBinding('class.clr-brand-avatar') avatar = true;

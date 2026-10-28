@@ -7,12 +7,13 @@
 import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { ClarityModule } from '@clr/angular';
 import { FormsModule } from '@angular/forms';
-import { ClrTreetableActionOverflow, ClrTreetableModule, ClrTreetableRow } from '@porscheinformatik/clr-addons';
+import { ClrTreetableActionOverflow, ClrTreetableRow } from '@porscheinformatik/clr-addons';
 import { Component, DebugElement, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClrTreetableRowCheckbox } from './treetable-row-checkbox';
 import { ClrTreetableSelectedState } from './enums/selection-type';
+import { CLR_TREETABLE_DIRECTIVES } from './treetable.module';
 
 type Item = {
   id: number;
@@ -25,7 +26,7 @@ type Item = {
       <clr-tt-row> </clr-tt-row>
     </clr-treetable>
   `,
-  standalone: false,
+  imports: [ClarityModule, FormsModule, ...CLR_TREETABLE_DIRECTIVES],
 })
 class EmptyTestComponent {}
 
@@ -50,7 +51,7 @@ class EmptyTestComponent {}
       </clr-tt-row>
     </clr-treetable>
   `,
-  standalone: false,
+  imports: [ClarityModule, FormsModule, ...CLR_TREETABLE_DIRECTIVES],
 })
 class ActionOverflowTestComponent {}
 
@@ -68,7 +69,7 @@ class ActionOverflowTestComponent {}
       </clr-tt-row>
     </clr-treetable>
   `,
-  standalone: false,
+  imports: [ClarityModule, FormsModule, ...CLR_TREETABLE_DIRECTIVES],
 })
 class RowClickableTestComponent {
   // Signals for testing the inputs, mirror the default values to test the default behaviour
@@ -86,7 +87,7 @@ class RowClickableTestComponent {
       </clr-tt-row>
     </clr-treetable>
   `,
-  standalone: false,
+  imports: [ClarityModule, FormsModule, ...CLR_TREETABLE_DIRECTIVES],
 })
 class SelectableTestComponent {
   allItems = signal<Item[]>([
@@ -108,13 +109,16 @@ describe('ClrTreetableRow', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
+      imports: [
+        ClarityModule,
+        FormsModule,
+        ...CLR_TREETABLE_DIRECTIVES,
+        BrowserAnimationsModule,
         EmptyTestComponent,
         ActionOverflowTestComponent,
         RowClickableTestComponent,
         SelectableTestComponent,
       ],
-      imports: [ClarityModule, FormsModule, ClrTreetableModule, BrowserAnimationsModule],
     }).compileComponents();
   }));
 

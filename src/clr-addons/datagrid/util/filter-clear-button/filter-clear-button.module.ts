@@ -1,11 +1,11 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ClarityModule } from '@clr/angular';
 import { ClrFilterClearButtonComponent } from './filter-clear-button.component';
 
+/**
+ * @deprecated Compatibility wrapper for NgModule-based consumers. Import the standalone `ClrFilterClearButtonComponent` directly instead.
+ */
 @NgModule({
-  imports: [ClarityModule, CommonModule],
-  declarations: [ClrFilterClearButtonComponent],
+  imports: [ClrFilterClearButtonComponent],
   exports: [ClrFilterClearButtonComponent],
 })
 export class ClrFilterClearButtonModule {}

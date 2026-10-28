@@ -18,7 +18,6 @@ export enum CircleProgressLayout {
   templateUrl: './circle-progress-bar.component.html',
   styleUrl: './circle-progress-bar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class CircleProgressBarComponent {
   public readonly backgroundColorCircle = input<string>(DEFAULT_BACKGROUND_COLOR);

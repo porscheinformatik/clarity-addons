@@ -4,6 +4,8 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
+import { ClarityIcons, ClarityModule, ClrIcon, plusCircleIcon, trashIcon } from '@clr/angular';
+import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
   Component,
@@ -19,7 +21,7 @@ import {
   TemplateRef,
   ViewChildren,
 } from '@angular/core';
-import { ClarityIcons, plusCircleIcon, trashIcon } from '@clr/angular/icon';
+import { NgClass, NgTemplateOutlet } from '@angular/common';
 
 ClarityIcons.addIcons(trashIcon, plusCircleIcon);
 
@@ -31,7 +33,7 @@ export interface ClrGenericQuickListItem {
   selector: 'clr-generic-quick-list',
   host: { '[class.generic-quick-list]': 'true', '[class.clr-form-control]': 'true' },
   templateUrl: './generic-quick-list.html',
-  standalone: false,
+  imports: [NgClass, NgTemplateOutlet, ClrIcon, CommonModule, ClarityModule],
 })
 export class ClrGenericQuickList<T extends ClrGenericQuickListItem> implements OnInit, AfterViewInit, OnDestroy {
   @Input('clrAllItems') allItems = [] as T[];

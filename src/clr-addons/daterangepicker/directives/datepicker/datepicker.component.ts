@@ -1,11 +1,12 @@
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 
 import { DayModel, NullableDayModel } from '../../models/day.model';
+import { ClrCommonFormsModule, ClrDatepickerModule } from '@clr/angular';
 
 @Component({
   selector: 'clr-datepicker',
   templateUrl: './datepicker.component.html',
-  standalone: false,
+  imports: [ClrDatepickerModule, ClrCommonFormsModule],
 })
 export class ClrDatepickerComponent {
   /**

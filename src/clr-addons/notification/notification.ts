@@ -7,8 +7,9 @@
 import { Component, EventEmitter, Input, NgZone, OnInit, Output, ElementRef, ViewChild } from '@angular/core';
 import { animate, style, transition, trigger, state } from '@angular/animations';
 import { Subscription } from 'rxjs';
-import { ClrAlert } from '@clr/angular';
+import { ClrAlert, ClrAlertModule } from '@clr/angular';
 import { zonedInterval, zonedTimer } from './scheduler-utils';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'clr-notification',
@@ -35,7 +36,7 @@ import { zonedInterval, zonedTimer } from './scheduler-utils';
   host: {
     '[class.notification]': 'true',
   },
-  standalone: false,
+  imports: [NgClass, ClrAlertModule],
 })
 export class ClrNotification implements OnInit {
   @ViewChild(ClrAlert, { static: true }) clrAlert: ClrAlert;

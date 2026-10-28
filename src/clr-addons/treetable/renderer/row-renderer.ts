@@ -6,10 +6,7 @@
 import { contentChildren, Directive } from '@angular/core';
 import { TreetableCellRenderer } from './cell-renderer';
 
-@Directive({
-  selector: 'clr-tt-row',
-  standalone: false,
-})
+@Directive({ selector: 'clr-tt-row' })
 export class TreetableRowRenderer {
   readonly cells = contentChildren(TreetableCellRenderer);
 }

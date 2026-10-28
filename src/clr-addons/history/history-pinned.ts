@@ -12,11 +12,12 @@ import { HISTORY_PROVIDER, HistoryProvider } from './history.provider';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ClrHistoryNavigationService } from './history-navigation.service';
 import { isHistoryNavigationClick } from './history-navigation-click';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'clr-history-pinned',
   templateUrl: './history-pinned.html',
-  standalone: false,
+  imports: [AsyncPipe],
 })
 export class ClrHistoryPinned implements OnInit, OnDestroy {
   @Input('clrUsername') username: string;

@@ -5,13 +5,13 @@
  */
 
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ClrGenericQuickList } from './generic-quick-list';
-import { ClarityModule } from '@clr/angular';
 
+/**
+ * @deprecated Compatibility wrapper for NgModule-based consumers. Import the standalone `ClrGenericQuickList` directly instead.
+ */
 @NgModule({
-  imports: [CommonModule, ClarityModule],
-  declarations: [ClrGenericQuickList],
+  imports: [ClrGenericQuickList],
   exports: [ClrGenericQuickList],
 })
 export class ClrGenericQuickListModule {}

@@ -3,8 +3,12 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
+import { UtilsModule } from '../../../utils/utils.module';
+import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
+import { ClarityModule, ClrAlertModule } from '@clr/angular';
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { share } from 'rxjs';
 import { ClarityDocComponent } from '../clarity-doc';
 import type {
@@ -18,6 +22,18 @@ import type {
   PieChartData,
   XYChartSeries,
 } from '@porscheinformatik/clr-addons/charts';
+import { DocWrapper } from '../_doc-wrapper/doc-wrapper';
+import { CodeSnippet } from '../../../utils/code-snippet';
+import {
+  BarChartComponent,
+  GroupedBarChartComponent,
+  LineChartComponent,
+  AreaChartComponent,
+  ComboChartComponent,
+  PieChartComponent,
+  FunnelChartComponent,
+} from '@porscheinformatik/clr-addons/charts';
+import { AsyncPipe } from '@angular/common';
 
 // ── Code snippets ──────────────────────────────────────────────────────────────
 
@@ -325,7 +341,6 @@ export interface MyChartData {
   selector: 'clr-my-chart',
   templateUrl: './my-chart.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class MyChartComponent extends ChartBase<MyChartData> implements OnChanges {
   // Required input – your chart's data
@@ -403,17 +418,10 @@ const ADD_CHART_HTML = `<div class="chart-container">
 const ADD_CHART_MODULE_TS = `// charts.module.ts
 import { MyChartComponent } from './my-chart/my-chart.component';
 
-const CLR_CHARTS_DECLARATIONS = [
+export const CLR_CHARTS_DECLARATIONS = [
   // … existing components …
   MyChartComponent,
-];
-
-@NgModule({
-  declarations: [...CLR_CHARTS_DECLARATIONS],
-  exports: [...CLR_CHARTS_DECLARATIONS],
-  // …
-})
-export class ClrChartsModule {}`;
+] as const;`;
 
 @Component({
   selector: 'clr-charts-demo',
@@ -422,7 +430,24 @@ export class ClrChartsModule {}`;
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
-  standalone: false,
+  imports: [
+    DocWrapper,
+    RouterLink,
+    CodeSnippet,
+    ClrAlertModule,
+    BarChartComponent,
+    GroupedBarChartComponent,
+    LineChartComponent,
+    AreaChartComponent,
+    ComboChartComponent,
+    PieChartComponent,
+    FunnelChartComponent,
+    CommonModule,
+    ClarityModule,
+    DocWrapperModule,
+    UtilsModule,
+    AsyncPipe,
+  ],
 })
 export class ChartsDemo extends ClarityDocComponent {
   // ── Code snippets ──────────────────────────────────────────────────────────

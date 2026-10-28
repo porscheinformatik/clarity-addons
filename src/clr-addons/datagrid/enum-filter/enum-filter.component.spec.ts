@@ -19,7 +19,7 @@ import { provideNoopAnimations } from '@angular/platform-browser/animations';
       </clr-dg-row>
     </clr-datagrid>
   `,
-  standalone: false,
+  imports: [ClarityModule, FormsModule, ClrEnumFilterComponent],
 })
 class TestComponent {
   dataList = [{ name: 'TestValue1' }, { name: 'TestValue2' }];
@@ -42,7 +42,7 @@ class TestComponent {
       </clr-dg-row>
     </clr-datagrid>
   `,
-  standalone: false,
+  imports: [ClarityModule, FormsModule, ClrEnumFilterComponent],
 })
 class TestComponentCustomValues {
   dataList = [{ name: 'TestValue1' }, { name: 'TestValue2' }];
@@ -67,7 +67,7 @@ class TestComponentCustomValues {
       </clr-dg-row>
     </clr-datagrid>
   `,
-  standalone: false,
+  imports: [ClarityModule, FormsModule, ClrEnumFilterComponent],
 })
 class TestComponentCustomValuesWithDisplayValues {
   dataList = [{ name: 'TestValue1' }, { name: 'TestValue2' }];
@@ -98,7 +98,7 @@ class TestComponentCustomValuesWithDisplayValues {
       </clr-datagrid>
     </body>
   `,
-  standalone: false,
+  imports: [ClarityModule, FormsModule, ClrEnumFilterComponent],
 })
 class TestComponentPreselectedValues {
   dataList = [{ name: 'TestValue1' }, { name: 'TestValue2' }, { name: 'TestValue3' }];
@@ -115,8 +115,7 @@ describe('EnumFilterComponent', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [ClarityModule, FormsModule],
-        declarations: [TestComponent, ClrEnumFilterComponent],
+        imports: [ClarityModule, FormsModule, TestComponent, ClrEnumFilterComponent],
         providers: [provideNoopAnimations()],
       }).compileComponents();
     }));
@@ -146,8 +145,7 @@ describe('EnumFilterComponent', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [ClarityModule, FormsModule],
-        declarations: [TestComponentCustomValues, ClrEnumFilterComponent],
+        imports: [ClarityModule, FormsModule, TestComponentCustomValues, ClrEnumFilterComponent],
         providers: [provideNoopAnimations()],
       }).compileComponents();
     }));
@@ -177,8 +175,7 @@ describe('EnumFilterComponent', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [ClarityModule, FormsModule],
-        declarations: [TestComponentCustomValuesWithDisplayValues, ClrEnumFilterComponent],
+        imports: [ClarityModule, FormsModule, TestComponentCustomValuesWithDisplayValues, ClrEnumFilterComponent],
         providers: [provideNoopAnimations()],
       }).compileComponents();
     }));
@@ -214,8 +211,7 @@ describe('EnumFilterComponent', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [ClarityModule, FormsModule],
-        declarations: [TestComponentPreselectedValues, ClrEnumFilterComponent],
+        imports: [ClarityModule, FormsModule, TestComponentPreselectedValues, ClrEnumFilterComponent],
         providers: [provideNoopAnimations()],
       }).compileComponents();
     }));

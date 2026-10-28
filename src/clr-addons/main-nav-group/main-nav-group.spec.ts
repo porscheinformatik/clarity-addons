@@ -7,7 +7,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ClarityModule } from '@clr/angular';
 import { Component } from '@angular/core';
-import { ClrMainNavGroupModule } from './main-nav-group.module';
+import { ClrMainNavGroup } from './main-nav-group';
 
 @Component({
   template: `
@@ -22,7 +22,7 @@ import { ClrMainNavGroupModule } from './main-nav-group.module';
       </div>
     </div>
   `,
-  standalone: false,
+  imports: [ClarityModule, ClrMainNavGroup],
 })
 class TestComponent {
   hamburgerMenu = false;
@@ -35,8 +35,7 @@ describe('ClrMainNavGroupComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [TestComponent],
-      imports: [ClarityModule, ClrMainNavGroupModule],
+      imports: [ClarityModule, ClrMainNavGroup, TestComponent],
     }).compileComponents();
   }));
 

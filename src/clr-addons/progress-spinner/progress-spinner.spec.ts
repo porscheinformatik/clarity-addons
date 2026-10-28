@@ -20,15 +20,14 @@ import { CommonModule } from '@angular/common';
       k
     </clr-progress-spinner>
   `,
-  standalone: false,
+  imports: [CommonModule, ClarityModule, ClrProgressSpinnerComponent],
 })
 class TestComponent {
   public loadingState = false;
 }
 
 @NgModule({
-  declarations: [ClrProgressSpinnerComponent],
-  imports: [ClarityModule, CommonModule],
+  imports: [ClarityModule, CommonModule, ClrProgressSpinnerComponent],
   exports: [ClrProgressSpinnerComponent],
 })
 class ClrProgressSpinnerComponentTestModule {}
@@ -39,8 +38,7 @@ describe('ProgressSpinnerDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [TestComponent],
-      imports: [CommonModule, ClarityModule, ClrProgressSpinnerComponentTestModule],
+      imports: [CommonModule, ClarityModule, ClrProgressSpinnerComponentTestModule, TestComponent],
     }).compileComponents();
   }));
 

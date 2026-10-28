@@ -461,14 +461,24 @@ import {
   wlanHotspotIcon,
   wrenchForwardIcon,
 } from '@porscheinformatik/clr-addons';
-import { ClarityIcons, downloadIcon, IconShapeTuple } from '@clr/angular';
+import {
+  ClarityIcons,
+  ClrCommonFormsModule,
+  ClrIcon,
+  ClrInputModule,
+  downloadIcon,
+  IconShapeTuple,
+} from '@clr/angular';
 import { debounceTime, Subject, takeUntil } from 'rxjs';
+import { FormsModule } from '@angular/forms';
+import { NgClass, NgTemplateOutlet } from '@angular/common';
+import { CodeSnippet } from '../../utils/code-snippet';
 
 @Component({
   selector: 'icons-sets',
   templateUrl: './icons-sets.component.html',
   styleUrl: './icons-sets.component.scss',
-  standalone: false,
+  imports: [FormsModule, ClrCommonFormsModule, ClrInputModule, NgClass, ClrIcon, NgTemplateOutlet, CodeSnippet],
 })
 export class IconsSetsComponent {
   icons = [

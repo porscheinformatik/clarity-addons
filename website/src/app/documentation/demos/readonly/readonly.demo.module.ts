@@ -6,7 +6,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ClarityModule, ClrFormsModule } from '@clr/angular';
-import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
 
 import { ReadonlyDemo } from './readonly.demo';
 import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
@@ -23,10 +22,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ClrFormsModule,
     ClarityModule,
-    ClrAddonsModule,
     ReactiveFormsModule,
+    ReadonlyDemo,
   ],
-  declarations: [ReadonlyDemo],
   exports: [ReadonlyDemo],
 })
 export class ReadonlyDemoModule {}

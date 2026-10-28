@@ -10,15 +10,26 @@ import {
   ViewChild,
 } from '@angular/core';
 import { SearchRequestModel } from '../location-bar.search.model';
-import { FormControl } from '@angular/forms';
-import { DropdownFocusHandler, FocusService } from '@clr/angular';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ClrCommonFormsModule, ClrInputModule, DropdownFocusHandler, FocusService } from '@clr/angular';
+import { ClrAddonsLabel } from '../../abstract-form-component/label';
+import { ClrAutocompleteOff } from '../../autocomplete-off/autocomplete-off.directive';
+import { ClrSearchField } from '../../searchfield/search-field';
 
 @Component({
   selector: 'clr-location-bar-search',
   templateUrl: './location-bar-search.component.html',
   styleUrls: ['location-bar-search.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
+  imports: [
+    FormsModule,
+    ClrCommonFormsModule,
+    ClrInputModule,
+    ClrAddonsLabel,
+    ClrAutocompleteOff,
+    ClrSearchField,
+    ReactiveFormsModule,
+  ],
 })
 export class LocationBarSearchComponent implements OnInit {
   private readonly focusService = inject(FocusService);

@@ -7,14 +7,14 @@ import { Component, signal } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 import { ClrAlertModule } from '@clr/angular';
-import { ClrChartsModule, PieChartData, PieChartValue } from '@porscheinformatik/clr-addons/charts';
+import { PieChartData, PieChartValue, CLR_CHARTS_DECLARATIONS } from '@porscheinformatik/clr-addons/charts';
 
 const COLORS = ['#e57200', '#00828b', '#c1326e', '#5b40b2', '#007cba', '#006b4a', '#9e3b00'];
 
 @Component({
   selector: 'clr-pie-chart-demo',
   templateUrl: './pie-chart.demo.html',
-  imports: [FormsModule, ClrAlertModule, ClrChartsModule],
+  imports: [FormsModule, ClrAlertModule, ...CLR_CHARTS_DECLARATIONS],
 })
 export class PieChartDemo {
   protected readonly error = signal(false);

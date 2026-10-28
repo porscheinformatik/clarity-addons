@@ -4,17 +4,32 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { ClarityDocComponent } from '../clarity-doc';
-import { Component, signal } from '@angular/core';
 import {
-  ClarityIcons,
   checkCircleIcon,
+  ClarityIcons,
+  ClarityModule,
+  ClrIcon,
   flagIcon,
   folderIcon,
+  popOutIcon,
   userIcon,
   usersIcon,
-  popOutIcon,
-} from '@clr/angular/icon';
+} from '@clr/angular';
+import { FormsModule } from '@angular/forms';
+import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
+import { UtilsModule } from '../../../utils/utils.module';
+import { CommonModule } from '@angular/common';
+import { ClarityDocComponent } from '../clarity-doc';
+import { Component, signal } from '@angular/core';
+import { DocWrapper } from '../_doc-wrapper/doc-wrapper';
+import { RouterLinkActive, RouterLink } from '@angular/router';
+import {
+  ClrSummaryArea,
+  ClrSummaryItem,
+  ClrSummaryItemValue,
+  ClrSummaryAreaToggle,
+} from '@porscheinformatik/clr-addons';
+import { CodeSnippet } from '../../../utils/code-snippet';
 
 ClarityIcons.addIcons(userIcon, usersIcon, flagIcon, folderIcon, checkCircleIcon, popOutIcon);
 
@@ -335,7 +350,22 @@ const COMPLETE_EXAMPLE = `<clr-summary-area [rows]="3">
     '[class.dox-content-panel]': 'true',
   },
   styleUrls: ['./summary-area.demo.scss'],
-  standalone: false,
+  imports: [
+    DocWrapper,
+    ClrIcon,
+    RouterLinkActive,
+    RouterLink,
+    ClrSummaryArea,
+    ClrSummaryItem,
+    ClrSummaryItemValue,
+    CodeSnippet,
+    ClrSummaryAreaToggle,
+    CommonModule,
+    UtilsModule,
+    DocWrapperModule,
+    FormsModule,
+    ClarityModule,
+  ],
 })
 export class SummaryAreaDemo extends ClarityDocComponent {
   // Code examples

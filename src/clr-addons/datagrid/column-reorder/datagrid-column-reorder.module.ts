@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { DatagridColumnReorderDirective } from './column-reorder.directive';
 import { DynamicCellContentComponent } from './dynamic-cell-content.component';
-import { NgComponentOutlet, NgTemplateOutlet } from '@angular/common';
 
+/**
+ * @deprecated Compatibility wrapper for NgModule-based consumers. Import the standalone `DatagridColumnReorderDirective`, `DynamicCellContentComponent` directly instead.
+ */
 @NgModule({
-  declarations: [DatagridColumnReorderDirective, DynamicCellContentComponent],
   exports: [DatagridColumnReorderDirective, DynamicCellContentComponent],
-  imports: [NgComponentOutlet, NgTemplateOutlet],
+  imports: [DatagridColumnReorderDirective, DynamicCellContentComponent],
 })
 export class ClrDatagridColumnReorderModule {}

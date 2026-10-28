@@ -17,10 +17,7 @@ import {
 import { ClrDropdown } from '@clr/angular';
 import { Subscription } from 'rxjs';
 
-@Directive({
-  selector: 'clr-dropdown-menu',
-  standalone: false,
-})
+@Directive({ selector: 'clr-dropdown-menu' })
 export class ClrDropdownOverflowDirective implements AfterViewChecked, OnDestroy {
   @Input() clrDropdownMenuMaxHeight: string | number; // can be of px, rem, vh, or a number (which then is considered as px value)
   @Input() clrDropdownMenuItemMinHeight: string | number; // can be of px, rem, vh, or a number (which then is considered as px value)

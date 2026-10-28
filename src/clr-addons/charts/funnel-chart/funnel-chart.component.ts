@@ -17,6 +17,13 @@ import { color as d3color, max as d3max, scaleLinear as d3scaleLinear, select as
 import { ERROR_ALERT_MESSAGE, ERROR_ALERT_TYPE } from '../constants';
 import { toChartColor } from '../utils';
 import { ChartBase } from '../shared/chart-base';
+import { WindowResizeDirective } from '../directives/window-resize.directive';
+import { ChartAlertOverlayComponent } from '../chart-alert-overlay/chart-alert-overlay.component';
+import { ClrIcon, ClrIfOpen, ClrPopoverContent, ClrSignpostModule } from '@clr/angular';
+import { FunnelSkeletonComponent } from '../shared/skeleton/funnel-chart-skeleton/funnel-skeleton.component';
+import { ChartTooltipComponent } from '../chart-tooltip/chart-tooltip.component';
+import { OutsideClickDirective } from '../directives/outside-click.directive';
+import { ChartExportButtonComponent } from '../chart-export/chart-export-button.component';
 
 // ─── Public types ─────────────────────────────────────────────────────────────
 
@@ -128,7 +135,18 @@ const DEFAULT_CHART_LABELS: FunnelChartLabels = {
   templateUrl: './funnel-chart.component.html',
   styleUrls: ['./funnel-chart.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
+  imports: [
+    WindowResizeDirective,
+    ChartAlertOverlayComponent,
+    ClrSignpostModule,
+    ClrIcon,
+    ClrIfOpen,
+    ClrPopoverContent,
+    FunnelSkeletonComponent,
+    ChartTooltipComponent,
+    OutsideClickDirective,
+    ChartExportButtonComponent,
+  ],
 })
 export class FunnelChartComponent extends ChartBase<FunnelDataPoint> implements OnChanges {
   // ── Inputs ──────────────────────────────────────────────────────────────────

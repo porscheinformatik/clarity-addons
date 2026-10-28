@@ -10,7 +10,6 @@ import { IconsLogosComponent } from './icons-logos/icons-logos.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [IconsComponent, IconsSetsComponent, IconsGetStartedComponent, IconsLogosComponent],
   imports: [
     CommonModule,
     ClarityModule,
@@ -20,6 +19,10 @@ import { FormsModule } from '@angular/forms';
     ClrIcon,
     NgTemplateOutlet,
     NgTemplateOutlet,
+    IconsComponent,
+    IconsSetsComponent,
+    IconsGetStartedComponent,
+    IconsLogosComponent,
   ],
   providers: [],
 })

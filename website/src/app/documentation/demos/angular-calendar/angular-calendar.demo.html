@@ -82,11 +82,10 @@
         let-locale="locale"
         let-dayHeaderClicked="dayHeaderClicked"
         let-eventDropped="eventDropped"
-        let-trackByWeekDayHeaderDate="trackByWeekDayHeaderDate"
         let-dragEnter="dragEnter"
       >
         <div class="cal-day-headers" role="row">
-          @for (day of days; track trackByWeekDayHeaderDate($index, day)) {
+          @for (day of days; track day.date.getTime()) {
           <div
             class="cal-header"
             [class.cal-past]="day.isPast"

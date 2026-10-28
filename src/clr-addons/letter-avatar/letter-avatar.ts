@@ -4,12 +4,14 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
+import { ClarityModule } from '@clr/angular';
+import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, HostBinding, Input, Renderer2, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'clr-letter-avatar',
   templateUrl: './letter-avatar.html',
-  standalone: false,
+  imports: [CommonModule, ClarityModule],
 })
 export class ClrLetterAvatar implements AfterViewInit {
   @HostBinding('class.clr-avatar') avatar = true;

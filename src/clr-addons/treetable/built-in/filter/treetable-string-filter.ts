@@ -16,9 +16,17 @@ import {
 } from '@angular/core';
 import { ClrTreetableFilterInterface, ClrTreetableStringFilterFunction } from '../../interfaces/filter-model';
 import { debounceTime, merge, Observable, Subject, take, tap } from 'rxjs';
-import { ClrCommonStringsService, ClrPopoverService } from '@clr/angular';
+import {
+  ClrCommonFormsModule,
+  ClrCommonStringsService,
+  ClrIcon,
+  ClrInputModule,
+  ClrPopoverService,
+} from '@clr/angular';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { filter } from 'rxjs/operators';
+import { ClrTreetableFilter } from '../../treetable-filter';
+import { FormsModule } from '@angular/forms';
 
 const DEBOUNCE_TIME = 300 as const;
 
@@ -59,7 +67,7 @@ const DEBOUNCE_TIME = 300 as const;
     }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
+  imports: [ClrTreetableFilter, ClrIcon, ClrInputModule, ClrCommonFormsModule, FormsModule],
 })
 export class ClrTreetableStringFilter<T extends object> implements ClrTreetableFilterInterface<T, string> {
   private readonly smartToggleService = inject(ClrPopoverService);

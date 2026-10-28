@@ -4,12 +4,15 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
+import { ClarityIcons, ClarityModule, ClrFormsModule, ClrIcon, plusCircleIcon } from '@clr/angular';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, forwardRef, Input, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
 import { CLR_BLANK_OPTION, ClrQuickListValue } from './add-option.service';
 import { ClrAddOption } from './add-option';
 import { ClrAbstractFormComponent } from '../abstract-form-component/abstract-form-component';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { ClarityIcons, plusCircleIcon } from '@clr/angular/icon';
+import { NgClass } from '@angular/common';
 
 ClarityIcons.addIcons(plusCircleIcon);
 
@@ -24,7 +27,7 @@ ClarityIcons.addIcons(plusCircleIcon);
       multi: true,
     },
   ],
-  standalone: false,
+  imports: [NgClass, ClrAddOption, ClrIcon, CommonModule, FormsModule, ClarityModule, ClrFormsModule, ClrAddOption],
 })
 export class ClrQuickList<T> extends ClrAbstractFormComponent implements OnInit {
   @Input('clrBlankOption') blankOption: ClrQuickListValue<T> = CLR_BLANK_OPTION;

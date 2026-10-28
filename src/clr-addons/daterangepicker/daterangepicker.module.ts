@@ -1,9 +1,5 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { ClarityModule, ClrDatepickerModule, ClrIcon } from '@clr/angular';
 
-import { ClrDatepickerComponent } from './directives/datepicker/datepicker.component';
 import { ClrDaterangepickerContainerComponent } from './directives/daterangepicker-container/daterangepicker-container.component';
 import { ClrDaterangepickerDirective } from './directives/daterangepicker/daterangepicker.directive';
 import { ClrIfDaterangeErrorDirective } from './directives/if-daterange-error.directive';
@@ -11,12 +7,12 @@ import { ClrDaterangeMaxValidator } from './validators/daterange-max.validator';
 import { ClrDaterangeMinValidator } from './validators/daterange-min.validator';
 import { ClrDaterangeOrderValidator } from './validators/daterange-order.validator';
 import { ClrDaterangeRequiredValidator } from './validators/daterange-required.validator';
-import { ClrTimepickerComponent } from './directives/timepicker/timepicker.component';
 
+/**
+ * @deprecated Compatibility wrapper for NgModule-based consumers. Import the standalone `ClrDaterangeMaxValidator`, `ClrDaterangeMinValidator`, `ClrDaterangeOrderValidator`, `ClrDaterangepickerContainerComponent`, `ClrDaterangepickerDirective`, `ClrDaterangeRequiredValidator`, `ClrIfDaterangeErrorDirective` directly instead.
+ */
 @NgModule({
-  imports: [CommonModule, FormsModule, ClarityModule, ClrDatepickerModule, ClrIcon],
-  declarations: [
-    ClrDatepickerComponent,
+  imports: [
     ClrDaterangeMaxValidator,
     ClrDaterangeMinValidator,
     ClrDaterangeOrderValidator,
@@ -24,7 +20,6 @@ import { ClrTimepickerComponent } from './directives/timepicker/timepicker.compo
     ClrDaterangepickerDirective,
     ClrDaterangeRequiredValidator,
     ClrIfDaterangeErrorDirective,
-    ClrTimepickerComponent,
   ],
   exports: [
     ClrDaterangeMaxValidator,

@@ -1,9 +1,6 @@
 import { Directive, ElementRef, Renderer2 } from '@angular/core';
 
-@Directive({
-  selector: '[clrMainNavGroupItem]',
-  standalone: false,
-})
+@Directive({ selector: '[clrMainNavGroupItem]' })
 export class ClrMainNavGroupItem {
   constructor(
     private el: ElementRef<HTMLElement>,

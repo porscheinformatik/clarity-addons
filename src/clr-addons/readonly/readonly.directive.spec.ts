@@ -2,8 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { ClrReadonlyDirectiveModule } from '@porscheinformatik/clr-addons';
 import { ClarityModule } from '@clr/angular';
+import { ClrReadonlyDirective } from './readonly.directive';
 
 @Component({
   template: `
@@ -104,7 +104,7 @@ import { ClarityModule } from '@clr/angular';
       </div>
     </form>
   `,
-  standalone: false,
+  imports: [ReactiveFormsModule, ClarityModule, FormsModule, ClrReadonlyDirective],
 })
 class TestComponent {
   form: FormGroup;
@@ -131,8 +131,7 @@ describe('ClrReadonlyDirective', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestComponent],
-      imports: [ReactiveFormsModule, ClarityModule, FormsModule, ClrReadonlyDirectiveModule],
+      imports: [ReactiveFormsModule, ClarityModule, FormsModule, ClrReadonlyDirective, TestComponent],
     });
 
     fixture = TestBed.createComponent(TestComponent);

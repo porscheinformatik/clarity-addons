@@ -9,19 +9,16 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ClarityModule } from '@clr/angular';
-import { ClrAddonsModule, ClrExportDatagridButtonModule } from '@porscheinformatik/clr-addons';
 import { TreetableDemo } from './treetable.demo';
 
 @NgModule({
   imports: [
     CommonModule,
     ClarityModule,
-    ClrAddonsModule,
-    ClrExportDatagridButtonModule,
     FormsModule,
     RouterModule.forChild([{ path: '', component: TreetableDemo }]),
+    TreetableDemo,
   ],
-  declarations: [TreetableDemo],
   exports: [TreetableDemo],
 })
 export class TreetableDemoModule {}

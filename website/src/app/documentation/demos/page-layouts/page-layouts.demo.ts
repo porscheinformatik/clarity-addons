@@ -3,11 +3,17 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
+import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
+import { UtilsModule } from '../../../utils/utils.module';
+import { ClarityIcons, ClarityModule, ClrButtonGroupModule, ClrIcon, displayIcon } from '@clr/angular';
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
-import { ClarityIcons, displayIcon } from '@clr/angular/icon';
 import { share } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
+import { DocWrapper } from '../_doc-wrapper/doc-wrapper';
+import { CodeSnippet } from '../../../utils/code-snippet';
+import { AsyncPipe } from '@angular/common';
 
 ClarityIcons.addIcons(displayIcon);
 
@@ -278,7 +284,19 @@ const HTML_EXAMPLE_CP = `
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
-  standalone: false,
+  imports: [
+    DocWrapper,
+    RouterLink,
+    ClrIcon,
+    CodeSnippet,
+    RouterLinkActive,
+    ClrButtonGroupModule,
+    CommonModule,
+    ClarityModule,
+    UtilsModule,
+    DocWrapperModule,
+    AsyncPipe,
+  ],
 })
 export class PageLayoutsDemo extends ClarityDocComponent {
   basePageCodeExample = BASEPAGE_CODE_EXAMPLE;

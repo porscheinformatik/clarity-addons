@@ -1,13 +1,11 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { ClarityModule } from '@clr/angular';
-import { ClrFilterClearButtonModule } from '../util/filter-clear-button';
 import { ClrNumericFilterComponent } from './numeric-filter.component';
 
+/**
+ * @deprecated Compatibility wrapper for NgModule-based consumers. Import the standalone `ClrNumericFilterComponent` directly instead.
+ */
 @NgModule({
-  imports: [ClarityModule, CommonModule, FormsModule, ClrFilterClearButtonModule],
-  declarations: [ClrNumericFilterComponent],
+  imports: [ClrNumericFilterComponent],
   exports: [ClrNumericFilterComponent],
 })
 export class ClrNumericFilterModule {}

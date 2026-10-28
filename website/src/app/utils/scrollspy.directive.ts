@@ -6,10 +6,7 @@ import { Directive, Input, OnDestroy, OnInit, ContentChildren, QueryList, Elemen
 import { RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-@Directive({
-  selector: '[scrollspy]',
-  standalone: false,
-})
+@Directive({ selector: '[scrollspy]' })
 export class ScrollSpy implements OnDestroy, OnInit {
   constructor(private renderer: Renderer2) {}
 

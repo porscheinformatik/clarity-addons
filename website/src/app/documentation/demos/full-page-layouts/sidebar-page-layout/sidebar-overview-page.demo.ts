@@ -6,15 +6,15 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import {
+  administratorIcon,
   ClarityIcons,
+  envelopeIcon,
+  loginIcon,
+  mapMarkerIcon,
+  mobileIcon,
   pencilIcon,
   userIcon,
-  envelopeIcon,
-  administratorIcon,
-  mobileIcon,
-  mapMarkerIcon,
-  loginIcon,
-} from '@clr/angular/icon';
+} from '@clr/angular';
 
 ClarityIcons.addIcons(userIcon, envelopeIcon, pencilIcon, administratorIcon, mobileIcon, mapMarkerIcon, loginIcon);
 
@@ -33,6 +33,5 @@ ClarityIcons.addIcons(userIcon, envelopeIcon, pencilIcon, administratorIcon, mob
       </ul>
     </div>
   `,
-  standalone: false,
 })
 export class SidebarOverviewPageDemo {}

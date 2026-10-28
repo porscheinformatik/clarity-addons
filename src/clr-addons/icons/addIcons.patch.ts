@@ -20,7 +20,7 @@
  * original addIcons, so there is no extra iconRegistry assignment and no duplicate CDS
  * state churn (same intent as the guard proposed in the issue).
  */
-import { ClarityIcons, IconShapeTuple } from '@clr/angular/icon';
+import { ClarityIcons, IconShapeTuple } from '@clr/angular';
 
 function patchClarityIconsAddIcons(): void {
   const patchedKey = '__serviceBaseClarityIconsAddIconsPatched';

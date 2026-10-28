@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { angleIcon, ClarityIcons } from '@clr/angular/icon';
+import { angleIcon, ClarityIcons, ClrDropdownModule, ClrIcon, ClrIfOpen, ClrPopoverContent } from '@clr/angular';
+import { ClrDropdownOverflowDirective } from '../dropdown/clr-dropdown-overflow.directive';
+import { KeyValuePipe } from '@angular/common';
 
 ClarityIcons.addIcons(angleIcon);
 
@@ -43,7 +45,7 @@ ClarityIcons.addIcons(angleIcon);
       </clr-dropdown>
     </div>
   `,
-  standalone: false,
+  imports: [ClrDropdownModule, ClrIcon, ClrIfOpen, ClrPopoverContent, ClrDropdownOverflowDirective, KeyValuePipe],
 })
 export class ClrMultilingualSelector {
   @Input() disabled: boolean;

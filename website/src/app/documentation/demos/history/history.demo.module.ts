@@ -6,7 +6,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ClarityModule } from '@clr/angular';
-import { ClrAddonsModule, HISTORY_TOKEN } from '@porscheinformatik/clr-addons';
+import { HISTORY_TOKEN } from '@porscheinformatik/clr-addons';
 
 import { HistoryDemo } from './history.demo';
 import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
@@ -21,9 +21,8 @@ import { MockClrHistoryHttpService } from './_mocks/history.http.mock.service';
     DocWrapperModule,
     RouterModule.forChild([{ path: '', component: HistoryDemo }]),
     ClarityModule,
-    ClrAddonsModule,
+    HistoryDemo,
   ],
-  declarations: [HistoryDemo],
   exports: [HistoryDemo],
   providers: [
     {

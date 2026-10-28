@@ -5,14 +5,41 @@
  */
 
 import { Component, Inject, DOCUMENT } from '@angular/core';
-import { ClarityIcons, angleIcon, applicationsIcon, cogIcon, userIcon, shoppingCartIcon } from '@clr/angular/icon';
+import {
+  angleIcon,
+  applicationsIcon,
+  ClarityIcons,
+  ClrDropdownModule,
+  ClrIcon,
+  ClrIfOpen,
+  ClrNavigationModule,
+  ClrPopoverContent,
+  ClrStandaloneCdkTrapFocus,
+  cogIcon,
+  shoppingCartIcon,
+  userIcon,
+} from '@clr/angular';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { ClrMainNavGroup, ClrMainNavGroupItem, ClrDropdownOverflowDirective } from '@porscheinformatik/clr-addons';
 
 ClarityIcons.addIcons(cogIcon, applicationsIcon, angleIcon, userIcon, shoppingCartIcon);
 
 @Component({
   selector: 'clr-demo-menu',
   templateUrl: './demo-menu.html',
-  standalone: false,
+  imports: [
+    ClrNavigationModule,
+    RouterLink,
+    ClrStandaloneCdkTrapFocus,
+    RouterLinkActive,
+    ClrMainNavGroup,
+    ClrMainNavGroupItem,
+    ClrDropdownModule,
+    ClrIcon,
+    ClrIfOpen,
+    ClrPopoverContent,
+    ClrDropdownOverflowDirective,
+  ],
 })
 export class DemoMenu {
   themes = [

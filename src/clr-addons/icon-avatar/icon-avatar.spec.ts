@@ -14,7 +14,7 @@ describe('IconAvatarComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ClrIconAvatar],
+      imports: [ClrIconAvatar],
     }).compileComponents();
   }));
 

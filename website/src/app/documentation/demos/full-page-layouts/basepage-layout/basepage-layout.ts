@@ -5,13 +5,42 @@
  */
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { ClrActionPanel, ClrContentPanel, ClrHistoryModel, ClrHistoryService } from '@porscheinformatik/clr-addons';
+import {
+  ClrActionPanel,
+  ClrContentPanel,
+  ClrHistoryModel,
+  ClrHistoryService,
+  ClrHistoryPinned,
+  ClrBackButton,
+  ClrHistory,
+  ClrContentPanelContainer,
+  ClrContentPanelContainerContent,
+  ClrActionPanelContainer,
+  ClrActionPanelContainerContent,
+} from '@porscheinformatik/clr-addons';
+import { ClrButtonGroupModule, ClrIcon, ClrMainContainerModule, ClrNavigationModule } from '@clr/angular';
+import { DemoMenu } from '../demo-menu/demo-menu';
 
 @Component({
   selector: 'clr-basepage-layout-demo',
   templateUrl: './basepage-layout.demo.html',
   providers: [ClrHistoryService],
-  standalone: false,
+  imports: [
+    ClrMainContainerModule,
+    ClrNavigationModule,
+    DemoMenu,
+    ClrHistoryPinned,
+    ClrBackButton,
+    ClrHistory,
+    ClrButtonGroupModule,
+    ClrIcon,
+    ClrContentPanelContainer,
+    ClrContentPanelContainerContent,
+    ClrContentPanel,
+    ClrActionPanelContainer,
+    ClrActionPanelContainerContent,
+    ClrActionPanel,
+  ],
 })
 export class BasepageLayoutDemo implements OnInit {
   withCommandBar = false;
@@ -28,7 +57,10 @@ export class BasepageLayoutDemo implements OnInit {
   @ViewChild('actionPanel')
   actionPanel: ClrActionPanel;
 
-  constructor(private router: Router, private historyService: ClrHistoryService) {}
+  constructor(
+    private router: Router,
+    private historyService: ClrHistoryService
+  ) {}
 
   ngOnInit(): void {
     this.withCommandBar = this.collectRouteData('withCommand')[0];

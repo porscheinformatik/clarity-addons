@@ -10,7 +10,6 @@ import { ClarityModule } from '@clr/angular';
 
 import { FlowBarLayoutDemo } from './flow-bar-layout.demo';
 import { DemoMenuModule } from '../demo-menu/demo-menu.module';
-import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
 
 @NgModule({
   imports: [
@@ -18,9 +17,8 @@ import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
     ClarityModule,
     DemoMenuModule,
     RouterModule.forChild([{ path: '', component: FlowBarLayoutDemo, outlet: 'fullpage' }]),
-    ClrAddonsModule,
+    FlowBarLayoutDemo,
   ],
-  declarations: [FlowBarLayoutDemo],
   exports: [FlowBarLayoutDemo],
 })
 export class FlowBarLayoutDemoModule {}

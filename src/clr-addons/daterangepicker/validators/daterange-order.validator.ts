@@ -22,7 +22,6 @@ import { NullableTimerange } from '../interfaces/timerange.interface';
       multi: true,
     },
   ],
-  standalone: false,
 })
 export class ClrDaterangeOrderValidator implements Validator {
   /** Validation error name. */

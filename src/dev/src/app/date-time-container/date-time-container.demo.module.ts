@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2019 Porsche Informatik. All Rights Reserved.
+ * Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -9,7 +9,6 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { ClarityModule } from '@clr/angular';
-import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
 
 import { DateTimeContainerDemo } from './date-time-container.demo';
 
@@ -17,11 +16,10 @@ import { DateTimeContainerDemo } from './date-time-container.demo';
   imports: [
     CommonModule,
     ClarityModule,
-    ClrAddonsModule,
     FormsModule,
     RouterModule.forChild([{ path: '', component: DateTimeContainerDemo }]),
+    DateTimeContainerDemo,
   ],
-  declarations: [DateTimeContainerDemo],
   exports: [DateTimeContainerDemo],
 })
 export class DateTimeContainerDemoModule {}

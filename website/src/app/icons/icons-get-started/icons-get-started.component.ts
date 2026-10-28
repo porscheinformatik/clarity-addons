@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CodeSnippet } from '../../utils/code-snippet';
 
 const IMPORT_ADDONS_ICONS = `
 import {
@@ -27,7 +28,7 @@ const USAGE_ADDONS_ICONS_BADGED = `
 @Component({
   selector: 'icons-get-started',
   templateUrl: './icons-get-started.component.html',
-  standalone: false,
+  imports: [CodeSnippet],
 })
 export class IconsGetStartedComponent {
   importAddonsIcons = IMPORT_ADDONS_ICONS;

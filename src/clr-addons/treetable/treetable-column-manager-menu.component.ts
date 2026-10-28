@@ -1,13 +1,21 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import {
+  CdkTrapFocusModule,
+  ClrCheckboxModule,
+  ClrCommonFormsModule,
   ClrCommonStringsService,
+  ClrIcon,
+  ClrPopoverContent,
   ClrPopoverHostDirective,
+  ClrPopoverModuleNext,
   ClrPopoverPosition,
   ClrPopoverService,
   ClrPopoverType,
 } from '@clr/angular';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { TreetableColumnStateService } from './providers/treetable-column-state.service';
+import { FormsModule } from '@angular/forms';
+import { NgTemplateOutlet } from '@angular/common';
 
 let id = 0;
 
@@ -97,7 +105,16 @@ let id = 0;
   },
   hostDirectives: [ClrPopoverHostDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
+  imports: [
+    ClrPopoverModuleNext,
+    ClrPopoverContent,
+    CdkTrapFocusModule,
+    ClrIcon,
+    ClrCheckboxModule,
+    FormsModule,
+    ClrCommonFormsModule,
+    NgTemplateOutlet,
+  ],
 })
 export class ClrTreetableColumnManagerMenuComponent {
   protected readonly popoverId = `clr-column-manager-menu-id-${id++}`;

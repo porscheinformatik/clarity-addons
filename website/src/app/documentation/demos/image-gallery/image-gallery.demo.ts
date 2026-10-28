@@ -3,9 +3,15 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
+import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
+import { UtilsModule } from '../../../utils/utils.module';
+import { ClarityModule } from '@clr/angular';
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ClrImageGalleryImage } from '@porscheinformatik/clr-addons';
+import { ClrImageGalleryImage, ClrImageGallery } from '@porscheinformatik/clr-addons';
 import { ClarityDocComponent } from '../clarity-doc';
+import { DocWrapper } from '../_doc-wrapper/doc-wrapper';
+import { CodeSnippet } from '../../../utils/code-snippet';
 
 const HTML_EXAMPLE = `
 <clr-image-gallery
@@ -22,7 +28,7 @@ const HTML_EXAMPLE = `
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
-  standalone: false,
+  imports: [DocWrapper, ClrImageGallery, CodeSnippet, CommonModule, ClarityModule, UtilsModule, DocWrapperModule],
 })
 export class ImageGalleryDemo extends ClarityDocComponent {
   htmlExample = HTML_EXAMPLE;

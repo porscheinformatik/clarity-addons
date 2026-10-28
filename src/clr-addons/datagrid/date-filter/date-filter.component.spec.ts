@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ClarityModule, ClrDatagrid } from '@clr/angular';
 import { ClrDateFilterComponent } from './date-filter.component';
-import { ClrDateTimeModule } from '@porscheinformatik/clr-addons';
 import { FormsModule } from '@angular/forms';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 
@@ -24,7 +23,7 @@ const tomorrow = new Date(Date.now() + 24 * 1000 * 60 * 60);
       </clr-dg-row>
     </clr-datagrid>
   `,
-  standalone: false,
+  imports: [ClarityModule, FormsModule, ClrDateFilterComponent],
 })
 class TestComponent {
   dataList = [{ date: today }, { date: tomorrow }];
@@ -49,7 +48,7 @@ class TestComponent {
       </clr-datagrid>
     </body>
   `,
-  standalone: false,
+  imports: [ClarityModule, FormsModule, ClrDateFilterComponent],
 })
 class TestComponentPreselectedValues {
   dataList = [{ date: yesterday }, { date: today }, { date: tomorrow }];
@@ -80,7 +79,7 @@ class TestComponentPreselectedValues {
       </clr-datagrid>
     </body>
   `,
-  standalone: false,
+  imports: [ClarityModule, FormsModule, ClrDateFilterComponent],
 })
 class TestComponentPreselectedTimeValues {
   dataList = [{ date: yesterday }, { date: today }, { date: tomorrow }];
@@ -96,8 +95,7 @@ describe('DateFilterComponent', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [ClarityModule, ClrDateTimeModule, FormsModule],
-        declarations: [TestComponent, ClrDateFilterComponent],
+        imports: [ClarityModule, FormsModule, TestComponent, ClrDateFilterComponent],
         providers: [provideNoopAnimations()],
       }).compileComponents();
     }));
@@ -126,8 +124,7 @@ describe('DateFilterComponent', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [ClarityModule, ClrDateTimeModule, FormsModule],
-        declarations: [TestComponentPreselectedValues, ClrDateFilterComponent],
+        imports: [ClarityModule, FormsModule, TestComponentPreselectedValues, ClrDateFilterComponent],
         providers: [provideNoopAnimations()],
       }).compileComponents();
     }));
@@ -151,8 +148,7 @@ describe('DateFilterComponent', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [ClarityModule, ClrDateTimeModule, FormsModule],
-        declarations: [TestComponentPreselectedTimeValues, ClrDateFilterComponent],
+        imports: [ClarityModule, FormsModule, TestComponentPreselectedTimeValues, ClrDateFilterComponent],
         providers: [provideNoopAnimations()],
       }).compileComponents();
     }));

@@ -17,8 +17,9 @@ import localePtPT from '@angular/common/locales/pt-PT';
 import localeSeSE from '@angular/common/locales/se-SE';
 import localeRo from '@angular/common/locales/ro';
 
-import { registerLocaleData } from '@angular/common';
-import { ClarityIcons, infoCircleIcon } from '@clr/angular/icon';
+import { registerLocaleData, DecimalPipe, CurrencyPipe, DatePipe } from '@angular/common';
+import { ClarityIcons, ClrAlertModule, ClrIcon, ClrSelectModule, infoCircleIcon } from '@clr/angular';
+import { FormsModule } from '@angular/forms';
 
 registerLocaleData(localeDe);
 registerLocaleData(localeDeAT);
@@ -68,7 +69,7 @@ enum LocaleDataIndex {
   host: {
     '[class.content-area]': 'true',
   },
-  standalone: false,
+  imports: [FormsModule, ClrSelectModule, ClrIcon, ClrAlertModule, DecimalPipe, CurrencyPipe, DatePipe],
 })
 export class InternationalizationComponent {
   // If you want to extend this to more locales, simply import the locale file, call registerLocaleData()

@@ -5,16 +5,10 @@ import { By } from '@angular/platform-browser';
 import { ClrAddonsLabel } from './label';
 import { ControlIdService } from './control-id.service';
 
-@Component({
-  template: `<label></label>`,
-  standalone: false,
-})
+@Component({ template: `<label></label>`, imports: [ClrAddonsLabel] })
 class NoForTest {}
 
-@Component({
-  template: `<label [for]="forValue"></label>`,
-  standalone: false,
-})
+@Component({ template: `<label [for]="forValue"></label>`, imports: [ClrAddonsLabel] })
 class ExplicitForTest {
   forValue = 'hello';
 }
@@ -22,7 +16,7 @@ class ExplicitForTest {
 @Component({
   template: `<div><label for="hello"></label></div>`,
   providers: [ControlIdService],
-  standalone: false,
+  imports: [ClrAddonsLabel],
 })
 class ContainerizedTest {
   @ViewChild(ClrAddonsLabel, { static: true })
@@ -31,7 +25,7 @@ class ContainerizedTest {
 
 describe('ClrAddonsLabel', () => {
   it("doesn't crash if it is not used in an Angular form", function () {
-    TestBed.configureTestingModule({ declarations: [ClrAddonsLabel, NoForTest] });
+    TestBed.configureTestingModule({ imports: [ClrAddonsLabel, NoForTest] });
     expect(() => {
       const fixture = TestBed.createComponent(NoForTest);
       fixture.detectChanges();
@@ -39,7 +33,7 @@ describe('ClrAddonsLabel', () => {
   });
 
   it("doesn't set the the class unless its inside of a container", function () {
-    TestBed.configureTestingModule({ declarations: [ClrAddonsLabel, NoForTest] });
+    TestBed.configureTestingModule({ imports: [ClrAddonsLabel, NoForTest] });
     const fixture = TestBed.createComponent(NoForTest);
     fixture.detectChanges();
     expect(fixture.debugElement.query(By.css('label')).nativeElement.classList.contains('clr-control-label')).toBe(
@@ -49,7 +43,7 @@ describe('ClrAddonsLabel', () => {
 
   it('does set the the class when its inside of a container', function () {
     TestBed.configureTestingModule({
-      declarations: [ClrAddonsLabel, ContainerizedTest],
+      imports: [ClrAddonsLabel, ContainerizedTest],
     });
     const fixture = TestBed.createComponent(ContainerizedTest);
     fixture.detectChanges();
@@ -59,7 +53,7 @@ describe('ClrAddonsLabel', () => {
   });
 
   it('sets the for attribute to the id given by the service', fakeAsync(() => {
-    TestBed.configureTestingModule({ declarations: [ClrAddonsLabel, NoForTest], providers: [ControlIdService] });
+    TestBed.configureTestingModule({ imports: [ClrAddonsLabel, NoForTest], providers: [ControlIdService] });
     const fixture = TestBed.createComponent(NoForTest);
     fixture.detectChanges();
     const controlIdService = fixture.debugElement.injector.get(ControlIdService);
@@ -73,7 +67,7 @@ describe('ClrAddonsLabel', () => {
   }));
 
   it('leaves the for attribute untouched if it exists', function () {
-    TestBed.configureTestingModule({ declarations: [ClrAddonsLabel, ExplicitForTest], providers: [ControlIdService] });
+    TestBed.configureTestingModule({ imports: [ClrAddonsLabel, ExplicitForTest], providers: [ControlIdService] });
     const fixture = TestBed.createComponent(ExplicitForTest);
     fixture.detectChanges();
     const label = fixture.nativeElement.querySelector('label');
@@ -81,7 +75,7 @@ describe('ClrAddonsLabel', () => {
   });
 
   it('provides a host binding on the for attribute', function () {
-    TestBed.configureTestingModule({ declarations: [ClrAddonsLabel, ExplicitForTest], providers: [ControlIdService] });
+    TestBed.configureTestingModule({ imports: [ClrAddonsLabel, ExplicitForTest], providers: [ControlIdService] });
     const fixture = TestBed.createComponent(ExplicitForTest);
     fixture.componentInstance.forValue = 'updatedFor';
     fixture.changeDetectorRef.detectChanges();

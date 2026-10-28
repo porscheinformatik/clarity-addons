@@ -1,14 +1,11 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { ClarityModule } from '@clr/angular';
 import { ClrDateFilterComponent } from './date-filter.component';
-import { ClrDateTimeModule } from '../../date-time-container';
-import { ClrFormModule } from '../../abstract-form-component';
 
+/**
+ * @deprecated Compatibility wrapper for NgModule-based consumers. Import the standalone `ClrDateFilterComponent` directly instead.
+ */
 @NgModule({
-  imports: [ClarityModule, CommonModule, FormsModule, ClrDateTimeModule, ClrFormModule],
-  declarations: [ClrDateFilterComponent],
+  imports: [ClrDateFilterComponent],
   exports: [ClrDateFilterComponent],
 })
 export class ClrDateFilterModule {}

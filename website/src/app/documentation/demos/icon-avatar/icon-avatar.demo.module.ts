@@ -12,7 +12,6 @@ import { IconAvatarDemo } from './icon-avatar.demo';
 import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
 import { RouterModule } from '@angular/router';
 import { UtilsModule } from '../../../utils/utils.module';
-import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
 
 @NgModule({
   imports: [
@@ -22,9 +21,8 @@ import { ClrAddonsModule } from '@porscheinformatik/clr-addons';
     UtilsModule,
     DocWrapperModule,
     RouterModule.forChild([{ path: '', component: IconAvatarDemo }]),
-    ClrAddonsModule,
+    IconAvatarDemo,
   ],
-  declarations: [IconAvatarDemo],
   exports: [IconAvatarDemo],
 })
 export class IconAvatarDemoModule {}

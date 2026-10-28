@@ -15,7 +15,6 @@ const DEFAULT_TEST_ID = 'treetable-cell';
     '[class.treetable-cell]': 'true',
     role: 'gridcell',
   },
-  standalone: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClrTreetableCell implements AfterViewInit {

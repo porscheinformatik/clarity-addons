@@ -11,7 +11,6 @@ import {
   ClrTreetable,
   ClrTreetableActionOverflow,
   ClrTreetableColumn,
-  ClrTreetableModule,
   ClrTreetableRow,
 } from '@porscheinformatik/clr-addons';
 import { Component, DebugElement, signal } from '@angular/core';
@@ -21,6 +20,7 @@ import { ClrTreetableSelectedState, SelectionType } from './enums/selection-type
 import { ExpectedRowSelectionState, expectRowsToHaveSelectionStates } from './treetable-row.spec';
 import { ClrTreetableRowCheckbox } from './treetable-row-checkbox';
 import { TreetableColumnStateService } from './providers/treetable-column-state.service';
+import { CLR_TREETABLE_DIRECTIVES } from './treetable.module';
 
 type Item = {
   id: number;
@@ -37,7 +37,7 @@ type Item = {
       </clr-tt-row>
     </clr-treetable>
   `,
-  standalone: false,
+  imports: [ClarityModule, FormsModule, ...CLR_TREETABLE_DIRECTIVES],
 })
 class HideHeaderTestComponent {
   readonly hideHeader = signal(false);
@@ -55,7 +55,7 @@ class HideHeaderTestComponent {
       </clr-tt-row>
     </clr-treetable>
   `,
-  standalone: false,
+  imports: [ClarityModule, FormsModule, ...CLR_TREETABLE_DIRECTIVES],
 })
 class ClickableRowTestComponent {
   readonly clickableRows = signal(true);
@@ -80,7 +80,7 @@ class ClickableRowTestComponent {
       </clr-tt-row>
     </clr-treetable>
   `,
-  standalone: false,
+  imports: [ClarityModule, FormsModule, ...CLR_TREETABLE_DIRECTIVES],
 })
 class ActionOverflowTestComponent {}
 
@@ -93,7 +93,7 @@ class ActionOverflowTestComponent {}
       </clr-tt-row>
     </clr-treetable>
   `,
-  standalone: false,
+  imports: [ClarityModule, FormsModule, ...CLR_TREETABLE_DIRECTIVES],
 })
 class SelectionTestComponent {
   readonly items = signal<Item[]>([
@@ -131,7 +131,7 @@ class SelectionTestComponent {
       </clr-tt-row>
     </clr-treetable>
   `,
-  standalone: false,
+  imports: [ClarityModule, FormsModule, ...CLR_TREETABLE_DIRECTIVES],
 })
 class AsyncColumnTestComponent {
   readonly showMiddle = signal(false);
@@ -144,7 +144,7 @@ class AsyncColumnTestComponent {
       <clr-tt-placeholder>Nothing here</clr-tt-placeholder>
     </clr-treetable>
   `,
-  standalone: false,
+  imports: [ClarityModule, FormsModule, ...CLR_TREETABLE_DIRECTIVES],
 })
 class CustomPlaceholderTestComponent {}
 
@@ -164,7 +164,11 @@ describe('ClrTreetable', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
+      imports: [
+        ClarityModule,
+        FormsModule,
+        ...CLR_TREETABLE_DIRECTIVES,
+        BrowserAnimationsModule,
         HideHeaderTestComponent,
         ClickableRowTestComponent,
         ActionOverflowTestComponent,
@@ -172,7 +176,6 @@ describe('ClrTreetable', () => {
         AsyncColumnTestComponent,
         CustomPlaceholderTestComponent,
       ],
-      imports: [ClarityModule, FormsModule, ClrTreetableModule, BrowserAnimationsModule],
     }).compileComponents();
   }));
 

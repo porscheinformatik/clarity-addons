@@ -1,6 +1,15 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { ClrDatagrid } from '@clr/angular';
-import { CustomExportType, ExportDatagridService, ExportType, ExportTypeEnum } from '@porscheinformatik/clr-addons';
+import { ClrDatagrid, ClrDatagridModule } from '@clr/angular';
+import {
+  CustomExportType,
+  ExportDatagridService,
+  ExportType,
+  ExportTypeEnum,
+  ExportDatagridButtonComponent,
+  DatagridFieldDirective,
+  ColumnHiddenStatePersistenceDirective,
+  ClrEnumFilterComponent,
+} from '@porscheinformatik/clr-addons';
 
 enum StatusEnum {
   ACTIVE = 'Active',
@@ -18,7 +27,14 @@ interface ExportableEntry {
 @Component({
   selector: 'app-exportable-datagrid',
   templateUrl: './exportable-datagrid.component.html',
-  standalone: false,
+  providers: [ExportDatagridService],
+  imports: [
+    ExportDatagridButtonComponent,
+    ClrDatagridModule,
+    DatagridFieldDirective,
+    ColumnHiddenStatePersistenceDirective,
+    ClrEnumFilterComponent,
+  ],
 })
 export class ExportableDatagridComponent {
   exportableEntries: ExportableEntry[] = [
