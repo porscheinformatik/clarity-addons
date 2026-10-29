@@ -209,12 +209,12 @@ describe('ClrTreetable', () => {
       expect(component.hasActionOverflow()).toBe(false);
     });
 
-    it('should render the default placeholder icon without text when no placeholder is declared', () => {
+    it('should render the default placeholder icon with fallback text when no placeholder is declared', () => {
       const placeholder = fixture.debugElement.query(By.css('[data-testid="treetable-placeholder"]'));
 
       expect(placeholder).toBeTruthy();
       expect(placeholder.query(By.css('[data-testid="treetable-placeholder-image"]'))).toBeTruthy();
-      expect(placeholder.nativeElement.textContent.trim()).toBe('');
+      expect(placeholder.nativeElement.textContent.trim()).toBe('No data available');
     });
   });
 

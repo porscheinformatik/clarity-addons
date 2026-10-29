@@ -40,6 +40,7 @@ import {
   StatePersistenceKeyDirective,
   ColumnHiddenStatePersistenceDirective,
   ExportDatagridButtonComponent,
+  ClrDatagridPlaceholderText,
 } from '@porscheinformatik/clr-addons';
 import { DocWrapper } from '../_doc-wrapper/doc-wrapper';
 import { CodeSnippet } from '../../../utils/code-snippet';
@@ -553,6 +554,7 @@ class IsSubscribedComponent {
     ClrAlertModule,
     StatePersistenceKeyDirective,
     ColumnHiddenStatePersistenceDirective,
+    ClrDatagridPlaceholderText,
     NgClass,
     ClrIcon,
     ExportDatagridButtonComponent,

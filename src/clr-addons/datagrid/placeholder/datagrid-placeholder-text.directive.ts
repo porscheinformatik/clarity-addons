@@ -9,6 +9,7 @@ import { ClrCommonStringsService } from '@clr/angular';
 /**
  * Shows the common string `datagridNoData` in an empty `clr-datagrid` that has no `clr-dg-placeholder` content.
  * Clarity's datagrid placeholder has no default text, so the text is passed to the placeholder styles.
+ * Clarity does not define `datagridNoData` itself, so "No data available" is used unless the application localizes it.
  */
 @Directive({
   selector: 'clr-datagrid',
@@ -18,7 +19,7 @@ export class ClrDatagridPlaceholderText {
   private readonly commonStrings = inject(ClrCommonStringsService).keys as { datagridNoData?: string };
 
   protected cssValue(): string | null {
-    const text = this.commonStrings.datagridNoData;
+    const text = this.commonStrings.datagridNoData || 'No data available';
     return text ? `"${text.replace(/[\\"]/g, '\\$&').replace(/\n/g, '\\a ')}"` : null;
   }
 }

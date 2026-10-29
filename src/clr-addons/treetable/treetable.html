@@ -38,7 +38,9 @@
       <ng-content select="clr-tt-row" />
       } @if (empty() && !clrTtLoading()) {
       <ng-content select="clr-tt-placeholder"
-        ><clr-tt-placeholder>{{ $any(commonStrings).datagridNoData }}</clr-tt-placeholder></ng-content
+        ><clr-tt-placeholder
+          >{{ $any(commonStrings).datagridNoData || 'No data available' }}</clr-tt-placeholder
+        ></ng-content
       >
       }
     </div>
