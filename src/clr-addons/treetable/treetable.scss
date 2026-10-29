@@ -699,6 +699,7 @@ $cell-min-width: var(--cds-global-space-12);
         align-items: center;
         justify-content: center;
         font-size: var(--clr-datagrid-placeholder-font-size);
+        font-weight: var(--cds-alias-typography-body-font-weight);
         color: var(--clr-dark-midtone-gray);
       }
 

@@ -35,6 +35,7 @@ import { ClrFormModule } from './abstract-form-component';
 import { ClrDropdownOverflowModule } from './dropdown';
 import {
   ClrDatagridColumnReorderModule,
+  ClrDatagridPlaceholderText,
   ClrDatagridStatePersistenceModule,
   ClrDateFilterModule,
   ClrEnumFilterModule,
@@ -64,6 +65,7 @@ import { CngInputSuffixDirective } from './input-suffix';
     ClrKeyboardNavCtrlArrowDirective,
     ClrKeyboardNavAltMnemonicDirective,
     CngInputSuffixDirective,
+    ClrDatagridPlaceholderText,
   ],
   exports: [
     ClrViewEditSectionModule,
@@ -112,6 +114,7 @@ import { CngInputSuffixDirective } from './input-suffix';
     ClrProgressBarModule,
     ClrProgressCircleModule,
     CngInputSuffixDirective,
+    ClrDatagridPlaceholderText,
   ],
 })
 export class ClrAddonsModule {}

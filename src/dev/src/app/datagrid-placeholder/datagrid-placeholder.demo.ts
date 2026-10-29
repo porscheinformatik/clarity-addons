@@ -5,10 +5,11 @@
  */
 import { Component } from '@angular/core';
 import { ClrDatagridModule } from '@clr/angular';
+import { ClrDatagridPlaceholderText } from '@porscheinformatik/clr-addons';
 
 @Component({
   selector: 'clr-datagrid-placeholder-demo',
   templateUrl: './datagrid-placeholder.demo.html',
-  imports: [ClrDatagridModule],
+  imports: [ClrDatagridModule, ClrDatagridPlaceholderText],
 })
 export class DatagridPlaceholderDemo {}
