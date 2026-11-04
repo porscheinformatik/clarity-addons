@@ -48,6 +48,14 @@ export class ClrImageGallery {
   protected readonly staticThumbnails = computed(() => this.images().slice(1, this.maxThumbnails + 1));
   protected readonly remainingCount = computed(() => this.images().length - this.maxThumbnails - 1);
 
+  /**
+   * NgOptimizedImage does not support data URIs (e.g. base64 encoded uploads),
+   * so those images are rendered with a plain `src` binding instead.
+   */
+  protected isDataUri(src: string | null | undefined): boolean {
+    return !!src && src.trim().toLowerCase().startsWith('data:');
+  }
+
   protected openModal(index = 0): void {
     if (this.useBuiltInModal()) {
       this.activeIndex.set(index);

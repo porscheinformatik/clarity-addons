@@ -82,6 +82,18 @@
   </div>
 </div>
 
+<!-- Mixed data URIs and URLs -->
+<div class="card" style="margin-bottom: 1.5rem">
+  <div class="card-header">Mixed sources – base64 data URIs and external URLs</div>
+  <div class="card-block" style="padding: 1rem">
+    <clr-image-gallery
+      [images]="mixedImages()"
+      [productName]="'Mixed sources'"
+      [spotlightSize]="spotlightSize()"
+    ></clr-image-gallery>
+  </div>
+</div>
+
 <!-- Single image -->
 <div class="card">
   <div class="card-header">Single image – no thumbnail row</div>
