@@ -259,7 +259,9 @@ export class ClrDaterangepickerContainerComponent extends ClrAbstractContainer i
         this.clrPopoverEventsService.outsideClickClose = !hasOpenDatePickers;
         // We need to wait before we attach the click listener.
         requestAnimationFrame(() => {
-          this.clrPopoverEventsService.addClickListener();
+          if (this.clrPopoverToggleService.open) {
+            this.clrPopoverEventsService.addClickListener();
+          }
         });
       })
     );
