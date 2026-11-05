@@ -29,6 +29,7 @@ jobs:
           npm ci
           npm run deploy:ci
       - name: Deploy 🚀
+        if: github.event.release.target_commitish == 'master'
         uses: JamesIves/github-pages-deploy-action@v4.9.0
         with:
           branch: gh-pages # The branch the action should deploy to.
