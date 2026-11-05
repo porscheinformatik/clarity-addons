@@ -32,6 +32,35 @@ export class ImageGalleryDemo {
 
   singleImage: ClrImageGalleryImage[] = [{ src: 'https://picsum.photos/seed/single/800/600', alt: 'Single image' }];
 
+  readonly mixedImages = signal<ClrImageGalleryImage[]>([]);
+
+  constructor() {
+    this.loadMixedImages();
+  }
+
+  /** Simulates uploaded images by converting downloaded photos into base64 data URIs. */
+  private async loadMixedImages(): Promise<void> {
+    const [upload1, upload2] = await Promise.all([
+      this.toDataUri('https://picsum.photos/seed/upload1/800/600'),
+      this.toDataUri('https://picsum.photos/seed/upload2/800/600'),
+    ]);
+    this.mixedImages.set([
+      { src: upload1, alt: 'Uploaded image 1 (data URI)' },
+      { src: 'https://picsum.photos/seed/mixed1/800/600', alt: 'External image (URL)' },
+      { src: upload2, alt: 'Uploaded image 2 (data URI)' },
+    ]);
+  }
+
+  private async toDataUri(url: string): Promise<string> {
+    const blob = await (await fetch(url)).blob();
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = () => reject(reader.error);
+      reader.readAsDataURL(blob);
+    });
+  }
+
   setSpotlightSize(val: string): void {
     const n = Number.parseInt(val);
     if (!Number.isNaN(n) && n > 0) {

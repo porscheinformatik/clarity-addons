@@ -15,6 +15,17 @@
     data-testid="image-gallery-spotlight"
   >
     @if (images().length > 0) {
+    <!-- NgOptimizedImage does not support data URIs, so they use a plain src binding -->
+    @if (isDataUri(images()[0].src)) {
+    <img
+      [src]="images()[0].src"
+      [width]="spotlightSize()"
+      [height]="spotlightSize()"
+      [alt]="images()[0].alt || ''"
+      class="clr-image-gallery__spotlight-img"
+      data-testid="image-gallery-spotlight-image"
+    />
+    } @else {
     <img
       [ngSrc]="images()[0].src"
       [width]="spotlightSize()"
@@ -23,7 +34,7 @@
       class="clr-image-gallery__spotlight-img"
       data-testid="image-gallery-spotlight-image"
     />
-    }
+    } }
   </div>
 
   <!-- Thumbnail row -->
@@ -37,6 +48,16 @@
       (click)="openModal(i + 1)"
       [attr.data-testid]="'image-gallery-thumbnail-' + (i + 1)"
     >
+      @if (isDataUri(img.src)) {
+      <img
+        [src]="img.src"
+        [width]="thumbnailSize()"
+        [height]="thumbnailSize()"
+        [alt]="img.alt || ''"
+        class="clr-image-gallery__thumb-img"
+        [attr.data-testid]="'image-gallery-thumbnail-image-' + (i + 1)"
+      />
+      } @else {
       <img
         [ngSrc]="img.src"
         [width]="thumbnailSize()"
@@ -45,6 +66,7 @@
         class="clr-image-gallery__thumb-img"
         [attr.data-testid]="'image-gallery-thumbnail-image-' + (i + 1)"
       />
+      }
       <!-- Overlay on last thumbnail when there are more images -->
       @if (i === maxThumbnails - 1 && remainingCount() > 0) {
       <div class="clr-image-gallery__thumb-overlay" data-testid="image-gallery-remaining-overlay">

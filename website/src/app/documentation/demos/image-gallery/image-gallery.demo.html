@@ -31,7 +31,10 @@
             </td>
             <td class="left clr-hidden-xs-down">ClrImageGalleryImage[]</td>
             <td class="clr-hidden-xs-down">[]</td>
-            <td class="left">Array of image objects with <code>src</code> and optional <code>alt</code> fields.</td>
+            <td class="left">
+              Array of image objects with <code>src</code> and optional <code>alt</code> fields. <code>src</code> can be
+              a URL or a base64 data URI.
+            </td>
           </tr>
           <tr>
             <td class="left">
@@ -73,6 +76,20 @@
 
       <h4>Smaller spotlight (200 px)</h4>
       <clr-image-gallery [images]="images" [productName]="'Porsche 911'" [spotlightSize]="200"></clr-image-gallery>
+
+      <h4>Base64 data URIs (e.g. uploaded images)</h4>
+      <p>
+        Images can also be passed as complete data URIs, for example <code>data:image/png;base64,...</code> or
+        <code>data:image/jpeg;base64,...</code>, and can be mixed with URLs. Raw bytes or base64 strings without the
+        <code>data:</code> prefix are not supported. Data URIs are rendered with a plain <code>src</code> binding, URLs
+        keep using <code>NgOptimizedImage</code>.
+      </p>
+      <clr-image-gallery
+        [images]="mixedImages()"
+        [productName]="'Mixed sources'"
+        [spotlightSize]="200"
+      ></clr-image-gallery>
+      <clr-code-snippet [clrCode]="dataUriExample" clrLanguage="typescript"></clr-code-snippet>
     </div>
   </article>
 </clr-doc-wrapper>
