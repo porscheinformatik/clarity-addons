@@ -148,6 +148,32 @@ class AsyncColumnTestComponent {
 })
 class CustomPlaceholderTestComponent {}
 
+@Component({
+  selector: 'app-wrapped-row',
+  template: `
+    <clr-tt-row>
+      <clr-tt-cell>wrapped</clr-tt-cell>
+    </clr-tt-row>
+  `,
+  imports: [...CLR_TREETABLE_DIRECTIVES],
+})
+class WrappedRowComponent {}
+
+@Component({
+  template: `
+    <clr-treetable>
+      <clr-tt-column>A</clr-tt-column>
+      @if (showRow()) {
+        <app-wrapped-row ngProjectAs="clr-tt-row" />
+      }
+    </clr-treetable>
+  `,
+  imports: [...CLR_TREETABLE_DIRECTIVES, WrappedRowComponent],
+})
+class WrappedRowTestComponent {
+  readonly showRow = signal(true);
+}
+
 describe('ClrTreetable', () => {
   const TreetableInputs: Record<string, string> = {
     loading: 'clrTtLoading',
@@ -175,6 +201,7 @@ describe('ClrTreetable', () => {
         SelectionTestComponent,
         AsyncColumnTestComponent,
         CustomPlaceholderTestComponent,
+        WrappedRowTestComponent,
       ],
     }).compileComponents();
   }));
@@ -215,6 +242,23 @@ describe('ClrTreetable', () => {
       expect(placeholder).toBeTruthy();
       expect(placeholder.query(By.css('[data-testid="treetable-placeholder-image"]'))).toBeTruthy();
       expect(placeholder.nativeElement.textContent.trim()).toBe('No data available');
+    });
+  });
+
+  describe('rows wrapped in child components', () => {
+    it('should not show the placeholder while a wrapped row is rendered and show it again once removed', async () => {
+      const hostFixture = TestBed.createComponent(WrappedRowTestComponent);
+      hostFixture.autoDetectChanges();
+      await hostFixture.whenStable();
+
+      const placeholderQuery = By.css('[data-testid="treetable-placeholder"]');
+      expect(hostFixture.debugElement.query(placeholderQuery)).toBeNull();
+      expect(hostFixture.debugElement.query(By.css('clr-treetable')).nativeElement.classList).not.toContain('empty');
+
+      hostFixture.componentInstance.showRow.set(false);
+      await hostFixture.whenStable();
+
+      expect(hostFixture.debugElement.query(placeholderQuery)).toBeTruthy();
     });
   });
 

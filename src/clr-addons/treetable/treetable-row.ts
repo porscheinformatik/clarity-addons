@@ -9,6 +9,7 @@ import {
   Component,
   computed,
   contentChild,
+  DestroyRef,
   inject,
   input,
   model,
@@ -38,6 +39,10 @@ import { ClrTreetableRecursiveRows } from './treetable-recursive-rows';
 export class ClrTreetableRow<T extends object> {
   private readonly _recursionService = inject(ClrTreetableRecursionService);
   private readonly _treetable = inject(ClrTreetable);
+
+  constructor() {
+    inject(DestroyRef).onDestroy(this._treetable.registerRow());
+  }
 
   clrExpanded = model(false);
   clrExpandable = input(false);
