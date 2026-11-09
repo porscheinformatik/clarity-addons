@@ -29,6 +29,7 @@
         [style.width.px]="imageSize() > 0 ? imageSize() : null"
         [style.height.px]="imageSize() > 0 ? imageSize() : null"
       >
+        @if (images().length > 1) {
         <button
           class="clr-image-carousel__arrow clr-image-carousel__arrow--prev"
           (click)="prev()"
@@ -37,16 +38,14 @@
         >
           <cds-icon shape="circle-arrow" direction="left" solid></cds-icon>
         </button>
-
-        @if (images().length > 0) {
+        } @if (images().length > 0) {
         <img
           [src]="images()[activeIndex()].src"
           [alt]="images()[activeIndex()].alt || ''"
           class="clr-image-carousel__img"
           data-testid="image-carousel-active-image"
         />
-        }
-
+        } @if (images().length > 1) {
         <button
           class="clr-image-carousel__arrow clr-image-carousel__arrow--next"
           (click)="next()"
@@ -55,6 +54,7 @@
         >
           <cds-icon shape="circle-arrow" direction="right" solid></cds-icon>
         </button>
+        }
       </div>
     </div>
 

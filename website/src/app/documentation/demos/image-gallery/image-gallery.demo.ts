@@ -7,7 +7,7 @@ import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
 import { UtilsModule } from '../../../utils/utils.module';
 import { ClarityModule } from '@clr/angular';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ClrImageGalleryImage, ClrImageGallery } from '@porscheinformatik/clr-addons';
 import { ClarityDocComponent } from '../clarity-doc';
 import { DocWrapper } from '../_doc-wrapper/doc-wrapper';
@@ -21,6 +21,13 @@ const HTML_EXAMPLE = `
 </clr-image-gallery>
 `;
 
+const DATA_URI_EXAMPLE = `
+images: ClrImageGalleryImage[] = [
+  { src: 'data:image/png;base64,iVBORw0KGgo...', alt: 'Uploaded image' },
+  { src: 'https://example.com/image.jpg', alt: 'External image' },
+];
+`;
+
 @Component({
   selector: 'clr-image-gallery-demo',
   templateUrl: './image-gallery.demo.html',
@@ -32,6 +39,7 @@ const HTML_EXAMPLE = `
 })
 export class ImageGalleryDemo extends ClarityDocComponent {
   htmlExample = HTML_EXAMPLE;
+  dataUriExample = DATA_URI_EXAMPLE;
 
   images: ClrImageGalleryImage[] = [
     { src: 'https://picsum.photos/seed/car1/800/600', alt: 'Car image 1' },
@@ -43,7 +51,33 @@ export class ImageGalleryDemo extends ClarityDocComponent {
     { src: 'https://picsum.photos/seed/car7/800/600', alt: 'Car image 7' },
   ];
 
+  readonly mixedImages = signal<ClrImageGalleryImage[]>([]);
+
   constructor() {
     super('image-gallery');
+    this.loadMixedImages();
+  }
+
+  /** Simulates uploaded images by converting downloaded photos into base64 data URIs. */
+  private async loadMixedImages(): Promise<void> {
+    const [upload1, upload2] = await Promise.all([
+      this.toDataUri('https://picsum.photos/seed/upload1/800/600'),
+      this.toDataUri('https://picsum.photos/seed/upload2/800/600'),
+    ]);
+    this.mixedImages.set([
+      { src: upload1, alt: 'Uploaded image 1 (data URI)' },
+      { src: 'https://picsum.photos/seed/car1/800/600', alt: 'Car image 1 (URL)' },
+      { src: upload2, alt: 'Uploaded image 2 (data URI)' },
+    ]);
+  }
+
+  private async toDataUri(url: string): Promise<string> {
+    const blob = await (await fetch(url)).blob();
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = () => reject(reader.error);
+      reader.readAsDataURL(blob);
+    });
   }
 }
