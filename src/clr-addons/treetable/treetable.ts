@@ -13,6 +13,7 @@ import {
   forwardRef,
   inject,
   input,
+  signal,
 } from '@angular/core';
 import { ClrTreetableRow } from './treetable-row';
 import { SelectionType } from './enums/selection-type';
@@ -86,7 +87,12 @@ export class ClrTreetable<T extends object> {
   );
   private readonly _actionOverflow = contentChildren(ClrTreetableActionOverflow, { descendants: true });
 
-  protected readonly empty = computed(() => !this._ttRows() || this._ttRows().length === 0);
+  // Rows rendered by wrapper components (e.g. projected via ngProjectAs) are invisible to the content query.
+  private readonly _registeredRowCount = signal(0);
+
+  protected readonly empty = computed(
+    () => this._registeredRowCount() === 0 && (!this._ttRows() || this._ttRows().length === 0)
+  );
   protected readonly displayedNodes = this._dataStateService.displayedNodes;
   protected readonly isRecursionMode = this._recursionService.isRecursionMode;
 
@@ -135,6 +141,15 @@ export class ClrTreetable<T extends object> {
     effect(() => {
       this._dataStateService.setStickyIndeterminate(!this.clrTtAutoParentSelection());
     });
+  }
+
+  /**
+   * Registers a row with the treetable so it is counted as content, wherever it is rendered.
+   * @returns a function that unregisters the row
+   */
+  registerRow(): () => void {
+    this._registeredRowCount.update(count => count + 1);
+    return () => this._registeredRowCount.update(count => count - 1);
   }
 
   toggleSelectAll() {
