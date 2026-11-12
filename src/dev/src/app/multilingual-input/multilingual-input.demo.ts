@@ -55,7 +55,10 @@ export class MultilingualInputDemo implements OnInit {
   templateML = new Map();
   templateWithIcons = new Map();
   templateTextareaWithIcons = new Map();
+  singleLanguageIconsData = new Map([['en', 'single language text']]);
+  singleLanguageIconsTextareaData = new Map([['en', 'single language textarea']]);
   languageIcons = new Map<string, string>();
+  singleLanguageIcons = new Map<string, string>([['en', 'link']]);
   showSingleLanguage = false;
 
   exampleForm = new FormGroup({

@@ -110,6 +110,28 @@
   >
     <label class="clr-col-md-3 clr-col-lg-2">Language icons textarea</label>
   </clr-multilingual-textarea>
+  <clr-multilingual-input
+    class="clr-col-12 clr-row"
+    clrSelectedLang="en"
+    [(ngModel)]="singleLanguageIconsData"
+    [clrLanguages]="['en']"
+    [clrLanguageIcons]="singleLanguageIcons"
+    clrControlClasses="clr-col-md-9 clr-col-lg-10"
+    name="singleLanguageIcons"
+  >
+    <label class="clr-col-md-3 clr-col-lg-2">Single language icon</label>
+  </clr-multilingual-input>
+  <clr-multilingual-textarea
+    class="clr-col-12 clr-row"
+    clrSelectedLang="en"
+    [(ngModel)]="singleLanguageIconsTextareaData"
+    [clrLanguages]="['en']"
+    [clrLanguageIcons]="singleLanguageIcons"
+    clrControlClasses="clr-col-md-9 clr-col-lg-10"
+    name="singleLanguageIconsTextarea"
+  >
+    <label class="clr-col-md-3 clr-col-lg-2">Single language icon textarea</label>
+  </clr-multilingual-textarea>
 
   <clr-textarea-container class="clr-col-12">
     <label class="clr-col-md-3 clr-col-lg-2">Normal Textarea</label>

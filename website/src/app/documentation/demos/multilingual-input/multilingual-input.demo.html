@@ -267,6 +267,10 @@
         You can optionally provide <code class="clr-code">clrLanguageIcons</code> to render icons per language in the
         selector.
       </p>
+      <p>
+        If only one language is configured and an icon exists for that language, the selector renders as a non-clickable
+        icon-only status indicator.
+      </p>
       <form clrForm>
         <clr-multilingual-input
           class="clr-col-12 clr-row"
@@ -274,6 +278,7 @@
           name="iconsExample"
           clrSelectedLang="EN"
           [(ngModel)]="iconsData"
+          [clrLanguages]="['EN', 'DE', 'FR', 'IT']"
           [clrLanguageIcons]="languageIcons"
         >
           <label class="clr-col-md-2">Language Icons</label>
@@ -284,15 +289,42 @@
           name="iconsTextareaExample"
           clrSelectedLang="EN"
           [(ngModel)]="iconsTextareaData"
+          [clrLanguages]="['EN', 'DE', 'FR', 'IT']"
           [clrLanguageIcons]="languageIcons"
           [rows]="3"
         >
           <label class="clr-col-md-2">Language Icons Textarea</label>
         </clr-multilingual-textarea>
+
+        <clr-multilingual-input
+          class="clr-col-12 clr-row"
+          clrControlClasses="clr-col-md-5"
+          name="singleLanguageIconsExample"
+          clrSelectedLang="EN"
+          [(ngModel)]="singleLanguageIconsData"
+          [clrLanguages]="['EN']"
+          [clrLanguageIcons]="singleLanguageIcons"
+        >
+          <label class="clr-col-md-2">Single Language Icon</label>
+        </clr-multilingual-input>
+        <clr-multilingual-textarea
+          class="clr-col-12 clr-row"
+          clrControlClasses="clr-col-md-5"
+          name="singleLanguageIconsTextareaExample"
+          clrSelectedLang="EN"
+          [(ngModel)]="singleLanguageIconsTextareaData"
+          [clrLanguages]="['EN']"
+          [clrLanguageIcons]="singleLanguageIcons"
+          [rows]="3"
+        >
+          <label class="clr-col-md-2">Single Language Icon Textarea</label>
+        </clr-multilingual-textarea>
       </form>
       <clr-code-snippet [clrCode]="iconsExample"></clr-code-snippet>
       <clr-code-snippet [clrCode]="iconsTextareaExample"></clr-code-snippet>
       <clr-code-snippet [clrCode]="iconsTSExample" clrLanguage="typescript"></clr-code-snippet>
+      <clr-code-snippet [clrCode]="singleLanguageIconsExample"></clr-code-snippet>
+      <clr-code-snippet [clrCode]="singleLanguageIconsTextareaExample"></clr-code-snippet>
     </div>
   </article>
 </clr-doc-wrapper>

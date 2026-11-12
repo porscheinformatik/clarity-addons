@@ -116,15 +116,29 @@ this.templateNa2.set("FR", "texte français");
 
 const ICONS_EXAMPLE = `
 <clr-multilingual-input class="clr-col-12 clr-row" clrControlClasses="clr-col-md-5" name="iconsExample"
-  clrSelectedLang="EN" [(ngModel)]="iconsData" [clrLanguageIcons]="languageIcons">
+  clrSelectedLang="EN" [(ngModel)]="iconsData" [clrLanguages]="['EN', 'DE', 'FR', 'IT']" [clrLanguageIcons]="languageIcons">
     <label class="clr-col-md-2">Language Icons</label>
 </clr-multilingual-input>
 `;
 
 const ICONS_TEXTAREA_EXAMPLE = `
 <clr-multilingual-textarea class="clr-col-12 clr-row" clrControlClasses="clr-col-md-5" name="iconsTextareaExample"
-  clrSelectedLang="EN" [(ngModel)]="iconsTextareaData" [clrLanguageIcons]="languageIcons" [rows]="3">
+  clrSelectedLang="EN" [(ngModel)]="iconsTextareaData" [clrLanguages]="['EN', 'DE', 'FR', 'IT']" [clrLanguageIcons]="languageIcons" [rows]="3">
     <label class="clr-col-md-2">Language Icons Textarea</label>
+</clr-multilingual-textarea>
+`;
+
+const SINGLE_LANGUAGE_ICONS_EXAMPLE = `
+<clr-multilingual-input class="clr-col-12 clr-row" clrControlClasses="clr-col-md-5" name="singleLanguageIconsExample"
+  clrSelectedLang="EN" [(ngModel)]="singleLanguageIconsData" [clrLanguages]="['EN']" [clrLanguageIcons]="singleLanguageIcons">
+    <label class="clr-col-md-2">Single Language Icon</label>
+</clr-multilingual-input>
+`;
+
+const SINGLE_LANGUAGE_ICONS_TEXTAREA_EXAMPLE = `
+<clr-multilingual-textarea class="clr-col-12 clr-row" clrControlClasses="clr-col-md-5" name="singleLanguageIconsTextareaExample"
+  clrSelectedLang="EN" [(ngModel)]="singleLanguageIconsTextareaData" [clrLanguages]="['EN']" [clrLanguageIcons]="singleLanguageIcons" [rows]="3">
+    <label class="clr-col-md-2">Single Language Icon Textarea</label>
 </clr-multilingual-textarea>
 `;
 
@@ -132,16 +146,25 @@ const ICONS_TS_EXAMPLE = `
 iconsData = new Map();
 iconsTextareaData = new Map();
 languageIcons = new Map<string, string>();
+singleLanguageIconsData = new Map();
+singleLanguageIconsTextareaData = new Map();
+singleLanguageIcons = new Map<string, string>();
 
 this.iconsData.set("EN", "english text");
 this.iconsData.set("DE", "deutscher text");
 this.iconsData.set("FR", "texte français");
+this.iconsData.set("IT", "testo italiano");
 this.iconsTextareaData.set("EN", "english text\\nsecond line");
 this.iconsTextareaData.set("DE", "deutscher text\\nzweite zeile");
 this.iconsTextareaData.set("FR", "texte français\\ndeuxième ligne");
+this.iconsTextareaData.set("IT", "testo italiano\\nseconda riga");
 this.languageIcons.set("DE", "link");
 this.languageIcons.set("FR", "flag");
 this.languageIcons.set("EN", "unlink");
+this.languageIcons.set("IT", "link");
+this.singleLanguageIconsData.set("EN", "english text");
+this.singleLanguageIconsTextareaData.set("EN", "english text\\nsecond line");
+this.singleLanguageIcons.set("EN", "unlink");
 `;
 
 @Component({
@@ -179,6 +202,8 @@ export class MultilingualInputDemo extends ClarityDocComponent implements OnInit
   na2TSExample = NA2_TS_EXAMPLE;
   iconsExample = ICONS_EXAMPLE;
   iconsTextareaExample = ICONS_TEXTAREA_EXAMPLE;
+  singleLanguageIconsExample = SINGLE_LANGUAGE_ICONS_EXAMPLE;
+  singleLanguageIconsTextareaExample = SINGLE_LANGUAGE_ICONS_TEXTAREA_EXAMPLE;
   iconsTSExample = ICONS_TS_EXAMPLE;
 
   data1 = new Map();
@@ -189,7 +214,10 @@ export class MultilingualInputDemo extends ClarityDocComponent implements OnInit
   templateNa2 = new Map();
   iconsData = new Map();
   iconsTextareaData = new Map();
+  singleLanguageIconsData = new Map([['EN', 'english text']]);
+  singleLanguageIconsTextareaData = new Map([['EN', 'english text\nsecond line']]);
   languageIcons = new Map<string, string>();
+  singleLanguageIcons = new Map<string, string>([['EN', 'link']]);
   languagesNa = ['EN', 'DE'];
   languagesNa2 = ['EN', 'DE'];
 
@@ -227,11 +255,14 @@ export class MultilingualInputDemo extends ClarityDocComponent implements OnInit
     this.iconsData.set('EN', 'english text');
     this.iconsData.set('DE', 'deutscher text');
     this.iconsData.set('FR', 'texte français');
+    this.iconsData.set('IT', 'testo italiano');
     this.iconsTextareaData.set('EN', 'english text\nsecond line');
     this.iconsTextareaData.set('DE', 'deutscher text\nzweite zeile');
     this.iconsTextareaData.set('FR', 'texte français\ndeuxième ligne');
+    this.iconsTextareaData.set('IT', 'testo italiano\nseconda riga');
     this.languageIcons.set('DE', 'link');
     this.languageIcons.set('FR', 'flag');
     this.languageIcons.set('EN', 'unlink');
+    this.languageIcons.set('IT', 'link');
   }
 }

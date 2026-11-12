@@ -120,9 +120,41 @@ export abstract class ClrMultilingualAbstract extends ClrAbstractFormComponent {
   }
 
   showLanguageSelector(): boolean {
-    return this.shownTexts?.size > 1 || this.showSingleLanguageSelector;
+    return this.shownTexts?.size > 1 || this.showSingleLanguageSelector || this.showSingleLanguageIconOnly();
   }
 
+  showSingleLanguageIconOnly(): boolean {
+    if (!this.languageIcons?.size) {
+      return false;
+    }
+
+    const language = this.resolveSingleLanguageForIcon();
+    if (!language) {
+      return false;
+    }
+
+    return !!(
+      this.languageIcons.get(language) ||
+      this.languageIcons.get(language.toUpperCase()) ||
+      this.languageIcons.get(language.toLowerCase())
+    );
+  }
+
+  private resolveSingleLanguageForIcon(): string {
+    if (this.languages) {
+      return this.languages.length === 1 ? this.languages[0] : undefined;
+    }
+
+    if (this.shownTexts?.size === 1) {
+      return [...this.shownTexts.keys()][0];
+    }
+
+    if (this.texts?.size === 1) {
+      return [...this.texts.keys()][0];
+    }
+
+    return undefined;
+  }
   changeLanguage(lang: string): void {
     // need as the click for closing the menu is registered on a single item
     // if the language change destroys it immediately, the click won't get fired
