@@ -134,6 +134,85 @@ class TestComponentWithIcons implements OnInit {
   }
 }
 
+@Component({
+  template: `
+    <clr-multilingual-textarea
+      [clrSelectedLang]="selectedLang"
+      [clrLanguages]="languages"
+      [clrLanguageIcons]="icons"
+      [(ngModel)]="data"
+      name="test"
+    >
+      <label>Test</label>
+    </clr-multilingual-textarea>
+  `,
+  imports: [ClarityModule, FormsModule, ClrMultilingualTextarea, ClrRequiredOneMultilang, ClrRequiredAllMultilang],
+})
+class TestComponentSingleLanguageWithIcon implements OnInit {
+  selectedLang = 'EN';
+  languages = ['EN'];
+  data = new Map();
+  icons = new Map<string, string>([['EN', 'link']]);
+
+  ngOnInit(): void {
+    this.data.set('EN', 'english text');
+  }
+}
+
+@Component({
+  template: `
+    <clr-multilingual-textarea
+      [clrSelectedLang]="selectedLang"
+      [clrLanguages]="languages"
+      [clrLanguageIcons]="icons"
+      [(ngModel)]="data"
+      name="test"
+    >
+      <label>Test</label>
+    </clr-multilingual-textarea>
+  `,
+  imports: [ClarityModule, FormsModule, ClrMultilingualTextarea, ClrRequiredOneMultilang, ClrRequiredAllMultilang],
+})
+class TestComponentMultipleLanguagesWithSelectedIcon implements OnInit {
+  selectedLang = 'EN';
+  languages = ['EN', 'DE'];
+  data = new Map();
+  icons = new Map<string, string>([
+    ['EN', 'link'],
+    ['DE', 'flag'],
+  ]);
+
+  ngOnInit(): void {
+    this.data.set('EN', 'english text');
+    this.data.set('DE', 'deutscher text');
+  }
+}
+
+@Component({
+  template: `
+    <clr-multilingual-textarea
+      [clrSelectedLang]="selectedLang"
+      [clrLanguages]="languages"
+      [clrLanguageIcons]="icons"
+      [(ngModel)]="data"
+      name="test"
+    >
+      <label>Test</label>
+    </clr-multilingual-textarea>
+  `,
+  imports: [ClarityModule, FormsModule, ClrMultilingualTextarea, ClrRequiredOneMultilang, ClrRequiredAllMultilang],
+})
+class TestComponentMultipleLanguagesWithSingleTextAndIcon implements OnInit {
+  selectedLang = 'EN';
+  languages = ['EN', 'DE'];
+  data = new Map();
+  icons = new Map<string, string>([['EN', 'link']]);
+
+  ngOnInit(): void {
+    this.data.set('EN', 'english text');
+  }
+}
+
 describe('Multilingual Textarea', () => {
   describe('Basic + all required', () => {
     let fixture: ComponentFixture<TestComponentAllValid>;
@@ -388,6 +467,67 @@ describe('Multilingual Textarea', () => {
         By.css('.clr-multilingual-dd-entry .label cds-icon[shape="flag"]')
       );
       expect(iconElement).toBeTruthy();
+    });
+
+    it('renders icon-only selector when only one language is configured', () => {
+      const singleFixture = TestBed.createComponent(TestComponentSingleLanguageWithIcon);
+      singleFixture.detectChanges();
+
+      const triggerElement = singleFixture.debugElement.query(By.css('[data-testid="multilingual-selector-trigger"]'));
+      expect(triggerElement).toBeFalsy();
+
+      const iconOnlyElement = singleFixture.debugElement.query(
+        By.css('[data-testid="multilingual-selector-icon-only"]')
+      );
+      expect(iconOnlyElement).toBeTruthy();
+      expect(iconOnlyElement.nativeElement.textContent).not.toContain('EN');
+
+      const iconElement = singleFixture.debugElement.query(
+        By.css('[data-testid="multilingual-selector-icon-only"] cds-icon[shape="link"]')
+      );
+      expect(iconElement).toBeTruthy();
+    });
+
+    it('keeps dropdown selector when multiple languages are configured', () => {
+      const triggerElement = fixture.debugElement.query(By.css('[data-testid="multilingual-selector-trigger"]'));
+      expect(triggerElement).toBeTruthy();
+
+      const iconOnlyElement = fixture.debugElement.query(By.css('[data-testid="multilingual-selector-icon-only"]'));
+      expect(iconOnlyElement).toBeFalsy();
+    });
+
+    it('keeps dropdown selector when selected language has an icon and multiple languages are configured', async () => {
+      const multipleFixture = TestBed.createComponent(TestComponentMultipleLanguagesWithSelectedIcon);
+      multipleFixture.detectChanges();
+      await multipleFixture.whenStable();
+      multipleFixture.detectChanges();
+
+      const triggerElement = multipleFixture.debugElement.query(
+        By.css('[data-testid="multilingual-selector-trigger"]')
+      );
+      expect(triggerElement).toBeTruthy();
+
+      const iconOnlyElement = multipleFixture.debugElement.query(
+        By.css('[data-testid="multilingual-selector-icon-only"]')
+      );
+      expect(iconOnlyElement).toBeFalsy();
+    });
+
+    it('keeps dropdown selector when multiple languages are configured but only one text exists', async () => {
+      const multipleFixture = TestBed.createComponent(TestComponentMultipleLanguagesWithSingleTextAndIcon);
+      multipleFixture.detectChanges();
+      await multipleFixture.whenStable();
+      multipleFixture.detectChanges();
+
+      const triggerElement = multipleFixture.debugElement.query(
+        By.css('[data-testid="multilingual-selector-trigger"]')
+      );
+      expect(triggerElement).toBeTruthy();
+
+      const iconOnlyElement = multipleFixture.debugElement.query(
+        By.css('[data-testid="multilingual-selector-icon-only"]')
+      );
+      expect(iconOnlyElement).toBeFalsy();
     });
   });
 
