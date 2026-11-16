@@ -185,6 +185,24 @@ class TestComponentMultipleLanguagesWithSingleTextAndIcon implements OnInit {
   }
 }
 
+@Component({
+  template: `
+    <clr-multilingual-input [clrSelectedLang]="selectedLang" [(ngModel)]="data" name="test">
+      <label>Test</label>
+      <button type="button" data-testid="projected-action">Action</button>
+    </clr-multilingual-input>
+  `,
+  imports: [ClarityModule, FormsModule, ClrMultilingualInput, ClrRequiredOneMultilang, ClrRequiredAllMultilang],
+})
+class TestComponentProjectedContent implements OnInit {
+  selectedLang = 'EN';
+  data = new Map();
+
+  ngOnInit(): void {
+    this.data.set('EN', 'english text');
+  }
+}
+
 describe('Multilingual Input', () => {
   describe('Basic + all required', () => {
     let fixture: ComponentFixture<TestComponentAllValid>;
@@ -469,6 +487,31 @@ describe('Multilingual Input', () => {
         By.css('[data-testid="multilingual-selector-icon-only"]')
       );
       expect(iconOnlyElement).toBeFalsy();
+    });
+  });
+
+  describe('Content projection', () => {
+    let fixture: ComponentFixture<TestComponentProjectedContent>;
+
+    beforeEach(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          ClarityModule,
+          FormsModule,
+          ClrMultilingualInput,
+          ClrRequiredOneMultilang,
+          ClrRequiredAllMultilang,
+          TestComponentProjectedContent,
+        ],
+      }).compileComponents();
+
+      fixture = TestBed.createComponent(TestComponentProjectedContent);
+      fixture.detectChanges();
+    });
+
+    it('renders unselected projected content', () => {
+      const projectedButton = fixture.debugElement.query(By.css('[data-testid="projected-action"]'));
+      expect(projectedButton).toBeTruthy();
     });
   });
 
