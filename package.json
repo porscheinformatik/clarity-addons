@@ -71,7 +71,7 @@
   },
   "devDependencies": {
     "@angular-devkit/core": "21.2.30",
-    "@angular-eslint/builder": "22.7.0",
+    "@angular-eslint/builder": "22.8.0",
     "@angular/build": "^21.2.11",
     "@angular/cli": "21.2.30",
     "@angular/compiler-cli": "21.2.26",
