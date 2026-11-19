@@ -33,7 +33,7 @@
     "@kolkov/angular-editor": "2.1.0",
     "@porscheinformatik/clr-addons": "file:../dist/clr-addons",
     "@webcomponents/custom-elements": "1.6.1",
-    "@webcomponents/webcomponentsjs": "2.8.0",
+    "@webcomponents/webcomponentsjs": "2.8.1",
     "angular-calendar": "0.32.2",
     "core-js": "3.51.0",
     "date-fns": "4.4.0",
