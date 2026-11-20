@@ -11,6 +11,7 @@
         type="text"
         name="search"
         (keydown.Space)="preventDropdownActions($event)"
+        (keydown.enter)="selectFirstResult($event)"
         (keydown.arrowdown)="resetDropdownFocus()"
         (keydown.arrowup)="resetDropdownFocus()"
         [formControl]="searchControl"
