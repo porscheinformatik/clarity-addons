@@ -94,6 +94,15 @@ export class LocationBarSearchComponent implements OnInit {
     this.focusService.reset(this.dropdownFocusHandler);
   }
 
+  /** Clarity's keyboard handling would activate a stale result, as the results are re-created on every search. */
+  selectFirstResult(event: Event): void {
+    event.stopPropagation();
+    this.searchInput.nativeElement
+      .closest('clr-dropdown-menu')
+      ?.querySelector('[data-testid^="location-bar-search-result-"]')
+      ?.click();
+  }
+
   preventDropdownActions(event: Event) {
     event.stopPropagation();
   }

@@ -28,6 +28,7 @@ class TestContentProvider extends LocationBarContentProvider<TestNodeId> {
     [clrRoots]="roots"
     [clrSearchRequest]="searchRequest"
     [clrSearchResultItems]="searchResultItems()"
+    (clrSearchItemChanged)="searchItemChanged($event)"
   ></clr-location-bar>`,
   imports: [LocationBarComponent],
 })
@@ -35,6 +36,7 @@ class HostComponent {
   searchRequest = { placeholder: 'Search' };
   searchResultItems = signal<SearchResultModel[]>([]);
   roots = [createRoot()];
+  searchItemChanged: (item: SearchResultModel) => void = () => {};
 }
 
 function createRoot(): LocationBarNode<TestNodeId> {
@@ -91,5 +93,28 @@ describe('LocationBar keyboard handling', () => {
 
       expect(document.activeElement.getAttribute('data-testid')).toBe('location-bar-search-result-0');
     }
+  });
+
+  it('selects the first search result with enter after the results were replaced', async () => {
+    const triggers = fixture.debugElement.queryAll(By.css('[data-testid="location-bar-dropdown-trigger"]'));
+    triggers[triggers.length - 1].nativeElement.click();
+    await settle(fixture);
+    const input = document.querySelector<HTMLInputElement>('[data-testid="location-bar-search-input"]');
+    const selected: unknown[] = [];
+    fixture.componentInstance.searchItemChanged = item => selected.push(item);
+
+    for (const text of ['abc', 'abcd']) {
+      input.value = text;
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      fixture.componentInstance.searchResultItems.set([
+        { name: text + '1' },
+        { name: text + '2' },
+      ] as SearchResultModel[]);
+      await settle(fixture);
+    }
+    input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+    await settle(fixture);
+
+    expect(selected).toEqual([{ name: 'abcd1' }]);
   });
 });
