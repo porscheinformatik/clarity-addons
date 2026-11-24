@@ -31,6 +31,22 @@
       margin: 0 auto;
       overflow: hidden;
 
+      &--sm {
+        width: 288px;
+      }
+
+      &--md {
+        width: 576px;
+      }
+
+      &--lg {
+        width: 864px;
+      }
+
+      &--xl {
+        width: 1152px;
+      }
+
       @media screen and (max-width: map.get(variables.$clr-grid-breakpoints, sm)) {
         width: calc(100% - 2rem);
         margin: 0 1rem;

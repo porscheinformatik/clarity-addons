@@ -7,9 +7,15 @@ import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
 import { UtilsModule } from '../../../utils/utils.module';
 import { ClarityModule, ClrCheckboxModule, ClrCommonFormsModule, ClrInputModule, ClrSelectModule } from '@clr/angular';
 import { CommonModule } from '@angular/common';
-import { Component, ViewChildren, QueryList } from '@angular/core';
+import { Component, TemplateRef } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
-import { ClrNotificationService, ClrAddonsLabel, ClrAutocompleteOff } from '@porscheinformatik/clr-addons';
+import {
+  ClrNotificationService,
+  ClrAddonsLabel,
+  ClrAutocompleteOff,
+  ClrNotificationOptions,
+  ClrNotificationWidth,
+} from '@porscheinformatik/clr-addons';
 import { DocWrapper } from '../_doc-wrapper/doc-wrapper';
 import { CodeSnippet } from '../../../utils/code-snippet';
 import { FormsModule } from '@angular/forms';
@@ -17,7 +23,7 @@ import { FormsModule } from '@angular/forms';
 const CODE_EXAMPLE = `
 
 <button class="btn" (click)="openNotify(example, { timeout: clrExampleTimeout, notificationType: clrExampleType,
-    dismissable: clrExampleDismissable, progressbar: clrExampleProgressbar })">Show Notification</button>
+    dismissable: clrExampleDismissable, progressbar: clrExampleProgressbar, width: clrExampleWidth || undefined })">Show Notification</button>
 <ng-template #example>
     <ng-container clr-notification-message>
         Some Information
@@ -31,7 +37,7 @@ onClose(): void {
     console.log("notification closed");
 }
 
-openNotify(content, options): void {
+openNotify(content: TemplateRef<unknown> | string, options: ClrNotificationOptions): void {
     this.notificationService.openNotification(content, options).result.then(this.onClose);
 }
 `;
@@ -80,6 +86,7 @@ export class NotificationDemo extends ClarityDocComponent {
   clrExampleType = 'info';
   clrExampleDismissable = true;
   clrExampleProgressbar = true;
+  clrExampleWidth: '' | ClrNotificationWidth = '';
 
   constructor(private notificationService: ClrNotificationService) {
     super('notification');
@@ -89,7 +96,7 @@ export class NotificationDemo extends ClarityDocComponent {
     console.log('notification closed');
   }
 
-  openNotify(content, options): void {
+  openNotify(content: TemplateRef<unknown> | string, options: ClrNotificationOptions): void {
     this.notificationService.openNotification(content, options).result.then(this.onClose);
   }
 
@@ -99,5 +106,20 @@ export class NotificationDemo extends ClarityDocComponent {
 
   log() {
     console.log('log from notification');
+  }
+
+  openConfigurationValidationNotification(): void {
+    this.notificationService.openNotification(
+      `Validation failed:
+- Contract number is mandatory
+- Invalid customer e-mail format
+- Vehicle identification number must contain 17 characters`,
+      {
+        timeout: 0,
+        notificationType: 'danger',
+        dismissable: true,
+        width: 'lg',
+      }
+    );
   }
 }

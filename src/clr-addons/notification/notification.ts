@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
 import { ClrAlert, ClrAlertModule } from '@clr/angular';
 import { zonedInterval, zonedTimer } from './scheduler-utils';
 import { NgClass } from '@angular/common';
+import { ClrNotificationWidth } from './notification.service';
 
 @Component({
   selector: 'clr-notification',
@@ -67,6 +68,7 @@ export class ClrNotification implements OnInit {
   @Input() notificationType = 'info'; // "info", "warning", "success" and "danger"
   @Input() dismissable = false;
   @Input() progressbar = false;
+  @Input() width: ClrNotificationWidth | null = null;
 
   @Output() closed: EventEmitter<any> = new EventEmitter();
 
@@ -119,6 +121,18 @@ export class ClrNotification implements OnInit {
     this._translate -= translateValue;
     this.state = { value: 'moveUp', params: { absolute: this._translate } };
     this.setCurrentPosition();
+  }
+
+  get notificationWidthClass(): string | null {
+    switch (this.width) {
+      case 'sm':
+      case 'md':
+      case 'lg':
+      case 'xl':
+        return `notification__wrapper--${this.width}`;
+      default:
+        return null;
+    }
   }
 
   private setCurrentPosition(): void {

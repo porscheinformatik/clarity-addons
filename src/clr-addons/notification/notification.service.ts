@@ -18,11 +18,14 @@ import { take } from 'rxjs/operators';
 import { ClrNotification } from './notification';
 import { ClrContentRef, ClrNotificationRef } from './notification-ref';
 
+export type ClrNotificationWidth = 'sm' | 'md' | 'lg' | 'xl';
+
 export interface ClrNotificationOptions {
   timeout?: number;
   notificationType?: string;
   dismissable?: boolean;
   progressbar?: boolean;
+  width?: ClrNotificationWidth;
   /* If your notification is a ng-template with variables, the variables must be set in the ngTemplateOutletContext */
   ngTemplateOutletContext?: Record<string, unknown>;
 }
@@ -114,6 +117,9 @@ export class ClrNotificationService {
     }
     if (options.progressbar != undefined && options.progressbar != null) {
       notificationInstance.progressbar = options.progressbar;
+    }
+    if (options.width != undefined && options.width != null) {
+      notificationInstance.width = options.width;
     }
   }
 }

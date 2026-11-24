@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component, TemplateRef } from '@angular/core';
-import { ClrNotificationService } from '@porscheinformatik/clr-addons';
+import { ClrNotificationService, ClrNotificationWidth } from '@porscheinformatik/clr-addons';
 
 @Component({
   selector: 'clr-notification-demo',
@@ -48,6 +48,19 @@ export class NotificationDemo {
   openDanger(content: TemplateRef<unknown>): void {
     this.clrNotificationService
       .openNotification(content, { timeout: 40000, notificationType: 'danger', dismissable: true, progressbar: true })
+      .result.then(this.onClose);
+  }
+
+  openInfoString(width?: ClrNotificationWidth): void {
+    const widthLabel = width ? width.toUpperCase() : 'DEFAULT';
+    this.clrNotificationService
+      .openNotification(`This is a string, not a template (width: ${widthLabel})`, {
+        timeout: 100000,
+        notificationType: 'info',
+        dismissable: true,
+        progressbar: true,
+        width,
+      })
       .result.then(this.onClose);
   }
 }
