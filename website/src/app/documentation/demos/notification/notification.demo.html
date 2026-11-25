@@ -137,6 +137,16 @@
               Defines whether the progressbar (until notification closes automatically) will be shown.
             </td>
           </tr>
+          <tr>
+            <td class="left">
+              <b>width</b>
+              <div class="clr-hidden-sm-up">Type: String</div>
+              <div class="clr-hidden-sm-up">Default: current width (400px)</div>
+            </td>
+            <td class="left clr-hidden-xs-down">"sm", "md", "lg", "xl"</td>
+            <td class="clr-hidden-xs-down">current width (400px)</td>
+            <td class="left">Defines the notification width preset (sm=288px, md=576px, lg=864px, xl=1152px).</td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -156,6 +166,10 @@
       </p>
       <clr-code-snippet [clrCode]="codeExample"></clr-code-snippet>
       <clr-code-snippet [clrCode]="codeExampleTS" [clrLanguage]="'typescript'"></clr-code-snippet>
+      <p>
+        <i>Width guidance:</i> short status messages use <b>sm</b>/<b>md</b>, validation-heavy content uses
+        <b>lg</b>/<b>xl</b>.
+      </p>
       <form clrForm clrLayout="vertical">
         <clr-input-container>
           <label>Timeout</label>
@@ -179,11 +193,21 @@
           <label>Progressbar</label>
           <input clrCheckbox type="checkbox" [(ngModel)]="clrExampleProgressbar" name="clr-progressbar" />
         </clr-checkbox-wrapper>
+        <clr-select-container>
+          <label>Width</label>
+          <select clrSelect id="clr-width" name="clr-width" [(ngModel)]="clrExampleWidth">
+            <option value="">Default (400px)</option>
+            <option value="sm">SM (288px)</option>
+            <option value="md">MD (576px)</option>
+            <option value="lg">LG (864px)</option>
+            <option value="xl">XL (1152px)</option>
+          </select>
+        </clr-select-container>
       </form>
       <div class="btn-group">
         <button
           class="btn"
-          (click)="openNotify(example, { timeout: clrExampleTimeout, notificationType: clrExampleType, dismissable: clrExampleDismissable, progressbar: clrExampleProgressbar })"
+          (click)="openNotify(example, { timeout: clrExampleTimeout, notificationType: clrExampleType, dismissable: clrExampleDismissable, progressbar: clrExampleProgressbar, width: clrExampleWidth || undefined })"
         >
           Show Notification
         </button>
@@ -194,6 +218,17 @@
           <button class="btn alert-action" (click)="log()">Log console</button>
         </ng-container>
       </ng-template>
+
+      <h4>Configuration Validation Example</h4>
+      <p>
+        Use a wider notification for multi-line configuration validation errors to avoid horizontal scrolling and
+        improve readability.
+      </p>
+      <div class="btn-group">
+        <button class="btn btn-danger" (click)="openConfigurationValidationNotification()">
+          Show Configuration Validation Notification
+        </button>
+      </div>
     </div>
   </article>
 </clr-doc-wrapper>

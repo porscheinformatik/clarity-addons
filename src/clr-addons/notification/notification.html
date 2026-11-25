@@ -1,4 +1,11 @@
-<div class="notification__wrapper" data-testid="notification" [@slideDown] [@move]="state" [@fade]="state">
+<div
+  class="notification__wrapper"
+  [ngClass]="notificationWidthClass"
+  data-testid="notification"
+  [@slideDown]
+  [@move]="state"
+  [@fade]="state"
+>
   @if (progressbar && timeout > 0) {
   <div class="progress top" [ngClass]="notificationType" data-testid="notification-progress-container">
     <progress class="progress" [max]="timeout" [value]="progressStatus" data-testid="notification-progress"></progress>

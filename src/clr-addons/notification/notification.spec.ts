@@ -162,4 +162,68 @@ describe('NotificationComponent', () => {
     tick(400);
     fixture.changeDetectorRef.detectChanges();
   }));
+
+  it('keeps default width classes when no width option is provided', fakeAsync(() => {
+    const notifRef = notificationService.openNotification(fixture.componentInstance.notification);
+    fixture.changeDetectorRef.detectChanges();
+    tick();
+
+    const wrapper = document.querySelector('clr-notification .notification__wrapper');
+    expect(wrapper.classList.contains('notification__wrapper--sm')).toBeFalsy();
+    expect(wrapper.classList.contains('notification__wrapper--md')).toBeFalsy();
+    expect(wrapper.classList.contains('notification__wrapper--lg')).toBeFalsy();
+    expect(wrapper.classList.contains('notification__wrapper--xl')).toBeFalsy();
+
+    notifRef.close();
+    fixture.changeDetectorRef.detectChanges();
+  }));
+
+  it('applies width modifier class when width option is set', fakeAsync(() => {
+    const notifRef = notificationService.openNotification(fixture.componentInstance.notification, { width: 'xl' });
+    fixture.changeDetectorRef.detectChanges();
+    tick();
+
+    const wrapper = document.querySelector('clr-notification .notification__wrapper');
+    expect(wrapper.classList.contains('notification__wrapper--xl')).toBeTruthy();
+
+    notifRef.close();
+    fixture.changeDetectorRef.detectChanges();
+  }));
+
+  it('falls back to default class behavior for invalid runtime width values', fakeAsync(() => {
+    const invalidWidth = JSON.parse('"invalid-size"');
+    const notifRef = notificationService.openNotification(fixture.componentInstance.notification, {
+      width: invalidWidth,
+    });
+    fixture.changeDetectorRef.detectChanges();
+    tick();
+
+    const wrapper = document.querySelector('clr-notification .notification__wrapper');
+    expect(wrapper.className).not.toContain('notification__wrapper--');
+
+    notifRef.close();
+    fixture.changeDetectorRef.detectChanges();
+  }));
+
+  it('keeps vertical translation behavior for width preset notifications', fakeAsync(() => {
+    const notifRef = notificationService.openNotification(fixture.componentInstance.notification, {
+      width: 'sm',
+      timeout: 0,
+    });
+    tick();
+
+    const activeNotifications = Array.from((notificationService as any).elements.values());
+    expect(activeNotifications.length).toBe(1);
+    const notification = activeNotifications[0] as any;
+    expect(notification.translate).toBe(0);
+
+    notification.moveDown(120);
+    expect(notification.translate).toBe(120);
+
+    notification.moveUp(120);
+    expect(notification.translate).toBe(0);
+
+    notifRef.close();
+    fixture.changeDetectorRef.detectChanges();
+  }));
 });

@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2018-2024 Porsche Informatik. All Rights Reserved.
+  ~ Copyright (c) 2018-2026 Porsche Informatik. All Rights Reserved.
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
@@ -18,7 +18,19 @@
   <button class="btn" (click)="openDanger(danger)">Show Danger Notification</button>
 </div>
 <div class="btn-group">
-  <button class="btn" (click)="openInfo('This is a string, not a template')">Show Info Notification from string</button>
+  <button class="btn" (click)="openInfoString()">Show Info Notification from string</button>
+</div>
+<div class="btn-group">
+  <button class="btn" (click)="openInfoString('sm')">Show Info Notification (SM)</button>
+</div>
+<div class="btn-group">
+  <button class="btn" (click)="openInfoString('md')">Show Info Notification (MD)</button>
+</div>
+<div class="btn-group">
+  <button class="btn" (click)="openInfoString('lg')">Show Info Notification (LG)</button>
+</div>
+<div class="btn-group">
+  <button class="btn" (click)="openInfoString('xl')">Show Info Notification (XL)</button>
 </div>
 
 <ng-template #info>
