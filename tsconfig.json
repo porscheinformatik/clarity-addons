@@ -5,7 +5,6 @@
     "outDir": "./dist/out-tsc",
     "rootDir": "./",
     "esModuleInterop": true,
-    "baseUrl": "./",
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "bundler",
@@ -25,7 +24,7 @@
     "module": "es2022",
     "typeRoots": ["node_modules/@types"],
     "paths": {
-      "@porscheinformatik/clr-addons": ["src/clr-addons"]
+      "@porscheinformatik/clr-addons": ["./src/clr-addons"]
     },
     "useDefineForClassFields": false
   },

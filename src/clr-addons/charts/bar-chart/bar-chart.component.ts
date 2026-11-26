@@ -340,7 +340,7 @@ export class BarChartComponent extends ChartBase<BarChartDataPoint> implements O
       .call(this.addTextCommonInfo as any)
       .style('cursor', 'pointer')
       .call(this.addTextAndTitle.bind(this), x.bandwidth())
-      .call(this.addTextHoverHandlers.bind(this))
+      .call(sel => this.addTextHoverHandlers(sel))
       .call(this.addTextClickHandler.bind(this));
 
     // Y Axis
@@ -407,7 +407,7 @@ export class BarChartComponent extends ChartBase<BarChartDataPoint> implements O
       .call(this.addTextCommonInfo as any)
       .style('cursor', 'pointer')
       .call(this.addTextAndTitle.bind(this), this.MARGIN.left - 10)
-      .call(this.addTextHoverHandlers.bind(this))
+      .call(sel => this.addTextHoverHandlers(sel))
       .call(this.addTextClickHandler.bind(this));
 
     this.createBarSelectionGroups(g);
@@ -444,16 +444,18 @@ export class BarChartComponent extends ChartBase<BarChartDataPoint> implements O
       .on('mouseout', (_e: PointerEvent, d: BarChartDataPoint) =>
         this.setHoverStylesByStackKey(d.stackKey, d.key, false)
       )
-      .call(this.addBarClickHandler.bind(this));
+      .call(sel => this.addBarClickHandler(sel));
   }
 
   private addTextCommonInfo(g: Selection<BaseType, any, BaseType, any>): void {
     g.style('font-size', '11px').style('fill', 'var(--cds-global-color-construction-400, #666)');
   }
 
-  private addTextHoverHandlers(g: Selection<BaseType, BarChartData, SVGGElement, undefined>): void {
-    g.on('mouseover', (_e: PointerEvent, d: BarChartData) => this.setHoverStylesByStackKey(d.stackKey, undefined, true)) //
-      .on('mouseout', (_e: PointerEvent, d: BarChartData) =>
+  private addTextHoverHandlers<E extends BaseType>(g: Selection<E, BarChartLabel, any, any>): void {
+    g.on('mouseover', (_e: PointerEvent, d: BarChartLabel) =>
+      this.setHoverStylesByStackKey(d.stackKey, undefined, true)
+    ) //
+      .on('mouseout', (_e: PointerEvent, d: BarChartLabel) =>
         this.setHoverStylesByStackKey(d.stackKey, undefined, false)
       );
   }
@@ -472,7 +474,7 @@ export class BarChartComponent extends ChartBase<BarChartDataPoint> implements O
       .style('font-weight', isHover ? 'bold' : 'unset');
   }
 
-  private addBarClickHandler(g: Selection<SVGRectElement, BarChartDataPoint, SVGElement, undefined>) {
+  private addBarClickHandler<E extends BaseType>(g: Selection<E, BarChartDataPoint, any, any>) {
     g.on('click', (event: PointerEvent, d: BarChartDataPoint) => {
       event.stopPropagation();
       this.openTooltipByKey(d.key);

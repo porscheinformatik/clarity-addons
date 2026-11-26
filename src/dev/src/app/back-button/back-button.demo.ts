@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   ClarityIcons,
   ClrButtonGroupModule,
@@ -21,6 +21,7 @@ ClarityIcons.addIcons(cogIcon);
 @Component({
   selector: 'clr-back-button-demo',
   templateUrl: './back-button.demo.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ClrNavigationModule,
     ClrStandaloneCdkTrapFocus,

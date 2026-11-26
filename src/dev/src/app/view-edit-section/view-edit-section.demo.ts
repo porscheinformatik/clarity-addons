@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   ClarityIcons,
   ClrCheckboxModule,
@@ -32,6 +32,7 @@ ClarityIcons.addIcons(ellipsisVerticalIcon);
 @Component({
   selector: 'clr-view-edit-section-demo',
   templateUrl: './view-edit-section.demo.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ClrViewEditSection,
     FormsModule,

@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 import {
@@ -117,6 +117,7 @@ export const COMBINED_EXAMPLE = `<!-- Both directives can be applied to the same
   templateUrl: './keyboard-nav.demo.html',
   standalone: true,
   imports: [FormsModule, ClarityModule, ClrKeyboardNavCtrlArrowDirective, ClrKeyboardNavAltMnemonicDirective],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class KeyboardNavDemo {
   overlayActive = false;

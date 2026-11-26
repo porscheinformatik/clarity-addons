@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { environment } from '../../environments/environment';
 import {
   ClarityIcons,
@@ -21,6 +21,7 @@ ClarityIcons.addIcons(helpInfoIcon, worldIcon, gridChartIcon, libraryIcon, updat
   host: {
     '[class.content-container]': 'true',
   },
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [RouterOutlet, ClrVerticalNavModule, RouterLink, RouterLinkActive, ClrIcon, DocumentationNavLinksComponent],
 })
 export class DocumentationComponent {

@@ -8,7 +8,7 @@ import { UtilsModule } from '../../../utils/utils.module';
 import { ClarityModule, ClrCommonFormsModule, ClrFormsModule, ClrInputModule } from '@clr/angular';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
 import { DocWrapper } from '../_doc-wrapper/doc-wrapper';
 import { FormsModule } from '@angular/forms';
@@ -31,6 +31,7 @@ const HTML_EXAMPLE = `
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DocWrapper,
     FormsModule,

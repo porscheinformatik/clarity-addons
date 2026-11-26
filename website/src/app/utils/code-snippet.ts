@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { CodeHighlight } from './code-highlight';
 import { ClarityIcons, ClrIcon, copyIcon } from '@clr/angular';
 
@@ -25,6 +25,7 @@ ClarityIcons.addIcons(copyIcon);
       </button>
     </div>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CodeHighlight, ClrIcon],
 })
 export class CodeSnippet implements AfterViewInit {

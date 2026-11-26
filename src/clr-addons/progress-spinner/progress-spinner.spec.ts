@@ -8,7 +8,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ClarityModule } from '@clr/angular';
 
 import { ClrProgressSpinnerComponent } from './progress-spinner';
-import { Component, NgModule } from '@angular/core';
+import { Component, NgModule, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -20,6 +20,7 @@ import { CommonModule } from '@angular/common';
       k
     </clr-progress-spinner>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, ClarityModule, ClrProgressSpinnerComponent],
 })
 class TestComponent {

@@ -7,7 +7,15 @@
 import { FormsModule } from '@angular/forms';
 import { ClarityModule, ClrFormsModule } from '@clr/angular';
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, Renderer2, TemplateRef, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Renderer2,
+  TemplateRef,
+  ViewChild,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 
 @Component({
   selector: 'clr-date-time-container',
@@ -23,6 +31,7 @@ import { AfterViewInit, Component, ElementRef, Renderer2, TemplateRef, ViewChild
   host: {
     '[class.date-time-container]': 'true',
   },
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, ClarityModule, ClrFormsModule, FormsModule],
 })
 export class ClrDateTimeContainer implements AfterViewInit {

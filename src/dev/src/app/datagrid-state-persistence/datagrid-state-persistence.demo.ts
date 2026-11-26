@@ -1,7 +1,7 @@
 import { FormsModule } from '@angular/forms';
 import { ClarityModule, ClrDatagrid, ClrDatagridModule, ClrDatagridStateInterface } from '@clr/angular';
 import { CommonModule } from '@angular/common';
-import { Component, HostListener, ViewChild } from '@angular/core';
+import { Component, HostListener, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { debounceTime, of, Subject } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { AsyncPipe, DatePipe } from '@angular/common';
@@ -24,6 +24,7 @@ interface DatagridType {
 @Component({
   selector: 'clr-datagrid-state-persistence-demo',
   templateUrl: './datagrid-state-persistence.demo.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ClrDatagridModule,
     StatePersistenceKeyDirective,

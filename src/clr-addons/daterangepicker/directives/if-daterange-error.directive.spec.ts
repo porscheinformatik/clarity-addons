@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormControl, Validators } from '@angular/forms';
 import { ClrFormsModule, ClrPopoverService } from '@clr/angular';
@@ -12,12 +12,17 @@ const errorMessage = 'ERROR_MESSAGE';
 const minLengthMessage = 'MIN_LENGTH_MESSAGE';
 const maxLengthMessage = 'MAX_LENGTH_MESSAGE';
 
-@Component({ template: `<div *clrIfDaterangeError></div>`, imports: [ClrIfDaterangeErrorDirective] })
+@Component({
+  template: `<div *clrIfDaterangeError></div>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [ClrIfDaterangeErrorDirective],
+})
 class InvalidUseTestComponent {}
 
 @Component({
   template: `<clr-control-error *clrIfDaterangeError>${errorMessage}</clr-control-error>`,
   providers: [ClrDaterangepickerContainerComponent, ClrPopoverService, DaterangeControlStateService, DaterangeService],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrIfDaterangeErrorDirective, ClrIfDaterangeErrorDirective, ClrFormsModule],
 })
 class GeneralErrorTestComponent {}
@@ -37,6 +42,7 @@ class GeneralErrorTestComponent {}
     DaterangeControlStateService,
     DaterangeService,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrIfDaterangeErrorDirective, ClrIfDaterangeErrorDirective, ClrFormsModule],
 })
 class SpecificErrorTestComponent {}

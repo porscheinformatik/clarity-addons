@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   ClrMultilingualInputValidators,
@@ -30,6 +30,7 @@ ClarityIcons.addIcons(flagIcon, linkIcon, unlinkIcon);
 @Component({
   selector: 'clr-multilingual-input-demo',
   templateUrl: './multilingual-input.demo.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     FormsModule,
     ClrCommonFormsModule,

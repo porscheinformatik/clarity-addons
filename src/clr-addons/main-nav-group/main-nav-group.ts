@@ -16,6 +16,7 @@ import {
   OnInit,
   QueryList,
   Renderer2,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { ClrMainNavGroupItem } from './main-nav-group-item';
 
@@ -32,6 +33,7 @@ ClarityIcons.addIcons(angleIcon);
   selector: 'clr-main-nav-group',
   templateUrl: './main-nav-group.html',
   host: { '[class.main-nav-group]': 'true' },
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrCommonFormsModule, ClrIcon, CommonModule, RouterModule, ClarityModule],
 })
 export class ClrMainNavGroup implements OnInit, OnDestroy {

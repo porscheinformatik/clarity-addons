@@ -32,7 +32,7 @@ import {
   CLR_TREETABLE_DIRECTIVES,
 } from '@porscheinformatik/clr-addons';
 import { ClarityDocComponent } from '../clarity-doc';
-import { Component, ElementRef, signal, viewChild } from '@angular/core';
+import { Component, ElementRef, signal, viewChild, ChangeDetectionStrategy } from '@angular/core';
 import { DocWrapper } from '../_doc-wrapper/doc-wrapper';
 import { CodeSnippet } from '../../../utils/code-snippet';
 import { TreetableRoleTypeFilterComponent } from './treetable-demo-custom-filter';
@@ -523,6 +523,7 @@ class NameComparator implements ClrTreetableComparatorInterface<OrganizationUnit
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DocWrapper,
     ClrTreetable,

@@ -2,7 +2,6 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/dev",
-    "baseUrl": "./",
     "paths": {
       "@porscheinformatik/clr-addons": ["../clr-addons"],
       "@porscheinformatik/clr-addons/charts": ["../clr-addons/charts"]

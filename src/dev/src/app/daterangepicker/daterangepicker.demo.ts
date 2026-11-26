@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DaterangePreset, DayModel, NullableDaterange } from '../../../../clr-addons/daterangepicker';
 import { NullableTimerange } from '../../../../clr-addons/daterangepicker/interfaces/timerange.interface';
@@ -29,6 +29,7 @@ import {
   selector: 'clr-daterangepicker-demo',
   templateUrl: './daterangepicker.demo.html',
   styleUrls: ['./daterangepicker.demo.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     FormsModule,
     ClrCommonFormsModule,

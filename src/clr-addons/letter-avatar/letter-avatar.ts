@@ -6,11 +6,21 @@
 
 import { ClarityModule } from '@clr/angular';
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, HostBinding, Input, Renderer2, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostBinding,
+  Input,
+  Renderer2,
+  ViewChild,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 
 @Component({
   selector: 'clr-letter-avatar',
   templateUrl: './letter-avatar.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, ClarityModule],
 })
 export class ClrLetterAvatar implements AfterViewInit {

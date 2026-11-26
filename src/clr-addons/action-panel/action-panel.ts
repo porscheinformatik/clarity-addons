@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { ClarityIcons, ClarityModule, timesIcon } from '@clr/angular';
 import { CommonModule } from '@angular/common';
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, ChangeDetectionStrategy } from '@angular/core';
 
 ClarityIcons.addIcons(timesIcon);
 
@@ -28,6 +28,7 @@ ClarityIcons.addIcons(timesIcon);
   host: {
     '[class.action-panel]': 'true',
   },
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, ClarityModule, FormsModule],
 })
 export class ClrActionPanel {

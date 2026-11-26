@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ClrCheckboxModule, ClrCommonFormsModule, ClrInputModule, ClrSelectModule } from '@clr/angular';
@@ -41,6 +41,7 @@ import { ClrAutocompleteOff, ClrAddonsLabel } from '@porscheinformatik/clr-addon
       </clr-input-container>
     </form>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     FormsModule,
     ClrCommonFormsModule,

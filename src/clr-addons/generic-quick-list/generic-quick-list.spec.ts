@@ -5,7 +5,7 @@
  */
 
 import { CommonModule } from '@angular/common';
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -32,6 +32,7 @@ import { ClrGenericQuickList } from './generic-quick-list';
       </clr-generic-quick-list>
     </form>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, ClarityModule, FormsModule, ClrGenericQuickList],
 })
 class TestComponent {

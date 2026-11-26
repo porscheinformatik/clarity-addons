@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, forwardRef, Injector } from '@angular/core';
+import { Component, forwardRef, Injector, ChangeDetectionStrategy } from '@angular/core';
 import { NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
 import { ControlIdService } from '../../abstract-form-component/control-id.service';
 import { ClrMultilingualAbstract } from '../abstract-multilingual';
@@ -24,6 +24,7 @@ ClarityIcons.addIcons(exclamationCircleIcon);
     },
     ControlIdService,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [NgClass, ClrMultilingualSelector, FormsModule, ClrIcon],
 })
 export class ClrMultilingualInput extends ClrMultilingualAbstract {

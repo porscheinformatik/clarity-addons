@@ -7,7 +7,7 @@ import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
 import { UtilsModule } from '../../../utils/utils.module';
 import { ClarityModule, ClrCheckboxModule, ClrCommonFormsModule, ClrInputModule, ClrSelectModule } from '@clr/angular';
 import { CommonModule } from '@angular/common';
-import { Component, TemplateRef } from '@angular/core';
+import { Component, TemplateRef, ChangeDetectionStrategy } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
 import {
   ClrNotificationService,
@@ -61,6 +61,7 @@ openString(): void {
   },
   providers: [ClrNotificationService],
   styleUrls: ['./notification.demo.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DocWrapper,
     CodeSnippet,

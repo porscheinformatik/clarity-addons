@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import {
   ClarityIcons,
   ClrCommonFormsModule,
@@ -21,6 +21,7 @@ ClarityIcons.addIcons(trashIcon);
   selector: 'clr-date-filter',
   templateUrl: './date-filter.component.html',
   styleUrls: ['./date-filter.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrIcon, ClrDatepickerModule, ClrCommonFormsModule, ClrDateTimeContainer, FormsModule, ClrTimeInput],
 })
 export class ClrDateFilterComponent<T extends { [key: string]: any }> implements ClrDatagridFilterInterface<T> {

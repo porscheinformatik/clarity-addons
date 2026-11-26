@@ -13,6 +13,7 @@ import {
   Input,
   Output,
   TemplateRef,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import {
@@ -50,6 +51,7 @@ ClarityIcons.addIcons(angleIcon, pencilIcon);
       transition('false => true', animate('300ms ease-in')),
     ]),
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [NgClass, NgTemplateOutlet, ClrIcon, FormsModule, ClrCommonFormsModule],
 })
 export class ClrViewEditSection implements AfterViewInit {

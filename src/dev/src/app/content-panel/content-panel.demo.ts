@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import {
   ClrContentPanel,
   ClrContentPanelContainer,
@@ -14,6 +14,7 @@ import {
 @Component({
   selector: 'clr-content-panel-demo',
   templateUrl: './content-panel.demo.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrContentPanelContainer, ClrContentPanelContainerContent, ClrContentPanelContainerFooter, ClrContentPanel],
 })
 export class ContentPanelDemo {

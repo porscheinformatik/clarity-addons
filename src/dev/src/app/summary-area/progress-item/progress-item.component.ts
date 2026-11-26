@@ -3,13 +3,14 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, ChangeDetectionStrategy } from '@angular/core';
 import { ClrAlertModule, ClrDatagridModule, ClrModalModule, ClrProgressBarModule } from '@clr/angular';
 
 @Component({
   selector: 'app-progress-item',
   imports: [ClrDatagridModule, ClrModalModule, ClrAlertModule, ClrProgressBarModule],
   templateUrl: './progress-item.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './progress-item.component.scss',
 })
 export class ProgressItemComponent {

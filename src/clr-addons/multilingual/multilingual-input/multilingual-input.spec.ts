@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -19,6 +19,7 @@ import { ClrRequiredOneMultilang, ClrRequiredAllMultilang } from '../multilingua
       <clr-control-helper>Helper</clr-control-helper>
     </clr-multilingual-input>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClarityModule, FormsModule, ClrMultilingualInput, ClrRequiredOneMultilang, ClrRequiredAllMultilang],
 })
 class TestComponentAllValid implements OnInit {
@@ -39,6 +40,7 @@ class TestComponentAllValid implements OnInit {
       <clr-control-helper>Helper</clr-control-helper>
     </clr-multilingual-input>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClarityModule, FormsModule, ClrMultilingualInput, ClrRequiredOneMultilang, ClrRequiredAllMultilang],
 })
 class TestComponentOneValid implements OnInit {
@@ -66,6 +68,7 @@ class TestComponentOneValid implements OnInit {
       <clr-control-helper>Helper</clr-control-helper>
     </clr-multilingual-input>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClarityModule, FormsModule, ClrMultilingualInput, ClrRequiredOneMultilang, ClrRequiredAllMultilang],
 })
 class TestComponentComplex implements OnInit {
@@ -92,6 +95,7 @@ class TestComponentComplex implements OnInit {
       <label>Test</label>
     </clr-multilingual-input>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClarityModule, FormsModule, ClrMultilingualInput, ClrRequiredOneMultilang, ClrRequiredAllMultilang],
 })
 class TestComponentWithIcons implements OnInit {
@@ -118,6 +122,7 @@ class TestComponentWithIcons implements OnInit {
       <label>Test</label>
     </clr-multilingual-input>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClarityModule, FormsModule, ClrMultilingualInput, ClrRequiredOneMultilang, ClrRequiredAllMultilang],
 })
 class TestComponentSingleLanguageWithIcon implements OnInit {
@@ -143,6 +148,7 @@ class TestComponentSingleLanguageWithIcon implements OnInit {
       <label>Test</label>
     </clr-multilingual-input>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClarityModule, FormsModule, ClrMultilingualInput, ClrRequiredOneMultilang, ClrRequiredAllMultilang],
 })
 class TestComponentMultipleLanguagesWithSelectedIcon implements OnInit {
@@ -172,6 +178,7 @@ class TestComponentMultipleLanguagesWithSelectedIcon implements OnInit {
       <label>Test</label>
     </clr-multilingual-input>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClarityModule, FormsModule, ClrMultilingualInput, ClrRequiredOneMultilang, ClrRequiredAllMultilang],
 })
 class TestComponentMultipleLanguagesWithSingleTextAndIcon implements OnInit {
@@ -192,6 +199,7 @@ class TestComponentMultipleLanguagesWithSingleTextAndIcon implements OnInit {
       <button type="button" data-testid="projected-action">Action</button>
     </clr-multilingual-input>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClarityModule, FormsModule, ClrMultilingualInput, ClrRequiredOneMultilang, ClrRequiredAllMultilang],
 })
 class TestComponentProjectedContent implements OnInit {

@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Location } from '@angular/common';
 import { arrowIcon, ClarityIcons, ClrIcon } from '@clr/angular';
 
@@ -13,6 +13,7 @@ ClarityIcons.addIcons(arrowIcon);
 @Component({
   selector: 'clr-back-button',
   templateUrl: './back-button.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrIcon],
 })
 export class ClrBackButton {

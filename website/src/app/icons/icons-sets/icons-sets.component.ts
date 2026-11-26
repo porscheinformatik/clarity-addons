@@ -1,4 +1,4 @@
-import { Component, Renderer2 } from '@angular/core';
+import { Component, Renderer2, ChangeDetectionStrategy } from '@angular/core';
 import {
   accelerationIcon,
   acceptanceDateIcon,
@@ -478,6 +478,7 @@ import { CodeSnippet } from '../../utils/code-snippet';
   selector: 'icons-sets',
   templateUrl: './icons-sets.component.html',
   styleUrl: './icons-sets.component.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [FormsModule, ClrCommonFormsModule, ClrInputModule, NgClass, ClrIcon, NgTemplateOutlet, CodeSnippet],
 })
 export class IconsSetsComponent {

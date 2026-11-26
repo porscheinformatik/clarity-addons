@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { UtilsModule } from '../../../utils/utils.module';
 import { ClarityModule } from '@clr/angular';
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { ScrollSpy } from '../../../utils/scrollspy.directive';
 import { RouterLink, RouterLinkActive } from '@angular/router';
@@ -19,6 +19,7 @@ import { HashListener } from '../../../utils/hash-listener.directive';
   host: {
     '[class.dox-wrapper]': 'true',
   },
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     NgClass,
     ScrollSpy,

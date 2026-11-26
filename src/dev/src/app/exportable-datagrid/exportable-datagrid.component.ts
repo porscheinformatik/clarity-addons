@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { ClrDatagrid, ClrDatagridModule } from '@clr/angular';
 import {
   CustomExportType,
@@ -28,6 +28,7 @@ interface ExportableEntry {
   selector: 'app-exportable-datagrid',
   templateUrl: './exportable-datagrid.component.html',
   providers: [ExportDatagridService],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ExportDatagridButtonComponent,
     ClrDatagridModule,

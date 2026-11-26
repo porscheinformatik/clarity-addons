@@ -1,4 +1,4 @@
-import { Component, provideZoneChangeDetection, signal } from '@angular/core';
+import { Component, provideZoneChangeDetection, signal, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Observable, of } from 'rxjs';
@@ -30,6 +30,7 @@ class TestContentProvider extends LocationBarContentProvider<TestNodeId> {
     [clrSearchResultItems]="searchResultItems()"
     (clrSearchItemChanged)="searchItemChanged($event)"
   ></clr-location-bar>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [LocationBarComponent],
 })
 class HostComponent {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ClrDatagridModule } from '@clr/angular';
 import { DatePipe } from '@angular/common';
 
@@ -26,6 +26,7 @@ import { DatePipe } from '@angular/common';
       </clr-datagrid>
     </div>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrDatagridModule, DatePipe],
 })
 export class SidebarTasksPageDemo {

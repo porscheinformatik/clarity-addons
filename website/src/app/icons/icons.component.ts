@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   accessoriesIcon,
   accessoryPartsIcon,
@@ -111,6 +111,7 @@ import { RouterLinkActive, RouterLink, RouterOutlet } from '@angular/router';
 @Component({
   selector: 'icons',
   templateUrl: 'icons.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrVerticalNavModule, RouterLinkActive, RouterLink, RouterOutlet],
 })
 export class IconsComponent {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 import { ClarityModule, ClrComboboxModule } from '@clr/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -7,6 +7,7 @@ import { ClrAddonsLabel } from '@porscheinformatik/clr-addons';
 @Component({
   selector: 'clr-combobox-demo',
   templateUrl: './combobox.demo.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClarityModule, FormsModule, ReactiveFormsModule, ClrComboboxModule, ClrAddonsLabel],
 })
 export class ComboboxDemo {

@@ -20,6 +20,7 @@ import {
   QueryList,
   TemplateRef,
   ViewChildren,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { NgClass, NgTemplateOutlet } from '@angular/common';
 
@@ -33,6 +34,7 @@ export interface ClrGenericQuickListItem {
   selector: 'clr-generic-quick-list',
   host: { '[class.generic-quick-list]': 'true', '[class.clr-form-control]': 'true' },
   templateUrl: './generic-quick-list.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [NgClass, NgTemplateOutlet, ClrIcon, CommonModule, ClarityModule],
 })
 export class ClrGenericQuickList<T extends ClrGenericQuickListItem> implements OnInit, AfterViewInit, OnDestroy {
@@ -53,7 +55,7 @@ export class ClrGenericQuickList<T extends ClrGenericQuickListItem> implements O
 
   rowCountFocus: number;
 
-  private timeout: NodeJS.Timeout;
+  private timeout: ReturnType<typeof setTimeout>;
 
   ngOnInit(): void {
     if (this.required && this.allItems.length === 0) {

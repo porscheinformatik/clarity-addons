@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   ClrCommonFormsModule,
   ClrLoadingButtonModule,
@@ -17,6 +17,7 @@ import { ClrAddonsLabel, ClrAutocompleteOff } from '@porscheinformatik/clr-addon
 @Component({
   selector: 'clr-kitchen-sink',
   templateUrl: './kitchen-sink.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ClrLoadingButtonModule,
     ClrLoadingModule,

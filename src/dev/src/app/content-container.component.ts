@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { NavigationEnd, Route, Router, RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 
 import { APP_ROUTES } from './app.routing';
@@ -50,6 +50,7 @@ import { ClrNavigationModule, ClrStandaloneCdkTrapFocus, ClrVerticalNavModule } 
     </clr-vertical-nav-group>
     </clr-vertical-nav>-->
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ClrBreadcrumb,
     RouterOutlet,

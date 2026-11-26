@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { of } from 'rxjs';
 import { ClrFlowBarStep } from '../../../../clr-addons/flow-bar';
 import {
@@ -27,6 +27,7 @@ ClarityIcons.addIcons(cogIcon, angleIcon);
 @Component({
   selector: 'clr-flow-bar-demo',
   templateUrl: './flow-bar.demo.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ClrNavigationModule,
     ClrStandaloneCdkTrapFocus,

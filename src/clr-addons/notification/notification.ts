@@ -4,7 +4,17 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, EventEmitter, Input, NgZone, OnInit, Output, ElementRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  NgZone,
+  OnInit,
+  Output,
+  ElementRef,
+  ViewChild,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { animate, style, transition, trigger, state } from '@angular/animations';
 import { Subscription } from 'rxjs';
 import { ClrAlert, ClrAlertModule } from '@clr/angular';
@@ -37,6 +47,7 @@ import { ClrNotificationWidth } from './notification.service';
   host: {
     '[class.notification]': 'true',
   },
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [NgClass, ClrAlertModule],
 })
 export class ClrNotification implements OnInit {

@@ -7,7 +7,7 @@ import { ClarityModule } from '@clr/angular';
 import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
 import { UtilsModule } from '../../../utils/utils.module';
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
 import { ClrBreadcrumbService, ClrBreadcrumbModel, ClrBreadcrumb } from '@porscheinformatik/clr-addons';
 import { DocWrapper } from '../_doc-wrapper/doc-wrapper';
@@ -38,6 +38,7 @@ this.breadcrumbService.updateBreadcrumb([
     '.breadcrumb-demo-long > * { margin-top: -12px; }',
     '.clrweb-DoxMedia-block { min-height: 60px; }',
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [DocWrapper, ClrBreadcrumb, CodeSnippet, CommonModule, UtilsModule, DocWrapperModule, ClarityModule],
 })
 export class BreadcrumbDemo extends ClarityDocComponent implements OnInit {

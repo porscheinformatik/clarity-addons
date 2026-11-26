@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, signal } from '@angular/core';
+import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
 
 import { ClrAlertModule } from '@clr/angular';
 import { FunnelChartData, FunnelValue, CLR_CHARTS_DECLARATIONS } from '@porscheinformatik/clr-addons/charts';
@@ -90,6 +90,7 @@ const ZERO_DATA: FunnelChartData[] = [
 @Component({
   selector: 'clr-funnel-chart-demo',
   templateUrl: './funnel-chart.demo.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrAlertModule, ...CLR_CHARTS_DECLARATIONS],
 })
 export class FunnelChartDemo {

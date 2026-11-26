@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ClrDatagridModule, ClrDatagridStateInterface } from '@clr/angular';
 import { DatagridFieldDirective, ClrStringFilterComponent } from '@porscheinformatik/clr-addons';
 
@@ -10,6 +10,7 @@ interface Item {
 @Component({
   selector: 'clr-string-filter-demo',
   templateUrl: './string-filter.demo.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrDatagridModule, DatagridFieldDirective, ClrStringFilterComponent],
 })
 export class StringFilterDemo {

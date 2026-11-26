@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, Input, OnDestroy } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'clr-progress-spinner',
@@ -17,6 +17,7 @@ import { ChangeDetectorRef, Component, Input, OnDestroy } from '@angular/core';
   host: {
     '[class.progress-spinner-overlay]': '_showSpinner',
   },
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule],
 })
 export class ClrProgressSpinnerComponent implements OnDestroy {

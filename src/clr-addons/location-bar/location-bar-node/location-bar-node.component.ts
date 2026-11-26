@@ -9,6 +9,7 @@ import {
   signal,
   SimpleChanges,
   ViewChild,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   angleIcon,
@@ -36,6 +37,7 @@ ClarityIcons.addIcons(treeViewIcon, angleIcon);
   selector: 'clr-location-bar-node',
   templateUrl: './location-bar-node.component.html',
   host: { '[class.location-bar-node]': 'true' },
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ClrDropdownModule,
     ClrIcon,

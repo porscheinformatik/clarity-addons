@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ClrAlertModule, ClrCommonFormsModule, ClrInputModule } from '@clr/angular';
 import { ClrControlEnterSubmitDirective, ClrAddonsLabel, ClrAutocompleteOff } from '@porscheinformatik/clr-addons';
@@ -12,6 +12,7 @@ import { ClrControlEnterSubmitDirective, ClrAddonsLabel, ClrAutocompleteOff } fr
   selector: 'clr-ctrl-enter-demo',
   templateUrl: './ctrl-enter.demo.html',
   providers: [],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     FormsModule,
     ClrControlEnterSubmitDirective,

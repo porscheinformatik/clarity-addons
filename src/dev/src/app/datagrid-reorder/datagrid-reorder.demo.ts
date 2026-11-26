@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { CdkDrag, CdkDropList } from '@angular/cdk/drag-drop';
 import { TrophiesComponent } from './trophies.component';
 import { CommonModule } from '@angular/common';
@@ -24,6 +24,7 @@ import { delay, Observable, of, tap } from 'rxjs';
 @Component({
   selector: 'clr-datagrid-reorder-demo',
   templateUrl: './datagrid-reorder.demo.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     ColumnHiddenStatePersistenceDirective,

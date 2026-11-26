@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ClrDatagridModule, ClrDatagridStateInterface } from '@clr/angular';
 import { DatagridFieldDirective, ClrEnumFilterComponent } from '@porscheinformatik/clr-addons';
 
 @Component({
   selector: 'clr-enum-filter-demo',
   templateUrl: './enum-filter.demo.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrDatagridModule, DatagridFieldDirective, ClrEnumFilterComponent],
 })
 export class EnumFilterDemo {

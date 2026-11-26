@@ -1,4 +1,14 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  Output,
+  ViewChild,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { ClrCommonStringsService, ClrDatagridFilter, ClrDatagridFilterInterface, ClrInputModule } from '@clr/angular';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
@@ -12,6 +22,7 @@ export const CLR_STRING_FILTER_DEBOUNCE_MS = 500;
   selector: 'clr-string-filter',
   templateUrl: './string-filter.component.html',
   styleUrls: ['./string-filter.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrFilterClearButtonComponent, ClrInputModule, FormsModule],
 })
 export class ClrStringFilterComponent<T extends { [key: string]: any }>

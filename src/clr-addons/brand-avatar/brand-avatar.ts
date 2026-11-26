@@ -6,7 +6,15 @@
 
 import { ClarityIcons, ClarityModule, ClrIcon } from '@clr/angular';
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, HostBinding, Input, Renderer2, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostBinding,
+  Input,
+  Renderer2,
+  ViewChild,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {
   audiBrandIcon,
   cupraBrandIcon,
@@ -47,6 +55,7 @@ ClarityIcons.addIcons(
 @Component({
   selector: 'clr-brand-avatar',
   templateUrl: './brand-avatar.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrIcon, NgClass, CommonModule, ClarityModule],
 })
 export class ClrBrandAvatar {

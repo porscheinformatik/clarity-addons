@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { ClarityModule } from '@clr/angular';
 
@@ -29,6 +29,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       </ng-template>
     </clr-view-edit-section>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClarityModule, ClrViewEditSection],
 })
 class TestComponent {
@@ -45,6 +46,7 @@ class TestComponent {
       <div action-block>Test</div>
     </clr-view-edit-section>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClarityModule, ClrViewEditSection],
 })
 class EditModeComponent {
@@ -53,6 +55,7 @@ class EditModeComponent {
 
 @Component({
   template: ` <clr-view-edit-section [clrEditIcon]="editIcon"></clr-view-edit-section> `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClarityModule, ClrViewEditSection],
 })
 class EditIconComponent {
@@ -61,6 +64,7 @@ class EditIconComponent {
 
 @Component({
   template: ` <clr-view-edit-section [clrEditable]="false"></clr-view-edit-section> `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClarityModule, ClrViewEditSection],
 })
 class NotEditableComponent {}
@@ -75,6 +79,7 @@ class NotEditableComponent {}
     >
     </clr-view-edit-section>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClarityModule, ClrViewEditSection],
 })
 class StringBadgeComponent {
@@ -89,6 +94,7 @@ class StringBadgeComponent {
       <span badge class="custom-projected-badge">Projected</span>
     </clr-view-edit-section>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClarityModule, ClrViewEditSection],
 })
 class ProjectedBadgeComponent {

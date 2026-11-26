@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'clr-content-panel-container',
@@ -15,6 +15,7 @@ import { Component } from '@angular/core';
     </div>
     <ng-content select="clr-content-panel"></ng-content>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   host: {
     '[class.content-container]': 'true',
     '[class.content-panel-container]': 'true',

@@ -4,7 +4,15 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, ContentChild, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
+import {
+  Component,
+  ContentChild,
+  EventEmitter,
+  Input,
+  Output,
+  TemplateRef,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
 import { ClrPager } from '../pager/pager';
 import { ClrDropdownModule, ClrIcon, ClrPopoverContent } from '@clr/angular';
@@ -12,6 +20,7 @@ import { ClrDropdownModule, ClrIcon, ClrPopoverContent } from '@clr/angular';
 @Component({
   selector: 'clr-paged-search-result-list',
   templateUrl: './paged-search-result-list.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [NgTemplateOutlet, ClrPager, ClrDropdownModule, ClrIcon, ClrPopoverContent],
 })
 export class ClrPagedSearchResultList {

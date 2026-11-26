@@ -6,8 +6,8 @@
 
 import {
   ApplicationRef,
-  ComponentFactoryResolver,
   ComponentRef,
+  createComponent,
   DOCUMENT,
   Inject,
   Injectable,
@@ -37,7 +37,6 @@ export class ClrNotificationService {
   constructor(
     private readonly _injector: Injector,
     private readonly _applicationRef: ApplicationRef,
-    private readonly _componentFactoryResolver: ComponentFactoryResolver,
     @Inject(DOCUMENT) private readonly _document: Document
   ) {}
 
@@ -98,8 +97,11 @@ export class ClrNotificationService {
   }
 
   private _attachWindowComponent(containerEl: HTMLElement, contentRef: ClrContentRef): ComponentRef<ClrNotification> {
-    const containerFactory = this._componentFactoryResolver.resolveComponentFactory(ClrNotification);
-    const containerCmptRef = containerFactory.create(this._injector, contentRef.nodes);
+    const containerCmptRef = createComponent(ClrNotification, {
+      environmentInjector: this._applicationRef.injector,
+      elementInjector: this._injector,
+      projectableNodes: contentRef.nodes,
+    });
     this._applicationRef.attachView(containerCmptRef.hostView);
     containerEl.appendChild(containerCmptRef.location.nativeElement);
     return containerCmptRef;

@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   ClrGenericQuickListItem,
   ClrGenericQuickList,
@@ -23,6 +23,7 @@ interface QuickListItem extends ClrGenericQuickListItem {
 @Component({
   selector: 'app-generic-quick-list-demo',
   templateUrl: './generic-quick-list.demo.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     FormsModule,
     ClrCommonFormsModule,

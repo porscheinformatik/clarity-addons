@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ClarityModule, ClrDatagrid } from '@clr/angular';
 import { ClrDateFilterComponent } from './date-filter.component';
@@ -23,6 +23,7 @@ const tomorrow = new Date(Date.now() + 24 * 1000 * 60 * 60);
       </clr-dg-row>
     </clr-datagrid>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClarityModule, FormsModule, ClrDateFilterComponent],
 })
 class TestComponent {
@@ -48,6 +49,7 @@ class TestComponent {
       </clr-datagrid>
     </body>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClarityModule, FormsModule, ClrDateFilterComponent],
 })
 class TestComponentPreselectedValues {
@@ -79,6 +81,7 @@ class TestComponentPreselectedValues {
       </clr-datagrid>
     </body>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClarityModule, FormsModule, ClrDateFilterComponent],
 })
 class TestComponentPreselectedTimeValues {

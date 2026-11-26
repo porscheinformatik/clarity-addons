@@ -4,7 +4,17 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, effect, ElementRef, HostListener, input, output, signal, ViewChild } from '@angular/core';
+import {
+  Component,
+  effect,
+  ElementRef,
+  HostListener,
+  input,
+  output,
+  signal,
+  ViewChild,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { circleArrowIcon, ClarityIcons, ClrIcon, timesIcon } from '@clr/angular';
 import { ClrImageGalleryImage } from './image-gallery.types';
 
@@ -14,6 +24,7 @@ ClarityIcons.addIcons(circleArrowIcon, timesIcon);
   selector: 'clr-image-carousel',
   templateUrl: './image-carousel.html',
   styleUrls: ['./image-carousel.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrIcon],
 })
 export class ClrImageCarousel {

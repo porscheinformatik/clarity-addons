@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, effect, signal, ViewEncapsulation } from '@angular/core';
+import { Component, effect, signal, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 
 import { angleIcon, ClarityIcons, ClarityModule } from '@clr/angular';
 import {
@@ -20,6 +20,7 @@ ClarityIcons.addIcons(angleIcon);
   templateUrl: './image-gallery-in-modal.demo.html',
   imports: [ClarityModule, ClrImageGallery, ClrImageCarousel],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `
       body.gallery-modal-open .modal-body-wrapper {

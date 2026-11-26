@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ClrDatagridModule, ClrDatagridNumericFilterInterface, ClrDatagridStringFilterInterface } from '@clr/angular';
 import { JsonPipe, DatePipe } from '@angular/common';
 import {
@@ -17,6 +17,7 @@ interface Item {
 @Component({
   selector: 'clr-datagrid-filters-demo',
   templateUrl: './clr-datagrid-filters-demo.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ClrDatagridModule,
     StatePersistenceKeyDirective,

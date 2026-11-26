@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   ClarityIcons,
   ClrDropdownModule,
@@ -19,6 +19,7 @@ ClarityIcons.addIcons(ellipsisVerticalIcon);
 @Component({
   selector: 'clr-pager-demo',
   templateUrl: './cards.demo.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrDropdownModule, ClrIcon, ClrIfOpen, ClrPopoverContent, ClrDropdownOverflowDirective],
 })
 export class CardsDemo {}

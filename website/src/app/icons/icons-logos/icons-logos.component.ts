@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ClarityIcons, ClrCommonFormsModule, ClrIcon, ClrInputModule, downloadIcon } from '@clr/angular';
 import {
   logoCommissionModuleFavIcon,
@@ -71,6 +71,7 @@ import { CodeSnippet } from '../../utils/code-snippet';
   selector: 'clr-icons-logos',
   templateUrl: './icons-logos.component.html',
   styleUrl: 'icons-logos.component.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [FormsModule, ClrCommonFormsModule, ClrInputModule, NgClass, ClrIcon, NgTemplateOutlet, CodeSnippet],
 })
 export class IconsLogosComponent {

@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, signal } from '@angular/core';
+import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 import { ClrImageGalleryImage, ClrImageGallery } from '@porscheinformatik/clr-addons';
@@ -11,6 +11,7 @@ import { ClrImageGalleryImage, ClrImageGallery } from '@porscheinformatik/clr-ad
 @Component({
   selector: 'clr-image-gallery-demo',
   templateUrl: './image-gallery.demo.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [FormsModule, ClrImageGallery],
 })
 export class ImageGalleryDemo {

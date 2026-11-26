@@ -27,7 +27,7 @@ import {
 } from '@clr/angular';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 ClarityIcons.addIcons(
   homeIcon,
@@ -53,6 +53,7 @@ ClarityIcons.addIcons(
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ClrAlertModule,
     ClrIcon,

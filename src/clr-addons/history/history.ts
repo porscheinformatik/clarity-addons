@@ -4,7 +4,17 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, DestroyRef, inject, Inject, Input, OnDestroy, OnInit, Optional } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  inject,
+  Inject,
+  Input,
+  OnDestroy,
+  OnInit,
+  Optional,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { ClrHistoryModel } from './history-model.interface';
 import { ClrHistoryService } from './history.service';
 import { ReplaySubject, Subject } from 'rxjs';
@@ -32,6 +42,7 @@ ClarityIcons.addIcons(historyIcon, angleIcon);
   selector: 'clr-history',
   templateUrl: './history.html',
   host: { class: 'clr-history' },
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ClrDropdownModule,
     ClrIcon,

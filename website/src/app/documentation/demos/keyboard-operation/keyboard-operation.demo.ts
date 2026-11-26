@@ -18,7 +18,7 @@ import {
   ClrTextareaModule,
 } from '@clr/angular';
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
 import { share } from 'rxjs';
 import { ActivatedRoute, RouterLink } from '@angular/router';
@@ -54,6 +54,7 @@ export interface TableOfContentsEntry {
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DocWrapper,
     NgTemplateOutlet,

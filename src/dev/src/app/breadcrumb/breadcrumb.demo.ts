@@ -3,10 +3,11 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'clr-breadcrumb-demo',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <h2>Breadcrumb</h2>
     You can see the breadcrumb component above the title.

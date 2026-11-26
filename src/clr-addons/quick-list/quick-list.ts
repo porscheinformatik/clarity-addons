@@ -7,7 +7,17 @@
 import { ClarityIcons, ClarityModule, ClrFormsModule, ClrIcon, plusCircleIcon } from '@clr/angular';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, forwardRef, Input, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  forwardRef,
+  Input,
+  OnInit,
+  Output,
+  QueryList,
+  ViewChildren,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { CLR_BLANK_OPTION, ClrQuickListValue } from './add-option.service';
 import { ClrAddOption } from './add-option';
 import { ClrAbstractFormComponent } from '../abstract-form-component/abstract-form-component';
@@ -27,6 +37,7 @@ ClarityIcons.addIcons(plusCircleIcon);
       multi: true,
     },
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [NgClass, ClrAddOption, ClrIcon, CommonModule, FormsModule, ClarityModule, ClrFormsModule, ClrAddOption],
 })
 export class ClrQuickList<T> extends ClrAbstractFormComponent implements OnInit {

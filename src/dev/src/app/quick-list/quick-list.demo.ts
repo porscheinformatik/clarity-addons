@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ClrQuickListValue, ClrQuickList, ClrAddonsLabel, ClrAutocompleteOff } from '@porscheinformatik/clr-addons';
 import { ClrCommonFormsModule, ClrInputModule } from '@clr/angular';
@@ -12,6 +12,7 @@ import { ClrCommonFormsModule, ClrInputModule } from '@clr/angular';
 @Component({
   selector: 'app-quick-list-demo',
   templateUrl: './quick-list.demo.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     FormsModule,
     ClrCommonFormsModule,
