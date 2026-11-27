@@ -18,8 +18,6 @@ describe('ClrTreetableColumnManagerMenuComponent', () => {
   let columnService: TreetableColumnStateService;
   let commonStrings: ClrCommonStringsService;
 
-  const RESET_LABEL = 'Reset to default';
-
   const COL_A = 'col-a';
   const COL_B = 'col-b';
   const COL_C = 'col-c';
@@ -80,7 +78,6 @@ describe('ClrTreetableColumnManagerMenuComponent', () => {
 
     fixture = TestBed.createComponent(ClrTreetableColumnManagerMenuComponent);
     component = fixture.componentInstance;
-    fixture.componentRef.setInput('resetLabel', RESET_LABEL);
     fixture.autoDetectChanges();
   });
 
