@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   ClrActionPanel,
@@ -25,6 +25,7 @@ import { DemoMenu } from '../demo-menu/demo-menu';
   selector: 'clr-basepage-layout-demo',
   templateUrl: './basepage-layout.demo.html',
   providers: [ClrHistoryService],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ClrMainContainerModule,
     ClrNavigationModule,

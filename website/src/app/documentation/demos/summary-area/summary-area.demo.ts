@@ -20,7 +20,7 @@ import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
 import { UtilsModule } from '../../../utils/utils.module';
 import { CommonModule } from '@angular/common';
 import { ClarityDocComponent } from '../clarity-doc';
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { DocWrapper } from '../_doc-wrapper/doc-wrapper';
 import { RouterLinkActive, RouterLink } from '@angular/router';
 import {
@@ -366,6 +366,7 @@ const COMPLETE_EXAMPLE = `<clr-summary-area [rows]="3">
     FormsModule,
     ClarityModule,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class SummaryAreaDemo extends ClarityDocComponent {
   // Code examples

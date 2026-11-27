@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ClrCommonFormsModule, ClrInputModule } from '@clr/angular';
 import { ClrAddonsLabel, ClrAutocompleteOff, ClrSearchField } from '@porscheinformatik/clr-addons';
@@ -11,6 +11,7 @@ import { ClrAddonsLabel, ClrAutocompleteOff, ClrSearchField } from '@porscheinfo
 @Component({
   selector: 'clr-searchfield-demo',
   templateUrl: './searchfield.demo.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [FormsModule, ClrCommonFormsModule, ClrInputModule, ClrAddonsLabel, ClrAutocompleteOff, ClrSearchField],
 })
 export class SearchFieldDemo {

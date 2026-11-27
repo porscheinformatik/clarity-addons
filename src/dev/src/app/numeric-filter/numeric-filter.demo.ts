@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ClrDatagridModule, ClrDatagridStateInterface } from '@clr/angular';
 import { JsonPipe } from '@angular/common';
 import {
@@ -16,6 +16,7 @@ interface Item {
 @Component({
   selector: 'clr-numeric-filter-demo',
   templateUrl: './numeric-filter.demo.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrDatagridModule, DatagridFieldDirective, ClrNumericFilterComponent, ClrStringFilterComponent, JsonPipe],
 })
 export class NumericFilterDemo {

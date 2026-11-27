@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { CodeSnippet } from '../../utils/code-snippet';
 
 const IMPORT_ADDONS_ICONS = `
@@ -28,6 +28,7 @@ const USAGE_ADDONS_ICONS_BADGED = `
 @Component({
   selector: 'icons-get-started',
   templateUrl: './icons-get-started.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CodeSnippet],
 })
 export class IconsGetStartedComponent {

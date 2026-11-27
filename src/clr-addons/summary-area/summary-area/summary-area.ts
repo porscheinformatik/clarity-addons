@@ -20,6 +20,7 @@ import {
   QueryList,
   Signal,
   ViewChild,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ClrSummaryItem } from '../summary-item/summary-item';
@@ -38,6 +39,7 @@ import {
   standalone: true,
   imports: [CommonModule, ClarityModule],
   templateUrl: './summary-area.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './summary-area.scss',
 })
 export class ClrSummaryArea implements OnInit, AfterViewInit, OnDestroy {

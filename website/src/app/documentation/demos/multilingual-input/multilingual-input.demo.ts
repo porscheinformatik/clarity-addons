@@ -15,7 +15,7 @@ import {
   unlinkIcon,
 } from '@clr/angular';
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   ClrMultilingualInputValidators,
@@ -174,6 +174,7 @@ this.singleLanguageIcons.set("EN", "unlink");
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DocWrapper,
     FormsModule,

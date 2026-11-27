@@ -3,13 +3,14 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ClrDatagridModule } from '@clr/angular';
 import { DatagridFieldDirective } from '@porscheinformatik/clr-addons';
 
 @Component({
   selector: 'clr-datagrid-highlight-demo',
   templateUrl: './datagrid-detail-datagrid.demo.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrDatagridModule, DatagridFieldDirective],
 })
 export class DatagridDetailDatagridDemo {

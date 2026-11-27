@@ -1,5 +1,5 @@
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { Component, signal, ViewChild } from '@angular/core';
+import { Component, signal, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ClrSummaryArea } from './summary-area';
@@ -31,6 +31,7 @@ class MockSummaryAreaStateService {
     </clr-summary-area>
   `,
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrSummaryArea, ClrSummaryItem, ClrSummaryItemValue, ClarityModule],
 })
 class TestHostComponent {
@@ -59,6 +60,7 @@ class TestHostComponent {
     </clr-summary-area>
   `,
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrSummaryArea, ClrSummaryItem, ClrSummaryItemValue],
 })
 class ManyItemsTestHostComponent {

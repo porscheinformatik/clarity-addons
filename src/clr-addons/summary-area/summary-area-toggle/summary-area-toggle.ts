@@ -3,7 +3,16 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, HostListener, computed, inject, input, output, AfterViewInit } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  computed,
+  inject,
+  input,
+  output,
+  AfterViewInit,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { angleDoubleIcon, ClarityIcons, ClrIcon, ClrTooltipModule } from '@clr/angular';
 
 import { ClrSummaryAreaStateService, defaultSummaryAreaCollapsedKey } from '../summary-area/summary-area-state.service';
@@ -15,6 +24,7 @@ ClarityIcons.addIcons(angleDoubleIcon);
   standalone: true,
   templateUrl: './summary-area-toggle.html',
   styleUrl: './summary-area-toggle.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrIcon, ClrTooltipModule],
 })
 export class ClrSummaryAreaToggle implements AfterViewInit {

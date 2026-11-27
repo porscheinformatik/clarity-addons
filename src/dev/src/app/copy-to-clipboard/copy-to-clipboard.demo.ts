@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 import { ClarityModule } from '@clr/angular';
 import { ClrCopyToClipboard, CLR_TREETABLE_DIRECTIVES } from '@porscheinformatik/clr-addons';
@@ -26,6 +26,7 @@ interface TreeNode {
   selector: 'copy-to-clipboard-demo',
   templateUrl: './copy-to-clipboard.demo.html',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClarityModule, ...CLR_TREETABLE_DIRECTIVES, ClrCopyToClipboard],
 })
 export class CopyToClipboardDemo {

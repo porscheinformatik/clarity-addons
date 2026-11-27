@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   administratorIcon,
@@ -20,6 +20,7 @@ ClarityIcons.addIcons(userIcon, envelopeIcon, pencilIcon, administratorIcon, mob
 
 @Component({
   selector: 'clr-summary-area-overview-page-demo',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <h3 style="margin-top: 0">Welcome, John Doe!</h3>
     <p>This is the overview page for your profile. Here you can quickly access your most important information.</p>

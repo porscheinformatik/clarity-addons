@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, Output, ChangeDetectionStrategy } from '@angular/core';
 import {
   ClarityIcons,
   ClrCheckboxModule,
@@ -23,6 +23,7 @@ interface FilterValue {
   selector: 'clr-enum-filter',
   templateUrl: './enum-filter.component.html',
   styleUrls: ['./enum-filter.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrIcon, ClrCheckboxModule, FormsModule, ClrCommonFormsModule],
 })
 export class ClrEnumFilterComponent<T extends { [key: string]: any }>

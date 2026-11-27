@@ -565,6 +565,7 @@ class IsSubscribedComponent {
     AsyncPipe,
     DatePipe,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class DatagridDemo extends ClarityDocComponent {
   noSelectAllExample = NO_SELECT_ALL_HTML;

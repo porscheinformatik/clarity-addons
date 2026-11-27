@@ -8,7 +8,12 @@
     "declaration": false,
     "moduleResolution": "bundler",
     "experimentalDecorators": true,
+    "strict": false,
     "target": "es2022",
-    "typeRoots": ["node_modules/@types"]
+    "typeRoots": ["node_modules/@types"],
+    "types": ["node"]
+  },
+  "angularCompilerOptions": {
+    "strictTemplates": false
   }
 }

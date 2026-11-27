@@ -2,7 +2,7 @@ import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
 import { UtilsModule } from '../../../utils/utils.module';
 import { ClarityModule, ClrCommonFormsModule, ClrInputModule, ClrSelectModule } from '@clr/angular';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
 import {
   ClrGenericQuickListItem,
@@ -108,6 +108,7 @@ interface ClrNameQuickListItem extends ClrGenericQuickListItem {
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DocWrapper,
     FormsModule,

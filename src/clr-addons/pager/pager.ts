@@ -7,7 +7,7 @@
 import { FormsModule } from '@angular/forms';
 import { angleIcon, ClarityIcons, ClarityModule, ClrIcon } from '@clr/angular';
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 /**
  * Custom pager component because clarity's pager component can only be used inside a data grid.
  * Currently a requested feature, see here: https://github.com/vmware/clarity/issues/2268
@@ -20,6 +20,7 @@ ClarityIcons.addIcons(angleIcon);
   selector: 'clr-pager',
   templateUrl: './pager.html',
   host: { '[class.pager]': 'true' },
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrIcon, CommonModule, ClarityModule, FormsModule],
 })
 export class ClrPager {

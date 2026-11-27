@@ -3,11 +3,12 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, TemplateRef } from '@angular/core';
+import { Component, TemplateRef, ChangeDetectionStrategy } from '@angular/core';
 import { ClrNotificationService, ClrNotificationWidth } from '@porscheinformatik/clr-addons';
 
 @Component({
   selector: 'clr-notification-demo',
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './notification.demo.html',
 })
 export class NotificationDemo {

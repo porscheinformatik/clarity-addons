@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable, interval, map } from 'rxjs';
 import { ClrDropdownModule, ClrIfOpen, ClrPopoverContent } from '@clr/angular';
 import { AsyncPipe } from '@angular/common';
@@ -12,6 +12,7 @@ import { ClrDropdownOverflowDirective } from '@porscheinformatik/clr-addons';
 @Component({
   selector: 'clr-dropdown-demo',
   templateUrl: './dropdown.demo.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrDropdownModule, ClrIfOpen, ClrPopoverContent, ClrDropdownOverflowDirective, AsyncPipe],
 })
 export class DropdownDemo implements OnInit {

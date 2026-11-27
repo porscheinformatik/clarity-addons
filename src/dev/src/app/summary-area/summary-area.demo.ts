@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal, ChangeDetectionStrategy } from '@angular/core';
 import {
   ClrSummaryArea,
   ClrSummaryAreaError,
@@ -43,6 +43,7 @@ ClarityIcons.addIcons(
 @Component({
   selector: 'my-app-summary-area-demo',
   templateUrl: './summary-area.demo.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrSummaryArea, ClrSummaryItem, ClrSummaryItemValue, ProgressItemComponent, ClrModalModule],
 })
 export class SummaryAreaDemo implements OnInit {

@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import {
   LocationBarNode,
   SearchResponseModel,
@@ -16,6 +16,7 @@ import { DemoLocationBarContentProvider } from './content-provider';
 @Component({
   selector: 'clr-location-bar-demo',
   templateUrl: './location-bar.demo.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [LocationBarComponent],
 })
 export class LocationBarDemo implements OnInit {

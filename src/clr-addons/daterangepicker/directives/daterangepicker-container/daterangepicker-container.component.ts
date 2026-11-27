@@ -8,6 +8,7 @@ import {
   Optional,
   QueryList,
   ViewChildren,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   calendarIcon,
@@ -56,6 +57,7 @@ ClarityIcons.addIcons(calendarIcon, exclamationCircleIcon, checkCircleIcon, wind
   templateUrl: './daterangepicker-container.component.html',
   styleUrls: ['./daterangepicker-container.component.scss'],
   providers: [ClrPopoverService, DaterangeControlStateService, DaterangeService, ControlIdService],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ClrCommonFormsModule,
     NgClass,

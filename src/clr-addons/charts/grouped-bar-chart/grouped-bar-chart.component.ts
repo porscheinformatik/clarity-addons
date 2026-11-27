@@ -377,7 +377,7 @@ export class GroupedBarChartComponent extends ChartBase<GroupedBarChartDataPoint
           this.updateHoveredValueLabels();
         }
       })
-      .call(this.addBarClickHandler.bind(this));
+      .call(sel => this.addBarClickHandler(sel));
   }
 
   private addHorizontalValueLabels(
@@ -506,7 +506,7 @@ export class GroupedBarChartComponent extends ChartBase<GroupedBarChartDataPoint
     });
   }
 
-  private addBarClickHandler(g: Selection<SVGRectElement, GroupedBarChartDataPoint, SVGElement, undefined>): void {
+  private addBarClickHandler<E extends BaseType>(g: Selection<E, GroupedBarChartDataPoint, any, any>): void {
     g.on('click', (event: PointerEvent, d: GroupedBarChartDataPoint) => {
       event.stopPropagation();
       this.openTooltip(d.key);

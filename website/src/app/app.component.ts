@@ -1,4 +1,14 @@
-import { Component, ElementRef, Inject, InjectionToken, OnInit, PLATFORM_ID, Renderer2, DOCUMENT } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Inject,
+  InjectionToken,
+  OnInit,
+  PLATFORM_ID,
+  Renderer2,
+  DOCUMENT,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { ClarityIcons, ClarityModule, cogIcon } from '@clr/angular';
 import { Title } from '@angular/platform-browser';
@@ -20,6 +30,7 @@ const PRISM_THEMES_PER_CDS_THEME = new Map([
 @Component({
   selector: 'root',
   templateUrl: './app.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClarityModule, RouterModule],
 })
 export class AppComponent implements OnInit {

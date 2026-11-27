@@ -18,6 +18,7 @@ import {
   OnInit,
   output,
   ViewChild,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import { RouterModule } from '@angular/router';
@@ -30,6 +31,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
   imports: [RouterModule, ClarityModule, ClrIcon],
   providers: [provideAnimations()],
   templateUrl: './summary-item-value.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./summary-item-value.scss'],
 })
 export class ClrSummaryItemValue implements OnInit, AfterContentInit, AfterViewInit, OnDestroy {

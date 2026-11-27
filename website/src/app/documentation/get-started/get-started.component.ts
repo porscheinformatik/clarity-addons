@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { CodeSnippet } from '../../utils/code-snippet';
 
 const NODE_IMPORTS = `
@@ -35,6 +35,7 @@ export class AppModule { }
   host: {
     '[class.content-area]': 'true',
   },
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CodeSnippet],
 })
 export class GetStartedComponent {

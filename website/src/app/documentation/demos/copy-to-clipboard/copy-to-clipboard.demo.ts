@@ -7,7 +7,7 @@ import { UtilsModule } from '../../../utils/utils.module';
 import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
 import { ClarityModule, ClrAlertModule, ClrDatagridModule, ClrIcon } from '@clr/angular';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
 import { DocWrapper } from '../_doc-wrapper/doc-wrapper';
 import {
@@ -113,6 +113,7 @@ interface TreeNode {
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DocWrapper,
     ClrIcon,

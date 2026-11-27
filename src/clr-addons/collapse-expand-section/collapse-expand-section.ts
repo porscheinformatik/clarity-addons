@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { angleIcon, ClarityIcons, ClrIcon } from '@clr/angular';
 import { NgTemplateOutlet } from '@angular/common';
@@ -32,6 +32,7 @@ ClarityIcons.addIcons(angleIcon);
       transition('false => true', animate('300ms ease-in')),
     ]),
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [NgTemplateOutlet, ClrIcon],
 })
 export class ClrCollapseExpandSection implements AfterViewInit {

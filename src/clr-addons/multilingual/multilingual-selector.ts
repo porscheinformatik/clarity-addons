@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { angleIcon, ClarityIcons, ClrDropdownModule, ClrIcon, ClrIfOpen, ClrPopoverContent } from '@clr/angular';
 import { ClrDropdownOverflowDirective } from '../dropdown/clr-dropdown-overflow.directive';
 import { KeyValuePipe } from '@angular/common';
@@ -56,6 +56,7 @@ ClarityIcons.addIcons(angleIcon);
       }
     </div>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrDropdownModule, ClrIcon, ClrIfOpen, ClrPopoverContent, ClrDropdownOverflowDirective, KeyValuePipe],
 })
 export class ClrMultilingualSelector {

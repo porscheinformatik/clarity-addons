@@ -35,7 +35,7 @@ import {
   wrenchIcon,
 } from '@clr/angular';
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { share } from 'rxjs';
 import { ClarityDocComponent } from '../clarity-doc';
@@ -92,6 +92,7 @@ export interface TocEntry {
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DocWrapper,
     NgTemplateOutlet,

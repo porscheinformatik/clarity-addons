@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, signal, ChangeDetectionStrategy } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 import { ClrAlertModule } from '@clr/angular';
@@ -15,6 +15,7 @@ const COLORS = ['--cds-global-color-lavender-400', '#00828b', '#c1326e', '#5b40b
 @Component({
   selector: 'clr-bar-chart-demo',
   templateUrl: './bar-chart.demo.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [FormsModule, ClrAlertModule, ...CLR_CHARTS_DECLARATIONS],
 })
 export class BarChartDemo {

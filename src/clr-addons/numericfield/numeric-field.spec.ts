@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, DebugElement, ViewChild } from '@angular/core';
+import { Component, DebugElement, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -29,6 +29,7 @@ import { ClrNumericField } from './numeric-field';
       />
     </clr-input-container>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClarityModule, FormsModule, ClrNumericField],
 })
 class TestComponent {

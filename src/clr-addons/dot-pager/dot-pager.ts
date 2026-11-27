@@ -6,13 +6,14 @@
 
 import { ClarityModule, ClrCommonFormsModule, ClrRadioModule } from '@clr/angular';
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'clr-dot-pager',
   templateUrl: './dot-pager.html',
   host: { '[class.dot-pager]': 'true' },
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrRadioModule, FormsModule, ClrCommonFormsModule, CommonModule, ClarityModule, FormsModule],
 })
 export class ClrDotPager {

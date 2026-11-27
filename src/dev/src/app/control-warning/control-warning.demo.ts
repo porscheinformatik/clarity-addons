@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
@@ -23,6 +23,7 @@ import { ClrAddonsLabel, ClrAutocompleteOff, ClrIfWarning } from '@porscheinform
   selector: 'clr-control-warning-demo',
   templateUrl: './control-warning.demo.html',
   styleUrl: './control-warning.demo.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     FormsModule,
     ClrCommonFormsModule,

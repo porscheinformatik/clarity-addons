@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { ClarityIcons, ClrIcon, trashIcon } from '@clr/angular';
 
 ClarityIcons.addIcons(trashIcon);
@@ -12,6 +12,7 @@ ClarityIcons.addIcons(trashIcon);
   selector: 'clr-filter-clear-button',
   templateUrl: './filter-clear-button.component.html',
   styleUrls: ['./filter-clear-button.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrIcon],
 })
 export class ClrFilterClearButtonComponent {

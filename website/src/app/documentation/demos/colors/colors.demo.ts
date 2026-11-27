@@ -29,7 +29,7 @@ import {
 } from '@clr/angular';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { Component, TemplateRef, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
 import { ClrNotificationService } from '@porscheinformatik/clr-addons';
 import { DocWrapper } from '../_doc-wrapper/doc-wrapper';
@@ -58,6 +58,7 @@ ClarityIcons.addIcons(
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DocWrapper,
     ClrAlertModule,

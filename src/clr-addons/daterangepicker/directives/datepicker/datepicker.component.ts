@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 
 import { DayModel, NullableDayModel } from '../../models/day.model';
 import { ClrCommonFormsModule, ClrDatepickerModule } from '@clr/angular';
@@ -6,6 +6,7 @@ import { ClrCommonFormsModule, ClrDatepickerModule } from '@clr/angular';
 @Component({
   selector: 'clr-datepicker',
   templateUrl: './datepicker.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrDatepickerModule, ClrCommonFormsModule],
 })
 export class ClrDatepickerComponent {

@@ -6,7 +6,7 @@
 
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ClarityModule } from '@clr/angular';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ClrMainNavGroup } from './main-nav-group';
 
 @Component({
@@ -22,6 +22,7 @@ import { ClrMainNavGroup } from './main-nav-group';
       </div>
     </div>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClarityModule, ClrMainNavGroup],
 })
 class TestComponent {

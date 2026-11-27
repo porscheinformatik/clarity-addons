@@ -3,12 +3,13 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ClrPagedSearchResultList } from '@porscheinformatik/clr-addons';
 
 @Component({
   selector: 'clr-paged-search-result-list-demo',
   templateUrl: './paged-search-result-list.demo.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrPagedSearchResultList],
 })
 export class PagedSearchResultListDemo {

@@ -7,7 +7,7 @@ import { UtilsModule } from '../../../utils/utils.module';
 import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
 import { ClarityModule, ClrAlertModule } from '@clr/angular';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { share } from 'rxjs';
 import { ClarityDocComponent } from '../clarity-doc';
@@ -430,6 +430,7 @@ export const CLR_CHARTS_DECLARATIONS = [
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DocWrapper,
     RouterLink,

@@ -16,6 +16,7 @@ import {
   QueryList,
   TemplateRef,
   ViewChild,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import { ClarityModule } from '@clr/angular';
@@ -33,6 +34,7 @@ import { ClrCopyToClipboard } from '../../copy-to-clipboard';
   standalone: true,
   imports: [ClarityModule, ClrSummaryItemValue, ClrCopyToClipboard],
   templateUrl: './summary-item.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./summary-item.scss'],
 })
 export class ClrSummaryItem implements AfterContentInit, AfterViewChecked, OnDestroy {

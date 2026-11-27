@@ -7,7 +7,7 @@ import { ClarityModule, ClrModalModule } from '@clr/angular';
 import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
 import { UtilsModule } from '../../../utils/utils.module';
 import { CommonModule } from '@angular/common';
-import { Component, inject, Injectable, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Injectable, OnInit, signal } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
 import {
   ClrHistoryModel,
@@ -122,6 +122,7 @@ export class HistoryDemoNavigationService extends ClrHistoryNavigationService {
     DocWrapperModule,
     ClarityModule,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class HistoryDemo extends ClarityDocComponent implements OnInit {
   htmlExample = HTML_EXAMPLE;

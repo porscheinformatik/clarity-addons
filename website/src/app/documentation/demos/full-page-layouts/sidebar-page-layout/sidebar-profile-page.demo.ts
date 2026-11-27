@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import {
@@ -96,6 +96,7 @@ import { ClrAddonsLabel, ClrAutocompleteOff, ClrDateTimeContainer, ClrTimeInput 
       </form>
     </div>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     FormsModule,
     ClrCommonFormsModule,

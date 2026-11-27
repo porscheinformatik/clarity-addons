@@ -7,7 +7,7 @@
 import { FormsModule } from '@angular/forms';
 import { angleIcon, ClarityIcons, ClarityModule, ClrDropdownModule, ClrIcon, ClrPopoverContent } from '@clr/angular';
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ClrDropdownOverflowDirective } from '../dropdown/clr-dropdown-overflow.directive';
 import { AsyncPipe } from '@angular/common';
@@ -27,6 +27,7 @@ export interface ClrFlowBarStep {
   host: {
     '[class.flow-bar]': 'true',
   },
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ClrIcon,
     ClrDropdownModule,

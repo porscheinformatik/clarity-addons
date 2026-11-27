@@ -4,7 +4,16 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, computed, ElementRef, linkedSignal, OnInit, signal, viewChild } from '@angular/core';
+import {
+  Component,
+  computed,
+  ElementRef,
+  linkedSignal,
+  OnInit,
+  signal,
+  viewChild,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import {
   bellIcon,
@@ -78,6 +87,7 @@ export type Tree = {
     }
   `,
   providers: [ExportDatagridService],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ClrButtonGroupModule,
     ExportTreetableButtonComponent,

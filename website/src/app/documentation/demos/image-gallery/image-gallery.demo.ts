@@ -7,7 +7,7 @@ import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
 import { UtilsModule } from '../../../utils/utils.module';
 import { ClarityModule } from '@clr/angular';
 import { CommonModule } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
 import { ClrImageGalleryImage, ClrImageGallery } from '@porscheinformatik/clr-addons';
 import { ClarityDocComponent } from '../clarity-doc';
 import { DocWrapper } from '../_doc-wrapper/doc-wrapper';
@@ -35,6 +35,7 @@ images: ClrImageGalleryImage[] = [
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [DocWrapper, ClrImageGallery, CodeSnippet, CommonModule, ClarityModule, UtilsModule, DocWrapperModule],
 })
 export class ImageGalleryDemo extends ClarityDocComponent {

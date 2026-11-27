@@ -4,7 +4,7 @@ import { ClarityModule, ClrFormsModule } from '@clr/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
 import { addHours, endOfDay, startOfDay, startOfYesterday, subHours } from 'date-fns';
 import {
@@ -26,6 +26,7 @@ import { NgClass, DatePipe } from '@angular/common';
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DocWrapper,
     CodeSnippet,

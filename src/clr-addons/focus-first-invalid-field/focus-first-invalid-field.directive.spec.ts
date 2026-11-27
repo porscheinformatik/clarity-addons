@@ -1,5 +1,5 @@
 import { ClrFocusFirstInvalidFieldDirective } from './focus-first-invalid-field.directive';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, DebugElement } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, DebugElement, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -77,6 +77,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
       <button type="submit" class="btn btn-primary" data-testid="submit-button">Submit</button>
     </form>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [FormsModule, ClrDatagridModule, ClrInputModule, ClrSelectModule, ClrFocusFirstInvalidFieldDirective],
 })
 class TestComponent {

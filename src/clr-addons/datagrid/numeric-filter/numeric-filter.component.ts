@@ -1,4 +1,14 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  Output,
+  ViewChild,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {
   ClrCommonStringsService,
   ClrDatagridFilter,
@@ -24,6 +34,7 @@ interface FilterInputChange {
   selector: 'clr-numeric-filter',
   templateUrl: './numeric-filter.component.html',
   styleUrls: ['./numeric-filter.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrFilterClearButtonComponent, ClrNumberInputModule, FormsModule],
 })
 export class ClrNumericFilterComponent<T extends { [key: string]: any }>

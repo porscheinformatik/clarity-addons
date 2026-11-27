@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import {
   administratorIcon,
   ClarityIcons,
@@ -50,6 +50,7 @@ ClarityIcons.addIcons(
 @Component({
   selector: 'clr-summary-area-page-layout-demo',
   templateUrl: './sidebar-page-layout.demo.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ClrMainContainerModule,
     ClrNavigationModule,

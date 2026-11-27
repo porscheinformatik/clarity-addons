@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, Inject, DOCUMENT } from '@angular/core';
+import { Component, Inject, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
 import {
   angleIcon,
   applicationsIcon,
@@ -27,6 +27,7 @@ ClarityIcons.addIcons(cogIcon, applicationsIcon, angleIcon, userIcon, shoppingCa
 @Component({
   selector: 'clr-demo-menu',
   templateUrl: './demo-menu.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ClrNavigationModule,
     RouterLink,

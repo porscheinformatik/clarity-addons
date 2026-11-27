@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { ClrQuickListValue } from './add-option.service';
 import { ClarityIcons, ClrIcon, plusCircleIcon, trashIcon } from '@clr/angular';
 import { FormsModule } from '@angular/forms';
@@ -15,6 +15,7 @@ ClarityIcons.addIcons(trashIcon, plusCircleIcon);
   selector: 'clr-add-option',
   templateUrl: './add-option.html',
   host: { '[class.quick-list-option]': 'true' },
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [FormsModule, NgClass, ClrIcon],
 })
 export class ClrAddOption<T> {

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { ClrVerticalNavModule } from '@clr/angular';
 import { RouterLinkActive, RouterLink } from '@angular/router';
 
@@ -21,6 +21,7 @@ const COMPONENTS = require('../../settings/componentlist.json');
       }
     }
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrVerticalNavModule, RouterLinkActive, RouterLink],
 })
 export class DocumentationNavLinksComponent {

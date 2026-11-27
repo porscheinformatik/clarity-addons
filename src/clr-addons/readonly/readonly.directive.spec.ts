@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { ClarityModule } from '@clr/angular';
@@ -104,6 +104,7 @@ import { ClrReadonlyDirective } from './readonly.directive';
       </div>
     </form>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ReactiveFormsModule, ClarityModule, FormsModule, ClrReadonlyDirective],
 })
 class TestComponent {

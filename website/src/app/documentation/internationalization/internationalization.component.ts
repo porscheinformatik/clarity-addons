@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 // check for existing locales before import: https://www.npmjs.com/package/@angular/common?activeTab=code
 import localeDe from '@angular/common/locales/de';
@@ -69,6 +69,7 @@ enum LocaleDataIndex {
   host: {
     '[class.content-area]': 'true',
   },
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [FormsModule, ClrSelectModule, ClrIcon, ClrAlertModule, DecimalPipe, CurrencyPipe, DatePipe],
 })
 export class InternationalizationComponent {

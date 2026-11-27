@@ -6,11 +6,21 @@
 
 import { ClarityModule, ClrIcon } from '@clr/angular';
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, HostBinding, Input, Renderer2, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostBinding,
+  Input,
+  Renderer2,
+  ViewChild,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 
 @Component({
   selector: 'clr-icon-avatar',
   templateUrl: './icon-avatar.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrIcon, CommonModule, ClarityModule, ClrIcon],
 })
 export class ClrIconAvatar implements AfterViewInit {

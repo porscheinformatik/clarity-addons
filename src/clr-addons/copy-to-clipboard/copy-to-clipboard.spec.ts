@@ -1,11 +1,12 @@
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, ChangeDetectionStrategy } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { ClrCopyToClipboard } from './copy-to-clipboard';
 
 @Component({
   template: `<clr-copy-to-clipboard [value]="testValue"></clr-copy-to-clipboard>`,
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrCopyToClipboard],
 })
 class TestHostComponent {
@@ -20,6 +21,7 @@ class TestHostComponent {
     </div>
   `,
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrCopyToClipboard],
 })
 class HiddenUntilHoveredHostComponent {

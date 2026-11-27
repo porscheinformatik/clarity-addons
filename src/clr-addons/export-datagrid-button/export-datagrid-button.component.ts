@@ -1,4 +1,15 @@
-import { Component, computed, effect, ElementRef, EventEmitter, input, OnDestroy, Output, signal } from '@angular/core';
+import {
+  Component,
+  computed,
+  effect,
+  ElementRef,
+  EventEmitter,
+  input,
+  OnDestroy,
+  Output,
+  signal,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { ClarityModule, ClrDatagrid } from '@clr/angular';
 import { ExportDatagridService } from './export-datagrid.service';
 import { NgClass } from '@angular/common';
@@ -11,6 +22,7 @@ import { takeUntil } from 'rxjs/operators';
   templateUrl: './export-datagrid-button.component.html',
   styleUrl: './export-datagrid-button.component.scss',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClarityModule, NgClass],
 })
 export class ExportDatagridButtonComponent implements OnDestroy {

@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, signal, ViewChild } from '@angular/core';
+import { Component, signal, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ClrSummaryAreaToggle } from './summary-area-toggle';
@@ -34,6 +34,7 @@ class MockSummaryAreaStateService {
     (summaryToggle)="onToggle()"
   ></clr-summary-area-toggle>`,
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrSummaryAreaToggle],
 })
 class TestHostComponent {
@@ -332,6 +333,7 @@ describe('SummaryAreaToggleComponent - standalone tests', () => {
     (summaryToggle)="onToggle()"
   ></clr-summary-area-toggle>`,
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrSummaryAreaToggle],
 })
 class LocalStorageKeyTestHostComponent {

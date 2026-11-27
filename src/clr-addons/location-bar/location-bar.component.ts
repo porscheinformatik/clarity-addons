@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { ClarityIcons, ClrIcon, organizationIcon } from '@clr/angular';
 import { ReplaySubject } from 'rxjs';
 import { LocationBarNode, NodeId } from './location-bar.model';
@@ -11,6 +19,7 @@ ClarityIcons.addIcons(organizationIcon);
 @Component({
   selector: 'clr-location-bar',
   templateUrl: './location-bar.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrIcon, LocationBarNodeComponent, AsyncPipe],
 })
 export class LocationBarComponent<T extends NodeId> implements OnChanges {

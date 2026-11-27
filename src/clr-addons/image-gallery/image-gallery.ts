@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, computed, input, output, signal } from '@angular/core';
+import { Component, computed, input, output, signal, ChangeDetectionStrategy } from '@angular/core';
 import { ClrImageGalleryImage, ClrImageGalleryOpenEvent } from './image-gallery.types';
 import { NgOptimizedImage } from '@angular/common';
 import { ClrImageCarousel } from './image-carousel';
@@ -15,6 +15,7 @@ export { ClrImageGalleryImage, ClrImageGalleryOpenEvent };
   selector: 'clr-image-gallery',
   templateUrl: './image-gallery.html',
   styleUrls: ['./image-gallery.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [NgOptimizedImage, ClrImageCarousel],
 })
 export class ClrImageGallery {

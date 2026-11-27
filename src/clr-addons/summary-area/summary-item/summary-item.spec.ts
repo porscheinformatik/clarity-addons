@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -34,6 +34,7 @@ import { ClrSummaryArea } from '../summary-area/summary-area';
     </clr-summary-item>
   `,
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrSummaryItem, ClrSummaryItemValue, ClarityModule],
 })
 class TestHostComponent {
@@ -75,6 +76,7 @@ class TestHostComponent {
     </clr-summary-area>
   `,
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrSummaryArea, ClrSummaryItem, ClrSummaryItemValue, ClarityModule],
 })
 class TestHostWithAreaComponent {
@@ -105,6 +107,7 @@ class TestHostWithAreaComponent {
     </clr-summary-area>
   `,
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrSummaryArea, ClrSummaryItem, ClrSummaryItemValue],
 })
 class MultiValueTestHostComponent {
@@ -126,6 +129,7 @@ class MultiValueTestHostComponent {
     </clr-summary-item>
   `,
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClrSummaryItem, ClrSummaryItemValue],
 })
 class InvalidIconTestHostComponent {

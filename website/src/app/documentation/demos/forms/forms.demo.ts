@@ -22,7 +22,7 @@ import {
   displayIcon,
 } from '@clr/angular';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
 import { DocWrapper } from '../_doc-wrapper/doc-wrapper';
 import { FormsModule } from '@angular/forms';
@@ -265,6 +265,7 @@ const CODE_EXAMPLE_RO_VERTICAL2 = `
     '[class.content-area]': 'true',
     '[class.dox-content-panel]': 'true',
   },
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DocWrapper,
     FormsModule,

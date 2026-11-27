@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { ClrBreadcrumbModel } from './breadcrumb-model.interface';
 import { ClrBreadcrumbService } from './breadcrumb.service';
 import { Subject } from 'rxjs';
@@ -14,6 +14,7 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'clr-breadcrumb',
   templateUrl: './breadcrumb.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [RouterLink],
 })
 export class ClrBreadcrumb implements OnDestroy {

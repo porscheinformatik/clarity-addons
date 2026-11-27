@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   ClrNumericFieldValidators,
@@ -18,6 +18,7 @@ import { ClrCommonFormsModule, ClrInputModule, ClrModalModule } from '@clr/angul
 @Component({
   selector: 'clr-numericfield-demo',
   templateUrl: './numericfield.demo.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     FormsModule,
     ClrCommonFormsModule,

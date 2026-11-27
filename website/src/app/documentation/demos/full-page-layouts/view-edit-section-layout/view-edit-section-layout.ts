@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   ClrCheckboxModule,
   ClrCommonFormsModule,
@@ -236,6 +236,7 @@ const CODE_EXAMPLE = `
 @Component({
   selector: 'clr-view-edit-section-layout-demo',
   templateUrl: './view-edit-section-layout.demo.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ClrMainContainerModule,
     ClrNavigationModule,
