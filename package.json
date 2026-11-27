@@ -103,7 +103,7 @@
     "replace": "1.2.2",
     "sass": "1.108.2",
     "shx": "0.4.0",
-    "typescript": "6.0.3",
+    "typescript": "7.0.2",
     "vitest": "5.1.2",
     "zipcelx": "1.6.2"
   },
