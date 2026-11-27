@@ -84,9 +84,11 @@
       "prefix": "clr",
       "architect": {
         "build": {
-          "builder": "@angular/build:ng-packagr",
+          "builder": "@angular/build:library",
           "options": {
-            "project": "src/clr-addons/ng-package.json"
+            "tsConfig": "src/clr-addons/tsconfig.lib.json",
+            "outputPath": "dist/clr-addons",
+            "deleteOutputPath": false
           },
           "configurations": {
             "dev": {
@@ -94,6 +96,9 @@
             },
             "production": {
               "tsConfig": "src/clr-addons/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "compilationMode": "full"
             }
           }
         },

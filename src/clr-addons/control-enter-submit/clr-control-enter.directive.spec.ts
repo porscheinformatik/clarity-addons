@@ -45,6 +45,7 @@ class TestComponentNoButton {}
 class TestMultipleFormsComponent {}
 
 @Component({
+  selector: 'test-with-tooltip',
   template: `
     <form ngForm [clrControlEnterSubmit]="'Tooltip Text'">
       <input name="inputField" />
@@ -56,6 +57,7 @@ class TestMultipleFormsComponent {}
 class TestComponentWithTooltip {}
 
 @Component({
+  selector: 'test-with-empty-tooltip',
   template: `
     <form ngForm [clrControlEnterSubmit]="''">
       <input name="inputField" />

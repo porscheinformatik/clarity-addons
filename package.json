@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "@angular/animations": "22.3.0",
-    "@angular/cdk": "21.2.14",
+    "@angular/cdk": "22.3.0",
     "@angular/common": "22.3.0",
     "@angular/compiler": "22.3.0",
     "@angular/core": "22.3.0",
@@ -82,8 +82,8 @@
     "@types/zipcelx": "1.5.2",
     "@typescript-eslint/eslint-plugin": "8.74.0",
     "@typescript-eslint/parser": "8.74.0",
-    "@vitest/browser-playwright": "4.1.12",
-    "@vitest/coverage-v8": "4.1.12",
+    "@vitest/browser-playwright": "5.1.2",
+    "@vitest/coverage-v8": "5.1.2",
     "autoprefixer": "10.7.0",
     "cp-cli": "2.0.0",
     "csso-cli": "4.0.2",
@@ -93,7 +93,6 @@
     "eslint-config-prettier": "10.1.9",
     "globals": "17.14.0",
     "husky": "9.1.7",
-    "ng-packagr": "22.3.0",
     "ngx-skeleton-loader": "14.1.0",
     "npm-run-all2": "9.1.0",
     "playwright": "1.65.1",
@@ -105,11 +104,11 @@
     "sass": "1.108.2",
     "shx": "0.4.0",
     "typescript": "6.0.3",
-    "vitest": "4.1.12",
+    "vitest": "5.1.2",
     "zipcelx": "1.6.2"
   },
   "engines": {
-    "node": ">=20.0.0",
+    "node": "^22.22.0 || ^24.13.1 || >=26.0.0",
     "npm": ">=10.8.0"
   },
   "postcss": {
